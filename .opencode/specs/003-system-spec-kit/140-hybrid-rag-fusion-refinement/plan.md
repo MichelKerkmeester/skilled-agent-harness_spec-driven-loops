@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Hybrid RAG Fusion Refinement"
-description: "7 metric-gated sprints transforming the spec-kit memory MCP server from a 3-channel system with dormant graph to a 5-channel graph-differentiated, feedback-aware retrieval engine."
+description: "8 metric-gated sprints transforming the spec-kit memory MCP server from a 3-channel system with dormant graph to a 5-channel graph-differentiated, feedback-aware retrieval engine."
 trigger_phrases:
   - "hybrid rag plan"
   - "sprint implementation"
@@ -26,11 +26,11 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript |
 | **Framework** | MCP Server (spec-kit memory context-server v1.7.2) |
 | **Storage** | SQLite (primary) + sqlite-vec + FTS5 + new `speckit-eval.db` |
-| **Testing** | Jest (158+ existing tests) |
+| **Testing** | Vitest (158+ existing tests) |
 
 ### Overview
 
-This plan implements 30 recommendations across 7 metric-gated sprints (270-395h), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
+This plan implements 30 recommendations across 8 metric-gated sprints (270-395h for S0-S6, 313-456h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
 
 ### Design Principles
 
@@ -309,7 +309,7 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | SQLite 3.35.0+ (DROP COLUMN support) | Internal | Green | S4 rollback requires manual column handling |
 | sqlite-vec extension | Internal | Green | Vector search already operational |
 | FTS5 extension | Internal | Green | Full-text search already operational |
-| Jest test framework | Internal | Green | 158+ existing tests |
+| Vitest test framework | Internal | Green | 158+ existing tests |
 | BM25 channel | Internal | Green | Already operational (used in G-NEW-1) |
 
 **All dependencies are internal.** No external services, APIs, or packages are required.
@@ -480,7 +480,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 
 1. **G1** (Fix graph IDs) — 3-5h — CRITICAL
 2. **R4** (Typed-degree channel) — 12-16h — CRITICAL
-3. **R13-S1** (Eval infrastructure) — 25-35h — CRITICAL
+3. **R13-S1** (Eval infrastructure) — 20-28h — CRITICAL
 4. **R14/N1** (Relative Score Fusion) — 10-14h — CRITICAL
 5. **R6** (Pipeline refactor) — 40-55h — CRITICAL
 
@@ -533,7 +533,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 
 **Context**: Original roadmap proposed 4 risk-grouped phases. Each phase mixed 3-4 subsystems.
 
-**Decision**: Use 7 metric-gated sprints with max 2 subsystems each and data-driven go/no-go gates.
+**Decision**: Use 8 metric-gated sprints with max 2 subsystems each and data-driven go/no-go gates.
 
 **Consequences**:
 - Reduced context-switching (subsystem coherence)
@@ -666,5 +666,5 @@ LEVEL 3+ PLAN
 - Core + L2 + L3 + L3+ addendums
 - AI execution framework, workstream coordination
 - Full communication plan
-- 7 metric-gated sprints with ADRs
+- 8 metric-gated sprints with ADRs
 -->

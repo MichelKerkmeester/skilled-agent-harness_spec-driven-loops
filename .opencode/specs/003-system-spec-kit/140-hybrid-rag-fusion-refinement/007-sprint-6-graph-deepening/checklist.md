@@ -97,13 +97,13 @@ contextType: "implementation"
 
 ## Sprint 6 Exit Gate
 
-- [ ] CHK-060 [P2] R7 Recall@20 within 10% of baseline — verified via eval metrics
-- [ ] CHK-061 [P2] R10 false positive rate <20% — verified via manual review (if implemented)
-- [ ] CHK-062 [P2] N2 graph channel attribution >10% — verified via eval attribution data
-- [ ] CHK-063 [P2] N3-lite contradiction detection functional — verified via test data
-- [ ] CHK-064 [P2] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
-- [ ] CHK-065 [P2] Active feature flag count <=6 (sunset audit if exceeded)
-- [ ] CHK-066 [P2] All health dashboard targets checked
+- [ ] CHK-060 [P1] R7 Recall@20 within 10% of baseline — verified via eval metrics
+- [ ] CHK-061 [P1] R10 false positive rate <20% — verified via manual review (if implemented)
+- [ ] CHK-062 [P1] N2 graph channel attribution >10% — verified via eval attribution data
+- [ ] CHK-063 [P1] N3-lite contradiction detection functional — verified via test data
+- [ ] CHK-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
+- [ ] CHK-065 [P1] Active feature flag count <=6 (sunset audit if exceeded)
+- [ ] CHK-066 [P1] All health dashboard targets checked
 
 ---
 
@@ -113,8 +113,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 2 | [ ]/2 |
-| P1 Items | 5 | [ ]/5 |
-| P2 Items | 20 | [ ]/20 |
+| P1 Items | 13 | [ ]/13 |
+| P2 Items | 18 | [ ]/18 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->
@@ -123,7 +123,7 @@ contextType: "implementation"
 
 <!--
 Level 2 checklist — Phase 7 of 8
-Sprint 6 exit gate items are P2 (all Sprint 6 requirements are P2)
+Sprint 6 exit gate items are P1 (exit gates for metric-gated sprint must not be optional)
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 -->

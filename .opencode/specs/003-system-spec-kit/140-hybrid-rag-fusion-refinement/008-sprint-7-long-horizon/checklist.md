@@ -98,10 +98,10 @@ contextType: "implementation"
 
 - [ ] CHK-060 [P2] R13-S3 full reporting operational
 - [ ] CHK-061 [P2] R13-S3 ablation study framework functional
-- [ ] CHK-062 [P3] R8 gating verified: only implemented if >5K memories
-- [ ] CHK-063 [P3] S1 content generation quality improved (manual review)
-- [ ] CHK-064 [P3] S5 entity links established across documents
-- [ ] CHK-065 [P3] R5 decision documented with activation criteria
+- [ ] CHK-062 [P2] R8 gating verified: only implemented if >5K memories
+- [ ] CHK-063 [P2] S1 content generation quality improved (manual review)
+- [ ] CHK-064 [P2] S5 entity links established across documents
+- [ ] CHK-065 [P2] R5 decision documented with activation criteria
 - [ ] CHK-066 [P2] Program completion: all health dashboard targets reviewed
 - [ ] CHK-067 [P2] Final feature flag audit: sunset all sprint-specific flags
 
@@ -113,8 +113,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 1 | [ ]/1 |
-| P1 Items | 5 | [ ]/5 |
-| P2 Items | 11 | [ ]/11 |
+| P1 Items | 6 | [ ]/6 |
+| P2 Items | 16 | [ ]/16 |
 | P3 Items | 10 | [ ]/10 |
 
 **Verification Date**: [YYYY-MM-DD]

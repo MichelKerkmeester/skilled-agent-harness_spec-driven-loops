@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript |
 | **Framework** | Node.js MCP server |
 | **Storage** | SQLite (better-sqlite3), FTS5, sqlite-vec |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 
 ### Overview
 
@@ -61,7 +61,7 @@ Two independent subsystem tracks converging at verification
 ### Key Components
 - **Graph subsystem** (Track 1): `graph-search-fn.ts` — ID format fix, returns numeric memory IDs
 - **Search handlers** (Track 1): `memory-search.ts` — chunk collapse dedup on all paths
-- **Scoring** (Track 1): `composite-scoring.ts` — fan-effect divisor for co-activation
+- **Scoring** (Track 1): `co-activation.ts` — fan-effect divisor for co-activation scoring
 - **Eval infrastructure** (Track 2): New `speckit-eval.db` with 5-table schema — `eval_queries`, `eval_relevance`, `eval_results`, `eval_metrics`, `eval_runs`
 - **Logging hooks** (Track 2): Intercepts in search/context/trigger handlers to log queries and results to eval DB
 - **Metric computation** (Track 2): MRR@5, NDCG@10, Recall@20, Hit Rate@1 computed from logged data
@@ -78,9 +78,9 @@ Two independent subsystem tracks converging at verification
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Bug Fixes (Track 1 — can run in parallel)
-- [ ] G1: Fix graph ID format in `graph-search-fn.ts` — convert `mem:${edgeId}` to numeric (3-5h)
+- [ ] G1: Fix graph ID format in `graph-search-fn.ts` lines 110 AND 151 — convert `mem:${edgeId}` to numeric (3-5h)
 - [ ] G3: Fix chunk collapse conditional in `memory-search.ts` — dedup on ALL paths (2-4h)
-- [ ] R17: Add fan-effect divisor to co-activation in `composite-scoring.ts` (1-2h)
+- [ ] R17: Add fan-effect divisor to co-activation in `co-activation.ts` (1-2h)
 
 ### Phase 2: Eval Infrastructure (Track 2 — sequential)
 - [ ] R13-S1: Create `speckit-eval.db` with 5-table schema (8-10h)
@@ -103,10 +103,10 @@ Two independent subsystem tracks converging at verification
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | G1 numeric IDs, G3 all code paths, R17 bounds | Jest | 4-6 tests |
-| Unit | R13-S1 schema creation, hooks, metric computation | Jest | 3-4 tests |
-| Unit | BM25 baseline path | Jest | 1-2 tests |
-| Integration | End-to-end search with graph channel active | Jest | ~2 tests |
+| Unit | G1 numeric IDs, G3 all code paths, R17 bounds | Vitest | 4-6 tests |
+| Unit | R13-S1 schema creation, hooks, metric computation | Vitest | 3-4 tests |
+| Unit | BM25 baseline path | Vitest | 1-2 tests |
+| Integration | End-to-end search with graph channel active | Vitest | ~2 tests |
 | Manual | Verify graph hit rate > 0% in real queries | Manual inspection | N/A |
 
 **Total**: 8-12 new tests, estimated 200-300 LOC

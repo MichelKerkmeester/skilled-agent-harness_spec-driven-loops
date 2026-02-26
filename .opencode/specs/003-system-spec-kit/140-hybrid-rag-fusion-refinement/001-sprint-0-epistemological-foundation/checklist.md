@@ -30,7 +30,7 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Bug fix code locations verified — `graph-search-fn.ts` ~line 110 (G1), `memory-search.ts` ~line 303 (G3)
+- [ ] CHK-001 [P0] Bug fix code locations verified — `graph-search-fn.ts` lines 110 AND 151 (G1 has TWO occurrences), `memory-search.ts` ~line 1002 (G3 conditional gating at the call site, not line 303 which is the function definition)
 - [ ] CHK-002 [P0] Eval DB 5-table schema designed and reviewed
 - [ ] CHK-003 [P1] 142 research analysis and recommendations reviewed for Sprint 0 scope
 <!-- /ANCHOR:pre-impl -->
@@ -66,6 +66,8 @@ contextType: "implementation"
 - [ ] CHK-030 [P0] Eval DB (`speckit-eval.db`) is a separate file from primary database
 - [ ] CHK-031 [P1] No eval queries read from or write to primary DB
 - [ ] CHK-032 [P2] Eval DB file permissions match primary DB
+- [ ] CHK-033 [P1] NFR-P01: Eval logging adds ≤5ms p95 to search latency — measured before/after
+- [ ] CHK-034 [P1] NFR-R02: Search continues normally if eval DB is unavailable — graceful degradation verified
 <!-- /ANCHOR:security -->
 
 ---
@@ -107,7 +109,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 8 | [ ]/8 |
+| P1 Items | 10 | [ ]/10 |
 | P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]

@@ -86,6 +86,10 @@ Maximize graph channel contribution through centrality and community detection, 
 - **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening + staleness detection behind `SPECKIT_CONSOLIDATION` flag
 - **S4**: Spec folder hierarchy as retrieval structure — hierarchy traversal functional
 
+### Existing Code Note
+
+> **Important**: `fsrs.ts` already contains `computeGraphCentrality()` (basic degree centrality) and `computeStructuralFreshness()`. N2 items 4-6 build on this existing foundation — the implementation should extend `fsrs.ts` rather than creating new files.
+
 ### Out of Scope
 
 - Full consolidation (N3 complete) — N3-lite is the scoped subset
@@ -97,12 +101,12 @@ Maximize graph channel contribution through centrality and community detection, 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Graph analysis module | Create/Modify | N2: Centrality + community detection algorithms |
-| Consolidation module | Create | N3-lite: Contradiction scan, Hebbian strengthening, staleness detection |
+| `fsrs.ts` | Modify | N2: Centrality + community detection algorithms (extends existing `computeGraphCentrality()`) |
+| `causal_edges` schema + consolidation module | Create/Modify | N3-lite: Contradiction scan, Hebbian strengthening, staleness detection |
 | Indexing pipeline | Modify | R7: Anchor-aware chunk thinning logic |
 | Indexing pipeline | Modify | R16: Encoding-intent metadata capture |
 | Entity extraction module | Create | R10: Auto entity extraction with density gating |
-| Spec-kit retrieval | Modify | S4: Spec folder hierarchy traversal |
+| `graph-search-fn.ts` | Modify | S4: Spec folder hierarchy traversal |
 <!-- /ANCHOR:scope -->
 
 ---

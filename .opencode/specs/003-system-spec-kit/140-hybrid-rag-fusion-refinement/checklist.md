@@ -69,6 +69,8 @@ contextType: "implementation"
 - [ ] CHK-030 [P0] FTS5 contamination test: verify `learned_triggers` column is NOT indexed by FTS5 (R11)
 - [ ] CHK-031 [P0] Separate eval database (`speckit-eval.db`) — no eval queries touch primary DB
 - [ ] CHK-032 [P1] R11 denylist expanded from 25 to 100+ stop words
+- [ ] CHK-033 [P1] R12+R15 mutual exclusion verified: R15="simple" suppresses R12 query expansion
+- [ ] CHK-034 [P1] N4+R11 interaction safeguard verified: memories < 72h old excluded from R11 eligibility
 <!-- /ANCHOR:security -->
 
 ---
@@ -134,22 +136,33 @@ contextType: "implementation"
 - [ ] CHK-S43 [P1] R13-S2 operational: full A/B comparison infrastructure running
 - [ ] CHK-S44 [P1] R11 FTS5 contamination test passes (learned triggers NOT in FTS5 index)
 
-### Sprint 5: Pipeline Refactor [P2]
+### Sprint 5: Pipeline Refactor [P1]
 
-- [ ] CHK-S50 [P2] Checkpoint created before R6 (`pre-pipeline-refactor`)
-- [ ] CHK-S51 [P2] R6 dark-run: 0 ordering differences on full eval corpus
-- [ ] CHK-S52 [P2] All 158+ existing tests pass with `SPECKIT_PIPELINE_V2` enabled
-- [ ] CHK-S53 [P2] R9 cross-folder queries produce identical results
-- [ ] CHK-S54 [P2] R12 expansion does not degrade simple query latency
+- [ ] CHK-S50 [P1] Checkpoint created before R6 (`pre-pipeline-refactor`)
+- [ ] CHK-S51 [P1] R6 dark-run: 0 ordering differences on full eval corpus
+- [ ] CHK-S52 [P1] All 158+ existing tests pass with `SPECKIT_PIPELINE_V2` enabled
+- [ ] CHK-S53 [P1] Stage 4 "no score changes" invariant verified — prevents G2 recurrence
+- [ ] CHK-S54 [P1] Intent weights applied exactly ONCE in pipeline (Stage 2 only)
+- [ ] CHK-S55 [P1] R9 cross-folder queries produce identical results
+- [ ] CHK-S56 [P1] R12 expansion does not degrade simple query latency
 
-### Sprint 6: Graph Deepening [P2]
+### Sprint 6: Graph Deepening [P1]
 
-- [ ] CHK-S60 [P2] R7 Recall@20 within 10% of baseline
-- [ ] CHK-S61 [P2] R10 false positive rate < 20% on manual review
-- [ ] CHK-S62 [P2] N2 graph channel attribution > 10% of final top-K
-- [ ] CHK-S63 [P2] N3-lite: contradiction scan identifies at least 1 known contradiction
-- [ ] CHK-S64 [P2] Active feature flag count <= 6
-- [ ] CHK-S65 [P2] All health dashboard targets met (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
+- [ ] CHK-S60 [P1] R7 Recall@20 within 10% of baseline
+- [ ] CHK-S61 [P1] R10 false positive rate < 20% on manual review
+- [ ] CHK-S62 [P1] N2 graph channel attribution > 10% of final top-K
+- [ ] CHK-S63 [P1] N3-lite: contradiction scan identifies at least 1 known contradiction
+- [ ] CHK-S64 [P1] Active feature flag count <= 6
+- [ ] CHK-S65 [P1] All health dashboard targets met (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
+
+### Sprint 7: Long Horizon [P2]
+
+- [ ] CHK-S70 [P2] R8 memory summaries operational (if >5K memories) or documented as gated-out
+- [ ] CHK-S71 [P2] S1 content generation quality improved (verified via manual review)
+- [ ] CHK-S72 [P2] S5 cross-document entity links established (coordinates with R10 from Sprint 6)
+- [ ] CHK-S73 [P2] R13-S3 full reporting dashboard + ablation study framework operational
+- [ ] CHK-S74 [P2] R5 INT8 quantization decision documented (implement or defer with rationale)
+- [ ] CHK-S75 [P2] Final feature flag sunset audit completed — all sprint-specific flags resolved
 <!-- /ANCHOR:sprint-gates -->
 
 ---
@@ -227,13 +240,13 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 20 | [ ]/20 |
-| P1 Items | 34 | [ ]/34 |
-| P2 Items | 13 | [ ]/13 |
-| **Total** | **67** | **[ ]/67** |
+| P1 Items | 47 | [ ]/47 |
+| P2 Items | 12 | [ ]/12 |
+| **Total** | **79** | **[ ]/79** |
 
 **Verification Date**: [YYYY-MM-DD]
 
-**Minimum viable verification (off-ramp at S2+S3)**: All P0 items (20) + P1 items through Sprint 3 (CHK-S30 to CHK-S33) = ~34 items
+**Minimum viable verification (off-ramp at S2+S3)**: All P0 items (20) + P1 items through Sprint 3 gate (CHK-S30 to CHK-S33) + cross-cutting P1 items = ~24 P0 + ~10 Sprint 0-3 P1 gate items
 <!-- /ANCHOR:summary -->
 
 ---
@@ -242,5 +255,5 @@ contextType: "implementation"
 Level 3+ checklist — Full verification + architecture + sprint gates
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
-Sprint gate priorities aligned with off-ramp: S0-S1 = P0, S2-S4 = P1, S5-S6 = P2
+Sprint gate priorities aligned with off-ramp: S0-S1 = P0, S2-S4 = P1, S5-S6 = P1 (elevated from P2), S7 = P2
 -->

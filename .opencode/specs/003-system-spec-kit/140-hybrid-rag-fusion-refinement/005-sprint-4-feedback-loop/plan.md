@@ -25,7 +25,7 @@ contextType: "implementation"
 |--------|-------|
 | **Language/Stack** | TypeScript |
 | **Storage** | SQLite / FTS5 / sqlite-vec |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 | **Feature Flags** | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION` |
 
 ### Overview
@@ -129,10 +129,10 @@ Pipeline extension + schema migration — R1 appends aggregation stage, R11 adds
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | R1 MPAB: N=0, N=1, N=2, N=10, metadata preservation | Jest | 4-5 tests |
-| Unit | R11: column isolation, TTL, denylist, cap, eligibility, shadow | Jest | 5-7 tests |
-| Integration | R11 FTS5 contamination test | Jest | 1 test |
-| Integration | R13-S2 shadow scoring + attribution | Jest | 2-3 tests |
+| Unit | R1 MPAB: N=0, N=1, N=2, N=10, metadata preservation | Vitest | 4-5 tests |
+| Unit | R11: column isolation, TTL, denylist, cap, eligibility, shadow | Vitest | 5-7 tests |
+| Integration | R11 FTS5 contamination test | Vitest | 1 test |
+| Integration | R13-S2 shadow scoring + attribution | Vitest | 2-3 tests |
 
 **Total**: 10-15 new tests (400-550 LOC)
 <!-- /ANCHOR:testing -->

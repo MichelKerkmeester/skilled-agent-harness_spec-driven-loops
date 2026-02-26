@@ -62,12 +62,14 @@ contextType: "implementation"
 
 ### R11 — Learned Relevance Feedback
 - [ ] CHK-030 [P1] R11 shadow log: noise rate <5%
-- [ ] CHK-031 [P1] R11 FTS5 contamination test: `learned_triggers` NOT in FTS5 index
+- [ ] CHK-031 [P0] R11 FTS5 contamination test: `learned_triggers` NOT in FTS5 index
 - [ ] CHK-032 [P1] R11 denylist contains 100+ stop words
 - [ ] CHK-033 [P1] R11 cap enforced: max 3 terms/selection, max 8 per memory
 - [ ] CHK-034 [P1] R11 TTL: 30-day expiry on learned terms
 - [ ] CHK-035 [P1] R11 eligibility: memories <72h excluded
 - [ ] CHK-036 [P1] R11 shadow period: 1-week log-only before mutations
+- [ ] CHK-037 [P1] R1+R11 interaction verified: MPAB operates on post-fusion scores, not on pre-boosted R11 scores
+- [ ] CHK-038 [P1] R13 eval cycle defined: minimum 50 query evaluations over 7+ days constitutes one eval cycle for the R11 prerequisite
 
 ### R13-S2 — Shadow Scoring
 - [ ] CHK-040 [P1] R13-S2 operational: full A/B comparison infrastructure working
@@ -124,8 +126,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | [ ]/8 |
-| P1 Items | 23 | [ ]/23 |
+| P0 Items | 9 | [ ]/9 |
+| P1 Items | 30 | [ ]/30 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

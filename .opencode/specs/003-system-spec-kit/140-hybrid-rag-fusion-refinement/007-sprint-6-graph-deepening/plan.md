@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript |
 | **Framework** | Node.js MCP server |
 | **Storage** | SQLite (better-sqlite3), FTS5, sqlite-vec |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 
 ### Overview
 
@@ -109,13 +109,13 @@ Two parallel internal phases converging at sprint exit gate
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | R7 recall verification, anchor-aware thinning logic | Jest | 2-3 tests |
-| Unit | R10 entity extraction, FP rate, density gating | Jest | 2-3 tests |
-| Unit | N2 centrality computation, community detection | Jest | 2-3 tests |
-| Unit | N3-lite contradiction scan, Hebbian bounds/caps, staleness | Jest | 3-4 tests |
-| Unit | S4 hierarchy traversal | Jest | 1-2 tests |
-| Integration | N2 attribution in end-to-end retrieval | Jest | 1-2 tests |
-| Integration | R7 + R16 combined indexing pipeline | Jest | 1-2 tests |
+| Unit | R7 recall verification, anchor-aware thinning logic | Vitest | 2-3 tests |
+| Unit | R10 entity extraction, FP rate, density gating | Vitest | 2-3 tests |
+| Unit | N2 centrality computation, community detection | Vitest | 2-3 tests |
+| Unit | N3-lite contradiction scan, Hebbian bounds/caps, staleness | Vitest | 3-4 tests |
+| Unit | S4 hierarchy traversal | Vitest | 1-2 tests |
+| Integration | N2 attribution in end-to-end retrieval | Vitest | 1-2 tests |
+| Integration | R7 + R16 combined indexing pipeline | Vitest | 1-2 tests |
 
 **Total**: 12-18 new tests, estimated 350-500 LOC
 <!-- /ANCHOR:testing -->

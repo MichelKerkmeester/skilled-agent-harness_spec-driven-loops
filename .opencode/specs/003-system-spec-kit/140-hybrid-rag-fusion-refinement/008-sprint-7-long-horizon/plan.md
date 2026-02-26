@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript |
 | **Framework** | Node.js MCP server |
 | **Storage** | SQLite (better-sqlite3), FTS5, sqlite-vec |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 
 ### Overview
 
@@ -122,13 +122,13 @@ All items are parallelizable — no dependencies between them.
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | R8 summary generation, gating logic | Jest | 2-3 tests |
-| Unit | S1 content extraction quality | Jest | 1-2 tests |
-| Unit | S5 entity matching, linking logic | Jest | 2-3 tests |
-| Unit | R13-S3 reporting, ablation framework | Jest | 2-3 tests |
-| Unit | R5 activation criteria evaluation | Jest | 1-2 tests |
-| Integration | R8 pre-filter in search pipeline | Jest | 1-2 tests |
-| Integration | R13-S3 full reporting end-to-end | Jest | 1-2 tests |
+| Unit | R8 summary generation, gating logic | Vitest | 2-3 tests |
+| Unit | S1 content extraction quality | Vitest | 1-2 tests |
+| Unit | S5 entity matching, linking logic | Vitest | 2-3 tests |
+| Unit | R13-S3 reporting, ablation framework | Vitest | 2-3 tests |
+| Unit | R5 activation criteria evaluation | Vitest | 1-2 tests |
+| Integration | R8 pre-filter in search pipeline | Vitest | 1-2 tests |
+| Integration | R13-S3 full reporting end-to-end | Vitest | 1-2 tests |
 
 **Total**: Sprint 7 testing per item (unit + integration)
 <!-- /ANCHOR:testing -->

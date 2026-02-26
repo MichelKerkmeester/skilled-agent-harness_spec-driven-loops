@@ -44,7 +44,7 @@ contextType: "implementation"
 - [ ] T003 [P] Implement cross-document entity linking [8-12h] — S5 (REQ-S7-003)
   - Entity resolution strategy (coordinates with R10 output from Sprint 6)
   - Cross-document entity matching and link graph
-- [ ] T004 Implement R13-S3: full reporting dashboard + ablation study framework [12-16h] — R13-S3 (REQ-S7-004)
+- [ ] T004 [P] Implement R13-S3: full reporting dashboard + ablation study framework [12-16h] — R13-S3 (REQ-S7-004)
   - Full reporting dashboard
   - Ablation study framework (per-channel, per-sprint attribution)
 - [ ] T005 Evaluate R5 (INT8 quantization) need [2h] — R5 (REQ-S7-005)
@@ -52,6 +52,7 @@ contextType: "implementation"
   - Activation criteria: >10K memories OR >50ms latency OR >1536 dimensions
   - Document decision with rationale
   - If implementing: use custom quantized BLOB (NOT `vec_quantize_i8`)
+- [ ] T007 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T001-T005}
 <!-- /ANCHOR:implementation -->
 
 ---
@@ -73,9 +74,10 @@ contextType: "implementation"
 
 ## Completion Criteria
 
-- [ ] All tasks T001-T006 marked `[x]`
+- [ ] All tasks T001-T007 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Program completion verification (T006) passed
+- [ ] Sprint 7 exit gate verification (T007) passed
 - [ ] All existing tests still passing
 - [ ] Final feature flag audit complete — sprint-specific flags sunset
 - [ ] All health dashboard targets reviewed
@@ -96,7 +98,7 @@ contextType: "implementation"
 
 <!--
 LEVEL 2 TASKS — Phase 8 of 8 (FINAL)
-- 6 tasks: T001-T005 implementation (all parallelizable), T006 program completion
+- 7 tasks: T001-T005 implementation (all parallelizable), T006 program completion, T007 exit gate
 - All items independent — no internal dependencies
 - R5 decision gate: implement only if activation criteria met
 -->

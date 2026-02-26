@@ -94,6 +94,8 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 | `embedding_cache` table | Create | R18: Cache table in primary DB |
 | `composite-scoring.ts` | Modify | N4: Cold-start boost + score normalization |
 | `hybrid-search.ts` | Modify | G2: Double intent weighting investigation/fix |
+| `intent-classifier.ts` | Modify | G2: Intent weighting application point (1 of 3 codebase locations) |
+| `adaptive-fusion.ts` | Modify | G2: Intent weighting application point (1 of 3 codebase locations) |
 | `rrf-fusion.ts` | Modify | Score normalization to [0,1] |
 <!-- /ANCHOR:scope -->
 

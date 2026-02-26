@@ -75,7 +75,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 ### In Scope
 
-- **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs
+- **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151)
 - **G3**: Fix chunk collapse conditional — dedup on ALL code paths including `includeContent=false`
 - **R17**: Add fan-effect divisor to co-activation scoring to reduce hub domination
 - **R13-S1**: Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1)
@@ -94,7 +94,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 |-----------|-------------|-------------|
 | `graph-search-fn.ts` | Modify | G1: Fix ID format from `mem:${edgeId}` to numeric |
 | `memory-search.ts` | Modify | G3: Fix chunk collapse to run on all code paths |
-| `composite-scoring.ts` | Modify | R17: Add fan-effect divisor to co-activation |
+| `co-activation.ts` | Modify | R17: Add fan-effect divisor to co-activation scoring |
 | `speckit-eval.db` | Create | R13-S1: Evaluation database with 5-table schema |
 | Eval handler files | Create | R13-S1: Logging hooks for search/context/trigger handlers |
 <!-- /ANCHOR:scope -->

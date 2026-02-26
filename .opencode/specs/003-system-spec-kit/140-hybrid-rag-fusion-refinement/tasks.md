@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "52 tasks across 7 metric-gated sprints (270-395h) organized by workstream with sprint gate verification tasks."
+description: "57 tasks across 8 metric-gated sprints (270-395h S0-S6, 313-456h S0-S7) organized by workstream with sprint gate verification tasks."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -39,15 +39,18 @@ contextType: "implementation"
 > **Goal**: Establish that retrieval is measurable. BLOCKING — nothing proceeds without exit gate.
 > **Child folder**: `001-sprint-0-epistemological-foundation/`
 
-- [ ] T001 [W-B] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs (`graph-search-fn.ts`) [3-5h] {} — G1
+- [ ] T000a [W-C] Record pre-Sprint-0 performance baseline — current p95 search latency, memory count, existing system behavior snapshot [1-2h] {} — Baseline
+- [ ] T000b [W-A] Establish feature flag governance rules — document 6-flag max, 90-day lifespan, naming convention, monthly sunset audit process [1-2h] {} — NFR-O01/O02/O03
+- [ ] T000c [W-C] Audit `search-weights.json` — verify `maxTriggersPerMemory` status, smart ranking section behavior [1-2h] {} — OQ-003
+- [ ] T001 [W-B] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] {} — G1
 - [ ] T002 [W-A] Fix chunk collapse conditional — dedup on all code paths (`memory-search.ts`) [2-4h] {} — G3
-- [ ] T003 [W-A] Add fan-effect divisor to co-activation scoring (`composite-scoring.ts`) [1-2h] {} — R17
+- [ ] T003 [W-A] Add fan-effect divisor to co-activation scoring (`co-activation.ts`) [1-2h] {} — R17
 - [ ] T004 [W-C] Create `speckit-eval.db` with 5-table schema (eval_queries, eval_channel_results, eval_final_results, eval_ground_truth, eval_metric_snapshots) [8-10h] {} — R13-S1
 - [ ] T005 [W-C] Add logging hooks to `memory_search`, `memory_context`, `memory_match_triggers` handlers [6-8h] {T004} — R13-S1
 - [ ] T006 [W-C] Implement core metric computation (MRR@5, NDCG@10, Recall@20, Hit Rate@1) [4-6h] {T004} — R13-S1
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) [2-4h] {T004} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
-- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T001-T008}
+- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T000a-T008}
 <!-- /ANCHOR:sprint-0 -->
 
 ---
@@ -109,6 +112,8 @@ contextType: "implementation"
 
 - [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025} — R1
 - [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 7 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025, R13 2-cycle prerequisite} — R11
+- [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025, R13 2-cycle prerequisite} — G-NEW-3
+- [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
 - [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025} — R13-S2
 - [ ] T029 [W-C] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression) [included] {T026}
 - [ ] T030 [W-C] Analyze R11 shadow log (noise rate < 5%) [included] {T027}
@@ -170,6 +175,7 @@ contextType: "implementation"
 - [ ] T050 [P] [W-B] Implement cross-document entity linking [8-12h] {T047} — S5
 - [ ] T051 [W-C] Implement R13-S3: full reporting + ablation studies [12-16h] {T047} — R13-S3
 - [ ] T052 [W-C] Evaluate R5 (INT8 quantization) need based on memory count and latency [2h] {T047} — R5 decision
+- [ ] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T048-T052}
 <!-- /ANCHOR:sprint-7 -->
 
 ---
@@ -177,7 +183,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All sprint exit gates (T009, T014, T020, T025, T031, T040, T047) passed
+- [ ] All sprint exit gates (T009, T014, T020, T025, T031, T040, T047, T053) passed
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Feature flag count <= 6
 - [ ] R13 cumulative health dashboard meets targets (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
@@ -201,8 +207,8 @@ contextType: "implementation"
 
 <!--
 LEVEL 3+ TASKS
-- 52 tasks across 7 metric-gated sprints + Sprint 7
+- 57 tasks across 8 metric-gated sprints
 - Workstream tags (W-A through W-D)
-- Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047)
+- Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047, T053)
 - Off-ramp marker after Sprint 3
 -->

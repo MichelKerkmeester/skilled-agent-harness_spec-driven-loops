@@ -57,10 +57,10 @@ contextType: "implementation"
 
 ### R6 — 4-Stage Pipeline
 - [ ] CHK-020 [P0] Checkpoint created before R6 work
-- [ ] CHK-021 [P2] R6 dark-run: 0 ordering differences on full eval corpus
-- [ ] CHK-022 [P2] All 158+ tests pass with `SPECKIT_PIPELINE_V2` enabled
-- [ ] CHK-023 [P2] Stage 4 invariant verified: no score modifications in Stage 4
-- [ ] CHK-024 [P2] Intent weights applied ONCE in Stage 2 (prevents G2 recurrence)
+- [ ] CHK-021 [P1] R6 dark-run: 0 ordering differences on full eval corpus
+- [ ] CHK-022 [P1] All 158+ tests pass with `SPECKIT_PIPELINE_V2` enabled
+- [ ] CHK-023 [P1] Stage 4 invariant verified: no score modifications in Stage 4
+- [ ] CHK-024 [P1] Intent weights applied ONCE in Stage 2 (prevents G2 recurrence)
 
 ### R9 — Spec Folder Pre-Filter
 - [ ] CHK-030 [P2] R9 cross-folder queries identical to without pre-filter
@@ -113,9 +113,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | [ ]/7 |
-| P1 Items | 10 | [ ]/10 |
-| P2 Items | 9 | [ ]/9 |
+| P0 Items | 8 | [ ]/8 |
+| P1 Items | 18 | [ ]/18 |
+| P2 Items | 6 | [ ]/6 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

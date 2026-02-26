@@ -34,9 +34,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Bug Fixes (Track 1)
 
-- [ ] T001 [P] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs (`graph-search-fn.ts`) [3-5h] — G1 (REQ-S0-001)
+- [ ] T001 [P] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] — G1 (REQ-S0-001)
 - [ ] T002 [P] Fix chunk collapse conditional — dedup on ALL code paths including `includeContent=false` (`memory-search.ts`) [2-4h] — G3 (REQ-S0-002)
-- [ ] T003 [P] Add fan-effect divisor to co-activation scoring (`composite-scoring.ts`) [1-2h] — R17 (REQ-S0-005)
+- [ ] T003 [P] Add fan-effect divisor to co-activation scoring (`co-activation.ts`) [1-2h] — R17 (REQ-S0-005)
 <!-- /ANCHOR:phase-1 -->
 
 ---

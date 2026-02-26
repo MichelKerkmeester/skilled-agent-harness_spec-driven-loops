@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Hybrid RAG Fusion Refinement"
-description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 30-recommendation program across 7 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
+description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 30-recommendation program across 8 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
 trigger_phrases:
   - "hybrid rag fusion"
   - "graph channel fix"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 30-recommendation program across 7 metric-gated sprints (270-395h) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 30-recommendation program across 8 metric-gated sprints (270-395h for S0-S6, 313-456h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -90,8 +90,8 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | Graph | `graph-search-fn.ts`, `causal_edges` schema | Modify |
 | Search handlers | `memory-search.ts`, `hybrid-search.ts` | Modify |
 | Evaluation | `speckit-eval.db` (new), eval handlers | Create |
-| Scoring | `composite-scoring.ts`, `vector-index-impl.ts` | Modify |
-| Fusion | `rrf-fusion.ts`, `hybrid-search.ts` | Modify |
+| Scoring | `composite-scoring.ts`, `co-activation.ts`, `vector-index-impl.ts` | Modify |
+| Fusion | `rrf-fusion.ts`, `hybrid-search.ts`, `intent-classifier.ts`, `adaptive-fusion.ts` | Modify |
 | Pipeline | `memory-search.ts` (refactored stages) | Modify |
 | Indexing | `memory_index` schema, embedding pipeline | Modify |
 | Spec-Kit logic | Template processing, validation handlers | Modify |
@@ -146,7 +146,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry | S0 |
+| REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) | Graph hit rate > 0% in retrieval telemetry | S0 |
 | REQ-002 | **G3:** Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode | S0 |
 | REQ-003 | **R13-S1:** Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) | Baseline metrics computed for at least 50 queries | S0 |
 | REQ-004 | **G-NEW-1:** BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid | S0 |

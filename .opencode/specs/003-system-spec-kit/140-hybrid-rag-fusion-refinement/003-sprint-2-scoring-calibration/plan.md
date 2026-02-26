@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript |
 | **Framework** | Node.js MCP server |
 | **Storage** | SQLite (better-sqlite3), sqlite-vec, FTS5 |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 
 ### Overview
 
@@ -111,11 +111,11 @@ Four parallel feature tracks with G2 → normalization dependency
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | R18 cache hit/miss paths, content_hash key correctness | Jest | 2-3 tests |
-| Unit | N4 boost formula at 0h, 12h, 24h, 48h, >48h | Jest | 2-3 tests |
-| Unit | N4 + FSRS interaction — no double-penalty | Jest | 1 test |
-| Unit | Score normalization — both systems output [0, 1] | Jest | 1-2 tests |
-| Integration | G2 intent weight trace through full pipeline | Jest | 1-2 tests |
+| Unit | R18 cache hit/miss paths, content_hash key correctness | Vitest | 2-3 tests |
+| Unit | N4 boost formula at 0h, 12h, 24h, 48h, >48h | Vitest | 2-3 tests |
+| Unit | N4 + FSRS interaction — no double-penalty | Vitest | 1 test |
+| Unit | Score normalization — both systems output [0, 1] | Vitest | 1-2 tests |
+| Integration | G2 intent weight trace through full pipeline | Vitest | 1-2 tests |
 | Manual | Dark-run comparison for N4 and normalization | Manual | N/A |
 
 **Total**: 8-12 new tests, estimated 200-350 LOC

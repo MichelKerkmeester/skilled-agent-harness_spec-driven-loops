@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript |
 | **Framework** | Node.js MCP server |
 | **Storage** | SQLite (better-sqlite3), sqlite-vec, causal_edges table |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 
 ### Overview
 
@@ -109,11 +109,11 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | Degree SQL correctness — known edge data produces expected scores | Jest | 2-3 tests |
-| Unit | Normalization bounds — output in [0, 0.15] range | Jest | 1-2 tests |
-| Unit | Cache invalidation — stale after mutation | Jest | 1 test |
-| Unit | Constitutional exclusion — no degree boost for constitutional memories | Jest | 1 test |
-| Integration | 5-channel RRF fusion end-to-end | Jest | 1-2 tests |
+| Unit | Degree SQL correctness — known edge data produces expected scores | Vitest | 2-3 tests |
+| Unit | Normalization bounds — output in [0, 0.15] range | Vitest | 1-2 tests |
+| Unit | Cache invalidation — stale after mutation | Vitest | 1 test |
+| Unit | Constitutional exclusion — no degree boost for constitutional memories | Vitest | 1 test |
+| Integration | 5-channel RRF fusion end-to-end | Vitest | 1-2 tests |
 | Manual | Dark-run comparison via R13 metrics | Manual | N/A |
 
 **Total**: 6-10 new tests, estimated 250-400 LOC

@@ -57,6 +57,8 @@ contextType: "implementation"
 - [ ] CHK-022 [P1] Degree SQL tested against known edge data (expected scores verified)
 - [ ] CHK-023 [P1] Normalization output verified in [0, 0.15] range
 - [ ] CHK-024 [P1] Cache invalidation tested (stale after mutation, fresh after recompute)
+- [ ] CHK-025 [P1] NFR-P01: R4 degree computation adds <10ms p95 to search latency — measured
+- [ ] CHK-026 [P1] NFR-R02: R4 gracefully returns 0 when memory has zero edges (no errors thrown)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -106,7 +108,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 10 | [ ]/10 |
+| P1 Items | 12 | [ ]/12 |
 | P2 Items | 2 | [ ]/2 |
 
 **Verification Date**: [YYYY-MM-DD]

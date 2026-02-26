@@ -59,6 +59,7 @@ contextType: "implementation"
 - [ ] CHK-022 [P1] R18 cache hit/miss paths tested (content_hash match, model_id match, both)
 - [ ] CHK-023 [P1] N4 boost values tested at key timestamps: 0h, 12h, 24h, 48h, >48h
 - [ ] CHK-024 [P1] Score normalization tested — both RRF and composite produce values in [0,1]
+- [ ] CHK-025 [P1] NFR-P01/P02/P03: Cache lookup <1ms, N4 computation <2ms latency budgets verified
 <!-- /ANCHOR:testing -->
 
 ---
@@ -110,7 +111,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 3 | [ ]/3 |
-| P1 Items | 17 | [ ]/17 |
+| P1 Items | 18 | [ ]/18 |
 | P2 Items | 4 | [ ]/4 |
 
 **Verification Date**: [YYYY-MM-DD]

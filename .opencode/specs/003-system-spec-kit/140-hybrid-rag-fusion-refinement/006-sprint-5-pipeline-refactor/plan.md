@@ -25,7 +25,7 @@ contextType: "implementation"
 |--------|-------|
 | **Language/Stack** | TypeScript |
 | **Storage** | SQLite / FTS5 / sqlite-vec |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 | **Feature Flags** | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION` |
 
 ### Overview
@@ -119,12 +119,12 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Regression | R6 full corpus ordering comparison | Jest + eval infra | 1-2 tests |
-| Unit | R6 stage boundaries and interfaces | Jest | 4-6 tests |
-| Unit | R6 Stage 4 invariant (score immutability) | Jest | 2-3 tests |
-| Unit | R9 pre-filter behavior | Jest | 2-3 tests |
-| Unit | R12 expansion + R15 suppression | Jest | 2-3 tests |
-| Unit | S2 anchor metadata, S3 validation metadata | Jest | 2-3 tests |
+| Regression | R6 full corpus ordering comparison | Vitest + eval infra | 1-2 tests |
+| Unit | R6 stage boundaries and interfaces | Vitest | 4-6 tests |
+| Unit | R6 Stage 4 invariant (score immutability) | Vitest | 2-3 tests |
+| Unit | R9 pre-filter behavior | Vitest | 2-3 tests |
+| Unit | R12 expansion + R15 suppression | Vitest | 2-3 tests |
+| Unit | S2 anchor metadata, S3 validation metadata | Vitest | 2-3 tests |
 
 **Total**: 15-20 new tests (500-700 LOC)
 <!-- /ANCHOR:testing -->

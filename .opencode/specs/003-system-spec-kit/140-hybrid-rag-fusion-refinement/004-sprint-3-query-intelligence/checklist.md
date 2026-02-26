@@ -54,7 +54,7 @@ contextType: "implementation"
 
 ### R15 — Query Complexity Router
 - [ ] CHK-020 [P1] R15 p95 latency for simple queries <30ms
-- [ ] CHK-021 [P1] R15 minimum 2 channels even for simple queries (R2 compatibility)
+- [ ] CHK-021 [P0] R15 minimum 2 channels even for simple queries (R2 compatibility)
 - [ ] CHK-022 [P1] R15 classification accuracy tested with 10+ queries per tier
 
 ### R14/N1 — Relative Score Fusion
@@ -78,6 +78,9 @@ contextType: "implementation"
 - [ ] CHK-051 [P1] 10-14 new tests passing (350-500 LOC)
 - [ ] CHK-052 [P1] Edge cases tested (empty channels, all-empty, classifier failure)
 - [ ] CHK-053 [P1] Existing 158+ tests still pass
+- [ ] CHK-025 [P1] R15+R2 interaction test: R15 minimum 2 channels preserves R2 channel diversity guarantee
+- [ ] CHK-026 [P1] RSF numerical stability: output clamped to [0,1], no overflow on extreme inputs
+- [ ] CHK-027 [P1] Independent flag rollback testing: each of 3 flags (COMPLEXITY_ROUTER, RSF_FUSION, CHANNEL_MIN_REP) can be independently disabled without breaking other features
 <!-- /ANCHOR:testing -->
 
 ---
@@ -118,8 +121,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 6 | [ ]/6 |
-| P1 Items | 19 | [ ]/19 |
+| P0 Items | 7 | [ ]/7 |
+| P1 Items | 21 | [ ]/21 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

@@ -25,7 +25,7 @@ contextType: "implementation"
 |--------|-------|
 | **Language/Stack** | TypeScript |
 | **Storage** | SQLite / FTS5 / sqlite-vec |
-| **Testing** | Jest |
+| **Testing** | Vitest |
 | **Feature Flags** | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` |
 
 ### Overview
@@ -119,11 +119,11 @@ Pipeline extension — classifier stage prepended to existing pipeline; RSF runs
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | R15 classification accuracy (10+ queries/tier) | Jest | 4-6 tests |
-| Unit | R15 minimum 2-channel enforcement | Jest | 1-2 tests |
-| Unit | R14/N1 all 3 RSF variants | Jest | 3-4 tests |
-| Unit | R2 empty channels + quality floor | Jest | 2-3 tests |
-| Integration | RSF shadow comparison (100+ queries) | Jest + eval infra | 1 test |
+| Unit | R15 classification accuracy (10+ queries/tier) | Vitest | 4-6 tests |
+| Unit | R15 minimum 2-channel enforcement | Vitest | 1-2 tests |
+| Unit | R14/N1 all 3 RSF variants | Vitest | 3-4 tests |
+| Unit | R2 empty channels + quality floor | Vitest | 2-3 tests |
+| Integration | RSF shadow comparison (100+ queries) | Vitest + eval infra | 1 test |
 
 **Total**: 10-14 new tests (350-500 LOC)
 <!-- /ANCHOR:testing -->

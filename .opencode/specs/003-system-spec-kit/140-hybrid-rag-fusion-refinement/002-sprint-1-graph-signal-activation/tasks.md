@@ -65,7 +65,7 @@ contextType: "implementation"
 
 ## Phase 4: Dark-Run and Verification
 
-- [ ] T005 Enable R4 in dark-run mode — shadow scoring alongside 4-channel results; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003}— R4 (REQ-S1-001)
+- [ ] T005 Enable R4 in dark-run mode — shadow scoring alongside 4-channel results; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003, T004}— R4 (REQ-S1-001)
 - [ ] T006 [GATE] Sprint 1 exit gate verification [0h] {T001, T002, T003, T004, T005}
   - [ ] R4 MRR@5 delta >+2% absolute
   - [ ] No single memory >60% of dark-run results
