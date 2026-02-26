@@ -82,8 +82,8 @@ Maximize graph channel contribution through centrality and community detection, 
 - **R7**: Anchor-aware chunk thinning — Recall@20 within 10% of baseline
 - **R16**: Encoding-intent capture at index time behind `SPECKIT_ENCODING_INTENT` flag
 - **R10**: Auto entity extraction (gated on edge density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag — FP rate <20%
-- **N2 (items 4-6)**: Graph centrality + community detection — channel attribution >10%
-- **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening + staleness detection behind `SPECKIT_CONSOLIDATION` flag
+- **N2 (items 4-6)**: Graph centrality + community detection, decomposed into: N2a (Graph Momentum -- temporal degree delta), N2b (Causal Depth Signal -- max-depth path normalization), N2c (Community Detection -- label propagation or Louvain clustering) — channel attribution >10%
+- **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening + staleness detection + contradiction cluster surfacing (surface all cluster members, not just flagged pair) behind `SPECKIT_CONSOLIDATION` flag
 - **S4**: Spec folder hierarchy as retrieval structure — hierarchy traversal functional
 
 ### Existing Code Note

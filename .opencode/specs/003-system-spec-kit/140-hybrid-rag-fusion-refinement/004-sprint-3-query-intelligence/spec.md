@@ -77,6 +77,8 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 - **R15**: Query complexity router with 3 tiers (simple/moderate/complex), minimum 2 channels
 - **R14/N1**: Relative Score Fusion — all 3 fusion variants (single-pair, multi-list, cross-variant) evaluated in parallel with RRF
 - **R2**: Channel min-representation constraint (post-fusion, quality floor 0.2, only when channel returned results)
+- **R15-ext**: Confidence-based result truncation — adaptive top-K cutoff based on score confidence gap
+- **FUT-7**: Dynamic token budget allocation — context size varies by query complexity tier
 
 ### Out of Scope
 
@@ -106,6 +108,8 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 | REQ-S3-001 | **R15**: Query complexity router with 3 tiers (simple/moderate/complex), minimum 2 channels | p95 latency <30ms for simple queries. Flag: `SPECKIT_COMPLEXITY_ROUTER` |
 | REQ-S3-002 | **R14/N1**: RSF parallel to RRF — all 3 fusion variants (single-pair, multi-list, cross-variant) | 100+ query shadow comparison completed, Kendall tau computed. Flag: `SPECKIT_RSF_FUSION` |
 | REQ-S3-003 | **R2**: Channel min-representation (post-fusion, quality floor 0.2, only when channel returned results) | Top-3 precision within 5% of baseline. Flag: `SPECKIT_CHANNEL_MIN_REP` |
+| REQ-S3-004 | **R15-ext**: Confidence-based result truncation — adaptive top-K cutoff based on score confidence gap | Results truncated at score confidence gap; minimum 3 results guaranteed. Reduces irrelevant tail results by >30% |
+| REQ-S3-005 | **FUT-7**: Dynamic token budget allocation by query complexity tier | Simple: 1500t, Moderate: 2500t, Complex: 4000t. Token waste reduced for simple queries |
 <!-- /ANCHOR:requirements -->
 
 ---

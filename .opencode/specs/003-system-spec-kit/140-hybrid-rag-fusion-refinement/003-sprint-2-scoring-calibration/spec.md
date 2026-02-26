@@ -79,6 +79,7 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 - **N4**: Cold-start boost — exponential decay (`0.15 * exp(-elapsed_hours / 12)`) behind feature flag `SPECKIT_NOVELTY_BOOST`
 - **G2**: Double intent weighting investigation — determine if bug or intentional design, fix or document
 - **Score normalization**: Both RRF and composite scoring output normalized to [0,1] range
+- **FUT-5**: RRF K-value sensitivity investigation — grid search over K parameter to find optimal fusion constant
 
 ### Out of Scope
 
@@ -112,6 +113,7 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 | REQ-S2-002 | **N4**: Cold-start boost with exponential decay (12h half-life) behind `SPECKIT_NOVELTY_BOOST` flag | New memories (<48h) surface when relevant; dark-run passes (old results not displaced) |
 | REQ-S2-003 | **G2**: Double intent weighting investigation and resolution | Resolved: fixed (if bug) or documented as intentional design with rationale |
 | REQ-S2-004 | Score normalization — both RRF and composite in [0,1] | Both scoring systems produce outputs in [0,1] range; 15:1 mismatch eliminated |
+| REQ-S2-005 | **FUT-5**: RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} | Optimal K identified and documented; MRR@5 delta measured per K value |
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -63,6 +63,7 @@ contextType: "implementation"
   - [ ] T003c If bug: fix. If intentional: document rationale
 - [ ] T004 Implement score normalization — both RRF and composite to [0,1] range (`rrf-fusion.ts`, `composite-scoring.ts`) [4-6h] {T003} — Calibration (REQ-S2-004)
   - Note: Normalization approach may depend on G2 outcome
+- [ ] T004a [P] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100}, measure MRR@5 delta per value [2-3h] {T004} — Calibration (REQ-S2-005)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -70,18 +71,19 @@ contextType: "implementation"
 ## Phase 4: Verification
 
 - [ ] T005 Verify dark-run results for N4 and normalization — new memories visible, old not displaced, MRR@5 not regressed [included] {T002, T004}
-- [ ] T006 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T005}
+- [ ] T006 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005}
   - [ ] R18 cache hit >90% on unchanged content re-index
   - [ ] N4 dark-run passes
   - [ ] G2 resolved: fixed or documented as intentional
   - [ ] Score distributions normalized to [0,1]
+  - [ ] RRF K-value investigation completed; optimal K documented
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T006 marked `[x]`
+- [ ] All tasks T001-T006 (including T004a) marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 2 exit gate (T006) passed
 - [ ] 8-12 new tests added and passing
@@ -105,8 +107,9 @@ contextType: "implementation"
 
 <!--
 LEVEL 2 TASKS — Phase 3 of 8
-- 6 tasks across 4 phases
+- 7 tasks across 4 phases (T001-T006 + T004a)
 - T001-T003: Parallelizable (R18, N4, G2 are independent)
 - T004: Depends on T003 (G2 outcome influences normalization)
+- T004a: Depends on T004 (RRF K-value sensitivity investigation)
 - T005-T006: Verification + exit gate
 -->

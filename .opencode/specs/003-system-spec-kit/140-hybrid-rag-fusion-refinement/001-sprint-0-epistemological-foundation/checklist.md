@@ -56,6 +56,8 @@ contextType: "implementation"
 - [ ] CHK-021 [P0] 158+ existing tests still pass after all changes
 - [ ] CHK-022 [P1] BM25 baseline path tested independently (FTS5 only, no vector/graph channels)
 - [ ] CHK-023 [P1] Eval metric computation verified against known test data
+- [ ] CHK-024 [P1] Constitutional Surfacing Rate metric computes correctly (known constitutional memories surface in top-K)
+- [ ] CHK-025 [P1] Cold-Start Detection Rate metric computes correctly (memories <48h correctly identified)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -109,7 +111,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 10 | [ ]/10 |
+| P1 Items | 12 | [ ]/12 |
 | P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]

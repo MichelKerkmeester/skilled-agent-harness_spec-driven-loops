@@ -46,7 +46,12 @@ contextType: "implementation"
 
 - [ ] T004 Create `speckit-eval.db` with 5-table schema: `eval_queries`, `eval_relevance`, `eval_results`, `eval_metrics`, `eval_runs` [8-10h] — R13-S1 (REQ-S0-003)
 - [ ] T005 Add logging hooks to search, context, and trigger handlers [6-8h] {T004} — R13-S1 (REQ-S0-003)
-- [ ] T006 Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 [4-6h] {T004} — R13-S1 (REQ-S0-003)
+- [ ] T006 Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics [6-9h] {T004} — R13-S1 (REQ-S0-003)
+  - T006a Inversion Rate — count pairwise ranking inversions vs ground truth [1h]
+  - T006b Constitutional Surfacing Rate — % of queries where constitutional memories appear in top-K [1h]
+  - T006c Importance-Weighted Recall — Recall@20 with tier weighting (constitutional=3x, critical=2x, important=1.5x) [1-2h]
+  - T006d Cold-Start Detection Rate — % of queries where memories <48h old surface when relevant [1h]
+  - T006e Intent-Weighted NDCG — NDCG@10 with intent-type-specific relevance weights [2-3h]
 <!-- /ANCHOR:phase-2 -->
 
 ---

@@ -45,6 +45,7 @@ contextType: "implementation"
 ## Phase 2: R11 Learned Relevance Feedback
 
 - [ ] T002 Implement learned relevance feedback — schema migration (`learned_triggers` column) + separate column isolation + 7 safeguards (provenance, TTL 30d, denylist 100+, cap 3/8, threshold top-3, shadow 1 week, eligibility 72h) + 0.7x query weight, behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] — R11
+  - T002a Implement memory importance auto-promotion — threshold-based tier promotion when validation count exceeds configurable threshold (default: 5 validations → promote normal→important, 10 → important→critical) [5-8h] — R11 extension
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,6 +54,7 @@ contextType: "implementation"
 ## Phase 3: R13-S2 Shadow Scoring
 
 - [ ] T003 Implement R13-S2 — shadow scoring + channel attribution + ground truth Phase B [15-20h] — R13-S2
+  - T003a Implement Exclusive Contribution Rate metric — measure how often each channel is the SOLE source for a result in top-K [2-3h] — R13-S2 extension
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,6 +65,8 @@ contextType: "implementation"
 - [ ] T004 Verify R1 dark-run: MRR@5 within 2%, N=1 no regression [included] {T001}
 - [ ] T005 Analyze R11 shadow log: noise rate <5% [included] {T002}
 - [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005}
+  - [ ] R11 auto-promotion thresholds verified (5→important, 10→critical)
+  - [ ] R13-S2 Exclusive Contribution Rate metric operational
 <!-- /ANCHOR:phase-4 -->
 
 ---

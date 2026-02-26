@@ -35,11 +35,15 @@ contextType: "implementation"
 ## Phase A: Graph (N2 + N3-lite)
 
 - [ ] T001 Implement graph centrality + community detection — N2 items 4-6 [25-35h] — N2 (REQ-S6-004)
+  - T001a N2a: Graph Momentum (Temporal Degree Delta) — compute degree change over sliding 7-day window; surface memories with accelerating connectivity [8-12h]
+  - T001b N2b: Causal Depth Signal — max-depth path from root memories; deeper = more derived; normalize by graph diameter [5-8h]
+  - T001c N2c: Community Detection — identify memory clusters via label propagation or Louvain; boost intra-community recall [12-15h]
 - [ ] T002 Implement N3-lite: contradiction scan + Hebbian strengthening + staleness detection with edge caps [10-15h] — N3-lite (REQ-S6-005)
   - Contradiction scan: similarity >0.85, check conflicting conclusions (~40 LOC)
   - Hebbian strengthening: +0.05 per validation cycle, MAX_STRENGTH_INCREASE=0.05, 30-day decay of 0.1 (~20 LOC)
   - Staleness detection: 90-day unfetched edges (~15 LOC)
   - Edge bounds: MAX_EDGES_PER_NODE=20, auto edges capped at strength=0.5, track `created_by`
+  - Contradiction cluster surfacing: when contradiction detected (similarity >0.85), surface ALL cluster members (not just flagged pair) to agent for resolution (~25 LOC)
 <!-- /ANCHOR:phase-a -->
 
 ---

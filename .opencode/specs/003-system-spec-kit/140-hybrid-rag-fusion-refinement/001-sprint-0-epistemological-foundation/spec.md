@@ -78,7 +78,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 - **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151)
 - **G3**: Fix chunk collapse conditional — dedup on ALL code paths including `includeContent=false`
 - **R17**: Add fan-effect divisor to co-activation scoring to reduce hub domination
-- **R13-S1**: Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1)
+- **R13-S1**: Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG)
 - **G-NEW-1**: BM25-only baseline comparison and measurement
 
 ### Out of Scope
@@ -110,7 +110,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 |----|-------------|---------------------|
 | REQ-S0-001 | **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry |
 | REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode |
-| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) computed for at least 50 queries |
+| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed for at least 50 queries |
 | REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -127,7 +127,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 - **SC-001**: Graph hit rate > 0% (from 0% baseline) after G1 fix
 - **SC-002**: No duplicate chunk rows appear in default search mode after G3 fix
-- **SC-003**: Baseline MRR@5, NDCG@10, Recall@20 computed and stored for 50+ queries
+- **SC-003**: Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics computed and stored for 50+ queries
 - **SC-004**: BM25 baseline MRR@5 recorded; BM25 contingency decision made
 - **SC-005**: Sprint 0 exit gate — all 4 P0 requirements verified
 <!-- /ANCHOR:success-criteria -->

@@ -56,11 +56,24 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-3b -->
+## Phase 3b: Query Optimization
+
+- [ ] T006 Implement confidence-based result truncation — adaptive top-K cutoff based on score confidence gap between consecutive results [5-8h] {T001} — R15 extension
+  - Score gap threshold: if gap between rank N and N+1 exceeds 2x median gap, truncate at N
+  - Must respect minimum result count (3) regardless of confidence
+- [ ] T007 [P] Implement dynamic token budget allocation — adjust returned context size by query complexity tier [3-5h] {T001} — R15 extension (FUT-7)
+  - Simple: 1500 tokens | Moderate: 2500 tokens | Complex: 4000 tokens
+  - Budget applies to total returned content, not per-result
+<!-- /ANCHOR:phase-3b -->
+
+---
+
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Shadow Comparison + Verification
 
 - [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002}
-- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001, T002, T003, T004}
+- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001, T002, T003, T004, T006, T007}
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -68,7 +81,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [ ] All tasks T001-T007 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] R15 p95 <30ms for simple queries verified
 - [ ] RSF Kendall tau computed (tau <0.4 = reject RSF)
@@ -93,5 +106,5 @@ contextType: "implementation"
 <!--
 LEVEL 2 TASKS — Phase 4 of 8
 - Sprint 3: Query Intelligence
-- 5 tasks across 4 phases
+- 7 tasks across 5 phases (including Phase 3b)
 -->

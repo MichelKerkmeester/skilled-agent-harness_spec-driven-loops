@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "57 tasks across 8 metric-gated sprints (270-395h S0-S6, 313-456h S0-S7) organized by workstream with sprint gate verification tasks."
+description: "66 tasks across 8 metric-gated sprints (294-433h S0-S6, 337-494h S0-S7) organized by workstream with sprint gate verification tasks."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -47,7 +47,7 @@ contextType: "implementation"
 - [ ] T003 [W-A] Add fan-effect divisor to co-activation scoring (`co-activation.ts`) [1-2h] {} — R17
 - [ ] T004 [W-C] Create `speckit-eval.db` with 5-table schema (eval_queries, eval_channel_results, eval_final_results, eval_ground_truth, eval_metric_snapshots) [8-10h] {} — R13-S1
 - [ ] T005 [W-C] Add logging hooks to `memory_search`, `memory_context`, `memory_match_triggers` handlers [6-8h] {T004} — R13-S1
-- [ ] T006 [W-C] Implement core metric computation (MRR@5, NDCG@10, Recall@20, Hit Rate@1) [4-6h] {T004} — R13-S1
+- [ ] T006 [W-C] Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) [6-9h] {T004} — R13-S1
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) [2-4h] {T004} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
 - [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T000a-T008}
@@ -81,6 +81,7 @@ contextType: "implementation"
 - [ ] T017 [W-A] Investigate double intent weighting (G2) — determine if intentional design [4-6h] {T014} — G2
 - [ ] T018 [W-A] Implement score normalization (both RRF and composite to [0,1] scale) [4-6h] {T017} — Score calibration
 - [ ] T019 [W-C] Verify dark-run results for N4 and score normalization via R13 [included] {T016, T018}
+- [ ] T020a [P] [W-A] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] {T014} — FUT-5
 - [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run passes, G2 resolved, score distributions normalized [0h] {T015-T019}
 <!-- /ANCHOR:sprint-2 -->
 
@@ -96,6 +97,8 @@ contextType: "implementation"
 - [ ] T022 [P] [W-D] Implement Relative Score Fusion parallel to RRF (all 3 fusion variants) behind `SPECKIT_RSF_FUSION` flag [10-14h] {T020} — R14/N1
 - [ ] T023 [W-D] Implement channel minimum-representation constraint (post-fusion, quality floor 0.2) behind `SPECKIT_CHANNEL_MIN_REP` flag [6-10h] {T020} — R2
 - [ ] T024 [W-C] Run shadow comparison: R14/N1 vs RRF on 100+ queries, compute Kendall tau [included] {T022}
+- [ ] T025a [W-B] Implement confidence-based result truncation — adaptive top-K cutoff [5-8h] {T021} — R15 extension
+- [ ] T025b [P] [W-B] Implement dynamic token budget allocation by complexity tier [3-5h] {T021} — FUT-7
 - [ ] T025 [GATE] Sprint 3 exit gate verification: R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5% [0h] {T021-T024}
 
 **OFF-RAMP: After T025, evaluate "good enough" thresholds (MRR@5 >= 0.7, constitutional surfacing >= 95%, cold-start detection >= 90%). If all met, Sprints 4-7 are optional.**
@@ -114,7 +117,9 @@ contextType: "implementation"
 - [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 7 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025, R13 2-cycle prerequisite} — R11
 - [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025, R13 2-cycle prerequisite} — G-NEW-3
 - [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
+  - T027c Implement memory importance auto-promotion (threshold-based tier promotion on validation count) [5-8h]
 - [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025} — R13-S2
+  - T028a Implement Exclusive Contribution Rate metric per channel [2-3h]
 - [ ] T029 [W-C] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression) [included] {T026}
 - [ ] T030 [W-C] Analyze R11 shadow log (noise rate < 5%) [included] {T027}
 - [ ] T031 [GATE] Sprint 4 exit gate verification: R1 within 2%, R11 noise <5%, R13-S2 operational [0h] {T026-T030}
@@ -152,7 +157,11 @@ contextType: "implementation"
 
 **Phase A (Graph): 35-50h**
 - [ ] T041 [W-B] Implement graph centrality + community detection (N2 items 4-6) [25-35h] {T040} — N2
+  - T041a N2a: Graph Momentum (temporal degree delta) [8-12h]
+  - T041b N2b: Causal Depth Signal (max-depth path normalization) [5-8h]
+  - T041c N2c: Community Detection (label propagation/Louvain) [12-15h]
 - [ ] T042 [W-B] Implement N3-lite: contradiction scan + Hebbian strengthening with edge caps [10-15h] {T040} — N3-lite
+  - T042a Contradiction cluster surfacing — surface all cluster members [3-5h]
 
 **Phase B (Indexing + Spec-Kit): 33-51h — may run in parallel with Phase A**
 - [ ] T043 [P] [W-D] Implement anchor-aware chunk thinning [10-15h] {T040} — R7
@@ -207,7 +216,7 @@ contextType: "implementation"
 
 <!--
 LEVEL 3+ TASKS
-- 57 tasks across 8 metric-gated sprints
+- 66 tasks across 8 metric-gated sprints
 - Workstream tags (W-A through W-D)
 - Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047, T053)
 - Off-ramp marker after Sprint 3
