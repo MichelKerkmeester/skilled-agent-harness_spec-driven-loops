@@ -199,6 +199,38 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 
 ---
 
+---
+
+<!-- ANCHOR:pageindex-integration -->
+### PageIndex Integration
+
+Sprint 3 incorporates two PageIndex recommendations that extend the existing query intelligence features.
+
+#### PI-A2: Search Strategy Degradation with Fallback Chain
+
+**Rationale**: The R15 query complexity router already classifies queries by tier, but it does not handle the case where the selected channel subset produces low-quality results. PI-A2 adds a three-tier fallback chain that activates automatically when top-result similarity falls below 0.4 or the result count drops below 3:
+
+1. **Full hybrid search** (primary) — all channels selected by R15 tier execute normally
+2. **Broadened search** (first fallback) — relaxed filters, trigger matching enabled, channel constraints loosened
+3. **Structural search** (second fallback) — folder browsing, tier-based listing, no vector requirement
+
+Transition thresholds: top result similarity < 0.4 OR result count < 3 triggers descent to the next tier. The fallback is automatic and bounded — no user intervention is required, and the chain terminates at structural search.
+
+**Relationship to existing work**: PI-A2 sits alongside R-010 (hybrid fusion) and R-012 (graph integration) as a new recommendation. It depends on the Sprint 0 evaluation framework to measure similarity thresholds and result counts. The R15 minimum-2-channel constraint is preserved at all fallback levels.
+
+**Effort**: 12-16h | **Risk**: Medium | **Dependency**: Sprint 0 eval framework
+
+#### PI-B3: Description-Based Spec Folder Discovery
+
+**Rationale**: Currently, queries without an explicit `specFolder` parameter perform full-corpus search. PI-B3 generates a cached 1-sentence description per spec folder derived from `spec.md` and stores them in a `descriptions.json` file. The `memory_context` orchestration layer uses this file for lightweight folder routing before issuing vector queries, reducing unnecessary cross-folder churn.
+
+**Relationship to existing work**: PI-B3 is a low-risk addition to the folder routing layer. It complements the R9 spec folder pre-filter (Sprint 5) by providing a discovery step before the pre-filter applies.
+
+**Effort**: 4-8h | **Risk**: Low
+<!-- /ANCHOR:pageindex-integration -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

@@ -109,6 +109,16 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+## PageIndex Cross-References
+
+- [ ] CHK-PI-S7-001 [P2] PageIndex cross-references from Sprints 0, 5 reviewed and integrated
+  - PI-A5 verify-fix-verify pattern considered for long-horizon quality monitoring
+  - PI-B1 tree thinning approach applied to R8 summary generation and R13-S3 traversal
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 

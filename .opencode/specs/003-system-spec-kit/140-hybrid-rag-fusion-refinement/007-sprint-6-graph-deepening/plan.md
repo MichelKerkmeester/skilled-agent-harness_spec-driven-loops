@@ -214,6 +214,19 @@ Phase B (Indexing + Spec-Kit) ────────┘
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+## PageIndex Cross-References
+
+Builds on PageIndex integration from Sprints 2-3 (PI-A1 folder scoring, PI-A2 fallback chain).
+
+- **PI-A1 (Sprint 2 — DocScore aggregation)**: Consider folder-level scoring as a pre-filter before graph traversal in Phase A. Folder scores established in Sprint 2 can narrow the graph candidate set, reducing centrality computation overhead.
+- **PI-A2 (Sprint 3 — Fallback chain)**: Graph queries returning empty results (low-centrality or unpopulated community clusters) should route into the Sprint 3 fallback chain rather than returning empty-handed. Coordinate with Phase A N2 implementation to emit a fallback signal when graph channel returns no results.
+
+Research evidence: See research documents `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder.
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Specification**: See `spec.md`

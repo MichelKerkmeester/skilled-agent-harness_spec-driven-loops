@@ -212,6 +212,32 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 
 ---
 
+### PageIndex Integration
+
+**Recommendation**: PI-A1 — Folder-Level Relevance Scoring via DocScore Aggregation
+
+**Description**: Compute a folder-level relevance score by aggregating the individual memory scores within each spec folder. The formula is:
+
+```
+FolderScore(F) = (1 / sqrt(M + 1)) * SUM(MemoryScore(m) for m in F)
+```
+
+where M is the number of memories in the folder. The damping factor `1/sqrt(M+1)` prevents large folders from dominating purely by volume. This enables a two-phase retrieval strategy: first select the highest-scoring folders, then execute within-folder search against those candidates — reducing the effective search space and improving precision for spec-scoped queries.
+
+**Rationale**: Sprint 2 is the correct sprint for PI-A1 for two reasons. First, the score normalization work in Sprint 2 (eliminating the 15:1 RRF-vs-composite magnitude mismatch and producing [0,1]-range outputs from both systems) is a prerequisite for meaningful folder-level aggregation — FolderScore only makes sense when the underlying MemoryScore values are on a comparable scale. Second, PI-A1 is pure scoring logic added to the existing reranker pipeline, which is the primary subject of Sprint 2. It does not require new infrastructure, tables, or channels, making it low-risk (4-8h).
+
+**Extends Existing Recommendations**:
+- **R-006 (weight rebalancing)**: FolderScore provides a new aggregation layer where folder-level weights can be tuned in future sprints, extending the weight rebalancing surface.
+- **R-007 (scoring pipeline)**: PI-A1 is added as a post-reranker stage in the scoring pipeline — folder scores are computed after individual reranking and before final result assembly, fitting cleanly into the R-007 pipeline model.
+
+**Constraints**:
+- Formula: `FolderScore = (1/sqrt(M+1)) * SUM(MemoryScore(m))` — damping factor is mandatory to prevent volume bias.
+- Two-phase retrieval is the target usage pattern: folder selection then within-folder search.
+- Pure scoring addition — no schema changes, no new tables, no new channels.
+- Effort: 4-8h, Low risk.
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

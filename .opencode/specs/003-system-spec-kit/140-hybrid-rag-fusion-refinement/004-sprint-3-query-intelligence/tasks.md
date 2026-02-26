@@ -69,6 +69,19 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex -->
+## PageIndex Tasks
+
+- [ ] T008 Implement PI-A2 search strategy degradation fallback chain — three-tier fallback (full hybrid → broadened search → structural search) with automatic threshold-based transitions (top similarity < 0.4 OR result count < 3); preserves R15 min-2-channel constraint at all levels [12-16h] {T001} — PI-A2
+  - Tier 1: Full hybrid search (primary, R15-selected channels)
+  - Tier 2: Broadened search — relaxed filters, trigger matching enabled, channel constraints loosened
+  - Tier 3: Structural search — folder browsing, tier-based listing, no vector requirement
+  - Thresholds verified against Sprint 0 eval framework
+- [ ] T009 [P] Implement PI-B3 description-based spec folder discovery — generate 1-sentence descriptions from spec.md per folder, cache in descriptions.json, integrate lookup into memory_context orchestration layer before vector queries [4-8h] — PI-B3
+<!-- /ANCHOR:pageindex -->
+
+---
+
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Shadow Comparison + Verification
 

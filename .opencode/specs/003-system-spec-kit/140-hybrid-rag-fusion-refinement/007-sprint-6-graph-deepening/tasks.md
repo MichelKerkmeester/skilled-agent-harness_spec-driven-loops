@@ -95,6 +95,18 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+## PageIndex Cross-References (from Earlier Sprints)
+
+- [ ] T-PI-S6 Review and integrate PageIndex patterns from earlier sprints [2-4h] — Cross-reference (non-blocking)
+  - PI-A1 (Sprint 2): Evaluate folder-level DocScore aggregation as a pre-filter before graph traversal
+  - PI-A2 (Sprint 3): Ensure graph queries with empty results emit a signal into the Sprint 3 fallback chain
+  - Status: Pending
+  - Research evidence: See `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

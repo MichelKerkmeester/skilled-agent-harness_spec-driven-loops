@@ -95,6 +95,17 @@ Two independent subsystem tracks converging at verification
 ### Phase 4: Verification
 - [ ] Sprint 0 exit gate verification — all P0 requirements confirmed
 - [ ] BM25 contingency decision recorded
+
+### Phase 5: PI-A5 — Verify-Fix-Verify for Memory Quality (12-16h)
+- [ ] PI-A5-1: Implement cosine self-similarity check post-embedding — compare embedding against title-only embedding; threshold > 0.7 [3-4h]
+- [ ] PI-A5-2: Implement title-content alignment check — score embedding alignment with summary/content fields; threshold > 0.5 [3-4h]
+- [ ] PI-A5-3: Implement fix step — re-generate embedding with enhanced metadata (prepend title, append trigger phrases) on first threshold failure [2-3h]
+- [ ] PI-A5-4: Implement re-verify step — re-run both quality checks after regeneration [1h]
+- [ ] PI-A5-5: Implement fallback — flag memory with `quality_flag=low`, log to eval DB, surface for manual review when retry limit (max 2) exceeded [2-3h]
+- [ ] PI-A5-6: Log all quality loop outcomes (pass/retry/flag) to `speckit-eval.db` to enrich R-002 quality metrics dataset [1-2h]
+
+**Dependencies**: Phase 2 (R13-S1 eval infrastructure must exist before quality loop logging), TM-02 (content-hash gate establishes the embedding checkpoint where quality gate is inserted)
+**Effort**: 12-16h, Medium risk
 <!-- /ANCHOR:phases -->
 
 ---

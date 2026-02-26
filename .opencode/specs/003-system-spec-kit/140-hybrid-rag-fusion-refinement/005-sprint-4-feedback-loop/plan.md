@@ -216,6 +216,22 @@ Phase 3 (R13-S2 Shadow Scoring) ─────┘
 
 ---
 
+<!-- ANCHOR:pageindex-phases -->
+## PageIndex Tasks
+
+### PI-A4: Constitutional Memory as Expert Knowledge Injection (8-12h)
+- [ ] Add `search_directive: true` metadata tag to constitutional memories (opt-in, safe rollout)
+- [ ] Implement detection of `search_directive: true` tag in the `memory_context` orchestration layer
+- [ ] Extract search-relevant instructions from tagged constitutional memories (preferred channels, term expansions, tier priorities)
+- [ ] Inject extracted instructions into the query expansion step before the retrieval pipeline executes
+- [ ] Verify non-tagged constitutional memories continue to surface as content items (no regression)
+- [ ] Verify tagged constitutional memories do not appear as content items in results
+- [ ] Verify R-015 context-aware retrieval is extended, not replaced
+- **Effort**: 8-12h | **Risk**: Low-Medium
+<!-- /ANCHOR:pageindex-phases -->
+
+---
+
 <!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 

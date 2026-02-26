@@ -65,6 +65,13 @@ contextType: "implementation"
 
 ---
 
+## Phase 5 (PI-A3): Pre-Flight Token Budget Validation
+
+- [ ] T007 [P] Implement pre-flight token budget validation — estimate total tokens across candidate result set before response assembly; truncate to highest-scoring candidates if total exceeds configured budget; handle `includeContent=true` single-result overflow with summary fallback; log all overflow events (query_id, candidate_count, total_tokens, budget_limit, truncated_to_count) to eval infrastructure (`hybrid-search.ts` or result assembler) [4-6h] — PI-A3
+  - Truncation strategy: greedy highest-scoring first (never round-robin)
+  - Single-result budget overflow: return summary, not raw truncated content
+  - Overflow log extends R-004 baseline scoring benchmark dataset
+
 ## Phase 4: Dark-Run and Verification
 
 - [ ] T005 Enable R4 in dark-run mode — shadow scoring alongside 4-channel results; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003, T003a, T004, T005a}— R4 (REQ-S1-001)

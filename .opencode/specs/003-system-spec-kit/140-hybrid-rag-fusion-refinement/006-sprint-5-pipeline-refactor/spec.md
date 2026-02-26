@@ -215,6 +215,45 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 
 ---
 
+---
+
+<!-- ANCHOR:pageindex-integration -->
+### PageIndex Integration
+
+Sprint 5 incorporates two PageIndex recommendations that extend the pipeline refactor and validation infrastructure.
+
+#### PI-B1: Tree Thinning for Spec Folder Consolidation
+
+**Rationale**: The R6 pipeline refactor establishes clean stage boundaries, but the context loading step that precedes the pipeline can still be token-heavy when spec folders contain many small files. PI-B1 applies bottom-up merging of small files during spec folder context loading:
+
+- Files under 200 tokens: merge summary into parent document
+- Files under 500 tokens: use file content directly as the summary (no separate summary pass needed)
+- Memory files: 300-token threshold for thinning, 100-token threshold where the text itself is the summary
+
+This is an extension of the `generate-context.js` workflow, not a change to the pipeline stages themselves. It reduces token overhead before Stage 1 candidate generation without modifying any scoring logic.
+
+**Relationship to existing work**: PI-B1 is a pre-pipeline optimization that operates on the context loading layer. It complements the R9 spec folder pre-filter (which runs inside the pipeline) by reducing context size before the pipeline starts. The Stage 4 invariant is unaffected.
+
+**Effort**: 10-14h | **Risk**: Low
+
+#### PI-B2: Progressive Validation for Spec Documents
+
+**Rationale**: The current `validate.sh` script operates as a binary pass/fail gate. PI-B2 extends it to a 4-level progressive pipeline:
+
+1. **Detect** — identify all violations (existing behavior)
+2. **Auto-fix** — apply safe mechanical corrections automatically: missing dates, heading level normalization, whitespace normalization
+3. **Suggest** — present non-automatable issues with guided fix options
+4. **Report** — produce structured output (exit 0/1/2) with before/after diffs for all auto-fixes
+
+All auto-fixes are logged with before/after diffs as the primary mitigation against silent corruption. This makes the validation step actionable rather than purely diagnostic, reducing the manual effort required to bring a spec folder into compliance.
+
+**Relationship to existing work**: PI-B2 extends `validate.sh` from the Sprint 5 verification infrastructure. It does not affect the pipeline stages, scoring logic, or any Sprint 5 feature flags. Exit codes remain compatible: exit 0 = pass, exit 1 = warnings, exit 2 = errors (must fix).
+
+**Effort**: 16-24h | **Risk**: Medium | **Mitigation**: Log all auto-fixes with before/after diff; dry-run mode available
+<!-- /ANCHOR:pageindex-integration -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

@@ -214,6 +214,40 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-029 | **R8:** Memory summary generation (only if > 5K memories) | Summary pre-filtering reduces search space | S7 |
 | REQ-030 | **S1:** Smarter memory content generation | Content generation matches template schema for ≥95% of test cases | S7 |
 | REQ-031 | **S5:** Cross-document entity linking | ≥3 cross-document entity links verified by manual review | S7 |
+
+### PageIndex-Derived Recommendations (PI-A1 — PI-B3)
+
+> **Research Evidence:** Derived from PageIndex research documents 9 (deep analysis: true-mem source code) and 10 (recommendations: true-mem patterns). These recommendations are ADDITIVE to the 43 core recommendations above.
+
+#### Memory MCP Server (PI-A1 to PI-A5)
+
+| ID | Recommendation | Formula / Mechanism | Sprint | Effort | Risk |
+|----|----------------|---------------------|--------|--------|------|
+| PI-A1 | **Folder-Level Relevance Scoring via DocScore Aggregation** — aggregate per-memory scores into a per-folder relevance signal | `FolderScore = (1/sqrt(M+1)) * SUM(MemoryScore(m))` where M = memory count; discounts over-represented folders | S2 | 4-8h | Low |
+| PI-A2 | **Search Strategy Degradation with Fallback Chain** — 3-tier fallback when primary search returns insufficient results | Tier 1: full hybrid search → Tier 2: broadened (relaxed filters, lower threshold) → Tier 3: structural-only (trigger match + folder) | S3 | 12-16h | Medium |
+| PI-A3 | **Pre-Flight Token Budget Validation** — enforce token budget constraint before result assembly, not after | Validate `SUM(token_count(m))` against budget limit before assembling final result set; truncate candidate list early | S1 | 4-6h | Low |
+| PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — format constitutional memories as retrieval directives, not just high-priority results | Inject constitutional memories as system-level context (domain knowledge) before ranked results; separate display slot | S4 | 8-12h | Low-Medium |
+| PI-A5 | **Verify-Fix-Verify for Memory Quality** — bounded quality loop with fallback for memory_save validation | Verify quality → if below threshold, attempt auto-fix (trim, restructure) → re-verify → if still failing, save with warning flag (never drop silently) | S0 | 12-16h | Medium |
+
+#### Spec-Kit Logic (PI-B1 to PI-B3)
+
+| ID | Recommendation | Formula / Mechanism | Sprint | Effort | Risk |
+|----|----------------|---------------------|--------|--------|------|
+| PI-B1 | **Tree Thinning for Spec Folder Consolidation** — bottom-up merge of small spec files into parent | If `token_count(child) < MIN_CHILD_TOKENS` AND `token_count(parent + child) < MAX_MERGED_TOKENS`, merge child into parent section | S5 | 10-14h | Low |
+| PI-B2 | **Progressive Validation for Spec Documents** — 4-level progressive fix pipeline for spec document validation | Level 1: schema check → Level 2: anchor integrity → Level 3: cross-reference validation → Level 4: semantic consistency; each level runs only if prior passes | S5 | 16-24h | Medium |
+| PI-B3 | **Description-Based Spec Folder Discovery** — generate and cache a 1-sentence description per spec folder for search-time folder routing | At index time, generate `folder_description` = LLM summary of spec folder purpose; cache in spec folder index; use for pre-search folder routing | S3 | 4-8h | Low |
+
+**PageIndex Totals by Sprint:**
+
+| Sprint | PI Items | Added Effort |
+|--------|----------|--------------|
+| S0 | PI-A5 | +12-16h |
+| S1 | PI-A3 | +4-6h |
+| S2 | PI-A1 | +4-8h |
+| S3 | PI-A2, PI-B3 | +16-24h |
+| S4 | PI-A4 | +8-12h |
+| S5 | PI-B1, PI-B2 | +26-38h |
+| **Total** | **8 items** | **+70-104h** |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -461,6 +495,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 ### v1.1 (2026-02-26)
 **true-mem pattern integration** — Added 7 recommendations (TM-01 through TM-06, TM-08) from true-mem research (research/9 + research/10). New REQ-039 to REQ-045. New risks MR11, MR12. Deferred TM-07 as DEF-015. Effort increased by +27-44h (~8-9%).
 
+### v1.2 (2026-02-26)
+**PageIndex-derived recommendations** — Added 8 recommendations (PI-A1 through PI-A5, PI-B1 through PI-B3) from PageIndex analysis of true-mem source code (research/9 + research/10). Distributed across S0-S5. Effort increased by +70-104h. See §4 PageIndex-Derived Recommendations table.
+
 ---
 
 ## 16. OPEN QUESTIONS
@@ -506,8 +543,8 @@ Items evaluated in the 144 gap analysis but deferred pending future data or off-
 - **Verification Checklist**: See `checklist.md`
 - **Research (Analysis)**: See `research/142 - FINAL-analysis-hybrid-rag-fusion-architecture.md`
 - **Research (Recommendations)**: See `research/142 - FINAL-recommendations-hybrid-rag-fusion-refinement.md`
-- **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md`
-- **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md`
+- **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md` *(source for PI-A1 — PI-B3 PageIndex recommendations)*
+- **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md` *(source for PI-A1 — PI-B3 PageIndex recommendations)*
 
 ---
 

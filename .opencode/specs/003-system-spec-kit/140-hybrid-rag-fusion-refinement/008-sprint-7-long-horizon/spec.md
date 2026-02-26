@@ -213,6 +213,23 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+### PageIndex Cross-References
+
+Builds on PageIndex integration from Sprints 0, 5 (PI-A5 quality verification, PI-B1 tree thinning).
+
+| ID | Sprint | Relevance to Sprint 7 |
+|----|--------|----------------------|
+| **PI-A5** (Verify-fix-verify) | Sprint 0 | Long-horizon quality monitoring should incorporate the verify-fix-verify pattern for ongoing memory quality — as the system accumulates memories at scale, the V-F-V loop ensures degraded memories are detected, corrected, and re-verified continuously |
+| **PI-B1** (Tree thinning) | Sprint 5 | Long-horizon context loading benefits from thinning for large accumulated spec folders — with R8 memory summaries gated on >5K memories, the tree thinning pattern established in Sprint 5 provides a complementary pruning strategy for oversized context trees |
+
+These are cross-references only — Sprint 7 does not own PI-A5 or PI-B1. Integration points should be considered during R8 memory summary design and R13-S3 quality reporting but are not blocking requirements for the Sprint 7 exit gate.
+
+Research evidence: See research documents `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder.
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

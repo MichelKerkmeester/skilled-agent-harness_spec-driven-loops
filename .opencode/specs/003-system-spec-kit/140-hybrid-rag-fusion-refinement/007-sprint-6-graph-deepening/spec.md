@@ -217,6 +217,23 @@ Maximize graph channel contribution through centrality and community detection, 
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+### PageIndex Cross-References
+
+Builds on PageIndex integration from Sprints 2-3 (PI-A1 folder scoring, PI-A2 fallback chain).
+
+| ID | Sprint | Relevance to Sprint 6 |
+|----|--------|----------------------|
+| **PI-A1** (DocScore aggregation) | Sprint 2 | Graph deepening may benefit from folder-level scoring as a pre-filter before graph traversal — aggregate doc scores at the folder level to reduce the candidate set handed to graph algorithms |
+| **PI-A2** (Fallback chain) | Sprint 3 | Graph queries that return empty results (e.g., sparse community or low-centrality nodes) should integrate into the fallback chain established in Sprint 3, preventing silent failures |
+
+These are cross-references only — Sprint 6 does not own PI-A1 or PI-A2. Integration points should be noted in implementation but are not blocking requirements for the Sprint 6 exit gate.
+
+Research evidence: See research documents `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder.
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

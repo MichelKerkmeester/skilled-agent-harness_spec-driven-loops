@@ -205,6 +205,25 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 
 ---
 
+### PageIndex Integration
+
+**Recommendation**: PI-A3 — Pre-Flight Token Budget Validation
+
+**Description**: Before assembling the final result set for a search response, compute the total token count across all candidate results and validate it against the configured token budget. If the candidate set exceeds the budget, truncate to the highest-scoring results that fit within budget (greedy highest-first). If `includeContent=true` and a single result alone exceeds the budget, return a summary of that result instead of full content. All budget overflow events are logged for observability.
+
+**Rationale**: Sprint 1 introduces the 5th RRF channel (R4 typed-degree) and increases co-activation boost strength (A7), both of which expand the result set's potential scoring surface and can cause previously marginal results to surface. This increases the risk of token budget overflow in downstream consumers. Sprint 1 is therefore the natural point to install a pre-flight budget guard — it closes the latent overflow risk before Sprint 2's scoring calibration work makes result composition even more dynamic. PI-A3 is low-risk (4-6h, additive logic, no schema changes) and extends the R-004 baseline scoring benchmarks already established by Sprint 0's evaluation infrastructure.
+
+**Extends Existing Recommendations**:
+- **R-004 (baseline scoring benchmarks)**: Token budget overflow events are logged to the eval infrastructure as a new diagnostic, extending the benchmark dataset with token-cost-per-query signal.
+
+**Constraints**:
+- Truncation strategy: highest-scoring results first (greedy, not round-robin).
+- `includeContent=true` single-result overflow: return summary (not truncated raw content, not an error).
+- Log all overflow events with: query_id, candidate_count, total_tokens, budget_limit, truncated_to_count.
+- Effort: 4-6h, Low risk.
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

@@ -82,6 +82,33 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-verification -->
+## PageIndex Verification
+
+### PI-B1 — Tree Thinning for Spec Folder Consolidation
+- [ ] CHK-PI-B1-001 [P1] Files under 200 tokens merged into parent: summary content absorbed, no content loss
+- [ ] CHK-PI-B1-002 [P1] Files under 500 tokens use content directly as summary (no separate summary pass)
+- [ ] CHK-PI-B1-003 [P1] Memory thinning threshold of 300 tokens applied correctly; 100-token threshold where text is the summary
+- [ ] CHK-PI-B1-004 [P1] Thinning operates pre-pipeline (context loading step) — Stage 1 receives already-thinned context
+- [ ] CHK-PI-B1-005 [P1] Stage 4 invariant unaffected — thinning does not touch pipeline stages or scoring
+- [ ] CHK-PI-B1-006 [P1] R9 spec folder pre-filter interaction verified — folder identity unchanged after thinning
+- [ ] CHK-PI-B1-007 [P2] Token reduction measurable for spec folders with many small files
+
+### PI-B2 — Progressive Validation for Spec Documents
+- [ ] CHK-PI-B2-001 [P1] Detect level: all violations identified (equivalent to current validate.sh behavior)
+- [ ] CHK-PI-B2-002 [P1] Auto-fix level: missing dates corrected automatically
+- [ ] CHK-PI-B2-003 [P1] Auto-fix level: heading levels normalized automatically
+- [ ] CHK-PI-B2-004 [P1] Auto-fix level: whitespace normalization applied automatically
+- [ ] CHK-PI-B2-005 [P0] All auto-fixes logged with before/after diff — no silent corrections
+- [ ] CHK-PI-B2-006 [P1] Suggest level: non-automatable issues presented with guided fix options
+- [ ] CHK-PI-B2-007 [P1] Report level: structured output produced with full before/after diff summary
+- [ ] CHK-PI-B2-008 [P0] Exit code compatibility: exit 0 = pass, exit 1 = warnings, exit 2 = errors (unchanged from current validate.sh)
+- [ ] CHK-PI-B2-009 [P1] Dry-run mode: proposed auto-fixes shown without applying changes
+- [ ] CHK-PI-B2-010 [P2] Existing validate.sh callers (CI, checklist verification) unaffected by new levels
+<!-- /ANCHOR:pageindex-verification -->
+
+---
+
 <!-- ANCHOR:testing -->
 ## Testing
 

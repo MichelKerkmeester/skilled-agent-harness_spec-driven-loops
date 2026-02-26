@@ -135,6 +135,13 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 0.6 | **TM-02:** Content-hash fast-path dedup in memory_save pipeline (SHA256 O(1) check before embedding) | 2-3 | Memory quality | — |
 | | **Total** | **47-73h** | | |
 
+#### PageIndex Integration
+
+| ID | Item | Hours | Subsystem | Flag |
+|----|------|-------|-----------|------|
+| PI-A5 | **Verify-Fix-Verify for Memory Quality** — bounded quality loop (verify → auto-fix → re-verify → warn-flag; never silent drop) | 12-16 | Memory quality | `SPECKIT_VERIFY_FIX_VERIFY` |
+| | **Sprint 0 PageIndex subtotal** | **+12-16h** | | |
+
 **Exit Gate:**
 - [ ] Graph hit rate > 0% (G1 verified)
 - [ ] No duplicate chunk rows in default search mode (G3 verified)
@@ -168,6 +175,13 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 1.4 | Enable R4 if dark-run passes | 0 | — | — |
 | | **Total** | **26-39h** | | |
 
+#### PageIndex Integration
+
+| ID | Item | Hours | Subsystem | Flag |
+|----|------|-------|-----------|------|
+| PI-A3 | **Pre-Flight Token Budget Validation** — validate `SUM(token_count)` against budget limit before result assembly; truncate candidate list early | 4-6 | Pipeline / result assembly | — |
+| | **Sprint 1 PageIndex subtotal** | **+4-6h** | | |
+
 **Exit Gate:**
 - [ ] R4 dark-run: no single memory appears in >60% of results
 - [ ] R4 MRR@5 delta > +2% absolute (or +5% relative) vs Sprint 0 baseline
@@ -190,6 +204,13 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 2.6 | **TM-03:** Classification-based decay policies — FSRS multipliers by context_type/importance_tier | 3-5 | Scoring | — |
 | | **Total** | **28-43h** | | |
 
+#### PageIndex Integration
+
+| ID | Item | Hours | Subsystem | Flag |
+|----|------|-------|-----------|------|
+| PI-A1 | **Folder-Level Relevance Scoring via DocScore Aggregation** — `FolderScore = (1/sqrt(M+1)) * SUM(MemoryScore(m))`; discounts over-represented folders in result set | 4-8 | Scoring / fusion | `SPECKIT_FOLDER_SCORE` |
+| | **Sprint 2 PageIndex subtotal** | **+4-8h** | | |
+
 **Exit Gate:**
 - [ ] R18 cache hit rate > 90% on re-index of unchanged content
 - [ ] N4 dark-run: new memories surface without displacing highly relevant older results
@@ -208,6 +229,14 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 3.2 | **R14/N1:** Relative Score Fusion parallel to RRF | 10-14 | Fusion | `SPECKIT_RSF_FUSION` |
 | 3.3 | **R2:** Channel minimum-representation constraint | 6-10 | Fusion | `SPECKIT_CHANNEL_MIN_REP` |
 | | **Total** | **34-53h** | | |
+
+#### PageIndex Integration
+
+| ID | Item | Hours | Subsystem | Flag |
+|----|------|-------|-----------|------|
+| PI-A2 | **Search Strategy Degradation with Fallback Chain** — 3-tier fallback: full hybrid → broadened (relaxed filters) → structural-only (trigger match + folder) | 12-16 | Search handlers / pipeline | `SPECKIT_SEARCH_FALLBACK` |
+| PI-B3 | **Description-Based Spec Folder Discovery** — generate and cache 1-sentence `folder_description` per spec folder at index time; use for pre-search folder routing | 4-8 | Spec-Kit logic / indexing | — |
+| | **Sprint 3 PageIndex subtotal** | **+16-24h** | | |
 
 **Exit Gate:**
 - [ ] R15 p95 latency for simple queries < 30ms
@@ -228,6 +257,13 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 4.4 | **TM-04:** Pre-storage quality gate (structural + content quality + semantic dedup validation) | 6-10 | Memory quality | `SPECKIT_SAVE_QUALITY_GATE` |
 | 4.5 | **TM-06:** Reconsolidation-on-save (duplicate/conflict/complement auto-decision) | 6-10 | Memory quality | `SPECKIT_RECONSOLIDATION` |
 | | **Total** | **72-109h** | | |
+
+#### PageIndex Integration
+
+| ID | Item | Hours | Subsystem | Flag |
+|----|------|-------|-----------|------|
+| PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — inject constitutional memories as system-level context (domain knowledge directives) before ranked results; separate display slot | 8-12 | Search handlers / post-processing | `SPECKIT_CONSTITUTIONAL_INJECT` |
+| | **Sprint 4 PageIndex subtotal** | **+8-12h** | | |
 
 **Prerequisite:** R13 must have completed at least 2 full eval cycles. *An eval cycle is defined as: 100+ queries processed by R13 evaluation infrastructure, OR 14 calendar days of R13 logging, whichever comes first. Synthetic fallback: replay 200 logged queries to simulate cycles in test environments.*
 
@@ -250,6 +286,14 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 5.6 | **S3:** Validation signals as retrieval metadata | 4-6 | Spec-Kit logic | — |
 | 5.7 | **TM-05:** Dual-scope injection strategy — memory auto-surface at lifecycle hooks | 4-6 | Memory quality/Spec-Kit | — |
 | | **Total** | **68-98h** | | |
+
+#### PageIndex Integration
+
+| ID | Item | Hours | Subsystem | Flag |
+|----|------|-------|-----------|------|
+| PI-B1 | **Tree Thinning for Spec Folder Consolidation** — bottom-up merge of small child spec files into parent when `token_count(child) < MIN_CHILD_TOKENS` AND combined size is within budget | 10-14 | Spec-Kit logic | — |
+| PI-B2 | **Progressive Validation for Spec Documents** — 4-level fix pipeline: schema check → anchor integrity → cross-reference validation → semantic consistency; each level gates the next | 16-24 | Spec-Kit logic / validation | `SPECKIT_PROGRESSIVE_VALIDATION` |
+| | **Sprint 5 PageIndex subtotal** | **+26-38h** | | |
 
 **Internal Phasing:**
 - **Phase A (Pipeline):** R6 pipeline refactor (40-55h) — checkpoint before start; 0 ordering differences gate
@@ -415,6 +459,8 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 | Sprint 7: Long Horizon | Medium | 45-62h |
 | **Total (S0-S6)** | | **343-516h** |
 | **Total (S0-S7)** | | **388-596h** |
+| **PageIndex additions (PI-A1 — PI-B3, across S0-S5)** | Low-Medium | **+70-104h** |
+| **Grand Total with PageIndex (S0-S7)** | | **458-700h** |
 
 **Resource Planning:**
 - Solo developer (~15h/week): 23-34 weeks (S0-S6)
@@ -688,6 +734,47 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 <!-- /ANCHOR:communication -->
 
 ---
+
+## PageIndex Research Integration
+
+> **Source:** Research documents 9 (deep-analysis-true-mem-source-code) and 10 (recommendations-true-mem-patterns). These 8 recommendations are derived from PageIndex analysis and are ADDITIVE to the 43 core recommendations.
+
+### 3-Phase Migration Pathway
+
+| Phase | Weeks | PI Items | Theme | Effort |
+|-------|-------|----------|-------|--------|
+| **Phase 1: Quick Wins** | 1-2 | PI-A1, PI-A3, PI-B3 | Low-risk, immediate value; no eval framework required | ~12-22h |
+| **Phase 2: Requires Eval** | 3-4 (after S0) | PI-A2, PI-A4 | Depend on R13 eval infrastructure and interaction data | ~20-28h |
+| **Phase 3: Deeper Changes** | 5-8 | PI-B1, PI-A5, PI-B2 | Structural changes to spec-kit logic and memory quality loop | ~38-54h |
+
+### Phase 1: Quick Wins (Weeks 1-2, ~12-22h)
+
+Implement before or during Sprint 0-1. No dependency on R13 eval framework.
+
+- **PI-A1** (S2, 4-8h) — Folder-level relevance scoring discounts over-represented folders; low-risk, additive signal
+- **PI-A3** (S1, 4-6h) — Pre-flight token budget validation prevents result truncation surprises; O(1) guard
+- **PI-B3** (S3, 4-8h) — Spec folder description cache enables faster folder routing at search time
+
+### Phase 2: Requires Eval Framework (Weeks 3-4, after Sprint 0, ~20-28h)
+
+Implement after R13-S1 is operational (Sprint 0 exit gate passed).
+
+- **PI-A2** (S3, 12-16h) — Search fallback chain degrades gracefully; needs R13 to measure recall improvement per tier
+- **PI-A4** (S4, 8-12h) — Constitutional injection as expert knowledge; needs R13 channel attribution to verify no displacement of ranked results
+
+### Phase 3: Deeper Changes (Weeks 5-8, ~38-54h)
+
+Implement during or after Sprint 4-5. These require more invasive changes.
+
+- **PI-B1** (S5, 10-14h) — Tree thinning requires spec folder index and merge logic; impacts spec-kit write path
+- **PI-A5** (S0, 12-16h) — Verify-Fix-Verify loop replaces simple quality gate; bounded iteration prevents infinite loops
+- **PI-B2** (S5, 16-24h) — Progressive 4-level validation pipeline; most complex; requires complete validation infrastructure
+
+### Integration Notes
+
+- **PI-A5 sprint placement**: Listed under Phase 3 (deeper changes) but assigned to S0 in the sprint table — it is a deeper change that can be started early if bandwidth allows, but should not block S0 exit gate items
+- **Feature flag count**: PI-A2 (`SPECKIT_SEARCH_FALLBACK`), PI-A4 (`SPECKIT_CONSTITUTIONAL_INJECT`), PI-B2 (`SPECKIT_PROGRESSIVE_VALIDATION`), PI-A5 (`SPECKIT_VERIFY_FIX_VERIFY`), PI-A1 (`SPECKIT_FOLDER_SCORE`) = 5 additional flags; must be managed within the 6-simultaneous-flag governance ceiling
+- **PI-B3 LLM dependency**: `folder_description` generation requires an LLM call at index time; cache aggressively and only regenerate on spec folder content change
 
 <!--
 LEVEL 3+ PLAN

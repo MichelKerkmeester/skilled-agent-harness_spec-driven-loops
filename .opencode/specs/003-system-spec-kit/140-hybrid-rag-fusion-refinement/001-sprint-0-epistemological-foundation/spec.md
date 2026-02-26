@@ -215,6 +215,26 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 ---
 
+### PageIndex Integration
+
+**Recommendation**: PI-A5 — Verify-Fix-Verify for Memory Quality
+
+**Description**: Implement a bounded quality loop that runs after embedding generation to catch and remediate low-quality embeddings before they enter the retrieval index. The loop follows a three-step cycle: verify embedding quality (cosine self-similarity > 0.7 and title-content alignment > 0.5), fix by re-generating the embedding with enhanced metadata if thresholds are not met, then re-verify. If the second attempt still fails, the memory is flagged for manual review rather than silently accepted into the index with degraded quality.
+
+**Rationale**: Sprint 0 establishes the evaluation infrastructure (R13-S1) and quality proxy formula (B7) that makes embedding quality measurable. PI-A5 is the natural complement to these deliverables — once you can measure quality, you can enforce it at index time. This is the correct sprint for PI-A5 because (a) the SHA256 content-hash fast-path dedup (TM-02, T054) already gates the embedding path, making it straightforward to insert a quality gate at the same checkpoint; (b) the 12-16h effort fits within Sprint 0's existing Phase 2 track without blocking the bug-fix track; and (c) the quality thresholds feed directly into the B7 quality proxy formula, providing empirical calibration data for the metric.
+
+**Extends Existing Recommendations**:
+- **R-001 (eval framework)**: Quality loop results (pass/retry/flag) are logged to the `speckit-eval.db` eval infrastructure, enriching the embedding quality dataset.
+- **R-002 (quality metrics)**: Cosine self-similarity and title-content alignment thresholds directly operationalise the quality metrics defined in R-002, moving them from measurement to enforcement.
+
+**Constraints**:
+- Maximum 2 retries — bounded loop prevents infinite regeneration on persistently low-quality source content.
+- Accuracy thresholds: cosine self-similarity > 0.7, title-content alignment > 0.5.
+- Fallback action on retry exhaustion: flag memory with `quality_flag=low` for manual review; do NOT silently accept.
+- Effort: 12-16h, Medium risk.
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

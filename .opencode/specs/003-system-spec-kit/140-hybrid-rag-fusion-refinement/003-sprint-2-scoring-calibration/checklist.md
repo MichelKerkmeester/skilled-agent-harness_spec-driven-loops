@@ -94,6 +94,12 @@ contextType: "implementation"
 
 ---
 
+## PageIndex Integration
+
+- [ ] PI-A1 [P1]: Folder-level relevance scoring active in reranker — FolderScore computed as `(1/sqrt(M+1)) * SUM(MemoryScore(m))` per spec_folder using [0,1]-normalized memory scores; large folders do not dominate by volume (damping factor verified); FolderScore exposed as result metadata; two-phase retrieval path (folder selection then within-folder search) operational
+
+---
+
 ## Sprint 2 Exit Gate
 
 - [ ] CHK-060 [P1] R18 embedding cache hit rate >90% on re-index of unchanged content

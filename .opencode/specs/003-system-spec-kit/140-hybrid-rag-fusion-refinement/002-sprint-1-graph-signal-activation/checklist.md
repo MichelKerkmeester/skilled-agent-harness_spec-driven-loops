@@ -93,6 +93,12 @@ contextType: "implementation"
 
 ---
 
+## PageIndex Integration
+
+- [ ] PI-A3 [P1]: Pre-flight token budget validation active in result assembler — candidate set truncated to highest-scoring results when total tokens exceed budget; `includeContent=true` single-result overflow returns summary fallback; all overflow events logged with query_id, candidate_count, total_tokens, budget_limit, and truncated_to_count
+
+---
+
 ## Sprint 1 Exit Gate
 
 - [ ] CHK-060 [P0] R4 MRR@5 delta >+2% absolute — verified via R13 eval metrics

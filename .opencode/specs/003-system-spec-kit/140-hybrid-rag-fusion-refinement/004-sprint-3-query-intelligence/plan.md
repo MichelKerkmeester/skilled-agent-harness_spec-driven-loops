@@ -184,6 +184,29 @@ Phase 2 (R14/N1 RSF) ──────┘
 
 ---
 
+<!-- ANCHOR:pageindex-phases -->
+## PageIndex Tasks
+
+### PI-A2: Search Strategy Degradation with Fallback Chain (12-16h)
+- [ ] Implement similarity and result-count threshold checks after channel execution (threshold: top result similarity < 0.4 OR result count < 3)
+- [ ] Implement Tier 2 broadened search: relaxed filters, trigger matching, loosened channel constraints
+- [ ] Implement Tier 3 structural search: folder browsing, tier-based listing, no vector requirement
+- [ ] Wire three-tier chain into the R15 routing layer — fallback is automatic and bounded
+- [ ] Preserve R15 minimum-2-channel constraint at all fallback levels
+- [ ] Verify fallback triggers correctly on low-similarity and low-count results
+- **Effort**: 12-16h | **Risk**: Medium | **Dependency**: Sprint 0 eval framework
+
+### PI-B3: Description-Based Spec Folder Discovery (4-8h)
+- [ ] Generate 1-sentence description per spec folder from `spec.md` content
+- [ ] Write descriptions to `descriptions.json` cache file (path: project root or spec root)
+- [ ] Integrate cache lookup into `memory_context` orchestration layer for folder routing
+- [ ] Add cache invalidation / regeneration trigger when `spec.md` changes
+- [ ] Verify folder routing uses descriptions before issuing vector queries
+- **Effort**: 4-8h | **Risk**: Low
+<!-- /ANCHOR:pageindex-phases -->
+
+---
+
 <!-- ANCHOR:enhanced-rollback -->
 ## L2: ENHANCED ROLLBACK
 

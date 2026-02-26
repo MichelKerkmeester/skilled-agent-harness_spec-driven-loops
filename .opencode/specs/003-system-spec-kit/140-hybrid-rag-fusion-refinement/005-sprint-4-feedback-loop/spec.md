@@ -213,6 +213,28 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 
 ---
 
+---
+
+<!-- ANCHOR:pageindex-integration -->
+### PageIndex Integration
+
+Sprint 4 incorporates one PageIndex recommendation that extends the existing context-aware retrieval work.
+
+#### PI-A4: Constitutional Memory as Expert Knowledge Injection
+
+**Rationale**: Constitutional memories currently surface at the top of every result set as content items. PI-A4 restructures their role: instead of being returned as content, they are parsed by the `memory_context` orchestration layer as retrieval directives and injected into the query expansion step before vector search occurs. This aligns constitutional memories with their intended authority — they encode system-level constraints and expert rules that should shape how searches are conducted, not just what is returned.
+
+**Format change**: Constitutional memories gain a `search_directive: true` metadata tag. The orchestration layer detects this tag, extracts any search-relevant instructions (e.g., preferred channels, term expansions, tier priorities), and injects them into query expansion before the retrieval pipeline executes.
+
+**Relationship to existing work**: PI-A4 extends R-015 (context-aware retrieval). It does not change constitutional memory storage, tier promotion, or the rules themselves — only how they are consumed at retrieval time. The Sprint 4 `memory_validate` auto-promotion logic (normal→important at 5 validations, important→critical at 10) is unaffected.
+
+**Mitigation**: Begin with explicit `search_directive: true` metadata tagging on constitutional memories. This provides a safe, opt-in rollout path — memories without the tag continue to surface as content items during the transition period.
+
+**Effort**: 8-12h | **Risk**: Low-Medium
+<!-- /ANCHOR:pageindex-integration -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`

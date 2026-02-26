@@ -70,6 +70,15 @@ contextType: "implementation"
 
 ---
 
+## Phase 5 (PI-A1): Folder-Level Relevance Scoring via DocScore Aggregation
+
+- [ ] T009 [P] Implement folder-level relevance scoring in reranker — compute `FolderScore(F) = (1/sqrt(M+1)) * SUM(MemoryScore(m))` by grouping normalized memory scores by `spec_folder`; expose FolderScore as metadata on each search result; implement two-phase retrieval path (top-K folders by FolderScore then within-folder search) [4-8h] {T004} — PI-A1
+  - Formula: `FolderScore = (1 / sqrt(M + 1)) * SUM(MemoryScore(m) for m in folder F)` where M = memory count in F
+  - Damping factor `1/sqrt(M+1)` is mandatory — prevents large folders from dominating by volume
+  - Pure scoring addition to existing reranker — no schema changes, no new tables
+  - Requires [0,1]-normalized MemoryScore values from score normalization (T004) to be meaningful
+  - Extends R-006 (weight rebalancing surface) and R-007 (post-reranker stage in scoring pipeline)
+
 ## Phase 4: Verification
 
 - [ ] T007 Verify dark-run results for N4 and normalization — new memories visible, old not displaced, MRR@5 not regressed [included] {T002, T004}

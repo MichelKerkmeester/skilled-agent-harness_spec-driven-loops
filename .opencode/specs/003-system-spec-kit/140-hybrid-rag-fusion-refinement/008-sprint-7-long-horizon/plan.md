@@ -222,6 +222,19 @@ R5 eval (2h) ─────┘
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+## PageIndex Cross-References
+
+Builds on PageIndex integration from Sprints 0, 5 (PI-A5 quality verification, PI-B1 tree thinning).
+
+- **PI-A5 (Sprint 0 — Verify-fix-verify)**: Long-horizon quality monitoring (particularly R13-S3 full reporting and the ablation framework) should incorporate the verify-fix-verify pattern. At scale, the R13-S3 reporting layer provides the "verify" phase; incorporating automated re-verification after fix cycles closes the loop for ongoing memory quality maintenance.
+- **PI-B1 (Sprint 5 — Tree thinning)**: R8 memory summaries (gated on >5K memories) and the R13-S3 ablation framework both involve traversing large accumulated spec folders. The tree thinning pattern from Sprint 5 should inform how the summary generation module and the reporting dashboard scope their traversal to avoid loading unbounded context trees.
+
+Research evidence: See research documents `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder.
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 ## RELATED DOCUMENTS
 
 - **Specification**: See `spec.md`

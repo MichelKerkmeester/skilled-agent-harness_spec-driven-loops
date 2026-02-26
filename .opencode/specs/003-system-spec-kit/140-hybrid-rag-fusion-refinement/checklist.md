@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~114 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
+description: "~122 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, and 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3)."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -196,6 +196,23 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-verify -->
+## PageIndex Integration Verification
+
+> **Evidence**: Research documents 9-analysis, 9-recommendations (PageIndex), 10-analysis, 10-recommendations (TrueMem). All 8 items are [P1] — required unless explicitly deferred with documented rationale.
+
+- [ ] CHK-PI-A1 [P1] PI-A1: DocScore folder aggregation implemented and tested — `spec_folder` grouping with MAX + 0.3×MEAN formula; `folder_score` field present in result metadata; no regression in existing MRR@5 baseline
+- [ ] CHK-PI-A2 [P1] PI-A2: Three-tier fallback chain with configurable thresholds — Primary→Secondary at results < 5, Secondary→Tertiary at results < 2; degradation events logged with tier and trigger reason in R13 eval database
+- [ ] CHK-PI-A3 [P1] PI-A3: Token budget validation enforced in result assembly — `token_budget_used` field in response; result set truncated when over-limit; no latency increase > 5ms p95 for simple queries
+- [ ] CHK-PI-A4 [P1] PI-A4: Constitutional memories formatted as retrieval directives — `retrieval_directive` metadata field present on all constitutional-tier memories; directive prefix pattern ("Always surface when:", "Prioritize when:") validated
+- [ ] CHK-PI-A5 [P1] PI-A5: Verify-fix-verify loop with max 2 retries integrated — quality_score computed post-save; auto-fix attempted if score < 0.6; memory rejected after 2 failed retries; rejection events logged
+- [ ] CHK-PI-B1 [P1] PI-B1: Tree thinning pass in context loading (300/100 token thresholds) — nodes < 300 tokens collapsed; nodes < 100 tokens summarized; anchored nodes preserved regardless of size; thinning non-destructive
+- [ ] CHK-PI-B2 [P1] PI-B2: Progressive validation with 4 levels (detect/auto-fix/suggest/report) — Level 2 auto-fix scoped to safe operations only; checkpoint created before Level 2 activation; Level 4 unresolvable issues include remediation guidance
+- [ ] CHK-PI-B3 [P1] PI-B3: Spec folder descriptions generated and cached as descriptions.json — description embeddings used for folder pre-selection; cache invalidated on new memory save; fallback to existing folder matching on cache miss
+<!-- /ANCHOR:pageindex-verify -->
+
+---
+
 <!-- ANCHOR:arch-verify -->
 ## L3+: ARCHITECTURE VERIFICATION
 
@@ -275,9 +292,11 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 22 | [ ]/22 |
-| P1 Items | 80 | [ ]/80 |
+| P1 Items | 88 | [ ]/88 |
 | P2 Items | 12 | [ ]/12 |
-| **Total** | **114** | **[ ]/114** |
+| **Total** | **122** | **[ ]/122** |
+
+> **Note**: P1 total includes 8 PageIndex integration items (CHK-PI-A1 — CHK-PI-B3).
 
 **Verification Date**: [YYYY-MM-DD]
 
@@ -287,8 +306,9 @@ contextType: "implementation"
 ---
 
 <!--
-Level 3+ checklist — Full verification + architecture + sprint gates
+Level 3+ checklist — Full verification + architecture + sprint gates + PageIndex integration
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 Sprint gate priorities aligned with off-ramp: S0-S1 = P0, S2-S4 = P1, S5-S6 = P1 (elevated from P2), S7 = P2
+PageIndex items (CHK-PI-A1 — CHK-PI-B3): all P1, grouped in "PageIndex Integration Verification" section
 -->

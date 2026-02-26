@@ -97,6 +97,12 @@ contextType: "implementation"
 
 ---
 
+## PageIndex Integration
+
+- [ ] PI-A5 [P1]: Verify-Fix-Verify quality gate active in `memory-save.ts` — cosine self-similarity > 0.7 and title-content alignment > 0.5 enforced post-embedding; re-generation triggered on first failure; `quality_flag=low` set and eval-logged after second failure (max 2 retries, bounded)
+
+---
+
 ## Sprint 0 Exit Gate
 
 - [ ] CHK-060 [P0] Graph hit rate > 0% — verified via eval telemetry or manual query inspection

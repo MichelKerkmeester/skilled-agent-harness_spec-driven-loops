@@ -97,6 +97,22 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-verification -->
+## PageIndex Verification
+
+### PI-A4 — Constitutional Memory as Expert Knowledge Injection
+- [ ] CHK-PI-A4-001 [P1] search_directive: true metadata tag added to constitutional memories and detectable by orchestration layer
+- [ ] CHK-PI-A4-002 [P1] memory_context orchestration layer detects search_directive tag before retrieval executes
+- [ ] CHK-PI-A4-003 [P1] Search-relevant instructions (channels, term expansions, tier priorities) extracted from tagged constitutional memories
+- [ ] CHK-PI-A4-004 [P1] Extracted instructions injected into query expansion step before vector search
+- [ ] CHK-PI-A4-005 [P1] Tagged constitutional memories do NOT appear as content items in retrieval results
+- [ ] CHK-PI-A4-006 [P1] Non-tagged constitutional memories continue surfacing as content items (no regression)
+- [ ] CHK-PI-A4-007 [P1] R-015 context-aware retrieval extended, not replaced — existing behavior preserved for non-directive retrieval
+- [ ] CHK-PI-A4-008 [P2] Rollback path: removing search_directive tag restores content-item surfacing behavior
+<!-- /ANCHOR:pageindex-verification -->
+
+---
+
 <!-- ANCHOR:testing -->
 ## Testing
 

@@ -101,6 +101,15 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 - [ ] Enable R4 in dark-run mode — shadow scoring alongside existing 4-channel results (included)
 - [ ] Verify MRR@5 delta >+2% absolute; no single memory >60% presence (included)
 - [ ] Enable R4 permanently if dark-run passes (0h — flag flip)
+
+### Phase 6: PI-A3 — Pre-Flight Token Budget Validation (4-6h)
+- [ ] PI-A3-1: Implement token count estimation across candidate result set — sum content/summary tokens before response assembly (`hybrid-search.ts` or result assembler layer) [1-2h]
+- [ ] PI-A3-2: Implement truncation logic — if total tokens exceed budget, drop lowest-scoring candidates (greedy highest-first) until within budget [1-2h]
+- [ ] PI-A3-3: Implement `includeContent=true` single-result summary fallback — if a single result alone exceeds budget, return summary field instead of full content [1h]
+- [ ] PI-A3-4: Implement overflow event logging — log query_id, candidate_count, total_tokens, budget_limit, truncated_to_count to eval infrastructure (extends R-004 benchmark dataset) [1h]
+
+**Dependencies**: Sprint 0 eval infrastructure (R13-S1) must be operational for overflow event logging. PI-A3 is additive — no changes to RRF fusion or scoring; only post-fusion result assembly is affected.
+**Effort**: 4-6h, Low risk
 <!-- /ANCHOR:phases -->
 
 ---

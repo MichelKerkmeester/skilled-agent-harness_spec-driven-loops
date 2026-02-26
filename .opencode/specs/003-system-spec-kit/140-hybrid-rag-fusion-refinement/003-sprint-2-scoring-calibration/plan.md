@@ -112,6 +112,15 @@ Four parallel feature tracks with G2 → normalization dependency
 - [ ] N4 dark-run — new memories visible, old not displaced (included)
 - [ ] TM-01 dark-run — interference penalty applied correctly, no false penalties (included)
 - [ ] Sprint 2 exit gate verification (included)
+
+### Phase 8: PI-A1 — Folder-Level Relevance Scoring via DocScore Aggregation (4-8h)
+- [ ] PI-A1-1: Implement FolderScore computation in reranker — group individual memory scores by `spec_folder`, apply formula `(1/sqrt(M+1)) * SUM(MemoryScore(m))` [2-3h] {Phase 4 — score normalization must produce [0,1] outputs before aggregation is meaningful}
+- [ ] PI-A1-2: Expose FolderScore as metadata on search results — annotate each result with the computed folder score for use by two-phase retrieval consumers [1-2h]
+- [ ] PI-A1-3: Implement two-phase retrieval path — folder selection (top-K by FolderScore) then within-folder search against selected candidates [2-3h] {PI-A1-1}
+- [ ] PI-A1-4: Verify damping factor correctness — confirm large folders do not dominate via volume; test against known unequal folder sizes [included]
+
+**Dependencies**: Phase 4 (score normalization) MUST complete first — FolderScore aggregation requires [0,1]-normalized MemoryScore values to be meaningful. No new tables or channels required.
+**Effort**: 4-8h, Low risk
 <!-- /ANCHOR:phases -->
 
 ---

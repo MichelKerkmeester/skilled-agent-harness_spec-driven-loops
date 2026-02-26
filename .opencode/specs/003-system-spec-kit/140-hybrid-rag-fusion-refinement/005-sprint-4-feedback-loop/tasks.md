@@ -92,6 +92,18 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex -->
+## PageIndex Tasks
+
+- [ ] T009 Implement PI-A4 constitutional memory as expert knowledge injection — add search_directive: true metadata tag; detect tag in memory_context orchestration layer; extract and inject search-relevant instructions into query expansion step before retrieval pipeline executes; non-tagged constitutional memories continue surfacing as content items [8-12h] — PI-A4 (extends R-015)
+  - Tag detection: parse constitutional memories for `search_directive: true` before retrieval
+  - Instruction extraction: preferred channels, term expansions, tier priorities
+  - Injection point: query expansion step (before vector search)
+  - Regression guard: non-tagged constitutional memories unchanged
+<!-- /ANCHOR:pageindex -->
+
+---
+
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Verification
 

@@ -85,6 +85,18 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+## PageIndex Cross-References (from Earlier Sprints)
+
+- [ ] T-PI-S7 Review and integrate PageIndex patterns from earlier sprints [2-4h] — Cross-reference (non-blocking)
+  - PI-A5 (Sprint 0): Incorporate verify-fix-verify pattern into long-horizon quality monitoring and R13-S3 reporting loop
+  - PI-B1 (Sprint 5): Apply tree thinning approach to R8 summary generation and R13-S3 ablation traversal for large accumulated spec folders
+  - Status: Pending
+  - Research evidence: See `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

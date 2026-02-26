@@ -85,6 +85,27 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-verification -->
+## PageIndex Verification
+
+### PI-A2 — Search Strategy Degradation with Fallback Chain
+- [ ] CHK-PI-A2-001 [P1] Fallback chain triggers correctly when top result similarity < 0.4
+- [ ] CHK-PI-A2-002 [P1] Fallback chain triggers correctly when result count < 3
+- [ ] CHK-PI-A2-003 [P1] Tier 2 broadened search executes with relaxed filters and trigger matching enabled
+- [ ] CHK-PI-A2-004 [P1] Tier 3 structural search executes folder browsing and tier-based listing without vector requirement
+- [ ] CHK-PI-A2-005 [P1] Fallback is automatic and bounded — chain terminates at Tier 3 (structural search)
+- [ ] CHK-PI-A2-006 [P1] R15 minimum-2-channel constraint preserved at all fallback levels
+- [ ] CHK-PI-A2-007 [P2] Fallback descent logged for observability (eval infrastructure)
+
+### PI-B3 — Description-Based Spec Folder Discovery
+- [ ] CHK-PI-B3-001 [P1] descriptions.json generated with one sentence per spec folder derived from spec.md
+- [ ] CHK-PI-B3-002 [P1] memory_context orchestration layer performs folder lookup via descriptions.json before issuing vector queries
+- [ ] CHK-PI-B3-003 [P1] Cache invalidation triggers when spec.md changes for a given folder
+- [ ] CHK-PI-B3-004 [P2] descriptions.json absent = graceful degradation to full-corpus search (no error)
+<!-- /ANCHOR:pageindex-verification -->
+
+---
+
 <!-- ANCHOR:off-ramp -->
 ## Off-Ramp Evaluation
 

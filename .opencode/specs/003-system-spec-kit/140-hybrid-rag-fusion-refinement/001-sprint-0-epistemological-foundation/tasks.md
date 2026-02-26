@@ -69,6 +69,15 @@ contextType: "implementation"
 
 ---
 
+## Phase 5: PI-A5 — Verify-Fix-Verify for Memory Quality
+
+- [ ] T010 Implement embedding quality gate in memory-save pipeline — cosine self-similarity check (embedding vs title-only embedding, threshold > 0.7) + title-content alignment check (threshold > 0.5) immediately after embedding generation (`memory-save.ts`) [6-8h] {T054} — PI-A5
+- [ ] T011 Implement fix step — on first check failure, re-generate embedding with enhanced metadata (title prepended, trigger phrases appended) and re-run both quality checks [2-3h] {T010} — PI-A5
+- [ ] T012 Implement fallback — on second failure (max 2 retries, bounded), set `quality_flag=low` on memory record and log quality loop outcome (pass/retry/flag) to `speckit-eval.db`; do NOT silently accept low-quality embedding into live index [3-4h] {T004, T010, T011} — PI-A5
+  - Accuracy thresholds: cosine self-similarity > 0.7, title-content alignment > 0.5
+  - Bounded: max 2 retries (not infinite loop)
+  - Log outcome to eval DB for R-002 quality metrics calibration
+
 ## Phase 4: Verification
 
 - [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T001, T002, T003, T004, T005, T006, T007, T008, T054}

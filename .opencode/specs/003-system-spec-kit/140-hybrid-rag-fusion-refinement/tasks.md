@@ -206,6 +206,64 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-tasks -->
+## PageIndex-Derived Tasks (PI-A1 — PI-B3)
+
+> **Source**: PageIndex research analysis (research documents 9-analysis, 9-recommendations, 10-analysis, 10-recommendations). These 8 tasks augment the existing sprint plan with validated retrieval improvements derived from PageIndex and TrueMem source code review.
+>
+> **Dependencies**: PI-A2 and PI-A5 require Sprint 0 evaluation framework (T004–T008) to be operational before dark-run validation can proceed.
+
+**Task Format**: `PI-XX [W-X] Description (subsystem) [effort] {deps} — Sprint N`
+
+---
+
+### Sprint 0 Tasks (Pre-Foundation)
+
+- [ ] PI-A5 [W-A] Implement verify-fix-verify memory quality loop — after memory_save, run quality check; if below threshold, auto-fix (regenerate triggers, normalize title) and re-verify; max 2 retries before rejection [12-16h] {T004} — Sprint 0
+  - Validation cycle: save → quality_score → fix (if < 0.6) → re-score → reject (if still < 0.6 after 2 retries)
+  - Risk: Medium — quality thresholds must be calibrated against Sprint 0 eval data before activation
+
+### Sprint 1 Tasks (Graph Signal Activation)
+
+- [ ] PI-A3 [W-D] Implement pre-flight token budget validation in result assembly — compute projected token cost of top-K results before returning; truncate to budget if over-limit; surface `token_budget_used` in response metadata [4-6h] {T009} — Sprint 1
+  - Enforcement point: post-fusion, pre-return in `memory_context` and `memory_search` handlers
+  - Risk: Low — read-only truncation with no scoring impact
+
+### Sprint 2 Tasks (Scoring Calibration)
+
+- [ ] PI-A1 [W-A] Implement DocScore folder-level aggregation — group chunk results by spec_folder, aggregate scores using MAX + 0.3×MEAN formula, surface folder-level score alongside memory-level scores in result metadata [4-8h] {T020} — Sprint 2
+  - Enables folder-aware ranking and cross-folder diversity enforcement
+  - Risk: Low — additive metadata field; does not alter existing ranking unless explicitly weighted
+
+### Sprint 3 Tasks (Query Intelligence)
+
+- [ ] PI-A2 [W-D] Implement three-tier search strategy degradation/fallback chain — Primary (full hybrid: BM25 + embedding + graph + triggers), Secondary (BM25 + embedding only), Tertiary (BM25 keyword only); degradation triggered by result count thresholds [12-16h] {T025, T004} — Sprint 3
+  - Configurable thresholds: Primary→Secondary if results < 5, Secondary→Tertiary if results < 2
+  - Logs degradation events with tier and trigger reason for R13 analysis
+  - Risk: Medium — requires careful threshold calibration; PI-A2 depends on Sprint 0 eval baseline
+- [ ] PI-B3 [W-D] Implement description-based spec folder discovery — generate and cache natural-language descriptions for each spec folder in `descriptions.json`; use description embeddings for folder pre-selection before memory search [4-8h] {T025} — Sprint 3
+  - Cache invalidated on new memory save to spec folder; re-generated lazily on next query
+  - Risk: Low — read-only pre-filter layer; falls back to existing folder matching on cache miss
+
+### Sprint 4 Tasks (Feedback Loop)
+
+- [ ] PI-A4 [W-A] Reformat constitutional memories as retrieval directives — add `retrieval_directive` metadata field to constitutional-tier memories; format as explicit instruction prefixes ("Always surface when:", "Prioritize when:") for LLM consumption [8-12h] {T031} — Sprint 4
+  - Directive extraction: parse existing constitutional memory content to identify rule patterns
+  - Risk: Low-Medium — content transformation only; no scoring logic changes
+
+### Sprint 5 Tasks (Pipeline Refactor + Spec-Kit Logic)
+
+- [ ] PI-B1 [W-D] Implement tree thinning pass in spec folder context loading — before injecting spec folder hierarchy into context, prune low-value nodes: collapse single-child branches, drop nodes below 300-token content threshold, summarize leaf nodes below 100 tokens [10-14h] {T040} — Sprint 5
+  - Thresholds: collapse if content < 300 tokens; summarize if content < 100 tokens; preserve all anchored nodes regardless of size
+  - Risk: Low — thinning is non-destructive; original tree retained in memory
+- [ ] PI-B2 [W-D] Implement progressive validation for spec documents — 4-level validation pipeline: Level 1 (detect structural issues), Level 2 (auto-fix safe violations), Level 3 (suggest fixes for complex issues), Level 4 (report unresolvable issues with remediation guidance) [16-24h] {T040} — Sprint 5
+  - Auto-fix scope (Level 2): missing anchors, malformed frontmatter, broken cross-references
+  - Suggest scope (Level 3): title mismatches, description staleness, orphaned sections
+  - Risk: Medium — Level 2 auto-fix mutates files; requires checkpoint before activation
+<!-- /ANCHOR:pageindex-tasks -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
@@ -229,14 +287,17 @@ contextType: "implementation"
 - **Research (Recommendations)**: See `research/142 - FINAL-recommendations-hybrid-rag-fusion-refinement.md`
 - **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md`
 - **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md`
+- **Research (PageIndex Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md`
+- **Research (PageIndex Recommendations)**: See `research/9-recommendations` and `research/10-recommendations`
 <!-- /ANCHOR:cross-refs -->
 
 ---
 
 <!--
 LEVEL 3+ TASKS
-- 86 tasks across 8 metric-gated sprints
+- 86 core tasks across 8 metric-gated sprints + 8 PageIndex-derived tasks (PI-A1 — PI-B3)
 - Workstream tags (W-A through W-D)
 - Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047, T053)
 - Off-ramp marker after Sprint 3
+- PageIndex tasks: PI-A5 (S0), PI-A3 (S1), PI-A1 (S2), PI-A2+PI-B3 (S3), PI-A4 (S4), PI-B1+PI-B2 (S5)
 -->

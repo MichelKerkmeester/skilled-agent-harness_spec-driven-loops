@@ -107,6 +107,16 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex-xrefs -->
+## PageIndex Cross-References
+
+- [ ] CHK-PI-S6-001 [P2] PageIndex cross-references from Sprints 2, 3 reviewed and integrated
+  - PI-A1 folder scoring evaluated as pre-filter for graph traversal
+  - PI-A2 fallback chain integrated for empty graph query results
+<!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 

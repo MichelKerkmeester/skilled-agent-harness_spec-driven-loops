@@ -55,6 +55,21 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:pageindex -->
+## PageIndex Tasks
+
+- [ ] T011 Implement PI-B1 tree thinning for spec folder consolidation — extend generate-context.js with bottom-up merge logic: files < 200 tokens merge summary into parent, files < 500 tokens use content as summary; memory thresholds: 300 tokens (thinning), 100 tokens (text is summary); operates pre-pipeline before Stage 1 candidate generation [10-14h] — PI-B1
+  - Thinning runs in context loading step (before pipeline, does not affect stage boundaries)
+  - Verify no content loss during merge — parent absorbs child summary faithfully
+  - Verify R9 pre-filter interaction: thinning does not alter folder identity or pre-filter behavior
+- [ ] T012 Implement PI-B2 progressive validation for spec documents — extend validate.sh to 4-level pipeline: Detect (identify violations) → Auto-fix (missing dates, heading levels, whitespace normalization, with before/after diff log) → Suggest (guided options for non-automatable issues) → Report (structured output, exit 0/1/2 compatible); include dry-run mode [16-24h] — PI-B2
+  - All auto-fixes must log before/after diff (primary mitigation for silent corruption)
+  - Dry-run mode: show proposed auto-fixes without applying them
+  - Exit code compatibility: exit 0 = pass, exit 1 = warnings, exit 2 = errors (unchanged)
+<!-- /ANCHOR:pageindex -->
+
+---
+
 <!-- ANCHOR:phase-c -->
 ## Phase C: Verification
 
