@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Hybrid RAG Fusion Refinement"
-description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 36-recommendation program across 8 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
+description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 43-recommendation program (+ 8 PageIndex-derived) across 8 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
 trigger_phrases:
   - "hybrid rag fusion"
   - "graph channel fix"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (+ 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7; +52-80h for PageIndex items) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -66,7 +66,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 ### In Scope
 
-**36 active recommendations across 8 subsystems (S0-S7):**
+**43 active recommendations (+ 8 PageIndex-derived, PI-A1 — PI-B3) across 8 subsystems (S0-S7):**
 
 | Subsystem | Recommendations | Sprint(s) |
 |-----------|----------------|-----------|
