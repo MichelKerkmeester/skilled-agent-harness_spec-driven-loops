@@ -1,0 +1,5 @@
+$ git branch --show-current
+exit_code: 0
+stdout:
+main
+stderr: <empty>

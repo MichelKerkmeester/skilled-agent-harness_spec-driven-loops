@@ -1,0 +1,1751 @@
+Symlinking test-fixtures...
+
+>>> Running test-validation.sh
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  validate-spec.sh Test Suite v2.0[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[0;34m[1mPositive Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Valid Level 1 spec folder [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Valid Level 2 spec folder [2m(validator not found)[0m [2m[9ms][0m
+[0;33m⊘[0m Valid Level 3 spec folder [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Valid spec with scratch/ (ignored) [2m(validator not found)[0m [2m[8ms][0m
+[0;33m⊘[0m Valid spec with templates/ (skipped) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Valid priority tags (P0, P1, P2) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Valid evidence on P0/P1 completed items [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Valid anchors in memory files [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m L1 with extra files (notes.md, research.md) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Valid sections in all files (L3) [2m(validator not found)[0m [2m[5ms][0m
+
+[0;34m[1mLevel Declaration Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Explicit level declaration (| **Level** | 2 |) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Inferred level (no level field, inferred from files) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Level 0 (invalid, falls back to inferred) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Level 5 (out of range, falls back to inferred) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Level without bold (| Level | 2 |, falls back to inferred) [2m(validator not found)[0m [2m[6ms][0m
+
+[0;34m[1mWarning Tests (should WARN):[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Invalid priority tags (unknown tags) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Missing evidence on P0/P1 completed items [2m(validator not found)[0m [2m[8ms][0m
+
+[0;34m[1mSections Present Tests (should WARN on missing):[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Missing spec.md sections (no Problem Statement) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Missing plan.md sections (no Architecture) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Missing checklist.md sections (no P0/P1) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Missing decision-record.md sections (no Consequences) [2m(validator not found)[0m [2m[6ms][0m
+
+[0;34m[1mNegative Tests (should FAIL):[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Missing required files (no spec.md) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Unfilled placeholders [2m(validator not found)[0m [2m[8ms][0m
+[0;33m⊘[0m Invalid anchors (unclosed, mismatched, orphaned) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Empty folder (all L1 files missing) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Missing plan.md (L1) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Missing tasks.md (L1) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Level 2 missing checklist.md [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Level 3 missing decision-record.md [2m(validator not found)[0m [2m[6ms][0m
+
+[0;34m[1mPriority Tags Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Inline priority tags only [P0]/[P1]/[P2] [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Mixed priority headers and inline tags [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Items after non-priority header inherit context [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Lowercase priority headers (## p0) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Invalid P3/P4 priority levels [2m(validator not found)[0m [2m[6ms][0m
+
+[0;34m[1mAnchor Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Nested anchors (outer contains inner) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Empty memory/ directory (skipped) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m No memory/ directory (skipped) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Duplicate anchor IDs, each properly closed [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Multiple memory files, one with error [2m(validator not found)[0m [2m[6ms][0m
+
+[0;34m[1mEvidence Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m All 5 evidence patterns recognized [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Case-insensitive evidence tags [2m(validator not found)[0m [2m[5ms][0m
+[0;33m⊘[0m P2 items exempt from evidence [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Both checkmark formats (✓ ✔) [2m(validator not found)[0m [2m[6ms][0m
+[0;33m⊘[0m Wrong suffix (complete/done/finished) [2m(validator not found)[0m [2m[7ms][0m
+
+[0;34m[1mPlaceholder Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;33m⊘[0m Placeholder in fenced code block (ignored) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Placeholder in inline code backticks (ignored) [2m(validator not found)[0m [2m[8ms][0m
+[0;33m⊘[0m Placeholder in memory/ directory (skipped) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Multiple placeholders across files (all detected) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Placeholder case variations (detected) [2m(validator not found)[0m [2m[8ms][0m
+
+[0;34m[1mCLI Options Tests:[0m
+─────────────────────────────────────────────────────────────────
+[0;31m✗[0m --json produces valid JSON with required fields [2m[8ms][0m
+  [0;31mExpected:[0m pass, [0;31mGot:[0m fail
+  [0;31mJSON validation failed[0m
+  [0;31mMissing required JSON fields[0m
+  [2mOutput:[0m
+    ./test-validation.sh: line 437: /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/validate-spec.sh: No such file or directory
+[0;33m⊘[0m --strict mode: warnings become errors [2m(validator not found)[0m
+[0;31m✗[0m --quiet mode: minimal output [2m[8ms][0m
+  [0;31mExpected:[0m pass, [0;31mGot:[0m fail
+  [2mOutput:[0m
+    ./test-validation.sh: line 531: /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/validate-spec.sh: No such file or directory
+[0;33m⊘[0m Config file: .speckit.yaml detected (parsing TODO) [2m(validator not found)[0m [2m[7ms][0m
+[0;33m⊘[0m Env var: SPECKIT_STRICT=true [2m(validator not found)[0m
+[0;33m⊘[0m Rule order: .speckit.yaml rule_order [2m(validator not found)[0m [2m[7ms][0m
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  Summary[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[1mBy Category:[0m
+─────────────────────────────────────────────────────────────────
+  [0;33m●[0m Positive Tests (should PASS): [0;33m10[0m skipped [2m(66ms)[0m
+  [0;33m●[0m Level Declaration Tests (should PASS): [0;33m5[0m skipped [2m(32ms)[0m
+  [0;33m●[0m Warning Tests (should WARN): [0;33m2[0m skipped [2m(15ms)[0m
+  [0;33m●[0m Sections Present Tests (should WARN on missing): [0;33m4[0m skipped [2m(26ms)[0m
+  [0;33m●[0m Negative Tests (should FAIL): [0;33m8[0m skipped [2m(50ms)[0m
+  [0;33m●[0m Priority Tags Edge Cases: [0;33m5[0m skipped [2m(31ms)[0m
+  [0;33m●[0m Anchor Edge Cases: [0;33m5[0m skipped [2m(30ms)[0m
+  [0;33m●[0m Evidence Edge Cases: [0;33m5[0m skipped [2m(32ms)[0m
+  [0;33m●[0m Placeholder Edge Cases: [0;33m5[0m skipped [2m(37ms)[0m
+  [0;31m●[0m CLI Options Tests: [0;32m0[0m/6 passed [2m(43ms)[0m
+
+[1mTotals:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32mPassed:[0m  0
+  [0;31mFailed:[0m  2
+  [0;33mSkipped:[0m 53
+  ─────────────
+  Total:   55
+  [2mTime:    362ms[0m
+
+[0;31m[1mRESULT: FAILED[0m
+
+
+>>> Running JS System Tests
+Running test-bug-fixes.js...
+🧪 Bug Fix Verification Tests
+================================
+Spec: 054-remaining-bugs-remediation
+Date: 2026-01-15T12:13:22.873Z
+
+
+🔬 BUG-001: Race Condition - Cross-connection visibility
+   ✅ T-005a: Notification mechanism in scripts/
+      Evidence: notifyDatabaseUpdated() function found
+   ✅ T-005b: Check mechanism in context-server.js
+      Evidence: checkDatabaseUpdated() and reinitializeDatabase() found
+   ✅ T-005c: Notification file write/read works
+      Evidence: Wrote and read: 1768479202875
+
+🔬 BUG-002: Transaction Rollback
+   ✅ T-010a: Transaction wrapper in indexMemory()
+      Evidence: database.transaction() wrapper found - supports nested transactions
+   ⏭️  T-010b: Automatic rollback via transaction wrapper (skipped: database.transaction() provides automatic rollback - manual cleanup not required)
+   ⏭️  T-011: Integration test for partial failure recovery (skipped: Requires injected failure - code verified)
+
+🔬 BUG-003: Embedding Dimension Mismatch at Startup
+   ✅ T-015a: getConfirmedEmbeddingDimension() exists
+      Evidence: Function exported
+[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions
+   ✅ T-015b: Returns valid dimension
+      Evidence: Dimension: 1024
+
+🔬 BUG-004: Constitutional Cache Stale After External Edits
+   ✅ T-018a: Database mtime tracking implemented
+      Evidence: last_db_mod_time and mtimeMs check found
+   ✅ T-018b: is_constitutional_cache_valid() exists
+      Evidence: Function found in source
+
+🔬 BUG-005: Rate Limiting Not Persistent
+   ✅ T-023a: Config table creation
+      Evidence: CREATE TABLE IF NOT EXISTS config found
+   ✅ T-023b: getLastScanTime() reads from database
+      Evidence: Function and SQL query found
+   ✅ T-023c: setLastScanTime() writes to database
+      Evidence: Function and SQL query found
+
+🔬 BUG-006: Prepared Statement Cache Not Cleared
+   ✅ T-027: clear_prepared_statements() in close_db()
+      Evidence: Function call found in database closing
+
+🔬 BUG-007: Empty Query Edge Case
+   ✅ T-030a: validateQuery() function exists
+      Evidence: Function definition found
+   ✅ T-030b: Checks for null/undefined
+      Evidence: Null and undefined checks found
+   ✅ T-030c: Checks for empty/whitespace
+      Evidence: Trim and empty/whitespace checks found
+   ✅ T-030d: MAX_QUERY_LENGTH check
+      Evidence: Length limit check found
+
+🔬 BUG-008: UTF-8 BOM Detection Missing
+   ✅ T-032a: UTF-8 BOM bytes (EF BB BF) detected
+      Evidence: 0xEF, 0xBB, 0xBF found in source
+   ✅ T-032b: 3-byte offset for UTF-8 BOM
+      Evidence: Offset handling found
+
+🔬 BUG-009: Search Cache Key Collision Risk
+   ✅ T-034a: getCacheKey() function exists
+      Evidence: Function exported
+   ✅ T-034b: Different queries produce different keys
+      Evidence: key_1=98895079d6bd58bb, key_2=8ba041418dbe5c20
+   ✅ T-034c: Same queries produce same keys
+      Evidence: key_1=98895079d6bd58bb, key_3=98895079d6bd58bb
+
+🔬 BUG-013: Orphaned Vector Cleanup Only at Startup
+   ✅ T-042a: verifyIntegrity() function exists
+      Evidence: Function exported
+   ✅ T-042b: autoClean option in verifyIntegrity()
+      Evidence: autoClean parameter found
+
+🔬 Configuration Verification
+   ✅ Config: maxTriggersPerMemory
+      Evidence: Value: 10
+   ✅ Config: smartRanking weights
+      Evidence: {"recencyWeight":0.5,"accessWeight":0.3,"relevanceWeight":0.2}
+
+================================
+📊 TEST SUMMARY
+================================
+✅ Passed:  25
+❌ Failed:  0
+⏭️  Skipped: 2
+📝 Total:   27
+
+🎉 ALL TESTS PASSED!
+Running test-embeddings-factory.js...
+🧪 Testing Embeddings Factory...
+
+1️⃣ Importing modules...
+❌ ERROR IN TESTS: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/shared/embeddings/profile'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
+Stack: Error: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/shared/embeddings/profile'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1503:12)
+    at require (node:internal/modules/helpers:152:16)
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:26:34)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+
+>>> Running Anchor System Implementation Tests
+Running test-parser.js...
+--- Testing extract_anchors ---
+Extracted Anchors: [ 'summary', 'details', 'nested-parent', 'nested-child' ]
+✅ Summary anchor extracted correctly
+✅ Details anchor extracted
+✅ Nested child extracted
+✅ Broken anchor ignored (as expected)
+Running verify-logic.js...
+--- Verifying Anchor Filtering Logic ---
+Original Content Length: 543 chars
+
+--- Result ---
+<!-- ANCHOR:summary -->
+## Session Summary
+This is the summary section.
+It contains high-level info.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:nested-child -->
+### Child Section
+This is nested inside.
+<!-- /ANCHOR:nested-child -->
+
+--- Metrics ---
+{
+  "originalTokens": 136,
+  "returnedTokens": 57,
+  "savingsPercent": 58,
+  "anchorsRequested": 2,
+  "anchorsFound": 2
+}
+
+✅ Verification PASSED: Content correctly filtered
+---------------------------------------------------
+Tests Complete.
+
+>>> Running test-validation.sh
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  validate-spec.sh Test Suite v2.0[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[0;34m[1mPositive Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Valid Level 1 spec folder [2m[285ms][0m
+[0;32m✓[0m Valid Level 2 spec folder [2m[270ms][0m
+[0;32m✓[0m Valid Level 3 spec folder [2m[284ms][0m
+[0;32m✓[0m Valid spec with scratch/ (ignored) [2m[232ms][0m
+[0;32m✓[0m Valid spec with templates/ (skipped) [2m[268ms][0m
+[0;32m✓[0m Valid priority tags (P0, P1, P2) [2m[308ms][0m
+[0;32m✓[0m Valid evidence on P0/P1 completed items [2m[347ms][0m
+[0;32m✓[0m Valid anchors in memory files [2m[352ms][0m
+[0;32m✓[0m L1 with extra files (notes.md, research.md) [2m[292ms][0m
+[0;32m✓[0m Valid sections in all files (L3) [2m[315ms][0m
+
+[0;34m[1mLevel Declaration Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Explicit level declaration (| **Level** | 2 |) [2m[297ms][0m
+[0;32m✓[0m Inferred level (no level field, inferred from files) [2m[274ms][0m
+[0;32m✓[0m Level 0 (invalid, falls back to inferred) [2m[249ms][0m
+[0;32m✓[0m Level 5 (out of range, falls back to inferred) [2m[258ms][0m
+[0;32m✓[0m Level without bold (| Level | 2 |, falls back to inferred) [2m[261ms][0m
+
+[0;34m[1mWarning Tests (should WARN):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Invalid priority tags (unknown tags) [2m[287ms][0m
+[0;32m✓[0m Missing evidence on P0/P1 completed items [2m[269ms][0m
+
+[0;34m[1mSections Present Tests (should WARN on missing):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing spec.md sections (no Problem Statement) [2m[239ms][0m
+[0;32m✓[0m Missing plan.md sections (no Architecture) [2m[242ms][0m
+[0;32m✓[0m Missing checklist.md sections (no P0/P1) [2m[256ms][0m
+[0;32m✓[0m Missing decision-record.md sections (no Consequences) [2m[303ms][0m
+
+[0;34m[1mNegative Tests (should FAIL):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing required files (no spec.md) [2m[228ms][0m
+[0;32m✓[0m Unfilled placeholders [2m[294ms][0m
+[0;32m✓[0m Invalid anchors (unclosed, mismatched, orphaned) [2m[337ms][0m
+[0;32m✓[0m Empty folder (all L1 files missing) [2m[199ms][0m
+[0;32m✓[0m Missing plan.md (L1) [2m[266ms][0m
+[0;32m✓[0m Missing tasks.md (L1) [2m[258ms][0m
+[0;32m✓[0m Level 2 missing checklist.md [2m[239ms][0m
+[0;32m✓[0m Level 3 missing decision-record.md [2m[271ms][0m
+
+[0;34m[1mPriority Tags Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Inline priority tags only [P0]/[P1]/[P2] [2m[298ms][0m
+[0;32m✓[0m Mixed priority headers and inline tags [2m[275ms][0m
+[0;32m✓[0m Items after non-priority header inherit context [2m[335ms][0m
+[0;32m✓[0m Lowercase priority headers (## p0) [2m[293ms][0m
+[0;32m✓[0m Invalid P3/P4 priority levels [2m[282ms][0m
+
+[0;34m[1mAnchor Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Nested anchors (outer contains inner) [2m[250ms][0m
+[0;32m✓[0m Empty memory/ directory (skipped) [2m[229ms][0m
+[0;32m✓[0m No memory/ directory (skipped) [2m[257ms][0m
+[0;32m✓[0m Duplicate anchor IDs, each properly closed [2m[254ms][0m
+[0;32m✓[0m Multiple memory files, one with error [2m[258ms][0m
+
+[0;34m[1mEvidence Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m All 5 evidence patterns recognized [2m[273ms][0m
+[0;32m✓[0m Case-insensitive evidence tags [2m[296ms][0m
+[0;32m✓[0m P2 items exempt from evidence [2m[271ms][0m
+[0;32m✓[0m Both checkmark formats (✓ ✔) [2m[312ms][0m
+[0;32m✓[0m Wrong suffix (complete/done/finished) [2m[263ms][0m
+
+[0;34m[1mPlaceholder Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Placeholder in fenced code block (ignored) [2m[240ms][0m
+[0;32m✓[0m Placeholder in inline code backticks (ignored) [2m[236ms][0m
+[0;32m✓[0m Placeholder in memory/ directory (skipped) [2m[248ms][0m
+[0;32m✓[0m Multiple placeholders across files (all detected) [2m[238ms][0m
+[0;32m✓[0m Placeholder case variations (detected) [2m[241ms][0m
+
+[0;34m[1mCLI Options Tests:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m --json produces valid JSON with required fields [2m[258ms][0m
+[0;32m✓[0m --strict mode: warnings become errors [2m[295ms][0m
+[0;32m✓[0m --quiet mode: minimal output [2m[327ms][0m
+[0;32m✓[0m Config file: .speckit.yaml detected (parsing TODO) [2m[329ms][0m
+[0;32m✓[0m Env var: SPECKIT_STRICT=true [2m[378ms][0m
+[0;32m✓[0m Rule order: .speckit.yaml rule_order [2m[259ms][0m
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  Summary[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[1mBy Category:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32m●[0m Positive Tests (should PASS): [0;32m10[0m/10 passed [2m(2.953s)[0m
+  [0;32m●[0m Level Declaration Tests (should PASS): [0;32m5[0m/5 passed [2m(1.339s)[0m
+  [0;32m●[0m Warning Tests (should WARN): [0;32m2[0m/2 passed [2m(556ms)[0m
+  [0;32m●[0m Sections Present Tests (should WARN on missing): [0;32m4[0m/4 passed [2m(1.040s)[0m
+  [0;32m●[0m Negative Tests (should FAIL): [0;32m8[0m/8 passed [2m(2.092s)[0m
+  [0;32m●[0m Priority Tags Edge Cases: [0;32m5[0m/5 passed [2m(1.483s)[0m
+  [0;32m●[0m Anchor Edge Cases: [0;32m5[0m/5 passed [2m(1.248s)[0m
+  [0;32m●[0m Evidence Edge Cases: [0;32m5[0m/5 passed [2m(1.415s)[0m
+  [0;32m●[0m Placeholder Edge Cases: [0;32m5[0m/5 passed [2m(1.203s)[0m
+  [0;32m●[0m CLI Options Tests: [0;32m6[0m/6 passed [2m(1.846s)[0m
+
+[1mTotals:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32mPassed:[0m  55
+  [0;31mFailed:[0m  0
+  [0;33mSkipped:[0m 0
+  ─────────────
+  Total:   55
+  [2mTime:    15.175s[0m
+
+[0;32m[1mRESULT: PASSED[0m
+
+
+>>> Running JS System Tests
+Running test-bug-fixes.js...
+🧪 Bug Fix Verification Tests
+================================
+Spec: 054-remaining-bugs-remediation
+Date: 2026-01-15T12:16:30.121Z
+
+
+🔬 BUG-001: Race Condition - Cross-connection visibility
+   ✅ T-005a: Notification mechanism in scripts/
+      Evidence: notifyDatabaseUpdated() function found
+   ✅ T-005b: Check mechanism in context-server.js
+      Evidence: checkDatabaseUpdated() and reinitializeDatabase() found
+   ✅ T-005c: Notification file write/read works
+      Evidence: Wrote and read: 1768479390122
+
+🔬 BUG-002: Transaction Rollback
+   ✅ T-010a: Transaction wrapper in indexMemory()
+      Evidence: database.transaction() wrapper found - supports nested transactions
+   ⏭️  T-010b: Automatic rollback via transaction wrapper (skipped: database.transaction() provides automatic rollback - manual cleanup not required)
+   ⏭️  T-011: Integration test for partial failure recovery (skipped: Requires injected failure - code verified)
+
+🔬 BUG-003: Embedding Dimension Mismatch at Startup
+   ✅ T-015a: getConfirmedEmbeddingDimension() exists
+      Evidence: Function exported
+[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions
+   ✅ T-015b: Returns valid dimension
+      Evidence: Dimension: 1024
+
+🔬 BUG-004: Constitutional Cache Stale After External Edits
+   ✅ T-018a: Database mtime tracking implemented
+      Evidence: last_db_mod_time and mtimeMs check found
+   ✅ T-018b: is_constitutional_cache_valid() exists
+      Evidence: Function found in source
+
+🔬 BUG-005: Rate Limiting Not Persistent
+   ✅ T-023a: Config table creation
+      Evidence: CREATE TABLE IF NOT EXISTS config found
+   ✅ T-023b: getLastScanTime() reads from database
+      Evidence: Function and SQL query found
+   ✅ T-023c: setLastScanTime() writes to database
+      Evidence: Function and SQL query found
+
+🔬 BUG-006: Prepared Statement Cache Not Cleared
+   ✅ T-027: clear_prepared_statements() in close_db()
+      Evidence: Function call found in database closing
+
+🔬 BUG-007: Empty Query Edge Case
+   ✅ T-030a: validateQuery() function exists
+      Evidence: Function definition found
+   ✅ T-030b: Checks for null/undefined
+      Evidence: Null and undefined checks found
+   ✅ T-030c: Checks for empty/whitespace
+      Evidence: Trim and empty/whitespace checks found
+   ✅ T-030d: MAX_QUERY_LENGTH check
+      Evidence: Length limit check found
+
+🔬 BUG-008: UTF-8 BOM Detection Missing
+   ✅ T-032a: UTF-8 BOM bytes (EF BB BF) detected
+      Evidence: 0xEF, 0xBB, 0xBF found in source
+   ✅ T-032b: 3-byte offset for UTF-8 BOM
+      Evidence: Offset handling found
+
+🔬 BUG-009: Search Cache Key Collision Risk
+   ✅ T-034a: getCacheKey() function exists
+      Evidence: Function exported
+   ✅ T-034b: Different queries produce different keys
+      Evidence: key_1=98895079d6bd58bb, key_2=8ba041418dbe5c20
+   ✅ T-034c: Same queries produce same keys
+      Evidence: key_1=98895079d6bd58bb, key_3=98895079d6bd58bb
+
+🔬 BUG-013: Orphaned Vector Cleanup Only at Startup
+   ✅ T-042a: verifyIntegrity() function exists
+      Evidence: Function exported
+   ✅ T-042b: autoClean option in verifyIntegrity()
+      Evidence: autoClean parameter found
+
+🔬 Configuration Verification
+   ✅ Config: maxTriggersPerMemory
+      Evidence: Value: 10
+   ✅ Config: smartRanking weights
+      Evidence: {"recencyWeight":0.5,"accessWeight":0.3,"relevanceWeight":0.2}
+
+================================
+📊 TEST SUMMARY
+================================
+✅ Passed:  25
+❌ Failed:  0
+⏭️  Skipped: 2
+📝 Total:   27
+
+🎉 ALL TESTS PASSED!
+Running test-embeddings-factory.js...
+🧪 Testing Embeddings Factory...
+
+1️⃣ Importing modules...
+   ✅ Modules imported successfully
+
+2️⃣ Verifying provider configuration...
+❌ ERROR IN TESTS: getProviderInfo is not a function
+Stack: TypeError: getProviderInfo is not a function
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:35:27)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at Module._compile (node:internal/modules/cjs/loader:1760:14)
+    at Object..js (node:internal/modules/cjs/loader:1892:10)
+    at Module.load (node:internal/modules/cjs/loader:1480:32)
+    at Module._load (node:internal/modules/cjs/loader:1299:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+>>> Running Anchor System Implementation Tests
+Running test-parser.js...
+--- Testing extract_anchors ---
+Extracted Anchors: [ 'summary', 'details', 'nested-parent', 'nested-child' ]
+✅ Summary anchor extracted correctly
+✅ Details anchor extracted
+✅ Nested child extracted
+✅ Broken anchor ignored (as expected)
+Running verify-logic.js...
+--- Verifying Anchor Filtering Logic ---
+Original Content Length: 543 chars
+
+--- Result ---
+<!-- ANCHOR:summary -->
+## Session Summary
+This is the summary section.
+It contains high-level info.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:nested-child -->
+### Child Section
+This is nested inside.
+<!-- /ANCHOR:nested-child -->
+
+--- Metrics ---
+{
+  "originalTokens": 136,
+  "returnedTokens": 57,
+  "savingsPercent": 58,
+  "anchorsRequested": 2,
+  "anchorsFound": 2
+}
+
+✅ Verification PASSED: Content correctly filtered
+---------------------------------------------------
+Tests Complete.
+
+>>> Running test-validation.sh
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  validate-spec.sh Test Suite v2.0[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[0;34m[1mPositive Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Valid Level 1 spec folder [2m[279ms][0m
+[0;32m✓[0m Valid Level 2 spec folder [2m[280ms][0m
+[0;32m✓[0m Valid Level 3 spec folder [2m[285ms][0m
+[0;32m✓[0m Valid spec with scratch/ (ignored) [2m[286ms][0m
+[0;32m✓[0m Valid spec with templates/ (skipped) [2m[271ms][0m
+[0;32m✓[0m Valid priority tags (P0, P1, P2) [2m[274ms][0m
+[0;32m✓[0m Valid evidence on P0/P1 completed items [2m[263ms][0m
+[0;32m✓[0m Valid anchors in memory files [2m[271ms][0m
+[0;32m✓[0m L1 with extra files (notes.md, research.md) [2m[234ms][0m
+[0;32m✓[0m Valid sections in all files (L3) [2m[274ms][0m
+
+[0;34m[1mLevel Declaration Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Explicit level declaration (| **Level** | 2 |) [2m[260ms][0m
+[0;32m✓[0m Inferred level (no level field, inferred from files) [2m[260ms][0m
+[0;32m✓[0m Level 0 (invalid, falls back to inferred) [2m[273ms][0m
+[0;32m✓[0m Level 5 (out of range, falls back to inferred) [2m[240ms][0m
+[0;32m✓[0m Level without bold (| Level | 2 |, falls back to inferred) [2m[248ms][0m
+
+[0;34m[1mWarning Tests (should WARN):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Invalid priority tags (unknown tags) [2m[287ms][0m
+[0;32m✓[0m Missing evidence on P0/P1 completed items [2m[325ms][0m
+
+[0;34m[1mSections Present Tests (should WARN on missing):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing spec.md sections (no Problem Statement) [2m[273ms][0m
+[0;32m✓[0m Missing plan.md sections (no Architecture) [2m[264ms][0m
+[0;32m✓[0m Missing checklist.md sections (no P0/P1) [2m[302ms][0m
+[0;32m✓[0m Missing decision-record.md sections (no Consequences) [2m[335ms][0m
+
+[0;34m[1mNegative Tests (should FAIL):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing required files (no spec.md) [2m[231ms][0m
+[0;32m✓[0m Unfilled placeholders [2m[262ms][0m
+[0;32m✓[0m Invalid anchors (unclosed, mismatched, orphaned) [2m[265ms][0m
+[0;32m✓[0m Empty folder (all L1 files missing) [2m[187ms][0m
+[0;32m✓[0m Missing plan.md (L1) [2m[224ms][0m
+[0;32m✓[0m Missing tasks.md (L1) [2m[229ms][0m
+[0;32m✓[0m Level 2 missing checklist.md [2m[245ms][0m
+[0;32m✓[0m Level 3 missing decision-record.md [2m[262ms][0m
+
+[0;34m[1mPriority Tags Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Inline priority tags only [P0]/[P1]/[P2] [2m[283ms][0m
+[0;32m✓[0m Mixed priority headers and inline tags [2m[277ms][0m
+[0;32m✓[0m Items after non-priority header inherit context [2m[312ms][0m
+[0;32m✓[0m Lowercase priority headers (## p0) [2m[346ms][0m
+[0;32m✓[0m Invalid P3/P4 priority levels [2m[350ms][0m
+
+[0;34m[1mAnchor Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Nested anchors (outer contains inner) [2m[293ms][0m
+[0;32m✓[0m Empty memory/ directory (skipped) [2m[310ms][0m
+[0;32m✓[0m No memory/ directory (skipped) [2m[276ms][0m
+[0;32m✓[0m Duplicate anchor IDs, each properly closed [2m[343ms][0m
+[0;32m✓[0m Multiple memory files, one with error [2m[306ms][0m
+
+[0;34m[1mEvidence Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m All 5 evidence patterns recognized [2m[349ms][0m
+[0;32m✓[0m Case-insensitive evidence tags [2m[314ms][0m
+[0;32m✓[0m P2 items exempt from evidence [2m[280ms][0m
+[0;32m✓[0m Both checkmark formats (✓ ✔) [2m[272ms][0m
+[0;32m✓[0m Wrong suffix (complete/done/finished) [2m[268ms][0m
+
+[0;34m[1mPlaceholder Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Placeholder in fenced code block (ignored) [2m[243ms][0m
+[0;32m✓[0m Placeholder in inline code backticks (ignored) [2m[295ms][0m
+[0;32m✓[0m Placeholder in memory/ directory (skipped) [2m[291ms][0m
+[0;32m✓[0m Multiple placeholders across files (all detected) [2m[251ms][0m
+[0;32m✓[0m Placeholder case variations (detected) [2m[253ms][0m
+
+[0;34m[1mCLI Options Tests:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m --json produces valid JSON with required fields [2m[303ms][0m
+[0;32m✓[0m --strict mode: warnings become errors [2m[329ms][0m
+[0;32m✓[0m --quiet mode: minimal output [2m[272ms][0m
+[0;32m✓[0m Config file: .speckit.yaml detected (parsing TODO) [2m[307ms][0m
+[0;32m✓[0m Env var: SPECKIT_STRICT=true [2m[373ms][0m
+[0;32m✓[0m Rule order: .speckit.yaml rule_order [2m[280ms][0m
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  Summary[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[1mBy Category:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32m●[0m Positive Tests (should PASS): [0;32m10[0m/10 passed [2m(2.717s)[0m
+  [0;32m●[0m Level Declaration Tests (should PASS): [0;32m5[0m/5 passed [2m(1.281s)[0m
+  [0;32m●[0m Warning Tests (should WARN): [0;32m2[0m/2 passed [2m(612ms)[0m
+  [0;32m●[0m Sections Present Tests (should WARN on missing): [0;32m4[0m/4 passed [2m(1.174s)[0m
+  [0;32m●[0m Negative Tests (should FAIL): [0;32m8[0m/8 passed [2m(1.905s)[0m
+  [0;32m●[0m Priority Tags Edge Cases: [0;32m5[0m/5 passed [2m(1.568s)[0m
+  [0;32m●[0m Anchor Edge Cases: [0;32m5[0m/5 passed [2m(1.528s)[0m
+  [0;32m●[0m Evidence Edge Cases: [0;32m5[0m/5 passed [2m(1.483s)[0m
+  [0;32m●[0m Placeholder Edge Cases: [0;32m5[0m/5 passed [2m(1.333s)[0m
+  [0;32m●[0m CLI Options Tests: [0;32m6[0m/6 passed [2m(1.864s)[0m
+
+[1mTotals:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32mPassed:[0m  55
+  [0;31mFailed:[0m  0
+  [0;33mSkipped:[0m 0
+  ─────────────
+  Total:   55
+  [2mTime:    15.465s[0m
+
+[0;32m[1mRESULT: PASSED[0m
+
+
+>>> Running JS System Tests
+Running test-bug-fixes.js...
+🧪 Bug Fix Verification Tests
+================================
+Spec: 054-remaining-bugs-remediation
+Date: 2026-01-15T12:17:17.768Z
+
+
+🔬 BUG-001: Race Condition - Cross-connection visibility
+   ✅ T-005a: Notification mechanism in scripts/
+      Evidence: notifyDatabaseUpdated() function found
+   ✅ T-005b: Check mechanism in context-server.js
+      Evidence: checkDatabaseUpdated() and reinitializeDatabase() found
+   ✅ T-005c: Notification file write/read works
+      Evidence: Wrote and read: 1768479437770
+
+🔬 BUG-002: Transaction Rollback
+   ✅ T-010a: Transaction wrapper in indexMemory()
+      Evidence: database.transaction() wrapper found - supports nested transactions
+   ⏭️  T-010b: Automatic rollback via transaction wrapper (skipped: database.transaction() provides automatic rollback - manual cleanup not required)
+   ⏭️  T-011: Integration test for partial failure recovery (skipped: Requires injected failure - code verified)
+
+🔬 BUG-003: Embedding Dimension Mismatch at Startup
+   ✅ T-015a: getConfirmedEmbeddingDimension() exists
+      Evidence: Function exported
+[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions
+   ✅ T-015b: Returns valid dimension
+      Evidence: Dimension: 1024
+
+🔬 BUG-004: Constitutional Cache Stale After External Edits
+   ✅ T-018a: Database mtime tracking implemented
+      Evidence: last_db_mod_time and mtimeMs check found
+   ✅ T-018b: is_constitutional_cache_valid() exists
+      Evidence: Function found in source
+
+🔬 BUG-005: Rate Limiting Not Persistent
+   ✅ T-023a: Config table creation
+      Evidence: CREATE TABLE IF NOT EXISTS config found
+   ✅ T-023b: getLastScanTime() reads from database
+      Evidence: Function and SQL query found
+   ✅ T-023c: setLastScanTime() writes to database
+      Evidence: Function and SQL query found
+
+🔬 BUG-006: Prepared Statement Cache Not Cleared
+   ✅ T-027: clear_prepared_statements() in close_db()
+      Evidence: Function call found in database closing
+
+🔬 BUG-007: Empty Query Edge Case
+   ✅ T-030a: validateQuery() function exists
+      Evidence: Function definition found
+   ✅ T-030b: Checks for null/undefined
+      Evidence: Null and undefined checks found
+   ✅ T-030c: Checks for empty/whitespace
+      Evidence: Trim and empty/whitespace checks found
+   ✅ T-030d: MAX_QUERY_LENGTH check
+      Evidence: Length limit check found
+
+🔬 BUG-008: UTF-8 BOM Detection Missing
+   ✅ T-032a: UTF-8 BOM bytes (EF BB BF) detected
+      Evidence: 0xEF, 0xBB, 0xBF found in source
+   ✅ T-032b: 3-byte offset for UTF-8 BOM
+      Evidence: Offset handling found
+
+🔬 BUG-009: Search Cache Key Collision Risk
+   ✅ T-034a: getCacheKey() function exists
+      Evidence: Function exported
+   ✅ T-034b: Different queries produce different keys
+      Evidence: key_1=98895079d6bd58bb, key_2=8ba041418dbe5c20
+   ✅ T-034c: Same queries produce same keys
+      Evidence: key_1=98895079d6bd58bb, key_3=98895079d6bd58bb
+
+🔬 BUG-013: Orphaned Vector Cleanup Only at Startup
+   ✅ T-042a: verifyIntegrity() function exists
+      Evidence: Function exported
+   ✅ T-042b: autoClean option in verifyIntegrity()
+      Evidence: autoClean parameter found
+
+🔬 Configuration Verification
+   ✅ Config: maxTriggersPerMemory
+      Evidence: Value: 10
+   ✅ Config: smartRanking weights
+      Evidence: {"recencyWeight":0.5,"accessWeight":0.3,"relevanceWeight":0.2}
+
+================================
+📊 TEST SUMMARY
+================================
+✅ Passed:  25
+❌ Failed:  0
+⏭️  Skipped: 2
+📝 Total:   27
+
+🎉 ALL TESTS PASSED!
+Running test-embeddings-factory.js...
+🧪 Testing Embeddings Factory...
+
+1️⃣ Importing modules...
+   ✅ Modules imported successfully
+
+2️⃣ Verifying provider configuration...
+   Selected provider: voyage
+   Reason: VOYAGE_API_KEY detected (auto mode)
+   Config: {
+  "EMBEDDINGS_PROVIDER": "auto",
+  "VOYAGE_API_KEY": "***set***",
+  "VOYAGE_EMBEDDINGS_MODEL": "voyage-3.5",
+  "OPENAI_API_KEY": "not set",
+  "OPENAI_EMBEDDINGS_MODEL": "text-embedding-3-small",
+  "HF_EMBEDDINGS_MODEL": "nomic-ai/nomic-embed-text-v1.5"
+}
+   ✅ Configuration obtained
+
+3️⃣ Creating embedding profile...
+   Profile: [object Object]
+   Slug: hf-local__nomic-ai_nomic-embed-text-v1.5__768
+❌ ERROR IN TESTS: profile.getDatabasePath is not a function
+Stack: TypeError: profile.getDatabasePath is not a function
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:50:40)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at Module._compile (node:internal/modules/cjs/loader:1760:14)
+    at Object..js (node:internal/modules/cjs/loader:1892:10)
+    at Module.load (node:internal/modules/cjs/loader:1480:32)
+    at Module._load (node:internal/modules/cjs/loader:1299:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+>>> Running Anchor System Implementation Tests
+Running test-parser.js...
+--- Testing extract_anchors ---
+Extracted Anchors: [ 'summary', 'details', 'nested-parent', 'nested-child' ]
+✅ Summary anchor extracted correctly
+✅ Details anchor extracted
+✅ Nested child extracted
+✅ Broken anchor ignored (as expected)
+Running verify-logic.js...
+--- Verifying Anchor Filtering Logic ---
+Original Content Length: 543 chars
+
+--- Result ---
+<!-- ANCHOR:summary -->
+## Session Summary
+This is the summary section.
+It contains high-level info.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:nested-child -->
+### Child Section
+This is nested inside.
+<!-- /ANCHOR:nested-child -->
+
+--- Metrics ---
+{
+  "originalTokens": 136,
+  "returnedTokens": 57,
+  "savingsPercent": 58,
+  "anchorsRequested": 2,
+  "anchorsFound": 2
+}
+
+✅ Verification PASSED: Content correctly filtered
+---------------------------------------------------
+Tests Complete.
+
+>>> Running test-validation.sh
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  validate-spec.sh Test Suite v2.0[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[0;34m[1mPositive Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Valid Level 1 spec folder [2m[281ms][0m
+[0;32m✓[0m Valid Level 2 spec folder [2m[288ms][0m
+[0;32m✓[0m Valid Level 3 spec folder [2m[334ms][0m
+[0;32m✓[0m Valid spec with scratch/ (ignored) [2m[297ms][0m
+[0;32m✓[0m Valid spec with templates/ (skipped) [2m[298ms][0m
+[0;32m✓[0m Valid priority tags (P0, P1, P2) [2m[375ms][0m
+[0;32m✓[0m Valid evidence on P0/P1 completed items [2m[370ms][0m
+[0;32m✓[0m Valid anchors in memory files [2m[350ms][0m
+[0;32m✓[0m L1 with extra files (notes.md, research.md) [2m[295ms][0m
+[0;32m✓[0m Valid sections in all files (L3) [2m[326ms][0m
+
+[0;34m[1mLevel Declaration Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Explicit level declaration (| **Level** | 2 |) [2m[330ms][0m
+[0;32m✓[0m Inferred level (no level field, inferred from files) [2m[297ms][0m
+[0;32m✓[0m Level 0 (invalid, falls back to inferred) [2m[268ms][0m
+[0;32m✓[0m Level 5 (out of range, falls back to inferred) [2m[266ms][0m
+[0;32m✓[0m Level without bold (| Level | 2 |, falls back to inferred) [2m[277ms][0m
+
+[0;34m[1mWarning Tests (should WARN):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Invalid priority tags (unknown tags) [2m[306ms][0m
+[0;32m✓[0m Missing evidence on P0/P1 completed items [2m[295ms][0m
+
+[0;34m[1mSections Present Tests (should WARN on missing):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing spec.md sections (no Problem Statement) [2m[254ms][0m
+[0;32m✓[0m Missing plan.md sections (no Architecture) [2m[278ms][0m
+[0;32m✓[0m Missing checklist.md sections (no P0/P1) [2m[311ms][0m
+[0;32m✓[0m Missing decision-record.md sections (no Consequences) [2m[358ms][0m
+
+[0;34m[1mNegative Tests (should FAIL):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing required files (no spec.md) [2m[281ms][0m
+[0;32m✓[0m Unfilled placeholders [2m[256ms][0m
+[0;32m✓[0m Invalid anchors (unclosed, mismatched, orphaned) [2m[316ms][0m
+[0;32m✓[0m Empty folder (all L1 files missing) [2m[197ms][0m
+[0;32m✓[0m Missing plan.md (L1) [2m[245ms][0m
+[0;32m✓[0m Missing tasks.md (L1) [2m[252ms][0m
+[0;32m✓[0m Level 2 missing checklist.md [2m[262ms][0m
+[0;32m✓[0m Level 3 missing decision-record.md [2m[304ms][0m
+
+[0;34m[1mPriority Tags Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Inline priority tags only [P0]/[P1]/[P2] [2m[295ms][0m
+[0;32m✓[0m Mixed priority headers and inline tags [2m[303ms][0m
+[0;32m✓[0m Items after non-priority header inherit context [2m[317ms][0m
+[0;32m✓[0m Lowercase priority headers (## p0) [2m[316ms][0m
+[0;32m✓[0m Invalid P3/P4 priority levels [2m[295ms][0m
+
+[0;34m[1mAnchor Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Nested anchors (outer contains inner) [2m[255ms][0m
+[0;32m✓[0m Empty memory/ directory (skipped) [2m[249ms][0m
+[0;32m✓[0m No memory/ directory (skipped) [2m[281ms][0m
+[0;32m✓[0m Duplicate anchor IDs, each properly closed [2m[300ms][0m
+[0;32m✓[0m Multiple memory files, one with error [2m[328ms][0m
+
+[0;34m[1mEvidence Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m All 5 evidence patterns recognized [2m[317ms][0m
+[0;32m✓[0m Case-insensitive evidence tags [2m[308ms][0m
+[0;32m✓[0m P2 items exempt from evidence [2m[307ms][0m
+[0;32m✓[0m Both checkmark formats (✓ ✔) [2m[345ms][0m
+[0;32m✓[0m Wrong suffix (complete/done/finished) [2m[321ms][0m
+
+[0;34m[1mPlaceholder Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Placeholder in fenced code block (ignored) [2m[300ms][0m
+[0;32m✓[0m Placeholder in inline code backticks (ignored) [2m[308ms][0m
+[0;32m✓[0m Placeholder in memory/ directory (skipped) [2m[325ms][0m
+[0;32m✓[0m Multiple placeholders across files (all detected) [2m[286ms][0m
+[0;32m✓[0m Placeholder case variations (detected) [2m[278ms][0m
+
+[0;34m[1mCLI Options Tests:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m --json produces valid JSON with required fields [2m[264ms][0m
+[0;32m✓[0m --strict mode: warnings become errors [2m[288ms][0m
+[0;32m✓[0m --quiet mode: minimal output [2m[255ms][0m
+[0;32m✓[0m Config file: .speckit.yaml detected (parsing TODO) [2m[273ms][0m
+[0;32m✓[0m Env var: SPECKIT_STRICT=true [2m[295ms][0m
+[0;32m✓[0m Rule order: .speckit.yaml rule_order [2m[317ms][0m
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  Summary[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[1mBy Category:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32m●[0m Positive Tests (should PASS): [0;32m10[0m/10 passed [2m(3.214s)[0m
+  [0;32m●[0m Level Declaration Tests (should PASS): [0;32m5[0m/5 passed [2m(1.438s)[0m
+  [0;32m●[0m Warning Tests (should WARN): [0;32m2[0m/2 passed [2m(601ms)[0m
+  [0;32m●[0m Sections Present Tests (should WARN on missing): [0;32m4[0m/4 passed [2m(1.201s)[0m
+  [0;32m●[0m Negative Tests (should FAIL): [0;32m8[0m/8 passed [2m(2.113s)[0m
+  [0;32m●[0m Priority Tags Edge Cases: [0;32m5[0m/5 passed [2m(1.526s)[0m
+  [0;32m●[0m Anchor Edge Cases: [0;32m5[0m/5 passed [2m(1.413s)[0m
+  [0;32m●[0m Evidence Edge Cases: [0;32m5[0m/5 passed [2m(1.598s)[0m
+  [0;32m●[0m Placeholder Edge Cases: [0;32m5[0m/5 passed [2m(1.497s)[0m
+  [0;32m●[0m CLI Options Tests: [0;32m6[0m/6 passed [2m(1.692s)[0m
+
+[1mTotals:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32mPassed:[0m  55
+  [0;31mFailed:[0m  0
+  [0;33mSkipped:[0m 0
+  ─────────────
+  Total:   55
+  [2mTime:    16.293s[0m
+
+[0;32m[1mRESULT: PASSED[0m
+
+
+>>> Running JS System Tests
+Running test-bug-fixes.js...
+🧪 Bug Fix Verification Tests
+================================
+Spec: 054-remaining-bugs-remediation
+Date: 2026-01-15T12:18:02.188Z
+
+
+🔬 BUG-001: Race Condition - Cross-connection visibility
+   ✅ T-005a: Notification mechanism in scripts/
+      Evidence: notifyDatabaseUpdated() function found
+   ✅ T-005b: Check mechanism in context-server.js
+      Evidence: checkDatabaseUpdated() and reinitializeDatabase() found
+   ✅ T-005c: Notification file write/read works
+      Evidence: Wrote and read: 1768479482190
+
+🔬 BUG-002: Transaction Rollback
+   ✅ T-010a: Transaction wrapper in indexMemory()
+      Evidence: database.transaction() wrapper found - supports nested transactions
+   ⏭️  T-010b: Automatic rollback via transaction wrapper (skipped: database.transaction() provides automatic rollback - manual cleanup not required)
+   ⏭️  T-011: Integration test for partial failure recovery (skipped: Requires injected failure - code verified)
+
+🔬 BUG-003: Embedding Dimension Mismatch at Startup
+   ✅ T-015a: getConfirmedEmbeddingDimension() exists
+      Evidence: Function exported
+[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions
+   ✅ T-015b: Returns valid dimension
+      Evidence: Dimension: 1024
+
+🔬 BUG-004: Constitutional Cache Stale After External Edits
+   ✅ T-018a: Database mtime tracking implemented
+      Evidence: last_db_mod_time and mtimeMs check found
+   ✅ T-018b: is_constitutional_cache_valid() exists
+      Evidence: Function found in source
+
+🔬 BUG-005: Rate Limiting Not Persistent
+   ✅ T-023a: Config table creation
+      Evidence: CREATE TABLE IF NOT EXISTS config found
+   ✅ T-023b: getLastScanTime() reads from database
+      Evidence: Function and SQL query found
+   ✅ T-023c: setLastScanTime() writes to database
+      Evidence: Function and SQL query found
+
+🔬 BUG-006: Prepared Statement Cache Not Cleared
+   ✅ T-027: clear_prepared_statements() in close_db()
+      Evidence: Function call found in database closing
+
+🔬 BUG-007: Empty Query Edge Case
+   ✅ T-030a: validateQuery() function exists
+      Evidence: Function definition found
+   ✅ T-030b: Checks for null/undefined
+      Evidence: Null and undefined checks found
+   ✅ T-030c: Checks for empty/whitespace
+      Evidence: Trim and empty/whitespace checks found
+   ✅ T-030d: MAX_QUERY_LENGTH check
+      Evidence: Length limit check found
+
+🔬 BUG-008: UTF-8 BOM Detection Missing
+   ✅ T-032a: UTF-8 BOM bytes (EF BB BF) detected
+      Evidence: 0xEF, 0xBB, 0xBF found in source
+   ✅ T-032b: 3-byte offset for UTF-8 BOM
+      Evidence: Offset handling found
+
+🔬 BUG-009: Search Cache Key Collision Risk
+   ✅ T-034a: getCacheKey() function exists
+      Evidence: Function exported
+   ✅ T-034b: Different queries produce different keys
+      Evidence: key_1=98895079d6bd58bb, key_2=8ba041418dbe5c20
+   ✅ T-034c: Same queries produce same keys
+      Evidence: key_1=98895079d6bd58bb, key_3=98895079d6bd58bb
+
+🔬 BUG-013: Orphaned Vector Cleanup Only at Startup
+   ✅ T-042a: verifyIntegrity() function exists
+      Evidence: Function exported
+   ✅ T-042b: autoClean option in verifyIntegrity()
+      Evidence: autoClean parameter found
+
+🔬 Configuration Verification
+   ✅ Config: maxTriggersPerMemory
+      Evidence: Value: 10
+   ✅ Config: smartRanking weights
+      Evidence: {"recencyWeight":0.5,"accessWeight":0.3,"relevanceWeight":0.2}
+
+================================
+📊 TEST SUMMARY
+================================
+✅ Passed:  25
+❌ Failed:  0
+⏭️  Skipped: 2
+📝 Total:   27
+
+🎉 ALL TESTS PASSED!
+Running test-embeddings-factory.js...
+🧪 Testing Embeddings Factory...
+
+1️⃣ Importing modules...
+   ✅ Modules imported successfully
+
+2️⃣ Verifying provider configuration...
+   Selected provider: voyage
+   Reason: VOYAGE_API_KEY detected (auto mode)
+   Config: {
+  "EMBEDDINGS_PROVIDER": "auto",
+  "VOYAGE_API_KEY": "***set***",
+  "VOYAGE_EMBEDDINGS_MODEL": "voyage-3.5",
+  "OPENAI_API_KEY": "not set",
+  "OPENAI_EMBEDDINGS_MODEL": "text-embedding-3-small",
+  "HF_EMBEDDINGS_MODEL": "nomic-ai/nomic-embed-text-v1.5"
+}
+   ✅ Configuration obtained
+
+3️⃣ Creating embedding profile...
+   Profile: hf-local:nomic-ai/nomic-embed-text-v1.5:768
+   Slug: hf-local__nomic-ai_nomic-embed-text-v1.5__768
+   DB path: /tmp/test/context-index.sqlite
+   ✅ Profile created successfully
+
+4️⃣ Verifying embeddings API...
+   Available functions:
+   - generateDocumentEmbedding: function
+   - generateQueryEmbedding: function
+   - getEmbeddingDimension: function
+   - getProviderMetadata: function
+   - getEmbeddingProfile: function
+   ✅ Complete API available
+
+5️⃣ Verifying constants...
+   EMBEDDING_DIM: 768
+   MODEL_NAME: nomic-ai/nomic-embed-text-v1.5
+   MAX_TEXT_LENGTH: 8000
+   ✅ Constants available
+
+6️⃣ Creating HF local provider (without warmup)...
+❌ ERROR IN TESTS: HFLocalProvider is not a constructor
+Stack: TypeError: HFLocalProvider is not a constructor
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:72:25)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at Module._compile (node:internal/modules/cjs/loader:1760:14)
+    at Object..js (node:internal/modules/cjs/loader:1892:10)
+    at Module.load (node:internal/modules/cjs/loader:1480:32)
+    at Module._load (node:internal/modules/cjs/loader:1299:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+>>> Running Anchor System Implementation Tests
+Running test-parser.js...
+--- Testing extract_anchors ---
+Extracted Anchors: [ 'summary', 'details', 'nested-parent', 'nested-child' ]
+✅ Summary anchor extracted correctly
+✅ Details anchor extracted
+✅ Nested child extracted
+✅ Broken anchor ignored (as expected)
+Running verify-logic.js...
+--- Verifying Anchor Filtering Logic ---
+Original Content Length: 543 chars
+
+--- Result ---
+<!-- ANCHOR:summary -->
+## Session Summary
+This is the summary section.
+It contains high-level info.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:nested-child -->
+### Child Section
+This is nested inside.
+<!-- /ANCHOR:nested-child -->
+
+--- Metrics ---
+{
+  "originalTokens": 136,
+  "returnedTokens": 57,
+  "savingsPercent": 58,
+  "anchorsRequested": 2,
+  "anchorsFound": 2
+}
+
+✅ Verification PASSED: Content correctly filtered
+---------------------------------------------------
+Tests Complete.
+
+>>> Running test-validation.sh
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  validate-spec.sh Test Suite v2.0[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[0;34m[1mPositive Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Valid Level 1 spec folder [2m[269ms][0m
+[0;32m✓[0m Valid Level 2 spec folder [2m[280ms][0m
+[0;32m✓[0m Valid Level 3 spec folder [2m[296ms][0m
+[0;32m✓[0m Valid spec with scratch/ (ignored) [2m[279ms][0m
+[0;32m✓[0m Valid spec with templates/ (skipped) [2m[289ms][0m
+[0;32m✓[0m Valid priority tags (P0, P1, P2) [2m[272ms][0m
+[0;32m✓[0m Valid evidence on P0/P1 completed items [2m[291ms][0m
+[0;32m✓[0m Valid anchors in memory files [2m[311ms][0m
+[0;32m✓[0m L1 with extra files (notes.md, research.md) [2m[287ms][0m
+[0;32m✓[0m Valid sections in all files (L3) [2m[335ms][0m
+
+[0;34m[1mLevel Declaration Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Explicit level declaration (| **Level** | 2 |) [2m[288ms][0m
+[0;32m✓[0m Inferred level (no level field, inferred from files) [2m[252ms][0m
+[0;32m✓[0m Level 0 (invalid, falls back to inferred) [2m[273ms][0m
+[0;32m✓[0m Level 5 (out of range, falls back to inferred) [2m[275ms][0m
+[0;32m✓[0m Level without bold (| Level | 2 |, falls back to inferred) [2m[268ms][0m
+
+[0;34m[1mWarning Tests (should WARN):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Invalid priority tags (unknown tags) [2m[298ms][0m
+[0;32m✓[0m Missing evidence on P0/P1 completed items [2m[292ms][0m
+
+[0;34m[1mSections Present Tests (should WARN on missing):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing spec.md sections (no Problem Statement) [2m[252ms][0m
+[0;32m✓[0m Missing plan.md sections (no Architecture) [2m[258ms][0m
+[0;32m✓[0m Missing checklist.md sections (no P0/P1) [2m[284ms][0m
+[0;32m✓[0m Missing decision-record.md sections (no Consequences) [2m[301ms][0m
+
+[0;34m[1mNegative Tests (should FAIL):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing required files (no spec.md) [2m[219ms][0m
+[0;32m✓[0m Unfilled placeholders [2m[283ms][0m
+[0;32m✓[0m Invalid anchors (unclosed, mismatched, orphaned) [2m[275ms][0m
+[0;32m✓[0m Empty folder (all L1 files missing) [2m[179ms][0m
+[0;32m✓[0m Missing plan.md (L1) [2m[219ms][0m
+[0;32m✓[0m Missing tasks.md (L1) [2m[233ms][0m
+[0;32m✓[0m Level 2 missing checklist.md [2m[233ms][0m
+[0;32m✓[0m Level 3 missing decision-record.md [2m[282ms][0m
+
+[0;34m[1mPriority Tags Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Inline priority tags only [P0]/[P1]/[P2] [2m[253ms][0m
+[0;32m✓[0m Mixed priority headers and inline tags [2m[262ms][0m
+[0;32m✓[0m Items after non-priority header inherit context [2m[266ms][0m
+[0;32m✓[0m Lowercase priority headers (## p0) [2m[320ms][0m
+[0;32m✓[0m Invalid P3/P4 priority levels [2m[343ms][0m
+
+[0;34m[1mAnchor Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Nested anchors (outer contains inner) [2m[386ms][0m
+[0;32m✓[0m Empty memory/ directory (skipped) [2m[295ms][0m
+[0;32m✓[0m No memory/ directory (skipped) [2m[270ms][0m
+[0;32m✓[0m Duplicate anchor IDs, each properly closed [2m[303ms][0m
+[0;32m✓[0m Multiple memory files, one with error [2m[370ms][0m
+
+[0;34m[1mEvidence Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m All 5 evidence patterns recognized [2m[275ms][0m
+[0;32m✓[0m Case-insensitive evidence tags [2m[275ms][0m
+[0;32m✓[0m P2 items exempt from evidence [2m[256ms][0m
+[0;32m✓[0m Both checkmark formats (✓ ✔) [2m[321ms][0m
+[0;32m✓[0m Wrong suffix (complete/done/finished) [2m[362ms][0m
+
+[0;34m[1mPlaceholder Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Placeholder in fenced code block (ignored) [2m[319ms][0m
+[0;32m✓[0m Placeholder in inline code backticks (ignored) [2m[344ms][0m
+[0;32m✓[0m Placeholder in memory/ directory (skipped) [2m[306ms][0m
+[0;32m✓[0m Multiple placeholders across files (all detected) [2m[296ms][0m
+[0;32m✓[0m Placeholder case variations (detected) [2m[253ms][0m
+
+[0;34m[1mCLI Options Tests:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m --json produces valid JSON with required fields [2m[238ms][0m
+[0;32m✓[0m --strict mode: warnings become errors [2m[273ms][0m
+[0;32m✓[0m --quiet mode: minimal output [2m[229ms][0m
+[0;32m✓[0m Config file: .speckit.yaml detected (parsing TODO) [2m[270ms][0m
+[0;32m✓[0m Env var: SPECKIT_STRICT=true [2m[346ms][0m
+[0;32m✓[0m Rule order: .speckit.yaml rule_order [2m[327ms][0m
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  Summary[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[1mBy Category:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32m●[0m Positive Tests (should PASS): [0;32m10[0m/10 passed [2m(2.909s)[0m
+  [0;32m●[0m Level Declaration Tests (should PASS): [0;32m5[0m/5 passed [2m(1.356s)[0m
+  [0;32m●[0m Warning Tests (should WARN): [0;32m2[0m/2 passed [2m(590ms)[0m
+  [0;32m●[0m Sections Present Tests (should WARN on missing): [0;32m4[0m/4 passed [2m(1.095s)[0m
+  [0;32m●[0m Negative Tests (should FAIL): [0;32m8[0m/8 passed [2m(1.923s)[0m
+  [0;32m●[0m Priority Tags Edge Cases: [0;32m5[0m/5 passed [2m(1.444s)[0m
+  [0;32m●[0m Anchor Edge Cases: [0;32m5[0m/5 passed [2m(1.624s)[0m
+  [0;32m●[0m Evidence Edge Cases: [0;32m5[0m/5 passed [2m(1.489s)[0m
+  [0;32m●[0m Placeholder Edge Cases: [0;32m5[0m/5 passed [2m(1.518s)[0m
+  [0;32m●[0m CLI Options Tests: [0;32m6[0m/6 passed [2m(1.683s)[0m
+
+[1mTotals:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32mPassed:[0m  55
+  [0;31mFailed:[0m  0
+  [0;33mSkipped:[0m 0
+  ─────────────
+  Total:   55
+  [2mTime:    15.631s[0m
+
+[0;32m[1mRESULT: PASSED[0m
+
+
+>>> Running JS System Tests
+Running test-bug-fixes.js...
+🧪 Bug Fix Verification Tests
+================================
+Spec: 054-remaining-bugs-remediation
+Date: 2026-01-15T12:55:59.484Z
+
+
+🔬 BUG-001: Race Condition - Cross-connection visibility
+   ✅ T-005a: Notification mechanism in scripts/
+      Evidence: notifyDatabaseUpdated() function found
+   ✅ T-005b: Check mechanism in context-server.js
+      Evidence: checkDatabaseUpdated() and reinitializeDatabase() found
+   ✅ T-005c: Notification file write/read works
+      Evidence: Wrote and read: 1768481759486
+
+🔬 BUG-002: Transaction Rollback
+   ✅ T-010a: Transaction wrapper in indexMemory()
+      Evidence: database.transaction() wrapper found - supports nested transactions
+   ⏭️  T-010b: Automatic rollback via transaction wrapper (skipped: database.transaction() provides automatic rollback - manual cleanup not required)
+   ⏭️  T-011: Integration test for partial failure recovery (skipped: Requires injected failure - code verified)
+
+🔬 BUG-003: Embedding Dimension Mismatch at Startup
+   ✅ T-015a: getConfirmedEmbeddingDimension() exists
+      Evidence: Function exported
+[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions
+   ✅ T-015b: Returns valid dimension
+      Evidence: Dimension: 1024
+
+🔬 BUG-004: Constitutional Cache Stale After External Edits
+   ✅ T-018a: Database mtime tracking implemented
+      Evidence: last_db_mod_time and mtimeMs check found
+   ✅ T-018b: is_constitutional_cache_valid() exists
+      Evidence: Function found in source
+
+🔬 BUG-005: Rate Limiting Not Persistent
+   ✅ T-023a: Config table creation
+      Evidence: CREATE TABLE IF NOT EXISTS config found
+   ✅ T-023b: getLastScanTime() reads from database
+      Evidence: Function and SQL query found
+   ✅ T-023c: setLastScanTime() writes to database
+      Evidence: Function and SQL query found
+
+🔬 BUG-006: Prepared Statement Cache Not Cleared
+   ✅ T-027: clear_prepared_statements() in close_db()
+      Evidence: Function call found in database closing
+
+🔬 BUG-007: Empty Query Edge Case
+   ✅ T-030a: validateQuery() function exists
+      Evidence: Function definition found
+   ✅ T-030b: Checks for null/undefined
+      Evidence: Null and undefined checks found
+   ✅ T-030c: Checks for empty/whitespace
+      Evidence: Trim and empty/whitespace checks found
+   ✅ T-030d: MAX_QUERY_LENGTH check
+      Evidence: Length limit check found
+
+🔬 BUG-008: UTF-8 BOM Detection Missing
+   ✅ T-032a: UTF-8 BOM bytes (EF BB BF) detected
+      Evidence: 0xEF, 0xBB, 0xBF found in source
+   ✅ T-032b: 3-byte offset for UTF-8 BOM
+      Evidence: Offset handling found
+
+🔬 BUG-009: Search Cache Key Collision Risk
+   ✅ T-034a: getCacheKey() function exists
+      Evidence: Function exported
+   ✅ T-034b: Different queries produce different keys
+      Evidence: key_1=98895079d6bd58bb, key_2=8ba041418dbe5c20
+   ✅ T-034c: Same queries produce same keys
+      Evidence: key_1=98895079d6bd58bb, key_3=98895079d6bd58bb
+
+🔬 BUG-013: Orphaned Vector Cleanup Only at Startup
+   ✅ T-042a: verifyIntegrity() function exists
+      Evidence: Function exported
+   ✅ T-042b: autoClean option in verifyIntegrity()
+      Evidence: autoClean parameter found
+
+🔬 Configuration Verification
+   ✅ Config: maxTriggersPerMemory
+      Evidence: Value: 10
+   ✅ Config: smartRanking weights
+      Evidence: {"recencyWeight":0.5,"accessWeight":0.3,"relevanceWeight":0.2}
+
+================================
+📊 TEST SUMMARY
+================================
+✅ Passed:  25
+❌ Failed:  0
+⏭️  Skipped: 2
+📝 Total:   27
+
+🎉 ALL TESTS PASSED!
+Running test-embeddings-factory.js...
+🧪 Testing Embeddings Factory...
+
+1️⃣ Importing modules...
+   ✅ Modules imported successfully
+
+2️⃣ Verifying provider configuration...
+   Selected provider: voyage
+   Reason: VOYAGE_API_KEY detected (auto mode)
+   Config: {
+  "EMBEDDINGS_PROVIDER": "auto",
+  "VOYAGE_API_KEY": "***set***",
+  "VOYAGE_EMBEDDINGS_MODEL": "voyage-3.5",
+  "OPENAI_API_KEY": "not set",
+  "OPENAI_EMBEDDINGS_MODEL": "text-embedding-3-small",
+  "HF_EMBEDDINGS_MODEL": "nomic-ai/nomic-embed-text-v1.5"
+}
+   ✅ Configuration obtained
+
+3️⃣ Creating embedding profile...
+   Profile: hf-local:nomic-ai/nomic-embed-text-v1.5:768
+   Slug: hf-local__nomic-ai_nomic-embed-text-v1.5__768
+   DB path: /tmp/test/context-index.sqlite
+   ✅ Profile created successfully
+
+4️⃣ Verifying embeddings API...
+   Available functions:
+   - generateDocumentEmbedding: function
+   - generateQueryEmbedding: function
+   - getEmbeddingDimension: function
+   - getProviderMetadata: function
+   - getEmbeddingProfile: function
+   ✅ Complete API available
+
+5️⃣ Verifying constants...
+   EMBEDDING_DIM: 768
+   MODEL_NAME: nomic-ai/nomic-embed-text-v1.5
+   MAX_TEXT_LENGTH: 8000
+   ✅ Constants available
+
+6️⃣ Creating HF local provider (without warmup)...
+❌ ERROR IN TESTS: HFLocalProvider is not a constructor
+Stack: TypeError: HFLocalProvider is not a constructor
+    at test_factory (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:72:25)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests/test-embeddings-factory.js:113:1)
+    at Module._compile (node:internal/modules/cjs/loader:1760:14)
+    at Object..js (node:internal/modules/cjs/loader:1892:10)
+    at Module.load (node:internal/modules/cjs/loader:1480:32)
+    at Module._load (node:internal/modules/cjs/loader:1299:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47
+
+>>> Running Anchor System Implementation Tests
+Running test-parser.js...
+--- Testing extract_anchors ---
+Extracted Anchors: [ 'summary', 'details', 'nested-parent', 'nested-child' ]
+✅ Summary anchor extracted correctly
+✅ Details anchor extracted
+✅ Nested child extracted
+✅ Broken anchor ignored (as expected)
+Running verify-logic.js...
+--- Verifying Anchor Filtering Logic ---
+Original Content Length: 543 chars
+
+--- Result ---
+<!-- ANCHOR:summary -->
+## Session Summary
+This is the summary section.
+It contains high-level info.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:nested-child -->
+### Child Section
+This is nested inside.
+<!-- /ANCHOR:nested-child -->
+
+--- Metrics ---
+{
+  "originalTokens": 136,
+  "returnedTokens": 57,
+  "savingsPercent": 58,
+  "anchorsRequested": 2,
+  "anchorsFound": 2
+}
+
+✅ Verification PASSED: Content correctly filtered
+---------------------------------------------------
+Tests Complete.
+
+>>> Running test-validation.sh
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  validate-spec.sh Test Suite v2.0[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[0;34m[1mPositive Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Valid Level 1 spec folder [2m[305ms][0m
+[0;32m✓[0m Valid Level 2 spec folder [2m[335ms][0m
+[0;32m✓[0m Valid Level 3 spec folder [2m[366ms][0m
+[0;32m✓[0m Valid spec with scratch/ (ignored) [2m[322ms][0m
+[0;32m✓[0m Valid spec with templates/ (skipped) [2m[312ms][0m
+[0;32m✓[0m Valid priority tags (P0, P1, P2) [2m[283ms][0m
+[0;32m✓[0m Valid evidence on P0/P1 completed items [2m[296ms][0m
+[0;32m✓[0m Valid anchors in memory files [2m[338ms][0m
+[0;32m✓[0m L1 with extra files (notes.md, research.md) [2m[250ms][0m
+[0;32m✓[0m Valid sections in all files (L3) [2m[317ms][0m
+
+[0;34m[1mLevel Declaration Tests (should PASS):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Explicit level declaration (| **Level** | 2 |) [2m[296ms][0m
+[0;32m✓[0m Inferred level (no level field, inferred from files) [2m[253ms][0m
+[0;32m✓[0m Level 0 (invalid, falls back to inferred) [2m[305ms][0m
+[0;32m✓[0m Level 5 (out of range, falls back to inferred) [2m[250ms][0m
+[0;32m✓[0m Level without bold (| Level | 2 |, falls back to inferred) [2m[252ms][0m
+
+[0;34m[1mWarning Tests (should WARN):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Invalid priority tags (unknown tags) [2m[261ms][0m
+[0;32m✓[0m Missing evidence on P0/P1 completed items [2m[261ms][0m
+
+[0;34m[1mSections Present Tests (should WARN on missing):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing spec.md sections (no Problem Statement) [2m[234ms][0m
+[0;32m✓[0m Missing plan.md sections (no Architecture) [2m[236ms][0m
+[0;32m✓[0m Missing checklist.md sections (no P0/P1) [2m[252ms][0m
+[0;32m✓[0m Missing decision-record.md sections (no Consequences) [2m[305ms][0m
+
+[0;34m[1mNegative Tests (should FAIL):[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Missing required files (no spec.md) [2m[236ms][0m
+[0;32m✓[0m Unfilled placeholders [2m[313ms][0m
+[0;32m✓[0m Invalid anchors (unclosed, mismatched, orphaned) [2m[316ms][0m
+[0;32m✓[0m Empty folder (all L1 files missing) [2m[204ms][0m
+[0;32m✓[0m Missing plan.md (L1) [2m[322ms][0m
+[0;32m✓[0m Missing tasks.md (L1) [2m[243ms][0m
+[0;32m✓[0m Level 2 missing checklist.md [2m[241ms][0m
+[0;32m✓[0m Level 3 missing decision-record.md [2m[298ms][0m
+
+[0;34m[1mPriority Tags Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Inline priority tags only [P0]/[P1]/[P2] [2m[303ms][0m
+[0;32m✓[0m Mixed priority headers and inline tags [2m[267ms][0m
+[0;32m✓[0m Items after non-priority header inherit context [2m[261ms][0m
+[0;32m✓[0m Lowercase priority headers (## p0) [2m[254ms][0m
+[0;32m✓[0m Invalid P3/P4 priority levels [2m[252ms][0m
+
+[0;34m[1mAnchor Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Nested anchors (outer contains inner) [2m[258ms][0m
+[0;32m✓[0m Empty memory/ directory (skipped) [2m[383ms][0m
+[0;32m✓[0m No memory/ directory (skipped) [2m[328ms][0m
+[0;32m✓[0m Duplicate anchor IDs, each properly closed [2m[330ms][0m
+[0;32m✓[0m Multiple memory files, one with error [2m[369ms][0m
+
+[0;34m[1mEvidence Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m All 5 evidence patterns recognized [2m[345ms][0m
+[0;32m✓[0m Case-insensitive evidence tags [2m[313ms][0m
+[0;32m✓[0m P2 items exempt from evidence [2m[338ms][0m
+[0;32m✓[0m Both checkmark formats (✓ ✔) [2m[361ms][0m
+[0;32m✓[0m Wrong suffix (complete/done/finished) [2m[362ms][0m
+
+[0;34m[1mPlaceholder Edge Cases:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m Placeholder in fenced code block (ignored) [2m[250ms][0m
+[0;32m✓[0m Placeholder in inline code backticks (ignored) [2m[278ms][0m
+[0;32m✓[0m Placeholder in memory/ directory (skipped) [2m[257ms][0m
+[0;32m✓[0m Multiple placeholders across files (all detected) [2m[235ms][0m
+[0;32m✓[0m Placeholder case variations (detected) [2m[267ms][0m
+
+[0;34m[1mCLI Options Tests:[0m
+─────────────────────────────────────────────────────────────────
+[0;32m✓[0m --json produces valid JSON with required fields [2m[262ms][0m
+[0;32m✓[0m --strict mode: warnings become errors [2m[306ms][0m
+[0;32m✓[0m --quiet mode: minimal output [2m[360ms][0m
+[0;32m✓[0m Config file: .speckit.yaml detected (parsing TODO) [2m[361ms][0m
+[0;32m✓[0m Env var: SPECKIT_STRICT=true [2m[379ms][0m
+[0;32m✓[0m Rule order: .speckit.yaml rule_order [2m[298ms][0m
+
+[0;34m───────────────────────────────────────────────────────────────[0m
+[0;34m[1m  Summary[0m
+[0;34m───────────────────────────────────────────────────────────────[0m
+
+[1mBy Category:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32m●[0m Positive Tests (should PASS): [0;32m10[0m/10 passed [2m(3.124s)[0m
+  [0;32m●[0m Level Declaration Tests (should PASS): [0;32m5[0m/5 passed [2m(1.356s)[0m
+  [0;32m●[0m Warning Tests (should WARN): [0;32m2[0m/2 passed [2m(522ms)[0m
+  [0;32m●[0m Sections Present Tests (should WARN on missing): [0;32m4[0m/4 passed [2m(1.027s)[0m
+  [0;32m●[0m Negative Tests (should FAIL): [0;32m8[0m/8 passed [2m(2.173s)[0m
+  [0;32m●[0m Priority Tags Edge Cases: [0;32m5[0m/5 passed [2m(1.337s)[0m
+  [0;32m●[0m Anchor Edge Cases: [0;32m5[0m/5 passed [2m(1.668s)[0m
+  [0;32m●[0m Evidence Edge Cases: [0;32m5[0m/5 passed [2m(1.719s)[0m
+  [0;32m●[0m Placeholder Edge Cases: [0;32m5[0m/5 passed [2m(1.287s)[0m
+  [0;32m●[0m CLI Options Tests: [0;32m6[0m/6 passed [2m(1.966s)[0m
+
+[1mTotals:[0m
+─────────────────────────────────────────────────────────────────
+  [0;32mPassed:[0m  55
+  [0;31mFailed:[0m  0
+  [0;33mSkipped:[0m 0
+  ─────────────
+  Total:   55
+  [2mTime:    16.179s[0m
+
+[0;32m[1mRESULT: PASSED[0m
+
+
+>>> Running JS System Tests
+Running test-bug-fixes.js...
+🧪 Bug Fix Verification Tests
+================================
+Spec: 054-remaining-bugs-remediation
+Date: 2026-01-15T12:58:41.472Z
+
+
+🔬 BUG-001: Race Condition - Cross-connection visibility
+   ✅ T-005a: Notification mechanism in scripts/
+      Evidence: notifyDatabaseUpdated() function found
+   ✅ T-005b: Check mechanism in context-server.js
+      Evidence: checkDatabaseUpdated() and reinitializeDatabase() found
+   ✅ T-005c: Notification file write/read works
+      Evidence: Wrote and read: 1768481921474
+
+🔬 BUG-002: Transaction Rollback
+   ✅ T-010a: Transaction wrapper in indexMemory()
+      Evidence: database.transaction() wrapper found - supports nested transactions
+   ⏭️  T-010b: Automatic rollback via transaction wrapper (skipped: database.transaction() provides automatic rollback - manual cleanup not required)
+   ⏭️  T-011: Integration test for partial failure recovery (skipped: Requires injected failure - code verified)
+
+🔬 BUG-003: Embedding Dimension Mismatch at Startup
+   ✅ T-015a: getConfirmedEmbeddingDimension() exists
+      Evidence: Function exported
+[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions
+   ✅ T-015b: Returns valid dimension
+      Evidence: Dimension: 1024
+
+🔬 BUG-004: Constitutional Cache Stale After External Edits
+   ✅ T-018a: Database mtime tracking implemented
+      Evidence: last_db_mod_time and mtimeMs check found
+   ✅ T-018b: is_constitutional_cache_valid() exists
+      Evidence: Function found in source
+
+🔬 BUG-005: Rate Limiting Not Persistent
+   ✅ T-023a: Config table creation
+      Evidence: CREATE TABLE IF NOT EXISTS config found
+   ✅ T-023b: getLastScanTime() reads from database
+      Evidence: Function and SQL query found
+   ✅ T-023c: setLastScanTime() writes to database
+      Evidence: Function and SQL query found
+
+🔬 BUG-006: Prepared Statement Cache Not Cleared
+   ✅ T-027: clear_prepared_statements() in close_db()
+      Evidence: Function call found in database closing
+
+🔬 BUG-007: Empty Query Edge Case
+   ✅ T-030a: validateQuery() function exists
+      Evidence: Function definition found
+   ✅ T-030b: Checks for null/undefined
+      Evidence: Null and undefined checks found
+   ✅ T-030c: Checks for empty/whitespace
+      Evidence: Trim and empty/whitespace checks found
+   ✅ T-030d: MAX_QUERY_LENGTH check
+      Evidence: Length limit check found
+
+🔬 BUG-008: UTF-8 BOM Detection Missing
+   ✅ T-032a: UTF-8 BOM bytes (EF BB BF) detected
+      Evidence: 0xEF, 0xBB, 0xBF found in source
+   ✅ T-032b: 3-byte offset for UTF-8 BOM
+      Evidence: Offset handling found
+
+🔬 BUG-009: Search Cache Key Collision Risk
+   ✅ T-034a: getCacheKey() function exists
+      Evidence: Function exported
+   ✅ T-034b: Different queries produce different keys
+      Evidence: key_1=98895079d6bd58bb, key_2=8ba041418dbe5c20
+   ✅ T-034c: Same queries produce same keys
+      Evidence: key_1=98895079d6bd58bb, key_3=98895079d6bd58bb
+
+🔬 BUG-013: Orphaned Vector Cleanup Only at Startup
+   ✅ T-042a: verifyIntegrity() function exists
+      Evidence: Function exported
+   ✅ T-042b: autoClean option in verifyIntegrity()
+      Evidence: autoClean parameter found
+
+🔬 Configuration Verification
+   ✅ Config: maxTriggersPerMemory
+      Evidence: Value: 10
+   ✅ Config: smartRanking weights
+      Evidence: {"recencyWeight":0.5,"accessWeight":0.3,"relevanceWeight":0.2}
+
+================================
+📊 TEST SUMMARY
+================================
+✅ Passed:  25
+❌ Failed:  0
+⏭️  Skipped: 2
+📝 Total:   27
+
+🎉 ALL TESTS PASSED!
+Running test-embeddings-factory.js...
+🧪 Testing Embeddings Factory...
+
+1️⃣ Importing modules...
+   ✅ Modules imported successfully
+
+2️⃣ Verifying provider configuration...
+   Selected provider: voyage
+   Reason: VOYAGE_API_KEY detected (auto mode)
+   Config: {
+  "EMBEDDINGS_PROVIDER": "auto",
+  "VOYAGE_API_KEY": "***set***",
+  "VOYAGE_EMBEDDINGS_MODEL": "voyage-3.5",
+  "OPENAI_API_KEY": "not set",
+  "OPENAI_EMBEDDINGS_MODEL": "text-embedding-3-small",
+  "HF_EMBEDDINGS_MODEL": "nomic-ai/nomic-embed-text-v1.5"
+}
+   ✅ Configuration obtained
+
+3️⃣ Creating embedding profile...
+   Profile: hf-local:nomic-ai/nomic-embed-text-v1.5:768
+   Slug: hf-local__nomic-ai_nomic-embed-text-v1.5__768
+   DB path: /tmp/test/context-index.sqlite
+   ✅ Profile created successfully
+
+4️⃣ Verifying embeddings API...
+   Available functions:
+   - generateDocumentEmbedding: function
+   - generateQueryEmbedding: function
+   - getEmbeddingDimension: function
+   - getProviderMetadata: function
+   - getEmbeddingProfile: function
+   ✅ Complete API available
+
+5️⃣ Verifying constants...
+   EMBEDDING_DIM: 768
+   MODEL_NAME: nomic-ai/nomic-embed-text-v1.5
+   MAX_TEXT_LENGTH: 8000
+   ✅ Constants available
+
+6️⃣ Creating HF local provider (without warmup)...
+   Metadata: {
+  "provider": "hf-local",
+  "model": "test-model",
+  "dim": 768,
+  "device": null,
+  "healthy": true,
+  "loaded": false,
+  "load_time_ms": null
+}
+   ✅ HF provider created
+
+7️⃣ Verifying OpenAI provider...
+   ⚠️  OPENAI_API_KEY not detected (OK for HF local)
+
+✅ ALL TESTS PASSED
+
+📋 Summary:
+   - Factory pattern: ✅ Functional
+   - Compatible API: ✅ Maintained
+   - Profiles: ✅ Working
+   - Providers: ✅ Available
+   - Active provider: voyage
+
+>>> Running Anchor System Implementation Tests
+Running test-parser.js...
+--- Testing extract_anchors ---
+Extracted Anchors: [ 'summary', 'details', 'nested-parent', 'nested-child' ]
+✅ Summary anchor extracted correctly
+✅ Details anchor extracted
+✅ Nested child extracted
+✅ Broken anchor ignored (as expected)
+Running verify-logic.js...
+--- Verifying Anchor Filtering Logic ---
+Original Content Length: 543 chars
+
+--- Result ---
+<!-- ANCHOR:summary -->
+## Session Summary
+This is the summary section.
+It contains high-level info.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:nested-child -->
+### Child Section
+This is nested inside.
+<!-- /ANCHOR:nested-child -->
+
+--- Metrics ---
+{
+  "originalTokens": 136,
+  "returnedTokens": 57,
+  "savingsPercent": 58,
+  "anchorsRequested": 2,
+  "anchorsFound": 2
+}
+
+✅ Verification PASSED: Content correctly filtered
+---------------------------------------------------
+Tests Complete.

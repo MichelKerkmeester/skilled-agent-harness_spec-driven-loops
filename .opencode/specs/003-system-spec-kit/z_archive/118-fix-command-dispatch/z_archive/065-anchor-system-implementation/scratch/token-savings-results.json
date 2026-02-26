@@ -1,0 +1,71 @@
+{
+  "analysis_date": "2026-01-15T13:27:01.762Z",
+  "files_analyzed": 29,
+  "total_tokens_all_files": 62652,
+  "scenarios": [
+    {
+      "name": "Summary Only",
+      "anchors": [
+        "summary"
+      ],
+      "savings_min_pct": 7.1,
+      "savings_max_pct": 99,
+      "savings_avg_pct": 55.9,
+      "savings_median_pct": 83.8,
+      "overall_savings_pct": 73.2
+    },
+    {
+      "name": "Decisions Only",
+      "anchors": [
+        "decisions"
+      ],
+      "savings_min_pct": 50.9,
+      "savings_max_pct": 100,
+      "savings_avg_pct": 88.9,
+      "savings_median_pct": 93.2,
+      "overall_savings_pct": 87.9
+    },
+    {
+      "name": "Summary + Decisions",
+      "anchors": [
+        "summary",
+        "decisions"
+      ],
+      "savings_min_pct": -5.4,
+      "savings_max_pct": 96.5,
+      "savings_avg_pct": 44.8,
+      "savings_median_pct": 54.6,
+      "overall_savings_pct": 61.1
+    },
+    {
+      "name": "Metadata Only",
+      "anchors": [
+        "metadata"
+      ],
+      "savings_min_pct": 72.2,
+      "savings_max_pct": 100,
+      "savings_avg_pct": 93.5,
+      "savings_median_pct": 100,
+      "overall_savings_pct": 92.4
+    },
+    {
+      "name": "All Except History",
+      "anchors": [
+        "summary",
+        "decisions",
+        "metadata"
+      ],
+      "savings_min_pct": -5.4,
+      "savings_max_pct": 93.4,
+      "savings_avg_pct": 38.3,
+      "savings_median_pct": 44.2,
+      "overall_savings_pct": 53.5
+    }
+  ],
+  "file_stats": {
+    "min_tokens": 637,
+    "max_tokens": 13446,
+    "avg_tokens": 2160,
+    "median_tokens": 1533
+  }
+}

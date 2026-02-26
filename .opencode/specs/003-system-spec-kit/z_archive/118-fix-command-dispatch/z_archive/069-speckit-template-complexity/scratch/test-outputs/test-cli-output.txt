@@ -1,0 +1,52 @@
+
+=== detect-complexity.js Tests ===
+
+Basic Detection:
+Running: Simple task returns Level 1
+  ✓ Simple task returns Level 1
+Running: JSON output includes required fields
+  ✓ JSON output includes required fields
+Running: Help flag shows usage
+  ✓ Help flag shows usage
+
+Input Validation:
+Running: No arguments shows error
+  ✓ No arguments shows error
+Running: Empty request shows error
+  ✓ Empty request shows error
+Running: Non-existent file shows error
+  ✓ Non-existent file shows error
+Running: Valid file input works
+  ✓ Valid file input works
+Running: File input with JSON output
+  ✓ File input with JSON output
+
+Complex Detection:
+Running: Auth task has risk score > 0
+  ✓ Auth task has risk score > 0
+Running: Multi-agent task detected
+  ✓ Multi-agent task detected
+
+=== expand-template.js Tests ===
+
+Basic Operations:
+Running: Help flag shows usage
+  ✓ Help flag shows usage
+Running: Dry run mode works
+  ✓ Dry run mode works
+
+Input Validation:
+Running: No arguments shows error
+  ✓ No arguments shows error
+Running: --all without --spec-folder shows error
+  ✓ --all without --spec-folder shows error
+
+Level Handling:
+Running: Accepts level 1
+  ✓ Accepts level 1
+Running: Accepts level 3+
+  ✓ Accepts level 3+
+
+=== Summary ===
+Passed: 16
+Failed: 0

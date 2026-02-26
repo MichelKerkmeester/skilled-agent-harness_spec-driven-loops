@@ -1,0 +1,207 @@
+{
+  "recommendedLevel": 2,
+  "levelString": "2",
+  "levelName": "Verification",
+  "isExtended": false,
+  "totalScore": 27,
+  "maxScore": 100,
+  "confidence": 66,
+  "breakdown": {
+    "scope": {
+      "score": 8,
+      "weight": 25,
+      "weightedScore": 2,
+      "triggers": [
+        "Systems: database, api"
+      ],
+      "signals": {
+        "locEstimate": 0,
+        "fileCount": 0,
+        "systemMatches": [
+          "database",
+          "api"
+        ]
+      }
+    },
+    "risk": {
+      "score": 99,
+      "weight": 25,
+      "weightedScore": 25,
+      "triggers": [
+        "Security/Auth: authentication, jwt, password...",
+        "API/DB: api, route, database"
+      ],
+      "signals": {
+        "highRiskMatches": [
+          "authentication",
+          "jwt",
+          "password",
+          "token",
+          "session"
+        ],
+        "mediumRiskMatches": [
+          "api",
+          "route",
+          "database"
+        ],
+        "breakingMatches": []
+      },
+      "category": "Critical"
+    },
+    "research": {
+      "score": 0,
+      "weight": 20,
+      "weightedScore": 0,
+      "triggers": [
+        "Minimal research needed"
+      ],
+      "signals": {
+        "investigationMatches": [],
+        "uncertaintyMatches": [],
+        "externalMatches": [],
+        "questionCount": 0
+      },
+      "intensity": "Minimal"
+    },
+    "multiAgent": {
+      "score": 0,
+      "weight": 15,
+      "weightedScore": 0,
+      "triggers": [
+        "Single-stream"
+      ],
+      "signals": {
+        "agentMatches": [],
+        "complexityMatches": [],
+        "phaseCount": 0,
+        "workstreamCount": 0
+      },
+      "coordinationLevel": "Single-stream"
+    },
+    "coordination": {
+      "score": 0,
+      "weight": 15,
+      "weightedScore": 0,
+      "triggers": [
+        "Independent"
+      ],
+      "signals": {
+        "dependencyMatches": [],
+        "crossSystemMatches": [],
+        "blockingMatches": [],
+        "dependencyCount": 0
+      },
+      "complexity": "Independent"
+    }
+  },
+  "classification": {
+    "level": 2,
+    "levelString": "2",
+    "levelName": "Verification",
+    "thresholds": {
+      "level1Max": 25,
+      "level2Max": 55,
+      "level3Max": 79
+    },
+    "distanceToNextLevel": 29,
+    "distanceToPrevLevel": 2
+  },
+  "features": {
+    "available": [
+      "dependencyGraph",
+      "effortEstimation",
+      "researchMethodology",
+      "milestones"
+    ],
+    "required": [],
+    "details": {
+      "dependencyGraph": {
+        "minLevel": 2,
+        "format": {
+          "2": "table",
+          "3": "ascii",
+          "3+": "dag"
+        },
+        "required": false
+      },
+      "effortEstimation": {
+        "minLevel": 2,
+        "required": false
+      },
+      "researchMethodology": {
+        "name": "Research Methodology",
+        "description": "Investigation approach and analysis framework",
+        "minLevel": 2,
+        "requiredAtLevel": null,
+        "specTypes": [
+          "research"
+        ],
+        "gateMarker": "research-methodology",
+        "required": false
+      },
+      "milestones": {
+        "name": "Milestones",
+        "description": "Progress checkpoints and go/no-go decisions",
+        "minLevel": 2,
+        "requiredAtLevel": null,
+        "gateMarker": "milestones",
+        "required": false
+      }
+    }
+  },
+  "requirements": {
+    "level": "2",
+    "requiredFiles": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "sectionCounts": {
+      "userStories": {
+        "min": 2,
+        "max": 4
+      },
+      "phases": {
+        "min": 3,
+        "max": 5
+      },
+      "tasks": {
+        "min": 15,
+        "max": 50
+      },
+      "checklistItems": {
+        "min": 30,
+        "max": 50
+      }
+    },
+    "features": {
+      "dependencyGraph": {
+        "available": true,
+        "required": false,
+        "config": {
+          "minLevel": 2,
+          "format": {
+            "2": "table",
+            "3": "ascii",
+            "3+": "dag"
+          }
+        }
+      },
+      "effortEstimation": {
+        "available": true,
+        "required": false,
+        "config": {
+          "minLevel": 2
+        }
+      }
+    }
+  },
+  "meta": {
+    "configPath": "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/config/complexity-config.jsonc",
+    "timestamp": "2026-01-16T13:02:05.153Z",
+    "inputLength": 226,
+    "inputWordCount": 32
+  }
+}

@@ -1,0 +1,73 @@
+
+=== Marker Parser Tests ===
+
+parseConditions:
+  ✓ parses level>=2 condition
+  ✓ parses level>=3+ condition
+  ✓ parses level<=3 condition
+  ✓ parses feature=ai-protocol condition
+  ✓ parses specType=research condition
+  ✓ parses combined conditions
+  ✓ handles empty string
+  ✓ handles null input
+  ✓ handles undefined input
+
+evaluateConditions:
+  ✓ level>=2 includes for level 2
+  ✓ level>=2 includes for level 3
+  ✓ level>=3 excludes for level 2
+  ✓ level>=3+ includes for level 3+
+  ✓ evaluates default context correctly
+
+findBlocks:
+  ✓ finds single block
+  ✓ finds multiple blocks
+  ✓ handles empty template
+  ✓ handles template with no markers
+
+processTemplate:
+  ✓ includes block for matching level
+  ✓ excludes block for non-matching level
+  ✓ handles mixed inclusion/exclusion
+  ✓ reports stats correctly
+
+validateMarkers:
+  ✓ validates balanced markers as valid
+  ✓ detects unbalanced markers
+  ✓ handles template without markers
+
+levelToNumber:
+  ✓ converts "1" to 1
+  ✓ converts "2" to 2
+  ✓ converts "3" to 3
+  ✓ converts "3+" to 4
+  ✓ converts number 2 to 2
+  ✓ defaults invalid input to 1
+
+exactLevel condition:
+  ✓ parses level=2 exact condition
+  ✓ parses level=3 exact condition
+  ✓ exact level takes precedence over range when alone
+  ✓ evaluates exactLevel correctly for match
+  ✓ evaluates exactLevel correctly for mismatch
+
+shouldAutoEnableFeature (via evaluateConditions):
+  ✓ ai-protocol auto-enabled at Level 3
+  ✓ ai-protocol NOT auto-enabled at Level 2
+  ✓ dependency-graph auto-enabled at Level 2
+  ✓ dependency-graph NOT auto-enabled at Level 1
+  ✓ effort-estimation auto-enabled at Level 2
+  ✓ extended-checklist auto-enabled at Level 3+ only
+  ✓ executive-summary auto-enabled at Level 3
+  ✓ workstreams auto-enabled at Level 3
+  ✓ milestones auto-enabled at Level 2
+  ✓ unknown feature not auto-enabled
+  ✓ explicitly enabled feature overrides auto-enable
+
+Edge Cases (level>= regex):
+  ✓ handles level>=2 in template correctly
+  ✓ handles level>=3, feature=x correctly
+
+=== Summary ===
+Passed: 49
+Failed: 0

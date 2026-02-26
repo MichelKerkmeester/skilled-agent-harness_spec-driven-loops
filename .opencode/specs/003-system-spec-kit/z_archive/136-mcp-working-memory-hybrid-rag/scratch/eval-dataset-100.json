@@ -1,0 +1,1702 @@
+[
+  {
+    "query": "add_feature query 1: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 2: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 3: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 4: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 5: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 6: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 7: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 8: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 9: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 10: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "add_feature query 11: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 12: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 13: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 14: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 15: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 16: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 17: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 18: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 19: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "add_feature query 20: add feature working memory hybrid rag",
+    "intent": "add_feature",
+    "baselineRanks": [
+      "mem-add_feature-1",
+      "mem-add_feature-2",
+      "mem-add_feature-3",
+      "mem-add_feature-4",
+      "mem-add_feature-5",
+      "mem-add_feature-6",
+      "mem-add_feature-7",
+      "mem-add_feature-8",
+      "mem-add_feature-9",
+      "mem-add_feature-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "fix_bug query 1: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 2: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 3: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 4: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 5: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 6: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 7: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 8: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 9: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 10: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "fix_bug query 11: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 12: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 13: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 14: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 15: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 16: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 17: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 18: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 19: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "fix_bug query 20: fix bug working memory hybrid rag",
+    "intent": "fix_bug",
+    "baselineRanks": [
+      "mem-fix_bug-1",
+      "mem-fix_bug-2",
+      "mem-fix_bug-3",
+      "mem-fix_bug-4",
+      "mem-fix_bug-5",
+      "mem-fix_bug-6",
+      "mem-fix_bug-7",
+      "mem-fix_bug-8",
+      "mem-fix_bug-9",
+      "mem-fix_bug-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "refactor query 1: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 2: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 3: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 4: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 5: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 6: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 7: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 8: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 9: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 10: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "refactor query 11: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 12: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 13: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 14: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 15: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 16: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 17: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 18: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 19: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "refactor query 20: refactor working memory hybrid rag",
+    "intent": "refactor",
+    "baselineRanks": [
+      "mem-refactor-1",
+      "mem-refactor-2",
+      "mem-refactor-3",
+      "mem-refactor-4",
+      "mem-refactor-5",
+      "mem-refactor-6",
+      "mem-refactor-7",
+      "mem-refactor-8",
+      "mem-refactor-9",
+      "mem-refactor-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "understand query 1: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 2: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 3: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 4: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 5: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 6: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 7: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 8: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 9: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 10: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "understand query 11: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 12: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 13: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 14: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 15: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 16: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 17: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 18: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 19: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "understand query 20: understand working memory hybrid rag",
+    "intent": "understand",
+    "baselineRanks": [
+      "mem-understand-1",
+      "mem-understand-2",
+      "mem-understand-3",
+      "mem-understand-4",
+      "mem-understand-5",
+      "mem-understand-6",
+      "mem-understand-7",
+      "mem-understand-8",
+      "mem-understand-9",
+      "mem-understand-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "find_spec query 1: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 2: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 3: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 4: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 5: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 6: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 7: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 8: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 9: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 10: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": true
+  },
+  {
+    "query": "find_spec query 11: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 12: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 13: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 14: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 15: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 16: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 17: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 18: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 19: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": false
+  },
+  {
+    "query": "find_spec query 20: find spec working memory hybrid rag",
+    "intent": "find_spec",
+    "baselineRanks": [
+      "mem-find_spec-1",
+      "mem-find_spec-2",
+      "mem-find_spec-3",
+      "mem-find_spec-4",
+      "mem-find_spec-5",
+      "mem-find_spec-6",
+      "mem-find_spec-7",
+      "mem-find_spec-8",
+      "mem-find_spec-9",
+      "mem-find_spec-10"
+    ],
+    "humanReviewed": true
+  }
+]

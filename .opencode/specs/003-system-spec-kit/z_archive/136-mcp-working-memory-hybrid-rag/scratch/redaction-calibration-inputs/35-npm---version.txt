@@ -1,0 +1,5 @@
+$ npm --version
+exit_code: 0
+stdout:
+11.6.2
+stderr: <empty>

@@ -1,0 +1,134 @@
+{
+  "recommendedLevel": 1,
+  "levelString": "1",
+  "levelName": "Baseline",
+  "isExtended": false,
+  "totalScore": 0,
+  "maxScore": 100,
+  "confidence": 60,
+  "breakdown": {
+    "scope": {
+      "score": 0,
+      "weight": 25,
+      "weightedScore": 0,
+      "triggers": [
+        "Minimal scope detected"
+      ],
+      "signals": {
+        "locEstimate": 0,
+        "fileCount": 0,
+        "systemMatches": []
+      }
+    },
+    "risk": {
+      "score": 0,
+      "weight": 25,
+      "weightedScore": 0,
+      "triggers": [
+        "Low risk detected"
+      ],
+      "signals": {
+        "highRiskMatches": [],
+        "mediumRiskMatches": [],
+        "breakingMatches": []
+      },
+      "category": "Low"
+    },
+    "research": {
+      "score": 0,
+      "weight": 20,
+      "weightedScore": 0,
+      "triggers": [
+        "Minimal research needed"
+      ],
+      "signals": {
+        "investigationMatches": [],
+        "uncertaintyMatches": [],
+        "externalMatches": [],
+        "questionCount": 0
+      },
+      "intensity": "Minimal"
+    },
+    "multiAgent": {
+      "score": 0,
+      "weight": 15,
+      "weightedScore": 0,
+      "triggers": [
+        "Single-stream"
+      ],
+      "signals": {
+        "agentMatches": [],
+        "complexityMatches": [],
+        "phaseCount": 0,
+        "workstreamCount": 0
+      },
+      "coordinationLevel": "Single-stream"
+    },
+    "coordination": {
+      "score": 0,
+      "weight": 15,
+      "weightedScore": 0,
+      "triggers": [
+        "Independent"
+      ],
+      "signals": {
+        "dependencyMatches": [],
+        "crossSystemMatches": [],
+        "blockingMatches": [],
+        "dependencyCount": 0
+      },
+      "complexity": "Independent"
+    }
+  },
+  "classification": {
+    "level": 1,
+    "levelString": "1",
+    "levelName": "Baseline",
+    "thresholds": {
+      "level1Max": 25,
+      "level2Max": 55,
+      "level3Max": 79
+    },
+    "distanceToNextLevel": 26,
+    "distanceToPrevLevel": null
+  },
+  "features": {
+    "available": [],
+    "required": [],
+    "details": {}
+  },
+  "requirements": {
+    "level": "1",
+    "requiredFiles": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "sectionCounts": {
+      "userStories": {
+        "min": 1,
+        "max": 2
+      },
+      "phases": {
+        "min": 2,
+        "max": 3
+      },
+      "tasks": {
+        "min": 5,
+        "max": 15
+      },
+      "checklistItems": {
+        "min": 10,
+        "max": 20
+      }
+    },
+    "features": {}
+  },
+  "meta": {
+    "configPath": "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/config/complexity-config.jsonc",
+    "timestamp": "2026-01-16T13:02:05.124Z",
+    "inputLength": 23,
+    "inputWordCount": 5
+  }
+}

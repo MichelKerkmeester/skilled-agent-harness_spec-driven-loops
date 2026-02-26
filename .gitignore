@@ -77,7 +77,6 @@ __pycache__/
 
 # Temporary files
 # ───────────────────────────────────────────
-scratch/
 tmp/
 
 # Non-dev AI systems specs (project-specific, not framework)

@@ -1,0 +1,77 @@
+
+=== Classifier & Features Tests ===
+
+Level Boundary Thresholds:
+  ✓ score 0 maps to Level 1
+  ✓ score 25 maps to Level 1 (upper boundary)
+  ✓ score 26 maps to Level 2 (lower boundary)
+  ✓ score 55 maps to Level 2 (upper boundary)
+  ✓ score 56 maps to Level 3 (lower boundary)
+  ✓ score 79 maps to Level 3 (upper boundary)
+  ✓ score 80 maps to Level 3+ (lower boundary)
+  ✓ score 100 maps to Level 3+
+
+Distance Calculations:
+  ✓ Level 1 has distance to Level 2
+  ✓ Level 2 has distance to Level 3
+  ✓ Level 3 has distance to Level 3+
+  ✓ Level 3+ has null distance to next
+  ✓ Level 2 has distance from Level 1
+  ✓ Level 1 has null distance to prev
+
+Boundary Proximity:
+  ✓ score near boundary is detected
+  ✓ score far from boundary is not flagged
+  ✓ score exactly at boundary is near
+
+Level Names:
+  ✓ Level 1 is named "Baseline"
+  ✓ Level 2 is named "Verification"
+  ✓ Level 3 is named "Full"
+  ✓ Level 3+ is named "Extended"
+
+Level Requirements:
+  ✓ Level 1 requires base files
+  ✓ Level 2 requires checklist.md
+  ✓ Level 3 requires decision-record.md
+  ✓ Level 3+ requires decision-record.md
+
+Feature Availability:
+  ✓ aiProtocol not available at Level 1
+  ✓ aiProtocol not available at Level 2
+  ✓ aiProtocol available at Level 3
+  ✓ aiProtocol available at Level 3+
+  ✓ dependencyGraph available at Level 2
+  ✓ dependencyGraph not available at Level 1
+  ✓ extendedChecklist only at Level 3+
+
+Feature Requirements:
+  ✓ aiProtocol required at Level 3+
+  ✓ aiProtocol not required at Level 3
+  ✓ extendedChecklist required at Level 3+
+  ✓ workstreamOrganization required at Level 3+
+
+Spec Type Filtering:
+  ✓ researchMethodology available for research specs
+  ✓ researchMethodology not for feature specs
+
+Gate Expressions:
+  ✓ buildGateExpression creates correct expression
+  ✓ parseGateExpression parses level>=3
+  ✓ parseGateExpression parses feature
+  ✓ parseGateExpression parses combined
+
+Gate Evaluation:
+  ✓ evaluateGate passes for matching level
+  ✓ evaluateGate fails for insufficient level
+  ✓ evaluateGate handles maxLevel
+  ✓ evaluateGate handles 3+ as level 4
+
+Suggest Adjustment:
+  ✓ suggests upgrade for many user stories
+  ✓ suggests downgrade for few user stories
+  ✓ no adjustment for appropriate content
+
+=== Summary ===
+Passed: 49
+Failed: 0

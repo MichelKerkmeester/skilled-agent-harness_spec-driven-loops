@@ -1,0 +1,24 @@
+{
+  "specFolder": "006-speckit-test-suite",
+  "sessionId": "test-session-t1-2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Test message for T1.2 JSON input test"
+    },
+    {
+      "role": "assistant",
+      "content": "This is a test response to verify JSON input processing"
+    }
+  ],
+  "decisions": [
+    {
+      "decision": "Use JSON input for testing",
+      "rationale": "Validates the JSON input mode of generate-context.js"
+    }
+  ],
+  "observations": [
+    "Testing JSON input mode",
+    "Verifying memory creation from structured data"
+  ]
+}

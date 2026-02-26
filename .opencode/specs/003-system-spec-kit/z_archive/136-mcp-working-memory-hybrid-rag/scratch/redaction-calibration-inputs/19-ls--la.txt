@@ -1,0 +1,5 @@
+$ ls -la .opencode/skill/system-spec-kit/mcp_server
+exit_code: 1
+stdout: <empty>
+stderr:
+ls: .opencode/skill/system-spec-kit/mcp_server: No such file or directory

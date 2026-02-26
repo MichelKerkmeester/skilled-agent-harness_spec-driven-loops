@@ -1,0 +1,72 @@
+============================================================
+DQI TEST SUITE
+============================================================
+
+📄 TEST: Empty File
+  ✓ No crash on empty file
+  ✓ DQI exists
+  ✓ DQI total is a number
+  ✓ DQI total >= 0
+  ✓ DQI total <= 100
+
+📄 TEST: Minimal Valid Skill File
+  ✓ No error
+  ✓ DQI total is reasonable (>40)
+  ✓ Has structure component
+  ✓ Has content component
+  ✓ Has style component
+  ✓ Has word_count in breakdown
+  ✓ Has h2_count in breakdown
+  ✓ Has code_block_count in breakdown
+
+📄 TEST: No H2 Headings
+  ✓ No crash without H2s
+  ✓ H2 count is 0
+  ✓ Heading score is 0
+  ✓ DQI still calculates
+
+📄 TEST: No Code Blocks
+  ✓ No error
+  ✓ Code block count is 0
+  ✓ Code score is 0
+  ✓ Total DQI still reasonable
+
+📄 TEST: Unicode Headings
+  ✓ No crash with unicode
+  ✓ DQI calculates with unicode
+  ✓ DQI is valid number
+
+📄 TEST: No Structure (Plain Text)
+  ✓ No crash on unstructured file
+  ✓ DQI exists
+  ✓ Band is acceptable or lower
+
+🧮 TEST: DQI Component Math
+  ✓ Structure max is 40
+  ✓ Content max is 30
+  ✓ Style max is 30
+  ✓ Components sum to total
+
+🏷️ TEST: Quality Band Assignment
+  ✓ SKILL.md total >= 90
+  ✓ SKILL.md band is excellent
+
+🛡️ TEST: Defensive Coding
+  ✓ Handles None metrics
+  ✓ Handles None headings
+  ✓ Handles None content
+  ✓ Returns valid DQI
+
+📚 TEST: Regression - Existing Skill Files
+  ✓ SKILL.md >= 95
+  ✓ references/core_standards.md >= 90
+  ✓ references/validation.md >= 90
+  ✓ assets/skill_md_template.md >= 90
+
+============================================================
+RESULTS
+============================================================
+Passed: 41/41
+Failed: 0/41
+
+✅ All tests passed!

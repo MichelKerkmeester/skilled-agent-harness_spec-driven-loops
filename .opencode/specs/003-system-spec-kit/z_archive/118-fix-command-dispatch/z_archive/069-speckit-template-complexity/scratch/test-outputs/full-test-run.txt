@@ -1,0 +1,340 @@
+
+[0;34m╔══════════════════════════════════════════════════════════════╗[0m
+[0;34m║       SpecKit Template Complexity - Test Suite               ║[0m
+[0;34m╚══════════════════════════════════════════════════════════════╝[0m
+
+[0;34m─── JavaScript Tests ───[0m
+
+[1;33m▶ Running: Complexity Detector[0m
+
+=== Complexity Detector Tests ===
+
+Basic Detection:
+  ✓ detect returns object with required fields
+  ✓ detect simple task returns Level 1
+  ✓ detect complex auth task detects risk
+  ✓ detect multi-agent task detects coordination
+
+Input Validation:
+  ✓ detect throws for non-string input
+  ✓ detect handles empty string gracefully
+  ✓ detect handles whitespace-only string
+
+Score Ranges:
+  ✓ totalScore is between 0 and 100
+  ✓ confidence is between 50 and 95
+
+Level Mapping:
+  ✓ score 0-25 maps to Level 1
+
+Breakdown Structure:
+  ✓ breakdown has all 5 dimensions
+  ✓ each dimension has score, weight, and triggers
+
+Quick Detect:
+  ✓ quickDetect returns simplified result
+
+Format Result:
+  ✓ formatResult returns string
+
+Dimension Detection:
+  ✓ detects scope signals from LOC mentions
+  ✓ detects risk signals from security keywords
+  ✓ detects research signals from investigation keywords
+  ✓ detects coordination signals from dependency keywords
+
+Weight Verification:
+  ✓ weights sum to 100
+  ✓ scope weight is 25
+  ✓ risk weight is 25
+  ✓ research weight is 20
+  ✓ multiAgent weight is 15
+  ✓ coordination weight is 15
+  ✓ weightedScore calculation is correct
+
+Level Mapping (Explicit):
+  ✓ score 26-55 maps to Level 2
+  ✓ score 56-79 maps to Level 3
+  ✓ score 80+ maps to Level 3+
+
+Edge Cases:
+  ✓ handles very long input
+  ✓ handles special characters
+  ✓ handles unicode
+
+=== Summary ===
+Passed: 31
+Failed: 0
+  [0;32m✓ PASSED[0m (31 tests)
+
+[1;33m▶ Running: Marker Parser[0m
+
+=== Marker Parser Tests ===
+
+parseConditions:
+  ✓ parses level>=2 condition
+  ✓ parses level>=3+ condition
+  ✓ parses level<=3 condition
+  ✓ parses feature=ai-protocol condition
+  ✓ parses specType=research condition
+  ✓ parses combined conditions
+  ✓ handles empty string
+  ✓ handles null input
+  ✓ handles undefined input
+
+evaluateConditions:
+  ✓ level>=2 includes for level 2
+  ✓ level>=2 includes for level 3
+  ✓ level>=3 excludes for level 2
+  ✓ level>=3+ includes for level 3+
+  ✓ evaluates default context correctly
+
+findBlocks:
+  ✓ finds single block
+  ✓ finds multiple blocks
+  ✓ handles empty template
+  ✓ handles template with no markers
+
+processTemplate:
+  ✓ includes block for matching level
+  ✓ excludes block for non-matching level
+  ✓ handles mixed inclusion/exclusion
+  ✓ reports stats correctly
+
+validateMarkers:
+  ✓ validates balanced markers as valid
+  ✓ detects unbalanced markers
+  ✓ handles template without markers
+
+levelToNumber:
+  ✓ converts "1" to 1
+  ✓ converts "2" to 2
+  ✓ converts "3" to 3
+  ✓ converts "3+" to 4
+  ✓ converts number 2 to 2
+  ✓ defaults invalid input to 1
+
+exactLevel condition:
+  ✓ parses level=2 exact condition
+  ✓ parses level=3 exact condition
+  ✓ exact level takes precedence over range when alone
+  ✓ evaluates exactLevel correctly for match
+  ✓ evaluates exactLevel correctly for mismatch
+
+shouldAutoEnableFeature (via evaluateConditions):
+  ✓ ai-protocol auto-enabled at Level 3
+  ✓ ai-protocol NOT auto-enabled at Level 2
+  ✓ dependency-graph auto-enabled at Level 2
+  ✓ dependency-graph NOT auto-enabled at Level 1
+  ✓ effort-estimation auto-enabled at Level 2
+  ✓ extended-checklist auto-enabled at Level 3+ only
+  ✓ executive-summary auto-enabled at Level 3
+  ✓ workstreams auto-enabled at Level 3
+  ✓ milestones auto-enabled at Level 2
+  ✓ unknown feature not auto-enabled
+  ✓ explicitly enabled feature overrides auto-enable
+
+Edge Cases (level>= regex):
+  ✓ handles level>=2 in template correctly
+  ✓ handles level>=3, feature=x correctly
+
+=== Summary ===
+Passed: 49
+Failed: 0
+  [0;32m✓ PASSED[0m (49 tests)
+
+[1;33m▶ Running: Template Preprocessor[0m
+
+=== Preprocessor Tests ===
+
+loadTemplate:
+  ✓ throws for non-existent file
+  ✓ throws for empty path
+  ✓ throws for null path
+  ✓ loads existing template
+
+preprocess:
+  ✓ throws for non-string content
+  ✓ handles empty content
+  ✓ returns content without markers unchanged
+  ✓ processes COMPLEXITY_GATE markers for Level 2
+  ✓ processes COMPLEXITY_GATE markers for Level 3
+  ✓ handles null context
+  ✓ handles empty context
+preprocess: Unknown level "invalid", defaulting to "2"
+  ✓ warns for invalid level
+  ✓ returns stats in result
+  ✓ returns validation in result
+
+expand:
+  ✓ expand loads and processes template
+  ✓ expand accepts level option
+
+injectComplexityMetadata:
+  ✓ returns content unchanged when no complexityScore
+  ✓ returns content unchanged when complexityScore is null
+  ✓ injects metadata when complexityScore provided
+
+INJECTION_POINTS:
+  ✓ has spec.md injection points
+  ✓ has plan.md injection points
+  ✓ has tasks.md injection points
+  ✓ has checklist.md injection points
+
+Edge Cases:
+  ✓ handles content with special characters
+  ✓ handles deeply nested content
+  ✓ handles markers with extra whitespace
+
+=== Summary ===
+Passed: 26
+Failed: 0
+  [0;32m✓ PASSED[0m (26 tests)
+
+[1;33m▶ Running: Classifier & Features[0m
+
+=== Classifier & Features Tests ===
+
+Level Boundary Thresholds:
+  ✓ score 0 maps to Level 1
+  ✓ score 25 maps to Level 1 (upper boundary)
+  ✓ score 26 maps to Level 2 (lower boundary)
+  ✓ score 55 maps to Level 2 (upper boundary)
+  ✓ score 56 maps to Level 3 (lower boundary)
+  ✓ score 79 maps to Level 3 (upper boundary)
+  ✓ score 80 maps to Level 3+ (lower boundary)
+  ✓ score 100 maps to Level 3+
+
+Distance Calculations:
+  ✓ Level 1 has distance to Level 2
+  ✓ Level 2 has distance to Level 3
+  ✓ Level 3 has distance to Level 3+
+  ✓ Level 3+ has null distance to next
+  ✓ Level 2 has distance from Level 1
+  ✓ Level 1 has null distance to prev
+
+Boundary Proximity:
+  ✓ score near boundary is detected
+  ✓ score far from boundary is not flagged
+  ✓ score exactly at boundary is near
+
+Level Names:
+  ✓ Level 1 is named "Baseline"
+  ✓ Level 2 is named "Verification"
+  ✓ Level 3 is named "Full"
+  ✓ Level 3+ is named "Extended"
+
+Level Requirements:
+  ✓ Level 1 requires base files
+  ✓ Level 2 requires checklist.md
+  ✓ Level 3 requires decision-record.md
+  ✓ Level 3+ requires decision-record.md
+
+Feature Availability:
+  ✓ aiProtocol not available at Level 1
+  ✓ aiProtocol not available at Level 2
+  ✓ aiProtocol available at Level 3
+  ✓ aiProtocol available at Level 3+
+  ✓ dependencyGraph available at Level 2
+  ✓ dependencyGraph not available at Level 1
+  ✓ extendedChecklist only at Level 3+
+
+Feature Requirements:
+  ✓ aiProtocol required at Level 3+
+  ✓ aiProtocol not required at Level 3
+  ✓ extendedChecklist required at Level 3+
+  ✓ workstreamOrganization required at Level 3+
+
+Spec Type Filtering:
+  ✓ researchMethodology available for research specs
+  ✓ researchMethodology not for feature specs
+
+Gate Expressions:
+  ✓ buildGateExpression creates correct expression
+  ✓ parseGateExpression parses level>=3
+  ✓ parseGateExpression parses feature
+  ✓ parseGateExpression parses combined
+
+Gate Evaluation:
+  ✓ evaluateGate passes for matching level
+  ✓ evaluateGate fails for insufficient level
+  ✓ evaluateGate handles maxLevel
+  ✓ evaluateGate handles 3+ as level 4
+
+Suggest Adjustment:
+  ✓ suggests upgrade for many user stories
+  ✓ suggests downgrade for few user stories
+  ✓ no adjustment for appropriate content
+
+=== Summary ===
+Passed: 49
+Failed: 0
+  [0;32m✓ PASSED[0m (49 tests)
+
+[0;34m─── CLI Script Tests ───[0m
+
+[1;33m▶ Running: CLI Scripts[0m
+
+=== detect-complexity.js Tests ===
+
+Basic Detection:
+Running: Simple task returns Level 1
+  ✓ Simple task returns Level 1
+Running: JSON output includes required fields
+  ✓ JSON output includes required fields
+Running: Help flag shows usage
+  ✓ Help flag shows usage
+
+Input Validation:
+Running: No arguments shows error
+  ✓ No arguments shows error
+Running: Empty request shows error
+  ✓ Empty request shows error
+Running: Non-existent file shows error
+  ✓ Non-existent file shows error
+Running: Valid file input works
+  ✓ Valid file input works
+Running: File input with JSON output
+  ✓ File input with JSON output
+
+Complex Detection:
+Running: Auth task has risk score > 0
+  ✓ Auth task has risk score > 0
+Running: Multi-agent task detected
+  ✓ Multi-agent task detected
+
+=== expand-template.js Tests ===
+
+Basic Operations:
+Running: Help flag shows usage
+  ✓ Help flag shows usage
+Running: Dry run mode works
+  ✓ Dry run mode works
+
+Input Validation:
+Running: No arguments shows error
+  ✓ No arguments shows error
+Running: --all without --spec-folder shows error
+  ✓ --all without --spec-folder shows error
+
+Level Handling:
+Running: Accepts level 1
+  ✓ Accepts level 1
+Running: Accepts level 3+
+  ✓ Accepts level 3+
+
+=== Summary ===
+Passed: 16
+Failed: 0
+  [0;32m✓ PASSED[0m (16 tests)
+
+[0;34m═══════════════════════════════════════════════════════════════[0m
+
+[0;34mSUMMARY[0m
+
+  Test Suites: 5 passed, 0 failed
+  Total Tests: 171 passed, 0 failed
+
+[0;32m╔══════════════════════════════════════════════════════════════╗[0m
+[0;32m║                    ALL TESTS PASSED ✓                        ║[0m
+[0;32m╚══════════════════════════════════════════════════════════════╝[0m

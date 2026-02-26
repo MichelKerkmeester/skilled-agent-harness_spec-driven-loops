@@ -1,0 +1,59 @@
+
+=== Complexity Detector Tests ===
+
+Basic Detection:
+  ✓ detect returns object with required fields
+  ✓ detect simple task returns Level 1
+  ✓ detect complex auth task detects risk
+  ✓ detect multi-agent task detects coordination
+
+Input Validation:
+  ✓ detect throws for non-string input
+  ✓ detect handles empty string gracefully
+  ✓ detect handles whitespace-only string
+
+Score Ranges:
+  ✓ totalScore is between 0 and 100
+  ✓ confidence is between 50 and 95
+
+Level Mapping:
+  ✓ score 0-25 maps to Level 1
+
+Breakdown Structure:
+  ✓ breakdown has all 5 dimensions
+  ✓ each dimension has score, weight, and triggers
+
+Quick Detect:
+  ✓ quickDetect returns simplified result
+
+Format Result:
+  ✓ formatResult returns string
+
+Dimension Detection:
+  ✓ detects scope signals from LOC mentions
+  ✓ detects risk signals from security keywords
+  ✓ detects research signals from investigation keywords
+  ✓ detects coordination signals from dependency keywords
+
+Weight Verification:
+  ✓ weights sum to 100
+  ✓ scope weight is 25
+  ✓ risk weight is 25
+  ✓ research weight is 20
+  ✓ multiAgent weight is 15
+  ✓ coordination weight is 15
+  ✓ weightedScore calculation is correct
+
+Level Mapping (Explicit):
+  ✓ score 26-55 maps to Level 2
+  ✓ score 56-79 maps to Level 3
+  ✓ score 80+ maps to Level 3+
+
+Edge Cases:
+  ✓ handles very long input
+  ✓ handles special characters
+  ✓ handles unicode
+
+=== Summary ===
+Passed: 31
+Failed: 0

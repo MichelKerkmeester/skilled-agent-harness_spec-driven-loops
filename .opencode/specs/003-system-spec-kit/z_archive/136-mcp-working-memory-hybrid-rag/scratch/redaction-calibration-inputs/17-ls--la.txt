@@ -1,0 +1,28 @@
+$ ls -la
+exit_code: 0
+stdout:
+total 824
+drwxr-xr-x@ 23 michelkerkmeester  staff     736 Feb 16 19:41 .
+drwxr-xr-x@ 13 michelkerkmeester  staff     416 Feb 16 21:20 ..
+-rw-r--r--@  1 michelkerkmeester  staff    3154 Feb  7 17:09 .env.example
+-rw-r--r--@  1 michelkerkmeester  staff     188 Feb  7 17:08 .gitignore
+-rw-r--r--@  1 michelkerkmeester  staff     143 Feb 18 09:17 .node-version-marker
+-rw-r--r--@  1 michelkerkmeester  staff      24 Feb 16 19:41 .npmrc
+drwxr-xr-x@  6 michelkerkmeester  staff     192 Feb  7 18:30 .pytest_cache
+drwxr-xr-x@  6 michelkerkmeester  staff     192 Feb 11 15:20 assets
+drwxr-xr-x@  5 michelkerkmeester  staff     160 Feb 17 16:29 config
+drwxr-xr-x@  5 michelkerkmeester  staff     160 Feb 17 09:49 constitutional
+drwxr-xr-x@ 26 michelkerkmeester  staff     832 Feb 18 22:07 mcp_server
+drwxr-xr-x@  8 michelkerkmeester  staff     256 Feb 15 17:40 node_modules
+-rw-r--r--@  1 michelkerkmeester  staff  214685 Feb 18 09:17 package-lock.json
+-rw-r--r--@  1 michelkerkmeester  staff    1147 Feb 16 22:16 package.json
+-rw-r--r--@  1 michelkerkmeester  staff   37642 Feb 18 13:44 README.md
+drwxr-xr-x@  9 michelkerkmeester  staff     288 Feb  2 17:41 references
+drwxr-xr-x@ 29 michelkerkmeester  staff     928 Feb 18 22:15 scripts
+drwxr-xr-x@ 15 michelkerkmeester  staff     480 Feb 16 19:41 shared
+-rw-r--r--@  1 michelkerkmeester  staff   35361 Feb 18 13:44 SKILL.md
+-rw-r--r--@  1 michelkerkmeester  staff     295 Feb 17 07:47 sqlite-vec.d.ts
+drwxr-xr-x@ 18 michelkerkmeester  staff     576 Feb 16 19:41 templates
+-rw-r--r--@  1 michelkerkmeester  staff     505 Feb  8 08:42 tsconfig.json
+-rw-r--r--@  1 michelkerkmeester  staff   94403 Feb 18 22:16 tsconfig.tsbuildinfo
+stderr: <empty>

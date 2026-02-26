@@ -1,0 +1,294 @@
+{
+  "recommendedLevel": 3,
+  "levelString": "3+",
+  "levelName": "Extended",
+  "isExtended": true,
+  "totalScore": 83,
+  "maxScore": 100,
+  "confidence": 90,
+  "breakdown": {
+    "scope": {
+      "score": 94,
+      "weight": 25,
+      "weightedScore": 24,
+      "triggers": [
+        "~50000 LOC",
+        "500 files",
+        "Systems: database, api, search..."
+      ],
+      "signals": {
+        "locEstimate": 50000,
+        "fileCount": 500,
+        "systemMatches": [
+          "database",
+          "api",
+          "search",
+          "migration",
+          "schema"
+        ]
+      }
+    },
+    "risk": {
+      "score": 100,
+      "weight": 25,
+      "weightedScore": 25,
+      "triggers": [
+        "Security/Auth: auth, jwt, security...",
+        "API/DB: api, database, migration...",
+        "Breaking: breaking"
+      ],
+      "signals": {
+        "highRiskMatches": [
+          "auth",
+          "jwt",
+          "security",
+          "encryption",
+          "password"
+        ],
+        "mediumRiskMatches": [
+          "api",
+          "database",
+          "migration",
+          "schema",
+          "payment"
+        ],
+        "breakingMatches": [
+          "breaking"
+        ]
+      },
+      "category": "Critical"
+    },
+    "research": {
+      "score": 83,
+      "weight": 20,
+      "weightedScore": 17,
+      "triggers": [
+        "Investigation: research, analyze",
+        "Unknowns: unknown",
+        "External: external, api integration"
+      ],
+      "signals": {
+        "investigationMatches": [
+          "research",
+          "analyze",
+          "understand"
+        ],
+        "uncertaintyMatches": [
+          "unknown"
+        ],
+        "externalMatches": [
+          "external",
+          "api integration",
+          "vendor",
+          "service"
+        ],
+        "questionCount": 0
+      },
+      "intensity": "Extensive"
+    },
+    "multiAgent": {
+      "score": 100,
+      "weight": 15,
+      "weightedScore": 15,
+      "triggers": [
+        "Coordination: parallel, workstream",
+        "Scale: complex, complete",
+        "2 workstreams"
+      ],
+      "signals": {
+        "agentMatches": [
+          "parallel",
+          "workstream"
+        ],
+        "complexityMatches": [
+          "complex",
+          "complete",
+          "all",
+          "enterprise",
+          "platform"
+        ],
+        "phaseCount": 0,
+        "workstreamCount": 2
+      },
+      "coordinationLevel": "Full orchestration"
+    },
+    "coordination": {
+      "score": 22,
+      "weight": 15,
+      "weightedScore": 3,
+      "triggers": [
+        "Dependencies: before",
+        "Integration: integration"
+      ],
+      "signals": {
+        "dependencyMatches": [
+          "before"
+        ],
+        "crossSystemMatches": [
+          "integration"
+        ],
+        "blockingMatches": [],
+        "dependencyCount": 0
+      },
+      "complexity": "Some dependencies"
+    }
+  },
+  "classification": {
+    "level": 3,
+    "levelString": "3+",
+    "levelName": "Extended",
+    "thresholds": {
+      "level1Max": 25,
+      "level2Max": 55,
+      "level3Max": 79
+    },
+    "distanceToNextLevel": null,
+    "distanceToPrevLevel": 4
+  },
+  "features": {
+    "available": [
+      "aiProtocol",
+      "dependencyGraph",
+      "effortEstimation",
+      "extendedChecklist",
+      "executiveSummary",
+      "researchMethodology",
+      "workstreamOrganization",
+      "milestones"
+    ],
+    "required": [
+      "aiProtocol",
+      "extendedChecklist",
+      "workstreamOrganization"
+    ],
+    "details": {
+      "aiProtocol": {
+        "minLevel": 3,
+        "required": true,
+        "requiredAtLevel": "3+"
+      },
+      "dependencyGraph": {
+        "minLevel": 2,
+        "format": {
+          "2": "table",
+          "3": "ascii",
+          "3+": "dag"
+        },
+        "required": false
+      },
+      "effortEstimation": {
+        "minLevel": 2,
+        "required": false
+      },
+      "extendedChecklist": {
+        "name": "Extended Checklist",
+        "description": "Comprehensive validation checklist (100-150 items)",
+        "minLevel": "3+",
+        "requiredAtLevel": "3+",
+        "templatePath": "templates/complexity/extended-checklist.md",
+        "gateMarker": "extended-checklist",
+        "required": true
+      },
+      "executiveSummary": {
+        "name": "Executive Summary",
+        "description": "High-level project overview for stakeholders",
+        "minLevel": 3,
+        "requiredAtLevel": null,
+        "gateMarker": "executive-summary",
+        "required": false
+      },
+      "researchMethodology": {
+        "name": "Research Methodology",
+        "description": "Investigation approach and analysis framework",
+        "minLevel": 2,
+        "requiredAtLevel": null,
+        "specTypes": [
+          "research"
+        ],
+        "gateMarker": "research-methodology",
+        "required": false
+      },
+      "workstreamOrganization": {
+        "name": "Workstream Organization",
+        "description": "Parallel workstreams and coordination protocol",
+        "minLevel": 3,
+        "requiredAtLevel": "3+",
+        "gateMarker": "workstreams",
+        "required": true
+      },
+      "milestones": {
+        "name": "Milestones",
+        "description": "Progress checkpoints and go/no-go decisions",
+        "minLevel": 2,
+        "requiredAtLevel": null,
+        "gateMarker": "milestones",
+        "required": false
+      }
+    }
+  },
+  "requirements": {
+    "level": "3+",
+    "requiredFiles": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "sectionCounts": {
+      "userStories": {
+        "min": 8,
+        "max": 15
+      },
+      "phases": {
+        "min": 8,
+        "max": 12
+      },
+      "tasks": {
+        "min": 100,
+        "max": 200
+      },
+      "checklistItems": {
+        "min": 100,
+        "max": 150
+      }
+    },
+    "features": {
+      "aiProtocol": {
+        "available": true,
+        "required": true,
+        "config": {
+          "minLevel": 3,
+          "required": false,
+          "requiredAtLevel": "3+"
+        }
+      },
+      "dependencyGraph": {
+        "available": true,
+        "required": false,
+        "config": {
+          "minLevel": 2,
+          "format": {
+            "2": "table",
+            "3": "ascii",
+            "3+": "dag"
+          }
+        }
+      },
+      "effortEstimation": {
+        "available": true,
+        "required": false,
+        "config": {
+          "minLevel": 2
+        }
+      }
+    }
+  },
+  "meta": {
+    "configPath": "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/config/complexity-config.jsonc",
+    "timestamp": "2026-01-16T13:02:05.215Z",
+    "inputLength": 869,
+    "inputWordCount": 105
+  }
+}

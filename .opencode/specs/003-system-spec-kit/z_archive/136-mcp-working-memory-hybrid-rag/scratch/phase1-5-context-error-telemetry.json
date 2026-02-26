@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-02-19T10:09:08.223Z",
+  "model": {
+    "pressureSteps": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95
+    ],
+    "thresholds": {
+      "focused": 0.6,
+      "quick": 0.8
+    },
+    "contextExceededThreshold": 0.9,
+    "contextExceededRule": "tokenUsage >= threshold and effectiveMode !== quick",
+    "notes": [
+      "Baseline lane uses intent-selected auto mode with no pressure override.",
+      "Boosted lane applies pressure policy overrides at focused/quick thresholds."
+    ]
+  },
+  "telemetry": {
+    "totalSamples": 10000,
+    "baselineErrors": 2000,
+    "boostedErrors": 0,
+    "deltaPercent": -100,
+    "percentOfBaseline": 0,
+    "perIntent": {
+      "add_feature": {
+        "baselineErrors": 400,
+        "boostedErrors": 0,
+        "percentOfBaseline": 0
+      },
+      "fix_bug": {
+        "baselineErrors": 400,
+        "boostedErrors": 0,
+        "percentOfBaseline": 0
+      },
+      "refactor": {
+        "baselineErrors": 400,
+        "boostedErrors": 0,
+        "percentOfBaseline": 0
+      },
+      "understand": {
+        "baselineErrors": 400,
+        "boostedErrors": 0,
+        "percentOfBaseline": 0
+      },
+      "find_spec": {
+        "baselineErrors": 400,
+        "boostedErrors": 0,
+        "percentOfBaseline": 0
+      }
+    }
+  }
+}

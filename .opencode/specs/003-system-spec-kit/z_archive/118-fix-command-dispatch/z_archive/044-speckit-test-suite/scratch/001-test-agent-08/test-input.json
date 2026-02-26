@@ -1,0 +1,6 @@
+{
+  "specFolder": "specs/006-speckit-test-suite/scratch/001-test-agent-08",
+  "summary": "Test summary from JSON input",
+  "keyDecisions": ["Decision 1: Use approach A", "Decision 2: Prefer method B"],
+  "filesModified": ["test.md", "config.json"]
+}
