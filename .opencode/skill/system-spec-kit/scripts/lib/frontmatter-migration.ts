@@ -46,7 +46,6 @@ export interface ManagedFrontmatter {
   trigger_phrases?: string[];
   importance_tier: string;
   contextType: string;
-  importanceTierAlias?: string;
 }
 
 export interface BuildFrontmatterOptions {
@@ -755,6 +754,32 @@ function sectionValueByKeys(
   return undefined;
 }
 
+/**
+ * Resolve importance tier from frontmatter sections, handling legacy files
+ * that may contain both `importance_tier` (static default) and `importanceTier`
+ * (dynamic value). When both exist with different values, prefer the non-"normal"
+ * value since "normal" was the hardcoded default from the template bug.
+ */
+function resolveImportanceTierValue(sections: FrontmatterSection[]): FrontmatterValue | undefined {
+  const importanceKeys = new Set(['importance_tier', 'importancetier']);
+  const matches: FrontmatterValue[] = [];
+
+  for (const section of sections) {
+    if (!importanceKeys.has(lower(section.key))) continue;
+    const value = parseSectionValue(section);
+    if (value !== undefined) {
+      matches.push(value);
+    }
+  }
+
+  if (matches.length === 0) return undefined;
+  if (matches.length === 1) return matches[0];
+
+  // Legacy dual-field: prefer the non-default value
+  const nonDefault = matches.find((v) => typeof v === 'string' && v !== 'normal');
+  return nonDefault ?? matches[0];
+}
+
 function normalizeImportanceTier(rawValue: string | null | undefined): string | null {
   if (!rawValue) {
     return null;
@@ -1007,9 +1032,8 @@ function frontmatterForContextTemplate(
     title: '{{MEMORY_DASHBOARD_TITLE}}',
     description: existingDescription || 'Session context memory template for Spec Kit indexing.',
     trigger_phrases,
-    importance_tier: existingTier || 'normal',
+    importance_tier: '{{IMPORTANCE_TIER}}',
     contextType: existingContext || 'general',
-    importanceTierAlias: '{{IMPORTANCE_TIER}}',
   };
 }
 
@@ -1022,7 +1046,7 @@ export function buildManagedFrontmatter(
   const existingTitleValue = sectionValueByKeys(sections, ['title']);
   const existingDescriptionValue = sectionValueByKeys(sections, ['description']);
   const existingTriggersValue = sectionValueByKeys(sections, ['trigger_phrases', 'triggerPhrases']);
-  const existingImportanceValue = sectionValueByKeys(sections, ['importance_tier', 'importanceTier']);
+  const existingImportanceValue = resolveImportanceTierValue(sections);
   const existingContextValue = sectionValueByKeys(sections, ['contextType', 'context_type']);
 
   const existingTitle = typeof existingTitleValue === 'string'
@@ -1111,10 +1135,6 @@ function serializeFrontmatter(
   }
 
   lines.push(...sectionToLines('importance_tier', managed.importance_tier));
-
-  if (managed.importanceTierAlias) {
-    lines.push(...sectionToLines('importanceTier', managed.importanceTierAlias));
-  }
 
   lines.push(...sectionToLines('contextType', managed.contextType));
 
