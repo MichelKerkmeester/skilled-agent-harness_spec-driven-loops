@@ -44,7 +44,7 @@ This is **Phase 4** of the Hybrid RAG Fusion Refinement specification.
 **Scope Boundary**: Sprint 3 scope boundary — query-level intelligence. Routes queries by complexity for speed, evaluates RSF as RRF alternative, enforces minimum channel representation in fusion results.
 
 **Dependencies**:
-- Sprint 2 exit gate (scoring calibration complete — R3, R7, R8, N4 verified)
+- Sprint 2 exit gate (scoring calibration complete — R18, N4, G2, score normalization verified)
 
 **Deliverables**:
 - Query complexity router with 3-tier classification (R15)

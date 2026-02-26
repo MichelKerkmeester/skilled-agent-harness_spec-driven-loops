@@ -114,8 +114,8 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
 | 1 | `001-sprint-0-epistemological-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (45-70h) | None (BLOCKING) | Pending |
-| 2 | `002-sprint-1-graph-signal-activation/` | R4, density measurement, G-NEW-2 (22-31h) | Sprint 0 gate | Pending |
-| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (19-29h) | Sprint 1 gate | Pending |
+| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2 (24-35h) | Sprint 0 gate | Pending |
+| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (21-32h) | Sprint 1 gate | Pending |
 | 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 2 gate | Pending |
 | 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (60-89h) | Sprint 3 gate + R13 2 eval cycles | Pending |
 | 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (64-92h) | Sprint 4 gate | Pending |
@@ -179,6 +179,8 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-032 | **A7:** Co-activation boost strength increase (0.1x→0.25x) | Effective co-activation boost at hop 2 ≥15% | S1 |
 | REQ-033 | **A4:** Negative feedback / confidence activation (demotion multiplier, floor=0.3) | `memory_validate(wasUseful: false)` causes measurable ranking reduction | S4 |
 | REQ-034 | **B2:** Chunk ordering preservation in reassembly | Collapsed chunks appear in `chunk_index` order | S4 |
+| REQ-037 | **A2:** Full-context ceiling evaluation (LLM baseline comparison) | Full-context ceiling MRR@5 recorded; 2x2 decision matrix (A2 × G-NEW-1) evaluated at Sprint 0 exit | S0 |
+| REQ-038 | **B8:** Signal count ceiling governance (max 12 active scoring signals) | Signal ceiling policy documented and enforced; escape clause requires R13 orthogonal-value evidence | Cross-cutting |
 
 ### P2 - Desired (complete OR defer with documented reason)
 

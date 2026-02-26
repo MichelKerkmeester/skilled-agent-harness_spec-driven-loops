@@ -30,7 +30,7 @@ contextType: "implementation"
 
 ### Overview
 
-This plan implements 30 recommendations across 8 metric-gated sprints (316-472h for S0-S6, 361-534h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
+This plan implements 36 recommendations across 8 metric-gated sprints (316-472h for S0-S6, 361-534h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
 
 ### Design Principles
 
