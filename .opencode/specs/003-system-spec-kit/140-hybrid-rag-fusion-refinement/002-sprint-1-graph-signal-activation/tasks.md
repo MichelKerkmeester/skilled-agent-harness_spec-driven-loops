@@ -58,6 +58,7 @@ contextType: "implementation"
 ## Phase 3: Measurement + Agent UX
 
 - [ ] T003 [P] Measure edge density (edges/node) from `causal_edges` data; document R10 escalation decision if density < 0.5 [2-3h] — Edge density (REQ-S1-002)
+- [ ] T003a [P] Increase co-activation boost strength — raise base multiplier from 0.1x to 0.25-0.3x (configurable coefficient); dark-run verifiable [2-4h] {T001} — A7 (REQ-S1-004)
 - [ ] T004 [P] Agent-as-consumer UX analysis + consumption instrumentation — log consumption patterns, generate initial report [8-12h] — G-NEW-2 (REQ-S1-003)
 <!-- /ANCHOR:phase-3 -->
 
@@ -65,8 +66,8 @@ contextType: "implementation"
 
 ## Phase 4: Dark-Run and Verification
 
-- [ ] T005 Enable R4 in dark-run mode — shadow scoring alongside 4-channel results; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003, T004}— R4 (REQ-S1-001)
-- [ ] T006 [GATE] Sprint 1 exit gate verification [0h] {T001, T002, T003, T004, T005}
+- [ ] T005 Enable R4 in dark-run mode — shadow scoring alongside 4-channel results; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003, T003a, T004}— R4 (REQ-S1-001)
+- [ ] T006 [GATE] Sprint 1 exit gate verification [0h] {T001, T002, T003, T003a, T004, T005}
   - [ ] R4 MRR@5 delta >+2% absolute
   - [ ] No single memory >60% of dark-run results
   - [ ] Edge density measured; R10 escalation decision documented
@@ -77,7 +78,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T006 marked `[x]`
+- [ ] All tasks T001-T006 (including T003a) marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 1 exit gate (T006) passed
 - [ ] 6-10 new tests added and passing
@@ -101,8 +102,8 @@ contextType: "implementation"
 
 <!--
 LEVEL 2 TASKS — Phase 2 of 8
-- 6 tasks across 4 phases
+- 7 tasks across 4 phases
 - T001-T002: Sequential R4 implementation
-- T003-T004: Parallelizable measurement + UX
+- T003-T003a-T004: Parallelizable measurement + co-activation boost + UX
 - T005-T006: Dark-run verification + exit gate
 -->

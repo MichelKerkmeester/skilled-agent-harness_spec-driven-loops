@@ -59,6 +59,7 @@ contextType: "implementation"
 - [ ] CHK-024 [P1] Cache invalidation tested (stale after mutation, fresh after recompute)
 - [ ] CHK-025 [P1] NFR-P01: R4 degree computation adds <10ms p95 to search latency — measured
 - [ ] CHK-026 [P1] NFR-R02: R4 gracefully returns 0 when memory has zero edges (no errors thrown)
+- [ ] CHK-027 [P1] Co-activation boost strength (A7) — effective contribution >=15% at hop 2 verified in dark-run
 <!-- /ANCHOR:testing -->
 
 ---
@@ -108,7 +109,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 12 | [ ]/12 |
+| P1 Items | 13 | [ ]/13 |
 | P2 Items | 2 | [ ]/2 |
 
 **Verification Date**: [YYYY-MM-DD]

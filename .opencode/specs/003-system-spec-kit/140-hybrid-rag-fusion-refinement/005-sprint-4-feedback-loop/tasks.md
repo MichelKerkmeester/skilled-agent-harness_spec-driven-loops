@@ -37,6 +37,7 @@ contextType: "implementation"
 ## Phase 1: R1 MPAB Chunk Aggregation
 
 - [ ] T001 [P] Implement MPAB chunk-to-memory aggregation — `computeMPAB(scores)` with N=0/N=1 guards, index-based max removal, `_chunkHits` metadata, behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] — R1
+  - T001a Preserve chunk ordering within documents — sort collapsed chunks by original document position before reassembly in `collapseAndReassembleChunkResults()` [2-4h] — B2
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -46,6 +47,7 @@ contextType: "implementation"
 
 - [ ] T002 Implement learned relevance feedback — schema migration (`learned_triggers` column) + separate column isolation + 7 safeguards (provenance, TTL 30d, denylist 100+, cap 3/8, threshold top-3, shadow 1 week, eligibility 72h) + 0.7x query weight, behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] — R11
   - T002a Implement memory importance auto-promotion — threshold-based tier promotion when validation count exceeds configurable threshold (default: 5 validations → promote normal→important, 10 → important→critical) [5-8h] — R11 extension
+  - T002b Activate negative feedback confidence signal — wire `memory_validate(wasUseful: false)` confidence score into composite scoring as demotion multiplier (floor=0.3, gradual decay); feature-flaggable [4-6h] — A4 (R11 extension, prerequisite for DEF-003)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -67,6 +69,8 @@ contextType: "implementation"
 - [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005}
   - [ ] R11 auto-promotion thresholds verified (5→important, 10→critical)
   - [ ] R13-S2 Exclusive Contribution Rate metric operational
+  - [ ] A4 negative feedback: confidence demotion floor verified at 0.3; no over-suppression
+  - [ ] B2 chunk ordering: multi-chunk memories reassembled in document order, not score order
 <!-- /ANCHOR:phase-4 -->
 
 ---

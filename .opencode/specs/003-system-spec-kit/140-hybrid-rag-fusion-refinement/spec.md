@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 30-recommendation program across 8 metric-gated sprints (270-395h for S0-S6, 313-456h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 30-recommendation program across 8 metric-gated sprints (314-467h for S0-S6, 355-524h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -426,7 +426,32 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ---
 
-## RELATED DOCUMENTS
+## 17. DEFERRED ITEMS
+
+Items evaluated in the 144 gap analysis but deferred pending future data or off-ramp decisions:
+
+| ID | Item | Earliest Sprint | Gate / Condition |
+|----|------|----------------|-----------------|
+| DEF-001 | FUT-4: Working Memory → Search feedback (bidirectional cognitive signals) | S4/S6 | Needs R13 data + ADR-001 compatibility analysis |
+| DEF-002 | Learned Fusion Weight Optimization (ML-based: LambdaMART/RankNet — subsumes per-query-type weights) | Post-S4 | Requires 500+ feedback triples + R13 channel attribution data |
+| DEF-003 | Negative Feedback / Suppression (query-type-specific) | Post-S4 | **Requires A4 first** (confidence signal activated in S4) |
+| DEF-004 | Session Query History (session context vector, rolling average of query embeddings) | Post-S3 | Architectural change; needs ADR-001 justification |
+| DEF-005 | Topical Diversity Control (cross-folder result diversity) | Post-S3 | Evaluate after R2 channel diversity operational |
+| DEF-006 | Monitoring / Observability (latency percentiles, cache hit rates + retrieval-specific: score collapse, dead channels, confidence calibration) | Any | Important but orthogonal to retrieval quality |
+| DEF-007 | Embedding Model Abstraction (model-agnostic embedding layer) | S7+ | Premature unless model switching imminent |
+| DEF-008 | Decouple Spec-Kit Scripts from MCP Server Internals | S5+ | S5 already 64-92h; defer unless S5 splits |
+| DEF-009 | Formal Interface Contract (Spec-Kit ↔ MCP Server) | S5+ | Depends on DEF-008 |
+| DEF-010 | Embedding Quality Monitoring (dimension checks, distribution drift, provider health) | S2+ | R13 detects quality degradation indirectly |
+| DEF-011 | Two-Pass Gleaning for Causal Link Extraction | S6 | LLM latency concern at index time |
+| DEF-012 | Weighted Chunk Selection via Reference Frequency | S6 | Subject to B8 signal ceiling governance |
+| DEF-013 | Context Drift Detection (periodic validity audits for old memories) | S6 | Long-term maintenance concern |
+| DEF-014 | structuralFreshness() Decision (dead code: keep or remove) | S7 | Evaluate during S7 planning |
+
+**Evaluation trigger**: Re-assess at Sprint 3 off-ramp and Sprint 6 planning.
+
+---
+
+## 18. RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`

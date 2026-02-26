@@ -74,6 +74,12 @@ contextType: "implementation"
 ### R13-S2 — Shadow Scoring
 - [ ] CHK-040 [P1] R13-S2 operational: full A/B comparison infrastructure working
 - [ ] CHK-041 [P1] Channel attribution present in eval results
+
+### A4 — Negative Feedback Confidence
+- [ ] CHK-042 [P1] A4 negative feedback confidence demotion verified — bad memories score reduced, floor at 0.3
+
+### B2 — Chunk Ordering
+- [ ] CHK-043 [P1] B2 chunk ordering verified — multi-chunk reassembly in document order, not score order
 <!-- /ANCHOR:sprint-4-verification -->
 
 ---
@@ -127,7 +133,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 9 | [ ]/9 |
-| P1 Items | 30 | [ ]/30 |
+| P1 Items | 32 | [ ]/32 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

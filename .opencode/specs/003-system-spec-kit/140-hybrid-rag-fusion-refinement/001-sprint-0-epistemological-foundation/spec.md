@@ -80,6 +80,9 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 - **R17**: Add fan-effect divisor to co-activation scoring to reduce hub domination
 - **R13-S1**: Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG)
 - **G-NEW-1**: BM25-only baseline comparison and measurement
+- **A2**: Full-context ceiling evaluation — theoretical quality ceiling metric (LLM-based, not production path)
+- **B7**: Quality proxy formula — automated regression detection metric
+- **D4**: R13 observer effect mitigation — eval logging overhead health check
 
 ### Out of Scope
 
@@ -110,7 +113,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 |----|-------------|---------------------|
 | REQ-S0-001 | **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry |
 | REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode |
-| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed for at least 50 queries |
+| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed for at least 50 queries. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational for automated regression. |
 | REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -151,7 +154,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: Eval logging MUST NOT add >5ms p95 to search latency
+- **NFR-P01**: Eval logging adds ≤5ms p95 to search latency — measured before/after (D4 observer effect check)
 - **NFR-P02**: G1 fix must not degrade graph search performance
 
 ### Security

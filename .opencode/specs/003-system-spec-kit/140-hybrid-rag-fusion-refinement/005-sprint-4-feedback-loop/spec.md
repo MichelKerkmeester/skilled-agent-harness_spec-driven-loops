@@ -115,8 +115,8 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S4-001 | **R1**: MPAB with N=0/N=1 guards, index-based max removal | MRR@5 within 2% of baseline, N=1 no regression. Flag: `SPECKIT_DOCSCORE_AGGREGATION` |
-| REQ-S4-002 | **R11**: Learned feedback with separate `learned_triggers` column + 7 safeguards (provenance, TTL 30d, denylist 100+, cap 3/8, threshold top-3, shadow 1 week, eligibility 72h) | Noise rate <5%. Auto-promotion: memories with >=5 positive validations promoted normal->important; >=10 promoted important->critical. Flag: `SPECKIT_LEARN_FROM_SELECTION` |
+| REQ-S4-001 | **R1**: MPAB with N=0/N=1 guards, index-based max removal | MRR@5 within 2% of baseline, N=1 no regression. Chunk ordering: collapsed multi-chunk results maintain original document position order. Flag: `SPECKIT_DOCSCORE_AGGREGATION` |
+| REQ-S4-002 | **R11**: Learned feedback with separate `learned_triggers` column + 7 safeguards (provenance, TTL 30d, denylist 100+, cap 3/8, threshold top-3, shadow 1 week, eligibility 72h) | Noise rate <5%. Auto-promotion: memories with >=5 positive validations promoted normal->important; >=10 promoted important->critical. Negative feedback confidence signal active: wasUseful=false reduces score via confidence multiplier (floor=0.3). Flag: `SPECKIT_LEARN_FROM_SELECTION` |
 | REQ-S4-003 | **R13-S2**: Shadow scoring + channel attribution + ground truth Phase B | A/B infrastructure operational. Exclusive Contribution Rate computed per channel |
 <!-- /ANCHOR:requirements -->
 

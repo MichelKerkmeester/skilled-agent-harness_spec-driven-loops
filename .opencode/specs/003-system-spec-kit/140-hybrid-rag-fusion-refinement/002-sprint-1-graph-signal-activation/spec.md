@@ -74,6 +74,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 ### In Scope
 
 - **R4**: Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15, constitutional memory exclusion
+- **A7**: Co-activation boost strength increase — raise multiplier from 0.1x to 0.25-0.3x to make graph signal investment visible in results
 - **Edge density measurement**: Compute edges/node ratio from R13 eval data
 - **G-NEW-2**: Agent-as-consumer UX analysis and consumption instrumentation
 
@@ -110,6 +111,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 |----|-------------|---------------------|
 | REQ-S1-002 | Edge density measurement from R13 eval data | Edge density (edges/node) computed; R10 escalation decision documented if density < 0.5 |
 | REQ-S1-003 | **G-NEW-2**: Agent consumption instrumentation + initial UX analysis | Consumption patterns logged; initial pattern report generated |
+| REQ-S1-004 | **A7**: Co-activation boost strength increase — raise base multiplier from 0.1x to 0.25-0.3x with configurable coefficient | Graph channel effective contribution >=15% at hop 2 (up from ~5%). Dark-run verified. |
 <!-- /ANCHOR:requirements -->
 
 ---

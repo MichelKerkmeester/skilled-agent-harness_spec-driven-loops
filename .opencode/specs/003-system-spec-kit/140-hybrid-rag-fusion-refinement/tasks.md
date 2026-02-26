@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "66 tasks across 8 metric-gated sprints (294-433h S0-S6, 337-494h S0-S7) organized by workstream with sprint gate verification tasks."
+description: "73 tasks across 8 metric-gated sprints (314-467h S0-S6, 355-524h S0-S7) organized by workstream with sprint gate verification tasks."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -41,13 +41,15 @@ contextType: "implementation"
 
 - [ ] T000a [W-C] Record pre-Sprint-0 performance baseline — current p95 search latency, memory count, existing system behavior snapshot [1-2h] {} — Baseline
 - [ ] T000b [W-A] Establish feature flag governance rules — document 6-flag max, 90-day lifespan, naming convention, monthly sunset audit process [1-2h] {} — NFR-O01/O02/O03
+  - B8 signal ceiling: max 12 active scoring signals until R13 automated eval; escape clause requires R13 evidence of orthogonal value
 - [ ] T000c [W-C] Audit `search-weights.json` — verify `maxTriggersPerMemory` status, smart ranking section behavior [1-2h] {} — OQ-003
 - [ ] T001 [W-B] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] {} — G1
 - [ ] T002 [W-A] Fix chunk collapse conditional — dedup on all code paths (`memory-search.ts`) [2-4h] {} — G3
 - [ ] T003 [W-A] Add fan-effect divisor to co-activation scoring (`co-activation.ts`) [1-2h] {} — R17
 - [ ] T004 [W-C] Create `speckit-eval.db` with 5-table schema (eval_queries, eval_channel_results, eval_final_results, eval_ground_truth, eval_metric_snapshots) [8-10h] {} — R13-S1
+- [ ] T004b [W-C] Implement R13 observer effect mitigation — search p95 health check with eval logging on/off [2-4h] {T004} — D4
 - [ ] T005 [W-C] Add logging hooks to `memory_search`, `memory_context`, `memory_match_triggers` handlers [6-8h] {T004} — R13-S1
-- [ ] T006 [W-C] Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) [6-9h] {T004} — R13-S1
+- [ ] T006 [W-C] Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics + full-context ceiling (A2) + quality proxy formula (B7) [14-21h] {T004} — R13-S1
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) [2-4h] {T004} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
 - [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T000a-T008}
@@ -62,6 +64,7 @@ contextType: "implementation"
 > **Child folder**: `002-sprint-1-graph-signal-activation/`
 
 - [ ] T010 [W-B] Implement typed-weighted degree as 5th RRF channel with edge type weights, MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 behind `SPECKIT_DEGREE_BOOST` flag [12-16h] {T009} — R4
+  - T010a [P] Increase co-activation boost strength from 0.1x to 0.25-0.3x [2-4h] {T003} — A7
 - [ ] T011 [W-C] Measure edge density from R13 data (edges/node metric) [2-3h] {T009} — R4 dependency check
 - [ ] T012 [W-C] Agent-as-consumer UX analysis + consumption instrumentation [8-12h] {T009} — G-NEW-2
 - [ ] T013 [W-B] Enable R4 if dark-run passes hub domination and MRR@5 criteria [0h] {T010, T011} — R4
@@ -114,10 +117,12 @@ contextType: "implementation"
 > **Child folder**: `005-sprint-4-feedback-loop/`
 
 - [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025} — R1
+  - T026a Preserve chunk ordering within documents during reassembly [2-4h] — B2
 - [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 7 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025, R13 2-cycle prerequisite} — R11
 - [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025, R13 2-cycle prerequisite} — G-NEW-3
 - [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
   - T027c Implement memory importance auto-promotion (threshold-based tier promotion on validation count) [5-8h]
+  - T027d Activate negative feedback confidence signal (demotion multiplier, floor=0.3) [4-6h] — A4
 - [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025} — R13-S2
   - T028a Implement Exclusive Contribution Rate metric per channel [2-3h]
 - [ ] T029 [W-C] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression) [included] {T026}
@@ -216,7 +221,7 @@ contextType: "implementation"
 
 <!--
 LEVEL 3+ TASKS
-- 66 tasks across 8 metric-gated sprints
+- 73 tasks across 8 metric-gated sprints
 - Workstream tags (W-A through W-D)
 - Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047, T053)
 - Off-ramp marker after Sprint 3

@@ -45,13 +45,16 @@ contextType: "implementation"
 ## Phase 2: Eval Infrastructure (Track 2)
 
 - [ ] T004 Create `speckit-eval.db` with 5-table schema: `eval_queries`, `eval_relevance`, `eval_results`, `eval_metrics`, `eval_runs` [8-10h] — R13-S1 (REQ-S0-003)
+- [ ] T004b Implement R13 observer effect mitigation — health check measuring search p95 with eval logging on vs off; trigger if >10% increase [2-4h] {T004} — D4 (REQ-S0-003)
 - [ ] T005 Add logging hooks to search, context, and trigger handlers [6-8h] {T004} — R13-S1 (REQ-S0-003)
-- [ ] T006 Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics [6-9h] {T004} — R13-S1 (REQ-S0-003)
+- [ ] T006 Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics + ceiling/proxy metrics [14-21h] {T004} — R13-S1 (REQ-S0-003)
   - T006a Inversion Rate — count pairwise ranking inversions vs ground truth [1h]
   - T006b Constitutional Surfacing Rate — % of queries where constitutional memories appear in top-K [1h]
   - T006c Importance-Weighted Recall — Recall@20 with tier weighting (constitutional=3x, critical=2x, important=1.5x) [1-2h]
   - T006d Cold-Start Detection Rate — % of queries where memories <48h old surface when relevant [1h]
   - T006e Intent-Weighted NDCG — NDCG@10 with intent-type-specific relevance weights [2-3h]
+  - T006f Full-Context Ceiling Evaluation — send ALL memory titles/summaries to LLM, record MRR@5 as theoretical ceiling metric; interpret via 2x2 matrix with BM25 baseline [4-6h]
+  - T006g Quality Proxy Formula — implement automated regression metric: qualityProxy = avgRelevance*0.40 + topResult*0.25 + countSaturation*0.20 + latencyPenalty*0.15 [4-6h]
 <!-- /ANCHOR:phase-2 -->
 
 ---

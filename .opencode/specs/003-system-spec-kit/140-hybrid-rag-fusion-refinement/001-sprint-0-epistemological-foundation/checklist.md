@@ -58,6 +58,9 @@ contextType: "implementation"
 - [ ] CHK-023 [P1] Eval metric computation verified against known test data
 - [ ] CHK-024 [P1] Constitutional Surfacing Rate metric computes correctly (known constitutional memories surface in top-K)
 - [ ] CHK-025 [P1] Cold-Start Detection Rate metric computes correctly (memories <48h correctly identified)
+- [ ] CHK-026 [P1] Full-context ceiling metric (A2) computed for 50+ queries and recorded alongside baseline
+- [ ] CHK-027 [P1] Quality proxy formula (B7) produces scores in [0,1] range and correlates with manual evaluation
+- [ ] CHK-028 [P1] Observer effect mitigation (D4) verified — search p95 increase ≤10% with eval logging enabled
 <!-- /ANCHOR:testing -->
 
 ---
@@ -102,6 +105,8 @@ contextType: "implementation"
 - [ ] CHK-063 [P0] BM25 baseline MRR@5 recorded and compared to hybrid
 - [ ] CHK-064 [P0] BM25 contingency decision made (PAUSE / rationalize / PROCEED)
 - [ ] CHK-065 [P1] R17 hub domination reduced — verified via co-activation result diversity
+- [ ] CHK-066 [P1] Full-context ceiling metric recorded and 2x2 decision matrix evaluated
+- [ ] CHK-067 [P1] Quality proxy formula operational for automated regression checks
 
 ---
 
@@ -111,7 +116,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 12 | [ ]/12 |
+| P1 Items | 20 | [ ]/20 |
 | P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]

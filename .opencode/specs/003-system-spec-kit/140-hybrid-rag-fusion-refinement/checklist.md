@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~67 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
+description: "~85 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -106,6 +106,7 @@ contextType: "implementation"
 - [ ] CHK-S03 [P0] BM25-only baseline MRR@5 recorded
 - [ ] CHK-S04 [P0] BM25 contingency decision made (>=80% pause / 50-80% proceed reduced / <50% proceed full)
 - [ ] CHK-S05 [P0] Fan-effect divisor (R17) reduces hub domination in co-activation results
+- [ ] CHK-S06 [P1] 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed alongside core metrics
 
 ### Sprint 1: Graph Signal Activation [P0]
 
@@ -120,6 +121,7 @@ contextType: "implementation"
 - [ ] CHK-S21 [P1] N4 dark-run: new memories (<48h) surface when relevant without displacing older results
 - [ ] CHK-S22 [P1] G2 resolved: double intent weighting fixed or documented as intentional
 - [ ] CHK-S23 [P1] Score distributions from RRF and composite normalized to comparable [0,1] ranges
+- [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
 
 ### Sprint 3: Query Intelligence [P1]
 
@@ -127,6 +129,8 @@ contextType: "implementation"
 - [ ] CHK-S31 [P1] R14/N1 shadow comparison: minimum 100 queries, Kendall tau computed (tau < 0.4 = reject RSF)
 - [ ] CHK-S32 [P1] R2 dark-run: top-3 precision within 5% of baseline
 - [ ] CHK-S33 [P1] Off-ramp evaluation: check MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
+- [ ] CHK-S34 [P1] Confidence-based result truncation produces >=3 results and reduces tail by >30%
+- [ ] CHK-S35 [P1] Dynamic token budget allocation respects tier limits (1500/2500/4000)
 
 ### Sprint 4: Feedback Loop [P1]
 
@@ -135,6 +139,8 @@ contextType: "implementation"
 - [ ] CHK-S42 [P1] R11 shadow log: noise rate < 5% in learned triggers
 - [ ] CHK-S43 [P1] R13-S2 operational: full A/B comparison infrastructure running
 - [ ] CHK-S44 [P1] R11 FTS5 contamination test passes (learned triggers NOT in FTS5 index)
+- [ ] CHK-S45 [P1] Memory auto-promotion triggers at correct validation thresholds (5→important, 10→critical)
+- [ ] CHK-S46 [P1] Exclusive Contribution Rate metric computed per channel in R13-S2
 
 ### Sprint 5: Pipeline Refactor [P1]
 
@@ -240,9 +246,9 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 20 | [ ]/20 |
-| P1 Items | 47 | [ ]/47 |
+| P1 Items | 53 | [ ]/53 |
 | P2 Items | 12 | [ ]/12 |
-| **Total** | **79** | **[ ]/79** |
+| **Total** | **85** | **[ ]/85** |
 
 **Verification Date**: [YYYY-MM-DD]
 
