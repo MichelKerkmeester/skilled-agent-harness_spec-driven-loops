@@ -280,6 +280,13 @@ See research/142 - FINAL-recommendations §5 for corrected dependency graph.
 - **BM25 50-80% of hybrid MRR@5**: PROCEED with hybrid optimization; rationalize to 3 channels (drop weakest)
 - **BM25 < 50% of hybrid MRR@5**: PROCEED with full roadmap — multi-channel clearly earning complexity
 
+### A2 Full-Context Ceiling Interpretation (jointly with G-NEW-1 BM25 Baseline)
+
+| | BM25 >= 80% of hybrid | BM25 < 50% of hybrid |
+|---|---|---|
+| **Full-context >= 90% of hybrid** | Strong PAUSE signal: system may be over-engineered | Retrieval near ceiling — PROCEED with lower urgency |
+| **Full-context < 60% of hybrid** | BM25 catches essentials; graph may add noise | Hybrid earning its complexity — PROCEED confidently |
+
 ### Triple Boost (R1 + N4 + Constitutional)
 A newly indexed constitutional memory with multiple chunks, within first 12 hours, receives MPAB bonus + cold-start boost + constitutional tier guarantee. Can dominate all results for 12-48h. Mitigation: composite boost cap at 0.95 before tier adjustment.
 
@@ -391,6 +398,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 - [ ] 90-day lifespan enforced
 - [ ] Monthly sunset audit conducted
 - [ ] Flag naming convention: `SPECKIT_{FEATURE}`
+
+### B8 Signal Ceiling
+- **B8 Signal Ceiling**: Maximum 12 active scoring signals until R13 provides automated evaluation data. Escape clause: R13 evidence that a new signal provides orthogonal value overrides the ceiling. Re-evaluate at Sprint 4 off-ramp when R13-S2 channel attribution data is available.
 
 ### Test Suite Non-Regression
 - [ ] 158+ existing tests pass after every sprint

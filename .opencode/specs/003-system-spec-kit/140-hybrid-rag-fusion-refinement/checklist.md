@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~85 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
+description: "~92 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -107,6 +107,10 @@ contextType: "implementation"
 - [ ] CHK-S04 [P0] BM25 contingency decision made (>=80% pause / 50-80% proceed reduced / <50% proceed full)
 - [ ] CHK-S05 [P0] Fan-effect divisor (R17) reduces hub domination in co-activation results
 - [ ] CHK-S06 [P1] 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed alongside core metrics
+- [ ] CHK-S07 [P1] Full-context ceiling metric (A2) recorded for 50+ queries; 2x2 decision matrix evaluated
+- [ ] CHK-S08 [P1] Quality proxy formula (B7) operational for automated regression detection
+- [ ] CHK-S09 [P1] Observer effect mitigation (D4) verified — search p95 increase ≤10% with eval logging
+- [ ] CHK-S0A [P1] Signal ceiling governance (B8) documented — max 12 active scoring signals policy in effect
 
 ### Sprint 1: Graph Signal Activation [P0]
 
@@ -114,6 +118,7 @@ contextType: "implementation"
 - [ ] CHK-S11 [P0] R4 MRR@5 delta > +2% absolute (or +5% relative) vs Sprint 0 baseline
 - [ ] CHK-S12 [P0] Edge density measured; if < 0.5 edges/node, R10 priority escalated
 - [ ] CHK-S13 [P1] G-NEW-2: Agent consumption instrumentation active; initial pattern report drafted
+- [ ] CHK-S15 [P1] Co-activation boost strength (A7) increased to 0.25-0.3x; effective contribution ≥15% at hop 2
 
 ### Sprint 2: Scoring Calibration [P1]
 
@@ -141,6 +146,8 @@ contextType: "implementation"
 - [ ] CHK-S44 [P1] R11 FTS5 contamination test passes (learned triggers NOT in FTS5 index)
 - [ ] CHK-S45 [P1] Memory auto-promotion triggers at correct validation thresholds (5→important, 10→critical)
 - [ ] CHK-S46 [P1] Exclusive Contribution Rate metric computed per channel in R13-S2
+- [ ] CHK-S47 [P1] Negative feedback confidence signal (A4) active — demotion floor at 0.3, no over-suppression
+- [ ] CHK-S48 [P1] Chunk ordering preservation (B2) — multi-chunk memories in document order after collapse
 
 ### Sprint 5: Pipeline Refactor [P1]
 
@@ -246,9 +253,9 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 20 | [ ]/20 |
-| P1 Items | 53 | [ ]/53 |
+| P1 Items | 60 | [ ]/60 |
 | P2 Items | 12 | [ ]/12 |
-| **Total** | **85** | **[ ]/85** |
+| **Total** | **92** | **[ ]/92** |
 
 **Verification Date**: [YYYY-MM-DD]
 
