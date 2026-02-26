@@ -96,8 +96,10 @@ contextType: "implementation"
 
 ## Program Completion Gate
 
-- [ ] CHK-060 [P2] R13-S3 full reporting operational
-- [ ] CHK-061 [P2] R13-S3 ablation study framework functional
+> **Note:** Sprint 7 is entirely optional (P2/P3 gated). The true program completion gate is Sprint 6 (graph deepening). Sprint 7 items activate only when gating criteria are met (>5K memories for R8, activation thresholds for R5). R13-S3 full reporting is the capstone of the evaluation infrastructure established in Sprint 1.
+
+- [ ] CHK-060 [P1] R13-S3 full reporting operational — capstone of Sprint 1 eval infrastructure
+- [ ] CHK-061 [P1] R13-S3 ablation study framework functional — required for program-level attribution reporting
 - [ ] CHK-062 [P2] R8 gating verified: only implemented if >5K memories
 - [ ] CHK-063 [P2] S1 content generation quality improved (manual review)
 - [ ] CHK-064 [P2] S5 entity links established across documents
@@ -113,8 +115,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 1 | [ ]/1 |
-| P1 Items | 6 | [ ]/6 |
-| P2 Items | 16 | [ ]/16 |
+| P1 Items | 8 | [ ]/8 |
+| P2 Items | 14 | [ ]/14 |
 | P3 Items | 10 | [ ]/10 |
 
 **Verification Date**: [YYYY-MM-DD]

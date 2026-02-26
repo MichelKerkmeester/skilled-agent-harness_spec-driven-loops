@@ -63,15 +63,15 @@ contextType: "implementation"
 - [ ] CHK-024 [P1] Intent weights applied ONCE in Stage 2 (prevents G2 recurrence)
 
 ### R9 — Spec Folder Pre-Filter
-- [ ] CHK-030 [P2] R9 cross-folder queries identical to without pre-filter
+- [ ] CHK-030 [P1] R9 cross-folder queries identical to without pre-filter
 
 ### R12 — Query Expansion
-- [ ] CHK-040 [P2] R12+R15 mutual exclusion: R12 suppressed when R15="simple"
-- [ ] CHK-041 [P2] R12 no degradation of simple query latency
+- [ ] CHK-040 [P1] R12+R15 mutual exclusion: R12 suppressed when R15="simple"
+- [ ] CHK-041 [P1] R12 no degradation of simple query latency
 
 ### S2/S3 — Spec-Kit Retrieval Metadata
-- [ ] CHK-050 [P2] S2 anchor-aware retrieval metadata present in results
-- [ ] CHK-051 [P2] S3 validation metadata integrated into scoring
+- [ ] CHK-050 [P1] S2 anchor-aware retrieval metadata present in results
+- [ ] CHK-051 [P1] S3 validation metadata integrated into scoring
 <!-- /ANCHOR:sprint-5-verification -->
 
 ---
@@ -114,8 +114,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 18 | [ ]/18 |
-| P2 Items | 6 | [ ]/6 |
+| P1 Items | 23 | [ ]/23 |
+| P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

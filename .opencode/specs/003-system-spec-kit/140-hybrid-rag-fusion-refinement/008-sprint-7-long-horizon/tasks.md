@@ -52,7 +52,7 @@ contextType: "implementation"
   - Activation criteria: >10K memories OR >50ms latency OR >1536 dimensions
   - Document decision with rationale
   - If implementing: use custom quantized BLOB (NOT `vec_quantize_i8`)
-- [ ] T007 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T001-T005}
+- [ ] T006 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T001-T005}
 <!-- /ANCHOR:implementation -->
 
 ---
@@ -60,7 +60,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Program Completion
 
-- [ ] T006 Program completion verification [0h] {T001, T002, T003, T004, T005}
+- [ ] T007 Program completion verification [0h] {T001, T002, T003, T004, T005, T006}
   - [ ] R13-S3 full reporting operational
   - [ ] R13-S3 ablation study framework functional
   - [ ] R8 gating verified (if applicable)
@@ -76,8 +76,8 @@ contextType: "implementation"
 
 - [ ] All tasks T001-T007 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Program completion verification (T006) passed
-- [ ] Sprint 7 exit gate verification (T007) passed
+- [ ] Sprint 7 exit gate verification (T006) passed
+- [ ] Program completion verification (T007) passed
 - [ ] All existing tests still passing
 - [ ] Final feature flag audit complete — sprint-specific flags sunset
 - [ ] All health dashboard targets reviewed
@@ -98,7 +98,7 @@ contextType: "implementation"
 
 <!--
 LEVEL 2 TASKS — Phase 8 of 8 (FINAL)
-- 7 tasks: T001-T005 implementation (all parallelizable), T006 program completion, T007 exit gate
+- 7 tasks: T001-T005 implementation (all parallelizable), T006 exit gate, T007 program completion
 - All items independent — no internal dependencies
 - R5 decision gate: implement only if activation criteria met
 -->

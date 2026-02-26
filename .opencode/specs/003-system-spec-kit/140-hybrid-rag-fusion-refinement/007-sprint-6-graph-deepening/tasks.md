@@ -31,6 +31,13 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:checkpoint -->
+## Safety Gate
+
+- [ ] T-S6-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {} — Safety gate for N3-lite edge mutations
+
+---
+
 <!-- ANCHOR:phase-a -->
 ## Phase A: Graph (N2 + N3-lite)
 

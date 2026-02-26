@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Hybrid RAG Fusion Refinement"
-description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 30-recommendation program across 8 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
+description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 36-recommendation program across 8 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
 trigger_phrases:
   - "hybrid rag fusion"
   - "graph channel fix"
@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 30-recommendation program across 8 metric-gated sprints (314-467h for S0-S6, 355-524h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 36-recommendation program across 8 metric-gated sprints (316-472h for S0-S6, 361-534h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -51,6 +51,12 @@ The spec-kit memory MCP server suffers from three compounding failures: (1) the 
 ### Purpose
 
 Transform the system into a measurably improving, graph-differentiated, feedback-aware retrieval engine where the graph channel — the most orthogonal signal — is fully activated, scoring is calibrated, and every improvement is validated by metric gates.
+
+### Three Non-Negotiable Design Principles
+
+1. **Evaluation First** (ADR-004) — R13 gates all downstream signal improvements. No scoring change goes live without pre/post measurement.
+2. **Calibration Before Surgery** — Normalize scores before pipeline refactoring. The ~15:1 mismatch is calibration, not architecture.
+3. **Density Before Deepening** (ADR-003) — Fix G1, measure graph density, prioritize edge creation before investing in graph traversal sophistication.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -60,7 +66,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 ### In Scope
 
-**30 active recommendations across 8 subsystems (S0-S7):**
+**36 active recommendations across 8 subsystems (S0-S7):**
 
 | Subsystem | Recommendations | Sprint(s) |
 |-----------|----------------|-----------|
@@ -107,11 +113,11 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| 1 | `001-sprint-0-epistemological-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (30-45h) | None (BLOCKING) | Pending |
+| 1 | `001-sprint-0-epistemological-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (45-70h) | None (BLOCKING) | Pending |
 | 2 | `002-sprint-1-graph-signal-activation/` | R4, density measurement, G-NEW-2 (22-31h) | Sprint 0 gate | Pending |
 | 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (19-29h) | Sprint 1 gate | Pending |
-| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (26-40h) | Sprint 2 gate | Pending |
-| 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (39-56h) | Sprint 3 gate + R13 2 eval cycles | Pending |
+| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 2 gate | Pending |
+| 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (60-89h) | Sprint 3 gate + R13 2 eval cycles | Pending |
 | 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (64-92h) | Sprint 4 gate | Pending |
 | 7 | `007-sprint-6-graph-deepening/` | R7, R16, R10, N2, N3-lite, S4 (68-101h) | Sprint 5 gate | Pending |
 | 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6 gate | Pending |
@@ -146,17 +152,19 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) | Graph hit rate > 0% in retrieval telemetry | S0 |
+| REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) | Graph channel contributes ≥1 result in top-10 for ≥5% of first 100 post-fix eval queries, logged in R13 channel_attribution | S0 |
 | REQ-002 | **G3:** Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode | S0 |
 | REQ-003 | **R13-S1:** Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) | Baseline metrics computed for at least 50 queries | S0 |
 | REQ-004 | **G-NEW-1:** BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid | S0 |
-| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 | R4 dark-run passes; MRR@5 delta > +2% absolute | S1 |
+| REQ-035 | **B7:** Quality proxy formula for automated regression detection | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
+| REQ-036 | **D4:** Observer effect mitigation for R13 eval logging | Search p95 increase ≤10% with eval logging enabled | S0 |
+| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 | R4 dark-run passes; MRR@5 delta > +2% absolute. **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** | S1 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-006 | **R17:** Fan-effect divisor in co-activation scoring | Hub domination reduced in co-activation results | S0 |
+| REQ-006 | **R17:** Fan-effect divisor in co-activation scoring | Co-activation hub bias Gini coefficient decreases ≥15% vs pre-R17 baseline on 50-query eval set | S0 |
 | REQ-007 | **R18:** Embedding cache for instant rebuild | Cache hit rate > 90% on re-index of unchanged content | S2 |
 | REQ-008 | **N4:** Cold-start boost with exponential decay (12h half-life) | New memories (<48h) surface when relevant without displacing highly relevant older results | S2 |
 | REQ-009 | **G2:** Investigate double intent weighting — determine if intentional | Resolved: fixed or documented as intentional design | S2 |
@@ -166,14 +174,17 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-013 | **R1:** MPAB chunk-to-memory aggregation with N=0/N=1 guards | Dark-run MRR@5 within 2%; no regression for N=1 memories | S4 |
 | REQ-014 | **R11:** Learned relevance feedback with separate `learned_triggers` column and 7 safeguards | Shadow log noise rate < 5%; FTS5 contamination test passes | S4 |
 | REQ-015 | **R13-S2:** Shadow scoring + channel attribution + ground truth Phase B | Full A/B comparison infrastructure operational | S4 |
-| REQ-016 | **G-NEW-2:** Agent-as-consumer UX analysis + consumption instrumentation | Consumption instrumentation active; initial pattern report | S1 |
+| REQ-016 | **G-NEW-2:** Agent-as-consumer UX analysis + consumption instrumentation | R13 logs ≥5 distinct consumption-pattern categories with ≥10 query examples each; consumption instrumentation active | S1 |
 | REQ-017 | **G-NEW-3:** Feedback bootstrap strategy (Phase A synthetic, Phase B implicit, Phase C LLM-judge) | Defined phases with minimum 200 query-selection pairs before R11 activation | S0/S4 |
+| REQ-032 | **A7:** Co-activation boost strength increase (0.1x→0.25x) | Effective co-activation boost at hop 2 ≥15% | S1 |
+| REQ-033 | **A4:** Negative feedback / confidence activation (demotion multiplier, floor=0.3) | `memory_validate(wasUseful: false)` causes measurable ranking reduction | S4 |
+| REQ-034 | **B2:** Chunk ordering preservation in reassembly | Collapsed chunks appear in `chunk_index` order | S4 |
 
 ### P2 - Desired (complete OR defer with documented reason)
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-018 | **R6:** 4-stage pipeline refactor with "no score changes in Stage 4" invariant | 0 ordering differences on eval corpus; 158+ tests pass | S5 |
+| REQ-018 | **R6:** 4-stage pipeline refactor with "no score changes in Stage 4" invariant | 0 ordering differences on eval corpus; 158+ tests pass. **Note: R6 is conditional — required only if Sprint 2 score normalization fails exit gate, OR Stage 4 invariant deemed architecturally necessary regardless.** | S5 |
 | REQ-019 | **R9:** Spec folder pre-filter | Cross-folder queries produce identical results | S5 |
 | REQ-020 | **R12:** Embedding-based query expansion (suppressed when R15="simple") | No degradation of simple query latency | S5 |
 | REQ-021 | **S2:** Template anchor optimization | Anchor-aware retrieval metadata available | S5 |
@@ -182,7 +193,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-024 | **R16:** Encoding-intent capture | Intent metadata captured at index time | S6 |
 | REQ-025 | **R10:** Auto entity extraction (gated on edge density < 1.0) | False positive rate < 20% on manual review | S6 |
 | REQ-026 | **N2 (items 4-6):** Graph centrality + community detection | Graph channel attribution increase > 10% | S6 |
-| REQ-027 | **N3-lite:** Contradiction scan + Hebbian strengthening | Detects at least 1 known contradiction correctly | S6 |
+| REQ-027 | **N3-lite:** Contradiction scan + Hebbian strengthening | Detects ≥50% of contradictions in curated 10-pair test set with FP rate <30% | S6 |
 | REQ-028 | **S4:** Spec folder hierarchy as retrieval structure | Hierarchy traversal functional | S6 |
 
 ### P3 - Future (implement when conditions met)
@@ -190,8 +201,8 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
 | REQ-029 | **R8:** Memory summary generation (only if > 5K memories) | Summary pre-filtering reduces search space | S7 |
-| REQ-030 | **S1:** Smarter memory content generation | Content generation quality improved | S7 |
-| REQ-031 | **S5:** Cross-document entity linking | Entity links established across documents | S7 |
+| REQ-030 | **S1:** Smarter memory content generation | Content generation matches template schema for ≥95% of test cases | S7 |
+| REQ-031 | **S5:** Cross-document entity linking | ≥3 cross-document entity links verified by manual review | S7 |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -224,6 +235,9 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | MR5 | R4 MAX_TYPED_DEGREE undefined — no degree cap = unbounded boost | MEDIUM | R4 | Computed global with fallback=15 (See research/142 - FINAL-recommendations §4.2) |
 | MR6 | R11 hidden dependency on R13 query provenance — "not in top 3" safeguard impossible without logging | MEDIUM | R11 | R13 must complete 2 eval cycles before R11 mutations enabled |
 | MR7 | R15 violates R2 channel diversity guarantee — single-channel routes cannot satisfy diversity | MEDIUM | R15, R2 | Minimum 2 channels even for "simple" queries |
+| MR8 | R4+N3+R10 three-way interaction — spurious R10 auto-extracted entities strengthened by N3 Hebbian learning, boosted by R4 degree scoring | HIGH | R4, N3, R10 | Entity extraction quality gate (FP <20%); N3 strength cap (MAX_STRENGTH_INCREASE=0.05/cycle); R4 degree normalization |
+| MR9 | S5 rollback conflates DB checkpoint and code rollback — both needed for safe reversion of R6 pipeline refactor | HIGH | R6 | Dual rollback protocol: (1) `checkpoint_restore` for data, (2) git revert for code; document both in rollback procedure |
+| MR10 | S6 N3-lite Hebbian weight modifications not tracked by `created_by` provenance — only new edges tracked, not weight changes to existing edges | HIGH | N3-lite | Add `weight_history` audit column or log weight changes to eval DB for rollback capability |
 
 ### Dangerous Interaction Pairs
 
@@ -306,7 +320,7 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 23/25 | 20+ files across 8 subsystems, 270-395h, schema changes |
+| Scope | 23/25 | 20+ files across 8 subsystems, 316-472h, schema changes |
 | Risk | 22/25 | CRITICAL FTS5 contamination, 0% graph hit rate, irreversible migration risks |
 | Research | 18/20 | 13-agent synthesis, 3 waves, cross-system analysis |
 | Multi-Agent | 13/15 | 7 independent tracks (A-G), parallel sprint execution |
@@ -324,8 +338,13 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 | R-003 | Feature flag explosion (MR3) | High | High (24 proposed flags) | 6-flag maximum governance |
 | R-004 | MPAB div-by-zero (MR4) | High | High (N=1 memories common) | Guard clause in `computeMPAB` |
 | R-005 | BM25 >= 80% of hybrid (contingency) | High | Unknown | Sprint 0 measurement + decision matrix |
-| R-006 | Effort variance (270-395h range) | Medium | Medium | Metric-gated sprints enable early stopping |
+| R-006 | Effort variance (316-472h range) | Medium | Medium | Metric-gated sprints enable early stopping |
 | R-007 | R6 pipeline refactor regression | High | Medium | Checkpoint before start; 0-diff gate; off-ramp |
+| R-008 | Eval ground truth contamination from biased trigger-phrase synthetic data (MR-bias) | Medium | Medium | Diversify ground truth sources; add manual review sample |
+| R-009 | Solo developer bottleneck — 18-26 weeks, no absence protocol | Medium | High | Document bus factor plan; identify critical path items for potential delegation |
+| R-010 | Cumulative dark-run overhead — concurrent runs could reach 177ms p95 by S5 | Medium | Medium | Sequential dark-runs; disable prior sprint dark-runs before starting new ones |
+| R-011 | BM25 measurement reliability — 50 queries may be biased, no diversity requirement | Medium | Medium | Require query diversity: ≥5 queries per intent type, ≥3 query complexity tiers |
+| R-012 | Graph topology power-law distribution after G1 fix — bimodal R4 scoring | Medium | Low | R4 degree normalization (log-scale or percentile-based) |
 
 ---
 
@@ -387,6 +406,7 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 - [ ] Nullable defaults on all new columns
 - [ ] Backup before ALTER TABLE
 - [ ] Forward-compatible reads (handle column not existing)
+- [ ] Backup `speckit-eval.db` before each sprint gate review
 
 ### Dark-Run Compliance
 - [ ] Every scoring change undergoes dark-run comparison

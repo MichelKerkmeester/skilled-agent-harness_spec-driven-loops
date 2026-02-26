@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~92 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
+description: "~103 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -24,7 +24,7 @@ contextType: "implementation"
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
 
-**Priority alignment with off-ramp**: Sprint 0-1 gates are P0 (blocking). Sprint 2-4 gates are P1. Sprint 5-6 gates are P2. If you stop at Sprint 2+3 (recommended minimum), only P0+P1 items need verification.
+**Priority alignment with off-ramp**: Sprint 0-1 gates are P0 (blocking). Sprint 2-4 gates are P1. Sprint 5-6 gates are P1 (elevated from P2 due to safety-critical NFRs). Sprint 7 gates are P2. If you stop at Sprint 2+3 (recommended minimum), only P0+P1 items need verification.
 <!-- /ANCHOR:protocol -->
 
 ---
@@ -148,25 +148,32 @@ contextType: "implementation"
 - [ ] CHK-S46 [P1] Exclusive Contribution Rate metric computed per channel in R13-S2
 - [ ] CHK-S47 [P1] Negative feedback confidence signal (A4) active — demotion floor at 0.3, no over-suppression
 - [ ] CHK-S48 [P1] Chunk ordering preservation (B2) — multi-chunk memories in document order after collapse
+- [ ] CHK-S49 [P1] R11 activation gate: minimum 200 query-selection pairs accumulated before R11 mutations enabled
 
 ### Sprint 5: Pipeline Refactor [P1]
 
 - [ ] CHK-S50 [P1] Checkpoint created before R6 (`pre-pipeline-refactor`)
-- [ ] CHK-S51 [P1] R6 dark-run: 0 ordering differences on full eval corpus
+- [ ] CHK-S51 [P2-CONDITIONAL] R6 dark-run: 0 ordering differences on full eval corpus. **Conditional: required only if Sprint 2 normalization fails OR Stage 4 invariant mandatory.**
 - [ ] CHK-S52 [P1] All 158+ existing tests pass with `SPECKIT_PIPELINE_V2` enabled
 - [ ] CHK-S53 [P1] Stage 4 "no score changes" invariant verified — prevents G2 recurrence
 - [ ] CHK-S54 [P1] Intent weights applied exactly ONCE in pipeline (Stage 2 only)
 - [ ] CHK-S55 [P1] R9 cross-folder queries produce identical results
 - [ ] CHK-S56 [P1] R12 expansion does not degrade simple query latency
+- [ ] CHK-S57 [P1] S2 template anchor optimization: anchor-aware retrieval metadata available and functional
+- [ ] CHK-S58 [P1] S3 validation signals integrated as retrieval metadata in scoring pipeline
 
 ### Sprint 6: Graph Deepening [P1]
 
+- [ ] CHK-S59 [P1] Sprint 5→6 handoff: all Phase B items (R9, R12, S2, S3) verified complete before Sprint 6 begins
 - [ ] CHK-S60 [P1] R7 Recall@20 within 10% of baseline
 - [ ] CHK-S61 [P1] R10 false positive rate < 20% on manual review
 - [ ] CHK-S62 [P1] N2 graph channel attribution > 10% of final top-K
 - [ ] CHK-S63 [P1] N3-lite: contradiction scan identifies at least 1 known contradiction
 - [ ] CHK-S64 [P1] Active feature flag count <= 6
 - [ ] CHK-S65 [P1] All health dashboard targets met (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
+- [ ] CHK-S66 [P1] R16 encoding-intent metadata captured at index time and available for scoring
+- [ ] CHK-S67 [P1] S4 spec folder hierarchy traversal functional in retrieval
+- [ ] CHK-S68 [P1] N3-lite safety bounds enforced: MAX_EDGES_PER_NODE cap and MAX_STRENGTH_INCREASE=0.05/cycle verified
 
 ### Sprint 7: Long Horizon [P2]
 
@@ -187,6 +194,9 @@ contextType: "implementation"
 - [ ] CHK-101 [P1] ADR-002 (Metric-Gated Sprints) followed: each sprint has data-driven exit gate
 - [ ] CHK-102 [P1] ADR-003 (Density Before Deepening) followed: N2/N3 deferred until density measured
 - [ ] CHK-103 [P2] ADR-005 (Separate learned_triggers) implemented: separate column, not prefix-based
+- [ ] CHK-104 [P0] ADR-004 (Evaluation First) verified: R13 eval infrastructure operational before any scoring change enabled
+- [ ] CHK-SC06 [P1] Evaluation ground truth exceeds 500 query-relevance pairs (SC-006)
+- [ ] CHK-SC07 [P1] Graph edge density exceeds 1.0 edges/node (SC-007)
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -210,6 +220,7 @@ contextType: "implementation"
 - [ ] CHK-122 [P1] Checkpoint created before Sprint 4 (R11 mutations), Sprint 5 (pipeline), Sprint 6 (graph)
 - [ ] CHK-123 [P1] Schema migration protocol followed (8 rules from plan.md L2: Enhanced Rollback)
 - [ ] CHK-124 [P1] Feature flag lifecycle enforced: 90-day max lifespan, monthly sunset audit
+- [ ] CHK-125 [P1] `speckit-eval.db` backed up before each sprint gate review
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -252,14 +263,14 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 20 | [ ]/20 |
-| P1 Items | 60 | [ ]/60 |
+| P0 Items | 21 | [ ]/21 |
+| P1 Items | 70 | [ ]/70 |
 | P2 Items | 12 | [ ]/12 |
-| **Total** | **92** | **[ ]/92** |
+| **Total** | **103** | **[ ]/103** |
 
 **Verification Date**: [YYYY-MM-DD]
 
-**Minimum viable verification (off-ramp at S2+S3)**: All P0 items (20) + P1 items through Sprint 3 gate (CHK-S30 to CHK-S33) + cross-cutting P1 items = ~24 P0 + ~10 Sprint 0-3 P1 gate items
+**Minimum viable verification (off-ramp at S2+S3)**: All P0 items (21) + P1 items through Sprint 3 gate (CHK-S30 to CHK-S33) + cross-cutting P1 items = ~25 P0 + ~10 Sprint 0-3 P1 gate items
 <!-- /ANCHOR:summary -->
 
 ---

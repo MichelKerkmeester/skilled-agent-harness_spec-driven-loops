@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "73 tasks across 8 metric-gated sprints (314-467h S0-S6, 355-524h S0-S7) organized by workstream with sprint gate verification tasks."
+description: "78 tasks across 8 metric-gated sprints (316-472h S0-S6, 361-534h S0-S7) organized by workstream with sprint gate verification tasks."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -34,7 +34,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-0 -->
-## Sprint 0: Epistemological Foundation [30-45h]
+## Sprint 0: Epistemological Foundation [45-70h]
 
 > **Goal**: Establish that retrieval is measurable. BLOCKING — nothing proceeds without exit gate.
 > **Child folder**: `001-sprint-0-epistemological-foundation/`
@@ -47,9 +47,9 @@ contextType: "implementation"
 - [ ] T002 [W-A] Fix chunk collapse conditional — dedup on all code paths (`memory-search.ts`) [2-4h] {} — G3
 - [ ] T003 [W-A] Add fan-effect divisor to co-activation scoring (`co-activation.ts`) [1-2h] {} — R17
 - [ ] T004 [W-C] Create `speckit-eval.db` with 5-table schema (eval_queries, eval_channel_results, eval_final_results, eval_ground_truth, eval_metric_snapshots) [8-10h] {} — R13-S1
-- [ ] T004b [W-C] Implement R13 observer effect mitigation — search p95 health check with eval logging on/off [2-4h] {T004} — D4
+- [ ] T004b [W-C] Implement R13 observer effect mitigation — search p95 health check with eval logging on/off [2-4h] {T004} — D4/REQ-036
 - [ ] T005 [W-C] Add logging hooks to `memory_search`, `memory_context`, `memory_match_triggers` handlers [6-8h] {T004} — R13-S1
-- [ ] T006 [W-C] Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics + full-context ceiling (A2) + quality proxy formula (B7) [14-21h] {T004} — R13-S1
+- [ ] T006 [W-C] Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics + full-context ceiling (A2) + quality proxy formula (B7/REQ-035) [14-21h] {T004} — R13-S1
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) [2-4h] {T004} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
 - [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T000a-T008}
@@ -58,15 +58,18 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-1 -->
-## Sprint 1: Graph Signal Activation [22-31h]
+## Sprint 1: Graph Signal Activation [24-35h]
 
 > **Goal**: Make graph the system's differentiating signal.
 > **Child folder**: `002-sprint-1-graph-signal-activation/`
 
 - [ ] T010 [W-B] Implement typed-weighted degree as 5th RRF channel with edge type weights, MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 behind `SPECKIT_DEGREE_BOOST` flag [12-16h] {T009} — R4
-  - T010a [P] Increase co-activation boost strength from 0.1x to 0.25-0.3x [2-4h] {T003} — A7
+  - T010a [P] Increase co-activation boost strength from 0.1x to 0.25-0.3x [2-4h] {T003} — A7/REQ-032
 - [ ] T011 [W-C] Measure edge density from R13 data (edges/node metric) [2-3h] {T009} — R4 dependency check
 - [ ] T012 [W-C] Agent-as-consumer UX analysis + consumption instrumentation [8-12h] {T009} — G-NEW-2
+
+> **Review Note (REF-057):** Consider moving G-NEW-2 pre-analysis to Sprint 0 to inform R13 eval design. Currently in Sprint 1 — evaluate during Sprint 0 planning.
+
 - [ ] T013 [W-B] Enable R4 if dark-run passes hub domination and MRR@5 criteria [0h] {T010, T011} — R4
 - [ ] T014 [GATE] Sprint 1 exit gate verification: R4 MRR@5 delta >+2%, edge density measured, no single memory >60% presence, G-NEW-2 instrumentation active [0h] {T010-T013}
 <!-- /ANCHOR:sprint-1 -->
@@ -74,7 +77,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-2 -->
-## Sprint 2: Scoring Calibration + Operational Efficiency [19-29h]
+## Sprint 2: Scoring Calibration + Operational Efficiency [21-32h]
 
 > **Goal**: Resolve dual scoring magnitude mismatch; enable zero-cost re-indexing.
 > **Child folder**: `003-sprint-2-scoring-calibration/`
@@ -85,13 +88,13 @@ contextType: "implementation"
 - [ ] T018 [W-A] Implement score normalization (both RRF and composite to [0,1] scale) [4-6h] {T017} — Score calibration
 - [ ] T019 [W-C] Verify dark-run results for N4 and score normalization via R13 [included] {T016, T018}
 - [ ] T020a [P] [W-A] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] {T014} — FUT-5
-- [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run passes, G2 resolved, score distributions normalized [0h] {T015-T019}
+- [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized [0h] {T015-T019}
 <!-- /ANCHOR:sprint-2 -->
 
 ---
 
 <!-- ANCHOR:sprint-3 -->
-## Sprint 3: Query Intelligence + Fusion Alternatives [26-40h]
+## Sprint 3: Query Intelligence + Fusion Alternatives [34-53h]
 
 > **Goal**: Add query routing and evaluate fusion alternatives.
 > **Child folder**: `004-sprint-3-query-intelligence/`
@@ -110,19 +113,20 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-4 -->
-## Sprint 4: Feedback Loop + Chunk Aggregation [39-56h]
+## Sprint 4: Feedback Loop + Chunk Aggregation [60-89h]
 
 > **Goal**: Close the feedback loop; aggregate chunk scores safely.
 > **Prerequisite**: R13 must have completed at least 2 full eval cycles.
 > **Child folder**: `005-sprint-4-feedback-loop/`
 
+- [ ] T025c [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {T025} — Safety gate
 - [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025} — R1
-  - T026a Preserve chunk ordering within documents during reassembly [2-4h] — B2
+  - T026a Preserve chunk ordering within documents during reassembly [2-4h] — B2/REQ-034
 - [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 7 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025, R13 2-cycle prerequisite} — R11
 - [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025, R13 2-cycle prerequisite} — G-NEW-3
 - [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
   - T027c Implement memory importance auto-promotion (threshold-based tier promotion on validation count) [5-8h]
-  - T027d Activate negative feedback confidence signal (demotion multiplier, floor=0.3) [4-6h] — A4
+  - T027d Activate negative feedback confidence signal (demotion multiplier, floor=0.3) [4-6h] — A4/REQ-033
 - [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025} — R13-S2
   - T028a Implement Exclusive Contribution Rate metric per channel [2-3h]
 - [ ] T029 [W-C] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression) [included] {T026}
@@ -161,6 +165,7 @@ contextType: "implementation"
 > **Child folder**: `007-sprint-6-graph-deepening/`
 
 **Phase A (Graph): 35-50h**
+- [ ] T040a [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {T040} — Safety gate
 - [ ] T041 [W-B] Implement graph centrality + community detection (N2 items 4-6) [25-35h] {T040} — N2
   - T041a N2a: Graph Momentum (temporal degree delta) [8-12h]
   - T041b N2b: Causal Depth Signal (max-depth path normalization) [5-8h]
@@ -189,7 +194,7 @@ contextType: "implementation"
 - [ ] T050 [P] [W-B] Implement cross-document entity linking [8-12h] {T047} — S5
 - [ ] T051 [W-C] Implement R13-S3: full reporting + ablation studies [12-16h] {T047} — R13-S3
 - [ ] T052 [W-C] Evaluate R5 (INT8 quantization) need based on memory count and latency [2h] {T047} — R5 decision
-- [ ] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T048-T052}
+- [ ] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content generation matches template schema for ≥95% of test cases, verified by automated validation, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T048-T052}
 <!-- /ANCHOR:sprint-7 -->
 
 ---
@@ -221,7 +226,7 @@ contextType: "implementation"
 
 <!--
 LEVEL 3+ TASKS
-- 73 tasks across 8 metric-gated sprints
+- 78 tasks across 8 metric-gated sprints
 - Workstream tags (W-A through W-D)
 - Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047, T053)
 - Off-ramp marker after Sprint 3

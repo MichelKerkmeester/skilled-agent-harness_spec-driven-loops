@@ -33,6 +33,13 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:checkpoint -->
+## Safety Gate
+
+- [ ] T-S4-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {} — Safety gate for R11 mutations and feedback data
+
+---
+
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: R1 MPAB Chunk Aggregation
 

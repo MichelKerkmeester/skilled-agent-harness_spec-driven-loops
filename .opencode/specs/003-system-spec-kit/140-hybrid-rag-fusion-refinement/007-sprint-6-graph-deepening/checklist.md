@@ -45,8 +45,8 @@ contextType: "implementation"
 - [ ] CHK-011 [P2] R16 encoding-intent capture behind feature flag
 - [ ] CHK-012 [P2] R10 density gating condition correctly evaluated
 - [ ] CHK-013 [P2] N2 centrality + community detection algorithms correct
-- [ ] CHK-014 [P2] N3-lite edge bounds enforced in code: MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
-- [ ] CHK-015 [P2] N3-lite `created_by` provenance tracked for all auto-created/modified edges
+- [ ] CHK-014 [P1] N3-lite edge bounds enforced in code: MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
+- [ ] CHK-015 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -68,7 +68,7 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security & Provenance
 
-- [ ] CHK-030 [P2] N3-lite `created_by` provenance tracked for all auto-created/modified edges
+- [ ] CHK-030 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges
 - [ ] CHK-031 [P2] R10 auto-extracted entities tagged with `created_by='auto'`
 - [ ] CHK-032 [P2] Auto edges capped at strength=0.5
 <!-- /ANCHOR:security -->
@@ -113,8 +113,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 2 | [ ]/2 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 18 | [ ]/18 |
+| P1 Items | 16 | [ ]/16 |
+| P2 Items | 15 | [ ]/15 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

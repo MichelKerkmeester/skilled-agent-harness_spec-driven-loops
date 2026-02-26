@@ -30,7 +30,7 @@ contextType: "implementation"
 
 ### Overview
 
-This plan implements 30 recommendations across 8 metric-gated sprints (270-395h for S0-S6, 313-456h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
+This plan implements 30 recommendations across 8 metric-gated sprints (316-472h for S0-S6, 361-534h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
 
 ### Design Principles
 
@@ -117,7 +117,7 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 0.3 | **R17:** Fan-effect divisor | 1-2 | Graph/co-activation | — |
 | 0.4 | **R13-S1:** Eval DB + logging hooks + pipeline instrumentation | 20-28 | Evaluation (new) | `SPECKIT_EVAL_LOGGING` |
 | 0.5 | **G-NEW-1:** BM25-only baseline measurement | 4-6 | Evaluation | — |
-| | **Total** | **30-45h** | | |
+| | **Total** | **45-70h** | | |
 
 **Exit Gate:**
 - [ ] Graph hit rate > 0% (G1 verified)
@@ -126,6 +126,8 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 - [ ] BM25-only baseline MRR@5 recorded
 
 **Partial Advancement:** G1+G3+R17 and R13-S1+G-NEW-1 are independent tracks. Sprint 1 (R4) MAY begin in parallel with R13-S1 completion — R4 can be *built and unit-tested* without eval infrastructure but MUST NOT be *enabled* until R13-S1 metrics are available.
+
+**R13-S1 Logging Specification:** Asynchronous fire-and-forget logging hooks in `memory_search`, `memory_context`, and `memory_match_triggers` handlers. Minimum logged fields: query text, intent classification, per-channel results, final ranking, latency_ms, timestamp.
 
 **If gate fails:** Do not proceed. Escalate as infrastructure crisis.
 
@@ -147,7 +149,7 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 1.2 | Edge density measurement | 2-3 | Evaluation | — |
 | 1.3 | **G-NEW-2:** Agent-as-consumer UX analysis | 8-12 | Evaluation | — |
 | 1.4 | Enable R4 if dark-run passes | 0 | — | — |
-| | **Total** | **22-31h** | | |
+| | **Total** | **24-35h** | | |
 
 **Exit Gate:**
 - [ ] R4 dark-run: no single memory appears in >60% of results
@@ -167,13 +169,15 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 2.2 | **N4:** Cold-start boost with exponential decay | 3-5 | Scoring | `SPECKIT_NOVELTY_BOOST` |
 | 2.3 | **G2:** Investigate double intent weighting | 4-6 | Fusion | — |
 | 2.4 | Score normalization (both systems to [0,1]) | 4-6 | Scoring | — |
-| | **Total** | **19-29h** | | |
+| | **Total** | **21-32h** | | |
 
 **Exit Gate:**
 - [ ] R18 cache hit rate > 90% on re-index of unchanged content
 - [ ] N4 dark-run: new memories surface without displacing highly relevant older results
 - [ ] G2 resolved: fixed or documented as intentional
 - [ ] Score distributions normalized to comparable ranges
+
+**R6 Escalation Condition:** If Sprint 2 score normalization does not resolve the ~15:1 magnitude mismatch to within 3:1, escalate R6 from P2 to P1 and add to Sprint 5 as mandatory.
 
 ---
 
@@ -184,7 +188,7 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 3.1 | **R15:** Query complexity router | 10-16 | Pipeline | `SPECKIT_COMPLEXITY_ROUTER` |
 | 3.2 | **R14/N1:** Relative Score Fusion parallel to RRF | 10-14 | Fusion | `SPECKIT_RSF_FUSION` |
 | 3.3 | **R2:** Channel minimum-representation constraint | 6-10 | Fusion | `SPECKIT_CHANNEL_MIN_REP` |
-| | **Total** | **26-40h** | | |
+| | **Total** | **34-53h** | | |
 
 **Exit Gate:**
 - [ ] R15 p95 latency for simple queries < 30ms
@@ -202,9 +206,9 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 4.1 | **R1:** MPAB chunk-to-memory aggregation | 8-12 | Scoring | `SPECKIT_DOCSCORE_AGGREGATION` |
 | 4.2 | **R11:** Learned relevance feedback (full safeguards) | 16-24 | Search handlers | `SPECKIT_LEARN_FROM_SELECTION` |
 | 4.3 | **R13-S2:** Shadow scoring + channel attribution + ground truth Phase B | 15-20 | Evaluation | — |
-| | **Total** | **39-56h** | | |
+| | **Total** | **60-89h** | | |
 
-**Prerequisite:** R13 must have completed at least 2 full eval cycles.
+**Prerequisite:** R13 must have completed at least 2 full eval cycles. *An eval cycle is defined as: 100+ queries processed by R13 evaluation infrastructure, OR 14 calendar days of R13 logging, whichever comes first. Synthetic fallback: replay 200 logged queries to simulate cycles in test environments.*
 
 **Exit Gate:**
 - [ ] R1 dark-run: MRR@5 within 2%; no regression for N=1 memories
@@ -379,19 +383,19 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 
 | Sprint | Complexity | Estimated Effort |
 |--------|------------|------------------|
-| Sprint 0: Epistemological Foundation | High (blocking) | 30-45h |
-| Sprint 1: Graph Signal Activation | Medium | 22-31h |
-| Sprint 2: Scoring Calibration | Medium | 19-29h |
-| Sprint 3: Query Intelligence | Medium-High | 26-40h |
-| Sprint 4: Feedback Loop | High | 39-56h |
+| Sprint 0: Epistemological Foundation | High (blocking) | 45-70h |
+| Sprint 1: Graph Signal Activation | Medium | 24-35h |
+| Sprint 2: Scoring Calibration | Medium | 21-32h |
+| Sprint 3: Query Intelligence | Medium-High | 34-53h |
+| Sprint 4: Feedback Loop | High | 60-89h |
 | Sprint 5: Pipeline Refactor | Very High | 64-92h |
 | Sprint 6: Graph Deepening | Very High | 68-101h |
 | Sprint 7: Long Horizon | Medium | 45-62h |
-| **Total (S0-S6)** | | **268-394h** |
-| **Total (S0-S7)** | | **313-456h** |
+| **Total (S0-S6)** | | **316-472h** |
+| **Total (S0-S7)** | | **361-534h** |
 
 **Resource Planning:**
-- Solo developer (~15h/week): 18-26 weeks (S0-S6)
+- Solo developer (~15h/week): 21-31 weeks (S0-S6)
 - Dual developers: 9-13 weeks (independent tracks A-G assigned)
 - Critical path: G1→R4→R13-S1→R14/N1→R6 = ~90-125h sequential regardless of parallelism
 <!-- /ANCHOR:effort -->
@@ -420,7 +424,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 | S2 | `CREATE TABLE embedding_cache` | `DROP TABLE embedding_cache` |
 | S4 | `ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'` | `DROP COLUMN` (SQLite 3.35.0+) |
 
-### Migration Protocol (8 Rules)
+### Migration Protocol (9 Rules)
 1. Backup before migration
 2. Nullable with defaults on all new columns
 3. Forward-compatible reads (handle column not existing)
@@ -429,6 +433,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 6. No destructive migrations (never DROP COLUMN in forward path)
 7. Atomic execution — failure = full rollback
 8. Version tracking via `schema_version` table or pragma
+9. Eval DB (`speckit-eval.db`) backed up before every sprint gate review
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -482,7 +487,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 2. **R4** (Typed-degree channel) — 12-16h — CRITICAL
 3. **R13-S1** (Eval infrastructure) — 20-28h — CRITICAL
 4. **R14/N1** (Relative Score Fusion) — 10-14h — CRITICAL
-5. **R6** (Pipeline refactor) — 40-55h — CRITICAL
+5. **R6** (Pipeline refactor) — 40-55h — CONDITIONAL (included only if Sprint 2 normalization gate fails OR Stage 4 invariant deemed mandatory)
 
 **Total Critical Path**: 90-125h
 
@@ -522,7 +527,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 **Consequences**:
 - ~50 LOC score normalization vs 400+ LOC pipeline refactor
 - Lower risk, more reversible
-- R6 pipeline refactor becomes optional optimization, not prerequisite
+- R6 pipeline refactor is conditional: required only if (a) Sprint 2 score normalization fails exit gate, OR (b) the Stage 4 invariant ('no score changes in Stage 4') is deemed architecturally necessary regardless of calibration success. R6 is optional relative to the calibration fix.
 
 **Alternatives Rejected**:
 - Full pipeline merge: 10x cost increase, higher regression risk
@@ -592,7 +597,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 
 ### Tier 1: Sequential Foundation
 **Sprint**: S0
-**Duration**: 30-45h
+**Duration**: 45-70h
 **Agent**: Primary (sequential — blocking prerequisites)
 **Rationale**: G1, G3, R17 are bug fixes requiring careful verification. R13-S1 establishes measurement infrastructure. No parallelization within Sprint 0.
 

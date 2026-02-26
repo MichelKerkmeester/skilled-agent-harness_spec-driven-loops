@@ -43,9 +43,9 @@ Query classifier --> tier routing --> channel subset selection --> fusion (RRF o
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented
-- [x] Success criteria measurable
-- [x] Dependencies identified (Sprint 2 exit gate)
+- [ ] Sprint 2 exit gate passed (cache hit >90%, N4 dark-run passes, G2 resolved, scores normalized)
+- [ ] R13-S1 eval infrastructure operational with baseline metrics
+- [ ] Score normalization from Sprint 2 verified (RRF and composite in [0,1] range)
 
 ### Definition of Done
 - [ ] All acceptance criteria met (REQ-S3-001 through REQ-S3-003)
