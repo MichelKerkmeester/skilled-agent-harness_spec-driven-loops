@@ -50,6 +50,7 @@ contextType: "implementation"
 - [ ] T006 [P] Implement query expansion with R15 mutual exclusion, behind `SPECKIT_EMBEDDING_EXPANSION` flag [10-15h] {T004} — R12
 - [ ] T007 [P] Implement template anchor optimization [5-8h] {T004} — S2
 - [ ] T008 [P] Implement validation signals as retrieval metadata [4-6h] {T004} — S3
+- [ ] T009a [P] Add memory auto-surface hooks at tool dispatch and session compaction lifecycle points in `hooks/auto-surface.ts` — per-point token budget 4000 max; config/logic change in Spec-Kit integration layer [4-6h] {T004} — TM-05 (REQ-S5-006)
 <!-- /ANCHOR:phase-b -->
 
 ---
@@ -57,7 +58,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-c -->
 ## Phase C: Verification
 
-- [ ] T009 [GATE] Sprint 5 exit gate verification [0h] {T002, T003, T004, T005, T006, T007, T008}
+- [ ] T010 [GATE] Sprint 5 exit gate verification [0h] {T002, T003, T004, T005, T006, T007, T008, T009a}
 <!-- /ANCHOR:phase-c -->
 
 ---
@@ -74,6 +75,7 @@ contextType: "implementation"
 - [ ] R12+R15 mutual exclusion enforced
 - [ ] R12 no simple query latency degradation
 - [ ] Intent weights applied ONCE in Stage 2 (G2 prevention)
+- [ ] TM-05 auto-surface fires at tool dispatch and session compaction; 4000-token budget enforced
 <!-- /ANCHOR:completion -->
 
 ---

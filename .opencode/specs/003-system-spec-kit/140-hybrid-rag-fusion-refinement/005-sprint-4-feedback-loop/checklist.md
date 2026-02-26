@@ -80,6 +80,19 @@ contextType: "implementation"
 
 ### B2 — Chunk Ordering
 - [ ] CHK-043 [P1] B2 chunk ordering verified — multi-chunk reassembly in document order, not score order
+
+### TM-04 — Pre-Storage Quality Gate
+- [ ] CHK-044 [P1] TM-04 Layer 1 structural validation passes for valid memories and fails for structurally invalid ones
+- [ ] CHK-045 [P1] TM-04 Layer 2 content quality scoring — signal density < 0.4 threshold rejects low-quality saves; high-quality saves pass
+- [ ] CHK-046 [P1] TM-04 Layer 3 semantic dedup — cosine similarity >0.92 rejects near-duplicates; distinct content at <0.92 passes
+- [ ] CHK-047 [P1] TM-04 behind `SPECKIT_SAVE_QUALITY_GATE` flag — disabled state = no behavior change from pre-Sprint-4
+
+### TM-06 — Reconsolidation-on-Save
+- [ ] CHK-048 [P0] TM-06 checkpoint created before first enable (`pre-reconsolidation`)
+- [ ] CHK-049 [P1] TM-06 merge path (>=0.88): duplicate memories merged, frequency counter incremented
+- [ ] CHK-050 [P1] TM-06 conflict path (0.75–0.88): memory replaced, causal `supersedes` edge added
+- [ ] CHK-051 [P1] TM-06 complement path (<0.75): new memory stored without modification
+- [ ] CHK-052 [P1] TM-06 behind `SPECKIT_RECONSOLIDATION` flag — disabled state = normal store behavior
 <!-- /ANCHOR:sprint-4-verification -->
 
 ---
@@ -132,8 +145,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | [ ]/9 |
-| P1 Items | 32 | [ ]/32 |
+| P0 Items | 10 | [ ]/10 |
+| P1 Items | 41 | [ ]/41 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

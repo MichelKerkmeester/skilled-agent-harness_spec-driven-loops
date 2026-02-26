@@ -52,6 +52,7 @@ This is **Phase 6** of the Hybrid RAG Fusion Refinement specification.
 - Query expansion with R15 mutual exclusion (R12)
 - Template anchor optimization (S2)
 - Validation signals as retrieval metadata (S3)
+- Dual-scope memory auto-surface hooks at tool dispatch and session compaction (TM-05)
 
 **Internal Phasing**: Phase A (Pipeline) MUST pass before Phase B (Search + Spec-Kit) begins.
 <!-- /ANCHOR:phase-context -->
@@ -103,6 +104,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 | Pipeline module | Create | R6: Stage definitions and boundaries |
 | Search handlers | Modify | R9: Spec folder pre-filter, R12: Query expansion |
 | Template/validation handlers | Modify | S2: Anchor optimization, S3: Validation metadata |
+| `hooks/auto-surface.ts` | Modify | TM-05: Dual-scope injection hooks at tool dispatch and session compaction |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -119,6 +121,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 | REQ-S5-003 | **R12**: Query expansion (suppressed when R15="simple") | No simple query latency degradation. Flag: `SPECKIT_EMBEDDING_EXPANSION` |
 | REQ-S5-004 | **S2**: Template anchor optimization | Anchor-aware retrieval metadata present in results |
 | REQ-S5-005 | **S3**: Validation signals as retrieval metadata | Validation metadata integrated into scoring |
+| REQ-S5-006 | **TM-05**: Dual-scope memory auto-surface hooks at tool dispatch and session compaction lifecycle points, with per-point token budgets (4000 max). Extends `hooks/auto-surface.ts`. Behind config/logic in Spec-Kit integration layer | Memory auto-surface fires at tool dispatch and session compaction; per-point token budget of 4000 enforced; no regression in existing auto-surface behavior |
 <!-- /ANCHOR:requirements -->
 
 ---

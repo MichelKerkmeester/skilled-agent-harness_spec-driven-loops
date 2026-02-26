@@ -99,11 +99,12 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 - [ ] Verify all 158+ existing tests pass
 - [ ] Verify intent weights applied ONCE in Stage 2
 
-### Phase B: Search + Spec-Kit (24-37h) — after Phase A passes
+### Phase B: Search + Spec-Kit (28-41h) — after Phase A passes
 - [ ] R9: Implement spec folder pre-filter [5-8h]
 - [ ] R12: Implement query expansion with R15 mutual exclusion, behind `SPECKIT_EMBEDDING_EXPANSION` flag [10-15h]
 - [ ] S2: Implement template anchor optimization [5-8h]
 - [ ] S3: Implement validation signals as retrieval metadata [4-6h]
+- [ ] TM-05: Add memory auto-surface hooks at tool dispatch and session compaction lifecycle points in `hooks/auto-surface.ts` — per-point token budget of 4000 max; config/logic change in Spec-Kit integration layer [4-6h]
 
 ### Phase C: Verification
 - [ ] Verify R9 cross-folder identical results
@@ -179,8 +180,9 @@ Phase A (R6 Pipeline) ──[0 ordering diff GATE]──► Phase B (R9, R12, S2
 | Phase B: R12 Query Expansion | Medium | 10-15h |
 | Phase B: S2 Template Anchors | Low-Medium | 5-8h |
 | Phase B: S3 Validation Metadata | Low | 4-6h |
+| Phase B: TM-05 Auto-Surface Hooks | Low-Medium | 4-6h |
 | Phase C: Verification | Low | included |
-| **Total** | | **64-92h** |
+| **Total** | | **68-98h** |
 <!-- /ANCHOR:effort -->
 
 ---

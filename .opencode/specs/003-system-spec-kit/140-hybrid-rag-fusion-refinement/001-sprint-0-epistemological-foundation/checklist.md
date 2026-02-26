@@ -104,6 +104,7 @@ contextType: "implementation"
 - [ ] CHK-062 [P0] Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 computed for 50+ queries
 - [ ] CHK-063 [P0] BM25 baseline MRR@5 recorded and compared to hybrid
 - [ ] CHK-064 [P0] BM25 contingency decision made (PAUSE / rationalize / PROCEED)
+- [ ] CHK-S0B [P0] TM-02 content-hash dedup active — exact duplicate saves rejected without embedding generation; distinct content passes without false-positive rejection (`memory-save.ts`)
 - [ ] CHK-065 [P1] R17 hub domination reduced — verified via co-activation result diversity
 - [ ] CHK-066 [P1] Full-context ceiling metric recorded and 2x2 decision matrix evaluated
 - [ ] CHK-067 [P1] Quality proxy formula operational for automated regression checks
@@ -115,7 +116,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | [ ]/8 |
+| P0 Items | 9 | [ ]/9 |
 | P1 Items | 20 | [ ]/20 |
 | P2 Items | 3 | [ ]/3 |
 

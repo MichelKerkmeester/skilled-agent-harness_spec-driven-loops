@@ -68,16 +68,42 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:phase-4-tm04 -->
+## Phase 4: TM-04 Pre-Storage Quality Gate
+
+- [ ] T007 [P] Implement multi-layer pre-storage quality gate in `memory_save` handler behind `SPECKIT_SAVE_QUALITY_GATE` flag [6-10h] — TM-04 (REQ-S4-004)
+  - T007a Layer 1: structural validation (existing checks, formalised)
+  - T007b Layer 2: content quality scoring — title, triggers, length, anchors, metadata, signal density; threshold >= 0.4
+  - T007c Layer 3: semantic dedup — cosine similarity > 0.92 against existing memories = reject
+<!-- /ANCHOR:phase-4-tm04 -->
+
+---
+
+<!-- ANCHOR:phase-5-tm06 -->
+## Phase 5: TM-06 Reconsolidation-on-Save
+
+- [ ] T008 [P] Implement reconsolidation-on-save in `memory_save` handler behind `SPECKIT_RECONSOLIDATION` flag; create checkpoint before enabling [6-10h] — TM-06 (REQ-S4-005)
+  - T008a Checkpoint: `memory_checkpoint_create("pre-reconsolidation")` before first enable
+  - T008b After embedding generation, query top-3 most similar memories in `spec_folder`
+  - T008c Merge path (similarity >=0.88): merge content, increment frequency counter
+  - T008d Conflict path (0.75–0.88): replace memory, add causal `supersedes` edge
+  - T008e Complement path (<0.75): store new memory unchanged
+<!-- /ANCHOR:phase-5-tm06 -->
+
+---
+
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Verification
 
 - [ ] T004 Verify R1 dark-run: MRR@5 within 2%, N=1 no regression [included] {T001}
 - [ ] T005 Analyze R11 shadow log: noise rate <5% [included] {T002}
-- [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005}
+- [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005, T007, T008}
   - [ ] R11 auto-promotion thresholds verified (5→important, 10→critical)
   - [ ] R13-S2 Exclusive Contribution Rate metric operational
   - [ ] A4 negative feedback: confidence demotion floor verified at 0.3; no over-suppression
   - [ ] B2 chunk ordering: multi-chunk memories reassembled in document order, not score order
+  - [ ] TM-04 quality gate: low-quality saves blocked (signal density <0.4); semantic near-duplicates (>0.92) rejected
+  - [ ] TM-06 reconsolidation: merge/replace/store paths verified; checkpoint created before enable
 <!-- /ANCHOR:phase-4 -->
 
 ---

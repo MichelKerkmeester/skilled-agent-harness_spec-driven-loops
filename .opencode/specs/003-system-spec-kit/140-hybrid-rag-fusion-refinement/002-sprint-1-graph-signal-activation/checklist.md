@@ -100,6 +100,7 @@ contextType: "implementation"
 - [ ] CHK-062 [P0] Edge density measured; R10 escalation decision made if density < 0.5
 - [ ] CHK-063 [P1] G-NEW-2 consumption instrumentation active and logging patterns
 - [ ] CHK-064 [P1] Feature flag `SPECKIT_DEGREE_BOOST` permanently enabled (or disable-decision documented)
+- [ ] CHK-065 [P2] TM-08 signal vocabulary expanded — CORRECTION ("actually", "wait", "I was wrong") and PREFERENCE ("prefer", "like", "want") categories classified correctly in `trigger-extractor.ts`
 
 ---
 
@@ -110,7 +111,7 @@ contextType: "implementation"
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
 | P1 Items | 13 | [ ]/13 |
-| P2 Items | 2 | [ ]/2 |
+| P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

@@ -99,8 +99,18 @@ Four parallel feature tracks with G2 → normalization dependency
 - [ ] Implement normalization for composite output to [0, 1] (1-2h)
 - [ ] Dark-run comparison — verify no MRR@5 regression (1h)
 
-### Phase 5: Verification
+### Phase 5: Interference Scoring (TM-01)
+- [ ] Add `interference_score` column to `memory_index` via migration (1-2h)
+- [ ] Compute interference score at index time — count memories with cosine similarity > 0.75 in same `spec_folder` (2-3h)
+- [ ] Apply `-0.08 * interference_score` penalty in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag (1-2h)
+
+### Phase 6: Classification-Based Decay (TM-03)
+- [ ] Modify `fsrs-scheduler.ts` with decay policy multipliers by `context_type`: decisions=no decay, research=2x stability, implementation/discovery/general=standard (2-3h)
+- [ ] Add `importance_tier` multipliers: constitutional/critical=no decay, important=1.5x, normal=standard, temporary=0.5x (1-2h)
+
+### Phase 7: Verification
 - [ ] N4 dark-run — new memories visible, old not displaced (included)
+- [ ] TM-01 dark-run — interference penalty applied correctly, no false penalties (included)
 - [ ] Sprint 2 exit gate verification (included)
 <!-- /ANCHOR:phases -->
 
@@ -158,13 +168,15 @@ Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────�
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Phase 1 (R18 Cache) | Sprint 1 gate | Phase 5 |
-| Phase 2 (N4 Cold-Start) | Sprint 1 gate | Phase 5 |
+| Phase 1 (R18 Cache) | Sprint 1 gate | Phase 7 |
+| Phase 2 (N4 Cold-Start) | Sprint 1 gate | Phase 7 |
 | Phase 3 (G2 Investigation) | Sprint 1 gate | Phase 4 |
-| Phase 4 (Normalization) | Phase 3 | Phase 5 |
-| Phase 5 (Verification) | Phase 1, Phase 2, Phase 4 | Sprint 3 (next sprint) |
+| Phase 4 (Normalization) | Phase 3 | Phase 7 |
+| Phase 5 (TM-01 Interference Scoring) | Sprint 1 gate | Phase 7 |
+| Phase 6 (TM-03 Classification Decay) | Sprint 1 gate | Phase 7 |
+| Phase 7 (Verification) | Phase 1, Phase 2, Phase 4, Phase 5, Phase 6 | Sprint 3 (next sprint) |
 
-**Note**: Phases 1, 2, and 3 are independent — they can execute in parallel. Phase 4 depends on Phase 3 (G2 outcome influences normalization approach).
+**Note**: Phases 1, 2, 3, 5, and 6 are independent — they can execute in parallel. Phase 4 depends on Phase 3 (G2 outcome influences normalization approach).
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -178,8 +190,10 @@ Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────�
 | Phase 2 (N4 Cold-Start) | Low-Medium | 3-5h |
 | Phase 3 (G2 Investigation) | Medium | 4-6h |
 | Phase 4 (Normalization) | Medium | 4-6h |
-| Phase 5 (Verification) | Low | Included |
-| **Total** | | **19-29h** |
+| Phase 5 (TM-01 Interference Scoring) | Medium | 4-6h |
+| Phase 6 (TM-03 Classification Decay) | Medium | 3-5h |
+| Phase 7 (Verification) | Low | Included |
+| **Total** | | **26-40h** |
 <!-- /ANCHOR:effort -->
 
 ---

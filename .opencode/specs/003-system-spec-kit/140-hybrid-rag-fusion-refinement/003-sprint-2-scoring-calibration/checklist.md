@@ -102,6 +102,8 @@ contextType: "implementation"
 - [ ] CHK-063 [P1] Score distributions normalized — both RRF and composite in [0,1] range
 - [ ] CHK-064 [P1] `embedding_cache` migration follows protocol (backup, nullable, atomic)
 - [ ] CHK-065 [P1] No MRR@5 regression after normalization change
+- [ ] CHK-066 [P1] TM-01 interference scoring active — `interference_score` column present in `memory_index`; penalty computed at index time; `-0.08 * interference_score` applied in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag; no false penalties on distinct content
+- [ ] CHK-067 [P1] TM-03 classification-based decay verified — constitutional/critical tiers not decaying; decisions context_type not decaying; temporary tier decays at 0.5x rate; research context_type uses 2x stability (`fsrs-scheduler.ts`)
 
 ---
 
@@ -111,7 +113,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 3 | [ ]/3 |
-| P1 Items | 18 | [ ]/18 |
+| P1 Items | 20 | [ ]/20 |
 | P2 Items | 4 | [ ]/4 |
 
 **Verification Date**: [YYYY-MM-DD]

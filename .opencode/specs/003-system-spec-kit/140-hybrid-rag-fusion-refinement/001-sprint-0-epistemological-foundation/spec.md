@@ -98,6 +98,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 | `graph-search-fn.ts` | Modify | G1: Fix ID format from `mem:${edgeId}` to numeric |
 | `memory-search.ts` | Modify | G3: Fix chunk collapse to run on all code paths |
 | `co-activation.ts` | Modify | R17: Add fan-effect divisor to co-activation scoring |
+| `memory-save.ts` | Modify | TM-02: SHA256 content-hash fast-path dedup before embedding generation |
 | `speckit-eval.db` | Create | R13-S1: Evaluation database with 5-table schema |
 | Eval handler files | Create | R13-S1: Logging hooks for search/context/trigger handlers |
 <!-- /ANCHOR:scope -->
@@ -115,6 +116,12 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 | REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode |
 | REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed for at least 50 queries. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational for automated regression. |
 | REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid |
+
+### P0 - Blockers (MUST complete) — Additional
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-S0-006 | **TM-02**: Content-hash fast-path dedup in `memory-save.ts` — SHA256 hash check BEFORE embedding generation; O(1) check rejects exact duplicates in same `spec_folder` | Exact duplicate saves rejected without embedding generation; no false positives on distinct content |
 
 ### P1 - Required (complete OR user-approved deferral)
 

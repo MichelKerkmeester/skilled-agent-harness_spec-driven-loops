@@ -30,7 +30,7 @@ contextType: "implementation"
 
 ### Overview
 
-This plan implements 36 recommendations across 8 metric-gated sprints (316-472h for S0-S6, 361-534h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
+This plan implements 43 recommendations across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
 
 ### Design Principles
 
@@ -101,6 +101,21 @@ The ~15:1 magnitude mismatch is a calibration problem (normalize both to [0,1]),
 ### Stage 4 Invariant
 
 After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1-3 handle ALL score computation. Stage 4 is exclusively filtering and formatting. This prevents recurrence of the double-weighting anti-pattern. See research/142 - FINAL-recommendations §3, Sprint 5.
+
+### Save Pipeline Architecture (TM Pattern Integration)
+
+The memory_save handler now includes a multi-stage validation pipeline, inspired by true-mem's false-positive defense:
+
+```
+Stage 1: Content hash check (TM-02) — O(1), cheapest first
+Stage 2: Quality scoring (TM-04) — O(1), metadata analysis
+Stage 3: Embedding generation — O(1), API call (existing)
+Stage 4: Semantic dedup (TM-04 Layer 3) — O(n), requires embedding
+Stage 5: Reconsolidation (TM-06) — O(n), requires embedding
+Stage 6: Insert — O(log n), final write
+```
+
+Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run AFTER embedding generation but BEFORE database insert. This aligns with R6's pipeline refactor by adding pre-insert validation stages.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -117,7 +132,8 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 0.3 | **R17:** Fan-effect divisor | 1-2 | Graph/co-activation | — |
 | 0.4 | **R13-S1:** Eval DB + logging hooks + pipeline instrumentation | 20-28 | Evaluation (new) | `SPECKIT_EVAL_LOGGING` |
 | 0.5 | **G-NEW-1:** BM25-only baseline measurement | 4-6 | Evaluation | — |
-| | **Total** | **45-70h** | | |
+| 0.6 | **TM-02:** Content-hash fast-path dedup in memory_save pipeline (SHA256 O(1) check before embedding) | 2-3 | Memory quality | — |
+| | **Total** | **47-73h** | | |
 
 **Exit Gate:**
 - [ ] Graph hit rate > 0% (G1 verified)
@@ -148,8 +164,9 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 1.1 | **R4:** Typed-weighted degree as 5th RRF channel | 12-16 | Graph | `SPECKIT_DEGREE_BOOST` |
 | 1.2 | Edge density measurement | 2-3 | Evaluation | — |
 | 1.3 | **G-NEW-2:** Agent-as-consumer UX analysis | 8-12 | Evaluation | — |
+| 1.5 | **TM-08:** Importance signal vocabulary expansion (add CORRECTION + PREFERENCE signals to trigger extraction) | 2-4 | Memory quality | — |
 | 1.4 | Enable R4 if dark-run passes | 0 | — | — |
-| | **Total** | **24-35h** | | |
+| | **Total** | **26-39h** | | |
 
 **Exit Gate:**
 - [ ] R4 dark-run: no single memory appears in >60% of results
@@ -169,7 +186,9 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 2.2 | **N4:** Cold-start boost with exponential decay | 3-5 | Scoring | `SPECKIT_NOVELTY_BOOST` |
 | 2.3 | **G2:** Investigate double intent weighting | 4-6 | Fusion | — |
 | 2.4 | Score normalization (both systems to [0,1]) | 4-6 | Scoring | — |
-| | **Total** | **21-32h** | | |
+| 2.5 | **TM-01:** Interference scoring signal — negative weight for competing memories in same spec_folder | 4-6 | Scoring | `SPECKIT_INTERFERENCE_SCORE` |
+| 2.6 | **TM-03:** Classification-based decay policies — FSRS multipliers by context_type/importance_tier | 3-5 | Scoring | — |
+| | **Total** | **28-43h** | | |
 
 **Exit Gate:**
 - [ ] R18 cache hit rate > 90% on re-index of unchanged content
@@ -206,7 +225,9 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 4.1 | **R1:** MPAB chunk-to-memory aggregation | 8-12 | Scoring | `SPECKIT_DOCSCORE_AGGREGATION` |
 | 4.2 | **R11:** Learned relevance feedback (full safeguards) | 16-24 | Search handlers | `SPECKIT_LEARN_FROM_SELECTION` |
 | 4.3 | **R13-S2:** Shadow scoring + channel attribution + ground truth Phase B | 15-20 | Evaluation | — |
-| | **Total** | **60-89h** | | |
+| 4.4 | **TM-04:** Pre-storage quality gate (structural + content quality + semantic dedup validation) | 6-10 | Memory quality | `SPECKIT_SAVE_QUALITY_GATE` |
+| 4.5 | **TM-06:** Reconsolidation-on-save (duplicate/conflict/complement auto-decision) | 6-10 | Memory quality | `SPECKIT_RECONSOLIDATION` |
+| | **Total** | **72-109h** | | |
 
 **Prerequisite:** R13 must have completed at least 2 full eval cycles. *An eval cycle is defined as: 100+ queries processed by R13 evaluation infrastructure, OR 14 calendar days of R13 logging, whichever comes first. Synthetic fallback: replay 200 logged queries to simulate cycles in test environments.*
 
@@ -227,7 +248,8 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | 5.4 | **R12:** Embedding-based query expansion | 10-15 | Search handlers | `SPECKIT_EMBEDDING_EXPANSION` |
 | 5.5 | **S2:** Template anchor optimization | 5-8 | Spec-Kit logic | — |
 | 5.6 | **S3:** Validation signals as retrieval metadata | 4-6 | Spec-Kit logic | — |
-| | **Total** | **64-92h** | | |
+| 5.7 | **TM-05:** Dual-scope injection strategy — memory auto-surface at lifecycle hooks | 4-6 | Memory quality/Spec-Kit | — |
+| | **Total** | **68-98h** | | |
 
 **Internal Phasing:**
 - **Phase A (Pipeline):** R6 pipeline refactor (40-55h) — checkpoint before start; 0 ordering differences gate
@@ -330,7 +352,7 @@ After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1
 | S1 | LOW | Disable `SPECKIT_DEGREE_BOOST`; revert R4 | 1-2h |
 | S2 | LOW | Drop cache table; disable `SPECKIT_NOVELTY_BOOST` | 2-3h |
 | S3 | MEDIUM | Disable 3 flags together (R15+R2+R14/N1 interact) | 3-5h |
-| S4 | MEDIUM-HIGH | Disable R11 flag; clear learned_triggers; R1 independent | 4-6h |
+| S4 | MEDIUM-HIGH | Disable R11 flag; clear learned_triggers; disable TM-04/TM-06 flags; R1 independent | 5-7h |
 | S5 | HIGH | Restore from checkpoint (5.1); revert R6; re-run tests | 8-12h |
 | S6 | HIGH | Edge deletions from N3-lite destructive; use `created_by` provenance | 12-20h |
 
@@ -383,19 +405,19 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 
 | Sprint | Complexity | Estimated Effort |
 |--------|------------|------------------|
-| Sprint 0: Epistemological Foundation | High (blocking) | 45-70h |
-| Sprint 1: Graph Signal Activation | Medium | 24-35h |
-| Sprint 2: Scoring Calibration | Medium | 21-32h |
+| Sprint 0: Epistemological Foundation | High (blocking) | 47-73h |
+| Sprint 1: Graph Signal Activation | Medium | 26-39h |
+| Sprint 2: Scoring Calibration | Medium | 28-43h |
 | Sprint 3: Query Intelligence | Medium-High | 34-53h |
-| Sprint 4: Feedback Loop | High | 60-89h |
-| Sprint 5: Pipeline Refactor | Very High | 64-92h |
+| Sprint 4: Feedback Loop | High | 72-109h |
+| Sprint 5: Pipeline Refactor | Very High | 68-98h |
 | Sprint 6: Graph Deepening | Very High | 68-101h |
 | Sprint 7: Long Horizon | Medium | 45-62h |
-| **Total (S0-S6)** | | **316-472h** |
-| **Total (S0-S7)** | | **361-534h** |
+| **Total (S0-S6)** | | **343-516h** |
+| **Total (S0-S7)** | | **388-596h** |
 
 **Resource Planning:**
-- Solo developer (~15h/week): 21-31 weeks (S0-S6)
+- Solo developer (~15h/week): 23-34 weeks (S0-S6)
 - Dual developers: 9-13 weeks (independent tracks A-G assigned)
 - Critical path: G1→R4→R13-S1→R14/N1→R6 = ~90-125h sequential regardless of parallelism
 <!-- /ANCHOR:effort -->
@@ -422,6 +444,7 @@ Sprint 0 (Foundation) ─────► Sprint 1 (Graph Signal) ─────
 |--------|--------|-----------------|
 | S0 | `CREATE DATABASE speckit-eval.db` (5 tables) | Delete file |
 | S2 | `CREATE TABLE embedding_cache` | `DROP TABLE embedding_cache` |
+| S2 | `ALTER TABLE memory_index ADD COLUMN interference_score REAL DEFAULT 0` | Set column to 0 (neutral) |
 | S4 | `ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'` | `DROP COLUMN` (SQLite 3.35.0+) |
 
 ### Migration Protocol (9 Rules)

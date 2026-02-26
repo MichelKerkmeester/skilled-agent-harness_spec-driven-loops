@@ -115,10 +115,26 @@ Pipeline extension + schema migration — R1 appends aggregation stage, R11 adds
 - [ ] Implement ground truth Phase B (expanded annotations)
 - [ ] Full A/B comparison infrastructure
 
-### Phase 4: Verification
+### Phase 4: TM-04 Pre-Storage Quality Gate (6-10h)
+- [ ] Implement Layer 1 structural validation (existing checks, formalised)
+- [ ] Implement Layer 2 content quality scoring — evaluate title, triggers, length, anchors, metadata, signal density; reject if signal density < 0.4
+- [ ] Implement Layer 3 semantic dedup — compute cosine similarity against existing memories; reject if >0.92 similarity found
+- [ ] Wire all 3 layers behind `SPECKIT_SAVE_QUALITY_GATE` feature flag
+
+### Phase 5: TM-06 Reconsolidation-on-Save (6-10h)
+- [ ] Create checkpoint: `memory_checkpoint_create("pre-reconsolidation")` before enabling
+- [ ] After embedding generation, query top-3 most similar memories in `spec_folder`
+- [ ] Implement merge path (similarity >=0.88): merge content, increment frequency counter
+- [ ] Implement conflict path (0.75–0.88): replace memory, add causal supersedes edge
+- [ ] Implement complement path (<0.75): store new memory unchanged
+- [ ] Wire behind `SPECKIT_RECONSOLIDATION` feature flag
+
+### Phase 6: Verification
 - [ ] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression)
 - [ ] Analyze R11 shadow log (noise rate <5%)
 - [ ] Verify FTS5 contamination test
+- [ ] Verify TM-04 quality gate rejects low-quality saves and near-duplicates (>0.92)
+- [ ] Verify TM-06 reconsolidation — merge/replace/store paths behave correctly
 - [ ] Sprint 4 exit gate verification
 <!-- /ANCHOR:phases -->
 
@@ -174,10 +190,12 @@ Phase 3 (R13-S2 Shadow Scoring) ─────┘
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Phase 1 (R1) | Sprint 3 exit gate | Phase 4 |
-| Phase 2 (R11) | Sprint 3 exit gate, R13 2+ eval cycles | Phase 4 |
-| Phase 3 (R13-S2) | Sprint 3 exit gate | Phase 4 |
-| Phase 4 (Verify) | Phase 1, Phase 2, Phase 3 | None |
+| Phase 1 (R1) | Sprint 3 exit gate | Phase 6 |
+| Phase 2 (R11) | Sprint 3 exit gate, R13 2+ eval cycles | Phase 6 |
+| Phase 3 (R13-S2) | Sprint 3 exit gate | Phase 6 |
+| Phase 4 (TM-04 Quality Gate) | Sprint 3 exit gate | Phase 6 |
+| Phase 5 (TM-06 Reconsolidation) | Sprint 3 exit gate, Checkpoint | Phase 6 |
+| Phase 6 (Verify) | Phase 1, Phase 2, Phase 3, Phase 4, Phase 5 | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -190,8 +208,10 @@ Phase 3 (R13-S2 Shadow Scoring) ─────┘
 | Phase 1: R1 MPAB | Medium | 8-12h |
 | Phase 2: R11 Learned Feedback | High | 16-24h |
 | Phase 3: R13-S2 Shadow Scoring | Medium-High | 15-20h |
-| Phase 4: Verification | Low | included |
-| **Total** | | **39-56h** |
+| Phase 4: TM-04 Pre-Storage Quality Gate | Medium | 6-10h |
+| Phase 5: TM-06 Reconsolidation-on-Save | Medium | 6-10h |
+| Phase 6: Verification | Low | included |
+| **Total** | | **51-76h** |
 <!-- /ANCHOR:effort -->
 
 ---

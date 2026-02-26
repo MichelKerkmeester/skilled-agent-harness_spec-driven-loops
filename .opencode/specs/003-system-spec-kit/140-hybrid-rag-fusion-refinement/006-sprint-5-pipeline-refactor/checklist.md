@@ -72,6 +72,12 @@ contextType: "implementation"
 ### S2/S3 — Spec-Kit Retrieval Metadata
 - [ ] CHK-050 [P1] S2 anchor-aware retrieval metadata present in results
 - [ ] CHK-051 [P1] S3 validation metadata integrated into scoring
+
+### TM-05 — Dual-Scope Auto-Surface Hooks
+- [ ] CHK-055 [P1] TM-05 auto-surface hook fires at tool dispatch lifecycle point
+- [ ] CHK-056 [P1] TM-05 auto-surface hook fires at session compaction lifecycle point
+- [ ] CHK-057 [P1] TM-05 per-point token budget of 4000 enforced — no overrun
+- [ ] CHK-058 [P1] TM-05 no regression in existing auto-surface behavior (`hooks/auto-surface.ts`)
 <!-- /ANCHOR:sprint-5-verification -->
 
 ---
@@ -114,7 +120,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 23 | [ ]/23 |
+| P1 Items | 27 | [ ]/27 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

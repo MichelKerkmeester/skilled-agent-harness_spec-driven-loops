@@ -81,6 +81,7 @@ Two independent subsystem tracks converging at verification
 - [ ] G1: Fix graph ID format in `graph-search-fn.ts` lines 110 AND 151 — convert `mem:${edgeId}` to numeric (3-5h)
 - [ ] G3: Fix chunk collapse conditional in `memory-search.ts` — dedup on ALL paths (2-4h)
 - [ ] R17: Add fan-effect divisor to co-activation in `co-activation.ts` (1-2h)
+- [ ] TM-02: Add SHA256 content-hash fast-path dedup in `memory-save.ts` — O(1) check BEFORE embedding generation, rejects exact duplicates in same `spec_folder` (2-3h)
 
 ### Phase 2: Eval Infrastructure (Track 2 — sequential)
 - [ ] R13-S1: Create `speckit-eval.db` with 5-table schema (8-10h)
@@ -170,11 +171,11 @@ Phase 2 (Eval Infrastructure) ──────────┤
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Phase 1 (Bug Fixes) | Low-Medium | 6-11h |
+| Phase 1 (Bug Fixes) | Low-Medium | 8-14h |
 | Phase 2 (Eval Infrastructure) | High | 18-24h |
 | Phase 3 (Baseline) | Medium | 6-10h |
 | Phase 4 (Verification) | Low | Included in phases |
-| **Total** | | **30-45h** |
+| **Total** | | **32-48h** |
 <!-- /ANCHOR:effort -->
 
 ---

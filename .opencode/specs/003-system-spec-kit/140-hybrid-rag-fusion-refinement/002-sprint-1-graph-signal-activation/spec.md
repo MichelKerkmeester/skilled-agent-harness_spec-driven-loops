@@ -92,6 +92,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 | `graph-search-fn.ts` | Modify | R4: Typed-weighted degree computation SQL + normalization |
 | `rrf-fusion.ts` | Modify | R4: Integration as 5th RRF channel |
 | `hybrid-search.ts` | Modify | R4: Degree score integration into search pipeline |
+| `trigger-extractor.ts` | Modify | TM-08: Add CORRECTION and PREFERENCE signal categories |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -112,6 +113,12 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 | REQ-S1-002 | Edge density measurement from R13 eval data | Edge density (edges/node) computed; R10 escalation decision documented if density < 0.5 |
 | REQ-S1-003 | **G-NEW-2**: Agent consumption instrumentation + initial UX analysis | Consumption patterns logged; initial pattern report generated |
 | REQ-S1-004 | **A7**: Co-activation boost strength increase — raise base multiplier from 0.1x to 0.25-0.3x with configurable coefficient | Graph channel effective contribution >=15% at hop 2 (up from ~5%). Dark-run verified. |
+
+### P2 - Optional (can defer with documented reason)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-S1-005 | **TM-08**: Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") from true-mem's 8-category vocabulary | CORRECTION and PREFERENCE signal categories recognised and classified correctly by trigger extractor |
 <!-- /ANCHOR:requirements -->
 
 ---

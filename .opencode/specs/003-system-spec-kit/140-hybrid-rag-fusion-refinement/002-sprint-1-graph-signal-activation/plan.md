@@ -92,9 +92,10 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 - [ ] Compute edge density (edges/node) from `causal_edges` data (2-3h)
 - [ ] Document R10 escalation decision based on density threshold (included)
 
-### Phase 4: Agent UX
+### Phase 4: Agent UX + Signal Vocabulary
 - [ ] G-NEW-2: Agent consumption instrumentation — add logging for consumption patterns (4-6h)
 - [ ] G-NEW-2: Initial pattern analysis and report (4-6h)
+- [ ] TM-08: Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") based on true-mem's 8-category vocabulary (2-4h)
 
 ### Phase 5: Dark-Run and Verification
 - [ ] Enable R4 in dark-run mode — shadow scoring alongside existing 4-channel results (included)
@@ -174,9 +175,9 @@ Phase 4 (Agent UX) ────────────────────�
 | Phase 1 (Degree Computation) | Medium | 8-10h |
 | Phase 2 (RRF Integration) | Medium | 4-6h |
 | Phase 3 (Measurement) | Low | 2-3h |
-| Phase 4 (Agent UX) | Medium | 8-12h |
+| Phase 4 (Agent UX + Signal Vocabulary) | Medium | 10-16h |
 | Phase 5 (Dark-Run) | Low | Included |
-| **Total** | | **22-31h** |
+| **Total** | | **24-35h** |
 <!-- /ANCHOR:effort -->
 
 ---

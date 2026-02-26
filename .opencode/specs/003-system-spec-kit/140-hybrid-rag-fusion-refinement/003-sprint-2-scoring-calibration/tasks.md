@@ -64,26 +64,30 @@ contextType: "implementation"
 - [ ] T004 Implement score normalization — both RRF and composite to [0,1] range (`rrf-fusion.ts`, `composite-scoring.ts`) [4-6h] {T003} — Calibration (REQ-S2-004)
   - Note: Normalization approach may depend on G2 outcome
 - [ ] T004a [P] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100}, measure MRR@5 delta per value [2-3h] {T004} — Calibration (REQ-S2-005)
+- [ ] T005 [P] Implement interference scoring — add `interference_score` column to `memory_index` (migration), compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`, apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] — TM-01 (REQ-S2-006)
+- [ ] T006 [P] Implement classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) [3-5h] — TM-03 (REQ-S2-007)
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 ## Phase 4: Verification
 
-- [ ] T005 Verify dark-run results for N4 and normalization — new memories visible, old not displaced, MRR@5 not regressed [included] {T002, T004}
-- [ ] T006 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005}
+- [ ] T007 Verify dark-run results for N4 and normalization — new memories visible, old not displaced, MRR@5 not regressed [included] {T002, T004}
+- [ ] T008 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005, T006, T007}
   - [ ] R18 cache hit >90% on unchanged content re-index
   - [ ] N4 dark-run passes
   - [ ] G2 resolved: fixed or documented as intentional
   - [ ] Score distributions normalized to [0,1]
   - [ ] RRF K-value investigation completed; optimal K documented
+  - [ ] TM-01 interference penalty active; high-similarity cluster scores reduced; no false penalties
+  - [ ] TM-03 classification-based decay verified — constitutional/critical memories not decaying; temporary memories decaying faster
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T006 (including T004a) marked `[x]`
+- [ ] All tasks T001-T008 (including T004a, T005, T006) marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 2 exit gate (T006) passed
 - [ ] 8-12 new tests added and passing

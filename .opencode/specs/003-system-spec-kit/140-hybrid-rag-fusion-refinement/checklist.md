@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~103 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
+description: "~114 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), and L3+ governance."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -111,6 +111,7 @@ contextType: "implementation"
 - [ ] CHK-S08 [P1] Quality proxy formula (B7) operational for automated regression detection
 - [ ] CHK-S09 [P1] Observer effect mitigation (D4) verified — search p95 increase ≤10% with eval logging
 - [ ] CHK-S0A [P1] Signal ceiling governance (B8) documented — max 12 active scoring signals policy in effect
+- [ ] CHK-S0B [P0] TM-02 content-hash dedup operational — memory_save rejects exact duplicate content_hash in same spec_folder before embedding generation
 
 ### Sprint 1: Graph Signal Activation [P0]
 
@@ -119,6 +120,7 @@ contextType: "implementation"
 - [ ] CHK-S12 [P0] Edge density measured; if < 0.5 edges/node, R10 priority escalated
 - [ ] CHK-S13 [P1] G-NEW-2: Agent consumption instrumentation active; initial pattern report drafted
 - [ ] CHK-S15 [P1] Co-activation boost strength (A7) increased to 0.25-0.3x; effective contribution ≥15% at hop 2
+- [ ] CHK-S16 [P1] TM-08 importance signal vocabulary expanded — CORRECTION and PREFERENCE signal categories recognized by trigger extraction
 
 ### Sprint 2: Scoring Calibration [P1]
 
@@ -127,6 +129,8 @@ contextType: "implementation"
 - [ ] CHK-S22 [P1] G2 resolved: double intent weighting fixed or documented as intentional
 - [ ] CHK-S23 [P1] Score distributions from RRF and composite normalized to comparable [0,1] ranges
 - [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
+- [ ] CHK-S26 [P1] TM-01 interference scoring signal operational — interference_score column populated at index time; composite scoring applies negative weight behind flag
+- [ ] CHK-S27 [P1] TM-03 classification-based decay verified — decisions and constitutional memories show 0 decay; temporary memories decay at 0.5x rate; standard memories unchanged
 
 ### Sprint 3: Query Intelligence [P1]
 
@@ -149,6 +153,10 @@ contextType: "implementation"
 - [ ] CHK-S47 [P1] Negative feedback confidence signal (A4) active — demotion floor at 0.3, no over-suppression
 - [ ] CHK-S48 [P1] Chunk ordering preservation (B2) — multi-chunk memories in document order after collapse
 - [ ] CHK-S49 [P1] R11 activation gate: minimum 200 query-selection pairs accumulated before R11 mutations enabled
+- [ ] CHK-S4A [P1] TM-04 quality gate operational — quality score computed for every memory_save; saves below 0.4 rejected; near-duplicates (>0.92 similarity) flagged with quality_flags
+- [ ] CHK-S4B [P1] TM-06 reconsolidation-on-save verified — duplicate detection (>=0.88 similarity) increments frequency; conflict resolution (0.75-0.88) creates supersedes edge; complement (<0.75) stores as new
+- [ ] CHK-S4C [P1] TM-06 checkpoint safety — memory_checkpoint_create() required before enabling SPECKIT_RECONSOLIDATION flag
+- [ ] CHK-S4D [P1] TM-04/TM-06 reconsolidation decisions logged for R13 review — all merge/replace/complement actions recorded
 
 ### Sprint 5: Pipeline Refactor [P1]
 
@@ -161,6 +169,7 @@ contextType: "implementation"
 - [ ] CHK-S56 [P1] R12 expansion does not degrade simple query latency
 - [ ] CHK-S57 [P1] S2 template anchor optimization: anchor-aware retrieval metadata available and functional
 - [ ] CHK-S58 [P1] S3 validation signals integrated as retrieval metadata in scoring pipeline
+- [ ] CHK-S5A [P1] TM-05 dual-scope injection operational — memory auto-surface hooks active at >=2 lifecycle points with per-point token budgets enforced
 
 ### Sprint 6: Graph Deepening [P1]
 
@@ -197,6 +206,8 @@ contextType: "implementation"
 - [ ] CHK-104 [P0] ADR-004 (Evaluation First) verified: R13 eval infrastructure operational before any scoring change enabled
 - [ ] CHK-SC06 [P1] Evaluation ground truth exceeds 500 query-relevance pairs (SC-006)
 - [ ] CHK-SC07 [P1] Graph edge density exceeds 1.0 edges/node (SC-007)
+- [ ] CHK-105 [P1] TM-01 + R17 combined penalty capped at 0.15 (no double fan-effect suppression)
+- [ ] CHK-106 [P1] TM-06 reconsolidation respects constitutional tier — constitutional memories NEVER auto-replaced regardless of similarity
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -263,10 +274,10 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 21 | [ ]/21 |
-| P1 Items | 70 | [ ]/70 |
+| P0 Items | 22 | [ ]/22 |
+| P1 Items | 80 | [ ]/80 |
 | P2 Items | 12 | [ ]/12 |
-| **Total** | **103** | **[ ]/103** |
+| **Total** | **114** | **[ ]/114** |
 
 **Verification Date**: [YYYY-MM-DD]
 

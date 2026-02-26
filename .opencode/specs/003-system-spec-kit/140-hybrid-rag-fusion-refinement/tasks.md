@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "78 tasks across 8 metric-gated sprints (316-472h S0-S6, 361-534h S0-S7) organized by workstream with sprint gate verification tasks."
+description: "86 tasks across 8 metric-gated sprints (343-516h S0-S6, 388-596h S0-S7) organized by workstream with sprint gate verification tasks."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -34,7 +34,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-0 -->
-## Sprint 0: Epistemological Foundation [45-70h]
+## Sprint 0: Epistemological Foundation [47-73h]
 
 > **Goal**: Establish that retrieval is measurable. BLOCKING — nothing proceeds without exit gate.
 > **Child folder**: `001-sprint-0-epistemological-foundation/`
@@ -52,13 +52,14 @@ contextType: "implementation"
 - [ ] T006 [W-C] Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics + full-context ceiling (A2) + quality proxy formula (B7/REQ-035) [14-21h] {T004} — R13-S1
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) [2-4h] {T004} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
-- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T000a-T008}
+- [ ] T054 [W-A] Implement content-hash fast-path dedup in memory_save handler — SHA256 check before embedding generation, reject exact duplicates in same spec_folder [2-3h] {} — TM-02/REQ-039
+- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision [0h] {T000a-T008, T054}
 <!-- /ANCHOR:sprint-0 -->
 
 ---
 
 <!-- ANCHOR:sprint-1 -->
-## Sprint 1: Graph Signal Activation [24-35h]
+## Sprint 1: Graph Signal Activation [26-39h]
 
 > **Goal**: Make graph the system's differentiating signal.
 > **Child folder**: `002-sprint-1-graph-signal-activation/`
@@ -67,6 +68,7 @@ contextType: "implementation"
   - T010a [P] Increase co-activation boost strength from 0.1x to 0.25-0.3x [2-4h] {T003} — A7/REQ-032
 - [ ] T011 [W-C] Measure edge density from R13 data (edges/node metric) [2-3h] {T009} — R4 dependency check
 - [ ] T012 [W-C] Agent-as-consumer UX analysis + consumption instrumentation [8-12h] {T009} — G-NEW-2
+- [ ] T055 [P] [W-A] Expand importance signal vocabulary in trigger-extractor.ts — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") [2-4h] {T009} — TM-08/REQ-045
 
 > **Review Note (REF-057):** Consider moving G-NEW-2 pre-analysis to Sprint 0 to inform R13 eval design. Currently in Sprint 1 — evaluate during Sprint 0 planning.
 
@@ -77,7 +79,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-2 -->
-## Sprint 2: Scoring Calibration + Operational Efficiency [21-32h]
+## Sprint 2: Scoring Calibration + Operational Efficiency [28-43h]
 
 > **Goal**: Resolve dual scoring magnitude mismatch; enable zero-cost re-indexing.
 > **Child folder**: `003-sprint-2-scoring-calibration/`
@@ -88,6 +90,8 @@ contextType: "implementation"
 - [ ] T018 [W-A] Implement score normalization (both RRF and composite to [0,1] scale) [4-6h] {T017} — Score calibration
 - [ ] T019 [W-C] Verify dark-run results for N4 and score normalization via R13 [included] {T016, T018}
 - [ ] T020a [P] [W-A] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] {T014} — FUT-5
+- [ ] T056 [P] [W-A] Implement interference scoring signal — add interference_score column, compute at index time (count similar memories in spec_folder), apply as -0.08 weight in composite scoring behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] {T014} — TM-01/REQ-040
+- [ ] T057 [P] [W-A] Implement classification-based decay policies — modify fsrs-scheduler.ts to apply decay multipliers by context_type (decisions: no decay, research: 2x stability) and importance_tier (critical: no decay, temporary: 0.5x stability) [3-5h] {T014} — TM-03/REQ-041
 - [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized [0h] {T015-T019}
 <!-- /ANCHOR:sprint-2 -->
 
@@ -113,7 +117,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-4 -->
-## Sprint 4: Feedback Loop + Chunk Aggregation [60-89h]
+## Sprint 4: Feedback Loop + Chunk Aggregation [72-109h]
 
 > **Goal**: Close the feedback loop; aggregate chunk scores safely.
 > **Prerequisite**: R13 must have completed at least 2 full eval cycles.
@@ -129,6 +133,8 @@ contextType: "implementation"
   - T027d Activate negative feedback confidence signal (demotion multiplier, floor=0.3) [4-6h] — A4/REQ-033
 - [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025} — R13-S2
   - T028a Implement Exclusive Contribution Rate metric per channel [2-3h]
+- [ ] T058 [W-A] Implement pre-storage quality gate in memory_save handler — structural validation + content quality scoring (title, triggers, length, anchors, metadata, signal density) + semantic near-duplicate detection (>0.92 similarity = reject) behind `SPECKIT_SAVE_QUALITY_GATE` flag [6-10h] {T025} — TM-04/REQ-042
+- [ ] T059 [W-A] Implement reconsolidation-on-save pipeline — after embedding generation, check top-3 similar memories: >=0.88 = merge (increment frequency), 0.75-0.88 = replace (add supersedes edge), <0.75 = store new; behind `SPECKIT_RECONSOLIDATION` flag with mandatory checkpoint [6-10h] {T025} — TM-06/REQ-043
 - [ ] T029 [W-C] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression) [included] {T026}
 - [ ] T030 [W-C] Analyze R11 shadow log (noise rate < 5%) [included] {T027}
 - [ ] T031 [GATE] Sprint 4 exit gate verification: R1 within 2%, R11 noise <5%, R13-S2 operational [0h] {T026-T030}
@@ -137,7 +143,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-5 -->
-## Sprint 5: Pipeline Refactor + Spec-Kit Logic [64-92h]
+## Sprint 5: Pipeline Refactor + Spec-Kit Logic [68-98h]
 
 > **Goal**: Modernize pipeline architecture; add spec-kit retrieval optimizations.
 > **Child folder**: `006-sprint-5-pipeline-refactor/`
@@ -153,6 +159,7 @@ contextType: "implementation"
 - [ ] T037 [P] [W-D] Implement embedding-based query expansion (suppressed when R15="simple") behind `SPECKIT_EMBEDDING_EXPANSION` flag [10-15h] {T035} — R12
 - [ ] T038 [P] [W-D] Implement template anchor optimization [5-8h] {T035} — S2
 - [ ] T039 [P] [W-D] Implement validation signals as retrieval metadata [4-6h] {T035} — S3
+- [ ] T060 [P] [W-D] Implement dual-scope injection strategy — add memory auto-surface hooks at tool dispatch and compaction lifecycle points, with per-point token budgets [4-6h] {T035} — TM-05/REQ-044
 - [ ] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation [0h] {T033-T039}
 <!-- /ANCHOR:sprint-5 -->
 
@@ -220,13 +227,15 @@ contextType: "implementation"
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
 - **Research (Recommendations)**: See `research/142 - FINAL-recommendations-hybrid-rag-fusion-refinement.md`
+- **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md`
+- **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---
 
 <!--
 LEVEL 3+ TASKS
-- 78 tasks across 8 metric-gated sprints
+- 86 tasks across 8 metric-gated sprints
 - Workstream tags (W-A through W-D)
 - Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047, T053)
 - Off-ramp marker after Sprint 3

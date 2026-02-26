@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 36-recommendation program across 8 metric-gated sprints (316-472h for S0-S6, 361-534h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -78,6 +78,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | **Pipeline** | R6, R9, R15 | S3, S5 |
 | **Indexing** | R7, R8, R18 | S2, S6, S7 |
 | **Spec-Kit logic** | S1, S2, S3, S4, S5 | S5-S7 |
+| **Memory quality** (NEW) | TM-01, TM-02, TM-03, TM-04, TM-05, TM-06, TM-08 | S0, S1, S2, S4, S5 |
 
 ### Out of Scope
 
@@ -101,6 +102,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | Pipeline | `memory-search.ts` (refactored stages) | Modify |
 | Indexing | `memory_index` schema, embedding pipeline | Modify |
 | Spec-Kit logic | Template processing, validation handlers | Modify |
+| Memory quality (NEW) | `memory-save.ts`, `composite-scoring.ts`, `fsrs-scheduler.ts`, `trigger-extractor.ts` | Modify |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -113,12 +115,12 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| 1 | `001-sprint-0-epistemological-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (45-70h) | None (BLOCKING) | Pending |
-| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2 (24-35h) | Sprint 0 gate | Pending |
-| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (21-32h) | Sprint 1 gate | Pending |
+| 1 | `001-sprint-0-epistemological-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (47-73h) | None (BLOCKING) | Pending |
+| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2 (26-39h) | Sprint 0 gate | Pending |
+| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (28-43h) | Sprint 1 gate | Pending |
 | 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 2 gate | Pending |
-| 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (60-89h) | Sprint 3 gate + R13 2 eval cycles | Pending |
-| 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (64-92h) | Sprint 4 gate | Pending |
+| 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
+| 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (68-98h) | Sprint 4 gate | Pending |
 | 7 | `007-sprint-6-graph-deepening/` | R7, R16, R10, N2, N3-lite, S4 (68-101h) | Sprint 5 gate | Pending |
 | 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6 gate | Pending |
 
@@ -158,6 +160,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-004 | **G-NEW-1:** BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid | S0 |
 | REQ-035 | **B7:** Quality proxy formula for automated regression detection | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
 | REQ-036 | **D4:** Observer effect mitigation for R13 eval logging | Search p95 increase ≤10% with eval logging enabled | S0 |
+| REQ-039 | **TM-02:** Content-hash fast-path deduplication — SHA256 hash check BEFORE embedding generation in memory_save pipeline | Hash check rejects exact duplicate on save; no duplicate content_hash entries in same spec_folder | S0 |
 | REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 | R4 dark-run passes; MRR@5 delta > +2% absolute. **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** | S1 |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -181,6 +184,12 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-034 | **B2:** Chunk ordering preservation in reassembly | Collapsed chunks appear in `chunk_index` order | S4 |
 | REQ-037 | **A2:** Full-context ceiling evaluation (LLM baseline comparison) | Full-context ceiling MRR@5 recorded; 2x2 decision matrix (A2 × G-NEW-1) evaluated at Sprint 0 exit | S0 |
 | REQ-038 | **B8:** Signal count ceiling governance (max 12 active scoring signals) | Signal ceiling policy documented and enforced; escape clause requires R13 orthogonal-value evidence | Cross-cutting |
+| REQ-040 | **TM-01:** Interference scoring signal — negative weight penalizing memories with high-similarity competitors in same spec_folder | Interference score computed at index time; composite scoring includes -0.08 * interference factor behind feature flag | S2 |
+| REQ-041 | **TM-03:** Classification-based decay policies — FSRS decay multipliers vary by context_type and importance_tier (decisions: no decay, temporary: fast decay) | Decay behavior differs measurably between context_types; decisions/constitutional memories show 0 decay over 30 days | S2 |
+| REQ-042 | **TM-04:** Pre-storage quality gate — multi-layer validation pipeline (structural + content quality + semantic dedup) BEFORE embedding generation | Quality score computed for every save; saves below 0.4 threshold rejected; near-duplicates (>0.92 similarity) flagged | S4 |
+| REQ-043 | **TM-06:** Reconsolidation-on-save — automatic duplicate/conflict/complement decision when saving memories similar to existing ones | Similarity >=0.88 merges (frequency increment); 0.75-0.88 replaces (with supersedes edge); <0.75 stores as new | S4 |
+| REQ-044 | **TM-05:** Dual-scope injection strategy — memory auto-surface at multiple lifecycle points (context load, tool dispatch, compaction) | Memory injection hooks active at >=2 lifecycle points beyond explicit search | S5 |
+| REQ-045 | **TM-08:** Importance signal vocabulary expansion — add CORRECTION and PREFERENCE signal categories to trigger extraction | Trigger extraction recognizes correction signals ("actually", "wait", "I was wrong") and preference signals ("prefer", "like", "want") | S1 |
 
 ### P2 - Desired (complete OR defer with documented reason)
 
@@ -240,6 +249,8 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | MR8 | R4+N3+R10 three-way interaction — spurious R10 auto-extracted entities strengthened by N3 Hebbian learning, boosted by R4 degree scoring | HIGH | R4, N3, R10 | Entity extraction quality gate (FP <20%); N3 strength cap (MAX_STRENGTH_INCREASE=0.05/cycle); R4 degree normalization |
 | MR9 | S5 rollback conflates DB checkpoint and code rollback — both needed for safe reversion of R6 pipeline refactor | HIGH | R6 | Dual rollback protocol: (1) `checkpoint_restore` for data, (2) git revert for code; document both in rollback procedure |
 | MR10 | S6 N3-lite Hebbian weight modifications not tracked by `created_by` provenance — only new edges tracked, not weight changes to existing edges | HIGH | N3-lite | Add `weight_history` audit column or log weight changes to eval DB for rollback capability |
+| MR11 | TM-06 reconsolidation auto-replacement — miscalibrated similarity thresholds could auto-replace valuable content with inferior newer content | MEDIUM | TM-06 | Feature flag + checkpoint required before enabling; log all reconsolidation decisions for R13 review |
+| MR12 | TM-04 quality gate over-filtering — overly strict thresholds could reject legitimate memory saves | MEDIUM | TM-04 | Start with warn-only mode (log scores, don't reject) for 2 weeks; tune thresholds based on false-rejection rate |
 
 ### Dangerous Interaction Pairs
 
@@ -250,6 +261,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | R15 + R2 | Guarantee violation | R15 minimum = 2 channels |
 | R12 + R15 | Contradictory logic | Mutual exclusion: R15="simple" suppresses R12 |
 | N4 + R11 | Transient artifact learning | Exclude memories < 72h old from R11 eligibility |
+| TM-01 + R17 | Double fan-effect penalty | TM-01 penalizes in composite scoring; R17 penalizes in co-activation. Cap combined penalty at 0.15 |
 | R13 + R15 | Metrics skew by complexity | R13 records query_complexity; metrics per tier |
 
 ### Deploy Disaster Scenario (R11)
@@ -446,6 +458,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 ### v1.0 (2026-02-26)
 **Initial specification** from research synthesis of 13 independent agent investigations across 3 waves. Supersedes all prior 140/141 analyses and recommendations.
 
+### v1.1 (2026-02-26)
+**true-mem pattern integration** — Added 7 recommendations (TM-01 through TM-06, TM-08) from true-mem research (research/9 + research/10). New REQ-039 to REQ-045. New risks MR11, MR12. Deferred TM-07 as DEF-015. Effort increased by +27-44h (~8-9%).
+
 ---
 
 ## 16. OPEN QUESTIONS
@@ -478,6 +493,7 @@ Items evaluated in the 144 gap analysis but deferred pending future data or off-
 | DEF-012 | Weighted Chunk Selection via Reference Frequency | S6 | Subject to B8 signal ceiling governance |
 | DEF-013 | Context Drift Detection (periodic validity audits for old memories) | S6 | Long-term maintenance concern |
 | DEF-014 | structuralFreshness() Decision (dead code: keep or remove) | S7 | Evaluate during S7 planning |
+| DEF-015 | TM-07: Role-aware extraction weights (10x human message weight for conversation-sourced memories) | Post-S7 | Auto-extraction feature is planned and under development |
 
 **Evaluation trigger**: Re-assess at Sprint 3 off-ramp and Sprint 6 planning.
 
@@ -490,6 +506,8 @@ Items evaluated in the 144 gap analysis but deferred pending future data or off-
 - **Verification Checklist**: See `checklist.md`
 - **Research (Analysis)**: See `research/142 - FINAL-analysis-hybrid-rag-fusion-architecture.md`
 - **Research (Recommendations)**: See `research/142 - FINAL-recommendations-hybrid-rag-fusion-refinement.md`
+- **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md`
+- **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md`
 
 ---
 

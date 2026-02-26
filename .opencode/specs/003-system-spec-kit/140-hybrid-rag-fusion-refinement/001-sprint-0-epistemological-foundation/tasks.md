@@ -37,6 +37,7 @@ contextType: "implementation"
 - [ ] T001 [P] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] — G1 (REQ-S0-001)
 - [ ] T002 [P] Fix chunk collapse conditional — dedup on ALL code paths including `includeContent=false` (`memory-search.ts`) [2-4h] — G3 (REQ-S0-002)
 - [ ] T003 [P] Add fan-effect divisor to co-activation scoring (`co-activation.ts`) [1-2h] — R17 (REQ-S0-005)
+- [ ] T054 [P] Add SHA256 content-hash fast-path dedup in `memory-save.ts` — compute hash BEFORE embedding generation; O(1) lookup rejects exact duplicates within same `spec_folder`; no false positives on distinct content [2-3h] — TM-02 (REQ-S0-006)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -70,7 +71,7 @@ contextType: "implementation"
 
 ## Phase 4: Verification
 
-- [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T001, T002, T003, T004, T005, T006, T007, T008}
+- [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T001, T002, T003, T004, T005, T006, T007, T008, T054}
   - [ ] Graph hit rate > 0%
   - [ ] No duplicate chunk rows in default search
   - [ ] Baseline metrics for 50+ queries computed and stored
@@ -82,7 +83,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T009 marked `[x]`
+- [ ] All tasks T001-T009 and T054 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 0 exit gate (T009) passed
 - [ ] 8-12 new tests added and passing

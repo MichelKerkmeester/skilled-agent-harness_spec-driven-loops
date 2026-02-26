@@ -93,11 +93,13 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `embedding_cache` table | Create | R18: Cache table in primary DB |
-| `composite-scoring.ts` | Modify | N4: Cold-start boost + score normalization |
+| `composite-scoring.ts` | Modify | N4: Cold-start boost + score normalization + TM-01: interference penalty |
 | `hybrid-search.ts` | Modify | G2: Double intent weighting investigation/fix |
 | `intent-classifier.ts` | Modify | G2: Intent weighting application point (1 of 3 codebase locations) |
 | `adaptive-fusion.ts` | Modify | G2: Intent weighting application point (1 of 3 codebase locations) |
 | `rrf-fusion.ts` | Modify | Score normalization to [0,1] |
+| `memory_index` schema | Modify | TM-01: Add `interference_score` column |
+| `fsrs-scheduler.ts` | Modify | TM-03: Classification-based decay multipliers by context_type and importance_tier |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -114,6 +116,8 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 | REQ-S2-003 | **G2**: Double intent weighting investigation and resolution | Resolved: fixed (if bug) or documented as intentional design with rationale |
 | REQ-S2-004 | Score normalization — both RRF and composite in [0,1] | Both scoring systems produce outputs in [0,1] range; 15:1 mismatch eliminated |
 | REQ-S2-005 | **FUT-5**: RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} | Optimal K identified and documented; MRR@5 delta measured per K value |
+| REQ-S2-006 | **TM-01**: Interference scoring — add `interference_score` column to `memory_index`; compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`; apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag | Interference penalty active; high-similarity memory clusters show reduced individual scores; no false penalties on distinct content |
+| REQ-S2-007 | **TM-03**: Classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and by `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) | Decay rates differentiated per type/tier matrix; constitutional/critical memories never decay; temporary memories decay faster |
 <!-- /ANCHOR:requirements -->
 
 ---
