@@ -11,11 +11,11 @@
 | Method | 10 Opus research agents + 3 Sonnet ultra-think agents, 3 waves |
 | Active Recommendations | 30 (after dedup, merge, correction, and 3 new gap recommendations now included in master registry) |
 | Removed/Deferred | 5 (R3 SKIP, R5 DEFER, N5 DROP, R6-Stage4 PARKED, Gen5 PARKED) |
-| Total Effort | 240-360h realistic (2x the original 130-165h estimate) |
-| Sprint Count | 7 metric-gated sprints across 16-20 weeks |
+| Total Effort | 270-395h realistic (2x the original 130-165h estimate; itemized from S0-S6 sprint sums) |
+| Sprint Count | 7 metric-gated sprints across 18-26 weeks |
 
 **How to Read This Document:**
-- **Section 1** provides the inventory of all 28 recommendations with final priorities and effort
+- **Section 1** provides the inventory of all 30 recommendations with final priorities and effort
 - **Section 2** contains the 3 true P0 prerequisites that block everything
 - **Section 3** provides the 7-sprint implementation roadmap with go/no-go gates
 - **Section 4** has corrected code sketches (fixing div-by-zero, undefined constants, FTS5 contamination)
@@ -26,7 +26,11 @@
 - **Section 9** defines what NOT to build (anti-patterns and premature investments)
 - **Section 10** establishes feature flag governance to prevent combinatorial explosion
 - **Section 11** specifies success metrics per sprint
-- **Section 12** provides the complete "What NOT to Do" list carried from all prior analyses
+- **Section 12** specifies test expansion requirements per sprint
+- **Section 13** provides migration safety checklist for schema changes
+- **Section 14** defines dark-run performance budget and latency bounds
+- **Section 15** rates rollback complexity per sprint
+- **Section 16** provides the complete "What NOT to Do" list carried from all prior analyses
 
 ---
 
@@ -34,7 +38,7 @@
 
 ### 1.1 Master Registry
 
-All 28 active recommendations after consolidation across Spec 140, Spec 141, and 10 Wave 1-2 investigation agents. Conflict resolutions reference the Companion Analysis §2.
+All 30 active recommendations after consolidation across Spec 140, Spec 141, 10 Wave 1-2 investigation agents, and 3 new gap recommendations. Conflict resolutions reference the Companion Analysis §2.
 
 | ID | Name | Source | Priority | Effort (h) | Sprint | Evidence |
 |----|------|--------|----------|------------|--------|----------|
@@ -87,7 +91,7 @@ All 28 active recommendations after consolidation across Spec 140, Spec 141, and
 | **P0-BUG** | 2 | G1, G3 |
 | **P0-FOUNDATION** | 2 | R13, G-NEW-1 |
 | **P0** | 1 | R4 (after G1) |
-| **P1** | 10 | G2, R1, R2, R11, R14/N1, R15, R17, R18, N4, G-NEW-2 |
+| **P1** | 11 | G2, R1, R2, R11, R14/N1, R15, R17, R18, N4, G-NEW-2, G-NEW-3 |
 | **P2** | 11 | R6, R7, R9, R10, R12, R16, N2, N3, S2, S3, S4 |
 | **P3** | 3 | R8, S1, S5 |
 
@@ -210,7 +214,9 @@ if (!isNaN(memoryId)) {
 - [ ] Baseline MRR@5, NDCG@10, Recall@20 computed for at least 50 queries
 - [ ] BM25-only baseline MRR@5 recorded
 
-**If gate fails:** Do not proceed. Escalate as infrastructure crisis.
+**Partial Advancement:** G1+G3+R17 and R13-S1+G-NEW-1 are independent tracks (see §5.2). If G1+G3+R17 pass their verification criteria, Sprint 1 (R4) MAY begin in parallel with R13-S1 completion — R4 can be *built and unit-tested* without eval infrastructure (R13 is needed to *measure impact*, not to *implement*). However, R4 MUST NOT be *enabled* (flag flipped) until R13-S1 metrics are available.
+
+**If gate fails:** Do not proceed with metric-dependent sprints. Escalate as infrastructure crisis.
 
 ---
 
@@ -855,7 +861,7 @@ These negative guidelines are validated by all 13 agent investigations:
 | R6-Stage4 kitchen sink | Post-process stage must NOT change scores | R6 implementation must enforce "no score changes in Stage 4" invariant |
 | "Generation 5: Self-Improving" | Marketing language; system can be "feedback-aware" but not "self-improving" without proven closed-loop optimization | R13 running for 8+ weeks with demonstrated positive feedback signal |
 
-### 9.4 Off-Ramp Decision Points
+### 9.3 Off-Ramp Decision Points
 
 Not every sprint needs to be completed. The following table defines natural stopping points where the system has reached a meaningful quality plateau:
 
@@ -873,7 +879,7 @@ Not every sprint needs to be completed. The following table defines natural stop
 
 If all three thresholds are met after any sprint pair, further investment should be justified by specific use-case requirements rather than general quality improvement.
 
-### 9.5 Over-Engineering Detected
+### 9.4 Over-Engineering Detected
 
 | Proposal | Assessment | Simpler Alternative |
 |----------|-----------|-------------------|
@@ -952,26 +958,114 @@ After Sprint 6 completion, the system should show:
 | **Assumption** | 1 developer, ~15h/week productive implementation capacity |
 | **Parallel tracks** | A-G (from §5.2) can distribute to additional developers |
 | **Skill requirements** | TypeScript, SQLite/FTS5, IR evaluation methodology |
-| **Solo timeline** | 16-20 weeks (Sprints 0-6, excluding Sprint 7) |
-| **Dual-developer timeline** | 8-10 weeks (independent tracks A-G assigned to different developers) |
+| **Solo timeline** | 18-26 weeks (Sprints 0-6, excluding Sprint 7) |
+| **Dual-developer timeline** | 9-13 weeks (independent tracks A-G assigned to different developers) |
 | **Critical path** | G1 → R4 → R13-S1 → R14/N1 → R6 = ~90-125h sequential regardless of parallelism |
 
-> **Note:** Effort ranges are estimates. Itemized sprint sums may differ from headline totals due to rounding, overlap between independent tracks, and exclusion of Sprint 7 (Long Horizon) from core range. The Companion Analysis document uses 245-350h; this document's itemized sprints sum to 240-360h. The difference reflects rounding and minor scope variations in Sprint 5/6 decomposition.
+> **Effort reconciliation:** Itemized sprint sums: S0=30-45h, S1=22-31h, S2=19-29h, S3=26-40h, S4=39-56h, S5=64-92h, S6=68-101h = **268-394h total** (S0-S6). Headline uses rounded 270-395h. Sprint 7 (45-62h) excluded from core range. The Companion Analysis document uses 245-350h; the difference reflects this document's more conservative estimates for Sprint 5/6 after accounting for test code, flag wiring, and integration testing.
 
 ---
 
-## 12. Complete "What NOT to Do" List
+## 12. Test Expansion Strategy Per Sprint
+
+Each sprint introduces new behavior gated behind feature flags. The test suite must expand to validate both the flag-off (existing behavior preserved) and flag-on (new behavior correct) paths.
+
+| Sprint | New Tests Required | Test Focus | Estimated Test LOC |
+|--------|-------------------|------------|-------------------|
+| **S0** | 8-12 | G1: graph channel returns numeric IDs; G3: chunk dedup on all code paths; R17: fan-effect divisor bounds; R13-S1: eval DB schema creation, logging hooks fire, metric computation; G-NEW-1: BM25-only query path | 200-300 |
+| **S1** | 6-10 | R4: degree computation SQL correctness, normalization bounds, MAX_TYPED_DEGREE cache invalidation, constitutional exclusion; G-NEW-2: consumption instrumentation hooks | 250-400 |
+| **S2** | 8-12 | R18: cache hit/miss paths, LRU eviction, model version invalidation; N4: decay curve at 0h/12h/24h/48h, cap enforcement; G2: intent weight application count; score normalization bounds | 200-350 |
+| **S3** | 10-14 | R15: complexity classification accuracy (10+ test queries per tier), minimum 2-channel enforcement; R14/N1: RSF vs RRF ordering equivalence on known queries, all 3 fusion variants; R2: channel minimum-rep with empty channels, quality floor | 350-500 |
+| **S4** | 10-15 | R1: MPAB N=0, N=1, N=2, N=10 cases, metadata preservation; R11: separate column isolation from FTS5, TTL expiry, denylist enforcement, cap limits, eligibility exclusion (<72h); R13-S2: shadow scoring infrastructure, ground truth Phase B | 400-550 |
+| **S5** | 15-20 | R6: pipeline ordering equivalence (full eval corpus regression), stage boundaries (Stage 4 no-score-change invariant), all 158+ existing tests; R9: cross-folder query equivalence; R12: expansion quality, R15 mutual exclusion; S2/S3: template/validation metadata | 500-700 |
+| **S6** | 12-18 | R7: recall preservation within 10%; R10: false positive rate measurement; N2: graph feature attribution; N3-lite: contradiction detection, Hebbian bounds, edge caps; S4: hierarchy traversal | 350-500 |
+
+**Cumulative test growth:** ~70-100 new tests across S0-S6, approximately doubling the existing 158+ test suite.
+
+**Flag interaction testing:** See §10.2 item 5 for the 5-level automated testing budget covering isolation, pair, group, cross-group, and phase testing.
+
+---
+
+## 13. Migration Safety Checklist
+
+Three sprints introduce schema changes. All migrations must follow this checklist.
+
+### Schema Changes Inventory
+
+| Sprint | Change | Type | Rollback Method |
+|--------|--------|------|-----------------|
+| **S0** | `CREATE DATABASE speckit-eval.db` (5 tables) | New database | `DROP DATABASE` / delete file |
+| **S2** | `CREATE TABLE embedding_cache (...)` | New table in primary DB | `DROP TABLE embedding_cache` |
+| **S4** | `ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'` | New nullable column | `ALTER TABLE memory_index DROP COLUMN learned_triggers` (SQLite 3.35.0+) |
+
+### Migration Protocol
+
+1. **Backup before migration:** `cp speckit-memory.db speckit-memory.db.bak` before any `ALTER TABLE` or `CREATE TABLE` in the primary database
+2. **Nullable with defaults:** All new columns MUST be nullable with sensible defaults (e.g., `DEFAULT '[]'`). Never add `NOT NULL` columns to existing tables without data backfill
+3. **Forward-compatible reads:** Code must handle the column not existing (for rollback scenarios). Use `try/catch` on column access or check schema version
+4. **Separate database preference:** New subsystems (eval infrastructure) use separate SQLite files rather than extending the primary database schema
+5. **Migration ordering:** S0 eval DB is independent. S2 cache table is independent. S4 learned_triggers depends on S0 eval being operational (for R11's R13 dependency)
+6. **No destructive migrations:** Never `DROP COLUMN` or `ALTER COLUMN TYPE` in forward migrations. Only add
+7. **Atomic execution:** Each migration runs in a single transaction. Failure = full rollback, no partial state
+8. **Version tracking:** Store migration version in a `schema_version` table or pragma. Check on startup
+
+### Rollback Procedures
+
+| Scenario | Action | Data Loss |
+|----------|--------|-----------|
+| S0 eval DB corrupt | Delete `speckit-eval.db`, re-create on next run | Eval data only (regenerable from synthetic ground truth) |
+| S2 cache table issues | `DROP TABLE embedding_cache` | Cache only (re-populated on next re-index) |
+| S4 learned_triggers regression | Set all `learned_triggers = '[]'` or `DROP COLUMN` | Learned triggers only (30-day TTL data, regenerable) |
+
+---
+
+## 14. Dark-Run Performance Budget
+
+Sprints 1-5 require dark-run comparison where both old and new code paths execute simultaneously. For a real-time MCP server called by AI agents during active coding sessions, this dual execution has measurable latency impact.
+
+### Latency Bounds During Dark-Run
+
+| Sprint | Dark-Run Items | Additional Computation | Max Acceptable Overhead | Mitigation |
+|--------|---------------|----------------------|------------------------|------------|
+| **S1** | R4 degree scoring | 1 SQL query (cached) + log normalization per result | +10ms p95 | Cache MAX_TYPED_DEGREE; batch degree lookups |
+| **S2** | N4 cold-start boost | 1 timestamp comparison + exp() per result | +2ms p95 | Negligible — pure arithmetic |
+| **S3** | R15 complexity routing, R14/N1 RSF shadow | Duplicate fusion computation (RRF + RSF) | +50ms p95 | Run RSF async; log results without blocking response |
+| **S4** | R1 MPAB, R11 shadow logging | Chunk aggregation + query logging | +15ms p95 | MPAB runs on already-fetched data; logging is fire-and-forget |
+| **S5** | R6 pipeline V2 shadow | Full duplicate pipeline execution | +100ms p95 | Run V2 pipeline async in background; compare results post-response |
+
+### Hard Limits
+
+- **Search response time:** MUST NOT exceed **500ms p95** during any dark-run phase (current baseline: ~100-200ms estimated)
+- **If dark-run overhead exceeds budget:** Switch to async-only dark-run (log comparison results after response is returned to caller)
+- **Monitoring:** R13 eval logging MUST track `dark_run_overhead_ms` per query during dark-run phases
+- **Escape hatch:** If any dark-run causes p95 > 500ms for 24h, disable dark-run and switch to batch offline comparison using R13 eval corpus
+
+---
+
+## 15. Rollback Complexity Per Sprint
+
+Not all sprints are equally reversible. Later sprints accumulate schema changes, cross-subsystem dependencies, and feature flags that make rollback progressively harder.
+
+| Sprint | Rollback Difficulty | Reason | Rollback Method | Estimated Rollback Time |
+|--------|-------------------|--------|-----------------|------------------------|
+| **S0** | LOW | 3 isolated bug fixes + new separate DB | Revert 3 functions; delete eval DB | 1-2h |
+| **S1** | LOW | Single new channel behind flag | Disable `SPECKIT_DEGREE_BOOST` flag; revert R4 code | 1-2h |
+| **S2** | LOW | Additive cache table + scoring tweak | Drop cache table; disable `SPECKIT_NOVELTY_BOOST` | 2-3h |
+| **S3** | MEDIUM | 3 interacting fusion/routing changes | Disable 3 flags; but R15+R2+R14/N1 interact — must disable together or verify independent rollback | 3-5h |
+| **S4** | MEDIUM-HIGH | Schema change (learned_triggers) + feedback loop | Disable `SPECKIT_LEARN_FROM_SELECTION`; clear learned_triggers data; R1 flag independent | 4-6h |
+| **S5** | HIGH | Pipeline refactor touches core search path | Checkpoint exists (5.1); but R6 V2 pipeline may have downstream dependents by Sprint 6. Revert to checkpoint; re-run tests | 8-12h |
+| **S6** | HIGH | 6 items across 3 subsystems; graph mutations may be irreversible | Edge deletions from N3-lite are destructive; R10 auto-entities must be tagged for selective removal. Use `created_by` provenance for cleanup | 12-20h |
+
+**Key insight:** Always create a `memory_checkpoint_create()` before Sprint 5 and Sprint 6 (Sprint 5 already mandates this at item 5.1). Consider adding checkpoints before Sprint 4 as well, since R11 learned_triggers represent the first mutation-producing feedback loop.
+
+---
+
+## 16. Complete "What NOT to Do" List
 
 Consolidated from all 4 prior research documents and 13 agent investigations:
 
 ### Technical Prohibitions
-1. Do NOT apply round-robin interleaving after RRF
-2. Do NOT replace sqlite-vec's cosine with custom inner product
-3. Do NOT add HNSW indexing below 10K memories
-4. Do NOT add LLM calls to the search hot path
-5. Do NOT remove any existing search channels
-6. Do NOT adopt PageIndex's vectorless approach
-7. Do NOT claim improvements without R13 baseline metrics
+1-7. See §9.1 Anti-Patterns (carried forward from original analysis)
 8. Do NOT modify scores in pipeline Stage 4 (filter and annotate only)
 9. Do NOT apply intent weights in more than one pipeline stage
 10. Do NOT store learned triggers in the `trigger_phrases` column (use separate column)
@@ -994,7 +1088,7 @@ Consolidated from all 4 prior research documents and 13 agent investigations:
 
 ## Conclusion
 
-The 28 active recommendations converge toward a single architectural destination: **graph-differentiated, feedback-aware retrieval**. The path requires three interventions in strict order:
+The 30 active recommendations converge toward a single architectural destination: **graph-differentiated, feedback-aware retrieval**. The path requires three interventions in strict order:
 
 1. **Measure** (Sprint 0: G1+G3+R13+R17) — Fix silent failures and establish retrieval quality metrics. Without this, every subsequent change is speculation.
 
@@ -1004,7 +1098,7 @@ The 28 active recommendations converge toward a single architectural destination
 
 **The metric that tracks overall progress:** Graph channel hit rate, measured from Sprint 0 baseline (0%) through Sprint 6 completion (target: >20%). This single metric captures the system's transformation from a 3-channel retrieval system with dormant graph capabilities to a 5-channel system where the most orthogonal signal is fully activated and enriched.
 
-**Total realistic effort: 240-360h across 7 sprints over 16-20 weeks.** This is 2x the original estimate — the discrepancy comes from systematically accounting for test code, feature flag wiring, schema migrations, integration testing, and dark-run comparison that LOC-based estimates omit.
+**Total realistic effort: 270-395h across 7 sprints over 18-26 weeks** (S0-S6 itemized; Sprint 7 adds 45-62h if activated). This is 2x the original estimate — the discrepancy comes from systematically accounting for test code, feature flag wiring, schema migrations, integration testing, and dark-run comparison that LOC-based estimates omit.
 
 This synthesis supersedes all prior recommendation documents. The companion analysis (`142 - FINAL-analysis`) provides the architectural reasoning; this document provides the actionable implementation plan.
 

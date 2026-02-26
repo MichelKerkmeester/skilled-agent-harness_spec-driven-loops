@@ -1,0 +1,135 @@
+---
+title: "Verification Checklist: Sprint 3 — Query Intelligence"
+description: "Verification checklist for query complexity routing, RSF evaluation, and channel min-representation."
+trigger_phrases:
+  - "sprint 3 checklist"
+  - "query intelligence checklist"
+  - "sprint 3 verification"
+importance_tier: "important"
+contextType: "implementation"
+---
+# Verification Checklist: Sprint 3 — Query Intelligence
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
+
+---
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Sprint 2 exit gate verified (predecessor complete)
+- [ ] CHK-002 [P0] Requirements documented in spec.md
+- [ ] CHK-003 [P0] Technical approach defined in plan.md
+- [ ] CHK-004 [P1] Dependencies identified and available (eval infrastructure operational)
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Code passes lint/format checks
+- [ ] CHK-011 [P0] No console errors or warnings
+- [ ] CHK-012 [P1] Error handling implemented (R15 classifier fallback to "complex")
+- [ ] CHK-013 [P1] Code follows project patterns (feature flag gating, pipeline extension)
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:sprint-3-verification -->
+## Sprint 3 Specific Verification
+
+### R15 — Query Complexity Router
+- [ ] CHK-020 [P1] R15 p95 latency for simple queries <30ms
+- [ ] CHK-021 [P1] R15 minimum 2 channels even for simple queries (R2 compatibility)
+- [ ] CHK-022 [P1] R15 classification accuracy tested with 10+ queries per tier
+
+### R14/N1 — Relative Score Fusion
+- [ ] CHK-030 [P1] R14/N1 shadow comparison: minimum 100 queries executed
+- [ ] CHK-031 [P1] Kendall tau computed between RSF and RRF rankings
+- [ ] CHK-032 [P1] RSF decision documented (tau <0.4 = reject RSF)
+- [ ] CHK-033 [P1] All 3 fusion variants tested (single-pair, multi-list, cross-variant)
+
+### R2 — Channel Min-Representation
+- [ ] CHK-040 [P1] R2 dark-run: top-3 precision within 5% of baseline
+- [ ] CHK-041 [P1] R2 only enforces for channels that returned results
+- [ ] CHK-042 [P1] R2 quality floor 0.2 verified (below-threshold results not promoted)
+<!-- /ANCHOR:sprint-3-verification -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [ ] CHK-050 [P0] All acceptance criteria met (REQ-S3-001 through REQ-S3-003)
+- [ ] CHK-051 [P1] 10-14 new tests passing (350-500 LOC)
+- [ ] CHK-052 [P1] Edge cases tested (empty channels, all-empty, classifier failure)
+- [ ] CHK-053 [P1] Existing 158+ tests still pass
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:off-ramp -->
+## Off-Ramp Evaluation
+
+- [ ] CHK-060 [P1] Off-ramp evaluated: MRR@5 >= 0.7
+- [ ] CHK-061 [P1] Off-ramp evaluated: constitutional accuracy >= 95%
+- [ ] CHK-062 [P1] Off-ramp evaluated: cold-start recall >= 90%
+- [ ] CHK-063 [P1] Off-ramp decision documented (continue or stop)
+<!-- /ANCHOR:off-ramp -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-070 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-071 [P1] Code comments adequate
+- [ ] CHK-072 [P1] Feature flags documented
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-080 [P1] Temp files in scratch/ only
+- [ ] CHK-081 [P1] scratch/ cleaned before completion
+- [ ] CHK-082 [P2] Findings saved to memory/
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 6 | [ ]/6 |
+| P1 Items | 19 | [ ]/19 |
+| P2 Items | 1 | [ ]/1 |
+
+**Verification Date**: [YYYY-MM-DD]
+<!-- /ANCHOR:summary -->
+
+---
+
+<!--
+Level 2 checklist — Phase 4 of 8
+Sprint 3: Query Intelligence
+Mark [x] with evidence when verified
+P0 must complete, P1 need approval to defer
+-->

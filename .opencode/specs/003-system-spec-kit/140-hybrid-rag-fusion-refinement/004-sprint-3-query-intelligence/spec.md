@@ -1,0 +1,217 @@
+---
+title: "Feature Specification: Sprint 3 — Query Intelligence"
+description: "Add query complexity routing, evaluate Relative Score Fusion alternative, and enforce channel diversity."
+trigger_phrases:
+  - "sprint 3"
+  - "query intelligence"
+  - "complexity router"
+  - "RSF fusion"
+importance_tier: "important"
+contextType: "implementation"
+---
+# Feature Specification: Sprint 3 — Query Intelligence
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-02-26 |
+| **Branch** | `140-hybrid-rag-fusion-refinement` |
+| **Parent Spec** | ../spec.md |
+| **Parent Plan** | ../plan.md |
+| **Phase** | 4 of 8 |
+| **Predecessor** | ../003-sprint-2-scoring-calibration/ |
+| **Successor** | ../005-sprint-4-feedback-loop/ |
+| **Handoff Criteria** | R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:phase-context -->
+### Phase Context
+
+This is **Phase 4** of the Hybrid RAG Fusion Refinement specification.
+
+**Scope Boundary**: Sprint 3 scope boundary — query-level intelligence. Routes queries by complexity for speed, evaluates RSF as RRF alternative, enforces minimum channel representation in fusion results.
+
+**Dependencies**:
+- Sprint 2 exit gate (scoring calibration complete — R3, R7, R8, N4 verified)
+
+**Deliverables**:
+- Query complexity router with 3-tier classification (R15)
+- Relative Score Fusion evaluation with all 3 variants (R14/N1)
+- Channel min-representation constraint (R2)
+- Off-ramp evaluation checkpoint
+<!-- /ANCHOR:phase-context -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+All queries use the full 5-channel pipeline regardless of complexity, meaning simple lookups (e.g., trigger phrase matches) pay the same latency cost as complex semantic queries. No alternative to RRF fusion has been evaluated — RRF was adopted without comparison data. Post-fusion results have no channel diversity guarantee, allowing a single dominant channel to monopolize top-k results.
+
+### Purpose
+
+Route simple queries to fewer channels for speed improvement, evaluate RSF as a principled RRF alternative with full shadow comparison, and enforce minimum channel representation to guarantee retrieval diversity.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- **R15**: Query complexity router with 3 tiers (simple/moderate/complex), minimum 2 channels
+- **R14/N1**: Relative Score Fusion — all 3 fusion variants (single-pair, multi-list, cross-variant) evaluated in parallel with RRF
+- **R2**: Channel min-representation constraint (post-fusion, quality floor 0.2, only when channel returned results)
+
+### Out of Scope
+
+- R12 (query expansion) — Sprint 5 scope; R12+R15 mutual exclusion enforced there
+- R6 (pipeline refactor) — Sprint 5 scope; requires stable scoring first
+- R11 (learned relevance feedback) — Sprint 4 scope; requires R13 eval cycles
+- Any scoring weight changes — Sprint 2 locked those values
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| Pipeline routing logic | Create/Modify | R15: Query classifier + tier-based channel routing |
+| `rrf-fusion.ts` | Modify | R14/N1: RSF implementation alongside RRF (all 3 variants) |
+| `hybrid-search.ts` | Modify | R2: Channel min-representation enforcement post-fusion |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-S3-001 | **R15**: Query complexity router with 3 tiers (simple/moderate/complex), minimum 2 channels | p95 latency <30ms for simple queries. Flag: `SPECKIT_COMPLEXITY_ROUTER` |
+| REQ-S3-002 | **R14/N1**: RSF parallel to RRF — all 3 fusion variants (single-pair, multi-list, cross-variant) | 100+ query shadow comparison completed, Kendall tau computed. Flag: `SPECKIT_RSF_FUSION` |
+| REQ-S3-003 | **R2**: Channel min-representation (post-fusion, quality floor 0.2, only when channel returned results) | Top-3 precision within 5% of baseline. Flag: `SPECKIT_CHANNEL_MIN_REP` |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: R15 simple query p95 latency <30ms
+- **SC-002**: RSF vs RRF comparison: Kendall tau computed on 100+ queries; tau <0.4 = reject RSF
+- **SC-003**: R2 dark-run: top-3 precision within 5% of baseline
+- **SC-004**: Sprint 3 exit gate — all 3 P1 requirements verified
+- **SC-005**: Off-ramp evaluated: MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | R15 misclassification causes silent recall degradation | High | Shadow comparison: run both full and routed pipeline, compare results |
+| Risk | R15+R2 interaction — R15 minimum must be 2 channels to preserve R2 guarantee | Medium | Enforce min=2 in router config; test interaction explicitly |
+| Risk | R14/N1 covers 3 fusion variants (~200-250 LOC, not just ~80 LOC core formula) | Medium | Budget 10-14h for full implementation; single-pair variant first as foundation |
+| Dependency | Sprint 2 exit gate | Blocks start | Sprint 2 must be verified complete before Sprint 3 begins |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: Simple queries <30ms p95 latency
+- **NFR-P02**: Moderate queries <100ms p95 latency
+- **NFR-P03**: Complex queries <300ms p95 latency
+
+### Reliability
+- **NFR-R01**: R12+R15 mutual exclusion enforced — both flags cannot be active simultaneously
+- **NFR-R02**: R15 minimum 2 channels even for simple tier (preserves R2 guarantee)
+
+### Observability
+- **NFR-O01**: R15 classification logged for every query (eval infrastructure)
+- **NFR-O02**: RSF shadow scores logged alongside RRF for post-hoc analysis
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+### Data Boundaries
+- **R15 minimum 2 channels for simple queries**: Even the simplest query must route to at least 2 channels to preserve R2 channel diversity guarantee
+- **RSF with empty channels**: RSF handles channels returning zero results gracefully — empty channel excluded from fusion
+- **R2 with all channels returning empty**: If all channels return empty, R2 enforcement is a no-op (nothing to diversify)
+
+### Error Scenarios
+- **R15 classifier failure**: Fallback to "complex" tier — full pipeline runs (safe default)
+- **RSF numerical overflow**: Score normalization prevents unbounded values; clamp to [0, 1]
+
+### State Transitions
+- **Flag interaction**: R15+R2+R14/N1 interact — disabling one may affect others; rollback must verify independent flag behavior
+- **Off-ramp trigger**: If off-ramp thresholds met (MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%), further sprints become optional
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 14/25 | 3 features across routing, fusion, and post-fusion layers |
+| Risk | 10/25 | R15 misclassification risk; R14/N1 3-variant scope |
+| Research | 6/20 | Research complete (142 analysis); RSF formula defined |
+| **Total** | **30/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- **OQ-S3-001**: What features should the R15 classifier use? Query length, term count, presence of trigger phrases, semantic complexity?
+- **OQ-S3-002**: Should the off-ramp decision be automated or require manual review?
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Parent Spec**: See `../spec.md`
+- **Parent Plan**: See `../plan.md`
+
+---
+
+**OFF-RAMP: After Sprint 3, evaluate "good enough" thresholds. If MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%, further sprints optional.**
+
+---
+
+<!--
+LEVEL 2 SPEC — Phase 4 of 8
+- Core + L2 addendums (NFR, Edge Cases, Complexity)
+- Phase-child-header addendum
+- Sprint 3: Query Intelligence
+-->

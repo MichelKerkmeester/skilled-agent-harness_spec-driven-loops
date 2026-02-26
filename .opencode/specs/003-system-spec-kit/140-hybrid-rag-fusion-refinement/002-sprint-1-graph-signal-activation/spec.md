@@ -1,0 +1,215 @@
+---
+title: "Feature Specification: Sprint 1 — Graph Signal Activation"
+description: "Activate typed-weighted degree as 5th RRF channel and measure graph signal contribution."
+trigger_phrases:
+  - "sprint 1"
+  - "graph signal"
+  - "degree channel"
+  - "R4"
+importance_tier: "critical"
+contextType: "implementation"
+---
+# Feature Specification: Sprint 1 — Graph Signal Activation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | Draft |
+| **Created** | 2026-02-26 |
+| **Branch** | `140-hybrid-rag-fusion-refinement` |
+| **Parent Spec** | ../spec.md |
+| **Parent Plan** | ../plan.md |
+| **Phase** | 2 of 8 |
+| **Predecessor** | ../001-sprint-0-epistemological-foundation/ |
+| **Successor** | ../003-sprint-2-scoring-calibration/ |
+| **Handoff Criteria** | R4 MRR@5 delta >+2% absolute, edge density measured, no single memory >60% presence |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:phase-context -->
+### Phase Context
+
+This is **Phase 2** of the Hybrid RAG Fusion Refinement specification.
+
+**Scope Boundary**: Sprint 1 scope boundary — graph signal activation. Adds the 5th RRF channel (typed-weighted degree) and measures graph density to inform future sprints.
+
+**Dependencies**:
+- Sprint 0 exit gate MUST be passed (graph channel functional, eval infrastructure operational, BM25 baseline recorded)
+
+**Deliverables**:
+- Typed-weighted degree computation as 5th RRF channel (R4)
+- Edge density measurement from R13 data
+- Agent-as-consumer UX analysis and consumption instrumentation (G-NEW-2)
+<!-- /ANCHOR:phase-context -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+The graph channel is now functional after Sprint 0's G1 fix, but it contributes only through graph-search results (traversal). The typed-weighted degree score — measuring how well-connected a memory is via causal, derivation, and support edges — is the most orthogonal signal available (low correlation with vector similarity and FTS5). Edge density is unknown, which blocks decisions about whether R10 (auto entity extraction) needs to be escalated to increase graph coverage.
+
+### Purpose
+
+Activate the graph's structural connectivity signal as a 5th RRF channel, measure its contribution to retrieval quality via the Sprint 0 evaluation infrastructure, and establish edge density as a key health metric for future graph-deepening decisions.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+
+- **R4**: Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15, constitutional memory exclusion
+- **Edge density measurement**: Compute edges/node ratio from R13 eval data
+- **G-NEW-2**: Agent-as-consumer UX analysis and consumption instrumentation
+
+### Out of Scope
+
+- R10 (auto entity extraction) — Sprint 6 scope; may be escalated based on density measurement
+- N2 (graph centrality + community detection) — Sprint 6 scope
+- N3-lite (contradiction scan) — Sprint 6 scope
+- Scoring calibration changes — Sprint 2 scope
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| `graph-search-fn.ts` | Modify | R4: Typed-weighted degree computation SQL + normalization |
+| `rrf-fusion.ts` | Modify | R4: Integration as 5th RRF channel |
+| `hybrid-search.ts` | Modify | R4: Degree score integration into search pipeline |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-S1-001 | **R4**: Typed-weighted degree as 5th RRF channel with configurable parameters: MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15, constitutional exclusion | R4 dark-run passes — no single memory >60% of results; MRR@5 delta >+2% absolute |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-S1-002 | Edge density measurement from R13 eval data | Edge density (edges/node) computed; R10 escalation decision documented if density < 0.5 |
+| REQ-S1-003 | **G-NEW-2**: Agent consumption instrumentation + initial UX analysis | Consumption patterns logged; initial pattern report generated |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: R4 MRR@5 delta >+2% absolute over Sprint 0 baseline
+- **SC-002**: No single memory appears in >60% of R4 dark-run results (hub domination check)
+- **SC-003**: Edge density measured and R10 escalation decision recorded
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Graph too sparse (density < 0.5) — R4 has minimal effect | Medium | Escalate R10 to earlier sprint; R4 still correct (returns zero when no edges) |
+| Risk | Preferential attachment — well-connected memories dominate via R4 | High | MAX_TOTAL_DEGREE=50 cap, DEGREE_BOOST_CAP=0.15, constitutional exclusion |
+| Risk | R4 dark-run fails (MRR@5 delta < +2%) | Medium | Keep R4 behind flag; investigate sparse graph or weight miscalibration |
+| Dependency | Sprint 0 exit gate | Blocking | Sprint 0 must pass before Sprint 1 begins |
+| Dependency | R13-S1 eval infrastructure | Required | Needed for dark-run measurement and density computation |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: R4 degree computation adds <10ms p95 to search latency (dark-run overhead budget)
+- **NFR-P02**: Degree cache invalidated only on graph mutation (not per-query)
+
+### Security
+- **NFR-S01**: Constitutional memories excluded from degree boost (prevents artificial inflation)
+
+### Reliability
+- **NFR-R01**: R4 behind feature flag `SPECKIT_DEGREE_BOOST` — disabled by default
+- **NFR-R02**: R4 gracefully returns 0 if graph has no edges for a memory
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+### Data Boundaries
+- **Zero edges for a memory**: R4 returns 0 — no boost applied; correct behavior
+- **MAX_TOTAL_DEGREE exceeded**: Score capped at DEGREE_BOOST_CAP=0.15 — prevents unbounded boost
+- **Constitutional memory with many edges**: Excluded from degree boost to prevent domination
+
+### Error Scenarios
+- **Graph DB unavailable**: R4 returns 0 for all memories; other 4 channels continue normally
+- **Cache invalidation race**: Stale degree score used — acceptable for short window; refreshed on next mutation
+
+### State Transitions
+- **R4 flag disabled mid-search**: In-progress search completes with flag state at query start; next search uses updated flag
+- **Edge density < 0.5**: R10 escalation decision triggered but R4 still operational (just low-impact)
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 12/25 | 3 files, degree SQL + normalization + RRF integration |
+| Risk | 10/25 | Preferential attachment risk mitigated by caps; sparse graph possible |
+| Research | 8/20 | R4 formula defined in research; edge type weights specified |
+| **Total** | **30/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- **OQ-S1-001**: Actual edge density after Sprint 0 — will R4 have meaningful data, or is the graph too sparse?
+- **OQ-S1-002**: Optimal edge type weights — research specifies caused=1.0, derived_from=0.9, etc. — do these need tuning based on actual data?
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Implementation Plan**: See `plan.md`
+- **Task Breakdown**: See `tasks.md`
+- **Verification Checklist**: See `checklist.md`
+- **Parent Spec**: See `../spec.md`
+- **Parent Plan**: See `../plan.md`
+- **Predecessor**: See `../001-sprint-0-epistemological-foundation/`
+
+---
+
+<!--
+LEVEL 2 SPEC — Phase 2 of 8
+- Core + L2 addendums (NFR, Edge Cases, Complexity)
+- Phase-child-header addendum
+- Sprint 1: Graph signal activation via R4 typed-degree channel
+-->

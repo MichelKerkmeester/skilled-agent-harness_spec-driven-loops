@@ -70,7 +70,7 @@ All conflicts between Spec 140, Spec 141, and the 10 Wave 1-2 investigation agen
 
 **Core argument [Evidence: B]:** The system has 15+ scoring signals, zero retrieval quality metrics, and hand-tuned weights. In this state, adding MORE signals is net-harmful — each new signal adds variance without a mechanism to detect whether it improves or degrades results.
 
-R13 (evaluation infrastructure) is not one recommendation among 28. It is the **epistemological prerequisite** that converts all other improvements from speculation into measurable progress.
+R13 (evaluation infrastructure) is not one recommendation among 30. It is the **epistemological prerequisite** that converts all other improvements from speculation into measurable progress.
 
 ### The Feedback Bootstrap Problem
 
@@ -291,7 +291,7 @@ These aspects are **superior** to all analyzed external systems and should be pr
 
 ## 8. Architectural Synthesis — The Convergent Direction
 
-All 28 active recommendations converge toward a single architectural destination: **graph-differentiated, feedback-aware retrieval** (informally, "Generation 5: Self-improving").
+All 30 active recommendations converge toward a single architectural destination: **graph-differentiated, feedback-aware retrieval** (informally, "Generation 5: Self-improving").
 
 ### Three Non-Negotiable Design Principles
 
@@ -374,14 +374,15 @@ If resources permit only 5 changes [Evidence: B — Architecture Agent]:
 | **Effort** | 35-50h |
 | **Exit Gate** | Graph channel hit rate improvement vs Sprint 0; N4 precision within 5% of R4 |
 
-### Sprint 4: Agent Pipeline & Consumer UX
+### Sprint 4: Feedback Loop + Chunk Aggregation
 
 | Attribute | Value |
 |---|---|
-| **Goal** | Optimize for agent consumers, not human query patterns |
-| **Recommendations** | R14/N1 (Relative Score Fusion), G-NEW-2 (agent UX analysis) |
-| **Effort** | 30-45h |
-| **Exit Gate** | Agent latency P99 within SLA; UX baseline report complete |
+| **Goal** | Close the feedback loop; aggregate chunk scores safely |
+| **Recommendations** | R1 (MPAB, with guards), R11 (learned feedback, with separate column), R13-S2 (shadow scoring + ground truth Phase B) |
+| **Effort** | 39-56h |
+| **Exit Gate** | R1 dark-run MRR@5 within 2%; R11 noise rate < 5%; R13-S2 operational |
+| **Prerequisite** | R13 must have completed at least 2 full eval cycles |
 
 ### Sprint 5: Feedback & Learning
 
@@ -445,7 +446,7 @@ These require empirical work, not more analysis:
 
 2. **INT8 recall loss contradiction** [!] — 1-2% (Spec 140) vs 5.32% (Spec 141). Requires in-system ablation. Blocks R5 activation decision.
 
-3. **Agent-as-consumer UX** — Absent entirely. The retrieval system is optimized for human query patterns, but the primary consumer is AI agent pipelines with different needs. Sprint 4 analysis task.
+3. **Agent-as-consumer UX** — Absent entirely. The retrieval system is optimized for human query patterns, but the primary consumer is AI agent pipelines with different needs. Sprint 1 analysis task (G-NEW-2, moved from S4 to inform evaluation design earlier).
 
 4. **search-weights.json full audit** [!] — `maxTriggersPerMemory` is active. Smart ranking section status unknown. Requires source code trace.
 
