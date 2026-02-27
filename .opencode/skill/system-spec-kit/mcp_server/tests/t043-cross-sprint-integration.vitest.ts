@@ -74,7 +74,7 @@ import {
   boostScore,
   CO_ACTIVATION_CONFIG,
   DEFAULT_COACTIVATION_STRENGTH,
-} from '../lib/cognitive/co-activation';
+} from '../lib/cache/cognitive/co-activation';
 
 // ── Sprint 3: Confidence Truncation ──
 import {

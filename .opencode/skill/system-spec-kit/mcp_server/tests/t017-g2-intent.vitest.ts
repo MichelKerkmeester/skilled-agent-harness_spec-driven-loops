@@ -101,8 +101,8 @@ describe('T017-G2: Intent Classification Produces Expected Weights', () => {
     // confirming they serve different purposes
     const intents = intentClassifier.getValidIntents();
     for (const intent of intents) {
-      const systemA = INTENT_WEIGHT_PROFILES[intent] as Record<string, unknown>;
-      const systemB = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent] as Record<string, unknown>;
+      const systemA = INTENT_WEIGHT_PROFILES[intent] as unknown as Record<string, unknown>;
+      const systemB = intentClassifier.INTENT_WEIGHT_ADJUSTMENTS[intent] as unknown as Record<string, unknown>;
 
       // System A has semanticWeight/keywordWeight, System B has similarity/importance
       expect('semanticWeight' in systemA).toBe(true);

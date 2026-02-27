@@ -3,6 +3,7 @@
 // retrieval, and feature flag gating.
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import type Database from 'better-sqlite3';
 
 import {
   isFolderScoringEnabled,
@@ -426,12 +427,12 @@ describe('Folder Relevance Scoring (t020)', () => {
       const folderScores = computeFolderRelevanceScores(results, folderMap);
       const enriched = enrichResultsWithFolderScores(results, folderScores, folderMap);
 
-      // Original fields preserved
-      expect(enriched[0].title).toBe('Memory One');
-      expect(enriched[0].source).toBe('vector');
+      // Original fields preserved (access via Record cast since spread extras aren't tracked)
+      expect((enriched[0] as Record<string, unknown>).title).toBe('Memory One');
+      expect((enriched[0] as Record<string, unknown>).source).toBe('vector');
       expect((enriched[0] as Record<string, unknown>).customField).toBe(42);
-      expect(enriched[1].title).toBe('Memory Two');
-      expect(enriched[1].source).toBe('bm25');
+      expect((enriched[1] as Record<string, unknown>).title).toBe('Memory Two');
+      expect((enriched[1] as Record<string, unknown>).source).toBe('bm25');
 
       // New fields added
       expect(enriched[0].folderScore).toBeDefined();
