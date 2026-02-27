@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~127 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, and Sprint 4 split verification."
+description: "~182 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, and Sprint 4 split verification."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -23,6 +23,7 @@ contextType: "implementation"
 | **[P0]** | HARD BLOCKER | Cannot claim done until complete |
 | **[P1]** | Required | Must complete OR get user approval |
 | **[P2]** | Optional | Can defer with documented reason |
+| **[P3]** | Aspirational | Verify only if scale gates met; sprint-conditional |
 
 **Priority alignment with off-ramp**: Sprint 0-1 gates are P0 (blocking). Sprint 2-4 gates are P1. Sprint 5-6 gates are P1 (elevated from P2 due to safety-critical NFRs). Sprint 7 gates are P2. If you stop at Sprint 2+3 (recommended minimum), only P0+P1 items need verification.
 <!-- /ANCHOR:protocol -->
@@ -244,7 +245,7 @@ contextType: "implementation"
 
 > **Evidence**: Research documents 9-analysis, 9-recommendations (PageIndex), 10-analysis, 10-recommendations (TrueMem). All 8 items are [P1] — required unless explicitly deferred with documented rationale.
 
-- [ ] CHK-PI-A1 [P1] PI-A1: DocScore folder aggregation implemented and tested — `spec_folder` grouping with MAX + 0.3×MEAN formula; `folder_score` field present in result metadata; no regression in existing MRR@5 baseline
+- [ ] CHK-PI-A1 [P1] PI-A1: DocScore folder aggregation implemented and tested — `spec_folder` grouping with damped-sum formula `(1/sqrt(M+1)) * SUM(MemoryScore(m))`; `folder_score` field present in result metadata; no regression in existing MRR@5 baseline
 - [ ] ~~CHK-PI-A2~~ [P1] **DEFERRED** — PI-A2: Three-tier fallback chain deferred from Sprint 3. Re-evaluate after Sprint 3 using measured frequency data. See UT review R1.
 - [ ] CHK-PI-A3 [P1] PI-A3: Token budget validation enforced in result assembly — `token_budget_used` field in response; result set truncated when over-limit; no latency increase > 5ms p95 for simple queries
 - [ ] CHK-PI-A4 [P1] PI-A4: Constitutional memories formatted as retrieval directives — `retrieval_directive` metadata field present on all constitutional-tier memories; directive prefix pattern ("Always surface when:", "Prioritize when:") validated
@@ -357,12 +358,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 32 | [ ]/32 |
-| P1 Items | 97 | [ ]/97 |
-| P2 Items | 12 | [ ]/12 |
-| **Total** | **~141** | **[ ]/~141** |
+| P0 Items | 34 | [ ]/34 |
+| P1 Items | 133 | [ ]/133 |
+| P2 Items | 15 | [ ]/15 |
+| **Total** | **182** | **[ ]/182** |
 
-> **Note**: Reduced from ~147 to ~127 by consolidating 14 per-sprint flag sunset items into 1 cross-cutting item (CHK-S0F). Subsequently expanded to ~141 items with: 3 new performance/ordering items (CHK-114-116), 7 cross-sprint B8 signal ceiling tracking items (CHK-B8-S0 through CHK-B8-S6), Sprint 6 split into 6a/6b subsections with CHK-S68a (weight_history) and CHK-S6B-PRE (entry gate). CHK-PI-A2 marked DEFERRED.
+> **Note**: Actual count is 182 items (P0=34, P1=133, P2=15 including 1 P2-CONDITIONAL). CHK-PI-A2 marked DEFERRED. Includes: program-level checks, sprint exit gates (S0-S7 + S6a/S6b), 8 PageIndex integration items, L3+ governance (architecture/performance/deployment/compliance/docs), feature flag sunset reviews, ground truth diversity gates, B8 signal ceiling tracking, Sprint 4 split verification, and rollback verification per sprint.
 
 **Verification Date**: [YYYY-MM-DD]
 

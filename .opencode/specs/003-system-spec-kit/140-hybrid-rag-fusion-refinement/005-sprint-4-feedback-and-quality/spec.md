@@ -48,6 +48,8 @@ This is **Phase 5** of the Hybrid RAG Fusion Refinement specification.
 - Sprint 3 exit gate (query intelligence complete — R15, R14/N1, R2 verified)
 - R13 must have completed at least 2 full eval cycles before R11 mutations enabled
 
+> **HARD SCOPE CAP**: Sprint 4 is beyond the recommended off-ramp (Sprint 3). Per root spec, starting Sprint 4+ requires separate NEW spec approval and explicit justification based on Sprint 3 off-ramp evaluation results.
+
 **Deliverables**:
 - MPAB chunk-to-memory aggregation with N=0/N=1 guards (R1)
 - Learned relevance feedback with separate column and 7 safeguards (R11)

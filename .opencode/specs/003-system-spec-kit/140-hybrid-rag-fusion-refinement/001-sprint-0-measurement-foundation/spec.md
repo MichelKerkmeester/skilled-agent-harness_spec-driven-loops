@@ -208,7 +208,7 @@ When BM25 baseline results fall in the 50-80% range ("rationalize" path):
 
 ### State Transitions
 - **Partial R13-S1 completion**: Schema without hooks = usable but no automatic logging; hooks can be added incrementally
-- **BM25 contingency trigger**: If BM25 >= 80% of hybrid — halt Sprint 1+ planning, escalate to project lead
+- **BM25 contingency trigger**: If BM25 >= 80% of hybrid — PAUSE S3-S7 (preserve S1/S2 work which may still improve over BM25), escalate to project lead. Aligns with root spec §8 contingency definition.
 <!-- /ANCHOR:edge-cases -->
 
 ---

@@ -99,6 +99,18 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:gnew3 -->
+## G-NEW-3: Ground Truth Diversification
+
+- [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T-S4-PRE, R13 2-cycle prerequisite} — G-NEW-3
+  - Acceptance: user selection events tracked and stored; selection data available for ground truth expansion
+- [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
+  - Acceptance: LLM-judge generates relevance labels for query-selection pairs; ground truth corpus expanded to ≥200 pairs
+  - Prerequisite: minimum 200 query-selection pairs accumulated before R11 mutations enabled (REQ-017)
+<!-- /ANCHOR:gnew3 -->
+
+---
+
 <!-- ANCHOR:pageindex -->
 ## PageIndex Tasks
 
@@ -112,7 +124,8 @@ contextType: "implementation"
 
 - [ ] T004 Verify R1 dark-run: MRR@5 within 2%, N=1 no regression [included] {T001}
 - [ ] T005 Analyze R11 shadow log: noise rate <5% [included] {T002}
-- [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005, T007, T008}
+- [ ] T-FS4 Feature flag sunset review at Sprint 4 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T005} — NFR-O01/O02/O03
+- [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005, T007, T008, T-FS4}
   - [ ] R11 auto-promotion thresholds verified (5→important, 10→critical)
   - [ ] R13-S2 Exclusive Contribution Rate metric operational
   - [ ] A4 negative feedback: confidence demotion floor verified at 0.3; no over-suppression

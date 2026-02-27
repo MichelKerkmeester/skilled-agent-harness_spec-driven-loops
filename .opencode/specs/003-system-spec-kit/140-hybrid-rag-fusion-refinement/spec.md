@@ -120,16 +120,16 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | 1 | `001-sprint-0-measurement-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (50-77h) | None (BLOCKING) | Pending |
 | 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2 (26-39h) | Sprint 0 gate | Pending |
 | 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (28-43h) | Sprint 0 gate | Pending |
-| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 2 gate | Pending |
+| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 1 AND Sprint 2 gates | Pending |
 | 5 | `005-sprint-4-feedback-and-quality/` | R1, R11, R13-S2 (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
 
 > **Sprint 4 Split Recommendation:** Sprint 4 should be considered for decomposition into two sub-phases:
-> - **S4a** (R1/MPAB + R13-S2 enhanced eval, ~25-35h): Lower-risk scoring and evaluation work that can proceed immediately after Sprint 3 gate.
-> - **S4b** (R11 learned relevance feedback + TM-04 + TM-06, ~47-74h): Higher-risk work containing R11 with its CRITICAL FTS5 contamination risk (MR1). R11 should not share a sprint with 4 other deliverables given its irreversible failure mode. S4b also requires the R13 calendar dependency (minimum 28 days of eval logging before R11 activation).
+> - **S4a** (R1/MPAB + R13-S2 enhanced eval + TM-04 quality gate, ~33-49h): Lower-risk scoring, evaluation, and save-quality gating work that can proceed immediately after Sprint 3 gate. TM-04 is placed in S4a (per child spec authoritative phasing) as a pre-storage quality gate with no schema change that should be operational before R11 feedback mutations begin.
+> - **S4b** (R11 learned relevance feedback + TM-06, ~31-48h): Higher-risk work containing R11 with its CRITICAL FTS5 contamination risk (MR1). R11 should not share a sprint with 4 other deliverables given its irreversible failure mode. S4b also requires the R13 calendar dependency (minimum 28 days of eval logging before R11 activation).
 > This split isolates R11's contamination risk and allows S4a to complete faster, providing R13-S2 channel attribution data earlier.
 | 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (68-98h) | Sprint 4 gate | Pending |
 | 7a | `007-sprint-6-indexing-and-graph/` | R7, R16, S4, N3-lite (33-51h) | Sprint 5 gate | Pending |
-| 7b | `007-sprint-6-indexing-and-graph/` | N2, R10 (37-53h) | Sprint 6a gate + feasibility spike | Pending (GATED) |
+| 7b | `007-sprint-6-indexing-and-graph/` | N2, R10 (37-53h heuristic; **ESTIMATION WARNING**: production quality 80-150h — see child spec for N2c 40-80h and R10 30-50h warnings) | Sprint 6a gate + feasibility spike | Pending (GATED) |
 | 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6a gate | Pending |
 
 ### Phase Transition Rules
@@ -251,7 +251,7 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | REQ-053 | PI-A1 | Folder-Level Relevance Scoring via DocScore Aggregation | `folder_score` field in result metadata; MAX + 0.3×MEAN formula; no MRR@5 regression | S2 |
 | REQ-054 | PI-A2 | Search Strategy Degradation with Fallback Chain (DEFERRED) | 3-tier fallback with logged degradation events | S3 (deferred) |
 | REQ-055 | PI-A3 | Pre-Flight Token Budget Validation | `token_budget_used` in response; truncation enforced; ≤5ms p95 latency increase | S1 |
-| REQ-056 | PI-A4 | Constitutional Memory as Expert Knowledge Injection | `retrieval_directive` metadata field on constitutional memories | S4 |
+| REQ-056 | PI-A4 | Constitutional Memory as Expert Knowledge Injection | `retrieval_directive` metadata field on constitutional memories | S5 (deferred from S4 per REC-07) |
 | REQ-057 | PI-A5 | Verify-Fix-Verify for Memory Quality | Quality score post-save; auto-fix if <0.6; reject after 2 retries | S1 |
 | REQ-058 | PI-B1 | Tree Thinning for Spec Folder Consolidation | Nodes <300t collapsed; <100t summarized; anchored nodes preserved | S5 |
 | REQ-059 | PI-B2 | Progressive Validation for Spec Documents | 4-level pipeline; checkpoint before Level 2 auto-fix | S5 |
@@ -261,11 +261,11 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 
 | ID | Recommendation | Formula / Mechanism | Sprint | Effort | Risk |
 |----|----------------|---------------------|--------|--------|------|
-| PI-A1 | **Folder-Level Relevance Scoring via DocScore Aggregation** — aggregate per-memory scores into a per-folder relevance signal | `FolderScore = MAX(scores) + 0.3 × MEAN(scores)` per spec_folder; balances peak relevance with breadth (MPAB-derived) | S2 | 4-8h | Low |
+| PI-A1 | **Folder-Level Relevance Scoring via DocScore Aggregation** — aggregate per-memory scores into a per-folder relevance signal | `FolderScore = (1/sqrt(M+1)) * SUM(MemoryScore(m))` per spec_folder; damping factor prevents volume bias (consistent with S2 child spec and root plan) | S2 | 4-8h | Low |
 | PI-A2 | **Search Strategy Degradation with Fallback Chain** — 3-tier fallback when primary search returns insufficient results | Tier 1: full hybrid search → Tier 2: broadened (relaxed filters, lower threshold) → Tier 3: structural-only (trigger match + folder) | S3 | 12-16h | Medium |
 | PI-A3 | **Pre-Flight Token Budget Validation** — enforce token budget constraint before result assembly, not after | Validate `SUM(token_count(m))` against budget limit before assembling final result set; truncate candidate list early | S1 | 4-6h | Low |
-| PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — format constitutional memories as retrieval directives, not just high-priority results | Inject constitutional memories as system-level context (domain knowledge) before ranked results; separate display slot | S4 | 8-12h | Low-Medium |
-| PI-A5 | **Verify-Fix-Verify for Memory Quality** — bounded quality loop with fallback for memory_save validation | Verify quality → if below threshold, attempt auto-fix (trim, restructure) → re-verify → if still failing, save with warning flag (never drop silently) | S0 | 12-16h | Medium |
+| PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — format constitutional memories as retrieval directives, not just high-priority results | Inject constitutional memories as system-level context (domain knowledge) before ranked results; separate display slot | S5 (deferred from S4 per REC-07) | 8-12h | Low-Medium |
+| PI-A5 | **Verify-Fix-Verify for Memory Quality** — bounded quality loop with fallback for memory_save validation | Verify quality → if below threshold, attempt auto-fix (trim, restructure) → re-verify → if still failing, save with warning flag (never drop silently) | S1 (deferred from S0 per REC-09) | 12-16h | Medium |
 
 #### Spec-Kit Logic (PI-B1 to PI-B3)
 
@@ -659,19 +659,24 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 #### Feature Flag Sunset Schedule
 
-Each sprint exit gate MUST include a flag disposition decision for all prior flags. The plan introduces 7+ flags by Sprint 3, which already exceeds the 6-flag maximum (SC-005, NFR-O01). The following sunset schedule ensures compliance:
+Each sprint exit gate MUST include a flag disposition decision for all prior flags. The plan introduces 24 total flags across 8 sprints. The following sunset schedule tracks active flag counts (ceiling raised from 6 to 8 to accommodate S4-S5 peak):
 
-| Sprint Exit | Flags Introduced This Sprint | Flags to Permanently Enable or Remove | Max Active After Gate |
-|-------------|------------------------------|---------------------------------------|----------------------|
+| Sprint Exit | Flags Introduced This Sprint | Flags to Permanently Enable or Remove | Active After Gate |
+|-------------|------------------------------|---------------------------------------|-------------------|
 | S0 | `SPECKIT_EVAL_LOGGING`, `SPECKIT_VERIFY_FIX_VERIFY` | None (first sprint) | 2 |
 | S1 | `SPECKIT_DEGREE_BOOST` | `SPECKIT_EVAL_LOGGING` → permanent (remove flag, always-on) | 2 |
 | S2 | `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`, `SPECKIT_FOLDER_SCORE` | `SPECKIT_VERIFY_FIX_VERIFY` → permanent (remove flag) | 4 |
 | S3 | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` | `SPECKIT_DEGREE_BOOST` → permanent; `SPECKIT_NOVELTY_BOOST` → permanent | 5 |
-| S4 | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`, `SPECKIT_CONSTITUTIONAL_INJECT` | `SPECKIT_INTERFERENCE_SCORE` → permanent; `SPECKIT_FOLDER_SCORE` → permanent; `SPECKIT_COMPLEXITY_ROUTER` → permanent | 6 (at ceiling) |
-| S5 | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`, `SPECKIT_PROGRESSIVE_VALIDATION` | `SPECKIT_RSF_FUSION` → decide (permanent or remove based on Kendall tau data); `SPECKIT_CHANNEL_MIN_REP` → permanent; `SPECKIT_SEARCH_FALLBACK` → permanent | <=6 |
-| S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent | <=6 |
+| S4 | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`, `SPECKIT_CONSTITUTIONAL_INJECT` | `SPECKIT_INTERFERENCE_SCORE` → permanent; `SPECKIT_FOLDER_SCORE` → permanent; `SPECKIT_COMPLEXITY_ROUTER` → permanent | 7 |
+| S5 | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`, `SPECKIT_PROGRESSIVE_VALIDATION` | `SPECKIT_RSF_FUSION` → decide (permanent or remove based on Kendall tau data); `SPECKIT_CHANNEL_MIN_REP` → permanent; `SPECKIT_RECONSOLIDATION` → permanent | 7 |
+| S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent; `SPECKIT_CONSTITUTIONAL_INJECT` → permanent | 6 |
+| S7 | `SPECKIT_MEMORY_SUMMARIES`, `SPECKIT_ENTITY_LINKING` | `SPECKIT_PIPELINE_V2` → permanent; `SPECKIT_EMBEDDING_EXPANSION` → permanent; `SPECKIT_PROGRESSIVE_VALIDATION` → permanent | 5 |
 
-**Rule:** Any sprint that would exceed 6 active flags MUST sunset prior flags at the sprint's entry (not exit). If a flag cannot be confidently resolved, it counts against the 6-flag budget and a lower-priority new flag must be deferred.
+> **Ceiling note**: Peak active flag count reaches 7 at S4 and S5. Original 6-flag ceiling (NFR-O01) is aspirational; actual peak is 7-8 due to S4's 5 simultaneous introductions. The rule below mitigates risk.
+>
+> **H6 note**: `SPECKIT_SEARCH_FALLBACK` removed from sunset schedule — PI-A2 (search fallback chain) was DEFERRED and no such flag was ever introduced.
+
+**Rule:** Any sprint that would exceed 8 active flags MUST sunset prior flags at the sprint's entry (not exit). If a flag cannot be confidently resolved, it counts against the flag budget and a lower-priority new flag must be deferred.
 
 ### B8 Signal Ceiling
 - **B8 Signal Ceiling**: Maximum 12 active scoring signals until R13 provides automated evaluation data. Escape clause: R13 evidence that a new signal provides orthogonal value overrides the ceiling. Re-evaluate at Sprint 4 off-ramp when R13-S2 channel attribution data is available.

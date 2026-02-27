@@ -76,6 +76,9 @@ contextType: "implementation"
   - Thinning runs in context loading step (before pipeline, does not affect stage boundaries)
   - Verify no content loss during merge — parent absorbs child summary faithfully
   - Verify R9 pre-filter interaction: thinning does not alter folder identity or pre-filter behavior
+- [ ] T013 Implement PI-A4 constitutional memory as retrieval directives — add `retrieval_directive` metadata field to constitutional-tier memories; format as explicit instruction prefixes ("Always surface when:", "Prioritize when:") for LLM consumption; parse existing constitutional memory content to identify rule patterns [8-12h] — PI-A4 (deferred from Sprint 4 per REC-07)
+  - Acceptance: `retrieval_directive` field present on all constitutional-tier memories; directive prefix pattern validated
+  - Risk: Low-Medium — content transformation only; no scoring logic changes
 - [ ] T012 Implement PI-B2 progressive validation for spec documents — extend validate.sh to 4-level pipeline: Detect (identify violations) → Auto-fix (missing dates, heading levels, whitespace normalization, with before/after diff log) → Suggest (guided options for non-automatable issues) → Report (structured output, exit 0/1/2 compatible); include dry-run mode [16-24h] — PI-B2
   - All auto-fixes must log before/after diff (primary mitigation for silent corruption)
   - Dry-run mode: show proposed auto-fixes without applying them
@@ -87,7 +90,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-c -->
 ## Phase C: Verification
 
-- [ ] T010 [GATE] Sprint 5 exit gate verification [0h] {T002, T003, T004, T005, T006, T007, T008, T009a}
+- [ ] T-FS5 Feature flag sunset review at Sprint 5 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T009a} — NFR-O01/O02/O03
+- [ ] T010 [GATE] Sprint 5 exit gate verification [0h] {T002, T003, T004, T005, T006, T007, T008, T009a, T-FS5}
 <!-- /ANCHOR:phase-c -->
 
 ---

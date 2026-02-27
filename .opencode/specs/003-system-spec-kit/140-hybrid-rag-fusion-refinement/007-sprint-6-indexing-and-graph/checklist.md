@@ -30,15 +30,15 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation — Sprint 6a
 
-- [ ] CHK-001 [P0] Checkpoint created before sprint start
-- [ ] CHK-002 [P0] Sprint 5 exit gate verified — pipeline refactor complete
-- [ ] CHK-004 [P1] Current feature flag count documented (must be <=6 post-sprint)
-- [ ] CHK-004b [P0] weight_history logging verified functional before any N3-lite Hebbian cycle runs — evidence: T001d complete, test confirms before/after weight values logged
+- [ ] CHK-S6-001 [P0] Checkpoint created before sprint start
+- [ ] CHK-S6-002 [P0] Sprint 5 exit gate verified — pipeline refactor complete
+- [ ] CHK-S6-004 [P1] Current feature flag count documented (must be <=6 post-sprint)
+- [ ] CHK-S6-004b [P0] weight_history logging verified functional before any N3-lite Hebbian cycle runs — evidence: T001d complete, test confirms before/after weight values logged
 
 ## Pre-Implementation — Sprint 6b (gates Sprint 6b only)
 
-- [ ] CHK-003 [P1] Edge density measured — R10 gating decision documented
-- [ ] CHK-004a [P0] Algorithm feasibility spike completed — N2c and R10 approaches validated on actual data; quality tier (heuristic vs production) confirmed. Does NOT gate Sprint 6a items (R7, R16, S4, N3-lite, T001d).
+- [ ] CHK-S6-003 [P1] Edge density measured — R10 gating decision documented
+- [ ] CHK-S6-004a [P0] Algorithm feasibility spike completed — N2c and R10 approaches validated on actual data; quality tier (heuristic vs production) confirmed. Does NOT gate Sprint 6a items (R7, R16, S4, N3-lite, T001d).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -46,13 +46,13 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P2] R7 anchor-aware chunk thinning logic implemented and tested — evidence: unit test covers anchor-present vs. anchor-absent chunk scoring
-- [ ] CHK-011 [P2] R16 encoding-intent capture behind feature flag — evidence: `encoding_intent` field visible in memory record when `SPECKIT_ENCODING_INTENT=true`
-- [ ] CHK-012 [P2] R10 density gating condition correctly evaluated — evidence: density measurement result documented; skip or proceed decision recorded
-- [ ] CHK-013 [P2] N2 centrality + community detection algorithms correct — evidence: N2c community assignments stable across 2 runs on same test graph; log cluster sizes
-- [ ] CHK-013a [P2] N2c algorithm choice documented: connected-components or Louvain? Justification recorded with graph density data — evidence: decision doc in scratch/ or spec comment
-- [ ] CHK-014 [P1] N3-lite edge bounds enforced in code: MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle — evidence: unit test verifies rejection of 21st auto-edge
-- [ ] CHK-015 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges — evidence: SQL query `SELECT COUNT(*) FROM causal_edges WHERE created_by='auto'` returns expected count
+- [ ] CHK-S6-010 [P2] R7 anchor-aware chunk thinning logic implemented and tested — evidence: unit test covers anchor-present vs. anchor-absent chunk scoring
+- [ ] CHK-S6-011 [P2] R16 encoding-intent capture behind feature flag — evidence: `encoding_intent` field visible in memory record when `SPECKIT_ENCODING_INTENT=true`
+- [ ] CHK-S6-012 [P2] R10 density gating condition correctly evaluated — evidence: density measurement result documented; skip or proceed decision recorded
+- [ ] CHK-S6-013 [P2] N2 centrality + community detection algorithms correct — evidence: N2c community assignments stable across 2 runs on same test graph; log cluster sizes
+- [ ] CHK-S6-013a [P2] N2c algorithm choice documented: connected-components or Louvain? Justification recorded with graph density data — evidence: decision doc in scratch/ or spec comment
+- [ ] CHK-S6-014 [P1] N3-lite edge bounds enforced in code: MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle — evidence: unit test verifies rejection of 21st auto-edge
+- [ ] CHK-S6-015 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges — evidence: SQL query `SELECT COUNT(*) FROM causal_edges WHERE created_by='auto'` returns expected count
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -60,14 +60,14 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P2] R7 Recall@20 within 10% of baseline — evidence: eval output showing pre/post Recall@20 scores (task: T003)
-- [ ] CHK-021 [P2] R10 false positive rate <20% on manual review of >=50 entities — evidence: review spreadsheet or audit log with entity sample (task: T005)
-- [ ] CHK-022 [P2] R10 gating verified: only implemented if density <1.0 — evidence: density measurement documented; if density >=1.0 record skip decision
-- [ ] CHK-023 [P2] N2 graph channel attribution >10% of final top-K — evidence: attribution report from eval run showing graph channel contribution percentage (task: T001)
-- [ ] CHK-023a [P2] N2c community detection produces stable clusters on test data — evidence: 2 consecutive runs yield <5% membership divergence on same graph (task: T001c)
-- [ ] CHK-024 [P2] N3-lite contradiction scan identifies at least 1 known contradiction — evidence: test data includes manually seeded contradicting memory pair; scan output shows detection (task: T002)
-- [ ] CHK-025 [P2] 14-22 new tests added and passing — evidence: test count in Vitest output
-- [ ] CHK-026 [P1] All existing tests still pass after all changes — evidence: full Vitest suite run with 0 failures
+- [ ] CHK-S6-020 [P2] R7 Recall@20 within 10% of baseline — evidence: eval output showing pre/post Recall@20 scores (task: T003)
+- [ ] CHK-S6-021 [P2] R10 false positive rate <20% on manual review of >=50 entities — evidence: review spreadsheet or audit log with entity sample (task: T005)
+- [ ] CHK-S6-022 [P2] R10 gating verified: only implemented if density <1.0 — evidence: density measurement documented; if density >=1.0 record skip decision
+- [ ] CHK-S6-023 [P2] N2 graph channel attribution >10% of final top-K — evidence: attribution report from eval run showing graph channel contribution percentage (task: T001)
+- [ ] CHK-S6-023a [P2] N2c community detection produces stable clusters on test data — evidence: 2 consecutive runs yield <5% membership divergence on same graph (task: T001c)
+- [ ] CHK-S6-024 [P2] N3-lite contradiction scan identifies at least 1 known contradiction — evidence: test data includes manually seeded contradicting memory pair; scan output shows detection (task: T002)
+- [ ] CHK-S6-025 [P2] 14-22 new tests added and passing — evidence: test count in Vitest output
+- [ ] CHK-S6-026 [P1] All existing tests still pass after all changes — evidence: full Vitest suite run with 0 failures
 <!-- /ANCHOR:testing -->
 
 ---
@@ -75,8 +75,8 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security & Provenance
 
-- [ ] CHK-031 [P2] R10 auto-extracted entities tagged with `created_by='auto'`
-- [ ] CHK-032 [P2] Auto edges capped at strength=0.5
+- [ ] CHK-S6-031 [P2] R10 auto-extracted entities tagged with `created_by='auto'`
+- [ ] CHK-S6-032 [P2] Auto edges capped at strength=0.5
 <!-- /ANCHOR:security -->
 
 ---
@@ -84,9 +84,9 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized and reflect final implementation
-- [ ] CHK-041 [P2] R10 gating decision documented with density measurement
-- [ ] CHK-042 [P2] N3-lite implementation details documented (contradiction threshold, decay parameters)
+- [ ] CHK-S6-040 [P1] Spec/plan/tasks synchronized and reflect final implementation
+- [ ] CHK-S6-041 [P2] R10 gating decision documented with density measurement
+- [ ] CHK-S6-042 [P2] N3-lite implementation details documented (contradiction threshold, decay parameters)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -94,35 +94,35 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
-- [ ] CHK-052 [P2] Sprint 6 findings saved to memory/
+- [ ] CHK-S6-050 [P1] Temp files in scratch/ only
+- [ ] CHK-S6-051 [P1] scratch/ cleaned before completion
+- [ ] CHK-S6-052 [P2] Sprint 6 findings saved to memory/
 <!-- /ANCHOR:file-org -->
 
 ---
 
 ## Sprint 6a Exit Gate
 
-- [ ] CHK-060 [P1] R7 Recall@20 within 10% of baseline — verified via eval metrics; evidence: before/after recall scores recorded
-- [ ] CHK-060a [P1] R16 encoding-intent capture functional behind `SPECKIT_ENCODING_INTENT` flag — evidence: `encoding_intent` field populated for test memories
-- [ ] CHK-060b [P1] S4 hierarchy traversal functional — evidence: integration test passes for parent-folder retrieval
-- [ ] CHK-060c [P1] T001d weight_history logging verified — evidence: before/after weight values logged for test edge modification
-- [ ] CHK-063 [P1] N3-lite contradiction detection functional — verified via manually seeded test pair in curated test data
-- [ ] CHK-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle; evidence: unit test for boundary rejection
-- [ ] CHK-065 [P1] Feature flag sunset audit: list all active flags, retire any no longer needed, document survivors — evidence: flag inventory table in scratch/ or implementation-summary
-- [ ] CHK-065a [P1] Active feature flag count <=6 post-audit — evidence: final flag list with count
-- [ ] CHK-066 [P1] All health dashboard targets checked — evidence: dashboard screenshot or metric summary
+- [ ] CHK-S6-060 [P1] R7 Recall@20 within 10% of baseline — verified via eval metrics; evidence: before/after recall scores recorded
+- [ ] CHK-S6-060a [P1] R16 encoding-intent capture functional behind `SPECKIT_ENCODING_INTENT` flag — evidence: `encoding_intent` field populated for test memories
+- [ ] CHK-S6-060b [P1] S4 hierarchy traversal functional — evidence: integration test passes for parent-folder retrieval
+- [ ] CHK-S6-060c [P1] T001d weight_history logging verified — evidence: before/after weight values logged for test edge modification
+- [ ] CHK-S6-063 [P1] N3-lite contradiction detection functional — verified via manually seeded test pair in curated test data
+- [ ] CHK-S6-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle; evidence: unit test for boundary rejection
+- [ ] CHK-S6-065 [P1] Feature flag sunset audit: list all active flags, retire any no longer needed, document survivors — evidence: flag inventory table in scratch/ or implementation-summary
+- [ ] CHK-S6-065a [P1] Active feature flag count <=6 post-audit — evidence: final flag list with count
+- [ ] CHK-S6-066 [P1] All health dashboard targets checked — evidence: dashboard screenshot or metric summary
 
 ---
 
 ## Sprint 6b Exit Gate (conditional on Sprint 6b execution)
 
-- [ ] CHK-070 [P1] Sprint 6b entry gates satisfied — feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved, REQ-S6-004 revisited
-- [ ] CHK-061 [P1] R10 false positive rate <20% — verified via manual review of >=50 entity sample (if implemented)
-- [ ] CHK-062 [P1] N2 graph channel attribution >10% of final top-K OR graph density <1.0 documented with deferral decision — evidence: attribution percentage in eval output or density measurement
-- [ ] CHK-062a [P1] N2c community assignments stable across 2 runs on test graph with ≥50 nodes — evidence: <5% membership divergence
-- [ ] CHK-071 [P1] Active feature flag count <=6 post-Sprint-6b — evidence: final flag list with count
-- [ ] CHK-072 [P1] All health dashboard targets checked — evidence: dashboard screenshot or metric summary
+- [ ] CHK-S6-070 [P1] Sprint 6b entry gates satisfied — feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved, REQ-S6-004 revisited
+- [ ] CHK-S6-061 [P1] R10 false positive rate <20% — verified via manual review of >=50 entity sample (if implemented)
+- [ ] CHK-S6-062 [P1] N2 graph channel attribution >10% of final top-K OR graph density <1.0 documented with deferral decision — evidence: attribution percentage in eval output or density measurement
+- [ ] CHK-S6-062a [P1] N2c community assignments stable across 2 runs on test graph with ≥50 nodes — evidence: <5% membership divergence
+- [ ] CHK-S6-071 [P1] Active feature flag count <=6 post-Sprint-6b — evidence: final flag list with count
+- [ ] CHK-S6-072 [P1] All health dashboard targets checked — evidence: dashboard screenshot or metric summary
 
 ---
 
@@ -154,7 +154,7 @@ contextType: "implementation"
 Level 2 checklist — Phase 7 of 8
 Sprint 6a exit gate items are P1 (exit gates for metric-gated sprint must not be optional)
 Sprint 6b exit gate items are P1 (conditional on Sprint 6b execution)
-UT-8 amendments: CHK-004a (feasibility spike P0), CHK-004b (weight_history P0), split exit gates
+UT-8 amendments: CHK-S6-004a (feasibility spike P0), CHK-S6-004b (weight_history P0), split exit gates
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 -->

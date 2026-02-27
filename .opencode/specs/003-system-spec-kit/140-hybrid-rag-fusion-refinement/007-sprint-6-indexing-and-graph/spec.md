@@ -55,6 +55,8 @@ This is **Phase 7** of the Hybrid RAG Fusion Refinement specification.
 - Graph signal established (from Sprint 1/R4)
 - Sprint 6b additionally requires: feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved, REQ-S6-004 density-conditional acceptance revisited
 
+> **HARD SCOPE CAP**: Sprint 6 is beyond the recommended off-ramp (Sprint 3). Per root spec, starting Sprint 6+ requires separate NEW spec approval and explicit justification based on Sprint 3 off-ramp evaluation results.
+
 **Deliverables**:
 
 *Sprint 6a:*

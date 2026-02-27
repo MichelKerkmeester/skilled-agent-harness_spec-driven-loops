@@ -107,7 +107,8 @@ contextType: "implementation"
 <!-- ANCHOR:verification -->
 ## Verification
 
-- [ ] T007a [GATE] Sprint 6a exit gate verification [0h] {T001d, T002, T003, T004, T006}
+- [ ] T-FS6a Feature flag sunset review at Sprint 6a exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T002, T003, T004, T006} — NFR-O01/O02/O03
+- [ ] T007a [GATE] Sprint 6a exit gate verification [0h] {T001d, T002, T003, T004, T006, T-FS6a}
   - [ ] R7 Recall@20 within 10% of baseline
   - [ ] R16 encoding-intent capture functional behind flag
   - [ ] S4 hierarchy traversal functional
@@ -118,7 +119,8 @@ contextType: "implementation"
   - [ ] **Feature flag sunset audit**: List all active flags (`SPECKIT_CONSOLIDATION`, `SPECKIT_ENCODING_INTENT`, plus any from Sprints 1-5). Retire or consolidate any flags no longer needed. Document survivors with justification.
   - [ ] All health dashboard targets checked
 
-- [ ] T007b [GATE] Sprint 6b exit gate verification [0h] {T-S6B-GATE, T001, T005} — conditional on Sprint 6b execution
+- [ ] T-FS6b Feature flag sunset review at Sprint 6b exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics; ensure ≤6 simultaneous active flags [0.5-1h] {T001, T005} — NFR-O01/O02/O03
+- [ ] T007b [GATE] Sprint 6b exit gate verification [0h] {T-S6B-GATE, T001, T005, T-FS6b} — conditional on Sprint 6b execution
   - [ ] N2 graph channel attribution >10% of final top-K OR graph density <1.0 documented with deferral decision
   - [ ] N2c community assignments stable across 2 runs on test graph with ≥50 nodes
   - [ ] R10 FP rate <20% on manual review of >=50 entities (if implemented)

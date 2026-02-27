@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "95+ tasks across 8 metric-gated sprints (348-523h S0-S6, 393-585h S0-S7) organized by workstream with sprint gate verification tasks, feature flag sunset reviews, and ground truth diversification."
+description: "95+ tasks across 8 metric-gated sprints (348-523h S0-S6, 393-585h S0-S7; +52-80h test-writing effort = 400-603h S0-S6, 445-665h S0-S7) organized by workstream with sprint gate verification tasks, feature flag sunset reviews, and ground truth diversification."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -110,14 +110,14 @@ contextType: "implementation"
 > **Goal**: Resolve dual scoring magnitude mismatch; enable zero-cost re-indexing.
 > **Child folder**: `003-sprint-2-scoring-calibration/`
 
-- [ ] T015 [P] [W-A] Implement embedding cache (`embedding_cache` table) for instant rebuild [8-12h] {T014} — R18
-- [ ] T016 [P] [W-A] Implement cold-start boost with exponential decay (12h half-life) behind `SPECKIT_NOVELTY_BOOST` flag [3-5h] {T014} — N4
-- [ ] T017 [W-A] Investigate double intent weighting (G2) — determine if intentional design [4-6h] {T014} — G2
+- [ ] T015 [P] [W-A] Implement embedding cache (`embedding_cache` table) for instant rebuild [8-12h] {T009} — R18
+- [ ] T016 [P] [W-A] Implement cold-start boost with exponential decay (12h half-life) behind `SPECKIT_NOVELTY_BOOST` flag [3-5h] {T009} — N4
+- [ ] T017 [W-A] Investigate double intent weighting (G2) — determine if intentional design [4-6h] {T009} — G2
 - [ ] T018 [W-A] Implement score normalization (both RRF and composite to [0,1] scale) [4-6h] {T017} — Score calibration
 - [ ] T019 [W-C] Verify dark-run results for N4 and score normalization via R13 [included] {T016, T018}
-- [ ] T020a [P] [W-A] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] {T014} — FUT-5
-- [ ] T056 [P] [W-A] Implement interference scoring signal — add interference_score column, compute at index time (count similar memories in spec_folder), apply as -0.08 weight in composite scoring behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] {T014} — TM-01/REQ-040
-- [ ] T057 [P] [W-A] Implement classification-based decay policies — modify fsrs-scheduler.ts to apply decay multipliers by context_type (decisions: no decay, research: 2x stability) and importance_tier (critical: no decay, temporary: 0.5x stability) [3-5h] {T014} — TM-03/REQ-041
+- [ ] T020a [P] [W-A] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] {T009} — FUT-5
+- [ ] T056 [P] [W-A] Implement interference scoring signal — add interference_score column, compute at index time (count similar memories in spec_folder), apply as -0.08 weight in composite scoring behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] {T009} — TM-01/REQ-040
+- [ ] T057 [P] [W-A] Implement classification-based decay policies — modify fsrs-scheduler.ts to apply decay multipliers by context_type (decisions: no decay, research: 2x stability) and importance_tier (critical: no decay, temporary: 0.5x stability) [3-5h] {T009} — TM-03/REQ-041
 - [ ] T-FS2 [W-A] Feature flag sunset review at Sprint 2 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 3 [0.5-1h] {T019} — NFR-O01/O02/O03
 - [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized, flag count ≤6 [0h] {T015-T019, T-FS2}
 <!-- /ANCHOR:sprint-2 -->
@@ -150,6 +150,7 @@ contextType: "implementation"
 > **Goal**: Close the feedback loop; aggregate chunk scores safely.
 > **Prerequisite**: R13 must have completed at least 2 full eval cycles.
 > **Child folder**: `005-sprint-4-feedback-and-quality/`
+> **Effort note**: Header total (72-109h) includes sub-task effort not individually listed in root (e.g., T026a, T027c, T027d, T028a). Sprint 4 child plan estimates 64-97h. See child tasks.md for authoritative detailed breakdown.
 
 - [ ] T025c [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {T025} — Safety gate
 - [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025} — R1
@@ -240,10 +241,12 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:sprint-7 -->
-## Sprint 7: Long Horizon [45-62h]
+## Sprint 7: Long Horizon [16-68h conditional]
 
 > **Goal**: Address scale-dependent features and complete evaluation infrastructure.
+> **Priority**: P1-P3 (conditional — P0/P1/P2/P3 items per child spec; all gated on scale thresholds)
 > **Child folder**: `008-sprint-7-long-horizon/`
+> **Effort note**: 3 scenarios per child plan — minimal (16-22h), moderate (33-48h), full (48-68h). Root header uses conditional range.
 
 - [ ] T048 [P] [W-D] Implement memory summary generation (only if >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag [15-20h] {T047a} — R8
 - [ ] T049 [P] [W-D] Implement smarter memory content generation [8-12h] {T047a} — S1
@@ -266,9 +269,9 @@ contextType: "implementation"
 
 ---
 
-### Sprint 0 Tasks (Pre-Foundation)
+### Sprint 1 Tasks (Graph Signal Activation)
 
-- [ ] PI-A5 [W-A] Implement verify-fix-verify memory quality loop — after memory_save, run quality check; if below threshold, auto-fix (regenerate triggers, normalize title) and re-verify; max 2 retries before rejection [12-16h] {T004} — Sprint 0 (deferred to Sprint 1 per REC-09 if Sprint 0 scope is tight)
+- [ ] PI-A5 [W-A] Implement verify-fix-verify memory quality loop — after memory_save, run quality check; if below threshold, auto-fix (regenerate triggers, normalize title) and re-verify; max 2 retries before rejection [12-16h] {T009} — Sprint 1 (deferred from S0 per REC-09)
   - Validation cycle: save → quality_score → fix (if < 0.6) → re-score → reject (if still < 0.6 after 2 retries)
   - Risk: Medium — quality thresholds must be calibrated against Sprint 0 eval data before activation
   - **Sprint assignment note**: Root spec assigns to S0. If deferred from S0, Sprint 1 child spec MUST include PI-A5 as a formal task (REQ-057)
@@ -314,7 +317,7 @@ contextType: "implementation"
 <!-- ANCHOR:test-tasks -->
 ## Test-Writing Tasks (Per Sprint)
 
-> **Source**: plan.md §5 Testing Strategy. Each sprint MUST have dedicated test-writing effort. These tasks formalize the ~78-112 new tests across the program.
+> **Source**: plan.md §5 Testing Strategy. Each sprint MUST have dedicated test-writing effort. These tasks formalize the ~138-193 new tests across the program (sum: 8-12 + 18-25 + 18-26 + 22-28 + 22-32 + 30-40 + 12-18 + 8-12).
 
 - [ ] T-TEST-S0 [W-C] Write Sprint 0 tests — G1 numeric ID validation, G3 chunk dedup, R17 fan-effect bounds, R13-S1 schema/hooks/metrics, G-NEW-1 BM25 path, T054 SHA256 dedup, T004b observer effect, T006 diagnostic metrics, ground truth diversity validation [8-12 tests, 4-6h] {T009}
 - [ ] T-TEST-S1 [W-C] Write Sprint 1 tests — R4 degree SQL/normalization/cache/constitutional exclusion, A7 co-activation boost, G-NEW-2 instrumentation hooks, TM-08 CORRECTION/PREFERENCE signals, PI-A3 token budget, feature flag behaviors [18-25 tests, 6-10h] {T014}
@@ -335,7 +338,7 @@ contextType: "implementation"
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Feature flag count <= 6
 - [ ] R13 cumulative health dashboard meets targets (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
-- [ ] All 158+ original tests + ~78-112 new tests passing
+- [ ] All 158+ original tests + ~138-193 new tests passing
 
 **Minimum viable completion**: T025 (Sprint 3 gate) — see off-ramp criteria
 <!-- /ANCHOR:completion -->
@@ -365,5 +368,5 @@ LEVEL 3+ TASKS
 - Feature flag sunset tasks (T-FS0 through T-FS6) at each sprint boundary
 - Ground truth diversification (T000d) and agent consumption pre-analysis (T000e) in Sprint 0
 - Off-ramp marker after Sprint 3
-- PageIndex tasks: PI-A5 (S0), PI-A3 (S1), PI-A1 (S2), PI-A2+PI-B3 (S3), PI-A4 (S4), PI-B1+PI-B2 (S5)
+- PageIndex tasks: PI-A5 (S1, deferred from S0), PI-A3 (S1), PI-A1 (S2), PI-A2+PI-B3 (S3), PI-A4 (S5, deferred from S4), PI-B1+PI-B2 (S5)
 -->

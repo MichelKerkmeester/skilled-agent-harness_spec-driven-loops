@@ -22,7 +22,7 @@ contextType: "implementation"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | P2 |
+| **Priority** | P1 (elevated from P2 — safety-critical NFRs: Stage 4 invariant, pipeline integrity) |
 | **Status** | Draft |
 | **Created** | 2026-02-26 |
 | **Branch** | `140-hybrid-rag-fusion-refinement` |
@@ -47,6 +47,8 @@ This is **Phase 6** of the Hybrid RAG Fusion Refinement specification.
 
 **Dependencies**:
 - Sprint 4 exit gate (feedback loop complete — R1, R11, R13-S2 verified)
+
+> **HARD SCOPE CAP**: Sprint 5 is beyond the recommended off-ramp (Sprint 3). Per root spec, starting Sprint 5+ requires separate NEW spec approval and explicit justification based on Sprint 3 off-ramp evaluation results.
 
 **Deliverables**:
 - 4-stage pipeline refactor with Stage 4 invariant (R6)
@@ -85,6 +87,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 - **R12**: Query expansion (suppressed when R15="simple") with `SPECKIT_EMBEDDING_EXPANSION` flag
 - **S2**: Template anchor optimization — anchor-aware retrieval metadata
 - **S3**: Validation signals as retrieval metadata — validation metadata in scoring
+- **PI-A4**: Constitutional memory as retrieval directives — reformat constitutional memories with `retrieval_directive` metadata field (deferred from Sprint 4 per REC-07)
 
 ### Out of Scope
 

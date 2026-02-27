@@ -104,7 +104,8 @@ contextType: "implementation"
 
 - [ ] T005 Enable R4 in dark-run mode — three-measurement sequence: (a) Sprint 0 baseline MRR@5, (b) R4-only with A7 at 0.1x, (c) R4+A7 with A7 at 0.25-0.3x; verify MRR@5 delta >+2% and no single memory >60% presence [included] {T002, T003, T003a, T004, T005a} — R4 (REQ-S1-001)
   - WHY sequential: R4 and A7 are both graph-derived signals; dual activation conflates attribution. Sequential passes add one extra eval run but provide clean causal data for rollback decisions.
-- [ ] T006 [GATE] Sprint 1 exit gate verification [0h] {T001, T002, T003, T003a, T004, T005, T005a}
+- [ ] T-FS1 Feature flag sunset review at Sprint 1 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T005} — NFR-O01/O02/O03
+- [ ] T006 [GATE] Sprint 1 exit gate verification [0h] {T001, T002, T003, T003a, T004, T005, T005a, T-FS1}
   - [ ] R4 MRR@5 delta >+2% absolute
   - [ ] No single memory >60% of dark-run results
   - [ ] Edge density measured; R10 escalation decision documented
@@ -121,10 +122,21 @@ contextType: "implementation"
 
 ---
 
+## Phase 7: PI-A5 — Verify-Fix-Verify Memory Quality Loop (Deferred from Sprint 0)
+
+> **Source**: REQ-057 (PI-A5). Deferred from Sprint 0 per Ultra-Think Review REC-09.
+
+- [ ] T008 [P] [W-A] Implement verify-fix-verify memory quality loop — compute quality score post-save; auto-fix if <0.6; reject after 2 retries; log quality metrics to eval infrastructure [12-16h] — PI-A5/REQ-057
+  - Quality score computation: composite of trigger phrase coverage, anchor format, token budget, content coherence
+  - Auto-fix strategies: re-extract triggers, normalize anchors, trim content to budget
+  - Rejection logging: track rejection rate per spec folder for drift monitoring
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T006 (including T003a and T005a) marked `[x]`
+- [ ] All tasks T001-T008 (including T003a and T005a) marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 1 exit gate (T006) passed
 - [ ] 18-25 new tests added and passing

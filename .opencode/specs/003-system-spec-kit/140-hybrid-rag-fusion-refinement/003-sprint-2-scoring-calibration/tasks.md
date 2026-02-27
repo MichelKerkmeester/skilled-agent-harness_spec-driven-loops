@@ -101,7 +101,8 @@ contextType: "implementation"
 ## Phase 7: Verification
 
 - [ ] T007 Verify dark-run results for N4, normalization, and TM-01 — new memories visible, old not displaced, MRR@5 not regressed, interference penalty correct [included] {T002, T004, T005}
-- [ ] T008 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005, T006, T007}
+- [ ] T-FS2 Feature flag sunset review at Sprint 2 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T007} — NFR-O01/O02/O03
+- [ ] T008 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005, T006, T007, T-FS2}
   - [ ] R18 cache hit >90% on unchanged content re-index
   - [ ] N4 dark-run passes
   - [ ] G2 resolved: fixed or documented as intentional

@@ -108,7 +108,8 @@ contextType: "implementation"
 ## Phase 4: Shadow Comparison + Verification
 
 - [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
-- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007}
+- [ ] T-FS3 Feature flag sunset review at Sprint 3 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T004} — NFR-O01/O02/O03
+- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007, T-FS3}
 <!-- /ANCHOR:phase-4 -->
 
 ---

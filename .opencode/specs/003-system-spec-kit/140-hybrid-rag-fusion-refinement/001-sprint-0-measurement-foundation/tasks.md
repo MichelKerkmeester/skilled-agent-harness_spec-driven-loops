@@ -32,6 +32,18 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-1 -->
+## Phase 0: Pre-Foundation
+
+- [ ] T000a [P] Record pre-Sprint-0 performance baseline — current p95 search latency, memory count, existing system behavior snapshot [1-2h] — Baseline
+- [ ] T000b [P] Establish feature flag governance rules — document 6-flag max, 90-day lifespan, naming convention, monthly sunset audit process, and INCONCLUSIVE state (extend measurement window by max 14 days, one extension per flag, mandatory hard-deadline decision date) [1-2h] — NFR-O01/O02/O03
+  - B8 signal ceiling: max 12 active scoring signals until R13 automated eval; escape clause requires R13 evidence of orthogonal value
+- [ ] T000c [P] Audit `search-weights.json` — verify `maxTriggersPerMemory` status, smart ranking section behavior [1-2h] — OQ-003
+- [ ] T000d [P] Curate diverse ground truth query set — manually create ≥15 natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives; minimum ≥5 per intent type, ≥3 complexity tiers (simple factual, moderate relational, complex multi-hop) [2-3h] — G-NEW-1/G-NEW-3
+  - Acceptance: query set JSON with `intent_type`, `complexity_tier`, `expected_result_ids` fields per query
+  - Feeds into T007 synthetic ground truth generation and T008 BM25 baseline
+
+---
+
 ## Phase 1: Bug Fixes (Track 1)
 
 - [ ] T001 [P] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] — G1 (REQ-S0-001)
@@ -106,7 +118,8 @@ contextType: "implementation"
 
 ## Phase 4: Verification
 
-- [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T001, T002, T003, T004, T005, T006, T007, T007b, T008, T013, T054}
+- [ ] T-FS0 Feature flag sunset review at Sprint 0 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T008} — NFR-O01/O02/O03
+- [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T000a, T000b, T000c, T000d, T001, T002, T003, T004, T005, T006, T007, T007b, T008, T013, T054, T-FS0}
   - [ ] Graph hit rate > 0%
   - [ ] No duplicate chunk rows in default search
   - [ ] Baseline metrics for 100+ queries computed and stored
@@ -121,7 +134,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T009, T007b, T013, and T054 marked `[x]`
+- [ ] All tasks T000a-T000d, T001-T009, T007b, T013, and T054 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 0 exit gate (T009) passed
 - [ ] 20-30 new tests added and passing

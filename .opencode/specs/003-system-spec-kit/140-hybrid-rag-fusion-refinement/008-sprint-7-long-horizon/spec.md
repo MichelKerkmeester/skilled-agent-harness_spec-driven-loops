@@ -51,6 +51,8 @@ This is **Phase 8** of the Hybrid RAG Fusion Refinement specification.
 - Evaluation infrastructure operational (from Sprint 0, enhanced in Sprint 4)
 - Full pipeline operational (from Sprint 5 refactor)
 
+> **HARD SCOPE CAP**: Sprint 7 is beyond the recommended off-ramp (Sprint 3). Per root spec, starting Sprint 7+ requires separate NEW spec approval and explicit justification based on Sprint 3 off-ramp evaluation results.
+
 **Deliverables**:
 - Memory summary generation gated on >5K memories (R8)
 - Smarter memory content generation from markdown (S1)

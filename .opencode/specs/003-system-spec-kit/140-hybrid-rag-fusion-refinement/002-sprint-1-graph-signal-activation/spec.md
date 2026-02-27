@@ -81,6 +81,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 - **A7**: Co-activation boost strength increase — raise multiplier from 0.1x to 0.25-0.3x to make graph signal investment visible in results
 - **Edge density measurement**: Compute edges/node ratio from R13 eval data
 - **G-NEW-2**: Agent-as-consumer UX analysis and consumption instrumentation
+- **PI-A5**: Verify-fix-verify memory quality loop (deferred from Sprint 0 per REC-09) — REQ-057
 
 ### Out of Scope
 
@@ -98,6 +99,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 | `hybrid-search.ts` | Modify | R4: Degree score integration into search pipeline |
 | `co-activation.ts` | Modify | A7: Increase co-activation boost multiplier from 0.1x to 0.25-0.3x |
 | `trigger-matcher.ts` | Modify | TM-08: Add CORRECTION and PREFERENCE signal categories |
+| `memory-save.ts` | Modify | PI-A5: Post-save quality scoring, auto-fix loop, rejection logging |
 <!-- /ANCHOR:scope -->
 
 ---
