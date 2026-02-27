@@ -1,14 +1,14 @@
 ---
-title: "Tasks: Sprint 0 — Epistemological Foundation"
+title: "Tasks: Sprint 0 — Measurement Foundation"
 description: "Task breakdown for Sprint 0: graph ID fix, chunk collapse, eval infrastructure, BM25 baseline"
 trigger_phrases:
   - "sprint 0 tasks"
-  - "epistemological foundation tasks"
+  - "measurement foundation tasks"
   - "eval infrastructure tasks"
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Tasks: Sprint 0 — Epistemological Foundation
+# Tasks: Sprint 0 — Measurement Foundation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

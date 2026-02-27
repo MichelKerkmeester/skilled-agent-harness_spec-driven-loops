@@ -57,3 +57,29 @@ export function detectNodeVersionMismatch(): void {
     console.warn(`[context-server] Node version check skipped: ${message}`);
   }
 }
+
+/* ---------------------------------------------------------------
+   2. SQLITE VERSION CHECK
+--------------------------------------------------------------- */
+
+/**
+ * Check that SQLite version meets minimum requirement (3.35.0+)
+ * Required for: RETURNING clause, CTEs, window functions used in scoring pipeline
+ */
+export function checkSqliteVersion(db: { prepare: (sql: string) => { get: () => unknown } }): void {
+  try {
+    const result = db.prepare('SELECT sqlite_version() as version').get() as { version: string };
+    const version = result.version;
+    const [major, minor] = version.split('.').map(Number);
+    if (major < 3 || (major === 3 && minor < 35)) {
+      console.warn(
+        `[spec-kit] WARNING: SQLite version ${version} detected. ` +
+        `Minimum required: 3.35.0. Some features may not work correctly.`
+      );
+    } else {
+      console.log(`[spec-kit] SQLite version: ${version} (meets 3.35.0+ requirement)`);
+    }
+  } catch (e) {
+    console.warn(`[spec-kit] Could not determine SQLite version: ${(e as Error).message}`);
+  }
+}

@@ -1,16 +1,16 @@
 ---
-title: "Feature Specification: Sprint 4 — Feedback Loop"
+title: "Feature Specification: Sprint 4 — Feedback and Quality"
 description: "Close the feedback loop with chunk aggregation, learned relevance feedback, and shadow scoring infrastructure."
 trigger_phrases:
   - "sprint 4"
-  - "feedback loop"
+  - "feedback and quality"
   - "MPAB"
   - "learned relevance"
   - "R11"
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Feature Specification: Sprint 4 — Feedback Loop
+# Feature Specification: Sprint 4 — Feedback and Quality
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2 -->
@@ -52,7 +52,7 @@ This is **Phase 5** of the Hybrid RAG Fusion Refinement specification.
 
 **Deliverables**:
 - MPAB chunk-to-memory aggregation with N=0/N=1 guards (R1)
-- Learned relevance feedback with separate column and 7 safeguards (R11)
+- Learned relevance feedback with separate column and 10 safeguards (R11)
 - Shadow scoring + channel attribution + ground truth Phase B (R13-S2)
 <!-- /ANCHOR:phase-context -->
 
@@ -67,7 +67,7 @@ Chunked memories are scored individually without aggregation — a memory with 5
 
 ### Purpose
 
-Aggregate chunk scores safely with MPAB (preserving N=0/N=1 semantics), learn from user behavior with 7 strict safeguards to prevent FTS5 contamination, and establish full A/B evaluation infrastructure for continuous quality measurement.
+Aggregate chunk scores safely with MPAB (preserving N=0/N=1 semantics), learn from user behavior with 10 strict safeguards to prevent FTS5 contamination, and establish full A/B evaluation infrastructure for continuous quality measurement.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -78,8 +78,9 @@ Aggregate chunk scores safely with MPAB (preserving N=0/N=1 semantics), learn fr
 ### In Scope
 
 - **R1**: MPAB chunk-to-memory aggregation with N=0/N=1 guards, index-based max removal
-- **R11**: Learned relevance feedback with separate `learned_triggers` column + 7 safeguards
+- **R11**: Learned relevance feedback with separate `learned_triggers` column + 10 safeguards
 - **R13-S2**: Shadow scoring + channel attribution + ground truth Phase B
+- **G-NEW-3 Phase C**: LLM-judge ground truth generation (tasks T027a, T027b) — context-type boost validation via automated LLM-judge labeling with >=80% agreement with manual labels
 
 ### Out of Scope
 
@@ -107,7 +108,7 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 - TM-04: Pre-storage quality gate (6-10h) — no schema change
 
 **S4b — Higher Risk (estimated 31-48h, requires S4a metrics + 28-day window)**
-- R11: Learned relevance feedback with separate `learned_triggers` column + 7 safeguards (16-24h) + T002a auto-promotion (5-8h) + T002b negative feedback (4-6h)
+- R11: Learned relevance feedback with separate `learned_triggers` column + 10 safeguards (16-24h) + T002a auto-promotion (5-8h) + T002b negative feedback (4-6h)
 - TM-06: Reconsolidation-on-save (6-10h) — schema-adjacent, high caution
 
 **Rationale for split**: R11 has CRITICAL severity — an FTS5 contamination mistake (adding `learned_triggers` to the FTS5 index) is irreversible without a full re-index of all memories. Isolating R11 into S4b means S4a's A/B infrastructure is operational before R11 mutations begin, enabling immediate detection of any regression. Risk concentration is eliminated by ensuring R1 and R13-S2 are verified clean before R11 is enabled.
@@ -120,7 +121,7 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 |-----------|-------------|-------------|
 | `composite-scoring.ts` or fusion layer | Modify | R1: MPAB aggregation with N=0/N=1 guards |
 | `memory_index` schema | Modify | R11: `ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'` |
-| Search handlers | Modify | R11: 7 safeguards implementation |
+| Search handlers | Modify | R11: 10 safeguards implementation |
 | Eval infrastructure | Modify | R13-S2: Shadow scoring + channel attribution + ground truth Phase B |
 | `memory-save.ts` (save handler) | Modify | TM-04: Multi-layer pre-storage quality gate (L1 structural, L2 content quality, L3 semantic dedup) |
 | `memory-save.ts` (save handler) | Modify | TM-06: Post-embedding reconsolidation check against top-3 similar memories (merge/replace/store) |
@@ -142,7 +143,7 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-S4-001 | **R1**: MPAB with N=0/N=1 guards, index-based max removal | MRR@5 within 2% of baseline, N=1 no regression. Chunk ordering: collapsed multi-chunk results maintain original document position order. Flag: `SPECKIT_DOCSCORE_AGGREGATION` |
-| REQ-S4-002 | **R11**: Learned feedback with separate `learned_triggers` column + 7 safeguards (provenance, TTL 30d, denylist 100+, cap 3/8, threshold top-3, shadow 1 week, eligibility 72h) | Noise rate <5%. Auto-promotion: memories with >=5 positive validations promoted normal->important; >=10 promoted important->critical. Negative feedback confidence signal active: wasUseful=false reduces score via confidence multiplier (floor=0.3). Flag: `SPECKIT_LEARN_FROM_SELECTION` |
+| REQ-S4-002 | **R11**: Learned feedback with separate `learned_triggers` column + 10 safeguards (denylist 100+, rate cap 3/8h, TTL 30d decay, FTS5 isolation, noise floor top-3, rollback mechanism, provenance/audit log, shadow period 1 week, eligibility 72h, sprint gate review) | Noise rate <5%. Auto-promotion: memories with >=5 positive validations promoted normal->important; >=10 promoted important->critical. Negative feedback confidence signal active: wasUseful=false reduces score via confidence multiplier (floor=0.3). Flag: `SPECKIT_LEARN_FROM_SELECTION` |
 | REQ-S4-003 | **R13-S2**: Shadow scoring + channel attribution + ground truth Phase B | A/B infrastructure operational. Exclusive Contribution Rate computed per channel |
 | REQ-S4-004 | **TM-04**: Pre-storage quality gate in `memory_save` handler — Layer 1 structural (existing), Layer 2 content quality scoring (title, triggers, length, anchors, metadata, signal density >= 0.4 threshold), Layer 3 semantic dedup (>0.92 cosine similarity = reject). Behind `SPECKIT_SAVE_QUALITY_GATE` flag | Low-quality saves blocked (score below 0.4 signal density threshold); semantic near-duplicates (>0.92 cosine similarity) rejected; structurally valid, distinct content passes all layers |
 | REQ-S4-005 | **TM-06**: Reconsolidation-on-save — after embedding generation check top-3 similar memories: >=0.88 similarity = duplicate (merge, increment frequency), 0.75–0.88 = conflict (replace, add supersedes edge), <0.75 = complement (store new). Requires checkpoint before enabling. Behind `SPECKIT_RECONSOLIDATION` flag | Duplicate memories merged with frequency increment; conflicting memories replaced with causal supersedes edge; complement memories stored without modification; checkpoint created before first enable |
@@ -227,7 +228,7 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 16/25 | 3 features: MPAB aggregation, learned feedback with schema change, eval Phase B |
-| Risk | 18/25 | CRITICAL FTS5 contamination risk; schema migration; 7 safeguards complexity |
+| Risk | 18/25 | CRITICAL FTS5 contamination risk; schema migration; 10 safeguards complexity |
 | Research | 6/20 | Research complete (142 analysis); MPAB formula and R11 safeguards defined |
 | **Total** | **40/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
@@ -278,5 +279,5 @@ ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]';
 LEVEL 2 SPEC — Phase 5 of 8
 - Core + L2 addendums (NFR, Edge Cases, Complexity)
 - Phase-child-header addendum
-- Sprint 4: Feedback Loop
+- Sprint 4: Feedback and Quality
 -->

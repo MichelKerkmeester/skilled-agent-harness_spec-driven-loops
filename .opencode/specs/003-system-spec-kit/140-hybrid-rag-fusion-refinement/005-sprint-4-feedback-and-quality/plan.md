@@ -1,15 +1,15 @@
 ---
-title: "Implementation Plan: Sprint 4 — Feedback Loop"
+title: "Implementation Plan: Sprint 4 — Feedback and Quality"
 description: "MPAB chunk aggregation, learned relevance feedback, and shadow scoring infrastructure implementation plan."
 trigger_phrases:
   - "sprint 4 plan"
-  - "feedback loop plan"
+  - "feedback and quality plan"
   - "MPAB plan"
   - "R11 plan"
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Implementation Plan: Sprint 4 — Feedback Loop
+# Implementation Plan: Sprint 4 — Feedback and Quality
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
@@ -307,5 +307,5 @@ If both R11 and TM-06 have been active and a regression is detected:
 <!--
 LEVEL 2 PLAN — Phase 5 of 8
 - Core + L2 addendums (Phase deps, Effort, Enhanced rollback)
-- Sprint 4: Feedback Loop
+- Sprint 4: Feedback and Quality
 -->

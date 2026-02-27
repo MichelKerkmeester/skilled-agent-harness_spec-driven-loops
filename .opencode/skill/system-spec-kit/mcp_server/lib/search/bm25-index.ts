@@ -288,12 +288,18 @@ function resetIndex(): void {
  * each remaining term in quotes for safety.
  */
 function sanitizeFTS5Query(query: string): string {
+  // Input length guard: truncate overly long queries to prevent DoS
+  if (query.length > 2000) {
+    query = query.substring(0, 2000);
+  }
   // Remove FTS5 boolean/proximity operators (case-insensitive)
   let sanitized = query
     .replace(/\bNEAR\b/gi, '')
     .replace(/\bNOT\b/gi, '')
     .replace(/\bAND\b/gi, '')
     .replace(/\bOR\b/gi, '');
+  // Strip NEAR/N residual (e.g., "NEAR/5" becomes "NEAR" then "/" and "5" remain)
+  sanitized = sanitized.replace(/\/\d+/g, ' ');
   // Remove FTS5 special characters and column-filter colon.
   sanitized = sanitized
     .replace(/[*^(){}[\]"]/g, '')

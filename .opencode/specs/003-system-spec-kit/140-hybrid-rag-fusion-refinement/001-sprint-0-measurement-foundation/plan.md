@@ -1,14 +1,14 @@
 ---
-title: "Implementation Plan: Sprint 0 — Epistemological Foundation"
+title: "Implementation Plan: Sprint 0 — Measurement Foundation"
 description: "Fix graph channel ID format, chunk collapse dedup, co-activation hub domination, and build evaluation infrastructure with BM25 baseline."
 trigger_phrases:
   - "sprint 0 plan"
-  - "epistemological foundation plan"
+  - "measurement foundation plan"
   - "eval infrastructure plan"
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Implementation Plan: Sprint 0 — Epistemological Foundation
+# Implementation Plan: Sprint 0 — Measurement Foundation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->

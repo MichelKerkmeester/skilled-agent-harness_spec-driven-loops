@@ -43,7 +43,7 @@ import { MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceMemories } from './h
 import { getTokenBudget } from './lib/architecture/layer-definitions';
 
 // T303: Startup checks (extracted from this file)
-import { detectNodeVersionMismatch } from './startup-checks';
+import { detectNodeVersionMismatch, checkSqliteVersion } from './startup-checks';
 
 // Lib modules (for initialization only)
 import * as vectorIndex from './lib/search/vector-index';
@@ -564,6 +564,9 @@ async function main(): Promise<void> {
     if (!database) {
       throw new Error('Database not initialized after initializeDb(). Cannot start server.');
     }
+
+    // Check SQLite version meets minimum requirement (3.35.0+)
+    checkSqliteVersion(database);
 
     const graphSearchFn = isGraphUnifiedEnabled()
       ? createUnifiedGraphSearchFn(database)

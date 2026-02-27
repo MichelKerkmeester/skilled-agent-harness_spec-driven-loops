@@ -43,6 +43,29 @@ import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-u
 // Create local path validator
 const validateFilePathLocal = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
 
+/** Per-spec-folder save mutex to prevent concurrent indexing races (TOCTOU) */
+const specFolderLocks = new Map<string, Promise<unknown>>();
+
+async function withSpecFolderLock<T>(specFolder: string, fn: () => Promise<T>): Promise<T> {
+  const normalizedFolder = specFolder || '__global__';
+  // Wait for any existing operation on this folder
+  const existing = specFolderLocks.get(normalizedFolder);
+  if (existing) {
+    await existing.catch(() => {}); // Don't propagate previous errors
+  }
+  // Create new lock
+  const promise = fn();
+  specFolderLocks.set(normalizedFolder, promise);
+  try {
+    return await promise;
+  } finally {
+    // Only clean up if this is still the current lock
+    if (specFolderLocks.get(normalizedFolder) === promise) {
+      specFolderLocks.delete(normalizedFolder);
+    }
+  }
+}
+
 /* ---------------------------------------------------------------
    2. TYPES
 --------------------------------------------------------------- */
@@ -928,6 +951,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     return indexChunkedMemoryFile(filePath, parsed, { force });
   }
 
+  // Per-spec-folder lock to prevent TOCTOU race conditions on concurrent saves
+  return withSpecFolderLock(parsed.specFolder, async () => {
+
   const database = requireDb();
   const canonicalFilePath = getCanonicalPathKey(filePath);
   const existing = database.prepare(`
@@ -1371,6 +1397,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   }
 
   return result;
+
+  }); // end withSpecFolderLock
 }
 
 /* ---------------------------------------------------------------

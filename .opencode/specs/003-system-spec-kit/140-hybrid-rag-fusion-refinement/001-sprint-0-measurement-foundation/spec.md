@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Sprint 0 — Epistemological Foundation"
+title: "Feature Specification: Sprint 0 — Measurement Foundation"
 description: "Fix graph channel (0% hit rate), chunk collapse dedup, co-activation hub domination, and establish evaluation infrastructure with BM25 baseline."
 trigger_phrases:
   - "sprint 0"
-  - "epistemological foundation"
+  - "measurement foundation"
   - "graph ID fix"
   - "eval infrastructure"
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Feature Specification: Sprint 0 — Epistemological Foundation
+# Feature Specification: Sprint 0 — Measurement Foundation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2 -->

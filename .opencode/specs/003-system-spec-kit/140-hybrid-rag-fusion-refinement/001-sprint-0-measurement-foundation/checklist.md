@@ -1,14 +1,14 @@
 ---
-title: "Verification Checklist: Sprint 0 — Epistemological Foundation"
+title: "Verification Checklist: Sprint 0 — Measurement Foundation"
 description: "Verification checklist for Sprint 0: graph ID fix, chunk collapse, eval infrastructure, BM25 baseline"
 trigger_phrases:
   - "sprint 0 checklist"
-  - "epistemological foundation checklist"
+  - "measurement foundation checklist"
   - "sprint 0 verification"
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Verification Checklist: Sprint 0 — Epistemological Foundation
+# Verification Checklist: Sprint 0 — Measurement Foundation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -128,7 +128,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 15 | [ ]/15 |
-| P1 Items | 24 | [ ]/24 |
+| P1 Items | 25 | [ ]/25 |
 | P2 Items | 4 | [ ]/4 |
 
 **Verification Date**: [YYYY-MM-DD]

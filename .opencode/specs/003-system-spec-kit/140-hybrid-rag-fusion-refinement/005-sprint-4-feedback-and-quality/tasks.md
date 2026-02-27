@@ -1,15 +1,15 @@
 ---
-title: "Tasks: Sprint 4 — Feedback Loop"
+title: "Tasks: Sprint 4 — Feedback and Quality"
 description: "Task breakdown for MPAB chunk aggregation, learned relevance feedback, and shadow scoring."
 trigger_phrases:
   - "sprint 4 tasks"
-  - "feedback loop tasks"
+  - "feedback and quality tasks"
   - "MPAB tasks"
   - "R11 tasks"
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Tasks: Sprint 4 — Feedback Loop
+# Tasks: Sprint 4 — Feedback and Quality
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -58,7 +58,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: R11 Learned Relevance Feedback
 
-- [ ] T002 Implement learned relevance feedback — schema migration (`learned_triggers` column) + separate column isolation + 7 safeguards (provenance, TTL 30d, denylist 100+, cap 3/8, threshold top-3, shadow 1 week, eligibility 72h) + 0.7x query weight, behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] — R11
+- [ ] T002 Implement learned relevance feedback — schema migration (`learned_triggers` column) + separate column isolation + 10 safeguards (denylist 100+, rate cap 3/8h, TTL 30d decay, FTS5 isolation, noise floor top-3, rollback mechanism, provenance/audit log, shadow period 1 week, eligibility 72h, sprint gate review) + 0.7x query weight, behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] — R11
   - T002a Implement memory importance auto-promotion — threshold-based tier promotion when validation count exceeds configurable threshold (default: 5 validations → promote normal→important, 10 → important→critical) [5-8h] — R11 extension
   - T002b Activate negative feedback confidence signal — wire `memory_validate(wasUseful: false)` confidence score into composite scoring as demotion multiplier (floor=0.3, gradual decay); feature-flaggable [4-6h] — A4 (R11 extension, prerequisite for DEF-003)
 <!-- /ANCHOR:phase-2 -->
@@ -193,6 +193,6 @@ Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference
 
 <!--
 LEVEL 2 TASKS — Phase 5 of 8
-- Sprint 4: Feedback Loop
+- Sprint 4: Feedback and Quality
 - 9 tasks across 6 phases
 -->

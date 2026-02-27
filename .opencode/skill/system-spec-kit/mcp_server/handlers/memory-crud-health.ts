@@ -270,6 +270,21 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
   if (!vectorIndex.isVectorSearchAvailable()) {
     hints.push('Vector search unavailable - fallback to BM25');
   }
+  // FTS5 consistency check
+  if (database) {
+    try {
+      const memoryCountRow = database.prepare('SELECT COUNT(*) as count FROM memory_index').get() as { count: number };
+      const ftsCountRow = database.prepare('SELECT COUNT(*) as count FROM memory_fts').get() as { count: number };
+      if (memoryCountRow.count !== ftsCountRow.count) {
+        hints.push(
+          `FTS5 index out of sync: memory_index has ${memoryCountRow.count} rows, memory_fts has ${ftsCountRow.count} rows. ` +
+          `Run memory_index_scan with force:true to rebuild FTS5 index.`
+        );
+      }
+    } catch (e) {
+      hints.push(`FTS5 consistency check failed: ${(e as Error).message}`);
+    }
+  }
   if (aliasConflicts.groups > 0) {
     hints.push(`Detected ${aliasConflicts.groups} specs/.opencode alias group(s)`);
   }

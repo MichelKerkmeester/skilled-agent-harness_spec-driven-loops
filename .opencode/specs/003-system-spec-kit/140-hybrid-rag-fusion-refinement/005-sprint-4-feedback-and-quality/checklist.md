@@ -1,14 +1,14 @@
 ---
-title: "Verification Checklist: Sprint 4 — Feedback Loop"
+title: "Verification Checklist: Sprint 4 — Feedback and Quality"
 description: "Verification checklist for MPAB chunk aggregation, learned relevance feedback, and shadow scoring."
 trigger_phrases:
   - "sprint 4 checklist"
-  - "feedback loop checklist"
+  - "feedback and quality checklist"
   - "sprint 4 verification"
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Verification Checklist: Sprint 4 — Feedback Loop
+# Verification Checklist: Sprint 4 — Feedback and Quality
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -87,6 +87,9 @@ contextType: "implementation"
 - [ ] CHK-S4-046 [P1] TM-04 Layer 3 semantic dedup — cosine similarity >0.92 rejects near-duplicates; distinct content at <0.92 passes
 - [ ] CHK-S4-047 [P1] TM-04 behind `SPECKIT_SAVE_QUALITY_GATE` flag — disabled state = no behavior change from pre-Sprint-4
 - [ ] CHK-S4-047a [P1] TM-04 warn-only mode (MR12): for first 2 weeks after activation, quality scores logged and would-reject decisions recorded but saves NOT blocked; enforcement enabled only after false-rejection rate review
+
+### G-NEW-3 — Context-Type Boost (Phase C)
+- [ ] CHK-S4-GNEW3 [P1] G-NEW-3 Phase C: LLM-judge ground truth generation operational with >=80% agreement with manual labels
 
 ### TM-06 — Reconsolidation-on-Save
 - [ ] CHK-S4-048 [P0] TM-06 checkpoint created before first enable (`pre-reconsolidation`)
@@ -168,7 +171,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 11 | [ ]/11 |
-| P1 Items | 45 | [ ]/45 |
+| P1 Items | 46 | [ ]/46 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]
@@ -178,7 +181,7 @@ contextType: "implementation"
 
 <!--
 Level 2 checklist — Phase 5 of 8
-Sprint 4: Feedback Loop
+Sprint 4: Feedback and Quality
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 -->

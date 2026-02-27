@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
-description: "95+ tasks across 8 metric-gated sprints (348-523h S0-S6, 393-585h S0-S7; +52-80h test-writing effort = 400-603h S0-S6, 445-665h S0-S7) organized by workstream with sprint gate verification tasks, feature flag sunset reviews, and ground truth diversification."
+description: "100+ tasks across 8 metric-gated sprints (355-536h S0-S6, 400-598h S0-S7; +52-80h test-writing effort = 407-616h S0-S6, 452-678h S0-S7) organized by workstream with sprint gate verification tasks, feature flag sunset reviews, and ground truth diversification."
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -28,13 +28,16 @@ contextType: "implementation"
 
 **Task Format**: `T### [W-X] Description (subsystem) [effort] {deps} — REC-ID`
 
-**Workstream Tags**: W-A (Quick Wins + Scoring), W-B (Graph), W-C (Measurement + Feedback), W-D (Pipeline + Spec-Kit)
+**Workstream Tags**: W-A (Quick Wins + Scoring), W-B (Graph), W-C (Measurement + Feedback), W-D (Pipeline + Spec-Kit), W-E (Eval Infrastructure), W-G (Graph Research), W-I (Integration Testing), W-Q (Quality Validation)
+
+> **Note:** GATE and GATE-PRE tasks intentionally omit workstream tags as they are cross-cutting verification activities.
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:sprint-0 -->
-## Sprint 0: Epistemological Foundation [50-77h]
+## Sprint 0: Epistemological Foundation [56-89h]
+> *Effort note: +8-15h optional for full corpus labeling per T008b*
 
 > **Goal**: Establish that retrieval is measurable. BLOCKING — nothing proceeds without exit gate.
 > **Child folder**: `001-sprint-0-measurement-foundation/`
@@ -54,8 +57,12 @@ contextType: "implementation"
   - Acceptance: hub memories (degree >10) show reduced co-activation boost; divisor formula = `1 / sqrt(degree)`
 - [ ] T004 [W-C] Create `speckit-eval.db` with 5-table schema (eval_queries, eval_channel_results, eval_final_results, eval_ground_truth, eval_metric_snapshots) [8-10h] {} — R13-S1
   - Sub-steps: (a) schema design with foreign keys and indexes [2h], (b) migration script with rollback [2h], (c) connection pool separate from primary DB [2h], (d) seed data insertion helpers [2h]
+  - Set `PRAGMA foreign_keys = ON` (following main DB pattern at `vector-index-impl.ts:1181`)
   - File: new `src/eval/speckit-eval-schema.ts`
   - Acceptance: eval DB created, schema validated, zero impact on primary `speckit.db` read/write paths
+- [ ] T004a [W-E] Schema version table for eval DB — add `schema_version` table to speckit-eval.db following main DB pattern [1-2h] {T004} — R13-S1
+  - Pattern reference: `vector-index-impl.ts:1106-1131`
+  - Include migration logic matching SCHEMA_VERSION constant approach
 - [ ] T004b [W-C] Implement R13 observer effect mitigation — search p95 health check with eval logging on/off [2-4h] {T004} — D4/REQ-036
   - Acceptance: p95 latency increase ≤10% with eval logging enabled vs disabled; health check script runnable on demand
 - [ ] T005 [W-C] Add logging hooks to `memory_search`, `memory_context`, `memory_match_triggers` handlers [6-8h] {T004} — R13-S1
@@ -70,6 +77,9 @@ contextType: "implementation"
 - [ ] T000e [W-C] G-NEW-2 pre-analysis: Agent consumption pattern survey — lightweight analysis of how AI agents currently consume memory search results: What query patterns do agents use? What results do they select vs ignore? What retrieval failures are common? Document findings in `scratch/agent-consumption-survey.md` [3-4h] {} — G-NEW-2
   - Findings feed into ground truth design (T007) and R13 eval query design (T004-T006)
   - Full G-NEW-2 analysis (8-12h) remains in Sprint 1 (T012); this is scoping pre-work only
+- [ ] T000g [W-E] Latency baseline recording — record latency baselines in R13 eval logging framework [2-3h] {T001, T003} — Baseline
+  - Measure: p50/p95/p99 for search, save, health endpoints
+  - Output: baseline_latency.json committed to eval/ directory
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) — expand ground truth corpus using T000d manual queries as seed set [2-4h] {T004, T000d} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
 - [ ] T008b [W-C] **Eval-the-eval validation** — hand-calculate MRR@5 for 5 randomly selected queries, compare to R13 computed values; verify match within ±0.01; investigate any discrepancy before using R13 output for roadmap decisions [2-3h] {T006, T007} — REQ-052
@@ -78,13 +88,14 @@ contextType: "implementation"
   - **Effort note**: CHK-S0F3 (p<0.05 on >=100 diverse queries) requires manual relevance labeling not included in the T008b estimate (2-3h). Expect an additional 8-15h for curating, labeling, and validating the full 100+ query corpus with verified relevance judgments.
 - [ ] T054 [W-A] Implement content-hash fast-path dedup in memory_save handler — SHA256 check before embedding generation, reject exact duplicates in same spec_folder [2-3h] {} — TM-02/REQ-039
 - [ ] T-FS0 [W-A] Feature flag sunset review at Sprint 0 exit — review all active feature flags; flags from completed work with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 1 [0.5-1h] {T008} — NFR-O01/O02/O03
-- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision (requires statistical significance p<0.05 on >=100 diverse queries), eval-the-eval validation passed (T008b), ground truth diversity verified (≥15 manual queries, ≥5/intent, ≥3 tiers), flag count ≤6 [0h] {T000a-T008, T008b, T000d, T000e, T054, T-FS0}
+- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision (requires statistical significance p<0.05 on >=100 diverse queries), eval-the-eval validation passed (T008b), ground truth diversity verified (≥15 manual queries, ≥5/intent, ≥3 tiers), latency baselines recorded, flag count ≤6 [0h] {T000a-T008, T008b, T000d, T000e, T000g, T004a, T054, T-FS0}
 <!-- /ANCHOR:sprint-0 -->
 
 ---
 
 <!-- ANCHOR:sprint-1 -->
-## Sprint 1: Graph Signal Activation [26-39h]
+## Sprint 1: Graph Signal Activation [43-62h]
+> *Effort note: includes PI-A5 12-16h and PI-A3 4-6h deferred from S0*
 
 > **Goal**: Make graph the system's differentiating signal.
 > **Child folder**: `002-sprint-1-graph-signal-activation/`
@@ -99,7 +110,7 @@ contextType: "implementation"
 
 - [ ] T013 [W-B] Enable R4 if dark-run passes hub domination and MRR@5 criteria [0h] {T010, T011} — R4
 - [ ] T-FS1 [W-A] Feature flag sunset review at Sprint 1 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 2 [0.5-1h] {T013} — NFR-O01/O02/O03
-- [ ] T014 [GATE] Sprint 1 exit gate verification: R4 MRR@5 delta >+2%, edge density measured, no single memory >60% presence, G-NEW-2 instrumentation active, flag count ≤6 [0h] {T010-T013, T-FS1}
+- [ ] T014 [GATE] Sprint 1 exit gate verification: R4 MRR@5 delta >+2%, edge density measured, no single memory >60% presence, G-NEW-2 instrumentation active, flag count ≤6 [0h] {T010-T013, PI-A5, PI-A3, T-FS1}
 <!-- /ANCHOR:sprint-1 -->
 
 ---
@@ -119,7 +130,7 @@ contextType: "implementation"
 - [ ] T056 [P] [W-A] Implement interference scoring signal — add interference_score column, compute at index time (count similar memories in spec_folder), apply as -0.08 weight in composite scoring behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] {T009} — TM-01/REQ-040
 - [ ] T057 [P] [W-A] Implement classification-based decay policies — modify fsrs-scheduler.ts to apply decay multipliers by context_type (decisions: no decay, research: 2x stability) and importance_tier (critical: no decay, temporary: 0.5x stability) [3-5h] {T009} — TM-03/REQ-041
 - [ ] T-FS2 [W-A] Feature flag sunset review at Sprint 2 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 3 [0.5-1h] {T019} — NFR-O01/O02/O03
-- [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized, flag count ≤6 [0h] {T015-T019, T-FS2}
+- [ ] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized, flag count ≤6 [0h] {T015-T019, T020a, T056, T057, PI-A1, T-FS2}
 <!-- /ANCHOR:sprint-2 -->
 
 ---
@@ -137,37 +148,40 @@ contextType: "implementation"
 - [ ] T025a [W-B] Implement confidence-based result truncation — adaptive top-K cutoff [5-8h] {T021} — R15 extension
 - [ ] T025b [P] [W-B] Implement dynamic token budget allocation by complexity tier [3-5h] {T021} — FUT-7
 - [ ] T-FS3 [W-A] Feature flag sunset review at Sprint 3 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 4 [0.5-1h] {T024} — NFR-O01/O02/O03
-- [ ] T025 [GATE] Sprint 3 exit gate verification: R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5%, flag count ≤6 [0h] {T021-T024, T-FS3}
+- [ ] T025-GATE [GATE] Sprint 3 exit gate verification: R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5%, flag count ≤6 [0h] {T021-T024, T025a, T025b, PI-B3, T-FS3}
 
-**OFF-RAMP: After T025, evaluate "good enough" thresholds (MRR@5 >= 0.7, constitutional surfacing >= 95%, cold-start detection >= 90%). If all met, Sprints 4-7 are optional.**
+**OFF-RAMP: After T025-GATE, evaluate "good enough" thresholds (MRR@5 >= 0.7, constitutional surfacing >= 95%, cold-start detection >= 90%). If all met, Sprints 4-7 are optional.**
 <!-- /ANCHOR:sprint-3 -->
 
 ---
 
 <!-- ANCHOR:sprint-4 -->
-## Sprint 4: Feedback Loop + Chunk Aggregation [72-109h]
+## Sprint 4: Feedback Loop + Chunk Aggregation [73-111h]
 
 > **Goal**: Close the feedback loop; aggregate chunk scores safely.
 > **Prerequisite**: R13 must have completed at least 2 full eval cycles.
 > **Child folder**: `005-sprint-4-feedback-and-quality/`
-> **Effort note**: Header total (72-109h) includes sub-task effort not individually listed in root (e.g., T026a, T027c, T027d, T028a). Sprint 4 child plan estimates 64-97h. See child tasks.md for authoritative detailed breakdown.
+> **Effort note**: Header total (73-111h) includes sub-task effort not individually listed in root (e.g., T026a, T027c, T027d, T028a) and T-IP-S4 integration testing. Sprint 4 child plan estimates 64-97h. See child tasks.md for authoritative detailed breakdown.
 
-- [ ] T025c [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {T025} — Safety gate
-- [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025} — R1
+- [ ] T025c [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {T025-GATE} — Safety gate
+- [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025-GATE} — R1
   - T026a Preserve chunk ordering within documents during reassembly [2-4h] — B2/REQ-034
-- [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 7 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025, R13 2-cycle prerequisite} — R11
-  - Sub-steps: (a) schema migration for `learned_triggers` column [2h], (b) selection tracking pipeline [4h], (c) trigger extraction from selections [4h], (d) 7 safeguards implementation (denylist, rate limit, decay, FTS5 isolation, noise floor, rollback, audit log) [6h], (e) shadow logging before activation [2h]
+- [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 10 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025-GATE, T026, T028, R13 2-cycle prerequisite} — R11
+  - Sub-steps: (a) schema migration for `learned_triggers` column [2h], (b) selection tracking pipeline [4h], (c) trigger extraction from selections [4h], (d) 10 safeguards implementation: (1) Denylist 100+ common terms, (2) Rate cap 3 promotions per 8-hour window, (3) TTL 30-day decay for promoted terms, (4) FTS5 isolation (promoted terms in separate column), (5) Noise floor: top-3 candidate threshold, (6) Rollback mechanism for promoted terms, (7) Provenance/audit log for all promotions, (8) Shadow period: 1 week before activation, (9) Eligibility: 72h minimum observation before promotion, (10) Sprint gate review of promotion metrics [8h], (e) shadow logging before activation [2h]
   - Prerequisite check: verify R13 has ≥2 complete eval cycles AND ≥200 query-selection pairs before enabling mutations
-- [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025, R13 2-cycle prerequisite} — G-NEW-3
-- [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
   - T027c Implement memory importance auto-promotion (threshold-based tier promotion on validation count) [5-8h]
   - T027d Activate negative feedback confidence signal (demotion multiplier, floor=0.3) [4-6h] — A4/REQ-033
-- [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025} — R13-S2
+- [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025-GATE, R13 2-cycle prerequisite} — G-NEW-3
+- [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
+- [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025-GATE} — R13-S2
   - T028a Implement Exclusive Contribution Rate metric per channel [2-3h]
-- [ ] T058 [W-A] Implement pre-storage quality gate in memory_save handler — structural validation + content quality scoring (title, triggers, length, anchors, metadata, signal density) + semantic near-duplicate detection (>0.92 similarity = reject) behind `SPECKIT_SAVE_QUALITY_GATE` flag [6-10h] {T025} — TM-04/REQ-042
-- [ ] T059 [W-A] Implement reconsolidation-on-save pipeline — after embedding generation, check top-3 similar memories: >=0.88 = merge (increment frequency), 0.75-0.88 = replace (add supersedes edge), <0.75 = store new; behind `SPECKIT_RECONSOLIDATION` flag with mandatory checkpoint [6-10h] {T025} — TM-06/REQ-043
+- [ ] T058 [W-A] Implement pre-storage quality gate in memory_save handler — structural validation + content quality scoring (title, triggers, length, anchors, metadata, signal density) + semantic near-duplicate detection (>0.92 similarity = reject) behind `SPECKIT_SAVE_QUALITY_GATE` flag [6-10h] {T025-GATE} — TM-04/REQ-042
+- [ ] T059 [W-A] Implement reconsolidation-on-save pipeline — after embedding generation, check top-3 similar memories: >=0.88 = merge (increment frequency), 0.75-0.88 = replace (add supersedes edge), <0.75 = store new; behind `SPECKIT_RECONSOLIDATION` flag with mandatory checkpoint [6-10h] {T025-GATE, T026, T028} — TM-06/REQ-043
 - [ ] T029 [W-C] Verify R1 dark-run (MRR@5 within 2%, N=1 no regression) [included] {T026}
 - [ ] T030 [W-C] Analyze R11 shadow log (noise rate < 5%) [included] {T027}
+- [ ] T-IP-S4 [W-Q] Intent-pattern integration testing — validate intent-pattern scoring interaction [1-2h] {T026} — Integration
+  - Sprint: S4 | Priority: Medium
+  - Depends on: T026 (intent-aware retrieval)
 - [ ] T-FS4 [W-A] Feature flag sunset review at Sprint 4 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 5 [0.5-1h] {T030} — NFR-O01/O02/O03
 - [ ] T031 [GATE] Sprint 4 exit gate verification: R1 within 2%, R11 noise <5%, R13-S2 operational, Sprint 4a (R1+R13-S2+TM-04) verified BEFORE Sprint 4b (R11+TM-06), flag count ≤6 [0h] {T026-T030, T-FS4}
 <!-- /ANCHOR:sprint-4 -->
@@ -181,7 +195,7 @@ contextType: "implementation"
 > **Child folder**: `006-sprint-5-pipeline-refactor/`
 
 **Phase A (Pipeline): R6 — 40-55h**
-- [ ] T032 Create checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")` [0h] {T031}
+- [ ] T032 [W-D] Create checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")` [0h] {T031}
 - [ ] T033 [W-D] Implement 4-stage pipeline refactor (Candidate → Fusion → Rerank → Filter) with Stage 4 "no score changes" invariant behind `SPECKIT_PIPELINE_V2` flag [40-55h] {T032} — R6
   - Sub-steps: (a) Stage 1 Candidate Generation — extract candidate retrieval from existing code into isolated stage [10h], (b) Stage 2 Fusion — RRF/RSF fusion logic with intent weighting applied exactly once [10h], (c) Stage 3 Rerank — cross-encoder reranking with score normalization [10h], (d) Stage 4 Filter — result filtering/truncation with "no score changes" invariant enforced via assertion [10h], (e) integration testing against full eval corpus [5h]
   - Acceptance: 0 ordering differences vs current pipeline on eval corpus; Stage 4 assertion prevents score modification
@@ -195,13 +209,13 @@ contextType: "implementation"
 - [ ] T039 [P] [W-D] Implement validation signals as retrieval metadata [4-6h] {T035} — S3
 - [ ] T060 [P] [W-D] Implement dual-scope injection strategy — add memory auto-surface hooks at tool dispatch and compaction lifecycle points, with per-point token budgets [4-6h] {T035} — TM-05/REQ-044
 - [ ] T-FS5 [W-A] Feature flag sunset review at Sprint 5 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 6 [0.5-1h] {T039} — NFR-O01/O02/O03
-- [ ] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation, flag count ≤6 [0h] {T033-T039, T-FS5}
+- [ ] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation, flag count ≤6 [0h] {T033-T039, PI-A4, PI-B1, PI-B2, T-FS5}
 <!-- /ANCHOR:sprint-5 -->
 
 ---
 
 <!-- ANCHOR:sprint-6 -->
-## Sprint 6a: Practical Improvements [33-51h]
+## Sprint 6a: Practical Improvements [36-57h]
 
 > **Goal**: Deliver practical retrieval quality improvements at any graph scale.
 > **Child folder**: `007-sprint-6-indexing-and-graph/`
@@ -219,10 +233,16 @@ contextType: "implementation"
   - T042c Staleness detection (90-day unfetched edges) [1-2h]
   - T042d Edge bounds enforcement (MAX_EDGES=20, auto cap 0.5) [1-2h]
   - T042e Contradiction cluster surfacing — surface all cluster members [2-3h]
+- [ ] T-IP-S6 [W-I] Cross-index consistency validation — verify FTS5 and vector index consistency after re-indexing [1-2h] {T036} — Integration
+  - Sprint: S6a | Priority: Medium
+  - Depends on: T036 (index optimization)
+- [ ] T-PI-S6 [W-I] PageIndex integration testing — end-to-end testing of PageIndex-derived scoring in production pipeline [2-4h] {PI-A1, PI-A4, PI-A5} — Integration
+  - Sprint: S6a | Priority: Medium
+  - Depends on: PI-A1, PI-A4, PI-A5
 - [ ] T-FS6a [W-A] Feature flag sunset review at Sprint 6a exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding [0.5-1h] {T042, T043, T044, T046} — NFR-O01/O02/O03
-- [ ] T047a [GATE] Sprint 6a exit gate verification: R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection, weight_history verified, flag count ≤6 [0h] {T041d, T042-T044, T046, T-FS6a}
+- [ ] T047a [GATE] Sprint 6a exit gate verification: R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection, weight_history verified, flag count ≤6 [0h] {T041d, T042-T044, T046, T-IP-S6, T-PI-S6, T-FS6a}
 
-## Sprint 6b: Graph Sophistication [37-53h] (GATED)
+## Sprint 6b: Graph Sophistication [45-69h] (GATED)
 
 > **Goal**: Deepen graph with centrality/community detection and entity extraction. GATED on feasibility spike.
 > **Child folder**: `007-sprint-6-indexing-and-graph/`
@@ -234,8 +254,12 @@ contextType: "implementation"
   - T041b N2b: Causal Depth Signal (max-depth path normalization) [5-8h]
   - T041c N2c: Community Detection (label propagation/Louvain) [12-15h]
 - [ ] T045 [P] [W-B] Implement auto entity extraction (gated: only if density < 1.0) behind `SPECKIT_AUTO_ENTITIES` flag [12-18h] {T-S6B-GATE} — R10
-- [ ] T-FS6b [W-A] Feature flag sunset review at Sprint 6b exit [0.5-1h] {T041, T045} — NFR-O01/O02/O03
-- [ ] T047b [GATE] Sprint 6b exit gate verification: N2 attribution >10% or density-conditional deferral, R10 FP <20% (if implemented), flag count ≤6 [0h] {T-S6B-GATE, T041, T045, T-FS6b}
+- [ ] T-S6-SPIKE [W-G] Graph algorithm spike — research spike: evaluate graph traversal algorithms for causal chain optimization [8-16h] {T041} — Research
+  - Sprint: S6b | Priority: High
+  - Time-boxed investigation; output is recommendation document
+  - Depends on: T041 (graph deepening baseline)
+- [ ] T-FS6b [W-A] Feature flag sunset review at Sprint 6b exit [0.5-1h] {T041, T045, T-S6-SPIKE} — NFR-O01/O02/O03
+- [ ] T047b [GATE] Sprint 6b exit gate verification: N2 attribution >10% or density-conditional deferral, R10 FP <20% (if implemented), flag count ≤6 [0h] {T-S6B-GATE, T041, T045, T-S6-SPIKE, T-FS6b}
 <!-- /ANCHOR:sprint-6 -->
 
 ---
@@ -252,8 +276,9 @@ contextType: "implementation"
 - [ ] T049 [P] [W-D] Implement smarter memory content generation [8-12h] {T047a} — S1
 - [ ] T050 [P] [W-B] Implement cross-document entity linking [8-12h] {T047a} — S5
 - [ ] T051 [W-C] Implement R13-S3: full reporting + ablation studies [12-16h] {T047a} — R13-S3
-- [ ] T052 [W-C] Evaluate R5 (INT8 quantization) need based on memory count and latency [2h] {T047a} — R5 decision
-- [ ] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content generation matches template schema for ≥95% of test cases, verified by automated validation, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, final feature flag sunset audit completed [0h] {T048-T052}
+- [ ] T052 [W-C] Evaluate R5 (INT8 quantization) need based on memory count and latency [1-2h] {T047a} — R5 decision
+- [ ] T-FS7 [W-D] Sprint 7 feature flag sunset: Final audit of all remaining flags, graduate permanent features, remove flag code for completed features [2-4h] {T048-T052}
+- [ ] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content generation matches template schema >=95% automated validation, S5 entity links verified, R13-S3 dashboard operational, R5 activation decision documented, final feature flag sunset audit completed [0h] {T048-T052, T-FS7}
 <!-- /ANCHOR:sprint-7 -->
 
 ---
@@ -284,20 +309,20 @@ contextType: "implementation"
 
 ### Sprint 2 Tasks (Scoring Calibration)
 
-- [ ] PI-A1 [W-A] Implement DocScore folder-level aggregation — group chunk results by spec_folder, aggregate scores using MAX + 0.3×MEAN formula, surface folder-level score alongside memory-level scores in result metadata [4-8h] {T020} — Sprint 2
+- [ ] PI-A1 [W-A] Implement DocScore folder-level aggregation — group chunk results by spec_folder, aggregate scores using (1/sqrt(M+1)) * SUM(MemoryScore(m)) damped-sum formula, surface folder-level score alongside memory-level scores in result metadata [4-8h] {T020} — Sprint 2
   - Enables folder-aware ranking and cross-folder diversity enforcement
   - Risk: Low — additive metadata field; does not alter existing ranking unless explicitly weighted
 
 ### Sprint 3 Tasks (Query Intelligence)
 
-- [ ] ~~PI-A2~~ [W-D] **DEFERRED** — Three-tier search strategy degradation/fallback chain deferred from Sprint 3. Re-evaluate after Sprint 3 using measured frequency data. See UT review R1. [12-16h] {T025, T004}
-- [ ] PI-B3 [W-D] Implement description-based spec folder discovery — generate and cache natural-language descriptions for each spec folder in `descriptions.json`; use description embeddings for folder pre-selection before memory search [4-8h] {T025} — Sprint 3
+- [ ] ~~PI-A2~~ [W-D] **DEFERRED** — Three-tier search strategy degradation/fallback chain deferred from Sprint 3. Re-evaluate after Sprint 3 using measured frequency data. See UT review R1. [12-16h] {T025-GATE, T004}
+- [ ] PI-B3 [W-D] Implement description-based spec folder discovery — generate and cache natural-language descriptions for each spec folder in `descriptions.json`; use description embeddings for folder pre-selection before memory search [4-8h] {T025-GATE} — Sprint 3
   - Cache invalidated on new memory save to spec folder; re-generated lazily on next query
   - Risk: Low — read-only pre-filter layer; falls back to existing folder matching on cache miss
 
 ### Sprint 4 Tasks (Feedback Loop)
 
-- [ ] PI-A4 [W-A] Reformat constitutional memories as retrieval directives — add `retrieval_directive` metadata field to constitutional-tier memories; format as explicit instruction prefixes ("Always surface when:", "Prioritize when:") for LLM consumption [8-12h] {T031} — Sprint 4
+- [ ] PI-A4 [W-A] Reformat constitutional memories as retrieval directives — add `retrieval_directive` metadata field to constitutional-tier memories; format as explicit instruction prefixes ("Always surface when:", "Prioritize when:") for LLM consumption [8-12h] {T031} — Sprint 5 (deferred from Sprint 4 per REC-07)
   - Directive extraction: parse existing constitutional memory content to identify rule patterns
   - Risk: Low-Medium — content transformation only; no scoring logic changes
 
@@ -322,7 +347,7 @@ contextType: "implementation"
 - [ ] T-TEST-S0 [W-C] Write Sprint 0 tests — G1 numeric ID validation, G3 chunk dedup, R17 fan-effect bounds, R13-S1 schema/hooks/metrics, G-NEW-1 BM25 path, T054 SHA256 dedup, T004b observer effect, T006 diagnostic metrics, ground truth diversity validation [8-12 tests, 4-6h] {T009}
 - [ ] T-TEST-S1 [W-C] Write Sprint 1 tests — R4 degree SQL/normalization/cache/constitutional exclusion, A7 co-activation boost, G-NEW-2 instrumentation hooks, TM-08 CORRECTION/PREFERENCE signals, PI-A3 token budget, feature flag behaviors [18-25 tests, 6-10h] {T014}
 - [ ] T-TEST-S2 [W-C] Write Sprint 2 tests — R18 cache hit/miss/eviction/model invalidation, N4 decay curve, G2 weight count, normalization, FUT-5 K-value, TM-01 interference scoring, TM-03 classification decay, PI-A1 folder scoring [18-26 tests, 6-10h] {T020}
-- [ ] T-TEST-S3 [W-C] Write Sprint 3 tests — R15 classification accuracy (10+ queries/tier), 2-channel min, R14/N1 all 3 variants, R2 floor, R15 fallback, R15+R2 interaction, confidence truncation, dynamic token budget, PI-B3 folder discovery [22-28 tests, 8-12h] {T025}
+- [ ] T-TEST-S3 [W-C] Write Sprint 3 tests — R15 classification accuracy (10+ queries/tier), 2-channel min, R14/N1 all 3 variants, R2 floor, R15 fallback, R15+R2 interaction, confidence truncation, dynamic token budget, PI-B3 folder discovery [22-28 tests, 8-12h] {T025-GATE}
 - [ ] T-TEST-S4 [W-C] Write Sprint 4 tests — R1 MPAB N=0/1/2/10, R11 column isolation/TTL/denylist/cap/eligibility, R13-S2, TM-04 quality gate, TM-06 reconsolidation, B2 chunk ordering, A4 negative feedback [22-32 tests, 8-12h] {T031}
 - [ ] T-TEST-S5 [W-C] Write Sprint 5 tests — R6 full corpus regression, stage boundaries, Stage 4 invariant, R9/R12/S2/S3, TM-05 dual-scope injection, PI-B1 tree thinning, PI-B2 progressive validation [30-40 tests, 10-14h] {T040}
 - [ ] T-TEST-S6 [W-C] Write Sprint 6 tests — R7 recall, R10 false positives, N2 attribution, N3-lite bounds/contradiction, S4 hierarchy, T041d weight_history logging/rollback, N3-lite decay verification [12-18 tests, 6-10h] {T047a}
@@ -331,16 +356,27 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:cross-cutting-tasks -->
+## Cross-Cutting Tasks
+
+- [ ] T-DOC-OPS [W-D] Operator guide maintenance — maintain operator documentation for each sprint's changes [1-2h/sprint] {} — Ops
+  - Sprint: Cross-cutting (all sprints) | Priority: Low
+  - Update: configuration guide, troubleshooting playbook, migration notes
+  - Cadence: Update at each sprint gate review
+<!-- /ANCHOR:cross-cutting-tasks -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All sprint exit gates (T009, T014, T020, T025, T031, T040, T047a, T053) passed; T047b if Sprint 6b executed
+- [ ] All sprint exit gates (T009, T014, T020, T025-GATE, T031, T040, T047a, T053) passed; T047b if Sprint 6b executed
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Feature flag count <= 6
 - [ ] R13 cumulative health dashboard meets targets (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
 - [ ] All 158+ original tests + ~138-193 new tests passing
 
-**Minimum viable completion**: T025 (Sprint 3 gate) — see off-ramp criteria
+**Minimum viable completion**: T025-GATE (Sprint 3 gate) — see off-ramp criteria
 <!-- /ANCHOR:completion -->
 
 ---
@@ -362,10 +398,10 @@ contextType: "implementation"
 
 <!--
 LEVEL 3+ TASKS
-- 95+ core tasks across 8 metric-gated sprints + 8 PageIndex-derived tasks (PI-A1 — PI-B3)
-- Workstream tags (W-A through W-D)
-- Sprint gate tasks (T009, T014, T020, T025, T031, T040, T047a, T047b, T053)
-- Feature flag sunset tasks (T-FS0 through T-FS6) at each sprint boundary
+- 100+ core tasks across 8 metric-gated sprints + 8 PageIndex-derived tasks (PI-A1 — PI-B3)
+- Workstream tags (W-A through W-I)
+- Sprint gate tasks (T009, T014, T020, T025-GATE, T031, T040, T047a, T047b, T053)
+- Feature flag sunset tasks (T-FS0 through T-FS7) at each sprint boundary
 - Ground truth diversification (T000d) and agent consumption pre-analysis (T000e) in Sprint 0
 - Off-ramp marker after Sprint 3
 - PageIndex tasks: PI-A5 (S1, deferred from S0), PI-A3 (S1), PI-A1 (S2), PI-A2+PI-B3 (S3), PI-A4 (S5, deferred from S4), PI-B1+PI-B2 (S5)

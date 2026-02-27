@@ -68,7 +68,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 **43 active recommendations (+ 8 PageIndex-derived, PI-A1 — PI-B3, + 6 sprint-derived, REQ-046 — REQ-051) across 8 subsystems (S0-S7):**
 
-> **Recommendation count reconciliation**: The original research produced 43 recommendations (30 from 142-FINAL-recommendations + 7 TM-series + 6 gap-fill items including G-NEW-1/2/3, A2, A7, B7). Of these, 3 were dropped/skipped (R3, R5-deferred, N5), leaving 40 active. The "43" count in the executive summary refers to the complete evaluated set. Additionally, 6 requirements (REQ-046 — REQ-051) were derived during sprint decomposition and are tracked in §4 Sprint-Derived Requirements.
+> **Recommendation count reconciliation**: The original research produced 43 recommendations (30 from 142-FINAL-recommendations including G-NEW-1/2/3 + 7 TM-series + 7 gap-fill ADOPT items: A2, A4, A7, B2, B7, B8, D4 — minus 1 overlap = 43 active tracked items). Of these, 3 were dropped/skipped (R3, R5-deferred, N5), leaving 40 active. The "43" count in the executive summary refers to the complete evaluated set. Additionally, 6 requirements (REQ-046 — REQ-051) were derived during sprint decomposition and are tracked in §4 Sprint-Derived Requirements.
 
 | Subsystem | Recommendations | Sprint(s) |
 |-----------|----------------|-----------|
@@ -114,23 +114,25 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 ## PHASE DOCUMENTATION MAP
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder.
+>
+> **Note:** Phases map 1:1 to sprints (Phase 1 = Sprint 0, Phase 2 = Sprint 1, etc.) except Sprint 6 which is split into Phase 7a (Indexing) and Phase 7b (Graph Deepening).
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| 1 | `001-sprint-0-measurement-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (50-77h) | None (BLOCKING) | Pending |
-| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2 (26-39h) | Sprint 0 gate | Pending |
-| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (28-43h) | Sprint 0 gate | Pending |
-| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 1 AND Sprint 2 gates | Pending |
-| 5 | `005-sprint-4-feedback-and-quality/` | R1, R11, R13-S2 (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
+| 1 | `001-sprint-0-measurement-foundation/` | G1, G3, R17, R13-S1, G-NEW-1, B7, D4, TM-02, A2, Eval-the-eval, G-NEW-3 (Phase A) (50-77h) | None (BLOCKING) | Pending |
+| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2, TM-08, PI-A3, PI-A5 (26-39h) | Sprint 0 gate | Pending |
+| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization, TM-01, TM-03, FUT-5, PI-A1 (28-43h) | Sprint 0 gate | Pending |
+| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2, R15-ext, FUT-7, PI-A2 (deferred), PI-B3 (34-53h) | Sprint 1 AND Sprint 2 gates | Pending |
+| 5 | `005-sprint-4-feedback-and-quality/` | R1, R11, R13-S2, A4, B2, TM-04, TM-06, G-NEW-3 (Phase C) (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
 
 > **Sprint 4 Split Recommendation:** Sprint 4 should be considered for decomposition into two sub-phases:
 > - **S4a** (R1/MPAB + R13-S2 enhanced eval + TM-04 quality gate, ~33-49h): Lower-risk scoring, evaluation, and save-quality gating work that can proceed immediately after Sprint 3 gate. TM-04 is placed in S4a (per child spec authoritative phasing) as a pre-storage quality gate with no schema change that should be operational before R11 feedback mutations begin.
 > - **S4b** (R11 learned relevance feedback + TM-06, ~31-48h): Higher-risk work containing R11 with its CRITICAL FTS5 contamination risk (MR1). R11 should not share a sprint with 4 other deliverables given its irreversible failure mode. S4b also requires the R13 calendar dependency (minimum 28 days of eval logging before R11 activation).
 > This split isolates R11's contamination risk and allows S4a to complete faster, providing R13-S2 channel attribution data earlier.
-| 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (68-98h) | Sprint 4 gate | Pending |
-| 7a | `007-sprint-6-indexing-and-graph/` | R7, R16, S4, N3-lite (33-51h) | Sprint 5 gate | Pending |
+| 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3, TM-05, PI-A4, PI-B1, PI-B2 (68-98h) | Sprint 4 gate | Pending |
+| 7a | `007-sprint-6-indexing-and-graph/` | R7, R16, S4, N3-lite, N2a, N2b, N2c (under N2) (33-51h) | Sprint 5 gate | Pending |
 | 7b | `007-sprint-6-indexing-and-graph/` | N2, R10 (37-53h heuristic; **ESTIMATION WARNING**: production quality 80-150h — see child spec for N2c 40-80h and R10 30-50h warnings) | Sprint 6a gate + feasibility spike | Pending (GATED) |
-| 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6a gate | Pending |
+| 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3 (REQ-061), R5 eval (REQ-062) (45-62h) | Sprint 6a gate | Pending |
 
 ### Phase Transition Rules
 
@@ -148,7 +150,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | 001-sprint-0 | 003-sprint-2 | Same Sprint 0 exit gate (S1 and S2 run **in parallel** after S0) | R13 eval metrics |
 
 **Sprint 0 Ground Truth Diversity Requirement (HARD GATE):**
-Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week about Y?"), cross-document queries ("how does A relate to B?"), and hard negatives (queries where specific memories should NOT rank highly). Minimum: >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document/temporal). This diversity requirement is a hard exit gate criterion alongside the existing "at least 50 queries" minimum — both must be satisfied.
+Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week about Y?"), cross-document queries ("how does A relate to B?"), and hard negatives (queries where specific memories should NOT rank highly). Minimum: >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document/temporal). This diversity requirement is a hard exit gate criterion alongside the existing "at least 100 queries" minimum (50 minimum for initial baseline; >=100 required for BM25 contingency decision) — both must be satisfied.
 | 002-sprint-1 AND 003-sprint-2 | 004-sprint-3 | S1: R4 MRR@5 delta >+2% absolute, edge density measured; S2: Cache hit >90%, score distributions normalized, G2 resolved | R13 eval metrics |
 | 004-sprint-3 | 005-sprint-4 | R15 p95 <30ms, RSF Kendall tau computed, R2 precision within 5% | R13 eval metrics |
 | 005-sprint-4 | 006-sprint-5 | R1 MRR@5 within 2%, R11 noise <5%, R13-S2 operational | R13 eval metrics |
@@ -167,67 +169,68 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) | Graph channel contributes ≥1 result in top-10 for ≥5% of first 100 post-fix eval queries, logged in R13 channel_attribution | S0 |
-| REQ-002 | **G3:** Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode | S0 |
-| REQ-003 | **R13-S1:** Evaluation infrastructure — separate SQLite DB with 5-table schema (see §4.1 R13 Evaluation Schema), logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) | Baseline metrics computed for at least 50 queries; schema validated against §4.1 definition | S0 |
-| REQ-004 | **G-NEW-1:** BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid | S0 |
-| REQ-035 | **B7:** Quality proxy formula for automated regression detection | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
-| REQ-036 | **D4:** Observer effect mitigation for R13 eval logging | Search p95 increase ≤10% with eval logging enabled | S0 |
-| REQ-039 | **TM-02:** Content-hash fast-path deduplication — SHA256 hash check BEFORE embedding generation in memory_save pipeline | Hash check rejects exact duplicate on save; no duplicate content_hash entries in same spec_folder | S0 |
-| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15. Edge type weights: caused=1.0, derived_from=0.9, enabled=0.8, contradicts=0.7, supersedes=0.6, supports=0.5 | R4 dark-run passes; MRR@5 delta > +2% absolute; no single memory appears in >60% of results (hub domination check). **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** Cross-ref: interacts with MR2 (preferential attachment), MR5 (degree cap), MR8 (three-way interaction with N3+R10). | S1 |
+| REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] | Graph channel contributes ≥1 result in top-10 for ≥5% of first 100 post-fix eval queries, logged in R13 channel_attribution | S0 |
+| REQ-002 | **G3:** Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` [2-4h] | No duplicate chunk rows in default search mode | S0 |
+| REQ-003 | **R13-S1:** Evaluation infrastructure — separate SQLite DB with 5-table schema (see §4.1 R13 Evaluation Schema), logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) [28-39h] | Baseline metrics computed for at least 100 queries (50 minimum for initial baseline; >=100 required for BM25 contingency decision); schema validated against §4.1 definition | S0 |
+| REQ-004 | **G-NEW-1:** BM25-only baseline comparison [4-6h] | BM25 baseline MRR@5 recorded and compared to hybrid | S0 |
+| REQ-035 | **B7:** Quality proxy formula for automated regression detection [2h] | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
+| REQ-036 | **D4:** Observer effect mitigation for R13 eval logging [2-4h] | Search p95 increase ≤10% with eval logging enabled | S0 |
+| REQ-039 | **TM-02:** Content-hash fast-path deduplication — SHA256 hash check BEFORE embedding generation in memory_save pipeline [2-3h] | Hash check rejects exact duplicate on save; no duplicate content_hash entries in same spec_folder | S0 |
+| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15. Edge type weights: caused=1.0, derived_from=0.9, enabled=0.8, contradicts=0.7, supersedes=0.6, supports=0.5 [12-16h] | R4 dark-run passes; MRR@5 delta > +2% absolute; no single memory appears in >60% of results (hub domination check). **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** Cross-ref: interacts with MR2 (preferential attachment), MR5 (degree cap), MR8 (three-way interaction with N3+R10). | S1 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-006 | **R17:** Fan-effect divisor in co-activation scoring | Co-activation hub bias Gini coefficient decreases ≥15% vs pre-R17 baseline on 50-query eval set | S0 |
-| REQ-007 | **R18:** Embedding cache for instant rebuild | Cache hit rate > 90% on re-index of unchanged content | S2 |
-| REQ-008 | **N4:** Cold-start boost with exponential decay (12h half-life) | New memories (<48h) surface when relevant without displacing highly relevant older results | S2 |
-| REQ-009 | **G2:** Investigate double intent weighting — determine if intentional | Resolved: fixed or documented as intentional design | S2 |
-| REQ-010 | **R15:** Query complexity router (minimum 2 channels for simple queries) | Simple query p95 latency < 30ms | S3 |
-| REQ-011 | **R14/N1:** Relative Score Fusion parallel to RRF (all 3 fusion variants) | Shadow comparison: minimum 100 queries, Kendall tau computed | S3 |
-| REQ-012 | **R2:** Channel minimum-representation constraint (post-fusion, quality floor 0.2) | Dark-run top-3 precision within 5% of baseline | S3 |
-| REQ-013 | **R1:** MPAB chunk-to-memory aggregation with N=0/N=1 guards | Dark-run MRR@5 within 2%; no regression for N=1 memories | S4 |
-| REQ-014 | **R11:** Learned relevance feedback with separate `learned_triggers` column and 7 safeguards | Shadow log noise rate < 5%; FTS5 contamination test passes; learned triggers stored exclusively in `learned_triggers` column (never in `trigger_phrases`). Cross-ref: MR1 (CRITICAL FTS5 contamination), MR6 (R13 dependency), ADR-005 (separate column decision). **Calendar constraint:** R13 must have logged >=28 calendar days of eval data before R11 activation (see F10 in plan.md). | S4 |
-| REQ-015 | **R13-S2:** Shadow scoring + channel attribution + ground truth Phase B | Full A/B comparison infrastructure operational | S4 |
-| REQ-016 | **G-NEW-2:** Agent-as-consumer UX analysis + consumption instrumentation | R13 logs ≥5 distinct consumption-pattern categories with ≥10 query examples each; consumption instrumentation active | S1 |
-| REQ-017 | **G-NEW-3:** Feedback bootstrap strategy (Phase A synthetic, Phase B implicit, Phase C LLM-judge) | Defined phases with minimum 200 query-selection pairs before R11 activation | S0/S4 |
-| REQ-032 | **A7:** Co-activation boost strength increase (0.1x→0.25x) | Effective co-activation boost at hop 2 ≥15% | S1 |
-| REQ-033 | **A4:** Negative feedback / confidence activation (demotion multiplier, floor=0.3) | `memory_validate(wasUseful: false)` causes measurable ranking reduction | S4 |
-| REQ-034 | **B2:** Chunk ordering preservation in reassembly | Collapsed chunks appear in `chunk_index` order | S4 |
-| REQ-037 | **A2:** Full-context ceiling evaluation (LLM baseline comparison) | Full-context ceiling MRR@5 recorded; 2x2 decision matrix (A2 × G-NEW-1) evaluated at Sprint 0 exit | S0 |
-| REQ-038 | **B8:** Signal count ceiling governance (max 12 active scoring signals) | Signal ceiling policy documented and enforced; escape clause requires R13 orthogonal-value evidence | Cross-cutting |
-| REQ-052 | **Eval-the-eval:** Hand-verification of R13 evaluation output — manually compute MRR@5 for 5 randomly selected queries and compare to R13's computed values | Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; any discrepancy investigated and resolved before R13 output is used for roadmap decisions | S0 |
-| REQ-040 | **TM-01:** Interference scoring signal — negative weight penalizing memories with high-similarity competitors in same spec_folder | Interference score computed at index time; composite scoring includes -0.08 * interference factor behind feature flag | S2 |
-| REQ-041 | **TM-03:** Classification-based decay policies — FSRS decay multipliers vary by context_type and importance_tier (decisions: no decay, temporary: fast decay) | Decay behavior differs measurably between context_types; decisions/constitutional memories show 0 decay over 30 days | S2 |
-| REQ-042 | **TM-04:** Pre-storage quality gate — multi-layer validation pipeline (structural + content quality + semantic dedup) BEFORE embedding generation | Quality score computed for every save; saves below 0.4 threshold rejected; near-duplicates (>0.92 similarity) flagged | S4 |
-| REQ-043 | **TM-06:** Reconsolidation-on-save — automatic duplicate/conflict/complement decision when saving memories similar to existing ones | Similarity >=0.88 merges (frequency increment); 0.75-0.88 replaces (with supersedes edge); <0.75 stores as new | S4 |
-| REQ-044 | **TM-05:** Dual-scope injection strategy — memory auto-surface at multiple lifecycle points (context load, tool dispatch, compaction) | Memory injection hooks active at >=2 lifecycle points beyond explicit search | S5 |
-| REQ-045 | **TM-08:** Importance signal vocabulary expansion — add CORRECTION and PREFERENCE signal categories to trigger extraction | Trigger extraction recognizes correction signals ("actually", "wait", "I was wrong") and preference signals ("prefer", "like", "want") | S1 |
+| REQ-006 | **R17:** Fan-effect divisor in co-activation scoring [1-2h] | Co-activation hub bias Gini coefficient decreases ≥15% vs pre-R17 baseline on 50-query eval set | S0 |
+| REQ-007 | **R18:** Embedding cache for instant rebuild [8-12h] | Cache hit rate > 90% on re-index of unchanged content | S2 |
+| REQ-008 | **N4:** Cold-start boost with exponential decay (12h half-life) [3-5h] | New memories (<48h) surface when relevant without displacing highly relevant older results | S2 |
+| REQ-009 | **G2:** Investigate double intent weighting — determine if intentional [4-6h] | Resolved: fixed or documented as intentional design | S2 |
+| REQ-010 | **R15:** Query complexity router (minimum 2 channels for simple queries) [10-16h] | Simple query p95 latency < 30ms | S3 |
+| REQ-011 | **R14/N1:** Relative Score Fusion parallel to RRF (all 3 fusion variants) [10-14h] | Shadow comparison: minimum 100 queries, Kendall tau computed | S3 |
+| REQ-012 | **R2:** Channel minimum-representation constraint (post-fusion, quality floor 0.2) [6-10h] | Dark-run top-3 precision within 5% of baseline | S3 |
+| REQ-013 | **R1:** MPAB chunk-to-memory aggregation with N=0/N=1 guards [8-12h] | Dark-run MRR@5 within 2%; no regression for N=1 memories | S4 |
+| REQ-014 | **R11:** Learned relevance feedback with separate `learned_triggers` column and 11 safeguards | Shadow log noise rate < 5%; FTS5 contamination test passes; learned triggers stored exclusively in `learned_triggers` column (never in `trigger_phrases`). Cross-ref: MR1 (CRITICAL FTS5 contamination), MR6 (R13 dependency), ADR-005 (separate column decision). **Calendar constraint:** R13 must have logged >=28 calendar days of eval data before R11 activation (see F10 in plan.md). **R11 Safeguards:** 1. Denylist (common/stop words excluded), 2. Rate limit (max triggers/day), 3. Decay (learned triggers expire after 30d without reinforcement), 4. FTS5 isolation (separate column, never in trigger_phrases), 5. Noise floor (minimum selection confidence), 6. Rollback (per-memory learned trigger reset), 7. Audit log (all mutations logged), 8. "Not in top 3" gate (R13 dependency), 9. Minimum query diversity (trigger must match >=3 distinct query patterns), 10. Maximum trigger count per memory (cap at 20 learned triggers), 11. Selection frequency cap — memory selected for >10 distinct query patterns within 7 days is flagged for review (potential over-broad trigger phrases) | S4 |
+| REQ-015 | **R13-S2:** Shadow scoring + channel attribution + ground truth Phase B [15-20h] | Full A/B comparison infrastructure operational | S4 |
+| REQ-016 | **G-NEW-2:** Agent-as-consumer UX analysis + consumption instrumentation [8-12h] | R13 logs ≥5 distinct consumption-pattern categories with ≥10 query examples each; consumption instrumentation active | S1 |
+| REQ-017 | **G-NEW-3:** Feedback bootstrap strategy (Phase A synthetic, Phase B implicit, Phase C LLM-judge) [10-16h] | Defined phases with minimum 200 query-selection pairs before R11 activation | S0/S4 |
+| REQ-032 | **A7:** Co-activation boost strength increase (0.1x→0.25x) [2-4h] | Effective co-activation boost at hop 2 ≥15% | S1 |
+| REQ-033 | **A4:** Negative feedback / confidence activation (demotion multiplier, floor=0.3) [4-6h] | `memory_validate(wasUseful: false)` causes measurable ranking reduction | S4 |
+| REQ-034 | **B2:** Chunk ordering preservation in reassembly [2-4h] | Collapsed chunks appear in `chunk_index` order | S4 |
+| REQ-037 | **A2:** Full-context ceiling evaluation (LLM baseline comparison) [2h] | Full-context ceiling MRR@5 recorded; 2x2 decision matrix (A2 × G-NEW-1) evaluated at Sprint 0 exit | S0 |
+| REQ-038 | **B8:** Signal count ceiling governance (max 15 active scoring signals) [1-2h] | Signal ceiling policy documented and enforced; escape clause requires R13 orthogonal-value evidence | Cross-cutting |
+| REQ-052 | **Eval-the-eval:** Hand-verification of R13 evaluation output — manually compute MRR@5 for 5 randomly selected queries and compare to R13's computed values [2-3h] | Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; any discrepancy investigated and resolved before R13 output is used for roadmap decisions | S0 |
+| REQ-040 | **TM-01:** Interference scoring signal — negative weight penalizing memories with high-similarity competitors in same spec_folder [4-6h] | Interference score computed at index time; composite scoring includes -0.08 * interference factor behind feature flag | S2 |
+| REQ-041 | **TM-03:** Classification-based decay policies — FSRS decay multipliers vary by context_type and importance_tier (decisions: no decay, temporary: fast decay) [3-5h] | Decay behavior differs measurably between context_types; decisions/constitutional memories show 0 decay over 30 days | S2 |
+| REQ-042 | **TM-04:** Pre-storage quality gate — multi-layer validation pipeline (structural + content quality + semantic dedup) BEFORE embedding generation [6-10h] | Quality score computed for every save; saves below 0.4 threshold rejected; near-duplicates (>0.92 similarity) flagged | S4 |
+| REQ-043 | **TM-06:** Reconsolidation-on-save — automatic duplicate/conflict/complement decision when saving memories similar to existing ones [6-10h] | Similarity >=0.88 merges (frequency increment); 0.75-0.88 soft-replaces (with supersedes edge; old memory marked as `superseded` status — excluded from search results but retained in database for selective recovery); <0.75 stores as new | S4 |
+| REQ-044 | **TM-05:** Dual-scope injection strategy — memory auto-surface at multiple lifecycle points (context load, tool dispatch, compaction) [4-6h] | Memory injection hooks active at >=2 lifecycle points beyond explicit search | S5 |
+| REQ-045 | **TM-08:** Importance signal vocabulary expansion — add CORRECTION and PREFERENCE signal categories to trigger extraction [2-4h] | Trigger extraction recognizes correction signals ("actually", "wait", "I was wrong") and preference signals ("prefer", "like", "want") | S1 |
 
 ### P2 - Desired (complete OR defer with documented reason)
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-018 | **R6:** 4-stage pipeline refactor with "no score changes in Stage 4" invariant | 0 ordering differences on eval corpus; 158+ tests pass. **Note: R6 is conditional — required only if Sprint 2 score normalization fails exit gate, OR Stage 4 invariant deemed architecturally necessary regardless.** | S5 |
-| REQ-019 | **R9:** Spec folder pre-filter | Cross-folder queries produce identical results | S5 |
-| REQ-020 | **R12:** Embedding-based query expansion (suppressed when R15="simple") | No degradation of simple query latency | S5 |
-| REQ-021 | **S2:** Template anchor optimization | Anchor-aware retrieval metadata available | S5 |
-| REQ-022 | **S3:** Validation signals as retrieval metadata | Validation metadata integrated in scoring | S5 |
-| REQ-023 | **R7:** Anchor-aware chunk thinning | Recall@20 within 10% of baseline | S6 |
-| REQ-024 | **R16:** Encoding-intent capture | Intent metadata captured at index time | S6 |
-| REQ-025 | **R10:** Auto entity extraction (gated on edge density < 1.0) | False positive rate < 20% on manual review | S6 |
-| REQ-026 | **N2 (items 4-6):** Graph centrality + community detection | Graph channel attribution increase > 10% | S6 |
-| REQ-027 | **N3-lite:** Contradiction scan + Hebbian strengthening | Detects ≥50% of contradictions in curated 10-pair test set with FP rate <30% | S6 |
-| REQ-028 | **S4:** Spec folder hierarchy as retrieval structure | Hierarchy traversal functional | S6 |
+| REQ-018 | **R6:** 4-stage pipeline refactor with "no score changes in Stage 4" invariant [40-55h] | 0 ordering differences on eval corpus; 158+ tests pass. **Note: R6 is conditional — required only if Sprint 2 score normalization fails exit gate, OR Stage 4 invariant deemed architecturally necessary regardless.** | S5 |
+| REQ-019 | **R9:** Spec folder pre-filter [5-8h] | Cross-folder queries produce identical results | S5 |
+| REQ-020 | **R12:** Embedding-based query expansion (suppressed when R15="simple") [10-15h] | No degradation of simple query latency | S5 |
+| REQ-021 | **S2:** Template anchor optimization [5-8h] | Anchor-aware retrieval metadata available | S5 |
+| REQ-022 | **S3:** Validation signals as retrieval metadata [4-6h] | Validation metadata integrated in scoring | S5 |
+| REQ-023 | **R7:** Anchor-aware chunk thinning [10-15h] | Recall@20 within 10% of baseline | S6 |
+| REQ-024 | **R16:** Encoding-intent capture [5-8h] | Intent metadata captured at index time | S6 |
+| REQ-025 | **R10:** Auto entity extraction (gated on edge density < 1.0) [12-18h] | False positive rate < 20% on manual review | S6 |
+| REQ-026 | **N2 (items 4-6):** Graph centrality + community detection [25-35h] | Graph channel attribution increase > 10% | S6 |
+| REQ-027 | **N3-lite:** Contradiction scan + Hebbian strengthening [9-14h] | Detects ≥50% of contradictions in curated 10-pair test set with FP rate <30% | S6 |
+| REQ-028 | **S4:** Spec folder hierarchy as retrieval structure [6-10h] | Hierarchy traversal functional | S6 |
 
 ### P3 - Future (implement when conditions met)
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-029 | **R8:** Memory summary generation (only if > 5K memories) | Summary pre-filtering reduces search space | S7 |
-| REQ-030 | **S1:** Smarter memory content generation | Content generation matches template schema for ≥95% of test cases | S7 |
-| REQ-031 | **S5:** Cross-document entity linking | ≥3 cross-document entity links verified by manual review | S7 |
+| REQ-029 | **R8:** Memory summary generation (only if > 5K memories) [15-20h] | Summary pre-filtering reduces search space | S7 |
+| REQ-030 | **S1:** Smarter memory content generation [8-12h] | Content generation matches template schema for ≥95% of test cases | S7 |
+| REQ-031 | **S5:** Cross-document entity linking [8-12h] | ≥3 cross-document entity links verified by manual review | S7 |
+| REQ-061 | **R13-S3:** Full evaluation reporting dashboard with historical trend visualization [12-16h] | R13-S3 full evaluation reporting dashboard operational with historical trend visualization | S7 |
 
 ### Sprint-Derived Requirements (reconciled from child specs)
 
@@ -235,12 +238,12 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 
 | ID | Requirement | Acceptance Criteria | Sprint |
 |----|-------------|---------------------|--------|
-| REQ-046 | **FUT-5:** RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} | Optimal K documented with MRR@5 deltas per K value | S2 |
-| REQ-047 | **R15-ext:** Confidence-based result truncation — adaptive top-K cutoff based on score confidence gap | Results truncated at score gap; minimum 3 results guaranteed; reduces tail by >30% | S3 |
-| REQ-048 | **FUT-7:** Dynamic token budget allocation by query complexity tier | Simple: 1500t, Moderate: 2500t, Complex: 4000t; token waste reduced for simple queries | S3 |
-| REQ-049 | **N2a:** Graph Momentum — temporal degree delta over sliding 7-day window | Momentum score computed for all nodes with >=1 edge; top-10 accelerating memories identifiable | S6 |
-| REQ-050 | **N2b:** Causal Depth Signal — max-depth path normalization from root memories | causal_depth_score assigned to all nodes; root=0, leaf=1.0 | S6 |
-| REQ-051 | **N2c:** Community Detection — connected components (BFS baseline), Louvain escalation if clusters too coarse | Community assignments stable across 2 consecutive runs (jitter <5%) | S6 |
+| REQ-046 | **FUT-5:** RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] | Optimal K documented with MRR@5 deltas per K value | S2 |
+| REQ-047 | **R15-ext:** Confidence-based result truncation — adaptive top-K cutoff based on score confidence gap [5-8h] | Results truncated at score gap; minimum 3 results guaranteed; reduces tail by >30% | S3 |
+| REQ-048 | **FUT-7:** Dynamic token budget allocation by query complexity tier [3-5h] | Simple: 1500t, Moderate: 2500t, Complex: 4000t; token waste reduced for simple queries | S3 |
+| REQ-049 | **N2a:** Graph Momentum — temporal degree delta over sliding 7-day window [8-12h] | Momentum score computed for all nodes with >=1 edge; top-10 accelerating memories identifiable | S6 |
+| REQ-050 | **N2b:** Causal Depth Signal — max-depth path normalization from root memories [5-8h] | causal_depth_score assigned to all nodes; root=0, leaf=1.0 | S6 |
+| REQ-051 | **N2c:** Community Detection — connected components (BFS baseline), Louvain escalation if clusters too coarse [12-15h] | Community assignments stable across 2 consecutive runs (jitter <5%) | S6 |
 
 ### PageIndex-Derived Requirements (REQ-053 — REQ-060, PI-A1 — PI-B3)
 
@@ -248,7 +251,7 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 
 | ID | REQ | Recommendation | Acceptance Criteria | Sprint |
 |----|-----|----------------|---------------------|--------|
-| REQ-053 | PI-A1 | Folder-Level Relevance Scoring via DocScore Aggregation | `folder_score` field in result metadata; MAX + 0.3×MEAN formula; no MRR@5 regression | S2 |
+| REQ-053 | PI-A1 | Folder-Level Relevance Scoring via DocScore Aggregation | `folder_score` field in result metadata; `(1/sqrt(M+1)) * SUM(MemoryScore(m))` damped-sum formula; no MRR@5 regression | S2 |
 | REQ-054 | PI-A2 | Search Strategy Degradation with Fallback Chain (DEFERRED) | 3-tier fallback with logged degradation events | S3 (deferred) |
 | REQ-055 | PI-A3 | Pre-Flight Token Budget Validation | `token_budget_used` in response; truncation enforced; ≤5ms p95 latency increase | S1 |
 | REQ-056 | PI-A4 | Constitutional Memory as Expert Knowledge Injection | `retrieval_directive` metadata field on constitutional memories | S5 (deferred from S4 per REC-07) |
@@ -273,18 +276,18 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 |----|----------------|---------------------|--------|--------|------|
 | PI-B1 | **Tree Thinning for Spec Folder Consolidation** — bottom-up merge of small spec files into parent | If `token_count(child) < MIN_CHILD_TOKENS` AND `token_count(parent + child) < MAX_MERGED_TOKENS`, merge child into parent section | S5 | 10-14h | Low |
 | PI-B2 | **Progressive Validation for Spec Documents** — 4-level progressive fix pipeline for spec document validation | Level 1: schema check → Level 2: anchor integrity → Level 3: cross-reference validation → Level 4: semantic consistency; each level runs only if prior passes | S5 | 16-24h | Medium |
-| PI-B3 | **Description-Based Spec Folder Discovery** — generate and cache a 1-sentence description per spec folder for search-time folder routing | At index time, generate `folder_description` = LLM summary of spec folder purpose; cache in spec folder index; use for pre-search folder routing | S3 | 4-8h | Low |
+| PI-B3 | **Description-Based Spec Folder Discovery** — generate and cache a 1-sentence description per spec folder for search-time folder routing | At index time, generate `folder_description` = LLM summary of spec folder purpose; cache in spec folder index; use for pre-search folder routing. **LLM Fallback:** Spec-folder classification is async and fully decoupled from the save path. If LLM is unavailable (timeout >5s or error), fall back to folder-name-based heuristic classification. Classification results are cached per spec-folder with 24h TTL. | S3 | 4-8h | Low |
 
 **PageIndex Totals by Sprint:**
 
 | Sprint | PI Items | Added Effort |
 |--------|----------|--------------|
-| S0 | PI-A5 | +12-16h |
-| S1 | PI-A3 | +4-6h |
+| S0 | (none) | — |
+| S1 | PI-A3, PI-A5 | +16-22h |
 | S2 | PI-A1 | +4-8h |
 | S3 | PI-A2, PI-B3 | +16-24h |
-| S4 | PI-A4 | +8-12h |
-| S5 | PI-B1, PI-B2 | +26-38h |
+| S4 | (none) | — |
+| S5 | PI-A4, PI-B1, PI-B2 | +34-50h |
 | **Total** | **8 items** | **+70-104h** |
 ### 4.1 R13 Evaluation Schema Definition
 
@@ -385,7 +388,7 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 - **SC-002**: Graph channel hit rate exceeds 20% (from 0% baseline)
 - **SC-003**: Channel diversity (unique sources in top-5) exceeds 3.0 (from ~2.0 baseline)
 - **SC-004**: Search latency p95 remains < 300ms for complex queries (500ms hard limit)
-- **SC-005**: Active feature flags remain at 6 or fewer at any time
+- **SC-005**: Active feature flags remain at 8 or fewer at any time (peak 7 at S4/S5)
 - **SC-006**: Evaluation ground truth exceeds 500 query-relevance pairs
 - **SC-007**: Graph edge density exceeds 1.0 edges/node
 <!-- /ANCHOR:success-criteria -->
@@ -401,9 +404,9 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 |---------|------|----------|---------------|------------|
 | MR1 | FTS5 trigger contamination from R11 — `[learned:]` prefix stripped by tokenizer; **irreversible** without full re-index | CRITICAL | R11 | Separate `learned_triggers` column (not indexed by FTS5) |
 | MR2 | R4+N3 preferential attachment loop — well-connected memories get boosted, get more edges, get more boosted | HIGH | R4, N3 | MAX_TOTAL_DEGREE=50, MAX_STRENGTH_INCREASE=0.05/cycle, edge provenance tracking |
-| MR3 | Feature flag explosion — 24 flags = 16.7M possible states; combinatorial testing impossibility | HIGH | All | Maximum 6 simultaneous flags; 90-day lifespan; governance rules (See research/6 - combined-recommendations-gap-analysis §10) |
+| MR3 | Feature flag explosion — 24 flags = 16.7M possible states; combinatorial testing impossibility | HIGH | All | Maximum 8 simultaneous flags (peak 7 at S4/S5); 90-day lifespan; governance rules (See research/6 - combined-recommendations-gap-analysis §10) |
 | MR4 | R1-MPAB div-by-zero at N=0 — `sqrt(0)` causes NaN propagation | HIGH | R1 | Guard clause: `if (scores.length <= 1) return scores[0] ?? 0` |
-| MR5 | R4 MAX_TYPED_DEGREE undefined — no degree cap = unbounded boost | MEDIUM | R4 | Computed global with fallback=15 (See research/6 - combined-recommendations-gap-analysis §4.2) |
+| MR5 | R4 MAX_TYPED_DEGREE undefined — no degree cap = unbounded boost | MEDIUM | R4 | Computed global with fallback=15 (See research/3 - recommendations-hybrid-rag-fusion-refinement §4.2) |
 | MR6 | R11 hidden dependency on R13 query provenance — "not in top 3" safeguard impossible without logging | MEDIUM | R11 | R13 must complete 2 eval cycles before R11 mutations enabled |
 | MR7 | R15 violates R2 channel diversity guarantee — single-channel routes cannot satisfy diversity | MEDIUM | R15, R2 | Minimum 2 channels even for "simple" queries |
 | MR8 | R4+N3+R10 three-way interaction — spurious R10 auto-extracted entities strengthened by N3 Hebbian learning, boosted by R4 degree scoring | HIGH | R4, N3, R10 | Entity extraction quality gate (FP <20%); N3 strength cap (MAX_STRENGTH_INCREASE=0.05/cycle); R4 degree normalization |
@@ -411,6 +414,10 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 | MR10 | S6 N3-lite Hebbian weight modifications not tracked by `created_by` provenance — only new edges tracked, not weight changes to existing edges | HIGH | N3-lite | Add `weight_history` audit column or log weight changes to eval DB for rollback capability |
 | MR11 | TM-06 reconsolidation auto-replacement — miscalibrated similarity thresholds could auto-replace valuable content with inferior newer content | MEDIUM | TM-06 | Feature flag + checkpoint required before enabling; log all reconsolidation decisions for R13 review |
 | MR12 | TM-04 quality gate over-filtering — overly strict thresholds could reject legitimate memory saves | MEDIUM | TM-04 | Start with warn-only mode (log scores, don't reject) for 2 weeks; tune thresholds based on false-rejection rate |
+| MR13 | Concurrent write corruption | HIGH | All | Per-spec-folder mutex on save pipeline; WAL mode; SAVEPOINT for multi-step operations | S0 |
+| MR14 | Memory/resource leak in long-running sessions | MEDIUM | All | Periodic health check via memory_health; bounded caches with LRU eviction; session TTL 4h max | S1 |
+
+> **Ownership:** Each risk is owned by the sprint lead for its mitigation sprint. Risk status is reviewed at each gate evaluation. Unmitigated HIGH risks block gate passage.
 
 ### Dangerous Interaction Pairs
 
@@ -423,10 +430,12 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 | N4 + R11 | Transient artifact learning | Exclude memories < 72h old from R11 eligibility |
 | TM-01 + R17 | Double fan-effect penalty | TM-01 penalizes in composite scoring; R17 penalizes in co-activation. Cap combined penalty at 0.15 |
 | R13 + R15 | Metrics skew by complexity | R13 records query_complexity; metrics per tier |
+| TM-04 + PI-A5 | Pipeline ordering dependency | PI-A5 auto-fix runs after TM-04 threshold; if PI-A5 modifies content, re-score via TM-04 |
+| N4 + TM-01 | Opposing forces (cold-start boost vs interference penalty for new similar memories) | Apply N4 boost before TM-01 interference penalty; net effect documented in Signal Application Order |
 
 ### Deploy Disaster Scenario (R11)
 
-A developer searches "deploy to production" and selects a migration memory. R11 learns "deploy" and "production" as triggers. Without the separate column fix, FTS5 indexes both words — every deployment query matches the migration memory on multiple channels for 30 days. See research/6 - combined-recommendations-gap-analysis §6.4 for full scenario.
+A developer searches "deploy to production" and selects a migration memory. R11 learns "deploy" and "production" as triggers. Without the separate column fix, FTS5 indexes both words — every deployment query matches the migration memory on multiple channels for 30 days. See research/3 - recommendations-hybrid-rag-fusion-refinement §6.4 for full scenario.
 
 ### Dependencies
 
@@ -435,7 +444,7 @@ All dependencies are internal. Three dependencies from original research were co
 - R6→R7: INCORRECT (orthogonal subsystems — index-time vs search-time)
 - R8→R7: INCORRECT (different comparison targets — embeddings vs summaries)
 
-See research/6 - combined-recommendations-gap-analysis §5 for corrected dependency graph.
+See research/3 - recommendations-hybrid-rag-fusion-refinement §5 for corrected dependency graph.
 <!-- /ANCHOR:risks -->
 
 ---
@@ -469,8 +478,9 @@ See research/6 - combined-recommendations-gap-analysis §5 for corrected depende
 | 2 | Quality scoring (TM-04) | O(1) score | Before embedding — reject below 0.4 threshold |
 | 3 | Verify-fix-verify loop (PI-A5) | O(1) retry | Max 2 retries before rejection |
 | 4 | Embedding generation | O(1) API | Existing pipeline step |
+| 4a | Embedding failure fallback | O(1) status | Save with `pending_embedding` status, skip Stages 5-6, queue async retry (max 3 attempts, exponential backoff 1m/5m/30m) |
 | 5 | Semantic dedup (TM-04 Layer 3) | O(n) search | After embedding — >0.92 similarity = reject |
-| 6 | Reconsolidation (TM-06) | O(n) search | After embedding — >=0.88 merge, 0.75-0.88 replace |
+| 6 | Reconsolidation (TM-06) | O(n) search | After embedding — >=0.88 merge, 0.75-0.88 soft-replace (old memory → `superseded` status, retained for recovery) |
 | 7 | Database insert | O(log n) | Final write |
 
 #### Cross-Sprint Ordering Invariants
@@ -490,7 +500,7 @@ See research/6 - combined-recommendations-gap-analysis §5 for corrected depende
 ### Performance
 - **NFR-P01**: Search response MUST NOT exceed 500ms p95 during any phase including dark-run
 - **NFR-P02**: Simple query (R15) target: < 30ms p95; Moderate: < 100ms; Complex: < 300ms
-- **NFR-P03**: Dark-run overhead per sprint: S1 +10ms, S2 +2ms, S3 +50ms, S4 +15ms, S5 +100ms (See research/6 - combined-recommendations-gap-analysis §14)
+- **NFR-P03**: Dark-run overhead per sprint: S1 +10ms, S2 +2ms, S3 +50ms, S4 +15ms, S5 +100ms (See research/3 - recommendations-hybrid-rag-fusion-refinement §14)
 - **NFR-P04**: Save-time performance budget — `memory_save` operations: p95 ≤200ms without embedding generation, p95 ≤2000ms with embedding generation. TM-02/TM-04/TM-06 pipeline stages MUST NOT exceed these budgets
 
 ### Data Integrity
@@ -498,12 +508,23 @@ See research/6 - combined-recommendations-gap-analysis §5 for corrected depende
 - **NFR-D02**: No destructive migrations — never DROP COLUMN or ALTER COLUMN TYPE in forward migrations
 - **NFR-D03**: Separate eval database (`speckit-eval.db`) — prevents observer effect on search performance
 - **NFR-D04**: Atomic migration execution — failure = full rollback, no partial state
+- **NFR-D05**: **FTS5 Consistency:** The `memory_health` tool MUST compare `memory_fts` row count vs `memory_index` row count and report divergence >0 as a warning with remediation hint ("Run memory_index_scan with force:true to rebuild FTS5 index")
 
 ### Operational
-- **NFR-O01**: Maximum 6 simultaneous active feature flags at any time
+- **NFR-O01**: Maximum 8 simultaneous active feature flags at any time (peak 7 at S4/S5)
 - **NFR-O02**: Maximum flag lifespan: 90 days from creation to permanent decision
 - **NFR-O03**: Monthly flag sunset audit required
 - **NFR-O04**: All scoring changes MUST use dark-run comparison before enabling
+
+**Measurement Methodology:** All NFR benchmarks are measured under standardized conditions: single-user workload, 50-100 evaluation queries from Sprint 0 ground truth corpus, cold cache (restart MCP server before each run), WAL mode enabled, on reference hardware (dev laptop, SSD, 16GB+ RAM).
+
+### API Compatibility Contract
+
+All scoring changes MUST be additive and backward-compatible:
+- New fields are optional; existing fields retain semantics
+- When normalization is enabled, responses include `score_version: 2` field
+- Clients not sending `score_version` receive legacy scoring behavior
+- Breaking changes require major version bump and 2-sprint deprecation notice
 
 ---
 
@@ -528,7 +549,7 @@ See research/6 - combined-recommendations-gap-analysis §5 for corrected depende
 A newly indexed constitutional memory with multiple chunks, within first 12 hours, receives MPAB bonus + cold-start boost + constitutional tier guarantee. Can dominate all results for 12-48h. Mitigation: composite boost cap at 0.95 before tier adjustment.
 
 ### Deploy Disaster (R11)
-FTS5 contamination from learned triggers pollutes lexical search for 30 days. Mitigated by separate `learned_triggers` column. See research/6 - combined-recommendations-gap-analysis §6.4.
+FTS5 contamination from learned triggers pollutes lexical search for 30 days. Mitigated by separate `learned_triggers` column. See research/3 - recommendations-hybrid-rag-fusion-refinement §6.4.
 
 ### N=0 / N=1 MPAB
 - N=0 chunks: `computeMPAB([]) = 0`
@@ -546,7 +567,7 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | 23/25 | 20+ files across 8 subsystems, 316-472h, schema changes |
+| Scope | 23/25 | 20+ files across 8 subsystems, 316-472h (base estimate; 348-523h including TM additions; 463-689h grand total with PageIndex — see executive summary), schema changes |
 | Risk | 22/25 | CRITICAL FTS5 contamination, 0% graph hit rate, irreversible migration risks |
 | Research | 18/20 | 13-agent synthesis, 3 waves, cross-system analysis |
 | Multi-Agent | 13/15 | 7 independent tracks (A-G), parallel sprint execution |
@@ -564,10 +585,10 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 |---------|-------------|--------|------------|------------|
 | R-001 | FTS5 trigger contamination (MR1) | Critical | High (if separate column not used) | Separate `learned_triggers` column |
 | R-002 | Preferential attachment loop (MR2) | High | Medium | Degree caps + provenance tracking |
-| R-003 | Feature flag explosion (MR3) | High | High (24 proposed flags) | 6-flag maximum governance |
+| R-003 | Feature flag explosion (MR3) | High | High (24 proposed flags) | 8-flag maximum governance (peak 7 at S4/S5) |
 | R-004 | MPAB div-by-zero (MR4) | High | High (N=1 memories common) | Guard clause in `computeMPAB` |
 | R-005 | BM25 >= 80% of hybrid (contingency) | High | Unknown | Sprint 0 measurement + decision matrix |
-| R-006 | Effort variance (316-472h range) | Medium | Medium | Metric-gated sprints enable early stopping |
+| R-006 | Effort variance (316-472h base; 348-523h with TM; 463-689h grand total with PageIndex — see executive summary) | Medium | Medium | Metric-gated sprints enable early stopping |
 | R-007 | R6 pipeline refactor regression | High | Medium | Checkpoint before start; 0-diff gate; off-ramp |
 | R-008 | Eval ground truth contamination from biased trigger-phrase synthetic data (MR-bias) — synthetic ground truth derived from trigger phrases evaluates a system that retrieves partly via trigger phrases, inflating MRR@5 scores | High | High | **MANDATORY**: Include >=20 manually curated natural-language queries (non-trigger-phrase) in ground truth corpus; require statistical significance (p<0.05, paired t-test or bootstrap CI) for BM25 contingency decision; minimum 100 diverse queries before any threshold-based roadmap decision |
 | R-009 | Solo developer bottleneck — 18-26 weeks, no absence protocol | Medium | High | Document bus factor plan; identify critical path items for potential delegation |
@@ -640,7 +661,7 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 ## 13. COMPLIANCE CHECKPOINTS
 
 ### Migration Safety
-- [ ] All schema changes follow migration protocol (See research/6 - combined-recommendations-gap-analysis §13)
+- [ ] All schema changes follow migration protocol (See research/3 - recommendations-hybrid-rag-fusion-refinement §13)
 - [ ] Nullable defaults on all new columns
 - [ ] Backup before ALTER TABLE
 - [ ] Forward-compatible reads (handle column not existing)
@@ -652,7 +673,7 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 - [ ] Dark-run results logged via R13 infrastructure
 
 ### Feature Flag Governance
-- [ ] Maximum 6 simultaneous active flags
+- [ ] Maximum 8 simultaneous active flags (peak 7 at S4/S5)
 - [ ] 90-day lifespan enforced
 - [ ] Monthly sunset audit conducted
 - [ ] Flag naming convention: `SPECKIT_{FEATURE}`
@@ -661,18 +682,18 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 Each sprint exit gate MUST include a flag disposition decision for all prior flags. The plan introduces 24 total flags across 8 sprints. The following sunset schedule tracks active flag counts (ceiling raised from 6 to 8 to accommodate S4-S5 peak):
 
-| Sprint Exit | Flags Introduced This Sprint | Flags to Permanently Enable or Remove | Active After Gate |
-|-------------|------------------------------|---------------------------------------|-------------------|
-| S0 | `SPECKIT_EVAL_LOGGING`, `SPECKIT_VERIFY_FIX_VERIFY` | None (first sprint) | 2 |
-| S1 | `SPECKIT_DEGREE_BOOST` | `SPECKIT_EVAL_LOGGING` → permanent (remove flag, always-on) | 2 |
-| S2 | `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`, `SPECKIT_FOLDER_SCORE` | `SPECKIT_VERIFY_FIX_VERIFY` → permanent (remove flag) | 4 |
-| S3 | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` | `SPECKIT_DEGREE_BOOST` → permanent; `SPECKIT_NOVELTY_BOOST` → permanent | 5 |
-| S4 | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`, `SPECKIT_CONSTITUTIONAL_INJECT` | `SPECKIT_INTERFERENCE_SCORE` → permanent; `SPECKIT_FOLDER_SCORE` → permanent; `SPECKIT_COMPLEXITY_ROUTER` → permanent | 7 |
-| S5 | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`, `SPECKIT_PROGRESSIVE_VALIDATION` | `SPECKIT_RSF_FUSION` → decide (permanent or remove based on Kendall tau data); `SPECKIT_CHANNEL_MIN_REP` → permanent; `SPECKIT_RECONSOLIDATION` → permanent | 7 |
-| S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent; `SPECKIT_CONSTITUTIONAL_INJECT` → permanent | 6 |
-| S7 | `SPECKIT_MEMORY_SUMMARIES`, `SPECKIT_ENTITY_LINKING` | `SPECKIT_PIPELINE_V2` → permanent; `SPECKIT_EMBEDDING_EXPANSION` → permanent; `SPECKIT_PROGRESSIVE_VALIDATION` → permanent | 5 |
+| Sprint Exit | Flags Introduced This Sprint | Flags to Permanently Enable or Remove | Active After Gate | Lifecycle Stage |
+|-------------|------------------------------|---------------------------------------|-------------------|-----------------|
+| S0 | `SPECKIT_EVAL_LOGGING`, `SPECKIT_VERIFY_FIX_VERIFY` | None (first sprint) | 2 | dark-run |
+| S1 | `SPECKIT_DEGREE_BOOST` | `SPECKIT_EVAL_LOGGING` → permanent (remove flag, always-on) | 2 | shadow |
+| S2 | `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`, `SPECKIT_FOLDER_SCORE` | `SPECKIT_VERIFY_FIX_VERIFY` → permanent (remove flag) | 4 | shadow |
+| S3 | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` | `SPECKIT_DEGREE_BOOST` → permanent; `SPECKIT_NOVELTY_BOOST` → permanent | 5 | enabled |
+| S4 | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`, `SPECKIT_CONSTITUTIONAL_INJECT` | `SPECKIT_INTERFERENCE_SCORE` → permanent; `SPECKIT_FOLDER_SCORE` → permanent; `SPECKIT_COMPLEXITY_ROUTER` → permanent | 7 | enabled |
+| S5 | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`, `SPECKIT_PROGRESSIVE_VALIDATION` | `SPECKIT_RSF_FUSION` → decide (permanent or remove based on Kendall tau data); `SPECKIT_CHANNEL_MIN_REP` → permanent; `SPECKIT_RECONSOLIDATION` → permanent | 7 | enabled |
+| S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent; `SPECKIT_CONSTITUTIONAL_INJECT` → permanent | 6 | permanent / sunset |
+| S7 | `SPECKIT_MEMORY_SUMMARIES`, `SPECKIT_ENTITY_LINKING` | `SPECKIT_PIPELINE_V2` → permanent; `SPECKIT_EMBEDDING_EXPANSION` → permanent; `SPECKIT_PROGRESSIVE_VALIDATION` → permanent | 5 | permanent / sunset |
 
-> **Ceiling note**: Peak active flag count reaches 7 at S4 and S5. Original 6-flag ceiling (NFR-O01) is aspirational; actual peak is 7-8 due to S4's 5 simultaneous introductions. The rule below mitigates risk.
+> **Ceiling note**: Peak active flag count reaches 7 at S4 and S5. NFR-O01 ceiling is 8 to accommodate the S4/S5 peak. The rule below mitigates risk.
 >
 > **H6 note**: `SPECKIT_SEARCH_FALLBACK` removed from sunset schedule — PI-A2 (search fallback chain) was DEFERRED and no such flag was ever introduced.
 >
@@ -681,11 +702,36 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 **Rule:** Any sprint that would exceed 8 active flags MUST sunset prior flags at the sprint's entry (not exit). If a flag cannot be confidently resolved, it counts against the flag budget and a lower-priority new flag must be deferred.
 
 ### B8 Signal Ceiling
-- **B8 Signal Ceiling**: Maximum 12 active scoring signals until R13 provides automated evaluation data. Escape clause: R13 evidence that a new signal provides orthogonal value overrides the ceiling. Re-evaluate at Sprint 4 off-ramp when R13-S2 channel attribution data is available.
+- **B8 Signal Ceiling**: Maximum 15 active scoring signals until R13 provides automated evaluation data. Escape clause: R13 evidence that a new signal provides orthogonal value overrides the ceiling. Re-evaluate at Sprint 4 off-ramp when R13-S2 channel attribution data is available.
+
+**Current Signal Inventory:**
+
+| # | Signal | Stage | Source |
+|---|--------|-------|--------|
+| 1 | importance_weight | Composite | vector-index-impl.ts |
+| 2 | recency_decay | Composite | vector-index-impl.ts |
+| 3 | quality_score | Composite | vector-index-impl.ts |
+| 4 | validation_confidence | Composite | vector-index-impl.ts |
+| 5 | state_tier_weight | Composite | vector-index-impl.ts |
+| 6 | doc_type_multiplier | Auxiliary | vector-index-impl.ts |
+| 7 | rrf_score | Fusion | search-executor.ts |
+| 8 | bm25_score | Fusion | bm25-index.ts |
+| 9 | vector_similarity | Fusion | vector-index-impl.ts |
+| 10 | adaptive_weight | Fusion | search-executor.ts |
+| 11 | query_type_boost | Fusion | search-executor.ts |
+| 12 | session_boost | Post-search | vector-index-impl.ts |
+| 13 | causal_boost | Post-search | vector-index-impl.ts |
+| 14 | intent_weight | Post-search | vector-index-impl.ts |
+
+**Signal count: 14 active (ceiling: 15)**
+
+**Escape clause:** A signal exceeding the ceiling MAY be approved if it demonstrates >5% MRR@10 improvement on the eval corpus with <2% regression on any individual metric. Approval requires documented eval evidence in the sprint's decision-record.md.
+
+**Tracking:** Active signal count is verified by counting enabled `SPECKIT_*` environment variables at startup. The count is logged at INFO level and included in `memory_health` output.
 
 ### Test Suite Non-Regression
 - [ ] 158+ existing tests pass after every sprint
-- [ ] New tests added per sprint (See research/6 - combined-recommendations-gap-analysis §12)
+- [ ] New tests added per sprint (See research/3 - recommendations-hybrid-rag-fusion-refinement §12)
 - [ ] Flag interaction testing at appropriate level (1-5)
 
 ---
@@ -704,6 +750,21 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 ---
 
 <!-- /ANCHOR:stakeholders -->
+
+<!-- ANCHOR:adrs -->
+## 14A. ARCHITECTURAL DECISION RECORDS (ADRs)
+
+| ADR | Decision | Rationale |
+|-----|----------|-----------|
+| **ADR-001** | **Composite scoring normalization** — Normalize all scoring factors to [0,1] before combination | Prevents 15:1 magnitude mismatch between RRF and composite scores. Without normalization, composite score dominates purely due to scale, not quality. |
+| **ADR-002** | *(Reserved — not referenced in current spec)* | — |
+| **ADR-003** | **Density Before Deepening principle** — Maximize graph edge density before adding sophisticated graph algorithms | Sparse graphs produce unreliable signals. Graph centrality, community detection, and traversal algorithms require sufficient edge density to produce meaningful results. Investing in algorithm sophistication on a sparse graph wastes effort and produces misleading metrics. |
+| **ADR-004** | **Evaluation First principle** — R13 evaluation infrastructure must exist before any scoring change is permanently enabled | Prevents unvalidated changes from degrading retrieval quality. Every scoring change must have pre/post measurement via R13 to confirm improvement. Without this gate, tuning decisions are speculation. |
+| **ADR-005** | **Separate learned_triggers column for R11** — Store learned triggers in a separate TEXT column rather than appending to the existing trigger_phrases FTS5 column | Prevents FTS5 contamination (MR1 risk). The FTS5 tokenizer strips the `[learned:]` prefix, making learned triggers indistinguishable from manual triggers. This is irreversible without full re-index. A separate column provides clean isolation and easy rollback. |
+
+<!-- /ANCHOR:adrs -->
+
+---
 
 <!-- ANCHOR:changelog -->
 ## 15. CHANGE LOG
@@ -746,7 +807,7 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 ## 16. OPEN QUESTIONS
 
 - **OQ-001**: BM25 baseline performance — unknown until Sprint 0 measurement. If >= 80% of hybrid, roadmap fundamentally changes. **Decision context:** This is the single most consequential unknown. The BM25 contingency matrix (§8) defines three branches. G-NEW-1 (REQ-004) and A2 (REQ-037) jointly determine the 2x2 decision space. Resolved at: Sprint 0 exit gate.
-- **OQ-002**: INT8 recall loss contradiction — 1-2% (Spec 140) vs 5.32% (Spec 141). Requires in-system ablation. Blocks R5 activation decision. **Decision context:** The discrepancy likely stems from different evaluation corpora and embedding models. In-system ablation with R13 infrastructure will produce authoritative measurement. Resolved at: Sprint 7 (R5 eval, REQ-031).
+- **OQ-002**: INT8 recall loss contradiction — 1-2% (Spec 140) vs 5.32% (Spec 141). Requires in-system ablation. Blocks R5 activation decision. **Decision context:** The discrepancy likely stems from different evaluation corpora and embedding models. In-system ablation with R13 infrastructure will produce authoritative measurement. Resolved at: Sprint 7 (R5 eval, REQ-062).
 - **OQ-003**: `search-weights.json` audit — `maxTriggersPerMemory` is active; smart ranking section status unknown. **Decision context:** May reveal undocumented scoring signals that count against the B8 signal ceiling (REQ-038). Audit should be completed during Sprint 0 as part of R13-S1 instrumentation.
 - **OQ-004**: G2 investigation outcome — double intent weighting may be intentional design, not a bug. **Decision context:** If intentional, document the rationale in ADR format and adjust G2 scope (REQ-009) from "fix" to "document." If unintentional, the fix is straightforward removal. Resolved at: Sprint 2 (REQ-009). Cross-ref: OQ-S2-001 in Sprint 2 child spec.
 - **OQ-005**: Feedback bootstrap accumulation rate — R11 activation timeline depends on interaction data volume. **Decision context:** G-NEW-3 (REQ-017) defines a three-phase bootstrap (synthetic → implicit → LLM-judge). The 200 query-selection pair minimum before R11 activation may take 4-8 weeks of normal usage, or can be accelerated via synthetic replay. The 28-day calendar constraint (F10) may be the binding constraint rather than data volume.
@@ -788,6 +849,20 @@ Items evaluated in the 144 gap analysis but deferred pending future data or off-
 
 <!-- /ANCHOR:deferred -->
 
+<!-- ANCHOR:glossary -->
+### Glossary
+
+| Term | Definition |
+|------|-----------|
+| **dark-run** | Feature executes in production but results are discarded; used for correctness validation without user impact |
+| **shadow** | Feature runs alongside production path; outputs are logged and compared but not served to users |
+| **shadow-period** | Time window during which a feature operates in shadow mode before promotion to full activation |
+| **feature flag** | Runtime toggle (env var `SPECKIT_*`) controlling feature activation; see B2 governance rules |
+
+---
+
+<!-- /ANCHOR:glossary -->
+
 <!-- ANCHOR:related -->
 ## 18. RELATED DOCUMENTS
 
@@ -795,9 +870,9 @@ Items evaluated in the 144 gap analysis but deferred pending future data or off-
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Research (Analysis)**: See `research/3 - analysis-hybrid-rag-fusion-architecture.md`
-- **Research (Recommendations)**: See `research/6 - combined-recommendations-gap-analysis.md`
+- **Research (Recommendations)**: See `research/3 - recommendations-hybrid-rag-fusion-refinement.md` (primary) and `research/6 - combined-recommendations-gap-analysis.md` (gap-fill additions)
 - **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md` *(source for PI-A1 — PI-B3 PageIndex recommendations)*
-- **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md` *(source for PI-A1 — PI-B3 PageIndex recommendations)*
+- **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md` *(source for TM-01 — TM-08 TrueMem recommendations)*
 - **Research (Ultra-Think Reviews)**: See `research/11 - ultra-think-review-*.md` (per-sprint review documents)
 <!-- /ANCHOR:related -->
 

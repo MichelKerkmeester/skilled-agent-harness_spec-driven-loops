@@ -144,7 +144,7 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 
 - **SC-001**: R13-S3 full reporting operational — ablation study framework functional
 - **SC-002**: R8 gating verified — only implemented if >5K total memories with embeddings in the database (see scale gate definition below)
-- **SC-003**: S1 content generation quality improved (manual review confirmation)
+- **SC-003**: S1 content generation matches template schema >=95% (automated validation with manual review fallback for edge cases)
 - **SC-004**: S5 entity links established across documents (if scale threshold met)
 - **SC-005**: R5 decision documented with activation criteria measurements
 - **SC-006**: Program completion — all health dashboard targets reviewed

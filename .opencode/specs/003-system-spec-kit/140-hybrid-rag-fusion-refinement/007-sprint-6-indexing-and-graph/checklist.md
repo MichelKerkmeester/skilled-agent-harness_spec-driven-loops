@@ -1,14 +1,14 @@
 ---
-title: "Verification Checklist: Sprint 6 — Graph Deepening"
+title: "Verification Checklist: Sprint 6 — Indexing and Graph"
 description: "Verification checklist for Sprint 6: graph centrality, N3-lite consolidation, anchor-aware thinning, entity extraction, spec folder hierarchy"
 trigger_phrases:
   - "sprint 6 checklist"
-  - "graph deepening checklist"
+  - "indexing and graph checklist"
   - "sprint 6 verification"
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Verification Checklist: Sprint 6 — Graph Deepening
+# Verification Checklist: Sprint 6 — Indexing and Graph
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

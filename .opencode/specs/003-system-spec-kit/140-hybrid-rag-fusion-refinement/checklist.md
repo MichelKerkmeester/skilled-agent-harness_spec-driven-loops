@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~182 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, and Sprint 4 split verification."
+description: "~201 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, Sprint 4 split verification, concurrency verification, schema migration verification, dangerous interaction pair verification (DIP-001—DIP-009), and FTS5 sync verification."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -90,10 +90,16 @@ contextType: "implementation"
 - [ ] CHK-035 [P0] R1+N4 double-boost guard — N4 applied BEFORE MPAB; combined boost capped at 0.95
 - [ ] CHK-036 [P0] R4+N3 feedback loop guard — edge caps (MAX_TOTAL_DEGREE=50), strength caps (MAX_STRENGTH_INCREASE=0.05/cycle), provenance tracking active
 - [ ] CHK-037 [P0] R15+R2 guarantee — R15 minimum = 2 channels even for "simple" tier
-- [ ] CHK-038 [P1] R12+R15 mutual exclusion — R15="simple" suppresses R12 expansion verified
-- [ ] CHK-039a [P1] N4+R11 transient artifact guard — memories <72h old excluded from R11 eligibility
 - [ ] CHK-039b [P1] TM-01+R17 combined penalty — capped at 0.15 (no double fan-effect suppression)
 - [ ] CHK-039c [P1] R13+R15 metrics skew — R13 records query_complexity; metrics computed per tier
+- [ ] [P1] [CHK-DIP-008] TM-04 + PI-A5 pipeline ordering verified: PI-A5 auto-fix runs after TM-04 threshold check
+- [ ] [P1] [CHK-DIP-009] N4 + TM-01 opposing forces documented: cold-start boost applied before interference penalty
+- [ ] [P1] [CHK-DIP-001] Verify DIP-001 (session boost × causal boost) has interference guard: multiplicative over-scoring capped or converted to additive combination
+- [ ] [P1] [CHK-DIP-003] Verify DIP-003 (recency decay × TTL decay) has interference guard: compounding temporal penalty capped at maximum total decay threshold
+- [ ] [P1] [CHK-DIP-004] Verify DIP-004 (RRF position × BM25 boost) has interference guard: position bias amplification bounded by independent normalization of each signal
+- [ ] [P1] [CHK-DIP-005] Verify DIP-005 (quality score × validation confidence) has interference guard: circular quality loop broken by using independent input sources for each score
+- [ ] [P1] [CHK-DIP-006] Verify DIP-006 (doc-type multiplier × importance tier) has interference guard: static bias stacking capped or one signal subsumed by the other
+- [ ] [P1] [CHK-DIP-007] Verify DIP-007 (cross-encoder rerank × MMR diversity) has interference guard: relevance-diversity tension balanced by configurable lambda parameter with documented default
 <!-- /ANCHOR:security -->
 
 ---
@@ -103,7 +109,6 @@ contextType: "implementation"
 
 - [ ] CHK-040 [P1] Spec/plan/tasks synchronized after each sprint
 - [ ] CHK-041 [P1] Sprint exit gate results documented in tasks.md
-- [ ] CHK-042 [P2] Research document section references verified accurate
 <!-- /ANCHOR:docs -->
 
 ---
@@ -138,7 +143,7 @@ contextType: "implementation"
 - [ ] CHK-S0C [P0] Ground truth corpus includes ≥15 manually curated natural-language queries (T000d) — evidence: query set JSON with count ≥15
 - [ ] CHK-S0D [P0] Query diversity verified: ≥5 per intent type (graph relationship, temporal, cross-document, hard negative), ≥3 complexity tiers (simple, moderate, complex) — evidence: intent/tier distribution table
 - [ ] CHK-S0E [P0] Ground truth includes graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives — evidence: query set JSON with `intent_type` field
-- [ ] CHK-S0F [P1] Feature flag count ≤8 at exit + sunset decisions documented (consolidated: applies to ALL sprint exits S0-S7)
+- [ ] CHK-S0F [P1] Feature flag count ≤8 at exit (NFR-O01 amended) + sunset decisions documented (consolidated: applies to ALL sprint exits S0-S7)
 - [ ] CHK-S0F2 [P0] **Eval-the-eval validation** — hand-calculated MRR@5 for 5 random queries matches R13 output within ±0.01; discrepancies resolved before BM25 contingency decision (REQ-052)
 - [ ] CHK-S0F3 [P0] BM25 contingency decision has statistical significance — p<0.05 on >=100 diverse queries (R-008, R-011 elevated)
 
@@ -157,7 +162,7 @@ contextType: "implementation"
 
 - [ ] CHK-S20 [P1] R18 embedding cache hit rate > 90% on re-index of unchanged content
 - [ ] CHK-S21 [P1] N4 dark-run: new memories (<48h) surface when relevant without displacing older results
-- [ ] CHK-S22 [P1] G2 resolved: double intent weighting fixed or documented as intentional
+- [ ] CHK-S22 [P1] G2 resolved: double intent weighting fixed or documented as intentional (covers DIP-002: intent weight × adaptive fusion weight)
 - [ ] CHK-S23 [P1] Score distributions from RRF and composite normalized to comparable [0,1] ranges
 <!-- CHK-S24 intentionally skipped — ID gap from draft revision -->
 - [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
@@ -191,6 +196,7 @@ contextType: "implementation"
 - [ ] CHK-S4B [P1] TM-06 reconsolidation-on-save verified — duplicate detection (>=0.88 similarity) increments frequency; conflict resolution (0.75-0.88) creates supersedes edge; complement (<0.75) stores as new
 - [ ] CHK-S4C [P1] TM-06 checkpoint safety — memory_checkpoint_create() required before enabling SPECKIT_RECONSOLIDATION flag
 - [ ] CHK-S4D [P1] TM-04/TM-06 reconsolidation decisions logged for R13 review — all merge/replace/complement actions recorded
+- [ ] [P0] [CHK-TM06-SOFT] TM-06 reconsolidation "replace" action uses soft-delete: superseded memories excluded from search but retained in database
 - [ ] CHK-S4E [P1] Sprint 4a (R1+R13-S2+TM-04) completed and verified BEFORE Sprint 4b (R11+TM-06) begins — evidence: Sprint 4a gate items (CHK-S41, CHK-S43, CHK-S46, CHK-S4A) all marked [x] before T027/T059 start
 - [ ] CHK-S4F [P1] R11 activation deferred until ≥2 full R13 eval cycles completed (minimum 28 calendar days of data) — evidence: R13 eval_metric_snapshots table shows ≥2 distinct eval cycle timestamps spanning ≥28 days
 - [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit + sunset decisions documented (see CHK-S0F)
@@ -201,7 +207,7 @@ contextType: "implementation"
 - [ ] CHK-S51 [P2-CONDITIONAL] R6 dark-run: 0 ordering differences on full eval corpus. **Conditional: required only if Sprint 2 normalization fails OR Stage 4 invariant mandatory.**
 - [ ] CHK-S52 [P1] All 158+ existing tests pass with `SPECKIT_PIPELINE_V2` enabled
 - [ ] CHK-S53 [P1] Stage 4 "no score changes" invariant verified — prevents G2 recurrence
-- [ ] CHK-S54 [P1] Intent weights applied exactly ONCE in pipeline (Stage 2 only)
+- [ ] CHK-S54 [P1] Intent weights applied exactly ONCE in pipeline (Stage 2 only) (covers DIP-002: intent weight × adaptive fusion weight)
 - [ ] CHK-S55 [P1] R9 cross-folder queries produce identical results
 - [ ] CHK-S56 [P1] R12 expansion does not degrade simple query latency
 - [ ] CHK-S57 [P1] S2 template anchor optimization: anchor-aware retrieval metadata available and functional
@@ -238,6 +244,12 @@ contextType: "implementation"
 - [ ] CHK-S74 [P2] R5 INT8 quantization decision documented (implement or defer with rationale)
 - [ ] CHK-S75 [P2] Final feature flag sunset audit completed — all sprint-specific flags resolved
 - [ ] CHK-S76 [P2] Feature flag count ≤6 at Sprint 7 exit + final sunset audit (see CHK-S0F); ideally 0 remaining flags
+- [ ] [P1] [CHK-S77] R8 summary pre-filtering verified (if activated): summary quality >=80% relevance
+- [ ] [P1] [CHK-S78] S1 content generation matches template schema >=95% automated validation
+- [ ] [P1] [CHK-S79] S5 entity links established with >=90% precision
+- [ ] [P1] [CHK-S7A] R13-S3 evaluation dashboard operational
+- [ ] [P1] [CHK-S7B] R5 activation decision documented with evidence
+- [ ] [P1] [CHK-S7C] Final feature flag sunset audit completed: all flags resolved
 <!-- /ANCHOR:sprint-gates -->
 
 ---
@@ -286,6 +298,12 @@ contextType: "implementation"
 - [ ] CHK-115 [P1] Cumulative latency budget tracked at each sprint exit gate — running total of dark-run overhead ≤300ms (plan.md §7 tracker)
 - [ ] CHK-116 [P1] Signal application order verified against §6b consolidated invariants — intent weights applied exactly once, N4 before MPAB, R17 before R4, TM-02 before TM-04
 
+### Concurrency Verification
+
+- [ ] [P0] [CHK-CONC-001] WAL mode enabled for all database connections (PRAGMA journal_mode=WAL)
+- [ ] [P1] [CHK-CONC-002] TM-06 reconsolidation uses per-spec-folder advisory lock to prevent concurrent merge race conditions
+- [ ] [P1] [CHK-CONC-003] Multi-step write operations re-validate state after async boundaries (embedding generation await)
+
 ### Cross-Sprint B8 Signal Ceiling Tracking
 
 - [ ] CHK-B8-S0 [P1] Signal count at Sprint 0 exit ≤12 — document all active scoring signals
@@ -329,6 +347,10 @@ contextType: "implementation"
 - [ ] CHK-131 [P1] All new columns nullable with defaults; no NOT NULL additions to existing tables
 - [ ] CHK-132 [P1] Forward-compatible reads: code handles missing columns for rollback scenarios
 - [ ] CHK-133 [P2] Version tracking implemented (schema_version table or pragma)
+- [ ] [P1] [CHK-MIG-001] Schema version tracking mechanism (PRAGMA user_version or schema_version table) implemented before any schema changes
+- [ ] [P1] [CHK-MIG-002] All new columns use nullable defaults per Migration Protocol Rule 2
+- [ ] [P1] [CHK-MIG-003] No destructive migrations in forward path per Migration Protocol Rule 6
+- [ ] [P1] [CHK-FTS5-SYNC] `memory_health` includes FTS5 row count comparison (`memory_fts` vs `memory_index`) with divergence warning and rebuild hint
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -360,12 +382,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 34 | [ ]/34 |
-| P1 Items | 133 | [ ]/133 |
-| P2 Items | 15 | [ ]/15 |
-| **Total** | **182** | **[ ]/182** |
+| P0 Items | 36 | [ ]/36 |
+| P1 Items | 151 | [ ]/151 |
+| P2 Items | 14 | [ ]/14 |
+| **Total** | **201** | **[ ]/201** |
 
-> **Note**: Actual count is 182 items (P0=34, P1=133, P2=15 including 1 P2-CONDITIONAL). CHK-PI-A2 marked DEFERRED. Includes: program-level checks, sprint exit gates (S0-S7 + S6a/S6b), 8 PageIndex integration items, L3+ governance (architecture/performance/deployment/compliance/docs), feature flag sunset reviews, ground truth diversity gates, B8 signal ceiling tracking, Sprint 4 split verification, and rollback verification per sprint.
+> **Note**: Actual count is 201 items (P0=36, P1=151, P2=14 including 1 P2-CONDITIONAL). CHK-PI-A2 marked DEFERRED. Includes: program-level checks, sprint exit gates (S0-S7 + S6a/S6b), 8 PageIndex integration items, L3+ governance (architecture/performance/deployment/compliance/docs), feature flag sunset reviews, ground truth diversity gates, B8 signal ceiling tracking, Sprint 4 split verification, rollback verification per sprint, concurrency verification, schema migration verification, dangerous interaction pair verification (DIP-001 through DIP-009), and FTS5 sync verification.
 
 **Verification Date**: [YYYY-MM-DD]
 

@@ -118,7 +118,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 10 | [ ]/10 |
-| P1 Items | 15 | [ ]/15 |
+| P1 Items | 20 | [ ]/20 |
 | P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]

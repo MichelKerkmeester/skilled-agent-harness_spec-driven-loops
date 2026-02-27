@@ -54,10 +54,21 @@ This plan implements 43 recommendations across 8 metric-gated sprints (348-523h 
 
 ### Definition of Done (Per Sprint)
 - [ ] Sprint exit gate metrics met
-- [ ] All new tests pass + 158+ existing tests pass
+- [ ] All new tests pass + all existing tests pass (158+ at S0, growing each sprint)
 - [ ] Dark-run comparison shows no regressions (for scoring changes)
 - [ ] Feature flag count remains <= 6
 - [ ] tasks.md updated with completion status
+
+### Gate Metric Evaluation Protocol
+
+All sprint exit gates follow this 4-step evaluation procedure:
+
+1. **Run benchmark:** Execute full eval suite against Sprint 0 ground truth corpus (100+ queries minimum). Record all metrics defined in gate criteria.
+2. **Compare thresholds:** For each gate criterion, compare measured value against threshold. Boolean criteria must be TRUE; numeric criteria must meet or exceed threshold.
+3. **Record snapshots:** Persist metric snapshots to `speckit-eval.db` with timestamp, sprint ID, and pass/fail status for each criterion. Snapshots are immutable audit records.
+4. **Gate decision:** ALL criteria must pass for gate approval. Any single failure blocks the gate. Failed criteria must be remediated and re-evaluated (full suite re-run required, no cherry-picking).
+
+**Default corpus:** Sprint 0 ground truth (T003), minimum 100 queries covering all intent types. Corpus may be extended but never reduced across sprints.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -146,7 +157,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 **Exit Gate:**
 - [ ] Graph hit rate > 0% (G1 verified)
 - [ ] No duplicate chunk rows in default search mode (G3 verified)
-- [ ] Baseline MRR@5, NDCG@10, Recall@20 computed for at least 50 queries
+- [ ] Baseline MRR@5, NDCG@10, Recall@20 computed for at least 100 queries (50 minimum for initial baseline; >=100 required for BM25 contingency decision with statistical significance)
 - [ ] BM25-only baseline MRR@5 recorded
 - [ ] Ground truth corpus includes >=15 manually curated queries with >=5 queries per intent type (graph relationship, temporal, cross-document, hard negative) and >=3 query complexity tiers (simple, moderate, complex). This is a HARD gate — corpus diversity prevents evaluation bias (see R-011 in spec.md §10).
 
@@ -215,7 +226,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 **Exit Gate:**
 - [ ] R18 cache hit rate > 90% on re-index of unchanged content
-- [ ] N4 dark-run: new memories surface without displacing highly relevant older results
+- [ ] N4 dark-run: new memories (<=30 days old) appear in top-10 for >=1 relevant query without reducing Recall@20 for existing memories by more than 2% absolute
 - [ ] G2 resolved: fixed or documented as intentional
 - [ ] Score distributions normalized to comparable ranges
 
@@ -242,7 +253,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 **Exit Gate:**
 - [ ] R15 p95 latency for simple queries < 30ms
-- [ ] R14/N1 shadow comparison: minimum 100 queries, Kendall tau computed
+- [ ] R14/N1 shadow comparison: minimum 100 queries, Kendall tau >= 0.8 (strong agreement between R14/N1 RSF and baseline fusion ordering)
 - [ ] R2 dark-run: top-3 precision within 5% of baseline
 
 **HARD SCOPE CAP (Sprint 2+3):** After Sprint 2+3 completion, evaluate "good enough" thresholds (MRR@5 >= 0.7, constitutional surfacing >= 95%, cold-start detection >= 90%). Sprints 4-7 require a NEW spec approval based on demonstrated need from Sprint 0-3 metrics. Approval MUST include: (a) evidence that remaining work addresses measured deficiencies identified by R13 evaluation data, not hypothetical improvements; (b) updated effort estimates based on Sprint 0-3 actuals — original estimates are invalidated by actual velocity data; (c) updated ROI assessment comparing remaining investment (originally 253-370h for S4-S7) to demonstrated improvements from S0-S3. Without explicit approval, Sprints 4-7 do not proceed — this is a scope boundary, not a suggestion.
@@ -323,9 +334,9 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 **Exit Gate:**
 - [ ] R6 dark-run: 0 ordering differences in positions 1-5 AND weighted rank correlation >0.995 on full eval corpus
-- [ ] All 158+ tests pass
+- [ ] All existing tests pass (158+ at S0, growing each sprint)
 - [ ] R9 cross-folder queries produce identical results
-- [ ] R12 expansion does not degrade simple query latency
+- [ ] R12 simple query p95 latency <= 35ms (within 5ms of Sprint 3 baseline)
 
 ---
 
@@ -342,7 +353,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 ### Sprint 6b: Graph Sophistication (GATED)
 
-> **Entry gates**: Feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved (RESOLVED — Katz centrality selected; see S6 child spec OQ-S6-002), REQ-S6-004 density-conditioned
+> **Entry gates**: Feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved (RESOLVED — temporal degree delta (N2a) and causal depth signal (N2b) selected; Katz/PageRank/betweenness/eigenvector deferred; see S6 child spec OQ-S6-002), REQ-S6-004 density-conditioned
 
 | # | Item | Hours | Subsystem | Flag |
 |---|------|-------|-----------|------|
@@ -373,6 +384,18 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 7.4 | **R13-S3:** Full reporting + ablation studies | 12-16 | Evaluation | — |
 | 7.5 | Evaluate R5 (INT8 quantization) need | 2 | Decision gate | — |
 | | **Total** | **45-62h** | | |
+
+**Exit Gate (Sprint 7):**
+- [ ] R8 summary pre-filtering verified (if activated): summary quality >=80% relevance
+- [ ] S1 content generation matches template schema >=95% (automated validation)
+- [ ] S5 entity links established with >=90% precision on test set
+- [ ] R13-S3 evaluation dashboard operational with historical trend visualization
+- [ ] R5 activation decision documented with evidence
+- [ ] Final feature flag sunset audit: all flags resolved (graduated or removed)
+- [ ] If gate fails: Document blockers. S7 items are "as needed" — partial completion acceptable with documented rationale.
+
+**Rollback (Sprint 7):**
+- S7 rollback: Disable R8 summary pre-filter flag, revert S1 template changes, remove S5 entity links (non-destructive: links are additive), archive R13-S3 dashboard. Estimated: 6-10h. Difficulty: LOW-MEDIUM.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -390,7 +413,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | S5 | 15-20 | R6 full corpus regression, stage boundaries, Stage 4 invariant; R9/R12/S2/S3 | 500-700 |
 | S6 | 12-18 | R7 recall; R10 false positives; N2 attribution; N3-lite bounds/contradiction; S4 hierarchy | 350-500 |
 | S7 | 8-12 | R8 summary pre-filter/skip-path; S1 template schema validation; S5 entity link integrity; R13-S3 dashboard operational; R5 decision documented | 200-300 |
-| **Total** | **~78-112** | Approximately doubling the 158+ existing suite | **2450-3600** |
+| **Total** | **~138-193 new tests (see tasks.md T-TEST-S0 through T-TEST-S7 for per-sprint breakdown)** | Approximately doubling the 158+ existing suite | **2450-3600** |
 
 **Flag interaction testing (5 levels):** See research/6 - combined-recommendations-gap-analysis §10.2 item 5.
 - Level 1 (unit): Each flag in isolation — 24 tests, ~5 min
@@ -430,6 +453,12 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | S4 | MEDIUM-HIGH | Disable R11 flag; clear learned_triggers; disable TM-04/TM-06 flags; R1 independent | 5-7h |
 | S5 | HIGH | Restore from checkpoint (5.1); revert R6; re-run tests | 8-12h |
 | S6 | HIGH | Edge deletions from N3-lite destructive; use `created_by` provenance | 12-20h |
+| S7 | LOW-MED | Disable R8 flag, revert S1 templates, remove S5 entity links, archive R13-S3 dashboard | 6-10h |
+
+**Sprint 2 Rollback — Additional Considerations:**
+- The `interference_score` column added during S2 calibration MUST be retained during rollback (column deletion is destructive and irreversible in SQLite)
+- Set all `interference_score` values to NULL during rollback to indicate uncalibrated state
+- Quality degradation note: Rolling back S2 calibration may cause 5-15% MRR regression due to reverting to uncalibrated composite weights. Monitor for 48h post-rollback.
 
 **Key insight:** Always create `memory_checkpoint_create()` before Sprint 4 (R11 mutations), Sprint 5 (pipeline refactor), and Sprint 6 (graph mutations).
 
@@ -446,8 +475,11 @@ Each sprint exit gate MUST include a cumulative latency check. Track the running
 | S4 | +15ms (feedback) | 82ms | 418ms |
 | S5 | +100ms (pipeline) | 182ms | 318ms |
 | S6 | est. +50ms (graph) | 232ms | 268ms |
+| S7 | +15ms (est.) | R8 summary lookup, S5 entity resolution | 247ms | 253ms |
 
 **Rule:** If cumulative overhead exceeds 300ms, disable prior sprint dark-runs before starting new ones.
+
+> **Latency Baselines:** All latency comparisons reference baselines recorded by R13 eval logging framework (T000g, Sprint 0). Baselines cover p50/p95/p99 for search, save, and health endpoints under standardized conditions.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -540,7 +572,7 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 ### Rollback Procedure
 1. Disable relevant feature flag(s) — immediate effect
 2. If schema changes: restore from backup or clear new columns
-3. Verify rollback via 158+ test suite + R13 eval metrics
+3. Verify rollback via full existing test suite + R13 eval metrics
 4. Update tasks.md with rollback status
 
 ### Schema Changes Inventory
@@ -552,7 +584,7 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 | S2 | `ALTER TABLE memory_index ADD COLUMN interference_score REAL DEFAULT 0` | Set column to 0 (neutral) |
 | S4 | `ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'` | `DROP COLUMN` (SQLite 3.35.0+) |
 
-### Migration Protocol (9 Rules)
+### Migration Protocol (11 Rules)
 1. Backup before migration
 2. Nullable with defaults on all new columns
 3. Forward-compatible reads (handle column not existing)
@@ -563,6 +595,15 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 8. Version tracking via `schema_version` table or pragma
 9. Eval DB (`speckit-eval.db`) backed up before every sprint gate review
 10. Eval DB automatic backup after every 100 eval cycles (prevents data loss during long sprints)
+11. **Data backfill**: When adding computed columns (e.g., `interference_score`, `learned_triggers`), define whether existing rows need retroactive computation. Default: new columns use DEFAULT value until explicitly backfilled. Backfill tasks MUST be included in sprint effort estimates.
+
+**Concurrency & Multi-Session Safety:**
+- All database writes MUST use WAL (Write-Ahead Logging) mode: `PRAGMA journal_mode=WAL`
+- R11 learned trigger writes: Use INSERT OR REPLACE within a transaction
+- TM-06 reconsolidation: Acquire per-spec-folder advisory lock before similarity check to prevent concurrent merge race conditions
+- R13 eval logging: Use separate database connection with WAL mode
+- N3-lite edge modifications: Wrap in SAVEPOINT for atomic rollback on failure
+- General rule: Any multi-step write operation spanning an async boundary (e.g., embedding generation await) MUST re-validate state after the await before committing
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -805,6 +846,8 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 2. BM25 contingency (>= 80%) → Architecture review before Sprint 1+
 3. R6 ordering regression → Revert to checkpoint; evaluate off-ramp
 4. Feature flag count > 6 → Mandatory sunset audit
+
+**Flag Graduation Process:** A flag graduates from feature flag to permanent code when: (1) Sprint exit gate passes with flag enabled, (2) Dark-run comparison shows no regression for >=2 consecutive eval cycles, (3) Flag has been in `enable` state for >=14 days without incident. Graduation action: Remove flag check from code, keep the enabled behavior as default. Flag cleanup tasks are tracked as T-FS{N} sunset tasks per sprint.
 <!-- /ANCHOR:communication -->
 
 ---

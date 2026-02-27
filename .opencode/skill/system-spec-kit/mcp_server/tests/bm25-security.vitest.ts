@@ -257,12 +257,14 @@ describe('BM25 Security & Coverage Gap Tests', () => {
       expect(sanitizeFTS5Query('mem*')).toBe('"mem"');
     });
 
-    it('S43: Very long input handled (500 terms)', () => {
+    it('S43: Very long input truncated at 2000 chars', () => {
       const longInput = 'memory '.repeat(500).trim();
       const result = sanitizeFTS5Query(longInput);
       const termCount = result.split('" "').length;
       expect(typeof result).toBe('string');
-      expect(termCount).toBe(500);
+      // Input is 3499 chars, truncated to 2000 → ~286 terms (2000/7 ≈ 285.7 + partial)
+      expect(termCount).toBeLessThanOrEqual(300);
+      expect(termCount).toBeGreaterThanOrEqual(280);
       expect(result).toMatch(/^"memory"/);
     });
 

@@ -1,14 +1,14 @@
 ---
-title: "Implementation Plan: Sprint 6 — Graph Deepening"
+title: "Implementation Plan: Sprint 6 — Indexing and Graph"
 description: "Graph centrality, community detection, N3-lite consolidation, anchor-aware thinning, encoding-intent capture, auto entity extraction, and spec folder hierarchy."
 trigger_phrases:
   - "sprint 6 plan"
-  - "graph deepening plan"
+  - "indexing and graph plan"
   - "consolidation plan"
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Implementation Plan: Sprint 6 — Graph Deepening
+# Implementation Plan: Sprint 6 — Indexing and Graph
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->

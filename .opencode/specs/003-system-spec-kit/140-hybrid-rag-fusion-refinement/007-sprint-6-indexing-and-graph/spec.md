@@ -1,16 +1,16 @@
 ---
-title: "Feature Specification: Sprint 6 — Graph Deepening"
+title: "Feature Specification: Sprint 6 — Indexing and Graph"
 description: "Deepen graph with centrality, community detection, and consolidation. Optimize indexing with anchor-aware thinning, intent capture, and entity extraction."
 trigger_phrases:
   - "sprint 6"
-  - "graph deepening"
+  - "indexing and graph"
   - "centrality"
   - "consolidation"
   - "entity extraction"
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Feature Specification: Sprint 6 — Graph Deepening
+# Feature Specification: Sprint 6 — Indexing and Graph
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2 -->
@@ -291,7 +291,7 @@ Research evidence: See research documents `9 - analysis-pageindex-systems-archit
 LEVEL 2 SPEC — Phase 7 of 8
 - Core + L2 addendums (NFR, Edge Cases, Complexity)
 - Phase-child-header addendum
-- Sprint 6: Graph deepening + indexing optimization
+- Sprint 6: Indexing and graph deepening
 - Split into Sprint 6a (Practical, 33-51h, LOW risk) + Sprint 6b (Graph Sophistication, 37-53h, GATED)
 - UT-8 amendments applied: OQ-S6-002 resolved, REQ-S6-004 density-conditional, attribution weighting specified
 -->

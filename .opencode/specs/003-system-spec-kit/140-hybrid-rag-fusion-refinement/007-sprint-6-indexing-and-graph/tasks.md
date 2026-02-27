@@ -1,14 +1,14 @@
 ---
-title: "Tasks: Sprint 6 — Graph Deepening"
+title: "Tasks: Sprint 6 — Indexing and Graph"
 description: "Task breakdown for Sprint 6: graph centrality, N3-lite consolidation, anchor-aware thinning, entity extraction, spec folder hierarchy"
 trigger_phrases:
   - "sprint 6 tasks"
-  - "graph deepening tasks"
+  - "indexing and graph tasks"
   - "consolidation tasks"
 importance_tier: "normal"
 contextType: "implementation"
 ---
-# Tasks: Sprint 6 — Graph Deepening
+# Tasks: Sprint 6 — Indexing and Graph
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
