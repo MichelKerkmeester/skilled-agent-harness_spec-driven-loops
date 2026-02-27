@@ -82,19 +82,39 @@ Pipeline extension — classifier stage prepended to existing pipeline; RSF runs
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: R15 Query Complexity Router (10-16h)
+### Phase 1: R15 Query Complexity Router (8-14h)
+
+#### Phase 1a: Classifier Design (2-4h)
 - [ ] Design classifier features (query length, term count, trigger presence, semantic complexity)
-- [ ] Implement 3-tier classification logic
-- [ ] Implement tier-to-channel-subset routing (min 2 channels enforced)
+- [ ] Define classification boundaries (simple: ≤3 terms OR trigger, complex: >8 terms AND no trigger)
+- [ ] Implement 3-tier classification logic with config-driven thresholds
+
+#### Phase 1b: Tier Routing + Flag Wiring (3-4h)
+- [ ] Implement tier-to-channel-subset mapping (config-driven)
+- [ ] Enforce minimum 2 channels for all tiers
 - [ ] Add feature flag `SPECKIT_COMPLEXITY_ROUTER`
-- [ ] Wire into pipeline entry point
+
+#### Phase 1c: Pipeline Integration (2-4h)
+- [ ] Wire classifier+router into pipeline entry point
+- [ ] Enable simultaneous full-pipeline and routed-pipeline execution
+
+#### Phase 1d: Shadow Run + Verification (1-2h)
+- [ ] Shadow-run both pipelines, compare results
 - [ ] Verify p95 <30ms for simple queries
 
 ### Phase 2: R14/N1 Relative Score Fusion (10-14h)
+
+#### Phase 2a: Single-Pair RSF (4-5h)
 - [ ] Implement RSF single-pair variant (foundation)
-- [ ] Implement RSF multi-list variant
-- [ ] Implement RSF cross-variant variant
 - [ ] Add feature flag `SPECKIT_RSF_FUSION`
+- [ ] Verify output clamped to [0,1]
+
+#### Phase 2b: Multi-List RSF (3-5h)
+- [ ] Implement RSF multi-list variant
+- [ ] Verify consistency with single-pair on 2-list input
+
+#### Phase 2c: Cross-Variant RSF (3-4h)
+- [ ] Implement RSF cross-variant variant
 - [ ] Shadow mode: RSF runs alongside RRF, results logged but not used
 
 ### Phase 3: R2 Channel Min-Representation (6-10h)
@@ -113,6 +133,16 @@ Pipeline extension — classifier stage prepended to existing pipeline; RSF runs
 - [ ] **Evaluate hard scope cap**: Record Sprint 0-3 actual metric values and effort actuals. If off-ramp thresholds met, document STOP decision. If continuing, document with (a) measured deficiencies, (b) updated effort estimates, (c) ROI assessment.
 
 > **HARD SCOPE CAP — Sprint 2+3 Off-Ramp**: Sprints 4-7 require NEW spec approval based on demonstrated need from Sprint 0-3 metrics. Approval must include: (a) evidence remaining work addresses measured deficiencies, (b) updated effort estimates based on Sprint 0-3 actuals, (c) ROI assessment. Default decision after Sprint 3 is STOP unless thresholds are NOT met.
+
+### Pre-Implementation: Eval Corpus Sourcing Strategy
+
+The 100+ queries required for RSF shadow comparison (CHK-030) must be sourced using a stratified approach:
+
+1. **Manual curation** (minimum 20 queries): Draw from Sprint 0 ground truth corpus. Ensure coverage across all 3 complexity tiers (simple/moderate/complex) with ≥5 queries per tier.
+2. **Synthetic expansion** (60-80 queries): Generate from trigger phrases and memory content, but explicitly exclude trigger-phrase-based queries from the simple-tier count to avoid inflating easy-case representation.
+3. **Tier distribution documentation**: Record the final tier distribution before running the comparison. Flag any tier with <15% representation.
+
+**Known limitation**: Synthetic queries at <500 memories corpus may produce tau scores that reflect generation bias. Acknowledge this limitation in the RSF decision documentation.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -178,11 +208,11 @@ Phase 2 (R14/N1 RSF) ──────┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Phase 1: R15 Router | Medium | 10-16h |
+| Phase 1: R15 Router | Medium | 8-14h |
 | Phase 2: R14/N1 RSF | Medium | 10-14h |
 | Phase 3: R2 Min-Rep | Low-Medium | 6-10h |
 | Phase 4: Shadow + Verify | Low | included |
-| **Total** | | **26-40h** |
+| **Total** | | **24-38h** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -190,13 +220,16 @@ Phase 2 (R14/N1 RSF) ──────┘
 <!-- ANCHOR:pageindex-phases -->
 ## PageIndex Tasks
 
-### PI-A2: Search Strategy Degradation with Fallback Chain (12-16h)
-- [ ] Implement similarity and result-count threshold checks after channel execution (threshold: top result similarity < 0.4 OR result count < 3)
-- [ ] Implement Tier 2 broadened search: relaxed filters, trigger matching, loosened channel constraints
-- [ ] Implement Tier 3 structural search: folder browsing, tier-based listing, no vector requirement
-- [ ] Wire three-tier chain into the R15 routing layer — fallback is automatic and bounded
-- [ ] Preserve R15 minimum-2-channel constraint at all fallback levels
-- [ ] Verify fallback triggers correctly on low-similarity and low-count results
+### PI-A2: Search Strategy Degradation with Fallback Chain [DEFERRED]
+
+> **Deferred from Sprint 3.** Re-evaluate after Sprint 3 using measured frequency of low-result/low-similarity queries. See UT review R1.
+
+- ~~Implement similarity and result-count threshold checks after channel execution (threshold: top result similarity < 0.4 OR result count < 3)~~
+- ~~Implement Tier 2 broadened search: relaxed filters, trigger matching, loosened channel constraints~~
+- ~~Implement Tier 3 structural search: folder browsing, tier-based listing, no vector requirement~~
+- ~~Wire three-tier chain into the R15 routing layer — fallback is automatic and bounded~~
+- ~~Preserve R15 minimum-2-channel constraint at all fallback levels~~
+- ~~Verify fallback triggers correctly on low-similarity and low-count results~~
 - **Effort**: 12-16h | **Risk**: Medium | **Dependency**: Sprint 0 eval framework
 
 ### PI-B3: Description-Based Spec Folder Discovery (4-8h)

@@ -98,8 +98,11 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 - [ ] TM-08: Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") based on true-mem's 8-category vocabulary (2-4h)
 
 ### Phase 5: Dark-Run and Verification
-- [ ] Enable R4 in dark-run mode — shadow scoring alongside existing 4-channel results (included)
-- [ ] Verify MRR@5 delta >+2% absolute; no single memory >60% presence (included)
+- [ ] Enable R4 in dark-run mode — three-measurement sequence:
+  1. Sprint 0 baseline MRR@5 (already recorded)
+  2. R4-only dark-run with A7 at original 0.1x
+  3. R4+A7 dark-run with A7 at 0.25-0.3x
+- [ ] Verify MRR@5 delta >+2% absolute; no single memory >60% presence
 - [ ] Enable R4 permanently if dark-run passes (0h — flag flip)
 
 ### Phase 6: PI-A3 — Pre-Flight Token Budget Validation (4-6h)
@@ -110,6 +113,8 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 
 **Dependencies**: Sprint 0 eval infrastructure (R13-S1) must be operational for overflow event logging. PI-A3 is additive — no changes to RRF fusion or scoring; only post-fusion result assembly is affected.
 **Effort**: 4-6h, Low risk
+
+**Deferral option**: PI-A3 is logically orthogonal to graph signal activation. If sprint capacity is constrained, PI-A3 can be deferred to Sprint 2 or 3 without affecting any Sprint 1 exit gate (CHK-060 through CHK-066). Prioritize T004 (G-NEW-2, P1 required) over PI-A3 if capacity is limited.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -164,6 +169,8 @@ Phase 1 (Degree Computation) ──► Phase 2 (RRF Integration) ──► Phase
                                                                        ▲
 Phase 3 (Measurement) ──────────────────────────────────────────────────┘
 Phase 4 (Agent UX) ─────────────────────────────────────────────────────┘
+
+Phase 6 (PI-A3) ─── (independent, no blockers from Phase 5)
 ```
 
 | Phase | Depends On | Blocks |
@@ -173,6 +180,7 @@ Phase 4 (Agent UX) ────────────────────�
 | Phase 3 (Measurement) | Sprint 0 gate | Phase 5 |
 | Phase 4 (Agent UX) | Sprint 0 gate | Phase 5 |
 | Phase 5 (Dark-Run) | Phase 2, Phase 3, Phase 4 | Sprint 2 (next sprint — can run in parallel) |
+| Phase 6 (PI-A3 Token Budget) | Sprint 0 gate | None (independent) |
 
 **Cross-Sprint Parallelization**: Sprint 2 can begin immediately after Sprint 0 exit gate, in parallel with Sprint 1. Sprint 2's deliverables (R18, N4, G2, score normalization) have zero technical dependency on Sprint 1's outputs. The sole coordination point is that Sprint 2's score normalization should incorporate R4 degree scores if Sprint 1 completes first. Parallel execution saves 3-5 weeks on critical path.
 <!-- /ANCHOR:phase-deps -->
@@ -189,7 +197,8 @@ Phase 4 (Agent UX) ────────────────────�
 | Phase 3 (Measurement) | Low | 2-3h |
 | Phase 4 (Agent UX + Signal Vocabulary) | Medium | 10-16h |
 | Phase 5 (Dark-Run) | Low | Included |
-| **Total** | | **24-35h** |
+| Phase 6 (PI-A3 Token Budget) | Low | 4-6h |
+| **Total** | | **28-41h** |
 <!-- /ANCHOR:effort -->
 
 ---

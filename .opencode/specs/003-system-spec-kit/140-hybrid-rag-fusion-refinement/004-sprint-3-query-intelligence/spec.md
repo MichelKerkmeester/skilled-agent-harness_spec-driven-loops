@@ -195,6 +195,10 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 
 - **OQ-S3-001**: What features should the R15 classifier use? Query length, term count, presence of trigger phrases, semantic complexity?
 - **OQ-S3-002**: Should the off-ramp decision be automated or require manual review?
+
+### Known Limitations
+
+- **KL-S3-001**: The R15 classifier produces no confidence score. Classification is deterministic based on threshold boundaries. The fallback to "complex" tier on classifier failure is intentional and safe but forecloses confidence-weighted downstream features (e.g., conservative top-K truncation for low-confidence classifications, downstream consumers using classification certainty). This is a design decision for Sprint 3 scope — if classifier confidence becomes needed, it should be added as a Sprint 4+ feature.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -206,7 +210,9 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 
 Sprint 3 incorporates two PageIndex recommendations that extend the existing query intelligence features.
 
-#### PI-A2: Search Strategy Degradation with Fallback Chain
+#### PI-A2: Search Strategy Degradation with Fallback Chain [DEFERRED]
+
+> **Deferred from Sprint 3.** At corpus scale <500 memories, the triggering conditions (top similarity <0.4 or result count <3) have not been measured or demonstrated at meaningful frequency. Effort (12-16h) approaches the core R15 phase total. PI-A2 will be re-evaluated after Sprint 3 using Sprint 0-3 metric data. See UT review R1.
 
 **Rationale**: The R15 query complexity router already classifies queries by tier, but it does not handle the case where the selected channel subset produces low-quality results. PI-A2 adds a three-tier fallback chain that activates automatically when top-result similarity falls below 0.4 or the result count drops below 3:
 

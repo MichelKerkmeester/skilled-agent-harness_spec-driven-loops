@@ -64,7 +64,7 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Measurement + Agent UX
+## Phase 3: Measurement
 
 - [ ] T003 [P] Measure edge density (edges/node) from `causal_edges` data; document R10 escalation decision if density < 0.5 [2-3h] — Edge density (REQ-S1-002)
   - Acceptance: Density ratio computed; if < 0.5, R10 escalation documented with timeline recommendation
@@ -72,6 +72,13 @@ contextType: "implementation"
 - [ ] T003a [P] Increase co-activation boost strength — raise base multiplier from 0.1x to 0.25-0.3x (configurable coefficient); dark-run verifiable [2-4h] {T001} — A7 (REQ-S1-004)
   - Acceptance: Graph channel effective contribution >=15% at hop 2 (up from ~5%); dark-run verified
   - Implementation hint: Modify co-activation multiplier constant in `co-activation.ts`; make configurable via `SPECKIT_COACTIVATION_STRENGTH` env var
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Agent UX + Signal Vocabulary
+
 - [ ] T004 [P] Agent-as-consumer UX analysis + consumption instrumentation — log consumption patterns, generate initial report [8-12h] — G-NEW-2 (REQ-S1-003)
   - Acceptance: Consumption patterns logged with query text, result count, selected IDs, ignored IDs; pattern report generated
   - Sub-steps:
@@ -80,7 +87,7 @@ contextType: "implementation"
     3. Collect initial data and analyze patterns (2-3h)
     4. Generate pattern report with >=5 identified consumption categories (2-3h)
 - [ ] T005a [P] Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") from true-mem's 8-category vocabulary [2-4h] — TM-08 (REQ-S1-005)
-<!-- /ANCHOR:phase-3 -->
+<!-- /ANCHOR:phase-4 -->
 
 ---
 

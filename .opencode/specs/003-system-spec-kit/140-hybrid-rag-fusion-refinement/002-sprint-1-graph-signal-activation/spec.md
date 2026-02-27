@@ -130,7 +130,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: R4 MRR@5 delta >+2% absolute over Sprint 0 baseline
+- **SC-001**: R4 MRR@5 delta >+2% absolute over Sprint 0 baseline. Density-conditional: if edge density < 0.5 (T003), gate evaluates R4 correctness (returns zero for unconnected memories) rather than absolute MRR@5 lift.
 - **SC-002**: No single memory appears in >60% of R4 dark-run results (hub domination check)
 - **SC-003**: Edge density measured and R10 escalation decision recorded
 <!-- /ANCHOR:success-criteria -->
@@ -142,7 +142,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | Graph too sparse (density < 0.5) — R4 has minimal effect | Medium | Escalate R10 to earlier sprint; R4 still correct (returns zero when no edges) |
+| Risk | Graph too sparse (density < 0.5) — R4 has minimal effect | Medium | Escalate R10 to earlier sprint; R4 still correct (returns zero when no edges). **Exit gate path**: If density < 0.5, CHK-060 evaluates R4 implementation correctness (unit tests + zero-return behavior) rather than requiring +2% MRR@5 lift. Record as "R4 signal limited by graph sparsity — R10 escalation triggered." |
 | Risk | Preferential attachment — well-connected memories dominate via R4 | High | MAX_TOTAL_DEGREE=50 cap, DEGREE_BOOST_CAP=0.15, constitutional exclusion |
 | Risk | R4 dark-run fails (MRR@5 delta < +2%) | Medium | Keep R4 behind flag; investigate sparse graph or weight miscalibration |
 | Dependency | Sprint 0 exit gate | Blocking | Sprint 0 must pass before Sprint 1 begins |
@@ -203,7 +203,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- **OQ-S1-001**: Actual edge density after Sprint 0 — will R4 have meaningful data, or is the graph too sparse?
+- **OQ-S1-001**: Actual edge density after Sprint 0 — will R4 have meaningful data, or is the graph too sparse? Cross-ref: density-conditional exit path in SC-001 and CHK-060.
 - **OQ-S1-002**: Optimal edge type weights — research specifies caused=1.0, derived_from=0.9, etc. — do these need tuning based on actual data?
 <!-- /ANCHOR:questions -->
 

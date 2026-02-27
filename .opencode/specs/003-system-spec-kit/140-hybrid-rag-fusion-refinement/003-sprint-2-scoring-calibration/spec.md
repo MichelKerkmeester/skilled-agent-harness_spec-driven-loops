@@ -119,8 +119,11 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 | REQ-S2-003 | **G2**: Double intent weighting investigation and resolution | Resolved: fixed (if bug) or documented as intentional design with rationale; investigation traces all 3 code locations (hybrid-search.ts, intent-classifier.ts, adaptive-fusion.ts); cross-ref CHK-012, CHK-062, T003 |
 | REQ-S2-004 | Score normalization — both RRF and composite in [0,1] | Both scoring systems produce outputs in [0,1] range; 15:1 mismatch eliminated; MRR@5 not regressed after normalization; cross-ref CHK-013, CHK-063, T004 |
 | REQ-S2-005 | **FUT-5**: RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} | Optimal K identified and documented; MRR@5 delta measured per K value |
-| REQ-S2-006 | **TM-01**: Interference scoring — add `interference_score` column to `memory_index`; compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`; apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag | Interference penalty active; high-similarity memory clusters show reduced individual scores; no false penalties on distinct content |
+| REQ-S2-006 | **TM-01**: Interference scoring — add `interference_score` column to `memory_index`; compute at index time by counting memories with cosine similarity > 0.75 (initial calibration value, subject to empirical tuning after 2 eval cycles) in same `spec_folder`; apply as `-0.08 * interference_score` (initial calibration coefficient, subject to empirical tuning after 2 eval cycles) in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag. Both 0.75 and -0.08 should be named constants, configurable via environment variables. | Interference penalty active; high-similarity memory clusters show reduced individual scores; no false penalties on distinct content |
 | REQ-S2-007 | **TM-03**: Classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and by `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) | Decay rates differentiated per type/tier matrix; constitutional/critical memories never decay; temporary memories decay faster |
+
+**Future Work:**
+- **FUT-S2-001**: Empirical validation of TM-01 parameters (0.75 similarity threshold, -0.08 penalty coefficient) after 2 R13 eval cycles. Both values are initial calibration targets, not final — tuning required based on observed interference score distributions and false positive rates.
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -167,6 +170,8 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 - **NFR-R01**: Cache miss = normal embedding generation (graceful fallback)
 - **NFR-R02**: N4 disabled state = no behavior change from pre-Sprint-2
 - **NFR-R03**: G2 fix/documentation does not break existing 158+ tests
+- **NFR-P04**: Log N4 boost and TM-01 interference score distributions at query time, sampled at 5% (P2)
+- **NFR-R04**: R18 cache size soft warning at 10,000 entries (log warning, not hard limit)
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -178,6 +183,8 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 - **R18 content_hash collision**: Astronomically unlikely with SHA-256; if occurs, embedding regenerated (correct but wasteful)
 - **N4 memory exactly 48h old**: Boost = `0.15 * exp(-48/12)` = ~0.0028 — effectively zero; smooth transition
 - **N4 + constitutional memory**: Constitutional tier guarantee applied AFTER N4; no conflict
+- **N4 + high baseline score**: When pre-boost composite score exceeds 0.80, the 0.95 cap clips the N4 boost asymmetrically — a memory at 0.90 receives only +0.05 (not +0.15). This is expected behavior: high-scoring memories already surface at top; N4 primarily benefits lower-scoring new memories that would otherwise be invisible.
+- **N4 + TM-01 interaction**: N4 boost is applied BEFORE TM-01 interference penalty in the composite scoring pipeline. This means the boost establishes a floor for new memories, and TM-01 then reduces the score for dense clusters. The net effect for a new memory in a dense cluster is: boost first, penalize second. Both effects are independent and may partially cancel.
 
 ### Error Scenarios
 - **R18 cache table missing**: Embedding regeneration proceeds normally; no search impact
@@ -197,10 +204,10 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 10/25 | 4 files, 1 new table, 3 independent features |
-| Risk | 8/25 | N4/FSRS interaction needs care; G2 outcome uncertain |
+| Scope | 14/25 | 7 features, 5+ files, 1 new table + 1 new column, 8 phases |
+| Risk | 10/25 | N4/FSRS interaction, G2 uncertainty, TM-01 false positives, N4+TM-01 signal conflict |
 | Research | 6/20 | R18 schema defined in research; N4 formula specified; G2 needs investigation |
-| **Total** | **24/70** | **Level 2** |
+| **Total** | **30/70** | **Level 2** (upper range) |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -210,7 +217,7 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 
 - **OQ-S2-001**: G2 double intent weighting — is it a bug or intentional design? Sprint 2 investigation will resolve this.
 - **OQ-S2-002**: N4 interaction with FSRS — does the cold-start boost correctly complement (not conflict with) temporal decay? Requires empirical verification via dark-run.
-- **OQ-S2-003**: Score normalization method — linear scaling vs. min-max vs. z-score? Research recommends linear to [0,1] but empirical comparison may be needed.
+- **OQ-S2-003**: Score normalization method — linear scaling vs. min-max vs. z-score? Research recommends linear to [0,1] but empirical comparison may be needed. **BLOCKING**: Must be resolved before Phase 4 begins. Add Phase 3 subtask for empirical normalization method selection.
 <!-- /ANCHOR:questions -->
 
 ---

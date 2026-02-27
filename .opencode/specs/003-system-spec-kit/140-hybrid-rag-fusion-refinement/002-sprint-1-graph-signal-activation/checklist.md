@@ -41,7 +41,7 @@ contextType: "implementation"
 ## Code Quality
 
 - [ ] CHK-010 [P0] R4 dark-run: no single memory appears in >60% of results — HOW: Run R4 dark-run over 50+ eval queries; compute per-memory presence frequency; verify max < 60%. Evidence required: frequency distribution table. Cross-ref T005.
-- [ ] CHK-011 [P0] R4 MRR@5 delta >+2% absolute over Sprint 0 baseline — HOW: Compare R4-enabled MRR@5 against Sprint 0 baseline MRR@5 from `eval_metrics` table. Evidence required: before/after metric comparison. Cross-ref T005.
+- [ ] CHK-011 [P0] R4 MRR@5 delta >+2% absolute over Sprint 0 baseline — HOW: Three-measurement sequence: (a) Sprint 0 baseline MRR@5, (b) R4-only dark-run with A7 at original 0.1x, (c) R4+A7 dark-run with A7 at 0.25-0.3x. Evidence required: three-point metric comparison table with isolated R4 and A7 contributions. Cross-ref T005.
 - [ ] CHK-012 [P1] Constitutional memories excluded from degree boost — HOW: Query a known constitutional memory; verify degree score = 0 regardless of edge count. Cross-ref T001.
 - [ ] CHK-013 [P1] MAX_TYPED_DEGREE cached and refreshed on graph mutation (not per-query) — HOW: Add edge via `memory_causal_link`; verify cache invalidation; run query before and after to confirm fresh computation. Cross-ref T001.
 - [ ] CHK-014 [P1] Degree scores capped at DEGREE_BOOST_CAP=0.15 — HOW: Construct test case with high-degree node (>50 edges); verify output score <= 0.15. Cross-ref T001.
@@ -59,7 +59,7 @@ contextType: "implementation"
 - [ ] CHK-024 [P1] Cache invalidation tested (stale after mutation, fresh after recompute)
 - [ ] CHK-025 [P1] NFR-P01: R4 degree computation adds <10ms p95 to search latency — measured
 - [ ] CHK-026 [P1] NFR-R02: R4 gracefully returns 0 when memory has zero edges (no errors thrown)
-- [ ] CHK-027 [P1] Co-activation boost strength (A7) — effective contribution >=15% at hop 2 verified in dark-run
+- [ ] CHK-027 [P1] Co-activation boost strength (A7) — effective contribution >=15% at hop 2 verified in dark-run. **Attribution**: Measure A7 contribution using three-measurement sequence (R4-only pass vs R4+A7 pass delta). Evidence required: A7-isolated contribution percentage. Cross-ref T005, CHK-011.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -101,7 +101,7 @@ contextType: "implementation"
 
 ## Sprint 1 Exit Gate
 
-- [ ] CHK-060 [P0] R4 MRR@5 delta >+2% absolute — verified via R13 eval metrics
+- [ ] CHK-060 [P0] R4 MRR@5 delta >+2% absolute — verified via R13 eval metrics. **Density-conditional**: If T003 edge density < 0.5, gate evaluates R4 implementation correctness (unit tests pass, zero-return for unconnected memories) and records "R4 signal limited by graph sparsity — R10 escalation triggered" with density-adjusted threshold. Gate distinguishes implementation failure from data insufficiency. If density >= 0.5 and MRR@5 delta < +2%, gate fails as implementation issue.
 - [ ] CHK-061 [P0] No single memory >60% presence in dark-run results
 - [ ] CHK-062 [P0] Edge density measured; R10 escalation decision made if density < 0.5
 - [ ] CHK-063 [P1] G-NEW-2 consumption instrumentation active and logging patterns

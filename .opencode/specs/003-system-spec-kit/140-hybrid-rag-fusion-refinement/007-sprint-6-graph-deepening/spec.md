@@ -32,7 +32,7 @@ contextType: "implementation"
 | **Phase** | 7 of 8 |
 | **Predecessor** | ../006-sprint-5-pipeline-refactor/ |
 | **Successor** | ../008-sprint-7-long-horizon/ |
-| **Handoff Criteria** | R7 Recall@20 within 10%, R10 FP <20%, N2 attribution >10%, N3-lite contradiction detection, flag count <=6 |
+| **Handoff Criteria** | Sprint 6a gate: R7, R16, S4, N3-lite, weight_history verified; Sprint 6b gate (if executed): N2 attribution >10% or density-conditional deferral, R10 FP <20%; flag count <=6 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -42,20 +42,31 @@ contextType: "implementation"
 
 This is **Phase 7** of the Hybrid RAG Fusion Refinement specification.
 
-**Scope Boundary**: Sprint 6 scope boundary — graph deepening and indexing optimization sprint. Maximizes graph channel contribution through centrality/community analysis and establishes lightweight consolidation with contradiction scanning, Hebbian strengthening, and staleness detection.
+**Sprint 6 is split into two sequential sub-sprints** based on UT-8 review findings:
+
+- **Sprint 6a — Practical Improvements (33-51h, LOW risk)**: Delivers value at any corpus/graph size. Scope: R7 (anchor-aware thinning), R16 (encoding-intent), S4 (hierarchy), T001d (weight_history), N3-lite (contradiction scan, Hebbian strengthening, staleness detection, edge bounds).
+- **Sprint 6b — Graph Sophistication (37-53h heuristic, GATED)**: Requires feasibility spike and graph density evidence before entry. Scope: N2 (centrality/community detection), R10 (auto entity extraction).
+
+**Scope Boundary**: Sprint 6 scope boundary — graph deepening and indexing optimization sprint. Sprint 6a maximizes practical retrieval quality improvements; Sprint 6b is gated on graph density evidence before committing to centrality/community algorithms.
 
 **Dependencies**:
 - Sprint 5 pipeline refactor complete (006-sprint-5-pipeline-refactor)
 - Evaluation infrastructure operational (from Sprint 0)
 - Graph signal established (from Sprint 1/R4)
+- Sprint 6b additionally requires: feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved, REQ-S6-004 density-conditional acceptance revisited
 
 **Deliverables**:
-- Graph centrality + community detection (N2 items 4-6)
-- Lightweight consolidation: contradiction scan, Hebbian strengthening, staleness detection (N3-lite)
+
+*Sprint 6a:*
 - Anchor-aware chunk thinning (R7)
 - Encoding-intent capture at index time (R16)
-- Auto entity extraction gated on density (R10)
 - Spec folder hierarchy as retrieval structure (S4)
+- weight_history audit tracking (T001d / MR10)
+- Lightweight consolidation: contradiction scan, Hebbian strengthening, staleness detection (N3-lite)
+
+*Sprint 6b (GATED on feasibility spike):*
+- Graph centrality + community detection (N2 items 4-6)
+- Auto entity extraction gated on density (R10)
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -79,17 +90,29 @@ Maximize graph channel contribution through centrality and community detection, 
 
 ### In Scope
 
+#### Sprint 6a — Practical Improvements (33-51h, LOW risk)
+
 - **R7**: Anchor-aware chunk thinning — Recall@20 within 10% of baseline
 - **R16**: Encoding-intent capture at index time behind `SPECKIT_ENCODING_INTENT` flag
-- **R10**: Auto entity extraction (gated on edge density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag — FP rate <20%
-  > **ESTIMATION WARNING**: Entity extraction with <20% false positive rate is an ML challenge. The 12-18h estimate assumes rule-based heuristics (regex, noun-phrase extraction via NLP library); if ML-based accuracy is needed (e.g., fine-tuned NER model), consider 30-50h. Sufficient quality means: FP rate <20% verified via manual review of a sample of >=50 auto-extracted entities.
-- **N2 (items 4-6)**: Graph centrality + community detection, decomposed into: N2a (Graph Momentum -- temporal degree delta), N2b (Causal Depth Signal -- max-depth path normalization), N2c (Community Detection -- label propagation or Louvain clustering) — channel attribution >10%
-  > **ESTIMATION WARNING**: Implementing Louvain/label propagation community detection from scratch on SQLite is research-grade work. The current 12-15h estimate for N2c is likely insufficient. Consider 40-80h for production quality, or evaluate using a simpler heuristic (connected components via BFS/DFS) first. Sufficient quality for N2c means: community assignments are stable across two consecutive runs on the same data (deterministic or near-deterministic output).
+- **S4**: Spec folder hierarchy as retrieval structure — hierarchy traversal functional
+- **T001d / MR10**: weight_history audit tracking — log weight changes for N3-lite Hebbian modifications; enables rollback independent of edge creation
 - **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening + staleness detection + contradiction cluster surfacing (surface all cluster members, not just flagged pair) behind `SPECKIT_CONSOLIDATION` flag
   > **ESTIMATION WARNING**: Contradiction detection requires semantic analysis beyond simple string comparison. The ~40 LOC estimate assumes a lightweight heuristic approach (cosine similarity + keyword conflict check); if semantic accuracy >80% is needed, effort could be 3-5x higher. Sufficient quality means: detects at least 1 known contradiction in curated test data without requiring a full NLI model.
-- **S4**: Spec folder hierarchy as retrieval structure — hierarchy traversal functional
 
-> **OVERALL SPRINT ESTIMATION NOTE**: If production-quality implementations of N2c (community detection), N3-lite (semantic contradiction), and R10 (entity extraction) are required, the revised sprint total is 120-200h (vs current 68-101h baseline estimate). Recommend confirming heuristic-vs-production quality requirements before sprint start.
+#### Sprint 6b — Graph Sophistication (37-53h heuristic, GATED on feasibility spike)
+
+- **N2 (items 4-6)**: Graph centrality + community detection, decomposed into: N2a (Graph Momentum -- temporal degree delta), N2b (Causal Depth Signal -- max-depth path normalization), N2c (Community Detection -- label propagation or Louvain clustering) — channel attribution >10%
+  > **ESTIMATION WARNING**: Implementing Louvain/label propagation community detection from scratch on SQLite is research-grade work. The current 12-15h estimate for N2c is likely insufficient. Consider 40-80h for production quality, or evaluate using a simpler heuristic (connected components via BFS/DFS) first. Sufficient quality for N2c means: community assignments are stable across two consecutive runs on the same data (deterministic or near-deterministic output).
+- **R10**: Auto entity extraction (gated on edge density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag — FP rate <20%
+  > **ESTIMATION WARNING**: Entity extraction with <20% false positive rate is an ML challenge. The 12-18h estimate assumes rule-based heuristics (regex, noun-phrase extraction via NLP library); if ML-based accuracy is needed (e.g., fine-tuned NER model), consider 30-50h. Sufficient quality means: FP rate <20% verified via manual review of a sample of >=50 auto-extracted entities.
+
+**Sprint 6b Entry Gates (REQUIRED before Sprint 6b starts):**
+1. Feasibility spike completed (8-16h)
+2. OQ-S6-001 resolved (edge density documented)
+3. OQ-S6-002 resolved (centrality algorithm selected with evidence)
+4. REQ-S6-004 revisited (10% mandate removed or density-conditioned if graph is thin)
+
+> **OVERALL SPRINT ESTIMATION NOTE**: Sprint 6a (33-51h) delivers value at any graph scale. Sprint 6b (37-53h heuristic, 80-150h production) is gated — if feasibility spike shows graph is too sparse for centrality/community detection, Sprint 6b can be deferred without blocking Sprint 7.
 
 ### Existing Code Note
 
@@ -126,7 +149,9 @@ Maximize graph channel contribution through centrality and community detection, 
 | REQ-S6-001 | **R7**: Anchor-aware chunk thinning | Recall@20 within 10% of baseline |
 | REQ-S6-002 | **R16**: Encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag | Intent metadata recorded at index time |
 | REQ-S6-003 | **R10**: Auto entity extraction (only if density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag | FP rate <20% on manual review of >=50 auto-extracted entities |
-| REQ-S6-004 | **N2 (items 4-6)**: Graph centrality + community detection | Graph channel attribution >10% of final top-K; N2c community assignments stable across 2 runs |
+| REQ-S6-004 | **N2 (items 4-6)**: Graph centrality + community detection | Graph channel attribution >10% of final top-K OR graph density <1.0 edges/node documented with decision to defer (density-conditional acceptance); N2c community assignments stable across 2 runs on test graph with ≥50 nodes |
+
+> **Attribution weighting (REQ-S6-004 clarification)**: All edge types (causal, enabled, supports, derived_from, supersedes, contradicts) contribute equally to graph channel attribution scoring. If differentiated weighting is needed, specify weights before implementation (e.g., causal=1.0, supports=0.7, contradicts=0.5). Without explicit weights, equal weighting applies.
 | REQ-S6-005 | **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening behind `SPECKIT_CONSOLIDATION` flag | Detects at least 1 known contradiction in curated test data; heuristic approach acceptable if lightweight |
 | REQ-S6-006 | **S4**: Spec folder hierarchy as retrieval structure | Hierarchy traversal functional in retrieval queries |
 <!-- /ANCHOR:requirements -->
@@ -136,13 +161,18 @@ Maximize graph channel contribution through centrality and community detection, 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
+**Sprint 6a Success Criteria:**
 - **SC-001**: R7 Recall@20 within 10% of baseline after anchor-aware thinning
-- **SC-002**: R10 false positive rate <20% on manual review (if implemented)
-- **SC-003**: N2 graph channel attribution >10% of final top-K results
 - **SC-004**: N3-lite contradiction scan identifies at least 1 known contradiction
 - **SC-005**: N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
 - **SC-006**: Active feature flag count <=6 (sunset audit if exceeded)
-- **SC-007**: Sprint 6 exit gate — all requirements verified
+- **SC-008**: Sprint 6a exit gate — R7, R16, S4, N3-lite, weight_history all verified
+- **SC-009**: weight_history logging verified functional before any N3-lite Hebbian cycle runs
+
+**Sprint 6b Success Criteria (conditional on Sprint 6b execution):**
+- **SC-002**: R10 false positive rate <20% on manual review (if implemented)
+- **SC-003**: N2 graph channel attribution >10% of final top-K results OR graph density <1.0 edges/node documented with decision to defer (density-conditional acceptance); N2c community assignments stable across 2 runs on test graph with ≥50 nodes
+- **SC-007**: Sprint 6b exit gate — all Sprint 6b requirements verified
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -216,7 +246,7 @@ Maximize graph channel contribution through centrality and community detection, 
 ## 10. OPEN QUESTIONS
 
 - **OQ-S6-001**: What is the actual edge density after Sprint 1-5? Determines if R10 auto entity extraction is activated.
-- **OQ-S6-002**: Which centrality algorithm (betweenness, PageRank, eigenvector) is best suited for the memory graph topology?
+- **OQ-S6-002** [RESOLVED]: T001a (temporal degree delta) and T001b (causal depth signal) are the chosen centrality approaches for Sprint 6. Betweenness, PageRank, and eigenvector centrality are deferred — to be reconsidered only if the Sprint 6b feasibility spike demonstrates that degree-based approaches are insufficient at measured graph density.
 - **OQ-S6-003**: What is the optimal contradiction similarity threshold? Spec says >0.85 but may need tuning.
 <!-- /ANCHOR:questions -->
 
@@ -254,5 +284,6 @@ LEVEL 2 SPEC — Phase 7 of 8
 - Core + L2 addendums (NFR, Edge Cases, Complexity)
 - Phase-child-header addendum
 - Sprint 6: Graph deepening + indexing optimization
-- Internal phasing: Phase A (Graph) + Phase B (Indexing + Spec-Kit)
+- Split into Sprint 6a (Practical, 33-51h, LOW risk) + Sprint 6b (Graph Sophistication, 37-53h, GATED)
+- UT-8 amendments applied: OQ-S6-002 resolved, REQ-S6-004 density-conditional, attribution weighting specified
 -->

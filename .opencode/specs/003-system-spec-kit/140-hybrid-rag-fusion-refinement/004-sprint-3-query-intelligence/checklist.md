@@ -62,6 +62,7 @@ contextType: "implementation"
 - [ ] CHK-031 [P1] Kendall tau computed between RSF and RRF rankings
 - [ ] CHK-032 [P1] RSF decision documented (tau <0.4 = reject RSF)
 - [ ] CHK-033 [P1] All 3 fusion variants tested (single-pair, multi-list, cross-variant)
+- [ ] CHK-034 [P1] **Eval corpus sourcing strategy defined**: 100+ query corpus sourced with stratified tier distribution documented. Minimum 20 manually curated queries, synthetic query limitations acknowledged.
 
 ### R2 — Channel Min-Representation
 - [ ] CHK-040 [P1] R2 dark-run: top-3 precision within 5% of baseline
@@ -88,14 +89,8 @@ contextType: "implementation"
 <!-- ANCHOR:pageindex-verification -->
 ## PageIndex Verification
 
-### PI-A2 — Search Strategy Degradation with Fallback Chain
-- [ ] CHK-PI-A2-001 [P1] Fallback chain triggers correctly when top result similarity < 0.4
-- [ ] CHK-PI-A2-002 [P1] Fallback chain triggers correctly when result count < 3
-- [ ] CHK-PI-A2-003 [P1] Tier 2 broadened search executes with relaxed filters and trigger matching enabled
-- [ ] CHK-PI-A2-004 [P1] Tier 3 structural search executes folder browsing and tier-based listing without vector requirement
-- [ ] CHK-PI-A2-005 [P1] Fallback is automatic and bounded — chain terminates at Tier 3 (structural search)
-- [ ] CHK-PI-A2-006 [P1] R15 minimum-2-channel constraint preserved at all fallback levels
-- [ ] CHK-PI-A2-007 [P2] Fallback descent logged for observability (eval infrastructure)
+### PI-A2 — Search Strategy Degradation with Fallback Chain [DEFERRED]
+> **Deferred from Sprint 3.** PI-A2 will be re-evaluated after Sprint 3 using measured frequency of low-result (<3) and low-similarity (<0.4) query outcomes from Sprint 0-3 data. Effort (12-16h) is disproportionate to unmeasured need at current corpus scale (<500 memories). See UT review R1.
 
 ### PI-B3 — Description-Based Spec Folder Discovery
 - [ ] CHK-PI-B3-001 [P1] descriptions.json generated with one sentence per spec folder derived from spec.md
@@ -113,7 +108,7 @@ contextType: "implementation"
 - [ ] CHK-061 [P1] Off-ramp evaluated: constitutional accuracy >= 95%
 - [ ] CHK-062 [P1] Off-ramp evaluated: cold-start recall >= 90%
 - [ ] CHK-063 [P1] Off-ramp decision documented (continue or stop)
-- [ ] CHK-064 [P1] **Sprint 2+3 hard scope cap**: If off-ramp thresholds met, Sprint 4-7 require NEW spec approval. Decision documented with metric evidence from Sprint 0-3 actuals.
+- [ ] CHK-064 [P1] **Sprint 2+3 hard scope cap**: If off-ramp thresholds met, Sprint 4-7 require NEW spec approval. Decision documented with metric evidence from Sprint 0-3 actuals. **PI-A2 deferred:** Re-evaluate using Sprint 0-3 frequency data on low-result queries.
 <!-- /ANCHOR:off-ramp -->
 
 ---
@@ -130,6 +125,7 @@ contextType: "implementation"
 - [ ] CHK-073 [P1] **Feature flag count**: Active feature flag count at Sprint 3 exit is ≤6. Evidence: list active flags and count.
   - Expected at Sprint 3 exit: `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` (plus up to 3 from prior sprints)
 - [ ] CHK-074 [P1] **Flag sunset decisions documented**: Any flag retired or consolidated has metric evidence supporting the decision recorded.
+- [ ] CHK-075 [P2] **R12 mutual exclusion**: R12 (query expansion) flag is inactive at Sprint 3 exit gate. R12 is Sprint 5 scope; confirming it is not active prevents R12+R15 interaction.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -150,8 +146,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | [ ]/7 |
-| P1 Items | 24 | [ ]/24 |
-| P2 Items | 1 | [ ]/1 |
+| P1 Items | 34 | [ ]/34 |
+| P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

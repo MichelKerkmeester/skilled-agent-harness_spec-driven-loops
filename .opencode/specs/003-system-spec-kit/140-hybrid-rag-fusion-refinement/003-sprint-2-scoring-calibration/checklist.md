@@ -108,9 +108,10 @@ contextType: "implementation"
 - [ ] CHK-063 [P1] Score distributions normalized — both RRF and composite in [0,1] range
 - [ ] CHK-064 [P1] `embedding_cache` migration follows protocol (backup, nullable, atomic)
 - [ ] CHK-065 [P1] No MRR@5 regression after normalization change
-- [ ] CHK-066 [P1] TM-01 interference scoring active — `interference_score` column present in `memory_index`; penalty computed at index time; `-0.08 * interference_score` applied in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag; no false penalties on distinct content
+- [ ] CHK-066 [P1] TM-01 interference scoring active — `interference_score` column present in `memory_index`; penalty computed at index time; `-0.08 * interference_score` applied in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag; no false penalties on distinct content. False positive measurement: no penalty applied to spec_folders where all memories have been manually verified as semantically distinct; penalty only fires on genuinely redundant near-duplicate clusters
 - [ ] CHK-067 [P1] TM-03 classification-based decay verified — constitutional/critical tiers not decaying; decisions context_type not decaying; temporary tier decays at 0.5x rate; research context_type uses 2x stability (`fsrs-scheduler.ts`)
 - [ ] CHK-068 [P1] Active feature flag count <=6 verified at sprint exit — HOW: grep codebase for `SPECKIT_` env var flags; count active (non-deprecated) flags; document list. Evidence required: flag inventory with count. New flags introduced in Sprint 2: `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`.
+- [ ] CHK-069 [P2] Lightweight observability: N4 boost values and TM-01 interference scores logged at query time, sampled at 5% — enables calibration drift detection without additional infrastructure
 
 ---
 
@@ -121,7 +122,7 @@ contextType: "implementation"
 |----------|-------|----------|
 | P0 Items | 3 | [ ]/3 |
 | P1 Items | 21 | [ ]/21 |
-| P2 Items | 4 | [ ]/4 |
+| P2 Items | 5 | [ ]/5 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

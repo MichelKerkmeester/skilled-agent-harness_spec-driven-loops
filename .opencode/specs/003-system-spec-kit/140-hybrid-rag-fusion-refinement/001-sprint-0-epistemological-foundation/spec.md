@@ -114,9 +114,9 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 |----|-------------|---------------------|
 | REQ-S0-001 | **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry; verified at BOTH locations in `graph-search-fn.ts` (lines ~110 AND ~151); cross-ref: CHK-010, T001 |
 | REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode; tested via both `includeContent=true` and `includeContent=false` paths; cross-ref: CHK-011, T002 |
-| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema (see parent spec.md §4.1 for full schema DDL: `eval_queries`, `eval_channel_results`, `eval_final_results`, `eval_ground_truth`, `eval_metric_snapshots`) + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics computed for at least 50 queries. Schema validated against parent spec §4.1 DDL. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational. |
+| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema (see parent spec.md §4.1 for full schema DDL: `eval_queries`, `eval_channel_results`, `eval_final_results`, `eval_ground_truth`, `eval_metric_snapshots`) + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics computed for at least 100 queries (50 minimum for initial baseline; >=100 required for BM25 contingency decision). Schema validated against parent spec §4.1 DDL. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational. |
 | REQ-S0-007 | **Eval-the-eval validation**: Hand-calculate MRR@5 for 5 randomly selected queries and compare to R13 computed values | Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; discrepancies resolved before BM25 contingency decision (REQ-052 in parent spec) |
-| REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid. Ground truth corpus satisfies diversity requirement: >=20 manually curated non-trigger-phrase queries, >=5 queries per intent type, >=3 query complexity tiers. BM25 contingency decision requires statistical significance (p<0.05, paired t-test or bootstrap CI) on >=100 diverse queries. |
+| REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid. Ground truth corpus satisfies diversity requirement: >=30 manually curated non-trigger-phrase queries, >=5 queries per intent type, >=3 query complexity tiers. BM25 contingency decision requires statistical significance (p<0.05, paired t-test or bootstrap CI) on >=100 diverse queries. |
 
 ### P0 - Blockers (MUST complete) — Additional
 
@@ -145,7 +145,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 ### Exit Gate: Ground Truth Diversification (HARD REQUIREMENT)
 
 Ground truth corpus MUST include:
-- >=20 manually curated natural-language queries (NOT derived from trigger phrases — avoids circular validation bias per R-008)
+- >=30 manually curated natural-language queries (NOT derived from trigger phrases — avoids circular validation bias per R-008)
 - >=15 queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives
 - >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document)
 - >=100 total diverse queries for BM25 contingency decision (synthetic + manual combined)
@@ -165,6 +165,14 @@ Ground truth corpus MUST include:
 | Risk | R13-S1 is largest item (20-28h) — scope creep possible | Medium | Strict 5-table schema; defer advanced features to R13-S2 (Sprint 4) |
 | Risk | BM25 >= 80% of hybrid MRR@5 — challenges multi-channel approach | High | Decision matrix defined: PAUSE if >=80%, rationalize if 50-80%, PROCEED if <50% |
 | Dependency | None | N/A | Sprint 0 is first phase — no external dependencies |
+
+### BM25 Contingency Decision Protocol
+
+When BM25 baseline results fall in the 50-80% range ("rationalize" path):
+- **Decision owner**: Project lead (user) — not automated
+- **Required artifact**: Written rationale document explaining why multi-channel retrieval provides sufficient value over BM25-only, citing specific query categories where hybrid outperforms
+- **Decision timeline**: Within 1 sprint cycle (before Sprint 1 implementation begins)
+- **Output**: Go/No-Go decision recorded in sprint exit documentation with supporting evidence
 <!-- /ANCHOR:risks -->
 
 ---
@@ -231,6 +239,8 @@ Ground truth corpus MUST include:
 ### PageIndex Integration
 
 **Recommendation**: PI-A5 — Verify-Fix-Verify for Memory Quality
+
+**DEFERRED TO SPRINT 1** per Ultra-Think Review REC-09. TM-02 (T054, SHA256 content-hash dedup) remains in Sprint 0.
 
 **Description**: Implement a bounded quality loop that runs after embedding generation to catch and remediate low-quality embeddings before they enter the retrieval index. The loop follows a three-step cycle: verify embedding quality (cosine self-similarity > 0.7 and title-content alignment > 0.5), fix by re-generating the embedding with enhanced metadata if thresholds are not met, then re-verify. If the second attempt still fails, the memory is flagged for manual review rather than silently accepted into the index with degraded quality.
 

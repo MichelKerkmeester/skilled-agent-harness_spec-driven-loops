@@ -161,7 +161,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | BM25 vs Hybrid MRR@5 | Action | Roadmap Impact |
 |----------------------|--------|----------------|
 | >= 80% of hybrid | PAUSE multi-channel optimization | Sprints 3-7 deferred |
-| 50-80% of hybrid | PROCEED; rationalize to 3 channels | Scope may reduce |
+| 50-80% of hybrid | PROCEED; rationalize to 3 channels (drop channel with lowest Exclusive Contribution Rate per R13 channel attribution on 100-query eval set) | Scope may reduce |
 | < 50% of hybrid | PROCEED with full roadmap | No change |
 
 ---
@@ -236,7 +236,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 | ID | Item | Hours | Subsystem | Flag |
 |----|------|-------|-----------|------|
-| PI-A2 | **Search Strategy Degradation with Fallback Chain** — 3-tier fallback: full hybrid → broadened (relaxed filters) → structural-only (trigger match + folder) | 12-16 | Search handlers / pipeline | `SPECKIT_SEARCH_FALLBACK` |
+| PI-A2 | **Search Strategy Degradation with Fallback Chain** [DEFERRED] — 3-tier fallback deferred from Sprint 3. Re-evaluate after Sprint 3 using measured frequency data. See UT review R1. | ~~12-16~~ | Search handlers / pipeline | `SPECKIT_SEARCH_FALLBACK` |
 | PI-B3 | **Description-Based Spec Folder Discovery** — generate and cache 1-sentence `folder_description` per spec folder at index time; use for pre-search folder routing | 4-8 | Spec-Kit logic / indexing | — |
 | | **Sprint 3 PageIndex subtotal** | **+16-24h** | | |
 
@@ -280,8 +280,8 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 **Prerequisite:** R13 must have completed at least 2 full eval cycles. *An eval cycle is defined as: 100+ queries processed by R13 evaluation infrastructure, OR 14 calendar days of R13 logging, whichever comes first. Synthetic fallback: replay 200 logged queries to simulate cycles in test environments.*
 
 **Sprint 4 Split (MANDATORY):** Sprint 4 MUST be decomposed into two sub-phases for risk isolation. Sprint 4 touches 4 subsystems at 72-109h, violating the "max 2 subsystems per sprint" design principle (§1). The split isolates R11's CRITICAL FTS5 contamination risk:
-- **S4a** (~25-35h): R1 (MPAB chunk-to-memory aggregation) + R13-S2 (shadow scoring + channel attribution + ground truth Phase B). Lower-risk scoring and evaluation improvements that proceed immediately after Sprint 3 gate.
-- **S4b** (~47-74h): R11 (learned relevance feedback) + TM-04 (pre-storage quality gate) + TM-06 (reconsolidation-on-save). R11 carries CRITICAL FTS5 contamination risk (MR1) and MUST NOT share a phase with other deliverables. S4b absorbs the R13 calendar dependency (see below). S4a MUST be verified complete before S4b begins. This allows S4a to deliver R13-S2 channel attribution data earlier, informing the scope cap approval decision for S4b and beyond.
+- **S4a** (~31-45h): R1 (MPAB chunk-to-memory aggregation) + R13-S2 (shadow scoring + channel attribution + ground truth Phase B) + TM-04 (pre-storage quality gate). Lower-risk scoring and evaluation improvements that proceed immediately after Sprint 3 gate. TM-04 does not share R11's FTS5 contamination risk and does not require the 28-day R13 calendar window; delivering TM-04 early provides quality gate data to calibrate TM-06 reconsolidation thresholds.
+- **S4b** (~41-64h): R11 (learned relevance feedback) + TM-06 (reconsolidation-on-save). R11 carries CRITICAL FTS5 contamination risk (MR1) and MUST NOT share a phase with other deliverables. S4b absorbs the R13 calendar dependency (see below). S4a MUST be verified complete before S4b begins. This allows S4a to deliver R13-S2 channel attribution data and TM-04 quality gate metrics earlier, informing TM-06 reconsolidation threshold calibration and the scope cap approval decision for S4b and beyond.
 
 **Calendar Dependency (F10):** R11's prerequisite ("R13 must have completed at least 2 full eval cycles") translates to a minimum of 28 calendar days of eval logging before R11 can activate (2 cycles x 14 days each, assuming organic query volume does not reach 100 queries per cycle faster). This forced idle time is NOT reflected in effort estimates — the 16-24h R11 effort estimate covers development time only, not the waiting period. Plan accordingly: if S4a completes in ~3-4 weeks and R13 logging started at Sprint 0, the 28-day requirement may already be satisfied. If not, S4b start is delayed by the remaining calendar gap.
 
@@ -483,8 +483,9 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 | S3 | S1 AND S2 exit gates | **Enable-only**: S3 features require calibrated scores (S2) AND graph signal data (S1) | S4 (+ HARD SCOPE CAP) | S3 needs calibrated scores (S2) and graph signal (S1) for query routing and fusion alternatives |
 | S4 | S3 exit gate + R13 2 cycles + NEW spec approval | **Enable-only**: R11 requires 28 calendar days of R13 data | S5 | S4 requires accumulated eval data for feedback loop; new approval required per scope cap |
 | S5 | S4 exit gate | **Enable-only**: R6 requires stable scoring from S4 | S6 | S5 pipeline refactor needs stable scoring from S4; checkpoint required before R6 |
-| S6 | S5 exit gate (Phase B only) | **Build**: Phase A (N2/N3-lite) has no dependency on S5. **Enable**: Phase B needs stable pipeline from S5 | S7 | S6 graph deepening Phase B needs stable pipeline from S5; edge density from S1 informs R10 priority |
-| S7 | S6 exit gate | **Enable-only**: S7 needs full stack stable | None | S7 long-horizon features need full stack stable |
+| S6a | S5 exit gate | **Build/Enable**: Sprint 6a (R7, R16, S4, N3-lite, T001d) needs stable pipeline from S5 | S7, S6b | S6a delivers practical improvements at any graph scale; Sprint 7 depends on S6a only |
+| S6b | S6a exit gate + feasibility spike + OQ-S6-001/002 resolved | **GATED**: N2 centrality/community + R10 entity extraction require graph density evidence | None (optional) | S6b graph sophistication is gated — may be deferred if graph is too sparse |
+| S7 | S6a exit gate | **Enable-only**: S7 needs Sprint 6a stack stable (not full S6) | None | S7 long-horizon features need practical improvements from S6a stable |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -500,10 +501,12 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 | Sprint 3: Query Intelligence | Medium-High | 34-53h |
 | Sprint 4: Feedback Loop | High | 72-109h |
 | Sprint 5: Pipeline Refactor | Very High | 68-98h (R6 decomposed: 37-56h across 5 sub-tasks + 24-37h Phase B) |
-| Sprint 6: Graph Deepening | Very High | 68-101h |
+| Sprint 6a: Graph Deepening (Practical) | Medium-High | 33-51h |
+| Sprint 6b: Graph Deepening (Sophistication, GATED) | Very High | 37-53h (heuristic) / 80-150h (production) |
 | Sprint 7: Long Horizon | Medium | 45-62h |
-| **Total (S0-S6)** | | **343-516h** |
-| **Total (S0-S7)** | | **388-596h** |
+| **Total (S0-S6a)** | | **308-466h** |
+| **Total (S0-S6a+S6b heuristic)** | | **345-519h** |
+| **Total (S0-S7, S6b heuristic)** | | **390-581h** |
 | **PageIndex additions (PI-A1 — PI-B3, across S0-S5)** | Low-Medium | **+70-104h** |
 | **Grand Total with PageIndex (S0-S7)** | | **458-700h** |
 
@@ -512,6 +515,7 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 - Dual developers: 8-12 weeks (independent tracks A-G assigned; S1/S2 parallelization is the primary acceleration)
 - Critical path: G1→R4→R13-S1→R14/N1→R6 = ~90-125h sequential regardless of parallelism
 - **Note on Sprint 0 total:** Sprint 0 increased from 47-73h to 50-77h with the addition of G-NEW-2 pre-analysis (0.7, 3-4h). This lightweight survey informs ground truth generation quality and pays for itself by preventing evaluation corpus bias.
+- **Note on CHK-S0F3 validation effort:** The p<0.05 statistical significance requirement on >=100 diverse queries (CHK-S0F3) requires manual relevance labeling not included in T008 (4-6h) or T008b (2-3h) effort estimates. Expect an additional 8-15h for this validation work. Total Sprint 0 effort with this addition: ~58-92h.
 <!-- /ANCHOR:effort -->
 
 ---

@@ -68,7 +68,7 @@ Four parallel feature tracks with G2 → normalization dependency
 
 ### Data Flow
 1. **R18 (index-time)**: Content hash computed → cache lookup → hit: use cached embedding; miss: generate + store
-2. **N4 (search-time)**: Memory creation timestamp checked → if <48h: boost applied → composite score adjusted → FSRS decay applied separately
+2. **N4 (search-time)**: Memory creation timestamp checked → if <48h: boost applied → composite score adjusted (cap 0.95) → TM-01 interference penalty applied after N4 → FSRS decay applied separately
 3. **G2 (search-time)**: Intent weights traced through pipeline → duplicate application identified → fix or document
 4. **Normalization (search-time)**: Post-fusion: RRF and composite scores both mapped to [0, 1] before combination
 <!-- /ANCHOR:architecture -->
@@ -93,6 +93,7 @@ Four parallel feature tracks with G2 → normalization dependency
 - [ ] Trace intent weight application through full pipeline in `hybrid-search.ts` (2-3h)
 - [ ] Determine: bug or intentional design (1-2h)
 - [ ] If bug: implement fix. If intentional: document rationale (1-2h)
+- [ ] Select normalization method — measure RRF/composite score distributions on 100-query sample; compare linear scaling vs. min-max; document selection before Phase 4 (1-2h)
 
 ### Phase 4: Score Normalization (depends on Phase 3)
 - [ ] Implement normalization for RRF output to [0, 1] (2-3h)
@@ -170,9 +171,11 @@ Four parallel feature tracks with G2 → normalization dependency
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (R18 Cache) ──────────────────────────────────────────┐
-Phase 2 (N4 Cold-Start) ──────────────────────────────────────┤
-Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────►├──► Phase 5 (Verification)
+Phase 1 (R18 Cache) ──────────────────────────────────────────────┐
+Phase 2 (N4 Cold-Start) ──────────────────────────────────────────┤
+Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────────►├──► Phase 7 (Verification)
+Phase 5 (TM-01 Interference) ────────────────────────────────────►├──► Phase 8 (PI-A1)
+Phase 6 (TM-03 Decay) ──────────────────────────────────────────►─┘
 ```
 
 | Phase | Depends On | Blocks |
@@ -184,6 +187,7 @@ Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────�
 | Phase 5 (TM-01 Interference Scoring) | Sprint 0 gate | Phase 7 |
 | Phase 6 (TM-03 Classification Decay) | Sprint 0 gate | Phase 7 |
 | Phase 7 (Verification) | Phase 1, Phase 2, Phase 4, Phase 5, Phase 6 | Sprint 3 (next sprint) |
+| Phase 8 (PI-A1 Folder Scoring) | Phase 4 | Sprint 3 (next sprint) |
 
 **Note**: Phases 1, 2, 3, 5, and 6 are independent — they can execute in parallel. Phase 4 depends on Phase 3 (G2 outcome influences normalization approach).
 
@@ -204,7 +208,8 @@ Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────�
 | Phase 5 (TM-01 Interference Scoring) | Medium | 4-6h |
 | Phase 6 (TM-03 Classification Decay) | Medium | 3-5h |
 | Phase 7 (Verification) | Low | Included |
-| **Total** | | **26-40h** |
+| Phase 8 (PI-A1 Folder Scoring) | Medium | 4-8h |
+| **Total** | | **30-48h** |
 <!-- /ANCHOR:effort -->
 
 ---

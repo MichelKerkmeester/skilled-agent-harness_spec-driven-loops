@@ -33,6 +33,7 @@ contextType: "implementation"
 - [ ] CHK-001 [P0] Sprint 6 exit gate verified — graph deepening complete
 - [ ] CHK-002 [P1] Scale gate measured for R8: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — result documented; R8 activates only if result >5K
 - [ ] CHK-002a [P1] "5K memories" definition confirmed: active (non-archived) memories with embeddings only — draft and archived do not count
+- [ ] CHK-002b [P1] S5 scale gate measured: active memory count (>1K threshold) and verified entity count (>50 threshold) — S5 activates only if either threshold met; document measured values
 - [ ] CHK-003 [P1] Gating criteria measured: search latency p95 and embedding dimensions for R5
 - [ ] CHK-004 [P1] Prior sprint feature flags inventoried for sunset audit — evidence: flag inventory list
 <!-- /ANCHOR:pre-impl -->
@@ -47,7 +48,7 @@ contextType: "implementation"
 - [ ] CHK-012 [P3] R8 gating condition correctly evaluated (>5K active memories with embeddings) — evidence: scale gate query result matches implementation gate check
 - [ ] CHK-012a [P3] R8 latency impact validated: p95 search latency remains <500ms with pre-filter enabled — evidence: latency measurement before/after
 - [ ] CHK-013 [P3] S1 content extraction improvements implemented — evidence: >=10 before/after content samples reviewed; >=8/10 show improvement
-- [ ] CHK-014 [P3] S5 entity linking coordinates with R10 output — evidence: only verified entities (FP <20%) included in cross-document links
+- [ ] CHK-014 [P3] S5 entity linking coordinates with R10 output (if scale threshold met) — evidence: only verified entities (FP <20%) included in cross-document links; S5 scale gate (>1K memories OR >50 entities) verified; if R10 FP rate not confirmed, verify S5 restricted to manually verified entities only
 - [ ] CHK-015 [P3] R5 decision documented with measured activation criteria — evidence: memory count, latency, dimensions recorded with go/no-go decision
 <!-- /ANCHOR:code-quality -->
 
@@ -60,7 +61,7 @@ contextType: "implementation"
 - [ ] CHK-021 [P2] R13-S3 ablation study framework functional — verified via test ablation
 - [ ] CHK-022 [P3] R8 gating verified: only implemented if >5K memories
 - [ ] CHK-023 [P3] S1 content generation quality improved (manual review)
-- [ ] CHK-024 [P3] S5 entity links established across documents
+- [ ] CHK-024 [P3] S5 entity links established across documents (if scale threshold met)
 - [ ] CHK-025 [P3] R5 decision documented with activation criteria
 - [ ] CHK-026 [P1] All existing tests still pass after all changes
 <!-- /ANCHOR:testing -->
@@ -106,7 +107,7 @@ contextType: "implementation"
 - [ ] CHK-062 [P2] R8 gating verified: only implemented if >5K active memories with embeddings — evidence: scale gate query result documented
 - [ ] CHK-062a [P2] R8 latency constraint verified: p95 <500ms with pre-filter active — evidence: measured latency values
 - [ ] CHK-063 [P2] S1 content generation quality improved (manual review of >=10 samples) — evidence: before/after comparison documented
-- [ ] CHK-064 [P2] S5 entity links established across documents — evidence: >=3 cross-document links in integration test
+- [ ] CHK-064 [P2] S5 entity links established across documents (if scale threshold met: >1K memories OR >50 entities) — evidence: >=3 cross-document links in integration test; if threshold not met, document as skipped with measured values
 - [ ] CHK-065 [P2] R5 decision documented with measured activation criteria (memory count, latency, dimensions) — evidence: decision doc with values
 - [ ] CHK-066 [P2] Program completion: all health dashboard targets reviewed — evidence: dashboard screenshot or metric summary
 - [ ] CHK-067 [P2] Feature flag sunset audit: all sprint-specific flags (Sprints 0-7) inventoried; temporary flags retired or justified — evidence: final flag inventory list with survivor justifications
@@ -130,9 +131,9 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 1 | [ ]/1 |
-| P1 Items | 10 | [ ]/10 |
-| P2 Items | 18 | [ ]/18 |
-| P3 Items | 9 | [ ]/9 |
+| P1 Items | 11 | [ ]/11 |
+| P2 Items | 17 | [ ]/17 |
+| P3 Items | 11 | [ ]/11 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

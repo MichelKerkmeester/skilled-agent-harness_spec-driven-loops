@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~147 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, and Sprint 4 split verification."
+description: "~127 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, and Sprint 4 split verification."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -188,7 +188,7 @@ contextType: "implementation"
 - [ ] CHK-S4B [P1] TM-06 reconsolidation-on-save verified — duplicate detection (>=0.88 similarity) increments frequency; conflict resolution (0.75-0.88) creates supersedes edge; complement (<0.75) stores as new
 - [ ] CHK-S4C [P1] TM-06 checkpoint safety — memory_checkpoint_create() required before enabling SPECKIT_RECONSOLIDATION flag
 - [ ] CHK-S4D [P1] TM-04/TM-06 reconsolidation decisions logged for R13 review — all merge/replace/complement actions recorded
-- [ ] CHK-S4E [P1] Sprint 4a (R1+R13-S2) completed and verified BEFORE Sprint 4b (R11+TM-04+TM-06) begins — evidence: Sprint 4a gate items (CHK-S41, CHK-S43, CHK-S46) all marked [x] before T027/T058/T059 start
+- [ ] CHK-S4E [P1] Sprint 4a (R1+R13-S2+TM-04) completed and verified BEFORE Sprint 4b (R11+TM-06) begins — evidence: Sprint 4a gate items (CHK-S41, CHK-S43, CHK-S46, CHK-S4A) all marked [x] before T027/T059 start
 - [ ] CHK-S4F [P1] R11 activation deferred until ≥2 full R13 eval cycles completed (minimum 28 calendar days of data) — evidence: R13 eval_metric_snapshots table shows ≥2 distinct eval cycle timestamps spanning ≥28 days
 - [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit + sunset decisions documented (see CHK-S0F)
 
@@ -270,7 +270,7 @@ contextType: "implementation"
 ## L3+: PERFORMANCE VERIFICATION
 
 - [ ] CHK-110 [P0] Search response time MUST NOT exceed 500ms p95 during any dark-run phase
-- [ ] CHK-111 [P1] Dark-run overhead within per-sprint budget (S1: +10ms, S2: +2ms, S3: +50ms, S4: +15ms, S5: +100ms)
+- [ ] CHK-111 [P0] Dark-run overhead within per-sprint budget (S1: +10ms, S2: +2ms, S3: +50ms, S4: +15ms, S5: +100ms) — budget overrun is a blocking condition requiring investigation before proceeding; a single overrun can consume >37% of remaining headroom (268ms against 500ms p95 limit)
 - [ ] CHK-112 [P1] R13 cumulative health dashboard operational after Sprint 2
 - [ ] CHK-113 [P2] Per-complexity-tier latency targets met (simple <30ms, moderate <100ms, complex <300ms)
 <!-- /ANCHOR:perf-verify -->
@@ -338,12 +338,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 30 | [ ]/30 |
-| P1 Items | 85 | [ ]/85 |
+| P0 Items | 31 | [ ]/31 |
+| P1 Items | 84 | [ ]/84 |
 | P2 Items | 12 | [ ]/12 |
 | **Total** | **~127** | **[ ]/~127** |
 
-> **Note**: Reduced from ~147 to ~127 by consolidating 14 per-sprint flag sunset items into 1 cross-cutting item (CHK-S0F). Added: 7 interaction pair items (CHK-035-039c), 10 negative test items (CHK-024-029e), 7 rollback verification items (CHK-126-129d), 2 eval validation items (CHK-S0F2, CHK-S0F3). P0 count increased due to interaction pair guards and eval validation being safety-critical.
+> **Note**: Reduced from ~147 to ~127 by consolidating 14 per-sprint flag sunset items into 1 cross-cutting item (CHK-S0F). Added: 7 interaction pair items (CHK-035-039c), 10 negative test items (CHK-024-029e), 7 rollback verification items (CHK-126-129d), 2 eval validation items (CHK-S0F2, CHK-S0F3). P0 count increased due to interaction pair guards and eval validation being safety-critical. CHK-111 elevated from P1 to P0 (latency budget overrun is blocking).
 
 **Verification Date**: [YYYY-MM-DD]
 

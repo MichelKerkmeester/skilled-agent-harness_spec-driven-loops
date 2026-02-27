@@ -49,11 +49,13 @@ contextType: "implementation"
   - Quality verification via manual review of >=10 before/after memory content samples
   - Acceptance criteria: manual review shows measurable improvement in content density/relevance for >=8/10 sampled memories
   - What T002 needs before becoming implementable: baseline quality measurement on current content generation output
-- [ ] T003 [P] Implement cross-document entity linking [8-12h] — S5 (REQ-S7-003)
+- [ ] T003 [P] Implement cross-document entity linking (gated on >1K active memories OR >50 verified entities) [8-12h] — S5 (REQ-S7-003)
+  - **Scale gate check (required first)**: Measure active memory count (`SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`) and verified entity count. If neither >1K memories NOR >50 verified entities, skip T003 entirely and document.
   - Entity resolution strategy: link only verified entities (not R10 auto-entities with unknown FP rate); use exact-match + normalized-alias matching first
   - Cross-document entity matching and link graph
   - Acceptance criteria: at least 3 cross-document entity links established in integration test; no R10 auto-entities included unless FP rate confirmed <20%
-  - What T003 needs before becoming implementable: R10 FP rate confirmed from Sprint 6; entity catalog available
+  - What T003 needs before becoming implementable: R10 FP rate confirmed from Sprint 6; entity catalog available; S5 scale gate (>1K memories OR >50 entities) confirmed
+  - **Fallback if R10 FP rate not confirmed from Sprint 6**: restrict S5 to manually verified entities only; do not include any R10 auto-entities. If no manually verified entities exist and scale gate not met, document S5 as skipped
 - [ ] T004 [P] Implement R13-S3: full reporting dashboard + ablation study framework [12-16h] — R13-S3 (REQ-S7-004)
   - Full reporting dashboard (per-sprint and per-channel metric views)
   - Ablation study framework: enable/disable individual channels and measure Recall@20 delta per component

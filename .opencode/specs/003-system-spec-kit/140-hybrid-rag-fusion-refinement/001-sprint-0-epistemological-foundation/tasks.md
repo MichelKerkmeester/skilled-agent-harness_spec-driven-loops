@@ -66,6 +66,7 @@ contextType: "implementation"
   - T006c Importance-Weighted Recall — Recall@20 with tier weighting (constitutional=3x, critical=2x, important=1.5x) [1-2h]
   - T006d Cold-Start Detection Rate — % of queries where memories <48h old surface when relevant [1h]
   - T006e Intent-Weighted NDCG — NDCG@10 with intent-type-specific relevance weights [2-3h]
+  - T006-checkpoint [GATE] Intermediate validation — verify T006a–T006e produce expected output on a fixed test case with known ground truth values (e.g., query with known relevant memories at known ranks → compute expected MRR@5, verify match within ±0.01); resolve discrepancies before T006f/T006g [1h]
   - T006f Full-Context Ceiling Evaluation — send ALL memory titles/summaries to LLM, record MRR@5 as theoretical ceiling metric; interpret via 2x2 matrix with BM25 baseline [4-6h]
   - T006g Quality Proxy Formula — implement automated regression metric: qualityProxy = avgRelevance*0.40 + topResult*0.25 + countSaturation*0.20 + latencyPenalty*0.15 [4-6h]
 <!-- /ANCHOR:phase-2 -->
@@ -84,14 +85,18 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Baseline
 
-- [ ] T007 Generate synthetic ground truth from trigger phrases — minimum 50 query-relevance pairs with DIVERSITY REQUIREMENT: >=5 queries per intent type (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision), >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document). Incorporate G-NEW-2 pre-analysis findings into query design. [2-4h] {T004, T007b} — G-NEW-1 / G-NEW-3 (REQ-S0-004)
-  - Acceptance: 50+ queries with intent type and complexity tier tags; diversity thresholds met
+- [ ] T007 Generate synthetic ground truth from trigger phrases — minimum 100 query-relevance pairs (50 minimum for initial baseline metrics, >=100 required for BM25 contingency decision per REQ-S0-004) with DIVERSITY REQUIREMENT: >=5 queries per intent type (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision), >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document). Include >=30 manually curated natural-language queries NOT derived from trigger phrases (per REQ-S0-004 hard gate, raised per REC-10). Incorporate G-NEW-2 pre-analysis findings into query design. [2-4h] {T004, T007b} — G-NEW-1 / G-NEW-3 (REQ-S0-004)
+  - Acceptance: 100+ queries with intent type and complexity tier tags; diversity thresholds met; >=30 queries MUST be manually curated natural-language queries NOT derived from trigger phrases (per REQ-S0-004 hard gate); document manual vs synthetic query split in query distribution table
   - Include >=3 hard negative queries (queries that should return NO relevant results)
   - Sub-steps for >10h total baseline track:
     1. Generate intent-typed query templates from trigger phrases
     2. Add complexity-tier variations (simple/moderate/complex)
     3. Add hard negatives and cross-document queries
     4. Validate diversity thresholds before proceeding to T008
+- [ ] T013 Hand-calculate MRR@5 for 5 randomly selected queries — compare hand-calculated values to R13 computed values (tolerance ±0.01); resolve ALL discrepancies before proceeding to T008 [2-3h] {T006, T007} — REQ-S0-007 (eval-the-eval validation)
+  - Acceptance: Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; discrepancies documented and resolved
+  - Implementation hint: Select 5 queries randomly from ground truth corpus; for each query, manually rank relevant memories and compute MRR@5 = (1/5) * Σ(1/rank_i); compare to `eval_metrics` table
+  - Verify: Discrepancy log produced; all 5 queries within tolerance
 - [ ] T008 Run BM25-only baseline measurement and record MRR@5 [4-6h] {T006, T007} — G-NEW-1 (REQ-S0-004)
   - Acceptance: BM25 MRR@5 recorded; contingency decision matrix evaluated (>=80% PAUSE, 50-80% rationalize, <50% PROCEED)
   - Implementation hint: Use FTS5-only path in `memory-search.ts`; disable vector, graph, and trigger channels via flags
@@ -99,21 +104,12 @@ contextType: "implementation"
 
 ---
 
-## Phase 5: PI-A5 — Verify-Fix-Verify for Memory Quality
-
-- [ ] T010 Implement embedding quality gate in memory-save pipeline — cosine self-similarity check (embedding vs title-only embedding, threshold > 0.7) + title-content alignment check (threshold > 0.5) immediately after embedding generation (`memory-save.ts`) [6-8h] {T054} — PI-A5
-- [ ] T011 Implement fix step — on first check failure, re-generate embedding with enhanced metadata (title prepended, trigger phrases appended) and re-run both quality checks [2-3h] {T010} — PI-A5
-- [ ] T012 Implement fallback — on second failure (max 2 retries, bounded), set `quality_flag=low` on memory record and log quality loop outcome (pass/retry/flag) to `speckit-eval.db`; do NOT silently accept low-quality embedding into live index [3-4h] {T004, T010, T011} — PI-A5
-  - Accuracy thresholds: cosine self-similarity > 0.7, title-content alignment > 0.5
-  - Bounded: max 2 retries (not infinite loop)
-  - Log outcome to eval DB for R-002 quality metrics calibration
-
 ## Phase 4: Verification
 
-- [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T001, T002, T003, T004, T005, T006, T007, T007b, T008, T054}
+- [ ] T009 [GATE] Sprint 0 exit gate verification [0h] {T001, T002, T003, T004, T005, T006, T007, T007b, T008, T013, T054}
   - [ ] Graph hit rate > 0%
   - [ ] No duplicate chunk rows in default search
-  - [ ] Baseline metrics for 50+ queries computed and stored
+  - [ ] Baseline metrics for 100+ queries computed and stored
   - [ ] Ground truth diversity: >=5 queries per intent type, >=3 query complexity tiers (HARD gate)
   - [ ] BM25 baseline MRR@5 recorded
   - [ ] BM25 contingency decision made and documented
@@ -125,7 +121,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T009, T007b, and T054 marked `[x]`
+- [ ] All tasks T001-T009, T007b, T013, and T054 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 0 exit gate (T009) passed
 - [ ] 8-12 new tests added and passing
@@ -148,8 +144,8 @@ contextType: "implementation"
 
 <!--
 LEVEL 2 TASKS — Phase 1 of 8
-- 9 tasks across 4 phases
+- 10 tasks across 4 phases (PI-A5 deferred to Sprint 1 per REC-09)
 - Track 1 (Bug Fixes): T001-T003 parallelizable
-- Track 2 (Eval): T004-T008 sequential
+- Track 2 (Eval): T004-T008, T013 sequential
 - T009: Sprint exit gate
 -->

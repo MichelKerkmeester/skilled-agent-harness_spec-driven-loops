@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (+ 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7; +70-104h for PageIndex items; grand total with PageIndex: 458-700h) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (43 evaluated, 40 active in program scope, 54 total traceable items including 6 sprint-derived requirements and 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7; +70-104h for PageIndex items; grand total with PageIndex: 458-700h) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -128,8 +128,9 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 > - **S4b** (R11 learned relevance feedback + TM-04 + TM-06, ~47-74h): Higher-risk work containing R11 with its CRITICAL FTS5 contamination risk (MR1). R11 should not share a sprint with 4 other deliverables given its irreversible failure mode. S4b also requires the R13 calendar dependency (minimum 28 days of eval logging before R11 activation).
 > This split isolates R11's contamination risk and allows S4a to complete faster, providing R13-S2 channel attribution data earlier.
 | 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (68-98h) | Sprint 4 gate | Pending |
-| 7 | `007-sprint-6-graph-deepening/` | R7, R16, R10, N2, N3-lite, S4 (68-101h) | Sprint 5 gate | Pending |
-| 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6 gate | Pending |
+| 7a | `007-sprint-6-graph-deepening/` | R7, R16, S4, N3-lite (33-51h) | Sprint 5 gate | Pending |
+| 7b | `007-sprint-6-graph-deepening/` | N2, R10 (37-53h) | Sprint 6a gate + feasibility spike | Pending (GATED) |
+| 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6a gate | Pending |
 
 ### Phase Transition Rules
 
@@ -151,8 +152,10 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | 003-sprint-2 | 004-sprint-3 | Cache hit >90%, score distributions normalized, G2 resolved | R13 eval metrics |
 | 004-sprint-3 | 005-sprint-4 | R15 p95 <30ms, RSF Kendall tau computed, R2 precision within 5% | R13 eval metrics |
 | 005-sprint-4 | 006-sprint-5 | R1 MRR@5 within 2%, R11 noise <5%, R13-S2 operational | R13 eval metrics |
-| 006-sprint-5 | 007-sprint-6 | R6 0 ordering differences, 158+ tests pass | R13 eval + test suite |
-| 007-sprint-6 | 008-sprint-7 | Graph attribution >10%, N3-lite contradiction detection verified | R13 eval metrics |
+| 006-sprint-5 | 007-sprint-6 (6a) | R6 0 ordering differences, 158+ tests pass | R13 eval + test suite |
+| 007-sprint-6 (6a) | 008-sprint-7 | R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection verified, weight_history logging functional | R13 eval metrics |
+| 007-sprint-6 (6a) | 007-sprint-6 (6b) | Sprint 6a exit gate + feasibility spike completed + OQ-S6-001/002 resolved | R13 eval + spike results |
+| 007-sprint-6 (6b) | — | N2 attribution >10% or density-conditional deferral, R10 FP <20% (if executed) | R13 eval metrics |
 <!-- /ANCHOR:phase-map -->
 
 ---

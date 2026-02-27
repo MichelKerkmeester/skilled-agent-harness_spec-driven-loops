@@ -96,23 +96,14 @@ Two independent subsystem tracks converging at verification
   - **Risk**: If no agent logs available, fall back to manual pattern enumeration from CLAUDE.md and skill definitions
 
 ### Phase 3: Baseline (requires Phase 2 and Phase 2b)
-- [ ] G-NEW-1/G-NEW-3: Generate synthetic ground truth from trigger phrases — MUST satisfy diversity requirement: >=5 queries per intent type, >=3 query complexity tiers (simple, moderate, complex). Incorporate G-NEW-2 pre-analysis findings into query design. (2-4h)
+- [ ] G-NEW-1/G-NEW-3: Generate ground truth — minimum 100 query-relevance pairs (50 minimum for initial baseline; >=100 required for BM25 contingency decision). MUST satisfy diversity requirement: >=5 queries per intent type, >=3 query complexity tiers (simple, moderate, complex), >=30 manually curated queries NOT derived from trigger phrases. Incorporate G-NEW-2 pre-analysis findings into query design. (2-4h)
 - [ ] G-NEW-1: Run BM25-only baseline measurement and record MRR@5 (4-6h)
 
 ### Phase 4: Verification
 - [ ] Sprint 0 exit gate verification — all P0 requirements confirmed
 - [ ] BM25 contingency decision recorded
 
-### Phase 5: PI-A5 — Verify-Fix-Verify for Memory Quality (12-16h)
-- [ ] PI-A5-1: Implement cosine self-similarity check post-embedding — compare embedding against title-only embedding; threshold > 0.7 [3-4h]
-- [ ] PI-A5-2: Implement title-content alignment check — score embedding alignment with summary/content fields; threshold > 0.5 [3-4h]
-- [ ] PI-A5-3: Implement fix step — re-generate embedding with enhanced metadata (prepend title, append trigger phrases) on first threshold failure [2-3h]
-- [ ] PI-A5-4: Implement re-verify step — re-run both quality checks after regeneration [1h]
-- [ ] PI-A5-5: Implement fallback — flag memory with `quality_flag=low`, log to eval DB, surface for manual review when retry limit (max 2) exceeded [2-3h]
-- [ ] PI-A5-6: Log all quality loop outcomes (pass/retry/flag) to `speckit-eval.db` to enrich R-002 quality metrics dataset [1-2h]
-
-**Dependencies**: Phase 2 (R13-S1 eval infrastructure must exist before quality loop logging), TM-02 (content-hash gate establishes the embedding checkpoint where quality gate is inserted)
-**Effort**: 12-16h, Medium risk
+**Note**: PI-A5 (Verify-Fix-Verify for Memory Quality, 12-16h) deferred to Sprint 1 per Ultra-Think Review REC-09 — P1 priority, not in handoff criteria, not a downstream dependency for Sprint 0 exit gate. TM-02 (T054, SHA256 content-hash dedup) remains in Sprint 0.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -194,6 +185,7 @@ Phase 2 (Eval Infrastructure) ──────────┤
 | Phase 2 (Eval Infrastructure) | High | 18-24h |
 | Phase 3 (Baseline) | Medium | 6-10h |
 | Phase 4 (Verification) | Low | Included in phases |
+| ~~Phase 5 (PI-A5)~~ | ~~Medium~~ | ~~12-16h~~ — **Deferred to Sprint 1 (REC-09)** |
 | **Total** | | **32-48h** |
 <!-- /ANCHOR:effort -->
 

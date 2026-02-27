@@ -29,9 +29,17 @@ contextType: "implementation"
 
 ### Overview
 
-This plan implements Sprint 7 — the final sprint addressing scale-dependent features and evaluation completion. All items are parallelizable with no internal dependencies: R8 memory summaries (gated on >5K memories), S1 smarter content generation, S5 cross-document entity linking, R13-S3 full reporting + ablation studies, and R5 INT8 quantization evaluation. Total effort: 45-62h.
+This plan implements Sprint 7 — the final sprint addressing scale-dependent features and evaluation completion. All items are parallelizable with no internal dependencies: R8 memory summaries (gated on >5K memories), S1 smarter content generation, S5 cross-document entity linking, R13-S3 full reporting + ablation studies, and R5 INT8 quantization evaluation.
 
-> **GATING AND OPTIONALITY NOTE**: Sprint 7 is entirely P2/P3 priority and gated on >5K active memories with embeddings (current system estimate: <2K). All items are optional and should only be pursued if Sprint 0-6 metrics demonstrate clear need. R8 (PageIndex integration) is particularly conditional — the tree-navigation approach must be validated against the 500ms p95 latency hard limit before any R8 implementation begins. Do not plan Sprint 7 capacity unless scale thresholds are confirmed.
+**Conditional Effort Scenarios:**
+
+| Scenario | Scope | Effort |
+|----------|-------|--------|
+| Minimum viable (current scale) | R13-S3 + T005a + T005 | 15-20h |
+| Realistic (without R8) | All items except R8 | 32-46h |
+| Full (R8 + S5 gates met) | All items | 47-66h |
+
+> **GATING AND OPTIONALITY NOTE**: Sprint 7 is entirely P2/P3 priority and gated on >5K active memories with embeddings (current system estimate: <2K). All items are optional and should only be pursued if Sprint 0-6 metrics demonstrate clear need. R8 (PageIndex integration) is particularly conditional — the tree-navigation approach must be validated against the 500ms p95 latency hard limit before any R8 implementation begins. S5 (cross-document entity linking) is similarly gated — activates only if >1K active memories with embeddings OR >50 verified entities; below threshold, document as skipped. Do not plan Sprint 7 capacity unless scale thresholds are confirmed.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -44,6 +52,7 @@ This plan implements Sprint 7 — the final sprint addressing scale-dependent fe
 - [ ] Evaluation infrastructure fully operational (Sprint 0 + Sprint 4 enhancements)
 - [ ] Memory count confirmed: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — R8 activates only if result >5K
 - [ ] Search latency and embedding dimensions measured for R5 gating decisions
+- [ ] S5 scale gate measured: active memory count (>1K threshold) and verified entity count (>50 threshold) — S5 activates only if either threshold met
 - [ ] All prior sprint feature flags inventoried for sunset audit
 
 ### Definition of Done
@@ -105,10 +114,13 @@ All items are parallelizable — no dependencies between them.
 - [ ] Implement improved content extraction heuristics
 - [ ] Verify quality improvement via manual review
 
-### S5: Cross-Document Entity Linking — 8-12h
+### S5: Cross-Document Entity Linking (gated on >1K active memories OR >50 verified entities) — 8-12h
+> **Prerequisite**: Confirm scale gate before any implementation. Measure active memory count (`SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`) and verified entity count. If neither threshold met (>1K memories OR >50 entities), document skip decision and do not proceed.
+- [ ] Confirm scale gate (memory count + entity count queries above)
 - [ ] Design entity resolution strategy (coordinates with R10 output)
 - [ ] Implement cross-document entity matching
 - [ ] Create entity link graph connections
+- [ ] Gate: Skip if thresholds not met — document decision with query results
 
 ### R13-S3: Full Reporting + Ablation Studies — 12-16h
 - [ ] Implement full reporting dashboard
@@ -181,7 +193,8 @@ R8 (15-20h) ──────┐
 S1 (8-12h) ───────┤
 S5 (8-12h) ───────┼──► Program Completion Gate
 R13-S3 (12-16h) ──┤
-R5 eval (2h) ─────┘
+R5 eval (2h) ─────┤
+T-PI-S7 (2-4h) ───┘
   (all parallelizable)
 ```
 
@@ -192,8 +205,9 @@ R5 eval (2h) ─────┘
 | S5 (Entity Linking) | Sprint 6 exit gate, R10 (Sprint 6) | Program completion |
 | R13-S3 (Full Reporting) | Sprint 6 exit gate, Eval infra | Program completion |
 | R5 (INT8 Evaluation) | Sprint 6 exit gate | Program completion |
+| T-PI-S7 (PageIndex Review) | Sprint 6 exit gate | Program completion |
 
-**Note**: All items are independent and can execute in parallel.
+**Note**: All items are independent and can execute in parallel. S5 is additionally gated on >1K active memories OR >50 verified entities.
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -208,7 +222,16 @@ R5 eval (2h) ─────┘
 | S5 (Entity Linking) | Low-Medium | 8-12h |
 | R13-S3 (Full Reporting) | Medium | 12-16h |
 | R5 (INT8 Evaluation) | Low | 2h |
-| **Total** | | **45-62h** |
+| T-PI-S7 (PageIndex Review) | Low | 2-4h |
+| **Total** | | **47-66h** |
+
+**Conditional Effort Scenarios** (see summary for details):
+
+| Scenario | Scope | Effort |
+|----------|-------|--------|
+| Minimum viable (current scale) | R13-S3 + T005a + T005 | 15-20h |
+| Realistic (without R8) | All items except R8 | 32-46h |
+| Full (R8 + S5 gates met) | All items | 47-66h |
 <!-- /ANCHOR:effort -->
 
 ---

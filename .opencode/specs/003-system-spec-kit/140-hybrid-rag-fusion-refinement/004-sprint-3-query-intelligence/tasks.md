@@ -35,11 +35,19 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: R15 Query Complexity Router
 
-- [ ] T001 [P] Implement query complexity router — 3-tier classifier (simple/moderate/complex) + tier-to-channel-subset routing (min 2 channels) behind `SPECKIT_COMPLEXITY_ROUTER` flag [10-16h] — R15
-  - **Hint**: Classifier features — query length (chars), term count (whitespace-split), trigger phrase presence (exact match against known phrases), semantic complexity heuristic (ratio of stop words to content words)
-  - **Sub-step T001a**: Define classification boundaries and thresholds (e.g., simple: ≤3 terms OR trigger match; complex: >8 terms AND no trigger)
-  - **Sub-step T001b**: Implement tier-to-channel-subset mapping table (config-driven, not hardcoded)
-  - **Acceptance**: Shadow-run both full pipeline and routed pipeline simultaneously; compare results before enabling routing as primary
+### R15 Subtask Decomposition
+
+- [ ] T001a [P] Define classifier boundaries and feature design — query length (chars), term count (whitespace-split), trigger phrase presence (exact match), semantic complexity heuristic (stop-word ratio). Classification boundaries: simple (≤3 terms OR trigger match), complex (>8 terms AND no trigger), moderate (interior). Config-driven thresholds. [2-4h] — R15
+  - **Acceptance**: Classifier correctly assigns 10+ test queries per tier
+
+- [ ] T001b Implement tier-to-channel-subset routing and flag wiring — map classification tiers to channel subsets (simple=2, moderate=3-4, complex=5), enforce minimum 2 channels, add `SPECKIT_COMPLEXITY_ROUTER` flag [3-4h] {T001a} — R15
+  - **Acceptance**: Routing table is config-driven, not hardcoded; min-2-channel invariant holds
+
+- [ ] T001c Integrate classifier into pipeline entry point — wire classifier+router into the existing pipeline, ensure both full pipeline and routed pipeline can run simultaneously [2-4h] {T001b} — R15
+  - **Acceptance**: Pipeline accepts classifier output and routes to correct channel subset
+
+- [ ] T001d Shadow comparison run and p95 latency verification — run both full pipeline and routed pipeline simultaneously, compare results, verify p95 <30ms for simple queries [1-2h] {T001c} — R15
+  - **Acceptance**: Shadow-run confirms no recall degradation; p95 <30ms verified
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -47,7 +55,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: R14/N1 Relative Score Fusion
 
-- [ ] T002 [P] Implement Relative Score Fusion — all 3 variants (single-pair, multi-list, cross-variant) in shadow mode behind `SPECKIT_RSF_FUSION` flag [10-14h] — R14/N1
+- [ ] T002a [P] Implement RSF single-pair variant — foundation implementation of Relative Score Fusion for a single pair of ranked lists, behind `SPECKIT_RSF_FUSION` flag [4-5h] — R14/N1
+  - **Acceptance**: Single-pair RSF produces valid fused ranking; output clamped to [0,1]
+
+- [ ] T002b Implement RSF multi-list variant — extend RSF to handle multiple ranked lists simultaneously [3-5h] {T002a} — R14/N1
+  - **Acceptance**: Multi-list variant produces consistent results with single-pair on 2-list input
+
+- [ ] T002c Implement RSF cross-variant variant — cross-variant RSF for comparing results across different fusion strategies [3-4h] {T002b} — R14/N1
+  - **Acceptance**: Cross-variant RSF runs in shadow mode alongside RRF; results logged
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,7 +70,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: R2 Channel Min-Representation
 
-- [ ] T003 Implement channel min-representation constraint — post-fusion enforcement, quality floor 0.2, only when channel returned results, behind `SPECKIT_CHANNEL_MIN_REP` flag [6-10h] {T001} — R2
+- [ ] T003 Implement channel min-representation constraint — post-fusion enforcement, quality floor 0.2, only when channel returned results, behind `SPECKIT_CHANNEL_MIN_REP` flag [6-10h] {T001d} — R2
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,10 +78,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3b -->
 ## Phase 3b: Query Optimization
 
-- [ ] T006 Implement confidence-based result truncation — adaptive top-K cutoff based on score confidence gap between consecutive results [5-8h] {T001} — R15 extension
+- [ ] T006 Implement confidence-based result truncation — adaptive top-K cutoff based on score confidence gap between consecutive results [5-8h] {T001d} — R15 extension
   - Score gap threshold: if gap between rank N and N+1 exceeds 2x median gap, truncate at N
   - Must respect minimum result count (3) regardless of confidence
-- [ ] T007 [P] Implement dynamic token budget allocation — adjust returned context size by query complexity tier [3-5h] {T001} — R15 extension (FUT-7)
+- [ ] T007 [P] Implement dynamic token budget allocation — adjust returned context size by query complexity tier [3-5h] {T001d} — R15 extension (FUT-7)
   - Simple: 1500 tokens | Moderate: 2500 tokens | Complex: 4000 tokens
   - Budget applies to total returned content, not per-result
 <!-- /ANCHOR:phase-3b -->
@@ -76,11 +91,7 @@ contextType: "implementation"
 <!-- ANCHOR:pageindex -->
 ## PageIndex Tasks
 
-- [ ] T008 Implement PI-A2 search strategy degradation fallback chain — three-tier fallback (full hybrid → broadened search → structural search) with automatic threshold-based transitions (top similarity < 0.4 OR result count < 3); preserves R15 min-2-channel constraint at all levels [12-16h] {T001} — PI-A2
-  - Tier 1: Full hybrid search (primary, R15-selected channels)
-  - Tier 2: Broadened search — relaxed filters, trigger matching enabled, channel constraints loosened
-  - Tier 3: Structural search — folder browsing, tier-based listing, no vector requirement
-  - Thresholds verified against Sprint 0 eval framework
+- [ ] ~~T008~~ **DEFERRED** — PI-A2 search strategy degradation fallback chain deferred from Sprint 3. Will be re-evaluated after Sprint 3 using measured frequency of low-result (<3) and low-similarity (<0.4) query outcomes from Sprint 0-3 data. See UT review R1.
 - [ ] T009 [P] Implement PI-B3 description-based spec folder discovery — generate 1-sentence descriptions from spec.md per folder, cache in descriptions.json, integrate lookup into memory_context orchestration layer before vector queries [4-8h] — PI-B3
 <!-- /ANCHOR:pageindex -->
 
@@ -89,8 +100,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Shadow Comparison + Verification
 
-- [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002}
-- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001, T002, T003, T004, T006, T007}
+- [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
+- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003, T004, T006, T007}
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -98,7 +109,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T007 marked `[x]`
+- [ ] All tasks T001a-T001d, T002a-T002c, T003-T007 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] R15 p95 <30ms for simple queries verified
 - [ ] RSF Kendall tau computed (tau <0.4 = reject RSF)
@@ -123,5 +134,5 @@ contextType: "implementation"
 <!--
 LEVEL 2 TASKS — Phase 4 of 8
 - Sprint 3: Query Intelligence
-- 7 tasks across 5 phases (including Phase 3b)
+- 13 active tasks (T001a-d, T002a-c, T003-T007, T009) across 5 phases (T008/PI-A2 deferred)
 -->

@@ -53,7 +53,7 @@ contextType: "implementation"
   - Combined score cap at 0.95
   - Acceptance: Boost at 0h = 0.15, at 12h = ~0.055, at 24h = ~0.020, at 48h = ~0.003 (effectively zero); dark-run passes
   - Implementation hint: In `composite-scoring.ts`, compute `elapsed_hours = (Date.now() - created_at_ms) / 3600000`; apply boost only when `process.env.SPECKIT_NOVELTY_BOOST === 'true'` and `elapsed_hours < 48`
-  - Verify: No conflict with FSRS — N4 modifies composite score, FSRS modifies temporal weight; they are additive, not multiplicative
+  - Empirically verify: N4/FSRS interaction via dark-run (assertion alone insufficient — 0.95 cap creates interaction surface). Note: cap clipping is asymmetric — high-scoring memories (>0.80) receive less effective boost. This is expected behavior.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -65,23 +65,16 @@ contextType: "implementation"
   - [ ] T003a Identify all locations where intent weights are applied — Implementation hint: Search for `intent` weight application in 3 files: `hybrid-search.ts`, `intent-classifier.ts`, `adaptive-fusion.ts`. Trace the data flow from classification through to final scoring.
   - [ ] T003b Determine: bug or intentional design — Decision criteria: If weights are applied once in classification AND once in fusion, it is likely a bug (double-counting). If applied in classification for channel selection AND in fusion for score weighting (different purposes), it may be intentional.
   - [ ] T003c If bug: fix. If intentional: document rationale — Either way, dark-run comparison before/after to verify no MRR@5 regression
+  - [ ] T003d Select normalization method — measure actual RRF and composite score distributions on 100-query sample; compare linear scaling vs. min-max output stability; document selection in decision record before Phase 4 begins [1-2h] {T003b} — OQ-S2-003 resolution
 - [ ] T004 Implement score normalization — both RRF and composite to [0,1] range (`rrf-fusion.ts`, `composite-scoring.ts`) [4-6h] {T003} — Calibration (REQ-S2-004)
   - Note: Normalization approach may depend on G2 outcome
 - [ ] T004a [P] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100}, measure MRR@5 delta per value [2-3h] {T004} — Calibration (REQ-S2-005)
 - [ ] T005 [P] Implement interference scoring — add `interference_score` column to `memory_index` (migration), compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`, apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] — TM-01 (REQ-S2-006)
+  - Note: 0.75 similarity threshold and -0.08 penalty coefficient are initial calibration values, subject to tuning after 2 eval cycles. N4 boost is applied BEFORE TM-01 penalty in composite scoring pipeline (N4 establishes floor, TM-01 penalizes cluster density).
 - [ ] T006 [P] Implement classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) [3-5h] — TM-03 (REQ-S2-007)
 <!-- /ANCHOR:phase-3 -->
 
 ---
-
-## Phase 5 (PI-A1): Folder-Level Relevance Scoring via DocScore Aggregation
-
-- [ ] T009 [P] Implement folder-level relevance scoring in reranker — compute `FolderScore(F) = (1/sqrt(M+1)) * SUM(MemoryScore(m))` by grouping normalized memory scores by `spec_folder`; expose FolderScore as metadata on each search result; implement two-phase retrieval path (top-K folders by FolderScore then within-folder search) [4-8h] {T004} — PI-A1
-  - Formula: `FolderScore = (1 / sqrt(M + 1)) * SUM(MemoryScore(m) for m in folder F)` where M = memory count in F
-  - Damping factor `1/sqrt(M+1)` is mandatory — prevents large folders from dominating by volume
-  - Pure scoring addition to existing reranker — no schema changes, no new tables
-  - Requires [0,1]-normalized MemoryScore values from score normalization (T004) to be meaningful
-  - Extends R-006 (weight rebalancing surface) and R-007 (post-reranker stage in scoring pipeline)
 
 ## Phase 4: Verification
 
@@ -95,6 +88,16 @@ contextType: "implementation"
   - [ ] TM-01 interference penalty active; high-similarity cluster scores reduced; no false penalties
   - [ ] TM-03 classification-based decay verified — constitutional/critical memories not decaying; temporary memories decaying faster
 
+## Phase 5 (PI-A1): Folder-Level Relevance Scoring via DocScore Aggregation
+
+- [ ] T009 [P] Implement folder-level relevance scoring in reranker — compute `FolderScore(F) = (1/sqrt(M+1)) * SUM(MemoryScore(m))` by grouping normalized memory scores by `spec_folder`; expose FolderScore as metadata on each search result; implement two-phase retrieval path (top-K folders by FolderScore then within-folder search) [4-8h] {T004} — PI-A1
+  - Formula: `FolderScore = (1 / sqrt(M + 1)) * SUM(MemoryScore(m) for m in folder F)` where M = memory count in F
+  - Damping factor `1/sqrt(M+1)` is mandatory — prevents large folders from dominating by volume
+  - Pure scoring addition to existing reranker — no schema changes, no new tables
+  - Requires [0,1]-normalized MemoryScore values from score normalization (T004) to be meaningful
+  - Extends R-006 (weight rebalancing surface) and R-007 (post-reranker stage in scoring pipeline)
+- [ ] T010 [P] Add lightweight observability — log N4 boost values and TM-01 interference scores at query time, sampled at 5% of queries [2-4h] {T002, T005} — Observability (P2)
+
 ---
 
 <!-- ANCHOR:completion -->
@@ -102,7 +105,7 @@ contextType: "implementation"
 
 - [ ] All tasks T001-T008 (including T004a, T005, T006) marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
-- [ ] Sprint 2 exit gate (T006) passed
+- [ ] Sprint 2 exit gate (T008) passed
 - [ ] 8-12 new tests added and passing
 - [ ] 158+ existing tests still passing
 - [ ] Feature flag `SPECKIT_NOVELTY_BOOST` enabled (or decision to keep disabled documented)

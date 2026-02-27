@@ -29,9 +29,14 @@ contextType: "implementation"
 
 ### Overview
 
-This plan implements Sprint 6 — graph deepening and indexing optimization. Two internal phases run in parallel: Phase A (Graph) covers N2 centrality/community detection and N3-lite consolidation (contradiction scan, Hebbian strengthening, staleness detection). Phase B (Indexing + Spec-Kit) covers R7 anchor-aware chunk thinning, R16 encoding-intent capture, R10 auto entity extraction (gated on density), and S4 spec folder hierarchy retrieval. Total effort: 68-101h (heuristic quality); 120-200h (production quality — see estimation warnings below).
+This plan implements Sprint 6 — graph deepening and indexing optimization, **split into two sequential sub-sprints** following UT-8 review:
 
-> **ESTIMATION WARNING — SPRINT TOTAL**: The 68-101h estimate assumes lightweight heuristic implementations for N2c (community detection), N3-lite (contradiction detection), and R10 (entity extraction). If production-quality ML-adjacent implementations are required, the revised range is 120-200h. Confirm quality requirements before sprint start.
+- **Sprint 6a — Practical Improvements (33-51h, LOW risk)**: R7 (anchor-aware thinning), R16 (encoding-intent), S4 (hierarchy), T001d (weight_history), N3-lite (consolidation). Delivers value at any graph scale — no graph-density dependency.
+- **Sprint 6b — Graph Sophistication (37-53h heuristic, GATED)**: N2 (centrality/community detection), R10 (auto entity extraction). Entry gated on feasibility spike completion and graph density evidence.
+
+Sprint 7 depends on Sprint 6a (not full Sprint 6). Sprint 6b executes only if the feasibility spike demonstrates sufficient graph density for centrality algorithms to add value.
+
+> **ESTIMATION WARNING — SPRINT TOTAL**: Sprint 6a (33-51h) assumes lightweight heuristic implementations for N3-lite. Sprint 6b (37-53h heuristic, 80-150h production) is gated on feasibility spike. If production-quality ML-adjacent implementations are required for N2c and R10, the Sprint 6b range expands significantly. Confirm quality requirements before Sprint 6b entry.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -44,9 +49,9 @@ This plan implements Sprint 6 — graph deepening and indexing optimization. Two
 - [ ] Evaluation infrastructure operational (from Sprint 0)
 - [ ] Edge density measured (determines R10 gating)
 - [ ] Checkpoint created before sprint start
-- [ ] RECOMMENDED: Algorithm feasibility spike completed (see note below)
+- [ ] REQUIRED: Algorithm feasibility spike completed (see note below)
 
-> **RECOMMENDED PREREQUISITE — Algorithm Feasibility Spike (8-16h)**: Conduct during Sprint 4-5 to validate N2c, N3-lite, and R10 approaches on actual data before committing to Sprint 6 estimates. This spike should determine: (a) whether Louvain is appropriate at current graph density, or whether connected components suffices; (b) what heuristic level is sufficient for contradiction detection (cosine-only vs. NLI-assisted); (c) whether rule-based entity extraction meets the <20% FP threshold on a representative sample. Without this spike, the 68-101h estimate carries high uncertainty.
+> **REQUIRED PREREQUISITE — Algorithm Feasibility Spike (8-16h)**: Conduct during Sprint 4-5 to validate N2c, N3-lite, and R10 approaches on actual data before committing to Sprint 6b. This spike MUST determine: (a) whether Louvain is appropriate at current graph density, or whether connected components suffices; (b) what heuristic level is sufficient for contradiction detection (cosine-only vs. NLI-assisted); (c) whether rule-based entity extraction meets the <20% FP threshold on a representative sample. **Sprint 6b cannot begin without this spike completed.** Sprint 6a may proceed independently.
 
 ### Definition of Done
 - [ ] Sprint 6 exit gate passed — all requirements verified
@@ -62,19 +67,20 @@ This plan implements Sprint 6 — graph deepening and indexing optimization. Two
 ## 3. ARCHITECTURE
 
 ### Pattern
-Two parallel internal phases converging at sprint exit gate
+Two sequential sub-sprints: Sprint 6a (practical, no graph-scale dependency) → Sprint 6b (graph sophistication, gated on feasibility spike)
 
 ### Key Components
-- **Graph analysis module** (Phase A): Centrality algorithms (betweenness/PageRank), community detection, channel attribution scoring
-- **Consolidation module** (Phase A): N3-lite — weekly contradiction scan (~40 LOC), Hebbian edge strengthening (~20 LOC), staleness detection (~15 LOC)
-- **Indexing pipeline** (Phase B): R7 anchor-aware chunk thinning, R16 encoding-intent metadata capture
-- **Entity extraction module** (Phase B): R10 auto entity extraction with density gating and `created_by='auto'` tagging
-- **Spec-kit retrieval** (Phase B): S4 spec folder hierarchy traversal for structured retrieval
+- **Consolidation module** (Sprint 6a): N3-lite — weekly contradiction scan (~40 LOC), Hebbian edge strengthening (~20 LOC), staleness detection (~15 LOC)
+- **Weight audit** (Sprint 6a): T001d weight_history logging for Hebbian rollback
+- **Indexing pipeline** (Sprint 6a): R7 anchor-aware chunk thinning, R16 encoding-intent metadata capture
+- **Spec-kit retrieval** (Sprint 6a): S4 spec folder hierarchy traversal for structured retrieval
+- **Graph analysis module** (Sprint 6b, GATED): Centrality algorithms (degree-based), community detection, channel attribution scoring
+- **Entity extraction module** (Sprint 6b, GATED): R10 auto entity extraction with density gating and `created_by='auto'` tagging
 
 ### Data Flow
-1. **Phase A (Graph)**: N2 centrality/community → graph scoring enhancement → N3-lite consolidation (weekly batch)
-2. **Phase B (Indexing)**: R7 anchor-aware thinning → R16 intent capture → R10 entity extraction (if gated) → S4 hierarchy traversal
-3. **Convergence**: Both phases verified via Sprint 6 exit gate metrics
+1. **Sprint 6a**: T001d weight_history → N3-lite consolidation (weekly batch) | R7 anchor-aware thinning → R16 intent capture → S4 hierarchy traversal
+2. **Sprint 6b (GATED)**: N2 centrality/community → graph scoring enhancement | R10 entity extraction (if density gating met)
+3. **Exit**: Sprint 6a exit gate → Sprint 7 unblocked; Sprint 6b exit gate → optional additional graph value
 
 ### N3-lite Implementation Details
 1. **Contradiction scan** (weekly): Find memory pairs with similarity >0.85, check for conflicting conclusions (~40 LOC)
@@ -89,32 +95,45 @@ Two parallel internal phases converging at sprint exit gate
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase A: Graph (N2 + N3-lite) — 35-50h
-> **ESTIMATION WARNING — N2c**: Louvain/label propagation community detection on SQLite is research-grade. N2c listed at 12-15h; production quality requires 40-80h. Recommend evaluating connected-components heuristic first.
-> **ESTIMATION WARNING — R10**: Entity extraction at <20% FP rate is an ML challenge. 12-18h assumes rule-based heuristics; ML-based accuracy requires 30-50h.
-- [ ] N2 items 4-6: Implement graph centrality + community detection (25-35h)
-  - N2a (Graph Momentum): temporal degree delta over 7-day window. Reference: sliding window degree tracking, no external library needed.
-  - N2b (Causal Depth Signal): BFS/DFS max-depth traversal normalized by graph diameter. Reference: standard graph traversal.
-  - N2c (Community Detection): start with connected components (BFS, ~20 LOC); only escalate to Louvain if connected-components provides insufficient separation. Louvain reference: `igraph` Python binding or `communities` npm package if available; expect SQLite adjacency-list export as input.
-- [ ] N3-lite: Implement contradiction scan + Hebbian strengthening + staleness detection with edge caps (10-15h)
+### Sprint 6a: Practical Improvements (R7, R16, S4, T001d, N3-lite) — 33-51h
 
-### Phase B: Indexing + Spec-Kit (R7, R16, R10, S4) — 33-51h
+- [ ] T001d: weight_history audit tracking — log weight changes for N3-lite Hebbian modifications (2-3h)
+  - Dependency justification: REQUIRED before any N3-lite Hebbian cycle runs. Enables rollback independent of edge creation.
 - [ ] R7: Implement anchor-aware chunk thinning (10-15h)
   - Dependency justification: requires indexing pipeline from Sprint 5 refactor; thinning logic reads anchor metadata added in earlier sprints.
 - [ ] R16: Implement encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag (5-8h)
   - Dependency justification: extends index-time metadata; no blocking prerequisites beyond Sprint 5.
-- [ ] R10: Implement auto entity extraction behind `SPECKIT_AUTO_ENTITIES` flag — gated on density <1.0 (12-18h)
-  - Dependency justification: density gate requires Sprint 1 graph signal to be measured. Approach: rule-based noun-phrase extraction first (spaCy or `compromise` npm package); escalate to ML only if FP >20%.
 - [ ] S4: Implement spec folder hierarchy as retrieval structure (6-10h)
   - Dependency justification: requires spec folder metadata available from Sprint 0 indexing.
+- [ ] N3-lite: Implement contradiction scan + Hebbian strengthening + staleness detection with edge caps (10-15h) {T001d}
+  - N3-lite decomposed into T002a-T002e (see tasks.md) — each independently testable/deferrable.
+
+### Sprint 6b: Graph Sophistication (N2, R10) — 37-53h heuristic (GATED)
+
+> **Sprint 6b Entry Gates (ALL REQUIRED):**
+> 1. Feasibility spike completed (8-16h)
+> 2. OQ-S6-001 resolved (edge density documented)
+> 3. OQ-S6-002 resolved (centrality algorithm selected with evidence)
+> 4. REQ-S6-004 revisited (10% mandate removed or density-conditioned if graph is thin)
+
+> **ESTIMATION WARNING — N2c**: Louvain/label propagation community detection on SQLite is research-grade. N2c listed at 12-15h; production quality requires 40-80h. Recommend evaluating connected-components heuristic first.
+> **ESTIMATION WARNING — R10**: Entity extraction at <20% FP rate is an ML challenge. 12-18h assumes rule-based heuristics; ML-based accuracy requires 30-50h.
+
+- [ ] N2 items 4-6: Implement graph centrality + community detection (25-35h)
+  - N2a (Graph Momentum): temporal degree delta over 7-day window. Reference: sliding window degree tracking, no external library needed.
+  - N2b (Causal Depth Signal): BFS/DFS max-depth traversal normalized by graph diameter. Reference: standard graph traversal.
+  - N2c (Community Detection): start with connected components (BFS, ~20 LOC); only escalate to Louvain if connected-components provides insufficient separation. Louvain reference: `igraph` Python binding or `communities` npm package if available; expect SQLite adjacency-list export as input.
+- [ ] R10: Implement auto entity extraction behind `SPECKIT_AUTO_ENTITIES` flag — gated on density <1.0 (12-18h)
+  - Dependency justification: density gate requires Sprint 1 graph signal to be measured. Approach: rule-based noun-phrase extraction first (spaCy or `compromise` npm package); escalate to ML only if FP >20%.
 
 ### R10 Gating
 - Only implement if Sprint 1 exit showed edge density <1.0 edges/node
 - If density >=1.0, skip R10 and document decision
 
-### Phase Parallelization
-- Phase A and Phase B may run in parallel — no dependencies between them
-- Phase A operates on graph subsystem only; Phase B operates on indexing/retrieval
+### Sprint Sequencing
+- Sprint 6a and Sprint 6b are **sequential** — Sprint 6b cannot start until Sprint 6a exit gate passes AND Sprint 6b entry gates are satisfied
+- Sprint 7 depends on Sprint 6a exit gate (not Sprint 6b)
+- Sprint 6b may be deferred entirely if feasibility spike shows insufficient graph density
 <!-- /ANCHOR:phases -->
 
 ---
@@ -165,24 +184,27 @@ Two parallel internal phases converging at sprint exit gate
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase A (Graph) ──────────────────────┐
-  N2 centrality/community (25-35h)   │
-  N3-lite consolidation (10-15h)     ├──► Sprint 6 Exit Gate
-                                      │
-Phase B (Indexing + Spec-Kit) ────────┘
-  R7 (10-15h) ─┐
-  R16 (5-8h) ──┤── all parallelizable
-  R10 (12-18h) ┤
-  S4 (6-10h) ──┘
+Sprint 6a (Practical) ──────────────────────────┐
+  T001d weight_history (2-3h)                   │
+  R7 (10-15h) ─┐                               │
+  R16 (5-8h) ──┤── parallelizable              ├──► Sprint 6a Exit Gate ──► Sprint 7
+  S4 (6-10h) ──┘                               │
+  N3-lite (10-15h) {T001d}                      │
+                                                 │
+Sprint 6b (Graph, GATED) ──────────────────────  │
+  [GATE: feasibility spike + OQ-S6-001/002]     │
+  N2 centrality/community (25-35h)              ├──► Sprint 6b Exit Gate
+  R10 entity extraction (12-18h)                │
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Phase A (Graph) | Sprint 5 exit gate | Sprint 6 exit gate |
-| Phase B (Indexing + Spec-Kit) | Sprint 5 exit gate | Sprint 6 exit gate |
-| Sprint 6 Exit Gate | Phase A, Phase B | Sprint 7 (next sprint) |
+| Sprint 6a | Sprint 5 exit gate | Sprint 6a exit gate |
+| Sprint 6a Exit Gate | All Sprint 6a tasks | Sprint 7, Sprint 6b entry |
+| Sprint 6b | Sprint 6a exit gate + feasibility spike + OQ-S6-001/002 resolved | Sprint 6b exit gate |
+| Sprint 6b Exit Gate | All Sprint 6b tasks | None (optional additional value) |
 
-**Note**: Phase A and Phase B are independent — they can execute in parallel. Items within Phase B are also parallelizable.
+**Note**: Sprint 6a and Sprint 6b are **sequential**. Items within Sprint 6a (R7, R16, S4) are parallelizable. Sprint 7 depends only on Sprint 6a exit gate.
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -190,18 +212,27 @@ Phase B (Indexing + Spec-Kit) ────────┘
 <!-- ANCHOR:effort -->
 ## L2: EFFORT ESTIMATION
 
-| Phase | Complexity | Estimated Effort | Production-Quality Risk |
-|-------|------------|------------------|------------------------|
-| Phase A: N2 (items 4-6) | High | 25-35h | N2c: up to 80h if Louvain required |
-| Phase A: N3-lite | Medium | 10-15h | Contradiction: 3-5x if semantic NLI |
-| Phase B: R7 | Medium | 10-15h | Low risk |
-| Phase B: R16 | Low | 5-8h | Low risk |
-| Phase B: R10 (gated) | Medium-High | 12-18h | 30-50h if ML-based NER |
-| Phase B: S4 | Low-Medium | 6-10h | Low risk |
-| **Total (heuristic)** | | **68-101h** | |
-| **Total (production)** | | **120-200h** | If N2c + N3-lite + R10 require ML |
+### Sprint 6a Effort
 
-**Note**: Checkpoint recommended before this sprint due to HIGH rollback difficulty. Confirm quality tier (heuristic vs. production) at sprint planning.
+| Component | Complexity | Estimated Effort | Production-Quality Risk |
+|-----------|------------|------------------|------------------------|
+| T001d: weight_history | Low | 2-3h | Low risk |
+| R7: Anchor-aware thinning | Medium | 10-15h | Low risk |
+| R16: Encoding-intent | Low | 5-8h | Low risk |
+| S4: Spec folder hierarchy | Low-Medium | 6-10h | Low risk |
+| N3-lite: Consolidation | Medium | 10-15h | Contradiction: 3-5x if semantic NLI |
+| **Sprint 6a Total** | | **33-51h** | |
+
+### Sprint 6b Effort (GATED)
+
+| Component | Complexity | Estimated Effort | Production-Quality Risk |
+|-----------|------------|------------------|------------------------|
+| N2 (items 4-6): Centrality + community | High | 25-35h | N2c: up to 80h if Louvain required |
+| R10: Entity extraction (gated) | Medium-High | 12-18h | 30-50h if ML-based NER |
+| **Sprint 6b Total (heuristic)** | | **37-53h** | |
+| **Sprint 6b Total (production)** | | **80-150h** | If N2c + R10 require ML |
+
+**Note**: Checkpoint recommended before sprint start due to HIGH rollback difficulty. Sprint 6a may proceed immediately. Sprint 6b requires feasibility spike and quality tier confirmation (heuristic vs. production) before entry.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -256,6 +287,7 @@ Research evidence: See research documents `9 - analysis-pageindex-systems-archit
 LEVEL 2 PLAN — Phase 7 of 8
 - Core + L2 addendums (Phase Dependencies, Effort, Enhanced Rollback)
 - Sprint 6: Graph deepening + indexing optimization
-- Two parallel internal phases: Phase A (Graph) + Phase B (Indexing + Spec-Kit)
+- Split into Sprint 6a (33-51h, LOW risk) + Sprint 6b (37-53h, GATED on feasibility spike)
+- UT-8 amendments: feasibility spike promoted to REQUIRED, phases restructured as sequential sub-sprints
 - HIGH rollback difficulty — checkpoint recommended
 -->
