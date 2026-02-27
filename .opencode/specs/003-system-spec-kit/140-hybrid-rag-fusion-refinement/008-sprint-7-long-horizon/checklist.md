@@ -31,8 +31,10 @@ contextType: "implementation"
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Sprint 6 exit gate verified — graph deepening complete
-- [ ] CHK-002 [P1] Gating criteria measured: memory count (R8), latency/dimensions (R5)
-- [ ] CHK-003 [P1] Prior sprint feature flags inventoried for sunset audit
+- [ ] CHK-002 [P1] Scale gate measured for R8: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — result documented; R8 activates only if result >5K
+- [ ] CHK-002a [P1] "5K memories" definition confirmed: active (non-archived) memories with embeddings only — draft and archived do not count
+- [ ] CHK-003 [P1] Gating criteria measured: search latency p95 and embedding dimensions for R5
+- [ ] CHK-004 [P1] Prior sprint feature flags inventoried for sunset audit — evidence: flag inventory list
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -40,12 +42,13 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P2] R13-S3 full reporting dashboard implemented
-- [ ] CHK-011 [P2] R13-S3 ablation study framework functional
-- [ ] CHK-012 [P3] R8 gating condition correctly evaluated (>5K memories)
-- [ ] CHK-013 [P3] S1 content extraction improvements implemented
-- [ ] CHK-014 [P3] S5 entity linking coordinates with R10 output
-- [ ] CHK-015 [P3] R5 decision documented with measured activation criteria
+- [ ] CHK-010 [P2] R13-S3 full reporting dashboard implemented — evidence: dashboard renders per-sprint and per-channel metrics
+- [ ] CHK-011 [P2] R13-S3 ablation study framework functional — evidence: ablation run shows per-channel Recall@20 delta
+- [ ] CHK-012 [P3] R8 gating condition correctly evaluated (>5K active memories with embeddings) — evidence: scale gate query result matches implementation gate check
+- [ ] CHK-012a [P3] R8 latency impact validated: p95 search latency remains <500ms with pre-filter enabled — evidence: latency measurement before/after
+- [ ] CHK-013 [P3] S1 content extraction improvements implemented — evidence: >=10 before/after content samples reviewed; >=8/10 show improvement
+- [ ] CHK-014 [P3] S5 entity linking coordinates with R10 output — evidence: only verified entities (FP <20%) included in cross-document links
+- [ ] CHK-015 [P3] R5 decision documented with measured activation criteria — evidence: memory count, latency, dimensions recorded with go/no-go decision
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -98,14 +101,16 @@ contextType: "implementation"
 
 > **Note:** Sprint 7 is entirely optional (P2/P3 gated). The true program completion gate is Sprint 6 (graph deepening). Sprint 7 items activate only when gating criteria are met (>5K memories for R8, activation thresholds for R5). R13-S3 full reporting is the capstone of the evaluation infrastructure established in Sprint 1.
 
-- [ ] CHK-060 [P1] R13-S3 full reporting operational — capstone of Sprint 1 eval infrastructure
-- [ ] CHK-061 [P1] R13-S3 ablation study framework functional — required for program-level attribution reporting
-- [ ] CHK-062 [P2] R8 gating verified: only implemented if >5K memories
-- [ ] CHK-063 [P2] S1 content generation quality improved (manual review)
-- [ ] CHK-064 [P2] S5 entity links established across documents
-- [ ] CHK-065 [P2] R5 decision documented with activation criteria
-- [ ] CHK-066 [P2] Program completion: all health dashboard targets reviewed
-- [ ] CHK-067 [P2] Final feature flag audit: sunset all sprint-specific flags
+- [ ] CHK-060 [P1] R13-S3 full reporting operational — capstone of Sprint 1 eval infrastructure; evidence: test run shows per-sprint metrics
+- [ ] CHK-061 [P1] R13-S3 ablation study framework functional — evidence: test ablation isolates >=1 channel contribution
+- [ ] CHK-062 [P2] R8 gating verified: only implemented if >5K active memories with embeddings — evidence: scale gate query result documented
+- [ ] CHK-062a [P2] R8 latency constraint verified: p95 <500ms with pre-filter active — evidence: measured latency values
+- [ ] CHK-063 [P2] S1 content generation quality improved (manual review of >=10 samples) — evidence: before/after comparison documented
+- [ ] CHK-064 [P2] S5 entity links established across documents — evidence: >=3 cross-document links in integration test
+- [ ] CHK-065 [P2] R5 decision documented with measured activation criteria (memory count, latency, dimensions) — evidence: decision doc with values
+- [ ] CHK-066 [P2] Program completion: all health dashboard targets reviewed — evidence: dashboard screenshot or metric summary
+- [ ] CHK-067 [P2] Feature flag sunset audit: all sprint-specific flags (Sprints 0-7) inventoried; temporary flags retired or justified — evidence: final flag inventory list with survivor justifications
+- [ ] CHK-067a [P2] Zero sprint-specific temporary flags active at program completion — evidence: final flag count confirmed
 
 ---
 
@@ -125,9 +130,9 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 1 | [ ]/1 |
-| P1 Items | 8 | [ ]/8 |
-| P2 Items | 14 | [ ]/14 |
-| P3 Items | 10 | [ ]/10 |
+| P1 Items | 10 | [ ]/10 |
+| P2 Items | 18 | [ ]/18 |
+| P3 Items | 9 | [ ]/9 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

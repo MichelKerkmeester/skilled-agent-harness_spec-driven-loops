@@ -37,6 +37,18 @@ contextType: "implementation"
 
 - [ ] T001 Create checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")` [0h]
 - [ ] T002 Implement 4-stage pipeline refactor — Stage 1 (Candidate Gen), Stage 2 (Fusion + Signal Integration), Stage 3 (Rerank + Aggregate), Stage 4 (Filter + Annotate — NO score changes), behind `SPECKIT_PIPELINE_V2` flag [40-55h] {T001} — R6
+
+> **F9 — RECOMMENDED: Decompose T002 (R6) into 5-8 subtasks** (R6 is a 40-55h single task; decomposition reduces integration risk and enables incremental verification):
+>
+> - **T002a** [5-8h]: Stage architecture definition — define TypeScript interfaces for each stage's input/output types; enforce Stage 4 immutability via type-level constraint or runtime assertion
+> - **T002b** [6-9h]: Stage 1 implementation — Candidate generation; migrate 5-channel parallel execution into Stage 1 boundary; preserve existing channel behavior exactly
+> - **T002c** [8-12h]: Stage 2 implementation — Fusion + Signal Integration; consolidate all scoring signals (RRF/RSF, causal boost, co-activation, composite, intent weights) into single application point; verify G2 cannot recur
+> - **T002d** [6-9h]: Stage 3 implementation — Rerank + Aggregate; migrate cross-encoder, MMR, MPAB into Stage 3; MPAB must remain after RRF (preserve Sprint 4 pipeline position)
+> - **T002e** [5-8h]: Stage 4 implementation — Filter + Annotate; migrate state filter, session dedup, constitutional injection, channel attribution; add Stage 4 invariant guard (assert no score mutation)
+> - **T002f** [5-8h]: Integration + backward compatibility; wire all 4 stages behind `SPECKIT_PIPELINE_V2` flag; old pipeline remains when flag is OFF
+> - **T002g** [3-5h]: Feature flag interaction testing — verify all 10+ accumulated flags (Sprint 0-5) work correctly under PIPELINE_V2; flags: SPECKIT_COMPLEXITY_ROUTER, RSF_FUSION, CHANNEL_MIN_REP, DOCSCORE_AGGREGATION, LEARN_FROM_SELECTION, SAVE_QUALITY_GATE, RECONSOLIDATION, PIPELINE_V2, EMBEDDING_EXPANSION + any from prior sprints
+> - **T002h** [2-4h]: Dark-run verification — 0 ordering differences vs full eval corpus; this gate MUST pass before Phase B begins
+
 - [ ] T003 Verify R6 dark-run: 0 ordering differences on full eval corpus [included] {T002}
 - [ ] T004 Verify all 158+ tests pass with `SPECKIT_PIPELINE_V2` enabled [included] {T002}
 <!-- /ANCHOR:phase-a -->

@@ -30,6 +30,8 @@ contextType: "implementation"
 ### Overview
 
 This plan implements Sprint 7 — the final sprint addressing scale-dependent features and evaluation completion. All items are parallelizable with no internal dependencies: R8 memory summaries (gated on >5K memories), S1 smarter content generation, S5 cross-document entity linking, R13-S3 full reporting + ablation studies, and R5 INT8 quantization evaluation. Total effort: 45-62h.
+
+> **GATING AND OPTIONALITY NOTE**: Sprint 7 is entirely P2/P3 priority and gated on >5K active memories with embeddings (current system estimate: <2K). All items are optional and should only be pursued if Sprint 0-6 metrics demonstrate clear need. R8 (PageIndex integration) is particularly conditional — the tree-navigation approach must be validated against the 500ms p95 latency hard limit before any R8 implementation begins. Do not plan Sprint 7 capacity unless scale thresholds are confirmed.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -40,7 +42,8 @@ This plan implements Sprint 7 — the final sprint addressing scale-dependent fe
 ### Definition of Ready
 - [ ] Sprint 6 graph deepening complete and exit gate passed
 - [ ] Evaluation infrastructure fully operational (Sprint 0 + Sprint 4 enhancements)
-- [ ] Memory count, search latency, and embedding dimensions measured for gating decisions
+- [ ] Memory count confirmed: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — R8 activates only if result >5K
+- [ ] Search latency and embedding dimensions measured for R5 gating decisions
 - [ ] All prior sprint feature flags inventoried for sunset audit
 
 ### Definition of Done
@@ -87,11 +90,15 @@ Independent parallel items — no internal dependencies
 
 All items are parallelizable — no dependencies between them.
 
-### R8: Memory Summary Generation (gated on >5K memories) — 15-20h
-- [ ] Design summary generation algorithm
+### R8: Memory Summary Generation (gated on >5K active memories with embeddings) — 15-20h
+> **Prerequisite**: Confirm scale gate before any implementation. Run `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`. If result <5K, document skip decision and do not proceed.
+> **Risk note**: PageIndex tree-navigation must be validated against 500ms p95 latency limit before integration. Measure latency impact on a representative corpus before enabling `SPECKIT_MEMORY_SUMMARIES`.
+- [ ] Confirm scale gate (memory count query above)
+- [ ] Design summary generation algorithm (extractive summarization or TF-IDF key-sentence extraction)
 - [ ] Implement summary generation module
-- [ ] Integrate pre-filter into search pipeline
-- [ ] Gate: Skip if <5K memories — document decision
+- [ ] Validate pre-filter latency: p95 must remain <500ms
+- [ ] Integrate pre-filter into search pipeline (only if latency constraint met)
+- [ ] Gate: Skip if <5K memories — document decision with query result
 
 ### S1: Smarter Content Generation — 8-12h
 - [ ] Analyze current markdown-to-content conversion limitations
@@ -111,8 +118,14 @@ All items are parallelizable — no dependencies between them.
 ### R5: INT8 Quantization Evaluation — 2h
 - [ ] Measure current memory count, search latency, embedding dimensions
 - [ ] Evaluate against activation criteria (>10K memories OR >50ms latency OR >1536 dimensions)
-- [ ] Document decision with rationale
-- [ ] If criteria met: implement using custom quantized BLOB (not `vec_quantize_i8`)
+- [ ] Document decision with rationale (even if criteria NOT met — document the measurements)
+- [ ] If criteria met: implement using custom quantized BLOB (not `vec_quantize_i8`); preserve original float vectors before quantization
+
+### Final Feature Flag Sunset — included in R13-S3 or standalone
+> **Flag sunset prerequisite**: Before program completion, inventory all feature flags from Sprints 0-7. Retire or consolidate flags that are no longer needed. Document survivors with justification. Target: zero sprint-specific temporary flags at program completion.
+- [ ] Inventory all active flags across Sprints 0-7
+- [ ] Retire or consolidate flags with no ongoing purpose
+- [ ] Document final flag list with justification for each survivor
 <!-- /ANCHOR:phases -->
 
 ---

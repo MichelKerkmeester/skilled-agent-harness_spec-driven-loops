@@ -113,6 +113,7 @@ contextType: "implementation"
 - [ ] CHK-061 [P1] Off-ramp evaluated: constitutional accuracy >= 95%
 - [ ] CHK-062 [P1] Off-ramp evaluated: cold-start recall >= 90%
 - [ ] CHK-063 [P1] Off-ramp decision documented (continue or stop)
+- [ ] CHK-064 [P1] **Sprint 2+3 hard scope cap**: If off-ramp thresholds met, Sprint 4-7 require NEW spec approval. Decision documented with metric evidence from Sprint 0-3 actuals.
 <!-- /ANCHOR:off-ramp -->
 
 ---
@@ -123,6 +124,12 @@ contextType: "implementation"
 - [ ] CHK-070 [P1] Spec/plan/tasks synchronized
 - [ ] CHK-071 [P1] Code comments adequate
 - [ ] CHK-072 [P1] Feature flags documented
+
+## Feature Flag Audit
+
+- [ ] CHK-073 [P1] **Feature flag count**: Active feature flag count at Sprint 3 exit is ≤6. Evidence: list active flags and count.
+  - Expected at Sprint 3 exit: `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` (plus up to 3 from prior sprints)
+- [ ] CHK-074 [P1] **Flag sunset decisions documented**: Any flag retired or consolidated has metric evidence supporting the decision recorded.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -143,7 +150,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | [ ]/7 |
-| P1 Items | 21 | [ ]/21 |
+| P1 Items | 24 | [ ]/24 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

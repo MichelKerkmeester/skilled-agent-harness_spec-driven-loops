@@ -110,6 +110,9 @@ Pipeline extension — classifier stage prepended to existing pipeline; RSF runs
 - [ ] Document RSF decision (tau <0.4 = reject RSF)
 - [ ] Run off-ramp evaluation (MRR@5, constitutional, cold-start)
 - [ ] Sprint 3 exit gate verification
+- [ ] **Evaluate hard scope cap**: Record Sprint 0-3 actual metric values and effort actuals. If off-ramp thresholds met, document STOP decision. If continuing, document with (a) measured deficiencies, (b) updated effort estimates, (c) ROI assessment.
+
+> **HARD SCOPE CAP — Sprint 2+3 Off-Ramp**: Sprints 4-7 require NEW spec approval based on demonstrated need from Sprint 0-3 metrics. Approval must include: (a) evidence remaining work addresses measured deficiencies, (b) updated effort estimates based on Sprint 0-3 actuals, (c) ROI assessment. Default decision after Sprint 3 is STOP unless thresholds are NOT met.
 <!-- /ANCHOR:phases -->
 
 ---

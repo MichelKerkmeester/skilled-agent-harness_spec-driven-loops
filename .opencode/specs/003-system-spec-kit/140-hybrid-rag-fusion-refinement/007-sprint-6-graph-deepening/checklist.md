@@ -41,12 +41,13 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P2] R7 anchor-aware chunk thinning logic implemented and tested
-- [ ] CHK-011 [P2] R16 encoding-intent capture behind feature flag
-- [ ] CHK-012 [P2] R10 density gating condition correctly evaluated
-- [ ] CHK-013 [P2] N2 centrality + community detection algorithms correct
-- [ ] CHK-014 [P1] N3-lite edge bounds enforced in code: MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
-- [ ] CHK-015 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges
+- [ ] CHK-010 [P2] R7 anchor-aware chunk thinning logic implemented and tested — evidence: unit test covers anchor-present vs. anchor-absent chunk scoring
+- [ ] CHK-011 [P2] R16 encoding-intent capture behind feature flag — evidence: `encoding_intent` field visible in memory record when `SPECKIT_ENCODING_INTENT=true`
+- [ ] CHK-012 [P2] R10 density gating condition correctly evaluated — evidence: density measurement result documented; skip or proceed decision recorded
+- [ ] CHK-013 [P2] N2 centrality + community detection algorithms correct — evidence: N2c community assignments stable across 2 runs on same test graph; log cluster sizes
+- [ ] CHK-013a [P2] N2c algorithm choice documented: connected-components or Louvain? Justification recorded with graph density data — evidence: decision doc in scratch/ or spec comment
+- [ ] CHK-014 [P1] N3-lite edge bounds enforced in code: MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle — evidence: unit test verifies rejection of 21st auto-edge
+- [ ] CHK-015 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges — evidence: SQL query `SELECT COUNT(*) FROM causal_edges WHERE created_by='auto'` returns expected count
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -54,13 +55,14 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P2] R7 Recall@20 within 10% of baseline
-- [ ] CHK-021 [P2] R10 false positive rate <20% on manual review
-- [ ] CHK-022 [P2] R10 gating verified: only implemented if density <1.0
-- [ ] CHK-023 [P2] N2 graph channel attribution >10% of final top-K
-- [ ] CHK-024 [P2] N3-lite contradiction scan identifies at least 1 known contradiction
-- [ ] CHK-025 [P2] 12-18 new tests added and passing
-- [ ] CHK-026 [P1] All existing tests still pass after all changes
+- [ ] CHK-020 [P2] R7 Recall@20 within 10% of baseline — evidence: eval output showing pre/post Recall@20 scores (task: T003)
+- [ ] CHK-021 [P2] R10 false positive rate <20% on manual review of >=50 entities — evidence: review spreadsheet or audit log with entity sample (task: T005)
+- [ ] CHK-022 [P2] R10 gating verified: only implemented if density <1.0 — evidence: density measurement documented; if density >=1.0 record skip decision
+- [ ] CHK-023 [P2] N2 graph channel attribution >10% of final top-K — evidence: attribution report from eval run showing graph channel contribution percentage (task: T001)
+- [ ] CHK-023a [P2] N2c community detection produces stable clusters on test data — evidence: 2 consecutive runs yield <5% membership divergence on same graph (task: T001c)
+- [ ] CHK-024 [P2] N3-lite contradiction scan identifies at least 1 known contradiction — evidence: test data includes manually seeded contradicting memory pair; scan output shows detection (task: T002)
+- [ ] CHK-025 [P2] 12-18 new tests added and passing — evidence: test count in Vitest output
+- [ ] CHK-026 [P1] All existing tests still pass after all changes — evidence: full Vitest suite run with 0 failures
 <!-- /ANCHOR:testing -->
 
 ---
@@ -97,13 +99,14 @@ contextType: "implementation"
 
 ## Sprint 6 Exit Gate
 
-- [ ] CHK-060 [P1] R7 Recall@20 within 10% of baseline — verified via eval metrics
-- [ ] CHK-061 [P1] R10 false positive rate <20% — verified via manual review (if implemented)
-- [ ] CHK-062 [P1] N2 graph channel attribution >10% — verified via eval attribution data
-- [ ] CHK-063 [P1] N3-lite contradiction detection functional — verified via test data
-- [ ] CHK-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle
-- [ ] CHK-065 [P1] Active feature flag count <=6 (sunset audit if exceeded)
-- [ ] CHK-066 [P1] All health dashboard targets checked
+- [ ] CHK-060 [P1] R7 Recall@20 within 10% of baseline — verified via eval metrics; evidence: before/after recall scores recorded
+- [ ] CHK-061 [P1] R10 false positive rate <20% — verified via manual review of >=50 entity sample (if implemented)
+- [ ] CHK-062 [P1] N2 graph channel attribution >10% — verified via eval attribution data; evidence: attribution percentage in eval output
+- [ ] CHK-063 [P1] N3-lite contradiction detection functional — verified via manually seeded test pair in curated test data
+- [ ] CHK-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle; evidence: unit test for boundary rejection
+- [ ] CHK-065 [P1] Feature flag sunset audit: list all active flags, retire any no longer needed, document survivors — evidence: flag inventory table in scratch/ or implementation-summary
+- [ ] CHK-065a [P1] Active feature flag count <=6 post-audit — evidence: final flag list with count
+- [ ] CHK-066 [P1] All health dashboard targets checked — evidence: dashboard screenshot or metric summary
 
 ---
 
@@ -123,8 +126,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 2 | [ ]/2 |
-| P1 Items | 16 | [ ]/16 |
-| P2 Items | 15 | [ ]/15 |
+| P1 Items | 18 | [ ]/18 |
+| P2 Items | 17 | [ ]/17 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

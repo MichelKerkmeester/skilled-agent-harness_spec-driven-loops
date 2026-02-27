@@ -31,7 +31,7 @@ contextType: "implementation"
 | **Phase** | 1 of 8 |
 | **Predecessor** | None (first phase) |
 | **Successor** | ../002-sprint-1-graph-signal-activation/ |
-| **Handoff Criteria** | Sprint 0 exit gate — graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded, baseline metrics for 50+ queries |
+| **Handoff Criteria** | Sprint 0 exit gate — graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded, baseline metrics for 50+ queries with diversity requirement (>=5 per intent type, >=3 complexity tiers), active feature flags <=6 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -112,10 +112,10 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S0-001 | **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry |
-| REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode |
+| REQ-S0-001 | **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry; verified at BOTH locations in `graph-search-fn.ts` (lines ~110 AND ~151); cross-ref: CHK-010, T001 |
+| REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode; tested via both `includeContent=true` and `includeContent=false` paths; cross-ref: CHK-011, T002 |
 | REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed for at least 50 queries. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational for automated regression. |
-| REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid |
+| REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid. Ground truth corpus satisfies diversity requirement: >=5 queries per intent type, >=3 query complexity tiers (see Exit Gate: Ground Truth Diversification). |
 
 ### P0 - Blockers (MUST complete) — Additional
 
@@ -140,6 +140,12 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 - **SC-003**: Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics computed and stored for 50+ queries
 - **SC-004**: BM25 baseline MRR@5 recorded; BM25 contingency decision made
 - **SC-005**: Sprint 0 exit gate — all 4 P0 requirements verified
+
+### Exit Gate: Ground Truth Diversification (HARD REQUIREMENT)
+
+Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries, temporal queries, cross-document queries, and hard negatives. Minimum: >=5 queries per intent type (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision), >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document). The 50-query minimum for baseline metrics (SC-003) MUST satisfy this diversity requirement — it is a HARD gate criterion, not merely a risk mitigation.
+
+**Rationale**: Without query diversity, baseline metrics may be artificially inflated by easy, homogeneous queries that do not stress the retrieval pipeline's weak points (graph traversal, temporal reasoning, cross-spec resolution). This elevates risk mitigation R-011 to a hard exit gate.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -211,6 +217,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 - **OQ-S0-001**: What is the actual edge count in the graph after G1 fix? Will determine if Sprint 1 R4 has meaningful data to work with.
 - **OQ-S0-002**: Synthetic ground truth quality — are trigger phrases sufficient for initial baseline, or do we need manual relevance annotations?
+- **OQ-S0-003**: G-NEW-2 pre-analysis — what agent consumption patterns dominate in practice? Findings may reshape ground truth query design for representativeness.
 <!-- /ANCHOR:questions -->
 
 ---

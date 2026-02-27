@@ -80,9 +80,9 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Degree Computation
-- [ ] Implement typed-weighted degree SQL query against `causal_edges` table (4-5h)
-- [ ] Add TypeScript normalization + capping logic (2-3h)
-- [ ] Implement degree cache with mutation-triggered invalidation (2-3h)
+- [ ] Implement typed-weighted degree SQL query against `causal_edges` table (4-5h) — WHY: Graph structural connectivity is the most orthogonal signal available (low correlation with vector/FTS5). **Risk**: Sparse graph may yield minimal differentiation; acceptable if R4 returns zero for unconnected memories.
+- [ ] Add TypeScript normalization + capping logic (2-3h) — WHY: Raw degree values vary by orders of magnitude; log normalization + cap prevents degree from dominating RRF fusion.
+- [ ] Implement degree cache with mutation-triggered invalidation (2-3h) — WHY: Degree computation involves SQL aggregation over `causal_edges`; per-query execution is too expensive (>10ms budget). Cache amortizes cost across queries between graph mutations.
 
 ### Phase 2: RRF Integration
 - [ ] Integrate degree as 5th channel in `rrf-fusion.ts` behind `SPECKIT_DEGREE_BOOST` flag (2-3h)
@@ -136,8 +136,9 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Sprint 0 exit gate | Internal | Pending | Cannot start Sprint 1 |
-| R13-S1 eval infrastructure | Internal | Pending (Sprint 0) | Cannot measure dark-run results |
+| Sprint 0 exit gate | Internal | Pending | Cannot start Sprint 1 — WHY: Graph channel must be functional (G1) and eval infrastructure (R13-S1) must be operational before degree scoring can be measured |
+| R13-S1 eval infrastructure | Internal | Pending (Sprint 0) | Cannot measure dark-run results — WHY: R4 dark-run comparison requires baseline metrics and eval logging from Sprint 0 |
+| Sprint 2 (parallel) | Internal | Pending | **No dependency** — Sprint 1 and Sprint 2 can execute in parallel after Sprint 0. Sprint 2's scope (R18, N4, G2, normalization) has zero technical dependency on Sprint 1 deliverables (R4, edge density). Parallel execution saves 3-5 weeks on critical path. |
 | `causal_edges` table | Internal | Green | Already exists; G1 fix makes it queryable |
 | Feature flag system | Internal | Green | Env var based — `SPECKIT_DEGREE_BOOST` |
 <!-- /ANCHOR:dependencies -->
@@ -171,7 +172,9 @@ Phase 4 (Agent UX) ────────────────────�
 | Phase 2 (RRF Integration) | Phase 1 | Phase 5 |
 | Phase 3 (Measurement) | Sprint 0 gate | Phase 5 |
 | Phase 4 (Agent UX) | Sprint 0 gate | Phase 5 |
-| Phase 5 (Dark-Run) | Phase 2, Phase 3, Phase 4 | Sprint 2 (next sprint) |
+| Phase 5 (Dark-Run) | Phase 2, Phase 3, Phase 4 | Sprint 2 (next sprint — can run in parallel) |
+
+**Cross-Sprint Parallelization**: Sprint 2 can begin immediately after Sprint 0 exit gate, in parallel with Sprint 1. Sprint 2's deliverables (R18, N4, G2, score normalization) have zero technical dependency on Sprint 1's outputs. The sole coordination point is that Sprint 2's score normalization should incorporate R4 degree scores if Sprint 1 completes first. Parallel execution saves 3-5 weeks on critical path.
 <!-- /ANCHOR:phase-deps -->
 
 ---

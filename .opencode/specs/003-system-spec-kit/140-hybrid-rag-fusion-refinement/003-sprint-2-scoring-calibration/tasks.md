@@ -35,10 +35,11 @@ contextType: "implementation"
 ## Phase 1: Embedding Cache (R18)
 
 - [ ] T001 [P] Create `embedding_cache` table with migration — schema: `content_hash TEXT, model_id TEXT, embedding BLOB, dimensions INT, created_at TEXT, last_used_at TEXT, PRIMARY KEY (content_hash, model_id)` [8-12h] — R18 (REQ-S2-001)
-  - [ ] T001a Create table migration with backup protocol
-  - [ ] T001b Implement cache lookup logic in embedding pipeline
-  - [ ] T001c Implement cache store logic on embedding generation
-  - [ ] T001d Add `last_used_at` update for cache eviction support
+  - [ ] T001a Create table migration with backup protocol — Implementation hint: Use `db.exec('CREATE TABLE IF NOT EXISTS embedding_cache ...')` pattern from existing migrations in `db.ts`
+  - [ ] T001b Implement cache lookup logic in embedding pipeline — Implementation hint: Check `SELECT embedding FROM embedding_cache WHERE content_hash = ? AND model_id = ?` before calling embedding API; update `last_used_at` on hit
+  - [ ] T001c Implement cache store logic on embedding generation — Implementation hint: After successful embedding generation, `INSERT OR REPLACE INTO embedding_cache ...`
+  - [ ] T001d Add `last_used_at` update for cache eviction support — Enables future LRU eviction; `UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?`
+  - Acceptance: Cache hit rate >90% on re-index of unchanged content; cache lookup adds <1ms p95; model_id change triggers cache miss (correct behavior)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -50,6 +51,9 @@ contextType: "implementation"
   - Formula: `boost = 0.15 * exp(-elapsed_hours / 12)`
   - Applied BEFORE FSRS temporal decay
   - Combined score cap at 0.95
+  - Acceptance: Boost at 0h = 0.15, at 12h = ~0.055, at 24h = ~0.020, at 48h = ~0.003 (effectively zero); dark-run passes
+  - Implementation hint: In `composite-scoring.ts`, compute `elapsed_hours = (Date.now() - created_at_ms) / 3600000`; apply boost only when `process.env.SPECKIT_NOVELTY_BOOST === 'true'` and `elapsed_hours < 48`
+  - Verify: No conflict with FSRS — N4 modifies composite score, FSRS modifies temporal weight; they are additive, not multiplicative
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -58,9 +62,9 @@ contextType: "implementation"
 ## Phase 3: G2 Investigation + Normalization
 
 - [ ] T003 [P] Investigate double intent weighting — trace intent weight application through full pipeline (`hybrid-search.ts`) [4-6h] — G2 (REQ-S2-003)
-  - [ ] T003a Identify all locations where intent weights are applied
-  - [ ] T003b Determine: bug or intentional design
-  - [ ] T003c If bug: fix. If intentional: document rationale
+  - [ ] T003a Identify all locations where intent weights are applied — Implementation hint: Search for `intent` weight application in 3 files: `hybrid-search.ts`, `intent-classifier.ts`, `adaptive-fusion.ts`. Trace the data flow from classification through to final scoring.
+  - [ ] T003b Determine: bug or intentional design — Decision criteria: If weights are applied once in classification AND once in fusion, it is likely a bug (double-counting). If applied in classification for channel selection AND in fusion for score weighting (different purposes), it may be intentional.
+  - [ ] T003c If bug: fix. If intentional: document rationale — Either way, dark-run comparison before/after to verify no MRR@5 regression
 - [ ] T004 Implement score normalization — both RRF and composite to [0,1] range (`rrf-fusion.ts`, `composite-scoring.ts`) [4-6h] {T003} — Calibration (REQ-S2-004)
   - Note: Normalization approach may depend on G2 outcome
 - [ ] T004a [P] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100}, measure MRR@5 delta per value [2-3h] {T004} — Calibration (REQ-S2-005)
@@ -113,7 +117,7 @@ contextType: "implementation"
 - **Plan**: See `plan.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent Tasks**: See `../tasks.md`
-- **Predecessor Tasks**: See `../002-sprint-1-graph-signal-activation/tasks.md`
+- **Predecessor Tasks**: See `../001-sprint-0-epistemological-foundation/tasks.md` (direct dependency — Sprint 1 is a parallel sibling)
 <!-- /ANCHOR:cross-refs -->
 
 ---

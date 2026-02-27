@@ -243,6 +243,13 @@ Transition thresholds: top result similarity < 0.4 OR result count < 3 triggers 
 
 **OFF-RAMP: After Sprint 3, evaluate "good enough" thresholds. If MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%, further sprints optional.**
 
+> **HARD SCOPE CAP — Sprint 2+3 Off-Ramp**: Sprints 4-7 require NEW spec approval based on demonstrated need from Sprint 0-3 metrics. Approval must include:
+> (a) Evidence that remaining work addresses measured deficiencies (cite specific Sprint 0-3 metric values that fell short)
+> (b) Updated effort estimates based on Sprint 0-3 actuals (not original estimates)
+> (c) ROI assessment: projected metric improvement vs. implementation cost
+>
+> If all three off-ramp thresholds are met, the default decision is STOP. Continuing beyond Sprint 3 requires explicit written approval with the above evidence.
+
 ---
 
 <!--

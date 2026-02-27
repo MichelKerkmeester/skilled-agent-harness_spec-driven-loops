@@ -38,7 +38,7 @@ This plan implements Sprint 2 — scoring calibration. Four independent features
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Sprint 1 exit gate passed (R4 delta >+2%, edge density measured)
+- [ ] Sprint 0 exit gate passed (graph functional, eval infrastructure operational, BM25 baseline recorded) — NOTE: Sprint 1 is NOT a prerequisite; Sprint 2 can run in parallel with Sprint 1
 - [ ] R18 cache schema finalized: `CREATE TABLE embedding_cache (content_hash TEXT, model_id TEXT, embedding BLOB, dimensions INT, created_at TEXT, last_used_at TEXT, PRIMARY KEY (content_hash, model_id))`
 - [ ] N4 formula confirmed: `boost = 0.15 * exp(-elapsed_hours / 12)`
 - [ ] G2 code location identified in `hybrid-search.ts`
@@ -79,10 +79,10 @@ Four parallel feature tracks with G2 → normalization dependency
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Embedding Cache (R18)
-- [ ] Create `embedding_cache` table with migration (2-3h)
-- [ ] Implement cache lookup + store logic in embedding pipeline (4-6h)
-- [ ] Add `last_used_at` update for cache eviction support (1-2h)
-- [ ] Verify cache hit rate >90% on re-index of unchanged content (1h)
+- [ ] Create `embedding_cache` table with migration (2-3h) — WHY: Eliminates unnecessary embedding API calls on re-index of unchanged content; reduces re-index time from minutes to seconds for unchanged memories.
+- [ ] Implement cache lookup + store logic in embedding pipeline (4-6h) — WHY: Cache key is `(content_hash, model_id)` ensuring correctness across model changes; SHA-256 hash collision risk is astronomically low.
+- [ ] Add `last_used_at` update for cache eviction support (1-2h) — WHY: Enables future LRU eviction to prevent unbounded cache growth; not immediately required but low-cost to add now.
+- [ ] Verify cache hit rate >90% on re-index of unchanged content (1h) — **Risk**: Cache miss on first index is expected; hit rate applies to re-index only.
 
 ### Phase 2: Cold-Start Boost (N4)
 - [ ] Implement cold-start boost formula in `composite-scoring.ts` (2-3h)
@@ -147,7 +147,7 @@ Four parallel feature tracks with G2 → normalization dependency
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Sprint 1 exit gate | Internal | Pending | Cannot start Sprint 2 |
+| Sprint 0 exit gate | Internal | Pending | Cannot start Sprint 2 — WHY: Eval infrastructure (R13-S1) and baseline metrics are required for dark-run comparisons. Sprint 1 is NOT a dependency — parallel execution possible. |
 | R13-S1 eval infrastructure | Internal | Pending (Sprint 0) | Cannot measure dark-run results |
 | Embedding API (for cache miss path) | External | Green | Cache miss = normal flow |
 | Feature flag system | Internal | Green | Env var based — `SPECKIT_NOVELTY_BOOST` |
@@ -177,15 +177,17 @@ Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────�
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Phase 1 (R18 Cache) | Sprint 1 gate | Phase 7 |
-| Phase 2 (N4 Cold-Start) | Sprint 1 gate | Phase 7 |
-| Phase 3 (G2 Investigation) | Sprint 1 gate | Phase 4 |
+| Phase 1 (R18 Cache) | Sprint 0 gate | Phase 7 |
+| Phase 2 (N4 Cold-Start) | Sprint 0 gate | Phase 7 |
+| Phase 3 (G2 Investigation) | Sprint 0 gate | Phase 4 |
 | Phase 4 (Normalization) | Phase 3 | Phase 7 |
-| Phase 5 (TM-01 Interference Scoring) | Sprint 1 gate | Phase 7 |
-| Phase 6 (TM-03 Classification Decay) | Sprint 1 gate | Phase 7 |
+| Phase 5 (TM-01 Interference Scoring) | Sprint 0 gate | Phase 7 |
+| Phase 6 (TM-03 Classification Decay) | Sprint 0 gate | Phase 7 |
 | Phase 7 (Verification) | Phase 1, Phase 2, Phase 4, Phase 5, Phase 6 | Sprint 3 (next sprint) |
 
 **Note**: Phases 1, 2, 3, 5, and 6 are independent — they can execute in parallel. Phase 4 depends on Phase 3 (G2 outcome influences normalization approach).
+
+**Cross-Sprint Parallelization**: Sprint 2 depends on Sprint 0 exit gate only — NOT on Sprint 1. Sprint 1 (R4 typed-degree, edge density) and Sprint 2 (R18, N4, G2, normalization) can execute in parallel after Sprint 0 completes. The sole coordination point: if Sprint 1 completes first, Sprint 2's score normalization (Phase 4) should incorporate R4 degree scores — but normalization can proceed without them and be updated retroactively. Parallel execution saves 3-5 weeks on critical path.
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -235,7 +237,7 @@ Phase 3 (G2 Investigation) ──► Phase 4 (Normalization) ──────�
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent Plan**: See `../plan.md`
-- **Predecessor Plan**: See `../002-sprint-1-graph-signal-activation/plan.md`
+- **Predecessor Plan**: See `../001-sprint-0-epistemological-foundation/plan.md` (direct dependency — Sprint 1 is a parallel sibling)
 
 ---
 

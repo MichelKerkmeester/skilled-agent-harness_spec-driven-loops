@@ -36,6 +36,10 @@ contextType: "implementation"
 ## Phase 1: R15 Query Complexity Router
 
 - [ ] T001 [P] Implement query complexity router — 3-tier classifier (simple/moderate/complex) + tier-to-channel-subset routing (min 2 channels) behind `SPECKIT_COMPLEXITY_ROUTER` flag [10-16h] — R15
+  - **Hint**: Classifier features — query length (chars), term count (whitespace-split), trigger phrase presence (exact match against known phrases), semantic complexity heuristic (ratio of stop words to content words)
+  - **Sub-step T001a**: Define classification boundaries and thresholds (e.g., simple: ≤3 terms OR trigger match; complex: >8 terms AND no trigger)
+  - **Sub-step T001b**: Implement tier-to-channel-subset mapping table (config-driven, not hardcoded)
+  - **Acceptance**: Shadow-run both full pipeline and routed pipeline simultaneously; compare results before enabling routing as primary
 <!-- /ANCHOR:phase-1 -->
 
 ---

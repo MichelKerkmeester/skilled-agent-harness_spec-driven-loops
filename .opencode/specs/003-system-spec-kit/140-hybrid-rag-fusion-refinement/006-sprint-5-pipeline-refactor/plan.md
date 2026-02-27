@@ -88,14 +88,20 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase A: R6 Pipeline Refactor (40-55h)
+
+> **F9 — RECOMMENDED DECOMPOSITION**: R6 (40-55h) is the single largest work item in the entire 8-sprint plan. Treat it as 5-8 sequential subtasks rather than one monolithic task to enable incremental dark-run verification and reduce integration risk. See tasks.md T002a-T002h for subtask breakdown.
+>
+> **Flag interaction risk**: By Sprint 5, 10+ feature flags have accumulated across Sprints 0-4. T002g (feature flag interaction testing) must verify all flags remain functional under PIPELINE_V2 before Phase B begins.
+
 - [ ] Create checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")`
-- [ ] Design stage interfaces (input/output types for each stage)
-- [ ] Implement Stage 1: Candidate Generation (5-channel parallel execution)
-- [ ] Implement Stage 2: Fusion + Signal Integration (single scoring point)
-- [ ] Implement Stage 3: Rerank + Aggregate (cross-encoder, MMR, MPAB)
-- [ ] Implement Stage 4: Filter + Annotate (NO score changes — invariant)
-- [ ] Add feature flag `SPECKIT_PIPELINE_V2`
-- [ ] Verify 0 ordering differences on full eval corpus
+- [ ] (a) Design stage interfaces (input/output types for each stage) — WHY: Enforces Stage 4 immutability at the type level before any code migration begins
+- [ ] (b) Implement Stage 1: Candidate Generation (5-channel parallel execution) — WHY: Establishes the clean entry boundary; channels must not communicate until Stage 2
+- [ ] (c) Implement Stage 2: Fusion + Signal Integration (single scoring point) — WHY: Consolidating all scoring here prevents G2 recurrence; intent weights applied exactly once
+- [ ] (d) Implement Stage 3: Rerank + Aggregate (cross-encoder, MMR, MPAB) — WHY: MPAB must remain post-RRF (Sprint 4 pipeline position constraint)
+- [ ] (e) Implement Stage 4: Filter + Annotate (NO score changes — invariant) — WHY: Invariant guard catches any future Stage 4 score-modification attempts as build/runtime errors
+- [ ] (f) Add feature flag `SPECKIT_PIPELINE_V2` (old pipeline active when OFF — backward compatible)
+- [ ] (g) Verify feature flag interactions: all 10+ accumulated flags work under PIPELINE_V2
+- [ ] (h) Verify 0 ordering differences on full eval corpus (GATE — Phase B blocked until this passes)
 - [ ] Verify all 158+ existing tests pass
 - [ ] Verify intent weights applied ONCE in Stage 2
 

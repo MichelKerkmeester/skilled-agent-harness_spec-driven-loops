@@ -41,6 +41,21 @@ R1 MPAB operates after RRF fusion, before state filtering. R11 writes to separat
 **R11 safeguards**: (1) Separate column, (2) 30-day TTL, (3) 100+ stop words denylist, (4) Max 3 terms/selection + 8 per memory, (5) Only when NOT in top 3, (6) 1-week shadow, (7) Exclude <72h memories.
 
 **Checkpoint recommended before this sprint.**
+
+---
+
+> **RECOMMENDED: Sub-Sprint Split (F3)**
+>
+> Sprint 4 should be split into S4a and S4b to isolate R11's CRITICAL FTS5 contamination risk:
+>
+> - **S4a** (25-35h): R1 MPAB + R13-S2 enhanced evaluation. No schema changes. Delivers A/B infrastructure before any feedback mutations.
+> - **S4b** (47-74h): R11 learned feedback + TM-06 reconsolidation. Begins only after S4a metrics confirm no regressions and R13 has completed 2+ full eval cycles.
+>
+> Rationale: R11 FTS5 contamination is irreversible without full re-index. Isolating it prevents risk concentration and ensures the detection infrastructure (R13-S2 A/B) is operational before mutations begin.
+
+> **F10 — CALENDAR DEPENDENCY (R11 prerequisite)**
+>
+> R11 prerequisite: R13 must have completed ≥2 full eval cycles. Each cycle = minimum 50 queries evaluated over 7+ calendar days. Two cycles = **minimum 28 calendar days** of wall-clock time. This forced idle time between Sprint 3 completion and R11 enablement is NOT reflected in effort hours. Plan the project timeline explicitly to include this idle window between S4a completion and S4b start.
 <!-- /ANCHOR:summary -->
 
 ---

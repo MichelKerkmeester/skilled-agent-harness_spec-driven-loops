@@ -30,10 +30,10 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Sprint 1 exit gate verified as passed
-- [ ] CHK-002 [P1] R18 cache schema reviewed: `embedding_cache (content_hash, model_id, embedding, dimensions, created_at, last_used_at)`
-- [ ] CHK-003 [P1] N4 formula confirmed: `0.15 * exp(-elapsed_hours / 12)`
-- [ ] CHK-004 [P1] G2 double intent weighting code location identified in `hybrid-search.ts`
+- [ ] CHK-001 [P0] Sprint 0 exit gate verified as passed (Sprint 1 is NOT a prerequisite — Sprint 2 runs in parallel with Sprint 1) — HOW: Confirm all Sprint 0 CHK-060 through CHK-068 items are marked [x] with evidence. Cross-ref Sprint 0 checklist.md.
+- [ ] CHK-002 [P1] R18 cache schema reviewed: `embedding_cache (content_hash, model_id, embedding, dimensions, created_at, last_used_at)` — HOW: Verify CREATE TABLE statement matches schema; confirm PRIMARY KEY is (content_hash, model_id). Cross-ref T001.
+- [ ] CHK-003 [P1] N4 formula confirmed: `0.15 * exp(-elapsed_hours / 12)` — HOW: Verify implementation matches formula; test at key timestamps (0h=0.15, 12h=~0.055, 48h=~0.003). Cross-ref T002.
+- [ ] CHK-004 [P1] G2 double intent weighting code location identified in `hybrid-search.ts` — HOW: Grep for `intent` weight application across `hybrid-search.ts`, `intent-classifier.ts`, `adaptive-fusion.ts`; map all application points. Cross-ref T003.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,8 +54,8 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] 8-12 new tests added and passing
-- [ ] CHK-021 [P0] 158+ existing tests still pass after all changes
+- [ ] CHK-020 [P0] 8-12 new tests added and passing — HOW: Run `npx vitest --reporter=verbose`; count new test cases; verify coverage across R18, N4, G2, normalization subsystems. Cross-ref T001-T007.
+- [ ] CHK-021 [P0] 158+ existing tests still pass after all changes — HOW: Run full test suite; compare pass count to pre-change baseline (>=158). Evidence required: test output showing pass count.
 - [ ] CHK-022 [P1] R18 cache hit/miss paths tested (content_hash match, model_id match, both)
 - [ ] CHK-023 [P1] N4 boost values tested at key timestamps: 0h, 12h, 24h, 48h, >48h
 - [ ] CHK-024 [P1] Score normalization tested — both RRF and composite produce values in [0,1]
@@ -110,6 +110,7 @@ contextType: "implementation"
 - [ ] CHK-065 [P1] No MRR@5 regression after normalization change
 - [ ] CHK-066 [P1] TM-01 interference scoring active — `interference_score` column present in `memory_index`; penalty computed at index time; `-0.08 * interference_score` applied in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag; no false penalties on distinct content
 - [ ] CHK-067 [P1] TM-03 classification-based decay verified — constitutional/critical tiers not decaying; decisions context_type not decaying; temporary tier decays at 0.5x rate; research context_type uses 2x stability (`fsrs-scheduler.ts`)
+- [ ] CHK-068 [P1] Active feature flag count <=6 verified at sprint exit — HOW: grep codebase for `SPECKIT_` env var flags; count active (non-deprecated) flags; document list. Evidence required: flag inventory with count. New flags introduced in Sprint 2: `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`.
 
 ---
 
@@ -119,7 +120,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 3 | [ ]/3 |
-| P1 Items | 20 | [ ]/20 |
+| P1 Items | 21 | [ ]/21 |
 | P2 Items | 4 | [ ]/4 |
 
 **Verification Date**: [YYYY-MM-DD]

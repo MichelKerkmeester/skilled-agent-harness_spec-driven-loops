@@ -82,9 +82,14 @@ Maximize graph channel contribution through centrality and community detection, 
 - **R7**: Anchor-aware chunk thinning — Recall@20 within 10% of baseline
 - **R16**: Encoding-intent capture at index time behind `SPECKIT_ENCODING_INTENT` flag
 - **R10**: Auto entity extraction (gated on edge density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag — FP rate <20%
+  > **ESTIMATION WARNING**: Entity extraction with <20% false positive rate is an ML challenge. The 12-18h estimate assumes rule-based heuristics (regex, noun-phrase extraction via NLP library); if ML-based accuracy is needed (e.g., fine-tuned NER model), consider 30-50h. Sufficient quality means: FP rate <20% verified via manual review of a sample of >=50 auto-extracted entities.
 - **N2 (items 4-6)**: Graph centrality + community detection, decomposed into: N2a (Graph Momentum -- temporal degree delta), N2b (Causal Depth Signal -- max-depth path normalization), N2c (Community Detection -- label propagation or Louvain clustering) — channel attribution >10%
+  > **ESTIMATION WARNING**: Implementing Louvain/label propagation community detection from scratch on SQLite is research-grade work. The current 12-15h estimate for N2c is likely insufficient. Consider 40-80h for production quality, or evaluate using a simpler heuristic (connected components via BFS/DFS) first. Sufficient quality for N2c means: community assignments are stable across two consecutive runs on the same data (deterministic or near-deterministic output).
 - **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening + staleness detection + contradiction cluster surfacing (surface all cluster members, not just flagged pair) behind `SPECKIT_CONSOLIDATION` flag
+  > **ESTIMATION WARNING**: Contradiction detection requires semantic analysis beyond simple string comparison. The ~40 LOC estimate assumes a lightweight heuristic approach (cosine similarity + keyword conflict check); if semantic accuracy >80% is needed, effort could be 3-5x higher. Sufficient quality means: detects at least 1 known contradiction in curated test data without requiring a full NLI model.
 - **S4**: Spec folder hierarchy as retrieval structure — hierarchy traversal functional
+
+> **OVERALL SPRINT ESTIMATION NOTE**: If production-quality implementations of N2c (community detection), N3-lite (semantic contradiction), and R10 (entity extraction) are required, the revised sprint total is 120-200h (vs current 68-101h baseline estimate). Recommend confirming heuristic-vs-production quality requirements before sprint start.
 
 ### Existing Code Note
 
@@ -120,9 +125,9 @@ Maximize graph channel contribution through centrality and community detection, 
 |----|-------------|---------------------|
 | REQ-S6-001 | **R7**: Anchor-aware chunk thinning | Recall@20 within 10% of baseline |
 | REQ-S6-002 | **R16**: Encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag | Intent metadata recorded at index time |
-| REQ-S6-003 | **R10**: Auto entity extraction (only if density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag | FP rate <20% on manual review |
-| REQ-S6-004 | **N2 (items 4-6)**: Graph centrality + community detection | Graph channel attribution >10% of final top-K |
-| REQ-S6-005 | **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening behind `SPECKIT_CONSOLIDATION` flag | Detects at least 1 known contradiction in test data |
+| REQ-S6-003 | **R10**: Auto entity extraction (only if density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag | FP rate <20% on manual review of >=50 auto-extracted entities |
+| REQ-S6-004 | **N2 (items 4-6)**: Graph centrality + community detection | Graph channel attribution >10% of final top-K; N2c community assignments stable across 2 runs |
+| REQ-S6-005 | **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening behind `SPECKIT_CONSOLIDATION` flag | Detects at least 1 known contradiction in curated test data; heuristic approach acceptable if lightweight |
 | REQ-S6-006 | **S4**: Spec folder hierarchy as retrieval structure | Hierarchy traversal functional in retrieval queries |
 <!-- /ANCHOR:requirements -->
 

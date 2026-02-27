@@ -90,6 +90,27 @@ Aggregate chunk scores safely with MPAB (preserving N=0/N=1 semantics), learn fr
 
 R13 must have completed at least 2 full eval cycles before R11 mutations are enabled. This is a P0 gate check.
 
+> **R13 Eval Cycle Definition**: One eval cycle = minimum 50 query evaluations over 7+ calendar days. Two full cycles = minimum 100 queries over 14+ calendar days. This calendar dependency is NOT reflected in effort hours and must be planned for explicitly in the project timeline. Expect a mandatory idle window of 28+ calendar days between Sprint 3 completion and R11 enablement.
+
+---
+
+### RECOMMENDED: Sprint 4 Sub-Sprint Split
+
+> **F3 — RECOMMENDED SPLIT**: Sprint 4 should be split into two sub-sprints to isolate the CRITICAL FTS5 contamination risk in R11.
+
+**S4a — Lower Risk (estimated 25-35h)**
+- R1: MPAB chunk-to-memory aggregation (8-12h)
+- R13-S2: Enhanced shadow scoring + channel attribution + ground truth Phase B (15-20h)
+- TM-04: Pre-storage quality gate (6-10h) — no schema change
+
+**S4b — Higher Risk (estimated 47-74h, requires S4a metrics)**
+- R11: Learned relevance feedback with separate `learned_triggers` column + 7 safeguards (16-24h)
+- TM-04: Re-evaluation gate (require S4a signal density metrics before tuning threshold)
+- TM-06: Reconsolidation-on-save (6-10h) — schema-adjacent, high caution
+- R13-S2 Phase B verification (from S4a)
+
+**Rationale for split**: R11 has CRITICAL severity — an FTS5 contamination mistake (adding `learned_triggers` to the FTS5 index) is irreversible without a full re-index of all memories. Isolating R11 into S4b means S4a's A/B infrastructure is operational before R11 mutations begin, enabling immediate detection of any regression. Risk concentration is eliminated by ensuring R1 and R13-S2 are verified clean before R11 is enabled.
+
 ### Files to Change
 
 | File Path | Change Type | Description |

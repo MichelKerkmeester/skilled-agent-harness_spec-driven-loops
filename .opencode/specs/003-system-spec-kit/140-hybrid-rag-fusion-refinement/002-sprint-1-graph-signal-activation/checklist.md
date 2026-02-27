@@ -30,9 +30,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Sprint 0 exit gate verified as passed
-- [ ] CHK-002 [P0] R4 formula and edge type weights confirmed from research
-- [ ] CHK-003 [P1] `causal_edges` table structure verified and queryable
+- [ ] CHK-001 [P0] Sprint 0 exit gate verified as passed — HOW: Confirm all Sprint 0 CHK-060 through CHK-068 items are marked [x] with evidence. Cross-ref Sprint 0 checklist.md.
+- [ ] CHK-002 [P0] R4 formula and edge type weights confirmed from research — HOW: Verify formula matches `typed_degree(node) = SUM(weight_t * count_t)` with weights caused=1.0, derived_from=0.9, enabled=0.8, contradicts=0.7, supersedes=0.6, supports=0.5. Cross-ref T001.
+- [ ] CHK-003 [P1] `causal_edges` table structure verified and queryable — HOW: Run `SELECT * FROM causal_edges LIMIT 5` to confirm table exists and has expected columns (source_id, target_id, relation, strength, evidence).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -40,11 +40,11 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] R4 dark-run: no single memory appears in >60% of results
-- [ ] CHK-011 [P0] R4 MRR@5 delta >+2% absolute over Sprint 0 baseline
-- [ ] CHK-012 [P1] Constitutional memories excluded from degree boost
-- [ ] CHK-013 [P1] MAX_TYPED_DEGREE cached and refreshed on graph mutation (not per-query)
-- [ ] CHK-014 [P1] Degree scores capped at DEGREE_BOOST_CAP=0.15
+- [ ] CHK-010 [P0] R4 dark-run: no single memory appears in >60% of results — HOW: Run R4 dark-run over 50+ eval queries; compute per-memory presence frequency; verify max < 60%. Evidence required: frequency distribution table. Cross-ref T005.
+- [ ] CHK-011 [P0] R4 MRR@5 delta >+2% absolute over Sprint 0 baseline — HOW: Compare R4-enabled MRR@5 against Sprint 0 baseline MRR@5 from `eval_metrics` table. Evidence required: before/after metric comparison. Cross-ref T005.
+- [ ] CHK-012 [P1] Constitutional memories excluded from degree boost — HOW: Query a known constitutional memory; verify degree score = 0 regardless of edge count. Cross-ref T001.
+- [ ] CHK-013 [P1] MAX_TYPED_DEGREE cached and refreshed on graph mutation (not per-query) — HOW: Add edge via `memory_causal_link`; verify cache invalidation; run query before and after to confirm fresh computation. Cross-ref T001.
+- [ ] CHK-014 [P1] Degree scores capped at DEGREE_BOOST_CAP=0.15 — HOW: Construct test case with high-degree node (>50 edges); verify output score <= 0.15. Cross-ref T001.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -107,6 +107,7 @@ contextType: "implementation"
 - [ ] CHK-063 [P1] G-NEW-2 consumption instrumentation active and logging patterns
 - [ ] CHK-064 [P1] Feature flag `SPECKIT_DEGREE_BOOST` permanently enabled (or disable-decision documented)
 - [ ] CHK-065 [P2] TM-08 signal vocabulary expanded — CORRECTION ("actually", "wait", "I was wrong") and PREFERENCE ("prefer", "like", "want") categories classified correctly in `trigger-extractor.ts`
+- [ ] CHK-066 [P1] Active feature flag count <=6 verified at sprint exit — HOW: grep codebase for `SPECKIT_` env var flags; count active (non-deprecated) flags; document list. Evidence required: flag inventory with count. New flags introduced in Sprint 1: `SPECKIT_DEGREE_BOOST`, `SPECKIT_COACTIVATION_STRENGTH`.
 
 ---
 
@@ -116,7 +117,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 13 | [ ]/13 |
+| P1 Items | 14 | [ ]/14 |
 | P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]

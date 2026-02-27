@@ -44,6 +44,8 @@ This is **Phase 8** of the Hybrid RAG Fusion Refinement specification.
 
 **Scope Boundary**: Sprint 7 scope boundary — final sprint addressing scale-dependent optimizations, evaluation infrastructure completion, and deferred-item decisions. All items are parallelizable with no internal dependencies.
 
+> **GATING AND OPTIONALITY NOTE**: Sprint 7 is entirely P2/P3 priority and gated on >5K memories (current system estimate: <2K at typical spec-kit deployment). All items are optional and should only be pursued if Sprint 0-6 metrics demonstrate clear need. R8 (memory summary generation / PageIndex integration) is particularly conditional — the tree-navigation approach may not be compatible with spec-kit's latency requirements (500ms p95 hard limit). Do not begin Sprint 7 unless Sprint 0-6 exit gates are fully passed and scale thresholds are confirmed.
+
 **Dependencies**:
 - Sprint 6 graph deepening complete (007-sprint-6-graph-deepening)
 - Evaluation infrastructure operational (from Sprint 0, enhanced in Sprint 4)
@@ -78,11 +80,11 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 
 ### In Scope
 
-- **R8**: Memory summaries (gated on >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag — summary pre-filtering reduces search space
+- **R8**: Memory summaries (gated on >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag — summary pre-filtering reduces search space. Note: the PageIndex tree-navigation approach used in summary generation must be validated against the 500ms p95 latency limit before activation.
 - **S1**: Smarter memory content generation from markdown — improved content quality
 - **S5**: Cross-document entity linking — entity links established across documents
 - **R13-S3**: Full reporting + ablation studies — complete evaluation capability
-- **R5**: Evaluate INT8 quantization need — decision documented based on activation criteria
+- **R5**: Evaluate INT8 quantization need — decision documented based on activation criteria (>10K memories OR >50ms latency OR >1536 dimensions)
 
 ### Out of Scope
 
@@ -128,12 +130,16 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: R13-S3 full reporting operational — ablation study framework functional
-- **SC-002**: R8 gating verified — only implemented if >5K memories
+- **SC-002**: R8 gating verified — only implemented if >5K total memories with embeddings in the database (see scale gate definition below)
 - **SC-003**: S1 content generation quality improved (manual review confirmation)
 - **SC-004**: S5 entity links established across documents
 - **SC-005**: R5 decision documented with activation criteria measurements
 - **SC-006**: Program completion — all health dashboard targets reviewed
-- **SC-007**: Final feature flag audit — sunset all sprint-specific flags
+- **SC-007**: Final feature flag audit — sunset all sprint-specific flags from Sprints 0-7
+
+### Scale Gate Definition
+
+> **SCALE GATE CLARITY**: The "5K memories" threshold for R8 activation means **5,000 active memories with embeddings** in the database (i.e., `status != 'archived'` AND `embedding IS NOT NULL`). Draft memories without embeddings and archived memories do not count. The threshold must be confirmed by a direct database query: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -38,6 +38,12 @@ contextType: "implementation"
 
 - [ ] T-S4-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {} — Safety gate for R11 mutations and feedback data
 
+> **CALENDAR DEPENDENCY — R11 (F10)**: R11 prerequisite requires R13 to complete ≥2 full eval cycles (each = 50+ queries over 7+ calendar days). Minimum **28 calendar days** must elapse between Sprint 3 completion and R11 enablement. This is wall-clock time, NOT effort hours. If splitting into S4a/S4b (recommended), T002 (R11) cannot begin until S4a metrics confirm 2 full eval cycles are complete.
+>
+> **RECOMMENDED SPLIT — S4a / S4b (F3)**:
+> - **S4a tasks**: T001 (R1 MPAB) + T003 (R13-S2 enhanced eval) — estimated 25-35h. No schema change. Delivers A/B infra.
+> - **S4b tasks**: T002 (R11 learned feedback) + T008 (TM-06 reconsolidation) — estimated 47-74h. Requires S4a verification + 28-day calendar window.
+
 ---
 
 <!-- ANCHOR:phase-1 -->

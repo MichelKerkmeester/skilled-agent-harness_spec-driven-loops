@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~122 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, and 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3)."
+description: "~147 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, and Sprint 4 split verification."
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -32,10 +32,10 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Research synthesis complete (142-FINAL analysis + recommendations reviewed)
-- [ ] CHK-002 [P0] BM25 contingency decision matrix documented with action paths
-- [ ] CHK-003 [P1] Feature flag governance rules established (6-flag max, 90-day lifespan)
-- [ ] CHK-004 [P1] Migration safety protocol confirmed (backup, nullable defaults, atomic execution)
+- [ ] CHK-001 [P0] Research synthesis complete (142-FINAL analysis + recommendations reviewed) — evidence required: research document reference list with review dates
+- [ ] CHK-002 [P0] BM25 contingency decision matrix documented with action paths — evidence required: decision matrix showing >=80%/50-80%/<50% thresholds and corresponding actions (T008)
+- [ ] CHK-003 [P1] Feature flag governance rules established (6-flag max, 90-day lifespan) — verification: check `T000b` output document exists with naming convention and monthly audit schedule (T000b)
+- [ ] CHK-004 [P1] Migration safety protocol confirmed (backup, nullable defaults, atomic execution) — verification: schema migration template reviewed; all new columns in T004 schema are nullable
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -100,18 +100,23 @@ contextType: "implementation"
 
 ### Sprint 0: Epistemological Foundation [P0 — BLOCKING]
 
-- [ ] CHK-S00 [P0] Graph hit rate > 0% (G1 verified — `channelAttribution` shows graph results)
-- [ ] CHK-S01 [P0] No duplicate chunk rows in default search mode (G3 verified)
-- [ ] CHK-S02 [P0] Baseline MRR@5, NDCG@10, Recall@20 computed for at least 50 eval queries
-- [ ] CHK-S03 [P0] BM25-only baseline MRR@5 recorded
-- [ ] CHK-S04 [P0] BM25 contingency decision made (>=80% pause / 50-80% proceed reduced / <50% proceed full)
-- [ ] CHK-S05 [P0] Fan-effect divisor (R17) reduces hub domination in co-activation results
+- [ ] CHK-S00 [P0] Graph hit rate > 0% (G1 verified — `channelAttribution` shows graph results) — verification: run eval query set, confirm `graph` channel appears in attribution (T001)
+- [ ] CHK-S01 [P0] No duplicate chunk rows in default search mode (G3 verified) — verification: search for multi-chunk memory, confirm unique result IDs (T002)
+- [ ] CHK-S02 [P0] Baseline MRR@5, NDCG@10, Recall@20 computed for at least 50 eval queries — evidence: metric snapshot in `speckit-eval.db` (T006, T007)
+- [ ] CHK-S03 [P0] BM25-only baseline MRR@5 recorded — evidence: BM25-only metric snapshot row in `eval_metric_snapshots` (T008)
+- [ ] CHK-S04 [P0] BM25 contingency decision made (>=80% pause / 50-80% proceed reduced / <50% proceed full) — evidence: decision documented in sprint gate results (T008)
+- [ ] CHK-S05 [P0] Fan-effect divisor (R17) reduces hub domination in co-activation results — verification: query returning hub memory shows reduced score vs pre-fix baseline (T003)
 - [ ] CHK-S06 [P1] 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed alongside core metrics
 - [ ] CHK-S07 [P1] Full-context ceiling metric (A2) recorded for 50+ queries; 2x2 decision matrix evaluated
 - [ ] CHK-S08 [P1] Quality proxy formula (B7) operational for automated regression detection
 - [ ] CHK-S09 [P1] Observer effect mitigation (D4) verified — search p95 increase ≤10% with eval logging
 - [ ] CHK-S0A [P1] Signal ceiling governance (B8) documented — max 12 active scoring signals policy in effect
 - [ ] CHK-S0B [P0] TM-02 content-hash dedup operational — memory_save rejects exact duplicate content_hash in same spec_folder before embedding generation
+- [ ] CHK-S0C [P0] Ground truth corpus includes ≥15 manually curated natural-language queries (T000d) — evidence: query set JSON with count ≥15
+- [ ] CHK-S0D [P0] Query diversity verified: ≥5 per intent type (graph relationship, temporal, cross-document, hard negative), ≥3 complexity tiers (simple, moderate, complex) — evidence: intent/tier distribution table
+- [ ] CHK-S0E [P0] Ground truth includes graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives — evidence: query set JSON with `intent_type` field
+- [ ] CHK-S0F [P1] Feature flag count ≤6 at Sprint 0 exit (verify with flag audit) — evidence: `grep -r SPECKIT_ src/ | sort -u` output showing ≤6 distinct flags
+- [ ] CHK-S0G [P1] Flag sunset decisions documented with metric evidence — evidence: flag audit log entry in sprint gate results
 
 ### Sprint 1: Graph Signal Activation [P0]
 
@@ -121,6 +126,8 @@ contextType: "implementation"
 - [ ] CHK-S13 [P1] G-NEW-2: Agent consumption instrumentation active; initial pattern report drafted
 - [ ] CHK-S15 [P1] Co-activation boost strength (A7) increased to 0.25-0.3x; effective contribution ≥15% at hop 2
 - [ ] CHK-S16 [P1] TM-08 importance signal vocabulary expanded — CORRECTION and PREFERENCE signal categories recognized by trigger extraction
+- [ ] CHK-S17 [P1] Feature flag count ≤6 at Sprint 1 exit (verify with flag audit) — evidence: flag inventory showing active count
+- [ ] CHK-S18 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprint 0 evaluated for permanent enable/removal
 
 ### Sprint 2: Scoring Calibration [P1]
 
@@ -131,6 +138,8 @@ contextType: "implementation"
 - [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
 - [ ] CHK-S26 [P1] TM-01 interference scoring signal operational — interference_score column populated at index time; composite scoring applies negative weight behind flag
 - [ ] CHK-S27 [P1] TM-03 classification-based decay verified — decisions and constitutional memories show 0 decay; temporary memories decay at 0.5x rate; standard memories unchanged
+- [ ] CHK-S28 [P1] Feature flag count ≤6 at Sprint 2 exit (verify with flag audit) — evidence: flag inventory showing active count
+- [ ] CHK-S29 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-1 evaluated for permanent enable/removal
 
 ### Sprint 3: Query Intelligence [P1]
 
@@ -140,6 +149,8 @@ contextType: "implementation"
 - [ ] CHK-S33 [P1] Off-ramp evaluation: check MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
 - [ ] CHK-S34 [P1] Confidence-based result truncation produces >=3 results and reduces tail by >30%
 - [ ] CHK-S35 [P1] Dynamic token budget allocation respects tier limits (1500/2500/4000)
+- [ ] CHK-S36 [P1] Feature flag count ≤6 at Sprint 3 exit (verify with flag audit) — evidence: flag inventory showing active count
+- [ ] CHK-S37 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-2 evaluated for permanent enable/removal
 
 ### Sprint 4: Feedback Loop [P1]
 
@@ -157,6 +168,10 @@ contextType: "implementation"
 - [ ] CHK-S4B [P1] TM-06 reconsolidation-on-save verified — duplicate detection (>=0.88 similarity) increments frequency; conflict resolution (0.75-0.88) creates supersedes edge; complement (<0.75) stores as new
 - [ ] CHK-S4C [P1] TM-06 checkpoint safety — memory_checkpoint_create() required before enabling SPECKIT_RECONSOLIDATION flag
 - [ ] CHK-S4D [P1] TM-04/TM-06 reconsolidation decisions logged for R13 review — all merge/replace/complement actions recorded
+- [ ] CHK-S4E [P1] Sprint 4a (R1+R13-S2) completed and verified BEFORE Sprint 4b (R11+TM-04+TM-06) begins — evidence: Sprint 4a gate items (CHK-S41, CHK-S43, CHK-S46) all marked [x] before T027/T058/T059 start
+- [ ] CHK-S4F [P1] R11 activation deferred until ≥2 full R13 eval cycles completed (minimum 28 calendar days of data) — evidence: R13 eval_metric_snapshots table shows ≥2 distinct eval cycle timestamps spanning ≥28 days
+- [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit (verify with flag audit) — evidence: flag inventory showing active count
+- [ ] CHK-S4H [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-3 evaluated for permanent enable/removal
 
 ### Sprint 5: Pipeline Refactor [P1]
 
@@ -170,6 +185,8 @@ contextType: "implementation"
 - [ ] CHK-S57 [P1] S2 template anchor optimization: anchor-aware retrieval metadata available and functional
 - [ ] CHK-S58 [P1] S3 validation signals integrated as retrieval metadata in scoring pipeline
 - [ ] CHK-S5A [P1] TM-05 dual-scope injection operational — memory auto-surface hooks active at >=2 lifecycle points with per-point token budgets enforced
+- [ ] CHK-S5B [P1] Feature flag count ≤6 at Sprint 5 exit (verify with flag audit) — evidence: flag inventory showing active count
+- [ ] CHK-S5C [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-4 evaluated for permanent enable/removal
 
 ### Sprint 6: Graph Deepening [P1]
 
@@ -183,6 +200,7 @@ contextType: "implementation"
 - [ ] CHK-S66 [P1] R16 encoding-intent metadata captured at index time and available for scoring
 - [ ] CHK-S67 [P1] S4 spec folder hierarchy traversal functional in retrieval
 - [ ] CHK-S68 [P1] N3-lite safety bounds enforced: MAX_EDGES_PER_NODE cap and MAX_STRENGTH_INCREASE=0.05/cycle verified
+- [ ] CHK-S69 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-5 evaluated for permanent enable/removal; CHK-S64 covers ≤6 count
 
 ### Sprint 7: Long Horizon [P2]
 
@@ -192,6 +210,8 @@ contextType: "implementation"
 - [ ] CHK-S73 [P2] R13-S3 full reporting dashboard + ablation study framework operational
 - [ ] CHK-S74 [P2] R5 INT8 quantization decision documented (implement or defer with rationale)
 - [ ] CHK-S75 [P2] Final feature flag sunset audit completed — all sprint-specific flags resolved
+- [ ] CHK-S76 [P2] Feature flag count ≤6 at Sprint 7 exit (verify with flag audit) — evidence: final flag inventory; ideally 0 remaining flags
+- [ ] CHK-S77 [P2] Flag sunset decisions documented with metric evidence — evidence: all flags from all sprints evaluated; permanent enables and removals documented
 <!-- /ANCHOR:sprint-gates -->
 
 ---
@@ -291,12 +311,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 22 | [ ]/22 |
-| P1 Items | 88 | [ ]/88 |
-| P2 Items | 12 | [ ]/12 |
-| **Total** | **122** | **[ ]/122** |
+| P0 Items | 25 | [ ]/25 |
+| P1 Items | 108 | [ ]/108 |
+| P2 Items | 14 | [ ]/14 |
+| **Total** | **147** | **[ ]/147** |
 
-> **Note**: P1 total includes 8 PageIndex integration items (CHK-PI-A1 — CHK-PI-B3).
+> **Note**: P1 total includes 8 PageIndex integration items (CHK-PI-A1 — CHK-PI-B3), 14 feature flag sunset items (2 per sprint), and 4 Sprint 4 split verification items.
 
 **Verification Date**: [YYYY-MM-DD]
 
@@ -311,4 +331,7 @@ Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 Sprint gate priorities aligned with off-ramp: S0-S1 = P0, S2-S4 = P1, S5-S6 = P1 (elevated from P2), S7 = P2
 PageIndex items (CHK-PI-A1 — CHK-PI-B3): all P1, grouped in "PageIndex Integration Verification" section
+Feature flag sunset items (CHK-S0F/S0G, S17/S18, S28/S29, S36/S37, S4G/S4H, S5B/S5C, S69, S76/S77): P1/P2, per-sprint
+Ground truth diversity items (CHK-S0C, S0D, S0E): P0, Sprint 0 blocking
+Sprint 4 split verification (CHK-S4E, S4F): P1, ensures R11 safety sequencing
 -->

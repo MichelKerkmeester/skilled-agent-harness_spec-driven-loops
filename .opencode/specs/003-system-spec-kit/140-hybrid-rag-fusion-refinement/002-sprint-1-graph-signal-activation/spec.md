@@ -46,6 +46,8 @@ This is **Phase 2** of the Hybrid RAG Fusion Refinement specification.
 **Dependencies**:
 - Sprint 0 exit gate MUST be passed (graph channel functional, eval infrastructure operational, BM25 baseline recorded)
 
+**Parallelization Note**: Sprint 1 and Sprint 2 can execute in parallel after Sprint 0 exit gate. Sprint 2's scope (R18 embedding cache, N4 cold-start boost, G2 investigation, score normalization) has zero technical dependency on Sprint 1's deliverables (R4 typed-degree channel, edge density measurement). Both depend only on Sprint 0 outputs (eval infrastructure + baseline metrics). Parallel execution saves 3-5 weeks on critical path. The sole coordination point is that Sprint 2's score normalization (Phase 4) should incorporate R4's degree scores if Sprint 1 completes first — but normalization can proceed without them and be updated retroactively.
+
 **Deliverables**:
 - Typed-weighted degree computation as 5th RRF channel (R4)
 - Edge density measurement from R13 data
@@ -104,14 +106,14 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S1-001 | **R4**: Typed-weighted degree as 5th RRF channel with configurable parameters: MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15, constitutional exclusion | R4 dark-run passes — no single memory >60% of results; MRR@5 delta >+2% absolute |
+| REQ-S1-001 | **R4**: Typed-weighted degree as 5th RRF channel with configurable parameters: MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15, constitutional exclusion | R4 dark-run passes — no single memory >60% of results; MRR@5 delta >+2% absolute; degree computation verified against known test graph with expected scores; cross-ref CHK-010, CHK-011, T001, T002 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S1-002 | Edge density measurement from R13 eval data | Edge density (edges/node) computed; R10 escalation decision documented if density < 0.5 |
-| REQ-S1-003 | **G-NEW-2**: Agent consumption instrumentation + initial UX analysis | Consumption patterns logged; initial pattern report generated |
+| REQ-S1-002 | Edge density measurement from R13 eval data | Edge density (edges/node) computed; R10 escalation decision documented if density < 0.5; density metric logged to `speckit-eval.db` for trend tracking; cross-ref CHK-062, T003 |
+| REQ-S1-003 | **G-NEW-2**: Agent consumption instrumentation + initial UX analysis | Consumption patterns logged; initial pattern report generated with >=5 identified patterns; instrumentation captures query text, result count, selected result IDs, and ignored result IDs; cross-ref T004 |
 | REQ-S1-004 | **A7**: Co-activation boost strength increase — raise base multiplier from 0.1x to 0.25-0.3x with configurable coefficient | Graph channel effective contribution >=15% at hop 2 (up from ~5%). Dark-run verified. |
 
 ### P2 - Optional (can defer with documented reason)

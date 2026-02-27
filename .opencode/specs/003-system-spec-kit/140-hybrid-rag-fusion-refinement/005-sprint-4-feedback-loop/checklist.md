@@ -142,6 +142,17 @@ contextType: "implementation"
 - [ ] CHK-071 [P1] Code comments adequate
 - [ ] CHK-072 [P1] Feature flags documented
 - [ ] CHK-073 [P1] Schema change documented
+
+## Feature Flag Audit
+
+- [ ] CHK-074 [P1] **Feature flag count at Sprint 4 exit ≤6 verified**: List all active flags with names. Evidence: explicit flag inventory at exit gate.
+  - Flags added this sprint: `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`
+  - Verify prior sprint flags still active or document sunset decision
+- [ ] CHK-075 [P1] **Flag sunset decisions documented**: Any flag retired has metric evidence supporting the decision recorded (e.g., "RSF rejected at tau=0.32, flag SPECKIT_RSF_FUSION disabled").
+
+## Calendar Dependency Verification
+
+- [ ] CHK-076 [P0] **R11 calendar prerequisite met**: Confirm ≥28 calendar days have elapsed since Sprint 3 completion AND R13 completed ≥2 full eval cycles (100+ queries over 14+ days). Evidence: date stamps from eval cycle logs.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -161,8 +172,8 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 10 | [ ]/10 |
-| P1 Items | 41 | [ ]/41 |
+| P0 Items | 11 | [ ]/11 |
+| P1 Items | 43 | [ ]/43 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]

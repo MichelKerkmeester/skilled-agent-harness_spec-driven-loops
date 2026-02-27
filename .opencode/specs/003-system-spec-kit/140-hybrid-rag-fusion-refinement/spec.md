@@ -120,6 +120,11 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (28-43h) | Sprint 1 gate | Pending |
 | 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 2 gate | Pending |
 | 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
+
+> **Sprint 4 Split Recommendation:** Sprint 4 should be considered for decomposition into two sub-phases:
+> - **S4a** (R1/MPAB + R13-S2 enhanced eval, ~25-35h): Lower-risk scoring and evaluation work that can proceed immediately after Sprint 3 gate.
+> - **S4b** (R11 learned relevance feedback + TM-04 + TM-06, ~47-74h): Higher-risk work containing R11 with its CRITICAL FTS5 contamination risk (MR1). R11 should not share a sprint with 4 other deliverables given its irreversible failure mode. S4b also requires the R13 calendar dependency (minimum 28 days of eval logging before R11 activation).
+> This split isolates R11's contamination risk and allows S4a to complete faster, providing R13-S2 channel attribution data earlier.
 | 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (68-98h) | Sprint 4 gate | Pending |
 | 7 | `007-sprint-6-graph-deepening/` | R7, R16, R10, N2, N3-lite, S4 (68-101h) | Sprint 5 gate | Pending |
 | 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6 gate | Pending |
@@ -130,13 +135,16 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 - Parent spec tracks aggregate progress via this map
 - Use `/spec_kit:resume 140-hybrid-rag-fusion-refinement/NNN-sprint-*/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- **Off-ramp**: Recommended minimum viable stop after Sprint 2+3 (phases 3+4)
+- **HARD SCOPE CAP (Sprint 2+3)**: Sprints 0-3 constitute the approved scope. Sprints 4-7 require a NEW spec approval based on demonstrated need from Sprint 0-3 metrics. Approval must include: (a) evidence that remaining work addresses measured deficiencies identified by R13 evaluation data, (b) updated effort estimates based on Sprint 0-3 actuals (not original estimates), (c) updated ROI assessment comparing remaining investment to demonstrated improvements so far. Without this approval, Sprints 4-7 do not proceed.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-sprint-0 | 002-sprint-1 | Graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded | R13 eval metrics |
+| 001-sprint-0 | 002-sprint-1 | Graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded, ground truth corpus meets diversity requirements (see below) | R13 eval metrics |
+
+**Sprint 0 Ground Truth Diversity Requirement (HARD GATE):**
+Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week about Y?"), cross-document queries ("how does A relate to B?"), and hard negatives (queries where specific memories should NOT rank highly). Minimum: >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document/temporal). This diversity requirement is a hard exit gate criterion alongside the existing "at least 50 queries" minimum — both must be satisfied.
 | 002-sprint-1 | 003-sprint-2 | R4 MRR@5 delta >+2% absolute, edge density measured | R13 eval metrics |
 | 003-sprint-2 | 004-sprint-3 | Cache hit >90%, score distributions normalized, G2 resolved | R13 eval metrics |
 | 004-sprint-3 | 005-sprint-4 | R15 p95 <30ms, RSF Kendall tau computed, R2 precision within 5% | R13 eval metrics |
@@ -161,7 +169,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-035 | **B7:** Quality proxy formula for automated regression detection | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
 | REQ-036 | **D4:** Observer effect mitigation for R13 eval logging | Search p95 increase ≤10% with eval logging enabled | S0 |
 | REQ-039 | **TM-02:** Content-hash fast-path deduplication — SHA256 hash check BEFORE embedding generation in memory_save pipeline | Hash check rejects exact duplicate on save; no duplicate content_hash entries in same spec_folder | S0 |
-| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 | R4 dark-run passes; MRR@5 delta > +2% absolute. **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** | S1 |
+| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 | R4 dark-run passes; MRR@5 delta > +2% absolute; no single memory appears in >60% of results (hub domination check). **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** Cross-ref: interacts with MR2 (preferential attachment), MR5 (degree cap), MR8 (three-way interaction with N3+R10). | S1 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -175,7 +183,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | REQ-011 | **R14/N1:** Relative Score Fusion parallel to RRF (all 3 fusion variants) | Shadow comparison: minimum 100 queries, Kendall tau computed | S3 |
 | REQ-012 | **R2:** Channel minimum-representation constraint (post-fusion, quality floor 0.2) | Dark-run top-3 precision within 5% of baseline | S3 |
 | REQ-013 | **R1:** MPAB chunk-to-memory aggregation with N=0/N=1 guards | Dark-run MRR@5 within 2%; no regression for N=1 memories | S4 |
-| REQ-014 | **R11:** Learned relevance feedback with separate `learned_triggers` column and 7 safeguards | Shadow log noise rate < 5%; FTS5 contamination test passes | S4 |
+| REQ-014 | **R11:** Learned relevance feedback with separate `learned_triggers` column and 7 safeguards | Shadow log noise rate < 5%; FTS5 contamination test passes; learned triggers stored exclusively in `learned_triggers` column (never in `trigger_phrases`). Cross-ref: MR1 (CRITICAL FTS5 contamination), MR6 (R13 dependency), ADR-005 (separate column decision). **Calendar constraint:** R13 must have logged >=28 calendar days of eval data before R11 activation (see F10 in plan.md). | S4 |
 | REQ-015 | **R13-S2:** Shadow scoring + channel attribution + ground truth Phase B | Full A/B comparison infrastructure operational | S4 |
 | REQ-016 | **G-NEW-2:** Agent-as-consumer UX analysis + consumption instrumentation | R13 logs ≥5 distinct consumption-pattern categories with ≥10 query examples each; consumption instrumentation active | S1 |
 | REQ-017 | **G-NEW-3:** Feedback bootstrap strategy (Phase A synthetic, Phase B implicit, Phase C LLM-judge) | Defined phases with minimum 200 query-selection pairs before R11 activation | S0/S4 |
@@ -467,6 +475,22 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 - [ ] Monthly sunset audit conducted
 - [ ] Flag naming convention: `SPECKIT_{FEATURE}`
 
+#### Feature Flag Sunset Schedule
+
+Each sprint exit gate MUST include a flag disposition decision for all prior flags. The plan introduces 7+ flags by Sprint 3, which already exceeds the 6-flag maximum (SC-005, NFR-O01). The following sunset schedule ensures compliance:
+
+| Sprint Exit | Flags Introduced This Sprint | Flags to Permanently Enable or Remove | Max Active After Gate |
+|-------------|------------------------------|---------------------------------------|----------------------|
+| S0 | `SPECKIT_EVAL_LOGGING`, `SPECKIT_VERIFY_FIX_VERIFY` | None (first sprint) | 2 |
+| S1 | `SPECKIT_DEGREE_BOOST` | `SPECKIT_EVAL_LOGGING` → permanent (remove flag, always-on) | 2 |
+| S2 | `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`, `SPECKIT_FOLDER_SCORE` | `SPECKIT_VERIFY_FIX_VERIFY` → permanent (remove flag) | 4 |
+| S3 | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP`, `SPECKIT_SEARCH_FALLBACK` | `SPECKIT_DEGREE_BOOST` → permanent; `SPECKIT_NOVELTY_BOOST` → permanent | 6 (at ceiling) |
+| S4 | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`, `SPECKIT_CONSTITUTIONAL_INJECT` | `SPECKIT_INTERFERENCE_SCORE` → permanent; `SPECKIT_FOLDER_SCORE` → permanent; `SPECKIT_COMPLEXITY_ROUTER` → permanent | 6 (at ceiling) |
+| S5 | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`, `SPECKIT_PROGRESSIVE_VALIDATION` | `SPECKIT_RSF_FUSION` → decide (permanent or remove based on Kendall tau data); `SPECKIT_CHANNEL_MIN_REP` → permanent; `SPECKIT_SEARCH_FALLBACK` → permanent | <=6 |
+| S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent | <=6 |
+
+**Rule:** Any sprint that would exceed 6 active flags MUST sunset prior flags at the sprint's entry (not exit). If a flag cannot be confidently resolved, it counts against the 6-flag budget and a lower-priority new flag must be deferred.
+
 ### B8 Signal Ceiling
 - **B8 Signal Ceiling**: Maximum 12 active scoring signals until R13 provides automated evaluation data. Escape clause: R13 evidence that a new signal provides orthogonal value overrides the ceiling. Re-evaluate at Sprint 4 off-ramp when R13-S2 channel attribution data is available.
 
@@ -502,11 +526,11 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ## 16. OPEN QUESTIONS
 
-- **OQ-001**: BM25 baseline performance — unknown until Sprint 0 measurement. If >= 80% of hybrid, roadmap fundamentally changes
-- **OQ-002**: INT8 recall loss contradiction — 1-2% (Spec 140) vs 5.32% (Spec 141). Requires in-system ablation. Blocks R5 activation decision
-- **OQ-003**: `search-weights.json` audit — `maxTriggersPerMemory` is active; smart ranking section status unknown
-- **OQ-004**: G2 investigation outcome — double intent weighting may be intentional design, not a bug
-- **OQ-005**: Feedback bootstrap accumulation rate — R11 activation timeline depends on interaction data volume
+- **OQ-001**: BM25 baseline performance — unknown until Sprint 0 measurement. If >= 80% of hybrid, roadmap fundamentally changes. **Decision context:** This is the single most consequential unknown. The BM25 contingency matrix (§8) defines three branches. G-NEW-1 (REQ-004) and A2 (REQ-037) jointly determine the 2x2 decision space. Resolved at: Sprint 0 exit gate.
+- **OQ-002**: INT8 recall loss contradiction — 1-2% (Spec 140) vs 5.32% (Spec 141). Requires in-system ablation. Blocks R5 activation decision. **Decision context:** The discrepancy likely stems from different evaluation corpora and embedding models. In-system ablation with R13 infrastructure will produce authoritative measurement. Resolved at: Sprint 7 (R5 eval, REQ-031).
+- **OQ-003**: `search-weights.json` audit — `maxTriggersPerMemory` is active; smart ranking section status unknown. **Decision context:** May reveal undocumented scoring signals that count against the B8 signal ceiling (REQ-038). Audit should be completed during Sprint 0 as part of R13-S1 instrumentation.
+- **OQ-004**: G2 investigation outcome — double intent weighting may be intentional design, not a bug. **Decision context:** If intentional, document the rationale in ADR format and adjust G2 scope (REQ-009) from "fix" to "document." If unintentional, the fix is straightforward removal. Resolved at: Sprint 2 (REQ-009).
+- **OQ-005**: Feedback bootstrap accumulation rate — R11 activation timeline depends on interaction data volume. **Decision context:** G-NEW-3 (REQ-017) defines a three-phase bootstrap (synthetic → implicit → LLM-judge). The 200 query-selection pair minimum before R11 activation may take 4-8 weeks of normal usage, or can be accelerated via synthetic replay. The 28-day calendar constraint (F10) may be the binding constraint rather than data volume.
 
 ---
 

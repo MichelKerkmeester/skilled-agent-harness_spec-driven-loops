@@ -78,18 +78,25 @@ Two independent subsystem tracks converging at verification
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Bug Fixes (Track 1 — can run in parallel)
-- [ ] G1: Fix graph ID format in `graph-search-fn.ts` lines 110 AND 151 — convert `mem:${edgeId}` to numeric (3-5h)
-- [ ] G3: Fix chunk collapse conditional in `memory-search.ts` — dedup on ALL paths (2-4h)
-- [ ] R17: Add fan-effect divisor to co-activation in `co-activation.ts` (1-2h)
-- [ ] TM-02: Add SHA256 content-hash fast-path dedup in `memory-save.ts` — O(1) check BEFORE embedding generation, rejects exact duplicates in same `spec_folder` (2-3h)
+- [ ] G1: Fix graph ID format in `graph-search-fn.ts` lines 110 AND 151 — convert `mem:${edgeId}` to numeric (3-5h) — WHY: Graph channel has 0% hit rate due to string-vs-numeric ID mismatch; ALL downstream graph work (R4, R10, N2) is blocked until this is fixed. **Risk**: Fix may reveal sparse graph (few edges) — this is informational, not a failure.
+- [ ] G3: Fix chunk collapse conditional in `memory-search.ts` — dedup on ALL paths (2-4h) — WHY: Duplicate chunks inflate result counts and distort MRR/NDCG metrics, making baseline measurements unreliable. Note: The bug is at the call site (~line 1002), not the function definition (~line 303).
+- [ ] R17: Add fan-effect divisor to co-activation in `co-activation.ts` (1-2h) — WHY: Without fan-effect correction, hub memories with many co-activations dominate results regardless of query relevance, poisoning evaluation baselines.
+- [ ] TM-02: Add SHA256 content-hash fast-path dedup in `memory-save.ts` — O(1) check BEFORE embedding generation, rejects exact duplicates in same `spec_folder` (2-3h) — WHY: Prevents wasted embedding API calls on re-saves; establishes the checkpoint where PI-A5 quality gate will be inserted.
 
 ### Phase 2: Eval Infrastructure (Track 2 — sequential)
 - [ ] R13-S1: Create `speckit-eval.db` with 5-table schema (8-10h)
 - [ ] R13-S1: Add logging hooks to search, context, and trigger handlers (6-8h)
 - [ ] R13-S1: Implement core metric computation — MRR@5, NDCG@10, Recall@20, Hit Rate@1 (4-6h)
 
-### Phase 3: Baseline (requires Phase 2)
-- [ ] G-NEW-1/G-NEW-3: Generate synthetic ground truth from trigger phrases (2-4h)
+### Phase 2b: Agent Consumption Pre-Analysis (before ground truth generation)
+- [ ] G-NEW-2 Pre-Analysis: Lightweight agent consumption pattern survey (3-4h) — WHY: Understanding how AI agents currently query memory_search (what patterns, what they select, what they ignore) directly informs ground truth query design. Without this, synthetic queries risk being unrepresentative of real usage.
+  - Analyze recent agent query logs for pattern categories
+  - Identify top 5-10 consumption patterns by frequency
+  - Document findings as input to ground truth query design (T007)
+  - **Risk**: If no agent logs available, fall back to manual pattern enumeration from CLAUDE.md and skill definitions
+
+### Phase 3: Baseline (requires Phase 2 and Phase 2b)
+- [ ] G-NEW-1/G-NEW-3: Generate synthetic ground truth from trigger phrases — MUST satisfy diversity requirement: >=5 queries per intent type, >=3 query complexity tiers (simple, moderate, complex). Incorporate G-NEW-2 pre-analysis findings into query design. (2-4h)
 - [ ] G-NEW-1: Run BM25-only baseline measurement and record MRR@5 (4-6h)
 
 ### Phase 4: Verification
@@ -168,8 +175,9 @@ Phase 2 (Eval Infrastructure) ──────────┤
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Phase 1 (Bug Fixes) | None | Phase 4 (Verification) |
-| Phase 2 (Eval Infrastructure) | None | Phase 3 (Baseline), Phase 4 |
-| Phase 3 (Baseline) | Phase 2 | Phase 4 |
+| Phase 2 (Eval Infrastructure) | None | Phase 2b, Phase 3 (Baseline), Phase 4 |
+| Phase 2b (Agent Consumption Pre-Analysis) | None (can start independently) | Phase 3 (findings feed query design) |
+| Phase 3 (Baseline) | Phase 2, Phase 2b | Phase 4 |
 | Phase 4 (Verification) | Phase 1, Phase 2, Phase 3 | Sprint 1 (next sprint) |
 
 **Note**: Phase 1 and Phase 2 are independent tracks — they can execute in parallel.

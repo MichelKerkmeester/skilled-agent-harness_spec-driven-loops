@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 3 of 8 |
-| **Predecessor** | ../002-sprint-1-graph-signal-activation/ |
+| **Predecessor** | ../001-sprint-0-epistemological-foundation/ (direct dependency — Sprint 1 is a parallel sibling, not a predecessor) |
 | **Successor** | ../004-sprint-3-query-intelligence/ |
 | **Handoff Criteria** | Cache hit >90%, N4 dark-run passes, G2 resolved, score distributions normalized to [0,1] |
 <!-- /ANCHOR:metadata -->
@@ -44,8 +44,11 @@ This is **Phase 3** of the Hybrid RAG Fusion Refinement specification.
 **Scope Boundary**: Sprint 2 scope boundary — scoring calibration. Resolves the 15:1 magnitude mismatch between RRF and composite scoring, adds embedding cache for instant rebuild, introduces cold-start boost for new memory visibility, and investigates the G2 double intent weighting anomaly.
 
 **Dependencies**:
-- Sprint 1 exit gate MUST be passed (R4 MRR@5 delta >+2%, edge density measured)
+- Sprint 0 exit gate MUST be passed (graph channel functional, eval infrastructure operational, BM25 baseline recorded)
 - R13-S1 eval infrastructure operational (Sprint 0 deliverable)
+- **NOTE: Sprint 2 does NOT depend on Sprint 1.** Sprint 1's deliverables (R4 typed-degree, edge density) have zero technical overlap with Sprint 2's scope (R18, N4, G2, score normalization). The previous dependency on Sprint 1 exit gate is removed.
+
+**Parallelization Note**: Sprint 1 and Sprint 2 can execute in parallel after Sprint 0 exit gate. Sprint 2's scope (R18 embedding cache, N4 cold-start boost, G2 double intent weighting, score normalization) has zero technical dependency on Sprint 1's deliverables (R4 typed-degree channel, edge density measurement). Both depend only on Sprint 0 outputs. Parallel execution saves 3-5 weeks on critical path. The sole coordination point: if Sprint 1 completes first, Sprint 2's score normalization (Phase 4) should incorporate R4 degree scores — but normalization can proceed without them and be updated retroactively.
 
 **Deliverables**:
 - Embedding cache for instant rebuild (R18)
@@ -111,10 +114,10 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S2-001 | **R18**: Embedding cache with content_hash + model_id key | Cache hit rate >90% on re-index of unchanged content |
-| REQ-S2-002 | **N4**: Cold-start boost with exponential decay (12h half-life) behind `SPECKIT_NOVELTY_BOOST` flag | New memories (<48h) surface when relevant; dark-run passes (old results not displaced) |
-| REQ-S2-003 | **G2**: Double intent weighting investigation and resolution | Resolved: fixed (if bug) or documented as intentional design with rationale |
-| REQ-S2-004 | Score normalization — both RRF and composite in [0,1] | Both scoring systems produce outputs in [0,1] range; 15:1 mismatch eliminated |
+| REQ-S2-001 | **R18**: Embedding cache with content_hash + model_id key | Cache hit rate >90% on re-index of unchanged content; cache lookup adds <1ms p95; stale entries never served (content_hash key guarantees); cross-ref CHK-010, CHK-060, T001 |
+| REQ-S2-002 | **N4**: Cold-start boost with exponential decay (12h half-life) behind `SPECKIT_NOVELTY_BOOST` flag | New memories (<48h) surface when relevant; dark-run passes (old results not displaced); boost formula verified at key timestamps (0h, 12h, 24h, 48h); no conflict with FSRS temporal decay; cross-ref CHK-011, CHK-061, T002 |
+| REQ-S2-003 | **G2**: Double intent weighting investigation and resolution | Resolved: fixed (if bug) or documented as intentional design with rationale; investigation traces all 3 code locations (hybrid-search.ts, intent-classifier.ts, adaptive-fusion.ts); cross-ref CHK-012, CHK-062, T003 |
+| REQ-S2-004 | Score normalization — both RRF and composite in [0,1] | Both scoring systems produce outputs in [0,1] range; 15:1 mismatch eliminated; MRR@5 not regressed after normalization; cross-ref CHK-013, CHK-063, T004 |
 | REQ-S2-005 | **FUT-5**: RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} | Optimal K identified and documented; MRR@5 delta measured per K value |
 | REQ-S2-006 | **TM-01**: Interference scoring — add `interference_score` column to `memory_index`; compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`; apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag | Interference penalty active; high-similarity memory clusters show reduced individual scores; no false penalties on distinct content |
 | REQ-S2-007 | **TM-03**: Classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and by `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) | Decay rates differentiated per type/tier matrix; constitutional/critical memories never decay; temporary memories decay faster |
@@ -142,7 +145,7 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 | Risk | G2 is intentional design — fixing it changes ranking behavior | Medium | Dark-run before/after comparison; document decision with evidence |
 | Risk | R18 cache invalidation — stale embeddings used after content change | Low | Cache key includes content_hash; any content change = cache miss |
 | Risk | Score normalization changes ranking order | Medium | Dark-run comparison; verify MRR@5 not regressed |
-| Dependency | Sprint 1 exit gate | Blocking | Sprint 1 must pass before Sprint 2 begins |
+| Dependency | Sprint 0 exit gate | Blocking | Sprint 0 must pass before Sprint 2 begins (Sprint 1 is NOT a dependency — parallel execution possible) |
 | Dependency | R13-S1 eval infrastructure | Required | Needed for dark-run comparisons |
 <!-- /ANCHOR:risks -->
 
@@ -245,7 +248,7 @@ where M is the number of memories in the folder. The damping factor `1/sqrt(M+1)
 - **Verification Checklist**: See `checklist.md`
 - **Parent Spec**: See `../spec.md`
 - **Parent Plan**: See `../plan.md`
-- **Predecessor**: See `../002-sprint-1-graph-signal-activation/`
+- **Predecessor**: See `../001-sprint-0-epistemological-foundation/` (direct dependency — Sprint 1 is a parallel sibling)
 
 ---
 

@@ -127,6 +127,14 @@ contextType: "implementation"
 - [ ] CHK-071 [P1] Code comments adequate
 - [ ] CHK-072 [P1] Feature flags documented
 - [ ] CHK-073 [P1] Stage architecture documented in code
+
+## Feature Flag Audit
+
+- [ ] CHK-074 [P1] **Feature flag count at Sprint 5 exit ≤6 verified**: List all active flags. Evidence: explicit flag inventory at exit gate.
+  - Flags added this sprint: `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`
+  - Prior sprint flags reviewed for sunset eligibility (RSF_FUSION if RSF rejected at tau<0.4 in Sprint 3, etc.)
+- [ ] CHK-075 [P1] **Flag interaction matrix verified under PIPELINE_V2**: All 10+ accumulated flags tested together. Evidence: test run with all flags enabled simultaneously showing no interaction regressions.
+- [ ] CHK-076 [P1] **Flag sunset decisions documented with metric evidence**: Any flag retired this sprint has documented rationale (e.g., "RSF_FUSION retired — Kendall tau=0.28 < 0.4 threshold confirmed at Sprint 3").
 <!-- /ANCHOR:docs -->
 
 ---
@@ -147,7 +155,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 8 | [ ]/8 |
-| P1 Items | 27 | [ ]/27 |
+| P1 Items | 30 | [ ]/30 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]
