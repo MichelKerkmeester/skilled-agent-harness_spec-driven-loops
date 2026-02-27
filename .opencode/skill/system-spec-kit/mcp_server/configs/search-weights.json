@@ -18,11 +18,11 @@
     "scratch": 0.6
   },
 
-  "_note_smartRanking": "PARTIALLY DEAD CONFIG - read only by legacy vector-index-impl.js (line 2241-2243), not by vector-index.ts. Becomes fully dead when the JS file is removed.",
+  "_note_smartRanking": "LIVE CONFIG - read by vector-index-impl.ts:2802-2804 (apply_smart_ranking). Weights sum to 1.0. Code fallback defaults: relevance=0.5, recency=0.3, access=0.2.",
   "smartRanking": {
-    "recencyWeight": 0.5,
-    "accessWeight": 0.3,
-    "relevanceWeight": 0.2
+    "recencyWeight": 0.3,
+    "accessWeight": 0.2,
+    "relevanceWeight": 0.5
   },
 
   "_note_rrfFusion": "DEAD CONFIG - no .ts module loads this section. rrf-fusion.ts does not exist. Audit: agent-14, 2026-02-08.",

@@ -27,7 +27,11 @@ import {
   type EvalResult,
   type GroundTruthEntry,
 } from './eval-metrics';
-import { GROUND_TRUTH_QUERIES, type GroundTruthQuery } from './ground-truth-data';
+import {
+  GROUND_TRUTH_QUERIES,
+  GROUND_TRUTH_RELEVANCES,
+  type GroundTruthQuery,
+} from './ground-truth-data';
 
 /* ---------------------------------------------------------------
    1. PUBLIC TYPES
@@ -57,9 +61,13 @@ export interface BM25BaselineResult {
   queryCount: number;
   timestamp: string;
   contingencyDecision: ContingencyDecision;
+  /** Per-query MRR@5 values for bootstrap CI computation. */
+  perQueryMRR?: number[];
+  /** Bootstrap 95% CI for MRR@5 (computed if perQueryMRR available). */
+  bootstrapCI?: BootstrapCIResult;
 }
 
-/** Decision produced by evaluateContingency(). */
+/** Decision produced by evaluateContingency() or evaluateContingencyRelative(). */
 export interface ContingencyDecision {
   /** The MRR@5 value used to derive the decision. */
   bm25MRR: number;
@@ -69,6 +77,12 @@ export interface ContingencyDecision {
   action: 'PAUSE' | 'RATIONALIZE' | 'PROCEED';
   /** Plain-language interpretation for humans reading the exit gate report. */
   interpretation: string;
+  /** Comparison mode: 'absolute' (Sprint 0) or 'relative' (Sprint 1+). */
+  mode?: 'absolute' | 'relative';
+  /** Hybrid MRR@5 used as reference (relative mode only). */
+  hybridMRR?: number;
+  /** BM25/hybrid ratio (relative mode only). */
+  ratio?: number;
 }
 
 /**
@@ -137,6 +151,7 @@ export function evaluateContingency(bm25MRR: number): ContingencyDecision {
   if (bm25MRR >= 0.80) {
     return {
       bm25MRR,
+      mode: 'absolute',
       threshold: '>=0.8',
       action: 'PAUSE',
       interpretation:
@@ -150,6 +165,7 @@ export function evaluateContingency(bm25MRR: number): ContingencyDecision {
   if (bm25MRR >= 0.50) {
     return {
       bm25MRR,
+      mode: 'absolute',
       threshold: '0.5-0.8',
       action: 'RATIONALIZE',
       interpretation:
@@ -161,12 +177,214 @@ export function evaluateContingency(bm25MRR: number): ContingencyDecision {
 
   return {
     bm25MRR,
+    mode: 'absolute',
     threshold: '<0.5',
     action: 'PROCEED',
     interpretation:
       'BM25 alone is weak — strong justification for multi-channel retrieval. ' +
       'The low keyword-only baseline confirms that semantic and graph augmentation ' +
       'adds meaningful value. Proceed with hybrid search implementation.',
+  };
+}
+
+/* ---------------------------------------------------------------
+   2a. RELATIVE CONTINGENCY (Spec-Compliant)
+   Compares BM25 MRR@5 as a percentage of hybrid MRR@5.
+   Spec: "BM25 >= 80% of hybrid MRR@5" → PAUSE.
+--------------------------------------------------------------- */
+
+/**
+ * Evaluate BM25 performance relative to hybrid MRR@5 (spec-compliant).
+ *
+ * The spec defines contingency thresholds as ratios:
+ *   ratio = bm25MRR / hybridMRR
+ *
+ *   ratio >= 0.80 → PAUSE
+ *     BM25 achieves ≥80% of hybrid — multi-channel adds little value.
+ *
+ *   ratio 0.50–0.79 → RATIONALIZE
+ *     BM25 achieves 50-79% of hybrid — channels need per-channel evidence.
+ *
+ *   ratio < 0.50 → PROCEED
+ *     BM25 achieves <50% of hybrid — multi-channel clearly justified.
+ *
+ * @param bm25MRR   - BM25-only MRR@5 (must be in [0, 1]).
+ * @param hybridMRR - Hybrid/multi-channel MRR@5 (must be in (0, 1]).
+ * @returns ContingencyDecision with ratio, mode='relative', and interpretation.
+ */
+export function evaluateContingencyRelative(
+  bm25MRR: number,
+  hybridMRR: number,
+): ContingencyDecision {
+  if (hybridMRR <= 0) {
+    return {
+      bm25MRR,
+      hybridMRR,
+      ratio: 0,
+      mode: 'relative',
+      threshold: '<0.5',
+      action: 'PROCEED',
+      interpretation:
+        'Hybrid MRR@5 is zero or negative — cannot compute meaningful ratio. ' +
+        'Defaulting to PROCEED until hybrid baseline is established.',
+    };
+  }
+
+  const ratio = bm25MRR / hybridMRR;
+
+  if (ratio >= 0.80) {
+    return {
+      bm25MRR,
+      hybridMRR,
+      ratio,
+      mode: 'relative',
+      threshold: '>=0.8',
+      action: 'PAUSE',
+      interpretation:
+        `BM25 achieves ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
+        `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
+        'The multi-channel architecture adds marginal value over keyword search alone. ' +
+        'PAUSE Sprints 3-7 and evaluate whether the complexity is warranted.',
+    };
+  }
+
+  if (ratio >= 0.50) {
+    return {
+      bm25MRR,
+      hybridMRR,
+      ratio,
+      mode: 'relative',
+      threshold: '0.5-0.8',
+      action: 'RATIONALIZE',
+      interpretation:
+        `BM25 achieves ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
+        `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
+        'Each additional channel must show a statistically meaningful positive delta ' +
+        'in MRR@5. Track per-channel contribution and justify retained complexity.',
+    };
+  }
+
+  return {
+    bm25MRR,
+    hybridMRR,
+    ratio,
+    mode: 'relative',
+    threshold: '<0.5',
+    action: 'PROCEED',
+    interpretation:
+      `BM25 achieves only ${(ratio * 100).toFixed(1)}% of hybrid MRR@5 ` +
+      `(${bm25MRR.toFixed(4)} / ${hybridMRR.toFixed(4)}). ` +
+      'Multi-channel retrieval provides substantial improvement over keyword search. ' +
+      'Proceed with hybrid search optimization.',
+  };
+}
+
+/* ---------------------------------------------------------------
+   2b. BOOTSTRAP CONFIDENCE INTERVAL (REQ-S0-004)
+   Statistical significance testing for the contingency decision.
+   Uses bootstrap resampling to compute 95% CI for MRR@5.
+--------------------------------------------------------------- */
+
+/** Result of bootstrap confidence interval computation. */
+export interface BootstrapCIResult {
+  /** Point estimate (mean MRR@5 across all queries). */
+  pointEstimate: number;
+  /** Lower bound of 95% CI. */
+  ciLower: number;
+  /** Upper bound of 95% CI. */
+  ciUpper: number;
+  /** CI width (ciUpper - ciLower). Narrower is more confident. */
+  ciWidth: number;
+  /** Number of bootstrap iterations. */
+  iterations: number;
+  /** Number of queries in the sample. */
+  sampleSize: number;
+  /** Whether the CI excludes the contingency threshold boundaries.
+   *  true = the decision is statistically significant at p<0.05. */
+  isSignificant: boolean;
+  /** Which threshold boundary was tested. */
+  testedBoundary: number;
+}
+
+/**
+ * Compute bootstrap 95% confidence interval for MRR@5.
+ *
+ * Uses percentile bootstrap with 10,000 iterations (default).
+ * Statistical significance is determined by whether the CI
+ * excludes the nearest contingency threshold boundary.
+ *
+ * @param perQueryMRR - Array of per-query MRR@5 values (one per query).
+ * @param iterations - Number of bootstrap iterations (default: 10000).
+ * @returns BootstrapCIResult with CI bounds and significance.
+ */
+export function computeBootstrapCI(
+  perQueryMRR: number[],
+  iterations: number = 10000,
+): BootstrapCIResult {
+  const n = perQueryMRR.length;
+  if (n === 0) {
+    return {
+      pointEstimate: 0,
+      ciLower: 0,
+      ciUpper: 0,
+      ciWidth: 0,
+      iterations,
+      sampleSize: 0,
+      isSignificant: false,
+      testedBoundary: 0,
+    };
+  }
+
+  // Point estimate
+  const pointEstimate = perQueryMRR.reduce((s, v) => s + v, 0) / n;
+
+  // Bootstrap resampling
+  const bootstrapMeans: number[] = [];
+  for (let i = 0; i < iterations; i++) {
+    let sum = 0;
+    for (let j = 0; j < n; j++) {
+      sum += perQueryMRR[Math.floor(Math.random() * n)];
+    }
+    bootstrapMeans.push(sum / n);
+  }
+
+  // Sort for percentile computation
+  bootstrapMeans.sort((a, b) => a - b);
+
+  // 95% CI = 2.5th and 97.5th percentiles
+  const lowerIdx = Math.floor(iterations * 0.025);
+  const upperIdx = Math.floor(iterations * 0.975);
+  const ciLower = bootstrapMeans[lowerIdx];
+  const ciUpper = bootstrapMeans[upperIdx];
+
+  // Determine nearest threshold boundary and test significance
+  const boundaries = [0.80, 0.50];
+  let testedBoundary = 0;
+  let isSignificant = false;
+
+  if (pointEstimate >= 0.80) {
+    // Testing whether we're significantly above 0.80 (PAUSE)
+    testedBoundary = 0.80;
+    isSignificant = ciLower >= 0.80;
+  } else if (pointEstimate >= 0.50) {
+    // Testing RATIONALIZE band: CI should not cross either boundary
+    testedBoundary = pointEstimate >= 0.65 ? 0.80 : 0.50;
+    isSignificant = ciLower >= 0.50 && ciUpper < 0.80;
+  } else {
+    // Testing whether we're significantly below 0.50 (PROCEED)
+    testedBoundary = 0.50;
+    isSignificant = ciUpper < 0.50;
+  }
+
+  return {
+    pointEstimate,
+    ciLower,
+    ciUpper,
+    ciWidth: ciUpper - ciLower,
+    iterations,
+    sampleSize: n,
+    isSignificant,
+    testedBoundary,
   };
 }
 
@@ -241,11 +459,11 @@ export function recordBaselineMetrics(
  * For testing without a live DB, inject a mock `searchFn` that returns
  * deterministic results (see tests/t008-bm25-baseline.vitest.ts).
  *
- * The ground truth relevance judgments used here are the synthetic dataset
- * from T007 (ground-truth-data.ts). Because memory IDs in the synthetic
- * dataset use placeholder value -1 until live DB mapping is performed
- * (T008+), metrics will be 0 until real IDs are resolved. The infrastructure
- * is correct; the metrics become meaningful after ID mapping.
+ * The ground truth relevance judgments use the dataset from T007
+ * (ground-truth-data.ts) with real production memory IDs mapped via
+ * multi-strategy FTS5 matching (scripts/map-ground-truth-ids.ts).
+ * Each non-hard-negative query has 1-3 graded relevance entries
+ * (grades 3=highly relevant, 2=relevant, 1=partial).
  *
  * @param searchFn - Injected BM25-only search function (dependency injection).
  * @param config   - Optional configuration overrides.
@@ -287,6 +505,9 @@ export async function runBM25Baseline(
   let totalRecall = 0;
   let totalHitRate = 0;
 
+  // Collect per-query MRR for bootstrap CI (REQ-S0-004)
+  const perQueryMRR: number[] = [];
+
   for (const q of queries) {
     // Run BM25-only search (channels: bm25/fts only, no vector/graph/trigger)
     const rawResults = await Promise.resolve(searchFn(q.query, fetchLimit));
@@ -298,15 +519,15 @@ export async function runBM25Baseline(
       rank: idx + 1,
     }));
 
-    // Build ground truth for this query.
-    // NOTE: Synthetic dataset uses memoryId=-1 as placeholder until live DB
-    // ID mapping is done. After mapping, replace these with real IDs for
-    // meaningful metric values.
+    // Build ground truth for this query (real production memory IDs).
     const groundTruth: GroundTruthEntry[] = buildQueryGroundTruth(q.id);
 
     // Compute per-query metrics (hard negatives contribute 0 to all metrics
     // since their ground truth is empty — which is the correct behavior)
-    totalMRR     += computeMRR(evalResults, groundTruth, mrrK);
+    const qMRR = computeMRR(evalResults, groundTruth, mrrK);
+    perQueryMRR.push(qMRR);
+
+    totalMRR     += qMRR;
     totalNDCG    += computeNDCG(evalResults, groundTruth, ndcgK);
     totalRecall  += computeRecall(evalResults, groundTruth, recallK);
     totalHitRate += computeHitRate(evalResults, groundTruth, 1);
@@ -325,11 +546,16 @@ export async function runBM25Baseline(
   const timestamp = new Date().toISOString();
   const contingencyDecision = evaluateContingency(metrics.mrr5);
 
+  // Compute bootstrap 95% CI for statistical significance (REQ-S0-004: p<0.05)
+  const bootstrapCI = computeBootstrapCI(perQueryMRR);
+
   return {
     metrics,
     queryCount,
     timestamp,
     contingencyDecision,
+    perQueryMRR,
+    bootstrapCI,
   };
 }
 
@@ -338,12 +564,11 @@ export async function runBM25Baseline(
 --------------------------------------------------------------- */
 
 /**
- * Build GroundTruthEntry[] for a single query from the synthetic dataset.
+ * Build GroundTruthEntry[] for a single query from the relevance dataset.
  *
  * Hard-negative queries have no relevant results (empty array).
- * All other queries get a single placeholder entry (memoryId=-1, relevance=3)
- * that represents "one highly-relevant result expected" — this is replaced
- * with real memory IDs after live DB mapping in T008+.
+ * Non-hard-negative queries have 1-3 graded relevance entries mapped
+ * to real production memory IDs via FTS5 matching.
  */
 function buildQueryGroundTruth(queryId: number): GroundTruthEntry[] {
   const q = GROUND_TRUTH_QUERIES.find(g => g.id === queryId);
@@ -351,11 +576,12 @@ function buildQueryGroundTruth(queryId: number): GroundTruthEntry[] {
     return [];
   }
 
-  return [
-    {
-      queryId,
-      memoryId: -1, // Placeholder — must be replaced with real DB ID
-      relevance: 3, // Highly relevant
-    },
-  ];
+  // Return all relevance entries for this query (graded: 3=high, 2=relevant, 1=partial)
+  return GROUND_TRUTH_RELEVANCES
+    .filter(r => r.queryId === queryId)
+    .map(r => ({
+      queryId: r.queryId,
+      memoryId: r.memoryId,
+      relevance: r.relevance,
+    }));
 }

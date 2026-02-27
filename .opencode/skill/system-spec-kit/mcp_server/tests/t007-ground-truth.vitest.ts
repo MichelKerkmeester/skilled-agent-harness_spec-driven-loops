@@ -502,8 +502,20 @@ describe('T007.9: loadGroundTruth() DB population', () => {
     loadGroundTruth(testDb);
     const nonHardNeg = GROUND_TRUTH_QUERIES.filter(q => q.category !== 'hard_negative');
     const count = testDb.prepare('SELECT COUNT(*) as c FROM eval_ground_truth').get() as { c: number };
-    // Each non-hard-negative query gets exactly 1 placeholder relevance entry
-    expect(count.c).toBe(nonHardNeg.length);
+    // Each non-hard-negative query has 1-3 graded relevance entries (real production IDs)
+    // Total entries should be >= nonHardNeg count and <= 3x nonHardNeg count
+    expect(count.c).toBeGreaterThanOrEqual(nonHardNeg.length);
+    expect(count.c).toBeLessThanOrEqual(nonHardNeg.length * 3);
+    // Verify no hard-negative query has relevance entries
+    const hardNegIds = GROUND_TRUTH_QUERIES
+      .filter(q => q.category === 'hard_negative')
+      .map(q => q.id);
+    for (const hnId of hardNegIds) {
+      const hnCount = testDb
+        .prepare('SELECT COUNT(*) as c FROM eval_ground_truth WHERE query_id = ?')
+        .get(hnId) as { c: number };
+      expect(hnCount.c).toBe(0);
+    }
   });
 
   it('T007.9.4: second call with default options is idempotent (INSERT OR IGNORE)', () => {

@@ -26,6 +26,7 @@ import Database from 'better-sqlite3';
 
 import {
   evaluateContingency,
+  evaluateContingencyRelative,
   recordBaselineMetrics,
   runBM25Baseline,
   type BM25BaselineResult,
@@ -142,6 +143,69 @@ describe('T008: BM25 Contingency Decision Matrix', () => {
     const result = evaluateContingency(1.0);
     expect(result.action).toBe('PAUSE');
     expect(result.threshold).toBe('>=0.8');
+  });
+
+});
+
+/* ---------------------------------------------------------------
+   TESTS: evaluateContingencyRelative (spec-compliant ratio mode)
+--------------------------------------------------------------- */
+
+describe('T008: BM25 Relative Contingency Decision', () => {
+
+  it('T008.13: ratio >= 0.80 → PAUSE', () => {
+    // BM25=0.72, hybrid=0.80 → ratio=0.90 → PAUSE
+    const result = evaluateContingencyRelative(0.72, 0.80);
+    expect(result.action).toBe('PAUSE');
+    expect(result.mode).toBe('relative');
+    expect(result.ratio).toBeCloseTo(0.90, 2);
+    expect(result.hybridMRR).toBe(0.80);
+    expect(result.interpretation).toContain('90.0%');
+  });
+
+  it('T008.14: ratio 0.50-0.79 → RATIONALIZE', () => {
+    // BM25=0.40, hybrid=0.70 → ratio=0.571 → RATIONALIZE
+    const result = evaluateContingencyRelative(0.40, 0.70);
+    expect(result.action).toBe('RATIONALIZE');
+    expect(result.mode).toBe('relative');
+    expect(result.ratio).toBeCloseTo(0.571, 2);
+  });
+
+  it('T008.15: ratio < 0.50 → PROCEED', () => {
+    // BM25=0.20, hybrid=0.75 → ratio=0.267 → PROCEED
+    const result = evaluateContingencyRelative(0.20, 0.75);
+    expect(result.action).toBe('PROCEED');
+    expect(result.mode).toBe('relative');
+    expect(result.ratio).toBeCloseTo(0.267, 2);
+    expect(result.interpretation).toContain('26.7%');
+  });
+
+  it('T008.16: exact boundary ratio=0.80 → PAUSE (inclusive)', () => {
+    // BM25=0.40, hybrid=0.50 → ratio=0.80 exactly
+    const result = evaluateContingencyRelative(0.40, 0.50);
+    expect(result.action).toBe('PAUSE');
+    expect(result.ratio).toBeCloseTo(0.80, 5);
+  });
+
+  it('T008.17: exact boundary ratio=0.50 → RATIONALIZE (inclusive)', () => {
+    // BM25=0.25, hybrid=0.50 → ratio=0.50 exactly
+    const result = evaluateContingencyRelative(0.25, 0.50);
+    expect(result.action).toBe('RATIONALIZE');
+    expect(result.ratio).toBeCloseTo(0.50, 5);
+  });
+
+  it('T008.18: hybridMRR=0 → safe fallback to PROCEED', () => {
+    const result = evaluateContingencyRelative(0.50, 0);
+    expect(result.action).toBe('PROCEED');
+    expect(result.mode).toBe('relative');
+    expect(result.interpretation).toContain('zero');
+  });
+
+  it('T008.19: absolute mode tags results with mode="absolute"', () => {
+    const result = evaluateContingency(0.65);
+    expect(result.mode).toBe('absolute');
+    expect(result.hybridMRR).toBeUndefined();
+    expect(result.ratio).toBeUndefined();
   });
 
 });
