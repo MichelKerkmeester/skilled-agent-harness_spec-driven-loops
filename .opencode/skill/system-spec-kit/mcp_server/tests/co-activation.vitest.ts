@@ -71,24 +71,34 @@ describe('Co-Activation Module', () => {
 
   describe('boostScore()', () => {
     // Production signature: boostScore(baseScore, relatedCount, avgSimilarity)
-    // boost = boostFactor * (relatedCount / maxRelated) * (avgSimilarity / 100)
-    // Returns baseScore + boost when enabled and relatedCount > 0
+    // R17 fan-effect divisor formula:
+    //   raw_boost   = boostFactor * (relatedCount / maxRelated) * (avgSimilarity / 100)
+    //   fan_divisor = sqrt(max(1, relatedCount))
+    //   boost       = max(0, raw_boost / fan_divisor)
+    //   result      = baseScore + boost
 
     it('No related memories returns base score', () => {
       expect(coActivation.boostScore(0.5, 0, 80)).toBe(0.5);
     });
 
-    it('With related memories, score is boosted', () => {
-      // boost = 0.15 * (3/5) * (80/100) = 0.15 * 0.6 * 0.8 = 0.072
-      // result = 0.5 + 0.072 = 0.572
+    it('With related memories, score is boosted (fan-effect divisor applied)', () => {
+      // raw_boost = 0.15 * (3/5) * (80/100) = 0.072
+      // fan_divisor = sqrt(3) ≈ 1.7321
+      // boost = 0.072 / sqrt(3) ≈ 0.04157
+      // result ≈ 0.5 + 0.04157 = 0.54157
       const boosted = coActivation.boostScore(0.5, 3, 80);
-      const expectedBoost = 0.5 + 0.15 * (3 / 5) * (80 / 100);
+      const rawBoost = 0.15 * (3 / 5) * (80 / 100);
+      const expectedBoost = 0.5 + rawBoost / Math.sqrt(3);
       expect(boosted).toBeCloseTo(expectedBoost, 3);
     });
 
-    it('Max related count and similarity', () => {
+    it('Max related count and similarity (fan-effect divisor applied)', () => {
+      // raw_boost = 0.15 * (5/5) * (100/100) = 0.15
+      // fan_divisor = sqrt(5) ≈ 2.2361
+      // boost = 0.15 / sqrt(5) ≈ 0.06708
+      // result ≈ 0.5 + 0.06708 = 0.56708
       const maxBoost = coActivation.boostScore(0.5, 5, 100);
-      const expectedMax = 0.5 + 0.15 * (5 / 5) * (100 / 100);
+      const expectedMax = 0.5 + 0.15 / Math.sqrt(5);
       expect(maxBoost).toBeCloseTo(expectedMax, 3);
     });
   });
@@ -205,12 +215,82 @@ describe('Co-Activation Module', () => {
       expect(config.maxHops).toBeGreaterThanOrEqual(1);
     });
 
-    it('C138-T3: boostScore with max related and high similarity gives meaningful boost', () => {
+    it('C138-T3: boostScore with max related and high similarity gives meaningful boost (fan-effect divisor)', () => {
       const base = 0.5;
       const boosted = coActivation.boostScore(base, 5, 95);
       expect(boosted).toBeGreaterThan(base);
-      // Boost should be proportional: boostFactor * (5/5) * (95/100) = 0.15 * 1.0 * 0.95 = 0.1425
-      expect(boosted).toBeCloseTo(base + 0.1425, 2);
+      // R17: raw_boost = 0.15 * (5/5) * (95/100) = 0.1425
+      // fan_divisor = sqrt(5) ≈ 2.2361
+      // boost = 0.1425 / sqrt(5) ≈ 0.06373
+      const expectedBoost = base + 0.1425 / Math.sqrt(5);
+      expect(boosted).toBeCloseTo(expectedBoost, 2);
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     T003: Fan-Effect Divisor (R17) Tests
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('T003: R17 Fan-Effect Divisor for Co-Activation', () => {
+    it('T003-1: hub memory gets less boost than the old formula would give (fan-effect divisor reduces hub dominance)', () => {
+      const base = 0.5;
+      const similarity = 90;
+      // Hub: relatedCount=5 (max neighbours)
+      const hubBoosted = coActivation.boostScore(base, 5, similarity);
+
+      // Old formula (no divisor): base + 0.15*(5/5)*(90/100) = 0.5 + 0.135 = 0.635
+      const oldFormulaHub = base + 0.15 * (5 / 5) * (similarity / 100);
+      // New formula divides by sqrt(5) ≈ 2.236, so hub boost is reduced
+      expect(hubBoosted).toBeLessThan(oldFormulaHub);
+
+      // Per-neighbour efficiency: non-hub has better boost-per-unit-of-relatedCount.
+      // Hub boost/relatedCount vs non-hub boost/relatedCount:
+      const nonHubBoosted = coActivation.boostScore(base, 1, similarity);
+      const hubBoostPerNeighbor = (hubBoosted - base) / 5;
+      const nonHubBoostPerNeighbor = (nonHubBoosted - base) / 1;
+      // Non-hub gets proportionally more boost per neighbour (the fan-effect penalises hubs)
+      expect(nonHubBoostPerNeighbor).toBeGreaterThan(hubBoostPerNeighbor);
+    });
+
+    it('T003-2: no division by zero when relatedCount=1 (min non-zero)', () => {
+      expect(() => coActivation.boostScore(0.5, 1, 80)).not.toThrow();
+      const result = coActivation.boostScore(0.5, 1, 80);
+      expect(Number.isFinite(result)).toBe(true);
+    });
+
+    it('T003-3: no division by zero when relatedCount=0 (returns base score)', () => {
+      expect(() => coActivation.boostScore(0.5, 0, 80)).not.toThrow();
+      const result = coActivation.boostScore(0.5, 0, 80);
+      expect(result).toBe(0.5); // unchanged base
+    });
+
+    it('T003-4: result is never negative', () => {
+      // Test a range of relatedCount values — score should always be >= baseScore
+      const base = 0.5;
+      for (const count of [1, 2, 3, 4, 5]) {
+        const result = coActivation.boostScore(base, count, 100);
+        expect(result).toBeGreaterThanOrEqual(base);
+      }
+    });
+
+    it('T003-5: fan-effect divisor formula is correct for relatedCount=4', () => {
+      // raw_boost = 0.15 * (4/5) * (80/100) = 0.096
+      // fan_divisor = sqrt(4) = 2
+      // boost = 0.096 / 2 = 0.048
+      // result = 0.5 + 0.048 = 0.548
+      const result = coActivation.boostScore(0.5, 4, 80);
+      const expected = 0.5 + (0.15 * (4 / 5) * (80 / 100)) / Math.sqrt(4);
+      expect(result).toBeCloseTo(expected, 5);
+    });
+
+    it('T003-6: hub memory with relatedCount=5 gives less boost than raw formula would', () => {
+      const base = 0.5;
+      // With fan-effect divisor active:
+      const withDivisor = coActivation.boostScore(base, 5, 100);
+      // Old formula without divisor: base + 0.15 * (5/5) * (100/100) = 0.5 + 0.15 = 0.65
+      const oldFormulaResult = base + 0.15;
+      // New result should be strictly less than old result
+      expect(withDivisor).toBeLessThan(oldFormulaResult);
     });
   });
 });

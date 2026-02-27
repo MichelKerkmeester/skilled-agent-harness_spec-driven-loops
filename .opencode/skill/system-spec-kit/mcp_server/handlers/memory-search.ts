@@ -999,17 +999,12 @@ async function postSearchPipeline(
     extraData._telemetry = retrievalTelemetry.toJSON(t);
   }
 
-  const chunkPrep = includeContent
-    ? collapseAndReassembleChunkResults(finalResults)
-    : {
-        results: finalResults,
-        stats: {
-          collapsedChunkHits: 0,
-          chunkParents: 0,
-          reassembled: 0,
-          fallback: 0,
-        },
-      };
+  // G3: Chunk dedup ALWAYS runs regardless of includeContent flag.
+  // Duplicate chunk rows inflate result counts even without content; dedup must
+  // happen on every code path. The reassembly step within
+  // collapseAndReassembleChunkResults is a no-op when includeContent=false
+  // because formatSearchResults does not consume precomputedContent in that case.
+  const chunkPrep = collapseAndReassembleChunkResults(finalResults);
 
   if (chunkPrep.stats.chunkParents > 0) {
     extraData.chunkReassembly = chunkPrep.stats;

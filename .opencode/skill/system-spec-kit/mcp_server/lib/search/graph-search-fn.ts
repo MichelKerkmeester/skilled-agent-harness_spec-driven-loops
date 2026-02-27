@@ -106,17 +106,44 @@ function queryCausalEdgesFTS5(
     LIMIT ?
   `) as Database.Statement).all(sanitized, limit) as Array<CausalEdgeRow & { fts_score: number }>;
 
-  return rows.map(row => ({
-    id: `mem:${row.id}`,
-    score: typeof row.strength === 'number'
+  // Return one candidate entry per memory node (source_id and target_id) rather
+  // than using the edge's own id. The IDs must be numeric so they can be
+  // deduplicated and matched against memory_index.id (INTEGER column) in the
+  // hybrid search pipeline (MMR reranking filters with typeof id === 'number').
+  const candidates: Array<Record<string, unknown>> = [];
+  for (const row of rows) {
+    const score = typeof row.strength === 'number'
       ? Math.min(1, Math.max(0, row.strength))
-      : 0,
-    source: 'graph' as const,
-    title: `${row.source_id} -> ${row.target_id}`,
-    relation: row.relation,
-    sourceId: row.source_id,
-    targetId: row.target_id,
-  }));
+      : 0;
+    const title = `${row.source_id} -> ${row.target_id}`;
+
+    const sourceNum = Number(row.source_id);
+    if (!Number.isNaN(sourceNum)) {
+      candidates.push({
+        id: sourceNum,
+        score,
+        source: 'graph' as const,
+        title,
+        relation: row.relation,
+        sourceId: row.source_id,
+        targetId: row.target_id,
+      });
+    }
+
+    const targetNum = Number(row.target_id);
+    if (!Number.isNaN(targetNum) && targetNum !== sourceNum) {
+      candidates.push({
+        id: targetNum,
+        score,
+        source: 'graph' as const,
+        title,
+        relation: row.relation,
+        sourceId: row.source_id,
+        targetId: row.target_id,
+      });
+    }
+  }
+  return candidates;
 }
 
 /**
@@ -147,15 +174,41 @@ function queryCausalEdgesLikeFallback(
     LIMIT ?
   `) as Database.Statement).all(likeParam, likeParam, limit) as CausalEdgeRow[];
 
-  return rows.map(row => ({
-    id: `mem:${row.id}`,
-    score: typeof row.strength === 'number' ? Math.min(1, Math.max(0, row.strength)) : 0,
-    source: 'graph' as const,
-    title: `${row.source_id} -> ${row.target_id}`,
-    relation: row.relation,
-    sourceId: row.source_id,
-    targetId: row.target_id,
-  }));
+  // Return one candidate entry per memory node (source_id and target_id) with
+  // numeric IDs matching memory_index.id (INTEGER). String-prefixed IDs like
+  // `mem:${edgeId}` can never match numeric IDs from other search channels.
+  const candidates: Array<Record<string, unknown>> = [];
+  for (const row of rows) {
+    const score = typeof row.strength === 'number' ? Math.min(1, Math.max(0, row.strength)) : 0;
+    const title = `${row.source_id} -> ${row.target_id}`;
+
+    const sourceNum = Number(row.source_id);
+    if (!Number.isNaN(sourceNum)) {
+      candidates.push({
+        id: sourceNum,
+        score,
+        source: 'graph' as const,
+        title,
+        relation: row.relation,
+        sourceId: row.source_id,
+        targetId: row.target_id,
+      });
+    }
+
+    const targetNum = Number(row.target_id);
+    if (!Number.isNaN(targetNum) && targetNum !== sourceNum) {
+      candidates.push({
+        id: targetNum,
+        score,
+        source: 'graph' as const,
+        title,
+        relation: row.relation,
+        sourceId: row.source_id,
+        targetId: row.target_id,
+      });
+    }
+  }
+  return candidates;
 }
 
 // ---------------------------------------------------------------

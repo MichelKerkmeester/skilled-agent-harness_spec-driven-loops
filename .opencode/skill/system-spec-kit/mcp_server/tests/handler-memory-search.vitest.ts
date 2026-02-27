@@ -80,3 +80,83 @@ describe('C138: Evidence Gap Warning Injection', () => {
     expect(warning).toContain('first principles');
   });
 });
+
+/* ---------------------------------------------------------------
+   T002: Chunk Collapse Dedup — G3 Fix
+   collapseAndReassembleChunkResults is exported via __testables.
+   Tests verify dedup runs regardless of the includeContent flag.
+--------------------------------------------------------------- */
+describe('T002: Chunk Collapse Dedup (G3)', () => {
+  const { collapseAndReassembleChunkResults } = handler.__testables;
+
+  // Minimal MemorySearchRow-compatible shape used across these tests.
+  function makeRow(id: number, parentId: number | null, extra: Record<string, unknown> = {}): Record<string, unknown> {
+    return {
+      id,
+      title: `Memory ${id}`,
+      parent_id: parentId,
+      chunk_index: parentId !== null ? 0 : null,
+      chunk_label: null,
+      content_text: null,
+      score: 0.9,
+      similarity: 90,
+      state: 'WARM',
+      importance_tier: 'normal',
+      spec_folder: 'test',
+      file_path: '/tmp/test.md',
+      context_type: null,
+      related_memories: null,
+      ...extra,
+    };
+  }
+
+  it('T002-1: empty input returns empty results with zero stats', () => {
+    const result = collapseAndReassembleChunkResults([]);
+    expect(result.results).toHaveLength(0);
+    expect(result.stats.collapsedChunkHits).toBe(0);
+    expect(result.stats.chunkParents).toBe(0);
+  });
+
+  it('T002-2: non-chunk rows pass through without dedup (no parent_id)', () => {
+    const rows = [makeRow(1, null), makeRow(2, null)];
+    const result = collapseAndReassembleChunkResults(rows);
+    expect(result.results).toHaveLength(2);
+    expect(result.stats.collapsedChunkHits).toBe(0);
+  });
+
+  it('T002-3: duplicate sibling chunks (same parent_id) are collapsed to one row', () => {
+    // Two chunk rows both belonging to parent 100 — only first should survive.
+    const rows = [makeRow(10, 100), makeRow(11, 100)];
+    const result = collapseAndReassembleChunkResults(rows);
+    expect(result.results).toHaveLength(1);
+    expect(result.stats.collapsedChunkHits).toBe(1);
+  });
+
+  it('T002-4: chunks from different parents are kept (one per parent)', () => {
+    // Chunk for parent 100 and chunk for parent 200 — both should survive.
+    const rows = [makeRow(10, 100), makeRow(20, 200)];
+    const result = collapseAndReassembleChunkResults(rows);
+    expect(result.results).toHaveLength(2);
+    expect(result.stats.collapsedChunkHits).toBe(0);
+  });
+
+  it('T002-5: three sibling chunks collapse to one — two hits recorded', () => {
+    const rows = [makeRow(10, 100), makeRow(11, 100), makeRow(12, 100)];
+    const result = collapseAndReassembleChunkResults(rows);
+    expect(result.results).toHaveLength(1);
+    expect(result.stats.collapsedChunkHits).toBe(2);
+  });
+
+  it('T002-6: mixed chunk and non-chunk rows — each category handled correctly', () => {
+    // Rows: non-chunk (id=1), chunk-parent-A (id=10), sibling-chunk-A (id=11, collapsed),
+    //       chunk-parent-B (id=20) — non-chunk stays, parent-A kept, sibling collapsed, parent-B kept.
+    const rows = [makeRow(1, null), makeRow(10, 100), makeRow(11, 100), makeRow(20, 200)];
+    const result = collapseAndReassembleChunkResults(rows);
+    expect(result.results).toHaveLength(3); // id=1, id=10, id=20
+    expect(result.stats.collapsedChunkHits).toBe(1); // id=11 collapsed
+  });
+
+  it('T002-7: collapseAndReassembleChunkResults is exported via __testables', () => {
+    expect(typeof collapseAndReassembleChunkResults).toBe('function');
+  });
+});

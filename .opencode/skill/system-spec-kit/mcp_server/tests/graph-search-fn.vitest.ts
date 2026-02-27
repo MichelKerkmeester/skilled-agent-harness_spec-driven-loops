@@ -7,7 +7,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createUnifiedGraphSearchFn, getSubgraphWeights } from '../lib/search/graph-search-fn';
 
 const mockAll = vi.fn();
-const mockStatement = { all: mockAll };
+const mockGet = vi.fn();
+const mockStatement = { all: mockAll, get: mockGet };
 const mockPrepare = vi.fn().mockReturnValue(mockStatement);
 const mockDb = {
   prepare: mockPrepare,
@@ -24,8 +25,8 @@ function makeCausalRow(
 ) {
   return {
     id: 'edge-001',
-    source_id: 'mem-alpha',
-    target_id: 'mem-beta',
+    source_id: '10',
+    target_id: '20',
     relation: 'causes',
     strength: 0.85,
     ...overrides,
@@ -35,18 +36,121 @@ function makeCausalRow(
 describe('createUnifiedGraphSearchFn', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Default: FTS table not available so fallback path is used
+    mockGet.mockReturnValue(undefined);
     mockPrepare.mockReturnValue(mockStatement);
   });
 
-  it('returns mem-prefixed graph results for causal matches', () => {
-    mockAll.mockReturnValue([makeCausalRow({ id: 'edge-001', strength: 0.9 })]);
+  // ---------------------------------------------------------------
+  // G1 FIX: numeric ID correctness
+  // ---------------------------------------------------------------
+
+  it('G1: returns numeric IDs (source_id) — not string-prefixed mem:edgeId', () => {
+    mockAll.mockReturnValue([makeCausalRow({ source_id: '42', target_id: '99', id: 'edge-001' })]);
 
     const searchFn = createUnifiedGraphSearchFn(mockDb);
     const results = searchFn('memory', { limit: 5 });
 
-    expect(results).toHaveLength(1);
-    expect(results[0]!['id']).toBe('mem:edge-001');
-    expect(results[0]!['source']).toBe('graph');
+    // Must have at least one result with numeric source_id
+    const sourceResult = results.find(r => r['id'] === 42);
+    expect(sourceResult).toBeDefined();
+    expect(typeof sourceResult!['id']).toBe('number');
+  });
+
+  it('G1: returns numeric target_id as a separate candidate', () => {
+    mockAll.mockReturnValue([makeCausalRow({ source_id: '42', target_id: '99', id: 'edge-001' })]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 5 });
+
+    const targetResult = results.find(r => r['id'] === 99);
+    expect(targetResult).toBeDefined();
+    expect(typeof targetResult!['id']).toBe('number');
+  });
+
+  it('G1: never returns a string-prefixed id like mem:edge-001', () => {
+    mockAll.mockReturnValue([makeCausalRow({ source_id: '10', target_id: '20', id: 'edge-001' })]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 5 });
+
+    for (const r of results) {
+      expect(typeof r['id']).toBe('number');
+      expect(String(r['id'])).not.toMatch(/^mem:/);
+    }
+  });
+
+  it('G1: skips candidates where source_id or target_id is non-numeric', () => {
+    mockAll.mockReturnValue([
+      makeCausalRow({ source_id: 'non-numeric-alpha', target_id: 'also-not-a-number', id: 'edge-bad' }),
+    ]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 5 });
+
+    // Neither source nor target is numeric — no results expected
+    expect(results).toHaveLength(0);
+  });
+
+  it('G1: deduplicates when source_id equals target_id (same numeric value)', () => {
+    mockAll.mockReturnValue([
+      makeCausalRow({ source_id: '55', target_id: '55', id: 'edge-self' }),
+    ]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 10 });
+
+    // source and target are the same node — should produce only one candidate
+    const ids = results.map(r => r['id']);
+    const uniqueIds = new Set(ids);
+    expect(uniqueIds.size).toBe(ids.length); // no duplicate entries
+    expect(results.filter(r => r['id'] === 55)).toHaveLength(1);
+  });
+
+  it('G1: both source and target IDs from multiple rows are all numeric', () => {
+    mockAll.mockReturnValue([
+      makeCausalRow({ source_id: '1', target_id: '2', strength: 0.9 }),
+      makeCausalRow({ source_id: '3', target_id: '4', strength: 0.7 }),
+    ]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 20 });
+
+    // Expect 4 candidates: 1, 2, 3, 4
+    expect(results).toHaveLength(4);
+    for (const r of results) {
+      expect(typeof r['id']).toBe('number');
+    }
+    const ids = results.map(r => r['id']).sort((a, b) => (a as number) - (b as number));
+    expect(ids).toEqual([1, 2, 3, 4]);
+  });
+
+  // ---------------------------------------------------------------
+  // Existing behaviour: correct source, title, relation preserved
+  // ---------------------------------------------------------------
+
+  it('sets source field to "graph" on all results', () => {
+    mockAll.mockReturnValue([makeCausalRow({ source_id: '10', target_id: '20' })]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 5 });
+
+    for (const r of results) {
+      expect(r['source']).toBe('graph');
+    }
+  });
+
+  it('preserves relation and sourceId/targetId on candidates', () => {
+    mockAll.mockReturnValue([makeCausalRow({ source_id: '10', target_id: '20', relation: 'causes' })]);
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 5 });
+
+    for (const r of results) {
+      expect(r['relation']).toBe('causes');
+      expect(r['sourceId']).toBe('10');
+      expect(r['targetId']).toBe('20');
+    }
   });
 
   it('uses memory_index content_text lookup in causal SQL', () => {
@@ -72,16 +176,25 @@ describe('createUnifiedGraphSearchFn', () => {
 
   it('sorts results by score descending and clamps scores to [0, 1]', () => {
     mockAll.mockReturnValue([
-      makeCausalRow({ id: 'edge-high', strength: 1.5 }),
-      makeCausalRow({ id: 'edge-low', strength: -0.2 }),
-      makeCausalRow({ id: 'edge-mid', strength: 0.7 }),
+      makeCausalRow({ source_id: '1', target_id: '2', strength: 1.5 }),
+      makeCausalRow({ source_id: '3', target_id: '4', strength: -0.2 }),
+      makeCausalRow({ source_id: '5', target_id: '6', strength: 0.7 }),
     ]);
 
     const searchFn = createUnifiedGraphSearchFn(mockDb);
     const results = searchFn('memory', { limit: 20 });
 
     const scores = results.map(r => (typeof r['score'] === 'number' ? r['score'] : 0));
-    expect(scores).toEqual([1, 0.7, 0]);
+    // Clamped: 1.5→1, 1.5→1, -0.2→0, -0.2→0, 0.7, 0.7
+    // Sorted descending
+    for (let i = 0; i < scores.length - 1; i++) {
+      expect(scores[i]!).toBeGreaterThanOrEqual(scores[i + 1]!);
+    }
+    // All within [0, 1]
+    for (const s of scores) {
+      expect(s).toBeGreaterThanOrEqual(0);
+      expect(s).toBeLessThanOrEqual(1);
+    }
   });
 });
 

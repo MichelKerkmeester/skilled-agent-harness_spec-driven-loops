@@ -70,6 +70,15 @@ function isEnabled(): boolean {
 
 /**
  * Boost a search result's score based on co-activation with related memories.
+ *
+ * R17 — Fan-effect divisor: hub memories (high relatedCount) are penalised by
+ * dividing the raw boost by sqrt(relatedCount). This prevents memories with
+ * many co-activation neighbours from dominating result rankings.
+ *
+ * Formula:
+ *   raw_boost   = boostFactor × (relatedCount / maxRelated) × (avgSimilarity / 100)
+ *   fan_divisor = sqrt(max(1, relatedCount))
+ *   final_boost = max(0, raw_boost / fan_divisor)
  */
 function boostScore(
   baseScore: number,
@@ -80,7 +89,10 @@ function boostScore(
     return baseScore;
   }
 
-  const boost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
+  const rawBoost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
+  // Guard: relatedCount is already > 0 here, but clamp to 1 to prevent division by zero.
+  const fanDivisor = Math.sqrt(Math.max(1, relatedCount));
+  const boost = Math.max(0, rawBoost / fanDivisor);
   return baseScore + boost;
 }
 

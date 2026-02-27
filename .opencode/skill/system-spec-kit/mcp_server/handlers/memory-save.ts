@@ -977,6 +977,36 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     };
   }
 
+  // T054: SHA256 CONTENT-HASH FAST-PATH DEDUP (TM-02)
+  // Before calling the embedding API, check if identical content already exists
+  // under ANY file path within this spec_folder. This short-circuits embedding
+  // generation for duplicate content saved under a different path (e.g., renamed files).
+  if (!force) {
+    const duplicateByHash = database.prepare(`
+      SELECT id, file_path, title FROM memory_index
+      WHERE spec_folder = ?
+        AND content_hash = ?
+        AND embedding_status != 'pending'
+      ORDER BY id DESC
+      LIMIT 1
+    `).get(parsed.specFolder, parsed.contentHash) as { id: number; file_path: string; title: string | null } | undefined;
+
+    if (duplicateByHash) {
+      console.info(`[memory-save] T054: Duplicate content detected (hash match id=${duplicateByHash.id}), skipping embedding`);
+      return {
+        status: 'duplicate',
+        id: duplicateByHash.id,
+        specFolder: parsed.specFolder,
+        title: parsed.title ?? duplicateByHash.title ?? '',
+        triggerPhrases: parsed.triggerPhrases,
+        contextType: parsed.contextType,
+        importanceTier: parsed.importanceTier,
+        warnings: validation.warnings,
+        message: `Duplicate content detected: identical to existing memory #${duplicateByHash.id} (${duplicateByHash.file_path}). Skipping embedding generation.`,
+      };
+    }
+  }
+
   // EMBEDDING GENERATION
   let embedding: Float32Array | null = null;
   let embeddingStatus = 'pending';
