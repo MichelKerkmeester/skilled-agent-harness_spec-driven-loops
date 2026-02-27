@@ -116,7 +116,7 @@ Two sequential sub-sprints: Sprint 6a (practical, no graph-scale dependency) →
 > **Sprint 6b Entry Gates (ALL REQUIRED):**
 > 1. Feasibility spike completed (8-16h)
 > 2. OQ-S6-001 resolved (edge density documented)
-> 3. OQ-S6-002 resolved (centrality algorithm selected with evidence)
+> 3. OQ-S6-002 resolved (RESOLVED — Katz centrality selected; see spec.md OQ-S6-002)
 > 4. REQ-S6-004 revisited (10% mandate removed or density-conditioned if graph is thin)
 
 > **ESTIMATION WARNING — N2c**: Louvain/label propagation community detection on SQLite is research-grade. N2c listed at 12-15h; production quality requires 40-80h. Recommend evaluating connected-components heuristic first.

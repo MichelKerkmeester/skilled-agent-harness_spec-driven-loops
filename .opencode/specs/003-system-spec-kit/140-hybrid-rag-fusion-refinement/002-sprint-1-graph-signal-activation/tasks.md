@@ -146,6 +146,28 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T001 | T010 | Typed-weighted degree computation (R4) |
+| T002 | T010 | Integrate degree as 5th RRF channel (R4) |
+| T003 | T011 | Measure edge density |
+| T003a | T010a | Co-activation boost strength (A7) |
+| T004 | T012 | Agent-as-consumer UX analysis (G-NEW-2) |
+| T005a | T055 | Signal vocabulary expansion (TM-08) |
+| T005 | T013 | Enable R4 dark-run verification |
+| T-FS1 | T-FS1 | Feature flag sunset review (Sprint 1 exit) |
+| T006 | T014 | Sprint 1 exit gate verification |
+| T007 | PI-A3 | Pre-flight token budget validation (PI-A3) |
+| T008 | PI-A5 | Verify-fix-verify memory quality loop (PI-A5) |
+<!-- /ANCHOR:task-id-mapping -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

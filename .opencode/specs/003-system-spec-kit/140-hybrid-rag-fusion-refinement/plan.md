@@ -342,7 +342,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 ### Sprint 6b: Graph Sophistication (GATED)
 
-> **Entry gates**: Feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved, REQ-S6-004 density-conditioned
+> **Entry gates**: Feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved (RESOLVED — Katz centrality selected; see S6 child spec OQ-S6-002), REQ-S6-004 density-conditioned
 
 | # | Item | Hours | Subsystem | Flag |
 |---|------|-------|-----------|------|

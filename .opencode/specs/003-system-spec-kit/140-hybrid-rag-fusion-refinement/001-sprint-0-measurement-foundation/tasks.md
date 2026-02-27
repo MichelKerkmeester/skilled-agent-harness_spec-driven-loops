@@ -144,6 +144,35 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T000a | T000a | Pre-Sprint-0 performance baseline |
+| T000b | T000b | Feature flag governance rules |
+| T000c | T000c | Audit search-weights.json |
+| T000d | T000d | Curate diverse ground truth query set |
+| T001 | T001 | Fix graph channel ID format (G1) |
+| T002 | T002 | Fix chunk collapse conditional (G3) |
+| T003 | T003 | Fan-effect divisor for co-activation (R17) |
+| T054 | T054 | SHA256 content-hash dedup (TM-02) |
+| T004 | T004 | Create speckit-eval.db (R13-S1) |
+| T004b | T004b | R13 observer effect mitigation (D4) |
+| T005 | T005 | Logging hooks for search handlers (R13-S1) |
+| T006 | T006 | Core metric computation (R13-S1) |
+| T007b | T000e | G-NEW-2 agent consumption pre-analysis |
+| T007 | T007 | Synthetic ground truth generation (G-NEW-1) |
+| T013 | T008b | Eval-the-eval validation |
+| T008 | T008 | BM25-only baseline measurement |
+| T-FS0 | T-FS0 | Feature flag sunset review (Sprint 0 exit) |
+| T009 | T009 | Sprint 0 exit gate verification |
+<!-- /ANCHOR:task-id-mapping -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

@@ -138,15 +138,16 @@ contextType: "implementation"
 - [ ] CHK-S0C [P0] Ground truth corpus includes ≥15 manually curated natural-language queries (T000d) — evidence: query set JSON with count ≥15
 - [ ] CHK-S0D [P0] Query diversity verified: ≥5 per intent type (graph relationship, temporal, cross-document, hard negative), ≥3 complexity tiers (simple, moderate, complex) — evidence: intent/tier distribution table
 - [ ] CHK-S0E [P0] Ground truth includes graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives — evidence: query set JSON with `intent_type` field
+- [ ] CHK-S0F [P1] Feature flag count ≤8 at exit + sunset decisions documented (consolidated: applies to ALL sprint exits S0-S7)
 - [ ] CHK-S0F2 [P0] **Eval-the-eval validation** — hand-calculated MRR@5 for 5 random queries matches R13 output within ±0.01; discrepancies resolved before BM25 contingency decision (REQ-052)
 - [ ] CHK-S0F3 [P0] BM25 contingency decision has statistical significance — p<0.05 on >=100 diverse queries (R-008, R-011 elevated)
-- [ ] CHK-S0F [P1] Feature flag count ≤6 at exit + sunset decisions documented (consolidated: applies to ALL sprint exits S0-S7)
 
 ### Sprint 1: Graph Signal Activation [P0]
 
 - [ ] CHK-S10 [P0] R4 dark-run: no single memory in >60% of results
 - [ ] CHK-S11 [P0] R4 MRR@5 delta > +2% absolute (or +5% relative) vs Sprint 0 baseline
 - [ ] CHK-S12 [P0] Edge density measured; if < 0.5 edges/node, R10 priority escalated
+<!-- CHK-S14 intentionally skipped — ID gap from draft revision -->
 - [ ] CHK-S13 [P1] G-NEW-2: Agent consumption instrumentation active; initial pattern report drafted
 - [ ] CHK-S15 [P1] Co-activation boost strength (A7) increased to 0.25-0.3x; effective contribution ≥15% at hop 2
 - [ ] CHK-S16 [P1] TM-08 importance signal vocabulary expanded — CORRECTION and PREFERENCE signal categories recognized by trigger extraction
@@ -158,6 +159,7 @@ contextType: "implementation"
 - [ ] CHK-S21 [P1] N4 dark-run: new memories (<48h) surface when relevant without displacing older results
 - [ ] CHK-S22 [P1] G2 resolved: double intent weighting fixed or documented as intentional
 - [ ] CHK-S23 [P1] Score distributions from RRF and composite normalized to comparable [0,1] ranges
+<!-- CHK-S24 intentionally skipped — ID gap from draft revision -->
 - [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
 - [ ] CHK-S26 [P1] TM-01 interference scoring signal operational — interference_score column populated at index time; composite scoring applies negative weight behind flag
 - [ ] CHK-S27 [P1] TM-03 classification-based decay verified — decisions and constitutional memories show 0 decay; temporary memories decay at 0.5x rate; standard memories unchanged
@@ -209,7 +211,7 @@ contextType: "implementation"
 
 ### Sprint 6a: Practical Improvements [P1]
 
-- [ ] CHK-S59 [P1] Sprint 5→6a handoff: all Phase B items (R9, R12, S2, S3) verified complete before Sprint 6a begins
+- [ ] CHK-S6A-ENTRY [P1] Sprint 5→6a handoff: all Phase B items (R9, R12, S2, S3) verified complete before Sprint 6a begins
 - [ ] CHK-S60 [P1] R7 Recall@20 within 10% of baseline
 - [ ] CHK-S63 [P1] N3-lite: contradiction scan identifies at least 1 known contradiction
 - [ ] CHK-S66 [P1] R16 encoding-intent metadata captured at index time and available for scoring

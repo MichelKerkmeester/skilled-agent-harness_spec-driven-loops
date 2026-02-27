@@ -218,7 +218,7 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- **OQ-S2-001**: G2 double intent weighting — is it a bug or intentional design? Sprint 2 investigation will resolve this.
+- **OQ-S2-001**: G2 double intent weighting — is it a bug or intentional design? Sprint 2 investigation will resolve this. Cross-ref: OQ-004 in root spec.
 - **OQ-S2-002**: N4 interaction with FSRS — does the cold-start boost correctly complement (not conflict with) temporal decay? Requires empirical verification via dark-run.
 - **OQ-S2-003**: Score normalization method — linear scaling vs. min-max vs. z-score? Research recommends linear to [0,1] but empirical comparison may be needed. **BLOCKING**: Must be resolved before Phase 4 begins. Add Phase 3 subtask for empirical normalization method selection.
 <!-- /ANCHOR:questions -->

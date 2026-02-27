@@ -113,6 +113,32 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T001 | T032 | Checkpoint creation (pre-pipeline-refactor) |
+| T002 | T033 | 4-stage pipeline refactor (R6) |
+| T003 | T034 | Verify R6 dark-run |
+| T004 | T035 | Verify 158+ tests pass with PIPELINE_V2 |
+| T004b | *(not in parent)* | p95 latency baseline for R12 |
+| T005 | T036 | Spec folder pre-filter (R9) |
+| T006 | T037 | Query expansion (R12) |
+| T007 | T038 | Template anchor optimization (S2) |
+| T008 | T039 | Validation signals as retrieval metadata (S3) |
+| T009a | T060 | Dual-scope injection (TM-05) |
+| T011 | PI-B1 | Tree thinning for spec folder consolidation (PI-B1) |
+| T012 | PI-B2 | Progressive validation for spec documents (PI-B2) |
+| T013 | PI-A4 | Constitutional memory as retrieval directives (PI-A4) |
+| T-FS5 | T-FS5 | Feature flag sunset review (Sprint 5 exit) |
+| T010 | T040 | Sprint 5 exit gate verification |
+<!-- /ANCHOR:task-id-mapping -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

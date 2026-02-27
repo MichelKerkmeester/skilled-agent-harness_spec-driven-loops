@@ -107,6 +107,7 @@ contextType: "implementation"
 <!-- ANCHOR:verification -->
 ## Verification
 
+- [ ] T-IP-S6 [P0] **Interaction pair test: R4+N3** — verify edge caps (MAX_TOTAL_DEGREE=50), strength caps (MAX_STRENGTH_INCREASE=0.05/cycle), provenance tracking active; no feedback loop amplification [1-2h] {T001d, T002} — CHK-036
 - [ ] T-FS6a Feature flag sunset review at Sprint 6a exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T002, T003, T004, T006} — NFR-O01/O02/O03
 - [ ] T007a [GATE] Sprint 6a exit gate verification [0h] {T001d, T002, T003, T004, T006, T-FS6a}
   - [ ] R7 Recall@20 within 10% of baseline

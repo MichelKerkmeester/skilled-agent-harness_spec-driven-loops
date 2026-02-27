@@ -142,6 +142,29 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T001 | T015 | Embedding cache (R18) |
+| T002 | T016 | Cold-start boost with decay (N4) |
+| T003 | T017 | Investigate double intent weighting (G2) |
+| T004 | T018 | Score normalization |
+| T004a | T020a | RRF K-value sensitivity |
+| T005 | T056 | Interference scoring (TM-01) |
+| T006 | T057 | Classification-based decay (TM-03) |
+| T007 | T019 | Dark-run verification (N4 + normalization) |
+| T-FS2 | T-FS2 | Feature flag sunset review (Sprint 2 exit) |
+| T008 | T020 | Sprint 2 exit gate verification |
+| T009 | PI-A1 | Folder-level DocScore aggregation (PI-A1) |
+| T010 | *(not in parent)* | Observability logging (N4/TM-01 query-time) |
+<!-- /ANCHOR:task-id-mapping -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

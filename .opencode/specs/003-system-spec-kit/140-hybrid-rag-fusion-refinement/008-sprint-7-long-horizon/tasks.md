@@ -123,6 +123,26 @@ contextType: "implementation"
 
 ---
 
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T001 | T048 | Memory summary generation (R8) |
+| T002 | T049 | Smarter memory content generation (S1) |
+| T003 | T050 | Cross-document entity linking (S5) |
+| T004 | T051 | R13-S3 full reporting + ablation (R13-S3) |
+| T005 | T052 | Evaluate R5 INT8 quantization need |
+| T005a | *(not in parent)* | Feature flag sunset audit (program completion) |
+| T006a | *(not in parent)* | structuralFreshness() disposition (DEF-014) |
+| T006 | T053 | Sprint 7 exit gate verification |
+| T007 | *(not in parent)* | Program completion verification |
+<!-- /ANCHOR:task-id-mapping -->
+
+---
+
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 

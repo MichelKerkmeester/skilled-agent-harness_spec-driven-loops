@@ -124,6 +124,7 @@ contextType: "implementation"
 
 - [ ] T004 Verify R1 dark-run: MRR@5 within 2%, N=1 no regression [included] {T001}
 - [ ] T005 Analyze R11 shadow log: noise rate <5% [included] {T002}
+- [ ] T-IP-S4 [P0] **Interaction pair test: R1+N4** — verify N4 cold-start boost applied BEFORE MPAB aggregation; combined boost capped at 0.95 [1-2h] {T001, T004} — CHK-035
 - [ ] T-FS4 Feature flag sunset review at Sprint 4 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T005} — NFR-O01/O02/O03
 - [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005, T007, T008, T-FS4}
   - [ ] R11 auto-promotion thresholds verified (5→important, 10→critical)
@@ -147,6 +148,34 @@ contextType: "implementation"
 - [ ] R13-S2 A/B infrastructure operational
 - [ ] Schema migration completed successfully
 <!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T-S4-PRE | T025c | Checkpoint creation (pre-R11-feedback) |
+| T001 | T026 | MPAB chunk-to-memory aggregation (R1) |
+| T001a | T026a | Preserve chunk ordering (B2) |
+| T002 | T027 | Learned relevance feedback (R11) |
+| T002a | T027c | Memory importance auto-promotion |
+| T002b | T027d | Negative feedback confidence signal (A4) |
+| T003 | T028 | R13-S2 shadow scoring + channel attribution |
+| T003a | T028a | Exclusive Contribution Rate metric |
+| T007 | T058 | Pre-storage quality gate (TM-04) |
+| T008 | T059 | Reconsolidation-on-save (TM-06) |
+| T027a | T027a | G-NEW-3 Phase B: implicit feedback collection |
+| T027b | T027b | G-NEW-3 Phase C: LLM-judge ground truth |
+| T004 | T029 | Verify R1 dark-run |
+| T005 | T030 | Analyze R11 shadow log |
+| T-IP-S4 | *(not in parent)* | Interaction pair test R1+N4 (CHK-035) |
+| T-FS4 | T-FS4 | Feature flag sunset review (Sprint 4 exit) |
+| T006 | T031 | Sprint 4 exit gate verification |
+<!-- /ANCHOR:task-id-mapping -->
 
 ---
 

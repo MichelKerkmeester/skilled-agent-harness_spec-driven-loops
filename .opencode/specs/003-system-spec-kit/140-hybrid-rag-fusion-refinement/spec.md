@@ -145,11 +145,11 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-sprint-0 | 002-sprint-1 | Graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded, ground truth corpus meets diversity requirements (see below) | R13 eval metrics |
+| 001-sprint-0 | 003-sprint-2 | Same Sprint 0 exit gate (S1 and S2 run **in parallel** after S0) | R13 eval metrics |
 
 **Sprint 0 Ground Truth Diversity Requirement (HARD GATE):**
 Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week about Y?"), cross-document queries ("how does A relate to B?"), and hard negatives (queries where specific memories should NOT rank highly). Minimum: >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document/temporal). This diversity requirement is a hard exit gate criterion alongside the existing "at least 50 queries" minimum — both must be satisfied.
-| 002-sprint-1 | 003-sprint-2 | R4 MRR@5 delta >+2% absolute, edge density measured | R13 eval metrics |
-| 003-sprint-2 | 004-sprint-3 | Cache hit >90%, score distributions normalized, G2 resolved | R13 eval metrics |
+| 002-sprint-1 AND 003-sprint-2 | 004-sprint-3 | S1: R4 MRR@5 delta >+2% absolute, edge density measured; S2: Cache hit >90%, score distributions normalized, G2 resolved | R13 eval metrics |
 | 004-sprint-3 | 005-sprint-4 | R15 p95 <30ms, RSF Kendall tau computed, R2 precision within 5% | R13 eval metrics |
 | 005-sprint-4 | 006-sprint-5 | R1 MRR@5 within 2%, R11 noise <5%, R13-S2 operational | R13 eval metrics |
 | 006-sprint-5 | 007-sprint-6 (6a) | R6 0 ordering differences, 158+ tests pass | R13 eval + test suite |
@@ -174,7 +174,7 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | REQ-035 | **B7:** Quality proxy formula for automated regression detection | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
 | REQ-036 | **D4:** Observer effect mitigation for R13 eval logging | Search p95 increase ≤10% with eval logging enabled | S0 |
 | REQ-039 | **TM-02:** Content-hash fast-path deduplication — SHA256 hash check BEFORE embedding generation in memory_save pipeline | Hash check rejects exact duplicate on save; no duplicate content_hash entries in same spec_folder | S0 |
-| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50 | R4 dark-run passes; MRR@5 delta > +2% absolute; no single memory appears in >60% of results (hub domination check). **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** Cross-ref: interacts with MR2 (preferential attachment), MR5 (degree cap), MR8 (three-way interaction with N3+R10). | S1 |
+| REQ-005 | **R4:** Typed-weighted degree as 5th RRF channel with MAX_TYPED_DEGREE=15, MAX_TOTAL_DEGREE=50, DEGREE_BOOST_CAP=0.15. Edge type weights: caused=1.0, derived_from=0.9, enabled=0.8, contradicts=0.7, supersedes=0.6, supports=0.5 | R4 dark-run passes; MRR@5 delta > +2% absolute; no single memory appears in >60% of results (hub domination check). **Prerequisite: G1 (REQ-001) must be complete before R4 activation.** Cross-ref: interacts with MR2 (preferential attachment), MR5 (degree cap), MR8 (three-way interaction with N3+R10). | S1 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -675,6 +675,8 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 > **Ceiling note**: Peak active flag count reaches 7 at S4 and S5. Original 6-flag ceiling (NFR-O01) is aspirational; actual peak is 7-8 due to S4's 5 simultaneous introductions. The rule below mitigates risk.
 >
 > **H6 note**: `SPECKIT_SEARCH_FALLBACK` removed from sunset schedule — PI-A2 (search fallback chain) was DEFERRED and no such flag was ever introduced.
+>
+> **Flag-to-requirement mapping** (flags not explicitly named in child sprint specs): `SPECKIT_EVAL_LOGGING` → D4/REQ-036 (S0), `SPECKIT_VERIFY_FIX_VERIFY` → PI-A5 (S1, deferred from S0), `SPECKIT_FOLDER_SCORE` → PI-A1/REQ-053 (S2), `SPECKIT_CONSTITUTIONAL_INJECT` → PI-A4/REQ-056 (S5), `SPECKIT_PROGRESSIVE_VALIDATION` → PI-B2 (S5).
 
 **Rule:** Any sprint that would exceed 8 active flags MUST sunset prior flags at the sprint's entry (not exit). If a flag cannot be confidently resolved, it counts against the flag budget and a lower-priority new flag must be deferred.
 
@@ -746,7 +748,7 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 - **OQ-001**: BM25 baseline performance — unknown until Sprint 0 measurement. If >= 80% of hybrid, roadmap fundamentally changes. **Decision context:** This is the single most consequential unknown. The BM25 contingency matrix (§8) defines three branches. G-NEW-1 (REQ-004) and A2 (REQ-037) jointly determine the 2x2 decision space. Resolved at: Sprint 0 exit gate.
 - **OQ-002**: INT8 recall loss contradiction — 1-2% (Spec 140) vs 5.32% (Spec 141). Requires in-system ablation. Blocks R5 activation decision. **Decision context:** The discrepancy likely stems from different evaluation corpora and embedding models. In-system ablation with R13 infrastructure will produce authoritative measurement. Resolved at: Sprint 7 (R5 eval, REQ-031).
 - **OQ-003**: `search-weights.json` audit — `maxTriggersPerMemory` is active; smart ranking section status unknown. **Decision context:** May reveal undocumented scoring signals that count against the B8 signal ceiling (REQ-038). Audit should be completed during Sprint 0 as part of R13-S1 instrumentation.
-- **OQ-004**: G2 investigation outcome — double intent weighting may be intentional design, not a bug. **Decision context:** If intentional, document the rationale in ADR format and adjust G2 scope (REQ-009) from "fix" to "document." If unintentional, the fix is straightforward removal. Resolved at: Sprint 2 (REQ-009).
+- **OQ-004**: G2 investigation outcome — double intent weighting may be intentional design, not a bug. **Decision context:** If intentional, document the rationale in ADR format and adjust G2 scope (REQ-009) from "fix" to "document." If unintentional, the fix is straightforward removal. Resolved at: Sprint 2 (REQ-009). Cross-ref: OQ-S2-001 in Sprint 2 child spec.
 - **OQ-005**: Feedback bootstrap accumulation rate — R11 activation timeline depends on interaction data volume. **Decision context:** G-NEW-3 (REQ-017) defines a three-phase bootstrap (synthetic → implicit → LLM-judge). The 200 query-selection pair minimum before R11 activation may take 4-8 weeks of normal usage, or can be accelerated via synthetic replay. The 28-day calendar constraint (F10) may be the binding constraint rather than data volume.
 
 ---

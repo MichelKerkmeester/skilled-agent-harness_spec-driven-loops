@@ -108,6 +108,7 @@ contextType: "implementation"
 ## Phase 4: Shadow Comparison + Verification
 
 - [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
+- [ ] T-IP-S3 [P0] **Interaction pair test: R15+R2** — verify R15 minimum = 2 channels even for "simple" tier; R2 channel-minimum representation not violated by R15 routing [1-2h] {T001d, T003c} — CHK-037
 - [ ] T-FS3 Feature flag sunset review at Sprint 3 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T004} — NFR-O01/O02/O03
 - [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007, T-FS3}
 <!-- /ANCHOR:phase-4 -->
@@ -125,6 +126,28 @@ contextType: "implementation"
 - [ ] R2 top-3 precision within 5% of baseline verified
 - [ ] Off-ramp evaluated: MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
 <!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T001a-d | T021 | Query complexity router (R15) |
+| T002a-c | T022 | RSF fusion variants (R14/N1) |
+| T003a-c | T023 | Channel min-representation (R2) |
+| T004 | T024 | Shadow comparison RSF vs RRF |
+| T006 | T025a | Confidence-based result truncation (R15 ext) |
+| T007 | T025b | Dynamic token budget allocation (FUT-7) |
+| T008 | PI-A2 | DEFERRED — search strategy fallback (PI-A2) |
+| T009 | PI-B3 | Description-based spec folder discovery (PI-B3) |
+| T-IP-S3 | *(not in parent)* | Interaction pair test R15+R2 (CHK-037) |
+| T-FS3 | T-FS3 | Feature flag sunset review (Sprint 3 exit) |
+| T005 | T025 | Sprint 3 exit gate + off-ramp evaluation |
+<!-- /ANCHOR:task-id-mapping -->
 
 ---
 
