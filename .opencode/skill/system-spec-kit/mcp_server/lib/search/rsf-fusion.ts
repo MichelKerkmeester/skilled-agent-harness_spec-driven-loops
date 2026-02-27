@@ -165,7 +165,209 @@ function fuseResultsRsf(listA: RankedList, listB: RankedList): RsfResult[] {
 }
 
 /* ---------------------------------------------------------------
-   4. FEATURE FLAG
+   4. MULTI-LIST VARIANT
+   --------------------------------------------------------------- */
+
+/**
+ * Fuse multiple ranked result lists using Relative Score Fusion (multi-list variant).
+ *
+ * Algorithm:
+ * 1. For each list, extract raw scores and compute per-source min/max
+ * 2. Normalize each item's score within its source via min-max
+ * 3. For each unique item, average its normalized scores across all sources it appears in
+ * 4. Items appearing in only 1 source get a penalty: avgScore * (1 / totalSources)
+ *    — penalised proportionally to how many sources they are missing from
+ * 5. Sort descending by rsfScore, clamp to [0, 1]
+ */
+function fuseResultsRsfMulti(lists: RankedList[]): RsfResult[] {
+  if (lists.length === 0) return [];
+
+  // Filter out empty lists while keeping track of total for penalty calculation
+  const nonEmptyLists = lists.filter(l => l.results.length > 0);
+  if (nonEmptyLists.length === 0) return [];
+
+  const totalSources = lists.length;
+
+  // --- Step 1 & 2: Extract raw scores and build per-source normalized maps ---
+  const sourceMaps: Array<{
+    list: RankedList;
+    normalizedMap: Map<number | string, { item: RrfItem; normalizedScore: number }>;
+  }> = [];
+
+  for (const list of nonEmptyLists) {
+    const items = list.results;
+    const rawScores = items.map((item, i) => extractScore(item, i, items.length));
+    const minScore = Math.min(...rawScores);
+    const maxScore = Math.max(...rawScores);
+
+    const normalizedMap = new Map<number | string, { item: RrfItem; normalizedScore: number }>();
+    for (let i = 0; i < items.length; i++) {
+      const normalized = minMaxNormalize(rawScores[i], minScore, maxScore);
+      normalizedMap.set(items[i].id, { item: items[i], normalizedScore: normalized });
+    }
+    sourceMaps.push({ list, normalizedMap });
+  }
+
+  // --- Step 3: Collect all unique IDs across all lists ---
+  const allIds = new Set<number | string>();
+  for (const { normalizedMap } of sourceMaps) {
+    for (const id of normalizedMap.keys()) {
+      allIds.add(id);
+    }
+  }
+
+  // --- Step 4: Compute fused scores ---
+  const results: RsfResult[] = [];
+
+  for (const id of allIds) {
+    let scoreSum = 0;
+    let countPresent = 0;
+    const sources: string[] = [];
+    const sourceScores: Record<string, number> = {};
+    let mergedItem: RrfItem | undefined;
+
+    for (const { list, normalizedMap } of sourceMaps) {
+      const entry = normalizedMap.get(id);
+      if (entry) {
+        scoreSum += entry.normalizedScore;
+        countPresent++;
+        sources.push(list.source);
+        sourceScores[list.source] = entry.normalizedScore;
+        // Merge items: later sources are used as base, earlier sources overlay
+        mergedItem = mergedItem ? { ...mergedItem, ...entry.item } : { ...entry.item };
+      }
+    }
+
+    const avgScore = scoreSum / countPresent;
+
+    // Apply single-source penalty: items missing from sources get proportional penalty
+    let rsfScore: number;
+    if (countPresent === totalSources) {
+      // Present in all sources — no penalty
+      rsfScore = avgScore;
+    } else {
+      // Missing from at least one source — penalty proportional to coverage
+      rsfScore = avgScore * (countPresent / totalSources);
+    }
+
+    rsfScore = clamp01(rsfScore);
+
+    results.push({
+      ...(mergedItem as RrfItem),
+      rsfScore,
+      sources,
+      sourceScores,
+    });
+  }
+
+  // --- Step 5: Sort descending by rsfScore ---
+  return results.sort((a, b) => b.rsfScore - a.rsfScore);
+}
+
+/* ---------------------------------------------------------------
+   5. CROSS-VARIANT VARIANT
+   --------------------------------------------------------------- */
+
+/**
+ * Fuse multiple query variants' result sets using Relative Score Fusion (cross-variant).
+ *
+ * Algorithm:
+ * 1. Fuse each variant's lists independently using fuseResultsRsfMulti
+ * 2. Track which variants each item appeared in
+ * 3. Merge all variant results, averaging rsfScores across variants
+ * 4. Apply cross-variant bonus: items in multiple variants get +0.10 per additional variant
+ * 5. Sort descending, clamp to [0, 1]
+ *
+ * @param variantLists - Array of variant result sets, each containing multiple RankedLists
+ * @returns Fused results with cross-variant convergence bonuses
+ */
+function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
+  if (variantLists.length === 0) return [];
+
+  const CROSS_VARIANT_BONUS = 0.10;
+
+  // --- Step 1: Fuse each variant's lists independently ---
+  const perVariantFused: RsfResult[][] = variantLists.map(lists =>
+    fuseResultsRsfMulti(lists)
+  );
+
+  // --- Step 2: Track which variants each ID appeared in ---
+  const variantAppearances = new Map<number | string, Set<number>>();
+  for (let vi = 0; vi < perVariantFused.length; vi++) {
+    for (const result of perVariantFused[vi]) {
+      let variants = variantAppearances.get(result.id);
+      if (!variants) {
+        variants = new Set<number>();
+        variantAppearances.set(result.id, variants);
+      }
+      variants.add(vi);
+    }
+  }
+
+  // --- Step 3: Merge all variant results, averaging rsfScores across variants ---
+  const mergedMap = new Map<number | string, {
+    result: RsfResult;
+    scoreSum: number;
+    variantCount: number;
+  }>();
+
+  for (const variantResults of perVariantFused) {
+    for (const result of variantResults) {
+      const existing = mergedMap.get(result.id);
+      if (existing) {
+        existing.scoreSum += result.rsfScore;
+        existing.variantCount++;
+        // Merge sources (deduplicate)
+        for (const src of result.sources) {
+          if (!existing.result.sources.includes(src)) {
+            existing.result.sources.push(src);
+          }
+        }
+        // Merge sourceScores (average per source)
+        for (const [key, val] of Object.entries(result.sourceScores)) {
+          if (existing.result.sourceScores[key] !== undefined) {
+            existing.result.sourceScores[key] = (existing.result.sourceScores[key] + val) / 2;
+          } else {
+            existing.result.sourceScores[key] = val;
+          }
+        }
+      } else {
+        mergedMap.set(result.id, {
+          result: { ...result, sources: [...result.sources], sourceScores: { ...result.sourceScores } },
+          scoreSum: result.rsfScore,
+          variantCount: 1,
+        });
+      }
+    }
+  }
+
+  // Compute average rsfScore across variants and apply cross-variant bonus
+  const finalResults: RsfResult[] = [];
+  for (const [id, { result, scoreSum, variantCount }] of mergedMap) {
+    const avgScore = scoreSum / variantCount;
+    const variantSetSize = variantAppearances.get(id)?.size ?? 1;
+
+    // --- Step 4: Apply cross-variant bonus (+0.10 per additional variant) ---
+    let rsfScore = avgScore;
+    if (variantSetSize >= 2) {
+      rsfScore += CROSS_VARIANT_BONUS * (variantSetSize - 1);
+    }
+
+    // Clamp to [0, 1]
+    rsfScore = clamp01(rsfScore);
+
+    finalResults.push({
+      ...result,
+      rsfScore,
+    });
+  }
+
+  // --- Step 5: Sort descending by rsfScore ---
+  return finalResults.sort((a, b) => b.rsfScore - a.rsfScore);
+}
+
+/* ---------------------------------------------------------------
+   6. FEATURE FLAG
    --------------------------------------------------------------- */
 
 /**
@@ -177,11 +379,13 @@ function isRsfEnabled(): boolean {
 }
 
 /* ---------------------------------------------------------------
-   5. EXPORTS
+   7. EXPORTS
    --------------------------------------------------------------- */
 
 export {
   fuseResultsRsf,
+  fuseResultsRsfMulti,
+  fuseResultsRsfCrossVariant,
   isRsfEnabled,
   extractScore,
   minMaxNormalize,
