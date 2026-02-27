@@ -72,9 +72,12 @@ contextType: "implementation"
   - Full G-NEW-2 analysis (8-12h) remains in Sprint 1 (T012); this is scoping pre-work only
 - [ ] T007 [W-C] Generate synthetic ground truth from trigger phrases (Phase A) — expand ground truth corpus using T000d manual queries as seed set [2-4h] {T004, T000d} — G-NEW-1/G-NEW-3
 - [ ] T008 [W-C] Run BM25-only baseline measurement and record results [4-6h] {T006, T007} — G-NEW-1
+- [ ] T008b [W-C] **Eval-the-eval validation** — hand-calculate MRR@5 for 5 randomly selected queries, compare to R13 computed values; verify match within ±0.01; investigate any discrepancy before using R13 output for roadmap decisions [2-3h] {T006, T007} — REQ-052
+  - Acceptance: hand-calculated MRR@5 matches R13 output for all 5 queries; discrepancies documented and resolved
+  - Rationale: R13 becomes the decision engine for all subsequent sprints — verifying its output correctness is mandatory before trusting its metrics for the BM25 contingency decision
 - [ ] T054 [W-A] Implement content-hash fast-path dedup in memory_save handler — SHA256 check before embedding generation, reject exact duplicates in same spec_folder [2-3h] {} — TM-02/REQ-039
 - [ ] T-FS0 [W-A] Feature flag sunset review at Sprint 0 exit — review all active feature flags; flags from completed work with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; ensure ≤6 simultaneous active flags before proceeding to Sprint 1 [0.5-1h] {T008} — NFR-O01/O02/O03
-- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision, ground truth diversity verified (≥15 manual queries, ≥5/intent, ≥3 tiers), flag count ≤6 [0h] {T000a-T008, T000d, T000e, T054, T-FS0}
+- [ ] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision (requires statistical significance p<0.05 on >=100 diverse queries), eval-the-eval validation passed (T008b), ground truth diversity verified (≥15 manual queries, ≥5/intent, ≥3 tiers), flag count ≤6 [0h] {T000a-T008, T008b, T000d, T000e, T054, T-FS0}
 <!-- /ANCHOR:sprint-0 -->
 
 ---
@@ -207,7 +210,10 @@ contextType: "implementation"
   - T041a N2a: Graph Momentum (temporal degree delta) [8-12h]
   - T041b N2b: Causal Depth Signal (max-depth path normalization) [5-8h]
   - T041c N2c: Community Detection (label propagation/Louvain) [12-15h]
-- [ ] T042 [W-B] Implement N3-lite: contradiction scan + Hebbian strengthening with edge caps [10-15h] {T040} — N3-lite
+- [ ] T041d [W-B] **MR10 mitigation: weight_history audit tracking** — add `weight_history` column or log weight changes to eval DB for N3-lite Hebbian modifications; enables rollback of weight changes independent of edge creation [2-3h] {T040} — MR10
+  - Acceptance: all N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs; rollback script can restore weights from history
+  - Rationale: promoted from risk mitigation to required task — N3-lite modifies edge weights but only tracks new edge creation via `created_by`; without weight_history, rollback of Sprint 6 is practically impossible
+- [ ] T042 [W-B] Implement N3-lite: contradiction scan + Hebbian strengthening with edge caps [10-15h] {T040, T041d} — N3-lite
   - T042a Contradiction cluster surfacing — surface all cluster members [3-5h]
 
 **Phase B (Indexing + Spec-Kit): 33-51h — may run in parallel with Phase A**

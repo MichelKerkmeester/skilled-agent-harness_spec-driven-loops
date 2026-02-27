@@ -114,8 +114,9 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 |----|-------------|---------------------|
 | REQ-S0-001 | **G1**: Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs | Graph hit rate > 0% in retrieval telemetry; verified at BOTH locations in `graph-search-fn.ts` (lines ~110 AND ~151); cross-ref: CHK-010, T001 |
 | REQ-S0-002 | **G3**: Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode; tested via both `includeContent=true` and `includeContent=false` paths; cross-ref: CHK-011, T002 |
-| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics (Inversion Rate, Constitutional Surfacing Rate, Importance-Weighted Recall, Cold-Start Detection Rate, Intent-Weighted NDCG) computed for at least 50 queries. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational for automated regression. |
-| REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid. Ground truth corpus satisfies diversity requirement: >=5 queries per intent type, >=3 query complexity tiers (see Exit Gate: Ground Truth Diversification). |
+| REQ-S0-003 | **R13-S1**: Evaluation DB with 5-table schema (see parent spec.md §4.1 for full schema DDL: `eval_queries`, `eval_channel_results`, `eval_final_results`, `eval_ground_truth`, `eval_metric_snapshots`) + logging hooks + core metric computation | Baseline metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) + 5 diagnostic metrics computed for at least 50 queries. Schema validated against parent spec §4.1 DDL. Full-context ceiling metric (A2) recorded. Quality proxy formula (B7) operational. |
+| REQ-S0-007 | **Eval-the-eval validation**: Hand-calculate MRR@5 for 5 randomly selected queries and compare to R13 computed values | Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; discrepancies resolved before BM25 contingency decision (REQ-052 in parent spec) |
+| REQ-S0-004 | **G-NEW-1**: BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid. Ground truth corpus satisfies diversity requirement: >=20 manually curated non-trigger-phrase queries, >=5 queries per intent type, >=3 query complexity tiers. BM25 contingency decision requires statistical significance (p<0.05, paired t-test or bootstrap CI) on >=100 diverse queries. |
 
 ### P0 - Blockers (MUST complete) — Additional
 
@@ -143,9 +144,14 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 ### Exit Gate: Ground Truth Diversification (HARD REQUIREMENT)
 
-Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries, temporal queries, cross-document queries, and hard negatives. Minimum: >=5 queries per intent type (add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision), >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document). The 50-query minimum for baseline metrics (SC-003) MUST satisfy this diversity requirement — it is a HARD gate criterion, not merely a risk mitigation.
+Ground truth corpus MUST include:
+- >=20 manually curated natural-language queries (NOT derived from trigger phrases — avoids circular validation bias per R-008)
+- >=15 queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives
+- >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document)
+- >=100 total diverse queries for BM25 contingency decision (synthetic + manual combined)
+- Statistical significance requirement: BM25 vs hybrid MRR@5 comparison must achieve p<0.05 (paired t-test or bootstrap 95% CI) before any threshold-based roadmap decision
 
-**Rationale**: Without query diversity, baseline metrics may be artificially inflated by easy, homogeneous queries that do not stress the retrieval pipeline's weak points (graph traversal, temporal reasoning, cross-spec resolution). This elevates risk mitigation R-011 to a hard exit gate.
+**Rationale**: The BM25 contingency decision (the most consequential decision in the plan) must not be based on systematically biased data. Synthetic ground truth derived from trigger phrases evaluates a system that retrieves partly via trigger phrases, inflating MRR@5 scores. 50 queries provide confidence intervals too wide for the >=80%/50-80%/<50% threshold decision. This elevates R-008 and R-011 to hard exit gates.
 <!-- /ANCHOR:success-criteria -->
 
 ---

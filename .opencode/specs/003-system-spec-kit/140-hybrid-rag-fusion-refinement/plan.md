@@ -249,7 +249,17 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 ---
 
-### Sprint 4: Feedback Loop + Chunk Aggregation
+### CONTINGENT PHASE: Sprints 4-7 (requires new spec approval)
+
+> **Scope boundary**: Sprints 4-7 are contingent on Sprint 3 off-ramp decision. They represent 323-531h of additional work that MUST NOT proceed without explicit approval based on Sprint 0-3 data. See HARD SCOPE CAP below and spec.md Phase Transition Rules.
+>
+> **Committed scope**: Sprints 0-3 (~135-169h core + PageIndex) — fixes all stated problems, establishes measurement, validates multi-channel vs BM25.
+>
+> **Contingent scope**: Sprints 4-7 (~323-531h) — only if Sprint 3 data proves necessity.
+>
+> **MVP alternative**: A minimal-viable approach addressing every stated problem (G1 fix, G3 fix, R13 eval, BM25 baseline, score normalization, basic query routing) could be achieved in ~61-88h at ~13% of the full budget.
+
+### Sprint 4: Feedback Loop + Chunk Aggregation [CONTINGENT]
 
 | # | Item | Hours | Subsystem | Flag |
 |---|------|-------|-----------|------|
@@ -269,9 +279,9 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 **Prerequisite:** R13 must have completed at least 2 full eval cycles. *An eval cycle is defined as: 100+ queries processed by R13 evaluation infrastructure, OR 14 calendar days of R13 logging, whichever comes first. Synthetic fallback: replay 200 logged queries to simulate cycles in test environments.*
 
-**Sprint 4 Split Recommendation:** Consider decomposing Sprint 4 into two sub-phases for risk isolation:
-- **S4a** (~25-35h): R1 (MPAB chunk-to-memory aggregation) + R13-S2 (shadow scoring + channel attribution + ground truth Phase B). Lower-risk scoring and evaluation improvements that can proceed immediately after Sprint 3 gate.
-- **S4b** (~47-74h): R11 (learned relevance feedback) + TM-04 (pre-storage quality gate) + TM-06 (reconsolidation-on-save). R11 carries CRITICAL FTS5 contamination risk (MR1) and should not share a sprint with 4 other deliverables. S4b also absorbs the R13 calendar dependency (see below). This split allows S4a to deliver R13-S2 channel attribution data earlier, which informs the scope cap approval decision for S4b and beyond.
+**Sprint 4 Split (MANDATORY):** Sprint 4 MUST be decomposed into two sub-phases for risk isolation. Sprint 4 touches 4 subsystems at 72-109h, violating the "max 2 subsystems per sprint" design principle (§1). The split isolates R11's CRITICAL FTS5 contamination risk:
+- **S4a** (~25-35h): R1 (MPAB chunk-to-memory aggregation) + R13-S2 (shadow scoring + channel attribution + ground truth Phase B). Lower-risk scoring and evaluation improvements that proceed immediately after Sprint 3 gate.
+- **S4b** (~47-74h): R11 (learned relevance feedback) + TM-04 (pre-storage quality gate) + TM-06 (reconsolidation-on-save). R11 carries CRITICAL FTS5 contamination risk (MR1) and MUST NOT share a phase with other deliverables. S4b absorbs the R13 calendar dependency (see below). S4a MUST be verified complete before S4b begins. This allows S4a to deliver R13-S2 channel attribution data earlier, informing the scope cap approval decision for S4b and beyond.
 
 **Calendar Dependency (F10):** R11's prerequisite ("R13 must have completed at least 2 full eval cycles") translates to a minimum of 28 calendar days of eval logging before R11 can activate (2 cycles x 14 days each, assuming organic query volume does not reach 100 queries per cycle faster). This forced idle time is NOT reflected in effort estimates — the 16-24h R11 effort estimate covers development time only, not the waiting period. Plan accordingly: if S4a completes in ~3-4 weeks and R13 logging started at Sprint 0, the 28-day requirement may already be satisfied. If not, S4b start is delayed by the remaining calendar gap.
 
@@ -287,7 +297,11 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | # | Item | Hours | Subsystem | Flag |
 |---|------|-------|-----------|------|
 | 5.1 | Checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")` | — | — | — |
-| 5.2 | **R6:** 4-stage pipeline refactor (dark-run) | 40-55 | Pipeline | `SPECKIT_PIPELINE_V2` |
+| 5.2a | **R6-Stage1:** Extract candidate generation into isolated stage (5 channels) | 8-12 | Pipeline | `SPECKIT_PIPELINE_V2` |
+| 5.2b | **R6-Stage2:** Fusion logic with intent weighting applied exactly once | 8-12 | Pipeline | `SPECKIT_PIPELINE_V2` |
+| 5.2c | **R6-Stage3:** Cross-encoder reranking with score normalization | 8-12 | Pipeline | `SPECKIT_PIPELINE_V2` |
+| 5.2d | **R6-Stage4:** Result filtering/truncation with "no score changes" invariant (assertion-enforced) | 8-12 | Pipeline | `SPECKIT_PIPELINE_V2` |
+| 5.2e | **R6-Integration:** Full corpus regression testing against current pipeline | 5-8 | Pipeline | `SPECKIT_PIPELINE_V2` |
 | 5.3 | **R9:** Spec folder pre-filter | 5-8 | Pipeline | — |
 | 5.4 | **R12:** Embedding-based query expansion | 10-15 | Search handlers | `SPECKIT_EMBEDDING_EXPANSION` |
 | 5.5 | **S2:** Template anchor optimization | 5-8 | Spec-Kit logic | — |
@@ -304,11 +318,11 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | | **Sprint 5 PageIndex subtotal** | **+26-38h** | | |
 
 **Internal Phasing:**
-- **Phase A (Pipeline):** R6 pipeline refactor (40-55h) — checkpoint before start; 0 ordering differences gate
+- **Phase A (Pipeline):** R6 pipeline refactor — checkpoint before start; exit gate: 0 ordering differences in positions 1-5 AND weighted rank correlation >0.995 for full result set (relaxed from strict "0 ordering differences" which is fragile for floating-point arithmetic)
 - **Phase B (Search + Spec-Kit):** R9, R12, S2, S3 (24-37h) — Phase A must pass "0 ordering differences" before Phase B begins
 
 **Exit Gate:**
-- [ ] R6 dark-run: identical result ordering on full eval corpus
+- [ ] R6 dark-run: 0 ordering differences in positions 1-5 AND weighted rank correlation >0.995 on full eval corpus
 - [ ] All 158+ tests pass
 - [ ] R9 cross-folder queries produce identical results
 - [ ] R12 expansion does not degrade simple query latency
@@ -409,6 +423,22 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | S6 | HIGH | Edge deletions from N3-lite destructive; use `created_by` provenance | 12-20h |
 
 **Key insight:** Always create `memory_checkpoint_create()` before Sprint 4 (R11 mutations), Sprint 5 (pipeline refactor), and Sprint 6 (graph mutations).
+
+### Cumulative Latency Budget Tracker (Cross-Cutting)
+
+Each sprint exit gate MUST include a cumulative latency check. Track the running total of dark-run overhead across sprints to ensure it stays within the 500ms p95 hard limit:
+
+| Sprint | Sprint Overhead | Cumulative Max | Remaining Budget |
+|--------|----------------|----------------|-----------------|
+| S0 | +5ms (eval logging) | 5ms | 495ms |
+| S1 | +10ms (degree) | 15ms | 485ms |
+| S2 | +2ms (cache) | 17ms | 483ms |
+| S3 | +50ms (router+RSF) | 67ms | 433ms |
+| S4 | +15ms (feedback) | 82ms | 418ms |
+| S5 | +100ms (pipeline) | 182ms | 318ms |
+| S6 | est. +50ms (graph) | 232ms | 268ms |
+
+**Rule:** If cumulative overhead exceeds 300ms, disable prior sprint dark-runs before starting new ones.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -418,17 +448,22 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 ```
                               ┌──► Sprint 1 (Graph Signal) ──┐
-Sprint 0 (Foundation) ───────┤                                ├──► Sprint 3 (Query Intel)
+Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├──► Sprint 3 (Query Intel)
          │                    └──► Sprint 2 (Calibration) ───┘          │
-         │ BM25 contingency       [S1 ∥ S2 run in parallel]            │ HARD SCOPE CAP
-         │ decision at exit                                             ▼
-         ▼                                                       Sprint 4 (Feedback)
-    If BM25 >= 80%:                                                    │ requires R13 2 cycles
-    PAUSE S3-S7                                                        ▼
+         │ BM25 contingency       [S1 ∥ S2: no hard dep]               │ HARD SCOPE CAP
+         │ decision at exit        S2 has SOFT dep on S1               ▼
+         ▼                        (score normalization can     ═══════════════════════
+    If BM25 >= 80%:                retroactively incorporate   CONTINGENT PHASE (S4-S7)
+    PAUSE S3-S7                    R4 degree scores)           Requires new spec approval
+                                                               ═══════════════════════
+    If sparse (S1 exit):                                       Sprint 4 (Feedback) [4a/4b split]
+    escalate R10                                                       │ requires R13 2 cycles
+                                                                       ▼
                                                                  Sprint 5 (Pipeline)
-    If sparse (S1 exit):                                               │ checkpoint before
-    escalate R10                                                       ▼
+                                                                       │ checkpoint before
+                                                                       ▼
                                                                  Sprint 6 (Graph Deep)
+                                                                  [Phase A ∥ Phase B]
                                                                        │
                                                                        ▼
                                                                  Sprint 7 (Long Horizon)
@@ -436,16 +471,20 @@ Sprint 0 (Foundation) ───────┤                                �
 
 **S1-S2 Parallelization Rationale:** Sprint 2's scope (R18 embedding cache, N4 cold-start boost, G2 investigation, score normalization, TM-01/TM-03) has ZERO technical dependency on Sprint 1 (R4 degree channel, edge density measurement, G-NEW-2). Both depend only on Sprint 0's outputs: functional graph channel (G1), eval infrastructure (R13-S1), and BM25 baseline. S1 works on the graph subsystem while S2 works on scoring/indexing — non-overlapping file sets. Running S1 and S2 in parallel saves an estimated 3-5 weeks on the critical path (26-43h of work that no longer gates subsequent sprints). Sprint 3 requires BOTH S1 and S2 exit gates before starting, as it depends on calibrated scores (S2) and graph signal data (S1).
 
-| Sprint | Depends On | Blocks | WHY (dependency rationale) |
-|--------|------------|--------|---------------------------|
-| S0 | None | S1, S2 (both via exit gate) | S0 establishes eval infrastructure and fixes blocking bugs — epistemological prerequisite |
-| S1 | S0 exit gate | S3 (jointly with S2) | S1 needs functional graph (G1 from S0) to measure and activate R4 degree channel |
-| S2 | S0 exit gate | S3 (jointly with S1) | S2 needs eval baseline (R13-S1 from S0) to validate score normalization; no dependency on S1's graph work |
-| S3 | S1 AND S2 exit gates | S4 (+ HARD SCOPE CAP) | S3 needs calibrated scores (S2) and graph signal (S1) for query routing and fusion alternatives |
-| S4 | S3 exit gate + R13 2 cycles + NEW spec approval | S5 | S4 requires accumulated eval data for feedback loop; new approval required per scope cap |
-| S5 | S4 exit gate | S6 | S5 pipeline refactor needs stable scoring from S4; checkpoint required before R6 |
-| S6 | S5 exit gate | S7 | S6 graph deepening needs stable pipeline from S5; edge density from S1 informs R10 priority |
-| S7 | S6 exit gate | None | S7 long-horizon features need full stack stable |
+### Build-Gate vs Enable-Gate Classification
+
+> Not all dependencies are equal. A **build-gate** means the code can be written and unit-tested independently. An **enable-gate** means the feature MUST NOT be activated in production without the dependency. This distinction unlocks parallelization.
+
+| Sprint | Depends On | Gate Type | Blocks | WHY (dependency rationale) |
+|--------|------------|-----------|--------|---------------------------|
+| S0 | None | — | S1, S2 (both via exit gate) | S0 establishes eval infrastructure and fixes blocking bugs — epistemological prerequisite |
+| S1 | S0 exit gate | **Build**: R4 can be built/unit-tested during S0. **Enable**: R4 activation requires S0 exit gate (R13 metrics available) | S3 (jointly with S2) | S1 needs functional graph (G1 from S0) to measure and activate R4 degree channel |
+| S2 | S0 exit gate | **Build**: R18/N4/G2 can be built independently. **Enable**: score normalization requires S0 eval baseline | S3 (jointly with S1) | S2 needs eval baseline (R13-S1 from S0) to validate score normalization; no hard dependency on S1's graph work |
+| S3 | S1 AND S2 exit gates | **Enable-only**: S3 features require calibrated scores (S2) AND graph signal data (S1) | S4 (+ HARD SCOPE CAP) | S3 needs calibrated scores (S2) and graph signal (S1) for query routing and fusion alternatives |
+| S4 | S3 exit gate + R13 2 cycles + NEW spec approval | **Enable-only**: R11 requires 28 calendar days of R13 data | S5 | S4 requires accumulated eval data for feedback loop; new approval required per scope cap |
+| S5 | S4 exit gate | **Enable-only**: R6 requires stable scoring from S4 | S6 | S5 pipeline refactor needs stable scoring from S4; checkpoint required before R6 |
+| S6 | S5 exit gate (Phase B only) | **Build**: Phase A (N2/N3-lite) has no dependency on S5. **Enable**: Phase B needs stable pipeline from S5 | S7 | S6 graph deepening Phase B needs stable pipeline from S5; edge density from S1 informs R10 priority |
+| S7 | S6 exit gate | **Enable-only**: S7 needs full stack stable | None | S7 long-horizon features need full stack stable |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -460,7 +499,7 @@ Sprint 0 (Foundation) ───────┤                                �
 | Sprint 2: Scoring Calibration | Medium | 28-43h |
 | Sprint 3: Query Intelligence | Medium-High | 34-53h |
 | Sprint 4: Feedback Loop | High | 72-109h |
-| Sprint 5: Pipeline Refactor | Very High | 68-98h |
+| Sprint 5: Pipeline Refactor | Very High | 68-98h (R6 decomposed: 37-56h across 5 sub-tasks + 24-37h Phase B) |
 | Sprint 6: Graph Deepening | Very High | 68-101h |
 | Sprint 7: Long Horizon | Medium | 45-62h |
 | **Total (S0-S6)** | | **343-516h** |
@@ -510,6 +549,7 @@ Sprint 0 (Foundation) ───────┤                                �
 7. Atomic execution — failure = full rollback
 8. Version tracking via `schema_version` table or pragma
 9. Eval DB (`speckit-eval.db`) backed up before every sprint gate review
+10. Eval DB automatic backup after every 100 eval cycles (prevents data loss during long sprints)
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
@@ -793,7 +833,7 @@ Implement during or after Sprint 4-5. These require more invasive changes.
 
 ### Integration Notes
 
-- **PI-A5 sprint placement**: Listed under Phase 3 (deeper changes) but assigned to S0 in the sprint table — it is a deeper change that can be started early if bandwidth allows, but should not block S0 exit gate items
+- **PI-A5 sprint placement**: Assigned to **S0** in the sprint table (authoritative placement). The Phase 3 listing in the migration pathway reflects implementation complexity, not sprint assignment. PI-A5 is S0 scope and SHOULD complete during S0 but MUST NOT block S0 exit gate items (G1, G3, R13-S1, G-NEW-1)
 - **Feature flag count**: PI-A2 (`SPECKIT_SEARCH_FALLBACK`), PI-A4 (`SPECKIT_CONSTITUTIONAL_INJECT`), PI-B2 (`SPECKIT_PROGRESSIVE_VALIDATION`), PI-A5 (`SPECKIT_VERIFY_FIX_VERIFY`), PI-A1 (`SPECKIT_FOLDER_SCORE`) = 5 additional flags; must be managed within the 6-simultaneous-flag governance ceiling
 - **PI-B3 LLM dependency**: `folder_description` generation requires an LLM call at index time; cache aggressively and only regenerate on spec folder content change
 

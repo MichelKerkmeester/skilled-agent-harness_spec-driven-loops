@@ -93,7 +93,13 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 
 ### Internal Phasing
 
-- **Phase A (Pipeline)**: R6 (40-55h) — MUST pass 0 ordering differences gate before Phase B starts
+- **Phase A (Pipeline)**: R6 decomposed into 4 sub-tasks (37-56h total):
+  - R6-Stage1: Extract candidate generation (8-12h)
+  - R6-Stage2: Fusion logic with intent weighting once (8-12h)
+  - R6-Stage3: Cross-encoder reranking (8-12h)
+  - R6-Stage4: Filter/truncation with "no score changes" invariant (8-12h)
+  - R6-Integration: Full corpus regression testing (5-8h)
+  - MUST pass exit gate (0 differences in positions 1-5 AND rank correlation >0.995) before Phase B starts
 - **Phase B (Search + Spec-Kit)**: R9, R12, S2, S3 (24-37h) — starts only after Phase A passes
 
 ### Files to Change
@@ -116,7 +122,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S5-001 | **R6**: 4-stage pipeline with Stage 4 invariant | 0 ordering differences on eval corpus, 158+ tests pass. Flag: `SPECKIT_PIPELINE_V2` |
+| REQ-S5-001 | **R6**: 4-stage pipeline with Stage 4 invariant (decomposed into 4 sub-tasks: Stage1/Stage2/Stage3/Stage4 + integration) | 0 ordering differences in positions 1-5 AND weighted rank correlation >0.995 on eval corpus (relaxed from strict "0 differences" which is fragile for floating-point arithmetic), 158+ tests pass. Flag: `SPECKIT_PIPELINE_V2` |
 | REQ-S5-002 | **R9**: Spec folder pre-filter | Cross-folder queries produce identical results to without pre-filter |
 | REQ-S5-003 | **R12**: Query expansion (suppressed when R15="simple") | No simple query latency degradation. Flag: `SPECKIT_EMBEDDING_EXPANSION` |
 | REQ-S5-004 | **S2**: Template anchor optimization | Anchor-aware retrieval metadata present in results |
@@ -129,7 +135,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: R6 dark-run: 0 ordering differences on full eval corpus
+- **SC-001**: R6 dark-run: 0 ordering differences in positions 1-5 AND weighted rank correlation >0.995 on full eval corpus
 - **SC-002**: All 158+ existing tests pass with `SPECKIT_PIPELINE_V2` enabled
 - **SC-003**: Stage 4 invariant verified: no score modifications in Stage 4
 - **SC-004**: R9 cross-folder queries identical to without pre-filter

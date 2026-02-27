@@ -53,7 +53,10 @@ contextType: "implementation"
     - Algorithm references: Connected components — standard BFS, no library. Louvain — `igraph` (Python) or `graphology-communities-louvain` (npm). Export SQLite adjacency list to in-memory graph before running.
     - Sub-steps: (1) Export edge list from `causal_edges`. (2) Run connected-components BFS. (3) Evaluate cluster quality (avg cluster size, silhouette proxy). (4) Escalate to Louvain only if clusters are too coarse (avg size >50% of graph).
     - Acceptance criteria: community assignments stable across 2 consecutive runs on the same data (deterministic or jitter <5% membership change).
-- [ ] T002 Implement N3-lite: contradiction scan + Hebbian strengthening + staleness detection with edge caps [10-15h] — N3-lite (REQ-S6-005)
+- [ ] T001d **MR10 mitigation: weight_history audit tracking** — add `weight_history` column or log weight changes to eval DB for N3-lite Hebbian modifications; enables rollback of weight changes independent of edge creation [2-3h] — MR10 (REQUIRED — promoted from risk mitigation)
+  - Acceptance: all N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs; rollback script can restore weights from history
+  - Rationale: without weight_history, cumulative rollback to pre-S6 state is practically impossible after Hebbian weight modifications
+- [ ] T002 Implement N3-lite: contradiction scan + Hebbian strengthening + staleness detection with edge caps [10-15h] {T001d} — N3-lite (REQ-S6-005)
   > **ESTIMATION WARNING**: ~40 LOC for contradiction scan assumes heuristic (cosine similarity + keyword conflict). Semantic accuracy >80% requires NLI model — effort 3-5x. Clarify threshold before implementing.
   - Contradiction scan: similarity >0.85, check conflicting conclusions (~40 LOC heuristic)
     - Sub-steps: (1) Candidate generation — cosine similarity >0.85 pair query. (2) Conflict check — keyword negation heuristic (contains "not", "never", contradicts prior claim). (3) Flag pair + surface cluster. (4) Write `contradiction_flag` to memory record.

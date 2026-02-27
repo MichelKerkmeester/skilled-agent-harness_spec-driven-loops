@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (+ 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7; +52-80h for PageIndex items) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (+ 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7; +70-104h for PageIndex items; grand total with PageIndex: 458-700h) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -66,7 +66,9 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 ### In Scope
 
-**43 active recommendations (+ 8 PageIndex-derived, PI-A1 — PI-B3) across 8 subsystems (S0-S7):**
+**43 active recommendations (+ 8 PageIndex-derived, PI-A1 — PI-B3, + 6 sprint-derived, REQ-046 — REQ-051) across 8 subsystems (S0-S7):**
+
+> **Recommendation count reconciliation**: The original research produced 43 recommendations (30 from 142-FINAL-recommendations + 7 TM-series + 6 gap-fill items including G-NEW-1/2/3, A2, A7, B7). Of these, 3 were dropped/skipped (R3, R5-deferred, N5), leaving 40 active. The "43" count in the executive summary refers to the complete evaluated set. Additionally, 6 requirements (REQ-046 — REQ-051) were derived during sprint decomposition and are tracked in §4 Sprint-Derived Requirements.
 
 | Subsystem | Recommendations | Sprint(s) |
 |-----------|----------------|-----------|
@@ -164,7 +166,7 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 |----|-------------|---------------------|--------|
 | REQ-001 | **G1:** Fix graph channel ID format mismatch — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) | Graph channel contributes ≥1 result in top-10 for ≥5% of first 100 post-fix eval queries, logged in R13 channel_attribution | S0 |
 | REQ-002 | **G3:** Fix chunk collapse conditional — dedup on all code paths including `includeContent=false` | No duplicate chunk rows in default search mode | S0 |
-| REQ-003 | **R13-S1:** Evaluation infrastructure — separate SQLite DB with 5-table schema, logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) | Baseline metrics computed for at least 50 queries | S0 |
+| REQ-003 | **R13-S1:** Evaluation infrastructure — separate SQLite DB with 5-table schema (see §4.1 R13 Evaluation Schema), logging hooks, core metrics (MRR@5, NDCG@10, Recall@20, Hit Rate@1) | Baseline metrics computed for at least 50 queries; schema validated against §4.1 definition | S0 |
 | REQ-004 | **G-NEW-1:** BM25-only baseline comparison | BM25 baseline MRR@5 recorded and compared to hybrid | S0 |
 | REQ-035 | **B7:** Quality proxy formula for automated regression detection | Quality proxy formula operational for automated regression detection in Sprint 0 | S0 |
 | REQ-036 | **D4:** Observer effect mitigation for R13 eval logging | Search p95 increase ≤10% with eval logging enabled | S0 |
@@ -192,6 +194,7 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | REQ-034 | **B2:** Chunk ordering preservation in reassembly | Collapsed chunks appear in `chunk_index` order | S4 |
 | REQ-037 | **A2:** Full-context ceiling evaluation (LLM baseline comparison) | Full-context ceiling MRR@5 recorded; 2x2 decision matrix (A2 × G-NEW-1) evaluated at Sprint 0 exit | S0 |
 | REQ-038 | **B8:** Signal count ceiling governance (max 12 active scoring signals) | Signal ceiling policy documented and enforced; escape clause requires R13 orthogonal-value evidence | Cross-cutting |
+| REQ-052 | **Eval-the-eval:** Hand-verification of R13 evaluation output — manually compute MRR@5 for 5 randomly selected queries and compare to R13's computed values | Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; any discrepancy investigated and resolved before R13 output is used for roadmap decisions | S0 |
 | REQ-040 | **TM-01:** Interference scoring signal — negative weight penalizing memories with high-similarity competitors in same spec_folder | Interference score computed at index time; composite scoring includes -0.08 * interference factor behind feature flag | S2 |
 | REQ-041 | **TM-03:** Classification-based decay policies — FSRS decay multipliers vary by context_type and importance_tier (decisions: no decay, temporary: fast decay) | Decay behavior differs measurably between context_types; decisions/constitutional memories show 0 decay over 30 days | S2 |
 | REQ-042 | **TM-04:** Pre-storage quality gate — multi-layer validation pipeline (structural + content quality + semantic dedup) BEFORE embedding generation | Quality score computed for every save; saves below 0.4 threshold rejected; near-duplicates (>0.92 similarity) flagged | S4 |
@@ -222,6 +225,19 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | REQ-029 | **R8:** Memory summary generation (only if > 5K memories) | Summary pre-filtering reduces search space | S7 |
 | REQ-030 | **S1:** Smarter memory content generation | Content generation matches template schema for ≥95% of test cases | S7 |
 | REQ-031 | **S5:** Cross-document entity linking | ≥3 cross-document entity links verified by manual review | S7 |
+
+### Sprint-Derived Requirements (reconciled from child specs)
+
+> These requirements exist in sprint sub-specs and are tracked here for completeness.
+
+| ID | Requirement | Acceptance Criteria | Sprint |
+|----|-------------|---------------------|--------|
+| REQ-046 | **FUT-5:** RRF K-value sensitivity investigation — grid search K ∈ {20, 40, 60, 80, 100} | Optimal K documented with MRR@5 deltas per K value | S2 |
+| REQ-047 | **R15-ext:** Confidence-based result truncation — adaptive top-K cutoff based on score confidence gap | Results truncated at score gap; minimum 3 results guaranteed; reduces tail by >30% | S3 |
+| REQ-048 | **FUT-7:** Dynamic token budget allocation by query complexity tier | Simple: 1500t, Moderate: 2500t, Complex: 4000t; token waste reduced for simple queries | S3 |
+| REQ-049 | **N2a:** Graph Momentum — temporal degree delta over sliding 7-day window | Momentum score computed for all nodes with >=1 edge; top-10 accelerating memories identifiable | S6 |
+| REQ-050 | **N2b:** Causal Depth Signal — max-depth path normalization from root memories | causal_depth_score assigned to all nodes; root=0, leaf=1.0 | S6 |
+| REQ-051 | **N2c:** Community Detection — connected components (BFS baseline), Louvain escalation if clusters too coarse | Community assignments stable across 2 consecutive runs (jitter <5%) | S6 |
 
 ### PageIndex-Derived Recommendations (PI-A1 — PI-B3)
 
@@ -256,6 +272,94 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | S4 | PI-A4 | +8-12h |
 | S5 | PI-B1, PI-B2 | +26-38h |
 | **Total** | **8 items** | **+70-104h** |
+### 4.1 R13 Evaluation Schema Definition
+
+The `speckit-eval.db` 5-table schema referenced by REQ-003:
+
+```sql
+-- Table 1: Evaluation queries (ground truth corpus)
+CREATE TABLE eval_queries (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  query_text TEXT NOT NULL,
+  intent_type TEXT NOT NULL,           -- 'graph_relationship', 'temporal', 'cross_document', 'hard_negative', 'factual'
+  complexity_tier TEXT NOT NULL,        -- 'simple', 'moderate', 'complex'
+  expected_result_ids TEXT DEFAULT '[]', -- JSON array of memory IDs (manual ground truth)
+  source TEXT DEFAULT 'manual',         -- 'manual', 'synthetic', 'llm_judge'
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  notes TEXT
+);
+CREATE INDEX idx_eval_queries_intent ON eval_queries(intent_type);
+CREATE INDEX idx_eval_queries_complexity ON eval_queries(complexity_tier);
+
+-- Table 2: Per-channel results logged per query execution
+CREATE TABLE eval_channel_results (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id INTEGER NOT NULL,
+  query_id INTEGER NOT NULL REFERENCES eval_queries(id),
+  channel TEXT NOT NULL,                -- 'vector', 'fts5', 'bm25', 'graph', 'degree'
+  result_ids TEXT NOT NULL DEFAULT '[]', -- JSON array of memory IDs returned by channel
+  scores TEXT NOT NULL DEFAULT '[]',     -- JSON array of raw scores per result
+  latency_ms REAL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  FOREIGN KEY (query_id) REFERENCES eval_queries(id)
+);
+CREATE INDEX idx_eval_channel_run ON eval_channel_results(run_id);
+CREATE INDEX idx_eval_channel_query ON eval_channel_results(query_id);
+
+-- Table 3: Final fused results per query execution
+CREATE TABLE eval_final_results (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id INTEGER NOT NULL,
+  query_id INTEGER NOT NULL REFERENCES eval_queries(id),
+  result_ids TEXT NOT NULL DEFAULT '[]',  -- JSON array of final ranked memory IDs
+  scores TEXT NOT NULL DEFAULT '[]',       -- JSON array of final scores
+  fusion_method TEXT DEFAULT 'rrf',        -- 'rrf', 'rsf', 'hybrid'
+  intent_classification TEXT,
+  query_complexity TEXT,
+  total_latency_ms REAL,
+  channel_attribution TEXT DEFAULT '{}',   -- JSON: {channel: count_in_top_k}
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  FOREIGN KEY (query_id) REFERENCES eval_queries(id)
+);
+CREATE INDEX idx_eval_final_run ON eval_final_results(run_id);
+
+-- Table 4: Ground truth relevance judgments
+CREATE TABLE eval_ground_truth (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  query_id INTEGER NOT NULL REFERENCES eval_queries(id),
+  memory_id INTEGER NOT NULL,
+  relevance_score REAL NOT NULL,         -- 0.0 (irrelevant) to 1.0 (perfect match)
+  source TEXT DEFAULT 'manual',           -- 'manual', 'trigger_derived', 'llm_judge', 'implicit'
+  annotator TEXT,                          -- 'human', 'synthetic', 'llm_judge'
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  FOREIGN KEY (query_id) REFERENCES eval_queries(id)
+);
+CREATE INDEX idx_eval_gt_query ON eval_ground_truth(query_id);
+CREATE INDEX idx_eval_gt_memory ON eval_ground_truth(memory_id);
+CREATE UNIQUE INDEX idx_eval_gt_pair ON eval_ground_truth(query_id, memory_id);
+
+-- Table 5: Metric snapshots (computed after each eval run)
+CREATE TABLE eval_metric_snapshots (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id INTEGER NOT NULL,
+  sprint TEXT,                             -- 'S0', 'S1', etc.
+  metric_name TEXT NOT NULL,               -- 'MRR@5', 'NDCG@10', 'Recall@20', 'HitRate@1', etc.
+  metric_value REAL NOT NULL,
+  query_count INTEGER NOT NULL,            -- number of queries in this eval run
+  config_snapshot TEXT DEFAULT '{}',       -- JSON: active flags, weights, parameters
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE INDEX idx_eval_metrics_run ON eval_metric_snapshots(run_id);
+CREATE INDEX idx_eval_metrics_name ON eval_metric_snapshots(metric_name);
+CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
+```
+
+**Design notes:**
+- All tables use `TEXT NOT NULL DEFAULT (datetime('now'))` for timestamps (SQLite-compatible)
+- JSON arrays stored as TEXT with `DEFAULT '[]'` (nullable-safe, forward-compatible)
+- `run_id` groups results from a single evaluation execution across tables 2, 3, and 5
+- `eval_ground_truth` has a unique constraint on `(query_id, memory_id)` to prevent duplicate judgments
+- No foreign keys to the primary `speckit.db` — eval DB is fully isolated per NFR-D03
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -322,12 +426,55 @@ See research/142 - FINAL-recommendations §5 for corrected dependency graph.
 
 ---
 
+## 6b. CONSOLIDATED SIGNAL APPLICATION ORDER
+
+> Scoring pipeline ordering constraints are scattered across 4+ sprint specs. This section consolidates all ordering invariants in one place.
+
+### Pipeline Signal Application Order (Stages 1-4)
+
+| Order | Signal/Operation | Stage | Constraint | Source |
+|-------|-----------------|-------|------------|--------|
+| 1 | Candidate generation (5 channels: vector, FTS5, BM25, graph, degree) | Stage 1 | All channels execute independently | R4, G1 |
+| 2 | RRF/RSF fusion with intent weights (applied ONCE) | Stage 2 | Intent weights MUST be applied exactly once — prevents G2 double-weighting | R14/N1, G2 |
+| 3 | Co-activation boost (with R17 fan-effect divisor) | Stage 2 | R17 divisor = `1/sqrt(degree)`; combined TM-01+R17 penalty capped at 0.15 | R17, TM-01 |
+| 4 | Composite scoring (importance, temporal, freshness, co-activation, state, cognitive) | Stage 2 | All factors normalized to [0,1] before combination | ADR-001 |
+| 5 | N4 cold-start boost (12h half-life decay) | Stage 2 | Applied BEFORE MPAB; combined R1+N4+constitutional cap at 0.95 | N4, R1 |
+| 6 | TM-01 interference penalty | Stage 2 | -0.08 * interference_factor; behind feature flag | TM-01 |
+| 7 | Cross-encoder reranking | Stage 3 | Operates on fused scores from Stage 2 | R6 |
+| 8 | MMR diversity enforcement | Stage 3 | Post-rerank diversity pass | R6 |
+| 9 | R1 MPAB chunk-to-memory aggregation | Stage 3 | N=0→0, N=1→score, N>1→aggregate | R1 |
+| 10 | State filtering, session dedup, constitutional guarantee | Stage 4 | **NO score changes** — filtering and annotation only | R6 Stage 4 invariant |
+| 11 | Channel attribution logging | Stage 4 | Read-only annotation | R13 |
+
+### Save Pipeline Signal Order (TM Pattern Integration)
+
+| Order | Operation | Gate | Constraint |
+|-------|-----------|------|------------|
+| 1 | Content hash check (TM-02) | O(1) reject | Before embedding — zero-cost duplicate rejection |
+| 2 | Quality scoring (TM-04) | O(1) score | Before embedding — reject below 0.4 threshold |
+| 3 | Verify-fix-verify loop (PI-A5) | O(1) retry | Max 2 retries before rejection |
+| 4 | Embedding generation | O(1) API | Existing pipeline step |
+| 5 | Semantic dedup (TM-04 Layer 3) | O(n) search | After embedding — >0.92 similarity = reject |
+| 6 | Reconsolidation (TM-06) | O(n) search | After embedding — >=0.88 merge, 0.75-0.88 replace |
+| 7 | Database insert | O(log n) | Final write |
+
+### Cross-Sprint Ordering Invariants
+
+1. **N4 before R1**: Cold-start boost applied before MPAB aggregation (prevents double-boost for new chunked memories)
+2. **R15 suppresses R12**: When R15 classifies query as "simple", R12 query expansion is skipped entirely
+3. **R17 before R4**: Fan-effect divisor applied to co-activation scores before degree boost (prevents hub amplification)
+4. **R13 logging after Stage 4**: Eval logging is fire-and-forget, never blocks search pipeline
+5. **TM-02 before TM-04**: Content hash is cheapest check — run before quality scoring
+
+---
+
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
 - **NFR-P01**: Search response MUST NOT exceed 500ms p95 during any phase including dark-run
 - **NFR-P02**: Simple query (R15) target: < 30ms p95; Moderate: < 100ms; Complex: < 300ms
 - **NFR-P03**: Dark-run overhead per sprint: S1 +10ms, S2 +2ms, S3 +50ms, S4 +15ms, S5 +100ms (See research/142 - FINAL-recommendations §14)
+- **NFR-P04**: Save-time performance budget — `memory_save` operations: p95 ≤200ms without embedding generation, p95 ≤2000ms with embedding generation. TM-02/TM-04/TM-06 pipeline stages MUST NOT exceed these budgets
 
 ### Data Integrity
 - **NFR-D01**: All new columns MUST be nullable with sensible defaults (e.g., `DEFAULT '[]'`)
@@ -396,10 +543,10 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 | R-005 | BM25 >= 80% of hybrid (contingency) | High | Unknown | Sprint 0 measurement + decision matrix |
 | R-006 | Effort variance (316-472h range) | Medium | Medium | Metric-gated sprints enable early stopping |
 | R-007 | R6 pipeline refactor regression | High | Medium | Checkpoint before start; 0-diff gate; off-ramp |
-| R-008 | Eval ground truth contamination from biased trigger-phrase synthetic data (MR-bias) | Medium | Medium | Diversify ground truth sources; add manual review sample |
+| R-008 | Eval ground truth contamination from biased trigger-phrase synthetic data (MR-bias) — synthetic ground truth derived from trigger phrases evaluates a system that retrieves partly via trigger phrases, inflating MRR@5 scores | High | High | **MANDATORY**: Include >=20 manually curated natural-language queries (non-trigger-phrase) in ground truth corpus; require statistical significance (p<0.05, paired t-test or bootstrap CI) for BM25 contingency decision; minimum 100 diverse queries before any threshold-based roadmap decision |
 | R-009 | Solo developer bottleneck — 18-26 weeks, no absence protocol | Medium | High | Document bus factor plan; identify critical path items for potential delegation |
 | R-010 | Cumulative dark-run overhead — concurrent runs could reach 177ms p95 by S5 | Medium | Medium | Sequential dark-runs; disable prior sprint dark-runs before starting new ones |
-| R-011 | BM25 measurement reliability — 50 queries may be biased, no diversity requirement | Medium | Medium | Require query diversity: ≥5 queries per intent type, ≥3 query complexity tiers |
+| R-011 | BM25 measurement reliability — 50 queries insufficient for statistical significance on >=80%/50-80%/<50% threshold decision; confidence intervals too wide | High | High | Require minimum 100 diverse queries for BM25 contingency decision; statistical significance (p<0.05) required; ≥5 queries per intent type, ≥3 complexity tiers; ≥20 manually curated (non-trigger-phrase) queries |
 | R-012 | Graph topology power-law distribution after G1 fix — bimodal R4 scoring | Medium | Low | R4 degree normalization (log-scale or percentile-based) |
 
 ---
@@ -521,6 +668,27 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 
 ### v1.2 (2026-02-26)
 **PageIndex-derived recommendations** — Added 8 recommendations (PI-A1 through PI-A5, PI-B1 through PI-B3) from PageIndex analysis of true-mem source code (research/9 + research/10). Distributed across S0-S5. Effort increased by +70-104h. See §4 PageIndex-Derived Recommendations table.
+
+### v1.3 (2026-02-27)
+**Tri-agent review amendments** — Applied 28 actions from independent reviews by 3 ultra-think agents (Analytical/Critical/Holistic/Pragmatic lenses). Key changes:
+- **A1**: Defined R13 5-table evaluation schema explicitly in §4.1 (tables, columns, indexes, relationships)
+- **A2**: Elevated R-008/R-011 to High severity; added >=20 manual ground truth annotations, statistical significance requirement (p<0.05, min 100 diverse queries), minimum query count for BM25 contingency decision
+- **A3**: Reconciled 6 sprint-derived requirements (REQ-046 — REQ-051: FUT-5, R15-ext, FUT-7, N2a/N2b/N2c) into parent spec
+- **A4**: Reframed Sprints 4-7 as "Contingent Phase" requiring new spec approval based on Sprint 0-3 data
+- **A5**: Added consolidated Signal Application Order document (§6b) covering both search and save pipelines
+- **A6**: Added eval-the-eval validation task (REQ-052) — hand-verify R13 output before roadmap decisions
+- **A7**: Added 7 dangerous interaction pair verification items to checklist
+- **B3**: Formalized build-gate vs enable-gate classification for all sprint dependencies
+- **B4**: Reclassified S1→S2 dependency from hard to soft
+- **B5**: Upgraded Sprint 4 split from recommendation to mandatory (4a/4b risk isolation)
+- **B6**: Relaxed R6 exit gate to "0 differences in positions 1-5 AND weighted rank correlation >0.995"
+- **B7**: Decomposed R6 into 4 sub-tasks (one per pipeline stage, 8-12h each)
+- **B9/B10**: Added 10 negative test items and 7 rollback verification items to checklist
+- **B11**: Promoted MR10 weight_history tracking from risk mitigation to required task in Sprint 6
+- **B12**: Added save-time performance budget (NFR-P04: 200ms p95 save, 2000ms with embedding)
+- **C1**: Consolidated 14 per-sprint flag sunset items into 1 cross-cutting item (reduced checklist from ~147 to ~127)
+- **C4**: Added cumulative latency budget tracker as cross-cutting concern in plan.md
+- **INC-1/INC-2**: Fixed grand total with PageIndex in executive summary; clarified recommendation count arithmetic
 
 ---
 

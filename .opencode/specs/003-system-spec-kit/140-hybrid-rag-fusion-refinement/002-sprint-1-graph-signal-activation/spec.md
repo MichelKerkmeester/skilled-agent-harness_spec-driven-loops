@@ -46,7 +46,9 @@ This is **Phase 2** of the Hybrid RAG Fusion Refinement specification.
 **Dependencies**:
 - Sprint 0 exit gate MUST be passed (graph channel functional, eval infrastructure operational, BM25 baseline recorded)
 
-**Parallelization Note**: Sprint 1 and Sprint 2 can execute in parallel after Sprint 0 exit gate. Sprint 2's scope (R18 embedding cache, N4 cold-start boost, G2 investigation, score normalization) has zero technical dependency on Sprint 1's deliverables (R4 typed-degree channel, edge density measurement). Both depend only on Sprint 0 outputs (eval infrastructure + baseline metrics). Parallel execution saves 3-5 weeks on critical path. The sole coordination point is that Sprint 2's score normalization (Phase 4) should incorporate R4's degree scores if Sprint 1 completes first — but normalization can proceed without them and be updated retroactively.
+**Parallelization Note**: Sprint 1 and Sprint 2 have a **soft dependency** (not hard). Sprint 2's scope (R18 embedding cache, N4 cold-start boost, G2 investigation, score normalization) has zero technical dependency on Sprint 1's deliverables. Both depend only on Sprint 0 outputs. The sole coordination point is that S2's score normalization should incorporate R4's degree scores if S1 completes first — normalization can proceed without them and be retroactively updated.
+
+**Build-gate vs Enable-gate**: R4 (typed-degree channel) can be **built and unit-tested** during Sprint 0 — it does not require eval infrastructure to write the code. However, R4 MUST NOT be **enabled** (flag activated) until S0 exit gate passes and R13 metrics are available for dark-run validation. This distinction allows overlapping development.
 
 **Deliverables**:
 - Typed-weighted degree computation as 5th RRF channel (R4)

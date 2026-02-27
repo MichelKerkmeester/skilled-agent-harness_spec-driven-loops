@@ -59,6 +59,19 @@ contextType: "implementation"
 - [ ] CHK-021 [P0] Dark-run comparison executed for every scoring change before enabling
 - [ ] CHK-022 [P1] New tests added per sprint per expansion strategy (See plan.md §5)
 - [ ] CHK-023 [P1] Flag interaction testing at appropriate level (isolation → pair → group)
+
+### Negative Tests (boundary validation)
+
+- [ ] CHK-024 [P1] Score bounds: all scoring signals produce values in [0,1] range — no NaN, no Infinity, no negative scores
+- [ ] CHK-025 [P1] Empty graph: R4 returns 0 for all memories when graph has 0 edges (correct no-data behavior)
+- [ ] CHK-026 [P1] Constitutional survival: constitutional memories always appear in results regardless of scoring signal changes
+- [ ] CHK-027 [P1] N=0 MPAB: `computeMPAB([]) = 0` — no division by zero
+- [ ] CHK-028 [P1] N=1 MPAB: `computeMPAB([score]) = score` — no penalty, no bonus
+- [ ] CHK-029a [P1] R11 denylist enforcement: common stop words never added to learned_triggers
+- [ ] CHK-029b [P1] R11 rate limit: no more than N learned triggers added per hour
+- [ ] CHK-029c [P1] R11 TTL enforcement: learned triggers expire after configured TTL
+- [ ] CHK-029d [P1] R15 fallback: classifier failure defaults to "complex" tier (full pipeline)
+- [ ] CHK-029e [P1] Flag disabled mid-search: in-progress search completes with flag state at query start
 <!-- /ANCHOR:testing -->
 
 ---
@@ -71,6 +84,15 @@ contextType: "implementation"
 - [ ] CHK-032 [P1] R11 denylist expanded from 25 to 100+ stop words
 - [ ] CHK-033 [P1] R12+R15 mutual exclusion verified: R15="simple" suppresses R12 query expansion
 - [ ] CHK-034 [P1] N4+R11 interaction safeguard verified: memories < 72h old excluded from R11 eligibility
+### Dangerous Interaction Pairs (from spec §6)
+
+- [ ] CHK-035 [P0] R1+N4 double-boost guard — N4 applied BEFORE MPAB; combined boost capped at 0.95
+- [ ] CHK-036 [P0] R4+N3 feedback loop guard — edge caps (MAX_TOTAL_DEGREE=50), strength caps (MAX_STRENGTH_INCREASE=0.05/cycle), provenance tracking active
+- [ ] CHK-037 [P0] R15+R2 guarantee — R15 minimum = 2 channels even for "simple" tier
+- [ ] CHK-038 [P1] R12+R15 mutual exclusion — R15="simple" suppresses R12 expansion verified
+- [ ] CHK-039a [P1] N4+R11 transient artifact guard — memories <72h old excluded from R11 eligibility
+- [ ] CHK-039b [P1] TM-01+R17 combined penalty — capped at 0.15 (no double fan-effect suppression)
+- [ ] CHK-039c [P1] R13+R15 metrics skew — R13 records query_complexity; metrics computed per tier
 <!-- /ANCHOR:security -->
 
 ---
@@ -115,8 +137,9 @@ contextType: "implementation"
 - [ ] CHK-S0C [P0] Ground truth corpus includes ≥15 manually curated natural-language queries (T000d) — evidence: query set JSON with count ≥15
 - [ ] CHK-S0D [P0] Query diversity verified: ≥5 per intent type (graph relationship, temporal, cross-document, hard negative), ≥3 complexity tiers (simple, moderate, complex) — evidence: intent/tier distribution table
 - [ ] CHK-S0E [P0] Ground truth includes graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week?"), cross-document queries ("how does A relate to B?"), and hard negatives — evidence: query set JSON with `intent_type` field
-- [ ] CHK-S0F [P1] Feature flag count ≤6 at Sprint 0 exit (verify with flag audit) — evidence: `grep -r SPECKIT_ src/ | sort -u` output showing ≤6 distinct flags
-- [ ] CHK-S0G [P1] Flag sunset decisions documented with metric evidence — evidence: flag audit log entry in sprint gate results
+- [ ] CHK-S0F2 [P0] **Eval-the-eval validation** — hand-calculated MRR@5 for 5 random queries matches R13 output within ±0.01; discrepancies resolved before BM25 contingency decision (REQ-052)
+- [ ] CHK-S0F3 [P0] BM25 contingency decision has statistical significance — p<0.05 on >=100 diverse queries (R-008, R-011 elevated)
+- [ ] CHK-S0F [P1] Feature flag count ≤6 at exit + sunset decisions documented (consolidated: applies to ALL sprint exits S0-S7)
 
 ### Sprint 1: Graph Signal Activation [P0]
 
@@ -126,8 +149,7 @@ contextType: "implementation"
 - [ ] CHK-S13 [P1] G-NEW-2: Agent consumption instrumentation active; initial pattern report drafted
 - [ ] CHK-S15 [P1] Co-activation boost strength (A7) increased to 0.25-0.3x; effective contribution ≥15% at hop 2
 - [ ] CHK-S16 [P1] TM-08 importance signal vocabulary expanded — CORRECTION and PREFERENCE signal categories recognized by trigger extraction
-- [ ] CHK-S17 [P1] Feature flag count ≤6 at Sprint 1 exit (verify with flag audit) — evidence: flag inventory showing active count
-- [ ] CHK-S18 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprint 0 evaluated for permanent enable/removal
+- [ ] CHK-S17 [P1] Feature flag count ≤6 at Sprint 1 exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 2: Scoring Calibration [P1]
 
@@ -138,8 +160,7 @@ contextType: "implementation"
 - [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
 - [ ] CHK-S26 [P1] TM-01 interference scoring signal operational — interference_score column populated at index time; composite scoring applies negative weight behind flag
 - [ ] CHK-S27 [P1] TM-03 classification-based decay verified — decisions and constitutional memories show 0 decay; temporary memories decay at 0.5x rate; standard memories unchanged
-- [ ] CHK-S28 [P1] Feature flag count ≤6 at Sprint 2 exit (verify with flag audit) — evidence: flag inventory showing active count
-- [ ] CHK-S29 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-1 evaluated for permanent enable/removal
+- [ ] CHK-S28 [P1] Feature flag count ≤6 at Sprint 2 exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 3: Query Intelligence [P1]
 
@@ -149,8 +170,7 @@ contextType: "implementation"
 - [ ] CHK-S33 [P1] Off-ramp evaluation: check MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
 - [ ] CHK-S34 [P1] Confidence-based result truncation produces >=3 results and reduces tail by >30%
 - [ ] CHK-S35 [P1] Dynamic token budget allocation respects tier limits (1500/2500/4000)
-- [ ] CHK-S36 [P1] Feature flag count ≤6 at Sprint 3 exit (verify with flag audit) — evidence: flag inventory showing active count
-- [ ] CHK-S37 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-2 evaluated for permanent enable/removal
+- [ ] CHK-S36 [P1] Feature flag count ≤6 at Sprint 3 exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 4: Feedback Loop [P1]
 
@@ -170,8 +190,7 @@ contextType: "implementation"
 - [ ] CHK-S4D [P1] TM-04/TM-06 reconsolidation decisions logged for R13 review — all merge/replace/complement actions recorded
 - [ ] CHK-S4E [P1] Sprint 4a (R1+R13-S2) completed and verified BEFORE Sprint 4b (R11+TM-04+TM-06) begins — evidence: Sprint 4a gate items (CHK-S41, CHK-S43, CHK-S46) all marked [x] before T027/T058/T059 start
 - [ ] CHK-S4F [P1] R11 activation deferred until ≥2 full R13 eval cycles completed (minimum 28 calendar days of data) — evidence: R13 eval_metric_snapshots table shows ≥2 distinct eval cycle timestamps spanning ≥28 days
-- [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit (verify with flag audit) — evidence: flag inventory showing active count
-- [ ] CHK-S4H [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-3 evaluated for permanent enable/removal
+- [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 5: Pipeline Refactor [P1]
 
@@ -185,8 +204,7 @@ contextType: "implementation"
 - [ ] CHK-S57 [P1] S2 template anchor optimization: anchor-aware retrieval metadata available and functional
 - [ ] CHK-S58 [P1] S3 validation signals integrated as retrieval metadata in scoring pipeline
 - [ ] CHK-S5A [P1] TM-05 dual-scope injection operational — memory auto-surface hooks active at >=2 lifecycle points with per-point token budgets enforced
-- [ ] CHK-S5B [P1] Feature flag count ≤6 at Sprint 5 exit (verify with flag audit) — evidence: flag inventory showing active count
-- [ ] CHK-S5C [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-4 evaluated for permanent enable/removal
+- [ ] CHK-S5B [P1] Feature flag count ≤6 at Sprint 5 exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 6: Graph Deepening [P1]
 
@@ -200,7 +218,7 @@ contextType: "implementation"
 - [ ] CHK-S66 [P1] R16 encoding-intent metadata captured at index time and available for scoring
 - [ ] CHK-S67 [P1] S4 spec folder hierarchy traversal functional in retrieval
 - [ ] CHK-S68 [P1] N3-lite safety bounds enforced: MAX_EDGES_PER_NODE cap and MAX_STRENGTH_INCREASE=0.05/cycle verified
-- [ ] CHK-S69 [P1] Flag sunset decisions documented with metric evidence — evidence: flags from Sprints 0-5 evaluated for permanent enable/removal; CHK-S64 covers ≤6 count
+- [ ] CHK-S69 [P1] Feature flag count ≤6 at Sprint 6 exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 7: Long Horizon [P2]
 
@@ -210,8 +228,7 @@ contextType: "implementation"
 - [ ] CHK-S73 [P2] R13-S3 full reporting dashboard + ablation study framework operational
 - [ ] CHK-S74 [P2] R5 INT8 quantization decision documented (implement or defer with rationale)
 - [ ] CHK-S75 [P2] Final feature flag sunset audit completed — all sprint-specific flags resolved
-- [ ] CHK-S76 [P2] Feature flag count ≤6 at Sprint 7 exit (verify with flag audit) — evidence: final flag inventory; ideally 0 remaining flags
-- [ ] CHK-S77 [P2] Flag sunset decisions documented with metric evidence — evidence: all flags from all sprints evaluated; permanent enables and removals documented
+- [ ] CHK-S76 [P2] Feature flag count ≤6 at Sprint 7 exit + final sunset audit (see CHK-S0F); ideally 0 remaining flags
 <!-- /ANCHOR:sprint-gates -->
 
 ---
@@ -269,6 +286,16 @@ contextType: "implementation"
 - [ ] CHK-123 [P1] Schema migration protocol followed (8 rules from plan.md L2: Enhanced Rollback)
 - [ ] CHK-124 [P1] Feature flag lifecycle enforced: 90-day max lifespan, monthly sunset audit
 - [ ] CHK-125 [P1] `speckit-eval.db` backed up before each sprint gate review
+
+### Rollback Verification (per sprint)
+
+- [ ] CHK-126 [P1] S0 rollback: eval DB deletable, G1/G3/R17 revertible via git
+- [ ] CHK-127 [P1] S1 rollback: `SPECKIT_DEGREE_BOOST` disableable, R4 revert path tested
+- [ ] CHK-128 [P1] S2 rollback: cache table droppable, `SPECKIT_NOVELTY_BOOST` disableable
+- [ ] CHK-129a [P1] S3 rollback: R15+R2+R14/N1 flags disable together without side effects
+- [ ] CHK-129b [P1] S4 rollback: checkpoint created (`pre-r11-feedback`), `learned_triggers` clearable, TM-04/TM-06 flags disableable. **Note: cumulative rollback to pre-S4 state is practically impossible after S4b mutations**
+- [ ] CHK-129c [P1] S5 rollback: checkpoint created (`pre-pipeline-refactor`), dual rollback tested (data checkpoint + git revert for code)
+- [ ] CHK-129d [P1] S6 rollback: checkpoint created (`pre-graph-mutations`), MR10 weight_history enables weight restoration, N3-lite edge deletions use `created_by` provenance
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -311,16 +338,16 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 25 | [ ]/25 |
-| P1 Items | 108 | [ ]/108 |
-| P2 Items | 14 | [ ]/14 |
-| **Total** | **147** | **[ ]/147** |
+| P0 Items | 30 | [ ]/30 |
+| P1 Items | 85 | [ ]/85 |
+| P2 Items | 12 | [ ]/12 |
+| **Total** | **~127** | **[ ]/~127** |
 
-> **Note**: P1 total includes 8 PageIndex integration items (CHK-PI-A1 — CHK-PI-B3), 14 feature flag sunset items (2 per sprint), and 4 Sprint 4 split verification items.
+> **Note**: Reduced from ~147 to ~127 by consolidating 14 per-sprint flag sunset items into 1 cross-cutting item (CHK-S0F). Added: 7 interaction pair items (CHK-035-039c), 10 negative test items (CHK-024-029e), 7 rollback verification items (CHK-126-129d), 2 eval validation items (CHK-S0F2, CHK-S0F3). P0 count increased due to interaction pair guards and eval validation being safety-critical.
 
 **Verification Date**: [YYYY-MM-DD]
 
-**Minimum viable verification (off-ramp at S2+S3)**: All P0 items (21) + P1 items through Sprint 3 gate (CHK-S30 to CHK-S33) + cross-cutting P1 items = ~25 P0 + ~10 Sprint 0-3 P1 gate items
+**Minimum viable verification (off-ramp at S2+S3)**: All P0 items (~30) + P1 items through Sprint 3 gate + cross-cutting P1 items
 <!-- /ANCHOR:summary -->
 
 ---
