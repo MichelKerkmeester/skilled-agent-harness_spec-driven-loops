@@ -179,12 +179,12 @@ Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference
 
 <!--
 LEVEL 2 TASKS — Phase 3 of 8
-- 11 tasks across 8 phases (T001-T010 + T004a)
+- 12 tasks across 8 phases (T001-T010 + T004a + T-FS2)
 - Phase 1-2: T001-T002 parallelizable (R18, N4 independent)
 - Phase 3: T003 parallelizable (G2 independent)
 - Phase 4: T004, T004a depend on T003 (G2 outcome influences normalization)
 - Phase 5: T005 parallelizable (TM-01 independent)
 - Phase 6: T006 parallelizable (TM-03 independent)
-- Phase 7: T007-T008 verification + exit gate
+- Phase 7: T007, T-FS2, T008 verification + feature flag sunset + exit gate
 - Phase 8: T009 (PI-A1, required), T010 (observability, P2 optional)
 -->

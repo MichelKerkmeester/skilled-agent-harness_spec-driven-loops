@@ -14,6 +14,27 @@ contextType: "implementation"
 <!-- SPECKIT_LEVEL: 3+ -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
+## Table of Contents
+
+- [1. Summary](#1-summary)
+- [2. Quality Gates](#2-quality-gates)
+- [3. Architecture](#3-architecture)
+- [4. Implementation Phases](#4-implementation-phases)
+- [5. Testing Strategy](#5-testing-strategy)
+- [6. Dependencies](#6-dependencies)
+- [7. Rollback Plan](#7-rollback-plan)
+- [L2: Phase Dependencies](#l2-phase-dependencies)
+- [L2: Effort Estimation](#l2-effort-estimation)
+- [L2: Enhanced Rollback](#l2-enhanced-rollback)
+- [L3: Dependency Graph](#l3-dependency-graph)
+- [L3: Critical Path](#l3-critical-path)
+- [L3: Milestones](#l3-milestones)
+- [L3: Architecture Decision Record](#l3-architecture-decision-record)
+- [L3+: AI Execution Framework](#l3-ai-execution-framework)
+- [L3+: Workstream Coordination](#l3-workstream-coordination)
+- [L3+: Communication Plan](#l3-communication-plan)
+- [PageIndex Research Integration](#pageindex-research-integration)
+
 ---
 
 <!-- ANCHOR:summary -->

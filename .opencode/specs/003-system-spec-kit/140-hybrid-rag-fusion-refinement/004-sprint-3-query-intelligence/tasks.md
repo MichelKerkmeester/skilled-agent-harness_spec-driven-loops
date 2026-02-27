@@ -166,5 +166,5 @@ Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference
 <!--
 LEVEL 2 TASKS — Phase 4 of 8
 - Sprint 3: Query Intelligence
-- 15 active tasks (T001a-d, T002a-c, T003a-c, T004-T007, T009) across 5 phases (T008/PI-A2 deferred)
+- 16 active tasks (T001a-d, T002a-c, T003a-c, T004-T007, T009, T-IP-S3, T-FS3) across 5 phases + PageIndex section (T008/PI-A2 deferred)
 -->

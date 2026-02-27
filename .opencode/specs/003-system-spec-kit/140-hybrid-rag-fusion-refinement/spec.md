@@ -15,6 +15,30 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [1. Metadata](#1-metadata)
+- [2. Problem & Purpose](#2-problem--purpose)
+- [3. Scope](#3-scope)
+- [Phase Documentation Map](#phase-documentation-map)
+- [4. Requirements](#4-requirements)
+- [5. Success Criteria](#5-success-criteria)
+- [6. Risks & Dependencies](#6-risks--dependencies)
+- [7. Non-Functional Requirements](#7-non-functional-requirements)
+- [8. Edge Cases](#8-edge-cases)
+- [9. Complexity Assessment](#9-complexity-assessment)
+- [10. Risk Matrix](#10-risk-matrix)
+- [11. User Stories](#11-user-stories)
+- [12. Approval Workflow](#12-approval-workflow)
+- [13. Compliance Checkpoints](#13-compliance-checkpoints)
+- [14. Stakeholder Matrix](#14-stakeholder-matrix)
+- [14A. Architectural Decision Records (ADRs)](#14a-architectural-decision-records-adrs)
+- [15. Change Log](#15-change-log)
+- [16. Open Questions](#16-open-questions)
+- [17. Deferred Items](#17-deferred-items)
+- [18. Related Documents](#18-related-documents)
+
 ---
 
 ## EXECUTIVE SUMMARY

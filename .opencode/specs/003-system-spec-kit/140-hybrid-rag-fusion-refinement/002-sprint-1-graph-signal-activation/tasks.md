@@ -182,10 +182,12 @@ Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference
 
 <!--
 LEVEL 2 TASKS — Phase 2 of 8
-- 7 tasks across 6 phases
-- Phase 1-2: Sequential R4 implementation (T001-T002)
+- 11 tasks across 7 phases
+- Phase 1: Degree computation (T001)
+- Phase 2: RRF integration (T002)
 - Phase 3: Measurement — edge density + co-activation (T003, T003a)
 - Phase 4: Agent UX + signal vocabulary (T004, T005a)
-- Phase 5: Dark-run verification + exit gate (T005, T006)
+- Phase 5: Dark-run verification + feature flag sunset + exit gate (T005, T-FS1, T006)
 - Phase 6: PI-A3 token budget validation (T007)
+- Phase 7: PI-A5 verify-fix-verify memory quality loop (T008)
 -->
