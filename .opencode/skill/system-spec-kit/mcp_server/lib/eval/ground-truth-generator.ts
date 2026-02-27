@@ -1,0 +1,341 @@
+// ---------------------------------------------------------------
+// MODULE: Ground Truth Generator
+// T007: Functions for generating, loading, and validating the
+// synthetic ground truth dataset for retrieval evaluation.
+//
+// Exports:
+//   generateGroundTruth()          — produce the full dataset
+//   loadGroundTruth(evalDb)        — populate eval DB tables
+//   validateGroundTruthDiversity() — check all diversity gates
+// ---------------------------------------------------------------
+
+import type Database from 'better-sqlite3';
+
+import {
+  GROUND_TRUTH_QUERIES,
+  QUERY_DISTRIBUTION,
+  type GroundTruthQuery,
+  type GroundTruthRelevance,
+  type IntentType,
+  type ComplexityTier,
+} from './ground-truth-data';
+
+/* ---------------------------------------------------------------
+   1. PUBLIC TYPES
+--------------------------------------------------------------- */
+
+/** Result returned by generateGroundTruth(). */
+export interface GroundTruthDataset {
+  queries: GroundTruthQuery[];
+  /** Relevance judgments — approximate; precise memory IDs populated at eval time. */
+  relevances: GroundTruthRelevance[];
+  distribution: typeof QUERY_DISTRIBUTION;
+}
+
+/** Per-dimension diversity validation result. */
+export interface DiversityGate {
+  dimension: string;
+  required: number;
+  actual: number;
+  passed: boolean;
+  detail?: string;
+}
+
+/** Full diversity validation report. */
+export interface DiversityValidationReport {
+  passed: boolean;
+  totalQueries: number;
+  gates: DiversityGate[];
+  summary: string;
+}
+
+/** Options for loadGroundTruth(). */
+export interface LoadGroundTruthOptions {
+  /** If true, DELETE existing rows before inserting. Default: false (skip duplicates). */
+  replace?: boolean;
+  /** Annotator label to store in eval_ground_truth rows. Default: 'synthetic'. */
+  annotator?: string;
+}
+
+/* ---------------------------------------------------------------
+   2. DIVERSITY HARD GATES
+   These constants define the minimum thresholds that MUST pass.
+--------------------------------------------------------------- */
+
+const GATES = {
+  MIN_TOTAL_QUERIES: 100,
+  MIN_PER_INTENT: 5,
+  MIN_COMPLEXITY_TIERS: 3,
+  MIN_PER_COMPLEXITY_TIER: 10,
+  MIN_MANUAL_QUERIES: 30,
+  MIN_HARD_NEGATIVES: 3,
+  INTENT_TYPES: [
+    'add_feature',
+    'fix_bug',
+    'refactor',
+    'security_audit',
+    'understand',
+    'find_spec',
+    'find_decision',
+  ] as IntentType[],
+  COMPLEXITY_TIERS: ['simple', 'moderate', 'complex'] as ComplexityTier[],
+} as const;
+
+/* ---------------------------------------------------------------
+   3. generateGroundTruth()
+   Returns the full dataset including approximate relevance
+   judgments. Relevance memory IDs use placeholder values of -1
+   for queries where live DB mapping has not yet been performed.
+--------------------------------------------------------------- */
+
+/**
+ * Generate the full ground truth dataset.
+ *
+ * Returns all 110 queries plus approximate relevance judgments.
+ * Relevance memory IDs are set to -1 until live DB ID mapping
+ * is performed against the production memory index (T008+).
+ */
+export function generateGroundTruth(): GroundTruthDataset {
+  const queries = GROUND_TRUTH_QUERIES;
+
+  // Build approximate relevance entries:
+  // - hard_negative queries: no relevant results expected
+  // - all other queries: one placeholder highly-relevant entry (memoryId=-1)
+  //   to be replaced with real IDs after live DB mapping
+  const relevances: GroundTruthRelevance[] = [];
+
+  for (const q of queries) {
+    if (q.category === 'hard_negative') {
+      // No relevant results for hard negatives — relevance list is empty
+      continue;
+    }
+
+    // Placeholder entry: one highly-relevant result expected per query.
+    // memoryId=-1 signals "unmapped — needs live DB resolution".
+    relevances.push({
+      queryId: q.id,
+      memoryId: -1,
+      relevance: 3,
+    });
+  }
+
+  return {
+    queries,
+    relevances,
+    distribution: QUERY_DISTRIBUTION,
+  };
+}
+
+/* ---------------------------------------------------------------
+   4. loadGroundTruth()
+   Populates eval_queries and eval_ground_truth tables in the
+   evaluation database. Safe to call repeatedly (idempotent by
+   default via INSERT OR IGNORE).
+--------------------------------------------------------------- */
+
+/**
+ * Load the ground truth dataset into the evaluation database.
+ *
+ * Inserts all queries into eval_queries and their relevance
+ * judgments into eval_ground_truth. By default uses INSERT OR
+ * IGNORE to skip duplicates (based on UNIQUE(query_id, memory_id)
+ * constraint in eval_ground_truth).
+ *
+ * @param evalDb - An initialized better-sqlite3 Database instance.
+ * @param options - Load options (replace, annotator).
+ * @returns Object with inserted/skipped counts.
+ */
+export function loadGroundTruth(
+  evalDb: Database.Database,
+  options: LoadGroundTruthOptions = {},
+): { queriesInserted: number; relevancesInserted: number } {
+  const { replace = false, annotator = 'synthetic' } = options;
+
+  const dataset = generateGroundTruth();
+  let queriesInserted = 0;
+  let relevancesInserted = 0;
+
+  const insertQuery = evalDb.prepare(`
+    INSERT ${replace ? 'OR REPLACE' : 'OR IGNORE'} INTO eval_queries
+      (id, query, intent, category)
+    VALUES (?, ?, ?, ?)
+  `);
+
+  const insertGroundTruth = evalDb.prepare(`
+    INSERT ${replace ? 'OR REPLACE' : 'OR IGNORE'} INTO eval_ground_truth
+      (query_id, memory_id, relevance, annotator, notes)
+    VALUES (?, ?, ?, ?, ?)
+  `);
+
+  // Use a transaction for atomic load
+  const loadAll = evalDb.transaction(() => {
+    for (const q of dataset.queries) {
+      const result = insertQuery.run(
+        q.id,
+        q.query,
+        q.intentType,
+        q.category,
+      );
+      if (result.changes > 0) queriesInserted++;
+    }
+
+    for (const r of dataset.relevances) {
+      const notes =
+        r.memoryId === -1
+          ? 'Approximate placeholder — requires live DB ID mapping'
+          : null;
+
+      const result = insertGroundTruth.run(
+        r.queryId,
+        r.memoryId,
+        r.relevance,
+        annotator,
+        notes,
+      );
+      if (result.changes > 0) relevancesInserted++;
+    }
+  });
+
+  loadAll();
+
+  return { queriesInserted, relevancesInserted };
+}
+
+/* ---------------------------------------------------------------
+   5. validateGroundTruthDiversity()
+   Checks all 6 hard gates and returns a structured report.
+--------------------------------------------------------------- */
+
+/**
+ * Validate that the query dataset meets all diversity hard gates.
+ *
+ * Hard gates:
+ *   1. ≥100 total queries
+ *   2. ≥5 queries per intent type (all 7 types)
+ *   3. ≥3 distinct complexity tiers present
+ *   4. ≥10 queries per complexity tier
+ *   5. ≥30 manually curated queries (source='manual')
+ *   6. ≥3 hard negative queries (category='hard_negative')
+ *   7. No duplicate query strings
+ *
+ * @param queries - The query array to validate (defaults to full dataset).
+ * @returns DiversityValidationReport with per-gate results and summary.
+ */
+export function validateGroundTruthDiversity(
+  queries: GroundTruthQuery[] = GROUND_TRUTH_QUERIES,
+): DiversityValidationReport {
+  const gates: DiversityGate[] = [];
+
+  // Gate 1: Total query count
+  gates.push({
+    dimension: 'Total queries',
+    required: GATES.MIN_TOTAL_QUERIES,
+    actual: queries.length,
+    passed: queries.length >= GATES.MIN_TOTAL_QUERIES,
+  });
+
+  // Gate 2: Per-intent type minimum
+  const intentCounts = countBy(queries, q => q.intentType);
+  for (const intent of GATES.INTENT_TYPES) {
+    const count = intentCounts[intent] ?? 0;
+    gates.push({
+      dimension: `Intent: ${intent}`,
+      required: GATES.MIN_PER_INTENT,
+      actual: count,
+      passed: count >= GATES.MIN_PER_INTENT,
+    });
+  }
+
+  // Gate 3: Distinct complexity tiers present
+  const tierCounts = countBy(queries, q => q.complexityTier);
+  const distinctTiers = Object.keys(tierCounts).length;
+  gates.push({
+    dimension: 'Distinct complexity tiers',
+    required: GATES.MIN_COMPLEXITY_TIERS,
+    actual: distinctTiers,
+    passed: distinctTiers >= GATES.MIN_COMPLEXITY_TIERS,
+    detail: `Tiers present: ${Object.keys(tierCounts).join(', ')}`,
+  });
+
+  // Gate 4: Per-complexity-tier minimum
+  for (const tier of GATES.COMPLEXITY_TIERS) {
+    const count = tierCounts[tier] ?? 0;
+    gates.push({
+      dimension: `Complexity tier: ${tier}`,
+      required: GATES.MIN_PER_COMPLEXITY_TIER,
+      actual: count,
+      passed: count >= GATES.MIN_PER_COMPLEXITY_TIER,
+    });
+  }
+
+  // Gate 5: Manual query count
+  const manualCount = queries.filter(q => q.source === 'manual').length;
+  gates.push({
+    dimension: 'Manual queries (source=manual)',
+    required: GATES.MIN_MANUAL_QUERIES,
+    actual: manualCount,
+    passed: manualCount >= GATES.MIN_MANUAL_QUERIES,
+    detail: 'Queries must be NOT derived from trigger phrases',
+  });
+
+  // Gate 6: Hard negative count
+  const hardNegativeCount = queries.filter(q => q.category === 'hard_negative').length;
+  gates.push({
+    dimension: 'Hard negative queries',
+    required: GATES.MIN_HARD_NEGATIVES,
+    actual: hardNegativeCount,
+    passed: hardNegativeCount >= GATES.MIN_HARD_NEGATIVES,
+  });
+
+  // Gate 7: Uniqueness — no duplicate query strings
+  const queryStrings = queries.map(q => q.query.toLowerCase().trim());
+  const uniqueCount = new Set(queryStrings).size;
+  const duplicateCount = queries.length - uniqueCount;
+  gates.push({
+    dimension: 'Unique query strings (no duplicates)',
+    required: queries.length, // all must be unique
+    actual: uniqueCount,
+    passed: duplicateCount === 0,
+    detail: duplicateCount > 0 ? `${duplicateCount} duplicate(s) detected` : 'All unique',
+  });
+
+  const passed = gates.every(g => g.passed);
+
+  const failedGates = gates.filter(g => !g.passed);
+  const summary = passed
+    ? `ALL ${gates.length} diversity gates PASSED. Dataset ready for T008 BM25 baseline measurement.`
+    : `FAILED: ${failedGates.length}/${gates.length} gate(s) failed: ${failedGates.map(g => g.dimension).join('; ')}`;
+
+  return {
+    passed,
+    totalQueries: queries.length,
+    gates,
+    summary,
+  };
+}
+
+/* ---------------------------------------------------------------
+   6. INTERNAL HELPERS
+--------------------------------------------------------------- */
+
+/** Count occurrences of each value produced by keyFn over items. */
+function countBy<T>(items: T[], keyFn: (item: T) => string): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const item of items) {
+    const key = keyFn(item);
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
+}
+
+/* ---------------------------------------------------------------
+   7. EXPORTS
+--------------------------------------------------------------- */
+
+export {
+  GROUND_TRUTH_QUERIES,
+  QUERY_DISTRIBUTION,
+  GATES,
+};
+
+export type { GroundTruthQuery, GroundTruthRelevance, IntentType, ComplexityTier };
