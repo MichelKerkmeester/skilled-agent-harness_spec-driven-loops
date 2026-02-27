@@ -508,7 +508,7 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 | **Total (S0-S6a+S6b heuristic)** | | **345-519h** |
 | **Total (S0-S7, S6b heuristic)** | | **390-581h** |
 | **PageIndex additions (PI-A1 — PI-B3, across S0-S5)** | Low-Medium | **+70-104h** |
-| **Grand Total with PageIndex (S0-S7)** | | **458-700h** |
+| **Grand Total with PageIndex (S0-S7, S6b heuristic)** | | **460-685h** |
 
 **Resource Planning:**
 - Solo developer (~15h/week): 20-30 weeks (S0-S6) — reduced from 23-34 weeks by S1/S2 parallelization saving 3-5 weeks

@@ -31,7 +31,7 @@ contextType: "implementation"
 | **Phase** | 1 of 8 |
 | **Predecessor** | None (first phase) |
 | **Successor** | ../002-sprint-1-graph-signal-activation/ |
-| **Handoff Criteria** | Sprint 0 exit gate — graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded, baseline metrics for 50+ queries with diversity requirement (>=5 per intent type, >=3 complexity tiers), active feature flags <=6 |
+| **Handoff Criteria** | Sprint 0 exit gate — graph hit rate >0%, chunk dedup verified, BM25 baseline MRR@5 recorded, baseline metrics for 100+ queries with diversity requirement (>=5 per intent type, >=3 complexity tiers, >=30 manually curated), active feature flags <=6 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -138,7 +138,7 @@ Establish measurable retrieval quality by fixing silent failures blocking all do
 
 - **SC-001**: Graph hit rate > 0% (from 0% baseline) after G1 fix
 - **SC-002**: No duplicate chunk rows appear in default search mode after G3 fix
-- **SC-003**: Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics computed and stored for 50+ queries
+- **SC-003**: Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics computed and stored for 100+ queries
 - **SC-004**: BM25 baseline MRR@5 recorded; BM25 contingency decision made
 - **SC-005**: Sprint 0 exit gate — all 4 P0 requirements verified
 

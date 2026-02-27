@@ -93,6 +93,7 @@ contextType: "implementation"
 - [ ] CHK-050 [P1] TM-06 conflict path (0.75–0.88): memory replaced, causal `supersedes` edge added
 - [ ] CHK-051 [P1] TM-06 complement path (<0.75): new memory stored without modification
 - [ ] CHK-052 [P1] TM-06 behind `SPECKIT_RECONSOLIDATION` flag — disabled state = normal store behavior
+- [ ] CHK-052a [P1] TM-04/TM-06 threshold interaction: save with similarity in [0.88, 0.92] passes TM-04, triggers TM-06 merge — verify save-then-merge behavior with frequency increment
 <!-- /ANCHOR:sprint-4-verification -->
 
 ---
@@ -100,15 +101,7 @@ contextType: "implementation"
 <!-- ANCHOR:pageindex-verification -->
 ## PageIndex Verification
 
-### PI-A4 — Constitutional Memory as Expert Knowledge Injection
-- [ ] CHK-PI-A4-001 [P1] search_directive: true metadata tag added to constitutional memories and detectable by orchestration layer
-- [ ] CHK-PI-A4-002 [P1] memory_context orchestration layer detects search_directive tag before retrieval executes
-- [ ] CHK-PI-A4-003 [P1] Search-relevant instructions (channels, term expansions, tier priorities) extracted from tagged constitutional memories
-- [ ] CHK-PI-A4-004 [P1] Extracted instructions injected into query expansion step before vector search
-- [ ] CHK-PI-A4-005 [P1] Tagged constitutional memories do NOT appear as content items in retrieval results
-- [ ] CHK-PI-A4-006 [P1] Non-tagged constitutional memories continue surfacing as content items (no regression)
-- [ ] CHK-PI-A4-007 [P1] R-015 context-aware retrieval extended, not replaced — existing behavior preserved for non-directive retrieval
-- [ ] CHK-PI-A4-008 [P2] Rollback path: removing search_directive tag restores content-item surfacing behavior
+> **PI-A4 deferred to Sprint 5** — CHK-PI-A4-001 through CHK-PI-A4-008 moved to Sprint 5 checklist per ultra-think review REC-07.
 <!-- /ANCHOR:pageindex-verification -->
 
 ---
@@ -116,9 +109,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-050 [P0] All acceptance criteria met (REQ-S4-001 through REQ-S4-003)
-- [ ] CHK-051 [P1] 10-15 new tests passing (400-550 LOC)
-- [ ] CHK-052 [P1] Edge cases tested (N=0, N=1, empty channels, <72h memories)
+- [ ] CHK-054 [P0] All acceptance criteria met (REQ-S4-001 through REQ-S4-003)
+- [ ] CHK-055 [P1] 10-15 new tests passing (400-550 LOC)
+- [ ] CHK-056 [P1] Edge cases tested (N=0, N=1, empty channels, <72h memories)
 - [ ] CHK-053 [P1] Existing tests still pass
 <!-- /ANCHOR:testing -->
 
@@ -153,6 +146,7 @@ contextType: "implementation"
 ## Calendar Dependency Verification
 
 - [ ] CHK-076 [P0] **R11 calendar prerequisite met**: Confirm ≥28 calendar days have elapsed since Sprint 3 completion AND R13 completed ≥2 full eval cycles (100+ queries over 14+ days). Evidence: date stamps from eval cycle logs.
+- [ ] CHK-076a [P1] **14-day mid-window checkpoint**: After 14 calendar days (1 complete eval cycle), verify R13 eval infrastructure is collecting valid data and shadow scoring produces usable A/B comparisons. An early failure at day 14 is recoverable; a failure discovered at day 28 wastes the full idle window.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -173,8 +167,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 11 | [ ]/11 |
-| P1 Items | 43 | [ ]/43 |
-| P2 Items | 1 | [ ]/1 |
+| P1 Items | 38 | [ ]/38 |
+| P2 Items | 0 | [ ]/0 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

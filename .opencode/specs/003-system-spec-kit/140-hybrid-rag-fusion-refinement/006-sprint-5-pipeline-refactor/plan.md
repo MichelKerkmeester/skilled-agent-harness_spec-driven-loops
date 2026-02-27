@@ -89,7 +89,7 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 
 ### Phase A: R6 Pipeline Refactor (40-55h)
 
-> **F9 — RECOMMENDED DECOMPOSITION**: R6 (40-55h) is the single largest work item in the entire 8-sprint plan. Treat it as 5-8 sequential subtasks rather than one monolithic task to enable incremental dark-run verification and reduce integration risk. See tasks.md T002a-T002h for subtask breakdown.
+> **F9 — REQUIRED DECOMPOSITION**: R6 (40-55h) is the single largest work item in the entire 8-sprint plan. Treat it as 5-8 sequential subtasks rather than one monolithic task to enable incremental dark-run verification and reduce integration risk. See tasks.md T002a-T002h for subtask breakdown.
 >
 > **Flag interaction risk**: By Sprint 5, 10+ feature flags have accumulated across Sprints 0-4. T002g (feature flag interaction testing) must verify all flags remain functional under PIPELINE_V2 before Phase B begins.
 
@@ -104,6 +104,8 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 - [ ] (h) Verify 0 ordering differences on full eval corpus (GATE — Phase B blocked until this passes)
 - [ ] Verify all 158+ existing tests pass
 - [ ] Verify intent weights applied ONCE in Stage 2
+
+- [ ] Record p95 simple query latency baseline on eval corpus (R12 prerequisite — UT-7 R3) [1-2h]
 
 ### Phase B: Search + Spec-Kit (28-41h) — after Phase A passes
 - [ ] R9: Implement spec folder pre-filter [5-8h]

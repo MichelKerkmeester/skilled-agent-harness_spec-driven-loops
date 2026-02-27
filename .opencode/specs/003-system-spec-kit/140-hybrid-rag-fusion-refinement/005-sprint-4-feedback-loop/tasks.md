@@ -41,8 +41,8 @@ contextType: "implementation"
 > **CALENDAR DEPENDENCY — R11 (F10)**: R11 prerequisite requires R13 to complete ≥2 full eval cycles (each = 50+ queries over 7+ calendar days). Minimum **28 calendar days** must elapse between Sprint 3 completion and R11 enablement. This is wall-clock time, NOT effort hours. If splitting into S4a/S4b (recommended), T002 (R11) cannot begin until S4a metrics confirm 2 full eval cycles are complete.
 >
 > **RECOMMENDED SPLIT — S4a / S4b (F3)**:
-> - **S4a tasks**: T001 (R1 MPAB) + T003 (R13-S2 enhanced eval) — estimated 25-35h. No schema change. Delivers A/B infra.
-> - **S4b tasks**: T002 (R11 learned feedback) + T008 (TM-06 reconsolidation) — estimated 47-74h. Requires S4a verification + 28-day calendar window.
+> - **S4a tasks**: T001 + T001a (R1 MPAB) + T003 + T003a (R13-S2 eval) + T007 (TM-04 quality gate) — estimated 33-49h. No schema change. Delivers A/B infra + save quality gating.
+> - **S4b tasks**: T002 + T002a + T002b (R11 learned feedback) + T008 (TM-06 reconsolidation) — estimated 31-48h. Requires S4a verification + 28-day calendar window.
 
 ---
 
@@ -101,11 +101,7 @@ contextType: "implementation"
 <!-- ANCHOR:pageindex -->
 ## PageIndex Tasks
 
-- [ ] T009 Implement PI-A4 constitutional memory as expert knowledge injection — add search_directive: true metadata tag; detect tag in memory_context orchestration layer; extract and inject search-relevant instructions into query expansion step before retrieval pipeline executes; non-tagged constitutional memories continue surfacing as content items [8-12h] — PI-A4 (extends R-015)
-  - Tag detection: parse constitutional memories for `search_directive: true` before retrieval
-  - Instruction extraction: preferred channels, term expansions, tier priorities
-  - Injection point: query expansion step (before vector search)
-  - Regression guard: non-tagged constitutional memories unchanged
+> **T009 (PI-A4) deferred to Sprint 5** — Constitutional memory as expert knowledge injection (8-12h) has no Sprint 4 dependency. Moved to Sprint 5 per ultra-think review REC-07.
 <!-- /ANCHOR:pageindex -->
 
 ---

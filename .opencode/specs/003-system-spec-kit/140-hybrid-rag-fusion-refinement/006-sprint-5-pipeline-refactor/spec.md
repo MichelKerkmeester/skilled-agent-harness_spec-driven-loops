@@ -53,6 +53,7 @@ This is **Phase 6** of the Hybrid RAG Fusion Refinement specification.
 - Template anchor optimization (S2)
 - Validation signals as retrieval metadata (S3)
 - Dual-scope memory auto-surface hooks at tool dispatch and session compaction (TM-05)
+- Constitutional memory as expert knowledge injection via query expansion (PI-A4, deferred from Sprint 4)
 
 **Internal Phasing**: Phase A (Pipeline) MUST pass before Phase B (Search + Spec-Kit) begins.
 <!-- /ANCHOR:phase-context -->
@@ -107,8 +108,8 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `memory-search.ts` | Major Modify | R6: 4-stage pipeline architecture |
-| Pipeline module | Create | R6: Stage definitions and boundaries |
-| Search handlers | Modify | R9: Spec folder pre-filter, R12: Query expansion |
+| lib/search/pipeline/ | Create | R6: Stage definitions and boundaries |
+| handlers/memory-search.ts, handlers/memory-context.ts | Modify | R9: Spec folder pre-filter, R12: Query expansion |
 | Template/validation handlers | Modify | S2: Anchor optimization, S3: Validation metadata |
 | `hooks/auto-surface.ts` | Modify | TM-05: Dual-scope injection hooks at tool dispatch and session compaction |
 <!-- /ANCHOR:scope -->
@@ -140,7 +141,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 - **SC-003**: Stage 4 invariant verified: no score modifications in Stage 4
 - **SC-004**: R9 cross-folder queries identical to without pre-filter
 - **SC-005**: R12+R15 mutual exclusion: R12 suppressed when R15="simple"
-- **SC-006**: R12 no degradation of simple query latency
+- **SC-006**: R12 p95 simple query latency within 5% of pre-R12 baseline
 - **SC-007**: Intent weights applied ONCE in Stage 2 (prevents G2 recurrence)
 - **SC-008**: Sprint 5 exit gate — all requirements verified
 <!-- /ANCHOR:success-criteria -->
@@ -171,7 +172,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 
 ### Reliability
 - **NFR-R01**: All 158+ existing tests must pass under `SPECKIT_PIPELINE_V2`
-- **NFR-R02**: Stage 4 invariant: any code that modifies scores after Stage 3 is a build-time error (or assertion)
+- **NFR-R02**: Stage 4 invariant: any code that modifies scores after Stage 3 is a build-time error (compile-time type guards) with runtime assertion as defense-in-depth
 
 ### Maintainability
 - **NFR-M01**: Each stage has clear interface boundary — stages are independently testable
@@ -215,8 +216,8 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- **OQ-S5-001**: Should Stage 4 invariant be enforced at compile-time (TypeScript type guards) or runtime (assertions)?
-- **OQ-S5-002**: How should S2/S3 signals weight relative to existing scoring — additive or multiplicative?
+- **OQ-S5-001** [CLOSED — UT-7 R2]: Stage 4 invariant enforced via **compile-time TypeScript type guards** (read-only score fields in Stage 4 input/output types) as primary enforcement, with **runtime assertion** (score delta = 0 check at Stage 4 exit) as defense-in-depth. Rationale: compile-time enforcement prevents the pattern from being written; runtime assertion catches edge cases missed by type system.
+- **OQ-S5-002** [CLOSED — UT-7 R4]: S2 (template anchor) and S3 (validation) signals are **independent ranking dimensions** in the composite scoring model, expanding it from 5-factor to 7-factor with rebalanced weights. Both signals are applied exclusively in Stage 2 as part of the consolidated scoring point. Weight rebalancing ensures existing factor influence is preserved proportionally. Rationale: independent dimensions provide maximum tuning flexibility while the Stage 2 single-application-point architecture prevents G2-class double-weighting.
 <!-- /ANCHOR:questions -->
 
 ---

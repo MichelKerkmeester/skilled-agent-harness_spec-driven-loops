@@ -67,7 +67,7 @@ contextType: "implementation"
 
 ### R12 — Query Expansion
 - [ ] CHK-040 [P1] R12+R15 mutual exclusion: R12 suppressed when R15="simple"
-- [ ] CHK-041 [P1] R12 no degradation of simple query latency
+- [ ] CHK-041 [P1] R12 p95 simple query latency within 5% of pre-R12 baseline (baseline recorded in T004b before Phase B)
 
 ### S2/S3 — Spec-Kit Retrieval Metadata
 - [ ] CHK-050 [P1] S2 anchor-aware retrieval metadata present in results
@@ -133,7 +133,7 @@ contextType: "implementation"
 - [ ] CHK-074 [P1] **Feature flag count at Sprint 5 exit ≤6 verified**: List all active flags. Evidence: explicit flag inventory at exit gate.
   - Flags added this sprint: `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`
   - Prior sprint flags reviewed for sunset eligibility (RSF_FUSION if RSF rejected at tau<0.4 in Sprint 3, etc.)
-- [ ] CHK-075 [P1] **Flag interaction matrix verified under PIPELINE_V2**: All 10+ accumulated flags tested together. Evidence: test run with all flags enabled simultaneously showing no interaction regressions.
+- [ ] CHK-075 [P1] **Flag interaction matrix verified under PIPELINE_V2**: Pairwise coverage of PIPELINE_V2-interacting flags (RSF_FUSION, CHANNEL_MIN_REP, DOCSCORE_AGGREGATION, LEARN_FROM_SELECTION — 6 pairs × 2 states = 12 configs) + 1 all-flags-on run. Evidence: pairwise test matrix results + all-flags-on run showing no interaction regressions. (UT-7 R5)
 - [ ] CHK-076 [P1] **Flag sunset decisions documented with metric evidence**: Any flag retired this sprint has documented rationale (e.g., "RSF_FUSION retired — Kendall tau=0.28 < 0.4 threshold confirmed at Sprint 3").
 <!-- /ANCHOR:docs -->
 

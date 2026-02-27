@@ -150,10 +150,10 @@ Maximize graph channel contribution through centrality and community detection, 
 | REQ-S6-002 | **R16**: Encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag | Intent metadata recorded at index time |
 | REQ-S6-003 | **R10**: Auto entity extraction (only if density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag | FP rate <20% on manual review of >=50 auto-extracted entities |
 | REQ-S6-004 | **N2 (items 4-6)**: Graph centrality + community detection | Graph channel attribution >10% of final top-K OR graph density <1.0 edges/node documented with decision to defer (density-conditional acceptance); N2c community assignments stable across 2 runs on test graph with ≥50 nodes |
-
-> **Attribution weighting (REQ-S6-004 clarification)**: All edge types (causal, enabled, supports, derived_from, supersedes, contradicts) contribute equally to graph channel attribution scoring. If differentiated weighting is needed, specify weights before implementation (e.g., causal=1.0, supports=0.7, contradicts=0.5). Without explicit weights, equal weighting applies.
 | REQ-S6-005 | **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening behind `SPECKIT_CONSOLIDATION` flag | Detects at least 1 known contradiction in curated test data; heuristic approach acceptable if lightweight |
 | REQ-S6-006 | **S4**: Spec folder hierarchy as retrieval structure | Hierarchy traversal functional in retrieval queries |
+
+> **Attribution weighting (REQ-S6-004 clarification)**: All edge types (causal, enabled, supports, derived_from, supersedes, contradicts) contribute equally to graph channel attribution scoring. If differentiated weighting is needed, specify weights before implementation (e.g., causal=1.0, supports=0.7, contradicts=0.5). Without explicit weights, equal weighting applies.
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -85,6 +85,7 @@ Aggregate chunk scores safely with MPAB (preserving N=0/N=1 semantics), learn fr
 - R12 (query expansion) — Sprint 5 scope
 - R15 changes — locked from Sprint 3
 - Direct FTS5 index modification — R11 uses separate column exclusively
+- PI-A4 (constitutional memory as expert knowledge injection) — deferred to Sprint 5 (retrieval-pipeline work, no S4 dependency)
 
 ### Prerequisite
 
@@ -98,16 +99,14 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 
 > **F3 — RECOMMENDED SPLIT**: Sprint 4 should be split into two sub-sprints to isolate the CRITICAL FTS5 contamination risk in R11.
 
-**S4a — Lower Risk (estimated 25-35h)**
-- R1: MPAB chunk-to-memory aggregation (8-12h)
-- R13-S2: Enhanced shadow scoring + channel attribution + ground truth Phase B (15-20h)
+**S4a — Lower Risk (estimated 33-49h)**
+- R1: MPAB chunk-to-memory aggregation (8-12h) + T001a chunk ordering (2-4h)
+- R13-S2: Enhanced shadow scoring + channel attribution + ground truth Phase B (15-20h) + T003a exclusive contribution rate (2-3h)
 - TM-04: Pre-storage quality gate (6-10h) — no schema change
 
-**S4b — Higher Risk (estimated 47-74h, requires S4a metrics)**
-- R11: Learned relevance feedback with separate `learned_triggers` column + 7 safeguards (16-24h)
-- TM-04: Re-evaluation gate (require S4a signal density metrics before tuning threshold)
+**S4b — Higher Risk (estimated 31-48h, requires S4a metrics + 28-day window)**
+- R11: Learned relevance feedback with separate `learned_triggers` column + 7 safeguards (16-24h) + T002a auto-promotion (5-8h) + T002b negative feedback (4-6h)
 - TM-06: Reconsolidation-on-save (6-10h) — schema-adjacent, high caution
-- R13-S2 Phase B verification (from S4a)
 
 **Rationale for split**: R11 has CRITICAL severity — an FTS5 contamination mistake (adding `learned_triggers` to the FTS5 index) is irreversible without a full re-index of all memories. Isolating R11 into S4b means S4a's A/B infrastructure is operational before R11 mutations begin, enabling immediate detection of any regression. Risk concentration is eliminated by ensuring R1 and R13-S2 are verified clean before R11 is enabled.
 
@@ -208,6 +207,9 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 ### State Transitions
 - **R11 shadow period**: First 1 week = shadow only (log but don't apply). After 1 week = mutations enabled (if noise <5%)
 - **R1+R11 interaction**: R1 aggregates chunks, R11 learns from selections — ensure R11 operates on post-MPAB scores
+
+### TM-04/TM-06 Threshold Interaction
+- **[0.88, 0.92] merge zone**: A save with cosine similarity in the range [0.88, 0.92] passes TM-04 (which only rejects >0.92) and then triggers TM-06 merge behavior (which merges at >=0.88). The intended behavior is **save-then-merge**: TM-04 allows the save, embedding is generated, and TM-06 merges it with the existing memory (incrementing frequency counter). This is the expected behavior — TM-04 guards against truly redundant saves, while TM-06 handles the consolidation of closely-related content.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -229,7 +231,8 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 ## 10. OPEN QUESTIONS
 
 - **OQ-S4-001**: Should R11 shadow period be configurable or hardcoded to 1 week?
-- **OQ-S4-002**: What is the exact MPAB bonus coefficient? Currently defined as 0.3 — should this be tunable?
+- **OQ-S4-002**: MPAB bonus coefficient is **provisionally set at 0.3** — must be validated against MRR@5 measurements from S4a shadow data before S4b begins. If no Sprint 0-3 empirical basis exists at sprint start, treat as provisional and add S4a validation task.
+- **OQ-S4-003**: R11 learned-trigger query weight is **provisionally set at 0.7x** — must be derived from channel attribution data (R13-S2) during the F10 idle window. Adjust based on observed signal-to-noise ratio before S4b enables R11 mutations.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -239,19 +242,7 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 <!-- ANCHOR:pageindex-integration -->
 ### PageIndex Integration
 
-Sprint 4 incorporates one PageIndex recommendation that extends the existing context-aware retrieval work.
-
-#### PI-A4: Constitutional Memory as Expert Knowledge Injection
-
-**Rationale**: Constitutional memories currently surface at the top of every result set as content items. PI-A4 restructures their role: instead of being returned as content, they are parsed by the `memory_context` orchestration layer as retrieval directives and injected into the query expansion step before vector search occurs. This aligns constitutional memories with their intended authority — they encode system-level constraints and expert rules that should shape how searches are conducted, not just what is returned.
-
-**Format change**: Constitutional memories gain a `search_directive: true` metadata tag. The orchestration layer detects this tag, extracts any search-relevant instructions (e.g., preferred channels, term expansions, tier priorities), and injects them into query expansion before the retrieval pipeline executes.
-
-**Relationship to existing work**: PI-A4 extends R-015 (context-aware retrieval). It does not change constitutional memory storage, tier promotion, or the rules themselves — only how they are consumed at retrieval time. The Sprint 4 `memory_validate` auto-promotion logic (normal→important at 5 validations, important→critical at 10) is unaffected.
-
-**Mitigation**: Begin with explicit `search_directive: true` metadata tagging on constitutional memories. This provides a safe, opt-in rollout path — memories without the tag continue to surface as content items during the transition period.
-
-**Effort**: 8-12h | **Risk**: Low-Medium
+> **PI-A4 deferred to Sprint 5** — Constitutional Memory as Expert Knowledge Injection (8-12h) has no Sprint 4 dependency and does not affect any Sprint 4 exit criterion. It is retrieval-pipeline work that fits Sprint 5's theme (pipeline refactor + query expansion R12). See `../006-sprint-5-pipeline-refactor/spec.md` for updated placement. Rationale: ultra-think review REC-07.
 <!-- /ANCHOR:pageindex-integration -->
 
 ---

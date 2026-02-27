@@ -48,14 +48,25 @@ R1 MPAB operates after RRF fusion, before state filtering. R11 writes to separat
 >
 > Sprint 4 should be split into S4a and S4b to isolate R11's CRITICAL FTS5 contamination risk:
 >
-> - **S4a** (25-35h): R1 MPAB + R13-S2 enhanced evaluation. No schema changes. Delivers A/B infrastructure before any feedback mutations.
-> - **S4b** (47-74h): R11 learned feedback + TM-06 reconsolidation. Begins only after S4a metrics confirm no regressions and R13 has completed 2+ full eval cycles.
+> - **S4a** (33-49h): R1 MPAB + R13-S2 enhanced evaluation + TM-04 pre-storage quality gate. No schema changes. Delivers A/B infrastructure and save quality gating before feedback mutations.
+> - **S4b** (31-48h): R11 learned feedback + TM-06 reconsolidation. Begins only after S4a metrics confirm no regressions and R13 has completed 2+ full eval cycles.
 >
 > Rationale: R11 FTS5 contamination is irreversible without full re-index. Isolating it prevents risk concentration and ensures the detection infrastructure (R13-S2 A/B) is operational before mutations begin.
 
 > **F10 — CALENDAR DEPENDENCY (R11 prerequisite)**
 >
 > R11 prerequisite: R13 must have completed ≥2 full eval cycles. Each cycle = minimum 50 queries evaluated over 7+ calendar days. Two cycles = **minimum 28 calendar days** of wall-clock time. This forced idle time between Sprint 3 completion and R11 enablement is NOT reflected in effort hours. Plan the project timeline explicitly to include this idle window between S4a completion and S4b start.
+
+> **F10 Idle Window Activities (28-day S4a→S4b transition)**
+>
+> The 28-day mandatory window between S4a completion and S4b start is structured work, not idle time:
+>
+> 1. **Monitor R13-S2 A/B dashboards** — verify shadow scoring infrastructure is collecting valid comparison data
+> 2. **Collect and review R1 shadow log data** — confirm MPAB aggregation impact on MRR@5, identify any edge cases
+> 3. **Validate MPAB coefficient** — compare the 0.3 bonus coefficient against observed MRR@5 measurements; revise if delta >5%
+> 4. **Derive R11 query weight** — use channel attribution data from R13-S2 to determine if 0.7x is appropriate for learned_triggers; adjust based on empirical signal-to-noise ratio
+> 5. **14-day mid-window checkpoint** (see CHK-076a) — verify eval infrastructure is collecting valid data after one complete cycle
+> 6. **Produce S4b readiness report** — document coefficient validation results, parameter decisions, and any scope adjustments before S4b begins
 <!-- /ANCHOR:summary -->
 
 ---
@@ -220,13 +231,15 @@ Phase 3 (R13-S2 Shadow Scoring) ─────┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Phase 1: R1 MPAB | Medium | 8-12h |
-| Phase 2: R11 Learned Feedback | High | 16-24h |
-| Phase 3: R13-S2 Shadow Scoring | Medium-High | 15-20h |
+| Phase 1: R1 MPAB (incl. T001a chunk ordering) | Medium | 10-16h |
+| Phase 2: R11 Learned Feedback (incl. T002a auto-promotion, T002b negative feedback) | High | 25-38h |
+| Phase 3: R13-S2 Shadow Scoring (incl. T003a exclusive contribution rate) | Medium-High | 17-23h |
 | Phase 4: TM-04 Pre-Storage Quality Gate | Medium | 6-10h |
 | Phase 5: TM-06 Reconsolidation-on-Save | Medium | 6-10h |
 | Phase 6: Verification | Low | included |
-| **Total** | | **51-76h** |
+| **Total** | | **64-97h** |
+
+> PI-A4 (Constitutional Memory as Expert Knowledge Injection, 8-12h) deferred to Sprint 5 — see REC-07 in ultra-think review.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -234,15 +247,7 @@ Phase 3 (R13-S2 Shadow Scoring) ─────┘
 <!-- ANCHOR:pageindex-phases -->
 ## PageIndex Tasks
 
-### PI-A4: Constitutional Memory as Expert Knowledge Injection (8-12h)
-- [ ] Add `search_directive: true` metadata tag to constitutional memories (opt-in, safe rollout)
-- [ ] Implement detection of `search_directive: true` tag in the `memory_context` orchestration layer
-- [ ] Extract search-relevant instructions from tagged constitutional memories (preferred channels, term expansions, tier priorities)
-- [ ] Inject extracted instructions into the query expansion step before the retrieval pipeline executes
-- [ ] Verify non-tagged constitutional memories continue to surface as content items (no regression)
-- [ ] Verify tagged constitutional memories do not appear as content items in results
-- [ ] Verify R-015 context-aware retrieval is extended, not replaced
-- **Effort**: 8-12h | **Risk**: Low-Medium
+> **PI-A4 deferred to Sprint 5** — Constitutional Memory as Expert Knowledge Injection (8-12h) has no Sprint 4 dependency and is retrieval-pipeline work that fits Sprint 5's theme (pipeline refactor + query expansion). See Sprint 5 spec `../006-sprint-5-pipeline-refactor/spec.md` for updated placement. Rationale: ultra-think review REC-07.
 <!-- /ANCHOR:pageindex-phases -->
 
 ---
@@ -271,6 +276,19 @@ Phase 3 (R13-S2 Shadow Scoring) ─────┘
 ### Data Reversal
 - **Has data migrations?** Yes — `ALTER TABLE memory_index ADD COLUMN learned_triggers TEXT DEFAULT '[]'`
 - **Reversal procedure**: `ALTER TABLE memory_index DROP COLUMN learned_triggers` (SQLite 3.35.0+) or restore from checkpoint
+
+### Combined S4b Failure Recovery (R11 + TM-06)
+
+If both R11 and TM-06 have been active and a regression is detected:
+
+1. **Disable both flags immediately**: `SPECKIT_LEARN_FROM_SELECTION=false`, `SPECKIT_RECONSOLIDATION=false`
+2. **Identify R11-touched memories**: Query `SELECT id FROM memory_index WHERE learned_triggers != '[]'` — these memories have R11 mutations
+3. **Identify TM-06-touched memories**: Query causal edges with `relation='supersedes'` created after TM-06 enable date; check frequency counter deltas against checkpoint baseline
+4. **Assess overlap**: If overlap exists (memory both R11-written and TM-06-merged), restore from `pre-sprint-4b` checkpoint — partial rollback is unsafe
+5. **If no overlap**: Roll back independently per existing single-system procedures
+6. **Verify**: Run full test suite + R13 eval metrics against pre-S4b baseline
+
+**Combined rollback time estimate**: 6-8h (vs 4-6h for single-system rollback). The additional time accounts for overlap assessment and potential checkpoint restore.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
