@@ -9,9 +9,12 @@ import type Database from 'better-sqlite3';
    1. CONFIGURATION
 ----------------------------------------------------------------*/
 
+/** Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set. */
+const DEFAULT_COACTIVATION_STRENGTH = 0.25;
+
 const CO_ACTIVATION_CONFIG = {
   enabled: process.env.SPECKIT_COACTIVATION !== 'false',
-  boostFactor: 0.15,
+  boostFactor: parseFloat(process.env.SPECKIT_COACTIVATION_STRENGTH || String(DEFAULT_COACTIVATION_STRENGTH)),
   maxRelated: 5,
   minSimilarity: 70,
   decayPerHop: 0.5,
@@ -70,15 +73,6 @@ function isEnabled(): boolean {
 
 /**
  * Boost a search result's score based on co-activation with related memories.
- *
- * R17 — Fan-effect divisor: hub memories (high relatedCount) are penalised by
- * dividing the raw boost by sqrt(relatedCount). This prevents memories with
- * many co-activation neighbours from dominating result rankings.
- *
- * Formula:
- *   raw_boost   = boostFactor × (relatedCount / maxRelated) × (avgSimilarity / 100)
- *   fan_divisor = sqrt(max(1, relatedCount))
- *   final_boost = max(0, raw_boost / fan_divisor)
  */
 function boostScore(
   baseScore: number,
@@ -89,10 +83,7 @@ function boostScore(
     return baseScore;
   }
 
-  const rawBoost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
-  // Guard: relatedCount is already > 0 here, but clamp to 1 to prevent division by zero.
-  const fanDivisor = Math.sqrt(Math.max(1, relatedCount));
-  const boost = Math.max(0, rawBoost / fanDivisor);
+  const boost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
   return baseScore + boost;
 }
 
@@ -366,6 +357,7 @@ function logCoActivationEvent(event: CoActivationEvent): void {
 
 export {
   CO_ACTIVATION_CONFIG,
+  DEFAULT_COACTIVATION_STRENGTH,
   init,
   isEnabled,
   boostScore,

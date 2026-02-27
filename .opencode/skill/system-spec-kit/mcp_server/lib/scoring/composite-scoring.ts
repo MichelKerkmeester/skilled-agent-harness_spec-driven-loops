@@ -8,6 +8,8 @@ import { calculatePopularityScore } from '../storage/access-tracker';
 import { computeRecencyScore, DECAY_RATE } from './folder-scoring';
 // TM-01: Interference scoring penalty (Sprint 2, T005)
 import { applyInterferencePenalty, INTERFERENCE_PENALTY_COEFFICIENT } from './interference-scoring';
+// T010: Scoring observability (N4 + TM-01 logging, 5% sampled)
+import { shouldSample, logScoringObservation } from '../telemetry/scoring-observability';
 
 import type { MemoryDbRow } from '../../../shared/types';
 
@@ -388,10 +390,10 @@ export function calculateRecencyScore(timestamp: string | undefined, tier: strin
 // NOVELTY BOOST (cold-start visibility)
 // ---------------------------------------------------------------
 
-// N4: Cold-start boost constants
-const NOVELTY_BOOST_MAX = 0.15;
-const NOVELTY_BOOST_HALF_LIFE_HOURS = 12;
-const NOVELTY_BOOST_SCORE_CAP = 0.95;
+// N4: Cold-start boost constants (exported for observability tests)
+export const NOVELTY_BOOST_MAX = 0.15;
+export const NOVELTY_BOOST_HALF_LIFE_HOURS = 12;
+export const NOVELTY_BOOST_SCORE_CAP = 0.95;
 
 /**
  * N4: Calculate cold-start novelty boost with exponential decay.
@@ -458,6 +460,9 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
   const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
   composite *= docMultiplier;
 
+  // T010: Capture score before N4/TM-01 for observability
+  const scoreBeforeBoosts = composite;
+
   // N4: Apply cold-start novelty boost (BEFORE FSRS temporal decay cap)
   const noveltyBoost = calculateNoveltyBoost(row.created_at);
   const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
@@ -467,7 +472,31 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
   const interferenceScore = (row.interference_score as number) || 0;
   composite = applyInterferencePenalty(composite, interferenceScore);
 
-  return Math.max(0, composite);
+  const finalScore = Math.max(0, composite);
+
+  // T010: Scoring observability (5% sampled, fail-safe)
+  try {
+    if (shouldSample()) {
+      const createdMs = row.created_at ? new Date(row.created_at).getTime() : Date.now();
+      logScoringObservation({
+        memoryId: (row.id as number) || 0,
+        queryId: `5f-${Date.now()}`,
+        timestamp: new Date().toISOString(),
+        noveltyBoostApplied: noveltyBoost > 0,
+        noveltyBoostValue: noveltyBoost,
+        memoryAgeDays: isNaN(createdMs) ? 0 : (Date.now() - createdMs) / 86400000,
+        interferenceApplied: interferenceScore > 0 && process.env.SPECKIT_INTERFERENCE_SCORE === 'true',
+        interferenceScore,
+        interferencePenalty: process.env.SPECKIT_INTERFERENCE_SCORE === 'true' && interferenceScore > 0
+          ? INTERFERENCE_PENALTY_COEFFICIENT * interferenceScore : 0,
+        scoreBeforeBoosts,
+        scoreAfterBoosts: finalScore,
+        scoreDelta: finalScore - scoreBeforeBoosts,
+      });
+    }
+  } catch { /* fail-safe: never affects scoring */ }
+
+  return finalScore;
 }
 
 /**
@@ -508,6 +537,9 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
   composite *= docMultiplier;
 
+  // T010: Capture score before N4/TM-01 for observability
+  const scoreBeforeBoosts = composite;
+
   // N4: Apply cold-start novelty boost (BEFORE FSRS temporal decay cap)
   const noveltyBoost = calculateNoveltyBoost(row.created_at);
   const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
@@ -517,7 +549,31 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const interferenceScore = (row.interference_score as number) || 0;
   composite = applyInterferencePenalty(composite, interferenceScore);
 
-  return Math.max(0, composite);
+  const finalScore = Math.max(0, composite);
+
+  // T010: Scoring observability (5% sampled, fail-safe)
+  try {
+    if (shouldSample()) {
+      const createdMs = row.created_at ? new Date(row.created_at).getTime() : Date.now();
+      logScoringObservation({
+        memoryId: (row.id as number) || 0,
+        queryId: `cs-${Date.now()}`,
+        timestamp: new Date().toISOString(),
+        noveltyBoostApplied: noveltyBoost > 0,
+        noveltyBoostValue: noveltyBoost,
+        memoryAgeDays: isNaN(createdMs) ? 0 : (Date.now() - createdMs) / 86400000,
+        interferenceApplied: interferenceScore > 0 && process.env.SPECKIT_INTERFERENCE_SCORE === 'true',
+        interferenceScore,
+        interferencePenalty: process.env.SPECKIT_INTERFERENCE_SCORE === 'true' && interferenceScore > 0
+          ? INTERFERENCE_PENALTY_COEFFICIENT * interferenceScore : 0,
+        scoreBeforeBoosts,
+        scoreAfterBoosts: finalScore,
+        scoreDelta: finalScore - scoreBeforeBoosts,
+      });
+    }
+  } catch { /* fail-safe: never affects scoring */ }
+
+  return finalScore;
 }
 
 // ---------------------------------------------------------------
@@ -646,4 +702,39 @@ export function getScoreBreakdown(row: ScoringInput, options: ScoringOptions = {
     total: calculateCompositeScore(row, options),
     model: '6-factor-legacy',
   };
+}
+
+// ---------------------------------------------------------------
+// 7. SCORE NORMALIZATION (T004)
+// ---------------------------------------------------------------
+
+/**
+ * Check if composite score normalization is enabled.
+ * Gated behind SPECKIT_SCORE_NORMALIZATION env var (default: disabled).
+ */
+export function isCompositeNormalizationEnabled(): boolean {
+  return process.env.SPECKIT_SCORE_NORMALIZATION === 'true';
+}
+
+/**
+ * Apply min-max normalization to composite scores, mapping to [0,1].
+ * Gated behind SPECKIT_SCORE_NORMALIZATION env var — returns unchanged when disabled.
+ *
+ * - If all scores are equal, they normalize to 1.0.
+ * - If a single result, it normalizes to 1.0.
+ * - Returns empty array when given empty array.
+ */
+export function normalizeCompositeScores(scores: number[]): number[] {
+  if (scores.length === 0) return [];
+  if (!isCompositeNormalizationEnabled()) return scores;
+
+  const maxScore = Math.max(...scores);
+  const minScore = Math.min(...scores);
+  const range = maxScore - minScore;
+
+  if (range > 0) {
+    return scores.map(s => (s - minScore) / range);
+  } else {
+    return scores.map(() => 1.0);
+  }
 }

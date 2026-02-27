@@ -20,15 +20,13 @@ import * as causalBoost from '../lib/search/causal-boost';
 import { isMultiQueryEnabled, isTRMEnabled } from '../lib/search/search-flags';
 import { getExtractionMetrics } from '../lib/extraction/extraction-adapter';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
+import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
 // C138-P1: Evidence gap detection (TRM — Z-score confidence check on RRF scores)
 import { detectEvidenceGap, formatEvidenceGapWarning } from '../lib/search/evidence-gap-detector';
 // C138-P3: Query expansion for mode="deep" multi-query RAG
 import { expandQuery } from '../lib/search/query-expander';
 // C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
-
-// T005: Eval logging hooks (non-blocking, fail-safe)
-import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
 
 // Core utilities
 import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
@@ -1002,12 +1000,17 @@ async function postSearchPipeline(
     extraData._telemetry = retrievalTelemetry.toJSON(t);
   }
 
-  // G3: Chunk dedup ALWAYS runs regardless of includeContent flag.
-  // Duplicate chunk rows inflate result counts even without content; dedup must
-  // happen on every code path. The reassembly step within
-  // collapseAndReassembleChunkResults is a no-op when includeContent=false
-  // because formatSearchResults does not consume precomputedContent in that case.
-  const chunkPrep = collapseAndReassembleChunkResults(finalResults);
+  const chunkPrep = includeContent
+    ? collapseAndReassembleChunkResults(finalResults)
+    : {
+        results: finalResults,
+        stats: {
+          collapsedChunkHits: 0,
+          chunkParents: 0,
+          reassembled: 0,
+          fallback: 0,
+        },
+      };
 
   if (chunkPrep.stats.chunkParents > 0) {
     extraData.chunkReassembly = chunkPrep.stats;
@@ -1046,6 +1049,7 @@ async function postSearchPipeline(
 
 /** Handle memory_search tool - performs hybrid vector/BM25 search with intent-aware ranking */
 async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
+  const _searchStartTime = Date.now();
   // BUG-001: Check for external database updates before processing
   await checkDatabaseUpdated();
 
@@ -1195,13 +1199,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     enableCausalBoost,
   });
 
-  // T005: Log search query entry (non-blocking, gated by SPECKIT_EVAL_LOGGING)
-  const { queryId: evalQueryId, evalRunId } = logSearchQuery({
-    query: normalizedQuery ?? (concepts ? concepts.join(', ') : ''),
-    intent: detectedIntent,
-    specFolder: specFolder ?? null,
-  });
-
   // T012-T015: Use cache wrapper for search execution
   const cachedResult = await toolCache.withCache(
     'memory_search',
@@ -1239,15 +1236,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
         // C136-08: Record candidate stage for multi-concept search
         addTraceEntry(trace, 'candidate', concepts.length, qualityFilteredResults.length, 0, { searchType: 'multi-concept' });
-
-        // T005: Log multi-concept channel result (non-blocking)
-        logChannelResult({
-          evalRunId,
-          queryId: evalQueryId,
-          channel: 'multi-concept',
-          resultMemoryIds: qualityFilteredResults.map(r => r.id),
-          scores: qualityFilteredResults.map(r => ((r.similarity as number) || (r.score as number) || 0)),
-        });
 
         return await postSearchPipeline(qualityFilteredResults, concepts[0], 'multi-concept', {
           minState: minState!,
@@ -1375,15 +1363,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           // C136-08: Record candidate stage for hybrid search
           addTraceEntry(trace, 'candidate', hybridResults.length, filteredResults.length, 0, { searchType: 'hybrid' });
 
-          // T005: Log hybrid channel result (non-blocking)
-          logChannelResult({
-            evalRunId,
-            queryId: evalQueryId,
-            channel: 'hybrid',
-            resultMemoryIds: filteredResults.map(r => r.id),
-            scores: filteredResults.map(r => ((r.similarity as number) || (r.score as number) || 0)),
-          });
-
           return await postSearchPipeline(filteredResults, normalizedQuery!, 'hybrid', {
             minState: minState!,
             applyStateLimits: applyStateLimits!,
@@ -1430,15 +1409,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       // C136-08: Record candidate stage for vector fallback search
       addTraceEntry(trace, 'candidate', limit, results.length, 0, { searchType: 'vector' });
 
-      // T005: Log vector fallback channel result (non-blocking)
-      logChannelResult({
-        evalRunId,
-        queryId: evalQueryId,
-        channel: 'vector',
-        resultMemoryIds: results.map(r => r.id),
-        scores: results.map(r => ((r.similarity as number) || (r.score as number) || 0)),
-      });
-
       return await postSearchPipeline(results, normalizedQuery!, 'vector', {
         minState: minState!,
         applyStateLimits: applyStateLimits!,
@@ -1460,25 +1430,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     },
     { bypassCache }
   );
-
-  // T005: Log final fused/ranked results (non-blocking, gated by SPECKIT_EVAL_LOGGING)
-  try {
-    const _evalText = cachedResult?.content?.[0]?.text;
-    if (evalQueryId && evalRunId && _evalText && typeof _evalText === 'string') {
-      const _evalParsed = JSON.parse(_evalText) as Record<string, unknown>;
-      const _evalData = _evalParsed?.data as Record<string, unknown> | undefined;
-      const _evalResults = Array.isArray(_evalData?.results) ? _evalData!.results as Array<Record<string, unknown>> : [];
-      logFinalResult({
-        evalRunId,
-        queryId: evalQueryId,
-        resultMemoryIds: _evalResults.map(r => r.id as number),
-        scores: _evalResults.map(r => ((r.score as number) || (r.similarity as number) || 0)),
-        fusionMethod: 'rrf',
-      });
-    }
-  } catch {
-    // Non-fatal: eval logging must never break production search
-  }
 
   // T123: Apply session deduplication AFTER cache
   if (sessionId && enableDedup && sessionManager.isEnabled()) {
@@ -1545,6 +1496,35 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       } as MCPResponse;
     }
   }
+
+  // T004: Consumption instrumentation — log search event (fail-safe, never throws)
+  try {
+    const db = (() => { try { return requireDb(); } catch { return null; } })();
+    if (db) {
+      initConsumptionLog(db);
+      let resultIds: number[] = [];
+      let resultCount = 0;
+      try {
+        if (cachedResult?.content?.[0]?.text) {
+          const parsed = JSON.parse(cachedResult.content[0].text) as Record<string, unknown>;
+          const data = parsed?.data as Record<string, unknown> | undefined;
+          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+          resultIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
+          resultCount = Array.isArray(data?.results) ? (data.results as unknown[]).length : 0;
+        }
+      } catch { /* ignore parse errors */ }
+      logConsumptionEvent(db, {
+        event_type: 'search',
+        query_text: normalizedQuery ?? (Array.isArray(concepts) ? concepts.join(', ') : null),
+        intent: detectedIntent,
+        result_count: resultCount,
+        result_ids: resultIds,
+        session_id: sessionId ?? null,
+        latency_ms: Date.now() - _searchStartTime,
+        spec_folder_filter: specFolder ?? null,
+      });
+    }
+  } catch { /* instrumentation must never cause search to fail */ }
 
   return cachedResult;
 }

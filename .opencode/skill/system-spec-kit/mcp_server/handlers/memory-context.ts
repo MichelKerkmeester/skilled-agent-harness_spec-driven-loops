@@ -29,9 +29,8 @@ import { isIdentityInRollout } from '../lib/cache/cognitive/rollout-policy';
 
 // Telemetry
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
-
-// T005: Eval logging hooks (non-blocking, fail-safe)
-import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger';
+import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
+import * as vectorIndex from '../lib/search/vector-index';
 
 // Shared handler types
 import type { MCPResponse, IntentClassification } from './types';
@@ -351,6 +350,7 @@ async function executeResumeStrategy(input: string, options: ContextOptions): Pr
 
 /** Handle memory_context tool - L1 orchestration layer that routes to optimal retrieval strategy */
 async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
+  const _contextStartTime = Date.now();
   await checkDatabaseUpdated();
   const {
     input,
@@ -487,13 +487,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     effectiveMode = 'focused';
   }
 
-  // T005: Log context query entry (non-blocking, gated by SPECKIT_EVAL_LOGGING)
-  const { queryId: _ctxQueryId, evalRunId: _ctxRunId } = logSearchQuery({
-    query: normalizedInput,
-    intent: detectedIntent ?? null,
-    specFolder: spec_folder ?? null,
-  });
-
   // Execute the selected strategy
   let result: ContextResult;
   try {
@@ -538,28 +531,6 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   // T205: Enforce token budget on strategy results
   const { result: budgetedResult, enforcement } = enforceTokenBudget(result, effectiveBudget);
 
-  // T005: Log final context results (non-blocking, gated by SPECKIT_EVAL_LOGGING)
-  try {
-    if (_ctxQueryId && _ctxRunId) {
-      const _ctxContent = (budgetedResult as Record<string, unknown>)?.content as Array<{ type: string; text: string }> | undefined;
-      const _ctxText = _ctxContent?.[0]?.text;
-      if (_ctxText && typeof _ctxText === 'string') {
-        const _ctxParsed = JSON.parse(_ctxText) as Record<string, unknown>;
-        const _ctxData = _ctxParsed?.data as Record<string, unknown> | undefined;
-        const _ctxResults = Array.isArray(_ctxData?.results) ? _ctxData!.results as Array<Record<string, unknown>> : [];
-        logFinalResult({
-          evalRunId: _ctxRunId,
-          queryId: _ctxQueryId,
-          resultMemoryIds: _ctxResults.map(r => r.memoryId as number || r.id as number),
-          scores: _ctxResults.map(r => ((r.score as number) || (r.similarity as number) || 0)),
-          fusionMethod: effectiveMode,
-        });
-      }
-    }
-  } catch {
-    // Non-fatal: eval logging must never break production context retrieval
-  }
-
   if (autoResumeEnabled && effectiveMode === 'resume' && requestedSessionId) {
     const resumeContextItems = workingMemory.getSessionPromptContext(requestedSessionId, workingMemory.DECAY_FLOOR, 5);
     if (resumeContextItems.length > 0) {
@@ -575,7 +546,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   }
 
   // Build response with layer metadata
-  return createMCPResponse({
+  const _contextResponse = createMCPResponse({
     tool: 'memory_context',
     summary: enforcement.truncated
       ? `Context retrieved via ${effectiveMode} mode (${budgetedResult.strategy} strategy) [truncated: ${enforcement.originalResultCount} → ${enforcement.returnedResultCount} results to fit ${effectiveBudget} token budget]`
@@ -626,6 +597,38 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       })() : {}),
     }
   });
+
+  // T004: Consumption instrumentation — log context event (fail-safe, never throws)
+  try {
+    const db = vectorIndex.getDb();
+    if (db) {
+      initConsumptionLog(db);
+      let resultIds: number[] = [];
+      let resultCount = 0;
+      try {
+        if (_contextResponse?.content?.[0]?.text) {
+          const parsed = JSON.parse(_contextResponse.content[0].text) as Record<string, unknown>;
+          const data = parsed?.data as Record<string, unknown> | undefined;
+          const innerResults = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+          resultIds = innerResults.map(r => r.id as number).filter(id => typeof id === 'number');
+          resultCount = innerResults.length;
+        }
+      } catch { /* ignore parse errors */ }
+      logConsumptionEvent(db, {
+        event_type: 'context',
+        query_text: normalizedInput,
+        intent: detectedIntent ?? null,
+        mode: effectiveMode,
+        result_count: resultCount,
+        result_ids: resultIds,
+        session_id: requestedSessionId,
+        latency_ms: Date.now() - _contextStartTime,
+        spec_folder_filter: spec_folder ?? null,
+      });
+    }
+  } catch { /* instrumentation must never cause context handler to fail */ }
+
+  return _contextResponse;
 }
 
 /* ---------------------------------------------------------------

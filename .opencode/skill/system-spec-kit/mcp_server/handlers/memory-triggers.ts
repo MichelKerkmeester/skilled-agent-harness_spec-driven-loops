@@ -27,9 +27,8 @@ import * as coActivation from '../lib/cache/cognitive/co-activation';
 
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPEmptyResponse } from '../lib/response/envelope';
-
-// T005: Eval logging hooks (non-blocking, fail-safe)
-import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
+// T004: Consumption instrumentation
+import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
 
 // Shared handler types
 import type { MCPResponse } from './types';
@@ -185,13 +184,6 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   }
 
   const startTime = Date.now();
-
-  // T005: Log trigger query entry (non-blocking, gated by SPECKIT_EVAL_LOGGING)
-  const { queryId: _trigQueryId, evalRunId: _trigRunId } = logSearchQuery({
-    query: prompt,
-    intent: null,
-    specFolder: null,
-  });
 
   const useCognitive = includeCognitive &&
     sessionId &&
@@ -372,26 +364,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     hints.push(`${coldCount} COLD-tier memories excluded for token efficiency`);
   }
 
-  // T005: Log trigger channel + final results (non-blocking, gated by SPECKIT_EVAL_LOGGING)
-  logChannelResult({
-    evalRunId: _trigRunId,
-    queryId: _trigQueryId,
-    channel: 'trigger',
-    resultMemoryIds: formattedResults.map(r => r.memoryId),
-    scores: formattedResults.map(r => r.importanceWeight || 0),
-    latencyMs,
-    hitCount: formattedResults.length,
-  });
-  logFinalResult({
-    evalRunId: _trigRunId,
-    queryId: _trigQueryId,
-    resultMemoryIds: formattedResults.map(r => r.memoryId),
-    scores: formattedResults.map(r => r.importanceWeight || 0),
-    fusionMethod: 'trigger',
-    latencyMs,
-  });
-
-  return createMCPSuccessResponse({
+  const _triggersResponse = createMCPSuccessResponse({
     tool: 'memory_match_triggers',
     summary,
     data: {
@@ -406,6 +379,25 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       latencyMs: latencyMs
     }
   });
+
+  // T004: Consumption instrumentation — log triggers event (fail-safe, never throws)
+  try {
+    const db = attentionDecay.getDb();
+    if (db) {
+      initConsumptionLog(db);
+      const resultIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
+      logConsumptionEvent(db, {
+        event_type: 'triggers',
+        query_text: prompt,
+        result_count: formattedResults.length,
+        result_ids: resultIds,
+        session_id: sessionId ?? null,
+        latency_ms: latencyMs,
+      });
+    }
+  } catch { /* instrumentation must never cause triggers handler to fail */ }
+
+  return _triggersResponse;
 }
 
 /* ---------------------------------------------------------------

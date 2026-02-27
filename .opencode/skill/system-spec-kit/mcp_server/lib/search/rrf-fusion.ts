@@ -13,6 +13,7 @@ const SOURCE_TYPES = {
   FTS: 'fts',
   BM25: 'bm25',
   GRAPH: 'graph',
+  DEGREE: 'degree',
   KEYWORD: 'keyword',
 } as const;
 
@@ -179,8 +180,15 @@ function fuseResultsMulti(
     }
   }
 
-  return Array.from(scoreMap.values())
+  const results = Array.from(scoreMap.values())
     .sort((a, b) => b.rrfScore - a.rrfScore);
+
+  // T004: Normalize RRF scores to [0,1] when enabled
+  if (isScoreNormalizationEnabled()) {
+    normalizeRrfScores(results);
+  }
+
+  return results;
 }
 
 /**
@@ -321,8 +329,15 @@ function fuseResultsCrossVariant(
     }
   }
 
-  return Array.from(mergedMap.values())
+  const results = Array.from(mergedMap.values())
     .sort((a, b) => b.rrfScore - a.rrfScore);
+
+  // T004: Normalize RRF scores to [0,1] when enabled
+  if (isScoreNormalizationEnabled()) {
+    normalizeRrfScores(results);
+  }
+
+  return results;
 }
 
 /**
@@ -330,6 +345,42 @@ function fuseResultsCrossVariant(
  */
 function isRrfEnabled(): boolean {
   return process.env.SPECKIT_RRF !== 'false';
+}
+
+/**
+ * Check if score normalization is enabled.
+ * Gated behind SPECKIT_SCORE_NORMALIZATION env var (default: disabled).
+ */
+function isScoreNormalizationEnabled(): boolean {
+  return process.env.SPECKIT_SCORE_NORMALIZATION === 'true';
+}
+
+/**
+ * Apply min-max normalization to RRF scores in a result array, mapping to [0,1].
+ * Mutates the results in place.
+ *
+ * - If all scores are equal, they normalize to 1.0.
+ * - If a single result, it normalizes to 1.0.
+ * - No-op when the array is empty.
+ */
+function normalizeRrfScores(results: FusionResult[]): void {
+  if (results.length === 0) return;
+
+  const scores = results.map(r => r.rrfScore);
+  const maxScore = Math.max(...scores);
+  const minScore = Math.min(...scores);
+  const range = maxScore - minScore;
+
+  if (range > 0) {
+    for (const result of results) {
+      result.rrfScore = (result.rrfScore - minScore) / range;
+    }
+  } else {
+    // All same score (or single result) — normalize to 1.0
+    for (const result of results) {
+      result.rrfScore = 1.0;
+    }
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -349,6 +400,8 @@ export {
   countOriginalTermMatches,
   unifiedSearch,
   isRrfEnabled,
+  isScoreNormalizationEnabled,
+  normalizeRrfScores,
 };
 
 export type {
