@@ -328,7 +328,11 @@ describe('Regression 010: index large files guardrails', () => {
 
     // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
     const beforeVersion = db.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number } | undefined;
-    expect(beforeVersion?.version).toBe(16);
+    expect(beforeVersion?.version).toBeGreaterThanOrEqual(16);
+
+    // Set schema to v16 for the v16→v15 downgrade test (v17+ migrations are independent of chunk columns)
+    // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
+    db.prepare('UPDATE schema_version SET version = 16 WHERE id = 1').run();
 
     // @ts-expect-error -- db confirmed non-null by expect(db).toBeTruthy() above
     const result = downgrade.downgradeSchemaV16ToV15(db);

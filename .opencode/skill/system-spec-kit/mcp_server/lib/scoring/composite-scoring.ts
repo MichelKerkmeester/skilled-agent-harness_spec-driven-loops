@@ -6,6 +6,8 @@ import { getTierConfig } from './importance-tiers';
 import { calculatePopularityScore } from '../storage/access-tracker';
 // HIGH-003 FIX: Import unified recency scoring from folder-scoring
 import { computeRecencyScore, DECAY_RATE } from './folder-scoring';
+// TM-01: Interference scoring penalty (Sprint 2, T005)
+import { applyInterferencePenalty, INTERFERENCE_PENALTY_COEFFICIENT } from './interference-scoring';
 
 import type { MemoryDbRow } from '../../../shared/types';
 
@@ -181,6 +183,9 @@ export const PATTERN_ALIGNMENT_BONUSES: PatternAlignmentBonuses = {
   anchor_match: 0.25,
   type_match: 0.2,
 };
+
+// TM-01: Re-export interference penalty coefficient for test access
+export { INTERFERENCE_PENALTY_COEFFICIENT } from './interference-scoring';
 
 // ---------------------------------------------------------------
 // 3. SCORE CALCULATIONS
@@ -458,6 +463,10 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
   const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
   composite = Math.min(scoreCap, composite + noveltyBoost);
 
+  // TM-01: Apply interference penalty (AFTER N4 novelty boost, after doc multiplier)
+  const interferenceScore = (row.interference_score as number) || 0;
+  composite = applyInterferencePenalty(composite, interferenceScore);
+
   return Math.max(0, composite);
 }
 
@@ -503,6 +512,10 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const noveltyBoost = calculateNoveltyBoost(row.created_at);
   const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
   composite = Math.min(scoreCap, composite + noveltyBoost);
+
+  // TM-01: Apply interference penalty (AFTER N4 novelty boost, after doc multiplier)
+  const interferenceScore = (row.interference_score as number) || 0;
+  composite = applyInterferencePenalty(composite, interferenceScore);
 
   return Math.max(0, composite);
 }

@@ -320,7 +320,7 @@ function resolve_database_path() {
 // v14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
 // v15: Add quality_score and quality_flags columns for memory quality gates
 // v16: Add parent_id column for chunked indexing of large files (010-index-large-files)
-const SCHEMA_VERSION = 16;
+const SCHEMA_VERSION = 17;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -1079,6 +1079,29 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
         logger.info('Migration v16: Created parent_id indexes');
       } catch (e: unknown) {
         console.warn('[VectorIndex] Migration v16 warning (indexes):', get_error_message(e));
+      }
+    },
+
+    17: () => {
+      // v16 -> v17: Add interference_score column for TM-01 (Sprint 2, T005)
+      // Stores the count of similar memories in the same spec_folder.
+      // Used as a penalty in composite scoring to demote redundant results.
+      // Computed at index time; applied as: -0.08 * interference_score.
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN interference_score REAL DEFAULT 0');
+        logger.info('Migration v17: Added interference_score column (TM-01)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v17 warning (interference_score):', get_error_message(e));
+        }
+      }
+
+      // Create index for efficient interference queries
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_interference_score ON memory_index(interference_score)');
+        logger.info('Migration v17: Created interference_score index');
+      } catch (e: unknown) {
+        console.warn('[VectorIndex] Migration v17 warning (idx_interference_score):', get_error_message(e));
       }
     }
   };

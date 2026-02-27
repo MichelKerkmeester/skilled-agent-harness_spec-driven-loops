@@ -236,6 +236,14 @@ const FSRS_CONSTANTS = {
  * C138: Tier-based decay multipliers for long-term memory stability.
  * Each tier modifies how quickly memories decay relative to the base FSRS schedule.
  * constitutional = slowest decay (most persistent), scratch = fastest decay (ephemeral).
+ *
+ * NOTE (TM-03): This multiplier operates on elapsed-time in composite-scoring.ts
+ * (lower value = slower perceived time = slower decay). It is a SEPARATE system from
+ * IMPORTANCE_TIER_STABILITY_MULTIPLIER below, which operates on the FSRS stability
+ * parameter directly. Do NOT apply both to the same memory — use one or the other:
+ *   - TIER_MULTIPLIER → used by composite-scoring.ts (elapsed-time adjustment)
+ *   - IMPORTANCE_TIER_STABILITY_MULTIPLIER → used by getClassificationDecayMultiplier()
+ *     (stability adjustment, activated via SPECKIT_CLASSIFICATION_DECAY env var)
  */
 const TIER_MULTIPLIER: Readonly<Record<string, number>> = {
   constitutional: 0.1,
@@ -245,6 +253,108 @@ const TIER_MULTIPLIER: Readonly<Record<string, number>> = {
   temporary: 2.0,
   scratch: 3.0,
 } as const;
+
+/* -------------------------------------------------------------
+   4a. CLASSIFICATION-BASED DECAY (TM-03)
+       Gated by SPECKIT_CLASSIFICATION_DECAY env var.
+       Multiplies FSRS stability so that:
+         - Infinity stability → R(t) = 1.0 always (no decay)
+         - >1.0 stability multiplier → slower decay
+         - <1.0 stability multiplier → faster decay
+----------------------------------------------------------------*/
+
+/**
+ * TM-03: Context-type stability multipliers.
+ * Applied to the FSRS stability parameter before computing retrievability.
+ * Infinity = no decay (retrievability always 1.0).
+ * 2.0 = stability doubled → slower decay.
+ * 1.0 = standard FSRS schedule.
+ */
+const CONTEXT_TYPE_STABILITY_MULTIPLIER: Record<string, number> = {
+  decision: Infinity,    // no decay — decisions are permanent
+  research: 2.0,         // 2x stability — research context decays slower
+  implementation: 1.0,   // standard decay
+  discovery: 1.0,        // standard decay
+  general: 1.0,          // standard decay
+};
+
+/**
+ * TM-03: Importance-tier stability multipliers.
+ * Parallel to TIER_MULTIPLIER but operates on stability (not elapsed time).
+ * Used exclusively by getClassificationDecayMultiplier() when
+ * SPECKIT_CLASSIFICATION_DECAY is enabled. Do NOT combine with TIER_MULTIPLIER.
+ * constitutional/critical: Infinity = never decays.
+ * important: 1.5x stability → slower decay.
+ * normal: 1.0 → standard.
+ * temporary: 0.5x → faster decay (2x relative speed).
+ * deprecated: 0.25x → fastest decay (4x relative speed).
+ */
+const IMPORTANCE_TIER_STABILITY_MULTIPLIER: Record<string, number> = {
+  constitutional: Infinity, // never decays
+  critical: Infinity,       // never decays
+  important: 1.5,           // slower decay
+  normal: 1.0,              // standard
+  temporary: 0.5,           // faster decay
+  deprecated: 0.25,         // fastest decay
+};
+
+/**
+ * TM-03: Compute combined stability multiplier from context_type and importance_tier.
+ *
+ * Logic:
+ *   - If either dimension resolves to Infinity, the combined result is Infinity
+ *     (no-decay wins unconditionally).
+ *   - Unknown context_type or importance_tier values default to 1.0 (standard).
+ *   - Combined multiplier = contextMult * tierMult.
+ *
+ * When the result is Infinity, callers should treat stability as Infinity,
+ * which makes R(t) = (1 + factor * t / Infinity)^decay = 1.0 for all t.
+ *
+ * @param contextType    Memory context_type field (e.g. "decision", "research")
+ * @param importanceTier Memory importance_tier field (e.g. "constitutional", "normal")
+ * @returns Combined stability multiplier (may be Infinity)
+ */
+function getClassificationDecayMultiplier(contextType: string, importanceTier: string): number {
+  const contextMult = CONTEXT_TYPE_STABILITY_MULTIPLIER[contextType] ?? 1.0;
+  const tierMult = IMPORTANCE_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
+
+  // Infinity * anything = Infinity (no-decay wins)
+  if (!isFinite(contextMult) || !isFinite(tierMult)) {
+    return Infinity;
+  }
+
+  return contextMult * tierMult;
+}
+
+/**
+ * TM-03: Apply classification-based decay to a stability value.
+ * Gated by SPECKIT_CLASSIFICATION_DECAY env var (must be "true" or "1").
+ *
+ * Returns stability unchanged when the feature flag is disabled.
+ * Returns Infinity when the combined multiplier is Infinity (no-decay).
+ *
+ * @param stability      Base FSRS stability value
+ * @param contextType    Memory context_type field
+ * @param importanceTier Memory importance_tier field
+ * @returns Adjusted stability value
+ */
+function applyClassificationDecay(
+  stability: number,
+  contextType: string,
+  importanceTier: string
+): number {
+  const flag = process.env.SPECKIT_CLASSIFICATION_DECAY;
+  if (flag !== 'true' && flag !== '1') {
+    return stability;
+  }
+
+  const multiplier = getClassificationDecayMultiplier(contextType, importanceTier);
+  if (!isFinite(multiplier)) {
+    return Infinity;
+  }
+
+  return stability * multiplier;
+}
 
 export {
   // Constants
@@ -262,6 +372,12 @@ export {
   MIN_STABILITY,
   FSRS_CONSTANTS,
   TIER_MULTIPLIER,
+
+  // TM-03: Classification-based decay constants and functions
+  CONTEXT_TYPE_STABILITY_MULTIPLIER,
+  IMPORTANCE_TIER_STABILITY_MULTIPLIER,
+  getClassificationDecayMultiplier,
+  applyClassificationDecay,
 
   // Core functions
   calculateRetrievability,

@@ -663,6 +663,190 @@ async function searchWithFallback(
 }
 
 /* ---------------------------------------------------------------
+   7b. PRE-FLIGHT TOKEN BUDGET VALIDATION (T007)
+   --------------------------------------------------------------- */
+
+/** Default token budget — configurable via SPECKIT_TOKEN_BUDGET env var. */
+const DEFAULT_TOKEN_BUDGET = 2000;
+
+/** Maximum characters for a summary fallback when a single result overflows the budget. */
+const SUMMARY_MAX_CHARS = 400;
+
+/** Overflow log entry recording budget truncation events for eval infrastructure. */
+interface OverflowLogEntry {
+  queryId: string;
+  candidateCount: number;
+  totalTokens: number;
+  budgetLimit: number;
+  truncatedToCount: number;
+  timestamp: string;
+}
+
+/** Result of budget-aware truncation. */
+interface TruncateToBudgetResult {
+  results: HybridSearchResult[];
+  truncated: boolean;
+  overflow?: OverflowLogEntry;
+}
+
+/**
+ * Estimate token count for a text string using a chars/4 heuristic.
+ * This approximation works reasonably well for English text and is fast enough
+ * for pre-flight budget checks without needing a real tokenizer.
+ */
+function estimateTokenCount(text: string): number {
+  if (!text) return 0;
+  return Math.ceil(text.length / 4);
+}
+
+/**
+ * Estimate the token footprint of a single HybridSearchResult.
+ * Accounts for all string-valued fields plus a small overhead for metadata keys.
+ */
+function estimateResultTokens(result: HybridSearchResult): number {
+  let chars = 0;
+
+  for (const [key, value] of Object.entries(result)) {
+    // Key name overhead
+    chars += key.length;
+    // Value content
+    if (typeof value === 'string') {
+      chars += value.length;
+    } else if (typeof value === 'number' || typeof value === 'boolean') {
+      chars += String(value).length;
+    }
+    // Arrays/objects are skipped for estimation — they rarely appear in results
+  }
+
+  return Math.ceil(chars / 4);
+}
+
+/**
+ * Read the configured token budget from SPECKIT_TOKEN_BUDGET env var,
+ * falling back to DEFAULT_TOKEN_BUDGET (2000).
+ */
+function getTokenBudget(): number {
+  const envVal = process.env['SPECKIT_TOKEN_BUDGET'];
+  if (envVal) {
+    const parsed = parseInt(envVal, 10);
+    if (!isNaN(parsed) && parsed > 0) return parsed;
+  }
+  return DEFAULT_TOKEN_BUDGET;
+}
+
+/**
+ * Create a summary fallback for a single result whose content exceeds the token budget.
+ * Replaces the `content` field with a truncated summary.
+ */
+function createSummaryFallback(result: HybridSearchResult, budget: number): HybridSearchResult {
+  const content = typeof result['content'] === 'string' ? result['content'] as string : '';
+  const title = typeof result['title'] === 'string' ? result['title'] : 'Untitled';
+
+  // Build a summary that fits within budget
+  const maxSummaryChars = Math.min(SUMMARY_MAX_CHARS, budget * 4);
+  const truncatedContent = content.length > maxSummaryChars
+    ? content.slice(0, maxSummaryChars) + '...'
+    : content;
+
+  return {
+    ...result,
+    content: `[Summary] ${title}: ${truncatedContent}`,
+    _summarized: true,
+  };
+}
+
+/**
+ * Truncate a result set to fit within a token budget using greedy highest-scoring-first strategy.
+ *
+ * Algorithm:
+ * 1. Results are processed in score-descending order (greedy, never round-robin).
+ * 2. Each result's token footprint is estimated and accumulated.
+ * 3. Once the budget would be exceeded, remaining results are dropped.
+ * 4. Special case: if only one result exists but exceeds the budget AND includeContent=true,
+ *    a summary fallback is returned instead of raw truncated content.
+ * 5. All overflow events are logged with full metadata for eval infrastructure (R-004).
+ *
+ * @param results - Candidate results, expected to be pre-sorted by score descending.
+ * @param budget - Token budget limit. If 0 or negative, uses configured default.
+ * @param options - Optional flags (includeContent controls summary fallback behavior).
+ * @returns Object with truncated results, truncation flag, and optional overflow log entry.
+ */
+function truncateToBudget(
+  results: HybridSearchResult[],
+  budget?: number,
+  options?: { includeContent?: boolean; queryId?: string }
+): TruncateToBudgetResult {
+  const effectiveBudget = (budget && budget > 0) ? budget : getTokenBudget();
+  const includeContent = options?.includeContent ?? false;
+  const queryId = options?.queryId ?? `q-${Date.now()}`;
+
+  // Empty results — nothing to truncate
+  if (results.length === 0) {
+    return { results: [], truncated: false };
+  }
+
+  // Sort by score descending (greedy highest-first) — defensive copy
+  const sorted = [...results].sort((a, b) => b.score - a.score);
+
+  // Estimate total tokens across all candidates
+  const totalTokens = sorted.reduce((sum, r) => sum + estimateResultTokens(r), 0);
+
+  // If everything fits, return as-is
+  if (totalTokens <= effectiveBudget) {
+    return { results: sorted, truncated: false };
+  }
+
+  // Single-result overflow with includeContent: return summary fallback
+  if (sorted.length === 1 && includeContent) {
+    const summary = createSummaryFallback(sorted[0]!, effectiveBudget);
+    const overflow: OverflowLogEntry = {
+      queryId,
+      candidateCount: 1,
+      totalTokens,
+      budgetLimit: effectiveBudget,
+      truncatedToCount: 1,
+      timestamp: new Date().toISOString(),
+    };
+    console.warn(
+      `[hybrid-search] Token budget overflow (single-result summary fallback): ` +
+      `${totalTokens} tokens > ${effectiveBudget} budget`
+    );
+    return { results: [summary], truncated: true, overflow };
+  }
+
+  // Greedy accumulation: take highest-scoring results until budget exhausted
+  const accepted: HybridSearchResult[] = [];
+  let accumulated = 0;
+
+  for (const result of sorted) {
+    const tokens = estimateResultTokens(result);
+    if (accumulated + tokens > effectiveBudget && accepted.length > 0) {
+      break;
+    }
+    // Always include at least one result even if it exceeds budget
+    accepted.push(result);
+    accumulated += tokens;
+    if (accumulated >= effectiveBudget) break;
+  }
+
+  const overflow: OverflowLogEntry = {
+    queryId,
+    candidateCount: results.length,
+    totalTokens,
+    budgetLimit: effectiveBudget,
+    truncatedToCount: accepted.length,
+    timestamp: new Date().toISOString(),
+  };
+
+  console.warn(
+    `[hybrid-search] Token budget overflow: ${totalTokens} tokens > ${effectiveBudget} budget, ` +
+    `truncated ${results.length} → ${accepted.length} results`
+  );
+
+  return { results: accepted, truncated: true, overflow };
+}
+
+/* ---------------------------------------------------------------
    8. EXPORTS
    --------------------------------------------------------------- */
 
@@ -678,10 +862,20 @@ export {
   searchWithFallback,
   getGraphMetrics,
   resetGraphMetrics,
+  // T007: Token budget validation
+  estimateTokenCount,
+  estimateResultTokens,
+  truncateToBudget,
+  getTokenBudget,
+  DEFAULT_TOKEN_BUDGET,
+  SUMMARY_MAX_CHARS,
 };
 
 export type {
   HybridSearchOptions,
   HybridSearchResult,
   VectorSearchFn,
+  // T007: Token budget types
+  OverflowLogEntry,
+  TruncateToBudgetResult,
 };
