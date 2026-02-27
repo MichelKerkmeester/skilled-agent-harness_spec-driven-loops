@@ -1,8 +1,6 @@
-// ---------------------------------------------------------------
-// TEST: t020 — Folder Relevance Scoring (DocScore)
+// ─── MODULE: Test — Folder Relevance ───
 // Validates FolderScore formula, damping, enrichment, two-phase
 // retrieval, and feature flag gating.
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 

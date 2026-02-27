@@ -1,6 +1,4 @@
-// ---------------------------------------------------------------
-// TEST: T031 — Shadow Comparison Analysis (T001d)
-// Sprint 3 — Query Intelligence
+// ─── MODULE: Test — Shadow Comparison ───
 // Verifies that tier-based channel routing produces results comparable
 // to full pipeline (all 5 channels) while reducing simulated latency.
 //
@@ -9,7 +7,6 @@
 // - Use channel count as latency proxy (linear model: channelCount * baseMs)
 // - Jaccard similarity of result IDs across routed vs full pipeline
 // - 50+ synthetic queries spanning simple/moderate/complex tiers
-// ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
 import {

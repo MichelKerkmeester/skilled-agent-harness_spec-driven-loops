@@ -1,7 +1,5 @@
-// ---------------------------------------------------------------
-// TEST: T010b — RRF Degree Channel + Co-Activation Boost Strength
+// ─── MODULE: Test — RRF Degree Channel ───
 // Sprint 1: T002 (degree as 5th RRF channel) + T003a (co-activation boost)
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { fuseResultsMulti, SOURCE_TYPES } from '../lib/search/rrf-fusion';

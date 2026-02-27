@@ -1,9 +1,7 @@
-// ---------------------------------------------------------------
-// TEST: T021 — Cross-Sprint Merge Verification
+// ─── MODULE: Test — Cross-Sprint Integration ───
 // Verifies that Sprint 1 (graph signal activation) and Sprint 2
 // (scoring calibration) changes to shared files are correctly
 // integrated and do not conflict.
-// ---------------------------------------------------------------
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 

@@ -1,10 +1,8 @@
-// ---------------------------------------------------------------
-// TEST: T017 G2 — Intent Weight Pipeline Verification
+// ─── MODULE: Test — G2 Intent Weighting ───
 // Verifies that intent weights are applied correctly (not double-counted)
 // across the two independent weight systems:
 //   System A: Channel fusion weights (adaptive-fusion.ts INTENT_WEIGHT_PROFILES)
 //   System B: Result scoring weights (intent-classifier.ts INTENT_WEIGHT_ADJUSTMENTS)
-// ---------------------------------------------------------------
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import * as intentClassifier from '../lib/search/intent-classifier';

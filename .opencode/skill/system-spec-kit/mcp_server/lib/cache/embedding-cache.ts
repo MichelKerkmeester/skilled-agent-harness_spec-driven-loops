@@ -1,14 +1,9 @@
-// ---------------------------------------------------------------
-// MODULE: Embedding Cache
-// SQLite-backed LRU cache for computed embeddings
-// ---------------------------------------------------------------
+// ─── MODULE: Embedding Cache ───
 
 import { createHash } from 'crypto';
 import type Database from 'better-sqlite3';
 
-/* -------------------------------------------------------------
-   1. INTERFACES
-----------------------------------------------------------------*/
+/* ─── 1. INTERFACES ─── */
 
 interface EmbeddingCacheEntry {
   contentHash: string;
@@ -26,13 +21,13 @@ interface EmbeddingCacheStats {
   newestEntry: string | null;
 }
 
-/* -------------------------------------------------------------
-   2. TABLE INITIALIZATION
-----------------------------------------------------------------*/
+/* ─── 2. TABLE INITIALIZATION ─── */
 
 /**
  * Create the embedding_cache table if it does not exist.
  * Idempotent — safe to call on every startup.
+ *
+ * @param db - better-sqlite3 database instance
  */
 function initEmbeddingCache(db: Database.Database): void {
   db.exec(`
@@ -48,14 +43,17 @@ function initEmbeddingCache(db: Database.Database): void {
   `);
 }
 
-/* -------------------------------------------------------------
-   3. CACHE LOOKUP
-----------------------------------------------------------------*/
+/* ─── 3. CACHE LOOKUP ─── */
 
 /**
  * Look up a cached embedding by content hash and model ID.
  * On hit: updates last_used_at and returns the embedding Buffer.
  * On miss: returns null.
+ *
+ * @param db - better-sqlite3 database instance
+ * @param contentHash - SHA-256 hex digest of the content
+ * @param modelId - Embedding model identifier
+ * @returns Embedding buffer on cache hit, null on miss
  */
 function lookupEmbedding(
   db: Database.Database,
@@ -78,14 +76,18 @@ function lookupEmbedding(
   return row.embedding;
 }
 
-/* -------------------------------------------------------------
-   4. CACHE STORE
-----------------------------------------------------------------*/
+/* ─── 4. CACHE STORE ─── */
 
 /**
  * Store an embedding in the cache.
  * Uses INSERT OR REPLACE so duplicate (content_hash, model_id) pairs
  * are overwritten with the latest embedding.
+ *
+ * @param db - better-sqlite3 database instance
+ * @param contentHash - SHA-256 hex digest of the content
+ * @param modelId - Embedding model identifier
+ * @param embedding - Raw embedding buffer
+ * @param dimensions - Number of embedding dimensions
  */
 function storeEmbedding(
   db: Database.Database,
@@ -101,13 +103,14 @@ function storeEmbedding(
   ) as Database.Statement).run(contentHash, modelId, embedding, dimensions);
 }
 
-/* -------------------------------------------------------------
-   5. LRU EVICTION
-----------------------------------------------------------------*/
+/* ─── 5. LRU EVICTION ─── */
 
 /**
  * Evict cache entries whose last_used_at is older than maxAgeDays.
- * Returns the number of evicted entries.
+ *
+ * @param db - better-sqlite3 database instance
+ * @param maxAgeDays - Maximum age in days before eviction
+ * @returns Number of evicted entries
  */
 function evictOldEntries(db: Database.Database, maxAgeDays: number): number {
   const result = (db.prepare(
@@ -118,12 +121,13 @@ function evictOldEntries(db: Database.Database, maxAgeDays: number): number {
   return (result as { changes: number }).changes;
 }
 
-/* -------------------------------------------------------------
-   6. STATISTICS
-----------------------------------------------------------------*/
+/* ─── 6. STATISTICS ─── */
 
 /**
  * Return aggregate statistics about the embedding cache.
+ *
+ * @param db - better-sqlite3 database instance
+ * @returns Cache statistics including total entries, size, oldest/newest timestamps
  */
 function getCacheStats(db: Database.Database): EmbeddingCacheStats {
   const row = (db.prepare(`
@@ -148,33 +152,32 @@ function getCacheStats(db: Database.Database): EmbeddingCacheStats {
   };
 }
 
-/* -------------------------------------------------------------
-   7. CLEAR
-----------------------------------------------------------------*/
+/* ─── 7. CLEAR ─── */
 
 /**
  * Remove all entries from the embedding cache.
+ *
+ * @param db - better-sqlite3 database instance
  */
 function clearCache(db: Database.Database): void {
   db.exec('DELETE FROM embedding_cache');
 }
 
-/* -------------------------------------------------------------
-   8. CONTENT HASHING
-----------------------------------------------------------------*/
+/* ─── 8. CONTENT HASHING ─── */
 
 /**
  * Compute a SHA-256 hex digest of the given content string.
  * Matches the pattern used elsewhere in the codebase
  * (e.g. memory-parser.ts computeContentHash).
+ *
+ * @param content - Raw content string to hash
+ * @returns SHA-256 hex digest
  */
 function computeContentHash(content: string): string {
   return createHash('sha256').update(content, 'utf-8').digest('hex');
 }
 
-/* -------------------------------------------------------------
-   9. EXPORTS
-----------------------------------------------------------------*/
+/* ─── 9. EXPORTS ─── */
 
 export {
   initEmbeddingCache,

@@ -1,27 +1,17 @@
-// ---------------------------------------------------------------
-// MODULE: Channel Representation (T003a)
-// Post-fusion channel min-representation check.
-// After RRF fusion, ensures every channel that contributed results
-// appears at least once in the top-k window.
-// Feature flag: SPECKIT_CHANNEL_MIN_REP (default: disabled)
-// ---------------------------------------------------------------
+// ─── MODULE: Channel Representation (R2) ───
 
-/* ---------------------------------------------------------------
-   1. CONSTANTS
-   --------------------------------------------------------------- */
+/* ─── 1. CONSTANTS ─── */
 
 /** Minimum similarity / relevance score for a result to qualify for promotion.
- * NOTE: This threshold assumes normalized [0,1] scores. When used with raw RRF
- * scores (~0.01-0.03), results may never qualify. Enable SPECKIT_SCORE_NORMALIZATION
- * alongside SPECKIT_CHANNEL_MIN_REP for correct behavior. */
+ * AI-WHY: 0.2 floor prevents promoting irrelevant results — assumes normalized [0,1] scores.
+ * NOTE: When used with raw RRF scores (~0.01-0.03), results may never qualify.
+ * Enable SPECKIT_SCORE_NORMALIZATION alongside SPECKIT_CHANNEL_MIN_REP for correct behavior. */
 export const QUALITY_FLOOR = 0.2;
 
 /** Env-var name for the feature flag. */
 const FEATURE_FLAG = 'SPECKIT_CHANNEL_MIN_REP';
 
-/* ---------------------------------------------------------------
-   2. INTERFACES
-   --------------------------------------------------------------- */
+/* ─── 2. INTERFACES ─── */
 
 /** A single item that may appear in a top-k result set. */
 interface TopKItem {
@@ -63,22 +53,20 @@ export interface ChannelRepresentationResult {
   channelCounts: Record<string, number>;
 }
 
-/* ---------------------------------------------------------------
-   3. FEATURE FLAG
-   --------------------------------------------------------------- */
+/* ─── 3. FEATURE FLAG ─── */
 
 /**
  * Return true when the channel min-representation feature is enabled.
  * The flag is OFF by default; set SPECKIT_CHANNEL_MIN_REP=true to enable.
+ *
+ * @returns True when SPECKIT_CHANNEL_MIN_REP env var is "true".
  */
 export function isChannelMinRepEnabled(): boolean {
   const raw = process.env[FEATURE_FLAG]?.toLowerCase();
   return raw === 'true';
 }
 
-/* ---------------------------------------------------------------
-   4. CORE FUNCTION
-   --------------------------------------------------------------- */
+/* ─── 4. CORE FUNCTION ─── */
 
 /**
  * Analyse a post-fusion top-k result set and, when the feature flag is
@@ -154,7 +142,8 @@ export function analyzeChannelRepresentation(
     };
   }
 
-  // For each under-represented channel find its best result above QUALITY_FLOOR.
+  // AI-WHY: Padding appends the best item from each missing channel to guarantee
+  // every contributing channel has at least one representative in the result set.
   const promoted: PromotedItem[] = [];
   const enhancedTopK: Array<TopKItem> = [...topK];
 
@@ -190,13 +179,14 @@ export function analyzeChannelRepresentation(
   };
 }
 
-/* ---------------------------------------------------------------
-   5. HELPERS
-   --------------------------------------------------------------- */
+/* ─── 5. HELPERS ─── */
 
 /**
  * Count how many items in an array belong to each channel.
  * Uses the `source` field as the channel identifier.
+ *
+ * @param items - Array of TopKItem results to tally.
+ * @returns Record mapping channel name to item count.
  */
 function computeChannelCounts(items: Array<TopKItem>): Record<string, number> {
   const counts: Record<string, number> = {};

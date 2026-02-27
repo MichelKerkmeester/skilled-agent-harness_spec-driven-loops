@@ -1,7 +1,5 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T008 — BM25 Baseline Runner
-// ---------------------------------------------------------------
+// ─── MODULE: Test — BM25 Baseline ───
 //
 // Validates:
 //   T008.1  — evaluateContingency: PAUSE for MRR >= 0.80
@@ -16,7 +14,6 @@
 //   T008.10 — runBM25Baseline: skipHardNegatives reduces query count
 //   T008.11 — runBM25Baseline: returns well-structured BM25BaselineResult
 //   T008.12 — runBM25Baseline: disables non-BM25 channels (only calls searchFn)
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as path from 'path';

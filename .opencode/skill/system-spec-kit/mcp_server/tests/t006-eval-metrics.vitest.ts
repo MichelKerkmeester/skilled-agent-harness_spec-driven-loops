@@ -1,9 +1,7 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: Eval Metrics (T006a-e)
+// ─── MODULE: Test — Eval Metrics ───
 // 9 evaluation metrics: 4 core + 5 diagnostic.
 // All functions are pure computation — no DB access.
-// ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
 import {

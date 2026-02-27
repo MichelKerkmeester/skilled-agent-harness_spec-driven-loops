@@ -1,13 +1,11 @@
-// ---------------------------------------------------------------
-// TEST: T033 — R15 (Query Router) + R2 (Channel Representation) Interaction
-// Sprint 3 verification: ensures that the R15 complexity-based
-// channel routing does NOT violate R2 channel-minimum representation.
+// ─── MODULE: Test — R15-R2 Interaction ───
+// Ensures that R15 complexity-based channel routing does NOT violate
+// R2 channel-minimum representation.
 //
 // Key invariants:
 // 1. R15 always routes to >= 2 channels (MIN_CHANNELS enforcement)
 // 2. R2 can enforce diversity within whatever channel subset R15 provides
 // 3. The two modules compose correctly in the pipeline
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

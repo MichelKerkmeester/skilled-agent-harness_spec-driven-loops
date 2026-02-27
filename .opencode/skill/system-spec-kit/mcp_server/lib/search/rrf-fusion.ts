@@ -1,12 +1,8 @@
-// ---------------------------------------------------------------
-// MODULE: RRF Fusion
+// ─── MODULE: RRF Fusion (Reciprocal Rank Fusion) ───
 // Reciprocal Rank Fusion for combining search results
 // P3-11: TypeScript source (previously orphaned .js only)
-// ---------------------------------------------------------------
 
-/* ---------------------------------------------------------------
-   1. CONSTANTS
-   --------------------------------------------------------------- */
+/* ─── 1. CONSTANTS ─── */
 
 const SOURCE_TYPES = {
   VECTOR: 'vector',
@@ -17,16 +13,19 @@ const SOURCE_TYPES = {
   KEYWORD: 'keyword',
 } as const;
 
+// AI-WHY: K=60 is the standard RRF constant from Cormack et al. (2009); higher K
+// flattens rank differences, reducing the dominance of top-1 results. 60 balances
+// discrimination vs. stability for our typical 10-50 candidate lists.
 const DEFAULT_K = 60;
 const CONVERGENCE_BONUS = 0.10;
+// AI-WHY: Graph channel gets 1.5x boost when no explicit weight is supplied because
+// graph edges encode curated human decisions (causal links) that are high-signal.
 const GRAPH_WEIGHT_BOOST = 1.5;
 
 /** Minimum character length for a query term to be considered for term matching. */
 const MIN_QUERY_TERM_LENGTH = 2;
 
-/* ---------------------------------------------------------------
-   2. INTERFACES
-   --------------------------------------------------------------- */
+/* ─── 2. INTERFACES ─── */
 
 /** A single item from a ranked retrieval list, identified by its unique ID. */
 interface RrfItem {
@@ -74,12 +73,16 @@ interface SearchFunction {
   weight?: number;
 }
 
-/* ---------------------------------------------------------------
-   3. CORE FUNCTIONS
-   --------------------------------------------------------------- */
+/* ─── 3. CORE FUNCTIONS ─── */
 
 /**
  * Fuse two ranked result lists using Reciprocal Rank Fusion.
+ * @param listA - First ranked result list.
+ * @param listB - Second ranked result list.
+ * @param k - RRF smoothing constant (default 60).
+ * @param sourceA - Source label for listA (default 'vector').
+ * @param sourceB - Source label for listB (default 'fts').
+ * @returns Fused results sorted by descending RRF score.
  */
 function fuseResults(
   listA: RrfItem[],
@@ -136,6 +139,9 @@ function fuseResults(
 
 /**
  * Fuse multiple ranked result lists with optional source weights.
+ * @param lists - Array of ranked lists, each with a source label and optional weight.
+ * @param options - Optional k value, convergence bonus, and graph weight boost overrides.
+ * @returns Fused results sorted by descending RRF score, optionally normalized to [0,1].
  */
 function fuseResultsMulti(
   lists: RankedList[],
@@ -149,7 +155,9 @@ function fuseResultsMulti(
   const scoreMap = new Map<number | string, FusionResult>();
 
   for (const list of lists) {
-    // Use ?? so explicit weight=0 is honoured; graph source gets a boost when no weight is given
+    // AI-WHY: Use ?? so explicit weight=0 is honoured (|| would treat 0 as falsy).
+    // Graph source gets GRAPH_WEIGHT_BOOST when no weight is given because curated
+    // causal edges are higher-signal than unweighted lexical/vector channels.
     const weight = list.weight ?? (list.source === SOURCE_TYPES.GRAPH ? graphWeightBoost : 1.0);
     for (let i = 0; i < list.results.length; i++) {
       const item = list.results[i];
@@ -193,6 +201,10 @@ function fuseResultsMulti(
 
 /**
  * Advanced score fusion with original term match counting.
+ * @param results - Pre-fused results to augment with term-match bonuses.
+ * @param query - Original query string for term extraction.
+ * @param options - Optional termMatchBonus multiplier (default 0.05 per match).
+ * @returns Augmented results with termMatches count, re-sorted by adjusted RRF score.
  */
 function fuseScoresAdvanced(
   results: FusionResult[],
@@ -215,6 +227,9 @@ function fuseScoresAdvanced(
 
 /**
  * Count how many query terms match in the result's text fields.
+ * @param result - A search result record with title, trigger_phrases, and file_path fields.
+ * @param queryTerms - Lowercased query terms to match against.
+ * @returns Number of query terms found in the result's searchable text.
  */
 function countOriginalTermMatches(
   result: Record<string, unknown>,
@@ -237,6 +252,9 @@ function countOriginalTermMatches(
 
 /**
  * Unified search that combines vector, FTS, and BM25 results via RRF.
+ * @param searchFunctions - Array of search descriptors with source label, async function, and optional weight.
+ * @param options - Fusion configuration (k, convergence bonus, graph weight boost).
+ * @returns Fused results from all successful search channels.
  */
 async function unifiedSearch(
   searchFunctions: SearchFunction[],
@@ -342,6 +360,7 @@ function fuseResultsCrossVariant(
 
 /**
  * Check if RRF fusion is enabled.
+ * @returns True unless SPECKIT_RRF env var is explicitly set to 'false'.
  */
 function isRrfEnabled(): boolean {
   return process.env.SPECKIT_RRF !== 'false';
@@ -349,7 +368,10 @@ function isRrfEnabled(): boolean {
 
 /**
  * Check if score normalization is enabled.
- * Gated behind SPECKIT_SCORE_NORMALIZATION env var (default: disabled).
+ * AI-WHY: Gated behind SPECKIT_SCORE_NORMALIZATION env var (default: disabled) because
+ * normalization can distort relative RRF ranking for downstream consumers that expect
+ * raw reciprocal-rank sums. Enabled only when eval infrastructure needs [0,1] comparisons.
+ * @returns True only when SPECKIT_SCORE_NORMALIZATION is explicitly 'true'.
  */
 function isScoreNormalizationEnabled(): boolean {
   return process.env.SPECKIT_SCORE_NORMALIZATION === 'true';
@@ -362,6 +384,8 @@ function isScoreNormalizationEnabled(): boolean {
  * - If all scores are equal, they normalize to 1.0.
  * - If a single result, it normalizes to 1.0.
  * - No-op when the array is empty.
+ *
+ * @param results - Array of fusion results to normalize in place.
  */
 function normalizeRrfScores(results: FusionResult[]): void {
   if (results.length === 0) return;
@@ -383,9 +407,7 @@ function normalizeRrfScores(results: FusionResult[]): void {
   }
 }
 
-/* ---------------------------------------------------------------
-   4. EXPORTS
-   --------------------------------------------------------------- */
+/* ─── 4. EXPORTS ─── */
 
 export {
   SOURCE_TYPES,

@@ -1,13 +1,9 @@
-// ---------------------------------------------------------------
-// MODULE: Co-Activation
+// ─── MODULE: Co-Activation ───
 // Spreading activation for related memory retrieval
-// ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
 
-/* -------------------------------------------------------------
-   1. CONFIGURATION
-----------------------------------------------------------------*/
+/* ─── 1. CONFIGURATION ─── */
 
 /**
  * Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set.
@@ -29,9 +25,7 @@ const CO_ACTIVATION_CONFIG = {
   maxSpreadResults: 20,
 } as const;
 
-/* -------------------------------------------------------------
-   2. INTERFACES
-----------------------------------------------------------------*/
+/* ─── 2. INTERFACES ─── */
 
 interface CoActivationEvent {
   timestamp: string;
@@ -56,9 +50,7 @@ interface SpreadResult {
   path: number[];
 }
 
-/* -------------------------------------------------------------
-   3. MODULE STATE
-----------------------------------------------------------------*/
+/* ─── 3. MODULE STATE ─── */
 
 let db: Database.Database | null = null;
 
@@ -79,9 +71,7 @@ function clearRelatedCache(): void {
   RELATED_CACHE.clear();
 }
 
-/* -------------------------------------------------------------
-   4. INITIALIZATION
-----------------------------------------------------------------*/
+/* ─── 4. INITIALIZATION ─── */
 
 function init(database: Database.Database): void {
   db = database;
@@ -92,9 +82,7 @@ function isEnabled(): boolean {
   return CO_ACTIVATION_CONFIG.enabled;
 }
 
-/* -------------------------------------------------------------
-   5. CORE FUNCTIONS
-----------------------------------------------------------------*/
+/* ─── 5. CORE FUNCTIONS ─── */
 
 /**
  * Boost a search result's score based on co-activation with related memories.
@@ -109,7 +97,7 @@ function boostScore(
   }
 
   const rawBoost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
-  // R17 fan-effect divisor: sqrt scaling prevents hub nodes from dominating results
+  // AI-WHY: R17 fan-effect — sqrt divisor prevents hub nodes from dominating; sublinear scaling keeps high-connectivity nodes in check
   const fanDivisor = Math.sqrt(Math.max(1, relatedCount));
   const boost = Math.max(0, rawBoost / fanDivisor);
   return baseScore + boost;
@@ -149,7 +137,7 @@ function getRelatedMemories(
     let related: Array<{ id: number; similarity: number }>;
     try {
       related = JSON.parse(memory.related_memories);
-    } catch {
+    } catch (_err: unknown) { // AI-GUARD: Malformed JSON in related_memories — return empty
       return [];
     }
 
@@ -170,7 +158,7 @@ function getRelatedMemories(
             similarity: rel.similarity,
           });
         }
-      } catch {
+      } catch (_err: unknown) { // AI-GUARD: Individual relation lookup failure — skip
         // Skip individual failures
       }
     }
@@ -284,7 +272,7 @@ function getCausalNeighbors(
             similarity: Math.round(row.strength * 100),
           });
         }
-      } catch {
+      } catch (_err: unknown) { // AI-GUARD: Causal neighbor lookup failure — skip
         // Skip individual failures
       }
     }
@@ -392,9 +380,7 @@ function logCoActivationEvent(event: CoActivationEvent): void {
   }
 }
 
-/* -------------------------------------------------------------
-   6. EXPORTS
-----------------------------------------------------------------*/
+/* ─── 6. EXPORTS ─── */
 
 export {
   CO_ACTIVATION_CONFIG,

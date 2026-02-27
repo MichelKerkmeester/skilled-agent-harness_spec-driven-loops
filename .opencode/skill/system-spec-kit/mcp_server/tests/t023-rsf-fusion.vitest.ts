@@ -1,7 +1,6 @@
-// ---------------------------------------------------------------
-// TEST: RSF Fusion (Relative Score Fusion) — Single-Pair Variant
+// ─── MODULE: Test — RSF Fusion ───
+// Relative Score Fusion — Single-Pair Variant
 // Sprint 3, Task T002a — Hybrid RAG Fusion Refinement
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import {

@@ -1,7 +1,5 @@
-// ---------------------------------------------------------------
-// MODULE: Hybrid Search
+// ─── MODULE: Hybrid Search ───
 // Combines vector, FTS, and BM25 search with fallback
-// ---------------------------------------------------------------
 
 // Local
 import { getIndex } from './bm25-index';
@@ -20,9 +18,7 @@ import type { SpreadResult } from '../cache/cognitive/co-activation';
 import type { MMRCandidate } from './mmr-reranker';
 import type { FusionResult } from './rrf-fusion';
 
-/* ---------------------------------------------------------------
-   1. INTERFACES
-   --------------------------------------------------------------- */
+/* ─── 1. INTERFACES ─── */
 
 type VectorSearchFn = (
   embedding: Float32Array | number[],
@@ -79,9 +75,7 @@ function toHybridResult(result: FusionResult): HybridSearchResult {
   };
 }
 
-/* ---------------------------------------------------------------
-   2. MODULE STATE
-   --------------------------------------------------------------- */
+/* ─── 2. MODULE STATE ─── */
 
 /** Default result limit when none is specified by the caller. */
 const DEFAULT_LIMIT = 20;
@@ -102,9 +96,7 @@ let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
 let graphSearchFn: GraphSearchFn | null = null;
 
-/* ---------------------------------------------------------------
-   2b. GRAPH CHANNEL METRICS (T008)
-   --------------------------------------------------------------- */
+/* ─── 2b. GRAPH CHANNEL METRICS (T008) ─── */
 
 interface GraphChannelMetrics {
   totalQueries: number;
@@ -141,11 +133,14 @@ function resetGraphMetrics(): void {
   graphMetrics.multiSourceResults = 0;
 }
 
-/* ---------------------------------------------------------------
-   3. INITIALIZATION
-   --------------------------------------------------------------- */
+/* ─── 3. INITIALIZATION ─── */
 
-/** Initialize hybrid search with database, vector search, and optional graph search dependencies. */
+/**
+ * Initialize hybrid search with database, vector search, and optional graph search dependencies.
+ * @param database - The better-sqlite3 database instance for FTS and graph queries.
+ * @param vectorFn - Optional vector search function for semantic similarity.
+ * @param graphFn - Optional graph search function for causal/structural retrieval.
+ */
 function init(
   database: Database.Database,
   vectorFn: VectorSearchFn | null = null,
@@ -156,11 +151,14 @@ function init(
   graphSearchFn = graphFn;
 }
 
-/* ---------------------------------------------------------------
-   4. BM25 SEARCH
-   --------------------------------------------------------------- */
+/* ─── 4. BM25 SEARCH ─── */
 
-/** Search the BM25 index with optional spec folder filtering. */
+/**
+ * Search the BM25 index with optional spec folder filtering.
+ * @param query - The search query string.
+ * @param options - Optional limit and specFolder filter.
+ * @returns Array of BM25-scored results tagged with source 'bm25'.
+ */
 function bm25Search(
   query: string,
   options: { limit?: number; specFolder?: string } = {}
@@ -189,21 +187,26 @@ function bm25Search(
   }
 }
 
-/** Check whether the BM25 index is populated and available for search. */
+/**
+ * Check whether the BM25 index is populated and available for search.
+ * @returns True if the BM25 index exists and contains at least one document.
+ */
 function isBm25Available(): boolean {
   try {
     const index = getIndex();
     return index.getStats().documentCount > 0;
-  } catch {
+  } catch (_err: unknown) {
+    // AI-GUARD: Swallow index-not-initialized errors; caller treats absence as unavailable
     return false;
   }
 }
 
-/* ---------------------------------------------------------------
-   5. FTS SEARCH
-   --------------------------------------------------------------- */
+/* ─── 5. FTS SEARCH ─── */
 
-/** Check whether the FTS5 full-text search table exists in the database. */
+/**
+ * Check whether the FTS5 full-text search table exists in the database.
+ * @returns True if the memory_fts table exists in the connected database.
+ */
 function isFtsAvailable(): boolean {
   if (!db) return false;
 
@@ -212,12 +215,18 @@ function isFtsAvailable(): boolean {
       SELECT name FROM sqlite_master WHERE type='table' AND name='memory_fts'
     `) as Database.Statement).get() as { name: string } | undefined;
     return !!result;
-  } catch {
+  } catch (_err: unknown) {
+    // AI-GUARD: Swallow DB errors; caller treats absence as unavailable
     return false;
   }
 }
 
-/** Run FTS5 full-text search with weighted BM25 scoring and optional spec folder filtering. */
+/**
+ * Run FTS5 full-text search with weighted BM25 scoring and optional spec folder filtering.
+ * @param query - The search query string.
+ * @param options - Optional limit, specFolder filter, and includeArchived flag.
+ * @returns Array of FTS-scored results tagged with source 'fts'.
+ */
 function ftsSearch(
   query: string,
   options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
@@ -246,11 +255,14 @@ function ftsSearch(
   }
 }
 
-/* ---------------------------------------------------------------
-   6. COMBINED LEXICAL SEARCH
-   --------------------------------------------------------------- */
+/* ─── 6. COMBINED LEXICAL SEARCH ─── */
 
-/** Merge FTS and BM25 search results, deduplicating by ID and preferring FTS scores. */
+/**
+ * Merge FTS and BM25 search results, deduplicating by ID and preferring FTS scores.
+ * @param query - The search query string.
+ * @param options - Optional limit, specFolder filter, and includeArchived flag.
+ * @returns Deduplicated array of merged results sorted by score descending.
+ */
 function combinedLexicalSearch(
   query: string,
   options: { limit?: number; specFolder?: string; includeArchived?: boolean } = {}
@@ -276,9 +288,7 @@ function combinedLexicalSearch(
     .slice(0, options.limit || DEFAULT_LIMIT);
 }
 
-/* ---------------------------------------------------------------
-   7. HYBRID SEARCH
-   --------------------------------------------------------------- */
+/* ─── 7. HYBRID SEARCH ─── */
 
 /**
  * Run multi-channel hybrid search combining vector, FTS, BM25, and graph results with per-source normalization.
@@ -445,20 +455,24 @@ async function hybridSearchEnhanced(
           source: 'vector',
         }));
         lists.push({ source: 'vector', results: semanticResults, weight: 1.0 });
-      } catch {
-        // Non-critical — vector channel failure does not block pipeline
+      } catch (_err: unknown) {
+        // AI-GUARD: Non-critical — vector channel failure does not block pipeline
       }
     }
 
     // FTS channel (internal error handling in ftsSearch)
     ftsChannelResults = ftsSearch(query, options);
     if (ftsChannelResults.length > 0) {
+      // AI-WHY: FTS weight 0.8 < vector 1.0 because FTS lacks semantic understanding
+      // but provides strong exact-match signal; weights are later overridden by adaptive fusion.
       lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.8 });
     }
 
     // BM25 channel (internal error handling in bm25Search)
     bm25ChannelResults = bm25Search(query, options);
     if (bm25ChannelResults.length > 0) {
+      // AI-WHY: BM25 weight 0.6 is lowest lexical channel — in-memory BM25 index
+      // has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
       lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
     }
 
@@ -479,11 +493,14 @@ async function hybridSearchEnhanced(
             id: r.id as number | string,
           })), weight: 0.5 });
         }
-      } catch {
-        // Non-critical — graph channel failure does not block pipeline
+      } catch (_err: unknown) {
+        // AI-GUARD: Non-critical — graph channel failure does not block pipeline
       }
     }
 
+    // AI-WHY: Degree channel is gated behind SPECKIT_DEGREE_BOOST flag because graph-degree
+    // scoring is experimental — it re-ranks based on causal-edge connectivity, which can
+    // over-promote hub memories in densely-linked graphs.
     // Degree channel (T002: 5th RRF channel behind SPECKIT_DEGREE_BOOST flag)
     if (db && process.env.SPECKIT_DEGREE_BOOST === 'true') {
       try {
@@ -520,8 +537,8 @@ async function hybridSearchEnhanced(
             });
           }
         }
-      } catch {
-        // Non-critical — degree channel failure does not block pipeline
+      } catch (_err: unknown) {
+        // AI-GUARD: Non-critical — degree channel failure does not block pipeline
       }
     }
 
@@ -645,8 +662,8 @@ async function hybridSearchEnhanced(
           // P1-2 FIX: Re-sort after co-activation boost to ensure boosted results
           // are promoted to their correct position in the ranking
           reranked.sort((a, b) => ((b.score as number) ?? 0) - ((a.score as number) ?? 0));
-        } catch {
-          // Non-critical enrichment — ignore failures
+        } catch (_err: unknown) {
+          // AI-GUARD: Non-critical enrichment — co-activation failure does not affect core ranking
         }
       }
 
@@ -664,12 +681,19 @@ async function hybridSearchEnhanced(
  * Search with automatic fallback chain.
  * C138-P0: Two-pass adaptive fallback — if primary scatter at min_similarity=0.3
  * returns 0 results, retry at 0.17 with metadata.fallbackRetry=true.
+ *
+ * @param query - The search query string.
+ * @param embedding - Optional embedding vector for semantic search.
+ * @param options - Hybrid search configuration options.
+ * @returns Results from the first non-empty stage: enhanced → FTS → BM25.
  */
 async function searchWithFallback(
   query: string,
   embedding: Float32Array | number[] | null,
   options: HybridSearchOptions = {}
 ): Promise<HybridSearchResult[]> {
+  // AI-WHY: Primary 0.3 filters noise; fallback 0.17 widens recall for sparse corpora
+  // where no result exceeds the primary threshold — chosen empirically via eval.
   const PRIMARY_THRESHOLD = 0.3;
   const FALLBACK_THRESHOLD = 0.17;
 
@@ -704,9 +728,7 @@ async function searchWithFallback(
   return [];
 }
 
-/* ---------------------------------------------------------------
-   7b. PRE-FLIGHT TOKEN BUDGET VALIDATION (T007)
-   --------------------------------------------------------------- */
+/* ─── 7b. PRE-FLIGHT TOKEN BUDGET VALIDATION (T007) ─── */
 
 /** Default token budget — configurable via SPECKIT_TOKEN_BUDGET env var. */
 const DEFAULT_TOKEN_BUDGET = 2000;
@@ -733,6 +755,8 @@ interface TruncateToBudgetResult {
 
 /**
  * Estimate token count for a text string using a chars/4 heuristic.
+ * @param text - The text to estimate tokens for.
+ * @returns Approximate token count (ceiling of length / 4).
  */
 function estimateTokenCount(text: string): number {
   if (!text) return 0;
@@ -741,6 +765,8 @@ function estimateTokenCount(text: string): number {
 
 /**
  * Estimate the token footprint of a single HybridSearchResult.
+ * @param result - The search result to measure.
+ * @returns Approximate token count based on serialized key-value lengths.
  */
 function estimateResultTokens(result: HybridSearchResult): number {
   let chars = 0;
@@ -760,6 +786,7 @@ function estimateResultTokens(result: HybridSearchResult): number {
 /**
  * Read the configured token budget from SPECKIT_TOKEN_BUDGET env var,
  * falling back to DEFAULT_TOKEN_BUDGET (2000).
+ * @returns The effective token budget for result truncation.
  */
 function getTokenBudget(): number {
   const envVal = process.env['SPECKIT_TOKEN_BUDGET'];
@@ -791,6 +818,10 @@ function createSummaryFallback(result: HybridSearchResult, budget: number): Hybr
 
 /**
  * Truncate a result set to fit within a token budget using greedy highest-scoring-first strategy.
+ * @param results - The full result set to truncate.
+ * @param budget - Optional token budget override (defaults to SPECKIT_TOKEN_BUDGET env / 2000).
+ * @param options - Optional includeContent flag and queryId for overflow logging.
+ * @returns Object with truncated results, truncation flag, and optional overflow log entry.
  */
 function truncateToBudget(
   results: HybridSearchResult[],
@@ -861,9 +892,7 @@ function truncateToBudget(
   return { results: accepted, truncated: true, overflow };
 }
 
-/* ---------------------------------------------------------------
-   8. EXPORTS
-   --------------------------------------------------------------- */
+/* ─── 8. EXPORTS ─── */
 
 export {
   init,

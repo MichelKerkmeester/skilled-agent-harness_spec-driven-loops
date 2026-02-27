@@ -1,5 +1,5 @@
-// ---------------------------------------------------------------
-// TEST: T028 — Channel Enforcement + Precision Verification (T003b + T003c)
+// ─── MODULE: Test — Channel Enforcement ───
+// T028 — Channel Enforcement + Precision Verification (T003b + T003c)
 //
 // Coverage:
 //   T003b — Enforcement wrapper (enforceChannelRepresentation)
@@ -25,7 +25,6 @@
 //     T16: topK larger than results → full list inspected
 //     T17: promoted items carry original extra fields
 //     T18: channelCounts in EnforcementResult cover full result list
-// ---------------------------------------------------------------
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {

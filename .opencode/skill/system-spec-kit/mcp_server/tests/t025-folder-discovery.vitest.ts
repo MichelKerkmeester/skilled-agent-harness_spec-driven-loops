@@ -1,9 +1,7 @@
-// ---------------------------------------------------------------
-// TEST: Description-Based Spec Folder Discovery (PI-B3 / T009)
+// ─── MODULE: Test — Folder Discovery ───
 // Tests: extractDescription, extractKeywords, findRelevantFolders,
 //        generateFolderDescriptions, loadDescriptionCache,
 //        saveDescriptionCache
-// ---------------------------------------------------------------
 
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import * as fs from 'node:fs';

@@ -1,11 +1,8 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: Consumption Logger (T004 — Agent UX Instrumentation)
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Consumption Logger ───
 // Tests for lib/telemetry/consumption-logger.ts
 // Covers: table creation, event logging, stats aggregation,
 //         pattern detection, fail-safe behavior, latency tracking.
-// ---------------------------------------------------------------
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';

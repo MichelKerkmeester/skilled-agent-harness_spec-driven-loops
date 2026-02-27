@@ -1,7 +1,5 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T010 — Scoring Observability (N4 + TM-01 Logging)
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Scoring Observability ───
 // Tests:
 //   1. Table creation (initScoringObservability)
 //   2. Sampling rate (~5% over 1000 calls)
@@ -10,7 +8,6 @@
 //   5. Stats aggregation
 //   6. Fail-safe behavior (logging errors don't affect scoring)
 //   7. No scoring behavior change when observability is active
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import Database from 'better-sqlite3';

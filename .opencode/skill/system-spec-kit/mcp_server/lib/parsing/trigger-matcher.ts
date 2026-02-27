@@ -1,13 +1,9 @@
-// ---------------------------------------------------------------
-// MODULE: Trigger Matcher
-// ---------------------------------------------------------------
+// ─── MODULE: Trigger Matcher ───
 
 import * as vectorIndex from '../search/vector-index';
 import { escapeRegex } from '../utils/path-security';
 
-/* ---------------------------------------------------------------
-   1. TYPES
-   --------------------------------------------------------------- */
+/* ─── 1. TYPES ─── */
 
 /** Signal category detected in user prompt */
 export type SignalCategory = 'correction' | 'preference' | 'neutral';
@@ -95,9 +91,7 @@ export interface TriggerMatcherConfig {
   MAX_REGEX_CACHE_SIZE: number;
 }
 
-/* ---------------------------------------------------------------
-   2. CONFIGURATION
-   --------------------------------------------------------------- */
+/* ─── 2. CONFIGURATION ─── */
 
 export const CONFIG: TriggerMatcherConfig = {
   CACHE_TTL_MS: 60000,
@@ -109,9 +103,7 @@ export const CONFIG: TriggerMatcherConfig = {
   MAX_REGEX_CACHE_SIZE: 100,
 };
 
-/* ---------------------------------------------------------------
-   3. EXECUTION TIME LOGGING
-   --------------------------------------------------------------- */
+/* ─── 3. EXECUTION TIME LOGGING ─── */
 
 /** Log hook execution time for monitoring and debugging */
 export function logExecutionTime(operation: string, durationMs: number, details: Record<string, unknown> = {}): ExecutionLogEntry | undefined {
@@ -138,9 +130,7 @@ export function logExecutionTime(operation: string, durationMs: number, details:
   return logEntry;
 }
 
-/* ---------------------------------------------------------------
-   4. TRIGGER CACHE
-   --------------------------------------------------------------- */
+/* ─── 4. TRIGGER CACHE ─── */
 
 // In-memory cache of trigger phrases for fast matching
 let triggerCache: TriggerCacheEntry[] | null = null;
@@ -149,6 +139,7 @@ let cacheTimestamp: number = 0;
 // T015: LRU cache for regex objects to prevent memory leaks
 const regexLruCache: Map<string, RegExp> = new Map();
 
+/** Get or create a cached regex for a trigger phrase. @param phrase - The trigger phrase @returns Compiled RegExp */
 export function getCachedRegex(phrase: string): RegExp {
   // Check if already in cache
   if (regexLruCache.has(phrase)) {
@@ -159,7 +150,7 @@ export function getCachedRegex(phrase: string): RegExp {
     return regex;
   }
 
-  // BUG-026 FIX: Unicode-aware word boundary
+  // AI-WHY: Unicode-aware word boundary avoids false matches on accented characters (BUG-026 fix)
   const escaped = escapeRegex(phrase);
   const regex = new RegExp(
     `(?:^|[^a-zA-Z0-9\u00C0-\u00FF])${escaped}(?:[^a-zA-Z0-9\u00C0-\u00FF]|$)`,
@@ -221,8 +212,8 @@ export function loadTriggerCache(): TriggerCacheEntry[] {
       let phrases: unknown;
       try {
         phrases = JSON.parse(row.trigger_phrases);
-      } catch {
-        continue; // Skip invalid JSON
+      } catch (_err: unknown) { // AI-GUARD: Malformed JSON in trigger_phrases — skip row
+        continue;
       }
 
       if (!Array.isArray(phrases)) {
@@ -274,9 +265,7 @@ export function getCacheStats(): CacheStats {
   };
 }
 
-/* ---------------------------------------------------------------
-   5. STRING MATCHING
-   --------------------------------------------------------------- */
+/* ─── 5. STRING MATCHING ─── */
 
 /** Normalize string for Unicode-safe comparison */
 export function normalizeUnicode(str: string, stripAccents: boolean = false): string {
@@ -314,9 +303,7 @@ export function matchPhraseWithBoundary(text: string, phrase: string, precompile
   return regex.test(text);
 }
 
-/* ---------------------------------------------------------------
-   6. SIGNAL VOCABULARY DETECTION (SPECKIT_SIGNAL_VOCAB)
-   --------------------------------------------------------------- */
+/* ─── 6. SIGNAL VOCABULARY DETECTION (SPECKIT_SIGNAL_VOCAB) ─── */
 
 /** Keywords for CORRECTION signals — user is correcting a prior statement */
 const CORRECTION_KEYWORDS: string[] = [
@@ -340,6 +327,7 @@ const PREFERENCE_KEYWORDS: string[] = [
   'please use',
 ];
 
+// AI-WHY: Correction signals (0.2) weighted higher than preferences (0.1) — corrections indicate stronger search intent
 /** Boost values per signal category */
 const SIGNAL_BOOSTS: Record<Exclude<SignalCategory, 'neutral'>, number> = {
   correction: 0.2,
@@ -410,9 +398,7 @@ export function applySignalBoosts(matches: TriggerMatch[], signals: SignalDetect
   }));
 }
 
-/* ---------------------------------------------------------------
-   7. MAIN MATCHING FUNCTION
-   --------------------------------------------------------------- */
+/* ─── 7. MAIN MATCHING FUNCTION ─── */
 
 /** Match user prompt against trigger phrases using exact string matching */
 export function matchTriggerPhrases(userPrompt: string, limit: number = CONFIG.DEFAULT_LIMIT): TriggerMatch[] {
@@ -548,9 +534,7 @@ export function refreshTriggerCache(): TriggerCacheEntry[] {
   return loadTriggerCache();
 }
 
-/* ---------------------------------------------------------------
-   8. MODULE EXPORTS (CommonJS compatibility)
-   --------------------------------------------------------------- */
+/* ─── 8. MODULE EXPORTS (CommonJS compatibility) ─── */
 
 module.exports = {
   matchTriggerPhrases,

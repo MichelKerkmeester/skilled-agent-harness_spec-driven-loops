@@ -1,9 +1,7 @@
-// ---------------------------------------------------------------
-// TEST: T020 — Classification-Based Decay (TM-03)
+// ─── MODULE: Test — Classification Decay (TM-03) ───
 // Tests for CONTEXT_TYPE_STABILITY_MULTIPLIER,
 // IMPORTANCE_TIER_STABILITY_MULTIPLIER, getClassificationDecayMultiplier,
 // applyClassificationDecay, and the SPECKIT_CLASSIFICATION_DECAY feature flag.
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

@@ -1,7 +1,5 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: Embedding Cache (T015)
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Embedding Cache ───
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';

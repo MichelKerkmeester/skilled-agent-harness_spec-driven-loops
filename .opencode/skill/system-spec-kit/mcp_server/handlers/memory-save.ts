@@ -1,10 +1,6 @@
-// ---------------------------------------------------------------
-// MODULE: Memory Save
-// ---------------------------------------------------------------
+// ─── MODULE: Memory Save Handler ───
 
-/* ---------------------------------------------------------------
-   1. DEPENDENCIES
---------------------------------------------------------------- */
+/* ─── 1. DEPENDENCIES ─── */
 
 // Node built-ins
 import fs from 'fs';
@@ -67,9 +63,7 @@ async function withSpecFolderLock<T>(specFolder: string, fn: () => Promise<T>): 
   }
 }
 
-/* ---------------------------------------------------------------
-   2. TYPES
---------------------------------------------------------------- */
+/* ─── 2. TYPES ─── */
 
 interface ParsedMemory {
   specFolder: string;
@@ -178,9 +172,7 @@ interface SaveArgs {
   asyncEmbedding?: boolean; // T306: When true, embedding generation is deferred (non-blocking)
 }
 
-/* ---------------------------------------------------------------
-   3. SQL HELPER FUNCTIONS
---------------------------------------------------------------- */
+/* ─── 3. SQL HELPER FUNCTIONS ─── */
 
 /** Escape special SQL LIKE pattern characters (% and _) for safe queries */
 function escapeLikePattern(str: string): string {
@@ -190,9 +182,7 @@ function escapeLikePattern(str: string): string {
   return str.replace(/%/g, '\\%').replace(/_/g, '\\_');
 }
 
-/* ---------------------------------------------------------------
-   4. PE GATING HELPER FUNCTIONS
---------------------------------------------------------------- */
+/* ─── 4. PE GATING HELPER FUNCTIONS ─── */
 
 /**
  * Calculate importance weight based on file path and document type.
@@ -454,9 +444,7 @@ function logPeDecision(decision: PeDecision, contentHash: string, specFolder: st
   }
 }
 
-/* ---------------------------------------------------------------
-   5. CAUSAL LINKS PROCESSING
---------------------------------------------------------------- */
+/* ─── 5. CAUSAL LINKS PROCESSING ─── */
 
 const CAUSAL_LINK_MAPPINGS: Record<string, CausalLinkMapping> = {
   caused_by: { relation: causalEdges.RELATION_TYPES.CAUSED, reverse: true },
@@ -587,9 +575,7 @@ function processCausalLinks(database: BetterSqlite3.Database, memoryId: number, 
   return result;
 }
 
-/* ---------------------------------------------------------------
-   6. SPEC LEVEL DETECTION (Spec 126)
---------------------------------------------------------------- */
+/* ─── 6. SPEC LEVEL DETECTION (Spec 126) ─── */
 
 /**
  * Detect spec documentation level for a file by checking its parent spec.md.
@@ -626,14 +612,13 @@ function detectSpecLevelFromParsed(filePath: string): number | null {
     if (siblings.includes('decision-record.md')) return 3;
     if (siblings.includes('checklist.md')) return 2;
     return 1;
-  } catch {
+  } catch (_err: unknown) {
+    // AI-GUARD: Spec level detection is best-effort; null signals unknown level to caller
     return null;
   }
 }
 
-/* ---------------------------------------------------------------
-   7. CHUNKED INDEXING FOR LARGE FILES
---------------------------------------------------------------- */
+/* ─── 7. CHUNKED INDEXING FOR LARGE FILES ─── */
 
 /**
  * Index a large memory file by splitting it into chunks.
@@ -801,7 +786,8 @@ async function indexChunkedMemoryFile(
     const chunkTitle = `${parsed.title || 'Untitled'} [chunk ${i + 1}/${chunkResult.chunks.length}]`;
 
     try {
-      // Generate embedding for this chunk (with persistent cache — REQ-S2-001)
+      // AI-WHY: Persistent embedding cache (REQ-S2-001) avoids re-calling the embedding
+      // provider on re-index — content-hash keyed so unchanged chunks skip API entirely.
       let chunkEmbedding: Float32Array | null = null;
       let chunkEmbeddingStatus = 'pending';
 
@@ -937,9 +923,7 @@ async function indexChunkedMemoryFile(
   };
 }
 
-/* ---------------------------------------------------------------
-   8. INDEX MEMORY FILE
---------------------------------------------------------------- */
+/* ─── 8. INDEX MEMORY FILE ─── */
 
 /** Parse, validate, and index a memory file with PE gating, FSRS scheduling, and causal links */
 async function indexMemoryFile(filePath: string, { force = false, parsedOverride = null as ReturnType<typeof memoryParser.parseMemoryFile> | null, asyncEmbedding = false } = {}): Promise<IndexResult> {
@@ -1018,6 +1002,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     }
   }
 
+  // AI-WHY: Persistent SQLite embedding cache (REQ-S2-001) — hash-keyed lookup avoids
+  // redundant provider calls on re-index. Cache miss triggers generation + store.
   // EMBEDDING GENERATION (with persistent SQLite cache — REQ-S2-001)
   let embedding: Float32Array | null = null;
   let embeddingStatus = 'pending';
@@ -1457,9 +1443,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   }); // end withSpecFolderLock
 }
 
-/* ---------------------------------------------------------------
-   9. MEMORY SAVE HANDLER
---------------------------------------------------------------- */
+/* ─── 9. MEMORY SAVE HANDLER ─── */
 
 /** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
 async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
@@ -1672,9 +1656,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   });
 }
 
-/* ---------------------------------------------------------------
-   10. ATOMIC MEMORY SAVE
---------------------------------------------------------------- */
+/* ─── 10. ATOMIC MEMORY SAVE ─── */
 
 /**
  * Write content to disk and index atomically with rollback on failure.
@@ -1735,12 +1717,10 @@ function getAtomicityMetrics(): Record<string, unknown> {
   return transactionManager.getMetrics();
 }
 
-/* ---------------------------------------------------------------
-   11. QUALITY LOOP (T008)
+/* ─── 11. QUALITY LOOP (T008) ───
    Post-save quality verification with auto-fix and rejection.
    Gated behind SPECKIT_QUALITY_LOOP env var.
-   NOT integrated into save flow yet (Wave 3 will do integration).
---------------------------------------------------------------- */
+   NOT integrated into save flow yet (Wave 3 will do integration). */
 
 // --- Quality Loop Types ---
 
@@ -2201,9 +2181,7 @@ function logQualityMetrics(
   }
 }
 
-/* ---------------------------------------------------------------
-   12. EXPORTS
---------------------------------------------------------------- */
+/* ─── 12. EXPORTS ─── */
 
 export {
   // Primary exports

@@ -1,7 +1,5 @@
-// ---------------------------------------------------------------
-// TEST: QUERY COMPLEXITY CLASSIFIER (T001a)
+// ─── MODULE: Test — Query Classifier ───
 // Sprint 3 — Query Intelligence
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

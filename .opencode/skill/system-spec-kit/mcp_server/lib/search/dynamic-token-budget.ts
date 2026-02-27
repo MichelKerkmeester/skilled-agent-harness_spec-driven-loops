@@ -1,13 +1,8 @@
-// ---------------------------------------------------------------
-// MODULE: Dynamic Token Budget Allocation
-// Adjusts returned context size by query complexity tier (Sprint 3, T007)
-// ---------------------------------------------------------------
+// ─── MODULE: Dynamic Token Budget ───
 
 import { type QueryComplexityTier } from './query-classifier';
 
-/* -----------------------------------------------------------
-   1. TYPES & CONSTANTS
-----------------------------------------------------------------*/
+/* ─── 1. TYPES & CONSTANTS ─── */
 
 /** Budget (in tokens) allocated per complexity tier. */
 interface TokenBudgetConfig {
@@ -32,29 +27,29 @@ interface BudgetResult {
 /** Default budget when the feature flag is disabled — treat everything as complex. */
 const DEFAULT_BUDGET = 4000;
 
-/** Default tier-to-budget mapping when dynamic allocation is enabled. */
+/** Default tier-to-budget mapping when dynamic allocation is enabled.
+ * AI-WHY: 1500/2500/4000 tiers balance context window cost vs. recall —
+ * simple queries need fewer tokens, complex queries need the full budget. */
 const DEFAULT_TOKEN_BUDGET_CONFIG: TokenBudgetConfig = {
   simple: 1500,
   moderate: 2500,
   complex: 4000,
 };
 
-/* -----------------------------------------------------------
-   2. FEATURE FLAG
-----------------------------------------------------------------*/
+/* ─── 2. FEATURE FLAG ─── */
 
 /**
  * Check whether dynamic token budget allocation is enabled.
  * Default: DISABLED. Only enabled when SPECKIT_DYNAMIC_TOKEN_BUDGET is explicitly "true".
+ *
+ * @returns True when SPECKIT_DYNAMIC_TOKEN_BUDGET env var is "true".
  */
 function isDynamicTokenBudgetEnabled(): boolean {
   const raw = process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET?.toLowerCase()?.trim();
   return raw === 'true';
 }
 
-/* -----------------------------------------------------------
-   3. BUDGET RESOLUTION
-----------------------------------------------------------------*/
+/* ─── 3. BUDGET RESOLUTION ─── */
 
 /**
  * Get the token budget for a given query complexity tier.
@@ -94,9 +89,7 @@ function getDynamicTokenBudget(
   };
 }
 
-/* -----------------------------------------------------------
-   4. EXPORTS
-----------------------------------------------------------------*/
+/* ─── 4. EXPORTS ─── */
 
 export {
   // Types

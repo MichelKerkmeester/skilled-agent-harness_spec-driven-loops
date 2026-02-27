@@ -1,6 +1,6 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T014 — Quality Loop (T008)
+// ─── MODULE: Test — Quality Loop ───
+// T014 — Quality Loop (T008)
 //
 // Verify-fix-verify memory quality loop:
 // - Quality score computation (trigger phrases, anchors, budget, coherence)
@@ -8,7 +8,6 @@
 // - Loop rejection after retries
 // - Env var gating (SPECKIT_QUALITY_LOOP)
 // - Eval metrics logging
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 

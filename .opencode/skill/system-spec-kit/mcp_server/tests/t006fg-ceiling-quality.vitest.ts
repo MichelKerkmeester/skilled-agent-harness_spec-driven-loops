@@ -1,6 +1,4 @@
-// ---------------------------------------------------------------
-// TEST: T006f — Ceiling Evaluation + T006g — Quality Proxy Formula
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Ceiling Quality ───
 
 import { describe, it, expect } from 'vitest';
 

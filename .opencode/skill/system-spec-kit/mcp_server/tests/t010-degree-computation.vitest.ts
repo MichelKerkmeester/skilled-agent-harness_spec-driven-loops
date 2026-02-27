@@ -1,8 +1,6 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: TYPED-WEIGHTED DEGREE COMPUTATION (Sprint 1 T001)
+// ─── MODULE: Test — Degree Computation ───
 // Tests for the R4 5th RRF channel: degree-based scoring
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
 import Database from 'better-sqlite3';

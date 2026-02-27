@@ -1,7 +1,4 @@
-// ---------------------------------------------------------------
-// MODULE: Adaptive Fusion (C136-10)
-// Intent-aware weighted RRF fusion with feature flag + fallback
-// ---------------------------------------------------------------
+// ─── MODULE: Adaptive Fusion ───
 
 // Local
 import { fuseResultsMulti } from './rrf-fusion';
@@ -11,9 +8,7 @@ import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
 import type { IntentType } from './intent-classifier';
 import type { RrfItem, FusionResult, RankedList } from './rrf-fusion';
 
-/* ---------------------------------------------------------------
-   1. INTERFACES
-   --------------------------------------------------------------- */
+/* ─── 1. INTERFACES ─── */
 
 export interface FusionWeights {
   /** Weight for semantic/vector search results (0-1) */
@@ -53,9 +48,7 @@ export interface DarkRunDiff {
   topResultChanged: boolean;
 }
 
-/* ---------------------------------------------------------------
-   2. WEIGHT PROFILES
-   --------------------------------------------------------------- */
+/* ─── 2. WEIGHT PROFILES ─── */
 
 const INTENT_WEIGHT_PROFILES: Record<string, FusionWeights> = {
   understand:      { semanticWeight: 0.7, keywordWeight: 0.2, recencyWeight: 0.1, graphWeight: 0.15, graphCausalBias: 0.10 },
@@ -75,9 +68,7 @@ const DEFAULT_WEIGHTS: FusionWeights = {
   graphCausalBias: 0.10,
 };
 
-/* ---------------------------------------------------------------
-   3. FEATURE FLAG
-   --------------------------------------------------------------- */
+/* ─── 3. FEATURE FLAG ─── */
 
 const FEATURE_FLAG = 'SPECKIT_ADAPTIVE_FUSION';
 
@@ -87,19 +78,26 @@ const DOC_TYPE_WEIGHT_SHIFT = 0.1;
 /** Scaling factor applied to recency freshness before adding to RRF score. */
 const RECENCY_BOOST_SCALE = 0.1;
 
-/** Check whether adaptive fusion is enabled via the feature flag and rollout policy. */
+/**
+ * Check whether adaptive fusion is enabled via the feature flag and rollout policy.
+ *
+ * @param identity - Optional identity string for rollout targeting
+ * @returns True if adaptive fusion is enabled
+ */
 export function isAdaptiveFusionEnabled(identity?: string): boolean {
   return isFeatureEnabled(FEATURE_FLAG, identity);
 }
 
-/* ---------------------------------------------------------------
-   4. WEIGHT COMPUTATION
-   --------------------------------------------------------------- */
+/* ─── 4. WEIGHT COMPUTATION ─── */
 
 /**
  * Compute adaptive fusion weights based on intent and optional document type.
  * Document type can shift weights: e.g., 'decision' docs favour keywords,
  * 'implementation' docs favour recency.
+ *
+ * @param intent - Classified query intent type
+ * @param documentType - Optional document type for weight adjustment
+ * @returns Computed fusion weights
  */
 export function getAdaptiveWeights(
   intent: IntentType | string,
@@ -133,15 +131,18 @@ export function getAdaptiveWeights(
   return weights;
 }
 
-/* ---------------------------------------------------------------
-   5. ADAPTIVE FUSION
-   --------------------------------------------------------------- */
+/* ─── 5. ADAPTIVE FUSION ─── */
 
 /**
  * Weighted RRF fusion. Applies FusionWeights to source lists before
  * passing to `fuseResultsMulti`. The semanticWeight/keywordWeight map
  * to vector/lexical list weights; recencyWeight is applied as a
  * post-fusion boost based on item timestamps.
+ *
+ * @param semanticResults - Results from vector/semantic search
+ * @param keywordResults - Results from keyword/lexical search
+ * @param weights - Fusion weights for each channel
+ * @returns Fused and scored results sorted by RRF score
  */
 export function adaptiveFuse(
   semanticResults: RrfItem[],
@@ -205,19 +206,21 @@ function applyRecencyBoost(results: FusionResult[], recencyWeight: number): void
       // Exponential decay: recent items get higher boost
       const freshness = Math.exp(-ageDays / MAX_AGE_DAYS);
       r.rrfScore += freshness * recencyWeight * RECENCY_BOOST_SCALE;
-    } catch {
-      // Skip items with invalid dates
+    } catch (_err: unknown) {
+      /* AI-GUARD: Skip items with invalid dates — never fail the fusion pipeline */
     }
   }
 }
 
-/* ---------------------------------------------------------------
-   6. STANDARD (DETERMINISTIC) FALLBACK
-   --------------------------------------------------------------- */
+/* ─── 6. STANDARD FALLBACK ─── */
 
 /**
  * Standard RRF fusion without adaptive weighting (deterministic fallback).
  * Uses equal weights for all sources.
+ *
+ * @param semanticResults - Results from vector/semantic search
+ * @param keywordResults - Results from keyword/lexical search
+ * @returns Fused results with equal-weight RRF scores
  */
 export function standardFuse(
   semanticResults: RrfItem[],
@@ -238,9 +241,7 @@ export function standardFuse(
   return fuseResultsMulti(lists);
 }
 
-/* ---------------------------------------------------------------
-   7. DARK-RUN MODE
-   --------------------------------------------------------------- */
+/* ─── 7. DARK-RUN MODE ─── */
 
 function computeDarkRunDiff(
   standardResults: FusionResult[],
@@ -270,9 +271,7 @@ function computeDarkRunDiff(
   };
 }
 
-/* ---------------------------------------------------------------
-   8. MAIN ENTRY POINT
-   --------------------------------------------------------------- */
+/* ─── 8. MAIN ENTRY POINT ─── */
 
 /**
  * Adaptive hybrid fusion entry point.
@@ -364,9 +363,7 @@ export function hybridAdaptiveFuse(
   };
 }
 
-/* ---------------------------------------------------------------
-   9. EXPORTS
-   --------------------------------------------------------------- */
+/* ─── 9. EXPORTS ─── */
 
 // Named exports above via `export` keyword. Re-export for convenience:
 export {

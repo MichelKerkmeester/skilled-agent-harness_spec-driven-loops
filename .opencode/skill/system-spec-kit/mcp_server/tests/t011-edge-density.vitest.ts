@@ -1,6 +1,5 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T011 — Edge Density Measurement
+// ─── MODULE: Test — Edge Density ───
 // Sprint 1 T003 acceptance tests for lib/eval/edge-density.ts
 //
 // Test cases:
@@ -9,7 +8,6 @@
 //   D3 — Moderate graph returns 0.5 <= density < 1.0 ("moderate")
 //   D4 — Empty graph (no edges) handles gracefully
 //   D5 — Report format includes all required fields
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';

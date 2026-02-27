@@ -1,6 +1,6 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T013 — Eval-the-Eval Validation (Hand-Calculate MRR@5 & NDCG@10)
+// ─── MODULE: Test — Eval the Eval ───
+// Eval-the-Eval Validation (Hand-Calculate MRR@5 & NDCG@10)
 //
 // PURPOSE: Validate that computeMRR and computeNDCG produce correct
 // results by comparing to hand-calculated expected values.
@@ -27,7 +27,6 @@
 //     log2(4) = 2.000000
 //     log2(5) = 2.321928
 //     log2(6) = 2.584963
-// ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
 import { computeMRR, computeNDCG } from '../lib/eval/eval-metrics';

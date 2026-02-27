@@ -1,11 +1,6 @@
-// ---------------------------------------------------------------
-// MODULE: Confidence-Based Result Truncation
-// Adaptive top-K cutoff based on score gap analysis (Sprint 3, T006)
-// ---------------------------------------------------------------
+// ─── MODULE: Confidence Truncation ───
 
-/* -----------------------------------------------------------
-   1. TYPES & CONSTANTS
-----------------------------------------------------------------*/
+/* ─── 1. TYPES & CONSTANTS ─── */
 
 /** Generic scored result for truncation — supports both numeric and string IDs. */
 interface ScoredResult {
@@ -35,33 +30,36 @@ interface TruncationOptions {
 /** Default minimum result count. */
 const DEFAULT_MIN_RESULTS = 3;
 
-/** Gap multiplier: gap must exceed this multiple of the median gap to trigger truncation. */
+/** Gap multiplier: gap must exceed this multiple of the median gap to trigger truncation.
+ * AI-WHY: 2x median is the elbow heuristic — a gap twice the typical spread signals a relevance cliff. */
 const GAP_THRESHOLD_MULTIPLIER = 2;
 
-/* -----------------------------------------------------------
-   2. FEATURE FLAG
-----------------------------------------------------------------*/
+/* ─── 2. FEATURE FLAG ─── */
 
 /**
  * Check whether confidence-based truncation is enabled.
  * Default: DISABLED. Only enabled when SPECKIT_CONFIDENCE_TRUNCATION is explicitly "true".
+ *
+ * @returns True when SPECKIT_CONFIDENCE_TRUNCATION env var is "true".
  */
 function isConfidenceTruncationEnabled(): boolean {
   const raw = process.env.SPECKIT_CONFIDENCE_TRUNCATION?.toLowerCase()?.trim();
   return raw === 'true';
 }
 
-/* -----------------------------------------------------------
-   3. GAP ANALYSIS HELPERS
-----------------------------------------------------------------*/
+/* ─── 3. GAP ANALYSIS HELPERS ─── */
 
 /**
  * Compute consecutive score gaps for a sorted (descending) score array.
  * gap[i] = scores[i] - scores[i+1]   for i in [0, n-2]
  * NaN and Infinity scores are filtered out before gap computation.
  * Returns empty array when fewer than 2 finite scores.
+ *
+ * @param scores - Descending-sorted array of raw scores.
+ * @returns Array of consecutive score gaps (length = scores.length - 1).
  */
 function computeGaps(scores: number[]): number[] {
+  // AI-WHY: NaN/Infinity from upstream bugs would corrupt gap statistics — filter them first
   const finite = scores.filter(s => Number.isFinite(s));
   if (finite.length < 2) return [];
   const gaps: number[] = [];
@@ -74,6 +72,9 @@ function computeGaps(scores: number[]): number[] {
 /**
  * Compute the median of an array of numbers.
  * Returns 0 for an empty array.
+ *
+ * @param values - Array of numeric values.
+ * @returns Median value, or 0 for empty input.
  */
 function computeMedian(values: number[]): number {
   if (values.length === 0) return 0;
@@ -85,9 +86,7 @@ function computeMedian(values: number[]): number {
   return (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
-/* -----------------------------------------------------------
-   4. CORE TRUNCATION LOGIC
-----------------------------------------------------------------*/
+/* ─── 4. CORE TRUNCATION LOGIC ─── */
 
 /**
  * Truncate results based on confidence gap analysis.
@@ -104,6 +103,10 @@ function computeMedian(values: number[]): number {
  *
  * Results are expected to be pre-sorted by score descending. This function
  * does NOT sort; it operates on the input order.
+ *
+ * @param results - Array of scored results (expected descending by score).
+ * @param options - Optional truncation options (minResults).
+ * @returns TruncationResult with the (possibly shortened) result array and audit metadata.
  */
 function truncateByConfidence(
   results: ScoredResult[],
@@ -204,9 +207,7 @@ function truncateByConfidence(
   };
 }
 
-/* -----------------------------------------------------------
-   5. EXPORTS
-----------------------------------------------------------------*/
+/* ─── 5. EXPORTS ─── */
 
 export {
   // Types

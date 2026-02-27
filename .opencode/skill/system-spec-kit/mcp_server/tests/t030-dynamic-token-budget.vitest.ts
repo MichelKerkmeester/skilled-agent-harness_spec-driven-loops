@@ -1,9 +1,7 @@
-// ---------------------------------------------------------------
-// TEST: T030 — Dynamic Token Budget Allocation (T007)
+// ─── MODULE: Test — Dynamic Token Budget ───
 // Sprint 3 — Query Intelligence
 // 16 tests covering:
 //   budget per tier, flag disabled, custom config, edge cases
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

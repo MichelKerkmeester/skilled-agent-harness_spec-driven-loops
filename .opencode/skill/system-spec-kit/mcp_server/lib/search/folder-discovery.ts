@@ -1,16 +1,9 @@
-// ---------------------------------------------------------------
-// MODULE: Description-Based Spec Folder Discovery (PI-B3)
-// T009 — Generates 1-sentence descriptions from spec.md files,
-// caches them, and provides lightweight keyword-overlap lookup
-// for folder routing before vector queries.
-// ---------------------------------------------------------------
+// ─── MODULE: Folder Discovery (PI-B3) ───
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-/* -----------------------------------------------------------
-   1. TYPES
-----------------------------------------------------------------*/
+/* ─── 1. TYPES ─── */
 
 /**
  * Describes a single spec folder with its cached description
@@ -33,11 +26,7 @@ export interface DescriptionCache {
   folders: FolderDescription[];
 }
 
-/* -----------------------------------------------------------
-   2. STOP WORDS
-   Common English words that carry no semantic signal and
-   should be excluded from keyword extraction.
-----------------------------------------------------------------*/
+/* ─── 2. STOP WORDS ─── */
 
 const STOP_WORDS = new Set([
   'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to',
@@ -54,9 +43,7 @@ const STOP_WORDS = new Set([
   'your', 'their', 'his', 'her', 'its', 'which', 'who', 'what',
 ]);
 
-/* -----------------------------------------------------------
-   3. DESCRIPTION EXTRACTION
-----------------------------------------------------------------*/
+/* ─── 3. DESCRIPTION EXTRACTION ─── */
 
 /**
  * Extract a short 1-sentence description from spec.md content.
@@ -129,9 +116,7 @@ export function extractDescription(specContent: string): string {
   return '';
 }
 
-/* -----------------------------------------------------------
-   4. KEYWORD EXTRACTION
-----------------------------------------------------------------*/
+/* ─── 4. KEYWORD EXTRACTION ─── */
 
 /**
  * Extract significant keywords from a description string.
@@ -167,9 +152,7 @@ export function extractKeywords(description: string): string[] {
   return keywords;
 }
 
-/* -----------------------------------------------------------
-   5. RELEVANCE SCORING / LOOKUP
-----------------------------------------------------------------*/
+/* ─── 5. RELEVANCE SCORING / LOOKUP ─── */
 
 /**
  * Find the most relevant spec folders for a given query using
@@ -211,7 +194,7 @@ export function findRelevantFolders(
     const keywordSet = new Set(folder.keywords);
 
     for (const term of queryTerms) {
-      // Check keywords set first (O(1))
+      // AI-WHY: Keywords set lookup is O(1); description substring is fallback for partial matches
       if (keywordSet.has(term)) {
         matchCount++;
         continue;
@@ -234,9 +217,7 @@ export function findRelevantFolders(
   return results.slice(0, limit);
 }
 
-/* -----------------------------------------------------------
-   6. CACHE GENERATION
-----------------------------------------------------------------*/
+/* ─── 6. CACHE GENERATION ─── */
 
 /**
  * Scan spec base paths for spec.md files and generate a
@@ -264,7 +245,8 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
     let entries: string[];
     try {
       entries = fs.readdirSync(basePath);
-    } catch {
+    } catch (_err: unknown) {
+      // AI-GUARD: Unreadable base path — skip silently
       continue;
     }
 
@@ -274,7 +256,8 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
       let stat: fs.Stats;
       try {
         stat = fs.statSync(entryPath);
-      } catch {
+      } catch (_err: unknown) {
+        // AI-GUARD: Unreadable entry — skip silently
         continue;
       }
 
@@ -293,7 +276,8 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
       let subEntries: string[];
       try {
         subEntries = fs.readdirSync(entryPath);
-      } catch {
+      } catch (_err: unknown) {
+        // AI-GUARD: Unreadable subfolder directory — skip silently
         continue;
       }
 
@@ -303,7 +287,8 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
         let subStat: fs.Stats;
         try {
           subStat = fs.statSync(subPath);
-        } catch {
+        } catch (_err: unknown) {
+          // AI-GUARD: Unreadable sub-entry — skip silently
           continue;
         }
 
@@ -330,6 +315,11 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
 /**
  * Internal helper: read spec.md and produce a FolderDescription.
  * Returns null if content is unreadable or description is empty.
+ *
+ * @param folderPath  - Absolute path to the spec folder directory.
+ * @param specMdPath  - Absolute path to the spec.md file within folderPath.
+ * @param timestamp   - ISO timestamp to set as lastUpdated.
+ * @returns A FolderDescription, or null if extraction fails.
  */
 function _processSpecFolder(
   folderPath: string,
@@ -339,7 +329,8 @@ function _processSpecFolder(
   let content: string;
   try {
     content = fs.readFileSync(specMdPath, 'utf-8');
-  } catch {
+  } catch (_err: unknown) {
+    // AI-GUARD: Unreadable spec.md — skip folder
     return null;
   }
 
@@ -356,9 +347,7 @@ function _processSpecFolder(
   };
 }
 
-/* -----------------------------------------------------------
-   7. CACHE I/O
-----------------------------------------------------------------*/
+/* ─── 7. CACHE I/O ─── */
 
 /**
  * Load a DescriptionCache from a JSON file on disk.
@@ -376,7 +365,8 @@ export function loadDescriptionCache(cachePath: string): DescriptionCache | null
     const raw = fs.readFileSync(cachePath, 'utf-8');
     const parsed = JSON.parse(raw) as DescriptionCache;
     return parsed;
-  } catch {
+  } catch (_err: unknown) {
+    // AI-GUARD: Corrupt or unparseable cache file — return null for regeneration
     return null;
   }
 }

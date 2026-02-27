@@ -1,16 +1,12 @@
-// ---------------------------------------------------------------
-// MODULE: Unified Graph Search Function
+// ─── MODULE: Unified Graph Search Function ───
 // Causal graph search channel — uses FTS5 for node matching
-// ---------------------------------------------------------------
 
 import { sanitizeFTS5Query } from './bm25-index';
 
 import type Database from 'better-sqlite3';
 import type { GraphSearchFn } from './hybrid-search';
 
-// ---------------------------------------------------------------
-// 1. TYPES
-// ---------------------------------------------------------------
+// ─── 1. TYPES ───
 
 interface CausalEdgeRow {
   id: string;
@@ -24,9 +20,7 @@ interface SubgraphWeights {
   causalWeight: number;
 }
 
-// ---------------------------------------------------------------
-// 2. TYPED-DEGREE CONSTANTS
-// ---------------------------------------------------------------
+// ─── 2. TYPED-DEGREE CONSTANTS ───
 
 /** Edge type weights for typed-degree computation (R4 5th RRF channel) */
 const EDGE_TYPE_WEIGHTS: Record<string, number> = {
@@ -47,9 +41,7 @@ const MAX_TOTAL_DEGREE = 50;
 /** Maximum normalized boost score */
 const DEGREE_BOOST_CAP = 0.15;
 
-// ---------------------------------------------------------------
-// 2b. WEIGHTING
-// ---------------------------------------------------------------
+// ─── 2b. WEIGHTING ───
 
 /**
  * Causal graph is the only graph channel.
@@ -58,9 +50,7 @@ function getSubgraphWeights(_intent?: string): SubgraphWeights {
   return { causalWeight: 1.0 };
 }
 
-// ---------------------------------------------------------------
-// 3. CAUSAL EDGE CHANNEL (FTS5-BACKED)
-// ---------------------------------------------------------------
+// ─── 3. CAUSAL EDGE CHANNEL (FTS5-BACKED) ───
 
 /**
  * Check whether the FTS5 table exists in the database.
@@ -72,7 +62,7 @@ function isFtsTableAvailable(database: Database.Database): boolean {
       `SELECT name FROM sqlite_master WHERE type='table' AND name='memory_fts'`
     ) as Database.Statement).get() as { name: string } | undefined;
     return !!result;
-  } catch {
+  } catch (_err: unknown) { // AI-GUARD: SQL parse failure — return empty degree map
     return false;
   }
 }
@@ -115,6 +105,7 @@ function queryCausalEdgesFTS5(
   const sanitized = sanitizeFTS5Query(query);
   if (!sanitized) return [];
 
+  // AI-WHY: BM25-inspired weights: title(10) highest signal, content(5), triggers(2), folder(1)
   // Find memory IDs matching the query via FTS5, then join to causal_edges
   const rows = (database.prepare(`
     SELECT ce.id, ce.source_id, ce.target_id, ce.relation, ce.strength,
@@ -232,9 +223,7 @@ function queryCausalEdgesLikeFallback(
   return candidates;
 }
 
-// ---------------------------------------------------------------
-// 4. TYPED-DEGREE COMPUTATION
-// ---------------------------------------------------------------
+// ─── 4. TYPED-DEGREE COMPUTATION ───
 
 /**
  * In-memory degree cache. Keys are stringified memory IDs.
@@ -319,7 +308,7 @@ function computeMaxTypedDegree(database: Database.Database): number {
     }
 
     return maxDegree > 0 ? maxDegree : DEFAULT_MAX_TYPED_DEGREE;
-  } catch {
+  } catch (_err: unknown) { // AI-GUARD: Subgraph computation failure — return default weights
     return DEFAULT_MAX_TYPED_DEGREE;
   }
 }
@@ -352,7 +341,7 @@ function computeDegreeScores(
     for (const row of constitutionalRows) {
       constitutionalIds.add(String(row.id));
     }
-  } catch {
+  } catch (_err: unknown) { // AI-GUARD: Individual edge fetch failure — skip silently
     // If memory_index lookup fails, proceed without exclusion
   }
 
@@ -393,9 +382,7 @@ function clearDegreeCache(): void {
   degreeCache.clear();
 }
 
-// ---------------------------------------------------------------
-// 5. FACTORY FUNCTION
-// ---------------------------------------------------------------
+// ─── 5. FACTORY FUNCTION ───
 
 /**
  * Creates a graph search function backed by causal_edges only.
@@ -427,9 +414,7 @@ function createUnifiedGraphSearchFn(
   };
 }
 
-// ---------------------------------------------------------------
-// 6. EXPORTS
-// ---------------------------------------------------------------
+// ─── 6. EXPORTS ───
 
 export {
   createUnifiedGraphSearchFn,

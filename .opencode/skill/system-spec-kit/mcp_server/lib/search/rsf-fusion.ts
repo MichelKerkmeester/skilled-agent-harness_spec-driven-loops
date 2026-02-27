@@ -1,15 +1,8 @@
-// ---------------------------------------------------------------
-// MODULE: RSF Fusion (Relative Score Fusion)
-// Single-pair variant: normalizes scores relative to each source's
-// score distribution before combining.
-// Sprint 3, Task T002a — Hybrid RAG Fusion Refinement
-// ---------------------------------------------------------------
+// ─── MODULE: RSF Fusion (Relative Score Fusion) ───
 
 import type { RrfItem, RankedList } from './rrf-fusion';
 
-/* ---------------------------------------------------------------
-   1. INTERFACES
-   --------------------------------------------------------------- */
+/* ─── 1. INTERFACES ─── */
 
 /** Result of RSF fusion: an RrfItem augmented with normalized fused score and source tracking. */
 interface RsfResult extends RrfItem {
@@ -21,14 +14,17 @@ interface RsfResult extends RrfItem {
   sourceScores: Record<string, number>;
 }
 
-/* ---------------------------------------------------------------
-   2. HELPERS
-   --------------------------------------------------------------- */
+/* ─── 2. HELPERS ─── */
 
 /**
  * Extract a raw score from an RrfItem.
  * Checks for `score` first, then `similarity`, then falls back
  * to rank-based scoring: 1 - rank / total.
+ *
+ * @param item  - The result item to extract a score from.
+ * @param rank  - Zero-based rank of the item in its source list.
+ * @param total - Total number of items in the source list.
+ * @returns Numeric score for the item.
  */
 function extractScore(item: RrfItem, rank: number, total: number): number {
   if (typeof item.score === 'number' && isFinite(item.score)) {
@@ -37,7 +33,7 @@ function extractScore(item: RrfItem, rank: number, total: number): number {
   if (typeof item.similarity === 'number' && isFinite(item.similarity)) {
     return item.similarity;
   }
-  // Rank-based fallback: top item gets ~1.0, last gets ~0.0
+  // AI-WHY: Rank-based fallback ensures items without explicit scores still participate
   if (total <= 1) return 1.0;
   return 1 - rank / total;
 }
@@ -45,14 +41,23 @@ function extractScore(item: RrfItem, rank: number, total: number): number {
 /**
  * Min-max normalize a value within [min, max].
  * If max === min (all scores identical), returns 1.0.
+ *
+ * @param value - The raw value to normalize.
+ * @param min   - Minimum value in the distribution.
+ * @param max   - Maximum value in the distribution.
+ * @returns Normalized value in [0, 1].
  */
 function minMaxNormalize(value: number, min: number, max: number): number {
+  // AI-WHY: When all scores identical, normalize to 1.0 (not 0/0) — all equally relevant
   if (max === min) return 1.0;
   return (value - min) / (max - min);
 }
 
 /**
  * Clamp a value to [0, 1].
+ *
+ * @param value - The numeric value to clamp.
+ * @returns Value clamped to the range [0, 1].
  */
 function clamp01(value: number): number {
   if (value < 0) return 0;
@@ -60,9 +65,7 @@ function clamp01(value: number): number {
   return value;
 }
 
-/* ---------------------------------------------------------------
-   3. CORE FUNCTION
-   --------------------------------------------------------------- */
+/* ─── 3. CORE FUNCTION ─── */
 
 /**
  * Fuse two ranked result lists using Relative Score Fusion (single-pair).
@@ -74,6 +77,10 @@ function clamp01(value: number): number {
  * 4. Items in one list only: fusedScore = normalizedScore * 0.5 (single-source penalty)
  * 5. Sort descending by rsfScore
  * 6. All scores clamped to [0, 1]
+ *
+ * @param listA - First ranked result list with source label.
+ * @param listB - Second ranked result list with source label.
+ * @returns Fused RsfResult array sorted descending by rsfScore.
  */
 function fuseResultsRsf(listA: RankedList, listB: RankedList): RsfResult[] {
   const itemsA = listA.results;
@@ -135,7 +142,7 @@ function fuseResultsRsf(listA: RankedList, listB: RankedList): RsfResult[] {
       sourceScores[listB.source] = entryB.normalizedScore;
       mergedItem = { ...entryB.item, ...entryA.item };
     } else if (entryA) {
-      // Item in A only: apply single-source penalty
+      // AI-WHY: Single-source penalty 0.5 ensures dual-confirmed items rank higher
       rsfScore = entryA.normalizedScore * 0.5;
       sources.push(listA.source);
       sourceScores[listA.source] = entryA.normalizedScore;
@@ -164,9 +171,7 @@ function fuseResultsRsf(listA: RankedList, listB: RankedList): RsfResult[] {
     .sort((a, b) => b.rsfScore - a.rsfScore);
 }
 
-/* ---------------------------------------------------------------
-   4. MULTI-LIST VARIANT
-   --------------------------------------------------------------- */
+/* ─── 4. MULTI-LIST VARIANT ─── */
 
 /**
  * Fuse multiple ranked result lists using Relative Score Fusion (multi-list variant).
@@ -178,6 +183,9 @@ function fuseResultsRsf(listA: RankedList, listB: RankedList): RsfResult[] {
  * 4. Items appearing in only 1 source get a penalty: avgScore * (1 / totalSources)
  *    — penalised proportionally to how many sources they are missing from
  * 5. Sort descending by rsfScore, clamp to [0, 1]
+ *
+ * @param lists - Array of RankedList sources to fuse.
+ * @returns Fused RsfResult array sorted descending by rsfScore.
  */
 function fuseResultsRsfMulti(lists: RankedList[]): RsfResult[] {
   if (lists.length === 0) return [];
@@ -246,7 +254,7 @@ function fuseResultsRsfMulti(lists: RankedList[]): RsfResult[] {
       // Present in all sources — no penalty
       rsfScore = avgScore;
     } else {
-      // Missing from at least one source — penalty proportional to coverage
+      // AI-WHY: Proportional penalty scales with missing sources
       rsfScore = avgScore * (countPresent / totalSources);
     }
 
@@ -264,9 +272,7 @@ function fuseResultsRsfMulti(lists: RankedList[]): RsfResult[] {
   return results.sort((a, b) => b.rsfScore - a.rsfScore);
 }
 
-/* ---------------------------------------------------------------
-   5. CROSS-VARIANT VARIANT
-   --------------------------------------------------------------- */
+/* ─── 5. CROSS-VARIANT VARIANT ─── */
 
 /**
  * Fuse multiple query variants' result sets using Relative Score Fusion (cross-variant).
@@ -284,6 +290,7 @@ function fuseResultsRsfMulti(lists: RankedList[]): RsfResult[] {
 function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
   if (variantLists.length === 0) return [];
 
+  // AI-WHY: 0.10 cross-variant bonus rewards query interpretation convergence
   const CROSS_VARIANT_BONUS = 0.10;
 
   // --- Step 1: Fuse each variant's lists independently ---
@@ -374,21 +381,19 @@ function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
   return finalResults.sort((a, b) => b.rsfScore - a.rsfScore);
 }
 
-/* ---------------------------------------------------------------
-   6. FEATURE FLAG
-   --------------------------------------------------------------- */
+/* ─── 6. FEATURE FLAG ─── */
 
 /**
  * Check if RSF fusion is enabled via the SPECKIT_RSF_FUSION env var.
  * Defaults to false (opt-in). Set SPECKIT_RSF_FUSION=true to enable.
+ *
+ * @returns True when SPECKIT_RSF_FUSION env var is "true".
  */
 function isRsfEnabled(): boolean {
   return process.env.SPECKIT_RSF_FUSION?.toLowerCase()?.trim() === 'true';
 }
 
-/* ---------------------------------------------------------------
-   7. EXPORTS
-   --------------------------------------------------------------- */
+/* ─── 7. EXPORTS ─── */
 
 export {
   fuseResultsRsf,

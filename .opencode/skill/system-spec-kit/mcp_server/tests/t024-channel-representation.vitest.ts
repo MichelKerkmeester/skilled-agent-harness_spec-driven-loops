@@ -1,10 +1,8 @@
-// ---------------------------------------------------------------
-// TEST: T024 — Channel Representation Check (T003a)
+// ─── MODULE: Test — Channel Representation ───
 // 15 tests covering:
 //   all-represented, one-missing, floor-boundary, multi-missing,
 //   no-results-not-penalised, empty-topk, flag-disabled,
 //   promotion-metadata, channel-counts, exact-floor-threshold
-// ---------------------------------------------------------------
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {

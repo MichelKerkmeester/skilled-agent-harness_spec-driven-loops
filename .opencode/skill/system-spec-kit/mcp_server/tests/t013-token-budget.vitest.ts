@@ -1,8 +1,6 @@
-// ---------------------------------------------------------------
-// TEST: T007 — Pre-flight Token Budget Validation
+// ─── MODULE: Test — Token Budget ───
 // Verifies token estimation, greedy truncation, single-result
 // summary fallback, overflow logging, and env var configuration.
-// ---------------------------------------------------------------
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {

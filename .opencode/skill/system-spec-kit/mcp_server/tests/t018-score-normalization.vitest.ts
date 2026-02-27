@@ -1,8 +1,6 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T018 Score Normalization & K-Value Analysis
-// Sprint 2, T004 + T004a
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Score Normalization ───
+// Score Normalization & K-Value Analysis, Sprint 2, T004 + T004a
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 

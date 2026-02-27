@@ -1,7 +1,5 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T007 — Synthetic Ground Truth Generation
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Ground Truth ───
 //
 // Validates:
 //   T007.1  — generateGroundTruth() returns ≥100 queries
@@ -16,7 +14,6 @@
 //   T007.10 — Distribution summary matches actual query counts
 //   T007.11 — Seed queries (ids 1-21) are all present and unmodified
 //   T007.12 — Hard negatives have no relevance entries
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';

@@ -1,5 +1,4 @@
-// ---------------------------------------------------------------
-// MODULE: Edge Density (Sprint 1 T003)
+// ─── MODULE: Edge Density (Sprint 1 T003) ───
 //
 // Measures the edge density of the causal graph:
 //   density = edge_count / unique_node_count
@@ -14,13 +13,10 @@
 //
 // When density < 0.5 an R10 escalation recommendation is generated
 // and included in the result.
-// ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
 
-/* ---------------------------------------------------------------
-   1. TYPES
---------------------------------------------------------------- */
+/* ─── 1. TYPES ─── */
 
 /** Density classification label. */
 export type DensityClassification = 'dense' | 'moderate' | 'sparse';
@@ -46,18 +42,14 @@ export interface EdgeDensityResult {
   r10Recommendation?: string;
 }
 
-/* ---------------------------------------------------------------
-   2. CONSTANTS
---------------------------------------------------------------- */
+/* ─── 2. CONSTANTS ─── */
 
 /** Lower boundary for "moderate" classification. */
 const MODERATE_THRESHOLD = 0.5;
 /** Lower boundary for "dense" classification. */
 const DENSE_THRESHOLD = 1.0;
 
-/* ---------------------------------------------------------------
-   3. CORE FUNCTION
---------------------------------------------------------------- */
+/* ─── 3. CORE FUNCTION ─── */
 
 /**
  * Measure the edge density of the causal graph stored in `database`.
@@ -71,56 +63,69 @@ const DENSE_THRESHOLD = 1.0;
  * @returns EdgeDensityResult with all metrics and optional R10 escalation.
  */
 export function measureEdgeDensity(database: Database.Database): EdgeDensityResult {
-  // Total edges
-  const edgeRow = database
-    .prepare('SELECT COUNT(*) AS cnt FROM causal_edges')
-    .get() as { cnt: number };
-  const edgeCount = edgeRow.cnt;
+  try {
+    // Total edges
+    const edgeRow = database
+      .prepare('SELECT COUNT(*) AS cnt FROM causal_edges')
+      .get() as { cnt: number };
+    const edgeCount = edgeRow.cnt;
 
-  // Unique nodes participating in at least one edge (union of source + target)
-  const nodeRow = database
-    .prepare(`
-      SELECT COUNT(*) AS cnt FROM (
-        SELECT source_id AS node_id FROM causal_edges
-        UNION
-        SELECT target_id AS node_id FROM causal_edges
-      )
-    `)
-    .get() as { cnt: number };
-  const nodeCount = nodeRow.cnt;
+    // Unique nodes participating in at least one edge (union of source + target)
+    const nodeRow = database
+      .prepare(`
+        SELECT COUNT(*) AS cnt FROM (
+          SELECT source_id AS node_id FROM causal_edges
+          UNION
+          SELECT target_id AS node_id FROM causal_edges
+        )
+      `)
+      .get() as { cnt: number };
+    const nodeCount = nodeRow.cnt;
 
-  // Total memories in memory_index (for coverage context)
-  const memRow = database
-    .prepare('SELECT COUNT(*) AS cnt FROM memory_index')
-    .get() as { cnt: number };
-  const totalMemories = memRow.cnt;
+    // Total memories in memory_index (for coverage context)
+    const memRow = database
+      .prepare('SELECT COUNT(*) AS cnt FROM memory_index')
+      .get() as { cnt: number };
+    const totalMemories = memRow.cnt;
 
-  // Compute density (guard against division by zero)
-  const density = nodeCount > 0 ? edgeCount / nodeCount : 0;
+    // AI-GUARD: Division by zero protection when nodeCount is 0
+    // Compute density (guard against division by zero)
+    const density = nodeCount > 0 ? edgeCount / nodeCount : 0;
 
-  // Classify
-  const classification = classifyDensity(density);
+    // Classify
+    const classification = classifyDensity(density);
 
-  // R10 escalation
-  const r10Escalation = density < MODERATE_THRESHOLD;
-  const r10Recommendation = r10Escalation
-    ? buildR10Recommendation(density, edgeCount, nodeCount)
-    : undefined;
+    // R10 escalation
+    const r10Escalation = density < MODERATE_THRESHOLD;
+    const r10Recommendation = r10Escalation
+      ? buildR10Recommendation(density, edgeCount, nodeCount)
+      : undefined;
 
-  return {
-    edgeCount,
-    nodeCount,
-    totalMemories,
-    density,
-    classification,
-    r10Escalation,
-    r10Recommendation,
-  };
+    return {
+      edgeCount,
+      nodeCount,
+      totalMemories,
+      density,
+      classification,
+      r10Escalation,
+      r10Recommendation,
+    };
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[edge-density] measureEdgeDensity failed: ${msg}`);
+    return {
+      density: 0,
+      classification: 'sparse' as const,
+      edgeCount: 0,
+      nodeCount: 0,
+      totalMemories: 0,
+      r10Escalation: true,
+      r10Recommendation: 'Database query failed — unable to measure edge density.',
+    };
+  }
 }
 
-/* ---------------------------------------------------------------
-   4. REPORT FORMATTER
---------------------------------------------------------------- */
+/* ─── 4. REPORT FORMATTER ─── */
 
 /**
  * Format an EdgeDensityResult into a human-readable multi-line report.
@@ -151,9 +156,7 @@ export function formatDensityReport(result: EdgeDensityResult): string {
   return lines.join('\n');
 }
 
-/* ---------------------------------------------------------------
-   5. INTERNAL HELPERS
---------------------------------------------------------------- */
+/* ─── 5. INTERNAL HELPERS ─── */
 
 /**
  * Classify a density value into a DensityClassification label.

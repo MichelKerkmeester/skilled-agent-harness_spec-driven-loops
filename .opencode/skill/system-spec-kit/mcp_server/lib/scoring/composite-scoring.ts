@@ -1,6 +1,4 @@
-// ---------------------------------------------------------------
-// MODULE: Composite Scoring
-// ---------------------------------------------------------------
+// ─── MODULE: Composite Scoring ───
 
 import { getTierConfig } from './importance-tiers';
 import { calculatePopularityScore } from '../storage/access-tracker';
@@ -33,13 +31,11 @@ let fsrsScheduler: FsrsSchedulerModule | null = null;
 try {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   fsrsScheduler = require('../cognitive/fsrs-scheduler') as FsrsSchedulerModule;
-} catch {
-  // fsrs-scheduler not yet implemented, use inline calculation
+} catch (_err: unknown) {
+  /* AI-GUARD: fsrs-scheduler optional dep — fallback to inline FSRS formula */
 }
 
-// ---------------------------------------------------------------
-// 1. TYPES
-// ---------------------------------------------------------------
+// ─── 1. TYPES ───
 
 export interface FiveFactorWeights {
   temporal: number;
@@ -107,9 +103,7 @@ export interface PatternAlignmentBonuses {
   type_match: number;
 }
 
-// ---------------------------------------------------------------
-// 2. CONFIGURATION
-// ---------------------------------------------------------------
+// ─── 2. CONFIGURATION ───
 
 // REQ-017: 5-Factor Decay Composite weights
 export const FIVE_FACTOR_WEIGHTS: FiveFactorWeights = {
@@ -189,9 +183,7 @@ export const PATTERN_ALIGNMENT_BONUSES: PatternAlignmentBonuses = {
 // TM-01: Re-export interference penalty coefficient for test access
 export { INTERFERENCE_PENALTY_COEFFICIENT } from './interference-scoring';
 
-// ---------------------------------------------------------------
-// 3. SCORE CALCULATIONS
-// ---------------------------------------------------------------
+// ─── 3. SCORE CALCULATIONS ───
 
 /**
  * Parse last_accessed value that may be:
@@ -228,7 +220,7 @@ export function calculateRetrievabilityScore(row: ScoringInput): number {
     ? row.importance_tier.toLowerCase()
     : 'normal';
 
-  // BUG-007 FIX: Return neutral score when no timestamp (prevents NaN propagation)
+  // AI-GUARD: Return neutral 0.5 when no timestamp — prevents NaN propagation
   if (!lastReview) {
     return 0.5;
   }
@@ -247,7 +239,7 @@ export function calculateRetrievabilityScore(row: ScoringInput): number {
     return fsrsScheduler.calculateRetrievability(stability, adjustedElapsedDays);
   }
 
-  // Inline FSRS calculation (fallback when scheduler not available)
+  // AI-WHY: Inline FSRS power-law formula used when fsrs-scheduler module unavailable
   const retrievability = Math.pow(1 + FSRS_FACTOR * (adjustedElapsedDays / stability), FSRS_DECAY);
 
   return Math.max(0, Math.min(1, retrievability));
@@ -381,14 +373,18 @@ export function calculatePatternScore(row: ScoringInput, options: ScoringOptions
   return Math.max(0, Math.min(1, score));
 }
 
-// HIGH-003 FIX: Wrapper around unified compute_recency_score from folder-scoring
+/**
+ * HIGH-003 FIX: Wrapper around unified compute_recency_score from folder-scoring.
+ *
+ * @param timestamp - ISO timestamp of last update
+ * @param tier - Importance tier (defaults to 'normal')
+ * @returns Recency score 0-1
+ */
 export function calculateRecencyScore(timestamp: string | undefined, tier: string = 'normal'): number {
   return computeRecencyScore(timestamp || '', tier, DECAY_RATE);
 }
 
-// ---------------------------------------------------------------
-// NOVELTY BOOST (cold-start visibility)
-// ---------------------------------------------------------------
+// ─── 3a. NOVELTY BOOST ───
 
 // N4: Cold-start boost constants (exported for observability tests)
 export const NOVELTY_BOOST_MAX = 0.15;
@@ -406,6 +402,9 @@ export const NOVELTY_BOOST_SCORE_CAP = 0.95;
  * At 12h: ~0.055
  * At 24h: ~0.020
  * At 48h: ~0.003 (effectively zero)
+ *
+ * @param createdAt - ISO creation timestamp
+ * @returns Novelty boost value (0 if older than window)
  */
 export function calculateNoveltyBoost(createdAt: string | undefined): number {
   if (process.env.SPECKIT_NOVELTY_BOOST !== 'true') return 0;
@@ -420,15 +419,18 @@ export function calculateNoveltyBoost(createdAt: string | undefined): number {
   return NOVELTY_BOOST_MAX * Math.exp(-elapsedHours / NOVELTY_BOOST_HALF_LIFE_HOURS);
 }
 
-// BUG-013 FIX: Use centralized tier values from importance-tiers.js
+/**
+ * BUG-013 FIX: Use centralized tier values from importance-tiers.js.
+ *
+ * @param tier - Importance tier string
+ * @returns Boost value for the tier
+ */
 export function getTierBoost(tier: string): number {
   const tierConfig = getTierConfig(tier);
   return tierConfig.value;
 }
 
-// ---------------------------------------------------------------
-// 3b. SHARED POST-PROCESSING (internal helper)
-// ---------------------------------------------------------------
+// ─── 3b. SHARED POST-PROCESSING ───
 
 /**
  * Apply doc-type multiplier, novelty boost, interference penalty, and
@@ -457,6 +459,7 @@ function applyPostProcessingAndObserve(
 
   // N4: Apply cold-start novelty boost (BEFORE FSRS temporal decay cap)
   const noveltyBoost = calculateNoveltyBoost(row.created_at);
+  // AI-INVARIANT: N4 novelty-boosted scores capped at NOVELTY_BOOST_SCORE_CAP to prevent inflation
   const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
   composite = Math.min(scoreCap, composite + noveltyBoost);
 
@@ -486,14 +489,12 @@ function applyPostProcessingAndObserve(
         scoreDelta: finalScore - scoreBeforeBoosts,
       });
     }
-  } catch { /* fail-safe: never affects scoring */ }
+  } catch (_err: unknown) { /* AI-RISK: Telemetry must never affect scoring — fail-safe swallow */ }
 
   return finalScore;
 }
 
-// ---------------------------------------------------------------
-// 4. COMPOSITE SCORING FUNCTIONS
-// ---------------------------------------------------------------
+// ─── 4. COMPOSITE SCORING FUNCTIONS ───
 
 /**
  * T032: Calculate 5-factor composite score (REQ-017)
@@ -501,6 +502,10 @@ function applyPostProcessingAndObserve(
  * Returns a single 0-1 score combining five weighted factors:
  * temporal (FSRS retrievability), usage (access frequency),
  * importance (tier-based), pattern (query alignment), and citation (recency).
+ *
+ * @param row - Scoring input row with memory fields
+ * @param options - Optional weights, query, anchors, model selection
+ * @returns Composite score 0-1
  */
 export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOptions = {}): number {
   const weights: FiveFactorWeights = { ...FIVE_FACTOR_WEIGHTS, ...(options.weights as Partial<FiveFactorWeights>) };
@@ -529,6 +534,10 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
  * Returns a single 0-1 score combining six weighted factors:
  * similarity, importance, recency, popularity, tierBoost, and retrievability.
  * Set `options.use_five_factor_model = true` to use the newer 5-factor model instead.
+ *
+ * @param row - Scoring input row with memory fields
+ * @param options - Optional weights, query, anchors, model selection
+ * @returns Composite score 0-1
  */
 export function calculateCompositeScore(row: ScoringInput, options: ScoringOptions = {}): number {
   if (options.use_five_factor_model) {
@@ -559,9 +568,7 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   return applyPostProcessingAndObserve(composite, row, 'cs');
 }
 
-// ---------------------------------------------------------------
-// 5. BATCH OPERATIONS
-// ---------------------------------------------------------------
+// ─── 5. BATCH OPERATIONS ───
 
 /**
  * T032: Apply 5-factor scoring to a batch of results.
@@ -572,6 +579,10 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
  * - `_scoring`: Breakdown of individual factor values for diagnostics.
  *
  * Results are sorted descending by composite_score.
+ *
+ * @param results - Array of scoring input rows
+ * @param options - Optional scoring configuration
+ * @returns Scored and sorted results with composite_score and _scoring breakdown
  */
 export function applyFiveFactorScoring(
   results: ScoringInput[],
@@ -601,6 +612,10 @@ export function applyFiveFactorScoring(
  * - `_scoring`: Breakdown of individual factor values for diagnostics.
  *
  * Results are sorted descending by composite_score.
+ *
+ * @param results - Array of scoring input rows
+ * @param options - Optional scoring configuration
+ * @returns Scored and sorted results with composite_score and _scoring breakdown
  */
 export function applyCompositeScoring(
   results: ScoringInput[],
@@ -630,7 +645,11 @@ export function applyCompositeScoring(
 }
 
 /**
- * T032: Get 5-factor score breakdown
+ * T032: Get 5-factor score breakdown.
+ *
+ * @param row - Scoring input row with memory fields
+ * @param options - Optional scoring configuration
+ * @returns Detailed breakdown of each factor's value, weight, and contribution
  */
 export function getFiveFactorBreakdown(row: ScoringInput, options: ScoringOptions = {}): FiveFactorBreakdown {
   const weights: FiveFactorWeights = { ...FIVE_FACTOR_WEIGHTS, ...(options.weights as Partial<FiveFactorWeights>) };
@@ -656,7 +675,11 @@ export function getFiveFactorBreakdown(row: ScoringInput, options: ScoringOption
 }
 
 /**
- * Legacy score breakdown for backward compatibility
+ * Legacy score breakdown for backward compatibility.
+ *
+ * @param row - Scoring input row with memory fields
+ * @param options - Optional scoring configuration
+ * @returns Detailed breakdown of each factor (5-factor or 6-factor-legacy)
  */
 export function getScoreBreakdown(row: ScoringInput, options: ScoringOptions = {}): FiveFactorBreakdown | LegacyScoreBreakdown {
   if (options.use_five_factor_model) {
@@ -687,13 +710,13 @@ export function getScoreBreakdown(row: ScoringInput, options: ScoringOptions = {
   };
 }
 
-// ---------------------------------------------------------------
-// 7. SCORE NORMALIZATION (T004)
-// ---------------------------------------------------------------
+// ─── 7. SCORE NORMALIZATION ───
 
 /**
  * Check if composite score normalization is enabled.
  * Gated behind SPECKIT_SCORE_NORMALIZATION env var (default: disabled).
+ *
+ * @returns True if normalization is enabled via env var
  */
 export function isCompositeNormalizationEnabled(): boolean {
   return process.env.SPECKIT_SCORE_NORMALIZATION === 'true';
@@ -706,6 +729,9 @@ export function isCompositeNormalizationEnabled(): boolean {
  * - If all scores are equal, they normalize to 1.0.
  * - If a single result, it normalizes to 1.0.
  * - Returns empty array when given empty array.
+ *
+ * @param scores - Array of raw composite scores
+ * @returns Normalized scores mapped to [0, 1] (or unchanged when disabled)
  */
 export function normalizeCompositeScores(scores: number[]): number[] {
   if (scores.length === 0) return [];

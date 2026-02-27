@@ -1,12 +1,9 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: Interference Scoring (TM-01, Sprint 2, T005)
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Interference Scoring (TM-01) ───
 // Tests for interference score computation and penalty application.
 // Covers: zero interference, penalty reduces score, score floor at 0,
 // env var gating, batch computation, text similarity heuristic,
 // and integration with composite scoring.
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import Database from 'better-sqlite3';

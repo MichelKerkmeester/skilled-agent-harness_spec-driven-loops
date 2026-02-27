@@ -1,7 +1,5 @@
-// ---------------------------------------------------------------
-// MODULE: Vector Index Implementation
+// ─── MODULE: Vector Index Implementation ───
 // SEARCH: VECTOR INDEX
-// ---------------------------------------------------------------
 // TypeScript port of the vector index implementation.
 // DECAY STRATEGY (ADR-004): Search-time temporal decay uses an
 // FSRS-preferred strategy. Memories with FSRS review data (last_review
@@ -1625,6 +1623,8 @@ function create_schema(database: Database.Database) {
     ensure_canonical_file_path_support(database);
     create_common_indexes(database);
     ensureCompanionTables(database);
+    // AI-WHY: Sprint 2 (REQ-S2-001) — embedding cache table must exist before any
+    // save/index operation so lookupEmbedding() can skip redundant provider calls.
     initEmbeddingCache(database);
     return;
   }
@@ -1738,7 +1738,8 @@ function create_schema(database: Database.Database) {
   // Create companion tables (memory_history, checkpoints, memory_conflicts) and their indexes
   ensureCompanionTables(database);
 
-  // Create embedding_cache table for persistent embedding caching (REQ-S2-001)
+  // AI-WHY: Sprint 2 (REQ-S2-001) — create embedding_cache table for persistent
+  // embedding caching so re-index of unchanged content skips the embedding provider.
   initEmbeddingCache(database);
 
   // Create memory_index-specific indexes (not IF NOT EXISTS because this is a fresh DB)

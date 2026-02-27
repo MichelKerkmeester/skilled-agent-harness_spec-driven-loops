@@ -1,11 +1,6 @@
-// ---------------------------------------------------------------
-// MODULE: Query Complexity Classifier
-// 3-tier heuristic classifier for query routing (Sprint 3, T001a)
-// ---------------------------------------------------------------
+// ─── MODULE: Query Complexity Classifier ───
 
-/* -----------------------------------------------------------
-   1. TYPES & CONSTANTS
-----------------------------------------------------------------*/
+/* ─── 1. TYPES & CONSTANTS ─── */
 
 type QueryComplexityTier = 'simple' | 'moderate' | 'complex';
 
@@ -36,25 +31,26 @@ const STOP_WORDS: ReadonlySet<string> = new Set([
   'will', 'would', 'can', 'could', 'should', 'may', 'might',
 ]);
 
-/* -----------------------------------------------------------
-   2. FEATURE FLAG
-----------------------------------------------------------------*/
+/* ─── 2. FEATURE FLAG ─── */
 
 /**
  * Check if the complexity router feature flag is enabled.
  * Default: DISABLED. Only enabled when SPECKIT_COMPLEXITY_ROUTER is explicitly "true".
+ *
+ * @returns True when SPECKIT_COMPLEXITY_ROUTER env var is "true".
  */
 function isComplexityRouterEnabled(): boolean {
   const raw = process.env.SPECKIT_COMPLEXITY_ROUTER?.toLowerCase()?.trim();
   return raw === 'true';
 }
 
-/* -----------------------------------------------------------
-   3. FEATURE EXTRACTION
-----------------------------------------------------------------*/
+/* ─── 3. FEATURE EXTRACTION ─── */
 
 /**
  * Split query into terms by whitespace, filtering empty strings.
+ *
+ * @param query - Raw query string to tokenize.
+ * @returns Array of non-empty whitespace-delimited terms.
  */
 function extractTerms(query: string): string[] {
   return query.trim().split(/\s+/).filter(t => t.length > 0);
@@ -63,6 +59,9 @@ function extractTerms(query: string): string[] {
 /**
  * Calculate the ratio of stop words in the query terms.
  * Returns 0 for empty term lists.
+ *
+ * @param terms - Array of query terms to analyse.
+ * @returns Ratio in [0, 1] of stop words to total terms.
  */
 function calculateStopWordRatio(terms: string[]): number {
   if (terms.length === 0) return 0;
@@ -72,6 +71,10 @@ function calculateStopWordRatio(terms: string[]): number {
 
 /**
  * Check if the query exactly matches any known trigger phrase (case-insensitive).
+ *
+ * @param query          - Raw query string to test.
+ * @param triggerPhrases - Known trigger phrases to match against.
+ * @returns True when the query matches a trigger phrase exactly.
  */
 function hasTriggerMatch(query: string, triggerPhrases: string[]): boolean {
   if (triggerPhrases.length === 0) return false;
@@ -79,12 +82,16 @@ function hasTriggerMatch(query: string, triggerPhrases: string[]): boolean {
   return triggerPhrases.some(tp => tp.trim().toLowerCase() === normalized);
 }
 
-/* -----------------------------------------------------------
-   4. CLASSIFICATION
-----------------------------------------------------------------*/
+/* ─── 4. CLASSIFICATION ─── */
 
 /**
  * Determine confidence label based on how clearly the query fits its tier.
+ *
+ * @param tier          - Classified complexity tier.
+ * @param termCount     - Number of query terms.
+ * @param hasTrigger    - Whether a trigger phrase matched.
+ * @param stopWordRatio - Ratio of stop words in query.
+ * @returns Confidence label: 'high', 'medium', or 'low'.
  */
 function determineConfidence(
   tier: QueryComplexityTier,
@@ -93,7 +100,7 @@ function determineConfidence(
   stopWordRatio: number,
 ): string {
   if (tier === 'simple') {
-    // High confidence: trigger match or very short query
+    // AI-WHY: Trigger match is strongest simplicity signal — overrides term count
     if (hasTrigger) return 'high';
     if (termCount <= 2) return 'high';
     return 'medium';
@@ -125,6 +132,10 @@ function determineConfidence(
  * all queries classify as "complex" (safe fallback — full pipeline).
  *
  * On any error, returns "complex" (safe fallback per spec).
+ *
+ * @param query          - Raw user query string.
+ * @param triggerPhrases - Optional array of known trigger phrases.
+ * @returns ClassificationResult with tier, features, and confidence.
  */
 function classifyQueryComplexity(
   query: string,
@@ -158,6 +169,7 @@ function classifyQueryComplexity(
     // Classification boundaries
     let tier: QueryComplexityTier;
 
+    // AI-INVARIANT: triggerMatch always forces simple tier regardless of term count
     if (triggerMatch || termCount <= SIMPLE_TERM_THRESHOLD) {
       tier = 'simple';
     } else if (termCount > COMPLEX_TERM_THRESHOLD && !triggerMatch) {
@@ -174,19 +186,18 @@ function classifyQueryComplexity(
         termCount,
         charCount,
         hasTriggerMatch: triggerMatch,
-        stopWordRatio: Math.round(stopWordRatio * 1000) / 1000, // 3 decimal places
+        // AI-WHY: Round to 3 decimals to avoid floating-point noise in debug output
+        stopWordRatio: Math.round(stopWordRatio * 1000) / 1000,
       },
       confidence,
     };
-  } catch {
-    // Any error → complex fallback (safe per spec)
+  } catch (_err: unknown) {
+    // AI-GUARD: Classification failure — return moderate default
     return FALLBACK;
   }
 }
 
-/* -----------------------------------------------------------
-   5. EXPORTS
-----------------------------------------------------------------*/
+/* ─── 5. EXPORTS ─── */
 
 export {
   // Types

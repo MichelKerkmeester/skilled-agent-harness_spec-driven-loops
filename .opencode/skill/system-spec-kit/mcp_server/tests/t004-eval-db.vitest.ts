@@ -1,11 +1,8 @@
 // @ts-nocheck
-// ---------------------------------------------------------------
-// TEST: T004 — Eval DB Schema (R13-S1)
-// ---------------------------------------------------------------
+// ─── MODULE: Test — Eval Database ───
 // Verifies that initEvalDb() creates the evaluation database with
 // all 5 required tables, correct columns, and that it is a
 // separate file from the main context-index.sqlite.
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import * as path from 'path';

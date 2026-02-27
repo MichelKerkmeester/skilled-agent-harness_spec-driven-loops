@@ -1,10 +1,8 @@
-// ---------------------------------------------------------------
-// TEST: T029 — Confidence-Based Result Truncation (T006)
+// ─── MODULE: Test — Confidence Truncation ───
 // Sprint 3 — Query Intelligence
 // 24 tests covering:
 //   basic truncation, minimum result count, no-truncation, flag disabled,
 //   edge cases, >30% tail reduction verification, algorithm boundaries
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

@@ -1,11 +1,6 @@
-// ---------------------------------------------------------------
-// MODULE: Intent Classifier
-// 7 intent types with keyword/pattern scoring
-// ---------------------------------------------------------------
+// ─── MODULE: Intent Classifier ───
 
-/* -----------------------------------------------------------
-   1. TYPES & CONSTANTS
-----------------------------------------------------------------*/
+/* ─── 1. TYPES & CONSTANTS ─── */
 
 type IntentType = 'add_feature' | 'fix_bug' | 'refactor' | 'security_audit' | 'understand' | 'find_spec' | 'find_decision';
 
@@ -201,11 +196,15 @@ const INTENT_WEIGHT_ADJUSTMENTS: Record<IntentType, IntentWeights> = {
 
 const INTENT_CENTROIDS: IntentCentroids = buildIntentCentroids();
 
-/* -----------------------------------------------------------
-   2. SCORING FUNCTIONS
-----------------------------------------------------------------*/
+/* ─── 2. SCORING FUNCTIONS ─── */
 
-/** Score a query against an intent's keyword list, returning normalized score and matched keywords. */
+/**
+ * Score a query against an intent's keyword list, returning normalized score and matched keywords.
+ *
+ * @param query - Raw user query string
+ * @param intent - Intent type to score against
+ * @returns Object with normalized score and array of matched keywords
+ */
 function calculateKeywordScore(query: string, intent: IntentType): { score: number; matches: string[] } {
   const lower = query.toLowerCase();
   const keywords = INTENT_KEYWORDS[intent];
@@ -232,7 +231,13 @@ function calculateKeywordScore(query: string, intent: IntentType): { score: numb
   };
 }
 
-/** Score a query against an intent's regex patterns, returning fraction of patterns matched. */
+/**
+ * Score a query against an intent's regex patterns, returning fraction of patterns matched.
+ *
+ * @param query - Raw user query string
+ * @param intent - Intent type to score against
+ * @returns Fraction of patterns matched (0-1)
+ */
 function calculatePatternScore(query: string, intent: IntentType): number {
   const patterns = INTENT_PATTERNS[intent];
   let matches = 0;
@@ -248,6 +253,9 @@ function calculatePatternScore(query: string, intent: IntentType): number {
 
 /**
  * Detect explicit spec-retrieval phrasing so document lookup intent wins over domain terms.
+ *
+ * @param query - Raw user query string
+ * @returns True if query explicitly targets spec/plan/requirements lookup
  */
 function isExplicitSpecLookup(query: string): boolean {
   return (
@@ -259,6 +267,9 @@ function isExplicitSpecLookup(query: string): boolean {
 
 /**
  * Compute a deterministic normalized embedding for text.
+ *
+ * @param text - Input text to embed
+ * @returns Normalized Float32Array embedding vector
  */
 function toDeterministicEmbedding(text: string): Float32Array {
   const vec = new Float32Array(CENTROID_EMBED_DIM);
@@ -272,6 +283,8 @@ function toDeterministicEmbedding(text: string): Float32Array {
 
 /**
  * Build one centroid vector per intent from seed phrases and keywords.
+ *
+ * @returns Map of intent types to their centroid embedding vectors
  */
 function buildIntentCentroids(): IntentCentroids {
   const out = {} as IntentCentroids;
@@ -291,6 +304,10 @@ function buildIntentCentroids(): IntentCentroids {
 
 /**
  * Hash a token into a stable non-negative integer.
+ * // AI-WHY: FNV-1a hash chosen for speed and low collision rate on short strings
+ *
+ * @param token - Single lowercase token to hash
+ * @returns Non-negative 32-bit integer hash
  */
 function hashToken(token: string): number {
   let h = 2166136261;
@@ -303,6 +320,9 @@ function hashToken(token: string): number {
 
 /**
  * L2-normalize a vector in place.
+ *
+ * @param vec - Float32Array vector to normalize
+ * @returns The same vector, normalized to unit length
  */
 function normalizeVector(vec: Float32Array): Float32Array {
   let norm = 0;
@@ -319,6 +339,10 @@ function normalizeVector(vec: Float32Array): Float32Array {
 
 /**
  * Dot product similarity for normalized vectors.
+ *
+ * @param a - First vector
+ * @param b - Second vector
+ * @returns Dot product (cosine similarity for unit vectors)
  */
 function dotProduct(a: Float32Array | number[], b: Float32Array | number[]): number {
   const len = Math.min(a.length, b.length);
@@ -331,6 +355,10 @@ function dotProduct(a: Float32Array | number[], b: Float32Array | number[]): num
 
 /**
  * Score query-to-intent using centroid embeddings.
+ *
+ * @param query - Raw user query string
+ * @param intent - Intent type to score against
+ * @returns Cosine similarity score (0-1)
  */
 function calculateCentroidScore(query: string, intent: IntentType): number {
   const queryEmb = toDeterministicEmbedding(query);
@@ -338,11 +366,14 @@ function calculateCentroidScore(query: string, intent: IntentType): number {
   return Math.max(0, dotProduct(queryEmb, centroid));
 }
 
-/* -----------------------------------------------------------
-   3. CLASSIFICATION
-----------------------------------------------------------------*/
+/* ─── 3. CLASSIFICATION ─── */
 
-/** Classify a query string into one of 7 intent types with confidence and keyword evidence. */
+/**
+ * Classify a query string into one of 7 intent types with confidence and keyword evidence.
+ *
+ * @param query - Raw user query string
+ * @returns Intent result with type, confidence, per-intent scores, and matched keywords
+ */
 function classifyIntent(query: string): IntentResult {
   if (!query || typeof query !== 'string') {
     return {
@@ -424,6 +455,9 @@ function classifyIntent(query: string): IntentResult {
 
 /**
  * Detect intent (alias for classifyIntent).
+ *
+ * @param query - Raw user query string
+ * @returns Intent result with type, confidence, scores, and keywords
  */
 function detectIntent(query: string): IntentResult {
   return classifyIntent(query);
@@ -431,6 +465,9 @@ function detectIntent(query: string): IntentResult {
 
 /**
  * Get weight adjustments for an intent.
+ *
+ * @param intent - Intent type to get weights for
+ * @returns Weight adjustments for recency, importance, similarity, and context type
  */
 function getIntentWeights(intent: IntentType): IntentWeights {
   return INTENT_WEIGHT_ADJUSTMENTS[intent] ?? INTENT_WEIGHT_ADJUSTMENTS.understand;
@@ -438,6 +475,10 @@ function getIntentWeights(intent: IntentType): IntentWeights {
 
 /**
  * Apply intent-based weight adjustments to search results.
+ *
+ * @param results - Array of search result records
+ * @param intent - Classified intent type to apply
+ * @returns Results sorted by intent-adjusted score
  */
 function applyIntentWeights(
   results: Array<Record<string, unknown>>,
@@ -457,6 +498,9 @@ function applyIntentWeights(
 
 /**
  * Get search query weights based on detected intent.
+ *
+ * @param query - Raw user query string
+ * @returns Weight adjustments derived from auto-detected intent
  */
 function getQueryWeights(query: string): IntentWeights {
   const result = classifyIntent(query);
@@ -465,6 +509,9 @@ function getQueryWeights(query: string): IntentWeights {
 
 /**
  * Check if an intent type is valid.
+ *
+ * @param intent - String to validate as an IntentType
+ * @returns True if the string is a valid IntentType
  */
 function isValidIntent(intent: string): intent is IntentType {
   return Object.values(INTENT_TYPES).includes(intent as IntentType);
@@ -472,6 +519,8 @@ function isValidIntent(intent: string): intent is IntentType {
 
 /**
  * Get all valid intent types.
+ *
+ * @returns Array of all valid IntentType values
  */
 function getValidIntents(): IntentType[] {
   return Object.values(INTENT_TYPES);
@@ -479,6 +528,9 @@ function getValidIntents(): IntentType[] {
 
 /**
  * Get human-readable description for an intent.
+ *
+ * @param intent - Intent type to describe
+ * @returns Human-readable description string
  */
 function getIntentDescription(intent: IntentType): string {
   const descriptions: Record<IntentType, string> = {
@@ -493,9 +545,7 @@ function getIntentDescription(intent: IntentType): string {
   return descriptions[intent] || 'Unknown intent';
 }
 
-/* -----------------------------------------------------------
-   4. EXPORTS
-----------------------------------------------------------------*/
+/* ─── 4. EXPORTS ─── */
 
 /**
  * C138: Intent-to-MMR-lambda mapping.

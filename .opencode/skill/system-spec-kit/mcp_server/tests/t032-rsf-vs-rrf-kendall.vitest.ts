@@ -1,10 +1,8 @@
-// ---------------------------------------------------------------
-// TEST: T032 — RSF vs RRF Kendall Tau Comparison
+// ─── MODULE: Test — RSF vs RRF Kendall Tau ───
 // Sprint 3 verification: measure rank correlation between RRF and RSF
 // fusion to determine whether RSF is a safe replacement for RRF.
 //
 // Decision criterion: tau < 0.4 = REJECT RSF (rankings too different)
-// ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll } from 'vitest';
 import { fuseResultsMulti, type RankedList, type RrfItem } from '../lib/search/rrf-fusion';
