@@ -26,6 +26,7 @@ import { createLogger } from '../utils/logger';
 import { SERVER_DIR } from '../../core/config';
 import { IVectorStore } from '../interfaces/vector-store';
 import * as embeddingsProvider from '../providers/embeddings';
+import { initEmbeddingCache } from '../cache/embedding-cache';
 
 // MCP-safe logger — all output goes to stderr (stdout reserved for JSON-RPC)
 const logger = createLogger('VectorIndex');
@@ -1624,6 +1625,7 @@ function create_schema(database: Database.Database) {
     ensure_canonical_file_path_support(database);
     create_common_indexes(database);
     ensureCompanionTables(database);
+    initEmbeddingCache(database);
     return;
   }
 
@@ -1735,6 +1737,9 @@ function create_schema(database: Database.Database) {
 
   // Create companion tables (memory_history, checkpoints, memory_conflicts) and their indexes
   ensureCompanionTables(database);
+
+  // Create embedding_cache table for persistent embedding caching (REQ-S2-001)
+  initEmbeddingCache(database);
 
   // Create memory_index-specific indexes (not IF NOT EXISTS because this is a fresh DB)
   database.exec(`

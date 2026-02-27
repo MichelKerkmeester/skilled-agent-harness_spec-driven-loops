@@ -427,34 +427,26 @@ export function getTierBoost(tier: string): number {
 }
 
 // ---------------------------------------------------------------
-// 4. COMPOSITE SCORING FUNCTIONS
+// 3b. SHARED POST-PROCESSING (internal helper)
 // ---------------------------------------------------------------
 
 /**
- * T032: Calculate 5-factor composite score (REQ-017)
+ * Apply doc-type multiplier, novelty boost, interference penalty, and
+ * observability telemetry to an already-computed weighted composite score.
  *
- * Returns a single 0-1 score combining five weighted factors:
- * temporal (FSRS retrievability), usage (access frequency),
- * importance (tier-based), pattern (query alignment), and citation (recency).
+ * Called by both calculateFiveFactorScore ('5f') and calculateCompositeScore ('cs').
+ * The queryIdPrefix is the only difference between the two call sites.
+ *
+ * @param composite  Raw weighted-sum composite score (pre-multiplier)
+ * @param row        Scoring input row (used for doc type, novelty, interference, telemetry)
+ * @param queryIdPrefix  Short label identifying the scoring model ('5f' | 'cs')
+ * @returns Final clamped score in [0, 1]
  */
-export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOptions = {}): number {
-  const weights: FiveFactorWeights = { ...FIVE_FACTOR_WEIGHTS, ...(options.weights as Partial<FiveFactorWeights>) };
-  const tier = row.importance_tier || 'normal';
-
-  const temporalScore = calculateTemporalScore(row);
-  const usageScore = calculateUsageScore(row.access_count || 0);
-  const importanceScore = calculateImportanceScore(tier, row.importance_weight);
-  const patternScore = calculatePatternScore(row, options);
-  const citationScore = calculateCitationScore(row);
-
-  let composite = (
-    temporalScore * weights.temporal +
-    usageScore * weights.usage +
-    importanceScore * weights.importance +
-    patternScore * weights.pattern +
-    citationScore * weights.citation
-  );
-
+function applyPostProcessingAndObserve(
+  composite: number,
+  row: ScoringInput,
+  queryIdPrefix: string,
+): number {
   // Spec 126: Apply document type multiplier
   const docType = (row.document_type as string) || 'memory';
   const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
@@ -480,7 +472,7 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
       const createdMs = row.created_at ? new Date(row.created_at).getTime() : Date.now();
       logScoringObservation({
         memoryId: (row.id as number) || 0,
-        queryId: `5f-${Date.now()}`,
+        queryId: `${queryIdPrefix}-${Date.now()}`,
         timestamp: new Date().toISOString(),
         noveltyBoostApplied: noveltyBoost > 0,
         noveltyBoostValue: noveltyBoost,
@@ -497,6 +489,38 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
   } catch { /* fail-safe: never affects scoring */ }
 
   return finalScore;
+}
+
+// ---------------------------------------------------------------
+// 4. COMPOSITE SCORING FUNCTIONS
+// ---------------------------------------------------------------
+
+/**
+ * T032: Calculate 5-factor composite score (REQ-017)
+ *
+ * Returns a single 0-1 score combining five weighted factors:
+ * temporal (FSRS retrievability), usage (access frequency),
+ * importance (tier-based), pattern (query alignment), and citation (recency).
+ */
+export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOptions = {}): number {
+  const weights: FiveFactorWeights = { ...FIVE_FACTOR_WEIGHTS, ...(options.weights as Partial<FiveFactorWeights>) };
+  const tier = row.importance_tier || 'normal';
+
+  const temporalScore = calculateTemporalScore(row);
+  const usageScore = calculateUsageScore(row.access_count || 0);
+  const importanceScore = calculateImportanceScore(tier, row.importance_weight);
+  const patternScore = calculatePatternScore(row, options);
+  const citationScore = calculateCitationScore(row);
+
+  const composite = (
+    temporalScore * weights.temporal +
+    usageScore * weights.usage +
+    importanceScore * weights.importance +
+    patternScore * weights.pattern +
+    citationScore * weights.citation
+  );
+
+  return applyPostProcessingAndObserve(composite, row, '5f');
 }
 
 /**
@@ -523,7 +547,7 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const tierBoost = getTierBoost(tier);
   const retrievabilityScore = calculateRetrievabilityScore(row);
 
-  let composite = (
+  const composite = (
     similarity * weights.similarity +
     importance * weights.importance +
     recencyScore * weights.recency +
@@ -532,48 +556,7 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
     retrievabilityScore * weights.retrievability
   );
 
-  // Spec 126: Apply document type multiplier
-  const docType = (row.document_type as string) || 'memory';
-  const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
-  composite *= docMultiplier;
-
-  // T010: Capture score before N4/TM-01 for observability
-  const scoreBeforeBoosts = composite;
-
-  // N4: Apply cold-start novelty boost (BEFORE FSRS temporal decay cap)
-  const noveltyBoost = calculateNoveltyBoost(row.created_at);
-  const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
-  composite = Math.min(scoreCap, composite + noveltyBoost);
-
-  // TM-01: Apply interference penalty (AFTER N4 novelty boost, after doc multiplier)
-  const interferenceScore = (row.interference_score as number) || 0;
-  composite = applyInterferencePenalty(composite, interferenceScore);
-
-  const finalScore = Math.max(0, composite);
-
-  // T010: Scoring observability (5% sampled, fail-safe)
-  try {
-    if (shouldSample()) {
-      const createdMs = row.created_at ? new Date(row.created_at).getTime() : Date.now();
-      logScoringObservation({
-        memoryId: (row.id as number) || 0,
-        queryId: `cs-${Date.now()}`,
-        timestamp: new Date().toISOString(),
-        noveltyBoostApplied: noveltyBoost > 0,
-        noveltyBoostValue: noveltyBoost,
-        memoryAgeDays: isNaN(createdMs) ? 0 : (Date.now() - createdMs) / 86400000,
-        interferenceApplied: interferenceScore > 0 && process.env.SPECKIT_INTERFERENCE_SCORE === 'true',
-        interferenceScore,
-        interferencePenalty: process.env.SPECKIT_INTERFERENCE_SCORE === 'true' && interferenceScore > 0
-          ? INTERFERENCE_PENALTY_COEFFICIENT * interferenceScore : 0,
-        scoreBeforeBoosts,
-        scoreAfterBoosts: finalScore,
-        scoreDelta: finalScore - scoreBeforeBoosts,
-      });
-    }
-  } catch { /* fail-safe: never affects scoring */ }
-
-  return finalScore;
+  return applyPostProcessingAndObserve(composite, row, 'cs');
 }
 
 // ---------------------------------------------------------------

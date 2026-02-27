@@ -361,13 +361,17 @@ describe('T003a: Co-Activation Boost Strength', () => {
       const { boostScore, CO_ACTIVATION_CONFIG } = mod;
 
       // With boostFactor=0.25, maxRelated=5, relatedCount=5, avgSimilarity=100:
-      // boost = 0.25 * (5/5) * (100/100) = 0.25
+      // rawBoost = 0.25 * (5/5) * (100/100) = 0.25
+      // R17 fan-effect: boost = rawBoost / sqrt(relatedCount) = 0.25 / sqrt(5)
       const baseScore = 0.5;
-      const result = boostScore(baseScore, 5, 100);
+      const relatedCount = 5;
+      const result = boostScore(baseScore, relatedCount, 100);
 
-      const expectedBoost = CO_ACTIVATION_CONFIG.boostFactor *
-        (5 / CO_ACTIVATION_CONFIG.maxRelated) *
+      const rawBoost = CO_ACTIVATION_CONFIG.boostFactor *
+        (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) *
         (100 / 100);
+      const fanDivisor = Math.sqrt(Math.max(1, relatedCount));
+      const expectedBoost = rawBoost / fanDivisor;
       expect(result).toBeCloseTo(baseScore + expectedBoost);
     });
 
@@ -422,11 +426,12 @@ describe('T003a: Co-Activation Boost Strength', () => {
       const result = boostScore(base, 3, 80);
       const actualBoost = result - base;
 
-      // Calculate what old 0.15 factor would produce
-      const oldBoost = 0.15 * (3 / CO_ACTIVATION_CONFIG.maxRelated) * (80 / 100);
+      // Calculate what old 0.15 factor would produce (also with R17 fan-effect divisor)
+      const fanDivisor = Math.sqrt(Math.max(1, 3));
+      const oldBoost = 0.15 * (3 / CO_ACTIVATION_CONFIG.maxRelated) * (80 / 100) / fanDivisor;
 
       // New default 0.25 should produce higher boost than old 0.15
-      // (unless env var overrides to something lower)
+      // (both with fan-effect divisor applied)
       if (CO_ACTIVATION_CONFIG.boostFactor >= 0.25) {
         expect(actualBoost).toBeGreaterThan(oldBoost);
       }

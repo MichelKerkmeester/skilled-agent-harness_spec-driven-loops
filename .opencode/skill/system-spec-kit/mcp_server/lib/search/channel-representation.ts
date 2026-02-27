@@ -10,7 +10,10 @@
    1. CONSTANTS
    --------------------------------------------------------------- */
 
-/** Minimum similarity / relevance score for a result to qualify for promotion. */
+/** Minimum similarity / relevance score for a result to qualify for promotion.
+ * NOTE: This threshold assumes normalized [0,1] scores. When used with raw RRF
+ * scores (~0.01-0.03), results may never qualify. Enable SPECKIT_SCORE_NORMALIZATION
+ * alongside SPECKIT_CHANNEL_MIN_REP for correct behavior. */
 export const QUALITY_FLOOR = 0.2;
 
 /** Env-var name for the feature flag. */
@@ -70,7 +73,7 @@ export interface ChannelRepresentationResult {
  */
 export function isChannelMinRepEnabled(): boolean {
   const raw = process.env[FEATURE_FLAG]?.toLowerCase();
-  return raw === 'true' || raw === '1';
+  return raw === 'true';
 }
 
 /* ---------------------------------------------------------------
@@ -182,11 +185,7 @@ export function analyzeChannelRepresentation(
   return {
     topK: enhancedTopK,
     promoted,
-    underRepresentedChannels: underRepresentedChannels.filter(ch =>
-      promoted.some(p => p.promotedFrom === ch)
-        ? true                    // successfully promoted — still list the channel
-        : true                    // failed to promote (below floor) — still document it
-    ),
+    underRepresentedChannels: [...underRepresentedChannels],
     channelCounts: computeChannelCounts(enhancedTopK),
   };
 }

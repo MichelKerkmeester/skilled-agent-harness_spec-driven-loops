@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: T032 — RSF vs RRF Kendall Tau Comparison
 // Sprint 3 verification: measure rank correlation between RRF and RSF

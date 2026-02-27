@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: RSF Fusion (Relative Score Fusion) — Single-Pair Variant
 // Sprint 3, Task T002a — Hybrid RAG Fusion Refinement

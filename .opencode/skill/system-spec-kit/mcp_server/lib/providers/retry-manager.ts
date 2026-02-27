@@ -215,6 +215,9 @@ async function retryEmbedding(id: number, content: string): Promise<RetryResult>
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
+    // TODO(REQ-S2-001): Integrate persistent embedding cache here.
+    // Check lookupEmbedding(db, contentHash, modelId) before calling generateDocumentEmbedding.
+    // On miss, store result via storeEmbedding. See memory-save.ts for reference implementation.
     const embedding = await generateDocumentEmbedding(content);
 
     if (!embedding) {

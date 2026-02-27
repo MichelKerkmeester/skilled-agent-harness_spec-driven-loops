@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: Description-Based Spec Folder Discovery (PI-B3 / T009)
 // Tests: extractDescription, extractKeywords, findRelevantFolders,

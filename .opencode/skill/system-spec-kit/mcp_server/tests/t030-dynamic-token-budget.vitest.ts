@@ -7,7 +7,7 @@
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
-  getTokenBudget,
+  getDynamicTokenBudget,
   isDynamicTokenBudgetEnabled,
   DEFAULT_BUDGET,
   DEFAULT_TOKEN_BUDGET_CONFIG,
@@ -97,26 +97,26 @@ describe('T030-02: Flag Disabled — Default Budget (4000)', () => {
   afterEach(disableFlag);
 
   it('T6: simple tier returns DEFAULT_BUDGET (4000) when disabled', () => {
-    const result = getTokenBudget('simple');
+    const result = getDynamicTokenBudget('simple');
     expect(result.budget).toBe(DEFAULT_BUDGET);
     expect(result.budget).toBe(4000);
     expect(result.applied).toBe(false);
   });
 
   it('T7: moderate tier returns DEFAULT_BUDGET (4000) when disabled', () => {
-    const result = getTokenBudget('moderate');
+    const result = getDynamicTokenBudget('moderate');
     expect(result.budget).toBe(DEFAULT_BUDGET);
     expect(result.applied).toBe(false);
   });
 
   it('T8: complex tier returns DEFAULT_BUDGET (4000) when disabled', () => {
-    const result = getTokenBudget('complex');
+    const result = getDynamicTokenBudget('complex');
     expect(result.budget).toBe(DEFAULT_BUDGET);
     expect(result.applied).toBe(false);
   });
 
   it('T9: applied=false when flag is disabled', () => {
-    const result = getTokenBudget('simple');
+    const result = getDynamicTokenBudget('simple');
     expect(result.applied).toBe(false);
   });
 });
@@ -130,36 +130,36 @@ describe('T030-03: Budget Per Tier (Flag Enabled)', () => {
   afterEach(disableFlag);
 
   it('T10: simple tier returns 1500 tokens', () => {
-    const result = getTokenBudget('simple');
+    const result = getDynamicTokenBudget('simple');
     expect(result.tier).toBe('simple');
     expect(result.budget).toBe(1500);
     expect(result.applied).toBe(true);
   });
 
   it('T11: moderate tier returns 2500 tokens', () => {
-    const result = getTokenBudget('moderate');
+    const result = getDynamicTokenBudget('moderate');
     expect(result.tier).toBe('moderate');
     expect(result.budget).toBe(2500);
     expect(result.applied).toBe(true);
   });
 
   it('T12: complex tier returns 4000 tokens', () => {
-    const result = getTokenBudget('complex');
+    const result = getDynamicTokenBudget('complex');
     expect(result.tier).toBe('complex');
     expect(result.budget).toBe(4000);
     expect(result.applied).toBe(true);
   });
 
   it('T13: budgets increase with tier complexity', () => {
-    const simple = getTokenBudget('simple').budget;
-    const moderate = getTokenBudget('moderate').budget;
-    const complex = getTokenBudget('complex').budget;
+    const simple = getDynamicTokenBudget('simple').budget;
+    const moderate = getDynamicTokenBudget('moderate').budget;
+    const complex = getDynamicTokenBudget('complex').budget;
     expect(simple).toBeLessThan(moderate);
     expect(moderate).toBeLessThan(complex);
   });
 
   it('T14: applied=true when flag is enabled', () => {
-    const result = getTokenBudget('moderate');
+    const result = getDynamicTokenBudget('moderate');
     expect(result.applied).toBe(true);
   });
 });
@@ -179,9 +179,9 @@ describe('T030-04: Custom Config Override', () => {
       complex: 3200,
     };
 
-    expect(getTokenBudget('simple', customConfig).budget).toBe(800);
-    expect(getTokenBudget('moderate', customConfig).budget).toBe(1600);
-    expect(getTokenBudget('complex', customConfig).budget).toBe(3200);
+    expect(getDynamicTokenBudget('simple', customConfig).budget).toBe(800);
+    expect(getDynamicTokenBudget('moderate', customConfig).budget).toBe(1600);
+    expect(getDynamicTokenBudget('complex', customConfig).budget).toBe(3200);
   });
 });
 
@@ -202,14 +202,14 @@ describe('T030-05: Default Config Constants', () => {
 
   it('T18: tier is included in BudgetResult', () => {
     withFlag(() => {
-      const result = getTokenBudget('simple');
+      const result = getDynamicTokenBudget('simple');
       expect(result.tier).toBe('simple');
     });
   });
 
   it('T19: tier is preserved even when flag disabled', () => {
     disableFlag();
-    const result = getTokenBudget('moderate');
+    const result = getDynamicTokenBudget('moderate');
     expect(result.tier).toBe('moderate');
   });
 });

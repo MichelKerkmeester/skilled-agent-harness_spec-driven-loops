@@ -309,6 +309,8 @@ function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
     result: RsfResult;
     scoreSum: number;
     variantCount: number;
+    sourceScoreSums: Record<string, number>;
+    sourceScoreCounts: Record<string, number>;
   }>();
 
   for (const variantResults of perVariantFused) {
@@ -323,21 +325,27 @@ function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
             existing.result.sources.push(src);
           }
         }
-        // Merge sourceScores (average per source)
+        // Accumulate sourceScores sums and counts for true average
         for (const [key, val] of Object.entries(result.sourceScores)) {
-          if (existing.result.sourceScores[key] !== undefined) {
-            existing.result.sourceScores[key] = (existing.result.sourceScores[key] + val) / 2;
-          } else {
-            existing.result.sourceScores[key] = val;
-          }
+          existing.sourceScoreSums[key] = (existing.sourceScoreSums[key] ?? 0) + val;
+          existing.sourceScoreCounts[key] = (existing.sourceScoreCounts[key] ?? 0) + 1;
         }
       } else {
         mergedMap.set(result.id, {
           result: { ...result, sources: [...result.sources], sourceScores: { ...result.sourceScores } },
           scoreSum: result.rsfScore,
           variantCount: 1,
+          sourceScoreSums: { ...result.sourceScores },
+          sourceScoreCounts: Object.fromEntries(Object.keys(result.sourceScores).map(k => [k, 1])),
         });
       }
+    }
+  }
+
+  // Compute true average for sourceScores
+  for (const { result, sourceScoreSums, sourceScoreCounts } of mergedMap.values()) {
+    for (const key of Object.keys(sourceScoreSums)) {
+      result.sourceScores[key] = sourceScoreSums[key] / sourceScoreCounts[key];
     }
   }
 
@@ -375,7 +383,7 @@ function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
  * Defaults to false (opt-in). Set SPECKIT_RSF_FUSION=true to enable.
  */
 function isRsfEnabled(): boolean {
-  return process.env.SPECKIT_RSF_FUSION === 'true';
+  return process.env.SPECKIT_RSF_FUSION?.toLowerCase()?.trim() === 'true';
 }
 
 /* ---------------------------------------------------------------

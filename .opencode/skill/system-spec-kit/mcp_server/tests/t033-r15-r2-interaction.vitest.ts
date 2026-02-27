@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: T033 — R15 (Query Router) + R2 (Channel Representation) Interaction
 // Sprint 3 verification: ensures that the R15 complexity-based

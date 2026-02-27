@@ -71,7 +71,7 @@ function isDynamicTokenBudgetEnabled(): boolean {
  * @param config - Optional custom budget config (overrides DEFAULT_TOKEN_BUDGET_CONFIG)
  * @returns BudgetResult with tier, budget, and applied flag
  */
-function getTokenBudget(
+function getDynamicTokenBudget(
   tier: QueryComplexityTier,
   config?: TokenBudgetConfig,
 ): BudgetResult {
@@ -108,6 +108,6 @@ export {
   DEFAULT_TOKEN_BUDGET_CONFIG,
 
   // Functions
-  getTokenBudget,
+  getDynamicTokenBudget,
   isDynamicTokenBudgetEnabled,
 };

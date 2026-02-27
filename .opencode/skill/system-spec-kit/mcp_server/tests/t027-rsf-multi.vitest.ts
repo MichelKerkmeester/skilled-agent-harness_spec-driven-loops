@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: RSF Fusion — Multi-List (T002b) and Cross-Variant (T002c) Variants
 // Sprint 3, Tasks T002b + T002c — Hybrid RAG Fusion Refinement

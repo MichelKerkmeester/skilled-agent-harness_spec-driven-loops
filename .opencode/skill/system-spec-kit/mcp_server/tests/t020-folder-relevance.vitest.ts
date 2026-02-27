@@ -1,4 +1,3 @@
-// @ts-nocheck
 // ---------------------------------------------------------------
 // TEST: t020 — Folder Relevance Scoring (DocScore)
 // Validates FolderScore formula, damping, enrichment, two-phase

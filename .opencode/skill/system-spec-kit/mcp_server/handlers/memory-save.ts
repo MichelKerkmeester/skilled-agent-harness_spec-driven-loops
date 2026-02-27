@@ -39,6 +39,7 @@ import type BetterSqlite3 from 'better-sqlite3';
 import { clearConstitutionalCache } from '../hooks/memory-surface';
 
 import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
+import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
 
 // Create local path validator
 const validateFilePathLocal = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
@@ -800,14 +801,24 @@ async function indexChunkedMemoryFile(
     const chunkTitle = `${parsed.title || 'Untitled'} [chunk ${i + 1}/${chunkResult.chunks.length}]`;
 
     try {
-      // Generate embedding for this chunk
+      // Generate embedding for this chunk (with persistent cache — REQ-S2-001)
       let chunkEmbedding: Float32Array | null = null;
       let chunkEmbeddingStatus = 'pending';
 
       try {
-        chunkEmbedding = await embeddings.generateDocumentEmbedding(chunk.content);
-        if (chunkEmbedding) {
+        const chunkHash = cacheContentHash(chunk.content);
+        const modelId = embeddings.getModelName();
+        const cachedChunkBuf = lookupEmbedding(database, chunkHash, modelId);
+        if (cachedChunkBuf) {
+          chunkEmbedding = new Float32Array(new Uint8Array(cachedChunkBuf).buffer);
           chunkEmbeddingStatus = 'success';
+        } else {
+          chunkEmbedding = await embeddings.generateDocumentEmbedding(chunk.content);
+          if (chunkEmbedding) {
+            chunkEmbeddingStatus = 'success';
+            const chunkBuf = Buffer.from(chunkEmbedding.buffer, chunkEmbedding.byteOffset, chunkEmbedding.byteLength);
+            storeEmbedding(database, chunkHash, modelId, chunkBuf, chunkEmbedding.length);
+          }
         }
       } catch (embErr: unknown) {
         const message = toErrorMessage(embErr);
@@ -1007,7 +1018,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     }
   }
 
-  // EMBEDDING GENERATION
+  // EMBEDDING GENERATION (with persistent SQLite cache — REQ-S2-001)
   let embedding: Float32Array | null = null;
   let embeddingStatus = 'pending';
   let embeddingFailureReason: string | null = null;
@@ -1017,12 +1028,27 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     console.info(`[memory-save] T306: Async embedding mode - deferring embedding for ${path.basename(filePath)}`);
   } else {
     try {
-      embedding = await embeddings.generateDocumentEmbedding(parsed.content);
-      if (embedding) {
+      // Check persistent embedding cache before calling provider
+      const modelId = embeddings.getModelName();
+      const cachedBuf = lookupEmbedding(database, parsed.contentHash, modelId);
+      if (cachedBuf) {
+        // Cache hit: convert Buffer to Float32Array
+        embedding = new Float32Array(new Uint8Array(cachedBuf).buffer);
         embeddingStatus = 'success';
+        console.info(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
       } else {
-        embeddingFailureReason = 'Embedding generation returned null';
-        console.warn(`[memory-save] Embedding failed for ${path.basename(filePath)}: ${embeddingFailureReason}`);
+        // Cache miss: generate embedding via provider
+        embedding = await embeddings.generateDocumentEmbedding(parsed.content);
+        if (embedding) {
+          embeddingStatus = 'success';
+          // Store in persistent cache for future re-index
+          const embBuf = Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
+          storeEmbedding(database, parsed.contentHash, modelId, embBuf, embedding.length);
+          console.info(`[memory-save] Embedding cache MISS+STORE for ${path.basename(filePath)}`);
+        } else {
+          embeddingFailureReason = 'Embedding generation returned null';
+          console.warn(`[memory-save] Embedding failed for ${path.basename(filePath)}: ${embeddingFailureReason}`);
+        }
       }
     } catch (embedding_error: unknown) {
       const message = toErrorMessage(embedding_error);

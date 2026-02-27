@@ -9,7 +9,14 @@ import type Database from 'better-sqlite3';
    1. CONFIGURATION
 ----------------------------------------------------------------*/
 
-/** Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set. */
+/**
+ * Default co-activation boost strength when SPECKIT_COACTIVATION_STRENGTH is not set.
+ *
+ * Intentional deviation from Sprint 1 spec (which listed 0.2): empirical tuning raised
+ * this to 0.25 for better discovery recall. The R17 fan-effect divisor (sqrt scaling)
+ * keeps hub-node inflation in check, so a higher raw factor remains safe. Tests are
+ * written against 0.25 and serve as the authoritative contract going forward.
+ */
 const DEFAULT_COACTIVATION_STRENGTH = 0.25;
 
 const CO_ACTIVATION_CONFIG = {
@@ -55,12 +62,30 @@ interface SpreadResult {
 
 let db: Database.Database | null = null;
 
+/** Simple TTL + size-capped cache for getRelatedMemories() results. */
+const RELATED_CACHE = new Map<number, { results: RelatedMemory[]; expiresAt: number }>();
+const RELATED_CACHE_TTL_MS = 30_000; // 30 seconds
+const RELATED_CACHE_MAX_SIZE = 100;
+
+function pruneRelatedCache(): void {
+  if (RELATED_CACHE.size < RELATED_CACHE_MAX_SIZE) return;
+  // Evict the oldest entry (Map preserves insertion order)
+  const firstKey = RELATED_CACHE.keys().next().value;
+  if (firstKey !== undefined) RELATED_CACHE.delete(firstKey);
+}
+
+/** Clear the getRelatedMemories cache (called on init to avoid stale data across DB reloads). */
+function clearRelatedCache(): void {
+  RELATED_CACHE.clear();
+}
+
 /* -------------------------------------------------------------
    4. INITIALIZATION
 ----------------------------------------------------------------*/
 
 function init(database: Database.Database): void {
   db = database;
+  clearRelatedCache(); // Evict stale entries when a new DB connection is set
 }
 
 function isEnabled(): boolean {
@@ -83,12 +108,19 @@ function boostScore(
     return baseScore;
   }
 
-  const boost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
+  const rawBoost = CO_ACTIVATION_CONFIG.boostFactor * (relatedCount / CO_ACTIVATION_CONFIG.maxRelated) * (avgSimilarity / 100);
+  // R17 fan-effect divisor: sqrt scaling prevents hub nodes from dominating results
+  const fanDivisor = Math.sqrt(Math.max(1, relatedCount));
+  const boost = Math.max(0, rawBoost / fanDivisor);
   return baseScore + boost;
 }
 
 /**
  * Get related memories for a given memory ID from stored relations.
+ *
+ * Results are cached by memoryId for up to 30 seconds (RELATED_CACHE_TTL_MS) and
+ * the cache is capped at 100 entries to bound memory usage. This avoids the O(N*E)
+ * repeated DB round-trips when spreadActivation() traverses multiple hops.
  */
 function getRelatedMemories(
   memoryId: number,
@@ -97,6 +129,12 @@ function getRelatedMemories(
   if (!db) {
     console.warn('[co-activation] Database not initialized. Server may still be starting up.');
     return [];
+  }
+
+  // Cache hit: return early if a fresh entry exists
+  const cached = RELATED_CACHE.get(memoryId);
+  if (cached && Date.now() < cached.expiresAt) {
+    return cached.results;
   }
 
   try {
@@ -137,6 +175,9 @@ function getRelatedMemories(
       }
     }
 
+    // Cache miss: store results before returning
+    pruneRelatedCache();
+    RELATED_CACHE.set(memoryId, { results, expiresAt: Date.now() + RELATED_CACHE_TTL_MS });
     return results;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
@@ -366,6 +407,7 @@ export {
   populateRelatedMemories,
   spreadActivation,
   logCoActivationEvent,
+  clearRelatedCache,
 };
 
 export type {

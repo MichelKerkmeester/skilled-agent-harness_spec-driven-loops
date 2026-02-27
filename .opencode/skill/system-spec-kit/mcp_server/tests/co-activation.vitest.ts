@@ -82,18 +82,24 @@ describe('Co-Activation Module', () => {
     });
 
     it('With related memories, score is boosted', () => {
-      // boost = 0.25 * (3/5) * (80/100) = 0.12
-      // result = 0.5 + 0.12 = 0.62
+      // rawBoost = 0.25 * (3/5) * (80/100) = 0.12
+      // fanDivisor = sqrt(3) ≈ 1.732
+      // boost = 0.12 / 1.732 ≈ 0.06928
+      // result = 0.5 + 0.06928 ≈ 0.56928
       const boosted = coActivation.boostScore(0.5, 3, 80);
-      const expectedBoost = 0.25 * (3 / 5) * (80 / 100);
+      const rawBoost = 0.25 * (3 / 5) * (80 / 100);
+      const expectedBoost = rawBoost / Math.sqrt(3);
       expect(boosted).toBeCloseTo(0.5 + expectedBoost, 3);
     });
 
     it('Max related count and similarity', () => {
-      // boost = 0.25 * (5/5) * (100/100) = 0.25
-      // result = 0.5 + 0.25 = 0.75
+      // rawBoost = 0.25 * (5/5) * (100/100) = 0.25
+      // fanDivisor = sqrt(5) ≈ 2.236
+      // boost = 0.25 / 2.236 ≈ 0.1118
+      // result = 0.5 + 0.1118 ≈ 0.6118
       const maxBoost = coActivation.boostScore(0.5, 5, 100);
-      expect(maxBoost).toBeCloseTo(0.75, 3);
+      const expectedBoost = 0.25 / Math.sqrt(5);
+      expect(maxBoost).toBeCloseTo(0.5 + expectedBoost, 3);
     });
   });
 
@@ -213,9 +219,12 @@ describe('Co-Activation Module', () => {
       const base = 0.5;
       const boosted = coActivation.boostScore(base, 5, 95);
       expect(boosted).toBeGreaterThan(base);
-      // boost = 0.25 * (5/5) * (95/100) = 0.2375
-      // result = 0.5 + 0.2375 = 0.7375
-      const expectedBoost = base + 0.25 * (5 / 5) * (95 / 100);
+      // rawBoost = 0.25 * (5/5) * (95/100) = 0.2375
+      // fanDivisor = sqrt(5) ≈ 2.236
+      // boost = 0.2375 / 2.236 ≈ 0.10622
+      // result = 0.5 + 0.10622 ≈ 0.60622
+      const rawBoost = 0.25 * (5 / 5) * (95 / 100);
+      const expectedBoost = base + rawBoost / Math.sqrt(5);
       expect(boosted).toBeCloseTo(expectedBoost, 2);
     });
   });
@@ -225,18 +234,19 @@ describe('Co-Activation Module', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('T003: Co-Activation Boost Behavior', () => {
-    it('T003-1: boost scales linearly with relatedCount', () => {
+    it('T003-1: boost scales sublinearly with relatedCount (R17 fan-effect divisor)', () => {
       const base = 0.5;
       const similarity = 90;
-      // boost = 0.25 * (relatedCount/5) * (90/100)
+      // rawBoost = 0.25 * (relatedCount/5) * (90/100)
+      // boost = rawBoost / sqrt(relatedCount)
       const boosted1 = coActivation.boostScore(base, 1, similarity);
       const boosted5 = coActivation.boostScore(base, 5, similarity);
       // More related = more boost
       expect(boosted5).toBeGreaterThan(boosted1);
-      // Boost is proportional to relatedCount
+      // Boost ratio should be sqrt(5) ≈ 2.236, NOT 5 (sublinear, not linear)
       const boost1 = boosted1 - base;
       const boost5 = boosted5 - base;
-      expect(boost5 / boost1).toBeCloseTo(5, 1);
+      expect(boost5 / boost1).toBeCloseTo(Math.sqrt(5), 1);
     });
 
     it('T003-2: no error when relatedCount=1', () => {
@@ -260,18 +270,23 @@ describe('Co-Activation Module', () => {
     });
 
     it('T003-5: boost formula is correct for relatedCount=4', () => {
-      // boost = 0.25 * (4/5) * (80/100) = 0.16
-      // result = 0.5 + 0.16 = 0.66
+      // rawBoost = 0.25 * (4/5) * (80/100) = 0.16
+      // fanDivisor = sqrt(4) = 2
+      // boost = 0.16 / 2 = 0.08
+      // result = 0.5 + 0.08 = 0.58
       const result = coActivation.boostScore(0.5, 4, 80);
-      const expected = 0.5 + 0.25 * (4 / 5) * (80 / 100);
+      const rawBoost = 0.25 * (4 / 5) * (80 / 100);
+      const expected = 0.5 + rawBoost / Math.sqrt(4);
       expect(result).toBeCloseTo(expected, 5);
     });
 
     it('T003-6: max boost with relatedCount=5 and similarity=100', () => {
       const base = 0.5;
       const result = coActivation.boostScore(base, 5, 100);
-      // boost = 0.25 * 1 * 1 = 0.25
-      expect(result).toBeCloseTo(base + 0.25, 5);
+      // rawBoost = 0.25 * 1 * 1 = 0.25
+      // fanDivisor = sqrt(5) ≈ 2.236
+      // boost = 0.25 / 2.236 ≈ 0.1118
+      expect(result).toBeCloseTo(base + 0.25 / Math.sqrt(5), 5);
     });
   });
 });

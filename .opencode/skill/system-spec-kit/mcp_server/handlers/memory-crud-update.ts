@@ -81,6 +81,7 @@ async function handleMemoryUpdate(args: UpdateArgs): Promise<MCPResponse> {
     let newEmbedding: Float32Array | null = null;
 
     try {
+      // TODO(REQ-S2-001): Could integrate persistent embedding cache here (see memory-save.ts)
       newEmbedding = await embeddings.generateDocumentEmbedding(title);
     } catch (err: unknown) {
       const message = toErrorMessage(err);

@@ -397,3 +397,68 @@ describe('T029-08: Helper Functions (computeGaps, computeMedian)', () => {
     expect(computeMedian([1, 2, 3])).toBe(2);
   });
 });
+
+/* ---------------------------------------------------------------
+   T029-09: NaN/INFINITY GUARD & SORT VALIDATION
+   --------------------------------------------------------------- */
+
+describe('T029-09: NaN/Infinity Guard & Sort Validation', () => {
+  beforeEach(enableFlag);
+  afterEach(disableFlag);
+
+  it('T33: NaN scores are filtered out before truncation', () => {
+    const results = makeResults([
+      [1, 0.9], [2, NaN], [3, 0.85], [4, 0.82], [5, 0.10], [6, 0.08],
+    ]);
+    const out = truncateByConfidence(results);
+    // NaN result removed, remaining 5 valid results processed
+    expect(out.results.every(r => Number.isFinite(r.score))).toBe(true);
+    expect(out.originalCount).toBe(5); // NaN filtered out
+  });
+
+  it('T34: Infinity scores are filtered out before truncation', () => {
+    const results = makeResults([
+      [1, Infinity], [2, 0.9], [3, 0.85], [4, 0.82], [5, 0.10],
+    ]);
+    const out = truncateByConfidence(results);
+    expect(out.results.every(r => Number.isFinite(r.score))).toBe(true);
+    expect(out.originalCount).toBe(4); // Infinity filtered out
+  });
+
+  it('T35: -Infinity scores are filtered out before truncation', () => {
+    const results = makeResults([
+      [1, 0.9], [2, 0.85], [3, 0.82], [4, -Infinity],
+    ]);
+    const out = truncateByConfidence(results);
+    expect(out.results.every(r => Number.isFinite(r.score))).toBe(true);
+    expect(out.originalCount).toBe(3);
+  });
+
+  it('T36: unsorted input is sorted internally before truncation', () => {
+    // Deliberately unsorted input
+    const results = makeResults([
+      [1, 0.10], [2, 0.85], [3, 0.08], [4, 0.82], [5, 0.9],
+    ]);
+    const out = truncateByConfidence(results);
+    // Should produce same result as sorted input
+    expect(out.truncated).toBe(true);
+    expect(out.truncatedCount).toBe(3);
+    // Results should be in descending score order
+    expect(out.results[0].score).toBeGreaterThanOrEqual(out.results[1].score);
+    expect(out.results[1].score).toBeGreaterThanOrEqual(out.results[2].score);
+  });
+
+  it('T37: computeGaps filters NaN from scores', () => {
+    const gaps = computeGaps([0.9, NaN, 0.5]);
+    // NaN filtered out, only finite scores [0.9, 0.5] remain
+    expect(gaps).toHaveLength(1);
+    expect(gaps[0]).toBeCloseTo(0.4, 10);
+  });
+
+  it('T38: computeGaps filters Infinity from scores', () => {
+    const gaps = computeGaps([Infinity, 0.9, 0.5]);
+    // Infinity filtered out, only [0.9, 0.5] remain
+    expect(gaps).toHaveLength(1);
+    expect(gaps[0]).toBeCloseTo(0.4, 10);
+  });
+});

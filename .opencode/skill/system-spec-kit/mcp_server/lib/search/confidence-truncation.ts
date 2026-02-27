@@ -58,13 +58,15 @@ function isConfidenceTruncationEnabled(): boolean {
 /**
  * Compute consecutive score gaps for a sorted (descending) score array.
  * gap[i] = scores[i] - scores[i+1]   for i in [0, n-2]
- * Returns empty array when fewer than 2 scores.
+ * NaN and Infinity scores are filtered out before gap computation.
+ * Returns empty array when fewer than 2 finite scores.
  */
 function computeGaps(scores: number[]): number[] {
-  if (scores.length < 2) return [];
+  const finite = scores.filter(s => Number.isFinite(s));
+  if (finite.length < 2) return [];
   const gaps: number[] = [];
-  for (let i = 0; i < scores.length - 1; i++) {
-    gaps.push(scores[i] - scores[i + 1]);
+  for (let i = 0; i < finite.length - 1; i++) {
+    gaps.push(finite[i] - finite[i + 1]);
   }
   return gaps;
 }
@@ -108,12 +110,19 @@ function truncateByConfidence(
   options?: TruncationOptions,
 ): TruncationResult {
   const minResults = options?.minResults ?? DEFAULT_MIN_RESULTS;
-  const originalCount = results.length;
+
+  // Defensive: filter out results with NaN/Infinity scores
+  const validResults = results.filter(r => Number.isFinite(r.score));
+
+  // Defensive: sort descending by score. Callers should pre-sort for efficiency.
+  validResults.sort((a, b) => b.score - a.score);
+
+  const originalCount = validResults.length;
 
   // Feature flag gate: pass through when disabled
   if (!isConfidenceTruncationEnabled()) {
     return {
-      results: [...results],
+      results: [...validResults],
       truncated: false,
       originalCount,
       truncatedCount: originalCount,
@@ -124,9 +133,9 @@ function truncateByConfidence(
   }
 
   // Not enough results to truncate
-  if (results.length <= minResults) {
+  if (validResults.length <= minResults) {
     return {
-      results: [...results],
+      results: [...validResults],
       truncated: false,
       originalCount,
       truncatedCount: originalCount,
@@ -136,7 +145,7 @@ function truncateByConfidence(
     };
   }
 
-  const scores = results.map(r => r.score);
+  const scores = validResults.map(r => r.score);
   const gaps = computeGaps(scores);
   const medianGap = computeMedian(gaps);
   const threshold = GAP_THRESHOLD_MULTIPLIER * medianGap;
@@ -144,7 +153,7 @@ function truncateByConfidence(
   // When medianGap is 0 (all same scores), no meaningful gap exists — return all
   if (medianGap === 0) {
     return {
-      results: [...results],
+      results: [...validResults],
       truncated: false,
       originalCount,
       truncatedCount: originalCount,
@@ -171,7 +180,7 @@ function truncateByConfidence(
   // No significant gap found — return all results
   if (cutoffIndex === -1) {
     return {
-      results: [...results],
+      results: [...validResults],
       truncated: false,
       originalCount,
       truncatedCount: originalCount,
@@ -181,8 +190,8 @@ function truncateByConfidence(
     };
   }
 
-  // Truncate: keep results[0..cutoffIndex] inclusive
-  const truncatedResults = results.slice(0, cutoffIndex + 1);
+  // Truncate: keep validResults[0..cutoffIndex] inclusive
+  const truncatedResults = validResults.slice(0, cutoffIndex + 1);
 
   return {
     results: truncatedResults,
