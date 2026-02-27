@@ -54,8 +54,8 @@ Refactor the retrieval pipeline into a clean 4-stage architecture: Stage 1 (Cand
 - [ ] Checkpoint created before R6 work
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-S5-001 through REQ-S5-005)
-- [ ] Tests passing (15-20 new tests + all 158+ existing)
+- [ ] All acceptance criteria met (REQ-S5-001 through REQ-S5-006)
+- [ ] Tests passing (30-40 new tests + all 158+ existing)
 - [ ] Docs updated (spec/plan/tasks)
 - [ ] Stage 4 invariant verified
 - [ ] 0 ordering differences on full eval corpus
@@ -134,8 +134,11 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 | Unit | R9 pre-filter behavior | Vitest | 2-3 tests |
 | Unit | R12 expansion + R15 suppression | Vitest | 2-3 tests |
 | Unit | S2 anchor metadata, S3 validation metadata | Vitest | 2-3 tests |
+| Unit | TM-05 dual-scope injection (tool dispatch hook, compaction hook, token budget enforcement, no regression) | Vitest | 2-4 tests |
+| Unit | PI-B1 tree thinning (merge thresholds, memory thresholds, content preservation, pre-pipeline boundary, R9 interaction) | Vitest | 3-5 tests |
+| Unit | PI-B2 progressive validation (detect level, auto-fix with diff logging, suggest level, report level, dry-run mode, exit code compat, no caller regression) | Vitest | 5-8 tests |
 
-**Total**: 15-20 new tests (500-700 LOC)
+**Total**: 30-40 new tests (1000-1500 LOC)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -190,7 +193,12 @@ Phase A (R6 Pipeline) ──[0 ordering diff GATE]──► Phase B (R9, R12, S2
 | Phase B: S3 Validation Metadata | Low | 4-6h |
 | Phase B: TM-05 Auto-Surface Hooks | Low-Medium | 4-6h |
 | Phase C: Verification | Low | included |
-| **Total** | | **68-98h** |
+| **Subtotal (Core)** | | **68-98h** |
+| PI-B1: Tree Thinning | Low | 10-14h |
+| PI-B2: Progressive Validation | Medium | 16-24h |
+| **Grand Total (incl. PageIndex)** | | **94-136h** |
+
+> **Phase B parallelism note**: Phase B tasks (R9, R12, S2, S3, TM-05) are marked `[P]` (parallelizable) in tasks.md. The 28-43h effort estimate is sequential; wall-clock time may be significantly less if tasks are executed in parallel.
 <!-- /ANCHOR:effort -->
 
 ---

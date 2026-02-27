@@ -124,5 +124,5 @@ contextType: "implementation"
 <!--
 LEVEL 2 TASKS — Phase 6 of 8
 - Sprint 5: Pipeline Refactor
-- 9 tasks across 3 phases (A, B, C)
+- 13 tasks across 3 phases (A, B, C) + PageIndex
 -->

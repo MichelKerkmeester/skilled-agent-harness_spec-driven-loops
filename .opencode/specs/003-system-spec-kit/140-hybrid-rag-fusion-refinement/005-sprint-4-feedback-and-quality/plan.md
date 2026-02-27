@@ -55,7 +55,7 @@ R1 MPAB operates after RRF fusion, before state filtering. R11 writes to separat
 
 > **F10 — CALENDAR DEPENDENCY (R11 prerequisite)**
 >
-> R11 prerequisite: R13 must have completed ≥2 full eval cycles. Each cycle = minimum 50 queries evaluated over 7+ calendar days. Two cycles = **minimum 28 calendar days** of wall-clock time. This forced idle time between Sprint 3 completion and R11 enablement is NOT reflected in effort hours. Plan the project timeline explicitly to include this idle window between S4a completion and S4b start.
+> R11 prerequisite: R13 must have completed ≥2 full eval cycles. Each cycle = minimum 100 queries evaluated AND 14+ calendar days (both conditions must be met). Two cycles = **minimum 28 calendar days** of wall-clock time. This forced idle time between Sprint 3 completion and R11 enablement is NOT reflected in effort hours. Plan the project timeline explicitly to include this idle window between S4a completion and S4b start.
 
 > **F10 Idle Window Activities (28-day S4a→S4b transition)**
 >
@@ -81,8 +81,8 @@ R1 MPAB operates after RRF fusion, before state filtering. R11 writes to separat
 - [ ] Checkpoint created before sprint start
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-S4-001 through REQ-S4-003)
-- [ ] Tests passing (10-15 new tests)
+- [ ] All acceptance criteria met (REQ-S4-001 through REQ-S4-005)
+- [ ] Tests passing (22-32 new tests)
 - [ ] Docs updated (spec/plan/tasks)
 - [ ] FTS5 contamination test passing
 - [ ] Schema migration verified
@@ -146,6 +146,7 @@ Pipeline extension + schema migration — R1 appends aggregation stage, R11 adds
 - [ ] Implement Layer 2 content quality scoring — evaluate title, triggers, length, anchors, metadata, signal density; reject if signal density < 0.4
 - [ ] Implement Layer 3 semantic dedup — compute cosine similarity against existing memories; reject if >0.92 similarity found
 - [ ] Wire all 3 layers behind `SPECKIT_SAVE_QUALITY_GATE` feature flag
+- [ ] Implement warn-only mode (MR12 mitigation): for the first 2 weeks after activation, log quality scores and would-reject decisions but do NOT block saves; tune thresholds based on observed false-rejection rate before enabling enforcement
 
 ### Phase 5: TM-06 Reconsolidation-on-Save (6-10h)
 - [ ] Create checkpoint: `memory_checkpoint_create("pre-reconsolidation")` before enabling
@@ -173,10 +174,16 @@ Pipeline extension + schema migration — R1 appends aggregation stage, R11 adds
 |-----------|-------|-------|-------|
 | Unit | R1 MPAB: N=0, N=1, N=2, N=10, metadata preservation | Vitest | 4-5 tests |
 | Unit | R11: column isolation, TTL, denylist, cap, eligibility, shadow | Vitest | 5-7 tests |
+| Unit | R11 auto-promotion: 5 validations → normal→important, 10 → important→critical, below-threshold no-op | Vitest | 2-3 tests |
+| Unit | A4 negative feedback: wasUseful=false reduces score via confidence multiplier, floor at 0.3, gradual decay | Vitest | 2-3 tests |
+| Unit | B2 chunk ordering: collapsed multi-chunk results maintain document position order, not score order | Vitest | 1-2 tests |
+| Unit | TM-04 quality gate: L1 structural pass/fail, L2 signal density <0.4 reject, L3 cosine >0.92 reject, flag-off no-op | Vitest | 4-6 tests |
+| Unit | TM-06 reconsolidation: merge (>=0.88), conflict (0.75-0.88), complement (<0.75), checkpoint created, flag-off no-op | Vitest | 4-5 tests |
 | Integration | R11 FTS5 contamination test | Vitest | 1 test |
-| Integration | R13-S2 shadow scoring + attribution | Vitest | 2-3 tests |
+| Integration | R13-S2 shadow scoring + attribution + exclusive contribution rate | Vitest | 2-3 tests |
+| Integration | TM-04/TM-06 threshold interaction: [0.88, 0.92] passes TM-04 then triggers TM-06 merge (save-then-merge) | Vitest | 1-2 tests |
 
-**Total**: 10-15 new tests (400-550 LOC)
+**Total**: 22-32 new tests (800-1100 LOC)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -208,10 +215,14 @@ Pipeline extension + schema migration — R1 appends aggregation stage, R11 adds
 
 ```
 Phase 1 (R1 MPAB) ──────────────────┐
-                                      ├──► Phase 4 (Verify)
+                                      │
 Phase 2 (R11 Learned Feedback) ──────┤
                                       │
-Phase 3 (R13-S2 Shadow Scoring) ─────┘
+Phase 3 (R13-S2 Shadow Scoring) ─────┼──► Phase 6 (Verify)
+                                      │
+Phase 4 (TM-04 Quality Gate) ────────┤
+                                      │
+Phase 5 (TM-06 Reconsolidation) ─────┘
 ```
 
 | Phase | Depends On | Blocks |

@@ -206,19 +206,25 @@ contextType: "implementation"
 - [ ] CHK-S5A [P1] TM-05 dual-scope injection operational — memory auto-surface hooks active at >=2 lifecycle points with per-point token budgets enforced
 - [ ] CHK-S5B [P1] Feature flag count ≤6 at Sprint 5 exit + sunset decisions documented (see CHK-S0F)
 
-### Sprint 6: Graph Deepening [P1]
+### Sprint 6a: Practical Improvements [P1]
 
-- [ ] CHK-S59 [P1] Sprint 5→6 handoff: all Phase B items (R9, R12, S2, S3) verified complete before Sprint 6 begins
+- [ ] CHK-S59 [P1] Sprint 5→6a handoff: all Phase B items (R9, R12, S2, S3) verified complete before Sprint 6a begins
 - [ ] CHK-S60 [P1] R7 Recall@20 within 10% of baseline
-- [ ] CHK-S61 [P1] R10 false positive rate < 20% on manual review
-- [ ] CHK-S62 [P1] N2 graph channel attribution > 10% of final top-K
 - [ ] CHK-S63 [P1] N3-lite: contradiction scan identifies at least 1 known contradiction
-- [ ] CHK-S64 [P1] Active feature flag count <= 6
-- [ ] CHK-S65 [P1] All health dashboard targets met (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
 - [ ] CHK-S66 [P1] R16 encoding-intent metadata captured at index time and available for scoring
 - [ ] CHK-S67 [P1] S4 spec folder hierarchy traversal functional in retrieval
 - [ ] CHK-S68 [P1] N3-lite safety bounds enforced: MAX_EDGES_PER_NODE cap and MAX_STRENGTH_INCREASE=0.05/cycle verified
-- [ ] CHK-S69 [P1] Feature flag count ≤6 at Sprint 6 exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S68a [P0] MR10 weight_history audit tracking verified — all N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs
+- [ ] CHK-S69a [P1] Feature flag count ≤6 at Sprint 6a exit + sunset decisions documented (see CHK-S0F)
+
+### Sprint 6b: Graph Sophistication [P1] (GATED)
+
+- [ ] CHK-S6B-PRE [P0] Sprint 6b entry gate — feasibility spike completed, OQ-S6-001/002 resolved, REQ-S6-004 density-conditioned
+- [ ] CHK-S61 [P1] R10 false positive rate < 20% on manual review
+- [ ] CHK-S62 [P1] N2 graph channel attribution > 10% of final top-K
+- [ ] CHK-S64 [P1] Active feature flag count <= 6
+- [ ] CHK-S65 [P1] All health dashboard targets met (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
+- [ ] CHK-S69b [P1] Feature flag count ≤6 at Sprint 6b exit + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 7: Long Horizon [P2]
 
@@ -239,7 +245,7 @@ contextType: "implementation"
 > **Evidence**: Research documents 9-analysis, 9-recommendations (PageIndex), 10-analysis, 10-recommendations (TrueMem). All 8 items are [P1] — required unless explicitly deferred with documented rationale.
 
 - [ ] CHK-PI-A1 [P1] PI-A1: DocScore folder aggregation implemented and tested — `spec_folder` grouping with MAX + 0.3×MEAN formula; `folder_score` field present in result metadata; no regression in existing MRR@5 baseline
-- [ ] CHK-PI-A2 [P1] PI-A2: Three-tier fallback chain with configurable thresholds — Primary→Secondary at results < 5, Secondary→Tertiary at results < 2; degradation events logged with tier and trigger reason in R13 eval database
+- [ ] ~~CHK-PI-A2~~ [P1] **DEFERRED** — PI-A2: Three-tier fallback chain deferred from Sprint 3. Re-evaluate after Sprint 3 using measured frequency data. See UT review R1.
 - [ ] CHK-PI-A3 [P1] PI-A3: Token budget validation enforced in result assembly — `token_budget_used` field in response; result set truncated when over-limit; no latency increase > 5ms p95 for simple queries
 - [ ] CHK-PI-A4 [P1] PI-A4: Constitutional memories formatted as retrieval directives — `retrieval_directive` metadata field present on all constitutional-tier memories; directive prefix pattern ("Always surface when:", "Prioritize when:") validated
 - [ ] CHK-PI-A5 [P1] PI-A5: Verify-fix-verify loop with max 2 retries integrated — quality_score computed post-save; auto-fix attempted if score < 0.6; memory rejected after 2 failed retries; rejection events logged
@@ -273,6 +279,19 @@ contextType: "implementation"
 - [ ] CHK-111 [P0] Dark-run overhead within per-sprint budget (S1: +10ms, S2: +2ms, S3: +50ms, S4: +15ms, S5: +100ms) — budget overrun is a blocking condition requiring investigation before proceeding; a single overrun can consume >37% of remaining headroom (268ms against 500ms p95 limit)
 - [ ] CHK-112 [P1] R13 cumulative health dashboard operational after Sprint 2
 - [ ] CHK-113 [P2] Per-complexity-tier latency targets met (simple <30ms, moderate <100ms, complex <300ms)
+- [ ] CHK-114 [P1] NFR-P04 save-time performance budget verified — `memory_save` p95 ≤200ms without embedding, ≤2000ms with embedding; TM-02/TM-04/TM-06 stages within budget
+- [ ] CHK-115 [P1] Cumulative latency budget tracked at each sprint exit gate — running total of dark-run overhead ≤300ms (plan.md §7 tracker)
+- [ ] CHK-116 [P1] Signal application order verified against §6b consolidated invariants — intent weights applied exactly once, N4 before MPAB, R17 before R4, TM-02 before TM-04
+
+### Cross-Sprint B8 Signal Ceiling Tracking
+
+- [ ] CHK-B8-S0 [P1] Signal count at Sprint 0 exit ≤12 — document all active scoring signals
+- [ ] CHK-B8-S1 [P1] Signal count at Sprint 1 exit ≤12 — include R4 degree channel
+- [ ] CHK-B8-S2 [P1] Signal count at Sprint 2 exit ≤12 — include TM-01 interference, N4 cold-start
+- [ ] CHK-B8-S3 [P1] Signal count at Sprint 3 exit ≤12 — include R15 complexity routing adjustments
+- [ ] CHK-B8-S4 [P1] Signal count at Sprint 4 exit ≤12 — include R11 learned triggers, TM-04, TM-06
+- [ ] CHK-B8-S5 [P1] Signal count at Sprint 5 exit ≤12 — verify pipeline refactor does not duplicate signals
+- [ ] CHK-B8-S6 [P1] Signal count at Sprint 6 exit ≤12 — include N2 centrality, N3-lite Hebbian
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -338,12 +357,12 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 31 | [ ]/31 |
-| P1 Items | 84 | [ ]/84 |
+| P0 Items | 32 | [ ]/32 |
+| P1 Items | 97 | [ ]/97 |
 | P2 Items | 12 | [ ]/12 |
-| **Total** | **~127** | **[ ]/~127** |
+| **Total** | **~141** | **[ ]/~141** |
 
-> **Note**: Reduced from ~147 to ~127 by consolidating 14 per-sprint flag sunset items into 1 cross-cutting item (CHK-S0F). Added: 7 interaction pair items (CHK-035-039c), 10 negative test items (CHK-024-029e), 7 rollback verification items (CHK-126-129d), 2 eval validation items (CHK-S0F2, CHK-S0F3). P0 count increased due to interaction pair guards and eval validation being safety-critical. CHK-111 elevated from P1 to P0 (latency budget overrun is blocking).
+> **Note**: Reduced from ~147 to ~127 by consolidating 14 per-sprint flag sunset items into 1 cross-cutting item (CHK-S0F). Subsequently expanded to ~141 items with: 3 new performance/ordering items (CHK-114-116), 7 cross-sprint B8 signal ceiling tracking items (CHK-B8-S0 through CHK-B8-S6), Sprint 6 split into 6a/6b subsections with CHK-S68a (weight_history) and CHK-S6B-PRE (entry gate). CHK-PI-A2 marked DEFERRED.
 
 **Verification Date**: [YYYY-MM-DD]
 

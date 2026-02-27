@@ -200,7 +200,7 @@ When BM25 baseline results fall in the 50-80% range ("rationalize" path):
 
 ### Data Boundaries
 - **Empty graph after G1 fix**: Correct behavior — R4 produces zero scores for all memories; graph channel returns empty results
-- **N=0 queries for BM25 baseline**: Requires minimum 50 queries with ground truth; synthetic generation from trigger phrases covers this
+- **N=0 queries for BM25 baseline**: Requires minimum 50 queries with ground truth (>=100 for BM25 contingency decision). Synthetic generation from trigger phrases SUPPLEMENTS but does not replace the >=30 manually curated non-trigger-phrase queries required by Exit Gate §5
 
 ### Error Scenarios
 - **Eval DB creation failure**: Search continues unaffected; eval logging disabled with warning
@@ -230,7 +230,7 @@ When BM25 baseline results fall in the 50-80% range ("rationalize" path):
 ## 10. OPEN QUESTIONS
 
 - **OQ-S0-001**: What is the actual edge count in the graph after G1 fix? Will determine if Sprint 1 R4 has meaningful data to work with.
-- **OQ-S0-002**: Synthetic ground truth quality — are trigger phrases sufficient for initial baseline, or do we need manual relevance annotations?
+- **OQ-S0-002**: ~~Synthetic ground truth quality — are trigger phrases sufficient for initial baseline, or do we need manual relevance annotations?~~ **RESOLVED** by REQ-S0-004: >=30 manually curated non-trigger-phrase queries required; synthetic generation supplements but does not replace manual curation.
 - **OQ-S0-003**: G-NEW-2 pre-analysis — what agent consumption patterns dominate in practice? Findings may reshape ground truth query design for representativeness.
 <!-- /ANCHOR:questions -->
 
@@ -238,23 +238,9 @@ When BM25 baseline results fall in the 50-80% range ("rationalize" path):
 
 ### PageIndex Integration
 
-**Recommendation**: PI-A5 — Verify-Fix-Verify for Memory Quality
+**PI-A5 — Verify-Fix-Verify for Memory Quality**: **DEFERRED TO SPRINT 1** per Ultra-Think Review REC-09. TM-02 (T054, SHA256 content-hash dedup) remains in Sprint 0.
 
-**DEFERRED TO SPRINT 1** per Ultra-Think Review REC-09. TM-02 (T054, SHA256 content-hash dedup) remains in Sprint 0.
-
-**Description**: Implement a bounded quality loop that runs after embedding generation to catch and remediate low-quality embeddings before they enter the retrieval index. The loop follows a three-step cycle: verify embedding quality (cosine self-similarity > 0.7 and title-content alignment > 0.5), fix by re-generating the embedding with enhanced metadata if thresholds are not met, then re-verify. If the second attempt still fails, the memory is flagged for manual review rather than silently accepted into the index with degraded quality.
-
-**Rationale**: Sprint 0 establishes the evaluation infrastructure (R13-S1) and quality proxy formula (B7) that makes embedding quality measurable. PI-A5 is the natural complement to these deliverables — once you can measure quality, you can enforce it at index time. This is the correct sprint for PI-A5 because (a) the SHA256 content-hash fast-path dedup (TM-02, T054) already gates the embedding path, making it straightforward to insert a quality gate at the same checkpoint; (b) the 12-16h effort fits within Sprint 0's existing Phase 2 track without blocking the bug-fix track; and (c) the quality thresholds feed directly into the B7 quality proxy formula, providing empirical calibration data for the metric.
-
-**Extends Existing Recommendations**:
-- **R-001 (eval framework)**: Quality loop results (pass/retry/flag) are logged to the `speckit-eval.db` eval infrastructure, enriching the embedding quality dataset.
-- **R-002 (quality metrics)**: Cosine self-similarity and title-content alignment thresholds directly operationalise the quality metrics defined in R-002, moving them from measurement to enforcement.
-
-**Constraints**:
-- Maximum 2 retries — bounded loop prevents infinite regeneration on persistently low-quality source content.
-- Accuracy thresholds: cosine self-similarity > 0.7, title-content alignment > 0.5.
-- Fallback action on retry exhaustion: flag memory with `quality_flag=low` for manual review; do NOT silently accept.
-- Effort: 12-16h, Medium risk.
+Bounded quality loop after embedding generation: verify (cosine self-similarity >0.7, title-content alignment >0.5), fix (re-generate with enhanced metadata), re-verify. Max 2 retries; flag `quality_flag=low` on exhaustion. Extends R-001 (eval framework) and R-002 (quality metrics). Effort: 12-16h, Medium risk.
 
 ---
 

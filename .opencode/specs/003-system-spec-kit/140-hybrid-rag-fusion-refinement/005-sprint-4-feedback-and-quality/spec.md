@@ -91,7 +91,7 @@ Aggregate chunk scores safely with MPAB (preserving N=0/N=1 semantics), learn fr
 
 R13 must have completed at least 2 full eval cycles before R11 mutations are enabled. This is a P0 gate check.
 
-> **R13 Eval Cycle Definition**: One eval cycle = minimum 50 query evaluations over 7+ calendar days. Two full cycles = minimum 100 queries over 14+ calendar days. This calendar dependency is NOT reflected in effort hours and must be planned for explicitly in the project timeline. Expect a mandatory idle window of 28+ calendar days between Sprint 3 completion and R11 enablement.
+> **R13 Eval Cycle Definition**: One eval cycle = minimum 100 queries evaluated AND 14+ calendar days (both conditions must be met). Two full cycles = minimum 200 queries AND 28+ calendar days. This matches the parent spec's more stringent criteria. This calendar dependency is NOT reflected in effort hours and must be planned for explicitly in the project timeline. Expect a mandatory idle window of 28+ calendar days between Sprint 3 completion and R11 enablement.
 
 ---
 
@@ -109,6 +109,8 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 - TM-06: Reconsolidation-on-save (6-10h) — schema-adjacent, high caution
 
 **Rationale for split**: R11 has CRITICAL severity — an FTS5 contamination mistake (adding `learned_triggers` to the FTS5 index) is irreversible without a full re-index of all memories. Isolating R11 into S4b means S4a's A/B infrastructure is operational before R11 mutations begin, enabling immediate detection of any regression. Risk concentration is eliminated by ensuring R1 and R13-S2 are verified clean before R11 is enabled.
+
+> **NOTE — TM-04 S4a/S4b placement divergence**: This child spec places TM-04 in **S4a** (quality gate before feedback mutations). The parent spec (`../spec.md` line 128) places TM-04 in S4b. The child spec's S4a placement is correct: TM-04 is a pre-storage quality gate with no schema change that should be operational before R11 feedback mutations begin in S4b. The parent spec should be updated to move TM-04 from S4b to S4a to match this child spec's authoritative Sprint 4 phasing.
 
 ### Files to Change
 
@@ -154,6 +156,8 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 - **SC-003**: R13-S2: Full A/B comparison infrastructure operational
 - **SC-004**: R11 FTS5 contamination test: `learned_triggers` NOT in FTS5 index
 - **SC-005**: Sprint 4 exit gate — all requirements verified
+- **SC-006**: TM-04 quality gate: saves below 0.4 signal density blocked; near-duplicates (>0.92 cosine similarity) rejected; structurally valid distinct content passes all layers
+- **SC-007**: TM-06 reconsolidation: duplicates (>=0.88) merged with frequency increment; conflicts (0.75-0.88) replaced with causal supersedes edge; complements (<0.75) stored without modification; checkpoint created before first enable
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -167,6 +171,7 @@ R13 must have completed at least 2 full eval cycles before R11 mutations are ena
 | Risk | R1 N=0 div-by-zero (MR4) | High | Guard: N=0 --> return 0 |
 | Risk | R1+N4 double-boost — MPAB bonus on already co-activation-boosted scores | Medium | Verify MPAB operates after fusion, not on pre-boosted scores |
 | Risk | N4+R11 transient artifact learning — R11 learns from temporary co-activation patterns | Medium | R11 eligibility requires memory age >= 72h |
+| Risk | TM-04 quality gate over-filtering — overly strict thresholds reject legitimate saves (MR12) | Medium | **Warn-only mode for first 2 weeks**: log quality scores and would-reject decisions but do NOT block saves. Tune thresholds based on observed false-rejection rate before enabling enforcement. See parent spec MR12 mitigation |
 | Dependency | Sprint 3 exit gate | Blocks start | Must be verified complete |
 | Dependency | R13 2+ eval cycles | Blocks R11 | P0 prerequisite for R11 mutations |
 <!-- /ANCHOR:risks -->

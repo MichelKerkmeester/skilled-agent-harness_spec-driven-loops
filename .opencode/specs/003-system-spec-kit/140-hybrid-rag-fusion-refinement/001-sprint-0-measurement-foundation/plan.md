@@ -45,7 +45,7 @@ This plan implements Sprint 0 — the blocking foundation sprint. Two independen
 
 ### Definition of Done
 - [ ] Sprint 0 exit gate passed — all 4 P0 requirements verified
-- [ ] 8-12 new tests added and passing
+- [ ] 20-30 new tests added and passing
 - [ ] 158+ existing tests still passing
 - [ ] BM25 contingency decision recorded
 <!-- /ANCHOR:quality-gates -->
@@ -62,7 +62,7 @@ Two independent subsystem tracks converging at verification
 - **Graph subsystem** (Track 1): `graph-search-fn.ts` — ID format fix, returns numeric memory IDs
 - **Search handlers** (Track 1): `memory-search.ts` — chunk collapse dedup on all paths
 - **Scoring** (Track 1): `co-activation.ts` — fan-effect divisor for co-activation scoring
-- **Eval infrastructure** (Track 2): New `speckit-eval.db` with 5-table schema — `eval_queries`, `eval_relevance`, `eval_results`, `eval_metrics`, `eval_runs`
+- **Eval infrastructure** (Track 2): New `speckit-eval.db` with 5-table schema — `eval_queries`, `eval_channel_results`, `eval_final_results`, `eval_ground_truth`, `eval_metric_snapshots`
 - **Logging hooks** (Track 2): Intercepts in search/context/trigger handlers to log queries and results to eval DB
 - **Metric computation** (Track 2): MRR@5, NDCG@10, Recall@20, Hit Rate@1 computed from logged data
 
@@ -116,10 +116,16 @@ Two independent subsystem tracks converging at verification
 | Unit | G1 numeric IDs, G3 all code paths, R17 bounds | Vitest | 4-6 tests |
 | Unit | R13-S1 schema creation, hooks, metric computation | Vitest | 3-4 tests |
 | Unit | BM25 baseline path | Vitest | 1-2 tests |
+| Unit | T054 SHA256 content-hash dedup — reject exact duplicates, pass distinct content | Vitest | 2-3 tests |
+| Unit | T004b observer effect — search p95 with eval logging on vs off | Vitest | 1-2 tests |
+| Unit | T006a-e diagnostic metrics — inversion rate, constitutional surfacing, importance-weighted recall, cold-start detection, intent-weighted NDCG | Vitest | 5 tests |
+| Unit | T006f ceiling eval — full-context LLM ceiling metric computation | Vitest | 1 test |
+| Unit | T006g quality proxy — formula produces [0,1] range, correlates with manual | Vitest | 1-2 tests |
+| Unit | T007 ground truth diversity — query distribution meets intent/complexity/manual thresholds | Vitest | 1-2 tests |
 | Integration | End-to-end search with graph channel active | Vitest | ~2 tests |
 | Manual | Verify graph hit rate > 0% in real queries | Manual inspection | N/A |
 
-**Total**: 8-12 new tests, estimated 200-300 LOC
+**Total**: 20-30 new tests, estimated 400-600 LOC
 <!-- /ANCHOR:testing -->
 
 ---
@@ -182,11 +188,12 @@ Phase 2 (Eval Infrastructure) ──────────┤
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
 | Phase 1 (Bug Fixes) | Low-Medium | 8-14h |
-| Phase 2 (Eval Infrastructure) | High | 18-24h |
-| Phase 3 (Baseline) | Medium | 6-10h |
+| Phase 2 (Eval Infrastructure) | High | 28-39h |
+| Phase 2b (Agent Pre-Analysis) | Low-Medium | 3-4h |
+| Phase 3 (Baseline) | Medium | 8-13h |
 | Phase 4 (Verification) | Low | Included in phases |
 | ~~Phase 5 (PI-A5)~~ | ~~Medium~~ | ~~12-16h~~ — **Deferred to Sprint 1 (REC-09)** |
-| **Total** | | **32-48h** |
+| **Total** | | **47-70h** |
 <!-- /ANCHOR:effort -->
 
 ---

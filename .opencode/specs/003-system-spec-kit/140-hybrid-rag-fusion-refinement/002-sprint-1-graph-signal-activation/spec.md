@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 2 of 8 |
-| **Predecessor** | ../001-sprint-0-epistemological-foundation/ |
+| **Predecessor** | ../001-sprint-0-measurement-foundation/ |
 | **Successor** | ../003-sprint-2-scoring-calibration/ |
 | **Handoff Criteria** | R4 MRR@5 delta >+2% absolute, edge density measured, no single memory >60% presence |
 <!-- /ANCHOR:metadata -->
@@ -96,7 +96,8 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 | `graph-search-fn.ts` | Modify | R4: Typed-weighted degree computation SQL + normalization |
 | `rrf-fusion.ts` | Modify | R4: Integration as 5th RRF channel |
 | `hybrid-search.ts` | Modify | R4: Degree score integration into search pipeline |
-| `trigger-extractor.ts` | Modify | TM-08: Add CORRECTION and PREFERENCE signal categories |
+| `co-activation.ts` | Modify | A7: Increase co-activation boost multiplier from 0.1x to 0.25-0.3x |
+| `trigger-matcher.ts` | Modify | TM-08: Add CORRECTION and PREFERENCE signal categories |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -122,7 +123,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-S1-005 | **TM-08**: Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") from true-mem's 8-category vocabulary | CORRECTION and PREFERENCE signal categories recognised and classified correctly by trigger extractor |
+| REQ-S1-005 | **TM-08**: Expand importance signal vocabulary in `trigger-matcher.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") from true-mem's 8-category vocabulary | CORRECTION and PREFERENCE signal categories recognised and classified correctly by trigger extractor |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -235,7 +236,7 @@ Activate the graph's structural connectivity signal as a 5th RRF channel, measur
 - **Verification Checklist**: See `checklist.md`
 - **Parent Spec**: See `../spec.md`
 - **Parent Plan**: See `../plan.md`
-- **Predecessor**: See `../001-sprint-0-epistemological-foundation/`
+- **Predecessor**: See `../001-sprint-0-measurement-foundation/`
 
 ---
 

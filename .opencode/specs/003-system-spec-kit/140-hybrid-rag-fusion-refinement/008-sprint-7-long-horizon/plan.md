@@ -35,9 +35,9 @@ This plan implements Sprint 7 — the final sprint addressing scale-dependent fe
 
 | Scenario | Scope | Effort |
 |----------|-------|--------|
-| Minimum viable (current scale) | R13-S3 + T005a + T005 | 15-20h |
-| Realistic (without R8) | All items except R8 | 32-46h |
-| Full (R8 + S5 gates met) | All items | 47-66h |
+| Minimum viable (current scale) | R13-S3 + T005a + T005 + DEF-014 | 16-22h |
+| Realistic (without R8) | All items except R8 | 33-48h |
+| Full (R8 + S5 gates met) | All items | 48-68h |
 
 > **GATING AND OPTIONALITY NOTE**: Sprint 7 is entirely P2/P3 priority and gated on >5K active memories with embeddings (current system estimate: <2K). All items are optional and should only be pursued if Sprint 0-6 metrics demonstrate clear need. R8 (PageIndex integration) is particularly conditional — the tree-navigation approach must be validated against the 500ms p95 latency hard limit before any R8 implementation begins. S5 (cross-document entity linking) is similarly gated — activates only if >1K active memories with embeddings OR >50 verified entities; below threshold, document as skipped. Do not plan Sprint 7 capacity unless scale thresholds are confirmed.
 <!-- /ANCHOR:summary -->
@@ -48,7 +48,7 @@ This plan implements Sprint 7 — the final sprint addressing scale-dependent fe
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Sprint 6 graph deepening complete and exit gate passed
+- [ ] Sprint 6a graph deepening complete and exit gate passed (depends on S6a only, not S6b)
 - [ ] Evaluation infrastructure fully operational (Sprint 0 + Sprint 4 enhancements)
 - [ ] Memory count confirmed: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — R8 activates only if result >5K
 - [ ] Search latency and embedding dimensions measured for R5 gating decisions
@@ -116,9 +116,10 @@ All items are parallelizable — no dependencies between them.
 
 ### S5: Cross-Document Entity Linking (gated on >1K active memories OR >50 verified entities) — 8-12h
 > **Prerequisite**: Confirm scale gate before any implementation. Measure active memory count (`SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`) and verified entity count. If neither threshold met (>1K memories OR >50 entities), document skip decision and do not proceed.
+> **Feature flag**: `SPECKIT_ENTITY_LINKING` — all entity linking behavior gated behind this flag for rollback capability.
 - [ ] Confirm scale gate (memory count + entity count queries above)
 - [ ] Design entity resolution strategy (coordinates with R10 output)
-- [ ] Implement cross-document entity matching
+- [ ] Implement cross-document entity matching behind `SPECKIT_ENTITY_LINKING` flag
 - [ ] Create entity link graph connections
 - [ ] Gate: Skip if thresholds not met — document decision with query results
 
@@ -153,6 +154,10 @@ All items are parallelizable — no dependencies between them.
 | Unit | R13-S3 reporting, ablation framework | Vitest | 2-3 tests |
 | Unit | R5 activation criteria evaluation | Vitest | 1-2 tests |
 | Integration | R8 pre-filter in search pipeline | Vitest | 1-2 tests |
+| Integration | R8 skip-path: verify no summary generation when <5K memories | Vitest | 1 test |
+| Integration | R8 latency benchmark: p95 remains <500ms with pre-filter | Vitest | 1 test |
+| Integration | S1 content generation in memory pipeline end-to-end | Vitest | 1-2 tests |
+| Integration | S5 cross-document entity linking end-to-end (if scale gate met) | Vitest | 1-2 tests |
 | Integration | R13-S3 full reporting end-to-end | Vitest | 1-2 tests |
 
 **Total**: Sprint 7 testing per item (unit + integration)
@@ -165,7 +170,7 @@ All items are parallelizable — no dependencies between them.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Sprint 6 graph deepening | Internal | Green (assumed) | Blocks Sprint 7 start |
+| Sprint 6a graph deepening (S6a only, not S6b) | Internal | Green (assumed) | Blocks Sprint 7 start |
 | Evaluation infrastructure (Sprint 0/4) | Internal | Green (assumed) | R13-S3 cannot proceed |
 | R10 auto entity extraction (Sprint 6) | Internal | Green (assumed) | S5 linking limited to manual entities |
 | better-sqlite3 | Internal | Green | Required for all DB operations |
@@ -200,12 +205,12 @@ T-PI-S7 (2-4h) ───┘
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| R8 (Memory Summaries) | Sprint 6 exit gate | Program completion |
-| S1 (Content Generation) | Sprint 6 exit gate | Program completion |
-| S5 (Entity Linking) | Sprint 6 exit gate, R10 (Sprint 6) | Program completion |
-| R13-S3 (Full Reporting) | Sprint 6 exit gate, Eval infra | Program completion |
-| R5 (INT8 Evaluation) | Sprint 6 exit gate | Program completion |
-| T-PI-S7 (PageIndex Review) | Sprint 6 exit gate | Program completion |
+| R8 (Memory Summaries) | Sprint 6a exit gate | Program completion |
+| S1 (Content Generation) | Sprint 6a exit gate | Program completion |
+| S5 (Entity Linking) | Sprint 6a exit gate, R10 (Sprint 6) | Program completion |
+| R13-S3 (Full Reporting) | Sprint 6a exit gate, Eval infra | Program completion |
+| R5 (INT8 Evaluation) | Sprint 6a exit gate | Program completion |
+| T-PI-S7 (PageIndex Review) | Sprint 6a exit gate | Program completion |
 
 **Note**: All items are independent and can execute in parallel. S5 is additionally gated on >1K active memories OR >50 verified entities.
 <!-- /ANCHOR:phase-deps -->
@@ -223,15 +228,18 @@ T-PI-S7 (2-4h) ───┘
 | R13-S3 (Full Reporting) | Medium | 12-16h |
 | R5 (INT8 Evaluation) | Low | 2h |
 | T-PI-S7 (PageIndex Review) | Low | 2-4h |
-| **Total** | | **47-66h** |
+| DEF-014 (structuralFreshness) | Low | 1-2h |
+| **Total** | | **48-68h** |
+
+> **Effort reconciliation**: Parent spec lists 45-62h (core items only, excluding T-PI-S7 and DEF-014). This child total of 48-68h includes T-PI-S7 (2-4h) and DEF-014 (1-2h) which are cross-reference and deferred-item tasks not counted in the parent's per-sprint table.
 
 **Conditional Effort Scenarios** (see summary for details):
 
 | Scenario | Scope | Effort |
 |----------|-------|--------|
-| Minimum viable (current scale) | R13-S3 + T005a + T005 | 15-20h |
-| Realistic (without R8) | All items except R8 | 32-46h |
-| Full (R8 + S5 gates met) | All items | 47-66h |
+| Minimum viable (current scale) | R13-S3 + T005a + T005 + DEF-014 | 16-22h |
+| Realistic (without R8) | All items except R8 | 33-48h |
+| Full (R8 + S5 gates met) | All items | 48-68h |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -241,15 +249,16 @@ T-PI-S7 (2-4h) ───┘
 
 ### Pre-deployment Checklist
 - [ ] All existing tests verified passing before changes
-- [ ] Feature flags configured: `SPECKIT_MEMORY_SUMMARIES` (R8)
+- [ ] Feature flags configured: `SPECKIT_MEMORY_SUMMARIES` (R8), `SPECKIT_ENTITY_LINKING` (S5)
 - [ ] Gating criteria measured: memory count (R8), latency/dimensions (R5)
 - [ ] Prior sprint feature flags inventoried for sunset
 
 ### Rollback Procedure
 1. **Immediate**: Disable `SPECKIT_MEMORY_SUMMARIES` flag if R8 causes issues
-2. **R5 rollback**: Remove INT8 quantization, restore original embeddings (if implemented)
-3. **Individual item revert**: Each item is independent — `git revert` per feature
-4. **Verify rollback**: Run full test suite + eval metrics comparison
+2. **Immediate**: Disable `SPECKIT_ENTITY_LINKING` flag if S5 causes issues
+3. **R5 rollback**: Remove INT8 quantization, restore original embeddings (if implemented)
+4. **Individual item revert**: Each item is independent — `git revert` per feature
+5. **Verify rollback**: Run full test suite + eval metrics comparison
 
 ### Data Reversal
 - **Has data migrations?** Potentially — R8 creates summary data; R5 may quantize embeddings

@@ -142,12 +142,18 @@ Maximize graph channel contribution through centrality and community detection, 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
+### P0 - HARD GATE (blocks Sprint 6a N3-lite work)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-S6-007 | **T001d / MR10**: weight_history audit tracking — log weight changes for N3-lite Hebbian modifications; enables rollback independent of edge creation | All N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs; rollback of weight changes verified functional from history |
+
 ### P2 - Optional (can defer with documented reason)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-S6-001 | **R7**: Anchor-aware chunk thinning | Recall@20 within 10% of baseline |
-| REQ-S6-002 | **R16**: Encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag | Intent metadata recorded at index time |
+| REQ-S6-002 | **R16**: Encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag | Intent metadata recorded at index time; index-only capture (no retrieval-time scoring impact) |
 | REQ-S6-003 | **R10**: Auto entity extraction (only if density <1.0) behind `SPECKIT_AUTO_ENTITIES` flag | FP rate <20% on manual review of >=50 auto-extracted entities |
 | REQ-S6-004 | **N2 (items 4-6)**: Graph centrality + community detection | Graph channel attribution >10% of final top-K OR graph density <1.0 edges/node documented with decision to defer (density-conditional acceptance); N2c community assignments stable across 2 runs on test graph with ≥50 nodes |
 | REQ-S6-005 | **N3-lite**: Contradiction scan (weekly) + Hebbian edge strengthening behind `SPECKIT_CONSOLIDATION` flag | Detects at least 1 known contradiction in curated test data; heuristic approach acceptable if lightweight |

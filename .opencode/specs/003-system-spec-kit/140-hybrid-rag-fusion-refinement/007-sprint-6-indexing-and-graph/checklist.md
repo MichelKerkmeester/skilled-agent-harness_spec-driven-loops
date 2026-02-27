@@ -28,14 +28,17 @@ contextType: "implementation"
 ---
 
 <!-- ANCHOR:pre-impl -->
-## Pre-Implementation
+## Pre-Implementation — Sprint 6a
 
 - [ ] CHK-001 [P0] Checkpoint created before sprint start
 - [ ] CHK-002 [P0] Sprint 5 exit gate verified — pipeline refactor complete
-- [ ] CHK-003 [P1] Edge density measured — R10 gating decision documented
 - [ ] CHK-004 [P1] Current feature flag count documented (must be <=6 post-sprint)
-- [ ] CHK-004a [P0] Algorithm feasibility spike completed — N2c, N3-lite, R10 approaches validated on actual data; quality tier (heuristic vs production) confirmed
 - [ ] CHK-004b [P0] weight_history logging verified functional before any N3-lite Hebbian cycle runs — evidence: T001d complete, test confirms before/after weight values logged
+
+## Pre-Implementation — Sprint 6b (gates Sprint 6b only)
+
+- [ ] CHK-003 [P1] Edge density measured — R10 gating decision documented
+- [ ] CHK-004a [P0] Algorithm feasibility spike completed — N2c and R10 approaches validated on actual data; quality tier (heuristic vs production) confirmed. Does NOT gate Sprint 6a items (R7, R16, S4, N3-lite, T001d).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -63,7 +66,7 @@ contextType: "implementation"
 - [ ] CHK-023 [P2] N2 graph channel attribution >10% of final top-K — evidence: attribution report from eval run showing graph channel contribution percentage (task: T001)
 - [ ] CHK-023a [P2] N2c community detection produces stable clusters on test data — evidence: 2 consecutive runs yield <5% membership divergence on same graph (task: T001c)
 - [ ] CHK-024 [P2] N3-lite contradiction scan identifies at least 1 known contradiction — evidence: test data includes manually seeded contradicting memory pair; scan output shows detection (task: T002)
-- [ ] CHK-025 [P2] 12-18 new tests added and passing — evidence: test count in Vitest output
+- [ ] CHK-025 [P2] 14-22 new tests added and passing — evidence: test count in Vitest output
 - [ ] CHK-026 [P1] All existing tests still pass after all changes — evidence: full Vitest suite run with 0 failures
 <!-- /ANCHOR:testing -->
 
@@ -72,7 +75,6 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security & Provenance
 
-- [ ] CHK-030 [P1] N3-lite `created_by` provenance tracked for all auto-created/modified edges
 - [ ] CHK-031 [P2] R10 auto-extracted entities tagged with `created_by='auto'`
 - [ ] CHK-032 [P2] Auto edges capped at strength=0.5
 <!-- /ANCHOR:security -->
@@ -140,7 +142,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 4 | [ ]/4 |
-| P1 Items | 24 | [ ]/24 |
+| P1 Items | 23 | [ ]/23 |
 | P2 Items | 18 | [ ]/18 |
 
 **Verification Date**: [YYYY-MM-DD]

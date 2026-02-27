@@ -52,7 +52,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] 6-10 new tests added and passing
+- [ ] CHK-020 [P0] 18-25 new tests added and passing
 - [ ] CHK-021 [P0] 158+ existing tests still pass
 - [ ] CHK-022 [P1] Degree SQL tested against known edge data (expected scores verified)
 - [ ] CHK-023 [P1] Normalization output verified in [0, 0.15] range
@@ -106,7 +106,7 @@ contextType: "implementation"
 - [ ] CHK-062 [P0] Edge density measured; R10 escalation decision made if density < 0.5
 - [ ] CHK-063 [P1] G-NEW-2 consumption instrumentation active and logging patterns
 - [ ] CHK-064 [P1] Feature flag `SPECKIT_DEGREE_BOOST` permanently enabled (or disable-decision documented)
-- [ ] CHK-065 [P2] TM-08 signal vocabulary expanded — CORRECTION ("actually", "wait", "I was wrong") and PREFERENCE ("prefer", "like", "want") categories classified correctly in `trigger-extractor.ts`
+- [ ] CHK-065 [P2] TM-08 signal vocabulary expanded — CORRECTION ("actually", "wait", "I was wrong") and PREFERENCE ("prefer", "like", "want") categories classified correctly in `trigger-matcher.ts`
 - [ ] CHK-066 [P1] Active feature flag count <=6 verified at sprint exit — HOW: grep codebase for `SPECKIT_` env var flags; count active (non-deprecated) flags; document list. Evidence required: flag inventory with count. New flags introduced in Sprint 1: `SPECKIT_DEGREE_BOOST`, `SPECKIT_COACTIVATION_STRENGTH`.
 
 ---
@@ -116,7 +116,7 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | [ ]/8 |
+| P0 Items | 10 | [ ]/10 |
 | P1 Items | 14 | [ ]/14 |
 | P2 Items | 3 | [ ]/3 |
 

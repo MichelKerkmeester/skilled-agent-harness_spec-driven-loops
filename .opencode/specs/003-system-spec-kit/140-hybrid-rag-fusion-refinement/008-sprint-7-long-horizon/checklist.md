@@ -30,7 +30,7 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Sprint 6 exit gate verified — graph deepening complete
+- [ ] CHK-001 [P0] Sprint 6a exit gate verified — graph deepening complete (depends on S6a only, not S6b)
 - [ ] CHK-002 [P1] Scale gate measured for R8: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — result documented; R8 activates only if result >5K
 - [ ] CHK-002a [P1] "5K memories" definition confirmed: active (non-archived) memories with embeddings only — draft and archived do not count
 - [ ] CHK-002b [P1] S5 scale gate measured: active memory count (>1K threshold) and verified entity count (>50 threshold) — S5 activates only if either threshold met; document measured values
@@ -43,8 +43,8 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P2] R13-S3 full reporting dashboard implemented — evidence: dashboard renders per-sprint and per-channel metrics
-- [ ] CHK-011 [P2] R13-S3 ablation study framework functional — evidence: ablation run shows per-channel Recall@20 delta
+- [ ] CHK-010 [P1] R13-S3 full reporting dashboard implemented — evidence: dashboard renders per-sprint and per-channel metrics
+- [ ] CHK-011 [P1] R13-S3 ablation study framework functional — evidence: ablation run shows per-channel Recall@20 delta
 - [ ] CHK-012 [P3] R8 gating condition correctly evaluated (>5K active memories with embeddings) — evidence: scale gate query result matches implementation gate check
 - [ ] CHK-012a [P3] R8 latency impact validated: p95 search latency remains <500ms with pre-filter enabled — evidence: latency measurement before/after
 - [ ] CHK-013 [P3] S1 content extraction improvements implemented — evidence: >=10 before/after content samples reviewed; >=8/10 show improvement
@@ -57,8 +57,8 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P2] R13-S3 full reporting operational — verified via test run
-- [ ] CHK-021 [P2] R13-S3 ablation study framework functional — verified via test ablation
+- [ ] CHK-020 [P1] R13-S3 full reporting operational — verified via test run
+- [ ] CHK-021 [P1] R13-S3 ablation study framework functional — verified via test ablation
 - [ ] CHK-022 [P3] R8 gating verified: only implemented if >5K memories
 - [ ] CHK-023 [P3] S1 content generation quality improved (manual review)
 - [ ] CHK-024 [P3] S5 entity links established across documents (if scale threshold met)
@@ -74,6 +74,7 @@ contextType: "implementation"
 - [ ] CHK-030 [P3] R5 INT8 uses custom quantized BLOB (NOT `vec_quantize_i8`) — if implemented
 - [ ] CHK-031 [P3] R5 preserves KL-divergence calibration from Spec 140 — if implemented
 - [ ] CHK-032 [P2] R13-S3 ablation framework does not interfere with production retrieval
+- [ ] CHK-033 [P2] S5 entity linking gated behind `SPECKIT_ENTITY_LINKING` feature flag — evidence: flag disabled = no entity linking behavior
 <!-- /ANCHOR:security -->
 
 ---
@@ -131,8 +132,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 1 | [ ]/1 |
-| P1 Items | 11 | [ ]/11 |
-| P2 Items | 17 | [ ]/17 |
+| P1 Items | 15 | [ ]/15 |
+| P2 Items | 14 | [ ]/14 |
 | P3 Items | 11 | [ ]/11 |
 
 **Verification Date**: [YYYY-MM-DD]

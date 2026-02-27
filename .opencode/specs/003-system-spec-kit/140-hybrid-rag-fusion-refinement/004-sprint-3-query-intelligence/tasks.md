@@ -70,7 +70,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: R2 Channel Min-Representation
 
-- [ ] T003 Implement channel min-representation constraint — post-fusion enforcement, quality floor 0.2, only when channel returned results, behind `SPECKIT_CHANNEL_MIN_REP` flag [6-10h] {T001d} — R2
+- [ ] T003a [P] Implement post-fusion channel representation check — scan top-k results for channel diversity, identify under-represented channels that returned results [2-4h] {T001d} — R2
+  - **Acceptance**: Representation check correctly identifies channels with <1 result in top-k
+
+- [ ] T003b Implement quality floor enforcement and flag wiring — promote under-represented channel results only if score >= 0.2, add `SPECKIT_CHANNEL_MIN_REP` flag, skip enforcement for channels that returned no results [2-4h] {T003a} — R2
+  - **Acceptance**: Quality floor prevents low-quality promotion; flag gates all R2 behavior; empty channels excluded
+
+- [ ] T003c Verify R2 precision impact — measure top-3 precision with R2 enabled vs baseline, confirm within 5% [2-3h] {T003b} — R2
+  - **Acceptance**: Top-3 precision within 5% of baseline; regression test added
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -92,7 +99,7 @@ contextType: "implementation"
 ## PageIndex Tasks
 
 - [ ] ~~T008~~ **DEFERRED** — PI-A2 search strategy degradation fallback chain deferred from Sprint 3. Will be re-evaluated after Sprint 3 using measured frequency of low-result (<3) and low-similarity (<0.4) query outcomes from Sprint 0-3 data. See UT review R1.
-- [ ] T009 [P] Implement PI-B3 description-based spec folder discovery — generate 1-sentence descriptions from spec.md per folder, cache in descriptions.json, integrate lookup into memory_context orchestration layer before vector queries [4-8h] — PI-B3
+- [ ] T009 [P] [P2] Implement PI-B3 description-based spec folder discovery — generate 1-sentence descriptions from spec.md per folder, cache in descriptions.json, integrate lookup into memory_context orchestration layer before vector queries [4-8h] — PI-B3
 <!-- /ANCHOR:pageindex -->
 
 ---
@@ -101,7 +108,7 @@ contextType: "implementation"
 ## Phase 4: Shadow Comparison + Verification
 
 - [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
-- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003, T004, T006, T007}
+- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007}
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -109,7 +116,8 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001a-T001d, T002a-T002c, T003-T007 marked `[x]`
+- [ ] All P1 tasks T001a-T001d, T002a-T002c, T003a-T003c, T004-T007 marked `[x]`
+- [ ] P2 task T009 (PI-B3) completed or deferred with documented reason
 - [ ] No `[B]` blocked tasks remaining
 - [ ] R15 p95 <30ms for simple queries verified
 - [ ] RSF Kendall tau computed (tau <0.4 = reject RSF)
@@ -134,5 +142,5 @@ contextType: "implementation"
 <!--
 LEVEL 2 TASKS — Phase 4 of 8
 - Sprint 3: Query Intelligence
-- 13 active tasks (T001a-d, T002a-c, T003-T007, T009) across 5 phases (T008/PI-A2 deferred)
+- 15 active tasks (T001a-d, T002a-c, T003a-c, T004-T007, T009) across 5 phases (T008/PI-A2 deferred)
 -->

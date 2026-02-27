@@ -46,7 +46,7 @@ This plan implements Sprint 1 — graph signal activation. The primary deliverab
 - [ ] R4 dark-run passes — MRR@5 delta >+2% absolute
 - [ ] No single memory in >60% of dark-run results
 - [ ] Edge density measured; R10 escalation decision documented
-- [ ] 6-10 new tests added and passing
+- [ ] 18-25 new tests added and passing
 - [ ] 158+ existing tests still passing
 <!-- /ANCHOR:quality-gates -->
 
@@ -88,14 +88,15 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 - [ ] Integrate degree as 5th channel in `rrf-fusion.ts` behind `SPECKIT_DEGREE_BOOST` flag (2-3h)
 - [ ] Wire degree scores into `hybrid-search.ts` pipeline (2-3h)
 
-### Phase 3: Measurement
+### Phase 3: Measurement + Co-activation
 - [ ] Compute edge density (edges/node) from `causal_edges` data (2-3h)
 - [ ] Document R10 escalation decision based on density threshold (included)
+- [ ] A7: Increase co-activation boost strength — raise base multiplier from 0.1x to 0.25-0.3x (configurable coefficient via `SPECKIT_COACTIVATION_STRENGTH`); dark-run verifiable (2-4h) — WHY: Graph signal investment must be visible in results; current 0.1x multiplier produces ~5% effective contribution at hop 2, well below the >=15% target.
 
 ### Phase 4: Agent UX + Signal Vocabulary
 - [ ] G-NEW-2: Agent consumption instrumentation — add logging for consumption patterns (4-6h)
 - [ ] G-NEW-2: Initial pattern analysis and report (4-6h)
-- [ ] TM-08: Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") based on true-mem's 8-category vocabulary (2-4h)
+- [ ] TM-08: Expand importance signal vocabulary in `trigger-matcher.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") based on true-mem's 8-category vocabulary (2-4h)
 
 ### Phase 5: Dark-Run and Verification
 - [ ] Enable R4 in dark-run mode — three-measurement sequence:
@@ -124,14 +125,23 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
-| Unit | Degree SQL correctness — known edge data produces expected scores | Vitest | 2-3 tests |
-| Unit | Normalization bounds — output in [0, 0.15] range | Vitest | 1-2 tests |
-| Unit | Cache invalidation — stale after mutation | Vitest | 1 test |
-| Unit | Constitutional exclusion — no degree boost for constitutional memories | Vitest | 1 test |
-| Integration | 5-channel RRF fusion end-to-end | Vitest | 1-2 tests |
-| Manual | Dark-run comparison via R13 metrics | Manual | N/A |
+| Unit | R4: Degree SQL correctness — known edge data produces expected scores | Vitest | 2-3 tests |
+| Unit | R4: Normalization bounds — output in [0, 0.15] range | Vitest | 1-2 tests |
+| Unit | R4: Cache invalidation — stale after mutation | Vitest | 1 test |
+| Unit | R4: Constitutional exclusion — no degree boost for constitutional memories | Vitest | 1 test |
+| Unit | A7: Co-activation boost at 0.25-0.3x — effective contribution >=15% at hop 2 | Vitest | 1-2 tests |
+| Unit | A7: Co-activation configurable coefficient via `SPECKIT_COACTIVATION_STRENGTH` | Vitest | 1 test |
+| Unit | G-NEW-2: Instrumentation hooks fire on `memory_search`, `memory_context`, `memory_match_triggers` | Vitest | 3 tests |
+| Unit | G-NEW-2: Consumption log captures query text, result count, selected IDs, ignored IDs | Vitest | 1-2 tests |
+| Unit | TM-08: CORRECTION signals ("actually", "wait", "I was wrong") classified correctly | Vitest | 1-2 tests |
+| Unit | TM-08: PREFERENCE signals ("prefer", "like", "want") classified correctly | Vitest | 1-2 tests |
+| Unit | PI-A3: Token budget truncation — candidate set reduced to fit budget (greedy highest-first) | Vitest | 1-2 tests |
+| Unit | PI-A3: `includeContent=true` single-result overflow returns summary fallback | Vitest | 1 test |
+| Unit | Feature flag: `SPECKIT_DEGREE_BOOST=false` yields identical results to 4-channel baseline | Vitest | 1 test |
+| Integration | 5-channel RRF fusion end-to-end with degree scores | Vitest | 1-2 tests |
+| Manual | Dark-run comparison via R13 metrics (three-measurement sequence) | Manual | N/A |
 
-**Total**: 6-10 new tests, estimated 250-400 LOC
+**Total**: 18-25 new tests, estimated 500-800 LOC
 <!-- /ANCHOR:testing -->
 
 ---
@@ -167,7 +177,7 @@ Channel extension — adding a 5th signal to existing RRF fusion pipeline
 ```
 Phase 1 (Degree Computation) ──► Phase 2 (RRF Integration) ──► Phase 5 (Dark-Run)
                                                                        ▲
-Phase 3 (Measurement) ──────────────────────────────────────────────────┘
+Phase 3 (Measurement + Co-activation) ─────────────────────────────────┘
 Phase 4 (Agent UX) ─────────────────────────────────────────────────────┘
 
 Phase 6 (PI-A3) ─── (independent, no blockers from Phase 5)
@@ -177,7 +187,7 @@ Phase 6 (PI-A3) ─── (independent, no blockers from Phase 5)
 |-------|------------|--------|
 | Phase 1 (Degree Computation) | Sprint 0 gate | Phase 2 |
 | Phase 2 (RRF Integration) | Phase 1 | Phase 5 |
-| Phase 3 (Measurement) | Sprint 0 gate | Phase 5 |
+| Phase 3 (Measurement + Co-activation) | Sprint 0 gate, Phase 1 (T003a depends on T001) | Phase 5 |
 | Phase 4 (Agent UX) | Sprint 0 gate | Phase 5 |
 | Phase 5 (Dark-Run) | Phase 2, Phase 3, Phase 4 | Sprint 2 (next sprint — can run in parallel) |
 | Phase 6 (PI-A3 Token Budget) | Sprint 0 gate | None (independent) |
@@ -194,11 +204,11 @@ Phase 6 (PI-A3) ─── (independent, no blockers from Phase 5)
 |-------|------------|------------------|
 | Phase 1 (Degree Computation) | Medium | 8-10h |
 | Phase 2 (RRF Integration) | Medium | 4-6h |
-| Phase 3 (Measurement) | Low | 2-3h |
+| Phase 3 (Measurement + Co-activation) | Low-Medium | 4-7h |
 | Phase 4 (Agent UX + Signal Vocabulary) | Medium | 10-16h |
 | Phase 5 (Dark-Run) | Low | Included |
 | Phase 6 (PI-A3 Token Budget) | Low | 4-6h |
-| **Total** | | **28-41h** |
+| **Total** | | **30-45h** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -230,7 +240,7 @@ Phase 6 (PI-A3) ─── (independent, no blockers from Phase 5)
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent Plan**: See `../plan.md`
-- **Predecessor Plan**: See `../001-sprint-0-epistemological-foundation/plan.md`
+- **Predecessor Plan**: See `../001-sprint-0-measurement-foundation/plan.md`
 
 ---
 

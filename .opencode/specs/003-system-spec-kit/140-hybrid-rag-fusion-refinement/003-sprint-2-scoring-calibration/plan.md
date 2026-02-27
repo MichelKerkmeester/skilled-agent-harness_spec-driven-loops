@@ -48,7 +48,7 @@ This plan implements Sprint 2 — scoring calibration. Four independent features
 - [ ] N4 dark-run passes (new memories visible, old not displaced)
 - [ ] G2 resolved: fixed or documented as intentional
 - [ ] Score distributions normalized to [0,1]
-- [ ] 8-12 new tests added and passing
+- [ ] 18-26 new tests added and passing
 - [ ] 158+ existing tests still passing
 <!-- /ANCHOR:quality-gates -->
 
@@ -136,9 +136,19 @@ Four parallel feature tracks with G2 → normalization dependency
 | Unit | N4 + FSRS interaction — no double-penalty | Vitest | 1 test |
 | Unit | Score normalization — both systems output [0, 1] | Vitest | 1-2 tests |
 | Integration | G2 intent weight trace through full pipeline | Vitest | 1-2 tests |
-| Manual | Dark-run comparison for N4 and normalization | Manual | N/A |
+| Unit | FUT-5 K-value sensitivity — MRR@5 delta per K ∈ {20, 40, 60, 80, 100} | Vitest | 1-2 tests |
+| Unit | TM-01 interference score computation — cosine similarity > 0.75 threshold, same spec_folder grouping | Vitest | 1-2 tests |
+| Unit | TM-01 penalty application — `-0.08 * interference_score` in composite scoring; flag gating | Vitest | 1-2 tests |
+| Integration | TM-01 no false penalties — distinct content in same folder not penalized | Vitest | 1 test |
+| Unit | TM-03 context_type decay — decisions=no decay, research=2x stability, standard types | Vitest | 1-2 tests |
+| Unit | TM-03 importance_tier decay — constitutional/critical=no decay, important=1.5x, temporary=0.5x | Vitest | 1-2 tests |
+| Integration | TM-03 type/tier matrix interaction — combined context_type and importance_tier multiplier correctness | Vitest | 1 test |
+| Unit | PI-A1 FolderScore computation — `(1/sqrt(M+1)) * SUM(MemoryScore(m))` correctness | Vitest | 1-2 tests |
+| Unit | PI-A1 damping factor — large folders do not dominate by volume | Vitest | 1 test |
+| Integration | T010 observability — N4 boost and TM-01 interference score logging at 5% sample rate | Vitest | 1 test |
+| Manual | Dark-run comparison for N4, normalization, and TM-01 | Manual | N/A |
 
-**Total**: 8-12 new tests, estimated 200-350 LOC
+**Total**: 18-26 new tests, estimated 400-650 LOC
 <!-- /ANCHOR:testing -->
 
 ---
@@ -159,10 +169,16 @@ Four parallel feature tracks with G2 → normalization dependency
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: N4 dark-run fails, or score normalization causes MRR@5 regression
-- **Procedure**: Disable `SPECKIT_NOVELTY_BOOST` flag; `DROP TABLE embedding_cache`; revert normalization and G2 changes
+- **Trigger**: N4 dark-run fails, score normalization causes MRR@5 regression, TM-01 false penalties on distinct content, or TM-03 decay incorrectly applied to constitutional/critical memories
+- **Procedure**:
+  1. Disable `SPECKIT_NOVELTY_BOOST` flag (N4 instantly disabled)
+  2. Disable `SPECKIT_INTERFERENCE_SCORE` flag (TM-01 instantly disabled)
+  3. `DROP TABLE IF EXISTS embedding_cache` (R18 removed)
+  4. `ALTER TABLE memory_index DROP COLUMN interference_score` (TM-01 schema reverted)
+  5. Revert normalization and G2 changes via `git revert`
+  6. Revert TM-03 classification-based decay multipliers in `fsrs-scheduler.ts` via `git revert`
 - **Estimated time**: 2-3h
-- **Difficulty**: LOW — cache is additive; N4 is flag-gated; normalization is isolated
+- **Difficulty**: LOW — cache is additive; N4 and TM-01 are flag-gated; TM-03 decay multipliers are isolated in `fsrs-scheduler.ts`; normalization is isolated
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -219,18 +235,23 @@ Phase 6 (TM-03 Decay) ───────────────────�
 
 ### Pre-deployment Checklist
 - [ ] Feature flag `SPECKIT_NOVELTY_BOOST` configured and defaults to disabled
+- [ ] Feature flag `SPECKIT_INTERFERENCE_SCORE` configured and defaults to disabled
 - [ ] R18 cache table migration tested (create + drop)
+- [ ] TM-01 `interference_score` column migration tested (add + drop)
 - [ ] Pre-normalization score distributions captured for comparison
 
 ### Rollback Procedure
 1. **Immediate**: Set `SPECKIT_NOVELTY_BOOST=false` — N4 instantly disabled
-2. **Cache removal**: `DROP TABLE IF EXISTS embedding_cache` — no impact on search
-3. **Revert code**: `git revert` for normalization and G2 changes
-4. **Verify rollback**: Run 158+ existing tests; verify MRR@5 matches pre-Sprint-2 baseline
+2. **Immediate**: Set `SPECKIT_INTERFERENCE_SCORE=false` — TM-01 instantly disabled
+3. **Cache removal**: `DROP TABLE IF EXISTS embedding_cache` — no impact on search
+4. **TM-01 schema revert**: `ALTER TABLE memory_index DROP COLUMN interference_score` — removes interference data
+5. **TM-03 revert**: `git revert` for classification-based decay multiplier changes in `fsrs-scheduler.ts` — restores standard decay for all context_type and importance_tier values
+6. **Revert code**: `git revert` for normalization and G2 changes
+7. **Verify rollback**: Run 158+ existing tests; verify MRR@5 matches pre-Sprint-2 baseline
 
 ### Data Reversal
-- **Has data migrations?** Yes — `CREATE TABLE embedding_cache` in primary DB
-- **Reversal procedure**: `DROP TABLE embedding_cache`. No other schema changes. Primary DB data untouched.
+- **Has data migrations?** Yes — `CREATE TABLE embedding_cache` in primary DB; `ALTER TABLE memory_index ADD COLUMN interference_score` for TM-01
+- **Reversal procedure**: `DROP TABLE embedding_cache`; `ALTER TABLE memory_index DROP COLUMN interference_score`. Primary DB data otherwise untouched. TM-03 changes are code-only (no schema changes).
 - **Migration protocol**: Backup before `ALTER TABLE`; nullable defaults; atomic execution
 <!-- /ANCHOR:enhanced-rollback -->
 
@@ -242,7 +263,7 @@ Phase 6 (TM-03 Decay) ───────────────────�
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent Plan**: See `../plan.md`
-- **Predecessor Plan**: See `../001-sprint-0-epistemological-foundation/plan.md` (direct dependency — Sprint 1 is a parallel sibling)
+- **Predecessor Plan**: See `../001-sprint-0-measurement-foundation/plan.md` (direct dependency — Sprint 1 is a parallel sibling)
 
 ---
 

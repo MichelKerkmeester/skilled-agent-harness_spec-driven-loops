@@ -69,7 +69,7 @@ contextType: "implementation"
 - [ ] CHK-035 [P1] R11 eligibility: memories <72h excluded
 - [ ] CHK-036 [P1] R11 shadow period: 1-week log-only before mutations
 - [ ] CHK-037 [P1] R1+R11 interaction verified: MPAB operates on post-fusion scores, not on pre-boosted R11 scores
-- [ ] CHK-038 [P1] R13 eval cycle defined: minimum 50 query evaluations over 7+ days constitutes one eval cycle for the R11 prerequisite
+- [ ] CHK-038 [P1] R13 eval cycle defined: minimum 100 query evaluations AND 14+ calendar days constitutes one eval cycle for the R11 prerequisite (both conditions must be met)
 
 ### R13-S2 — Shadow Scoring
 - [ ] CHK-040 [P1] R13-S2 operational: full A/B comparison infrastructure working
@@ -86,6 +86,7 @@ contextType: "implementation"
 - [ ] CHK-045 [P1] TM-04 Layer 2 content quality scoring — signal density < 0.4 threshold rejects low-quality saves; high-quality saves pass
 - [ ] CHK-046 [P1] TM-04 Layer 3 semantic dedup — cosine similarity >0.92 rejects near-duplicates; distinct content at <0.92 passes
 - [ ] CHK-047 [P1] TM-04 behind `SPECKIT_SAVE_QUALITY_GATE` flag — disabled state = no behavior change from pre-Sprint-4
+- [ ] CHK-047a [P1] TM-04 warn-only mode (MR12): for first 2 weeks after activation, quality scores logged and would-reject decisions recorded but saves NOT blocked; enforcement enabled only after false-rejection rate review
 
 ### TM-06 — Reconsolidation-on-Save
 - [ ] CHK-048 [P0] TM-06 checkpoint created before first enable (`pre-reconsolidation`)
@@ -109,8 +110,8 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-054 [P0] All acceptance criteria met (REQ-S4-001 through REQ-S4-003)
-- [ ] CHK-055 [P1] 10-15 new tests passing (400-550 LOC)
+- [ ] CHK-054 [P0] All acceptance criteria met (REQ-S4-001 through REQ-S4-005)
+- [ ] CHK-055 [P1] 22-32 new tests passing (800-1100 LOC)
 - [ ] CHK-056 [P1] Edge cases tested (N=0, N=1, empty channels, <72h memories)
 - [ ] CHK-053 [P1] Existing tests still pass
 <!-- /ANCHOR:testing -->
@@ -145,7 +146,7 @@ contextType: "implementation"
 
 ## Calendar Dependency Verification
 
-- [ ] CHK-076 [P0] **R11 calendar prerequisite met**: Confirm ≥28 calendar days have elapsed since Sprint 3 completion AND R13 completed ≥2 full eval cycles (100+ queries over 14+ days). Evidence: date stamps from eval cycle logs.
+- [ ] CHK-076 [P0] **R11 calendar prerequisite met**: Confirm ≥28 calendar days have elapsed since Sprint 3 completion AND R13 completed ≥2 full eval cycles (each cycle = 100+ queries AND 14+ calendar days; both conditions must be met). Evidence: date stamps from eval cycle logs.
 - [ ] CHK-076a [P1] **14-day mid-window checkpoint**: After 14 calendar days (1 complete eval cycle), verify R13 eval infrastructure is collecting valid data and shadow scoring produces usable A/B comparisons. An early failure at day 14 is recoverable; a failure discovered at day 28 wastes the full idle window.
 <!-- /ANCHOR:docs -->
 
@@ -167,8 +168,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 11 | [ ]/11 |
-| P1 Items | 38 | [ ]/38 |
-| P2 Items | 0 | [ ]/0 |
+| P1 Items | 45 | [ ]/45 |
+| P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

@@ -19,7 +19,7 @@ contextType: "implementation"
 
 ## EXECUTIVE SUMMARY
 
-The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (43 evaluated, 40 active in program scope, 54 total traceable items including 6 sprint-derived requirements and 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7; +70-104h for PageIndex items; grand total with PageIndex: 458-700h) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
+The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an ID format mismatch, its dual scoring systems have a 15:1 magnitude mismatch, and it has zero retrieval quality metrics despite 15+ scoring signals. This specification defines a 43-recommendation program (43 evaluated, 40 active in program scope, 54 total traceable items including 6 sprint-derived requirements and 8 PageIndex-derived recommendations, IDs PI-A1 through PI-B3) across 8 metric-gated sprints (348-523h for S0-S6, 393-585h including S7; +70-104h for PageIndex items; grand total with PageIndex: 463-689h) to transform the system into a graph-differentiated, feedback-aware retrieval engine with measurable quality.
 
 **Key Decisions**: Evaluation first (R13 gates all improvements), calibration before surgery (normalize scores before pipeline refactor), density before deepening (edge creation before graph traversal sophistication).
 
@@ -104,7 +104,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | Pipeline | `memory-search.ts` (refactored stages) | Modify |
 | Indexing | `memory_index` schema, embedding pipeline | Modify |
 | Spec-Kit logic | Template processing, validation handlers | Modify |
-| Memory quality (NEW) | `memory-save.ts`, `composite-scoring.ts`, `fsrs-scheduler.ts`, `trigger-extractor.ts` | Modify |
+| Memory quality (NEW) | `memory-save.ts`, `composite-scoring.ts`, `fsrs-scheduler.ts`, `trigger-matcher.ts` | Modify |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,19 +117,19 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| 1 | `001-sprint-0-epistemological-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (47-73h) | None (BLOCKING) | Pending |
+| 1 | `001-sprint-0-measurement-foundation/` | G1, G3, R17, R13-S1, G-NEW-1 (50-77h) | None (BLOCKING) | Pending |
 | 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2 (26-39h) | Sprint 0 gate | Pending |
-| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (28-43h) | Sprint 1 gate | Pending |
+| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization (28-43h) | Sprint 0 gate | Pending |
 | 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2 (34-53h) | Sprint 2 gate | Pending |
-| 5 | `005-sprint-4-feedback-loop/` | R1, R11, R13-S2 (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
+| 5 | `005-sprint-4-feedback-and-quality/` | R1, R11, R13-S2 (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
 
 > **Sprint 4 Split Recommendation:** Sprint 4 should be considered for decomposition into two sub-phases:
 > - **S4a** (R1/MPAB + R13-S2 enhanced eval, ~25-35h): Lower-risk scoring and evaluation work that can proceed immediately after Sprint 3 gate.
 > - **S4b** (R11 learned relevance feedback + TM-04 + TM-06, ~47-74h): Higher-risk work containing R11 with its CRITICAL FTS5 contamination risk (MR1). R11 should not share a sprint with 4 other deliverables given its irreversible failure mode. S4b also requires the R13 calendar dependency (minimum 28 days of eval logging before R11 activation).
 > This split isolates R11's contamination risk and allows S4a to complete faster, providing R13-S2 channel attribution data earlier.
 | 6 | `006-sprint-5-pipeline-refactor/` | R6, R9, R12, S2, S3 (68-98h) | Sprint 4 gate | Pending |
-| 7a | `007-sprint-6-graph-deepening/` | R7, R16, S4, N3-lite (33-51h) | Sprint 5 gate | Pending |
-| 7b | `007-sprint-6-graph-deepening/` | N2, R10 (37-53h) | Sprint 6a gate + feasibility spike | Pending (GATED) |
+| 7a | `007-sprint-6-indexing-and-graph/` | R7, R16, S4, N3-lite (33-51h) | Sprint 5 gate | Pending |
+| 7b | `007-sprint-6-indexing-and-graph/` | N2, R10 (37-53h) | Sprint 6a gate + feasibility spike | Pending (GATED) |
 | 8 | `008-sprint-7-long-horizon/` | R8, S1, S5, R13-S3, R5 eval (45-62h) | Sprint 6a gate | Pending |
 
 ### Phase Transition Rules
@@ -242,15 +242,26 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | REQ-050 | **N2b:** Causal Depth Signal — max-depth path normalization from root memories | causal_depth_score assigned to all nodes; root=0, leaf=1.0 | S6 |
 | REQ-051 | **N2c:** Community Detection — connected components (BFS baseline), Louvain escalation if clusters too coarse | Community assignments stable across 2 consecutive runs (jitter <5%) | S6 |
 
-### PageIndex-Derived Recommendations (PI-A1 — PI-B3)
+### PageIndex-Derived Requirements (REQ-053 — REQ-060, PI-A1 — PI-B3)
 
-> **Research Evidence:** Derived from PageIndex research documents 9 (deep analysis: true-mem source code) and 10 (recommendations: true-mem patterns). These recommendations are ADDITIVE to the 43 core recommendations above.
+> **Research Evidence:** Derived from PageIndex research documents 9 (deep analysis: true-mem source code) and 10 (recommendations: true-mem patterns). These recommendations are ADDITIVE to the 43 core recommendations above. Formal REQ IDs assigned below for traceability.
+
+| ID | REQ | Recommendation | Acceptance Criteria | Sprint |
+|----|-----|----------------|---------------------|--------|
+| REQ-053 | PI-A1 | Folder-Level Relevance Scoring via DocScore Aggregation | `folder_score` field in result metadata; MAX + 0.3×MEAN formula; no MRR@5 regression | S2 |
+| REQ-054 | PI-A2 | Search Strategy Degradation with Fallback Chain (DEFERRED) | 3-tier fallback with logged degradation events | S3 (deferred) |
+| REQ-055 | PI-A3 | Pre-Flight Token Budget Validation | `token_budget_used` in response; truncation enforced; ≤5ms p95 latency increase | S1 |
+| REQ-056 | PI-A4 | Constitutional Memory as Expert Knowledge Injection | `retrieval_directive` metadata field on constitutional memories | S4 |
+| REQ-057 | PI-A5 | Verify-Fix-Verify for Memory Quality | Quality score post-save; auto-fix if <0.6; reject after 2 retries | S1 |
+| REQ-058 | PI-B1 | Tree Thinning for Spec Folder Consolidation | Nodes <300t collapsed; <100t summarized; anchored nodes preserved | S5 |
+| REQ-059 | PI-B2 | Progressive Validation for Spec Documents | 4-level pipeline; checkpoint before Level 2 auto-fix | S5 |
+| REQ-060 | PI-B3 | Description-Based Spec Folder Discovery | `descriptions.json` cache; embedding pre-selection; cache invalidation on save | S3 |
 
 #### Memory MCP Server (PI-A1 to PI-A5)
 
 | ID | Recommendation | Formula / Mechanism | Sprint | Effort | Risk |
 |----|----------------|---------------------|--------|--------|------|
-| PI-A1 | **Folder-Level Relevance Scoring via DocScore Aggregation** — aggregate per-memory scores into a per-folder relevance signal | `FolderScore = (1/sqrt(M+1)) * SUM(MemoryScore(m))` where M = memory count; discounts over-represented folders | S2 | 4-8h | Low |
+| PI-A1 | **Folder-Level Relevance Scoring via DocScore Aggregation** — aggregate per-memory scores into a per-folder relevance signal | `FolderScore = MAX(scores) + 0.3 × MEAN(scores)` per spec_folder; balances peak relevance with breadth (MPAB-derived) | S2 | 4-8h | Low |
 | PI-A2 | **Search Strategy Degradation with Fallback Chain** — 3-tier fallback when primary search returns insufficient results | Tier 1: full hybrid search → Tier 2: broadened (relaxed filters, lower threshold) → Tier 3: structural-only (trigger match + folder) | S3 | 12-16h | Medium |
 | PI-A3 | **Pre-Flight Token Budget Validation** — enforce token budget constraint before result assembly, not after | Validate `SUM(token_count(m))` against budget limit before assembling final result set; truncate candidate list early | S1 | 4-6h | Low |
 | PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — format constitutional memories as retrieval directives, not just high-priority results | Inject constitutional memories as system-level context (domain knowledge) before ranked results; separate display slot | S4 | 8-12h | Low-Medium |
@@ -390,9 +401,9 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 |---------|------|----------|---------------|------------|
 | MR1 | FTS5 trigger contamination from R11 — `[learned:]` prefix stripped by tokenizer; **irreversible** without full re-index | CRITICAL | R11 | Separate `learned_triggers` column (not indexed by FTS5) |
 | MR2 | R4+N3 preferential attachment loop — well-connected memories get boosted, get more edges, get more boosted | HIGH | R4, N3 | MAX_TOTAL_DEGREE=50, MAX_STRENGTH_INCREASE=0.05/cycle, edge provenance tracking |
-| MR3 | Feature flag explosion — 24 flags = 16.7M possible states; combinatorial testing impossibility | HIGH | All | Maximum 6 simultaneous flags; 90-day lifespan; governance rules (See research/142 - FINAL-recommendations §10) |
+| MR3 | Feature flag explosion — 24 flags = 16.7M possible states; combinatorial testing impossibility | HIGH | All | Maximum 6 simultaneous flags; 90-day lifespan; governance rules (See research/6 - combined-recommendations-gap-analysis §10) |
 | MR4 | R1-MPAB div-by-zero at N=0 — `sqrt(0)` causes NaN propagation | HIGH | R1 | Guard clause: `if (scores.length <= 1) return scores[0] ?? 0` |
-| MR5 | R4 MAX_TYPED_DEGREE undefined — no degree cap = unbounded boost | MEDIUM | R4 | Computed global with fallback=15 (See research/142 - FINAL-recommendations §4.2) |
+| MR5 | R4 MAX_TYPED_DEGREE undefined — no degree cap = unbounded boost | MEDIUM | R4 | Computed global with fallback=15 (See research/6 - combined-recommendations-gap-analysis §4.2) |
 | MR6 | R11 hidden dependency on R13 query provenance — "not in top 3" safeguard impossible without logging | MEDIUM | R11 | R13 must complete 2 eval cycles before R11 mutations enabled |
 | MR7 | R15 violates R2 channel diversity guarantee — single-channel routes cannot satisfy diversity | MEDIUM | R15, R2 | Minimum 2 channels even for "simple" queries |
 | MR8 | R4+N3+R10 three-way interaction — spurious R10 auto-extracted entities strengthened by N3 Hebbian learning, boosted by R4 degree scoring | HIGH | R4, N3, R10 | Entity extraction quality gate (FP <20%); N3 strength cap (MAX_STRENGTH_INCREASE=0.05/cycle); R4 degree normalization |
@@ -415,7 +426,7 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 
 ### Deploy Disaster Scenario (R11)
 
-A developer searches "deploy to production" and selects a migration memory. R11 learns "deploy" and "production" as triggers. Without the separate column fix, FTS5 indexes both words — every deployment query matches the migration memory on multiple channels for 30 days. See research/142 - FINAL-recommendations §6.4 for full scenario.
+A developer searches "deploy to production" and selects a migration memory. R11 learns "deploy" and "production" as triggers. Without the separate column fix, FTS5 indexes both words — every deployment query matches the migration memory on multiple channels for 30 days. See research/6 - combined-recommendations-gap-analysis §6.4 for full scenario.
 
 ### Dependencies
 
@@ -424,16 +435,17 @@ All dependencies are internal. Three dependencies from original research were co
 - R6→R7: INCORRECT (orthogonal subsystems — index-time vs search-time)
 - R8→R7: INCORRECT (different comparison targets — embeddings vs summaries)
 
-See research/142 - FINAL-recommendations §5 for corrected dependency graph.
+See research/6 - combined-recommendations-gap-analysis §5 for corrected dependency graph.
 <!-- /ANCHOR:risks -->
 
 ---
 
-## 6b. CONSOLIDATED SIGNAL APPLICATION ORDER
+<!-- ANCHOR:signal-order -->
+### 6.1 CONSOLIDATED SIGNAL APPLICATION ORDER
 
 > Scoring pipeline ordering constraints are scattered across 4+ sprint specs. This section consolidates all ordering invariants in one place.
 
-### Pipeline Signal Application Order (Stages 1-4)
+#### Pipeline Signal Application Order (Stages 1-4)
 
 | Order | Signal/Operation | Stage | Constraint | Source |
 |-------|-----------------|-------|------------|--------|
@@ -449,7 +461,7 @@ See research/142 - FINAL-recommendations §5 for corrected dependency graph.
 | 10 | State filtering, session dedup, constitutional guarantee | Stage 4 | **NO score changes** — filtering and annotation only | R6 Stage 4 invariant |
 | 11 | Channel attribution logging | Stage 4 | Read-only annotation | R13 |
 
-### Save Pipeline Signal Order (TM Pattern Integration)
+#### Save Pipeline Signal Order (TM Pattern Integration)
 
 | Order | Operation | Gate | Constraint |
 |-------|-----------|------|------------|
@@ -461,22 +473,24 @@ See research/142 - FINAL-recommendations §5 for corrected dependency graph.
 | 6 | Reconsolidation (TM-06) | O(n) search | After embedding — >=0.88 merge, 0.75-0.88 replace |
 | 7 | Database insert | O(log n) | Final write |
 
-### Cross-Sprint Ordering Invariants
+#### Cross-Sprint Ordering Invariants
 
 1. **N4 before R1**: Cold-start boost applied before MPAB aggregation (prevents double-boost for new chunked memories)
 2. **R15 suppresses R12**: When R15 classifies query as "simple", R12 query expansion is skipped entirely
 3. **R17 before R4**: Fan-effect divisor applied to co-activation scores before degree boost (prevents hub amplification)
 4. **R13 logging after Stage 4**: Eval logging is fire-and-forget, never blocks search pipeline
 5. **TM-02 before TM-04**: Content hash is cheapest check — run before quality scoring
+<!-- /ANCHOR:signal-order -->
 
 ---
 
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
 - **NFR-P01**: Search response MUST NOT exceed 500ms p95 during any phase including dark-run
 - **NFR-P02**: Simple query (R15) target: < 30ms p95; Moderate: < 100ms; Complex: < 300ms
-- **NFR-P03**: Dark-run overhead per sprint: S1 +10ms, S2 +2ms, S3 +50ms, S4 +15ms, S5 +100ms (See research/142 - FINAL-recommendations §14)
+- **NFR-P03**: Dark-run overhead per sprint: S1 +10ms, S2 +2ms, S3 +50ms, S4 +15ms, S5 +100ms (See research/6 - combined-recommendations-gap-analysis §14)
 - **NFR-P04**: Save-time performance budget — `memory_save` operations: p95 ≤200ms without embedding generation, p95 ≤2000ms with embedding generation. TM-02/TM-04/TM-06 pipeline stages MUST NOT exceed these budgets
 
 ### Data Integrity
@@ -493,6 +507,9 @@ See research/142 - FINAL-recommendations §5 for corrected dependency graph.
 
 ---
 
+<!-- /ANCHOR:nfr -->
+
+<!-- ANCHOR:edge-cases -->
 ## 8. EDGE CASES
 
 ### BM25 Contingency (Sprint 0 Exit)
@@ -511,7 +528,7 @@ See research/142 - FINAL-recommendations §5 for corrected dependency graph.
 A newly indexed constitutional memory with multiple chunks, within first 12 hours, receives MPAB bonus + cold-start boost + constitutional tier guarantee. Can dominate all results for 12-48h. Mitigation: composite boost cap at 0.95 before tier adjustment.
 
 ### Deploy Disaster (R11)
-FTS5 contamination from learned triggers pollutes lexical search for 30 days. Mitigated by separate `learned_triggers` column. See research/142 - FINAL-recommendations §6.4.
+FTS5 contamination from learned triggers pollutes lexical search for 30 days. Mitigated by separate `learned_triggers` column. See research/6 - combined-recommendations-gap-analysis §6.4.
 
 ### N=0 / N=1 MPAB
 - N=0 chunks: `computeMPAB([]) = 0`
@@ -522,6 +539,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ---
 
+<!-- /ANCHOR:edge-cases -->
+
+<!-- ANCHOR:complexity -->
 ## 9. COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Triggers |
@@ -535,6 +555,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ---
 
+<!-- /ANCHOR:complexity -->
+
+<!-- ANCHOR:risk-matrix -->
 ## 10. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
@@ -554,6 +577,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ---
 
+<!-- /ANCHOR:risk-matrix -->
+
+<!-- ANCHOR:user-stories -->
 ## 11. USER STORIES
 
 ### US-001: Graph Channel Contribution (Priority: P0)
@@ -590,6 +616,9 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ---
 
+<!-- /ANCHOR:user-stories -->
+
+<!-- ANCHOR:approval -->
 ## 12. APPROVAL WORKFLOW
 
 | Checkpoint | Approver | Status | Date |
@@ -605,10 +634,13 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 
 ---
 
+<!-- /ANCHOR:approval -->
+
+<!-- ANCHOR:compliance -->
 ## 13. COMPLIANCE CHECKPOINTS
 
 ### Migration Safety
-- [ ] All schema changes follow migration protocol (See research/142 - FINAL-recommendations §13)
+- [ ] All schema changes follow migration protocol (See research/6 - combined-recommendations-gap-analysis §13)
 - [ ] Nullable defaults on all new columns
 - [ ] Backup before ALTER TABLE
 - [ ] Forward-compatible reads (handle column not existing)
@@ -634,7 +666,7 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 | S0 | `SPECKIT_EVAL_LOGGING`, `SPECKIT_VERIFY_FIX_VERIFY` | None (first sprint) | 2 |
 | S1 | `SPECKIT_DEGREE_BOOST` | `SPECKIT_EVAL_LOGGING` → permanent (remove flag, always-on) | 2 |
 | S2 | `SPECKIT_NOVELTY_BOOST`, `SPECKIT_INTERFERENCE_SCORE`, `SPECKIT_FOLDER_SCORE` | `SPECKIT_VERIFY_FIX_VERIFY` → permanent (remove flag) | 4 |
-| S3 | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP`, `SPECKIT_SEARCH_FALLBACK` | `SPECKIT_DEGREE_BOOST` → permanent; `SPECKIT_NOVELTY_BOOST` → permanent | 6 (at ceiling) |
+| S3 | `SPECKIT_COMPLEXITY_ROUTER`, `SPECKIT_RSF_FUSION`, `SPECKIT_CHANNEL_MIN_REP` | `SPECKIT_DEGREE_BOOST` → permanent; `SPECKIT_NOVELTY_BOOST` → permanent | 5 |
 | S4 | `SPECKIT_DOCSCORE_AGGREGATION`, `SPECKIT_LEARN_FROM_SELECTION`, `SPECKIT_SAVE_QUALITY_GATE`, `SPECKIT_RECONSOLIDATION`, `SPECKIT_CONSTITUTIONAL_INJECT` | `SPECKIT_INTERFERENCE_SCORE` → permanent; `SPECKIT_FOLDER_SCORE` → permanent; `SPECKIT_COMPLEXITY_ROUTER` → permanent | 6 (at ceiling) |
 | S5 | `SPECKIT_PIPELINE_V2`, `SPECKIT_EMBEDDING_EXPANSION`, `SPECKIT_PROGRESSIVE_VALIDATION` | `SPECKIT_RSF_FUSION` → decide (permanent or remove based on Kendall tau data); `SPECKIT_CHANNEL_MIN_REP` → permanent; `SPECKIT_SEARCH_FALLBACK` → permanent | <=6 |
 | S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent | <=6 |
@@ -646,11 +678,14 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 
 ### Test Suite Non-Regression
 - [ ] 158+ existing tests pass after every sprint
-- [ ] New tests added per sprint (See research/142 - FINAL-recommendations §12)
+- [ ] New tests added per sprint (See research/6 - combined-recommendations-gap-analysis §12)
 - [ ] Flag interaction testing at appropriate level (1-5)
 
 ---
 
+<!-- /ANCHOR:compliance -->
+
+<!-- ANCHOR:stakeholders -->
 ## 14. STAKEHOLDER MATRIX
 
 | Stakeholder | Role | Interest | Communication |
@@ -661,6 +696,9 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 
 ---
 
+<!-- /ANCHOR:stakeholders -->
+
+<!-- ANCHOR:changelog -->
 ## 15. CHANGE LOG
 
 ### v1.0 (2026-02-26)
@@ -695,6 +733,9 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 
 ---
 
+<!-- /ANCHOR:changelog -->
+
+<!-- ANCHOR:open-questions -->
 ## 16. OPEN QUESTIONS
 
 - **OQ-001**: BM25 baseline performance — unknown until Sprint 0 measurement. If >= 80% of hybrid, roadmap fundamentally changes. **Decision context:** This is the single most consequential unknown. The BM25 contingency matrix (§8) defines three branches. G-NEW-1 (REQ-004) and A2 (REQ-037) jointly determine the 2x2 decision space. Resolved at: Sprint 0 exit gate.
@@ -705,6 +746,9 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 
 ---
 
+<!-- /ANCHOR:open-questions -->
+
+<!-- ANCHOR:deferred -->
 ## 17. DEFERRED ITEMS
 
 Items evaluated in the 144 gap analysis but deferred pending future data or off-ramp decisions:
@@ -726,20 +770,29 @@ Items evaluated in the 144 gap analysis but deferred pending future data or off-
 | DEF-013 | Context Drift Detection (periodic validity audits for old memories) | S6 | Long-term maintenance concern |
 | DEF-014 | structuralFreshness() Decision (dead code: keep or remove) | S7 | Evaluate during S7 planning |
 | DEF-015 | TM-07: Role-aware extraction weights (10x human message weight for conversation-sourced memories) | Post-S7 | Auto-extraction feature is planned and under development |
+| DEF-016 | Matryoshka embeddings — variable-dimension retrieval for cost/quality tradeoff | Post-S7 | Requires embedding model abstraction (DEF-007) first |
+| DEF-017 | SPLADE/learned sparse retrieval — learned term expansion for hybrid search | Post-S7 | Requires pipeline refactor (R6) to integrate additional retrieval stage |
+| DEF-018 | ColBERT multi-vector retrieval — token-level similarity matching | Post-S7 | High implementation cost; evaluate if single-vector recall proves insufficient |
+| DEF-019 | Two-stage search pipeline — coarse candidate retrieval followed by fine reranking | Post-S5 | R6 pipeline refactor partially addresses this; full implementation deferred |
 
 **Evaluation trigger**: Re-assess at Sprint 3 off-ramp and Sprint 6 planning.
 
 ---
 
+<!-- /ANCHOR:deferred -->
+
+<!-- ANCHOR:related -->
 ## 18. RELATED DOCUMENTS
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `checklist.md`
-- **Research (Analysis)**: See `research/142 - FINAL-analysis-hybrid-rag-fusion-architecture.md`
-- **Research (Recommendations)**: See `research/142 - FINAL-recommendations-hybrid-rag-fusion-refinement.md`
+- **Research (Analysis)**: See `research/3 - analysis-hybrid-rag-fusion-architecture.md`
+- **Research (Recommendations)**: See `research/6 - combined-recommendations-gap-analysis.md`
 - **Research (true-mem Analysis)**: See `research/9 - deep-analysis-true-mem-source-code.md` *(source for PI-A1 — PI-B3 PageIndex recommendations)*
 - **Research (true-mem Recommendations)**: See `research/10 - recommendations-true-mem-patterns.md` *(source for PI-A1 — PI-B3 PageIndex recommendations)*
+- **Research (Ultra-Think Reviews)**: See `research/11 - ultra-think-review-*.md` (per-sprint review documents)
+<!-- /ANCHOR:related -->
 
 ---
 

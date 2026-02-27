@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Parent Plan** | ../plan.md |
 | **Phase** | 4 of 8 |
 | **Predecessor** | ../003-sprint-2-scoring-calibration/ |
-| **Successor** | ../005-sprint-4-feedback-loop/ |
+| **Successor** | ../005-sprint-4-feedback-and-quality/ |
 | **Handoff Criteria** | R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5% |
 <!-- /ANCHOR:metadata -->
 
@@ -91,7 +91,7 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| Pipeline routing logic | Create/Modify | R15: Query classifier + tier-based channel routing |
+| `query-classifier.ts` (new) | Create | R15: Query classifier + tier-based channel routing |
 | `rrf-fusion.ts` | Modify | R14/N1: RSF implementation alongside RRF (all 3 variants) |
 | `hybrid-search.ts` | Modify | R2: Channel min-representation enforcement post-fusion |
 <!-- /ANCHOR:scope -->
@@ -120,8 +120,10 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 - **SC-001**: R15 simple query p95 latency <30ms
 - **SC-002**: RSF vs RRF comparison: Kendall tau computed on 100+ queries; tau <0.4 = reject RSF
 - **SC-003**: R2 dark-run: top-3 precision within 5% of baseline
-- **SC-004**: Sprint 3 exit gate — all 3 P1 requirements verified
+- **SC-004**: Sprint 3 exit gate — all 5 P1 requirements verified
 - **SC-005**: Off-ramp evaluated: MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
+- **SC-006**: R15-ext confidence truncation reduces irrelevant tail results by >30%, minimum 3 results guaranteed
+- **SC-007**: FUT-7 dynamic token budget applied per tier (simple: 1500t, moderate: 2500t, complex: 4000t)
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -185,7 +187,9 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 | Scope | 14/25 | 3 features across routing, fusion, and post-fusion layers |
 | Risk | 10/25 | R15 misclassification risk; R14/N1 3-variant scope |
 | Research | 6/20 | Research complete (142 analysis); RSF formula defined |
-| **Total** | **30/70** | **Level 2** |
+| Multi-Agent | 0/15 | Single-sprint, single-agent scope |
+| Coordination | 0/15 | No cross-sprint coordination required within Sprint 3 |
+| **Total** | **30/100** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -226,7 +230,7 @@ Transition thresholds: top result similarity < 0.4 OR result count < 3 triggers 
 
 **Effort**: 12-16h | **Risk**: Medium | **Dependency**: Sprint 0 eval framework
 
-#### PI-B3: Description-Based Spec Folder Discovery
+#### PI-B3: Description-Based Spec Folder Discovery [P2/Optional]
 
 **Rationale**: Currently, queries without an explicit `specFolder` parameter perform full-corpus search. PI-B3 generates a cached 1-sentence description per spec folder derived from `spec.md` and stores them in a `descriptions.json` file. The `memory_context` orchestration layer uses this file for lightweight folder routing before issuing vector queries, reducing unnecessary cross-folder churn.
 

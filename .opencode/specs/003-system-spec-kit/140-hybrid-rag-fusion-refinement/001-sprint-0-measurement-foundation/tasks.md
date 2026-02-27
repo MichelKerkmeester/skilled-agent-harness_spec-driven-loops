@@ -46,7 +46,7 @@ contextType: "implementation"
   - Acceptance: Hub domination reduced; co-activation result diversity improved
   - Implementation hint: Apply divisor `1 / sqrt(neighbor_count)` or similar to reduce score contribution from highly-connected nodes
   - Verify: No division by zero; output capped to prevent negative scores
-- [ ] T054 [P] Add SHA256 content-hash fast-path dedup in `memory-save.ts` — compute hash BEFORE embedding generation; O(1) lookup rejects exact duplicates within same `spec_folder`; no false positives on distinct content [2-3h] — TM-02 (REQ-S0-006)
+- [ ] T054 [P] Add SHA256 content-hash fast-path dedup in `memory-save.ts` — compute hash BEFORE embedding generation; O(1) lookup rejects exact duplicates within same `spec_folder`; no false positives on distinct content [2-3h] — TM-02 (REQ-S0-006) _(Note: T054 numbering is a cross-reference to parent spec task TM-02; kept for traceability)_
   - Acceptance: Exact duplicate saves rejected without embedding generation; distinct content passes
   - Implementation hint: Use Node.js `crypto.createHash('sha256')` on file content; store hash in `memory_index` table; check before embedding API call
   - Verify: Re-save identical content → skip; modify 1 character → proceed to embed
@@ -57,7 +57,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Eval Infrastructure (Track 2)
 
-- [ ] T004 Create `speckit-eval.db` with 5-table schema: `eval_queries`, `eval_relevance`, `eval_results`, `eval_metrics`, `eval_runs` [8-10h] — R13-S1 (REQ-S0-003)
+- [ ] T004 Create `speckit-eval.db` with 5-table schema: `eval_queries`, `eval_channel_results`, `eval_final_results`, `eval_ground_truth`, `eval_metric_snapshots` [8-10h] — R13-S1 (REQ-S0-003)
 - [ ] T004b Implement R13 observer effect mitigation — health check measuring search p95 with eval logging on vs off; trigger if >10% increase [2-4h] {T004} — D4 (REQ-S0-003)
 - [ ] T005 Add logging hooks to search, context, and trigger handlers [6-8h] {T004} — R13-S1 (REQ-S0-003)
 - [ ] T006 Implement core metric computation: MRR@5, NDCG@10, Recall@20, Hit Rate@1 + 5 diagnostic metrics + ceiling/proxy metrics [14-21h] {T004} — R13-S1 (REQ-S0-003)
@@ -95,9 +95,9 @@ contextType: "implementation"
     4. Validate diversity thresholds before proceeding to T008
 - [ ] T013 Hand-calculate MRR@5 for 5 randomly selected queries — compare hand-calculated values to R13 computed values (tolerance ±0.01); resolve ALL discrepancies before proceeding to T008 [2-3h] {T006, T007} — REQ-S0-007 (eval-the-eval validation)
   - Acceptance: Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; discrepancies documented and resolved
-  - Implementation hint: Select 5 queries randomly from ground truth corpus; for each query, manually rank relevant memories and compute MRR@5 = (1/5) * Σ(1/rank_i); compare to `eval_metrics` table
+  - Implementation hint: Select 5 queries randomly from ground truth corpus; for each query, manually rank relevant memories and compute MRR@5 = (1/5) * Σ(1/rank_i); compare to `eval_metric_snapshots` table
   - Verify: Discrepancy log produced; all 5 queries within tolerance
-- [ ] T008 Run BM25-only baseline measurement and record MRR@5 [4-6h] {T006, T007} — G-NEW-1 (REQ-S0-004)
+- [ ] T008 Run BM25-only baseline measurement and record MRR@5 [4-6h] {T006, T007, T013} — G-NEW-1 (REQ-S0-004)
   - Acceptance: BM25 MRR@5 recorded; contingency decision matrix evaluated (>=80% PAUSE, 50-80% rationalize, <50% PROCEED)
   - Implementation hint: Use FTS5-only path in `memory-search.ts`; disable vector, graph, and trigger channels via flags
 <!-- /ANCHOR:phase-3 -->
@@ -124,7 +124,7 @@ contextType: "implementation"
 - [ ] All tasks T001-T009, T007b, T013, and T054 marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 0 exit gate (T009) passed
-- [ ] 8-12 new tests added and passing
+- [ ] 20-30 new tests added and passing
 - [ ] 158+ existing tests still passing
 - [ ] BM25 contingency decision recorded
 <!-- /ANCHOR:completion -->

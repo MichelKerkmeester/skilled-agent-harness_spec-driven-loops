@@ -48,8 +48,8 @@ contextType: "implementation"
   - Sub-steps: (1) Parse anchor markers in indexed content. (2) Score chunks by anchor presence + content density. (3) Apply thinning threshold — drop chunks below score cutoff. (4) Run Recall@20 eval before/after.
   - Acceptance criteria: Recall@20 within 10% of pre-thinning baseline on eval query set.
 - [ ] T004 [P] Implement encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag [5-8h] — R16 (REQ-S6-002)
-  - Sub-steps: (1) Add `encoding_intent` field to memory index schema. (2) Classify intent at index time (code, prose, structured data). (3) Store alongside embedding. (4) Expose in retrieval metadata.
-  - Acceptance criteria: `encoding_intent` field populated for all newly indexed memories when flag is enabled.
+  - Sub-steps: (1) Add `encoding_intent` field to memory index schema. (2) Classify intent at index time (code, prose, structured data). (3) Store alongside embedding. (4) Expose in retrieval metadata (read-only; no retrieval-time scoring impact — index-only capture).
+  - Acceptance criteria: `encoding_intent` field populated for all newly indexed memories when flag is enabled. Note: R16 captures intent at index time for metadata enrichment; it does not influence retrieval scoring in Sprint 6.
 - [ ] T006 [P] Implement spec folder hierarchy as retrieval structure [6-10h] — S4 (REQ-S6-006)
   - Sub-steps: (1) Parse spec folder path from memory metadata. (2) Build in-memory hierarchy tree at query time (or cached). (3) Add hierarchy-aware traversal to `graph-search-fn.ts`. (4) Return parent/sibling memories as contextual results.
   - Acceptance criteria: hierarchy traversal returns parent-folder memories when queried from a child spec folder; functional in at least 1 integration test.
@@ -58,9 +58,10 @@ contextType: "implementation"
   - T002a Contradiction scan (cosine >0.85 + keyword negation) [3-4h] {T001d}
     - Sub-steps: (1) Candidate generation — cosine similarity >0.85 pair query. (2) Conflict check — keyword negation heuristic (contains "not", "never", contradicts prior claim). (3) Flag pair + surface cluster. (4) Write `contradiction_flag` to memory record.
     - Acceptance criteria: detects at least 1 known contradiction in curated test data (manually seeded pair).
-  - T002b Hebbian edge strengthening (+0.05/cycle, caps) [2-3h] {T001d}
+  - T002b Hebbian edge strengthening (+0.05/cycle, caps) + 30-day decay [2-3h] {T001d}
     - +0.05 per validation cycle, MAX_STRENGTH_INCREASE=0.05, 30-day decay of 0.1 (~20 LOC)
     - Acceptance criteria: weight changes logged to weight_history before and after each modification.
+    - Test: verify 30-day decay reduces edge strength by 0.1 — edge at strength 0.8 with last_accessed >30 days ago decays to 0.7 on next consolidation cycle.
   - T002c Staleness detection (90-day unfetched edges) [1-2h] {T001d}
     - Flag edges unfetched for 90+ days (~15 LOC)
     - Acceptance criteria: stale edges identified and flagged without deletion.
@@ -77,7 +78,10 @@ contextType: "implementation"
 <!-- ANCHOR:sprint-6b -->
 ## Sprint 6b: Graph Sophistication (N2, R10) — 37-53h (GATED)
 
-- [ ] T-S6B-GATE [GATE-PRE] Sprint 6b entry gate — feasibility spike completed, OQ-S6-001 resolved (edge density documented), OQ-S6-002 resolved (centrality algorithm selected with evidence), REQ-S6-004 revisited (10% mandate density-conditioned) [0h] {T007a}
+- [ ] T-S6-SPIKE Algorithm feasibility spike — validate N2c and R10 approaches on actual data [8-16h] {T007a}
+  - Determine: (a) whether Louvain is appropriate at current graph density, or whether connected components suffices; (b) whether rule-based entity extraction meets the <20% FP threshold on a representative sample
+  - Acceptance: spike report documenting graph density, algorithm recommendation, and quality tier (heuristic vs production) decision
+- [ ] T-S6B-GATE [GATE-PRE] Sprint 6b entry gate — T-S6-SPIKE completed, OQ-S6-001 resolved (edge density documented), OQ-S6-002 resolved (centrality algorithm selected with evidence), REQ-S6-004 revisited (10% mandate density-conditioned) [0h] {T-S6-SPIKE}
 
 - [ ] T001 Implement graph centrality + community detection — N2 items 4-6 [25-35h] {T-S6B-GATE} — N2 (REQ-S6-004)
   > **ESTIMATION WARNING**: N2c listed at 12-15h; production-quality Louvain on SQLite requires 40-80h. Start with connected components (BFS, ~20 LOC) and escalate only if separation is insufficient.
@@ -132,7 +136,7 @@ contextType: "implementation"
 - [ ] No `[B]` blocked tasks remaining in Sprint 6a
 - [ ] Sprint 6b tasks (T001, T005) marked `[x]` if Sprint 6b executed; otherwise documented as deferred
 - [ ] Sprint 6b exit gate (T007b) passed if Sprint 6b executed
-- [ ] 12-18 new tests added and passing (Sprint 6a: 8-12; Sprint 6b: 4-6 if executed)
+- [ ] 14-22 new tests added and passing (Sprint 6a: 10-16; Sprint 6b: 4-6 if executed)
 - [ ] All existing tests still passing
 - [ ] Active feature flag count <=6
 - [ ] Checkpoint created before sprint start
@@ -149,6 +153,31 @@ contextType: "implementation"
   - Status: Pending
   - Research evidence: See `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder
 <!-- /ANCHOR:pageindex-xrefs -->
+
+---
+
+<!-- ANCHOR:task-id-mapping -->
+## Task ID Mapping (Child → Parent)
+
+Child tasks use local IDs; parent `../tasks.md` uses global IDs. Cross-reference table:
+
+| Child Task ID | Parent Task ID | Description |
+|---------------|----------------|-------------|
+| T-S6-PRE | T040a | Checkpoint creation |
+| T001d | T041d | weight_history audit tracking (MR10) |
+| T003 | T043 | R7 anchor-aware chunk thinning |
+| T004 | T044 | R16 encoding-intent capture |
+| T006 | T046 | S4 spec folder hierarchy |
+| T002 | T042 | N3-lite consolidation |
+| T002a-e | T042a-e | N3-lite sub-tasks |
+| T-S6-SPIKE | *(not in parent)* | Feasibility spike (Sprint 6b gate) |
+| T007a | T047a | Sprint 6a exit gate |
+| T-S6B-GATE | T-S6B-GATE | Sprint 6b entry gate |
+| T001 | T041 | N2 centrality + community detection |
+| T001a-c | T041a-c | N2 sub-tasks (momentum, depth, community) |
+| T005 | T045 | R10 auto entity extraction |
+| T007b | T047b | Sprint 6b exit gate |
+<!-- /ANCHOR:task-id-mapping -->
 
 ---
 

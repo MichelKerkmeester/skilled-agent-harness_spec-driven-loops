@@ -112,8 +112,8 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-060 [P0] All acceptance criteria met (REQ-S5-001 through REQ-S5-005)
-- [ ] CHK-061 [P1] 15-20 new tests passing (500-700 LOC)
+- [ ] CHK-060 [P0] All acceptance criteria met (REQ-S5-001 through REQ-S5-006)
+- [ ] CHK-061 [P1] 30-40 new tests passing (1000-1500 LOC)
 - [ ] CHK-062 [P1] Edge cases tested (empty pre-filter, empty expansion, missing S2/S3 data)
 - [ ] CHK-063 [P1] Full regression: all 158+ existing tests pass
 <!-- /ANCHOR:testing -->
@@ -154,9 +154,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | [ ]/8 |
-| P1 Items | 30 | [ ]/30 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 10 | [ ]/10 |
+| P1 Items | 43 | [ ]/43 |
+| P2 Items | 3 | [ ]/3 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

@@ -30,7 +30,7 @@ contextType: "implementation"
 
 ### Overview
 
-This plan implements 43 recommendations across 8 metric-gated sprints (343-516h for S0-S6, 388-596h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
+This plan implements 43 recommendations across 8 metric-gated sprints (348-523h for S0-S6, 393-585h including S7), transforming the spec-kit memory MCP server's retrieval pipeline. Three non-negotiable principles govern execution: (1) **Evaluation First** — R13 gates all downstream signal improvements; (2) **Density Before Deepening** — edge creation precedes graph traversal sophistication; (3) **Calibration Before Surgery** — score normalization before pipeline refactoring.
 
 ### Design Principles
 
@@ -96,11 +96,11 @@ The dual scoring systems (RRF ~[0, 0.07] and composite ~[0, 1]) correctly measur
 - **System A (RRF)**: Query-dependent relevance — how well does this memory match THIS query?
 - **System B (Composite)**: Query-independent value — how important is this memory in general?
 
-The ~15:1 magnitude mismatch is a calibration problem (normalize both to [0,1]), not an architectural defect requiring pipeline surgery. This distinction reduces cost and risk by 10x. See research/142 - FINAL-analysis §5.
+The ~15:1 magnitude mismatch is a calibration problem (normalize both to [0,1]), not an architectural defect requiring pipeline surgery. This distinction reduces cost and risk by 10x. See research/3 - analysis-hybrid-rag-fusion-architecture §5.
 
 ### Stage 4 Invariant
 
-After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1-3 handle ALL score computation. Stage 4 is exclusively filtering and formatting. This prevents recurrence of the double-weighting anti-pattern. See research/142 - FINAL-recommendations §3, Sprint 5.
+After pipeline refactor (R6), Stage 4 NEVER changes scores or ordering. Stages 1-3 handle ALL score computation. Stage 4 is exclusively filtering and formatting. This prevents recurrence of the double-weighting anti-pattern. See research/6 - combined-recommendations-gap-analysis §3, Sprint 5.
 
 ### Save Pipeline Architecture (TM Pattern Integration)
 
@@ -173,8 +173,8 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 1.1 | **R4:** Typed-weighted degree as 5th RRF channel | 12-16 | Graph | `SPECKIT_DEGREE_BOOST` |
 | 1.2 | Edge density measurement | 2-3 | Evaluation | — |
 | 1.3 | **G-NEW-2:** Agent-as-consumer UX analysis | 8-12 | Evaluation | — |
-| 1.5 | **TM-08:** Importance signal vocabulary expansion (add CORRECTION + PREFERENCE signals to trigger extraction) | 2-4 | Memory quality | — |
-| 1.4 | Enable R4 if dark-run passes | 0 | — | — |
+| 1.4 | **TM-08:** Importance signal vocabulary expansion (add CORRECTION + PREFERENCE signals to trigger extraction) | 2-4 | Memory quality | — |
+| 1.5 | Enable R4 if dark-run passes | 0 | — | — |
 | | **Total** | **26-39h** | | |
 
 #### PageIndex Integration
@@ -329,22 +329,30 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 ---
 
-### Sprint 6: Graph Deepening + Index Optimization
+### Sprint 6a: Practical Improvements
 
 | # | Item | Hours | Subsystem | Flag |
 |---|------|-------|-----------|------|
-| 6.1 | **R7:** Anchor-aware chunk thinning | 10-15 | Indexing | — |
-| 6.2 | **R16:** Encoding-intent capture | 5-8 | Indexing/scoring | `SPECKIT_ENCODING_INTENT` |
-| 6.3 | **R10:** Auto entity extraction (gated on density) | 12-18 | Graph/indexing | `SPECKIT_AUTO_ENTITIES` |
-| 6.4 | **N2 (4-6):** Graph centrality + community detection | 25-35 | Graph | — |
-| 6.5 | **N3-lite:** Contradiction scan + Hebbian strengthening | 10-15 | Background/graph | `SPECKIT_CONSOLIDATION` |
-| 6.6 | **S4:** Spec folder hierarchy as retrieval structure | 6-10 | Spec-Kit logic | — |
-| | **Total** | **68-101h** | | |
+| 6a.1 | **R7:** Anchor-aware chunk thinning | 10-15 | Indexing | — |
+| 6a.2 | **R16:** Encoding-intent capture | 5-8 | Indexing/scoring | `SPECKIT_ENCODING_INTENT` |
+| 6a.3 | **N3-lite:** Contradiction scan + Hebbian strengthening | 9-14 | Background/graph | `SPECKIT_CONSOLIDATION` |
+| 6a.4 | **S4:** Spec folder hierarchy as retrieval structure | 6-10 | Spec-Kit logic | — |
+| 6a.5 | **MR10 mitigation:** weight_history audit tracking (HARD GATE for N3-lite) | 2-3 | Graph | — |
+| | **Sprint 6a Total** | **33-51h** | | |
 
-**Internal Phasing:**
-- **Phase A (Graph):** N2 items 4-6, N3-lite — 35-50h
-- **Phase B (Indexing + Spec-Kit):** R7, R16, R10, S4 — 33-51h
-- Phases A and B may run in parallel (non-overlapping subsystems)
+### Sprint 6b: Graph Sophistication (GATED)
+
+> **Entry gates**: Feasibility spike completed, OQ-S6-001 resolved, OQ-S6-002 resolved, REQ-S6-004 density-conditioned
+
+| # | Item | Hours | Subsystem | Flag |
+|---|------|-------|-----------|------|
+| 6b.1 | **N2 (4-6):** Graph centrality + community detection | 25-35 | Graph | — |
+| 6b.2 | **R10:** Auto entity extraction (gated on density) | 12-18 | Graph/indexing | `SPECKIT_AUTO_ENTITIES` |
+| | **Sprint 6b Total** | **37-53h** | | |
+
+| | **Sprint 6 Combined Total** | **70-104h** | | |
+
+**Phasing:** Sprint 6a executes first (sequential). Sprint 6b is GATED on feasibility spike and Sprint 6a exit gate. Sprint 7 depends on Sprint 6a only (not 6b).
 
 **Exit Gate:**
 - [ ] R7 Recall@20 within 10% of baseline
@@ -381,9 +389,10 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | S4 | 10-15 | R1 MPAB N=0/1/2/10, metadata; R11 column isolation/TTL/denylist/cap/eligibility; R13-S2 | 400-550 |
 | S5 | 15-20 | R6 full corpus regression, stage boundaries, Stage 4 invariant; R9/R12/S2/S3 | 500-700 |
 | S6 | 12-18 | R7 recall; R10 false positives; N2 attribution; N3-lite bounds/contradiction; S4 hierarchy | 350-500 |
-| **Total** | **~70-100** | Approximately doubling the 158+ existing suite | **2250-3300** |
+| S7 | 8-12 | R8 summary pre-filter/skip-path; S1 template schema validation; S5 entity link integrity; R13-S3 dashboard operational; R5 decision documented | 200-300 |
+| **Total** | **~78-112** | Approximately doubling the 158+ existing suite | **2450-3600** |
 
-**Flag interaction testing (5 levels):** See research/142 - FINAL-recommendations §10.2 item 5.
+**Flag interaction testing (5 levels):** See research/6 - combined-recommendations-gap-analysis §10.2 item 5.
 - Level 1 (unit): Each flag in isolation — 24 tests, ~5 min
 - Level 2 (pair): Documented interaction pairs — 12 pairs x 2 states, ~10 min
 - Level 3 (group): Group A combinations — 256 tests, ~45 min
@@ -495,7 +504,7 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 
 | Sprint | Complexity | Estimated Effort |
 |--------|------------|------------------|
-| Sprint 0: Epistemological Foundation | High (blocking) | 47-73h |
+| Sprint 0: Epistemological Foundation | High (blocking) | 50-77h |
 | Sprint 1: Graph Signal Activation | Medium | 26-39h |
 | Sprint 2: Scoring Calibration | Medium | 28-43h |
 | Sprint 3: Query Intelligence | Medium-High | 34-53h |
@@ -504,17 +513,17 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 | Sprint 6a: Graph Deepening (Practical) | Medium-High | 33-51h |
 | Sprint 6b: Graph Deepening (Sophistication, GATED) | Very High | 37-53h (heuristic) / 80-150h (production) |
 | Sprint 7: Long Horizon | Medium | 45-62h |
-| **Total (S0-S6a)** | | **308-466h** |
-| **Total (S0-S6a+S6b heuristic)** | | **345-519h** |
-| **Total (S0-S7, S6b heuristic)** | | **390-581h** |
+| **Total (S0-S6a)** | | **311-470h** |
+| **Total (S0-S6a+S6b heuristic)** | | **348-523h** |
+| **Total (S0-S7, S6b heuristic)** | | **393-585h** |
 | **PageIndex additions (PI-A1 — PI-B3, across S0-S5)** | Low-Medium | **+70-104h** |
-| **Grand Total with PageIndex (S0-S7, S6b heuristic)** | | **460-685h** |
+| **Grand Total with PageIndex (S0-S7, S6b heuristic)** | | **463-689h** |
 
 **Resource Planning:**
 - Solo developer (~15h/week): 20-30 weeks (S0-S6) — reduced from 23-34 weeks by S1/S2 parallelization saving 3-5 weeks
 - Dual developers: 8-12 weeks (independent tracks A-G assigned; S1/S2 parallelization is the primary acceleration)
 - Critical path: G1→R4→R13-S1→R14/N1→R6 = ~90-125h sequential regardless of parallelism
-- **Note on Sprint 0 total:** Sprint 0 increased from 47-73h to 50-77h with the addition of G-NEW-2 pre-analysis (0.7, 3-4h). This lightweight survey informs ground truth generation quality and pays for itself by preventing evaluation corpus bias.
+- **Note on Sprint 0 total:** Sprint 0 effort is 50-77h (includes G-NEW-2 pre-analysis, 3-4h). This lightweight survey informs ground truth generation quality and pays for itself by preventing evaluation corpus bias.
 - **Note on CHK-S0F3 validation effort:** The p<0.05 statistical significance requirement on >=100 diverse queries (CHK-S0F3) requires manual relevance labeling not included in T008 (4-6h) or T008b (2-3h) effort estimates. Expect an additional 8-15h for this validation work. Total Sprint 0 effort with this addition: ~58-92h.
 <!-- /ANCHOR:effort -->
 

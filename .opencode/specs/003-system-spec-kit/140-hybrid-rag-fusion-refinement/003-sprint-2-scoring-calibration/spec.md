@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 3 of 8 |
-| **Predecessor** | ../001-sprint-0-epistemological-foundation/ (direct dependency — Sprint 1 is a parallel sibling, not a predecessor) |
+| **Predecessor** | ../001-sprint-0-measurement-foundation/ (direct dependency — Sprint 1 is a parallel sibling, not a predecessor) |
 | **Successor** | ../004-sprint-3-query-intelligence/ |
 | **Handoff Criteria** | Cache hit >90%, N4 dark-run passes, G2 resolved, score distributions normalized to [0,1] |
 <!-- /ANCHOR:metadata -->
@@ -135,6 +135,9 @@ Calibrate the scoring pipeline so both systems contribute proportionally to fina
 - **SC-002**: N4 dark-run passes — new memories visible, highly relevant older results not displaced
 - **SC-003**: G2 resolved — either fixed or documented as intentional with rationale
 - **SC-004**: Score distributions normalized — both RRF and composite in [0,1] range
+- **SC-005**: FUT-5 K-value sensitivity investigation completed — optimal K identified and MRR@5 delta measured per K value
+- **SC-006**: TM-01 interference scoring active — high-similarity memory clusters show reduced individual scores; no false penalties on distinct content
+- **SC-007**: TM-03 classification-based decay operational — constitutional/critical memories never decay; temporary memories decay faster; decisions context_type does not decay
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -255,7 +258,7 @@ where M is the number of memories in the folder. The damping factor `1/sqrt(M+1)
 - **Verification Checklist**: See `checklist.md`
 - **Parent Spec**: See `../spec.md`
 - **Parent Plan**: See `../plan.md`
-- **Predecessor**: See `../001-sprint-0-epistemological-foundation/` (direct dependency — Sprint 1 is a parallel sibling)
+- **Predecessor**: See `../001-sprint-0-measurement-foundation/` (direct dependency — Sprint 1 is a parallel sibling)
 
 ---
 

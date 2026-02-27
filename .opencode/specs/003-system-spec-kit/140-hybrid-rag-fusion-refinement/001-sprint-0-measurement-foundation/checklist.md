@@ -31,7 +31,7 @@ contextType: "implementation"
 ## Pre-Implementation
 
 - [ ] CHK-001 [P0] Bug fix code locations verified — `graph-search-fn.ts` lines 110 AND 151 (G1 has TWO occurrences), `memory-search.ts` ~line 1002 (G3 conditional gating at the call site, not line 303 which is the function definition) — HOW: Open each file, search for `mem:${` (G1) and chunk collapse conditional (G3); confirm line numbers match. Cross-ref T001, T002.
-- [ ] CHK-002 [P0] Eval DB 5-table schema designed and reviewed — HOW: Verify schema defines `eval_queries`, `eval_relevance`, `eval_results`, `eval_metrics`, `eval_runs` tables with appropriate columns and foreign keys. Cross-ref T004.
+- [ ] CHK-002 [P0] Eval DB 5-table schema designed and reviewed — HOW: Verify schema defines `eval_queries`, `eval_channel_results`, `eval_final_results`, `eval_ground_truth`, `eval_metric_snapshots` tables with appropriate columns and foreign keys. Cross-ref T004.
 - [ ] CHK-003 [P1] 142 research analysis and recommendations reviewed for Sprint 0 scope — HOW: Confirm R-001 through R-017 items relevant to Sprint 0 are addressed in spec.md scope section.
 <!-- /ANCHOR:pre-impl -->
 
@@ -44,6 +44,7 @@ contextType: "implementation"
 - [ ] CHK-011 [P0] G3 chunk dedup runs on ALL code paths (including `includeContent=false`)
 - [ ] CHK-012 [P1] R17 fan-effect divisor has proper bounds (no division by zero, capped output)
 - [ ] CHK-013 [P1] Eval logging hooks are non-blocking (async or fire-and-forget)
+- [ ] CHK-013b [P1] NFR-P02: G1 fix must not degrade graph search performance — HOW: Benchmark graph search latency before and after G1 fix; p95 must not increase by >10%. Cross-ref NFR-P02 in spec.md §7.
 - [ ] CHK-014 [P2] Code follows existing TypeScript patterns in the codebase
 <!-- /ANCHOR:code-quality -->
 
@@ -52,7 +53,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] 8-12 new tests added covering: G1 numeric IDs, G3 all code paths, R17 bounds, R13-S1 schema/hooks/metrics, BM25 path — HOW: Run `npx vitest --reporter=verbose`; count new test cases; verify each subsystem has >=1 test. Cross-ref T001-T008.
+- [ ] CHK-020 [P0] 20-30 new tests added covering: G1 numeric IDs, G3 all code paths, R17 bounds, R13-S1 schema/hooks/metrics, BM25 path, T054 SHA256 dedup, T004b observer effect, T006a-e diagnostic metrics, T006f ceiling eval, T006g quality proxy, T007 ground truth diversity — HOW: Run `npx vitest --reporter=verbose`; count new test cases; verify each subsystem has >=1 test. Cross-ref T001-T008, T054.
 - [ ] CHK-021 [P0] 158+ existing tests still pass after all changes — HOW: Run full test suite; compare pass count to pre-change baseline (>=158). Evidence required: test output showing pass count.
 - [ ] CHK-022 [P1] BM25 baseline path tested independently (FTS5 only, no vector/graph channels)
 - [ ] CHK-023 [P1] Eval metric computation verified against known test data — HOW: Define at least 1 fixed test case with known ground truth (e.g., query "A" with relevant memories M1, M2, M3 at ranks 1, 3, 5 → expected MRR@5 = 0.467); compute metric via R13 and verify match within ±0.01; cross-ref T006, T013
@@ -107,17 +108,17 @@ contextType: "implementation"
 
 - [ ] CHK-060 [P0] Graph hit rate > 0% — verified via eval telemetry or manual query inspection
 - [ ] CHK-061 [P0] No duplicate chunk rows in default search mode (`includeContent=false`)
-- [ ] CHK-062 [P0] Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 computed for 100+ queries (50+ minimum for initial baseline; >=100 required before CHK-064 BM25 contingency decision) — HOW: Run `eval_metrics` query against `speckit-eval.db`; verify row count >=100 in `eval_results` table; cross-ref T006, T007
+- [ ] CHK-062 [P0] Baseline MRR@5, NDCG@10, Recall@20, Hit Rate@1 computed for 100+ queries (50+ minimum for initial baseline; >=100 required before CHK-064 BM25 contingency decision) — HOW: Run `eval_metric_snapshots` query against `speckit-eval.db`; verify row count >=100 in `eval_final_results` table; cross-ref T006, T007
 - [ ] CHK-062b [P0] Ground truth query diversity verified — >=5 queries per intent type, >=3 query complexity tiers (simple, moderate, complex), >=3 hard negatives. HARD GATE. — HOW: Count distinct intent_type tags and complexity_tier tags in `eval_queries` table; verify thresholds. Evidence required: query distribution table showing counts per intent type and tier.
 - [ ] CHK-062c [P1] G-NEW-2 pre-analysis completed — agent consumption pattern report produced with >=5 identified consumption patterns; findings incorporated into ground truth query design (T007). Cross-ref T007b.
-- [ ] CHK-063 [P0] BM25 baseline MRR@5 recorded and compared to hybrid — HOW: Compare `eval_metrics` rows for BM25-only vs hybrid runs; cross-ref T008
+- [ ] CHK-063 [P0] BM25 baseline MRR@5 recorded and compared to hybrid — HOW: Compare `eval_metric_snapshots` rows for BM25-only vs hybrid runs; cross-ref T008
 - [ ] CHK-064 [P0] BM25 contingency decision made (PAUSE / rationalize / PROCEED) — PREREQUISITE: >=100 diverse queries in ground truth corpus with statistical significance (p<0.05) — Evidence required: documented comparison ratio, statistical test results, and selected decision path
 - [ ] CHK-S0B [P0] TM-02 content-hash dedup active — exact duplicate saves rejected without embedding generation; distinct content passes without false-positive rejection (`memory-save.ts`) — HOW: Re-save identical content, verify no embedding API call; modify content, verify embedding is generated; cross-ref T054
 - [ ] CHK-065 [P1] R17 hub domination reduced — verified via co-activation result diversity — HOW: Run 10+ queries, check no single memory appears in >60% of co-activation results; cross-ref T003
 - [ ] CHK-066 [P1] Full-context ceiling metric recorded and 2x2 decision matrix evaluated — cross-ref T006f
 - [ ] CHK-067 [P1] Quality proxy formula operational for automated regression checks — cross-ref T006g
 - [ ] CHK-068 [P1] Active feature flag count <=6 verified at sprint exit — HOW: grep codebase for `SPECKIT_` env var flags; count active (non-deprecated) flags; document list. Evidence required: flag inventory list with count.
-- [ ] CHK-069 [P0] REQ-S0-007 eval-the-eval hand-calculation complete — hand-calculated MRR@5 for 5 randomly selected queries matches R13 computed values within ±0.01; all discrepancies resolved before BM25 contingency decision — HOW: Select 5 random queries from ground truth, manually compute MRR@5 from ranked results, compare to `eval_metrics` table values; cross-ref T013, REQ-S0-007
+- [ ] CHK-069 [P0] REQ-S0-007 eval-the-eval hand-calculation complete — hand-calculated MRR@5 for 5 randomly selected queries matches R13 computed values within ±0.01; all discrepancies resolved before BM25 contingency decision — HOW: Select 5 random queries from ground truth, manually compute MRR@5 from ranked results, compare to `eval_metric_snapshots` table values; cross-ref T013, REQ-S0-007
 
 ---
 
@@ -126,9 +127,9 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | [ ]/11 |
-| P1 Items | 23 | [ ]/23 |
-| P2 Items | 3 | [ ]/3 |
+| P0 Items | 15 | [ ]/15 |
+| P1 Items | 24 | [ ]/24 |
+| P2 Items | 4 | [ ]/4 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

@@ -29,8 +29,8 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 6 of 8 |
-| **Predecessor** | ../005-sprint-4-feedback-loop/ |
-| **Successor** | ../007-sprint-6-graph-deepening/ |
+| **Predecessor** | ../005-sprint-4-feedback-and-quality/ |
+| **Successor** | ../007-sprint-6-indexing-and-graph/ |
 | **Handoff Criteria** | R6 0 ordering differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation |
 <!-- /ANCHOR:metadata -->
 
@@ -43,6 +43,8 @@ This is **Phase 6** of the Hybrid RAG Fusion Refinement specification.
 
 **Scope Boundary**: Sprint 5 scope boundary — pipeline architecture. Establishes clean 4-stage pipeline with architectural invariant (Stage 4 = no score changes), adds retrieval optimizations (spec folder pre-filter, query expansion), and integrates spec-kit signals (template anchors, validation metadata).
 
+**R6 Conditionality**: R6 pipeline refactor is CONDITIONAL — required only if Sprint 2 score normalization fails exit gate, OR Stage 4 invariant is deemed architecturally necessary regardless of normalization outcome. If Sprint 2 normalization succeeds and no architectural justification exists for the invariant, R6 may be descoped.
+
 **Dependencies**:
 - Sprint 4 exit gate (feedback loop complete — R1, R11, R13-S2 verified)
 
@@ -53,7 +55,6 @@ This is **Phase 6** of the Hybrid RAG Fusion Refinement specification.
 - Template anchor optimization (S2)
 - Validation signals as retrieval metadata (S3)
 - Dual-scope memory auto-surface hooks at tool dispatch and session compaction (TM-05)
-- Constitutional memory as expert knowledge injection via query expansion (PI-A4, deferred from Sprint 4)
 
 **Internal Phasing**: Phase A (Pipeline) MUST pass before Phase B (Search + Spec-Kit) begins.
 <!-- /ANCHOR:phase-context -->
@@ -94,14 +95,9 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 
 ### Internal Phasing
 
-- **Phase A (Pipeline)**: R6 decomposed into 4 sub-tasks (37-56h total):
-  - R6-Stage1: Extract candidate generation (8-12h)
-  - R6-Stage2: Fusion logic with intent weighting once (8-12h)
-  - R6-Stage3: Cross-encoder reranking (8-12h)
-  - R6-Stage4: Filter/truncation with "no score changes" invariant (8-12h)
-  - R6-Integration: Full corpus regression testing (5-8h)
+- **Phase A (Pipeline)**: R6 decomposed into 8 sub-tasks (T002a-T002h, 40-63h total). See `tasks.md` for the authoritative sub-task breakdown including stage architecture definition, per-stage implementation, integration, feature flag interaction testing, and dark-run verification.
   - MUST pass exit gate (0 differences in positions 1-5 AND rank correlation >0.995) before Phase B starts
-- **Phase B (Search + Spec-Kit)**: R9, R12, S2, S3 (24-37h) — starts only after Phase A passes
+- **Phase B (Search + Spec-Kit)**: R9, R12, S2, S3, TM-05 (28-43h) — starts only after Phase A passes. Phase B tasks are parallelizable ([P] markers in tasks.md); wall-clock time may be less than sequential effort estimate.
 
 ### Files to Change
 

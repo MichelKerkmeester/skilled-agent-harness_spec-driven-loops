@@ -56,6 +56,9 @@ contextType: "implementation"
 - [ ] CHK-020 [P1] R15 p95 latency for simple queries <30ms
 - [ ] CHK-021 [P0] R15 minimum 2 channels even for simple queries (R2 compatibility)
 - [ ] CHK-022 [P1] R15 classification accuracy tested with 10+ queries per tier
+- [ ] CHK-023 [P1] R15 moderate-tier routing verified (3-4 channels selected)
+- [ ] CHK-024 [P1] R15 classifier fallback to "complex" on failure verified
+- [ ] CHK-025 [P1] R15+R2 interaction test: R15 minimum 2 channels preserves R2 channel diversity guarantee
 
 ### R14/N1 — Relative Score Fusion
 - [ ] CHK-030 [P1] R14/N1 shadow comparison: minimum 100 queries executed
@@ -63,11 +66,26 @@ contextType: "implementation"
 - [ ] CHK-032 [P1] RSF decision documented (tau <0.4 = reject RSF)
 - [ ] CHK-033 [P1] All 3 fusion variants tested (single-pair, multi-list, cross-variant)
 - [ ] CHK-034 [P1] **Eval corpus sourcing strategy defined**: 100+ query corpus sourced with stratified tier distribution documented. Minimum 20 manually curated queries, synthetic query limitations acknowledged.
+- [ ] CHK-035 [P1] RSF numerical stability: output clamped to [0,1], no overflow on extreme inputs
 
 ### R2 — Channel Min-Representation
 - [ ] CHK-040 [P1] R2 dark-run: top-3 precision within 5% of baseline
 - [ ] CHK-041 [P1] R2 only enforces for channels that returned results
 - [ ] CHK-042 [P1] R2 quality floor 0.2 verified (below-threshold results not promoted)
+
+### REQ-S3-004 — Confidence-Based Result Truncation
+- [ ] CHK-043 [P1] Score confidence gap detection: truncation triggers when gap between rank N and N+1 exceeds 2x median gap
+- [ ] CHK-044 [P1] Minimum 3 results guaranteed regardless of confidence gap
+- [ ] CHK-045 [P1] Irrelevant tail results reduced by >30% vs untruncated baseline
+
+### REQ-S3-005 — Dynamic Token Budget Allocation
+- [ ] CHK-046 [P1] Simple-tier queries allocated 1500 tokens
+- [ ] CHK-047 [P1] Moderate-tier queries allocated 2500 tokens
+- [ ] CHK-048 [P1] Complex-tier queries allocated 4000 tokens
+- [ ] CHK-049 [P1] Token budget applies to total returned content, not per-result
+
+### Cross-Cutting
+- [ ] CHK-027 [P1] Independent flag rollback testing: each of 3 flags (COMPLEXITY_ROUTER, RSF_FUSION, CHANNEL_MIN_REP) can be independently disabled without breaking other features
 <!-- /ANCHOR:sprint-3-verification -->
 
 ---
@@ -75,13 +93,10 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-050 [P0] All acceptance criteria met (REQ-S3-001 through REQ-S3-003)
-- [ ] CHK-051 [P1] 10-14 new tests passing (350-500 LOC)
+- [ ] CHK-050 [P0] All acceptance criteria met (REQ-S3-001 through REQ-S3-005)
+- [ ] CHK-051 [P1] 22-28 new tests passing (600-900 LOC)
 - [ ] CHK-052 [P1] Edge cases tested (empty channels, all-empty, classifier failure)
 - [ ] CHK-053 [P1] Existing 158+ tests still pass
-- [ ] CHK-025 [P1] R15+R2 interaction test: R15 minimum 2 channels preserves R2 channel diversity guarantee
-- [ ] CHK-026 [P1] RSF numerical stability: output clamped to [0,1], no overflow on extreme inputs
-- [ ] CHK-027 [P1] Independent flag rollback testing: each of 3 flags (COMPLEXITY_ROUTER, RSF_FUSION, CHANNEL_MIN_REP) can be independently disabled without breaking other features
 <!-- /ANCHOR:testing -->
 
 ---
@@ -92,10 +107,10 @@ contextType: "implementation"
 ### PI-A2 — Search Strategy Degradation with Fallback Chain [DEFERRED]
 > **Deferred from Sprint 3.** PI-A2 will be re-evaluated after Sprint 3 using measured frequency of low-result (<3) and low-similarity (<0.4) query outcomes from Sprint 0-3 data. Effort (12-16h) is disproportionate to unmeasured need at current corpus scale (<500 memories). See UT review R1.
 
-### PI-B3 — Description-Based Spec Folder Discovery
-- [ ] CHK-PI-B3-001 [P1] descriptions.json generated with one sentence per spec folder derived from spec.md
-- [ ] CHK-PI-B3-002 [P1] memory_context orchestration layer performs folder lookup via descriptions.json before issuing vector queries
-- [ ] CHK-PI-B3-003 [P1] Cache invalidation triggers when spec.md changes for a given folder
+### PI-B3 — Description-Based Spec Folder Discovery [P2/Optional]
+- [ ] CHK-PI-B3-001 [P2] descriptions.json generated with one sentence per spec folder derived from spec.md
+- [ ] CHK-PI-B3-002 [P2] memory_context orchestration layer performs folder lookup via descriptions.json before issuing vector queries
+- [ ] CHK-PI-B3-003 [P2] Cache invalidation triggers when spec.md changes for a given folder
 - [ ] CHK-PI-B3-004 [P2] descriptions.json absent = graceful degradation to full-corpus search (no error)
 <!-- /ANCHOR:pageindex-verification -->
 
@@ -146,8 +161,8 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | [ ]/7 |
-| P1 Items | 34 | [ ]/34 |
-| P2 Items | 3 | [ ]/3 |
+| P1 Items | 40 | [ ]/40 |
+| P2 Items | 6 | [ ]/6 |
 
 **Verification Date**: [YYYY-MM-DD]
 <!-- /ANCHOR:summary -->

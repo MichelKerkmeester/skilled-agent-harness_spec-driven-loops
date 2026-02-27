@@ -23,14 +23,14 @@ contextType: "implementation"
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | P2-P3 |
+| **Priority** | P1-P3 |
 | **Status** | Draft |
 | **Created** | 2026-02-26 |
 | **Branch** | `140-hybrid-rag-fusion-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 8 of 8 |
-| **Predecessor** | ../007-sprint-6-graph-deepening/ |
+| **Predecessor** | ../007-sprint-6-indexing-and-graph/ |
 | **Successor** | None (final phase) |
 | **Handoff Criteria** | N/A (program completion) |
 <!-- /ANCHOR:metadata -->
@@ -47,7 +47,7 @@ This is **Phase 8** of the Hybrid RAG Fusion Refinement specification.
 > **GATING AND OPTIONALITY NOTE**: Sprint 7 is entirely P2/P3 priority and gated on >5K memories (current system estimate: <2K at typical spec-kit deployment). All items are optional and should only be pursued if Sprint 0-6 metrics demonstrate clear need. R8 (memory summary generation / PageIndex integration) is particularly conditional — the tree-navigation approach may not be compatible with spec-kit's latency requirements (500ms p95 hard limit). S5 (cross-document entity linking) is similarly gated — only activates if >1K active memories with embeddings OR >50 verified entities in the entity catalog; below threshold, document as skipped. Do not begin Sprint 7 unless Sprint 0-6 exit gates are fully passed and scale thresholds are confirmed.
 
 **Dependencies**:
-- Sprint 6 graph deepening complete (007-sprint-6-graph-deepening)
+- Sprint 6a graph deepening complete (007-sprint-6-indexing-and-graph) — depends on S6a only, not S6b
 - Evaluation infrastructure operational (from Sprint 0, enhanced in Sprint 4)
 - Full pipeline operational (from Sprint 5 refactor)
 
@@ -82,9 +82,10 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 
 - **R8**: Memory summaries (gated on >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag — summary pre-filtering reduces search space. Note: the PageIndex tree-navigation approach used in summary generation must be validated against the 500ms p95 latency limit before activation.
 - **S1**: Smarter memory content generation from markdown — improved content quality
-- **S5**: Cross-document entity linking (gated on >1K active memories OR >50 verified entities) — entity links established across documents
+- **S5**: Cross-document entity linking (gated on >1K active memories OR >50 verified entities) behind `SPECKIT_ENTITY_LINKING` flag — entity links established across documents
 - **R13-S3**: Full reporting + ablation studies — complete evaluation capability
 - **R5**: Evaluate INT8 quantization need — decision documented based on activation criteria (>10K memories OR >50ms latency OR >1536 dimensions)
+- **DEF-014**: Resolve structuralFreshness() disposition — implement, defer, or document as out-of-scope (deferred from parent spec)
 
 ### Out of Scope
 
@@ -114,11 +115,15 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-### P2 - Optional (can defer with documented reason)
+### P1 - Required (must complete OR get user approval to defer)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-S7-004 | **R13-S3**: Full reporting + ablation studies | Complete evaluation capability with ablation framework |
+
+### P2 - Optional (can defer with documented reason)
+
+(No P2 requirements — R13-S3 promoted to P1 as capstone evaluation infrastructure)
 
 ### P3 - Nice to Have
 
@@ -126,7 +131,7 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 |----|-------------|---------------------|
 | REQ-S7-001 | **R8**: Memory summaries (only if >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag | Summary pre-filtering reduces search space |
 | REQ-S7-002 | **S1**: Smarter memory content generation from markdown | Content quality improved (manual review) |
-| REQ-S7-003 | **S5**: Cross-document entity linking (gated on >1K active memories OR >50 verified entities) | Entity links established across documents (if scale threshold met); otherwise document as skipped |
+| REQ-S7-003 | **S5**: Cross-document entity linking (gated on >1K active memories OR >50 verified entities) behind `SPECKIT_ENTITY_LINKING` flag | Entity links established across documents (if scale threshold met); otherwise document as skipped |
 | REQ-S7-005 | **R5**: Evaluate INT8 quantization need — implement ONLY if >10K memories OR >50ms latency OR >1536 dimensions | Decision documented with activation criteria |
 <!-- /ANCHOR:requirements -->
 
@@ -162,7 +167,7 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 | Risk | R5 INT8 quantization may cause 5.32% recall loss | High | Only implement if activation criteria met; use custom quantized BLOB (NOT sqlite-vec's vec_quantize_i8); preserve Spec 140's KL-divergence calibration note |
 | Risk | S5 low ROI at sub-1K scale | Low | Gated on >1K active memories OR >50 verified entities — skip and document if threshold not met |
 | Risk | R10 FP rate unconfirmed from Sprint 6 | Medium | T003 fallback: restrict S5 to manually verified entities only; exclude R10 auto-entities if FP rate unknown |
-| Dependency | Sprint 6 graph deepening complete | Blocks Sprint 7 | Sprint 6 exit gate must be passed |
+| Dependency | Sprint 6a graph deepening complete (S6a only, not S6b) | Blocks Sprint 7 | Sprint 6a exit gate must be passed |
 | Dependency | Evaluation infrastructure (Sprint 0/4) | Required for R13-S3 | Must be operational |
 <!-- /ANCHOR:risks -->
 
@@ -225,7 +230,7 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 
 - **OQ-S7-001**: Current memory count — does it exceed 5K threshold for R8 activation?
 - **OQ-S7-002**: Current search latency, memory count, and embedding dimensions — do any meet R5 INT8 activation criteria?
-- **OQ-S7-003**: How does S5 cross-document entity linking interact with R10 auto-extracted entities from Sprint 6?
+- ~~**OQ-S7-003**: How does S5 cross-document entity linking interact with R10 auto-extracted entities from Sprint 6?~~ **RESOLVED**: Addressed in Edge Cases section 8 — S5 links only verified entities; R10 auto-entities excluded if FP rate unknown; fallback restricts to manually verified entities only.
 <!-- /ANCHOR:questions -->
 
 ---

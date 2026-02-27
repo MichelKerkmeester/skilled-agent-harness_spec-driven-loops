@@ -54,7 +54,7 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] 8-12 new tests added and passing — HOW: Run `npx vitest --reporter=verbose`; count new test cases; verify coverage across R18, N4, G2, normalization subsystems. Cross-ref T001-T007.
+- [ ] CHK-020 [P0] 18-26 new tests added and passing — HOW: Run `npx vitest --reporter=verbose`; count new test cases; verify coverage across R18, N4, G2, normalization, FUT-5, TM-01, TM-03, PI-A1 subsystems. Cross-ref T001-T010.
 - [ ] CHK-021 [P0] 158+ existing tests still pass after all changes — HOW: Run full test suite; compare pass count to pre-change baseline (>=158). Evidence required: test output showing pass count.
 - [ ] CHK-022 [P1] R18 cache hit/miss paths tested (content_hash match, model_id match, both)
 - [ ] CHK-023 [P1] N4 boost values tested at key timestamps: 0h, 12h, 24h, 48h, >48h
@@ -121,7 +121,7 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 3 | [ ]/3 |
-| P1 Items | 21 | [ ]/21 |
+| P1 Items | 28 | [ ]/28 |
 | P2 Items | 5 | [ ]/5 |
 
 **Verification Date**: [YYYY-MM-DD]

@@ -38,7 +38,7 @@ contextType: "implementation"
 
 - [ ] T-S4-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {} — Safety gate for R11 mutations and feedback data
 
-> **CALENDAR DEPENDENCY — R11 (F10)**: R11 prerequisite requires R13 to complete ≥2 full eval cycles (each = 50+ queries over 7+ calendar days). Minimum **28 calendar days** must elapse between Sprint 3 completion and R11 enablement. This is wall-clock time, NOT effort hours. If splitting into S4a/S4b (recommended), T002 (R11) cannot begin until S4a metrics confirm 2 full eval cycles are complete.
+> **CALENDAR DEPENDENCY — R11 (F10)**: R11 prerequisite requires R13 to complete ≥2 full eval cycles (each = 100+ queries AND 14+ calendar days; both conditions must be met). Minimum **28 calendar days** must elapse between Sprint 3 completion and R11 enablement. This is wall-clock time, NOT effort hours. If splitting into S4a/S4b (recommended), T002 (R11) cannot begin until S4a metrics confirm 2 full eval cycles are complete.
 >
 > **RECOMMENDED SPLIT — S4a / S4b (F3)**:
 > - **S4a tasks**: T001 + T001a (R1 MPAB) + T003 + T003a (R13-S2 eval) + T007 (TM-04 quality gate) — estimated 33-49h. No schema change. Delivers A/B infra + save quality gating.
@@ -81,6 +81,7 @@ contextType: "implementation"
   - T007a Layer 1: structural validation (existing checks, formalised)
   - T007b Layer 2: content quality scoring — title, triggers, length, anchors, metadata, signal density; threshold >= 0.4
   - T007c Layer 3: semantic dedup — cosine similarity > 0.92 against existing memories = reject
+  - T007d Warn-only mode (MR12): for first 2 weeks, log quality scores and would-reject decisions but do NOT block saves; tune thresholds based on false-rejection rate before enforcement
 <!-- /ANCHOR:phase-4-tm04 -->
 
 ---
@@ -106,8 +107,8 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:phase-4 -->
-## Phase 4: Verification
+<!-- ANCHOR:phase-6 -->
+## Phase 6: Verification
 
 - [ ] T004 Verify R1 dark-run: MRR@5 within 2%, N=1 no regression [included] {T001}
 - [ ] T005 Analyze R11 shadow log: noise rate <5% [included] {T002}
@@ -118,7 +119,7 @@ contextType: "implementation"
   - [ ] B2 chunk ordering: multi-chunk memories reassembled in document order, not score order
   - [ ] TM-04 quality gate: low-quality saves blocked (signal density <0.4); semantic near-duplicates (>0.92) rejected
   - [ ] TM-06 reconsolidation: merge/replace/store paths verified; checkpoint created before enable
-<!-- /ANCHOR:phase-4 -->
+<!-- /ANCHOR:phase-6 -->
 
 ---
 
@@ -151,5 +152,5 @@ contextType: "implementation"
 <!--
 LEVEL 2 TASKS — Phase 5 of 8
 - Sprint 4: Feedback Loop
-- 6 tasks across 4 phases
+- 9 tasks across 6 phases
 -->

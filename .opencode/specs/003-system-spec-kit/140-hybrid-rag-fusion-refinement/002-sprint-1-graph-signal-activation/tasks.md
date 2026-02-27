@@ -27,6 +27,15 @@ contextType: "implementation"
 | `[GATE]` | Sprint exit gate |
 
 **Task Format**: `T### [P?] Description (file path) [effort] {dependencies} — Requirement`
+
+### Task Naming Clarification
+
+| Task ID | Independent Task | Phase | Rationale for Suffix |
+|---------|-----------------|-------|----------------------|
+| **T003a** | A7: Co-activation boost strength (REQ-S1-004) | Phase 3 | Placed in Phase 3 alongside T003 (both measurement/graph-related). Independent of T003 — not a sub-task. Suffix "a" denotes same-phase sibling, not parent-child. |
+| **T005a** | TM-08: Signal vocabulary expansion (REQ-S1-005) | Phase 4 | Placed in Phase 4 alongside T004 (both agent UX/signal-related). Independent of T005 (dark-run). Suffix "a" denotes thematic grouping, not parent-child. |
+
+> **Note**: T003a and T005a are fully independent tasks with their own requirements (REQ-S1-004, REQ-S1-005). The "a" suffix indicates co-location within the same phase for scheduling purposes, not a dependency on T003 or T005 respectively.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -86,7 +95,7 @@ contextType: "implementation"
     2. Design consumption log schema (query, results returned, results used by agent) (1-2h)
     3. Collect initial data and analyze patterns (2-3h)
     4. Generate pattern report with >=5 identified consumption categories (2-3h)
-- [ ] T005a [P] Expand importance signal vocabulary in `trigger-extractor.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") from true-mem's 8-category vocabulary [2-4h] — TM-08 (REQ-S1-005)
+- [ ] T005a [P] Expand importance signal vocabulary in `trigger-matcher.ts` — add CORRECTION signals ("actually", "wait", "I was wrong") and PREFERENCE signals ("prefer", "like", "want") from true-mem's 8-category vocabulary [2-4h] — TM-08 (REQ-S1-005)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -118,7 +127,7 @@ contextType: "implementation"
 - [ ] All tasks T001-T006 (including T003a and T005a) marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Sprint 1 exit gate (T006) passed
-- [ ] 6-10 new tests added and passing
+- [ ] 18-25 new tests added and passing
 - [ ] 158+ existing tests still passing
 - [ ] Feature flag `SPECKIT_DEGREE_BOOST` enabled (or decision to keep disabled documented)
 <!-- /ANCHOR:completion -->
@@ -132,7 +141,7 @@ contextType: "implementation"
 - **Plan**: See `plan.md`
 - **Verification Checklist**: See `checklist.md`
 - **Parent Tasks**: See `../tasks.md`
-- **Predecessor Tasks**: See `../001-sprint-0-epistemological-foundation/tasks.md`
+- **Predecessor Tasks**: See `../001-sprint-0-measurement-foundation/tasks.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---

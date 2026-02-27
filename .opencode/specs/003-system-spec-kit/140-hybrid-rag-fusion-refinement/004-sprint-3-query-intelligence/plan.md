@@ -48,10 +48,11 @@ Query classifier --> tier routing --> channel subset selection --> fusion (RRF o
 - [ ] Score normalization from Sprint 2 verified (RRF and composite in [0,1] range)
 
 ### Definition of Done
-- [ ] All acceptance criteria met (REQ-S3-001 through REQ-S3-003)
-- [ ] Tests passing (10-14 new tests)
+- [ ] All acceptance criteria met (REQ-S3-001 through REQ-S3-005)
+- [ ] Tests passing (22-28 new tests)
 - [ ] Docs updated (spec/plan/tasks)
 - [ ] Off-ramp evaluation documented
+- [ ] PI-B3 [P2/Optional]: completed or deferred with documented reason
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -154,11 +155,19 @@ The 100+ queries required for RSF shadow comparison (CHK-030) must be sourced us
 |-----------|-------|-------|-------|
 | Unit | R15 classification accuracy (10+ queries/tier) | Vitest | 4-6 tests |
 | Unit | R15 minimum 2-channel enforcement | Vitest | 1-2 tests |
+| Unit | R15 moderate-tier routing (3-4 channels selected) | Vitest | 1 test |
+| Unit | R15 classifier fallback to "complex" on failure | Vitest | 1 test |
 | Unit | R14/N1 all 3 RSF variants | Vitest | 3-4 tests |
+| Unit | R14/N1 RSF numerical stability (output clamped [0,1]) | Vitest | 1 test |
 | Unit | R2 empty channels + quality floor | Vitest | 2-3 tests |
+| Unit | REQ-S3-004 confidence truncation (gap detection, min 3 results) | Vitest | 2-3 tests |
+| Unit | REQ-S3-005 dynamic token budget (tier-based allocation) | Vitest | 2-3 tests |
+| Integration | R15+R2 interaction (min 2 channels preserves R2 guarantee) | Vitest | 1 test |
+| Integration | Independent flag rollback (each of 3 flags disabled independently) | Vitest | 1-2 tests |
 | Integration | RSF shadow comparison (100+ queries) | Vitest + eval infra | 1 test |
+| Integration | PI-B3 descriptions.json generation + folder routing [P2] | Vitest | 2-3 tests |
 
-**Total**: 10-14 new tests (350-500 LOC)
+**Total**: 22-28 new tests (600-900 LOC)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -208,11 +217,16 @@ Phase 2 (R14/N1 RSF) ──────┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Phase 1: R15 Router | Medium | 8-14h |
-| Phase 2: R14/N1 RSF | Medium | 10-14h |
-| Phase 3: R2 Min-Rep | Low-Medium | 6-10h |
-| Phase 4: Shadow + Verify | Low | included |
-| **Total** | | **24-38h** |
+| Phase 1: R15 Router (T001a-d) | Medium | 8-14h |
+| Phase 2: R14/N1 RSF (T002a-c) | Medium | 10-14h |
+| Phase 3: R2 Min-Rep (T003a-c) | Low-Medium | 6-10h |
+| Phase 3b: Query Optimization (T006, T007) | Low-Medium | 8-13h |
+| Phase 4: Shadow + Verify (T004, T005) | Low | included |
+| PI-B3: Spec Folder Discovery (T009) [P2] | Low | 4-8h |
+| **Total (P1 core)** | | **32-51h** |
+| **Total (incl. P2 PI-B3)** | | **36-59h** |
+
+> **Effort reconciliation note**: Parent plan (../plan.md) lists Sprint 3 core at 34-53h. This child plan's authoritative task-level sum is 32-51h (P1 core). The difference arises because the parent plan's R15 line (10-16h) includes buffer for classifier iteration, while this child plan's Phase 1 breakdown (8-14h) reflects specific subtask estimates. Phase 3b (T006, T007) was added during child plan decomposition for REQ-S3-004 and REQ-S3-005.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -232,7 +246,7 @@ Phase 2 (R14/N1 RSF) ──────┘
 - ~~Verify fallback triggers correctly on low-similarity and low-count results~~
 - **Effort**: 12-16h | **Risk**: Medium | **Dependency**: Sprint 0 eval framework
 
-### PI-B3: Description-Based Spec Folder Discovery (4-8h)
+### PI-B3: Description-Based Spec Folder Discovery (4-8h) [P2/Optional]
 - [ ] Generate 1-sentence description per spec folder from `spec.md` content
 - [ ] Write descriptions to `descriptions.json` cache file (path: project root or spec root)
 - [ ] Integrate cache lookup into `memory_context` orchestration layer for folder routing

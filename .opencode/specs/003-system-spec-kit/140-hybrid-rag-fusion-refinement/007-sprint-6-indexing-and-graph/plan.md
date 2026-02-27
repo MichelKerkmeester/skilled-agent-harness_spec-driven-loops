@@ -45,17 +45,20 @@ Sprint 7 depends on Sprint 6a (not full Sprint 6). Sprint 6b executes only if th
 ## 2. QUALITY GATES
 
 ### Definition of Ready
+**Sprint 6a:**
 - [ ] Sprint 5 pipeline refactor complete and exit gate passed
 - [ ] Evaluation infrastructure operational (from Sprint 0)
-- [ ] Edge density measured (determines R10 gating)
 - [ ] Checkpoint created before sprint start
-- [ ] REQUIRED: Algorithm feasibility spike completed (see note below)
 
-> **REQUIRED PREREQUISITE — Algorithm Feasibility Spike (8-16h)**: Conduct during Sprint 4-5 to validate N2c, N3-lite, and R10 approaches on actual data before committing to Sprint 6b. This spike MUST determine: (a) whether Louvain is appropriate at current graph density, or whether connected components suffices; (b) what heuristic level is sufficient for contradiction detection (cosine-only vs. NLI-assisted); (c) whether rule-based entity extraction meets the <20% FP threshold on a representative sample. **Sprint 6b cannot begin without this spike completed.** Sprint 6a may proceed independently.
+**Sprint 6b (additional gates — do NOT block Sprint 6a):**
+- [ ] Edge density measured (determines R10 gating)
+- [ ] Algorithm feasibility spike completed (see note below)
+
+> **REQUIRED PREREQUISITE FOR SPRINT 6b — Algorithm Feasibility Spike (8-16h)**: Conduct during Sprint 4-5 to validate N2c and R10 approaches on actual data before committing to Sprint 6b. This spike MUST determine: (a) whether Louvain is appropriate at current graph density, or whether connected components suffices; (b) whether rule-based entity extraction meets the <20% FP threshold on a representative sample. **Sprint 6b cannot begin without this spike completed.** Sprint 6a may proceed independently — it has no dependency on the feasibility spike.
 
 ### Definition of Done
 - [ ] Sprint 6 exit gate passed — all requirements verified
-- [ ] 12-18 new tests added and passing
+- [ ] 14-22 new tests added and passing
 - [ ] All existing tests still passing
 - [ ] Active feature flag count <=6
 - [ ] All health dashboard targets checked
@@ -143,15 +146,17 @@ Two sequential sub-sprints: Sprint 6a (practical, no graph-scale dependency) →
 
 | Test Type | Scope | Tools | Count |
 |-----------|-------|-------|-------|
+| Unit | T001d weight_history logging — verify before/after values, timestamps, and edge IDs recorded on weight change | Vitest | 1 test |
+| Unit | T001d weight_history rollback — verify weights can be restored from history entries | Vitest | 1 test |
 | Unit | R7 recall verification, anchor-aware thinning logic | Vitest | 2-3 tests |
 | Unit | R10 entity extraction, FP rate, density gating | Vitest | 2-3 tests |
 | Unit | N2 centrality computation, community detection | Vitest | 2-3 tests |
-| Unit | N3-lite contradiction scan, Hebbian bounds/caps, staleness | Vitest | 3-4 tests |
+| Unit | N3-lite contradiction scan, Hebbian bounds/caps, staleness, 30-day decay verification | Vitest | 4-5 tests |
 | Unit | S4 hierarchy traversal | Vitest | 1-2 tests |
 | Integration | N2 attribution in end-to-end retrieval | Vitest | 1-2 tests |
 | Integration | R7 + R16 combined indexing pipeline | Vitest | 1-2 tests |
 
-**Total**: 12-18 new tests, estimated 350-500 LOC
+**Total**: 14-22 new tests, estimated 400-550 LOC
 <!-- /ANCHOR:testing -->
 
 ---
@@ -266,8 +271,8 @@ Sprint 6b (Graph, GATED) ──────────────────�
 
 Builds on PageIndex integration from Sprints 2-3 (PI-A1 folder scoring, PI-A2 fallback chain).
 
-- **PI-A1 (Sprint 2 — DocScore aggregation)**: Consider folder-level scoring as a pre-filter before graph traversal in Phase A. Folder scores established in Sprint 2 can narrow the graph candidate set, reducing centrality computation overhead.
-- **PI-A2 (Sprint 3 — Fallback chain)**: Graph queries returning empty results (low-centrality or unpopulated community clusters) should route into the Sprint 3 fallback chain rather than returning empty-handed. Coordinate with Phase A N2 implementation to emit a fallback signal when graph channel returns no results.
+- **PI-A1 (Sprint 2 — DocScore aggregation)**: Consider folder-level scoring as a pre-filter before graph traversal in Sprint 6b. Folder scores established in Sprint 2 can narrow the graph candidate set, reducing centrality computation overhead.
+- **PI-A2 (Sprint 3 — Fallback chain)**: Graph queries returning empty results (low-centrality or unpopulated community clusters) should route into the Sprint 3 fallback chain rather than returning empty-handed. Coordinate with Sprint 6b N2 implementation to emit a fallback signal when graph channel returns no results.
 
 Research evidence: See research documents `9 - analysis-pageindex-systems-architecture.md`, `9 - recommendations-pageindex-patterns-for-speckit.md`, `9 - pageindex-tree-search-analysis.md` in the parent research/ folder.
 <!-- /ANCHOR:pageindex-xrefs -->

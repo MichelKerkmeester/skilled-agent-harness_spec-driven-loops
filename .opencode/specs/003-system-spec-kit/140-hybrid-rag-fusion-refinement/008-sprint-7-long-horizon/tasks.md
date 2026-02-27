@@ -49,7 +49,7 @@ contextType: "implementation"
   - Quality verification via manual review of >=10 before/after memory content samples
   - Acceptance criteria: manual review shows measurable improvement in content density/relevance for >=8/10 sampled memories
   - What T002 needs before becoming implementable: baseline quality measurement on current content generation output
-- [ ] T003 [P] Implement cross-document entity linking (gated on >1K active memories OR >50 verified entities) [8-12h] — S5 (REQ-S7-003)
+- [ ] T003 [P] Implement cross-document entity linking (gated on >1K active memories OR >50 verified entities) behind `SPECKIT_ENTITY_LINKING` flag [8-12h] — S5 (REQ-S7-003)
   - **Scale gate check (required first)**: Measure active memory count (`SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`) and verified entity count. If neither >1K memories NOR >50 verified entities, skip T003 entirely and document.
   - Entity resolution strategy: link only verified entities (not R10 auto-entities with unknown FP rate); use exact-match + normalized-alias matching first
   - Cross-document entity matching and link graph
@@ -69,10 +69,15 @@ contextType: "implementation"
   - What T005 needs before becoming implementable: production metrics from Sprint 6 evaluation run
 - [ ] T005a Feature flag sunset audit [1-2h] — program completion
   - Inventory all active feature flags across Sprints 0-7
+  - **Verification mechanism**: `grep -rn "SPECKIT_" mcp_server/ --include="*.ts" | grep -v node_modules` to discover all flags in codebase; cross-reference against documented flag inventory
   - Retire or consolidate flags no longer needed
   - Document final flag list with justification for each surviving flag
-  - Acceptance criteria: zero sprint-specific temporary flags active at program completion
-- [ ] T006 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, feature flag sunset audit completed [0h] {T001-T005a}
+  - Acceptance criteria: zero sprint-specific temporary flags active at program completion; grep audit confirms no undocumented flags
+- [ ] T006a [P] Resolve structuralFreshness() disposition (DEF-014) — implement, defer, or document as out-of-scope [1-2h] — Deferred from parent spec
+  - Parent spec defers DEF-014 (structuralFreshness() dead code: keep or remove) to Sprint 7
+  - Evaluate: is structuralFreshness() used anywhere? If dead code, remove. If useful, integrate. If unclear, document as out-of-scope with rationale
+  - Acceptance criteria: DEF-014 status updated in parent spec deferred items table with disposition decision and evidence
+- [ ] T006 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content quality improved, S5 entity links established, R13-S3 dashboard operational, R5 decision documented, feature flag sunset audit completed, DEF-014 disposition resolved [0h] {T001-T006a}
 <!-- /ANCHOR:implementation -->
 
 ---
