@@ -9,6 +9,16 @@ import { escapeRegex } from '../utils/path-security';
    1. TYPES
    --------------------------------------------------------------- */
 
+/** Signal category detected in user prompt */
+export type SignalCategory = 'correction' | 'preference' | 'neutral';
+
+/** Result of signal detection for a prompt */
+export interface SignalDetection {
+  category: SignalCategory;
+  keywords: string[];
+  boost: number;
+}
+
 /** Trigger cache entry for a single phrase-to-memory mapping */
 export interface TriggerCacheEntry {
   phrase: string;
@@ -44,6 +54,7 @@ export interface TriggerMatchStats {
   matchCount: number;
   totalMatchedPhrases: number;
   matchTimeMs: number;
+  signals?: SignalDetection[];
 }
 
 /** Cache statistics */
@@ -304,7 +315,103 @@ export function matchPhraseWithBoundary(text: string, phrase: string, precompile
 }
 
 /* ---------------------------------------------------------------
-   6. MAIN MATCHING FUNCTION
+   6. SIGNAL VOCABULARY DETECTION (SPECKIT_SIGNAL_VOCAB)
+   --------------------------------------------------------------- */
+
+/** Keywords for CORRECTION signals — user is correcting a prior statement */
+const CORRECTION_KEYWORDS: string[] = [
+  'actually',
+  'wait',
+  'i was wrong',
+  'correction',
+  'not quite',
+  'let me rephrase',
+  "that's not right",
+];
+
+/** Keywords for PREFERENCE signals — user is expressing a preference or intent */
+const PREFERENCE_KEYWORDS: string[] = [
+  'prefer',
+  'like',
+  'want',
+  'always use',
+  'never use',
+  'i want',
+  'please use',
+];
+
+/** Boost values per signal category */
+const SIGNAL_BOOSTS: Record<Exclude<SignalCategory, 'neutral'>, number> = {
+  correction: 0.2,
+  preference: 0.1,
+};
+
+/**
+ * Detect importance signals in a user prompt.
+ * Returns an array of detected SignalDetection entries.
+ * Only active when the SPECKIT_SIGNAL_VOCAB env var is set.
+ */
+export function detectSignals(prompt: string): SignalDetection[] {
+  if (!prompt) {
+    return [];
+  }
+
+  const normalized = normalizeUnicode(prompt, false);
+  const detected: SignalDetection[] = [];
+
+  // Check CORRECTION keywords
+  const correctionHits: string[] = [];
+  for (const kw of CORRECTION_KEYWORDS) {
+    if (matchPhraseWithBoundary(normalized, kw)) {
+      correctionHits.push(kw);
+    }
+  }
+  if (correctionHits.length > 0) {
+    detected.push({
+      category: 'correction',
+      keywords: correctionHits,
+      boost: SIGNAL_BOOSTS.correction,
+    });
+  }
+
+  // Check PREFERENCE keywords
+  const preferenceHits: string[] = [];
+  for (const kw of PREFERENCE_KEYWORDS) {
+    if (matchPhraseWithBoundary(normalized, kw)) {
+      preferenceHits.push(kw);
+    }
+  }
+  if (preferenceHits.length > 0) {
+    detected.push({
+      category: 'preference',
+      keywords: preferenceHits,
+      boost: SIGNAL_BOOSTS.preference,
+    });
+  }
+
+  return detected;
+}
+
+/**
+ * Apply signal boosts to matched results.
+ * Boosts are additive; importanceWeight is capped at 1.0.
+ * Only called when SPECKIT_SIGNAL_VOCAB is enabled.
+ */
+export function applySignalBoosts(matches: TriggerMatch[], signals: SignalDetection[]): TriggerMatch[] {
+  if (signals.length === 0) {
+    return matches;
+  }
+
+  const totalBoost = signals.reduce((sum, s) => sum + s.boost, 0);
+
+  return matches.map(m => ({
+    ...m,
+    importanceWeight: Math.min(1.0, m.importanceWeight + totalBoost),
+  }));
+}
+
+/* ---------------------------------------------------------------
+   7. MAIN MATCHING FUNCTION
    --------------------------------------------------------------- */
 
 /** Match user prompt against trigger phrases using exact string matching */
@@ -379,7 +486,17 @@ export function matchTriggerPhrases(userPrompt: string, limit: number = CONFIG.D
 export function matchTriggerPhrasesWithStats(userPrompt: string, limit: number = CONFIG.DEFAULT_LIMIT): TriggerMatchWithStats {
   const startTime = Date.now();
   const cache = loadTriggerCache();
-  const matches = matchTriggerPhrases(userPrompt, limit);
+  let matches = matchTriggerPhrases(userPrompt, limit);
+
+  // Signal vocabulary detection — gated behind SPECKIT_SIGNAL_VOCAB env var
+  let signals: SignalDetection[] | undefined;
+  if (process.env.SPECKIT_SIGNAL_VOCAB) {
+    signals = detectSignals(userPrompt || '');
+    if (signals.length > 0) {
+      matches = applySignalBoosts(matches, signals);
+    }
+  }
+
   const elapsed = Date.now() - startTime;
 
   return {
@@ -390,6 +507,7 @@ export function matchTriggerPhrasesWithStats(userPrompt: string, limit: number =
       matchCount: matches.length,
       totalMatchedPhrases: matches.reduce((sum, m) => sum + m.matchedPhrases.length, 0),
       matchTimeMs: elapsed,
+      ...(signals !== undefined ? { signals } : {}),
     },
   };
 }
@@ -431,7 +549,7 @@ export function refreshTriggerCache(): TriggerCacheEntry[] {
 }
 
 /* ---------------------------------------------------------------
-   7. MODULE EXPORTS (CommonJS compatibility)
+   8. MODULE EXPORTS (CommonJS compatibility)
    --------------------------------------------------------------- */
 
 module.exports = {
@@ -451,4 +569,10 @@ module.exports = {
   CONFIG,
   // CHK069: Execution time logging
   logExecutionTime,
+  // Signal vocabulary (SPECKIT_SIGNAL_VOCAB)
+  detectSignals,
+  applySignalBoosts,
+  CORRECTION_KEYWORDS,
+  PREFERENCE_KEYWORDS,
+  SIGNAL_BOOSTS,
 };

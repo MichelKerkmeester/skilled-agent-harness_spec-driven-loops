@@ -25,7 +25,30 @@ interface SubgraphWeights {
 }
 
 // ---------------------------------------------------------------
-// 2. WEIGHTING
+// 2. TYPED-DEGREE CONSTANTS
+// ---------------------------------------------------------------
+
+/** Edge type weights for typed-degree computation (R4 5th RRF channel) */
+const EDGE_TYPE_WEIGHTS: Record<string, number> = {
+  caused: 1.0,
+  derived_from: 0.9,
+  enabled: 0.8,
+  contradicts: 0.7,
+  supersedes: 0.6,
+  supports: 0.5,
+};
+
+/** Fallback maximum typed degree when no edges exist in the database */
+const DEFAULT_MAX_TYPED_DEGREE = 15;
+
+/** Hard cap on raw typed degree before normalization */
+const MAX_TOTAL_DEGREE = 50;
+
+/** Maximum normalized boost score */
+const DEGREE_BOOST_CAP = 0.15;
+
+// ---------------------------------------------------------------
+// 2b. WEIGHTING
 // ---------------------------------------------------------------
 
 /**
@@ -106,10 +129,9 @@ function queryCausalEdgesFTS5(
     LIMIT ?
   `) as Database.Statement).all(sanitized, limit) as Array<CausalEdgeRow & { fts_score: number }>;
 
-  // Return one candidate entry per memory node (source_id and target_id) rather
-  // than using the edge's own id. The IDs must be numeric so they can be
-  // deduplicated and matched against memory_index.id (INTEGER column) in the
-  // hybrid search pipeline (MMR reranking filters with typeof id === 'number').
+  // Return one candidate entry per memory node (source_id and target_id) with
+  // numeric IDs matching memory_index.id (INTEGER column) in the hybrid search
+  // pipeline (MMR reranking filters with typeof id === 'number').
   const candidates: Array<Record<string, unknown>> = [];
   for (const row of rows) {
     const score = typeof row.strength === 'number'
@@ -175,8 +197,7 @@ function queryCausalEdgesLikeFallback(
   `) as Database.Statement).all(likeParam, likeParam, limit) as CausalEdgeRow[];
 
   // Return one candidate entry per memory node (source_id and target_id) with
-  // numeric IDs matching memory_index.id (INTEGER). String-prefixed IDs like
-  // `mem:${edgeId}` can never match numeric IDs from other search channels.
+  // numeric IDs matching memory_index.id (INTEGER column).
   const candidates: Array<Record<string, unknown>> = [];
   for (const row of rows) {
     const score = typeof row.strength === 'number' ? Math.min(1, Math.max(0, row.strength)) : 0;
@@ -212,7 +233,168 @@ function queryCausalEdgesLikeFallback(
 }
 
 // ---------------------------------------------------------------
-// 4. FACTORY FUNCTION
+// 4. TYPED-DEGREE COMPUTATION
+// ---------------------------------------------------------------
+
+/**
+ * In-memory degree cache. Keys are stringified memory IDs.
+ * Invalidated via clearDegreeCache() on causal edge mutations.
+ */
+const degreeCache = new Map<string, number>();
+
+/**
+ * Compute the raw typed-weighted degree for a single memory node.
+ *
+ * Counts edges where the memory appears as source OR target,
+ * weighting each edge by its relation type weight * edge strength.
+ *
+ * Formula: typed_degree(node) = SUM(weight_t * strength) for all connected edges
+ */
+function computeTypedDegree(
+  database: Database.Database,
+  memoryId: string | number
+): number {
+  const id = String(memoryId);
+
+  // Single SQL: UNION ALL of source and target participation
+  const rows = (database.prepare(`
+    SELECT relation, strength FROM causal_edges WHERE source_id = ?
+    UNION ALL
+    SELECT relation, strength FROM causal_edges WHERE target_id = ?
+  `) as Database.Statement).all(id, id) as Array<{ relation: string; strength: number }>;
+
+  let total = 0;
+  for (const row of rows) {
+    const weight = EDGE_TYPE_WEIGHTS[row.relation] ?? 0;
+    const strength = typeof row.strength === 'number' ? row.strength : 1.0;
+    total += weight * strength;
+  }
+
+  // Apply hard cap before normalization
+  return Math.min(total, MAX_TOTAL_DEGREE);
+}
+
+/**
+ * Normalize a raw typed degree into a bounded boost score.
+ *
+ * Uses logarithmic scaling: log(1 + raw) / log(1 + max)
+ * Then caps at DEGREE_BOOST_CAP (0.15).
+ *
+ * @param rawDegree - The raw typed-weighted degree
+ * @param maxDegree - The maximum observed typed degree (for normalization base)
+ * @returns A score in [0, DEGREE_BOOST_CAP]
+ */
+function normalizeDegreeToBoostedScore(
+  rawDegree: number,
+  maxDegree: number
+): number {
+  if (rawDegree <= 0 || maxDegree <= 0) return 0;
+  const normalized = Math.log(1 + rawDegree) / Math.log(1 + maxDegree);
+  return Math.min(normalized * DEGREE_BOOST_CAP, DEGREE_BOOST_CAP);
+}
+
+/**
+ * Compute the global maximum typed degree across all memories in the database.
+ * Used as the normalization denominator.
+ *
+ * Falls back to DEFAULT_MAX_TYPED_DEGREE if no edges exist.
+ */
+function computeMaxTypedDegree(database: Database.Database): number {
+  try {
+    // Get all unique memory IDs that participate in causal edges
+    const rows = (database.prepare(`
+      SELECT DISTINCT node_id FROM (
+        SELECT source_id AS node_id FROM causal_edges
+        UNION
+        SELECT target_id AS node_id FROM causal_edges
+      )
+    `) as Database.Statement).all() as Array<{ node_id: string }>;
+
+    if (rows.length === 0) return DEFAULT_MAX_TYPED_DEGREE;
+
+    let maxDegree = 0;
+    for (const row of rows) {
+      const degree = computeTypedDegree(database, row.node_id);
+      if (degree > maxDegree) maxDegree = degree;
+    }
+
+    return maxDegree > 0 ? maxDegree : DEFAULT_MAX_TYPED_DEGREE;
+  } catch {
+    return DEFAULT_MAX_TYPED_DEGREE;
+  }
+}
+
+/**
+ * Batch compute degree boost scores for multiple memory IDs.
+ *
+ * - Excludes constitutional memories (returns 0 to prevent artificial inflation)
+ * - Uses in-memory cache for repeated lookups
+ * - Computes global max once per batch for normalization
+ *
+ * @param database  - An open better-sqlite3 Database instance
+ * @param memoryIds - Array of memory IDs to compute scores for
+ * @returns Map of memoryId (string) to normalized boost score in [0, 0.15]
+ */
+function computeDegreeScores(
+  database: Database.Database,
+  memoryIds: Array<string | number>
+): Map<string, number> {
+  const results = new Map<string, number>();
+  if (memoryIds.length === 0) return results;
+
+  // Identify constitutional memories (excluded from degree boosting)
+  const constitutionalIds = new Set<string>();
+  try {
+    const placeholders = memoryIds.map(() => '?').join(',');
+    const constitutionalRows = (database.prepare(
+      `SELECT id FROM memory_index WHERE id IN (${placeholders}) AND importance_tier = 'constitutional'`
+    ) as Database.Statement).all(...memoryIds.map(String)) as Array<{ id: number | string }>;
+    for (const row of constitutionalRows) {
+      constitutionalIds.add(String(row.id));
+    }
+  } catch {
+    // If memory_index lookup fails, proceed without exclusion
+  }
+
+  // Compute global max for normalization (not cached — recomputed per batch)
+  const maxDegree = computeMaxTypedDegree(database);
+
+  for (const id of memoryIds) {
+    const key = String(id);
+
+    // Constitutional memories always get 0
+    if (constitutionalIds.has(key)) {
+      results.set(key, 0);
+      continue;
+    }
+
+    // Check cache
+    if (degreeCache.has(key)) {
+      results.set(key, degreeCache.get(key)!);
+      continue;
+    }
+
+    // Compute, normalize, cache
+    const rawDegree = computeTypedDegree(database, key);
+    const boostedScore = normalizeDegreeToBoostedScore(rawDegree, maxDegree);
+    degreeCache.set(key, boostedScore);
+    results.set(key, boostedScore);
+  }
+
+  return results;
+}
+
+/**
+ * Clear the in-memory degree cache.
+ * Call this on causal edge mutations (insert, update, delete)
+ * to ensure stale scores are not served.
+ */
+function clearDegreeCache(): void {
+  degreeCache.clear();
+}
+
+// ---------------------------------------------------------------
+// 5. FACTORY FUNCTION
 // ---------------------------------------------------------------
 
 /**
@@ -246,7 +428,20 @@ function createUnifiedGraphSearchFn(
 }
 
 // ---------------------------------------------------------------
-// 5. EXPORTS
+// 6. EXPORTS
 // ---------------------------------------------------------------
 
-export { createUnifiedGraphSearchFn, getSubgraphWeights };
+export {
+  createUnifiedGraphSearchFn,
+  getSubgraphWeights,
+  // Typed-degree computation (R4 5th RRF channel)
+  EDGE_TYPE_WEIGHTS,
+  DEFAULT_MAX_TYPED_DEGREE,
+  MAX_TOTAL_DEGREE,
+  DEGREE_BOOST_CAP,
+  computeTypedDegree,
+  normalizeDegreeToBoostedScore,
+  computeMaxTypedDegree,
+  computeDegreeScores,
+  clearDegreeCache,
+};

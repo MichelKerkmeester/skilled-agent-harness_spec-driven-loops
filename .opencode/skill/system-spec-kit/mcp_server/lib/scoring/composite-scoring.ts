@@ -379,6 +379,40 @@ export function calculateRecencyScore(timestamp: string | undefined, tier: strin
   return computeRecencyScore(timestamp || '', tier, DECAY_RATE);
 }
 
+// ---------------------------------------------------------------
+// NOVELTY BOOST (cold-start visibility)
+// ---------------------------------------------------------------
+
+// N4: Cold-start boost constants
+const NOVELTY_BOOST_MAX = 0.15;
+const NOVELTY_BOOST_HALF_LIFE_HOURS = 12;
+const NOVELTY_BOOST_SCORE_CAP = 0.95;
+
+/**
+ * N4: Calculate cold-start novelty boost with exponential decay.
+ * Gated behind SPECKIT_NOVELTY_BOOST env flag (disabled by default).
+ *
+ * Formula: boost = 0.15 * exp(-elapsed_hours / 12)
+ * Effective window: 0–48 hours after creation.
+ *
+ * At  0h: 0.150
+ * At 12h: ~0.055
+ * At 24h: ~0.020
+ * At 48h: ~0.003 (effectively zero)
+ */
+export function calculateNoveltyBoost(createdAt: string | undefined): number {
+  if (process.env.SPECKIT_NOVELTY_BOOST !== 'true') return 0;
+  if (!createdAt) return 0;
+
+  const createdMs = new Date(createdAt).getTime();
+  if (isNaN(createdMs)) return 0;
+
+  const elapsedHours = (Date.now() - createdMs) / 3600000;
+  if (elapsedHours < 0 || elapsedHours > 48) return 0;
+
+  return NOVELTY_BOOST_MAX * Math.exp(-elapsedHours / NOVELTY_BOOST_HALF_LIFE_HOURS);
+}
+
 // BUG-013 FIX: Use centralized tier values from importance-tiers.js
 export function getTierBoost(tier: string): number {
   const tierConfig = getTierConfig(tier);
@@ -419,7 +453,12 @@ export function calculateFiveFactorScore(row: ScoringInput, options: ScoringOpti
   const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
   composite *= docMultiplier;
 
-  return Math.max(0, Math.min(1, composite));
+  // N4: Apply cold-start novelty boost (BEFORE FSRS temporal decay cap)
+  const noveltyBoost = calculateNoveltyBoost(row.created_at);
+  const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
+  composite = Math.min(scoreCap, composite + noveltyBoost);
+
+  return Math.max(0, composite);
 }
 
 /**
@@ -460,7 +499,12 @@ export function calculateCompositeScore(row: ScoringInput, options: ScoringOptio
   const docMultiplier = DOCUMENT_TYPE_MULTIPLIERS[docType] ?? 1.0;
   composite *= docMultiplier;
 
-  return Math.max(0, Math.min(1, composite));
+  // N4: Apply cold-start novelty boost (BEFORE FSRS temporal decay cap)
+  const noveltyBoost = calculateNoveltyBoost(row.created_at);
+  const scoreCap = noveltyBoost > 0 ? NOVELTY_BOOST_SCORE_CAP : 1;
+  composite = Math.min(scoreCap, composite + noveltyBoost);
+
+  return Math.max(0, composite);
 }
 
 // ---------------------------------------------------------------
