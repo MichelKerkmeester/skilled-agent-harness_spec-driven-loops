@@ -1,0 +1,208 @@
+// ---------------------------------------------------------------
+// MODULE: Channel Representation (T003a)
+// Post-fusion channel min-representation check.
+// After RRF fusion, ensures every channel that contributed results
+// appears at least once in the top-k window.
+// Feature flag: SPECKIT_CHANNEL_MIN_REP (default: disabled)
+// ---------------------------------------------------------------
+
+/* ---------------------------------------------------------------
+   1. CONSTANTS
+   --------------------------------------------------------------- */
+
+/** Minimum similarity / relevance score for a result to qualify for promotion. */
+export const QUALITY_FLOOR = 0.2;
+
+/** Env-var name for the feature flag. */
+const FEATURE_FLAG = 'SPECKIT_CHANNEL_MIN_REP';
+
+/* ---------------------------------------------------------------
+   2. INTERFACES
+   --------------------------------------------------------------- */
+
+/** A single item that may appear in a top-k result set. */
+interface TopKItem {
+  id: number | string;
+  score: number;
+  source: string;
+  sources?: string[];
+  [key: string]: unknown;
+}
+
+/** A promoted item – a TopKItem augmented with the channel name it was lifted from. */
+interface PromotedItem {
+  id: number | string;
+  score: number;
+  source: string;
+  promotedFrom: string;
+  [key: string]: unknown;
+}
+
+/** A raw result from a single retrieval channel (no source field required). */
+interface ChannelResult {
+  id: number | string;
+  score: number;
+  [key: string]: unknown;
+}
+
+/**
+ * Return value of `analyzeChannelRepresentation`.
+ *
+ * - `topK`                   — original top-k plus any promoted items appended at the end
+ * - `promoted`               — items that were promoted from under-represented channels
+ * - `underRepresentedChannels` — channel names that had 0 results in topK but did return results
+ * - `channelCounts`          — per-channel result counts in the final (enhanced) topK
+ */
+export interface ChannelRepresentationResult {
+  topK: Array<TopKItem>;
+  promoted: Array<PromotedItem>;
+  underRepresentedChannels: string[];
+  channelCounts: Record<string, number>;
+}
+
+/* ---------------------------------------------------------------
+   3. FEATURE FLAG
+   --------------------------------------------------------------- */
+
+/**
+ * Return true when the channel min-representation feature is enabled.
+ * The flag is OFF by default; set SPECKIT_CHANNEL_MIN_REP=true to enable.
+ */
+export function isChannelMinRepEnabled(): boolean {
+  const raw = process.env[FEATURE_FLAG]?.toLowerCase();
+  return raw === 'true' || raw === '1';
+}
+
+/* ---------------------------------------------------------------
+   4. CORE FUNCTION
+   --------------------------------------------------------------- */
+
+/**
+ * Analyse a post-fusion top-k result set and, when the feature flag is
+ * enabled, promote the best-scoring result from every channel that
+ * contributed results but has zero representation in top-k.
+ *
+ * Rules:
+ *  - Only checks channels that actually returned results (no phantom penalties).
+ *  - A channel is under-represented when it has 0 results in topK.
+ *  - Promotion only occurs for results with score >= QUALITY_FLOOR (0.2).
+ *  - When the flag is disabled the function returns topK unchanged (no-op).
+ *  - The `source` field of each topK item is the authoritative channel label.
+ *    Items that carry a `sources` array (multi-channel convergence) are counted
+ *    toward each channel listed in that array.
+ *
+ * @param topK              - Ordered top-k results from RRF fusion.
+ * @param allChannelResults - Map of channel name → raw results for that channel.
+ * @returns ChannelRepresentationResult with enhanced topK and promotion metadata.
+ */
+export function analyzeChannelRepresentation(
+  topK: Array<TopKItem>,
+  allChannelResults: Map<string, Array<ChannelResult>>,
+): ChannelRepresentationResult {
+  // Feature flag gate — return topK unchanged when disabled.
+  if (!isChannelMinRepEnabled()) {
+    return {
+      topK: [...topK],
+      promoted: [],
+      underRepresentedChannels: [],
+      channelCounts: computeChannelCounts(topK),
+    };
+  }
+
+  // Edge case: nothing to analyse.
+  if (topK.length === 0 || allChannelResults.size === 0) {
+    return {
+      topK: [...topK],
+      promoted: [],
+      underRepresentedChannels: [],
+      channelCounts: {},
+    };
+  }
+
+  // Compute which channels are represented in the current top-k.
+  const representedChannels = new Set<string>();
+  for (const item of topK) {
+    // Count primary source
+    representedChannels.add(item.source);
+    // Also count any additional sources (multi-channel convergence)
+    if (Array.isArray(item.sources)) {
+      for (const s of item.sources) {
+        representedChannels.add(s);
+      }
+    }
+  }
+
+  // Identify which channels that returned results are missing from top-k.
+  const underRepresentedChannels: string[] = [];
+  for (const [channelName, channelResults] of allChannelResults) {
+    if (channelResults.length === 0) continue; // channel returned nothing — not penalised
+    if (!representedChannels.has(channelName)) {
+      underRepresentedChannels.push(channelName);
+    }
+  }
+
+  // No gaps — nothing to promote.
+  if (underRepresentedChannels.length === 0) {
+    return {
+      topK: [...topK],
+      promoted: [],
+      underRepresentedChannels: [],
+      channelCounts: computeChannelCounts(topK),
+    };
+  }
+
+  // For each under-represented channel find its best result above QUALITY_FLOOR.
+  const promoted: PromotedItem[] = [];
+  const enhancedTopK: Array<TopKItem> = [...topK];
+
+  for (const channelName of underRepresentedChannels) {
+    const results = allChannelResults.get(channelName) ?? [];
+
+    // Find the highest-scoring result that meets the quality floor.
+    let best: ChannelResult | null = null;
+    for (const r of results) {
+      if (r.score < QUALITY_FLOOR) continue;
+      if (best === null || r.score > best.score) {
+        best = r;
+      }
+    }
+
+    if (best === null) continue; // no qualifying result — skip channel
+
+    const promotedItem: PromotedItem = {
+      ...best,
+      source: channelName,
+      promotedFrom: channelName,
+    };
+
+    promoted.push(promotedItem);
+    enhancedTopK.push({ ...promotedItem });
+  }
+
+  return {
+    topK: enhancedTopK,
+    promoted,
+    underRepresentedChannels: underRepresentedChannels.filter(ch =>
+      promoted.some(p => p.promotedFrom === ch)
+        ? true                    // successfully promoted — still list the channel
+        : true                    // failed to promote (below floor) — still document it
+    ),
+    channelCounts: computeChannelCounts(enhancedTopK),
+  };
+}
+
+/* ---------------------------------------------------------------
+   5. HELPERS
+   --------------------------------------------------------------- */
+
+/**
+ * Count how many items in an array belong to each channel.
+ * Uses the `source` field as the channel identifier.
+ */
+function computeChannelCounts(items: Array<TopKItem>): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const item of items) {
+    counts[item.source] = (counts[item.source] ?? 0) + 1;
+  }
+  return counts;
+}

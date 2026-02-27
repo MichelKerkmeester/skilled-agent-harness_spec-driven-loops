@@ -1,0 +1,397 @@
+// ---------------------------------------------------------------
+// MODULE: Description-Based Spec Folder Discovery (PI-B3)
+// T009 — Generates 1-sentence descriptions from spec.md files,
+// caches them, and provides lightweight keyword-overlap lookup
+// for folder routing before vector queries.
+// ---------------------------------------------------------------
+
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+
+/* -----------------------------------------------------------
+   1. TYPES
+----------------------------------------------------------------*/
+
+/**
+ * Describes a single spec folder with its cached description
+ * and extracted keywords for lightweight matching.
+ */
+export interface FolderDescription {
+  specFolder: string;
+  description: string;
+  keywords: string[];
+  lastUpdated: string;
+}
+
+/**
+ * Top-level cache structure written to descriptions.json.
+ * version is always 1 for this implementation.
+ */
+export interface DescriptionCache {
+  version: number;
+  generated: string;
+  folders: FolderDescription[];
+}
+
+/* -----------------------------------------------------------
+   2. STOP WORDS
+   Common English words that carry no semantic signal and
+   should be excluded from keyword extraction.
+----------------------------------------------------------------*/
+
+const STOP_WORDS = new Set([
+  'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to',
+  'for', 'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are',
+  'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does',
+  'did', 'will', 'would', 'could', 'should', 'may', 'might', 'shall',
+  'can', 'not', 'no', 'nor', 'so', 'yet', 'both', 'either', 'neither',
+  'each', 'few', 'more', 'most', 'other', 'some', 'such', 'than',
+  'that', 'these', 'this', 'those', 'into', 'through', 'during',
+  'before', 'after', 'above', 'below', 'up', 'down', 'out', 'off',
+  'over', 'under', 'again', 'further', 'then', 'once', 'here',
+  'there', 'when', 'where', 'why', 'how', 'all', 'any', 'its',
+  'it', 'we', 'they', 'he', 'she', 'you', 'i', 'my', 'our',
+  'your', 'their', 'his', 'her', 'its', 'which', 'who', 'what',
+]);
+
+/* -----------------------------------------------------------
+   3. DESCRIPTION EXTRACTION
+----------------------------------------------------------------*/
+
+/**
+ * Extract a short 1-sentence description from spec.md content.
+ *
+ * Strategy (in order):
+ * 1. Look for the first `#` heading — that is the spec title
+ * 2. Look for "Problem Statement" or "Problem & Purpose" section
+ *    and take the first non-empty line after the heading
+ * 3. Fall back to the first non-empty non-heading line
+ *
+ * The result is trimmed to 150 characters maximum.
+ *
+ * @param specContent - Raw string content of a spec.md file.
+ * @returns A 1-sentence description string, or empty string for empty input.
+ */
+export function extractDescription(specContent: string): string {
+  if (!specContent || typeof specContent !== 'string') {
+    return '';
+  }
+
+  const content = specContent.trim();
+  if (content.length === 0) {
+    return '';
+  }
+
+  const lines = content.split('\n').map(l => l.trim());
+
+  // Pass 1: Look for the first # heading (title)
+  for (const line of lines) {
+    if (line.startsWith('# ')) {
+      const title = line.replace(/^#+\s+/, '').trim();
+      if (title.length > 0) {
+        return title.slice(0, 150);
+      }
+    }
+  }
+
+  // Pass 2: Look for "Problem Statement" or "Problem & Purpose" section
+  // and extract the first non-empty content line following it
+  const problemHeadingPattern = /^#{1,4}\s+(problem\s+(statement|&\s*purpose|and\s+purpose)|purpose|overview)/i;
+  for (let i = 0; i < lines.length; i++) {
+    if (problemHeadingPattern.test(lines[i])) {
+      // Scan ahead for first meaningful non-heading, non-empty line
+      for (let j = i + 1; j < lines.length && j < i + 10; j++) {
+        const candidate = lines[j];
+        if (candidate.length === 0) continue;
+        if (candidate.startsWith('#')) break;
+        // Strip markdown bold/italic markers
+        const clean = candidate.replace(/\*+/g, '').replace(/_+/g, '').trim();
+        if (clean.length > 0) {
+          // Take first sentence (split on '. ') and strip trailing period
+          const sentence = clean.split(/\.\s/)[0].trim().replace(/\.$/, '');
+          return sentence.slice(0, 150);
+        }
+      }
+    }
+  }
+
+  // Pass 3: Fall back to first non-empty, non-heading line
+  for (const line of lines) {
+    if (line.startsWith('#')) continue;
+    if (line.length === 0) continue;
+    const clean = line.replace(/\*+/g, '').replace(/_+/g, '').replace(/^[-*>]\s+/, '').trim();
+    if (clean.length > 0) {
+      const sentence = clean.split(/\.\s/)[0].trim().replace(/\.$/, '');
+      return sentence.slice(0, 150);
+    }
+  }
+
+  return '';
+}
+
+/* -----------------------------------------------------------
+   4. KEYWORD EXTRACTION
+----------------------------------------------------------------*/
+
+/**
+ * Extract significant keywords from a description string.
+ *
+ * - Lowercases all words
+ * - Splits on non-alphanumeric boundaries
+ * - Filters stop words and words shorter than 3 characters
+ * - Deduplicates
+ *
+ * @param description - A description string to extract keywords from.
+ * @returns Deduplicated array of significant lowercase keywords.
+ */
+export function extractKeywords(description: string): string[] {
+  if (!description || typeof description !== 'string') {
+    return [];
+  }
+
+  const lower = description.toLowerCase();
+  const words = lower.match(/\b[a-z0-9][a-z0-9-]*[a-z0-9]\b|\b[a-z0-9]{3,}\b/g) || [];
+
+  const seen = new Set<string>();
+  const keywords: string[] = [];
+
+  for (const word of words) {
+    const cleaned = word.replace(/-+/g, '-').trim();
+    if (cleaned.length < 3) continue;
+    if (STOP_WORDS.has(cleaned)) continue;
+    if (seen.has(cleaned)) continue;
+    seen.add(cleaned);
+    keywords.push(cleaned);
+  }
+
+  return keywords;
+}
+
+/* -----------------------------------------------------------
+   5. RELEVANCE SCORING / LOOKUP
+----------------------------------------------------------------*/
+
+/**
+ * Find the most relevant spec folders for a given query using
+ * simple keyword-overlap scoring.
+ *
+ * Algorithm:
+ * - Tokenize the query into lowercase words (reuse extractKeywords)
+ * - For each folder in the cache, count how many query terms appear
+ *   in its keywords or description (case-insensitive)
+ * - Normalize score: matchCount / totalQueryTerms
+ * - Return top `limit` folders with score > 0, sorted descending
+ *
+ * This is a lightweight pre-filter, NOT a replacement for vector search.
+ *
+ * @param query  - User search query string.
+ * @param cache  - Loaded DescriptionCache to search against.
+ * @param limit  - Maximum number of results to return (default 3).
+ * @returns Array of { specFolder, relevanceScore } sorted by score desc.
+ */
+export function findRelevantFolders(
+  query: string,
+  cache: DescriptionCache,
+  limit = 3,
+): Array<{ specFolder: string; relevanceScore: number }> {
+  if (!query || typeof query !== 'string' || !cache || !Array.isArray(cache.folders)) {
+    return [];
+  }
+
+  const queryTerms = extractKeywords(query);
+  if (queryTerms.length === 0) {
+    return [];
+  }
+
+  const results: Array<{ specFolder: string; relevanceScore: number }> = [];
+
+  for (const folder of cache.folders) {
+    let matchCount = 0;
+    const descLower = folder.description.toLowerCase();
+    const keywordSet = new Set(folder.keywords);
+
+    for (const term of queryTerms) {
+      // Check keywords set first (O(1))
+      if (keywordSet.has(term)) {
+        matchCount++;
+        continue;
+      }
+      // Fall back to substring match in description
+      if (descLower.includes(term)) {
+        matchCount++;
+      }
+    }
+
+    if (matchCount > 0) {
+      const relevanceScore = matchCount / queryTerms.length;
+      results.push({ specFolder: folder.specFolder, relevanceScore });
+    }
+  }
+
+  // Sort descending by relevance
+  results.sort((a, b) => b.relevanceScore - a.relevanceScore);
+
+  return results.slice(0, limit);
+}
+
+/* -----------------------------------------------------------
+   6. CACHE GENERATION
+----------------------------------------------------------------*/
+
+/**
+ * Scan spec base paths for spec.md files and generate a
+ * DescriptionCache by extracting descriptions from each.
+ *
+ * - Uses synchronous file I/O — this is a build-time/cache generation
+ *   function, NOT a hot path.
+ * - Expects specsBasePaths to be absolute paths to directories that
+ *   contain spec folder subdirectories (e.g., the `specs/` root).
+ * - A spec folder is any direct child directory of a base path
+ *   that contains a `spec.md` file.
+ * - Nested spec folders (phase subfolders) are also discovered if
+ *   they contain a `spec.md`.
+ *
+ * @param specsBasePaths - Array of absolute directory paths to scan.
+ * @returns A fully populated DescriptionCache.
+ */
+export function generateFolderDescriptions(specsBasePaths: string[]): DescriptionCache {
+  const folders: FolderDescription[] = [];
+  const now = new Date().toISOString();
+
+  for (const basePath of specsBasePaths) {
+    if (!fs.existsSync(basePath)) continue;
+
+    let entries: string[];
+    try {
+      entries = fs.readdirSync(basePath);
+    } catch {
+      continue;
+    }
+
+    for (const entry of entries) {
+      const entryPath = path.join(basePath, entry);
+
+      let stat: fs.Stats;
+      try {
+        stat = fs.statSync(entryPath);
+      } catch {
+        continue;
+      }
+
+      if (!stat.isDirectory()) continue;
+
+      // Check for spec.md directly in this folder
+      const specMdPath = path.join(entryPath, 'spec.md');
+      if (fs.existsSync(specMdPath)) {
+        const folderEntry = _processSpecFolder(entryPath, specMdPath, now);
+        if (folderEntry) {
+          folders.push(folderEntry);
+        }
+      }
+
+      // Also scan one level deeper for phase subfolders
+      let subEntries: string[];
+      try {
+        subEntries = fs.readdirSync(entryPath);
+      } catch {
+        continue;
+      }
+
+      for (const subEntry of subEntries) {
+        const subPath = path.join(entryPath, subEntry);
+
+        let subStat: fs.Stats;
+        try {
+          subStat = fs.statSync(subPath);
+        } catch {
+          continue;
+        }
+
+        if (!subStat.isDirectory()) continue;
+
+        const subSpecMdPath = path.join(subPath, 'spec.md');
+        if (fs.existsSync(subSpecMdPath)) {
+          const subFolderEntry = _processSpecFolder(subPath, subSpecMdPath, now);
+          if (subFolderEntry) {
+            folders.push(subFolderEntry);
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    version: 1,
+    generated: now,
+    folders,
+  };
+}
+
+/**
+ * Internal helper: read spec.md and produce a FolderDescription.
+ * Returns null if content is unreadable or description is empty.
+ */
+function _processSpecFolder(
+  folderPath: string,
+  specMdPath: string,
+  timestamp: string,
+): FolderDescription | null {
+  let content: string;
+  try {
+    content = fs.readFileSync(specMdPath, 'utf-8');
+  } catch {
+    return null;
+  }
+
+  const description = extractDescription(content);
+  if (!description) return null;
+
+  const keywords = extractKeywords(description);
+
+  return {
+    specFolder: folderPath,
+    description,
+    keywords,
+    lastUpdated: timestamp,
+  };
+}
+
+/* -----------------------------------------------------------
+   7. CACHE I/O
+----------------------------------------------------------------*/
+
+/**
+ * Load a DescriptionCache from a JSON file on disk.
+ *
+ * @param cachePath - Absolute path to the descriptions.json file.
+ * @returns The parsed DescriptionCache, or null if the file does not
+ *          exist or cannot be parsed.
+ */
+export function loadDescriptionCache(cachePath: string): DescriptionCache | null {
+  if (!fs.existsSync(cachePath)) {
+    return null;
+  }
+
+  try {
+    const raw = fs.readFileSync(cachePath, 'utf-8');
+    const parsed = JSON.parse(raw) as DescriptionCache;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Write a DescriptionCache to a JSON file on disk.
+ * Creates parent directories if they do not exist.
+ *
+ * @param cache     - The DescriptionCache to persist.
+ * @param cachePath - Absolute path to write the descriptions.json file.
+ */
+export function saveDescriptionCache(cache: DescriptionCache, cachePath: string): void {
+  const dir = path.dirname(cachePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(cachePath, JSON.stringify(cache, null, 2), 'utf-8');
+}
