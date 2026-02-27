@@ -1559,7 +1559,7 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     importanceTier: result.importanceTier,
     qualityScore: result.qualityScore,
     qualityFlags: result.qualityFlags,
-    message: `Memory ${result.status} successfully`
+    message: result.status === 'duplicate' ? `Memory skipped (duplicate content)` : `Memory ${result.status} successfully`
   };
 
   if (result.pe_action) {

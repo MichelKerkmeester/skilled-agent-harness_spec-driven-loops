@@ -28,6 +28,9 @@ import * as coActivation from '../lib/cache/cognitive/co-activation';
 // REQ-019: Standardized Response Structure
 import { createMCPSuccessResponse, createMCPEmptyResponse } from '../lib/response/envelope';
 
+// T005: Eval logging hooks (non-blocking, fail-safe)
+import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
+
 // Shared handler types
 import type { MCPResponse } from './types';
 
@@ -182,6 +185,13 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   }
 
   const startTime = Date.now();
+
+  // T005: Log trigger query entry (non-blocking, gated by SPECKIT_EVAL_LOGGING)
+  const { queryId: _trigQueryId, evalRunId: _trigRunId } = logSearchQuery({
+    query: prompt,
+    intent: null,
+    specFolder: null,
+  });
 
   const useCognitive = includeCognitive &&
     sessionId &&
@@ -361,6 +371,25 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   if (coldCount !== undefined && coldCount > 0) {
     hints.push(`${coldCount} COLD-tier memories excluded for token efficiency`);
   }
+
+  // T005: Log trigger channel + final results (non-blocking, gated by SPECKIT_EVAL_LOGGING)
+  logChannelResult({
+    evalRunId: _trigRunId,
+    queryId: _trigQueryId,
+    channel: 'trigger',
+    resultMemoryIds: formattedResults.map(r => r.memoryId),
+    scores: formattedResults.map(r => r.importanceWeight || 0),
+    latencyMs,
+    hitCount: formattedResults.length,
+  });
+  logFinalResult({
+    evalRunId: _trigRunId,
+    queryId: _trigQueryId,
+    resultMemoryIds: formattedResults.map(r => r.memoryId),
+    scores: formattedResults.map(r => r.importanceWeight || 0),
+    fusionMethod: 'trigger',
+    latencyMs,
+  });
 
   return createMCPSuccessResponse({
     tool: 'memory_match_triggers',

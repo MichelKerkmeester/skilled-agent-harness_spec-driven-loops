@@ -27,6 +27,9 @@ import { expandQuery } from '../lib/search/query-expander';
 // C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
 
+// T005: Eval logging hooks (non-blocking, fail-safe)
+import { logSearchQuery, logChannelResult, logFinalResult } from '../lib/eval/eval-logger';
+
 // Core utilities
 import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
 
@@ -1192,6 +1195,13 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     enableCausalBoost,
   });
 
+  // T005: Log search query entry (non-blocking, gated by SPECKIT_EVAL_LOGGING)
+  const { queryId: evalQueryId, evalRunId } = logSearchQuery({
+    query: normalizedQuery ?? (concepts ? concepts.join(', ') : ''),
+    intent: detectedIntent,
+    specFolder: specFolder ?? null,
+  });
+
   // T012-T015: Use cache wrapper for search execution
   const cachedResult = await toolCache.withCache(
     'memory_search',
@@ -1229,6 +1239,15 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
 
         // C136-08: Record candidate stage for multi-concept search
         addTraceEntry(trace, 'candidate', concepts.length, qualityFilteredResults.length, 0, { searchType: 'multi-concept' });
+
+        // T005: Log multi-concept channel result (non-blocking)
+        logChannelResult({
+          evalRunId,
+          queryId: evalQueryId,
+          channel: 'multi-concept',
+          resultMemoryIds: qualityFilteredResults.map(r => r.id),
+          scores: qualityFilteredResults.map(r => ((r.similarity as number) || (r.score as number) || 0)),
+        });
 
         return await postSearchPipeline(qualityFilteredResults, concepts[0], 'multi-concept', {
           minState: minState!,
@@ -1356,6 +1375,15 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
           // C136-08: Record candidate stage for hybrid search
           addTraceEntry(trace, 'candidate', hybridResults.length, filteredResults.length, 0, { searchType: 'hybrid' });
 
+          // T005: Log hybrid channel result (non-blocking)
+          logChannelResult({
+            evalRunId,
+            queryId: evalQueryId,
+            channel: 'hybrid',
+            resultMemoryIds: filteredResults.map(r => r.id),
+            scores: filteredResults.map(r => ((r.similarity as number) || (r.score as number) || 0)),
+          });
+
           return await postSearchPipeline(filteredResults, normalizedQuery!, 'hybrid', {
             minState: minState!,
             applyStateLimits: applyStateLimits!,
@@ -1402,6 +1430,15 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       // C136-08: Record candidate stage for vector fallback search
       addTraceEntry(trace, 'candidate', limit, results.length, 0, { searchType: 'vector' });
 
+      // T005: Log vector fallback channel result (non-blocking)
+      logChannelResult({
+        evalRunId,
+        queryId: evalQueryId,
+        channel: 'vector',
+        resultMemoryIds: results.map(r => r.id),
+        scores: results.map(r => ((r.similarity as number) || (r.score as number) || 0)),
+      });
+
       return await postSearchPipeline(results, normalizedQuery!, 'vector', {
         minState: minState!,
         applyStateLimits: applyStateLimits!,
@@ -1423,6 +1460,25 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     },
     { bypassCache }
   );
+
+  // T005: Log final fused/ranked results (non-blocking, gated by SPECKIT_EVAL_LOGGING)
+  try {
+    const _evalText = cachedResult?.content?.[0]?.text;
+    if (evalQueryId && evalRunId && _evalText && typeof _evalText === 'string') {
+      const _evalParsed = JSON.parse(_evalText) as Record<string, unknown>;
+      const _evalData = _evalParsed?.data as Record<string, unknown> | undefined;
+      const _evalResults = Array.isArray(_evalData?.results) ? _evalData!.results as Array<Record<string, unknown>> : [];
+      logFinalResult({
+        evalRunId,
+        queryId: evalQueryId,
+        resultMemoryIds: _evalResults.map(r => r.id as number),
+        scores: _evalResults.map(r => ((r.score as number) || (r.similarity as number) || 0)),
+        fusionMethod: 'rrf',
+      });
+    }
+  } catch {
+    // Non-fatal: eval logging must never break production search
+  }
 
   // T123: Apply session deduplication AFTER cache
   if (sessionId && enableDedup && sessionManager.isEnabled()) {

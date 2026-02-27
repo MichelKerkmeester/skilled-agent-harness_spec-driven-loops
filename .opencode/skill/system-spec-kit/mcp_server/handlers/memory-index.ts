@@ -313,6 +313,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         } else if (result.status === 'reinforced') {
           results.updated++;
           successfullyIndexedFiles.push(filePath);
+        } else if (result.status === 'duplicate') {
+          results.unchanged++;
+          successfullyIndexedFiles.push(filePath);
         }
 
         if (isConstitutional) {
