@@ -165,7 +165,8 @@ Optional advanced path: anime.js `4.3.6` only when interaction complexity requir
 ## Output Convention
 
 ```
-.opencode/output/visual/{command}-{desc}-{timestamp}.html
+.opencode/output/visual/{mode}-{descriptor}-{timestamp}.html
+.opencode/output/visual/{descriptor}-verified.html
 ```
 
 SpecKit-aligned outputs must include:

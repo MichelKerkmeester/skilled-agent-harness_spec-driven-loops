@@ -279,6 +279,7 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - Start from `assets/templates/readme-guide-v2.html` for README-style output, or use `assets/templates/drafts/*.html` for artifact-specific structure.
 - Compose reusable blocks from `assets/variables/`, `assets/components/`, and `assets/sections/` before introducing custom markup.
 - For generic fallback sections, use kebab-case naming (`<topic>-section`) and matching section IDs.
+- Prefer consolidated generic sections: `hero`, `quickstart`, `features`, `operations-overview`, `extensibility`, `setup-and-usage`, `support`, `related-documents`.
 - Select rendering approach: Mermaid | Chart.js | semantic table | CSS grid/timeline.
 - Select view mode: `artifact-dashboard` (default) or `traceability-board` (`--traceability`).
 - Build semantic layout with landmarks (`header`, `main`, `section`, `figure`, `figcaption`).

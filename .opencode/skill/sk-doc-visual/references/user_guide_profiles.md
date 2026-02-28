@@ -45,8 +45,8 @@ Tie-breaker:
 |---|---|
 | `id` | `readme` |
 | `style_profile` | `README Ledger Profile` (default) |
-| `required_sections` | `Hero/Overview`, `Quick Start`, `Documentation Overview`, `Memory Engine`, `Agent Network`, `Command Architecture`, `Skills Library`, `Gate System`, `Tool Integration`, `Extensibility`, `Configuration`, `Usage Examples`, `Troubleshooting`, `FAQ`, `Related Documents` |
-| `required_anchors` | `top`, `quickstart`, `spec-kit-documentation`, `memory-engine`, `agent-network`, `command-architecture`, `skills-library`, `gate-system`, `tool-integration`, `extensibility`, `configuration`, `usage-examples`, `troubleshooting`, `faq`, `related-documents` |
+| `required_sections` | `Hero/Overview`, `Quick Start`, `Feature Highlights`, `Operations Overview`, `Extensibility`, `Setup & Usage`, `Support`, `Related Documents` |
+| `required_anchors` | `top`, `quickstart`, `features`, `operations-overview`, `extensibility`, `setup-and-usage`, `support`, `related-documents` |
 | `required_cross_refs` | `INSTALL_GUIDE.md` (if present), main command/skill docs |
 | `visual_modules` | `main-grid-shell`, `terminal-header`, `site-nav-link`, `toc-link`, `glass-card`, `code-window`, `data-table`, `copy-code-interaction`, `scroll-progress`, `footer` |
 | `quality_checks` | `section_coverage_pct`, `anchor_coverage_pct`, `placeholder_count`, `broken_local_link_count`, `task_step_completeness` |

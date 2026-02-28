@@ -237,6 +237,6 @@ Load `sk-doc-visual` and relevant references per mode:
 /create:visual_html "specs/007-auth/plan.md" --mode analyze --artifact plan
 /create:visual_html "feature/oauth-refresh" --mode analyze --include-doc-impact
 /create:visual_html "2w" --mode analyze --spec-folder "specs/007-auth" --include-doc-health
-/create:visual_html ".opencode/output/visual/plan-review-auth-20260222-113000.html" --mode verify --source-file "specs/007-auth/plan.md"
+/create:visual_html ".opencode/output/visual/analyze-auth-20260222-113000.html" --mode verify --source-file "specs/007-auth/plan.md"
 /create:visual_html "Map this release into a visual risk board for engineers and PMs" --mode custom
 ```
