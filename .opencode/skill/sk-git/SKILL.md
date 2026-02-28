@@ -3,7 +3,7 @@ name: sk-git
 description: "Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, conventional-commits, branch-management, pull-request, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
@@ -12,7 +12,7 @@ version: 1.0.9.0
 
 Unified workflow guidance across workspace isolation, commit hygiene, and work completion.
 
-
+<!-- ANCHOR:when-to-use -->
 ## 1. WHEN TO USE
 
 ### When to Use This Orchestrator
@@ -80,7 +80,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 RESOURCE_MAP = {
     "WORKSPACE_SETUP": ["references/worktree_workflows.md", "assets/worktree_checklist.md"],
     "COMMIT": ["references/commit_workflows.md", "assets/commit_message_template.md"],
-    "FINISH": ["references/finish_workflows.md", "assets/pr_template.md"],
+    "FINISH": ["references/finish_workflows.md", "assets/pr_template.md", "references/github_mcp_integration.md"],
     "SHARED_PATTERNS": ["references/shared_patterns.md"],
 }
 
@@ -199,6 +199,22 @@ def route_git_resources(task):
 <!-- ANCHOR:how-it-works -->
 ## 3. HOW IT WORKS
 
+### Workspace Choice Enforcement
+
+**MANDATORY**: The AI must NEVER autonomously decide between creating a branch or worktree.
+
+When git workspace triggers are detected (new feature, create branch, worktree, etc.), the AI MUST ask the user to explicitly choose:
+
+| Option                        | Description                              | Best For                        |
+| ----------------------------- | ---------------------------------------- | ------------------------------- |
+| **A) Create a new branch**    | Standard branch on current repo          | Quick fixes, small changes      |
+| **B) Create a git worktree**  | Isolated workspace in separate directory | Parallel work, complex features |
+| **C) Work on current branch** | No new branch created                    | Trivial changes, exploration    |
+
+**AI Behavior**: ASK before proceeding, WAIT for explicit selection (A/B/C), NEVER assume, RESPECT choice throughout. Once chosen, reuse preference for the session unless the user requests a change.
+
+**Override Phrases**: `"use branch"` / `"create branch"` → Branch | `"use worktree"` / `"in a worktree"` → Worktree | `"current branch"` / `"on this branch"` → Current
+
 ### Git Development Lifecycle Map
 
 Git development flows through 3 phases:
@@ -225,6 +241,39 @@ Git development flows through 3 phases:
 - Setup → Work: Worktree created, ready to code
 - Work → Complete: Changes committed, tests passing
 - Complete → Setup: Work integrated, start next task
+
+### Skill Selection Decision Tree
+
+**Workspace Setup (Phase 1)**:
+- Starting new feature/fix? → **git-worktrees** (isolated workspace)
+- Quick fix on current branch? → Skip to Phase 2
+
+**Work & Commit (Phase 2)**:
+- Ready to commit? → **git-commit** (analyze, filter, write Conventional Commits)
+- No changes yet? → Continue coding
+
+**Complete & Integrate (Phase 3)**:
+- Tests pass? → **git-finish** (merge, PR, keep, or discard)
+- Tests failing? → Return to Phase 2
+
+### Common Workflow Patterns
+
+**Full Workflow** (new feature):
+```
+git-worktrees (create workspace) → Code → git-commit (commit changes) → git-finish (integrate)
+```
+
+**Quick Fix** (current branch):
+```
+Code → git-commit (commit fix) → git-finish (integrate)
+```
+
+**Parallel Work** (multiple features):
+```
+git-worktrees (feature A) → Code → git-commit
+git-worktrees (feature B) → Code → git-commit
+git-finish (feature A) → git-finish (feature B)
+```
 
 ---
 
@@ -302,27 +351,50 @@ Use this logic whenever the AI writes or rewrites commit messages.
 ---
 
 <!-- /ANCHOR:rules -->
+<!-- ANCHOR:references -->
+## 5. REFERENCES
+
+### Core Workflows
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [worktree_workflows.md](references/worktree_workflows.md) | 7-step workspace creation | Directory selection, branch strategies |
+| [commit_workflows.md](references/commit_workflows.md) | 6-step commit workflow | Artifact filtering, Conventional Commits |
+| [finish_workflows.md](references/finish_workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
+| [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution |
+| [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
+| [github_mcp_integration.md](references/github_mcp_integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
+
+### Assets
+| Asset | Purpose | Usage |
+|-------|---------|-------|
+| [worktree_checklist.md](assets/worktree_checklist.md) | Worktree creation checklist | Pre-flight verification |
+| [commit_message_template.md](assets/commit_message_template.md) | Commit format guide | Conventional Commits |
+| [pr_template.md](assets/pr_template.md) | PR description template | Consistent PR format |
+
+---
+
+<!-- /ANCHOR:references -->
 <!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 ### Workspace Setup Complete
-- ✅ Worktree created in correct directory (`.worktrees/` or user-specified)
-- ✅ Branch naming follows convention (`type/short-description`)
-- ✅ Working directory is clean and isolated
-- ✅ User confirmed workspace choice (branch/worktree/current)
+- Worktree created in correct directory (`.worktrees/` or user-specified)
+- Branch naming follows convention (`type/short-description`)
+- Working directory is clean and isolated
+- User confirmed workspace choice (branch/worktree/current)
 
 ### Commit Complete
-- ✅ All changes reviewed and categorized
-- ✅ Artifacts filtered out (build files, coverage, etc.)
-- ✅ Commit message follows Conventional Commits format
-- ✅ Only public-value files staged
+- All changes reviewed and categorized
+- Artifacts filtered out (build files, coverage, etc.)
+- Commit message follows Conventional Commits format
+- Only public-value files staged
 
 ### Integration Complete
-- ✅ Tests pass before merge/PR
-- ✅ PR description includes context, changes, and testing notes
-- ✅ Branch up-to-date with base branch
-- ✅ Worktree cleaned up after merge (if used)
-- ✅ Local and remote feature branches deleted
+- Tests pass before merge/PR
+- PR description includes context, changes, and testing notes
+- Branch up-to-date with base branch
+- Worktree cleaned up after merge (if used)
+- Local and remote feature branches deleted
 
 ### Quality Gates
 
@@ -337,7 +409,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 
 <!-- /ANCHOR:success-criteria -->
 <!-- ANCHOR:integration-points -->
-## 6. INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -372,320 +444,35 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 ---
 
 <!-- /ANCHOR:integration-points -->
-<!-- ANCHOR:github-mcp-integration-remote -->
-## 7. GITHUB MCP INTEGRATION (REMOTE)
-
-**GitHub MCP Server** provides programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
-
-### Prerequisites
-
-- **PAT configured** in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests)
-
-### When to Use GitHub MCP vs Local Git vs gh CLI
-
-| Operation                        | Tool                   | Rationale                               |
-| :------------------------------- | :--------------------- | :-------------------------------------- |
-| commit, diff, status, log, merge | Local `git` (Bash)     | Faster, no network required             |
-| worktree management              | Local `git` (Bash)     | Local filesystem operation              |
-| Create/list PRs                  | `gh` CLI OR GitHub MCP | Both work; gh CLI simpler for basic ops |
-| PR reviews, comments             | GitHub MCP             | Richer API for review workflows         |
-| Issue management                 | GitHub MCP             | Full CRUD on issues                     |
-| CI/CD status, logs               | GitHub MCP             | Access workflow runs and job logs       |
-| Search repos/code remotely       | GitHub MCP             | Cross-repo searches                     |
-
-### Available Tools (Code Mode Access)
-
-**Access Pattern:** `github.github_{tool_name}({...})`
-
-| Category          | Tools                                                                                                                                                                                                                                                                                                                                                           | Description                                                                       |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
-| **Pull Requests** | `github_create_pull_request`<br>`github_list_pull_requests`<br>`github_get_pull_request`<br>`github_merge_pull_request`<br>`github_create_pull_request_review`<br>`github_get_pull_request_files`<br>`github_get_pull_request_status`<br>`github_update_pull_request_branch`<br>`github_get_pull_request_comments`<br>`github_get_pull_request_reviews` | Create, list, merge PRs; add reviews; get files, status, and reviews |
-| **Issues**        | `github_create_issue`<br>`github_get_issue`<br>`github_list_issues`<br>`github_search_issues`<br>`github_add_issue_comment`<br>`github_update_issue`                                                                                                                                                                                                            | Full issue lifecycle management                                                   |
-| **Repository**    | `github_get_file_contents`<br>`github_create_branch`<br>`github_search_repositories`<br>`github_list_commits`                                                                                                                                                                                                                                                   | Read files, manage branches, search                                               |
-
-> **Note**: CI/CD workflow status and branch listing require the `gh` CLI:
-> - `gh run list` - List workflow runs
-> - `gh run view <id>` - View specific run
-> - `gh api repos/{owner}/{repo}/branches` - List branches
-
-### Usage Examples
-
-```typescript
-// List open PRs
-call_tool_chain({
-  code: `await github.github_list_pull_requests({
-    owner: 'owner',
-    repo: 'repo',
-    state: 'open'
-  })`
-})
-
-// Create PR with full details
-call_tool_chain({
-  code: `await github.github_create_pull_request({
-    owner: 'owner',
-    repo: 'repo',
-    title: 'feat(auth): add OAuth2 login',
-    head: 'feature/oauth',
-    base: 'main',
-    body: '## Summary\\n- Implements OAuth2 flow\\n- Adds token management'
-  })`
-})
-
-// Get issue details
-call_tool_chain({
-  code: `await github.github_get_issue({
-    owner: 'owner',
-    repo: 'repo',
-    issue_number: 123
-  })`
-})
-
-// Get files changed in PR
-call_tool_chain({
-  code: `await github.github_get_pull_request_files({
-    owner: 'owner',
-    repo: 'repo',
-    pull_number: 42
-  })`
-})
-
-// Get PR status checks
-call_tool_chain({
-  code: `await github.github_get_pull_request_status({
-    owner: 'owner',
-    repo: 'repo',
-    pull_number: 42
-  })`
-})
-```
-
-**Best Practice**: Prefer local `git` commands for local operations (faster, offline-capable). Use GitHub MCP for remote state queries and collaboration features.
-
-### Error Handling
-
-#### Failed PR Creation
-
-```typescript
-// Handle PR creation failures
-call_tool_chain({
-  code: `
-    try {
-      const result = await github.github_create_pull_request({
-        owner: 'owner',
-        repo: 'repo',
-        title: 'feat: new feature',
-        head: 'feature-branch',
-        base: 'main',
-        body: 'Description'
-      });
-      return result;
-    } catch (error) {
-      // Common errors:
-      // - 422: Branch doesn't exist or no commits between branches
-      // - 403: Insufficient permissions
-      // - 404: Repository not found
-      return { error: error.message };
-    }
-  `
-})
-```
-
-#### Merge Conflicts
-
-```typescript
-// Check for merge conflicts before merging
-call_tool_chain({
-  code: `
-    const pr = await github.github_get_pull_request({
-      owner: 'owner',
-      repo: 'repo',
-      pull_number: 42
-    });
-
-    if (pr.mergeable === false) {
-      console.log('Merge conflict detected. Resolve before merging.');
-      // Option 1: Update branch from base
-      await github.github_update_pull_request_branch({
-        owner: 'owner',
-        repo: 'repo',
-        pull_number: 42
-      });
-      // Option 2: Resolve conflicts locally
-      // git fetch origin main && git merge origin/main
-    }
-    return pr;
-  `
-})
-```
-
----
-
-<!-- /ANCHOR:github-mcp-integration-remote -->
-<!-- ANCHOR:references -->
-## 8. REFERENCES
-
-### Core Workflows
-| Document | Purpose | Key Insight |
-|----------|---------|-------------|
-| [worktree_workflows.md](references/worktree_workflows.md) | 7-step workspace creation | Directory selection, branch strategies |
-| [commit_workflows.md](references/commit_workflows.md) | 6-step commit workflow | Artifact filtering, Conventional Commits |
-| [finish_workflows.md](references/finish_workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
-| [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution |
-| [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
-
-### Assets
-| Asset | Purpose | Usage |
-|-------|---------|-------|
-| [worktree_checklist.md](assets/worktree_checklist.md) | Worktree creation checklist | Pre-flight verification |
-| [commit_message_template.md](assets/commit_message_template.md) | Commit format guide | Conventional Commits |
-| [pr_template.md](assets/pr_template.md) | PR description template | Consistent PR format |
-
----
-
-<!-- /ANCHOR:references -->
-<!-- ANCHOR:workspace-choice-enforcement -->
-## 9. WORKSPACE CHOICE ENFORCEMENT
-
-**MANDATORY**: The AI must NEVER autonomously decide between creating a branch or worktree.
-
-### Enforcement (Manual)
-
-The AI must follow this workflow manually and ask the user before proceeding with any git workspace operations.
-
-When git workspace triggers are detected (new feature, create branch, worktree, etc.), the **AI MUST ask** the user to explicitly choose:
-
-| Option                        | Description                              | Best For                        |
-| ----------------------------- | ---------------------------------------- | ------------------------------- |
-| **A) Create a new branch**    | Standard branch on current repo          | Quick fixes, small changes      |
-| **B) Create a git worktree**  | Isolated workspace in separate directory | Parallel work, complex features |
-| **C) Work on current branch** | No new branch created                    | Trivial changes, exploration    |
-
-### AI Behavior Requirements
-
-1. **ASK** user for workspace choice before proceeding with git work
-2. **WAIT** for explicit user selection (A/B/C)
-3. **NEVER** assume which workspace strategy the user wants
-4. **RESPECT** the user's choice throughout the workflow
-5. If user has already answered this session, reuse their preference
-
-### Override Phrases
-
-Power users can state preference explicitly:
-- `"use branch"` / `"create branch"` → Branch selected
-- `"use worktree"` / `"in a worktree"` → Worktree selected
-- `"current branch"` / `"on this branch"` → Current branch selected
-
-### Session Persistence
-
-Once user chooses, reuse their preference for the session unless:
-- User explicitly requests a different strategy
-- User starts a new conversation
-
----
-
-<!-- /ANCHOR:workspace-choice-enforcement -->
-<!-- ANCHOR:skill-selection-decision-tree -->
-## 10. SKILL SELECTION DECISION TREE
-
-**What are you doing?**
-
-### Workspace Setup (Phase 1)
-- **Starting new feature/fix?** → **git-worktrees**
-  - Need isolated workspace for parallel work
-  - Want clean separation from other branches
-  - Avoid branch juggling and stash chaos
-  - **See**: [worktree_workflows.md](./references/worktree_workflows.md) for complete 7-step workflow
-- **Quick fix on current branch?** → Skip to Phase 2 (commit directly)
-
-### Work & Commit (Phase 2)
-- **Ready to commit changes?** → **git-commit**
-  - Analyze what changed (filter artifacts)
-  - Determine single vs. multiple commits
-  - Write Conventional Commits messages
-  - Stage only public-value files
-  - **See**: [commit_workflows.md](./references/commit_workflows.md) for complete 6-step workflow
-  - **Templates**: [commit_message_template.md](./assets/commit_message_template.md)
-- **No changes yet?** → Continue coding, return when ready
-
-### Complete & Integrate (Phase 3)
-- **Tests pass, ready to integrate?** → **git-finish**
-  - Choose: Merge locally, Create PR, Keep as-is, or Discard
-  - Cleanup worktree (if used)
-  - Verify final integration
-  - **See**: [finish_workflows.md](./references/finish_workflows.md) for complete 5-step workflow
-  - **Templates**: [pr_template.md](./assets/pr_template.md)
-- **Tests failing?** → Return to Phase 2 (fix and commit)
-
-### Common Workflows
-
-**Full Workflow** (new feature):
-```
-git-worktrees (create workspace) → Code → git-commit (commit changes) → git-finish (integrate)
-```
-
-**Quick Fix** (current branch):
-```
-Code → git-commit (commit fix) → git-finish (integrate)
-```
-
-**Parallel Work** (multiple features):
-```
-git-worktrees (feature A) → Code → git-commit
-git-worktrees (feature B) → Code → git-commit
-git-finish (feature A) → git-finish (feature B)
-```
-
----
-
-<!-- /ANCHOR:skill-selection-decision-tree -->
-<!-- ANCHOR:integration-examples -->
-## 11. INTEGRATION EXAMPLES
-
-### Example 1: New Authentication Feature
-
-**Flow**:
-1. **Setup**: git-worktrees → `.worktrees/auth-feature` with `temp/auth`
-2. **Work**: Code OAuth2 flow → Run tests
-3. **Commit**: git-commit → Stage auth files → `feat(auth): add OAuth2 login flow`
-4. **Complete**: git-finish → Merge to main → Tests pass → Cleanup worktree
-5. **Result**: ✅ Feature integrated, clean history, workspace removed
-
-### Example 2: Quick Hotfix
-
-**Flow**:
-1. **Work**: Fix null reference bug on current branch
-2. **Commit**: git-commit → Filter coverage reports → `fix(api): handle null user response`
-3. **Complete**: git-finish → Create PR → Link to issue #123
-4. **Result**: ✅ PR created with descriptive commit, ready for review
-
-### Example 3: Parallel Features
-
-**Flow**:
-1. **Setup A**: git-worktrees → `.worktrees/feature-a`
-2. **Setup B**: git-worktrees → `.worktrees/feature-b`
-3. **Work**: Switch between terminals, code both features
-4. **Commit A**: cd feature-a → git-commit → `feat(search): add filters`
-5. **Commit B**: cd feature-b → git-commit → `feat(export): add CSV export`
-6. **Complete A**: git-finish → Merge A
-7. **Complete B**: git-finish → Merge B
-8. **Result**: ✅ Two features developed in parallel, integrated sequentially
-
----
-
-<!-- /ANCHOR:integration-examples -->
 <!-- ANCHOR:related-resources -->
-## 12. RELATED RESOURCES
+## 8. RELATED RESOURCES
 
-**For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)
+### Worked Examples
 
-**Git Workflow Principles**:
+**New Authentication Feature**:
+1. git-worktrees → `.worktrees/auth-feature` with `temp/auth`
+2. Code OAuth2 flow → Run tests
+3. git-commit → `feat(auth): add OAuth2 login flow`
+4. git-finish → Merge to main → Cleanup worktree
+
+**Quick Hotfix**:
+1. Fix null reference bug on current branch
+2. git-commit → `fix(api): handle null user response`
+3. git-finish → Create PR → Link to issue #123
+
+**Parallel Features**:
+1. git-worktrees → `.worktrees/feature-a` and `.worktrees/feature-b`
+2. Code both features in separate terminals
+3. git-commit each → git-finish each sequentially
+
+### Git Workflow Principles
+
 ```
 ISOLATION: Use worktrees for parallel work
-CLARITY: Write conventional commits with clear descriptions
-QUALITY: Run tests before integration (git-finish gate)
-CLEANUP: Remove worktrees after completion
+CLARITY:   Write conventional commits with clear descriptions
+QUALITY:   Run tests before integration (git-finish gate)
+CLEANUP:   Remove worktrees after completion
 ```
 
-**Remember**: This skill orchestrates three specialized workflows - Worktree Management, Commit Hygiene, and Work Completion. All integrate seamlessly for a professional git development lifecycle.
+**For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)
 <!-- /ANCHOR:related-resources -->

@@ -14,19 +14,6 @@ importance_tier: "normal"
 
 ---
 
-#### TABLE OF CONTENTS
-
-1. [OVERVIEW](#1--overview)
-2. [QUICK START](#2--quick-start)
-3. [STRUCTURE](#3--structure)
-4. [FEATURES](#4--features)
-5. [CONFIGURATION](#5--configuration)
-6. [EXAMPLES](#6--examples)
-7. [TROUBLESHOOTING](#7--troubleshooting)
-8. [RELATED](#8--related)
-
----
-
 ## 1. OVERVIEW
 <!-- ANCHOR:overview -->
 
@@ -76,7 +63,8 @@ skill_advisor.py "commit my changes" --threshold 0.8
 │   ├── commit_workflows.md               # 6-step commit workflow
 │   ├── finish_workflows.md               # 5-step completion flow
 │   ├── shared_patterns.md                # Reusable git patterns & commands
-│   └── quick_reference.md                # One-page cheat sheet
+│   ├── quick_reference.md                # One-page cheat sheet
+│   └── github_mcp_integration.md        # GitHub MCP remote operations
 └── assets/
     ├── worktree_checklist.md             # Worktree creation checklist
     ├── commit_message_template.md        # Conventional Commits format guide
