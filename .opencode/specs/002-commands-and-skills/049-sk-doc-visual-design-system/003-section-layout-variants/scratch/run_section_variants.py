@@ -20,6 +20,7 @@ SECTIONS_DIR = SKILL_ROOT / "assets/sections"
 PHASE_ROOT = SCRIPT_PATH.parent.parent
 
 RESEARCH_BRIEF = PHASE_ROOT / "scratch/research/layout-best-practices.md"
+SHADCN_BRIEF = PHASE_ROOT / "scratch/research/shadcn-layout-brief.md"
 OUTPUT_DIR = PHASE_ROOT / "scratch/outputs"
 LOG_DIR = PHASE_ROOT / "scratch/logs"
 PROMPT_DIR = PHASE_ROOT / "scratch/prompts"
@@ -190,6 +191,8 @@ def build_prompt(section: SectionSpec, variant_number: int, direction_name: str,
         5) Include reduced-motion support and dual-theme compatibility signals.
         6) Use semantic structure and keep the section readable/scannable.
         7) You are NOT constrained to existing component composition patterns.
+        8) Reference shadcn pre-built layout motifs from the supplied brief for structural inspiration only.
+           Do NOT copy exact classes or component markup.
 
         OUTPUT FORMAT
         - Return ONLY raw HTML (no markdown fences, no explanation).
@@ -253,6 +256,17 @@ def run_job(
         prompt = build_prompt(section, variant_number, direction_name, direction_desc, retry_hint)
         prompt_file.write_text(prompt, encoding="utf-8")
 
+        refs = [
+            f"@{rel(SECTIONS_DIR / section.filename)}",
+            f"@{rel(RESEARCH_BRIEF)}",
+            "@.opencode/skill/sk-doc-visual/references/quick_reference.md",
+            "@.opencode/skill/sk-doc-visual/assets/variables/colors.css",
+            "@.opencode/skill/sk-doc-visual/assets/variables/typography.css",
+            "@.opencode/skill/sk-doc-visual/assets/variables/layout.css",
+        ]
+        if SHADCN_BRIEF.exists():
+            refs.append(f"@{rel(SHADCN_BRIEF)}")
+
         cmd = [
             "gemini",
             prompt,
@@ -260,12 +274,7 @@ def run_job(
             model,
             "-o",
             "text",
-            f"@{rel(SECTIONS_DIR / section.filename)}",
-            f"@{rel(RESEARCH_BRIEF)}",
-            "@.opencode/skill/sk-doc-visual/references/quick_reference.md",
-            "@.opencode/skill/sk-doc-visual/assets/variables/colors.css",
-            "@.opencode/skill/sk-doc-visual/assets/variables/typography.css",
-            "@.opencode/skill/sk-doc-visual/assets/variables/layout.css",
+            *refs,
         ]
 
         try:

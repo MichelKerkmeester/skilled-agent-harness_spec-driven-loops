@@ -1,11 +1,11 @@
 As @write agent, generate one complete standalone HTML file for a documentation section layout variant.
 
 TASK
-- Section key: hero
-- Variant: v4
-- Direction: Diagrammatic Masthead
-- Direction intent: Header integrated with subtle schematic framing.
-- Section purpose: Top-level hero introducing the document with immediate context and identity.
+- Section key: quick-start
+- Variant: v6
+- Direction: Dependency Gate Cards
+- Direction intent: Prerequisite gates followed by setup cards in controlled sequence.
+- Section purpose: Fast onboarding path with prerequisites and first executable steps.
 
 HARD REQUIREMENTS
 1) Adhere to style tokens and variables from supplied files (colors, typography, layout).
@@ -15,8 +15,6 @@ HARD REQUIREMENTS
 5) Include reduced-motion support and dual-theme compatibility signals.
 6) Use semantic structure and keep the section readable/scannable.
 7) You are NOT constrained to existing component composition patterns.
-8) Reference shadcn pre-built layout motifs from the supplied brief for structural inspiration only.
-   Do NOT copy exact classes or component markup.
 
 OUTPUT FORMAT
 - Return ONLY raw HTML (no markdown fences, no explanation).

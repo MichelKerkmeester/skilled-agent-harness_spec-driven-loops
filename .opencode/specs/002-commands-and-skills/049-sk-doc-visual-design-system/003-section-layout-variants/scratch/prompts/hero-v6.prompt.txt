@@ -2,9 +2,9 @@ As @write agent, generate one complete standalone HTML file for a documentation 
 
 TASK
 - Section key: hero
-- Variant: v4
-- Direction: Diagrammatic Masthead
-- Direction intent: Header integrated with subtle schematic framing.
+- Variant: v6
+- Direction: Command Capsule Hero
+- Direction intent: Condensed hero built around command and outcome capsules.
 - Section purpose: Top-level hero introducing the document with immediate context and identity.
 
 HARD REQUIREMENTS
@@ -15,8 +15,6 @@ HARD REQUIREMENTS
 5) Include reduced-motion support and dual-theme compatibility signals.
 6) Use semantic structure and keep the section readable/scannable.
 7) You are NOT constrained to existing component composition patterns.
-8) Reference shadcn pre-built layout motifs from the supplied brief for structural inspiration only.
-   Do NOT copy exact classes or component markup.
 
 OUTPUT FORMAT
 - Return ONLY raw HTML (no markdown fences, no explanation).

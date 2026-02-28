@@ -550,7 +550,7 @@ For each cross-document match, `createEntityLinks()` inserts causal edges with `
 
 An infrastructure gate checks that the `entity_catalog` has entries before running. Without R10 providing extracted entities, S5 has nothing to operate on. The `runEntityLinking()` orchestrator chains catalog build, match finding and edge creation with statistics reporting.
 
-A density guard prevents runaway edge creation: when edge density (total edges divided by total memories) exceeds a threshold, new entity links are skipped to avoid overwhelming the graph. Runs behind the `SPECKIT_ENTITY_LINKING` flag (default ON). Requires `SPECKIT_AUTO_ENTITIES` to also be enabled.
+A density guard prevents runaway edge creation: global edge density is computed as `total_edges / total_memories`. When this density exceeds the configured threshold, new entity links are skipped to avoid overwhelming the graph. The threshold is controlled by `SPECKIT_ENTITY_LINKING_MAX_DENSITY` (default `1.0`), and invalid or negative values fall back to `1.0`. Runs behind the `SPECKIT_ENTITY_LINKING` flag (default ON). Requires `SPECKIT_AUTO_ENTITIES` to also be enabled.
 
 ---
 
@@ -622,4 +622,4 @@ Originally skipped at Sprint 7 because the scale gate measured 2,411 active memo
 
 Originally skipped at Sprint 7 because zero entities existed in the system. R10 had not been built, so there was no entity catalog to link against.
 
-**Now implemented.** With R10 providing extracted entities, S5 scans the `entity_catalog` for entities appearing in two or more spec folders and creates `supports` causal edges with `strength=0.7` and `created_by='entity_linker'`. A density guard prevents runaway edge creation. Runs behind `SPECKIT_ENTITY_LINKING` (default ON), requires `SPECKIT_AUTO_ENTITIES` to also be enabled. See [Cross-document entity linking (S5)](#cross-document-entity-linking-s5) for the full description.
+**Now implemented.** With R10 providing extracted entities, S5 scans the `entity_catalog` for entities appearing in two or more spec folders and creates `supports` causal edges with `strength=0.7` and `created_by='entity_linker'`. A density guard prevents runaway edge creation by using global edge density (`total_edges / total_memories`) and skipping link creation when density exceeds `SPECKIT_ENTITY_LINKING_MAX_DENSITY` (default `1.0`, invalid or negative values fall back to `1.0`). Runs behind `SPECKIT_ENTITY_LINKING` (default ON), requires `SPECKIT_AUTO_ENTITIES` to also be enabled. See [Cross-document entity linking (S5)](#cross-document-entity-linking-s5) for the full description.

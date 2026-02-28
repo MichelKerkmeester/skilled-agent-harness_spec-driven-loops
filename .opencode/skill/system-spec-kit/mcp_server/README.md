@@ -681,6 +681,9 @@ mcp_server/
 | `MEMORY_DB_PATH`        | `./dist/database/context-index.sqlite` | Database location               |
 | `MEMORY_BASE_PATH`      | CWD                                    | Workspace root for memory files |
 | `DEBUG_TRIGGER_MATCHER` | `false`                                | Enable verbose trigger logs     |
+| `SPECKIT_ENTITY_LINKING_MAX_DENSITY` | `1.0`                      | S5 density guard threshold for cross-document entity linking |
+
+S5 density guard behavior in `lib/search/entity-linker.ts`: if current global edge density (`causal_edges / memory_index`) is already above the threshold, entity linking is skipped for that run. During link creation, inserts that would push projected density above the threshold are skipped. Invalid values (non-numeric or non-finite) and negative values for `SPECKIT_ENTITY_LINKING_MAX_DENSITY` fall back to `1.0`.
 
 ### Embedding Providers
 
