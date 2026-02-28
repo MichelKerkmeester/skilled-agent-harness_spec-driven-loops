@@ -84,68 +84,68 @@ section[id] {
   text-wrap: balance;
 }
 </style>
-          <!-- 05 Agent Network -->
+          <!-- 05 Role Network -->
           <section id="{{section_id|default('agent-network')}}" class="space-y-10 reveal pt-4 active">
             <div class="inline-flex items-center gap-3 border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-widest text-[var(--zinc-200)] mb-2">
               <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("05")}} // {{section_title|default("AGENT NETWORK")}}
             </div>
             
             <div class="space-y-8">
-              <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">{{headline|default("11 specialized agents with role-based routing.")}}</p>
+              <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">{{headline|default("Multi-agent architecture with specialized routing.")}}</p>
               <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
-                {{description|default("Eleven specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Nine are custom agents. 11 specialized agents across 4 runtime platforms.")}}
+                {{description|default("Specialized agents prevent assistants from making assumptions, skipping documentation, and drifting from scope. Core and custom agents handle specific roles across multiple platforms.")}}
               </p>
             </div>
 
             <div class="space-y-6 pt-4">
-              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">All Agents</h3>
+              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">All Roles</h3>
               <div class="overflow-hidden border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg">
                 <div class="overflow-x-auto">
                   <table class="w-full text-left text-[11px] mono whitespace-nowrap">
                     <thead>
                       <tr class="border-b border-[var(--border)] bg-[var(--surface-l2)]">
-                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Agent</th>
-                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Type</th>
-                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Model</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Role</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Category</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Profile</th>
                         <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Role</th>
                       </tr>
                     </thead>
                     <tbody class="divide-y divide-[rgba(255,255,255,0.05)]">
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@general / @explore</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Built-in</td>
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">Role A / Role B</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Core</td>
                         <td class="py-4 px-5 text-[var(--zinc-500)]">-</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Implementation, quick exploration</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Example responsibilities</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@orchestrate</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Primary</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Multi-agent coordination</td>
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">Role C</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Extension</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Default</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Workflow coordination</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@speckit</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">claude-sonnet</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Spec folder creation (exclusive writer)</td>
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@module_writer</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Extension</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">default</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Example ownership scope</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@debug</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">claude-opus</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Fresh-perspective debugging</td>
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">Role E</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Extension</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">default</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Issue analysis support</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@research</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">claude-opus</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Evidence gathering</td>
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">Role F</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Extension</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">default</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Research support</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@review / @write</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">varies</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Code review, Documentation</td>
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">Role G / Role H</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Extension</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">configurable</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Validation and documentation</td>
                       </tr>
                     </tbody>
                   </table>

@@ -55,50 +55,40 @@
 <body>
 <div class="selection:bg-[var(--accent-muted)] min-h-screen relative w-full">
 
-<div class="page-container px-6 lg:px-12 py-12">
 <style>
-section[id] {
-  scroll-margin-top: 6rem;
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: var(--transition-reveal);
-}
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.glass-card {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  transition: var(--transition-card);
-}
-.glass-card:hover {
-  border-color: var(--accent-hover);
-  box-shadow: var(--glass-shadow);
-  transform: translateY(-2px);
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: var(--z-progress, 50);
+  width: 0;
+  transition: var(--transition-progress, width 0.1s ease-out);
 }
 </style>
-<section id="{{section_id|default('faq')}}" class="space-y-10 reveal pt-4 active">
-  <div class="inline-flex items-center gap-3 border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-widest text-[var(--zinc-200)] mb-2">
-    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("04")}} // {{section_title|default("FAQ")}}
+<div id="scroll-progress"></div>
+
+<div class="p-12 w-full max-w-4xl mx-auto space-y-32">
+  <h1 class="text-3xl font-semibold text-[var(--zinc-200)]">{{title|default("Scroll to see progress")}}</h1>
+  <div class="h-[150vh] border-l-2 border-dashed border-[var(--border)] pl-8">
+    <p class="text-[var(--zinc-400)]">{{content|default("Keep scrolling down...")}}</p>
   </div>
-  
-  <div class="space-y-6 pt-4">
-    <div class="glass-card p-6 shadow-lg hover:-translate-y-1 transition-transform duration-300">
-      <p class="text-sm font-semibold mb-2 text-[var(--zinc-200)]">{{question1|default("Q: How do I use this section?")}}</p>
-      <p class="text-xs text-[var(--text-muted)] leading-relaxed">{{answer1|default("A: Replace this with an answer relevant to your project.")}}</p>
-    </div>
-    <div class="glass-card p-6 shadow-lg hover:-translate-y-1 transition-transform duration-300">
-      <p class="text-sm font-semibold mb-2 text-[var(--zinc-200)]">{{question2|default("Q: Can I customize these defaults?")}}</p>
-      <p class="text-xs text-[var(--text-muted)] leading-relaxed">{{answer2|default("A: Yes, every label and value can be replaced.")}}</p>
-    </div>
+  <div class="pb-32">
+    <p class="text-[var(--zinc-400)]">{{footer|default("End of content.")}}</p>
   </div>
-</section>
 </div>
 
+<script>
+// Scroll Progress
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  const progress = document.getElementById('scroll-progress');
+  if (progress) progress.style.width = scrolled + "%";
+});
+</script>
 </div>
 </body>
 </html>

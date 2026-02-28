@@ -84,21 +84,21 @@ section[id] {
   text-wrap: balance;
 }
 </style>
-          <!-- 03 Spec Kit Documentation -->
+          <!-- 03 Template Docs Documentation -->
           <section id="{{section_id|default('spec-kit-documentation')}}" class="space-y-10 reveal pt-4 active">
             <div class="inline-flex items-center gap-3 border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-widest text-[var(--zinc-200)] mb-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("03")}} // {{section_title|default("SPEC KIT DOCUMENTATION")}}
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("03")}} // {{section_title|default("DOCUMENTATION OVERVIEW")}}
             </div>
             
             <div class="space-y-8">
-              <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">{{headline|default("4 levels, 81 templates, 13 rules.")}}</p>
+              <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">{{headline|default("Example documentation model with configurable levels.")}}</p>
               <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
-                {{description|default("Every feature leaves a trail. Not for bureaucracy. For your future self, your team and the AI that picks up where you left off.")}}
+                {{description|default("Document key decisions so future contributors can understand context quickly.")}}
               </p>
             </div>
 
             <div class="space-y-6">
-              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Four Documentation Levels</h3>
+              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Documentation Levels</h3>
               <div class="overflow-hidden border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg">
                 <div class="overflow-x-auto">
                   <table class="w-full text-left text-[11px] mono whitespace-nowrap">
@@ -106,7 +106,7 @@ section[id] {
                       <tr class="border-b border-[var(--border)] bg-[var(--surface-l2)]">
                         <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Level</th>
                         <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">LOC</th>
-                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Required Files</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Recommended Files</th>
                         <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Use When</th>
                       </tr>
                     </thead>
@@ -115,25 +115,25 @@ section[id] {
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">1</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">&lt;100</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">spec.md, plan.md, tasks.md, summary.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">All features (minimum)</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Baseline changes</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">2</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">100-499</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">Level 1 + checklist.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">QA validation needed</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Validation required</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">3</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">&gt;=500</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">Level 2 + decision-record.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Complex/architecture changes</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Complex changes</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">3+</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">Comp 80+</td>
                         <td class="py-4 px-5 text-[var(--zinc-300)]">Level 3 + AI protocols, extended checklist</td>
-                        <td class="py-4 px-5 text-[var(--zinc-400)]">Enterprise governance</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Extended governance</td>
                       </tr>
                     </tbody>
                   </table>
@@ -142,9 +142,9 @@ section[id] {
             </div>
 
             <div class="space-y-6 pt-6">
-              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">CORE + ADDENDUM Template Architecture</h3>
+              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Template Architecture</h3>
               <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
-                <strong>81 templates</strong> across the v2.2 composition model. CORE templates are shared across levels. ADDENDUM templates extend them. Update once and all levels inherit. Zero duplication.
+                <strong>Example template set</strong> shared across levels with reusable base and extension files.
               </p>
               
               <div class="overflow-hidden border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg">
@@ -159,31 +159,31 @@ section[id] {
                     <tbody class="divide-y divide-[rgba(255,255,255,0.05)]">
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">spec.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Feature scope, requirements, constraints (frozen)</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Scope, requirements, and constraints</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">plan.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Implementation approach and design decisions</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Implementation approach and decisions</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">tasks.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Ordered task breakdown with status tracking</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Ordered task breakdown with status</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">checklist.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">QA validation items (P0/P1/P2 priority)</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Validation checklist items</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">decision-record.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Architectural decisions with rationale and trade-offs</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Decision log with rationale and trade-offs</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">research.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Technical investigation findings (optional, L3+)</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Research findings (optional)</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
                         <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">implementation-summary.md</td>
-                        <td class="py-4 px-5 text-[var(--zinc-300)]">Post-implementation record of what was built</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Implementation summary after completion</td>
                       </tr>
                     </tbody>
                   </table>
@@ -193,27 +193,27 @@ section[id] {
 
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 pt-6">
               <div class="space-y-6">
-                <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Validation and Automation</h3>
+                <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Validation Examples</h3>
                 <p class="text-[var(--zinc-400)] text-sm leading-relaxed">
-                  <strong>13 pluggable validation rules</strong> run before you can mark any spec folder complete. Exit code 0 = pass. Exit code 2 = must fix.
+                  <strong>Example validation rules</strong> run before marking work complete.
                 </p>
                 <div class="glass-card p-6 mono text-[10px] space-y-3 hover:-translate-y-1 transition-transform duration-300">
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-anchors</span><span class="text-[var(--text-muted)]">Reference integrity</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-placeholders</span><span class="text-[var(--text-muted)]">No [PLACEHOLDER] text</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-frontmatter</span><span class="text-[var(--text-muted)]">YAML metadata present</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-sections</span><span class="text-[var(--text-muted)]">Required sections exist</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-complexity</span><span class="text-[var(--text-muted)]">Matches doc level</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-evidence</span><span class="text-[var(--text-muted)]">Evidence citations present</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-priority-tags</span><span class="text-[var(--text-muted)]">P0/P1/P2 tags applied</span></div>
-                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-files</span><span class="text-[var(--text-muted)]">Required files exist</span></div>
-                  <div class="flex justify-between"><span class="text-[var(--zinc-200)]">+ 5 more rules</span><span class="text-[var(--text-muted)]">Level match, protocols, etc.</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-links</span><span class="text-[var(--text-muted)]">Link integrity</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-placeholders</span><span class="text-[var(--text-muted)]">No unresolved placeholder text</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-metadata</span><span class="text-[var(--text-muted)]">Required metadata present</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-sections</span><span class="text-[var(--text-muted)]">Recommended sections exist</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-complexity</span><span class="text-[var(--text-muted)]">Matches selected level</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-evidence</span><span class="text-[var(--text-muted)]">Evidence entries present</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-priority-tags</span><span class="text-[var(--text-muted)]">Priority tags applied</span></div>
+                  <div class="flex justify-between border-b border-[var(--border-light)] pb-2"><span class="text-[var(--zinc-200)]">check-files</span><span class="text-[var(--text-muted)]">Recommended files exist</span></div>
+                  <div class="flex justify-between"><span class="text-[var(--zinc-200)]">+ additional rules</span><span class="text-[var(--text-muted)]">Level match, formatting, etc.</span></div>
                 </div>
               </div>
 
               <div class="space-y-6">
-                <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Frontmatter Normalization</h3>
+                <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">Metadata Normalization</h3>
                 <p class="text-[var(--zinc-400)] text-sm leading-relaxed">
-                  Spec 139/004 adds a metadata normalization workflow for all indexed markdown.
+                  Example workflow for normalizing metadata across markdown files.
                 </p>
                 <div class="relative group code-window rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-2xl flex flex-col">
                   <div class="absolute top-0 left-0 w-full h-9 bg-[var(--surface-l3-alpha)] backdrop-blur border-b border-[var(--border-light)] flex items-center justify-between px-4 z-10">
@@ -225,16 +225,16 @@ section[id] {
                       </button>
                   </div>
                   <pre class="p-5 pt-14 text-[11px] text-[var(--zinc-300)] mono overflow-x-auto leading-relaxed"><code><span class="text-[var(--zinc-500)]"># 1) Dry-run metadata normalization</span>
-node scripts/dist/memory/backfill-frontmatter.js --dry-run
+node scripts/dist/context/backfill-frontmatter.js --dry-run
 
 <span class="text-[var(--zinc-500)]"># 2) Apply metadata normalization</span>
-node scripts/dist/memory/backfill-frontmatter.js --apply
+node scripts/dist/context/backfill-frontmatter.js --apply
 
 <span class="text-[var(--zinc-500)]"># 3) Verify composed templates</span>
 bash scripts/templates/compose.sh --verify
 
 <span class="text-[var(--zinc-500)]"># 4) Rebuild embeddings index</span>
-node scripts/dist/memory/reindex-embeddings.js</code></pre>
+node scripts/dist/context/reindex-embeddings.js</code></pre>
                 </div>
               </div>
             </div>

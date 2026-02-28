@@ -92,31 +92,31 @@ section[id] {
             
             <div class="space-y-8">
               <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
-                {{description|default("20 commands across 4 namespaces with 25 YAML assets. Markdown entry points route to YAML execution engines. One prompt. Twelve steps. Zero manual overhead.")}}
+                {{description|default("Modular commands across namespaces. Markdown entry points route to execution engines. One prompt. Twelve steps. Zero manual overhead.")}}
               </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-4">
               <div class="space-y-4">
-                <h3 class="text-xs font-semibold tracking-widest text-[var(--text-muted)] uppercase">spec_kit/ (8 commands)</h3>
+                <h3 class="text-xs font-semibold tracking-widest text-[var(--text-muted)] uppercase">module/</h3>
                 <div class="overflow-x-auto border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg hover:border-[var(--accent-border)] transition-colors duration-300">
                   <table class="w-full text-left text-[11px] mono">
                     <tbody class="divide-y divide-[rgba(255,255,255,0.05)]">
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/spec_kit:complete</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/module:complete</td>
                         <td class="py-3 px-4 text-[var(--zinc-400)]">Full workflow</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/spec_kit:plan</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/module:plan</td>
                         <td class="py-3 px-4 text-[var(--zinc-400)]">Planning only</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/spec_kit:implement</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/module:implement</td>
                         <td class="py-3 px-4 text-[var(--zinc-400)]">Execute plan</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/spec_kit:debug</td>
-                        <td class="py-3 px-4 text-[var(--zinc-400)]">Delegate to sub-agent</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/module:debug</td>
+                        <td class="py-3 px-4 text-[var(--zinc-400)]">Delegate to helper role</td>
                       </tr>
                     </tbody>
                   </table>
@@ -124,25 +124,25 @@ section[id] {
               </div>
 
               <div class="space-y-4">
-                <h3 class="text-xs font-semibold tracking-widest text-[var(--text-muted)] uppercase">memory/ (5 commands)</h3>
+                <h3 class="text-xs font-semibold tracking-widest text-[var(--text-muted)] uppercase">context/</h3>
                 <div class="overflow-x-auto border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg hover:border-[var(--accent-border)] transition-colors duration-300">
                   <table class="w-full text-left text-[11px] mono">
                     <tbody class="divide-y divide-[rgba(255,255,255,0.05)]">
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/memory:save</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/context:save</td>
                         <td class="py-3 px-4 text-[var(--zinc-400)]">Extracts and indexes</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/memory:context</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/context:retrieve</td>
                         <td class="py-3 px-4 text-[var(--zinc-400)]">Unified retrieval</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/memory:continue</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/context:continue</td>
                         <td class="py-3 px-4 text-[var(--zinc-400)]">Session recovery</td>
                       </tr>
                       <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/memory:manage</td>
-                        <td class="py-3 px-4 text-[var(--zinc-400)]">Database ops</td>
+                        <td class="py-3 px-4 text-[var(--zinc-200)] font-semibold">/context:manage</td>
+                        <td class="py-3 px-4 text-[var(--zinc-400)]">Storage operations</td>
                       </tr>
                     </tbody>
                   </table>

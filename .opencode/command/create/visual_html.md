@@ -215,6 +215,8 @@ Create or verify visual HTML artifacts through one unified command entrypoint wi
 | `verify` | Check and correct existing visual output | `fact-check` |
 | `custom` | User-defined intent text | Resolver selects best-fit mode (ask when ambiguous) |
 
+Legacy aliases (`generate`, `plan-review`, `diff-review`, `recap`, `fact-check`) are accepted and normalized to the routed intent model above.
+
 ---
 
 ## 5. REFERENCE SOURCES
@@ -231,7 +233,7 @@ Load `sk-doc-visual` and relevant references per mode:
 ## 6. EXAMPLES
 
 ```bash
-/create:visual_html "CI/CD architecture" --mode generate --style blueprint
+/create:visual_html "CI/CD architecture" --mode create --style blueprint
 /create:visual_html "specs/007-auth/plan.md" --mode analyze --artifact plan
 /create:visual_html "feature/oauth-refresh" --mode analyze --include-doc-impact
 /create:visual_html "2w" --mode analyze --spec-folder "specs/007-auth" --include-doc-health

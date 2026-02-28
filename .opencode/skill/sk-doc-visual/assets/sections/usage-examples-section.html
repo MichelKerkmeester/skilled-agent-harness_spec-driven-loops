@@ -91,13 +91,13 @@ section[id] {
   
   <div class="space-y-8">
     <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
-      {{description|default("Real workflows, not toy examples.")}}
+      {{description|default("Example workflows you can customize.")}}
     </p>
   </div>
 
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 pt-4">
     <div class="space-y-6">
-      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{example1_title|default("Feature Development")}}</h3>
+      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{example1_title|default("Example Workflow A")}}</h3>
       <div class="relative group code-window rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-2xl flex flex-col">
         <div class="absolute top-0 left-0 w-full h-9 bg-[var(--surface-l3-alpha)] backdrop-blur border-b border-[var(--border-light)] flex items-center justify-between px-4 z-10">
             <div class="flex items-center gap-3">
@@ -108,21 +108,21 @@ section[id] {
             </button>
         </div>
         <pre class="p-5 pt-14 text-[11px] text-[var(--zinc-300)] mono overflow-x-auto leading-relaxed"><code><span class="text-[var(--zinc-500)]"># 1. Start with a plan</span>
-<span class="text-[var(--zinc-200)]">/spec_kit:plan</span> "add rate limiting to API"
+<span class="text-[var(--zinc-200)]">/workflow:plan</span> "add rate limiting to API"
 
 <span class="text-[var(--zinc-500)]"># 2. Review and approve, then implement</span>
-<span class="text-[var(--zinc-200)]">/spec_kit:implement</span>
+<span class="text-[var(--zinc-200)]">/workflow:implement</span>
 
 <span class="text-[var(--zinc-500)]"># 3. Save context for future reference</span>
-<span class="text-[var(--zinc-200)]">/memory:save</span>
+<span class="text-[var(--zinc-200)]">/context:save</span>
 
 <span class="text-[var(--zinc-500)]"># 4. Next week, pick up where you left off</span>
-<span class="text-[var(--zinc-200)]">/spec_kit:resume</span></code></pre>
+<span class="text-[var(--zinc-200)]">/workflow:resume</span></code></pre>
       </div>
     </div>
 
     <div class="space-y-6">
-      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{example2_title|default("Debugging")}}</h3>
+      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{example2_title|default("Example Workflow B")}}</h3>
       <div class="relative group code-window rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-2xl flex flex-col">
         <div class="absolute top-0 left-0 w-full h-9 bg-[var(--surface-l3-alpha)] backdrop-blur border-b border-[var(--border-light)] flex items-center justify-between px-4 z-10">
             <div class="flex items-center gap-3">
@@ -133,10 +133,10 @@ section[id] {
             </button>
         </div>
         <pre class="p-5 pt-14 text-[11px] text-[var(--zinc-300)] mono overflow-x-auto leading-relaxed"><code><span class="text-[var(--zinc-500)]"># After 3+ failed attempts at fixing an issue:</span>
-<span class="text-[var(--zinc-200)]">/spec_kit:debug</span>
+<span class="text-[var(--zinc-200)]">/workflow:debug</span>
 
 <span class="text-[var(--zinc-500)]"># -> Prompts: "Select model: Opus / Sonnet / Gemini"</span>
-<span class="text-[var(--zinc-500)]"># -> Dispatches @debug agent with 4-phase methodology</span>
+<span class="text-[var(--zinc-500)]"># -> Dispatches Role E agent with 4-phase methodology</span>
 <span class="text-[var(--zinc-500)]"># -> Observe -> Analyze -> Hypothesize -> Fix</span>
 <span class="text-[var(--zinc-500)]"># -> Fresh perspective, no prior assumptions</span></code></pre>
       </div>

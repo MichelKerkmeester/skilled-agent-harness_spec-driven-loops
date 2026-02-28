@@ -91,26 +91,26 @@ section[id] {
   
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 pt-4">
     <div class="space-y-6">
-      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{block1_title|default("Quick Fixes")}}</h3>
+      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{block1_title|default("Common Fixes")}}</h3>
       <div class="overflow-hidden border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg hover:border-[var(--accent-border)] transition-colors duration-300">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-[11px] mono whitespace-nowrap">
             <tbody class="divide-y divide-[rgba(255,255,255,0.05)]">
               <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Server won't start</td>
-                <td class="py-4 px-5 text-[var(--zinc-400)]"><code>npm run build</code> in spec kit dir</td>
+                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Task does not run</td>
+                <td class="py-4 px-5 text-[var(--zinc-400)]"><code>npm run build</code> in project directory</td>
               </tr>
               <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Context full</td>
-                <td class="py-4 px-5 text-[var(--zinc-200)]">/memory:continue</td>
+                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Context is large</td>
+                <td class="py-4 px-5 text-[var(--zinc-200)]">/context:continue</td>
               </tr>
               <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Stale results</td>
-                <td class="py-4 px-5 text-[var(--zinc-200)]">/memory:manage cleanup</td>
+                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Outdated output</td>
+                <td class="py-4 px-5 text-[var(--zinc-200)]">/context:manage cleanup</td>
               </tr>
               <tr class="hover:bg-[var(--border-faint)] transition-colors">
-                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Validation fails</td>
-                <td class="py-4 px-5 text-[var(--zinc-400)]">Check exit code: 0=pass, 2=error</td>
+                <td class="py-4 px-5 text-[var(--zinc-300)] font-semibold">Validation error</td>
+                <td class="py-4 px-5 text-[var(--zinc-400)]">Check logs and exit code details.</td>
               </tr>
             </tbody>
           </table>
@@ -130,10 +130,10 @@ section[id] {
             </button>
         </div>
         <pre class="p-5 pt-14 text-[11px] text-[var(--zinc-300)] mono overflow-x-auto leading-relaxed"><code><span class="text-[var(--zinc-500)]"># Check memory system health</span>
-<span class="text-[var(--zinc-200)]">/memory:manage</span> health
+<span class="text-[var(--zinc-200)]">/context:manage</span> health
 
 <span class="text-[var(--zinc-500)]"># View memory statistics</span>
-<span class="text-[var(--zinc-200)]">/memory:manage</span> stats
+<span class="text-[var(--zinc-200)]">/context:manage</span> stats
 
 <span class="text-[var(--zinc-500)]"># Test build</span>
 <span class="text-[var(--zinc-200)]">cd</span> .opencode/skill/system-spec-kit && <span class="text-[var(--zinc-200)]">npm run</span> test:cli</code></pre>

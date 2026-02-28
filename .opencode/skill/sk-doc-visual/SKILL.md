@@ -20,11 +20,13 @@ Converts complex terminal output and technical concepts into styled, self-contai
 
 | Command | Purpose | Example Trigger |
 |---------|---------|----------------|
-| `/create:visual_html --mode generate` | Generate a visual diagram or styled page from any topic | "generate an architecture diagram for this service" |
-| `/create:visual_html --mode diff-review` | Visual review of git diffs, PRs, or commit ranges | "visual diff review of this PR" |
-| `/create:visual_html --mode plan-review` | Visual analysis of any planning or SpecKit artifact document | "visually review specs/007-auth/plan.md" |
-| `/create:visual_html --mode recap` | Visual recap of recent work or progress | "generate a visual recap of the last 2 weeks" |
-| `/create:visual_html --mode fact-check` | Verify accuracy of an existing HTML output | "fact-check this visual output against the spec" |
+| `/create:visual_html --mode auto` | Auto-route from request into internal mode (`generate`, `plan-review`, `diff-review`, `recap`, or `fact-check`) | "visualize this plan with traceability" |
+| `/create:visual_html --mode create` | Generate a new visual artifact (routes to `generate`) | "generate an architecture diagram for this service" |
+| `/create:visual_html --mode analyze` | Analyze docs, diffs, or recaps (routes to `plan-review`, `diff-review`, or `recap`) | "review this PR as a visual diff" |
+| `/create:visual_html --mode verify` | Verify and correct an existing HTML visual (routes to `fact-check`) | "fact-check this visual output against the spec" |
+| `/create:visual_html --mode custom` | Use custom user intent text with best-fit routing | "map this release into a visual risk board" |
+
+Legacy mode aliases (`generate`, `plan-review`, `diff-review`, `recap`, `fact-check`) are still accepted and normalized by the command router.
 
 ### Keyword Triggers (Auto-Activate)
 
@@ -57,7 +59,9 @@ Announce: "I'm rendering this as a styled HTML page for readability."
 The router discovers markdown resources recursively from `references/` and `assets/` and then applies intent scoring from `RESOURCE_MAP`.
 
 - `references/` for generation patterns, CSS/layout standards, library guidance, navigation, quality checks, and SpecKit artifact profiles.
-- `assets/templates/` for reusable HTML starter templates.
+- `assets/templates/` for reusable starter templates (`readme-guide-v2.html`, `drafts/*`, `z_archive/*`).
+- `assets/variables/` for shared CSS/JS variables and defaults.
+- `assets/components/` and `assets/sections/` for composable partial blocks.
 - `assets/library_versions.json` as machine-readable version source-of-truth (used by drift checks, not markdown routing).
 - `scripts/` for validation and drift enforcement scripts.
 
@@ -95,6 +99,12 @@ INTENT_SIGNALS = {
 }
 
 COMMAND_BOOSTS = {
+    "/create:visual_html --mode auto": "GENERATE",
+    "/create:visual_html --mode create": "GENERATE",
+    "/create:visual_html --mode analyze": "PLAN_REVIEW",
+    "/create:visual_html --mode verify": "FACT_CHECK",
+    "/create:visual_html --mode custom": "GENERATE",
+    # Legacy aliases (still supported by command routing)
     "/create:visual_html --mode generate": "GENERATE",
     "/create:visual_html --mode diff-review": "DIFF_REVIEW",
     "/create:visual_html --mode plan-review": "PLAN_REVIEW",
@@ -121,19 +131,16 @@ LOADING_LEVELS = {
     "ON_DEMAND_KEYWORDS": ["full checklist", "full template", "deep dive", "navigation pattern", "traceability template", "artifact dashboard"],
     "ON_DEMAND": [
         "references/navigation_patterns.md",
-        "assets/templates/architecture.html",
-        "assets/templates/mermaid-flowchart.html",
-        "assets/templates/data-table.html",
-        "assets/templates/artifact-dashboard.html",
-        "assets/templates/traceability-board.html",
-        "assets/templates/readme-guide.html",
-        "assets/templates/implementation-summary.html",
-        "assets/templates/deployment-guide.html",
-        "assets/templates/troubleshooting-guide.html",
-        "assets/templates/decision-record.html",
-        "assets/templates/spec.html",
-        "assets/templates/plan.html",
-        "assets/templates/tasks.html",
+        "assets/templates/readme-guide-v2.html",
+        "assets/templates/drafts/spec.html",
+        "assets/templates/drafts/plan.html",
+        "assets/templates/drafts/tasks.html",
+        "assets/templates/drafts/decision-record.html",
+        "assets/templates/drafts/implementation-summary.html",
+        "assets/templates/drafts/deployment-guide.html",
+        "assets/templates/drafts/troubleshooting-guide.html",
+        "assets/templates/z_archive/readme-guide.html",
+        "assets/templates/z_archive/implementation-summary.html",
     ],
 }
 
@@ -269,8 +276,9 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - If confidence on diagram type is <80%, present 2-3 options and ask.
 
 ### Phase 2 — Structure
-- Read templates from `assets/templates/` before composing output.
-- Prefer template adaptation over blank-page HTML.
+- Start from `assets/templates/readme-guide-v2.html` for README-style output, or use `assets/templates/drafts/*.html` for artifact-specific structure.
+- Compose reusable blocks from `assets/variables/`, `assets/components/`, and `assets/sections/` before introducing custom markup.
+- For generic fallback sections, use kebab-case naming (`<topic>-section`) and matching section IDs.
 - Select rendering approach: Mermaid | Chart.js | semantic table | CSS grid/timeline.
 - Select view mode: `artifact-dashboard` (default) or `traceability-board` (`--traceability`).
 - Build semantic layout with landmarks (`header`, `main`, `section`, `figure`, `figcaption`).
@@ -290,7 +298,8 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - JS bootstrap: initialize on `DOMContentLoaded`; include reveal observer + nav observer; add viz-fill observer when bars are present.
 
 ### Phase 4 — Deliver
-- Save output to `.opencode/output/visual/{command}-{description}-{timestamp}.html`.
+- Save create-mode output to `.opencode/output/visual/{mode}-{descriptor}-{timestamp}.html`.
+- Save verify-mode output to `.opencode/output/visual/{descriptor}-verified.html`.
 - Run `scripts/validate-html-output.sh` and fix all errors.
 - For library updates, run `scripts/check-version-drift.sh`.
 - Report artifact path, file size, and validator status.
@@ -338,10 +347,10 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 - `references/artifact_profiles.md` for artifact detector precedence and profile rules.
 - `references/user_guide_profiles.md` for README/install-guide mapping.
-- `assets/templates/artifact-dashboard.html` for artifact dashboard output mode.
-- `assets/templates/traceability-board.html` for traceability board output mode.
-- `assets/templates/readme-guide.html` for interactive README-style artifact rendering.
-- `assets/templates/implementation-summary.html` for implementation-summary artifact rendering with side TOC.
+- `assets/templates/readme-guide-v2.html` as the primary shell template.
+- `assets/templates/drafts/*.html` for active artifact-specific drafts.
+- `assets/templates/z_archive/*.html` for legacy-reference templates.
+- `assets/variables/`, `assets/components/`, and `assets/sections/` for composable style/component/section assets.
 - `scripts/validate-html-output.sh` for contract enforcement and final delivery checks.
 
 ---
@@ -362,19 +371,22 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 
 ### Template Assets
 
-- [architecture.html](./assets/templates/architecture.html)
-- [mermaid-flowchart.html](./assets/templates/mermaid-flowchart.html)
-- [data-table.html](./assets/templates/data-table.html)
-- [artifact-dashboard.html](./assets/templates/artifact-dashboard.html)
-- [traceability-board.html](./assets/templates/traceability-board.html)
-- [readme-guide.html](./assets/templates/readme-guide.html)
-- [implementation-summary.html](./assets/templates/implementation-summary.html)
-- [deployment-guide.html](./assets/templates/deployment-guide.html)
-- [troubleshooting-guide.html](./assets/templates/troubleshooting-guide.html)
-- [decision-record.html](./assets/templates/decision-record.html)
-- [spec.html](./assets/templates/spec.html)
-- [plan.html](./assets/templates/plan.html)
-- [tasks.html](./assets/templates/tasks.html)
+- [readme-guide-v2.html](./assets/templates/readme-guide-v2.html)
+- [drafts/spec.html](./assets/templates/drafts/spec.html)
+- [drafts/plan.html](./assets/templates/drafts/plan.html)
+- [drafts/tasks.html](./assets/templates/drafts/tasks.html)
+- [drafts/decision-record.html](./assets/templates/drafts/decision-record.html)
+- [drafts/implementation-summary.html](./assets/templates/drafts/implementation-summary.html)
+- [drafts/deployment-guide.html](./assets/templates/drafts/deployment-guide.html)
+- [drafts/troubleshooting-guide.html](./assets/templates/drafts/troubleshooting-guide.html)
+- [z_archive/readme-guide.html](./assets/templates/z_archive/readme-guide.html)
+- [z_archive/implementation-summary.html](./assets/templates/z_archive/implementation-summary.html)
+
+### Composable Asset Directories
+
+- `assets/variables/`
+- `assets/components/`
+- `assets/sections/`
 ### Enforcement Scripts
 
 - `scripts/validate-html-output.sh`
@@ -421,15 +433,16 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 ### Output Convention
 
 ```text
-.opencode/output/visual/{command}-{description}-{timestamp}.html
+.opencode/output/visual/{mode}-{descriptor}-{timestamp}.html
+.opencode/output/visual/{descriptor}-verified.html
 ```
 
 ### Cross-Skill Integration
 
 | Skill | When to Call |
 |-------|-------------|
-| `system-spec-kit` memory | `/create:visual_html --mode recap` and `--mode plan-review` context retrieval |
-| `sk-git` | `/create:visual_html --mode diff-review` evidence gathering |
+| `system-spec-kit` memory | `/create:visual_html --mode analyze` when routing to `plan-review` or `recap` |
+| `sk-git` | `/create:visual_html --mode analyze` with diff targets or `--include-doc-impact` |
 | `mcp-chrome-devtools` | post-delivery console/layout verification |
 
 ### Resource Loading Contract

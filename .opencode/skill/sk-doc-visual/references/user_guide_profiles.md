@@ -22,7 +22,7 @@ Supported user-guide artifact IDs:
 - `readme`
 - `install-guide`
 
-Profile behavior mirrors the `ArtifactProfile` model from `artifact_profiles.md` and is consumed by `generate`, `plan-review`, and `fact-check` commands.
+Profile behavior mirrors the `ArtifactProfile` model from `artifact_profiles.md` and is consumed by `/create:visual_html --mode create|analyze|verify` (internally routed to `generate|plan-review|diff-review|recap|fact-check`).
 
 ---
 
@@ -45,10 +45,10 @@ Tie-breaker:
 |---|---|
 | `id` | `readme` |
 | `style_profile` | `README Ledger Profile` (default) |
-| `required_sections` | `Overview`, `Quick Start`, `System Flow`, `Spec Kit Docs`, `Memory Engine`, `Agent Network`, `Command Arch`, `Skills Library`, `Gate System`, `Code Mode MCP`, `Configuration`, `Usage Examples`, `Troubleshooting`, `FAQ`, `Resources` |
-| `required_anchors` | `overview`, `quickstart`, `system-flow`, `documentation`, `memory`, `agents`, `commands`, `skills`, `gates`, `codemode`, `config`, `usage`, `troubleshooting`, `faq`, `resources` |
+| `required_sections` | `Hero/Overview`, `Quick Start`, `Documentation Overview`, `Memory Engine`, `Agent Network`, `Command Architecture`, `Skills Library`, `Gate System`, `Tool Integration`, `Extensibility`, `Configuration`, `Usage Examples`, `Troubleshooting`, `FAQ`, `Related Documents` |
+| `required_anchors` | `top`, `quickstart`, `spec-kit-documentation`, `memory-engine`, `agent-network`, `command-architecture`, `skills-library`, `gate-system`, `tool-integration`, `extensibility`, `configuration`, `usage-examples`, `troubleshooting`, `faq`, `related-documents` |
 | `required_cross_refs` | `INSTALL_GUIDE.md` (if present), main command/skill docs |
-| `visual_modules` | `terminal-header`, `sidebar-toc`, `glass-card`, `ledger-divider`, `flow-step`, `viz-bar`, `faq-callouts` |
+| `visual_modules` | `main-grid-shell`, `terminal-header`, `site-nav-link`, `toc-link`, `glass-card`, `code-window`, `data-table`, `copy-code-interaction`, `scroll-progress`, `footer` |
 | `quality_checks` | `section_coverage_pct`, `anchor_coverage_pct`, `placeholder_count`, `broken_local_link_count`, `task_step_completeness` |
 
 Recommended view mode:
@@ -79,8 +79,10 @@ Recommended view mode:
 
 When source is user-guide content:
 
-- Use `artifact-dashboard.html` for default rendering.
-- Use `traceability-board.html` only when `--traceability` is explicitly enabled.
+- Use `assets/templates/readme-guide-v2.html` as the default shell.
+- Compose content with `assets/sections/*-section.html`, shared `assets/components/*.html`, and `assets/variables/*`.
+- Use `assets/templates/drafts/*.html` for artifact-specific fallback layouts.
+- Use `assets/templates/z_archive/*` only for legacy-reference diffs or explicit compatibility requests.
 
 Output metadata requirements remain identical:
 - `<meta name="ve-artifact-type" content="readme|install-guide">`

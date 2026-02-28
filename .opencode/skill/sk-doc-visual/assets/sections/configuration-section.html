@@ -91,25 +91,25 @@ section[id] {
 
   <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
     <div class="space-y-6">
-      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{block1_title|default("Embedding Providers")}}</h3>
+      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{block1_title|default("Service Providers")}}</h3>
       <div class="glass-card p-6 mono text-[10px] space-y-4 hover:-translate-y-1 transition-transform duration-300">
         <div class="flex flex-col gap-1 border-b border-[var(--border)] pb-3">
-          <div class="flex justify-between"><span class="font-semibold text-[var(--zinc-200)]">Voyage AI</span><span class="text-[var(--text-muted)]">1024 dims</span></div>
-          <span class="text-[var(--zinc-500)]">Recommended: best quality (VOYAGE_API_KEY)</span>
+          <div class="flex justify-between"><span class="font-semibold text-[var(--zinc-200)]">Provider A</span><span class="text-[var(--text-muted)]">1024 dims</span></div>
+          <span class="text-[var(--zinc-500)]">Recommended: best quality (PROVIDER_A_KEY)</span>
         </div>
         <div class="flex flex-col gap-1 border-b border-[var(--border)] pb-3">
-          <div class="flex justify-between"><span class="font-semibold text-[var(--zinc-300)]">OpenAI</span><span class="text-[var(--text-muted)]">1536/3072 dims</span></div>
-          <span class="text-[var(--zinc-500)]">Cloud-based alternative (OPENAI_API_KEY)</span>
+          <div class="flex justify-between"><span class="font-semibold text-[var(--zinc-300)]">Provider B</span><span class="text-[var(--text-muted)]">1536/3072 dims</span></div>
+          <span class="text-[var(--zinc-500)]">Cloud-based alternative (PROVIDER_B_KEY)</span>
         </div>
         <div class="flex flex-col gap-1">
-          <div class="flex justify-between"><span class="font-semibold text-[var(--zinc-300)]">HF Local</span><span class="text-[var(--text-muted)]">768 dims</span></div>
-          <span class="text-[var(--success)]">Privacy, offline, free (Default fallback)</span>
+          <div class="flex justify-between"><span class="font-semibold text-[var(--zinc-300)]">Local Profile</span><span class="text-[var(--text-muted)]">768 dims</span></div>
+          <span class="text-[var(--success)]">Example local profile (default fallback)</span>
         </div>
       </div>
     </div>
 
     <div class="space-y-6">
-      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{block2_title|default("Config File (opencode.json)")}}</h3>
+      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{block2_title|default("Config File (config.json)")}}</h3>
       <div class="relative group code-window rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-2xl flex flex-col">
         <div class="absolute top-0 left-0 w-full h-9 bg-[var(--surface-l3-alpha)] backdrop-blur border-b border-[var(--border-light)] flex items-center justify-between px-4 z-10">
             <div class="flex items-center gap-3">
@@ -120,10 +120,10 @@ section[id] {
             </button>
         </div>
         <pre class="p-5 pt-14 text-[11px] text-[var(--zinc-300)] mono overflow-x-auto leading-relaxed"><code>{
-  <span class="text-[var(--success)]">"mcpServers"</span>: {
-    <span class="text-[var(--success)]">"sequential-thinking"</span>: { <span class="text-[var(--zinc-500)]">"..."</span> },
-    <span class="text-[var(--success)]">"spec_kit_memory"</span>: { <span class="text-[var(--zinc-500)]">"..."</span> },
-    <span class="text-[var(--success)]">"code-mode"</span>: { <span class="text-[var(--zinc-500)]">"..."</span> }
+  <span class="text-[var(--success)]">"servers"</span>: {
+    <span class="text-[var(--success)]">"reasoning-module"</span>: { <span class="text-[var(--zinc-500)]">"..."</span> },
+    <span class="text-[var(--success)]">"context_memory"</span>: { <span class="text-[var(--zinc-500)]">"..."</span> },
+    <span class="text-[var(--success)]">"tool-integration"</span>: { <span class="text-[var(--zinc-500)]">"..."</span> }
   }
 }</code></pre>
       </div>

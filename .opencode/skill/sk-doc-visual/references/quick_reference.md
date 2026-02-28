@@ -10,7 +10,7 @@ description: "Command cheat sheet, pinned CDN snippets, and delivery checklist f
 
 ## 1. OVERVIEW
 
-Fast lookup for command mappings, pinned CDN snippets, version matrix linkage, and delivery checks.
+Fast lookup for command mappings, current asset layout (`templates`, `variables`, `components`, `sections`), pinned CDN snippets, version matrix linkage, and delivery checks.
 
 ---
 
@@ -18,11 +18,13 @@ Fast lookup for command mappings, pinned CDN snippets, version matrix linkage, a
 
 | Command | Usage |
 |---------|-------|
-| `generate` | `/create:visual_html <topic-or-source> --mode generate [--artifact auto\|spec\|plan\|tasks\|checklist\|implementation-summary\|research\|decision-record\|readme\|install-guide] [--source-file PATH] [--traceability] [--type TYPE] [--style STYLE]` |
-| `diff-review` | `/create:visual_html [branch\|commit\|PR#] --mode diff-review [--spec-folder PATH] [--include-doc-impact]` |
-| `plan-review` | `/create:visual_html <doc-file-path> --mode plan-review [--artifact auto\|...] [--traceability]` |
-| `recap` | `/create:visual_html [time-window] --mode recap [--spec-folder PATH] [--include-doc-health]` |
-| `fact-check` | `/create:visual_html [html-file-path] --mode fact-check [--source-file PATH] [--spec-folder PATH] [--artifact auto\|...]` |
+| `auto` | `/create:visual_html <target-or-source> --mode auto [--artifact auto\|spec\|plan\|tasks\|checklist\|implementation-summary\|research\|decision-record\|readme\|install-guide] [--source-file PATH] [--traceability] [--type TYPE] [--style STYLE]` |
+| `create` | `/create:visual_html <topic-or-source> --mode create [--artifact auto\|spec\|plan\|tasks\|checklist\|implementation-summary\|research\|decision-record\|readme\|install-guide] [--source-file PATH] [--traceability] [--type TYPE] [--style STYLE]` |
+| `analyze` | `/create:visual_html <doc\|branch\|commit\|PR#\|time-window> --mode analyze [--artifact auto\|...] [--spec-folder PATH] [--include-doc-impact] [--include-doc-health] [--traceability]` |
+| `verify` | `/create:visual_html <html-file-path> --mode verify [--source-file PATH] [--spec-folder PATH] [--artifact auto\|...]` |
+| `custom` | `/create:visual_html <intent-text> --mode custom [--artifact auto\|...] [--source-file PATH] [--traceability]` |
+
+Legacy aliases (`generate`, `plan-review`, `diff-review`, `recap`, `fact-check`) are still accepted and normalized by command routing.
 
 ---
 
@@ -34,6 +36,19 @@ Fast lookup for command mappings, pinned CDN snippets, version matrix linkage, a
 | `--source-file <path>` | Set explicit source-of-truth document |
 | `--traceability` | Switch output to `ve-view-mode=traceability-board` |
 | `--spec-folder <path>` | Load sibling SpecKit docs for doc-health or impact analysis |
+
+---
+
+## Asset Layout (Current)
+
+| Path | Role |
+|---|---|
+| `assets/templates/readme-guide-v2.html` | Primary README-style shell template |
+| `assets/templates/drafts/*` | Active artifact-specific draft templates |
+| `assets/templates/z_archive/*` | Archived legacy templates (reference only) |
+| `assets/variables/` | Shared theme/layout/typography/default JS variables |
+| `assets/components/` | Reusable UI partials (header, nav, table, footer, interactions) |
+| `assets/sections/` | Reusable section partials (`*-section.html`) |
 
 ---
 

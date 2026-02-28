@@ -80,28 +80,28 @@ section[id] {
   
   <div class="space-y-8">
     <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
-      {{description|default("Every request passes through 3 mandatory gates before the AI touches a single file. Enforced, not suggested. No exceptions.")}}
+      {{description|default("Every request passes through 3 mandatory gates before touching a single file. Enforced, not suggested. No exceptions.")}}
     </p>
     <div class="p-6 border border-[var(--border)] bg-[var(--surface)] rounded-xl text-center mono text-xs text-[var(--zinc-200)] shadow-inner">
-      {{flow_text|default("Request ──► Gate 1 (SOFT) ──► Gate 2 (REQUIRED) ──► Gate 3 (HARD) ──► Execute")}}
+      {{flow_text|default("Input -> Step 1 -> Step 2 -> Step 3 -> Output")}}
     </div>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
     <div class="p-6 border border-[var(--border)] rounded-xl bg-[var(--surface)] space-y-3 shadow-lg hover:-translate-y-1 transition-transform duration-300">
-      <h4 class="font-semibold text-[var(--zinc-200)] text-sm">{{gate1_title|default("Gate 1: Understanding")}}</h4>
-      <p class="text-[10px] text-[var(--text-muted)] tracking-widest font-semibold uppercase">{{gate1_badge|default("Soft Block")}}</p>
-      <p class="text-xs text-[var(--zinc-400)]">{{gate1_desc|default("Dual-threshold validation: READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35).")}}</p>
+      <h4 class="font-semibold text-[var(--zinc-200)] text-sm">{{gate1_title|default("Step 1: Understand")}}</h4>
+      <p class="text-[10px] text-[var(--text-muted)] tracking-widest font-semibold uppercase">{{gate1_badge|default("Optional")}}</p>
+      <p class="text-xs text-[var(--zinc-400)]">{{gate1_desc|default("Example validation rule with configurable thresholds.")}}</p>
     </div>
     <div class="p-6 border border-[var(--border)] rounded-xl bg-[var(--surface)] space-y-3 shadow-lg hover:-translate-y-1 transition-transform duration-300">
-      <h4 class="font-semibold text-[var(--zinc-200)] text-sm">{{gate2_title|default("Gate 2: Skill Routing")}}</h4>
-      <p class="text-[10px] text-[var(--text-muted)] tracking-widest font-semibold uppercase">{{gate2_badge|default("Required")}}</p>
-      <p class="text-xs text-[var(--zinc-400)]">{{gate2_desc|default("Runs <code>skill_advisor.py</code> against keywords. Confidence >= 0.8 mandates loading.")}}</p>
+      <h4 class="font-semibold text-[var(--zinc-200)] text-sm">{{gate2_title|default("Step 2: Route")}}</h4>
+      <p class="text-[10px] text-[var(--text-muted)] tracking-widest font-semibold uppercase">{{gate2_badge|default("Recommended")}}</p>
+      <p class="text-xs text-[var(--zinc-400)]">{{gate2_desc|default("Runs routing module against keywords. Confidence >= 0.8 mandates loading.")}}</p>
     </div>
     <div class="p-6 border border-[var(--border)] rounded-xl bg-[var(--surface)] space-y-3 shadow-lg hover:-translate-y-1 transition-transform duration-300">
-      <h4 class="font-semibold text-[var(--zinc-200)] text-sm">{{gate3_title|default("Gate 3: Spec Folder")}}</h4>
-      <p class="text-[10px] text-red-500 tracking-widest font-semibold uppercase">{{gate3_badge|default("Hard Block")}}</p>
-      <p class="text-xs text-[var(--zinc-400)]">{{gate3_desc|default("No file changes without answering: Use existing? Create new? Update related? Skip?")}}</p>
+      <h4 class="font-semibold text-[var(--zinc-200)] text-sm">{{gate3_title|default("Step 3: Confirm")}}</h4>
+      <p class="text-[10px] text-red-500 tracking-widest font-semibold uppercase">{{gate3_badge|default("Required")}}</p>
+      <p class="text-xs text-[var(--zinc-400)]">{{gate3_desc|default("Confirm context and defaults before applying changes.")}}</p>
     </div>
   </div>
 </section>

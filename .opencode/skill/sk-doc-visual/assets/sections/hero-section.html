@@ -75,23 +75,23 @@
   <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-12">
     <div class="space-y-6">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 border border-[var(--accent-border)] bg-[var(--accent-muted)] text-[var(--accent)] text-[10px] font-semibold tracking-widest rounded-full backdrop-blur-sm shadow-[0_0_15px_var(--accent-muted)]">
-        <iconify-icon icon="{{badge_icon|default('lucide:cpu')}}"></iconify-icon> {{badge_text|default("Cognitive Infrastructure")}}
+        <iconify-icon icon="{{badge_icon|default('lucide:cpu')}}"></iconify-icon> {{badge_text|default("Template Overview")}}
       </div>
       <h1 class="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter leading-none text-balance">
-        {{title_first|default("Open")}}<span class="text-[var(--accent)]">{{title_accent|default("Code.")}}</span>
+        {{title_first|default("Section")}}<span class="text-[var(--accent)]">{{title_accent|default("Title")}}</span>
       </h1>
     </div>
     <div class="lg:text-right space-y-6">
       <div class="space-y-1">
-        <p class="text-[10px] text-[var(--text-muted)] font-semibold tracking-widest">{{version_label|default("Master Version")}}</p>
-        <p class="text-3xl font-semibold mono text-[var(--zinc-200)]">{{version_value|default("v1.2.190-STABLE")}}</p>
+        <p class="text-[10px] text-[var(--text-muted)] font-semibold tracking-widest">{{version_label|default("Version")}}</p>
+        <p class="text-3xl font-semibold mono text-[var(--zinc-200)]">{{version_value|default("v0.0.0")}}</p>
       </div>
       <div class="flex lg:justify-end gap-3">
         <div class="px-4 py-2 border border-[var(--border)] text-[10px] font-semibold tracking-widest rounded bg-[var(--surface)] text-[var(--zinc-300)]">
-          {{tag1|default("Hybrid RAG Fusion")}}
+          {{tag1|default("Feature Tag")}}
         </div>
         <div class="px-4 py-2 bg-[var(--text)] text-[var(--bg)] text-[10px] font-semibold tracking-widest rounded">
-          {{tag2|default("SpecKit v2.4")}}
+          {{tag2|default("Template v1.0")}}
         </div>
       </div>
     </div>
