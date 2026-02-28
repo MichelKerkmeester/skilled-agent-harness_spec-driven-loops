@@ -60,14 +60,14 @@ describe('Shadow Scoring (R13-S2)', () => {
       expect(isShadowScoringEnabled()).toBe(false);
     });
 
-    it('returns true when env var is "true"', () => {
+    it('returns false when env var is "true" (REMOVED flag)', () => {
       process.env.SPECKIT_SHADOW_SCORING = 'true';
-      expect(isShadowScoringEnabled()).toBe(true);
+      expect(isShadowScoringEnabled()).toBe(false);
     });
 
-    it('returns true when env var is "TRUE" (case-insensitive)', () => {
+    it('returns false when env var is "TRUE" (REMOVED flag)', () => {
       process.env.SPECKIT_SHADOW_SCORING = 'TRUE';
-      expect(isShadowScoringEnabled()).toBe(true);
+      expect(isShadowScoringEnabled()).toBe(false);
     });
 
     it('returns false when env var is "false"', () => {
@@ -75,7 +75,7 @@ describe('Shadow Scoring (R13-S2)', () => {
       expect(isShadowScoringEnabled()).toBe(false);
     });
 
-    it('returns false when env var is "1"', () => {
+    it('returns false when env var is "1" (REMOVED flag)', () => {
       process.env.SPECKIT_SHADOW_SCORING = '1';
       expect(isShadowScoringEnabled()).toBe(false);
     });
@@ -240,13 +240,12 @@ describe('Shadow Scoring (R13-S2)', () => {
       expect(result).toBeNull();
     });
 
-    it('runs shadow scoring when enabled', async () => {
+    it('returns null when env var is "true" (REMOVED flag — always disabled)', async () => {
       process.env.SPECKIT_SHADOW_SCORING = 'true';
 
       const config: ShadowConfig = {
         algorithmName: 'test-algo',
         shadowScoringFn: (_query, results) => {
-          // Reverse the order
           return results.map((r, idx) => ({
             memoryId: r.memoryId,
             score: 1.0 - idx * 0.1,
@@ -256,12 +255,10 @@ describe('Shadow Scoring (R13-S2)', () => {
       };
 
       const result = await runShadowScoring('test query', makeResults([1, 2, 3]), config);
-      expect(result).not.toBeNull();
-      expect(result!.algorithmName).toBe('test-algo');
-      expect(result!.query).toBe('test query');
+      expect(result).toBeNull();
     });
 
-    it('does NOT modify production results', async () => {
+    it('does NOT call shadow scoring function (REMOVED flag)', async () => {
       process.env.SPECKIT_SHADOW_SCORING = 'true';
 
       const production = makeResults([1, 2, 3]);
@@ -270,7 +267,6 @@ describe('Shadow Scoring (R13-S2)', () => {
       const config: ShadowConfig = {
         algorithmName: 'mutator-algo',
         shadowScoringFn: (_query, results) => {
-          // Try to mutate the input (should be a copy)
           for (const r of results) {
             r.score = 999;
           }
@@ -278,30 +274,30 @@ describe('Shadow Scoring (R13-S2)', () => {
         },
       };
 
-      await runShadowScoring('test query', production, config);
+      const result = await runShadowScoring('test query', production, config);
+      expect(result).toBeNull();
 
       // Original production results must be unchanged
       const currentScores = production.map(r => r.score);
       expect(currentScores).toEqual(originalScores);
     });
 
-    it('handles async shadow scoring functions', async () => {
+    it('returns null for async shadow scoring functions (REMOVED flag)', async () => {
       process.env.SPECKIT_SHADOW_SCORING = 'true';
 
       const config: ShadowConfig = {
         algorithmName: 'async-algo',
         shadowScoringFn: async (_query, results) => {
-          // Simulate async work
           await new Promise(resolve => setTimeout(resolve, 1));
           return results;
         },
       };
 
       const result = await runShadowScoring('test query', makeResults([1, 2]), config);
-      expect(result).not.toBeNull();
+      expect(result).toBeNull();
     });
 
-    it('returns null on shadow scoring function error (fail-safe)', async () => {
+    it('returns null on shadow scoring function error (REMOVED flag — always null)', async () => {
       process.env.SPECKIT_SHADOW_SCORING = 'true';
 
       const config: ShadowConfig = {
@@ -350,7 +346,7 @@ describe('Shadow Scoring (R13-S2)', () => {
       }
     });
 
-    it('logs a shadow comparison to the DB', () => {
+    it('logShadowComparison returns false (REMOVED flag — always disabled)', () => {
       const comparison = compareShadowResults(
         'test query',
         makeResults([1, 2, 3]),
@@ -359,10 +355,10 @@ describe('Shadow Scoring (R13-S2)', () => {
       );
 
       const success = logShadowComparison(comparison);
-      expect(success).toBe(true);
+      expect(success).toBe(false);
     });
 
-    it('getShadowStats returns correct counts after logging', () => {
+    it('getShadowStats returns empty stats (REMOVED flag — logging disabled)', () => {
       const comp1 = compareShadowResults('q1', makeResults([1, 2]), makeResults([1, 2]), 'algo-a');
       const comp2 = compareShadowResults('q2', makeResults([3, 4]), makeResults([4, 3]), 'algo-b');
 
@@ -371,9 +367,8 @@ describe('Shadow Scoring (R13-S2)', () => {
 
       const stats = getShadowStats();
       expect(stats).not.toBeNull();
-      expect(stats!.totalComparisons).toBe(2);
-      expect(stats!.algorithms).toContain('algo-a');
-      expect(stats!.algorithms).toContain('algo-b');
+      expect(stats!.totalComparisons).toBe(0);
+      expect(stats!.algorithms).toHaveLength(0);
     });
 
     it('getShadowStats returns empty stats when no data', () => {

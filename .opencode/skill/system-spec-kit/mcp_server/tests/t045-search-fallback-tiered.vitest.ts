@@ -86,9 +86,9 @@ function seedTestDb(db: Database.Database, rows: Array<{
    ═══════════════════════════════════════════════════════════════ */
 
 describe('PI-A2: Feature flag gating', () => {
-  it('T045-01: isSearchFallbackEnabled returns false by default', () => {
+  it('T045-01: isSearchFallbackEnabled returns true by default (graduated flag)', () => {
     delete process.env.SPECKIT_SEARCH_FALLBACK;
-    expect(isSearchFallbackEnabled()).toBe(false);
+    expect(isSearchFallbackEnabled()).toBe(true);
   });
 
   it('T045-02: isSearchFallbackEnabled returns true when set to "true"', () => {
@@ -112,7 +112,7 @@ describe('PI-A2: Feature flag gating', () => {
 describe('PI-A2: Tier progression', () => {
   it('T045-04: stays at Tier 1 when results meet quality thresholds', async () => {
     // When flag is OFF, searchWithFallback uses the original two-pass logic
-    delete process.env.SPECKIT_SEARCH_FALLBACK;
+    process.env.SPECKIT_SEARCH_FALLBACK = 'false';
 
     // We test the flag check directly — when off, old behavior is preserved
     const result = await searchWithFallback('test query', null, { limit: 5 });

@@ -1312,16 +1312,16 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   // AI-WHY: When enabled, checks for similar memories and performs merge (>=0.88 similarity),
   // conflict/supersede (0.75-0.88), or complement (<0.75). If reconsolidation handles the memory
   // (merge or conflict), we skip normal DB insert and return the reconsolidation result.
+  // BUG-2 fix: Track reconsolidation warnings for structured MCP response (not just console.warn)
+  const reconWarnings: string[] = [];
+
   if (isReconsolidationFlagEnabled() && isReconsolidationEnabled() && embedding) {
     try {
       const hasCheckpoint = hasReconsolidationCheckpoint(database, parsed.specFolder);
       if (!hasCheckpoint) {
-        console.warn(
-          '[memory-save] TM-06: Reconsolidation skipped - required checkpoint "pre-reconsolidation" not found'
-        );
-      }
-
-      if (!hasCheckpoint) {
+        const reconMsg = 'TM-06: reconsolidation skipped — create checkpoint "pre-reconsolidation" first';
+        console.warn(`[memory-save] ${reconMsg}`);
+        reconWarnings.push(reconMsg);
         // Continue normal create path without reconsolidation.
       } else {
         const reconResult: ReconsolidationResult | null = await reconsolidate(
@@ -1657,7 +1657,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     memoryType: parsed.memoryType,
     memoryTypeSource: parsed.memoryTypeSource,
     embeddingStatus: embeddingStatus,
-    warnings: validation.warnings,
+    warnings: [...validation.warnings, ...reconWarnings],
     qualityScore: parsed.qualityScore,
     qualityFlags: parsed.qualityFlags,
   };

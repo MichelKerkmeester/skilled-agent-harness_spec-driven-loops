@@ -113,10 +113,10 @@ const SIMILAR_MEMORY_LIMIT = 3;
 /**
  * Check if reconsolidation is enabled via feature flag.
  *
- * @returns true if SPECKIT_RECONSOLIDATION env var is 'true'
+ * @returns true if SPECKIT_RECONSOLIDATION is not explicitly disabled (default: ON)
  */
 export function isReconsolidationEnabled(): boolean {
-  return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() === 'true';
+  return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() !== 'false';
 }
 
 /* ---------------------------------------------------------------

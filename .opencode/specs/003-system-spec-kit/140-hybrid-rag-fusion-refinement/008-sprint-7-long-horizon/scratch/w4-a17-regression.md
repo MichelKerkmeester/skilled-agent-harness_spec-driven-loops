@@ -1,7 +1,8 @@
 # W4-A17 Regression Test Results
 
 **Date:** 2026-02-28
-**Branch:** 046-sk-doc-visual-design-system
+**Capture Branch:** 046-sk-doc-visual-design-system
+**Target Spec Branch:** 140-hybrid-rag-fusion-refinement
 **Runner:** Vitest v4.0.18
 
 ---

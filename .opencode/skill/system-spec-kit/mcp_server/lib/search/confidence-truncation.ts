@@ -38,13 +38,13 @@ const GAP_THRESHOLD_MULTIPLIER = 2;
 
 /**
  * Check whether confidence-based truncation is enabled.
- * Default: DISABLED. Only enabled when SPECKIT_CONFIDENCE_TRUNCATION is explicitly "true".
+ * Default: TRUE (graduated). Set SPECKIT_CONFIDENCE_TRUNCATION=false to disable.
  *
- * @returns True when SPECKIT_CONFIDENCE_TRUNCATION env var is "true".
+ * @returns True when SPECKIT_CONFIDENCE_TRUNCATION is not explicitly disabled.
  */
 function isConfidenceTruncationEnabled(): boolean {
   const raw = process.env.SPECKIT_CONFIDENCE_TRUNCATION?.toLowerCase()?.trim();
-  return raw === 'true';
+  return raw !== 'false';
 }
 
 /* ─── 3. GAP ANALYSIS HELPERS ─── */

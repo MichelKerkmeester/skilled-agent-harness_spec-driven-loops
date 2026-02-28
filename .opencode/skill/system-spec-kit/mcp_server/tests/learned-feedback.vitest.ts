@@ -309,9 +309,9 @@ describe('Learned Feedback Feature Flags', () => {
     process.env = { ...originalEnv };
   });
 
-  it('R11-FF01: isLearnedFeedbackEnabled returns false by default', () => {
+  it('R11-FF01: isLearnedFeedbackEnabled returns true by default (graduated)', () => {
     delete process.env[FEATURE_FLAG];
-    expect(isLearnedFeedbackEnabled()).toBe(false);
+    expect(isLearnedFeedbackEnabled()).toBe(true);
   });
 
   it('R11-FF02: isLearnedFeedbackEnabled returns true when set', () => {
@@ -324,18 +324,18 @@ describe('Learned Feedback Feature Flags', () => {
     expect(isLearnedFeedbackEnabled()).toBe(true);
   });
 
-  it('R11-FF04: isInShadowPeriod returns true when no start time', () => {
+  it('R11-FF04: isInShadowPeriod always returns false (REMOVED)', () => {
     delete process.env.SPECKIT_LEARN_FROM_SELECTION_START;
-    expect(isInShadowPeriod()).toBe(true);
+    expect(isInShadowPeriod()).toBe(false);
   });
 
-  it('R11-FF05: isInShadowPeriod returns true within 1 week', () => {
-    // Set start time to 1 day ago
+  it('R11-FF05: isInShadowPeriod returns false even within 1 week (REMOVED)', () => {
+    // Set start time to 1 day ago — still returns false (REMOVED flag)
     process.env.SPECKIT_LEARN_FROM_SELECTION_START = String(Date.now() - 1 * 24 * 60 * 60 * 1000);
-    expect(isInShadowPeriod()).toBe(true);
+    expect(isInShadowPeriod()).toBe(false);
   });
 
-  it('R11-FF06: isInShadowPeriod returns false after 1 week', () => {
+  it('R11-FF06: isInShadowPeriod returns false after 1 week (REMOVED)', () => {
     // Set start time to 8 days ago
     process.env.SPECKIT_LEARN_FROM_SELECTION_START = String(Date.now() - 8 * 24 * 60 * 60 * 1000);
     expect(isInShadowPeriod()).toBe(false);
@@ -484,19 +484,14 @@ describe('Learned Feedback Core Operations', () => {
     expect(result.reason).toBe('memory_too_new');
   });
 
-  it('R11-CO04: recordSelection logs in shadow period (Safeguard #6)', () => {
-    // Set shadow period to active
+  it('R11-CO04: shadow period is REMOVED — selection applies normally regardless of start time', () => {
+    // Shadow period env var no longer triggers shadow behavior (isInShadowPeriod always false)
     process.env.SPECKIT_LEARN_FROM_SELECTION_START = String(Date.now() - 1 * 24 * 60 * 60 * 1000);
 
     const result = recordSelection('q1', 1, ['authentication'], 5, testDb);
-    expect(result.applied).toBe(false);
-    expect(result.reason).toBe('shadow_period');
+    // Shadow period is REMOVED — selection applies normally
+    expect(result.applied).toBe(true);
     expect(result.terms.length).toBeGreaterThan(0);
-
-    // Verify audit log was written
-    const audit = getAuditLog(testDb, 1);
-    expect(audit.length).toBeGreaterThan(0);
-    expect(audit[0].shadowMode).toBe(true);
   });
 
   it('R11-CO05: recordSelection applies terms when all safeguards pass', () => {
@@ -542,11 +537,12 @@ describe('Learned Feedback Core Operations', () => {
     expect(matches).toEqual([]);
   });
 
-  it('R11-CO09: queryLearnedTriggers returns empty in shadow period', () => {
+  it('R11-CO09: shadow period REMOVED — queryLearnedTriggers returns results regardless of start time', () => {
     process.env.SPECKIT_LEARN_FROM_SELECTION_START = String(Date.now() - 1 * 24 * 60 * 60 * 1000);
     applyLearnedTriggers(1, ['authentication'], testDb, 'test');
     const matches = queryLearnedTriggers('authentication', testDb);
-    expect(matches).toEqual([]);
+    // Shadow period is REMOVED — queries now return results normally
+    expect(matches.length).toBeGreaterThan(0);
   });
 });
 
@@ -679,15 +675,15 @@ describe('Learned Feedback Audit Log (Safeguard #10)', () => {
     expect(audit.length).toBeGreaterThan(0);
   });
 
-  it('R11-AL04: audit entries include shadow mode flag', () => {
-    // Force shadow mode
+  it('R11-AL04: audit entries have shadow mode false (shadow period REMOVED)', () => {
+    // Shadow period env var has no effect (isInShadowPeriod always false)
     process.env.SPECKIT_LEARN_FROM_SELECTION_START = String(Date.now() - 1 * 24 * 60 * 60 * 1000);
     recordSelection('q-shadow', 1, ['authentication'], 5, testDb);
 
     const audit = getAuditLog(testDb, 1);
     const entry = audit.find((a) => a.source === 'q-shadow');
     expect(entry).toBeDefined();
-    expect(entry!.shadowMode).toBe(true);
+    expect(entry!.shadowMode).toBe(false); // Shadow period REMOVED
   });
 });
 

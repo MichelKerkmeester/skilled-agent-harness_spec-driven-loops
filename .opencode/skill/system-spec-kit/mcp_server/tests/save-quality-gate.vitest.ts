@@ -69,9 +69,9 @@ describe('Save Quality Gate (TM-04)', () => {
       }
     });
 
-    it('FF1: Gate is disabled by default (no env var)', () => {
+    it('FF1: Gate is enabled by default (graduated — default ON)', () => {
       delete process.env.SPECKIT_SAVE_QUALITY_GATE;
-      expect(isQualityGateEnabled()).toBe(false);
+      expect(isQualityGateEnabled()).toBe(true);
     });
 
     it('FF2: Gate is enabled when env var is "true"', () => {
@@ -90,7 +90,7 @@ describe('Save Quality Gate (TM-04)', () => {
     });
 
     it('FF5: Gate OFF means passthrough result', () => {
-      delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+      process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
       const result = runQualityGate({
         title: null,
         content: '',
@@ -612,7 +612,7 @@ describe('Save Quality Gate (TM-04)', () => {
     });
 
     it('UG1: Gate OFF returns pass=true with gateEnabled=false', () => {
-      delete process.env.SPECKIT_SAVE_QUALITY_GATE;
+      process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
       const result = runQualityGate({
         title: null,
         content: '',

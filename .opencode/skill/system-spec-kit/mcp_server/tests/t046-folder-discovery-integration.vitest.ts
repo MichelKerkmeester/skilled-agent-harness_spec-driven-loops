@@ -63,9 +63,9 @@ function cleanup(tmpDir: string): void {
    ═══════════════════════════════════════════════════════════════ */
 
 describe('PI-B3: Feature flag', () => {
-  it('T046-01: isFolderDiscoveryEnabled returns false by default', () => {
+  it('T046-01: isFolderDiscoveryEnabled returns true by default (graduated flag)', () => {
     delete process.env.SPECKIT_FOLDER_DISCOVERY;
-    expect(isFolderDiscoveryEnabled()).toBe(false);
+    expect(isFolderDiscoveryEnabled()).toBe(true);
   });
 
   it('T046-02: isFolderDiscoveryEnabled returns true when set', () => {

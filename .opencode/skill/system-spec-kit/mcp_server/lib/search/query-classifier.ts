@@ -35,13 +35,13 @@ const STOP_WORDS: ReadonlySet<string> = new Set([
 
 /**
  * Check if the complexity router feature flag is enabled.
- * Default: DISABLED. Only enabled when SPECKIT_COMPLEXITY_ROUTER is explicitly "true".
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_COMPLEXITY_ROUTER=false to disable.
  *
- * @returns True when SPECKIT_COMPLEXITY_ROUTER env var is "true".
+ * @returns True when SPECKIT_COMPLEXITY_ROUTER is not explicitly disabled.
  */
 function isComplexityRouterEnabled(): boolean {
   const raw = process.env.SPECKIT_COMPLEXITY_ROUTER?.toLowerCase()?.trim();
-  return raw === 'true';
+  return raw !== 'false';
 }
 
 /* ─── 3. FEATURE EXTRACTION ─── */

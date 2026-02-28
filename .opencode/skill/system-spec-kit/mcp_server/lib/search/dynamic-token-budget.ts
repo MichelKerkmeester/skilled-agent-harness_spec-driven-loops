@@ -40,13 +40,13 @@ const DEFAULT_TOKEN_BUDGET_CONFIG: TokenBudgetConfig = {
 
 /**
  * Check whether dynamic token budget allocation is enabled.
- * Default: DISABLED. Only enabled when SPECKIT_DYNAMIC_TOKEN_BUDGET is explicitly "true".
+ * Default: TRUE (graduated). Set SPECKIT_DYNAMIC_TOKEN_BUDGET=false to disable.
  *
- * @returns True when SPECKIT_DYNAMIC_TOKEN_BUDGET env var is "true".
+ * @returns True when SPECKIT_DYNAMIC_TOKEN_BUDGET is not explicitly disabled.
  */
 function isDynamicTokenBudgetEnabled(): boolean {
   const raw = process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET?.toLowerCase()?.trim();
-  return raw === 'true';
+  return raw !== 'false';
 }
 
 /* ─── 3. BUDGET RESOLUTION ─── */

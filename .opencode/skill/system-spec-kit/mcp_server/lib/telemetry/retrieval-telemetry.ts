@@ -17,11 +17,12 @@ import type {
    1. FEATURE FLAG
 --------------------------------------------------------------- */
 
+/**
+ * @deprecated Sprint eval complete (Sprint 7 audit). Overhead not justified.
+ * SPECKIT_EXTENDED_TELEMETRY env var is inert. Hardcoded to false.
+ */
 function isExtendedTelemetryEnabled(): boolean {
-  const flag = process.env.SPECKIT_EXTENDED_TELEMETRY;
-  // Default true: only disabled when explicitly set to 'false' or '0'
-  if (flag === 'false' || flag === '0') return false;
-  return true;
+  return false;
 }
 
 /* ---------------------------------------------------------------

@@ -56,7 +56,7 @@ Sprint 7 implemented the final phase (Phase 8 of 8) of the Hybrid RAG Fusion Ref
 - Ablation uses dependency injection for search function (testable without full pipeline)
 - Sign test chosen over t-test for robustness with small query sets
 - Negative timestamp IDs distinguish ablation runs from production eval runs
-- Channel set: `ALL_CHANNELS = ['vector', 'fts5', 'bm25', 'graph']` — matches Sprint 5 pipeline architecture
+- Channel set: `ALL_CHANNELS = ['vector', 'bm25', 'fts5', 'graph', 'trigger']` — trigger is caller-gated because trigger matching runs outside `hybridSearch`
 - R13-S3 acceptance criterion: ablation framework can isolate contribution of at least 1 individual channel — MET
 
 ### T002: S1 Smarter Memory Content Generation
@@ -96,20 +96,19 @@ Sprint 7 implemented the final phase (Phase 8 of 8) of the Hybrid RAG Fusion Ref
 
 ### T005a: Feature Flag Sunset Audit
 
-**61 unique SPECKIT_ flags** found across the codebase:
+**61 unique SPECKIT_ flags** found across the codebase.
 
-| Category | Count | Action |
-|----------|-------|--------|
-| Permanent / Core (default-ON) | 18 | KEEP |
-| Config / Tuning parameters | 8 | KEEP |
-| Debug flags | 3 | KEEP |
-| Sprint-specific: GRADUATE | 27 | Promote to permanent-ON |
-| Sprint-specific: REMOVE | 9 | Delete flag + dead code |
-| Sprint-specific: KEEP (eval) | 3 | Retain as operational knobs |
+**Disposition rollup from the sunset-candidate set (see `scratch/w2-a10-flag-audit.md`):**
+
+- GRADUATE: 27
+- REMOVE: 9
+- KEEP: 3
+
+> Note: the disposition counts apply to the explicit sunset-candidate set (sprint-specific + legacy experimental toggles), not a strict partition of all 61 unique flags.
 
 **Verification**: `grep -rn "SPECKIT_" mcp_server/ --include="*.ts" | grep -v node_modules`
 
-**Key recommendations**: 27 flags ready to graduate to permanent-ON defaults (removing flag checks). 9 flags identified as dead code for removal. 3 flags retained as active operational knobs (`ADAPTIVE_FUSION`, `COACTIVATION_STRENGTH`, `PRESSURE_POLICY`). Full audit in `scratch/w2-a10-flag-audit.md`.
+**Key recommendations**: 27 flags are ready to graduate to permanent-ON defaults (removing flag checks). 9 flags are identified as dead code for removal. 3 flags remain active operational knobs (`ADAPTIVE_FUSION`, `COACTIVATION_STRENGTH`, `PRESSURE_POLICY`). Full audit in `scratch/w2-a10-flag-audit.md`.
 
 ### T006a: DEF-014 structuralFreshness() Disposition
 
@@ -120,8 +119,9 @@ Zero references to `structuralFreshness` exist anywhere in the codebase. The fun
 ### T001: R8 Memory Summaries — SKIPPED
 
 **Scale gate result**: 2,411 active memories with embeddings < 5,000 threshold.
-Query: `SELECT COUNT(*) FROM memory_index WHERE importance_tier != 'archived' AND embedding_status = 'success'`
+Query: `SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'`
 Decision: Skip T001 entirely per gating condition.
+Note: R8 gate captured 2,411; later R5 captured 2,412 after one additional successful embedding was indexed.
 
 ### T003: S5 Cross-Document Entity Linking — SKIPPED
 
@@ -185,7 +185,7 @@ Decision: Skip T003 — no entities to link regardless of memory count.
 | Task | Decision | Rationale |
 |------|----------|-----------|
 | T001 (R8) | SKIPPED | 2,411 < 5,000 memories threshold |
-| T002 (S1) | COMPLETED | Content normalizer with 149 tests |
+| T002 (S1) | COMPLETED | Content normalizer with 76 tests |
 | T003 (S5) | SKIPPED | Zero entities (R10 never built) |
 | T004 (R13-S3) | COMPLETED | Ablation + reporting, 73 tests |
 | T005 (R5) | NO-GO | All 3 criteria unmet |

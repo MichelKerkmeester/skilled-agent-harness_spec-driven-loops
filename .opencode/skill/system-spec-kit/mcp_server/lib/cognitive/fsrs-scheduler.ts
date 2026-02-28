@@ -332,8 +332,9 @@ function applyClassificationDecay(
   contextType: string,
   importanceTier: string
 ): number {
-  const flag = process.env.SPECKIT_CLASSIFICATION_DECAY;
-  if (flag !== 'true' && flag !== '1') {
+  // Graduated: default-ON. Set SPECKIT_CLASSIFICATION_DECAY=false to disable.
+  const flag = process.env.SPECKIT_CLASSIFICATION_DECAY?.toLowerCase();
+  if (flag === 'false' || flag === '0') {
     return stability;
   }
 

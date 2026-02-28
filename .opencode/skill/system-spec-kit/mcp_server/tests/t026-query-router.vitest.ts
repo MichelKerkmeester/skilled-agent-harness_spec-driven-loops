@@ -291,7 +291,7 @@ describe('T026-04: routeQuery Convenience Function', () => {
 
 describe('T026-05: Feature Flag Disabled', () => {
   beforeEach(() => {
-    setEnv(FEATURE_FLAG, undefined);
+    setEnv(FEATURE_FLAG, 'false');
   });
 
   afterEach(() => {

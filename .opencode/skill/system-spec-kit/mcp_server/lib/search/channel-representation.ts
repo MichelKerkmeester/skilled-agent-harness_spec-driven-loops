@@ -57,13 +57,13 @@ export interface ChannelRepresentationResult {
 
 /**
  * Return true when the channel min-representation feature is enabled.
- * The flag is OFF by default; set SPECKIT_CHANNEL_MIN_REP=true to enable.
+ * Default: TRUE (graduated). Set SPECKIT_CHANNEL_MIN_REP=false to disable.
  *
- * @returns True when SPECKIT_CHANNEL_MIN_REP env var is "true".
+ * @returns True when SPECKIT_CHANNEL_MIN_REP is not explicitly disabled.
  */
 export function isChannelMinRepEnabled(): boolean {
   const raw = process.env[FEATURE_FLAG]?.toLowerCase();
-  return raw === 'true';
+  return raw !== 'false';
 }
 
 /* ─── 4. CORE FUNCTION ─── */

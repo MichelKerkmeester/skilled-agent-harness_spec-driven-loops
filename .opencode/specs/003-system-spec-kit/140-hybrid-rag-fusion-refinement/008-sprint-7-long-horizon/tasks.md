@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Sprint 7 — Long Horizon"
-description: "Task breakdown for Sprint 7: Long Horizon — COMPLETED. R8/S5 skipped (scale gates), S1/R13-S3/R5/T005a/DEF-014 completed. Exit gate pending final verification."
+description: "Task breakdown for Sprint 7: Long Horizon — COMPLETED. R8/S5 skipped (scale gates), S1/R13-S3/R5/T005a/DEF-014 completed. Exit gate and program completion verification passed."
 trigger_phrases:
   - "sprint 7 tasks"
   - "long horizon tasks"
@@ -38,7 +38,7 @@ contextType: "implementation"
 
 - [x] T001 [P] Implement memory summary generation (gated on >5K **active memories with embeddings**) behind `SPECKIT_MEMORY_SUMMARIES` flag [15-20h] — R8 (REQ-S7-001)
   - **SKIPPED — scale gate not met (2,411/5,000)**
-  - Scale gate query: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` returned 2,411 — below 5,000 threshold
+  - Scale gate query: `SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'` returned 2,411 — below 5,000 threshold
   - Per task rules: "If result <5K, skip T001 entirely and document" — documented as skipped
   - ~~**Scale gate check (required first)**~~: Result: 2,411 active memories with embeddings
   - ~~Summary generation algorithm~~ — not implemented (gate not met)
@@ -63,7 +63,7 @@ contextType: "implementation"
   - `ablation-framework.ts` (~290 LOC): channel toggle, delta measurement, sign test significance testing
   - `reporting-dashboard.ts` (~290 LOC): per-sprint and per-channel metric views
   - 73 tests passing (39 ablation + 34 reporting)
-  - Acceptance criteria met: ablation framework can isolate contribution of individual channels (vector, BM25, graph, causal, trigger) and measure Recall@20 delta per component
+  - Acceptance criteria met: ablation framework can isolate contribution of individual channels (vector, BM25, FTS5, graph, trigger) and measure Recall@20 delta per component
 - [x] T005 Evaluate R5 (INT8 quantization) need [2h] — R5 (REQ-S7-005)
   - **COMPLETED — NO-GO decision**
   - Measured values: 2,412 memories (<10K threshold), ~15ms p95 latency (<50ms threshold), 1,024 dims (<1,536 threshold)
@@ -83,8 +83,8 @@ contextType: "implementation"
   - Disposition: CLOSED — the concept was discussed in spec/design phase but never materialized as code
   - No dead code to remove; no implementation to evaluate
   - DEF-014 status: resolved as out-of-scope — never existed beyond design discussion
-- [ ] T006 [GATE] Sprint 7 exit gate verification: R8 skipped (scale gate), S1 content normalizer operational, S5 skipped (no entity infrastructure), R13-S3 dashboard + ablation operational, R5 NO-GO documented, feature flag sunset audit completed, DEF-014 closed [0h] {T001-T006a}
-  - **PENDING — awaiting final verification after all agents complete**
+- [x] T006 [GATE] Sprint 7 exit gate verification: R8 skipped (scale gate), S1 content normalizer operational, S5 skipped (no entity infrastructure), R13-S3 dashboard + ablation operational, R5 NO-GO documented, feature flag sunset audit completed, DEF-014 closed [0h] {T001-T006a}
+  - **PASSED — final verification completed; evidence reconciled across tasks/checklist/implementation-summary**
 <!-- /ANCHOR:implementation -->
 
 ---
@@ -92,14 +92,14 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Program Completion
 
-- [ ] T007 Program completion verification [0h] {T001, T002, T003, T004, T005, T006}
+- [x] T007 Program completion verification [0h] {T001, T002, T003, T004, T005, T006}
   - [x] R13-S3 full reporting operational — `reporting-dashboard.ts` created, 34 tests passing
   - [x] R13-S3 ablation study framework functional — `ablation-framework.ts` created, 39 tests passing
   - [x] R8 gating verified — SKIPPED, scale gate not met (2,411/5,000 active memories with embeddings)
   - [x] S1 content quality improved — `content-normalizer.ts` with 7 primitives + 2 composites, 76 tests passing
   - [x] S5 entity links — SKIPPED, R10 entity extraction never built (Sprint 6b deferred); zero entities in system
   - [x] R5 decision documented — NO-GO (2,412 memories, ~15ms latency, 1,024 dims; all below activation thresholds)
-  - [ ] All health dashboard targets reviewed — pending final verification
+  - [x] All health dashboard targets reviewed — reporting dashboard outputs and completion checklist reviewed
   - [x] Final feature flag audit complete — 61 flags inventoried; 27 GRADUATE, 9 REMOVE, 3 KEEP
 
 ---
@@ -108,11 +108,11 @@ contextType: "implementation"
 
 - [x] All tasks T001-T006a marked `[x]` (or documented as skipped due to gating condition not met) — T001 skipped (scale gate), T002 completed, T003 skipped (no entities), T004 completed, T005 completed (NO-GO), T005a completed, T006a completed (CLOSED)
 - [x] No `[B]` blocked tasks remaining — confirmed, zero blocked tasks
-- [ ] Sprint 7 exit gate verification (T006) passed — pending final verification
-- [ ] Program completion verification (T007) passed — 7/8 sub-items complete, 1 pending (health dashboard review)
+- [x] Sprint 7 exit gate verification (T006) passed — gate criteria verified and documented
+- [x] Program completion verification (T007) passed — 8/8 sub-items complete
 - [x] All existing tests still passing — 76 (S1) + 73 (R13-S3) = 149 new tests passing
 - [x] Feature flag sunset audit (T005a) complete — 61 flags inventoried, dispositions assigned
-- [ ] All health dashboard targets reviewed — pending
+- [x] All health dashboard targets reviewed — verified via reporting outputs and checklist evidence
 - [x] Scale gate documented: 2,411 active memories with embeddings (query result recorded in T001)
 <!-- /ANCHOR:completion -->
 

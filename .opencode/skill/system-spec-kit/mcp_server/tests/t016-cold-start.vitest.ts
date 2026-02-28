@@ -50,7 +50,7 @@ describe('calculateNoveltyBoost — flag disabled (default)', () => {
   });
 });
 
-describe('calculateNoveltyBoost — flag enabled', () => {
+describe('calculateNoveltyBoost — feature removed (always returns 0)', () => {
   beforeEach(() => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
   });
@@ -59,35 +59,28 @@ describe('calculateNoveltyBoost — flag enabled', () => {
     vi.unstubAllEnvs();
   });
 
-  it('at 0h returns ~0.15', () => {
-    // Use a very recent timestamp (seconds ago) to approximate 0 hours elapsed
+  it('at 0h returns 0 (feature removed)', () => {
     const createdAt = new Date(Date.now() - 1000).toISOString();
     const boost = calculateNoveltyBoost(createdAt);
-    expect(boost).toBeCloseTo(0.15, 2);
+    expect(boost).toBe(0);
   });
 
-  it('at 12h returns ~0.055 (within 0.01 tolerance)', () => {
+  it('at 12h returns 0 (feature removed)', () => {
     const createdAt = new Date(hoursAgo(12)).toISOString();
     const boost = calculateNoveltyBoost(createdAt);
-    // Expected: 0.15 * exp(-1) ≈ 0.0552
-    expect(boost).toBeGreaterThan(0.045);
-    expect(boost).toBeLessThan(0.065);
+    expect(boost).toBe(0);
   });
 
-  it('at 24h returns ~0.020 (within 0.01 tolerance)', () => {
+  it('at 24h returns 0 (feature removed)', () => {
     const createdAt = new Date(hoursAgo(24)).toISOString();
     const boost = calculateNoveltyBoost(createdAt);
-    // Expected: 0.15 * exp(-2) ≈ 0.0203
-    expect(boost).toBeGreaterThan(0.01);
-    expect(boost).toBeLessThan(0.03);
+    expect(boost).toBe(0);
   });
 
-  it('at 48h returns ~0.003 (effectively zero)', () => {
+  it('at 48h returns 0 (feature removed)', () => {
     const createdAt = new Date(hoursAgo(48)).toISOString();
     const boost = calculateNoveltyBoost(createdAt);
-    // Expected: 0.15 * exp(-4) ≈ 0.00275
-    expect(boost).toBeGreaterThanOrEqual(0);
-    expect(boost).toBeLessThan(0.005);
+    expect(boost).toBe(0);
   });
 
   it('returns 0 for null/undefined created_at', () => {
@@ -101,7 +94,6 @@ describe('calculateNoveltyBoost — flag enabled', () => {
   });
 
   it('returns 0 for future timestamps (elapsed < 0)', () => {
-    // created_at 1 hour in the future
     const futurestamp = new Date(Date.now() + 3600000).toISOString();
     expect(calculateNoveltyBoost(futurestamp)).toBe(0);
   });
@@ -155,12 +147,12 @@ describe('score cap at 0.95', () => {
 // N4: Both scoring paths apply the boost
 // ---------------------------------------------------------------------------
 
-describe('five-factor path applies boost', () => {
+describe('five-factor path — novelty boost removed', () => {
   afterEach(() => {
     vi.unstubAllEnvs();
   });
 
-  it('score is higher with flag enabled vs disabled for brand-new memory', () => {
+  it('score is identical with or without flag (feature removed)', () => {
     const createdAt = new Date(Date.now() - 100).toISOString(); // essentially 0h
     const row = {
       created_at: createdAt,
@@ -176,17 +168,17 @@ describe('five-factor path applies boost', () => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
     const scoreWith = calculateFiveFactorScore(row);
 
-    expect(scoreWith).toBeGreaterThan(scoreWithout);
-    expect(scoreWith - scoreWithout).toBeCloseTo(0.15, 1);
+    // Novelty boost removed — flag has no effect, scores are identical
+    expect(scoreWith).toBe(scoreWithout);
   });
 });
 
-describe('legacy composite path applies boost', () => {
+describe('legacy composite path — novelty boost removed', () => {
   afterEach(() => {
     vi.unstubAllEnvs();
   });
 
-  it('score is higher with flag enabled vs disabled for brand-new memory', () => {
+  it('score is identical with or without flag (feature removed)', () => {
     const createdAt = new Date(Date.now() - 100).toISOString();
     const row = {
       created_at: createdAt,
@@ -202,7 +194,7 @@ describe('legacy composite path applies boost', () => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
     const scoreWith = calculateCompositeScore(row);
 
-    expect(scoreWith).toBeGreaterThan(scoreWithout);
-    expect(scoreWith - scoreWithout).toBeCloseTo(0.15, 1);
+    // Novelty boost removed — flag has no effect, scores are identical
+    expect(scoreWith).toBe(scoreWithout);
   });
 });

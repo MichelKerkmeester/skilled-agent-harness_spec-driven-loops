@@ -60,9 +60,9 @@ describe('T030-01: Feature Flag (SPECKIT_DYNAMIC_TOKEN_BUDGET)', () => {
     }
   });
 
-  it('T1: defaults to disabled when env var not set', () => {
+  it('T1: defaults to enabled when env var not set (graduated flag)', () => {
     delete process.env[FLAG];
-    expect(isDynamicTokenBudgetEnabled()).toBe(false);
+    expect(isDynamicTokenBudgetEnabled()).toBe(true);
   });
 
   it('T2: disabled when env var is "false"', () => {
@@ -70,9 +70,9 @@ describe('T030-01: Feature Flag (SPECKIT_DYNAMIC_TOKEN_BUDGET)', () => {
     expect(isDynamicTokenBudgetEnabled()).toBe(false);
   });
 
-  it('T3: disabled when env var is empty string', () => {
+  it('T3: enabled when env var is empty string (graduated flag)', () => {
     process.env[FLAG] = '';
-    expect(isDynamicTokenBudgetEnabled()).toBe(false);
+    expect(isDynamicTokenBudgetEnabled()).toBe(true);
   });
 
   it('T4: enabled when env var is "true"', () => {
@@ -91,7 +91,7 @@ describe('T030-01: Feature Flag (SPECKIT_DYNAMIC_TOKEN_BUDGET)', () => {
    --------------------------------------------------------------- */
 
 describe('T030-02: Flag Disabled — Default Budget (4000)', () => {
-  beforeEach(disableFlag);
+  beforeEach(() => { process.env[FLAG] = 'false'; });
   afterEach(disableFlag);
 
   it('T6: simple tier returns DEFAULT_BUDGET (4000) when disabled', () => {

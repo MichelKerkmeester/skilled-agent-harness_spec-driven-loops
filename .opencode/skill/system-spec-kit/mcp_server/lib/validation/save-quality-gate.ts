@@ -139,11 +139,12 @@ export let qualityGateActivatedAt: number | null = null;
 
 /**
  * Check if the quality gate feature flag is enabled.
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_SAVE_QUALITY_GATE=false to disable.
  *
- * @returns true if SPECKIT_SAVE_QUALITY_GATE env var is 'true'
+ * @returns true if SPECKIT_SAVE_QUALITY_GATE is not explicitly disabled
  */
 export function isQualityGateEnabled(): boolean {
-  return process.env.SPECKIT_SAVE_QUALITY_GATE?.toLowerCase() === 'true';
+  return process.env.SPECKIT_SAVE_QUALITY_GATE?.toLowerCase() !== 'false';
 }
 
 /**

@@ -454,9 +454,9 @@ describe('T023: RSF Fusion (Relative Score Fusion)', () => {
       expect(isRsfEnabled()).toBe(false);
     });
 
-    it('T023.9.2: returns true when env var is "true"', () => {
+    it('T023.9.2: returns false even when env var is "true" (feature removed)', () => {
       process.env.SPECKIT_RSF_FUSION = 'true';
-      expect(isRsfEnabled()).toBe(true);
+      expect(isRsfEnabled()).toBe(false);
     });
 
     it('T023.9.3: returns false when env var is "false"', () => {

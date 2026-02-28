@@ -242,7 +242,7 @@ describe('Composite Score Normalization (T004)', () => {
   });
 
   it('returns scores unchanged when flag is disabled', () => {
-    delete process.env.SPECKIT_SCORE_NORMALIZATION;
+    process.env.SPECKIT_SCORE_NORMALIZATION = 'false';
 
     const scores = [0.8, 0.4, 0.6];
     const result = normalizeCompositeScores(scores);

@@ -68,9 +68,9 @@ describe('T029-01: Feature Flag (SPECKIT_CONFIDENCE_TRUNCATION)', () => {
     }
   });
 
-  it('T1: defaults to disabled when env var not set', () => {
+  it('T1: defaults to enabled when env var not set (graduated flag)', () => {
     delete process.env[FLAG];
-    expect(isConfidenceTruncationEnabled()).toBe(false);
+    expect(isConfidenceTruncationEnabled()).toBe(true);
   });
 
   it('T2: disabled when env var is "false"', () => {
@@ -78,9 +78,9 @@ describe('T029-01: Feature Flag (SPECKIT_CONFIDENCE_TRUNCATION)', () => {
     expect(isConfidenceTruncationEnabled()).toBe(false);
   });
 
-  it('T3: disabled when env var is empty string', () => {
+  it('T3: enabled when env var is empty string (graduated flag)', () => {
     process.env[FLAG] = '';
-    expect(isConfidenceTruncationEnabled()).toBe(false);
+    expect(isConfidenceTruncationEnabled()).toBe(true);
   });
 
   it('T4: enabled when env var is "true"', () => {
@@ -99,7 +99,7 @@ describe('T029-01: Feature Flag (SPECKIT_CONFIDENCE_TRUNCATION)', () => {
    --------------------------------------------------------------- */
 
 describe('T029-02: Flag Disabled — Pass-Through', () => {
-  beforeEach(disableFlag);
+  beforeEach(() => { process.env[FLAG] = 'false'; });
   afterEach(disableFlag);
 
   it('T6: returns all results unchanged when flag disabled', () => {

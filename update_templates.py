@@ -2,7 +2,7 @@ import os
 import re
 
 template_dir = '.opencode/skill/sk-doc-visual/assets/templates'
-css_snippet_path = '.opencode/skill/sk-doc-visual/assets/snippets/fluid-typography.css'
+css_snippet_path = '.opencode/skill/sk-doc-visual/assets/variables/fluid-typography.css'
 
 with open(css_snippet_path, 'r') as f:
     snippet_content = f.read()

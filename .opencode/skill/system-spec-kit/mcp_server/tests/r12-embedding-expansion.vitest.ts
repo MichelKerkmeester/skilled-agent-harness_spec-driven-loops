@@ -87,8 +87,8 @@ describe('R12: Embedding-Based Query Expansion', () => {
 
   // ── T1: Feature flag OFF → identity result ──────────────────────────────
 
-  it('T1: returns identity result when SPECKIT_EMBEDDING_EXPANSION is off', async () => {
-    delete process.env.SPECKIT_EMBEDDING_EXPANSION;
+  it('T1: returns identity result when SPECKIT_EMBEDDING_EXPANSION is explicitly off', async () => {
+    process.env.SPECKIT_EMBEDDING_EXPANSION = 'false'; // graduated — must explicitly disable
     const embedding = makeEmbedding();
     const result = await expandQueryWithEmbeddings('find authentication decisions', embedding);
 
@@ -197,8 +197,8 @@ describe('R12: Embedding-Based Query Expansion', () => {
 
   // ── T5: isExpansionActive() respects flag OFF ────────────────────────────
 
-  it('T5: isExpansionActive() returns false when flag is off', () => {
-    delete process.env.SPECKIT_EMBEDDING_EXPANSION;
+  it('T5: isExpansionActive() returns false when flag is explicitly off', () => {
+    process.env.SPECKIT_EMBEDDING_EXPANSION = 'false'; // graduated — must explicitly disable
     expect(isExpansionActive('some complex multi word query here now')).toBe(false);
   });
 
@@ -230,12 +230,12 @@ describe('R12: Embedding-Based Query Expansion', () => {
     expect(isExpansionActive(complexQuery)).toBe(true);
   });
 
-  it('T7b: isExpansionActive() returns true for complex query even with R15 disabled', () => {
+  it('T7b: isExpansionActive() returns true for complex query even with R15 explicitly disabled', () => {
     process.env.SPECKIT_EMBEDDING_EXPANSION = 'true';
-    // SPECKIT_COMPLEXITY_ROUTER is off → classifyQueryComplexity always returns "complex"
-    delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+    // SPECKIT_COMPLEXITY_ROUTER is graduated — must explicitly disable with 'false'
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
 
-    // When R15 complexity router is disabled, its fallback is "complex" for all queries.
+    // When R15 complexity router is explicitly disabled, its fallback is "complex" for all queries.
     // R12 should therefore run on all queries (flag is on, not "simple").
     expect(isExpansionActive('fix bug')).toBe(true);
     expect(isExpansionActive('one')).toBe(true);
@@ -305,7 +305,7 @@ describe('R12: Embedding-Based Query Expansion', () => {
   });
 
   it('T10b: flag-off path returns within 1 ms (no classification overhead)', async () => {
-    delete process.env.SPECKIT_EMBEDDING_EXPANSION;
+    process.env.SPECKIT_EMBEDDING_EXPANSION = 'false'; // graduated — must explicitly disable
 
     const start = Date.now();
     await expandQueryWithEmbeddings('some multi word complex expansion query', makeEmbedding());

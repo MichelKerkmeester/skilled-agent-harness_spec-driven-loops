@@ -59,12 +59,12 @@ export const MPAB_BONUS_COEFFICIENT = 0.3;
 
 /**
  * Check if MPAB chunk-to-memory aggregation is enabled.
- * Default OFF -- opt-in via SPECKIT_DOCSCORE_AGGREGATION=true.
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_DOCSCORE_AGGREGATION=false to disable.
  *
- * @returns True if MPAB aggregation is enabled via env var
+ * @returns True if MPAB aggregation is enabled (default: ON)
  */
 export function isMpabEnabled(): boolean {
-  return process.env.SPECKIT_DOCSCORE_AGGREGATION?.toLowerCase() === 'true';
+  return process.env.SPECKIT_DOCSCORE_AGGREGATION?.toLowerCase() !== 'false';
 }
 
 /* ─── 4. CORE ALGORITHM ─── */

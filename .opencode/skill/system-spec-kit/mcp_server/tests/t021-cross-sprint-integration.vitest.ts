@@ -311,12 +311,12 @@ describe('E. Feature Flag Independence', () => {
 
   it('E3: SPECKIT_NOVELTY_BOOST alone does not trigger interference penalty', () => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
-    // SPECKIT_INTERFERENCE_SCORE deliberately NOT set
+    vi.stubEnv('SPECKIT_INTERFERENCE_SCORE', 'false'); // explicitly disable (graduated: default ON)
 
     const score = 0.5;
     const afterPenalty = applyInterferencePenalty(score, 5);
 
-    // Without SPECKIT_INTERFERENCE_SCORE=true, penalty must not be applied
+    // With SPECKIT_INTERFERENCE_SCORE=false, penalty must not be applied
     expect(afterPenalty).toBe(score);
   });
 

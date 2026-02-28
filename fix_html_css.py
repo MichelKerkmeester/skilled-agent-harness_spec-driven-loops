@@ -31,7 +31,7 @@ with open(html_path, "w") as f:
     f.write(html_content)
 
 # Now Layout CSS
-layout_path = ".opencode/skill/sk-doc-visual/assets/snippets/layout.css"
+layout_path = ".opencode/skill/sk-doc-visual/assets/variables/layout.css"
 with open(layout_path, "r") as f:
     layout_css = f.read()
 

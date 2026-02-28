@@ -447,30 +447,14 @@ export const NOVELTY_BOOST_SCORE_CAP = 0.95;
 
 /**
  * N4: Calculate cold-start novelty boost with exponential decay.
- * Gated behind SPECKIT_NOVELTY_BOOST env flag (disabled by default).
- *
- * Formula: boost = 0.15 * exp(-elapsed_hours / 12)
- * Effective window: 0–48 hours after creation.
- *
- * At  0h: 0.150
- * At 12h: ~0.055
- * At 24h: ~0.020
- * At 48h: ~0.003 (effectively zero)
+ * @deprecated Eval complete (Sprint 7 audit). Marginal value confirmed.
+ * SPECKIT_NOVELTY_BOOST env var is inert. Always returns 0.
  *
  * @param createdAt - ISO creation timestamp
- * @returns Novelty boost value (0 if older than window)
+ * @returns 0 (novelty boost permanently disabled)
  */
-export function calculateNoveltyBoost(createdAt: string | undefined): number {
-  if (process.env.SPECKIT_NOVELTY_BOOST !== 'true') return 0;
-  if (!createdAt) return 0;
-
-  const createdMs = new Date(createdAt).getTime();
-  if (isNaN(createdMs)) return 0;
-
-  const elapsedHours = (Date.now() - createdMs) / 3600000;
-  if (elapsedHours < 0 || elapsedHours > 48) return 0;
-
-  return NOVELTY_BOOST_MAX * Math.exp(-elapsedHours / NOVELTY_BOOST_HALF_LIFE_HOURS);
+export function calculateNoveltyBoost(_createdAt: string | undefined): number {
+  return 0;
 }
 
 /**
@@ -768,12 +752,12 @@ export function getScoreBreakdown(row: ScoringInput, options: ScoringOptions = {
 
 /**
  * Check if composite score normalization is enabled.
- * Gated behind SPECKIT_SCORE_NORMALIZATION env var (default: disabled).
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_SCORE_NORMALIZATION=false to disable.
  *
- * @returns True if normalization is enabled via env var
+ * @returns True if normalization is enabled (default: ON)
  */
 export function isCompositeNormalizationEnabled(): boolean {
-  return process.env.SPECKIT_SCORE_NORMALIZATION === 'true';
+  return process.env.SPECKIT_SCORE_NORMALIZATION?.toLowerCase() !== 'false';
 }
 
 /**

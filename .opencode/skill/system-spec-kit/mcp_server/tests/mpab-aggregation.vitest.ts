@@ -152,9 +152,9 @@ describe('isMpabEnabled', () => {
     }
   });
 
-  it('returns false when env var is not set (default OFF)', () => {
+  it('returns true when env var is not set (graduated — default ON)', () => {
     delete process.env[ENV_KEY];
-    expect(isMpabEnabled()).toBe(false);
+    expect(isMpabEnabled()).toBe(true);
   });
 
   it('returns true when env var is "true"', () => {
@@ -177,14 +177,14 @@ describe('isMpabEnabled', () => {
     expect(isMpabEnabled()).toBe(false);
   });
 
-  it('returns false when env var is empty string', () => {
+  it('returns true when env var is empty string (graduated — treated as enabled)', () => {
     process.env[ENV_KEY] = '';
-    expect(isMpabEnabled()).toBe(false);
+    expect(isMpabEnabled()).toBe(true);
   });
 
-  it('returns false when env var is arbitrary string', () => {
+  it('returns true when env var is arbitrary string (graduated — only "false" disables)', () => {
     process.env[ENV_KEY] = 'yes';
-    expect(isMpabEnabled()).toBe(false);
+    expect(isMpabEnabled()).toBe(true);
   });
 });
 

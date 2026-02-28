@@ -21,10 +21,10 @@ import type Database from 'better-sqlite3';
 
 /**
  * Check if folder relevance scoring is enabled.
- * Disabled by default; set `SPECKIT_FOLDER_SCORING=true` to enable.
+ * Default: TRUE (graduated). Set SPECKIT_FOLDER_SCORING=false to disable.
  */
 export function isFolderScoringEnabled(): boolean {
-  return process.env.SPECKIT_FOLDER_SCORING === 'true';
+  return process.env.SPECKIT_FOLDER_SCORING?.toLowerCase() !== 'false';
 }
 
 /* -----------------------------------------------------------

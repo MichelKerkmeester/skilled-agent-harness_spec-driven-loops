@@ -384,13 +384,11 @@ function fuseResultsRsfCrossVariant(variantLists: RankedList[][]): RsfResult[] {
 /* ─── 6. FEATURE FLAG ─── */
 
 /**
- * Check if RSF fusion is enabled via the SPECKIT_RSF_FUSION env var.
- * Defaults to false (opt-in). Set SPECKIT_RSF_FUSION=true to enable.
- *
- * @returns True when SPECKIT_RSF_FUSION env var is "true".
+ * @deprecated Eval complete (Sprint 7 audit). Hardcoded to false.
+ * RSF shadow fusion experiment concluded — env var SPECKIT_RSF_FUSION is inert.
  */
 function isRsfEnabled(): boolean {
-  return process.env.SPECKIT_RSF_FUSION?.toLowerCase()?.trim() === 'true';
+  return false;
 }
 
 /* ─── 7. EXPORTS ─── */

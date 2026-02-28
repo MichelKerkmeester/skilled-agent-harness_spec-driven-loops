@@ -322,7 +322,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
       }).not.toThrow();
     });
 
-    it('T031-HYB-S4-01: shadow scoring attaches runtime comparison metadata when enabled', async () => {
+    it('T031-HYB-S4-01: shadow scoring does NOT attach metadata (REMOVED flag)', async () => {
       const originalShadowFlag = process.env.SPECKIT_SHADOW_SCORING;
       process.env.SPECKIT_SHADOW_SCORING = 'true';
 
@@ -331,15 +331,9 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         expect(results).toBeDefined();
         expect(Array.isArray(results)).toBe(true);
 
-        if (results.length > 0) {
-          const shadowMeta = (results as unknown as Record<string, unknown>)._s4shadow as
-            | { algorithm?: string; logged?: boolean }
-            | undefined;
-
-          expect(shadowMeta).toBeDefined();
-          expect(shadowMeta?.algorithm).toBe('pre_mmr_baseline');
-          expect(typeof shadowMeta?.logged).toBe('boolean');
-        }
+        // Shadow scoring is REMOVED — no metadata attached even with env='true'
+        const shadowMeta = (results as unknown as Record<string, unknown>)._s4shadow;
+        expect(shadowMeta).toBeUndefined();
       } finally {
         if (originalShadowFlag === undefined) {
           delete process.env.SPECKIT_SHADOW_SCORING;

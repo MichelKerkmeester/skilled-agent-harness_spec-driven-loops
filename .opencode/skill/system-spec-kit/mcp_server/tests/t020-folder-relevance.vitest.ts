@@ -276,9 +276,9 @@ describe('Folder Relevance Scoring (t020)', () => {
       }
     });
 
-    it('T020-08a: isFolderScoringEnabled returns false by default', () => {
+    it('T020-08a: isFolderScoringEnabled returns true by default (graduated flag)', () => {
       delete process.env.SPECKIT_FOLDER_SCORING;
-      expect(isFolderScoringEnabled()).toBe(false);
+      expect(isFolderScoringEnabled()).toBe(true);
     });
 
     it('T020-08b: isFolderScoringEnabled returns true when set to "true"', () => {
@@ -291,9 +291,9 @@ describe('Folder Relevance Scoring (t020)', () => {
       expect(isFolderScoringEnabled()).toBe(false);
     });
 
-    it('T020-08d: isFolderScoringEnabled returns false for arbitrary string', () => {
+    it('T020-08d: isFolderScoringEnabled returns true for arbitrary string (graduated flag)', () => {
       process.env.SPECKIT_FOLDER_SCORING = 'yes';
-      expect(isFolderScoringEnabled()).toBe(false);
+      expect(isFolderScoringEnabled()).toBe(true);
     });
   });
 

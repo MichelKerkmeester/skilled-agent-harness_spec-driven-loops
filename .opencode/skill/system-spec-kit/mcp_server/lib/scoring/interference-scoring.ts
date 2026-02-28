@@ -256,7 +256,8 @@ export function applyInterferencePenalty(
   score: number,
   interferenceScore: number
 ): number {
-  if (process.env.SPECKIT_INTERFERENCE_SCORE !== 'true') return score;
+  // Graduated: default-ON. Set SPECKIT_INTERFERENCE_SCORE=false to disable.
+  if (process.env.SPECKIT_INTERFERENCE_SCORE?.toLowerCase() === 'false') return score;
   if (!interferenceScore || interferenceScore <= 0) return score;
 
   const penalty = INTERFERENCE_PENALTY_COEFFICIENT * interferenceScore;

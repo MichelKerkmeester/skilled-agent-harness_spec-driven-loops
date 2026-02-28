@@ -157,15 +157,15 @@ describe('Cross-Sprint Integration', () => {
   describe('Feature Flag Interactions', () => {
 
     it('1. All flags disabled: scoring pipeline produces valid 0-1 scores', () => {
-      // Ensure all sprint flags are disabled (defaults)
-      clearEnv('SPECKIT_COMPLEXITY_ROUTER');
-      clearEnv('SPECKIT_DYNAMIC_TOKEN_BUDGET');
-      clearEnv('SPECKIT_RSF_FUSION');
-      clearEnv('SPECKIT_CHANNEL_MIN_REP');
-      clearEnv('SPECKIT_CONFIDENCE_TRUNCATION');
-      clearEnv('SPECKIT_NOVELTY_BOOST');
-      clearEnv('SPECKIT_INTERFERENCE_SCORE');
-      clearEnv('SPECKIT_SCORE_NORMALIZATION');
+      // Explicitly disable all sprint flags (graduated flags default ON when unset)
+      setEnv('SPECKIT_COMPLEXITY_ROUTER', 'false');
+      setEnv('SPECKIT_DYNAMIC_TOKEN_BUDGET', 'false');
+      setEnv('SPECKIT_RSF_FUSION', 'false');
+      setEnv('SPECKIT_CHANNEL_MIN_REP', 'false');
+      setEnv('SPECKIT_CONFIDENCE_TRUNCATION', 'false');
+      setEnv('SPECKIT_NOVELTY_BOOST', 'false');
+      setEnv('SPECKIT_INTERFERENCE_SCORE', 'false');
+      setEnv('SPECKIT_SCORE_NORMALIZATION', 'false');
 
       // Query classifier falls back to complex
       const classification = classifyQueryComplexity('test query');
@@ -321,14 +321,13 @@ describe('Cross-Sprint Integration', () => {
 
       const score = calculateCompositeScore(row);
 
-      // N4 adds boost, TM-01 subtracts penalty — both applied
+      // TM-01 subtracts penalty; N4 novelty boost removed (always 0)
       expect(score).toBeGreaterThanOrEqual(0);
       expect(score).toBeLessThanOrEqual(1);
 
-      // Verify novelty boost is calculated for brand-new memory
+      // Novelty boost always returns 0 (feature removed, Sprint 7 audit)
       const noveltyBoost = calculateNoveltyBoost(row.created_at!);
-      expect(noveltyBoost).toBeGreaterThan(0);
-      expect(noveltyBoost).toBeLessThanOrEqual(NOVELTY_BOOST_MAX);
+      expect(noveltyBoost).toBe(0);
 
       // Verify interference penalty would be applied
       const penalized = applyInterferencePenalty(0.5, 5);
@@ -391,23 +390,18 @@ describe('Cross-Sprint Integration', () => {
 
   describe('Numeric Correctness', () => {
 
-    it('8. N4 decay formula verification: manual calculation matches function output', () => {
+    it('8. N4 novelty boost removed: always returns 0 regardless of age', () => {
       setEnv('SPECKIT_NOVELTY_BOOST', 'true');
 
-      // Memory created exactly 12 hours ago (= half-life)
+      // Feature removed (Sprint 7 audit) — all ages return 0
       const twelveHoursAgo = new Date(Date.now() - 12 * 3600000).toISOString();
       const boost = calculateNoveltyBoost(twelveHoursAgo);
+      expect(boost).toBe(0);
 
-      // Formula: 0.15 * exp(-12 / 12) = 0.15 * exp(-1) = 0.15 * 0.3679... ≈ 0.0552
-      const expected = NOVELTY_BOOST_MAX * Math.exp(-12 / NOVELTY_BOOST_HALF_LIFE_HOURS);
-      expect(boost).toBeCloseTo(expected, 4);
-
-      // At 0 hours: should be close to max
       const justNow = new Date().toISOString();
       const boostNow = calculateNoveltyBoost(justNow);
-      expect(boostNow).toBeCloseTo(NOVELTY_BOOST_MAX, 2);
+      expect(boostNow).toBe(0);
 
-      // At 48 hours: should be 0 (beyond window)
       const fortyEightHoursAgo = new Date(Date.now() - 48.1 * 3600000).toISOString();
       const boostOld = calculateNoveltyBoost(fortyEightHoursAgo);
       expect(boostOld).toBe(0);

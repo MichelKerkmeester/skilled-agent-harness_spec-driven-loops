@@ -577,17 +577,14 @@ describe('T010-7: No Scoring Behavior Change When Observability Active', () => {
     }
   });
 
-  it('T010-7c: N4 boost is additive and capped at NOVELTY_BOOST_SCORE_CAP', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
-    const freshRow = { ...BASE_ROW, created_at: hoursAgo(1) }; // 1h old → full boost region
-    const oldRow = { ...BASE_ROW, created_at: daysAgo(100) }; // 100d old → no boost
+  it('T010-7c: N4 boost is REMOVED — calculateNoveltyBoost always returns 0', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // flag is inert — function always returns 0
+    const freshRow = { ...BASE_ROW, created_at: hoursAgo(1) };
+    const oldRow = { ...BASE_ROW, created_at: daysAgo(100) };
 
-    const freshScore = calculateFiveFactorScore(freshRow);
-    const oldScore = calculateFiveFactorScore(oldRow);
-
-    // Fresh memory should score ≥ old memory (or same if both cap out)
-    expect(freshScore).toBeGreaterThanOrEqual(oldScore - 0.001);
-    expect(freshScore).toBeLessThanOrEqual(NOVELTY_BOOST_SCORE_CAP + 0.001);
+    // With N4 removed, both get 0 novelty boost → scores differ only by base factors
+    expect(calculateNoveltyBoost(freshRow.created_at)).toBe(0);
+    expect(calculateNoveltyBoost(oldRow.created_at)).toBe(0);
   });
 
   it('T010-7d: TM-01 penalty reduces score (never increases it)', () => {
@@ -601,15 +598,13 @@ describe('T010-7: No Scoring Behavior Change When Observability Active', () => {
     expect(scoreWith).toBeLessThanOrEqual(scoreWithout + 0.001);
   });
 
-  it('T010-7e: flags disabled → N4 and TM-01 have no effect', () => {
+  it('T010-7e: flags disabled → N4 (REMOVED) always 0, TM-01 (graduated) must explicitly disable', () => {
     delete process.env.SPECKIT_NOVELTY_BOOST;
-    delete process.env.SPECKIT_INTERFERENCE_SCORE;
+    process.env.SPECKIT_INTERFERENCE_SCORE = 'false'; // graduated — must explicitly disable
 
-    const rowFresh = { ...BASE_ROW, created_at: hoursAgo(0.5), interference_score: 5.0 };
-    const rowOld = { ...BASE_ROW, created_at: daysAgo(100), interference_score: 0 };
-
-    // With flags off, interference_score and freshness should have no effect via N4/TM-01 paths
+    // N4 is REMOVED — always returns 0 regardless of env var
     expect(calculateNoveltyBoost(hoursAgo(0.5))).toBe(0);
+    // TM-01 is graduated — explicitly disabled with 'false' → returns score unchanged
     expect(applyInterferencePenalty(0.7, 5.0)).toBe(0.7);
   });
 
@@ -653,48 +648,45 @@ describe('T010-8: N4 calculateNoveltyBoost', () => {
     delete process.env.SPECKIT_NOVELTY_BOOST;
   });
 
-  it('T010-8a: returns 0 when SPECKIT_NOVELTY_BOOST is not set', () => {
+  it('T010-8a: returns 0 always (REMOVED — SPECKIT_NOVELTY_BOOST is inert)', () => {
     delete process.env.SPECKIT_NOVELTY_BOOST;
     expect(calculateNoveltyBoost(hoursAgo(1))).toBe(0);
   });
 
-  it('T010-8b: returns 0 when created_at is null', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
+  it('T010-8b: returns 0 always regardless of input (REMOVED)', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // inert
     expect(calculateNoveltyBoost(null)).toBe(0);
   });
 
-  it('T010-8c: boost at 0h ≈ NOVELTY_BOOST_MAX (0.15)', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
-    // Just created
+  it('T010-8c: boost at 0h returns 0 (REMOVED — flag is inert)', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // inert
     const boost = calculateNoveltyBoost(hoursAgo(0));
-    expect(boost).toBeCloseTo(NOVELTY_BOOST_MAX, 2);
+    expect(boost).toBe(0); // REMOVED — always returns 0
   });
 
-  it('T010-8d: boost at 12h ≈ 0.15 * exp(-1) ≈ 0.055', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
+  it('T010-8d: boost at 12h returns 0 (REMOVED — flag is inert)', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // inert
     const boost = calculateNoveltyBoost(hoursAgo(12));
-    expect(boost).toBeCloseTo(NOVELTY_BOOST_MAX * Math.exp(-1), 3);
+    expect(boost).toBe(0); // REMOVED — always returns 0
   });
 
-  it('T010-8e: boost at 24h ≈ 0.15 * exp(-2) ≈ 0.020', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
+  it('T010-8e: boost at 24h returns 0 (REMOVED — flag is inert)', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // inert
     const boost = calculateNoveltyBoost(hoursAgo(24));
-    expect(boost).toBeCloseTo(NOVELTY_BOOST_MAX * Math.exp(-2), 3);
+    expect(boost).toBe(0); // REMOVED — always returns 0
   });
 
-  it('T010-8f: boost at 48h ≈ 0.003 (effectively zero — window edge)', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
-    // At 48h, exponential decay: 0.15 * exp(-4) ≈ 0.00275
+  it('T010-8f: boost at 48h returns 0 (REMOVED — flag is inert)', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // inert
     const boost = calculateNoveltyBoost(hoursAgo(48));
-    expect(boost).toBeCloseTo(NOVELTY_BOOST_MAX * Math.exp(-4), 3);
-    expect(boost).toBeLessThan(0.005); // effectively zero
+    expect(boost).toBe(0); // REMOVED — always returns 0
   });
 
-  it('T010-8g: boost monotonically decreases with age', () => {
-    process.env.SPECKIT_NOVELTY_BOOST = 'true';
+  it('T010-8g: all boost values are 0 regardless of age (REMOVED)', () => {
+    process.env.SPECKIT_NOVELTY_BOOST = 'true'; // inert
     const boosts = [0, 6, 12, 24, 47].map(h => calculateNoveltyBoost(hoursAgo(h)));
-    for (let i = 1; i < boosts.length; i++) {
-      expect(boosts[i]).toBeLessThanOrEqual(boosts[i - 1] + 0.001);
+    for (const boost of boosts) {
+      expect(boost).toBe(0); // REMOVED — always returns 0
     }
   });
 });
@@ -708,8 +700,8 @@ describe('T010-9: TM-01 applyInterferencePenalty', () => {
     delete process.env.SPECKIT_INTERFERENCE_SCORE;
   });
 
-  it('T010-9a: returns score unchanged when SPECKIT_INTERFERENCE_SCORE not set', () => {
-    delete process.env.SPECKIT_INTERFERENCE_SCORE;
+  it('T010-9a: returns score unchanged when SPECKIT_INTERFERENCE_SCORE explicitly disabled', () => {
+    process.env.SPECKIT_INTERFERENCE_SCORE = 'false'; // graduated — must explicitly disable
     expect(applyInterferencePenalty(0.7, 3.0)).toBe(0.7);
   });
 

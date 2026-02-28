@@ -340,9 +340,10 @@ describe('applyInterferencePenalty', () => {
     }
   });
 
-  it('returns score unchanged when env var is not set', () => {
+  it('applies penalty when env var is not set (graduated: default ON)', () => {
     delete process.env.SPECKIT_INTERFERENCE_SCORE;
-    expect(applyInterferencePenalty(0.8, 5)).toBe(0.8);
+    // Graduated flag: unset means enabled. 0.8 + (-0.08 * 5) = 0.4
+    expect(applyInterferencePenalty(0.8, 5)).toBeCloseTo(0.4, 4);
   });
 
   it('returns score unchanged when env var is "false"', () => {
@@ -406,7 +407,7 @@ describe('Composite Scoring Integration with Interference', () => {
   });
 
   it('5-factor score is unaffected when env var is off', () => {
-    delete process.env.SPECKIT_INTERFERENCE_SCORE;
+    process.env.SPECKIT_INTERFERENCE_SCORE = 'false';
     const now = Date.now();
     const row = {
       stability: 5.0,

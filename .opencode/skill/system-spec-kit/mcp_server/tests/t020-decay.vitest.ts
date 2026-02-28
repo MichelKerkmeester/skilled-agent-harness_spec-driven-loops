@@ -198,11 +198,11 @@ describe('T020-5: Unknown context_type and importance_tier default to 1.0', () =
 // T020-6: Feature flag gating (SPECKIT_CLASSIFICATION_DECAY)
 // ---------------------------------------------------------------
 describe('T020-6: SPECKIT_CLASSIFICATION_DECAY feature flag gating', () => {
-  it('flag unset → applyClassificationDecay returns stability unchanged', () => {
+  it('flag unset → applyClassificationDecay applies multiplier (graduated: default ON)', () => {
     withFlag(undefined, () => {
       const result = applyClassificationDecay(10, 'decision', 'constitutional');
-      // Even with no-decay types, flag off means pass-through
-      expect(result).toBe(10);
+      // Graduated flag: unset means enabled. decision+constitutional → Infinity
+      expect(result).toBe(Infinity);
     });
   });
 

@@ -130,41 +130,23 @@ function ensureAuditTable(db: Database): void {
 
 /**
  * Check if the learned relevance feedback feature is enabled.
- * Default: OFF (must be explicitly set to 'true').
- * This is Safeguard #8 -- the sprint gate review. Feature remains off
- * until manual review and explicit opt-in via environment variable.
+ * Default: TRUE (graduated). Set SPECKIT_LEARN_FROM_SELECTION=false to disable.
  *
- * @returns true if SPECKIT_LEARN_FROM_SELECTION is set to 'true'
+ * @returns true if SPECKIT_LEARN_FROM_SELECTION is not explicitly disabled
  */
 export function isLearnedFeedbackEnabled(): boolean {
-  return process.env[FEATURE_FLAG]?.toLowerCase() === 'true';
+  return process.env[FEATURE_FLAG]?.toLowerCase() !== 'false';
 }
 
 /**
  * Check if the system is still in the 1-week shadow period (Safeguard #6).
- * During the shadow period, selections are logged to the audit table
- * but learned triggers are NOT applied to actual queries.
+ * @deprecated Shadow period no longer needed — LEARN_FROM_SELECTION graduated to default-ON.
+ * SPECKIT_LEARN_FROM_SELECTION_START env var is inert. Always returns false.
  *
- * The shadow period start time is stored in the environment variable
- * SPECKIT_LEARN_FROM_SELECTION_START as an epoch millisecond timestamp.
- * If not set, shadow mode is assumed active (conservative default).
- *
- * @returns true if still in the shadow period (log-only mode)
+ * @returns false (shadow period permanently ended)
  */
 export function isInShadowPeriod(): boolean {
-  const startTimeRaw = process.env.SPECKIT_LEARN_FROM_SELECTION_START;
-  if (!startTimeRaw) {
-    // No start time recorded -- assume shadow mode (conservative)
-    return true;
-  }
-
-  const startTime = Number(startTimeRaw);
-  if (!Number.isFinite(startTime)) {
-    return true;
-  }
-
-  const elapsed = Date.now() - startTime;
-  return elapsed < SHADOW_PERIOD_MS;
+  return false;
 }
 
 /**

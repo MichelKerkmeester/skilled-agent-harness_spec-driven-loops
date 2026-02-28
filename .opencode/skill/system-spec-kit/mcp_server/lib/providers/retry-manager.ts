@@ -8,6 +8,7 @@ import * as fsPromises from 'fs/promises';
 // Internal modules
 import * as vectorIndex from '../search/vector-index';
 import { generateDocumentEmbedding } from './embeddings';
+import { normalizeContentForEmbedding } from '../parsing/content-normalizer';
 
 // Type imports
 import type { MemoryDbRow } from '../../../shared/types';
@@ -218,7 +219,11 @@ async function retryEmbedding(id: number, content: string): Promise<RetryResult>
     // TODO(REQ-S2-001): Integrate persistent embedding cache here.
     // Check lookupEmbedding(db, contentHash, modelId) before calling generateDocumentEmbedding.
     // On miss, store result via storeEmbedding. See memory-save.ts for reference implementation.
-    const embedding = await generateDocumentEmbedding(content);
+    // BUG-1 fix: Normalize content before embedding to match sync save path (memory-save.ts:1119).
+    // Without this, async-saved memories get embeddings from raw markdown (YAML frontmatter, HTML
+    // comments, code fences) while sync-saved memories get clean normalized embeddings.
+    const normalizedContent = normalizeContentForEmbedding(content);
+    const embedding = await generateDocumentEmbedding(normalizedContent);
 
     if (!embedding) {
       incrementRetryCount(id, 'Embedding generation returned null');

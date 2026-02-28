@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1-P3 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-02-26 |
 | **Branch** | `140-hybrid-rag-fusion-refinement` |
 | **Parent Spec** | ../spec.md |
@@ -152,9 +152,9 @@ Address scale-dependent optimizations that become valuable at maturity, complete
 
 ### Scale Gate Definition
 
-> **SCALE GATE CLARITY (R8)**: The "5K memories" threshold for R8 activation means **5,000 active memories with embeddings** in the database (i.e., `status != 'archived'` AND `embedding IS NOT NULL`). Draft memories without embeddings and archived memories do not count. The threshold must be confirmed by a direct database query: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`.
+> **SCALE GATE CLARITY (R8)**: The "5K memories" threshold for R8 activation means **5,000 active memories with successful embeddings** in `memory_index` (i.e., `(is_archived IS NULL OR is_archived = 0)` AND `embedding_status = 'success'`). Pending/failed embeddings and archived rows do not count. The threshold must be confirmed by a direct database query: `SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'`.
 
-> **SCALE GATE CLARITY (S5)**: S5 (cross-document entity linking) activates only if **>1,000 active memories with embeddings** (`SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` returns >1K) **OR >50 verified entities** exist in the entity catalog. Below either threshold, S5 should be documented as skipped with the measured values recorded as decision evidence.
+> **SCALE GATE CLARITY (S5)**: S5 (cross-document entity linking) activates only if **>1,000 active memories with successful embeddings** (`SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'` returns >1K) **OR >50 verified entities** exist in the entity catalog. Below either threshold, S5 should be documented as skipped with the measured values recorded as decision evidence.
 <!-- /ANCHOR:success-criteria -->
 
 ---

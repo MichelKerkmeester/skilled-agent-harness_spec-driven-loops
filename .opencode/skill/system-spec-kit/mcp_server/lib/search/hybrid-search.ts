@@ -27,7 +27,7 @@ import {
 } from './folder-relevance';
 
 // Sprint 4 modules — all flag-gated, disabled by default
-import { isMpabEnabled, collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation';
+import { collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation';
 import { runShadowScoring, logShadowComparison } from '../eval/shadow-scoring';
 import { getChannelAttribution } from '../eval/channel-attribution';
 import type { ChannelSources } from '../eval/channel-attribution';
@@ -603,11 +603,10 @@ async function hybridSearchEnhanced(
       }
     }
 
-    // AI-WHY: Degree channel is gated behind SPECKIT_DEGREE_BOOST flag because graph-degree
-    // scoring is experimental — it re-ranks based on causal-edge connectivity, which can
-    // over-promote hub memories in densely-linked graphs.
-    // Degree channel (T002: 5th RRF channel behind SPECKIT_DEGREE_BOOST flag) — also gated by Sprint 3 routing
-    if (activeChannels.has('degree') && db && process.env.SPECKIT_DEGREE_BOOST === 'true') {
+    // AI-WHY: Degree channel re-ranks based on causal-edge connectivity.
+    // Graduated: default-ON. Set SPECKIT_DEGREE_BOOST=false to disable.
+    // Degree channel (T002: 5th RRF channel) — also gated by Sprint 3 routing
+    if (activeChannels.has('degree') && db && process.env.SPECKIT_DEGREE_BOOST?.toLowerCase() !== 'false') {
       try {
         // Collect all numeric IDs from existing channels
         const allResultIds = new Set<number>();
@@ -716,7 +715,8 @@ async function hybridSearchEnhanced(
       // AI-WHY: When enabled, collapses chunk-level results back to their parent memory
       // documents using MPAB scoring (sMax + 0.3 * sum(remaining) / sqrt(N)). This prevents
       // multiple chunks from the same document dominating the result list.
-      if (isDocscoreAggregationEnabled() && isMpabEnabled()) {
+      // MINOR-1 fix: isMpabEnabled() and isDocscoreAggregationEnabled() check the same env var
+      if (isDocscoreAggregationEnabled()) {
         try {
           const chunkResults = fusedHybridResults.filter(
             r => (r as Record<string, unknown>).parentMemoryId != null && (r as Record<string, unknown>).chunkIndex != null

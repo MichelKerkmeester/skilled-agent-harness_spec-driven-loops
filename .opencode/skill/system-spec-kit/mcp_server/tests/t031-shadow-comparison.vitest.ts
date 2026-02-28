@@ -355,7 +355,7 @@ describe('T031-05: Routing Correctness on Synthetic Corpus', () => {
 
   it('T21: flag disabled routes ALL queries to full pipeline (5 channels)', () => {
     const original = process.env.SPECKIT_COMPLEXITY_ROUTER;
-    delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
     try {
       for (const q of ALL_QUERIES) {
         const result = routeQuery(q);

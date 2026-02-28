@@ -119,9 +119,9 @@ describe('T022-01: Feature Flag (SPECKIT_COMPLEXITY_ROUTER)', () => {
     }
   });
 
-  it('defaults to disabled when env var is not set', () => {
+  it('defaults to enabled when env var is not set (graduated flag)', () => {
     delete process.env.SPECKIT_COMPLEXITY_ROUTER;
-    expect(isComplexityRouterEnabled()).toBe(false);
+    expect(isComplexityRouterEnabled()).toBe(true);
   });
 
   it('is disabled when env var is "false"', () => {
@@ -129,14 +129,14 @@ describe('T022-01: Feature Flag (SPECKIT_COMPLEXITY_ROUTER)', () => {
     expect(isComplexityRouterEnabled()).toBe(false);
   });
 
-  it('is disabled when env var is empty string', () => {
+  it('is enabled when env var is empty string (graduated flag)', () => {
     process.env.SPECKIT_COMPLEXITY_ROUTER = '';
-    expect(isComplexityRouterEnabled()).toBe(false);
+    expect(isComplexityRouterEnabled()).toBe(true);
   });
 
-  it('is disabled when env var is arbitrary string', () => {
+  it('is enabled when env var is arbitrary string (graduated flag)', () => {
     process.env.SPECKIT_COMPLEXITY_ROUTER = 'maybe';
-    expect(isComplexityRouterEnabled()).toBe(false);
+    expect(isComplexityRouterEnabled()).toBe(true);
   });
 
   it('is enabled when env var is "true"', () => {
@@ -155,7 +155,7 @@ describe('T022-01: Feature Flag (SPECKIT_COMPLEXITY_ROUTER)', () => {
   });
 
   it('when disabled, classifyQueryComplexity always returns "complex"', () => {
-    delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
     const shortQuery = classifyQueryComplexity('fix bug');
     expect(shortQuery.tier).toBe('complex');
     expect(shortQuery.confidence).toBe('fallback');
@@ -166,7 +166,7 @@ describe('T022-01: Feature Flag (SPECKIT_COMPLEXITY_ROUTER)', () => {
   });
 
   it('when disabled, trigger matches still return "complex"', () => {
-    delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
     const result = classifyQueryComplexity('save context', TRIGGER_PHRASES);
     expect(result.tier).toBe('complex');
     expect(result.confidence).toBe('fallback');

@@ -502,9 +502,9 @@ describe('T002: Full consolidation cycle', () => {
     expect(result.stale.flagged).toBe(0);
   });
 
-  it('T-CONS-03: runConsolidationCycleIfEnabled returns null when flag is off', () => {
+  it('T-CONS-03: runConsolidationCycleIfEnabled returns null when flag is explicitly off', () => {
     const saved = process.env.SPECKIT_CONSOLIDATION;
-    delete process.env.SPECKIT_CONSOLIDATION;
+    process.env.SPECKIT_CONSOLIDATION = 'false'; // graduated — must explicitly disable
 
     const db = createTestDb();
     initCausalEdges(db);

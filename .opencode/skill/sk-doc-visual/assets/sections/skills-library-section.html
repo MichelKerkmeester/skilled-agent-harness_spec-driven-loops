@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Preview</title>
+  <link rel="stylesheet" href="../variables/fluid-typography.css">
+  <link rel="stylesheet" href="../variables/colors.css">
+  <link rel="stylesheet" href="../variables/typography.css">
+  <link rel="stylesheet" href="../variables/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="../variables/template-defaults.js" defer></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    body {
+      font-family: var(--font-sans);
+      line-height: var(--lh-base);
+      font-weight: var(--weight-medium);
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+    .mono {
+      font-family: var(--font-mono);
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+    .page-container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="selection:bg-[var(--accent-muted)] min-h-screen relative w-full">
+
+<div class="page-container px-6 lg:px-12 py-12">
+<style>
+section[id] {
+  scroll-margin-top: 6rem;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-reveal);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.text-balance {
+  text-wrap: balance;
+}
+.glass-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: var(--transition-card);
+}
+.glass-card:hover {
+  border-color: var(--accent-hover);
+  box-shadow: var(--glass-shadow);
+  transform: translateY(-2px);
+}
+</style>
+<section id="{{section_id|default('skills-library')}}" class="space-y-10 reveal pt-4 active">
+  <div class="inline-flex items-center gap-3 border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-widest text-[var(--zinc-200)] mb-2">
+    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("07")}} // {{section_title|default("SKILLS LIBRARY")}}
+  </div>
+
+  <div class="space-y-8">
+    <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">{{headline|default("11 domain skills, auto-loaded.")}}</p>
+    <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
+      {{description|default("Skills are domain expertise on demand. The AI loads the right skill and already knows your conventions.")}}
+    </p>
+  </div>
+
+  <div class="space-y-6 pt-4">
+    <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{subtitle|default("Multi-Stack Auto-Detection")}}</h3>
+    <p class="text-sm text-[var(--zinc-400)]">{{subdescription|default("<code>skill_advisor.py</code> analyzes your request keywords. Confidence >= 0.8 = skill auto-loads.")}}</p>
+    
+    <div class="glass-card p-6 mono text-[10px] space-y-4 hover:-translate-y-1 transition-transform duration-300">
+      <div class="flex justify-between border-b border-[var(--border-light)] pb-2">
+        <span class="font-semibold text-[var(--zinc-200)]">{{item1_title|default("Go")}}</span>
+        <span class="text-[var(--text-muted)]">{{item1_desc|default("go.mod")}}</span>
+      </div>
+      <div class="flex justify-between border-b border-[var(--border-light)] pb-2">
+        <span class="font-semibold text-[var(--zinc-200)]">{{item2_title|default("Node.js")}}</span>
+        <span class="text-[var(--text-muted)]">{{item2_desc|default("pkg.json "express"")}}</span>
+      </div>
+      <div class="flex justify-between border-b border-[var(--border-light)] pb-2">
+        <span class="font-semibold text-[var(--zinc-200)]">{{item3_title|default("React")}}</span>
+        <span class="text-[var(--text-muted)]">{{item3_desc|default("next.config.js")}}</span>
+      </div>
+      <div class="flex justify-between border-b border-[var(--border-light)] pb-2">
+        <span class="font-semibold text-[var(--zinc-200)]">{{item4_title|default("React Native")}}</span>
+        <span class="text-[var(--text-muted)]">{{item4_desc|default("app.json "expo"")}}</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="font-semibold text-[var(--zinc-200)]">{{item5_title|default("Swift")}}</span>
+        <span class="text-[var(--text-muted)]">{{item5_desc|default("Package.swift")}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+</div>
+</body>
+</html>

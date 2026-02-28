@@ -485,7 +485,7 @@ describe('T007: Token budget estimation', () => {
   });
 
   it('T007.1 — when disabled, all tiers get DEFAULT_BUDGET (4000)', () => {
-    delete process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET;
+    process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET = 'false';
 
     const simple = getDynamicTokenBudget('simple');
     const moderate = getDynamicTokenBudget('moderate');

@@ -245,11 +245,10 @@ describe('Signal Vocabulary (T012)', () => {
 
   // ─── T012-07: Flag disabled = no boost (backward compat) ──────
   describe('T012-07: SPECKIT_SIGNAL_VOCAB flag controls activation', () => {
-    it('does NOT apply signal boosts when SPECKIT_SIGNAL_VOCAB is unset', () => {
-      // Flag is deleted in beforeEach, so this tests the default off state
-      delete process.env.SPECKIT_SIGNAL_VOCAB;
+    it('does NOT apply signal boosts when SPECKIT_SIGNAL_VOCAB is explicitly false', () => {
+      process.env.SPECKIT_SIGNAL_VOCAB = 'false';
       const result = matchTriggerPhrasesWithStats('actually I prefer TypeScript');
-      // stats.signals should be undefined when flag is off
+      // stats.signals should be undefined when flag is explicitly disabled
       expect(result.stats.signals).toBeUndefined();
     });
 

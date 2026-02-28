@@ -152,23 +152,20 @@ describe('T002: Cold-start Novelty Boost (N4)', () => {
     vi.unstubAllEnvs();
   });
 
-  // T041-05: Brand-new memory (0h elapsed) gets boost approx 0.15
-  it('T041-05: brand-new memory (0h) gets boost ≈ 0.15', () => {
+  // T041-05: Novelty boost REMOVED (Sprint 7 audit) — always returns 0
+  it('T041-05: novelty boost always returns 0 (feature removed)', () => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
     const createdAt = new Date(Date.now() - 500).toISOString(); // ~0h
     const boost = calculateNoveltyBoost(createdAt);
-    expect(boost).toBeCloseTo(NOVELTY_BOOST_MAX, 2);
+    expect(boost).toBe(0);
   });
 
-  // T041-06: 12h-old memory gets boost ≈ 0.15 * exp(-1) ≈ 0.055
-  it('T041-06: 12h-old memory gets boost ≈ 0.055', () => {
+  // T041-06: Novelty boost REMOVED — always returns 0 regardless of age
+  it('T041-06: novelty boost returns 0 for 12h-old memory (feature removed)', () => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
     const createdAt = new Date(hoursAgo(12)).toISOString();
     const boost = calculateNoveltyBoost(createdAt);
-    const expected = NOVELTY_BOOST_MAX * Math.exp(-12 / NOVELTY_BOOST_HALF_LIFE_HOURS);
-    expect(boost).toBeCloseTo(expected, 2);
-    expect(boost).toBeGreaterThan(0.04);
-    expect(boost).toBeLessThan(0.07);
+    expect(boost).toBe(0);
   });
 
   // T041-07: 30-day-old memory (720h) gets zero (beyond 48h window)
@@ -221,10 +218,9 @@ describe('T005: Interference Scoring (TM-01)', () => {
     expect(result).toBeCloseTo(0.66, 2);
   });
 
-  // T041-11: Flag disabled → no penalty applied
+  // T041-11: Flag explicitly disabled → no penalty applied
   it('T041-11: flag disabled returns score unchanged', () => {
-    // SPECKIT_INTERFERENCE_SCORE not set
-    vi.unstubAllEnvs();
+    vi.stubEnv('SPECKIT_INTERFERENCE_SCORE', 'false');
     const baseScore = 0.7;
     const result = applyInterferencePenalty(baseScore, 5.0);
     expect(result).toBe(baseScore);
@@ -291,9 +287,9 @@ describe('T006: Classification-based Decay (TM-03)', () => {
     expect(adjusted).toBe(6.0);
   });
 
-  // T041-17: Flag disabled → stability unchanged
+  // T041-17: Flag explicitly disabled → stability unchanged
   it('T041-17: flag disabled returns stability unchanged', () => {
-    delete process.env.SPECKIT_CLASSIFICATION_DECAY;
+    process.env.SPECKIT_CLASSIFICATION_DECAY = 'false';
     const baseStability = 2.0;
     const result = applyClassificationDecay(baseStability, 'research', 'temporary');
     expect(result).toBe(baseStability);
@@ -356,9 +352,9 @@ describe('T004: Score Normalization', () => {
     expect(result).toEqual([]);
   });
 
-  // T041-24: Flag disabled returns scores unchanged
+  // T041-24: Flag explicitly disabled returns scores unchanged
   it('T041-24: flag disabled returns scores unchanged', () => {
-    vi.unstubAllEnvs(); // ensure flag is off
+    vi.stubEnv('SPECKIT_SCORE_NORMALIZATION', 'false');
     const input = [0.2, 0.5, 0.8];
     const result = normalizeCompositeScores(input);
     expect(result).toEqual(input);

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Preview</title>
+  <link rel="stylesheet" href="../variables/fluid-typography.css">
+  <link rel="stylesheet" href="../variables/colors.css">
+  <link rel="stylesheet" href="../variables/typography.css">
+  <link rel="stylesheet" href="../variables/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="../variables/template-defaults.js" defer></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    body {
+      font-family: var(--font-sans);
+      line-height: var(--lh-base);
+      font-weight: var(--weight-medium);
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+    .mono {
+      font-family: var(--font-mono);
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+    .page-container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="selection:bg-[var(--accent-muted)] min-h-screen relative w-full">
+
+<div class="page-container px-6 lg:px-12 py-12">
+<style>
+section[id] {
+  scroll-margin-top: 6rem;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-reveal);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.glass-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: var(--transition-card);
+}
+.glass-card:hover {
+  border-color: var(--accent-hover);
+  box-shadow: var(--glass-shadow);
+  transform: translateY(-2px);
+}
+.text-balance {
+  text-wrap: balance;
+}
+</style>
+          <!-- 05 Agent Network -->
+          <section id="{{section_id|default('agent-network')}}" class="space-y-10 reveal pt-4 active">
+            <div class="inline-flex items-center gap-3 border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-widest text-[var(--zinc-200)] mb-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("05")}} // {{section_title|default("AGENT NETWORK")}}
+            </div>
+            
+            <div class="space-y-8">
+              <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">{{headline|default("11 specialized agents with role-based routing.")}}</p>
+              <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
+                {{description|default("Eleven specialized agents prevent AI assistants from making assumptions, skipping documentation, creating technical debt and drifting from scope. Two are built into OpenCode. Nine are custom agents. 11 specialized agents across 4 runtime platforms.")}}
+              </p>
+            </div>
+
+            <div class="space-y-6 pt-4">
+              <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">All Agents</h3>
+              <div class="overflow-hidden border border-[var(--border)] rounded-xl bg-[var(--surface)] shadow-lg">
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left text-[11px] mono whitespace-nowrap">
+                    <thead>
+                      <tr class="border-b border-[var(--border)] bg-[var(--surface-l2)]">
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Agent</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Type</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Model</th>
+                        <th class="py-2.5 px-5 text-[var(--text-muted)] font-semibold tracking-widest">Role</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[rgba(255,255,255,0.05)]">
+                      <tr class="hover:bg-[var(--border-faint)] transition-colors">
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@general / @explore</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Built-in</td>
+                        <td class="py-4 px-5 text-[var(--zinc-500)]">-</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Implementation, quick exploration</td>
+                      </tr>
+                      <tr class="hover:bg-[var(--border-faint)] transition-colors">
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@orchestrate</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Primary</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Multi-agent coordination</td>
+                      </tr>
+                      <tr class="hover:bg-[var(--border-faint)] transition-colors">
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@speckit</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">claude-sonnet</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Spec folder creation (exclusive writer)</td>
+                      </tr>
+                      <tr class="hover:bg-[var(--border-faint)] transition-colors">
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@debug</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">claude-opus</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Fresh-perspective debugging</td>
+                      </tr>
+                      <tr class="hover:bg-[var(--border-faint)] transition-colors">
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@research</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">claude-opus</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Evidence gathering</td>
+                      </tr>
+                      <tr class="hover:bg-[var(--border-faint)] transition-colors">
+                        <td class="py-4 px-5 text-[var(--zinc-200)] font-semibold">@review / @write</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">Custom</td>
+                        <td class="py-4 px-5 text-[var(--zinc-300)]">varies</td>
+                        <td class="py-4 px-5 text-[var(--zinc-400)]">Code review, Documentation</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+</div>
+
+</div>
+<script>
+    // Code Block Copy Functionality
+    document.querySelectorAll('.code-window').forEach(window => {
+      const copyBtn = window.querySelector('button[aria-label="Copy code"]');
+      const code = window.querySelector('code');
+      
+      if(copyBtn && code) {
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(code.innerText).then(() => {
+            const icon = copyBtn.querySelector('iconify-icon');
+            const originalIcon = icon.getAttribute('icon');
+            icon.setAttribute('icon', 'lucide:check');
+            copyBtn.classList.add('text-[var(--success)]');
+            
+            setTimeout(() => {
+              icon.setAttribute('icon', originalIcon);
+              copyBtn.classList.remove('text-[var(--success)]');
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy text: ', err);
+          });
+        });
+      }
+    });
+</script>
+</body>
+</html>

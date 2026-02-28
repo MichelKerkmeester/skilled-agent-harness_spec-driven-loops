@@ -240,7 +240,7 @@ describe('T033: R15 + R2 Interaction Tests', () => {
   describe('Pipeline enforcement (channel-enforcement.ts)', () => {
 
     it('T033-10: enforceChannelRepresentation passes through when flag disabled', () => {
-      delete process.env.SPECKIT_CHANNEL_MIN_REP;
+      process.env.SPECKIT_CHANNEL_MIN_REP = 'false';
 
       const fusedResults = [
         makeFused(1, 0.9, 'vector'),
@@ -405,7 +405,7 @@ describe('T033: R15 + R2 Interaction Tests', () => {
     });
 
     it('T033-16: when R15 is disabled, all channels run and R2 still works', () => {
-      delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+      process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
       process.env.SPECKIT_CHANNEL_MIN_REP = 'true';
 
       // When R15 flag disabled, routeQuery returns all 5 channels

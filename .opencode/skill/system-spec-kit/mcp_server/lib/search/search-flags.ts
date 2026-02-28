@@ -1,6 +1,10 @@
 // ---------------------------------------------------------------
 // MODULE: Search Feature Flags
 // Default-on runtime gates for search pipeline controls
+//
+// 2026-02-28: Sprint 4-7 flag graduation — all production-ready flags
+// promoted from opt-in (=== 'true') to default-ON via isFeatureEnabled().
+// Set SPECKIT_<FLAG>=false to disable any graduated feature.
 // ---------------------------------------------------------------
 
 import { isFeatureEnabled } from '../cache/cognitive/rollout-policy';
@@ -39,80 +43,81 @@ export function isCrossEncoderEnabled(): boolean {
 
 /**
  * PI-A2: Quality-aware 3-tier search fallback chain.
- * Default: FALSE (opt-in). Set SPECKIT_SEARCH_FALLBACK=true to enable.
+ * Default: TRUE (graduated Sprint 5). Set SPECKIT_SEARCH_FALLBACK=false to disable.
  */
 export function isSearchFallbackEnabled(): boolean {
-  return process.env.SPECKIT_SEARCH_FALLBACK?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_SEARCH_FALLBACK');
 }
 
 /**
  * PI-B3: Automatic spec folder discovery via description cache.
- * Default: FALSE (opt-in). Set SPECKIT_FOLDER_DISCOVERY=true to enable.
+ * Default: TRUE (graduated Sprint 5). Set SPECKIT_FOLDER_DISCOVERY=false to disable.
  */
 export function isFolderDiscoveryEnabled(): boolean {
-  return process.env.SPECKIT_FOLDER_DISCOVERY?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_FOLDER_DISCOVERY');
 }
 
 // ── Sprint 4: Hybrid RAG Fusion Refinement flags ──
 
 /**
  * R1 MPAB: Document-level chunk-to-memory score aggregation.
- * Default: FALSE (opt-in). Set SPECKIT_DOCSCORE_AGGREGATION=true to enable.
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_DOCSCORE_AGGREGATION=false to disable.
  */
 export function isDocscoreAggregationEnabled(): boolean {
-  return process.env.SPECKIT_DOCSCORE_AGGREGATION?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_DOCSCORE_AGGREGATION');
 }
 
 /**
  * R13-S2: Shadow scoring for A/B comparison evaluation.
- * Default: FALSE (opt-in). Set SPECKIT_SHADOW_SCORING=true to enable.
+ * @deprecated Eval complete (Sprint 7 audit). Flag scheduled for removal.
+ * Hardcoded to false — env var SPECKIT_SHADOW_SCORING is inert.
  */
 export function isShadowScoringEnabled(): boolean {
-  return process.env.SPECKIT_SHADOW_SCORING?.toLowerCase() === 'true';
+  return false;
 }
 
 /**
  * TM-04: Pre-storage quality gate for memory saves.
- * Default: FALSE (opt-in). Set SPECKIT_SAVE_QUALITY_GATE=true to enable.
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_SAVE_QUALITY_GATE=false to disable.
  */
 export function isSaveQualityGateEnabled(): boolean {
-  return process.env.SPECKIT_SAVE_QUALITY_GATE?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_SAVE_QUALITY_GATE');
 }
 
 /**
  * TM-06: Reconsolidation-on-save for memory deduplication.
- * Default: FALSE (opt-in). Set SPECKIT_RECONSOLIDATION=true to enable.
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_RECONSOLIDATION=false to disable.
  */
 export function isReconsolidationEnabled(): boolean {
-  return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_RECONSOLIDATION');
 }
 
 /**
  * T002b/A4: Negative-feedback confidence demotion in ranking.
- * Default: FALSE (opt-in). Set SPECKIT_NEGATIVE_FEEDBACK=true to enable.
+ * Default: TRUE (graduated Sprint 4). Set SPECKIT_NEGATIVE_FEEDBACK=false to disable.
  */
 export function isNegativeFeedbackEnabled(): boolean {
-  return process.env.SPECKIT_NEGATIVE_FEEDBACK?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_NEGATIVE_FEEDBACK');
 }
 
 // ── Sprint 5: Pipeline Refactor flags ──
 
 /**
  * R6: 4-stage pipeline architecture (Stage 1-4 with Stage 4 invariant).
- * Default: FALSE (opt-in). Set SPECKIT_PIPELINE_V2=true to enable.
+ * Default: TRUE (graduated Sprint 5). Set SPECKIT_PIPELINE_V2=false to disable.
  * When OFF, the legacy postSearchPipeline path is used (backward compatible).
  */
 export function isPipelineV2Enabled(): boolean {
-  return process.env.SPECKIT_PIPELINE_V2?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_PIPELINE_V2');
 }
 
 /**
  * R12: Query expansion for embedding-based retrieval.
  * Suppressed when R15 classification = "simple" (mutual exclusion).
- * Default: FALSE (opt-in). Set SPECKIT_EMBEDDING_EXPANSION=true to enable.
+ * Default: TRUE (graduated Sprint 5). Set SPECKIT_EMBEDDING_EXPANSION=false to disable.
  */
 export function isEmbeddingExpansionEnabled(): boolean {
-  return process.env.SPECKIT_EMBEDDING_EXPANSION?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_EMBEDDING_EXPANSION');
 }
 
 // ── Sprint 6: Indexing and Graph flags ──
@@ -120,17 +125,17 @@ export function isEmbeddingExpansionEnabled(): boolean {
 /**
  * N3-lite: Consolidation engine — contradiction scan, Hebbian strengthening,
  * staleness detection, edge bounds enforcement.
- * Default: FALSE (opt-in). Set SPECKIT_CONSOLIDATION=true to enable.
+ * Default: TRUE (graduated Sprint 6). Set SPECKIT_CONSOLIDATION=false to disable.
  */
 export function isConsolidationEnabled(): boolean {
-  return process.env.SPECKIT_CONSOLIDATION?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_CONSOLIDATION');
 }
 
 /**
  * R16: Encoding-intent capture at index time.
  * Records intent metadata (document, code, structured_data) alongside embeddings.
- * Default: FALSE (opt-in). Set SPECKIT_ENCODING_INTENT=true to enable.
+ * Default: TRUE (graduated Sprint 6). Set SPECKIT_ENCODING_INTENT=false to disable.
  */
 export function isEncodingIntentEnabled(): boolean {
-  return process.env.SPECKIT_ENCODING_INTENT?.toLowerCase() === 'true';
+  return isFeatureEnabled('SPECKIT_ENCODING_INTENT');
 }

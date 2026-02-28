@@ -20,11 +20,10 @@ import { initEvalDb, getEvalDb } from './eval-db';
 /* ─── 1. FEATURE FLAG ─── */
 
 /**
- * Returns true only when SPECKIT_SHADOW_SCORING=true (case-insensitive).
- * Anything else (undefined, "false", "1", ...) disables shadow scoring.
+ * @deprecated Eval complete (Sprint 7 audit). Hardcoded to false.
  */
 export function isShadowScoringEnabled(): boolean {
-  return process.env.SPECKIT_SHADOW_SCORING?.toLowerCase() === 'true';
+  return false;
 }
 
 /* ─── 2. TYPES ─── */

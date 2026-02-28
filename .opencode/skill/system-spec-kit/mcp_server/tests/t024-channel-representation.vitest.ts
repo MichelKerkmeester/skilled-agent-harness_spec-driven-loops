@@ -309,7 +309,7 @@ describe('T024 Channel Representation Check', () => {
     expect(isChannelMinRepEnabled()).toBe(false);
 
     setEnv(FEATURE_FLAG, undefined);
-    expect(isChannelMinRepEnabled()).toBe(false); // default OFF
+    expect(isChannelMinRepEnabled()).toBe(true); // graduated: default ON
   });
 
   // ---- T14: Multi-source items (sources array) count for all listed channels ----

@@ -243,9 +243,9 @@ describe('R6: Feature Flags', () => {
     process.env = originalEnv;
   });
 
-  it('R6-T18: SPECKIT_PIPELINE_V2 defaults to false', () => {
+  it('R6-T18: SPECKIT_PIPELINE_V2 defaults to true (graduated)', () => {
     delete process.env.SPECKIT_PIPELINE_V2;
-    expect(isPipelineV2Enabled()).toBe(false);
+    expect(isPipelineV2Enabled()).toBe(true);
   });
 
   it('R6-T19: SPECKIT_PIPELINE_V2=true enables pipeline V2', () => {
@@ -258,9 +258,9 @@ describe('R6: Feature Flags', () => {
     expect(isPipelineV2Enabled()).toBe(false);
   });
 
-  it('R6-T21: SPECKIT_EMBEDDING_EXPANSION defaults to false', () => {
+  it('R6-T21: SPECKIT_EMBEDDING_EXPANSION defaults to true (graduated)', () => {
     delete process.env.SPECKIT_EMBEDDING_EXPANSION;
-    expect(isEmbeddingExpansionEnabled()).toBe(false);
+    expect(isEmbeddingExpansionEnabled()).toBe(true);
   });
 
   it('R6-T22: SPECKIT_EMBEDDING_EXPANSION=true enables expansion', () => {

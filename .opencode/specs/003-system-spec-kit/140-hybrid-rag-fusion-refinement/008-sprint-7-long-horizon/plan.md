@@ -50,7 +50,7 @@ This plan implements Sprint 7 — the final sprint addressing scale-dependent fe
 ### Definition of Ready
 - [ ] Sprint 6a graph deepening complete and exit gate passed (depends on S6a only, not S6b)
 - [ ] Evaluation infrastructure fully operational (Sprint 0 + Sprint 4 enhancements)
-- [ ] Memory count confirmed: `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL` — R8 activates only if result >5K
+- [ ] Memory count confirmed: `SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'` — R8 activates only if result >5K
 - [ ] Search latency and embedding dimensions measured for R5 gating decisions
 - [ ] S5 scale gate measured: active memory count (>1K threshold) and verified entity count (>50 threshold) — S5 activates only if either threshold met
 - [ ] All prior sprint feature flags inventoried for sunset audit
@@ -100,7 +100,7 @@ Independent parallel items — no internal dependencies
 All items are parallelizable — no dependencies between them.
 
 ### R8: Memory Summary Generation (gated on >5K active memories with embeddings) — 15-20h
-> **Prerequisite**: Confirm scale gate before any implementation. Run `SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`. If result <5K, document skip decision and do not proceed.
+> **Prerequisite**: Confirm scale gate before any implementation. Run `SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'`. If result <5K, document skip decision and do not proceed.
 > **Risk note**: PageIndex tree-navigation must be validated against 500ms p95 latency limit before integration. Measure latency impact on a representative corpus before enabling `SPECKIT_MEMORY_SUMMARIES`.
 - [ ] Confirm scale gate (memory count query above)
 - [ ] Design summary generation algorithm (extractive summarization or TF-IDF key-sentence extraction)
@@ -115,7 +115,7 @@ All items are parallelizable — no dependencies between them.
 - [ ] Verify quality improvement via manual review
 
 ### S5: Cross-Document Entity Linking (gated on >1K active memories OR >50 verified entities) — 8-12h
-> **Prerequisite**: Confirm scale gate before any implementation. Measure active memory count (`SELECT COUNT(*) FROM memories WHERE status != 'archived' AND embedding IS NOT NULL`) and verified entity count. If neither threshold met (>1K memories OR >50 entities), document skip decision and do not proceed.
+> **Prerequisite**: Confirm scale gate before any implementation. Measure active memory count (`SELECT COUNT(*) FROM memory_index WHERE (is_archived IS NULL OR is_archived = 0) AND embedding_status = 'success'`) and verified entity count. If neither threshold met (>1K memories OR >50 entities), document skip decision and do not proceed.
 > **Feature flag**: `SPECKIT_ENTITY_LINKING` — all entity linking behavior gated behind this flag for rollback capability.
 - [ ] Confirm scale gate (memory count + entity count queries above)
 - [ ] Design entity resolution strategy (coordinates with R10 output)

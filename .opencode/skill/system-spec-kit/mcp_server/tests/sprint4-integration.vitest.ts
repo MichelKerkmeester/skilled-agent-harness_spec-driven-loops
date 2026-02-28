@@ -188,8 +188,8 @@ describe('Sprint 4 Integration: MPAB + Pipeline', () => {
     },
   ));
 
-  it('S4-INT-02: MPAB is skipped when flag is OFF', withEnvVars(
-    { SPECKIT_DOCSCORE_AGGREGATION: undefined },
+  it('S4-INT-02: MPAB is skipped when flag is explicitly OFF', withEnvVars(
+    { SPECKIT_DOCSCORE_AGGREGATION: 'false' },
     () => {
       expect(isMpabEnabled()).toBe(false);
       expect(isDocscoreAggregationEnabled()).toBe(false);
@@ -310,8 +310,8 @@ anchor quality, and metadata quality dimensions. The threshold is set at ${SIGNA
     },
   ));
 
-  it('S4-INT-07: Quality gate is bypassed when flag is OFF', withEnvVars(
-    { SPECKIT_SAVE_QUALITY_GATE: undefined },
+  it('S4-INT-07: Quality gate is bypassed when flag is explicitly OFF', withEnvVars(
+    { SPECKIT_SAVE_QUALITY_GATE: 'false' },
     () => {
       expect(isQualityGateEnabled()).toBe(false);
       expect(isSaveQualityGateEnabled()).toBe(false);
@@ -339,7 +339,7 @@ describe('Sprint 4 Integration: Reconsolidation + Save', () => {
   });
 
   it('S4-INT-08: Reconsolidation disabled returns null (normal save path)', withEnvVars(
-    { SPECKIT_RECONSOLIDATION: undefined },
+    { SPECKIT_RECONSOLIDATION: 'false' },
     async () => {
       expect(isReconsolidationEnabled()).toBe(false);
 
@@ -463,7 +463,7 @@ This ensures only quality content gets merged or stored.
   ));
 
   it('S4-INT-12: Both quality gate and reconsolidation disabled means no Sprint 4 save behavior', withEnvVars(
-    { SPECKIT_SAVE_QUALITY_GATE: undefined, SPECKIT_RECONSOLIDATION: undefined },
+    { SPECKIT_SAVE_QUALITY_GATE: 'false', SPECKIT_RECONSOLIDATION: 'false' },
     async () => {
       expect(isQualityGateEnabled()).toBe(false);
       expect(isReconsolidationEnabled()).toBe(false);
@@ -496,15 +496,15 @@ describe('Sprint 4 Integration: Shadow Scoring + Channel Attribution', () => {
     delete process.env.SPECKIT_SHADOW_SCORING;
   });
 
-  it('S4-INT-13: Shadow scoring flag controls module activation', withEnvVars(
+  it('S4-INT-13: Shadow scoring always disabled (REMOVED flag)', withEnvVars(
     { SPECKIT_SHADOW_SCORING: 'true' },
     () => {
-      expect(isShadowScoringEnabled()).toBe(true);
-      expect(isShadowScoringFlag()).toBe(true);
+      expect(isShadowScoringEnabled()).toBe(false);
+      expect(isShadowScoringFlag()).toBe(false);
     },
   ));
 
-  it('S4-INT-14: Shadow scoring disabled when flag is OFF', withEnvVars(
+  it('S4-INT-14: Shadow scoring disabled when flag is OFF (REMOVED)', withEnvVars(
     { SPECKIT_SHADOW_SCORING: undefined },
     () => {
       expect(isShadowScoringEnabled()).toBe(false);
@@ -560,46 +560,53 @@ describe('Sprint 4 Integration: Feature Flag Independence', () => {
   });
 
   it('S4-INT-16: Each flag can be independently enabled without affecting others', () => {
-    // Enable only MPAB
+    // Enable only MPAB — explicitly disable others (graduated flags default ON when unset)
     process.env.SPECKIT_DOCSCORE_AGGREGATION = 'true';
+    process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
+    process.env.SPECKIT_RECONSOLIDATION = 'false';
     expect(isDocscoreAggregationEnabled()).toBe(true);
-    expect(isShadowScoringFlag()).toBe(false);
+    expect(isShadowScoringFlag()).toBe(false); // REMOVED — always false
     expect(isSaveQualityGateEnabled()).toBe(false);
     expect(isReconsolidationFlag()).toBe(false);
-    delete process.env.SPECKIT_DOCSCORE_AGGREGATION;
 
-    // Enable only shadow scoring
+    // Shadow scoring is REMOVED — always false regardless of env var
     process.env.SPECKIT_SHADOW_SCORING = 'true';
+    process.env.SPECKIT_DOCSCORE_AGGREGATION = 'false';
+    process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
+    process.env.SPECKIT_RECONSOLIDATION = 'false';
     expect(isDocscoreAggregationEnabled()).toBe(false);
-    expect(isShadowScoringFlag()).toBe(true);
+    expect(isShadowScoringFlag()).toBe(false); // REMOVED — always false
     expect(isSaveQualityGateEnabled()).toBe(false);
     expect(isReconsolidationFlag()).toBe(false);
-    delete process.env.SPECKIT_SHADOW_SCORING;
 
-    // Enable only quality gate
+    // Enable only quality gate — explicitly disable others
     process.env.SPECKIT_SAVE_QUALITY_GATE = 'true';
+    process.env.SPECKIT_DOCSCORE_AGGREGATION = 'false';
+    process.env.SPECKIT_RECONSOLIDATION = 'false';
+    delete process.env.SPECKIT_SHADOW_SCORING;
     expect(isDocscoreAggregationEnabled()).toBe(false);
-    expect(isShadowScoringFlag()).toBe(false);
+    expect(isShadowScoringFlag()).toBe(false); // REMOVED — always false
     expect(isSaveQualityGateEnabled()).toBe(true);
     expect(isReconsolidationFlag()).toBe(false);
-    delete process.env.SPECKIT_SAVE_QUALITY_GATE;
 
-    // Enable only reconsolidation
+    // Enable only reconsolidation — explicitly disable others
     process.env.SPECKIT_RECONSOLIDATION = 'true';
+    process.env.SPECKIT_DOCSCORE_AGGREGATION = 'false';
+    process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
     expect(isDocscoreAggregationEnabled()).toBe(false);
-    expect(isShadowScoringFlag()).toBe(false);
+    expect(isShadowScoringFlag()).toBe(false); // REMOVED — always false
     expect(isSaveQualityGateEnabled()).toBe(false);
     expect(isReconsolidationFlag()).toBe(true);
   });
 
-  it('S4-INT-17: All flags can be enabled simultaneously', () => {
+  it('S4-INT-17: All graduated flags enabled simultaneously (shadow scoring REMOVED)', () => {
     process.env.SPECKIT_DOCSCORE_AGGREGATION = 'true';
     process.env.SPECKIT_SHADOW_SCORING = 'true';
     process.env.SPECKIT_SAVE_QUALITY_GATE = 'true';
     process.env.SPECKIT_RECONSOLIDATION = 'true';
 
     expect(isDocscoreAggregationEnabled()).toBe(true);
-    expect(isShadowScoringFlag()).toBe(true);
+    expect(isShadowScoringFlag()).toBe(false); // REMOVED — always false
     expect(isSaveQualityGateEnabled()).toBe(true);
     expect(isReconsolidationFlag()).toBe(true);
   });
@@ -626,7 +633,7 @@ describe('Sprint 4 Integration: Feature Flag Independence', () => {
     expect(isDocscoreAggregationEnabled()).toBe(false);
 
     process.env.SPECKIT_DOCSCORE_AGGREGATION = '';
-    expect(isDocscoreAggregationEnabled()).toBe(false);
+    expect(isDocscoreAggregationEnabled()).toBe(true); // graduated: empty string treated as enabled
   });
 });
 
@@ -636,10 +643,11 @@ describe('Sprint 4 Integration: Feature Flag Independence', () => {
 
 describe('Sprint 4 Integration: All Flags OFF (Backward Compatible)', () => {
   beforeEach(() => {
-    delete process.env.SPECKIT_DOCSCORE_AGGREGATION;
+    // Graduated flags must be explicitly set to 'false' (they default ON when unset)
+    process.env.SPECKIT_DOCSCORE_AGGREGATION = 'false';
+    process.env.SPECKIT_SAVE_QUALITY_GATE = 'false';
+    process.env.SPECKIT_RECONSOLIDATION = 'false';
     delete process.env.SPECKIT_SHADOW_SCORING;
-    delete process.env.SPECKIT_SAVE_QUALITY_GATE;
-    delete process.env.SPECKIT_RECONSOLIDATION;
     resetActivationTimestamp();
   });
 
@@ -647,8 +655,8 @@ describe('Sprint 4 Integration: All Flags OFF (Backward Compatible)', () => {
     // Verify all flags are off
     expect(isDocscoreAggregationEnabled()).toBe(false);
     expect(isMpabEnabled()).toBe(false);
-    expect(isShadowScoringFlag()).toBe(false);
-    expect(isShadowScoringEnabled()).toBe(false);
+    expect(isShadowScoringFlag()).toBe(false);  // REMOVED — always false
+    expect(isShadowScoringEnabled()).toBe(false); // REMOVED — always false
     expect(isSaveQualityGateEnabled()).toBe(false);
     expect(isQualityGateEnabled()).toBe(false);
     expect(isReconsolidationFlag()).toBe(false);
@@ -672,7 +680,7 @@ describe('Sprint 4 Integration: All Flags OFF (Backward Compatible)', () => {
     expect(reconResult).toBeNull();
   });
 
-  it('S4-INT-21: MPAB module functions still work (but pipeline does not call them)', () => {
+  it('S4-INT-21: MPAB module functions still work (but pipeline does not call them when flag OFF)', () => {
     // Module-level functions are testable regardless of flag state
     const chunks: ChunkResult[] = [
       makeChunk(1, 0, 0.8),
@@ -682,7 +690,7 @@ describe('Sprint 4 Integration: All Flags OFF (Backward Compatible)', () => {
     expect(collapsed).toHaveLength(1);
     expect(collapsed[0].parentMemoryId).toBe(1);
 
-    // But pipeline would not invoke this because isMpabEnabled() is false
+    // Pipeline does not invoke this because isMpabEnabled() is false (explicitly disabled)
     expect(isMpabEnabled()).toBe(false);
   });
 

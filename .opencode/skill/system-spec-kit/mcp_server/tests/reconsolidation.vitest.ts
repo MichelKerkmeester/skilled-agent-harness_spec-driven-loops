@@ -166,9 +166,9 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
       }
     });
 
-    it('RF1: Disabled by default', () => {
+    it('RF1: Enabled by default (graduated — default ON)', () => {
       delete process.env.SPECKIT_RECONSOLIDATION;
-      expect(isReconsolidationEnabled()).toBe(false);
+      expect(isReconsolidationEnabled()).toBe(true);
     });
 
     it('RF2: Enabled when env var is "true"', () => {
@@ -187,7 +187,7 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
     });
 
     it('RF5: Flag OFF means reconsolidate returns null', async () => {
-      delete process.env.SPECKIT_RECONSOLIDATION;
+      process.env.SPECKIT_RECONSOLIDATION = 'false';
       const result = await reconsolidate(
         makeNewMemory(),
         testDb,
@@ -635,7 +635,7 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
     });
 
     it('RO5: Flag OFF returns null (normal store)', async () => {
-      delete process.env.SPECKIT_RECONSOLIDATION;
+      process.env.SPECKIT_RECONSOLIDATION = 'false';
 
       const result = await reconsolidate(
         makeNewMemory(),
@@ -689,11 +689,13 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('Checkpoint Requirement', () => {
-    it('CHK1: SPECKIT_RECONSOLIDATION requires explicit enable (not default)', () => {
-      // The reconsolidation feature is behind a flag that defaults to OFF.
-      // This ensures users must explicitly enable it, giving them the
-      // opportunity to create a checkpoint first.
+    it('CHK1: SPECKIT_RECONSOLIDATION is graduated (default ON, explicit "false" to disable)', () => {
+      // The reconsolidation feature flag graduated in Sprint 4.
+      // It now defaults to ON when unset. Use explicit 'false' to disable.
       delete process.env.SPECKIT_RECONSOLIDATION;
+      expect(isReconsolidationEnabled()).toBe(true);
+
+      process.env.SPECKIT_RECONSOLIDATION = 'false';
       expect(isReconsolidationEnabled()).toBe(false);
     });
 

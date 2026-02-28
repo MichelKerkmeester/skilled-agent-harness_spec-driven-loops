@@ -474,9 +474,9 @@ export function matchTriggerPhrasesWithStats(userPrompt: string, limit: number =
   const cache = loadTriggerCache();
   let matches = matchTriggerPhrases(userPrompt, limit);
 
-  // Signal vocabulary detection — gated behind SPECKIT_SIGNAL_VOCAB env var
+  // Signal vocabulary detection — graduated: default-ON. Set SPECKIT_SIGNAL_VOCAB=false to disable.
   let signals: SignalDetection[] | undefined;
-  if (process.env.SPECKIT_SIGNAL_VOCAB) {
+  if (process.env.SPECKIT_SIGNAL_VOCAB?.toLowerCase() !== 'false') {
     signals = detectSignals(userPrompt || '');
     if (signals.length > 0) {
       matches = applySignalBoosts(matches, signals);

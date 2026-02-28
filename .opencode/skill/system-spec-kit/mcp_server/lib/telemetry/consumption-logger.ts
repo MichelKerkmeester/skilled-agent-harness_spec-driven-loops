@@ -61,11 +61,12 @@ export interface ConsumptionPatternsOptions {
    2. FEATURE FLAG
 --------------------------------------------------------------- */
 
+/**
+ * @deprecated Eval complete (Sprint 7 audit). Telemetry baked into core.
+ * SPECKIT_CONSUMPTION_LOG env var is inert. Hardcoded to false.
+ */
 function isConsumptionLogEnabled(): boolean {
-  const flag = process.env.SPECKIT_CONSUMPTION_LOG;
-  // Default true: only disabled when explicitly set to 'false' or '0'
-  if (flag === 'false' || flag === '0') return false;
-  return true;
+  return false;
 }
 
 /* ---------------------------------------------------------------

@@ -2,7 +2,8 @@
 
 **Date:** 2026-02-28
 **Auditor:** T005a Wave 2
-**Branch:** 046-sk-doc-visual-design-system
+**Capture Branch:** 046-sk-doc-visual-design-system
+**Target Spec Branch:** 140-hybrid-rag-fusion-refinement
 
 ---
 
@@ -14,8 +15,8 @@
 | Permanent / Core (default-ON, not via rollout-policy) | 7 | KEEP |
 | Config / Tuning parameters | 8 | KEEP |
 | Debug flags | 3 | KEEP |
-| Sprint-specific experimental (default-OFF, opt-in) | 32 | EVALUATE |
-| **Total unique flags** | **61** | |
+| Sunset-candidate set reviewed (sprint-specific + legacy toggles) | 39 | EVALUATE |
+| **Total unique flags (grep baseline; categories above are analytical and may overlap)** | **61** | |
 
 > Note: Wave 1 identified 43 flags; re-audit of all TS source reveals 61 unique flag names.
 > The delta is due to Wave 1 counting only `search-flags.ts` and `rollout-policy.ts`; this audit covers the full mcp_server source tree.
@@ -74,11 +75,11 @@ in production defaults.
 
 ---
 
-## Sprint-Specific Experimental Flags — SUNSET CANDIDATES
+## Sunset-Candidate Flags — Evaluation Set
 
-All flags below default to OFF (`=== 'true'` required to enable). They were introduced as opt-in gates
-during specific sprint work. Each is evaluated: REMOVE (safe to delete), GRADUATE (should become permanent),
-or KEEP (still needed for phased rollout or A/B work).
+All flags below default to OFF (`=== 'true'` required to enable) and were treated as sunset candidates
+in this audit (including sprint-specific and legacy experimental toggles). Each is evaluated as
+REMOVE (safe to delete), GRADUATE (promote to permanent), or KEEP (still needed as an operational/eval knob).
 
 ### Sprint 4 — Hybrid RAG Fusion Refinement
 
@@ -170,11 +171,11 @@ or KEEP (still needed for phased rollout or A/B work).
 - **Permanent / core:** 18 (11 via `isFeatureEnabled` default-ON + 7 default-ON via `!== 'false'`)
 - **Config / tuning parameters:** 8
 - **Debug flags:** 3
-- **Sprint-specific (sunset candidates):** 32
+- **Sunset-candidate set reviewed:** 39
   - GRADUATE: 27
-  - REMOVE: 9 (after removing ADAPTIVE_FUSION which stays + 2 reassigned to config)
-  - KEEP (temporary): 3
-- **Sprint-specific flags with zero production references (tests only):** `SPECKIT_LAZY_LOADING` — confirmed dead
+  - REMOVE: 9
+  - KEEP: 3
+- **Sunset candidates with zero production references (tests only):** `SPECKIT_LAZY_LOADING` — confirmed dead
 
 ## Recommendation
 
