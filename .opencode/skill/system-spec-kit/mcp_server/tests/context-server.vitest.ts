@@ -310,6 +310,7 @@ describe('Context Server', () => {
       dispatchToolMock: ReturnType<typeof vi.fn>
       autoSurfaceMemoriesMock: ReturnType<typeof vi.fn>
       autoSurfaceAtToolDispatchMock: ReturnType<typeof vi.fn>
+      autoSurfaceAtCompactionMock: ReturnType<typeof vi.fn>
       callToolHandler: (request: unknown, extra: unknown) => Promise<unknown>
     }
 
@@ -320,6 +321,7 @@ describe('Context Server', () => {
       const dispatchToolMock = vi.fn()
       const autoSurfaceMemoriesMock = vi.fn(async () => ({ constitutional: [], triggered: [] }))
       const autoSurfaceAtToolDispatchMock = vi.fn(async () => null)
+      const autoSurfaceAtCompactionMock = vi.fn(async () => null)
       const extractContextHintMock = vi.fn((toolArgs: Record<string, unknown>) => {
         if (typeof toolArgs?.query === 'string') return toolArgs.query
         if (typeof toolArgs?.input === 'string') return toolArgs.input
@@ -388,6 +390,7 @@ describe('Context Server', () => {
         extractContextHint: extractContextHintMock,
         autoSurfaceMemories: autoSurfaceMemoriesMock,
         autoSurfaceAtToolDispatch: autoSurfaceAtToolDispatchMock,
+        autoSurfaceAtCompaction: autoSurfaceAtCompactionMock,
       }))
 
       vi.doMock('../lib/architecture/layer-definitions', () => ({
@@ -460,6 +463,7 @@ describe('Context Server', () => {
         dispatchToolMock,
         autoSurfaceMemoriesMock,
         autoSurfaceAtToolDispatchMock,
+        autoSurfaceAtCompactionMock,
         callToolHandler: callToolHandler as (request: unknown, extra: unknown) => Promise<unknown>,
       }
     }
@@ -644,6 +648,70 @@ describe('Context Server', () => {
 
       expect(autoSurfaceMemoriesMock).toHaveBeenCalledTimes(1)
       expect(autoSurfaceAtToolDispatchMock).not.toHaveBeenCalled()
+      expect((response as { autoSurfacedContext?: unknown }).autoSurfacedContext).toEqual(surfaced)
+    })
+
+    it('T000g: memory_context resume mode invokes TM-05 compaction hook at runtime', async () => {
+      const {
+        dispatchToolMock,
+        autoSurfaceAtToolDispatchMock,
+        autoSurfaceAtCompactionMock,
+        autoSurfaceMemoriesMock,
+        callToolHandler,
+      } = await loadRuntimeHarness({
+        memoryAwareTools: new Set<string>(['memory_context']),
+      })
+
+      const surfaced = {
+        constitutional: [{ id: 9, title: 'Compaction directive' }],
+        triggered: [{ memory_id: 11, matched_phrases: ['resume'] }],
+      }
+      dispatchToolMock.mockResolvedValue({ content: [{ type: 'text', text: '{}' }] })
+      autoSurfaceAtCompactionMock.mockResolvedValue(surfaced)
+
+      const response = await callToolHandler(
+        {
+          id: 'call-6',
+          params: { name: 'memory_context', arguments: { input: 'session resume context', mode: 'resume' } },
+        },
+        {}
+      )
+
+      expect(autoSurfaceAtCompactionMock).toHaveBeenCalledTimes(1)
+      expect(autoSurfaceAtCompactionMock).toHaveBeenCalledWith('session resume context')
+      expect(autoSurfaceMemoriesMock).not.toHaveBeenCalled()
+      expect(autoSurfaceAtToolDispatchMock).not.toHaveBeenCalled()
+      expect((response as { autoSurfacedContext?: unknown }).autoSurfacedContext).toEqual(surfaced)
+    })
+
+    it('T000h: memory_context non-resume mode keeps SK-004 memory-aware path', async () => {
+      const {
+        dispatchToolMock,
+        autoSurfaceAtCompactionMock,
+        autoSurfaceMemoriesMock,
+        callToolHandler,
+      } = await loadRuntimeHarness({
+        memoryAwareTools: new Set<string>(['memory_context']),
+      })
+
+      const surfaced = {
+        constitutional: [],
+        triggered: [{ memory_id: 12, matched_phrases: ['focused'] }],
+      }
+      dispatchToolMock.mockResolvedValue({ content: [{ type: 'text', text: '{}' }] })
+      autoSurfaceMemoriesMock.mockResolvedValue(surfaced)
+
+      const response = await callToolHandler(
+        {
+          id: 'call-7',
+          params: { name: 'memory_context', arguments: { input: 'focused retrieval context', mode: 'focused' } },
+        },
+        {}
+      )
+
+      expect(autoSurfaceMemoriesMock).toHaveBeenCalledTimes(1)
+      expect(autoSurfaceMemoriesMock).toHaveBeenCalledWith('focused retrieval context')
+      expect(autoSurfaceAtCompactionMock).not.toHaveBeenCalled()
       expect((response as { autoSurfacedContext?: unknown }).autoSurfacedContext).toEqual(surfaced)
     })
   })

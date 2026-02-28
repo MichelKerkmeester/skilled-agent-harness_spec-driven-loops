@@ -129,7 +129,7 @@ Stage 4: Filter + Annotate (NO SCORE CHANGES)
 - Added `autoSurfaceAtToolDispatch(toolName, toolArgs, options)` — tool dispatch lifecycle
 - Added `autoSurfaceAtCompaction(sessionContext, options)` — session compaction lifecycle
 - Runtime wiring: `context-server.ts` dispatch path calls `autoSurfaceAtToolDispatch(name, args)` before `dispatchTool(name, args)`; `context-server.vitest.ts` T000e/T000f verifies the dispatch-hook path
-- Compaction status: `autoSurfaceAtCompaction(...)` helper is implemented and covered by unit tests, but a concrete runtime compaction call site is not yet wired
+- Compaction runtime wiring: `context-server.ts` routes `memory_context` resume-mode calls through `autoSurfaceAtCompaction(contextHint)`; `context-server.vitest.ts` T000g verifies this runtime compaction-hook path
 - Per-point token budget: 4,000 tokens enforced
 - **Tests**: 62 tests including regression for existing autoSurfaceMemories()
 
@@ -208,7 +208,7 @@ Active in typical deployment: 4-6 (≤6 threshold met).
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 10 | 10/10 |
-| P1 Items | 43 | 42/43 |
+| P1 Items | 43 | 43/43 |
 | P2 Items | 3 | 3/3 |
 | Tasks | 15 | 15/15 |
 | New Tests | 304+ | Passing in Sprint 5 test files |

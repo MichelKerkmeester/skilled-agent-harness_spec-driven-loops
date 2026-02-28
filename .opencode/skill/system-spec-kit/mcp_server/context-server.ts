@@ -43,6 +43,7 @@ import {
   extractContextHint,
   autoSurfaceMemories,
   autoSurfaceAtToolDispatch,
+  autoSurfaceAtCompaction,
 } from './hooks';
 
 // Architecture
@@ -202,11 +203,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
 
     // SK-004/TM-05: Auto-surface memories before dispatch (after validation)
     let autoSurfacedContext: AutoSurfaceResult | null = null;
+    const isCompactionLifecycleCall =
+      name === 'memory_context' && args.mode === 'resume';
+
     if (MEMORY_AWARE_TOOLS.has(name)) {
       const contextHint: string | null = extractContextHint(args);
       if (contextHint) {
         try {
-          autoSurfacedContext = await autoSurfaceMemories(contextHint);
+          if (isCompactionLifecycleCall) {
+            autoSurfacedContext = await autoSurfaceAtCompaction(contextHint);
+          } else {
+            autoSurfacedContext = await autoSurfaceMemories(contextHint);
+          }
         } catch (surfaceErr: unknown) {
           const msg = surfaceErr instanceof Error ? surfaceErr.message : String(surfaceErr);
           console.error(`[context-server] Auto-surface failed (non-fatal): ${msg}`);

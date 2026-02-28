@@ -85,7 +85,7 @@ contextType: "implementation" # SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 
 ### TM-05 — Dual-Scope Auto-Surface Hooks
 - [x] CHK-S5-055 [P1] TM-05 auto-surface hook fires at tool dispatch lifecycle point — [EVIDENCE: context-server.ts dispatch path calls autoSurfaceAtToolDispatch(name, args) before dispatchTool(name, args); context-server.vitest.ts T000e/T000f and tm05-dual-scope-hooks.vitest.ts validate runtime wiring and behavior]
-- [ ] CHK-S5-056 [P1] TM-05 auto-surface hook fires at session compaction lifecycle point — [DEFERRED: helper autoSurfaceAtCompaction() and unit coverage exist in hooks/memory-surface.ts + tm05-dual-scope-hooks.vitest.ts, but no concrete runtime compaction call site is wired yet]
+- [x] CHK-S5-056 [P1] TM-05 auto-surface hook fires at session compaction lifecycle point — [EVIDENCE: context-server.ts routes memory_context resume-mode calls through autoSurfaceAtCompaction(contextHint); context-server.vitest.ts T000g validates runtime compaction-hook wiring; tm05-dual-scope-hooks.vitest.ts validates hook behavior and budget constraints]
 - [x] CHK-S5-057 [P1] TM-05 per-point token budget of 4000 enforced — no overrun — [EVIDENCE: TOOL_DISPATCH_TOKEN_BUDGET=4000, COMPACTION_TOKEN_BUDGET=4000 constants; budget enforcement tests pass]
 - [x] CHK-S5-058 [P1] TM-05 no regression in existing auto-surface behavior (`hooks/memory-surface.ts`) — [EVIDENCE: 62 tests pass including regression tests for existing autoSurfaceMemories()]
 <!-- /ANCHOR:sprint-5-verification -->
@@ -173,7 +173,7 @@ contextType: "implementation" # SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 10 | 10/10 |
-| P1 Items | 43 | 42/43 |
+| P1 Items | 43 | 43/43 |
 | P2 Items | 3 | 3/3 |
 
 **Verification Date**: 2026-02-28
