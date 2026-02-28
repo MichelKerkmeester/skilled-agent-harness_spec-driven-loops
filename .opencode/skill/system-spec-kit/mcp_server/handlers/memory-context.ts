@@ -125,7 +125,7 @@ function enforceTokenBudget(result: ContextResult, budgetTokens: number): { resu
       enforcement: {
         budgetTokens,
         actualTokens,
-        enforced: true,
+        enforced: false,
         truncated: false,
       }
     };

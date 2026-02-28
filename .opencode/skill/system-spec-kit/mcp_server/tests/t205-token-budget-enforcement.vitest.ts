@@ -67,7 +67,7 @@ describe('T205: Token Budget Enforcement [deferred - requires DB test fixtures]'
 
       const smallResult = { content: [{ type: 'text', text: '{"data":{"results":[{"id":1}]},"meta":{}}' }] };
       const { enforcement } = memoryContext.enforceTokenBudget(smallResult, 2000);
-      expect(enforcement.enforced).toBe(true);
+      expect(enforcement.enforced).toBe(false);
       expect(enforcement.truncated).toBe(false);
       expect(enforcement.actualTokens).toBeLessThanOrEqual(enforcement.budgetTokens);
     });

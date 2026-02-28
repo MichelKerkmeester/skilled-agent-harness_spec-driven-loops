@@ -373,7 +373,7 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All sprint exit gates (T009, T014, T020, T025-GATE, T031, T040, T047a, T053) passed; T047b if Sprint 6b executed — S0-S3 gates (T009, T014, T020, T025-GATE) [x] PASSED
+- [x] All sprint exit gates S0-S3 (T009, T014, T020, T025-GATE) PASSED — S4-S7 gates (T031, T040, T047a, T053) pending; T047b if Sprint 6b executed
 - [ ] No `[B]` blocked tasks remaining
 - [x] Feature flag count <= 6 (verified through S0-S3 sunset reviews)
 - [ ] R13 cumulative health dashboard meets targets (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)

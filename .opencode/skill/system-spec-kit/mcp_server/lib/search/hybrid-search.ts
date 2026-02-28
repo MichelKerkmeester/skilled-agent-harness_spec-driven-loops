@@ -823,7 +823,7 @@ async function hybridSearchEnhanced(
       // AI-WHY: Metadata is attached as non-enumerable _s3meta property to avoid
       // polluting result serialization while remaining accessible for debugging.
       if (Object.keys(s3meta).length > 0 && reranked.length > 0) {
-        (reranked as unknown as Record<string, unknown>)._s3meta = s3meta;
+        Object.defineProperty(reranked, '_s3meta', { value: s3meta, enumerable: false, configurable: true });
       }
 
       return reranked;

@@ -1111,11 +1111,27 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const hasValidConcepts = Array.isArray(concepts) && concepts.length >= 2;
 
   if (!hasValidQuery && !hasValidConcepts) {
-    throw new Error('Either query (string) or concepts (array of 2-5 strings) is required');
+    return createMCPErrorResponse({
+      tool: 'memory_search',
+      error: 'Either query (string) or concepts (array of 2-5 strings) is required',
+      code: 'E_VALIDATION',
+      details: { parameter: 'query' },
+      recovery: {
+        hint: 'Provide a query string or concepts array with 2-5 entries'
+      }
+    });
   }
 
   if (specFolder !== undefined && typeof specFolder !== 'string') {
-    throw new Error('specFolder must be a string');
+    return createMCPErrorResponse({
+      tool: 'memory_search',
+      error: 'specFolder must be a string',
+      code: 'E_VALIDATION',
+      details: { parameter: 'specFolder' },
+      recovery: {
+        hint: 'Provide specFolder as a string path'
+      }
+    });
   }
 
   // T005: Eval logger — capture query at pipeline entry (fail-safe)
@@ -1159,9 +1175,9 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     intentWeights = intentClassifier.getIntentWeights(classification.intent as IntentType);
 
     if (classification.fallback) {
-      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (fallback: ${classification.reason})`);
+      console.debug(`[memory-search] Intent auto-detected as '${detectedIntent}' (fallback: ${classification.reason})`);
     } else {
-      console.error(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
+      console.debug(`[memory-search] Intent auto-detected as '${detectedIntent}' (confidence: ${intentConfidence.toFixed(2)})`);
     }
   }
 

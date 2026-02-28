@@ -738,7 +738,7 @@ describe('T201-T220: Token Budget Enforcement (T205) [deferred - requires DB tes
   it('T202: Small result under budget is not truncated', () => {
     const smallResult: ContextResult = { strategy: 'test', mode: 'test', data: 'small' };
     const { enforcement } = enforceTokenBudget(smallResult, 2000);
-    expect(enforcement.enforced).toBe(true);
+    expect(enforcement.enforced).toBe(false);
     expect(enforcement.truncated).toBe(false);
     expect(enforcement.actualTokens).toBeLessThanOrEqual(enforcement.budgetTokens);
   });

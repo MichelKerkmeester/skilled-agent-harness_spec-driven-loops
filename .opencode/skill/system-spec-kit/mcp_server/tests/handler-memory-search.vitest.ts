@@ -22,8 +22,11 @@ describe('Handler Memory Search (T516) [deferred - requires DB test fixtures]', 
   });
 
   describe('Input Validation', () => {
-    it('T516-3: Missing query and concepts throws', async () => {
-      await expect(handler.handleMemorySearch({})).rejects.toThrow(/query|concepts/);
+    it('T516-3: Missing query and concepts returns MCP error', async () => {
+      const result = await handler.handleMemorySearch({});
+      expect(result).toBeDefined();
+      const text = JSON.parse(result.content[0].text);
+      expect(text.error || text.data?.error || result.isError).toBeTruthy();
     });
 
     it('T516-4: Empty string query returns error', async () => {
@@ -42,15 +45,17 @@ describe('Handler Memory Search (T516) [deferred - requires DB test fixtures]', 
     });
 
     it('T516-5: Non-string specFolder rejected', async () => {
-      await expect(
-        handler.handleMemorySearch({ query: 'test query', specFolder: 123 })
-      ).rejects.toThrow(/specFolder.*string|string.*specFolder/);
+      const result = await handler.handleMemorySearch({ query: 'test query', specFolder: 123 });
+      expect(result).toBeDefined();
+      const text = JSON.parse(result.content[0].text);
+      expect(text.error || text.data?.error || result.isError).toBeTruthy();
     });
 
-    it('T516-6: Single concept without query throws', async () => {
-      await expect(
-        handler.handleMemorySearch({ concepts: ['single'] })
-      ).rejects.toThrow();
+    it('T516-6: Single concept without query returns MCP error', async () => {
+      const result = await handler.handleMemorySearch({ concepts: ['single'] });
+      expect(result).toBeDefined();
+      const text = JSON.parse(result.content[0].text);
+      expect(text.error || text.data?.error || result.isError).toBeTruthy();
     });
   });
 
