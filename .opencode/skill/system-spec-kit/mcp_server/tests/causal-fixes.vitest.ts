@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T202 T203 CAUSAL FIXES
+// TEST: CAUSAL FIXES
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
@@ -31,7 +31,7 @@ describe('T202 + T203: FlatEdge id & Relations Filter [deferred - requires DB te
       )
     `);
 
-    // Sprint 6 T001d: weight_history
+    // T001d: weight_history
     testDb.exec(`
       CREATE TABLE IF NOT EXISTS weight_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

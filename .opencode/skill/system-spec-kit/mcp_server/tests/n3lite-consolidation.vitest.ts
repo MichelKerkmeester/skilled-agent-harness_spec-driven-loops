@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// TESTS: N3-lite Consolidation Engine (Sprint 6a — T002)
+// TESTS: N3-lite Consolidation Engine
 // Covers: contradiction scan, Hebbian strengthening, staleness
 // detection, edge bounds, cluster surfacing, weight_history.
 // ---------------------------------------------------------------
@@ -49,7 +49,7 @@ function createTestDb(): Database.Database {
     )
   `);
 
-  // causal_edges with Sprint 6 columns
+  // causal_edges schema
   db.exec(`
     CREATE TABLE causal_edges (
       id INTEGER PRIMARY KEY,

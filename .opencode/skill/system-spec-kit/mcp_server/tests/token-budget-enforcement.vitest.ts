@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T205 TOKEN BUDGET ENFORCEMENT
+// TEST: TOKEN BUDGET ENFORCEMENT
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll } from 'vitest';

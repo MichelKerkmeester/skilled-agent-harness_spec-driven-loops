@@ -174,7 +174,7 @@ function pickCarrierIndex(indices: number[], files: FileChange[]): number {
 }
 
 /**
- * Apply PI-B1 tree-thinning decisions to the semantic file-change list that feeds
+ * Apply tree-thinning decisions to the semantic file-change list that feeds
  * context template rendering.
  *
  * Behavior:
@@ -235,7 +235,7 @@ function applyThinningToFileChanges(
       .join(' | ');
 
     const mergeNote = capText(
-      `PI-B1 merged ${childFiles.length} small files (${childNames.join(', ')}). ${highlights}`,
+      `Tree-thinning merged ${childFiles.length} small files (${childNames.join(', ')}). ${highlights}`,
       420,
     );
 
@@ -556,10 +556,10 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
   log(`   Generated summary: ${implSummary.filesCreated.length} created, ${implSummary.filesModified.length} modified, ${implSummary.decisions.length} decisions\n`);
 
-  // Step 7.6: Tree thinning — pre-pipeline token reduction (PI-B1)
+  // Step 7.6: Tree thinning — pre-pipeline token reduction
   // Operates on spec folder files BEFORE pipeline stages and scoring.
   // Bottom-up merging of small files reduces token overhead in the retrieval pipeline.
-  log('Step 7.6: Applying tree thinning (PI-B1)...');
+  log('Step 7.6: Applying tree thinning...');
   const thinFileInputs: ThinningFileEntry[] = enhancedFiles.map((f) => ({
     path: f.FILE_PATH,
     content: f.DESCRIPTION || '',

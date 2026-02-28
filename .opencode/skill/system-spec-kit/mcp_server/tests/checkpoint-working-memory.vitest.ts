@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T213 CHECKPOINT WORKING MEMORY
+// TEST: CHECKPOINT WORKING MEMORY
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';

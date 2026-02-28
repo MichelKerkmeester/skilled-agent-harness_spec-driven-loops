@@ -1,5 +1,5 @@
-// ─── TEST: PI-A4 Retrieval Directives ───
-// Sprint 5 — Constitutional memory as retrieval directives (deferred from Sprint 4 REC-07)
+// ─── TEST: Retrieval Directives ───
+// Constitutional memory as retrieval directives
 //
 // Tests cover:
 //   1. Extraction from various constitutional memory content formats

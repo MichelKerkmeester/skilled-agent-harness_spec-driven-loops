@@ -1,13 +1,13 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: Sprint 4 Integration — Hybrid RAG Fusion Refinement
+// TEST: MPAB Quality Gate Integration
 // Cross-module wiring tests for MPAB, Quality Gate, Reconsolidation,
 // Shadow Scoring, and Feature Flag independence.
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
-// Sprint 4 modules under test
+// Modules under test
 import {
   computeMPAB,
   isMpabEnabled,
@@ -136,7 +136,7 @@ function makeSimilarMemory(overrides: Partial<SimilarMemory> = {}): SimilarMemor
 }
 
 // ─────────────────────────────────────────────────────────────
-// Sprint 4 env var names
+// Feature flag env var names
 // ─────────────────────────────────────────────────────────────
 const S4_FLAGS = {
   SPECKIT_DOCSCORE_AGGREGATION: 'SPECKIT_DOCSCORE_AGGREGATION',

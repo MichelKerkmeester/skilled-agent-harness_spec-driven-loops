@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T210 T211 SEARCH LIMITS SCORING
+// TEST: SEARCH LIMITS SCORING
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';

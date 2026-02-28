@@ -237,8 +237,12 @@ vector-index-impl.ts     (3333 LOC)
 | `sqlite-fts.ts`            | -      | TypeScript | SQLite FTS5 BM25 weighted scoring, extracted from hybrid-search for independent use |
 | `search-flags.ts`          | -      | TypeScript | Default-on runtime feature flags for search pipeline controls |
 | `graph-flags.ts`           | -      | TypeScript | Legacy compatibility shim for graph channel gate (SPECKIT_GRAPH_UNIFIED) |
+| `tfidf-summarizer.ts`      | -      | TypeScript | TF-IDF extractive summarizer for memory content, produces key sentences (R8) |
+| `memory-summaries.ts`      | -      | TypeScript | Summary storage, embedding, and search channel for memory summaries (R8) |
+| `entity-linker.ts`         | -      | TypeScript | Cross-document entity linking via shared entities across spec folders (S5) |
+| `auto-promotion.ts`        | -      | TypeScript | Validation-count-based tier promotion engine (normal->important->critical) |
 
-**Total**: ~10,000+ LOC across 30 files (all TypeScript)
+**Total**: ~10,000+ LOC across 34 files (all TypeScript)
 
 ### Data Flow
 
@@ -308,6 +312,8 @@ vector-index-impl.ts     (3333 LOC)
 | `RERANK_CACHE_TTL`       | `300000` | Cache TTL (5 minutes)               |
 | `RERANK_CACHE_SIZE`      | `1000`   | Max cache entries                   |
 | `EMBEDDING_DIM`          | `768`    | Fallback embedding dimension        |
+| `SPECKIT_MEMORY_SUMMARIES`| `true`  | Enable memory summary generation and search channel (R8) |
+| `SPECKIT_ENTITY_LINKING`  | `true`  | Enable cross-document entity linking (S5, requires R10) |
 
 **RRF Parameters** (hardcoded, REQ-011):
 ```javascript
@@ -344,7 +350,7 @@ const DEFAULT_B = 0.75;    // Length normalization
 | v15     | Event-based decay columns (spec 136), HVR integration fields (spec 137), phase-aware scoring columns (spec 139) — **current schema** |
 
 **Spec 126 hardening references:**
-- `tests/spec126-full-spec-doc-indexing.vitest.ts`: validates 8 spec document types, scoring multipliers and new intents.
+- `tests/full-spec-doc-indexing.vitest.ts`: validates 8 spec document types, scoring multipliers and new intents.
 - `handlers/memory-index.ts`: keeps 3-source indexing and `includeSpecDocs` wiring aligned with search expectations.
 
 **Multi-Provider Support**:
@@ -450,6 +456,70 @@ hybridSearch("authentication", { specFolder: "specs/<###-spec-name>" })
 // content_length < 100 chars -> penalty 0.8x - 1.0x
 // Linear interpolation: penalty = 0.8 + (len/100) * 0.2
 ```
+
+### Memory Summaries (R8)
+
+**Purpose**: Generate TF-IDF extractive summaries of memory content and expose them as a search channel. Gated via `SPECKIT_MEMORY_SUMMARIES`.
+
+**TF-IDF Summarizer** (`tfidf-summarizer.ts`):
+
+| Aspect | Details |
+|--------|---------|
+| **Algorithm** | TF-IDF sentence scoring with markdown stripping and tokenization |
+| **Output** | Key sentences extracted from content (default top 3) |
+| **Dependencies** | Pure TypeScript, zero npm dependencies |
+| **Sentence Bounds** | Min 10 chars, max 500 chars per sentence |
+
+**Key exports:**
+
+| Export | Signature | Description |
+|--------|-----------|-------------|
+| `computeTfIdf` | `(sentences: string[]) => ScoredSentence[]` | Score sentences by TF-IDF |
+| `extractKeySentences` | `(content: string, n?: number) => string[]` | Extract top-N key sentences |
+| `generateSummary` | `(content: string) => { summary, keySentences }` | Generate full summary with key sentences |
+
+**Memory Summary Storage** (`memory-summaries.ts`):
+
+| Aspect | Details |
+|--------|---------|
+| **Storage** | Summaries stored with embeddings in SQLite for vector search |
+| **Search Channel** | `querySummaryEmbeddings()` provides cosine similarity search over stored summaries |
+| **Scale Gate** | `checkScaleGate()` validates database is ready for summary operations |
+| **Pipeline** | `generateAndStoreSummary()` combines TF-IDF extraction with embedding and persistence |
+
+**Key exports:**
+
+| Export | Signature | Description |
+|--------|-----------|-------------|
+| `generateAndStoreSummary` | `async (db, memoryId, content, embedFn) => void` | Generate, embed, and store a summary |
+| `querySummaryEmbeddings` | `(db, queryEmbedding, limit?) => SummarySearchResult[]` | Search summaries by embedding similarity |
+| `checkScaleGate` | `(db) => boolean` | Check if summary infrastructure is ready |
+
+### Cross-Document Entity Linking (S5)
+
+**Purpose**: Create causal edges between memories that share extracted entities across spec folders. Gated via `SPECKIT_ENTITY_LINKING`. Requires R10 (`SPECKIT_AUTO_ENTITIES`) to also be enabled.
+
+**Entity Linker** (`entity-linker.ts`):
+
+| Aspect | Details |
+|--------|---------|
+| **Entity Catalog** | Builds catalog from `memory_entities` table, grouped by normalized canonical name |
+| **Cross-Doc Matching** | Identifies entities appearing in 2+ spec folders |
+| **Edge Creation** | Creates `supports` causal edges between memories sharing entities |
+| **Density Guard** | Max 20 edges per node to prevent graph density explosion |
+| **Infrastructure Check** | `hasEntityInfrastructure()` validates required tables exist |
+
+**Key exports:**
+
+| Export | Signature | Description |
+|--------|-----------|-------------|
+| `normalizeEntityName` | `(name: string) => string` | Normalize entity name for matching |
+| `buildEntityCatalog` | `(db) => Map<string, { memoryIds, specFolders }>` | Build entity catalog from database |
+| `findCrossDocumentMatches` | `(db) => EntityMatch[]` | Find entities shared across spec folders |
+| `createEntityLinks` | `(db, matches) => EntityLinkResult` | Create causal edges for cross-doc matches |
+| `getEntityLinkStats` | `(db) => EntityLinkStats` | Get statistics about entity linking |
+| `hasEntityInfrastructure` | `(db) => boolean` | Check if required tables exist |
+| `runEntityLinking` | `(db) => EntityLinkResult` | Run full entity linking pipeline |
 
 <!-- /ANCHOR:features -->
 
@@ -588,6 +658,8 @@ console.log(`Schema version: ${version}`);
 - `../cognitive/README.md`: Cognitive layer (attention, tier classification)
 - `../storage/README.md`: Storage layer (checkpoints, history, access tracking)
 - `../parsing/README.md`: Parsing layer (memory parser, trigger matcher)
+- `../graph/`: Graph signals (N2a momentum, N2b causal depth) and community detection (N2c)
+- `../extraction/README.md`: Entity extraction (R10) — upstream for entity linking (S5)
 - `context-server.ts`: MCP integration and API endpoints
 
 ### Research References
@@ -613,12 +685,13 @@ console.log(`Schema version: ${version}`);
 
 ---
 
-**Version**: 1.8.0
-**Last Updated**: 2026-02-27
+**Version**: 1.9.0
+**Last Updated**: 2026-02-28
 **Maintainer**: system-spec-kit MCP server
 
 **Migration Status**:
-- TypeScript migration is **complete**: all 30 code files are TypeScript (0 `.js` source files)
+- TypeScript migration is **complete**: all 34 code files are TypeScript (0 `.js` source files)
 - `vector-index.ts` is a typed facade. `vector-index-impl.ts` is the full implementation
 - `rrf-fusion.ts` and `rsf-fusion.ts` provide RRF and Relative Score Fusion algorithms
-- Sprint 3 additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
+- Query pipeline additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery
+- Deferred features: TF-IDF memory summaries (R8), cross-document entity linking (S5)

@@ -1,5 +1,5 @@
 // ─── MODULE: Test — Query Classifier ───
-// Sprint 3 — Query Intelligence
+// Query Intelligence: complexity classification and routing
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {

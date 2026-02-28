@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// TEST: R6 — 4-Stage Pipeline Architecture (Sprint 5)
+// TEST: 4-Stage Pipeline Architecture (v2)
 // Validates pipeline types, stage interfaces, Stage 4 invariant,
 // and pipeline orchestration under SPECKIT_PIPELINE_V2 flag.
 // ---------------------------------------------------------------

@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T503 LEARNING STATS FILTERS
+// TEST: LEARNING STATS FILTERS
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll } from 'vitest';

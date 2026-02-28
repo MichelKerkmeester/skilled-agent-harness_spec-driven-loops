@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ─── MODULE: Test — Edge Density ───
-// Sprint 1 T003 acceptance tests for lib/eval/edge-density.ts
+// T003 acceptance tests for lib/eval/edge-density.ts
 //
 // Test cases:
 //   D1 — Dense graph returns density >= 1.0 ("dense")

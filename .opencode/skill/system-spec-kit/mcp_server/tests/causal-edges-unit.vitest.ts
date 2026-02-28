@@ -36,7 +36,7 @@ describe('Causal Edges Unit Tests', () => {
   beforeAll(() => {
     testDb = new Database(':memory:');
 
-    // Create causal_edges table matching production schema (Sprint 6: +created_by, +last_accessed)
+    // Create causal_edges table matching production schema (+created_by, +last_accessed)
     testDb.exec(`
       CREATE TABLE IF NOT EXISTS causal_edges (
         id INTEGER PRIMARY KEY,
@@ -54,7 +54,7 @@ describe('Causal Edges Unit Tests', () => {
       )
     `);
 
-    // Sprint 6 T001d: weight_history for audit tracking
+    // T001d: weight_history for audit tracking
     testDb.exec(`
       CREATE TABLE IF NOT EXISTS weight_history (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

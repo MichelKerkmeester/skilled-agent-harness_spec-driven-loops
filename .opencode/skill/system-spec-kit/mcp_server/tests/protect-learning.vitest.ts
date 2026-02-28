@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T207 PROTECT LEARNING
+// TEST: PROTECT LEARNING
 // ---------------------------------------------------------------
 
 // Converted from: t207-protect-learning.test.ts (custom runner)

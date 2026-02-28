@@ -1,7 +1,6 @@
 // @ts-nocheck -- vi.mock hoisting requires runtime-only validation
 // ---------------------------------------------------------------
-// TEST: R9 — Spec Folder Pre-filter
-// Sprint 5 Phase B: Hybrid RAG Fusion Refinement
+// TEST: Spec Folder Pre-filter
 //
 // Verifies that specFolder is correctly forwarded through the
 // search pipeline so results are pre-filtered at the DB layer
@@ -94,6 +93,7 @@ vi.mock('../lib/search/search-flags', () => ({
   isPipelineV2Enabled: vi.fn(() => false),
   isTRMEnabled: vi.fn(() => false),
   isNegativeFeedbackEnabled: vi.fn(() => false),
+  isMemorySummariesEnabled: vi.fn(() => false),
 }));
 
 // ── Import module under test AFTER mocks ──────────────────────

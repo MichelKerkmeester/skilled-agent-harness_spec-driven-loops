@@ -1,5 +1,5 @@
-// ─── MODULE: Test — Sprint 1 Feature Evaluation ───
-// Rigorous cross-feature evaluation tests for Sprint 1 (T001, T002, T003a, T005a, T007)
+// ─── MODULE: Test — Feature Evaluation — Graph Signals ───
+// Rigorous cross-feature evaluation tests for T001, T002, T003a, T005a, T007
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 

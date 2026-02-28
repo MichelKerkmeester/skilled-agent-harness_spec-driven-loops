@@ -1,5 +1,5 @@
 // ─── MODULE: Test — Channel Enforcement ───
-// T028 — Channel Enforcement + Precision Verification (T003b + T003c)
+// Channel Enforcement + Precision Verification (T003b + T003c)
 //
 // Coverage:
 //   T003b — Enforcement wrapper (enforceChannelRepresentation)

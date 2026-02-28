@@ -1,5 +1,5 @@
 // @ts-nocheck
-// ─── MODULE: Test — Sprint 2 Feature Evaluation ───
+// ─── MODULE: Test — Feature Evaluation — Scoring Calibration ───
 // Rigorous feature evaluation covering T001 (embedding cache), T002 (cold-start
 // boost N4), T004 (score normalization), T005 (interference TM-01), and
 // T006 (classification-based decay TM-03).
@@ -152,7 +152,7 @@ describe('T002: Cold-start Novelty Boost (N4)', () => {
     vi.unstubAllEnvs();
   });
 
-  // T041-05: Novelty boost REMOVED (Sprint 7 audit) — always returns 0
+  // T041-05: Novelty boost REMOVED — always returns 0
   it('T041-05: novelty boost always returns 0 (feature removed)', () => {
     vi.stubEnv('SPECKIT_NOVELTY_BOOST', 'true');
     const createdAt = new Date(Date.now() - 500).toISOString(); // ~0h

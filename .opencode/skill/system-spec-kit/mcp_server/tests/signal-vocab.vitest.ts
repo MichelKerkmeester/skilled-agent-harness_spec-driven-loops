@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ───────────────────────────────────────────────────────────────
-// TEST: T012 — Signal Vocabulary Expansion
+// TEST: Signal Vocabulary Expansion
 // Validates CORRECTION and PREFERENCE signal detection in
 // trigger-matcher.ts, including boost application and env-flag gating.
 // ───────────────────────────────────────────────────────────────

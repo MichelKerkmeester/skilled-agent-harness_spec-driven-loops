@@ -1,4 +1,4 @@
-// ─── MODULE: Test — R15-R2 Interaction ───
+// ─── MODULE: Test — Query Router-Channel Interaction ───
 // Ensures that R15 complexity-based channel routing does NOT violate
 // R2 channel-minimum representation.
 //

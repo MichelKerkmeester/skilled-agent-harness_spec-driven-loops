@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ─────────────────────────────────────────────────────────────────────────────
-// TEST: PI-B2 Progressive Validation Pipeline
+// TEST: Progressive Validation Pipeline
 // ─────────────────────────────────────────────────────────────────────────────
 // Tests for progressive-validate.sh — the 4-level progressive validation
 // wrapper around validate.sh.
@@ -91,7 +91,7 @@ function runValidate(
  * Returns the directory path. Caller is responsible for cleanup.
  */
 function createTempSpecDir(files: Record<string, string>): string {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'pi-b2-test-'));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'progressive-validation-test-'));
   for (const [name, content] of Object.entries(files)) {
     fs.writeFileSync(path.join(tmpDir, name), content, 'utf8');
   }
@@ -181,7 +181,7 @@ const VALIDATE_EXISTS = fs.existsSync(VALIDATE_SCRIPT);
 // SUITE
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('PI-B2: Progressive Validation Pipeline', () => {
+describe('Progressive Validation Pipeline', () => {
 
   // ─────────────────────────────────────────────────────────────────────────
   // GUARD TESTS
@@ -1052,7 +1052,7 @@ Test.
     it('T-PB2-15b: non-existent folder exits 2 with error message', () => {
       if (!SCRIPT_EXISTS) return;
 
-      const { exitCode, stderr } = runProgressiveValidate('/tmp/does-not-exist-pi-b2-test');
+      const { exitCode, stderr } = runProgressiveValidate('/tmp/does-not-exist-progressive-validation-test');
       expect(exitCode).toBe(2);
       expect(stderr + '').toMatch(/not found|folder/i);
     });

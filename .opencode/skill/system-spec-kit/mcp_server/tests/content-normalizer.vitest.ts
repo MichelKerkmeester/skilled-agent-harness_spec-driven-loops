@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ───────────────────────────────────────────────────────────────
-// TEST: S1 Content Normalizer (Sprint 7)
+// TEST: Content Normalizer
 // File: lib/parsing/content-normalizer.ts
 // ───────────────────────────────────────────────────────────────
 

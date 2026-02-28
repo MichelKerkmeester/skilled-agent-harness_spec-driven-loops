@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------
-// TEST: R12 Embedding-Based Query Expansion
-// Sprint 5 Phase B — SPECKIT_EMBEDDING_EXPANSION feature flag
+// TEST: Embedding-Based Query Expansion
+// SPECKIT_EMBEDDING_EXPANSION feature flag
 //
 // Test matrix:
 //   T1  Feature flag OFF → identity result, no expansion

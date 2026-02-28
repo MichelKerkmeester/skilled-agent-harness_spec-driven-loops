@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: S2 Anchor Metadata — Sprint 5 Phase B
+// TEST: Anchor Metadata
 // ---------------------------------------------------------------
 //
 // Covers: extractAnchorMetadata and enrichResultsWithAnchorMetadata

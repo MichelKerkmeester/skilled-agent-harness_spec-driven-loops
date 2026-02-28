@@ -20,16 +20,16 @@ const MAX_MODULE_LINES = 320; // 300 target with 20-line tolerance
 
 // Known large modules with extended thresholds (technical debt tracking)
 // These modules contain complex business logic justifying larger size
-// 2026-02-28: Thresholds updated to match Sprint 4-7 feature growth.
+// 2026-02-28: Thresholds updated to match feature growth.
 // TODO: Extract quality gate, reconsolidation, chunked-indexing from memory-save (2,553 LOC source).
 const EXTENDED_LIMITS: Record<string, number> = {
   'context-server.js': 750,         // Main entry point (tool defs extracted to tool-schemas.ts)
-  'handlers/memory-search.js': 1450, // Complex search logic with multiple strategies + chunk reassembly paths + Pipeline V2 integration (Sprint 5 R6)
+  'handlers/memory-search.js': 1450, // Complex search logic with multiple strategies + chunk reassembly paths + Pipeline V2 integration
   'handlers/memory-triggers.js': 400, // Trigger matching with cognitive features
   'handlers/memory-crud.js': 760,   // CRUD operations with validation + checkpoint/ledger/graph metrics wiring
   'handlers/memory-save.js': 2100,  // Save logic with parsing, validation, indexing + quality gate + reconsolidation + embedding cache
   'handlers/memory-index.js': 700,  // Index operations with scanning + spec document discovery (Spec 126)
-  'handlers/checkpoints.js': 400,   // Checkpoint operations (Sprint 4-6 growth)
+  'handlers/checkpoints.js': 400,   // Checkpoint operations
 };
 
 function countLines(filePath: string): number {

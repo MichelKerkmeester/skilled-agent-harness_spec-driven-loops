@@ -1,5 +1,5 @@
 // ─── MODULE: Test — Confidence Truncation ───
-// Sprint 3 — Query Intelligence
+// Query Intelligence
 // 24 tests covering:
 //   basic truncation, minimum result count, no-truncation, flag disabled,
 //   edge cases, >30% tail reduction verification, algorithm boundaries

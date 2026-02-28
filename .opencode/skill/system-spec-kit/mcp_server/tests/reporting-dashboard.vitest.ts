@@ -1,16 +1,16 @@
 // ---------------------------------------------------------------
-// TEST: Reporting Dashboard (R13-S3)
-// Sprint 7: Full reporting dashboard for eval infrastructure.
+// TEST: Reporting Dashboard
+// Full reporting dashboard for eval infrastructure.
 //
 // Validates:
-//   S7-RD-1  — generateDashboardReport() returns valid DashboardReport structure
-//   S7-RD-2  — Report includes sprint-level metric aggregation (mean, min, max, latest)
-//   S7-RD-3  — Report includes channel performance data
-//   S7-RD-4  — Report includes trend entries with direction
-//   S7-RD-5  — formatReportText() produces non-empty string with expected sections
-//   S7-RD-6  — formatReportJSON() produces valid JSON matching DashboardReport shape
-//   S7-RD-7  — Filter by sprint works correctly
-//   S7-RD-8  — Empty database returns report with zero eval runs
+//   RD-1  — generateDashboardReport() returns valid DashboardReport structure
+//   RD-2  — Report includes sprint-level metric aggregation (mean, min, max, latest)
+//   RD-3  — Report includes channel performance data
+//   RD-4  — Report includes trend entries with direction
+//   RD-5  — formatReportText() produces non-empty string with expected sections
+//   RD-6  — formatReportJSON() produces valid JSON matching DashboardReport shape
+//   RD-7  — Filter by sprint works correctly
+//   RD-8  — Empty database returns report with zero eval runs
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
@@ -381,7 +381,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
     beforeEach(() => {
       // Two sprints to produce trend comparison
       seedSnapshots(testDb, [
-        // Sprint 1: ndcg@5 = 0.70
+        // Iteration 1: ndcg@5 = 0.70
         {
           eval_run_id: 1,
           metric_name: 'ndcg@5',
@@ -389,7 +389,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-1' }),
           created_at: '2026-01-10T10:00:00.000Z',
         },
-        // Sprint 2: ndcg@5 = 0.85 (improved)
+        // Iteration 2: ndcg@5 = 0.85 (improved)
         {
           eval_run_id: 2,
           metric_name: 'ndcg@5',
@@ -397,7 +397,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-2' }),
           created_at: '2026-01-20T10:00:00.000Z',
         },
-        // Sprint 1: mrr@5 = 0.80
+        // Iteration 1: mrr@5 = 0.80
         {
           eval_run_id: 1,
           metric_name: 'mrr@5',
@@ -405,7 +405,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-1' }),
           created_at: '2026-01-10T10:00:00.000Z',
         },
-        // Sprint 2: mrr@5 = 0.60 (regressed)
+        // Iteration 2: mrr@5 = 0.60 (regressed)
         {
           eval_run_id: 2,
           metric_name: 'mrr@5',
@@ -413,7 +413,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-2' }),
           created_at: '2026-01-20T10:00:00.000Z',
         },
-        // Sprint 1: precision@5 = 0.50
+        // Iteration 1: precision@5 = 0.50
         {
           eval_run_id: 1,
           metric_name: 'precision@5',
@@ -421,7 +421,7 @@ describe('Reporting Dashboard (R13-S3)', () => {
           metadata: JSON.stringify({ sprint: 'sprint-1' }),
           created_at: '2026-01-10T10:00:00.000Z',
         },
-        // Sprint 2: precision@5 = 0.50 (unchanged)
+        // Iteration 2: precision@5 = 0.50 (unchanged)
         {
           eval_run_id: 2,
           metric_name: 'precision@5',

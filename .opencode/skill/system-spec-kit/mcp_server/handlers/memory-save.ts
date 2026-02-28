@@ -9,6 +9,9 @@ import path from 'path';
 // Shared packages
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
 
+// Third-party types
+import type BetterSqlite3 from 'better-sqlite3';
+
 // Internal modules
 import { ALLOWED_BASE_PATHS, checkDatabaseUpdated } from '../core';
 import { createFilePathValidator } from '../utils/validators';
@@ -33,7 +36,6 @@ import { requireDb, toErrorMessage } from '../utils';
 import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
 import { thinChunks } from '../lib/chunking/chunk-thinning';
 import type { MCPResponse } from './types';
-import type BetterSqlite3 from 'better-sqlite3';
 import { clearConstitutionalCache } from '../hooks/memory-surface';
 
 // Sprint 4: Quality gate + reconsolidation — all flag-gated, disabled by default
@@ -46,6 +48,12 @@ import { isEncodingIntentEnabled, isSaveQualityGateEnabled, isReconsolidationEna
 import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
 import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
 import { normalizeContentForEmbedding } from '../lib/parsing/content-normalizer';
+
+// R10, R8, S5: Entity extraction, memory summaries, entity linking — default-ON via flags
+import { isAutoEntitiesEnabled, isMemorySummariesEnabled, isEntityLinkingEnabled } from '../lib/search/search-flags';
+import { extractEntities, filterEntities, storeEntities, updateEntityCatalog } from '../lib/extraction/entity-extractor';
+import { generateAndStoreSummary } from '../lib/search/memory-summaries';
+import { runEntityLinking } from '../lib/search/entity-linker';
 
 // Create local path validator
 const validateFilePathLocal = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
@@ -1667,6 +1675,54 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     } catch (causal_err: unknown) {
       const message = toErrorMessage(causal_err);
       console.warn(`[memory-save] Causal links processing failed: ${message}`);
+    }
+  }
+
+  // ── R10: Auto Entity Extraction ──
+  if (isAutoEntitiesEnabled()) {
+    try {
+      const rawEntities = extractEntities(parsed.content);
+      const filtered = filterEntities(rawEntities);
+      if (filtered.length > 0) {
+        const entityResult = storeEntities(database, id, filtered);
+        updateEntityCatalog(database, filtered);
+        console.info(`[entity-extraction] Extracted ${entityResult.stored} entities for memory #${id}`);
+      }
+    } catch (entityErr: unknown) {
+      const message = toErrorMessage(entityErr);
+      console.warn(`[memory-save] R10 entity extraction failed: ${message}`);
+    }
+  }
+
+  // ── R8: Memory Summary Generation ──
+  if (isMemorySummariesEnabled()) {
+    try {
+      const summaryResult = await generateAndStoreSummary(
+        database,
+        id,
+        parsed.content,
+        (text: string) => embeddings.generateQueryEmbedding(text)
+      );
+      if (summaryResult.stored) {
+        console.info(`[memory-summaries] Generated summary for memory #${id}`);
+      }
+    } catch (summaryErr: unknown) {
+      const message = toErrorMessage(summaryErr);
+      console.warn(`[memory-save] R8 summary generation failed: ${message}`);
+    }
+  }
+
+  // ── S5: Cross-Document Entity Linking ──
+  // Runs after R10 entity storage; links entities across spec folders.
+  if (isEntityLinkingEnabled() && isAutoEntitiesEnabled()) {
+    try {
+      const linkResult = runEntityLinking(database);
+      if (linkResult.linksCreated > 0) {
+        console.info(`[entity-linking] Created ${linkResult.linksCreated} cross-doc links from ${linkResult.crossDocMatches} entity matches`);
+      }
+    } catch (linkErr: unknown) {
+      const message = toErrorMessage(linkErr);
+      console.warn(`[memory-save] S5 entity linking failed: ${message}`);
     }
   }
 

@@ -1,7 +1,6 @@
-// ─── MODULE: Test — Cross-Sprint Integration ───
-// Verifies that Sprint 1 (graph signal activation) and Sprint 2
-// (scoring calibration) changes to shared files are correctly
-// integrated and do not conflict.
+// ─── MODULE: Test — Graph-Scoring Integration ───
+// Verifies that graph signal activation and scoring calibration
+// changes to shared files are correctly integrated and do not conflict.
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 

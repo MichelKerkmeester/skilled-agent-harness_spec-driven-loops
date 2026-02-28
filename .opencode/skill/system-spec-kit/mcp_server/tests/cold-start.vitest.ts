@@ -169,7 +169,8 @@ describe('five-factor path — novelty boost removed', () => {
     const scoreWith = calculateFiveFactorScore(row);
 
     // Novelty boost removed — flag has no effect, scores are identical
-    expect(scoreWith).toBe(scoreWithout);
+    // Use toBeCloseTo to handle sub-microsecond Date.now() drift between calls
+    expect(scoreWith).toBeCloseTo(scoreWithout, 10);
   });
 });
 
@@ -195,6 +196,7 @@ describe('legacy composite path — novelty boost removed', () => {
     const scoreWith = calculateCompositeScore(row);
 
     // Novelty boost removed — flag has no effect, scores are identical
-    expect(scoreWith).toBe(scoreWithout);
+    // Use toBeCloseTo to handle sub-microsecond Date.now() drift between calls
+    expect(scoreWith).toBeCloseTo(scoreWithout, 10);
   });
 });

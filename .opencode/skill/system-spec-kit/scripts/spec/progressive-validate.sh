@@ -2,7 +2,7 @@
 # ───────────────────────────────────────────────────────────────
 # SPECKIT: PROGRESSIVE VALIDATE
 # ───────────────────────────────────────────────────────────────
-# PI-B2: Progressive validation pipeline for spec documents.
+# Progressive validation pipeline for spec documents.
 # Wraps validate.sh with a 4-level pipeline:
 #   Level 1 - Detect  : Identify all violations (same as validate.sh)
 #   Level 2 - Auto-fix: Apply safe mechanical corrections with diff log

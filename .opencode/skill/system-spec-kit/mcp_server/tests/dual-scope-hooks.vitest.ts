@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: TM-05 — Dual-Scope Memory Auto-Surface Hooks
+// TEST: Dual-Scope Memory Auto-Surface Hooks
 // ---------------------------------------------------------------
 // Covers:
 //   - autoSurfaceAtToolDispatch: fires at tool dispatch lifecycle point

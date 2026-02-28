@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// TEST: S4 SPEC FOLDER HIERARCHY (REQ-S6-006)
+// TEST: Spec Folder Hierarchy
 // Validates hierarchy-aware retrieval from spec folder paths.
 // ---------------------------------------------------------------
 

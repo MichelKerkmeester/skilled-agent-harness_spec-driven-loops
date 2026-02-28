@@ -1,4 +1,4 @@
-// ─── MODULE: Test — PI-A2 Search Fallback Tiered ───
+// ─── MODULE: Test — Search Fallback Tiered ───
 // Tests: Feature flag gating, tier progression, structuralSearch,
 //        degradation metadata, result merging, R15 invariant
 

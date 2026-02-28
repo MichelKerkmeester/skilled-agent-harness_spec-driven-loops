@@ -1,4 +1,4 @@
-// ─── MODULE: Test — Sprint 3 Feature Evaluation ───
+// ─── MODULE: Test — Feature Evaluation — Query Intelligence ───
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 

@@ -457,7 +457,7 @@ export function recordBaselineMetrics(
  * explicitly disabled before calling.
  *
  * For testing without a live DB, inject a mock `searchFn` that returns
- * deterministic results (see tests/t008-bm25-baseline.vitest.ts).
+ * deterministic results (see tests/bm25-baseline.vitest.ts).
  *
  * The ground truth relevance judgments use the dataset from T007
  * (ground-truth-data.ts) with real production memory IDs mapped via

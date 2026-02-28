@@ -695,7 +695,7 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
 
   describe('Checkpoint Requirement', () => {
     it('CHK1: SPECKIT_RECONSOLIDATION is graduated (default ON, explicit "false" to disable)', () => {
-      // The reconsolidation feature flag graduated in Sprint 4.
+      // The reconsolidation feature flag has graduated.
       // It now defaults to ON when unset. Use explicit 'false' to disable.
       delete process.env.SPECKIT_RECONSOLIDATION;
       expect(isReconsolidationEnabled()).toBe(true);

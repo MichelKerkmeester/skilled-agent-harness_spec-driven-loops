@@ -1,5 +1,5 @@
 // ─── MODULE: Test — Query Router ───
-// Sprint 3 — Tier-to-Channel-Subset Routing + Pipeline Integration
+// Tier-to-Channel-Subset Routing + Pipeline Integration
 // 22 tests covering:
 //   channel subset per tier, minimum invariant, custom config,
 //   routeQuery convenience, feature flag disabled, classification details,

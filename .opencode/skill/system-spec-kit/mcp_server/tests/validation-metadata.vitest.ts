@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// TEST: S3 Validation Signals as Retrieval Metadata (Sprint 5 Phase B)
+// TEST: Validation Signals as Retrieval Metadata
 //
 // Tests for:
 //   - extractValidationMetadata: signal extraction from PipelineRow

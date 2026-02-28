@@ -26,10 +26,12 @@ import type { Stage1Input, Stage1Output, PipelineRow } from './types';
 import * as vectorIndex from '../vector-index';
 import * as embeddings from '../../providers/embeddings';
 import * as hybridSearch from '../hybrid-search';
-import { isMultiQueryEnabled, isEmbeddingExpansionEnabled } from '../search-flags';
+import { isMultiQueryEnabled, isEmbeddingExpansionEnabled, isMemorySummariesEnabled } from '../search-flags';
 import { expandQuery } from '../query-expander';
 import { expandQueryWithEmbeddings, isExpansionActive } from '../embedding-expansion';
+import { querySummaryEmbeddings, checkScaleGate } from '../memory-summaries';
 import { addTraceEntry } from '../../contracts/retrieval-trace';
+import { requireDb } from '../../../utils/db-helpers';
 
 // ── Constants ──
 
@@ -483,6 +485,62 @@ export async function executeStage1(input: Stage1Input): Promise<Stage1Output> {
   // ── Quality Score Filtering ────────────────────────────────────────────────
 
   candidates = filterByMinQualityScore(candidates, qualityThreshold);
+
+  // ── R8: Summary Embedding Channel ───────────────────────────────────────
+  // When SPECKIT_MEMORY_SUMMARIES is enabled (default-ON) and scale gate is
+  // met (>5000 indexed), run a parallel search on summary embeddings and merge
+  // results. Pattern follows R12 embedding expansion: run in parallel, merge
+  // + deduplicate by ID.
+  if (isMemorySummariesEnabled()) {
+    try {
+      const db = requireDb();
+      if (checkScaleGate(db)) {
+        const summaryEmbedding: Float32Array | number[] | null =
+          queryEmbedding ?? (await embeddings.generateQueryEmbedding(query));
+
+        if (summaryEmbedding) {
+          const summaryResults = querySummaryEmbeddings(db, summaryEmbedding, limit);
+          if (summaryResults.length > 0) {
+            const existingIds = new Set(candidates.map((r) => r.id));
+            const newSummaryHits: PipelineRow[] = [];
+
+            for (const sr of summaryResults) {
+              if (!existingIds.has(sr.memoryId)) {
+                // Fetch full memory row for the summary match
+                const memRow = db.prepare(
+                  'SELECT id, title, spec_folder, file_path, importance_tier, importance_weight, quality_score, created_at FROM memory_index WHERE id = ?'
+                ).get(sr.memoryId) as PipelineRow | undefined;
+
+                if (memRow) {
+                  newSummaryHits.push({
+                    ...memRow,
+                    similarity: sr.similarity * 100,
+                    score: sr.similarity,
+                  });
+                  existingIds.add(sr.memoryId);
+                }
+              }
+            }
+
+            if (newSummaryHits.length > 0) {
+              candidates = [...candidates, ...newSummaryHits];
+              channelCount++;
+
+              if (trace) {
+                addTraceEntry(trace, 'candidate', 1, newSummaryHits.length, 0, {
+                  channel: 'r8-summary-embeddings',
+                  summaryHits: newSummaryHits.length,
+                });
+              }
+            }
+          }
+        }
+      }
+    } catch (r8Err: unknown) {
+      const r8Msg = r8Err instanceof Error ? r8Err.message : String(r8Err);
+      console.warn(`[stage1-candidate-gen] R8 summary channel failed: ${r8Msg}`);
+    }
+  }
 
   // ── Trace ──────────────────────────────────────────────────────────────────
 

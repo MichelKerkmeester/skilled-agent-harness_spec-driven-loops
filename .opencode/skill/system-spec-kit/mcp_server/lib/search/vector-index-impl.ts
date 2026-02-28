@@ -345,7 +345,9 @@ function resolve_database_path() {
 // v16: Add parent_id column for chunked indexing of large files (010-index-large-files)
 // v17: Add interference_score column for TM-01 (Sprint 2)
 // v18: Sprint 6 — weight_history table + causal_edges provenance + encoding_intent column
-const SCHEMA_VERSION = 18;
+// v19: degree_snapshots + community_assignments (N2 graph centrality)
+// v20: memory_summaries + memory_entities + entity_catalog (R8/R10/S5)
+const SCHEMA_VERSION = 20;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -1184,6 +1186,110 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
       } catch (e: unknown) {
         if (!get_error_message(e).includes('duplicate column')) {
           console.warn('[VectorIndex] Migration v18 warning (encoding_intent):', get_error_message(e));
+        }
+      }
+    },
+
+    19: () => {
+      // v18 -> v19: N2 graph centrality tables (degree_snapshots, community_assignments)
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS degree_snapshots (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            memory_id INTEGER NOT NULL,
+            degree_count INTEGER NOT NULL DEFAULT 0,
+            snapshot_date TEXT NOT NULL DEFAULT (date('now')),
+            UNIQUE(memory_id, snapshot_date)
+          )
+        `);
+        database.exec('CREATE INDEX IF NOT EXISTS idx_degree_snapshots_memory ON degree_snapshots(memory_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_degree_snapshots_date ON degree_snapshots(snapshot_date DESC)');
+        logger.info('Migration v19: Created degree_snapshots table (N2a)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v19 warning (degree_snapshots):', get_error_message(e));
+        }
+      }
+
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS community_assignments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            memory_id INTEGER NOT NULL UNIQUE,
+            community_id INTEGER NOT NULL,
+            algorithm TEXT NOT NULL DEFAULT 'bfs',
+            computed_at TEXT DEFAULT (datetime('now'))
+          )
+        `);
+        database.exec('CREATE INDEX IF NOT EXISTS idx_community_assignments_community ON community_assignments(community_id)');
+        logger.info('Migration v19: Created community_assignments table (N2c)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v19 warning (community_assignments):', get_error_message(e));
+        }
+      }
+    },
+
+    20: () => {
+      // v19 -> v20: R8 memory summaries, R10 entity extraction, S5 entity catalog
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS memory_summaries (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            memory_id INTEGER NOT NULL UNIQUE,
+            summary_text TEXT NOT NULL,
+            summary_embedding BLOB,
+            key_sentences TEXT DEFAULT '[]',
+            created_at TEXT DEFAULT (datetime('now')),
+            updated_at TEXT DEFAULT (datetime('now'))
+          )
+        `);
+        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_summaries_memory ON memory_summaries(memory_id)');
+        logger.info('Migration v20: Created memory_summaries table (R8)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v20 warning (memory_summaries):', get_error_message(e));
+        }
+      }
+
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS memory_entities (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            memory_id INTEGER NOT NULL,
+            entity_text TEXT NOT NULL,
+            entity_type TEXT NOT NULL DEFAULT 'noun_phrase',
+            frequency INTEGER NOT NULL DEFAULT 1,
+            created_by TEXT NOT NULL DEFAULT 'entity_extractor',
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(memory_id, entity_text)
+          )
+        `);
+        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_entities_memory ON memory_entities(memory_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_entities_text ON memory_entities(entity_text)');
+        logger.info('Migration v20: Created memory_entities table (R10)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v20 warning (memory_entities):', get_error_message(e));
+        }
+      }
+
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS entity_catalog (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            canonical_name TEXT NOT NULL UNIQUE,
+            aliases TEXT DEFAULT '[]',
+            entity_type TEXT NOT NULL DEFAULT 'noun_phrase',
+            memory_count INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT DEFAULT (datetime('now'))
+          )
+        `);
+        database.exec('CREATE INDEX IF NOT EXISTS idx_entity_catalog_name ON entity_catalog(canonical_name)');
+        logger.info('Migration v20: Created entity_catalog table (S5)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v20 warning (entity_catalog):', get_error_message(e));
         }
       }
     }

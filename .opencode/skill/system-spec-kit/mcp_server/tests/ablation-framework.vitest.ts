@@ -1,4 +1,4 @@
-// ─── MODULE: Test — Ablation Framework (R13-S3) ───
+// ─── MODULE: Test — Ablation Framework ───
 //
 // Unit and integration tests for the ablation study framework.
 // Verifies feature flag gating, channel-to-flag mapping, ablation runner

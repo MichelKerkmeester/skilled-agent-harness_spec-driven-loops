@@ -7,21 +7,25 @@
 // the G2 double-weighting recurrence bug.
 //
 // SIGNAL APPLICATION ORDER (must not be reordered):
-//   1. Session boost           — working-memory attention amplification
-//   2. Causal boost            — graph-traversal neighbor amplification
-//   3. Testing effect          — FSRS strengthening write-back (trackAccess)
-//   4. Intent weights          — non-hybrid search post-scoring adjustment
-//   5. Artifact routing        — class-based weight boosts
-//   6. Feedback signals        — learned trigger boosts + negative demotions
-//   7. Artifact limiting       — result count cap from routing strategy
-//   8. Anchor metadata         — extract named ANCHOR sections (annotation)
-//   9. Validation metadata     — spec quality signals enrichment + quality scoring
+//   1.  Session boost           — working-memory attention amplification
+//   2.  Causal boost            — graph-traversal neighbor amplification
+//   2b. Community co-retrieval  — N2c inject community co-members
+//   2c. Graph signals           — N2a momentum + N2b causal depth
+//   3.  Testing effect          — FSRS strengthening write-back (trackAccess)
+//   4.  Intent weights          — non-hybrid search post-scoring adjustment
+//   5.  Artifact routing        — class-based weight boosts
+//   6.  Feedback signals        — learned trigger boosts + negative demotions
+//   7.  Artifact limiting       — result count cap from routing strategy
+//   8.  Anchor metadata         — extract named ANCHOR sections (annotation)
+//   9.  Validation metadata     — spec quality signals enrichment + quality scoring
 //
 // INVARIANT: Hybrid search already applies intent-aware scoring
 // internally (RRF / RSF fusion). Post-search intent weighting is
 // therefore ONLY applied for non-hybrid search types (vector,
 // multi-concept). Applying it to hybrid results would double-count.
 // ---------------------------------------------------------------
+
+import type Database from 'better-sqlite3';
 
 import type { Stage2Input, Stage2Output, PipelineRow, IntentWeightsConfig, ArtifactRoutingConfig } from './types';
 
@@ -30,13 +34,14 @@ import * as causalBoost from '../causal-boost';
 import * as fsrsScheduler from '../../cache/cognitive/fsrs-scheduler';
 import { queryLearnedTriggers } from '../learned-feedback';
 import { applyNegativeFeedback, getNegativeFeedbackStats } from '../../scoring/negative-feedback';
-import { isNegativeFeedbackEnabled } from '../search-flags';
+import { isNegativeFeedbackEnabled, isCommunityDetectionEnabled, isGraphSignalsEnabled } from '../search-flags';
 import { addTraceEntry } from '../../contracts/retrieval-trace';
 import { requireDb } from '../../../utils/db-helpers';
 import { computeRecencyScore } from '../../scoring/folder-scoring';
 import { enrichResultsWithAnchorMetadata } from '../anchor-metadata';
 import { enrichResultsWithValidationMetadata } from '../validation-metadata';
-import type Database from 'better-sqlite3';
+import { applyCommunityBoost } from '../../graph/community-detection';
+import { applyGraphSignals } from '../../graph/graph-signals';
 
 // ── Internal type aliases ──
 
@@ -440,13 +445,15 @@ function applyTestingEffect(
  * the architectural documentation (see types.ts Stage2 comment block).
  *
  * Signal application order:
- *   1. Session boost      (hybrid only — working memory attention)
- *   2. Causal boost       (hybrid only — graph-traversal amplification)
- *   3. Testing effect     (all types, when trackAccess = true)
- *   4. Intent weights     (non-hybrid only — G2 prevention)
- *   5. Artifact routing   (all types, when routing confidence > 0)
- *   6. Feedback signals   (all types — learned triggers + negative feedback)
- *   7. Artifact limiting  (trim to strategy.maxResults if routing active)
+ *   1.  Session boost      (hybrid only — working memory attention)
+ *   2.  Causal boost       (hybrid only — graph-traversal amplification)
+ *   2b. Community boost    (N2c — inject co-members)
+ *   2c. Graph signals      (N2a+N2b — momentum + depth)
+ *   3.  Testing effect     (all types, when trackAccess = true)
+ *   4.  Intent weights     (non-hybrid only — G2 prevention)
+ *   5.  Artifact routing   (all types, when routing confidence > 0)
+ *   6.  Feedback signals   (all types — learned triggers + negative feedback)
+ *   7.  Artifact limiting  (trim to strategy.maxResults if routing active)
  *
  * @param input - Stage 2 input containing candidates and pipeline config
  * @returns Stage 2 output with scored results and per-signal metadata
@@ -455,7 +462,7 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
   const { candidates, config } = input;
   const start = Date.now();
 
-  const metadata: Stage2Output['metadata'] = {
+  const metadata: Stage2Output['metadata'] & { communityBoostApplied?: boolean; graphSignalsApplied?: boolean } = {
     sessionBoostApplied: false,
     causalBoostApplied: false,
     intentWeightsApplied: false,
@@ -496,6 +503,37 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
       console.warn(`[stage2-fusion] causal boost failed: ${message}`);
+    }
+  }
+
+  // ── 2b. Community co-retrieval (N2c) ──
+  // Inject community co-members into result set before graph signals
+  // so injected rows also receive momentum/depth adjustments.
+  if (isCommunityDetectionEnabled()) {
+    try {
+      const db = requireDb();
+      const boosted = applyCommunityBoost(results, db);
+      if (boosted.length > results.length) {
+        results = boosted as PipelineRow[];
+        (metadata as Record<string, unknown>).communityBoostApplied = true;
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn(`[stage2-fusion] community boost failed: ${message}`);
+    }
+  }
+
+  // ── 2c. Graph signals (N2a + N2b) ──
+  // Additive score adjustments for graph momentum and causal depth.
+  if (isGraphSignalsEnabled()) {
+    try {
+      const db = requireDb();
+      const signaled = applyGraphSignals(results, db);
+      results = signaled as PipelineRow[];
+      (metadata as Record<string, unknown>).graphSignalsApplied = true;
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn(`[stage2-fusion] graph signals failed: ${message}`);
     }
   }
 

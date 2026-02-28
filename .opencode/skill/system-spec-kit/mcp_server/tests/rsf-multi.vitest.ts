@@ -1,6 +1,6 @@
 // ─── MODULE: Test — RSF Multi-List ───
 // RSF Fusion — Multi-List (T002b) and Cross-Variant (T002c) Variants
-// Sprint 3, Tasks T002b + T002c — Hybrid RAG Fusion Refinement
+// Tasks T002b + T002c — Hybrid RAG Fusion Refinement
 
 import { describe, it, expect } from 'vitest';
 import {

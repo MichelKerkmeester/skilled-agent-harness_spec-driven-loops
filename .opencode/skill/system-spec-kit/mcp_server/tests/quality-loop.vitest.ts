@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ─── MODULE: Test — Quality Loop ───
-// T014 — Quality Loop (T008)
+// Quality Loop
 //
 // Verify-fix-verify memory quality loop:
 // - Quality score computation (trigger phrases, anchors, budget, coherence)

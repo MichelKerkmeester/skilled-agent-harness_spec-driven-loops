@@ -1,5 +1,5 @@
 // ─── MODULE: Test — Dynamic Token Budget ───
-// Sprint 3 — Query Intelligence
+// Query Intelligence
 // 16 tests covering:
 //   budget per tier, flag disabled, custom config, edge cases
 

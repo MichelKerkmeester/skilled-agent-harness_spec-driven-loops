@@ -1,12 +1,12 @@
 // @ts-nocheck
 // ─── MODULE: Test — Eval Logger ───
-// T005: Verifies that logSearchQuery, logChannelResult, and
-//       logFinalResult correctly insert records into the eval DB,
-//       are no-ops when SPECKIT_EVAL_LOGGING=false, and never throw.
+// Verifies that logSearchQuery, logChannelResult, and
+// logFinalResult correctly insert records into the eval DB,
+// are no-ops when SPECKIT_EVAL_LOGGING=false, and never throw.
 //
-// T004b: Verifies that enabling SPECKIT_EVAL_LOGGING does not add
-//        more than 10% overhead to the core logging operations
-//        (observer-effect mitigation benchmark).
+// Verifies that enabling SPECKIT_EVAL_LOGGING does not add
+// more than 10% overhead to the core logging operations
+// (observer-effect mitigation benchmark).
 
 import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
 import * as path from 'path';

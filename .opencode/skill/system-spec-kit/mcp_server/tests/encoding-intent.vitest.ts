@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// TEST: S6 R16 Encoding-Intent Capture at Index Time
+// TEST: Encoding-Intent Capture at Index Time
 // ---------------------------------------------------------------
 //
 // Covers: classifyEncodingIntent from lib/search/encoding-intent.ts

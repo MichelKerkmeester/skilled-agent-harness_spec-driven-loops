@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------
-// TEST: PI-B1 Tree Thinning — Spec Folder Consolidation
+// TEST: Tree Thinning — Spec Folder Consolidation
 // Sprint 5 PageIndex — pre-pipeline token reduction
 //
-// Run with: vitest run tests/pi-b1-tree-thinning.vitest.ts
+// Run with: vitest run tests/tree-thinning.vitest.ts
 // (requires vitest configured in this package, or run from mcp_server
 //  after adjusting import path)
 // ---------------------------------------------------------------

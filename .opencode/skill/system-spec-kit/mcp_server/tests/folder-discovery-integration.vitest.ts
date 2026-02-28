@@ -1,4 +1,4 @@
-// ─── MODULE: Test — PI-B3 Folder Discovery Integration ───
+// ─── MODULE: Test — Folder Discovery Integration ───
 // Tests: ensureDescriptionCache, isCacheStale, discoverSpecFolder,
 //        getSpecsBasePaths, graceful degradation
 

@@ -494,7 +494,7 @@ const matches = await parsing.triggerMatcher.match_triggers({
 
 - `handlers/memory-index.ts`: indexes 5 sources and applies safety rules for incremental updates and post-success mtime writes.
 - `lib/search/vector-index-impl.ts`: v13 migration adds `document_type` and `spec_level` columns and indexes.
-- `tests/spec126-full-spec-doc-indexing.vitest.ts`: validates document typing, scoring multipliers and spec-doc intent routing.
+- `tests/full-spec-doc-indexing.vitest.ts`: validates document typing, scoring multipliers and spec-doc intent routing.
 
 <!-- /ANCHOR:features -->
 

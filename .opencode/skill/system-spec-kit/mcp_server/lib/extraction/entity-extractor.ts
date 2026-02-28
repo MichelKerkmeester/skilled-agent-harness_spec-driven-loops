@@ -1,0 +1,320 @@
+// ---------------------------------------------------------------
+// MODULE: Auto Entity Extraction (R10)
+// Deferred feature — gated via SPECKIT_AUTO_ENTITIES
+// Pure-TS rule-based extraction, zero npm dependencies.
+// ---------------------------------------------------------------
+
+import { isEntityDenied } from './entity-denylist.js';
+
+import type Database from 'better-sqlite3';
+
+// ---------------------------------------------------------------------------
+// 1. TYPES
+// ---------------------------------------------------------------------------
+
+/** A single entity extracted from memory content. */
+export interface ExtractedEntity {
+  /** The raw entity text as found in content. */
+  text: string;
+  /** Classification of how the entity was detected. */
+  type: 'proper_noun' | 'technology' | 'key_phrase' | 'heading' | 'quoted';
+  /** Number of occurrences in the source content. */
+  frequency: number;
+}
+
+// ---------------------------------------------------------------------------
+// 2. EXTRACTION RULES
+// ---------------------------------------------------------------------------
+
+/**
+ * Main extraction function — pure-TS rule-based, no npm deps.
+ *
+ * Rules applied in order:
+ *   1. Capitalized multi-word sequences (2+ words starting with uppercase) → proper_noun
+ *   2. Technology names from code fence annotations → technology
+ *   3. Words after key phrases ("using", "with", "via", "implements") → key_phrase
+ *   4. Markdown heading content (## through ####) → heading
+ *   5. Quoted strings (double quotes, 2-50 chars) → quoted
+ *
+ * Results are deduplicated by normalized text with summed frequencies.
+ *
+ * @param content - The raw text content to extract entities from.
+ * @returns Array of extracted entities, deduplicated and frequency-counted.
+ */
+export function extractEntities(content: string): ExtractedEntity[] {
+  const raw: Array<{ text: string; type: ExtractedEntity['type'] }> = [];
+
+  // Rule 1: Capitalized multi-word sequences (proper nouns)
+  const properNounRe = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)\b/g;
+  let match: RegExpExecArray | null;
+  while ((match = properNounRe.exec(content)) !== null) {
+    raw.push({ text: match[1], type: 'proper_noun' });
+  }
+
+  // Rule 2: Technology names from code fence annotations
+  const codeFenceRe = /```(\w+)/g;
+  while ((match = codeFenceRe.exec(content)) !== null) {
+    raw.push({ text: match[1], type: 'technology' });
+  }
+
+  // Rule 3: Words after key phrases
+  const keyPhraseRe = /\b(?:using|with|via|implements)\s+([A-Z][\w.-]+(?:\s+[A-Z][\w.-]+)*)/g;
+  while ((match = keyPhraseRe.exec(content)) !== null) {
+    raw.push({ text: match[1], type: 'key_phrase' });
+  }
+
+  // Rule 4: Markdown heading content (## through ####)
+  const headingRe = /^#{2,4}\s+(.+)$/gm;
+  while ((match = headingRe.exec(content)) !== null) {
+    raw.push({ text: match[1].trim(), type: 'heading' });
+  }
+
+  // Rule 5: Quoted strings (double quotes, 2-50 chars)
+  const quotedRe = /"([^"]{2,50})"/g;
+  while ((match = quotedRe.exec(content)) !== null) {
+    raw.push({ text: match[1], type: 'quoted' });
+  }
+
+  // Deduplicate by normalized text (lowercase, trimmed), summing frequencies
+  return deduplicateEntities(raw);
+}
+
+// ---------------------------------------------------------------------------
+// 3. FILTERING
+// ---------------------------------------------------------------------------
+
+/**
+ * Filter entities through denylist + length checks.
+ *
+ * Removes:
+ *   - Single-character entities
+ *   - Entities where ALL words are on the denylist
+ *   - Entities longer than 100 characters
+ *
+ * @param entities - Raw extracted entities to filter.
+ * @returns Filtered array with noise removed.
+ */
+export function filterEntities(entities: ExtractedEntity[]): ExtractedEntity[] {
+  return entities.filter((entity) => {
+    // Remove single-character entities
+    if (entity.text.length <= 1) return false;
+
+    // Remove entities longer than 100 characters
+    if (entity.text.length > 100) return false;
+
+    // Remove entities where ALL words are on the denylist
+    const words = entity.text.toLowerCase().split(/\s+/).filter(Boolean);
+    if (words.length > 0 && words.every((w) => isEntityDenied(w))) return false;
+
+    return true;
+  });
+}
+
+// ---------------------------------------------------------------------------
+// 4. EDGE DENSITY
+// ---------------------------------------------------------------------------
+
+/**
+ * Compute edge density: totalEdges / totalMemories.
+ *
+ * @param db - An initialized better-sqlite3 Database instance.
+ * @returns Density ratio, or 0 if no memories exist or on error.
+ */
+export function computeEdgeDensity(db: Database.Database): number {
+  try {
+    const edgeRow = db
+      .prepare('SELECT COUNT(*) AS cnt FROM causal_edges')
+      .get() as { cnt: number } | undefined;
+    const totalEdges = edgeRow?.cnt ?? 0;
+
+    const memRow = db
+      .prepare('SELECT COUNT(*) AS cnt FROM memory_index')
+      .get() as { cnt: number } | undefined;
+    const totalMemories = memRow?.cnt ?? 0;
+
+    if (totalMemories === 0) return 0;
+    return totalEdges / totalMemories;
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[entity-extractor] computeEdgeDensity failed: ${msg}`);
+    return 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 5. STORAGE
+// ---------------------------------------------------------------------------
+
+/**
+ * Store extracted entities in the memory_entities table.
+ *
+ * Uses INSERT OR REPLACE on the UNIQUE(memory_id, entity_text) constraint.
+ *
+ * @param db - An initialized better-sqlite3 Database instance.
+ * @param memoryId - The memory_index row ID to associate entities with.
+ * @param entities - Filtered entities to store.
+ * @returns Count of entities stored.
+ */
+export function storeEntities(
+  db: Database.Database,
+  memoryId: number,
+  entities: ExtractedEntity[],
+): { stored: number } {
+  try {
+    const stmt = db.prepare(`
+      INSERT OR REPLACE INTO memory_entities
+        (memory_id, entity_text, entity_type, frequency, created_by)
+      VALUES (?, ?, ?, ?, 'auto')
+    `);
+
+    let stored = 0;
+    const runInTransaction = db.transaction(() => {
+      for (const entity of entities) {
+        stmt.run(memoryId, entity.text, entity.type, entity.frequency);
+        stored++;
+      }
+    });
+    runInTransaction();
+
+    return { stored };
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[entity-extractor] storeEntities failed: ${msg}`);
+    return { stored: 0 };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 6. ENTITY CATALOG
+// ---------------------------------------------------------------------------
+
+/**
+ * Upsert entities into entity_catalog with alias normalization.
+ *
+ * For each entity:
+ *   1. normalizeEntityName(text) -> canonical_name
+ *   2. INSERT new catalog entry or UPDATE existing:
+ *      - Increment memory_count
+ *      - Append text as alias if not already present
+ *
+ * @param db - An initialized better-sqlite3 Database instance.
+ * @param entities - Filtered entities to catalog.
+ * @returns Count of entities upserted.
+ */
+export function updateEntityCatalog(
+  db: Database.Database,
+  entities: ExtractedEntity[],
+): { upserted: number } {
+  try {
+    let upserted = 0;
+
+    const selectStmt = db.prepare(
+      'SELECT id, aliases, memory_count FROM entity_catalog WHERE canonical_name = ?',
+    );
+    const insertStmt = db.prepare(`
+      INSERT INTO entity_catalog (canonical_name, aliases, entity_type, memory_count, created_at)
+      VALUES (?, ?, ?, 1, datetime('now'))
+    `);
+    const updateStmt = db.prepare(`
+      UPDATE entity_catalog
+      SET aliases = ?, memory_count = memory_count + 1
+      WHERE id = ?
+    `);
+
+    const runInTransaction = db.transaction(() => {
+      for (const entity of entities) {
+        const canonical = normalizeEntityName(entity.text);
+        if (!canonical) continue;
+
+        const existing = selectStmt.get(canonical) as
+          | { id: number; aliases: string; memory_count: number }
+          | undefined;
+
+        if (existing) {
+          // Append alias if new variant
+          let aliases: string[];
+          try {
+            aliases = JSON.parse(existing.aliases);
+            if (!Array.isArray(aliases)) aliases = [];
+          } catch {
+            aliases = [];
+          }
+
+          if (!aliases.includes(entity.text)) {
+            aliases.push(entity.text);
+          }
+
+          updateStmt.run(JSON.stringify(aliases), existing.id);
+        } else {
+          // Insert new catalog entry
+          const aliases = JSON.stringify([entity.text]);
+          insertStmt.run(canonical, aliases, entity.type);
+        }
+
+        upserted++;
+      }
+    });
+    runInTransaction();
+
+    return { upserted };
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[entity-extractor] updateEntityCatalog failed: ${msg}`);
+    return { upserted: 0 };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7. HELPERS
+// ---------------------------------------------------------------------------
+
+/**
+ * Normalize entity name for catalog matching.
+ *
+ * Transforms: lowercase, strip punctuation, collapse whitespace.
+ *
+ * @param name - Raw entity name.
+ * @returns Canonical form for dedup and catalog lookup.
+ */
+export function normalizeEntityName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')   // strip punctuation (keep hyphens)
+    .replace(/\s+/g, ' ')       // collapse whitespace
+    .trim();
+}
+
+// ---------------------------------------------------------------------------
+// 8. INTERNAL HELPERS (exported for testing)
+// ---------------------------------------------------------------------------
+
+/**
+ * Deduplicate raw extraction results by normalized text.
+ * Entries with the same normalized form are merged, summing frequencies.
+ * The first occurrence's type wins.
+ */
+function deduplicateEntities(
+  raw: Array<{ text: string; type: ExtractedEntity['type'] }>,
+): ExtractedEntity[] {
+  const map = new Map<string, ExtractedEntity>();
+
+  for (const item of raw) {
+    const key = item.text.toLowerCase().trim();
+    const existing = map.get(key);
+    if (existing) {
+      existing.frequency += 1;
+    } else {
+      map.set(key, { text: item.text, type: item.type, frequency: 1 });
+    }
+  }
+
+  return Array.from(map.values());
+}
+
+/**
+ * Internal helpers exported for testing via __testables.
+ */
+export const __testables = {
+  deduplicateEntities,
+  normalizeEntityName,
+};

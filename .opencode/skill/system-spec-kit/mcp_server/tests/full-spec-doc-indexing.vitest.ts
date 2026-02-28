@@ -1,10 +1,10 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: SPEC126 FULL SPEC DOC INDEXING
+// TEST: FULL SPEC DOC INDEXING
 // ---------------------------------------------------------------
 
 /**
- * Spec 126: Full Spec Folder Document Indexing
+ * Full Spec Folder Document Indexing
  *
  * Comprehensive test suite covering all 8 implementation phases:
  * - Phase 2: Type configuration (DocumentType, SPEC_DOCUMENT_CONFIGS, inferDocumentTypeFromPath)

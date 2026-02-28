@@ -1,21 +1,21 @@
-// ─── MODULE: Test — Cross-Sprint Integration ───
+// ─── MODULE: Test — Cross-Feature Integration Evaluation ───
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-// ── Sprint 3: Query Classifier ──
+// ── Query Classifier ──
 import {
   classifyQueryComplexity,
   type ClassificationResult,
 } from '../lib/search/query-classifier';
 
-// ── Sprint 3: Dynamic Token Budget ──
+// ── Dynamic Token Budget ──
 import {
   getDynamicTokenBudget,
   DEFAULT_BUDGET,
   DEFAULT_TOKEN_BUDGET_CONFIG,
 } from '../lib/search/dynamic-token-budget';
 
-// ── Sprint 2: Intent Classifier ──
+// ── Intent Classifier ──
 import {
   classifyIntent,
   getIntentWeights,
@@ -23,7 +23,7 @@ import {
   type IntentType,
 } from '../lib/search/intent-classifier';
 
-// ── Sprint 1: RRF Fusion ──
+// ── RRF Fusion ──
 import {
   fuseResults,
   fuseResultsMulti,
@@ -34,7 +34,7 @@ import {
   type RankedList,
 } from '../lib/search/rrf-fusion';
 
-// ── Sprint 3: RSF Fusion ──
+// ── RSF Fusion ──
 import {
   fuseResultsRsf,
   fuseResultsRsfMulti,
@@ -43,14 +43,14 @@ import {
   type RsfResult,
 } from '../lib/search/rsf-fusion';
 
-// ── Sprint 3: Channel Min-Representation ──
+// ── Channel Min-Representation ──
 import {
   analyzeChannelRepresentation,
   isChannelMinRepEnabled,
   QUALITY_FLOOR,
 } from '../lib/search/channel-representation';
 
-// ── Sprint 2: Composite Scoring ──
+// ── Composite Scoring ──
 import {
   calculateCompositeScore,
   calculateNoveltyBoost,
@@ -62,21 +62,21 @@ import {
   type ScoringInput,
 } from '../lib/scoring/composite-scoring';
 
-// ── Sprint 2: Interference Scoring ──
+// ── Interference Scoring ──
 import {
   applyInterferencePenalty,
   INTERFERENCE_PENALTY_COEFFICIENT,
   computeTextSimilarity,
 } from '../lib/scoring/interference-scoring';
 
-// ── Sprint 1: Co-Activation ──
+// ── Co-Activation ──
 import {
   boostScore,
   CO_ACTIVATION_CONFIG,
   DEFAULT_COACTIVATION_STRENGTH,
 } from '../lib/cache/cognitive/co-activation';
 
-// ── Sprint 3: Confidence Truncation ──
+// ── Confidence Truncation ──
 import {
   truncateByConfidence,
   computeGaps,
@@ -325,7 +325,7 @@ describe('Cross-Sprint Integration', () => {
       expect(score).toBeGreaterThanOrEqual(0);
       expect(score).toBeLessThanOrEqual(1);
 
-      // Novelty boost always returns 0 (feature removed, Sprint 7 audit)
+      // Novelty boost always returns 0 (feature removed)
       const noveltyBoost = calculateNoveltyBoost(row.created_at!);
       expect(noveltyBoost).toBe(0);
 
@@ -393,7 +393,7 @@ describe('Cross-Sprint Integration', () => {
     it('8. N4 novelty boost removed: always returns 0 regardless of age', () => {
       setEnv('SPECKIT_NOVELTY_BOOST', 'true');
 
-      // Feature removed (Sprint 7 audit) — all ages return 0
+      // Feature removed — all ages return 0
       const twelveHoursAgo = new Date(Date.now() - 12 * 3600000).toISOString();
       const boost = calculateNoveltyBoost(twelveHoursAgo);
       expect(boost).toBe(0);

@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: T209 TRIGGER SETATTENTIONSCORE
+// TEST: TRIGGER SETATTENTIONSCORE
 // ---------------------------------------------------------------
 
 import { describe, it, expect, beforeAll } from 'vitest';

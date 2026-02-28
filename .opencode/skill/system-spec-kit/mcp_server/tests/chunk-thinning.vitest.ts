@@ -1,7 +1,6 @@
 // ---------------------------------------------------------------
-// TEST: s6-r7-chunk-thinning
-// Anchor-aware chunk thinning — scores chunks by anchor presence
-// + content density, applies thinning threshold.
+// TEST: Anchor-Aware Chunk Thinning
+// Scores chunks by anchor presence + content density, applies thinning threshold.
 // ---------------------------------------------------------------
 
 import fs from 'node:fs';

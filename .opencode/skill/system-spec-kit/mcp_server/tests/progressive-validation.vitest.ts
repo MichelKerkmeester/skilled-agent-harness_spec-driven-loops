@@ -1,6 +1,6 @@
 // @ts-nocheck
 // ---------------------------------------------------------------
-// TEST: PI-B2 Progressive Validation Pipeline
+// TEST: Progressive Validation Pipeline
 // ---------------------------------------------------------------
 // Tests for progressive-validate.sh -- a 4-level validation pipeline:
 //   Level 1: Detect   (delegate to validate.sh)
@@ -50,7 +50,7 @@ const EXEC_OPTS: ExecSyncOptionsWithStringEncoding = {
 
 /** Create a temporary spec folder with given files. Returns folder path. */
 function createTempSpecFolder(files: Record<string, string>): string {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'pi-b2-test-'));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'prog-validate-test-'));
   for (const [filename, content] of Object.entries(files)) {
     const filePath = path.join(tmpDir, filename);
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
