@@ -146,7 +146,7 @@ documentation_level:
 # AGENT CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 agent_templates:
-  primary: .opencode/skill/sk-doc/assets/opencode/agent_template.md
+  primary: .opencode/skill/sk-doc/assets/agents/agent_template.md
 
 agent_scripts:
   validate_document: .opencode/skill/sk-doc/scripts/validate_document.py

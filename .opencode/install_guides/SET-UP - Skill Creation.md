@@ -150,7 +150,7 @@ python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/my-skill
 | ----------------------------- | ------------------------------ |
 | `scripts/init_skill.py`       | Initialize new skill structure |
 | `scripts/package_skill.py`    | Validate and package skill     |
-| `assets/opencode/skill_md_template.md` | SKILL.md template              |
+| `assets/skill/skill_md_template.md` | SKILL.md template              |
 
 ### Validation: `phase_1_complete`
 
@@ -562,7 +562,7 @@ if __name__ == "__main__":
 
 **Folder Organization:** Subfolders ALLOWED when organizing many files by category
 - Group related templates together for clarity
-- Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
+- Example: `assets/skill/`, `assets/documentation/`, `assets/flowcharts/`
 
 **Best Practices:**
 - Use `[PLACEHOLDER]` format for replaceable content
@@ -933,7 +933,7 @@ head -10 .opencode/skill/my-skill/SKILL.md
 | `.opencode/skill/`                                                    | Skills directory     |
 | `.opencode/skill/sk-doc/scripts/init_skill.py`       | Initialize skill     |
 | `.opencode/skill/sk-doc/scripts/package_skill.py`    | Validate and package |
-| `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md` | SKILL.md template |
+| `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | SKILL.md template |
 
 ### Scripts Reference
 

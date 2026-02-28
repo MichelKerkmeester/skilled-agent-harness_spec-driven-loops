@@ -374,7 +374,7 @@ $ARGUMENTS
 | Completion Report  | `completion_report_template`       |
 
 ### Template Reference
-- **Template location**: `.opencode/skill/sk-doc/assets/opencode/skill_asset_template.md`
+- **Template location**: `.opencode/skill/sk-doc/assets/skill/skill_asset_template.md`
 
 ---
 

@@ -39,11 +39,11 @@ The agent system enables both focused single-agent work and complex multi-agent 
 - Invokes `sk-doc` skill for documentation standards
 - Validates template alignment AFTER creating
 
-**Template Location:** `.opencode/skill/sk-doc/assets/opencode/agent_template.md`
+**Template Location:** `.opencode/skill/sk-doc/assets/agents/agent_template.md`
 
 **Verification (MUST pass before proceeding):**
 - [ ] Write agent exists: `ls .opencode/agent/write.md`
-- [ ] Agent template exists: `ls .opencode/skill/sk-doc/assets/opencode/agent_template.md`
+- [ ] Agent template exists: `ls .opencode/skill/sk-doc/assets/agents/agent_template.md`
 - [ ] Use `@write` prefix when invoking the prompt below
 
 **❌ DO NOT** create agents without the @write agent — manual creation bypasses quality gates and frontmatter validation.
@@ -861,7 +861,7 @@ Content...
 ## 4. RELATED RESOURCES
 
 - [Skill Name](../skill/skill-name/SKILL.md)
-- [Template](../skill/sk-doc/assets/opencode/agent_template.md)
+- [Template](../skill/sk-doc/assets/agents/agent_template.md)
 ```
 
 #### Step 5: Test the Agent
@@ -1081,9 +1081,9 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 | Template                 | Location                                                      | Purpose                  |
 | ------------------------ | ------------------------------------------------------------- | ------------------------ |
-| skill_md_template        | `../skill/sk-doc/assets/opencode/` | SKILL.md structure       |
-| skill_reference_template | `../skill/sk-doc/assets/opencode/` | Reference file structure |
-| skill_asset_template     | `../skill/sk-doc/assets/opencode/` | Asset file structure     |
+| skill_md_template        | `../skill/sk-doc/assets/skill/` | SKILL.md structure       |
+| skill_reference_template | `../skill/sk-doc/assets/skill/` | Reference file structure |
+| skill_asset_template     | `../skill/sk-doc/assets/skill/` | Asset file structure     |
 
 ---
 

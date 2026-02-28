@@ -689,8 +689,8 @@ Before deploying an agent, verify:
 
 | Template               | Purpose            | Path                                       |
 | ---------------------- | ------------------ | ------------------------------------------ |
-| `skill_md_template.md` | SKILL.md structure | `sk-doc/assets/opencode/` |
-| `command_template.md`  | Command files      | `sk-doc/assets/opencode/` |
+| `skill_md_template.md` | SKILL.md structure | `sk-doc/assets/skill/` |
+| `command_template.md`  | Command files      | `sk-doc/assets/agents/` |
 
 ### Agent Files
 

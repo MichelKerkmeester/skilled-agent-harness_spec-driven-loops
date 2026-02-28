@@ -45,7 +45,8 @@ skill-name/
     ├── scripts/          - Executable code (Python/Bash/etc.)
     ├── references/       - Documentation (flat or domain subfolders)
     └── assets/           - Files used in output (subfolders OK for organization)
-        ├── opencode/     - OpenCode component templates (skills, agents, commands)
+        ├── skill/         - Skill creation templates (SKILL.md, reference, asset)
+        ├── agents/        - Agent and command creation templates
         └── documentation/ - Document templates (README, install guides)
 ```
 
@@ -55,7 +56,7 @@ skill-name/
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together for clarity
-  - Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
+  - Example: `assets/skill/`, `assets/agents/`, `assets/documentation/`, `assets/flowcharts/`
 - **scripts/** = Typically flat, but subfolders OK for large script collections
 
 ### SKILL.md Requirements
@@ -997,9 +998,9 @@ Use this operating pattern:
 ### Templates
 
 Use these templates when authoring layered skills:
-- Skill template: `../assets/opencode/skill_md_template.md`
-- Reference template: `../assets/opencode/skill_reference_template.md`
-- Asset template: `../assets/opencode/skill_asset_template.md`
+- Skill template: `../assets/skill/skill_md_template.md`
+- Reference template: `../assets/skill/skill_reference_template.md`
+- Asset template: `../assets/skill/skill_asset_template.md`
 
 ---
 
@@ -1008,9 +1009,9 @@ Use these templates when authoring layered skills:
 ## 10. RELATED RESOURCES
 
 ### Templates
-- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
-- [skill_reference_template.md](../assets/opencode/skill_reference_template.md) - Reference file templates
-- [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Asset file templates
+- [skill_md_template.md](../assets/skill/skill_md_template.md) - SKILL.md file templates
+- [skill_reference_template.md](../assets/skill/skill_reference_template.md) - Reference file templates
+- [skill_asset_template.md](../assets/skill/skill_asset_template.md) - Asset file templates
 - [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files

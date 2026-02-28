@@ -449,10 +449,10 @@ Before finalizing, verify each snippet:
 - [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
-- [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Bundled asset structure
+- [skill_md_template.md](../assets/skill/skill_md_template.md) - SKILL.md file templates
+- [skill_asset_template.md](../assets/skill/skill_asset_template.md) - Bundled asset structure
 - [readme_template.md](../assets/documentation/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../assets/opencode/command_template.md) - Command creation guide (19 sections)
+- [command_template.md](../assets/agents/command_template.md) - Command creation guide (19 sections)
 - [install_guide_template.md](../assets/documentation/install_guide_template.md) - Install guide template (14 sections)
 - [llmstxt_templates.md](../assets/documentation/llmstxt_templates.md) - llms.txt with decision framework
 - [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)

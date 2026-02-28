@@ -96,7 +96,7 @@ Everything connects. Memory files live *inside* spec folders. Gates enforce docu
 - **SpecKit Phase System (spec 138)**: phase-aware recommendation and folder creation (`--recommend-phases`, `--phase`) plus recursive validation (`--recursive`) are integrated. Implementation is broadly complete (`31/34`) with fixture backlog tracked in `T005`, `T028`, and `T033`.
 - **Code review baseline promoted (spec 041)**: `sk-code--review` is a first-class findings-first review baseline with a baseline-plus-overlay contract and mandatory security/correctness minimums.
 - **AGENTS.md modernization shipped**: Gate formatting was condensed from ASCII box blocks to structured markdown, section topology was consolidated from 9 to 8, and `AGENTS_example_fs_enterprises.md` was added as a runtime-neutral companion.
-- **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 10 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
+- **Gemini CLI is the 4th runtime**: 8 agents, 19 TOML command wrappers, 11 skill symlinks and 3 MCP servers. Agents optimized for gemini-3.1-pro within a 400K effective token window.
 - **Spec documents are indexed and searchable**: spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `handover.md`) surface via `find_spec` and `find_decision` intents.
 - **473 anchor tags across 74 READMEs**: section-level retrieval with ~93% token savings over loading full files.
 - **Runtime DB path standardized**: `MEMORY_DB_PATH` aligned to `mcp_server/dist/database/context-index.sqlite` across all runtime configurations.
@@ -145,7 +145,7 @@ opencode
 
 # Test skill routing
 # Ask: "What skills are available?"
-# Expected: 10 skills listed
+# Expected: 11 skills listed
 ```
 
 <!-- /ANCHOR:quick-start -->
@@ -529,7 +529,7 @@ All support `:auto` and `:confirm` mode suffixes.
 ## 7. 🧩 SKILLS LIBRARY
 <!-- ANCHOR:skills-library -->
 
-10 domain skills, auto-loaded by task keywords.
+11 domain skills, auto-loaded by task keywords.
 
 Skills are domain expertise on demand. The AI loads the right skill and already knows your conventions.
 
@@ -547,6 +547,7 @@ Skills are domain expertise on demand. The AI loads the right skill and already 
 | `sk-code--review`     | Review        | Findings-first review baseline with security/correctness minimums and baseline+overlay contract |
 | `sk-doc`              | Docs          | Document quality scoring, skill creation and install guides                            |
 | `sk-git`              | Git           | Commits, branches, PRs, worktrees                                                      |
+| `mcp-gemini-cli`      | Cross-AI     | Gemini CLI orchestration for web research, code review, architecture analysis          |
 
 ### Auto-Detection
 
@@ -1019,7 +1020,8 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 | [Workflows: Doc Visual](.opencode/changelog/12--sk-doc-visual/)              | 4 files   |
 | [MCP: Code Mode](.opencode/changelog/13--mcp-code-mode/)                     | 8 files   |
 | [MCP: Chrome DevTools](.opencode/changelog/14--mcp-chrome-devtools/)         | 5 files   |
-| [MCP: Figma](.opencode/changelog/15--mcp-figma/)                             | 6 files   |
+| [MCP: Gemini CLI](.opencode/changelog/15--mcp-gemini-cli/)                   | 1 file    |
+| [MCP: Figma](.opencode/changelog/16--mcp-figma/)                             | 6 files   |
 
 ### External Resources
 

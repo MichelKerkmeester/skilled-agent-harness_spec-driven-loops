@@ -308,6 +308,6 @@ done
 - [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../assets/opencode/command_template.md) - Command file templates
+- [skill_md_template.md](../assets/skill/skill_md_template.md) - SKILL.md file templates
+- [command_template.md](../assets/agents/command_template.md) - Command file templates
 <!-- /ANCHOR:related-resources -->

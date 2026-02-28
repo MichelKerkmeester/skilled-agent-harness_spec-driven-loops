@@ -120,6 +120,9 @@ SYNONYM_MAP = {
     "toolchain": ["call_tool_chain", "code_mode", "utcp", "mcp"],
     "conflict": ["merge", "rebase", "resolution", "branch", "diverge"],
 
+    # Gemini CLI & cross-AI
+    "gemini": ["gemini-cli", "google-ai", "cross-ai", "second-opinion", "delegate"],
+
     # Search & discovery
     "find": ["search", "locate", "explore", "lookup"],
     "search": ["find", "locate", "explore", "query", "lookup"],
@@ -332,6 +335,12 @@ INTENT_BOOSTERS = {
     "strict": ("sk-code--opencode", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
+    # MCP-GEMINI-CLI: Cross-AI orchestration via Gemini CLI
+    # ─────────────────────────────────────────────────────────────────
+    "gemini": ("mcp-gemini-cli", 2.0),
+    "grounding": ("mcp-gemini-cli", 1.0),
+
+    # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
     # ─────────────────────────────────────────────────────────────────
     "clickup": ("mcp-code-mode", 2.5),
@@ -382,6 +391,9 @@ MULTI_SKILL_BOOSTERS = {
     "generate": [("sk-doc-visual", 0.4)],
     "table": [("sk-doc-visual", 0.3)],
     "review": [("sk-code--review", 0.8), ("sk-doc-visual", 0.3)],
+    "delegate": [("mcp-gemini-cli", 0.5)],
+    "opinion": [("mcp-gemini-cli", 0.3), ("sk-code--review", 0.2)],
+    "validate": [("mcp-gemini-cli", 0.2), ("sk-code--review", 0.3)],
 }
 
 # Phrase-level intent boosters for high-signal multi-token requests
@@ -424,6 +436,19 @@ PHRASE_INTENT_BOOSTERS = {
     "generate html": [("sk-doc-visual", 1.2)],
     ".codex/skills/sk-doc-visual": [("sk-doc-visual", 2.8)],
     ".opencode/skill/sk-doc-visual": [("sk-doc-visual", 2.8)],
+    # --- Gemini CLI cross-AI orchestration ---
+    "use gemini": [("mcp-gemini-cli", 2.5)],
+    "gemini cli": [("mcp-gemini-cli", 2.5)],
+    "gemini agent": [("mcp-gemini-cli", 2.0)],
+    "google search grounding": [("mcp-gemini-cli", 2.0)],
+    "second opinion": [("mcp-gemini-cli", 1.5)],
+    "cross-ai validation": [("mcp-gemini-cli", 2.0)],
+    "cross-ai review": [("mcp-gemini-cli", 2.0), ("sk-code--review", 0.4)],
+    "codebase investigator": [("mcp-gemini-cli", 2.0)],
+    "delegate to gemini": [("mcp-gemini-cli", 2.5)],
+    "mcp-gemini-cli": [("mcp-gemini-cli", 2.8)],
+    "/mcp-gemini-cli": [("mcp-gemini-cli", 2.8)],
+    ".opencode/skill/mcp-gemini-cli": [("mcp-gemini-cli", 3.0)],
 }
 
 

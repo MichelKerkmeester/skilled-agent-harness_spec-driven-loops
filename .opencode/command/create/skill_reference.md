@@ -382,7 +382,7 @@ STEP 5 (Validation) REQUIREMENTS:
 
 Create a technical reference file for an existing skill following the `skill_reference_template.md` structure. Reference files provide Level 3 progressive disclosure - deep technical guidance loaded when needed for complex operations.
 
-**Template Location:** `.opencode/skill/sk-doc/assets/opencode/skill_reference_template.md`
+**Template Location:** `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md`
 
 ---
 

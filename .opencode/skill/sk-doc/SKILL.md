@@ -49,16 +49,16 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 
 **Component Types:**
 - **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
-- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/opencode/agent_template.md)
-- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/opencode/command_template.md)
+- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/agents/agent_template.md)
+- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/agents/command_template.md)
 
 For larger skills, split deep content into focused `references/` files and keep concise navigation in `SKILL.md` or `README.md`.
 
 Start with: [skill_creation.md](./references/skill_creation.md) (Section 9)
 Primary templates:
-- [skill_md_template.md](./assets/opencode/skill_md_template.md)
-- [skill_reference_template.md](./assets/opencode/skill_reference_template.md)
-- [skill_asset_template.md](./assets/opencode/skill_asset_template.md)
+- [skill_md_template.md](./assets/skill/skill_md_template.md)
+- [skill_reference_template.md](./assets/skill/skill_reference_template.md)
+- [skill_asset_template.md](./assets/skill/skill_asset_template.md)
 
 **Use when**:
 - User requests skill creation ("create a skill", "make a new skill")
@@ -122,7 +122,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 - `references/` for documentation standards, validation rules, optimization guidance, and execution workflows.
 - `assets/documentation/` for README, frontmatter, llms.txt, and install-guide templates.
-- `assets/opencode/` for skill, agent, and command creation templates.
+- `assets/skill/` for skill creation templates and `assets/agents/` for agent and command creation templates.
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
 
 ### Resource Loading Levels
@@ -157,8 +157,8 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "DOC_QUALITY": ["references/validation.md", "references/workflows.md", "references/core_standards.md"],
     "OPTIMIZATION": ["references/optimization.md", "assets/documentation/llmstxt_templates.md"],
-    "SKILL_CREATION": ["references/skill_creation.md", "assets/opencode/skill_md_template.md", "assets/opencode/skill_reference_template.md"],
-    "AGENT_COMMAND": ["assets/opencode/agent_template.md", "assets/opencode/command_template.md"],
+    "SKILL_CREATION": ["references/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_reference_template.md"],
+    "AGENT_COMMAND": ["assets/agents/agent_template.md", "assets/agents/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/install_guide_standards.md"],
     "HVR": ["references/hvr_rules.md"],
@@ -283,7 +283,7 @@ scripts/extract_structure.py path/to/document.md
 3. Bundled resources - As needed (unlimited)
 
 1. Define scope using [skill_creation.md](./references/skill_creation.md) (Section 9)
-4. Use [skill_reference_template.md](./assets/opencode/skill_reference_template.md) to keep supplemental docs consistent
+4. Use [skill_reference_template.md](./assets/skill/skill_reference_template.md) to keep supplemental docs consistent
 
 **After packaging**: Run `extract_structure.py` on SKILL.md for final quality review.
 
@@ -539,7 +539,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ### Templates
 
-- [skill_md_template.md](./assets/opencode/skill_md_template.md) - canonical SKILL.md template
+- [skill_md_template.md](./assets/skill/skill_md_template.md) - canonical SKILL.md template
 - [readme_template.md](./assets/documentation/readme_template.md) - README structure and quality rules
 - [install_guide_template.md](./assets/documentation/install_guide_template.md) - install guide template
 
@@ -727,7 +727,7 @@ Key integrations:
 2. Use Section 5 for canonical references and templates.
 3. Navigate: [skill_creation.md](./references/skill_creation.md) for workflow.
 4. For layered skills, use [skill_creation.md](./references/skill_creation.md) (Section 9).
-5. Use templates: [skill_md_template.md](./assets/opencode/skill_md_template.md), [skill_reference_template.md](./assets/opencode/skill_reference_template.md), [skill_asset_template.md](./assets/opencode/skill_asset_template.md).
+5. Use templates: [skill_md_template.md](./assets/skill/skill_md_template.md), [skill_reference_template.md](./assets/skill/skill_reference_template.md), [skill_asset_template.md](./assets/skill/skill_asset_template.md).
 6. Use scripts: `init_skill.py` -> edit -> `package_skill.py`.
 7. Validate: run Document Quality validation on SKILL.md.
 

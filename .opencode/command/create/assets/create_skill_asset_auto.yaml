@@ -273,7 +273,7 @@ workflow:
     - Read skill_asset_template.md from sk-doc skill
     - Extract structure patterns for asset type
     - Note formatting requirements
-    template_path: .opencode/skill/sk-doc/assets/opencode/skill_asset_template.md
+    template_path: .opencode/skill/sk-doc/assets/skill/skill_asset_template.md
     key_structure_elements:
     - "Title with descriptive subtitle"
     - "Introduction paragraph (1-2 sentences)"
@@ -568,7 +568,7 @@ termination:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  skill_asset: .opencode/skill/sk-doc/assets/opencode/skill_asset_template.md
+  skill_asset: .opencode/skill/sk-doc/assets/skill/skill_asset_template.md
   core_standards: .opencode/skill/sk-doc/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────

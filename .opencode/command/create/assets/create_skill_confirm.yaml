@@ -139,9 +139,9 @@ documentation_level:
 # SKILL CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 skill_templates:
-  skill_md: .opencode/skill/sk-doc/assets/opencode/skill_md_template.md
-  skill_asset: .opencode/skill/sk-doc/assets/opencode/skill_asset_template.md
-  skill_reference: .opencode/skill/sk-doc/assets/opencode/skill_reference_template.md
+  skill_md: .opencode/skill/sk-doc/assets/skill/skill_md_template.md
+  skill_asset: .opencode/skill/sk-doc/assets/skill/skill_asset_template.md
+  skill_reference: .opencode/skill/sk-doc/assets/skill/skill_reference_template.md
 
 skill_scripts:
   init_skill: .opencode/skill/sk-doc/scripts/init_skill.py

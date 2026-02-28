@@ -179,10 +179,11 @@ python scripts/package_skill.py skill-path        # Package skill
 │   │   ├── readme_template.md (README structure and patterns)
 │   │   ├── install_guide_template.md (install guide template)
 │   │   └── llmstxt_templates.md (llms.txt generation examples)
-│   ├── opencode/
+│   ├── skill/
 │   │   ├── skill_md_template.md (SKILL.md file template)
 │   │   ├── skill_asset_template.md (skill asset template)
-│   │   ├── skill_reference_template.md (skill reference template)
+│   │   └── skill_reference_template.md (skill reference template)
+│   ├── agents/
 │   │   ├── command_template.md (slash command template)
 │   │   └── agent_template.md (agent definition template)
 │   ├── flowcharts/ (ASCII flowchart examples)
@@ -306,9 +307,9 @@ python scripts/package_skill.py skill-path        # Package skill
 - [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
+- [skill_md_template.md](../assets/skill/skill_md_template.md) - SKILL.md file templates
 - [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
-- [command_template.md](../assets/opencode/command_template.md) - Command file templates
+- [command_template.md](../assets/agents/command_template.md) - Command file templates
 
 ### Related Skills
 - `git-commit` - Git commit workflows

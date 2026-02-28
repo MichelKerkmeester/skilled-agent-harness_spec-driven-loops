@@ -35,11 +35,11 @@ importance_tier: "normal"
 
 The Skills Library contains the current skill set under `.opencode/skill/`. Skills load on demand through Gate 2 routing or explicit invocation.
 
-This folder now has 11 skill folders and one shared scripts folder:
+This folder now has 12 skill folders and one shared scripts folder:
 
 | Item                         | Count        | Notes                                            |
 | ---------------------------- | ------------ | ------------------------------------------------ |
-| Skill folders                | 11           | Each skill has a `SKILL.md` entry point          |
+| Skill folders                | 12           | Each skill has a `SKILL.md` entry point          |
 | Skills with local `scripts/` | 6            | Automation lives close to the skill that owns it |
 | Shared routing scripts       | 1 executable | `.opencode/skill/scripts/skill_advisor.py`       |
 
@@ -87,6 +87,7 @@ Request -> Route skill -> Load SKILL.md -> Load only needed references/assets/sc
 ├── mcp-chrome-devtools/
 ├── mcp-code-mode/
 ├── mcp-figma/
+├── mcp-gemini-cli/
 ├── scripts/
 ├── sk-code/                # Baseline code workflow (optional by repo)
 ├── sk-code--*/             # Overlay code workflow skills (repo-specific)
@@ -167,6 +168,9 @@ Browser debugging through CLI-first flow with MCP fallback for multi-tool runs.
 
 Figma MCP workflow for file retrieval, image export and component/style extraction.
 
+#### `mcp-gemini-cli` (v1.1.0)
+
+Gemini CLI orchestration for cross-AI task delegation, Google Search grounding, codebase architecture analysis, and parallel code generation.
 
 <!-- /ANCHOR:skills-catalog -->
 
@@ -193,6 +197,7 @@ Figma MCP workflow for file retrieval, image export and component/style extracti
 | `sk-git`                  | Yes           | Yes       | No         |
 | `sk-doc`                  | Yes           | Yes       | Yes        |
 | `sk-doc-visual`           | Yes           | Yes       | Yes        |
+| `mcp-gemini-cli`          | Yes           | Yes       | No         |
 | `system-spec-kit`         | Yes           | Yes       | Yes        |
 
 <!-- /ANCHOR:skill-structure -->
@@ -229,9 +234,9 @@ Use `sk-doc` for skill scaffolding and validation.
 Primary references:
 
 - `.opencode/skill/sk-doc/references/skill_creation.md`
-- `.opencode/skill/sk-doc/assets/opencode/skill_md_template.md`
-- `.opencode/skill/sk-doc/assets/opencode/skill_reference_template.md`
-- `.opencode/skill/sk-doc/assets/opencode/skill_asset_template.md`
+- `.opencode/skill/sk-doc/assets/skill/skill_md_template.md`
+- `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md`
+- `.opencode/skill/sk-doc/assets/skill/skill_asset_template.md`
 
 Typical flow:
 
@@ -263,5 +268,6 @@ Skill folders:
 - [mcp-chrome-devtools](mcp-chrome-devtools/)
 - [mcp-code-mode](mcp-code-mode/)
 - [mcp-figma](mcp-figma/)
+- [mcp-gemini-cli](mcp-gemini-cli/)
 
 <!-- /ANCHOR:related -->

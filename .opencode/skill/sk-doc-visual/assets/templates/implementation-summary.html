@@ -14,66 +14,63 @@
     <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
     <style>
         :root {
-            --bg: #131314;
-            --surface: #1c1c1e;
-            --text: #fafafa;
-            --accent: #3b82f6;
-            --muted: #71717a;
-            --border: rgba(255, 255, 255, 0.08);
+    --font-from-0: 14; --font-to-0: 18;
+    --vw-from-0: calc(1 / 100); --vw-to-0: calc(991 / 100);
+    --coefficient-0: calc((var(--font-to-0) - var(--font-from-0)) / (var(--vw-to-0) - var(--vw-from-0)));
+    --base-0: calc((var(--font-from-0) - var(--vw-from-0) * var(--coefficient-0)) / 16);
 
-            --font-from-0: 13;
-            --font-to-0: 17;
-            --vw-from-0: calc(1 / 100);
-            --vw-to-0: calc(991 / 100);
-            --coefficient-0: calc((var(--font-to-0) - var(--font-from-0)) / (var(--vw-to-0) - var(--vw-from-0)));
-            --base-0: calc((var(--font-from-0) - var(--vw-from-0) * var(--coefficient-0)) / 16);
+    --font-from-1: 14; --font-to-1: 18;
+    --vw-from-1: calc(991 / 100); --vw-to-1: calc(1440 / 100);
+    --coefficient-1: calc((var(--font-to-1) - var(--font-from-1)) / (var(--vw-to-1) - var(--vw-from-1)));
+    --base-1: calc((var(--font-from-1) - var(--vw-from-1) * var(--coefficient-1)) / 16);
 
-            --font-from-1: 13;
-            --font-to-1: 17;
-            --vw-from-1: calc(991 / 100);
-            --vw-to-1: calc(1440 / 100);
-            --coefficient-1: calc((var(--font-to-1) - var(--font-from-1)) / (var(--vw-to-1) - var(--vw-from-1)));
-            --base-1: calc((var(--font-from-1) - var(--vw-from-1) * var(--coefficient-1)) / 16);
+    --font-from-2: 14; --font-to-2: 16;
+    --vw-from-2: calc(1440 / 100); --vw-to-2: calc(1920 / 100);
+    --coefficient-2: calc((var(--font-to-2) - var(--font-from-2)) / (var(--vw-to-2) - var(--vw-from-2)));
+    --base-2: calc((var(--font-from-2) - var(--vw-from-2) * var(--coefficient-2)) / 16);
 
-            --font-from-2: 13;
-            --font-to-2: 15;
-            --vw-from-2: calc(1440 / 100);
-            --vw-to-2: calc(1920 / 100);
-            --coefficient-2: calc((var(--font-to-2) - var(--font-from-2)) / (var(--vw-to-2) - var(--vw-from-2)));
-            --base-2: calc((var(--font-from-2) - var(--vw-from-2) * var(--coefficient-2)) / 16);
+    --font-from-3: 17; --font-to-3: 24;
+    --vw-from-3: calc(1920 / 100); --vw-to-3: calc(5120 / 100);
+    --coefficient-3: calc((var(--font-to-3) - var(--font-from-3)) / (var(--vw-to-3) - var(--vw-from-3)));
+    --base-3: calc((var(--font-from-3) - var(--vw-from-3) * var(--coefficient-3)) / 16);
 
-            --font-from-3: 16;
-            --font-to-3: 21;
-            --vw-from-3: calc(1920 / 100);
-            --vw-to-3: calc(5120 / 100);
-            --coefficient-3: calc((var(--font-to-3) - var(--font-from-3)) / (var(--vw-to-3) - var(--vw-from-3)));
-            --base-3: calc((var(--font-from-3) - var(--vw-from-3) * var(--coefficient-3)) / 16);
+    --font-size-4: 1.5;
+}
 
-            --font-size-4: 1.3125;
-        }
+        html {
+    font-size: calc(var(--font-size-4) * 1rem);
+}
 
-        html { 
-            font-size: calc(var(--font-size-4) * 1rem); 
-            scroll-behavior: smooth;
-            background-color: var(--bg);
-            color: var(--text);
-        }
+        @media queries below to adjust the base html font-size.
+*/
 
-        @media screen and (max-width: 5120px) {
-            html { font-size: calc(var(--base-3) * 1rem + var(--coefficient-3) * 1vw); }
-        }
+:root {
+    --font-from-0: 14; --font-to-0: 18;
+    --vw-from-0: calc(1 / 100); --vw-to-0: calc(991 / 100);
+    --coefficient-0: calc((var(--font-to-0) - var(--font-from-0)) / (var(--vw-to-0) - var(--vw-from-0)));
+    --base-0: calc((var(--font-from-0) - var(--vw-from-0) * var(--coefficient-0)) / 16);
 
-        @media screen and (max-width: 1920px) {
-            html { font-size: calc(var(--base-2) * 1rem + var(--coefficient-2) * 1vw); }
-        }
+    --font-from-1: 14; --font-to-1: 18;
+    --vw-from-1: calc(991 / 100); --vw-to-1: calc(1440 / 100);
+    --coefficient-1: calc((var(--font-to-1) - var(--font-from-1)) / (var(--vw-to-1) - var(--vw-from-1)));
+    --base-1: calc((var(--font-from-1) - var(--vw-from-1) * var(--coefficient-1)) / 16);
 
-        @media screen and (max-width: 1440px) {
-            html { font-size: calc(var(--base-1) * 1rem + var(--coefficient-1) * 1vw); }
-        }
+    --font-from-2: 14; --font-to-2: 16;
+    --vw-from-2: calc(1440 / 100); --vw-to-2: calc(1920 / 100);
+    --coefficient-2: calc((var(--font-to-2) - var(--font-from-2)) / (var(--vw-to-2) - var(--vw-from-2)));
+    --base-2: calc((var(--font-from-2) - var(--vw-from-2) * var(--coefficient-2)) / 16);
 
-        @media screen and (max-width: 991px) {
-            html { font-size: calc(var(--base-0) * 1rem + var(--coefficient-0) * 1vw); }
-        }
+    --font-from-3: 17; --font-to-3: 24;
+    --vw-from-3: calc(1920 / 100); --vw-to-3: calc(5120 / 100);
+    --coefficient-3: calc((var(--font-to-3) - var(--font-from-3)) / (var(--vw-to-3) - var(--vw-from-3)));
+    --base-3: calc((var(--font-from-3) - var(--vw-from-3) * var(--coefficient-3)) / 16);
+
+    --font-size-4: 1.5;
+}
+@media screen and (max-width: 5120px) { html { font-size: calc(var(--base-3) * 1rem + var(--coefficient-3) * 1vw); }
+@media screen and (max-width: 1920px) { html { font-size: calc(var(--base-2) * 1rem + var(--coefficient-2) * 1vw); }
+@media screen and (max-width: 1440px) { html { font-size: calc(var(--base-1) * 1rem + var(--coefficient-1) * 1vw); }
+@media screen and (max-width: 991px)  { html { font-size: calc(var(--base-0) * 1rem + var(--coefficient-0) * 1vw); }
 
         body {
             font-family: 'Helvetica', sans-serif;

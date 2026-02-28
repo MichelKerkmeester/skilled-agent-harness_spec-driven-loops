@@ -93,13 +93,13 @@ python .opencode/skill/sk-doc/scripts/validate_document.py <file.md>
 
 | Document Type    | Template File                 | Location                       |
 | ---------------- | ----------------------------- | ------------------------------ |
-| SKILL.md         | `skill_md_template.md`        | `sk-doc/assets/opencode/`      |
-| Reference file   | `skill_reference_template.md` | `sk-doc/assets/opencode/`      |
-| Asset file       | `skill_asset_template.md`     | `sk-doc/assets/opencode/`      |
+| SKILL.md         | `skill_md_template.md`        | `sk-doc/assets/skill/`         |
+| Reference file   | `skill_reference_template.md` | `sk-doc/assets/skill/`         |
+| Asset file       | `skill_asset_template.md`     | `sk-doc/assets/skill/`         |
 | README           | `readme_template.md`          | `sk-doc/assets/documentation/` |
 | Install guide    | `install_guide_template.md`   | `sk-doc/assets/documentation/` |
-| Command          | `command_template.md`         | `sk-doc/assets/opencode/`      |
-| **Agent file**   | `agent_template.md`           | `sk-doc/assets/opencode/`      |
+| Command          | `command_template.md`         | `sk-doc/assets/agents/`        |
+| **Agent file**   | `agent_template.md`           | `sk-doc/assets/agents/`        |
 | Spec folder docs | System-spec-kit templates     | `system-spec-kit/templates/`   |
 
 ### Universal Template Pattern
@@ -264,7 +264,7 @@ All template files follow this consistent structure:
 ### Skill Creation Workflow
 
 1. Scaffold: `python .opencode/skill/sk-doc/scripts/init_skill.py skill-name --path .opencode/skill/`
-2. Load and apply SKILL.md template from `sk-doc/assets/opencode/skill_md_template.md`
+2. Load and apply SKILL.md template from `sk-doc/assets/skill/skill_md_template.md`
 3. Create references using `skill_reference_template.md`, assets using `skill_asset_template.md`
 4. Validate alignment for ALL files, then run: `python .opencode/skill/sk-doc/scripts/package_skill.py .opencode/skill/skill-name/`
 5. Verify DQI: `python .opencode/skill/sk-doc/scripts/extract_structure.py .opencode/skill/skill-name/SKILL.md`
@@ -351,7 +351,8 @@ Before reporting "done": (1) Read ALL created files, (2) Run extract_structure.p
 
 | Resource                                                                                                | Path                                       |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| Templates (SKILL, reference, asset, command, agent)                                                     | `sk-doc/assets/opencode/`                  |
+| Templates (SKILL, reference, asset)                                                                     | `sk-doc/assets/skill/`                     |
+| Templates (command, agent)                                                                              | `sk-doc/assets/agents/`                    |
 | Templates (README, install guide)                                                                       | `sk-doc/assets/documentation/`             |
 | sk-doc skill                                                                                            | `.opencode/skill/sk-doc/SKILL.md`          |
 | system-spec-kit skill                                                                                   | `.opencode/skill/system-spec-kit/SKILL.md` |

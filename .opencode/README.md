@@ -54,7 +54,7 @@ Together, these systems enable context-aware development with traceability, hard
 | MCP Servers | 3 | Memory Engine, Code Mode, Sequential Thinking |
 | MCP Tools | 32 | 25 memory + 7 code mode |
 | Agents | 10 | 8 custom + 2 built-in (`@general`, `@explore`) |
-| Skills | 11 | Skill modules in `.opencode/skill/` |
+| Skills | 12 | Skill modules in `.opencode/skill/` |
 | Commands | 25 | `spec_kit`, `memory`, `create`, `visual_explainer`, `agent_router` |
 | Templates | 79 | Spec Kit CORE + ADDENDUM templates |
 | YAML assets | 27 | Command execution YAML files |
@@ -74,7 +74,7 @@ Together, these systems enable context-aware development with traceability, hard
 ├── command/         — 25 slash commands for workflow automation (spec_kit, memory, create, visual_explainer)
 ├── install_guides/  — Setup and configuration guides for framework installation
 ├── skill/scripts/   — Skill routing scripts (skill_advisor.py) and setup guides
-├── skill/           — 11 domain expertise skill modules with bundled resources
+├── skill/           — 12 domain expertise skill modules with bundled resources
 └── specs/           — Spec folder storage for documentation and memory files
 ```
 
@@ -134,6 +134,7 @@ Skills are specialized, on-demand capabilities invoked for complex workflows:
 | `mcp-chrome-devtools` | Chrome DevTools orchestrator with CLI (bdg) and MCP (Code Mode) routing (v2.1) |
 | `mcp-code-mode` | MCP orchestration via TypeScript execution for external tools (ClickUp, Figma, etc.) (v1.1) |
 | `mcp-figma` | Figma design file access with 18 tools for components, styles, exports (v1.1) |
+| `mcp-gemini-cli` | Gemini CLI orchestration for cross-AI tasks, web research via Google Search, architecture analysis (v1.1) |
 | `sk-doc-visual` | Converts terminal output and technical concepts into styled HTML pages with diagrams and visualizations (v1.0) |
 
 **Skill Structure:** Each skill contains `SKILL.md` (entry point), `references/` (documentation), `scripts/` (automation) and `assets/` (templates/checklists).

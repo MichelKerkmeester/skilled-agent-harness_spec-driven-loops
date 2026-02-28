@@ -587,7 +587,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together
-  - Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
+  - Example: `assets/agents/`, `assets/documentation/`, `assets/flowcharts/`
 - **scripts/** = Typically flat, but subfolders OK for large script collections
 
 **Native Discovery**:

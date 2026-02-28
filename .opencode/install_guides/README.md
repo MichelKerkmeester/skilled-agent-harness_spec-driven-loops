@@ -14,7 +14,7 @@ importance_tier: "important"
 
 # OpenCode Install Guides
 
-> AI-executable guides for the OpenCode dev environment. Covers 3 native MCP servers, 10 native skills, 8 agents, and optional CLI tools.
+> AI-executable guides for the OpenCode dev environment. Covers 3 native MCP servers, 11 native skills, 8 agents, and optional CLI tools.
 
 ---
 
@@ -55,7 +55,7 @@ The `install_guides/` directory is the central hub for all OpenCode setup and in
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Guide files | 10 | 5 MCP guides, 4 SET-UP guides, 1 index guide |
+| Guide files | 11 | 6 MCP/CLI guides, 4 SET-UP guides, 1 index guide |
 | Install scripts | 1 | `install_scripts/` directory |
 | MCP servers covered | 3 | Code Mode, Spec Kit Memory, Sequential Thinking |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
@@ -81,6 +81,7 @@ All guides in this directory, sorted by recommended reading order:
 | **[MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md)** | Sequential Thinking MCP server: complex reasoning chains | Users needing advanced reasoning |
 | **[MCP - Figma.md](./MCP%20-%20Figma.md)** | Figma MCP integration: design file access, image export, component extraction | Frontend/design users |
 | **[MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md)** | Chrome DevTools MCP: browser debugging and automation | Frontend/debugging users |
+| **[MCP - Gemini CLI.md](./MCP%20-%20Gemini%20CLI.md)** | Gemini CLI: cross-AI validation, Google Search grounding, architecture analysis | All users (optional CLI tool) |
 | **[SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)** | AGENTS.md customization: AI agent behavior configuration | All users (post-install) |
 | **[SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md)** | Agent system: specialized AI personas and routing | All users (post-install) |
 | **[SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md)** | Skill Advisor setup: Gate 2 skill routing configuration | All users (post-install) |
@@ -364,8 +365,8 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    │  Webflow, Figma, ClickUp, GitHub...   │
    └───────────────────────────────────┘
 
-   NATIVE SKILLS: 10 skills auto-discovered from .opencode/skill/*/SKILL.md
-   OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
+   NATIVE SKILLS: 11 skills auto-discovered from .opencode/skill/*/SKILL.md
+   OPTIONAL: Chrome DevTools CLI (bdg), Gemini CLI, Auth Plugins
 ```
 
 ### 7.3 Installation Bundles
@@ -974,7 +975,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 - [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
 - [ ] Ollama running with nomic-embed-text model
 - [ ] All 3 native MCP servers configured in opencode.json
-- [ ] Skills directory exists with 10 skills
+- [ ] Skills directory exists with 11 skills
 - [ ] Configuration files exist and are valid JSON
 
 ### Quick Verification
@@ -1407,7 +1408,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (3 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skill/`          | Skill definitions (10 skills)                 |
+| `.opencode/skill/`          | Skill definitions (11 skills)                 |
 | `.opencode/agent/`          | Agent definitions (8 agents)                  |
 | `.opencode/install_guides/` | Installation documentation                    |
 | `~/.opencode-backup/`       | Configuration backups                         |

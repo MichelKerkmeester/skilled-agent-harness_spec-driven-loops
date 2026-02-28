@@ -376,7 +376,7 @@ permission:
 ## 6. AGENT CREATION TEMPLATES
 
 ### Agent Template Path
-`.opencode/skill/sk-doc/assets/opencode/agent_template.md`
+`.opencode/skill/sk-doc/assets/agents/agent_template.md`
 
 ### Agent Scripts
 - Validation: `.opencode/skill/sk-doc/scripts/validate_document.py`
@@ -501,7 +501,7 @@ FOR WORKFLOW VIOLATIONS:
 
 | Resource | Path |
 |---|---|
-| Agent template | `sk-doc/assets/opencode/agent_template.md` |
+| Agent template | `sk-doc/assets/agents/agent_template.md` |
 | sk-doc skill | `.opencode/skill/sk-doc/SKILL.md` |
 | system-spec-kit skill | `.opencode/skill/system-spec-kit/SKILL.md` |
 | Scripts: validate_document.py, extract_structure.py | `sk-doc/scripts/` |

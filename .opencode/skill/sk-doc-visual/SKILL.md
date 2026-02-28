@@ -128,6 +128,12 @@ LOADING_LEVELS = {
         "assets/templates/traceability-board.html",
         "assets/templates/readme-guide.html",
         "assets/templates/implementation-summary.html",
+        "assets/templates/deployment-guide.html",
+        "assets/templates/troubleshooting-guide.html",
+        "assets/templates/decision-record.html",
+        "assets/templates/spec.html",
+        "assets/templates/plan.html",
+        "assets/templates/tasks.html",
     ],
 }
 
@@ -363,7 +369,12 @@ The skill executes a strict 4-phase workflow. Do not skip phases.
 - [traceability-board.html](./assets/templates/traceability-board.html)
 - [readme-guide.html](./assets/templates/readme-guide.html)
 - [implementation-summary.html](./assets/templates/implementation-summary.html)
-
+- [deployment-guide.html](./assets/templates/deployment-guide.html)
+- [troubleshooting-guide.html](./assets/templates/troubleshooting-guide.html)
+- [decision-record.html](./assets/templates/decision-record.html)
+- [spec.html](./assets/templates/spec.html)
+- [plan.html](./assets/templates/plan.html)
+- [tasks.html](./assets/templates/tasks.html)
 ### Enforcement Scripts
 
 - `scripts/validate-html-output.sh`
