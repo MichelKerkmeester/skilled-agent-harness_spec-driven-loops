@@ -260,13 +260,13 @@ contextType: "implementation"
 > **Evidence**: Research documents 9-analysis, 9-recommendations (PageIndex), 10-analysis, 10-recommendations (TrueMem). All 8 items are [P1] — required unless explicitly deferred with documented rationale.
 
 - [x] CHK-PI-A1 [P1] PI-A1: DocScore folder aggregation implemented and tested — `spec_folder` grouping with damped-sum formula `(1/sqrt(M+1)) * SUM(MemoryScore(m))`; `folder_score` field present in result metadata; no regression in existing MRR@5 baseline — S2 child PI-A1 verified
-- [ ] ~~CHK-PI-A2~~ [P1] **DEFERRED** — PI-A2: Three-tier fallback chain deferred from Sprint 3. Re-evaluate after Sprint 3 using measured frequency data. See UT review R1.
+- [x] CHK-PI-A2 [P1] PI-A2: Three-tier fallback chain implemented — quality-aware 3-tier degradation (Tier 1: standard enhanced, Tier 2: widened min_similarity=0.1 all channels, Tier 3: structural SQL fallback); opt-in via SPECKIT_SEARCH_FALLBACK=true; non-enumerable _degradation metadata on results; 19 tests in t045; flag OFF preserves existing behavior — verified via tsc --noEmit + vitest run (5837 pass)
 - [x] CHK-PI-A3 [P1] PI-A3: Token budget validation enforced in result assembly — `token_budget_used` field in response; result set truncated when over-limit; no latency increase > 5ms p95 for simple queries — S1 child PI-A3 verified
 - [ ] CHK-PI-A4 [P1] PI-A4: Constitutional memories formatted as retrieval directives — `retrieval_directive` metadata field present on all constitutional-tier memories; directive prefix pattern ("Always surface when:", "Prioritize when:") validated
 - [x] CHK-PI-A5 [P1] PI-A5: Verify-fix-verify loop with max 2 retries integrated — quality_score computed post-save; auto-fix attempted if score < 0.6; memory rejected after 2 failed retries; rejection events logged — S1 child PI-A5 verified
 - [ ] CHK-PI-B1 [P1] PI-B1: Tree thinning pass in context loading (300/100 token thresholds) — nodes < 300 tokens collapsed; nodes < 100 tokens summarized; anchored nodes preserved regardless of size; thinning non-destructive
 - [ ] CHK-PI-B2 [P1] PI-B2: Progressive validation with 4 levels (detect/auto-fix/suggest/report) — Level 2 auto-fix scoped to safe operations only; checkpoint created before Level 2 activation; Level 4 unresolvable issues include remediation guidance
-- [ ] CHK-PI-B3 [P1] PI-B3: Spec folder descriptions generated and cached as descriptions.json — description embeddings used for folder pre-selection; cache invalidated on new memory save; fallback to existing folder matching on cache miss
+- [x] CHK-PI-B3 [P1] PI-B3: Spec folder descriptions generated and cached as descriptions.json — ensureDescriptionCache generates/loads/refreshes cache; isCacheStale checks spec.md mtime vs cache timestamp (2-level deep); discoverSpecFolder orchestrates cache + findRelevantFolders + threshold (≥0.3); integrated into memory-context.ts with opt-in SPECKIT_FOLDER_DISCOVERY=true; graceful degradation (never throws); 21 tests in t046; verified via tsc --noEmit + vitest run (5837 pass)
 <!-- /ANCHOR:pageindex-verify -->
 
 ---

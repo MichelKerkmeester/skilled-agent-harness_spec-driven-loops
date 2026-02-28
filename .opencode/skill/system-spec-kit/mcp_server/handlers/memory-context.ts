@@ -38,6 +38,10 @@ import * as vectorIndex from '../lib/search/vector-index';
 // Shared handler types
 import type { MCPResponse, IntentClassification } from './types';
 
+// PI-B3: Folder discovery integration
+import { discoverSpecFolder, getSpecsBasePaths } from '../lib/search/folder-discovery';
+import { isFolderDiscoveryEnabled } from '../lib/search/search-flags';
+
 /* ---------------------------------------------------------------
    1. TYPES
 --------------------------------------------------------------- */
@@ -504,6 +508,22 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
     effectiveMode = 'focused';
   }
 
+  // PI-B3: Automatic spec folder discovery when no folder is specified
+  let discoveredFolder: string | null = null;
+  if (!spec_folder && isFolderDiscoveryEnabled()) {
+    try {
+      const basePaths = getSpecsBasePaths();
+      discoveredFolder = discoverSpecFolder(normalizedInput, basePaths);
+      if (discoveredFolder) {
+        options.specFolder = discoveredFolder;
+      }
+    } catch (err: unknown) {
+      // CHK-PI-B3-004: never block context retrieval
+      console.debug('[memory-context] folder discovery failed (non-critical):',
+        err instanceof Error ? err.message : String(err));
+    }
+  }
+
   // Execute the selected strategy
   let result: ContextResult;
   try {
@@ -596,6 +616,12 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
         type: detectedIntent,
         confidence: intentConfidence,
         source: explicit_intent ? 'explicit' : 'auto-detected'
+      } : null,
+      // PI-B3: Folder discovery observability
+      folderDiscovery: discoveredFolder ? {
+        discovered: true,
+        specFolder: discoveredFolder,
+        source: 'folder-discovery',
       } : null,
       // C136-12: Retrieval telemetry at L1 orchestration level
       ...(retrievalTelemetry.isExtendedTelemetryEnabled() ? (() => {

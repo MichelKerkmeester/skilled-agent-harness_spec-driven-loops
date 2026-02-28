@@ -9,7 +9,7 @@ import { spreadActivation } from '../cache/cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
-import { isMMREnabled } from './search-flags';
+import { isMMREnabled, isSearchFallbackEnabled } from './search-flags';
 import { computeDegreeScores } from './graph-search-fn';
 
 // Sprint 3 modules — all flag-gated, disabled by default
@@ -105,6 +105,32 @@ interface Sprint3PipelineMeta {
   /** Dynamic token budget result (SPECKIT_DYNAMIC_TOKEN_BUDGET). */
   tokenBudget?: { tier: string; budget: number; applied: boolean };
 }
+
+/* ─── 1c. PI-A2: DEGRADATION TYPES ─── */
+
+/** Fallback tier in the 3-tier degradation chain. */
+type FallbackTier = 1 | 2 | 3;
+
+/** Why degradation was triggered at a given tier. */
+interface DegradationTrigger {
+  reason: 'low_quality' | 'insufficient_results' | 'both';
+  topScore: number;
+  resultCount: number;
+}
+
+/** Record of a single degradation event during tiered fallback. */
+interface DegradationEvent {
+  tier: FallbackTier;
+  trigger: DegradationTrigger;
+  resultCountBefore: number;
+  resultCountAfter: number;
+}
+
+/** Quality threshold: top score must be >= this to stay at current tier. */
+const DEGRADATION_QUALITY_THRESHOLD = 0.4;
+
+/** Minimum result count: must have >= this many results to stay at current tier. */
+const DEGRADATION_MIN_RESULTS = 3;
 
 /* ─── 2. MODULE STATE ─── */
 
@@ -838,19 +864,25 @@ async function hybridSearchEnhanced(
 
 /**
  * Search with automatic fallback chain.
- * C138-P0: Two-pass adaptive fallback — if primary scatter at min_similarity=0.3
- * returns 0 results, retry at 0.17 with metadata.fallbackRetry=true.
+ * When SPECKIT_SEARCH_FALLBACK=true: delegates to the 3-tier quality-aware
+ * fallback (searchWithFallbackTiered). Otherwise: C138-P0 two-pass adaptive
+ * fallback — primary at minSimilarity=0.3, retry at 0.17.
  *
  * @param query - The search query string.
  * @param embedding - Optional embedding vector for semantic search.
  * @param options - Hybrid search configuration options.
- * @returns Results from the first non-empty stage: enhanced → FTS → BM25.
+ * @returns Results from the first non-empty stage.
  */
 async function searchWithFallback(
   query: string,
   embedding: Float32Array | number[] | null,
   options: HybridSearchOptions = {}
 ): Promise<HybridSearchResult[]> {
+  // PI-A2: Delegate to tiered fallback when flag is enabled
+  if (isSearchFallbackEnabled()) {
+    return searchWithFallbackTiered(query, embedding, options);
+  }
+
   // AI-WHY: Primary 0.3 filters noise; fallback 0.17 widens recall for sparse corpora
   // where no result exceeds the primary threshold — chosen empirically via eval.
   const PRIMARY_THRESHOLD = 0.3;
@@ -885,6 +917,215 @@ async function searchWithFallback(
 
   console.warn('[hybrid-search] All search methods returned empty results');
   return [];
+}
+
+/* ─── 7a. STRUCTURAL SEARCH (PI-A2 Tier 3) ─── */
+
+/**
+ * PI-A2: Last-resort structural search against the memory_index table.
+ * Retrieves memories ordered by importance tier and weight, without
+ * requiring embeddings or text similarity. Pure SQL fallback.
+ *
+ * @param options - Search options (specFolder for filtering, limit for cap).
+ * @returns Array of HybridSearchResult with source='structural'.
+ */
+function structuralSearch(
+  options: Pick<HybridSearchOptions, 'specFolder' | 'limit'> = {}
+): HybridSearchResult[] {
+  if (!db) return [];
+
+  const limit = options.limit ?? DEFAULT_LIMIT;
+
+  try {
+    // Build SQL with optional specFolder filter
+    const conditions = [
+      `(importance_tier IS NULL OR importance_tier NOT IN ('deprecated', 'archived'))`
+    ];
+    const params: unknown[] = [];
+
+    if (options.specFolder) {
+      conditions.push(`spec_folder = ?`);
+      params.push(options.specFolder);
+    }
+
+    const whereClause = conditions.join(' AND ');
+
+    const sql = `
+      SELECT id, title, file_path, importance_tier, importance_weight, spec_folder
+      FROM memory_index
+      WHERE ${whereClause}
+      ORDER BY
+        CASE importance_tier
+          WHEN 'constitutional' THEN 1
+          WHEN 'critical' THEN 2
+          WHEN 'important' THEN 3
+          WHEN 'normal' THEN 4
+          WHEN 'temporary' THEN 5
+          ELSE 6
+        END ASC,
+        importance_weight DESC,
+        created_at DESC
+      LIMIT ?
+    `;
+    params.push(limit);
+
+    const stmt = db.prepare(sql);
+    const rows = stmt.all(...params) as Array<Record<string, unknown>>;
+
+    return rows.map((row, index) => ({
+      id: row.id as number,
+      score: Math.max(0, 1.0 - index * 0.05),
+      source: 'structural',
+      title: (row.title as string) ?? undefined,
+      file_path: row.file_path as string,
+      importance_tier: row.importance_tier as string,
+      spec_folder: row.spec_folder as string,
+    }));
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[hybrid-search] Structural search failed: ${msg}`);
+    return [];
+  }
+}
+
+/* ─── 7a. TIERED FALLBACK (PI-A2) — continued ─── */
+
+/**
+ * Evaluate whether results meet quality thresholds.
+ * Returns null if thresholds are met, or a DegradationTrigger if not.
+ */
+function checkDegradation(results: HybridSearchResult[]): DegradationTrigger | null {
+  const topScore = results.length > 0 ? Math.max(...results.map(r => r.score)) : 0;
+  const count = results.length;
+
+  const lowQuality = topScore < DEGRADATION_QUALITY_THRESHOLD;
+  const insufficientResults = count < DEGRADATION_MIN_RESULTS;
+
+  if (!lowQuality && !insufficientResults) return null;
+
+  return {
+    reason: lowQuality && insufficientResults ? 'both'
+      : lowQuality ? 'low_quality'
+      : 'insufficient_results',
+    topScore,
+    resultCount: count,
+  };
+}
+
+/**
+ * Merge two result arrays, deduplicating by id and keeping the higher score.
+ */
+function mergeResults(
+  existing: HybridSearchResult[],
+  incoming: HybridSearchResult[]
+): HybridSearchResult[] {
+  const byId = new Map<number | string, HybridSearchResult>();
+
+  for (const r of existing) {
+    byId.set(r.id, r);
+  }
+  for (const r of incoming) {
+    const prev = byId.get(r.id);
+    if (!prev || r.score > prev.score) {
+      byId.set(r.id, r);
+    }
+  }
+
+  return Array.from(byId.values()).sort((a, b) => b.score - a.score);
+}
+
+/**
+ * PI-A2: Quality-aware 3-tier search fallback chain.
+ *
+ * TIER 1: hybridSearchEnhanced at minSimilarity=0.3
+ *   → Pass if topScore >= 0.4 AND count >= 3
+ *
+ * TIER 2: hybridSearchEnhanced at minSimilarity=0.1, all channels forced
+ *   → Merge with Tier 1, dedup by id
+ *   → Pass if topScore >= 0.4 AND count >= 3
+ *
+ * TIER 3: structuralSearch (pure SQL last-resort)
+ *   → Merge with Tier 1+2 results
+ *   → Return whatever we have
+ *
+ * @param query - The search query string.
+ * @param embedding - Optional embedding vector for semantic search.
+ * @param options - Hybrid search configuration options.
+ * @returns Results with _degradation metadata attached as non-enumerable property.
+ */
+async function searchWithFallbackTiered(
+  query: string,
+  embedding: Float32Array | number[] | null,
+  options: HybridSearchOptions = {}
+): Promise<HybridSearchResult[]> {
+  const degradationEvents: DegradationEvent[] = [];
+
+  // TIER 1: Standard enhanced search
+  const tier1Options = { ...options, minSimilarity: options.minSimilarity ?? 0.3 };
+  let results = await hybridSearchEnhanced(query, embedding, tier1Options);
+
+  const tier1Trigger = checkDegradation(results);
+  if (!tier1Trigger) {
+    // Tier 1 passed quality thresholds — attach empty degradation metadata
+    Object.defineProperty(results, '_degradation', {
+      value: degradationEvents,
+      enumerable: false,
+      configurable: true,
+    });
+    return results;
+  }
+
+  // TIER 2: Widen search — lower similarity, force all channels
+  degradationEvents.push({
+    tier: 1,
+    trigger: tier1Trigger,
+    resultCountBefore: results.length,
+    resultCountAfter: results.length,
+  });
+
+  console.debug(`[hybrid-search] Tier 1→2 degradation: ${tier1Trigger.reason} (topScore=${tier1Trigger.topScore.toFixed(3)}, count=${tier1Trigger.resultCount})`);
+
+  const tier2Options: HybridSearchOptions = {
+    ...options,
+    minSimilarity: 0.1,
+    useBm25: true,
+    useFts: true,
+    useVector: true,
+    useGraph: true,
+  };
+  const tier2Results = await hybridSearchEnhanced(query, embedding, tier2Options);
+  results = mergeResults(results, tier2Results);
+
+  const tier2Trigger = checkDegradation(results);
+  if (!tier2Trigger) {
+    Object.defineProperty(results, '_degradation', {
+      value: degradationEvents,
+      enumerable: false,
+      configurable: true,
+    });
+    return results;
+  }
+
+  // TIER 3: Structural search (pure SQL last-resort)
+  degradationEvents.push({
+    tier: 2,
+    trigger: tier2Trigger,
+    resultCountBefore: results.length,
+    resultCountAfter: results.length,
+  });
+
+  console.debug(`[hybrid-search] Tier 2→3 degradation: ${tier2Trigger.reason} (topScore=${tier2Trigger.topScore.toFixed(3)}, count=${tier2Trigger.resultCount})`);
+
+  const tier3Results = structuralSearch({ specFolder: options.specFolder, limit: options.limit });
+  results = mergeResults(results, tier3Results);
+
+  Object.defineProperty(results, '_degradation', {
+    value: degradationEvents,
+    enumerable: false,
+    configurable: true,
+  });
+
+  return results;
 }
 
 /* ─── 7b. PRE-FLIGHT TOKEN BUDGET VALIDATION (T007) ─── */
@@ -1076,6 +1317,10 @@ export {
   routeQuery,
   getDynamicTokenBudget,
   isDynamicTokenBudgetEnabled,
+  // PI-A2: Tiered fallback exports
+  structuralSearch,
+  DEGRADATION_QUALITY_THRESHOLD,
+  DEGRADATION_MIN_RESULTS,
 };
 
 export type {
@@ -1087,4 +1332,7 @@ export type {
   TruncateToBudgetResult,
   // Sprint 3: Pipeline metadata type
   Sprint3PipelineMeta,
+  // PI-A2: Degradation types
+  DegradationEvent,
+  FallbackTier,
 };

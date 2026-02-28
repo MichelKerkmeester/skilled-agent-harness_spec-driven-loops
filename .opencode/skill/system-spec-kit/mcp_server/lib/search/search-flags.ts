@@ -36,3 +36,19 @@ export function isMultiQueryEnabled(): boolean {
 export function isCrossEncoderEnabled(): boolean {
   return isFeatureEnabled('SPECKIT_CROSS_ENCODER');
 }
+
+/**
+ * PI-A2: Quality-aware 3-tier search fallback chain.
+ * Default: FALSE (opt-in). Set SPECKIT_SEARCH_FALLBACK=true to enable.
+ */
+export function isSearchFallbackEnabled(): boolean {
+  return process.env.SPECKIT_SEARCH_FALLBACK?.toLowerCase() === 'true';
+}
+
+/**
+ * PI-B3: Automatic spec folder discovery via description cache.
+ * Default: FALSE (opt-in). Set SPECKIT_FOLDER_DISCOVERY=true to enable.
+ */
+export function isFolderDiscoveryEnabled(): boolean {
+  return process.env.SPECKIT_FOLDER_DISCOVERY?.toLowerCase() === 'true';
+}

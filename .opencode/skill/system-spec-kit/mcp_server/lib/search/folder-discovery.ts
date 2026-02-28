@@ -385,3 +385,158 @@ export function saveDescriptionCache(cache: DescriptionCache, cachePath: string)
   }
   fs.writeFileSync(cachePath, JSON.stringify(cache, null, 2), 'utf-8');
 }
+
+/* ─── 8. INTEGRATION HELPERS (PI-B3) ─── */
+
+/**
+ * Resolve the standard specs base paths for a workspace.
+ * Returns all existing directories from: `specs/` and `.opencode/specs/`
+ * relative to the given workspace (or cwd if omitted).
+ *
+ * @param workspacePath - Optional workspace root. Defaults to process.cwd().
+ * @returns Array of absolute directory paths that exist.
+ */
+export function getSpecsBasePaths(workspacePath?: string): string[] {
+  const root = workspacePath ?? process.cwd();
+  const candidates = [
+    path.join(root, 'specs'),
+    path.join(root, '.opencode', 'specs'),
+  ];
+  return candidates.filter(p => {
+    try {
+      return fs.statSync(p).isDirectory();
+    } catch {
+      return false;
+    }
+  });
+}
+
+/**
+ * Check whether a description cache is stale by comparing its
+ * `generated` timestamp against the most recent spec.md mtime
+ * across all base paths (2-level deep scan).
+ *
+ * @param cache     - The loaded DescriptionCache to check.
+ * @param basePaths - Spec base directories to scan for spec.md files.
+ * @returns true if any spec.md was modified after cache generation, or if cache is invalid.
+ */
+export function isCacheStale(cache: DescriptionCache | null, basePaths: string[]): boolean {
+  if (!cache || !cache.generated) return true;
+
+  let cacheTime: number;
+  try {
+    cacheTime = new Date(cache.generated).getTime();
+    if (isNaN(cacheTime)) return true;
+  } catch {
+    return true;
+  }
+
+  let latestMtime = 0;
+
+  for (const basePath of basePaths) {
+    let entries: string[];
+    try {
+      entries = fs.readdirSync(basePath);
+    } catch {
+      continue;
+    }
+
+    for (const entry of entries) {
+      const entryPath = path.join(basePath, entry);
+      try {
+        if (!fs.statSync(entryPath).isDirectory()) continue;
+      } catch {
+        continue;
+      }
+
+      // Check spec.md in direct child
+      const specMd = path.join(entryPath, 'spec.md');
+      try {
+        const mtime = fs.statSync(specMd).mtimeMs;
+        if (mtime > latestMtime) latestMtime = mtime;
+      } catch { /* no spec.md here */ }
+
+      // Check one level deeper (phase subfolders)
+      let subEntries: string[];
+      try {
+        subEntries = fs.readdirSync(entryPath);
+      } catch {
+        continue;
+      }
+      for (const sub of subEntries) {
+        const subSpecMd = path.join(entryPath, sub, 'spec.md');
+        try {
+          const mtime = fs.statSync(subSpecMd).mtimeMs;
+          if (mtime > latestMtime) latestMtime = mtime;
+        } catch { /* no spec.md here */ }
+      }
+    }
+  }
+
+  return latestMtime > cacheTime;
+}
+
+/**
+ * Ensure a fresh description cache exists. Loads existing cache from
+ * disk, checks staleness, regenerates if needed, saves, and returns it.
+ *
+ * @param basePaths - Spec base directories to scan.
+ * @returns The up-to-date DescriptionCache, or null if no base paths exist.
+ */
+export function ensureDescriptionCache(basePaths: string[]): DescriptionCache | null {
+  if (basePaths.length === 0) return null;
+
+  // AI-WHY: Cache co-located with primary base path (first in resolution order)
+  const cachePath = path.join(basePaths[0], 'descriptions.json');
+
+  try {
+    const existing = loadDescriptionCache(cachePath);
+
+    if (existing && !isCacheStale(existing, basePaths)) {
+      return existing;
+    }
+
+    // Regenerate
+    const fresh = generateFolderDescriptions(basePaths);
+    try {
+      saveDescriptionCache(fresh, cachePath);
+    } catch {
+      // AI-GUARD: Cache write failure — still return the generated cache
+    }
+    return fresh;
+  } catch {
+    // AI-GUARD: Never throw — return null for graceful degradation
+    return null;
+  }
+}
+
+/**
+ * Discover the most relevant spec folder for a query.
+ * Orchestrates: ensureCache → findRelevantFolders → threshold check.
+ *
+ * @param query     - User search query.
+ * @param basePaths - Spec base directories.
+ * @param threshold - Minimum relevance score to accept (default 0.3).
+ * @returns The best-matching specFolder path, or null if none meets threshold.
+ */
+export function discoverSpecFolder(
+  query: string,
+  basePaths: string[],
+  threshold = 0.3,
+): string | null {
+  try {
+    const cache = ensureDescriptionCache(basePaths);
+    if (!cache) return null;
+
+    const matches = findRelevantFolders(query, cache, 1);
+    if (matches.length === 0) return null;
+
+    const best = matches[0];
+    if (best.relevanceScore < threshold) return null;
+
+    return best.specFolder;
+  } catch {
+    // CHK-PI-B3-004: Never throw — graceful degradation
+    return null;
+  }
+}
