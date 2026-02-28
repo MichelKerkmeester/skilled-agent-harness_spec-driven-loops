@@ -1,6 +1,6 @@
 ---
 title: Summary of new and updated features
-description: Every improvement delivered or planned in the Hybrid RAG Fusion Refinement program, grouped by functional area with expanded descriptions.
+description: Every improvement delivered in the Hybrid RAG Fusion Refinement program, grouped by functional area with expanded descriptions. Sprints 0-7 complete; deferred features (N2, R10, R8, S5) implemented.
 ---
 
 # Summary of new and updated features
@@ -22,10 +22,16 @@ description: Every improvement delivered or planned in the Hybrid RAG Fusion Ref
   - [BM25-only baseline (G-NEW-1)](#bm25-only-baseline-g-new-1)
   - [Agent consumption instrumentation (G-NEW-2)](#agent-consumption-instrumentation-g-new-2)
   - [Scoring observability (T010)](#scoring-observability-t010)
+  - [Full reporting and ablation study framework (R13-S3)](#full-reporting-and-ablation-study-framework-r13-s3)
+  - [Shadow scoring and channel attribution (R13-S2)](#shadow-scoring-and-channel-attribution-r13-s2)
 - [Graph signal activation](#graph-signal-activation)
   - [Typed-weighted degree channel (R4)](#typed-weighted-degree-channel-r4)
   - [Co-activation boost strength increase (A7)](#co-activation-boost-strength-increase-a7)
   - [Edge density measurement](#edge-density-measurement)
+  - [Weight history audit tracking](#weight-history-audit-tracking)
+  - [Graph momentum scoring (N2a)](#graph-momentum-scoring-n2a)
+  - [Causal depth signal (N2b)](#causal-depth-signal-n2b)
+  - [Community detection (N2c)](#community-detection-n2c)
 - [Scoring and calibration](#scoring-and-calibration)
   - [Score normalization](#score-normalization)
   - [Cold-start novelty boost (N4)](#cold-start-novelty-boost-n4)
@@ -35,23 +41,52 @@ description: Every improvement delivered or planned in the Hybrid RAG Fusion Ref
   - [Embedding cache (R18)](#embedding-cache-r18)
   - [Double intent weighting investigation (G2)](#double-intent-weighting-investigation-g2)
   - [RRF K-value sensitivity analysis (FUT-5)](#rrf-k-value-sensitivity-analysis-fut-5)
+  - [Negative feedback confidence signal (A4)](#negative-feedback-confidence-signal-a4)
+  - [Auto-promotion on validation (T002a)](#auto-promotion-on-validation-t002a)
 - [Query intelligence](#query-intelligence)
   - [Query complexity router (R15)](#query-complexity-router-r15)
   - [Relative score fusion in shadow mode (R14/N1)](#relative-score-fusion-in-shadow-mode-r14n1)
   - [Channel min-representation (R2)](#channel-min-representation-r2)
   - [Confidence-based result truncation (R15-ext)](#confidence-based-result-truncation-r15-ext)
   - [Dynamic token budget allocation (FUT-7)](#dynamic-token-budget-allocation-fut-7)
+  - [Query expansion (R12)](#query-expansion-r12)
 - [Memory quality and indexing](#memory-quality-and-indexing)
   - [Verify-fix-verify memory quality loop (PI-A5)](#verify-fix-verify-memory-quality-loop-pi-a5)
   - [Signal vocabulary expansion (TM-08)](#signal-vocabulary-expansion-tm-08)
   - [Pre-flight token budget validation (PI-A3)](#pre-flight-token-budget-validation-pi-a3)
   - [Spec folder description discovery (PI-B3)](#spec-folder-description-discovery-pi-b3)
+  - [Pre-storage quality gate (TM-04)](#pre-storage-quality-gate-tm-04)
+  - [Reconsolidation-on-save (TM-06)](#reconsolidation-on-save-tm-06)
+  - [Smarter memory content generation (S1)](#smarter-memory-content-generation-s1)
+  - [Anchor-aware chunk thinning (R7)](#anchor-aware-chunk-thinning-r7)
+  - [Encoding-intent capture at index time (R16)](#encoding-intent-capture-at-index-time-r16)
+  - [Auto entity extraction (R10)](#auto-entity-extraction-r10)
+- [Pipeline architecture](#pipeline-architecture)
+  - [4-stage pipeline refactor (R6)](#4-stage-pipeline-refactor-r6)
+  - [MPAB chunk-to-memory aggregation (R1)](#mpab-chunk-to-memory-aggregation-r1)
+  - [Chunk ordering preservation (B2)](#chunk-ordering-preservation-b2)
+  - [Template anchor optimization (S2)](#template-anchor-optimization-s2)
+  - [Validation signals as retrieval metadata (S3)](#validation-signals-as-retrieval-metadata-s3)
+  - [Learned relevance feedback (R11)](#learned-relevance-feedback-r11)
+- [Retrieval enhancements](#retrieval-enhancements)
+  - [Dual-scope memory auto-surface (TM-05)](#dual-scope-memory-auto-surface-tm-05)
+  - [Constitutional memory as expert knowledge injection (PI-A4)](#constitutional-memory-as-expert-knowledge-injection-pi-a4)
+  - [Spec folder hierarchy as retrieval structure (S4)](#spec-folder-hierarchy-as-retrieval-structure-s4)
+  - [Lightweight consolidation (N3-lite)](#lightweight-consolidation-n3-lite)
+  - [Memory summary search channel (R8)](#memory-summary-search-channel-r8)
+  - [Cross-document entity linking (S5)](#cross-document-entity-linking-s5)
+- [Tooling and scripts](#tooling-and-scripts)
+  - [Tree thinning for spec folder consolidation (PI-B1)](#tree-thinning-for-spec-folder-consolidation-pi-b1)
+  - [Progressive validation for spec documents (PI-B2)](#progressive-validation-for-spec-documents-pi-b2)
 - [Governance](#governance)
   - [Feature flag governance](#feature-flag-governance)
-- [Planned: feedback and quality (sprint 4)](#planned-feedback-and-quality-sprint-4)
-- [Planned: pipeline refactor (sprint 5)](#planned-pipeline-refactor-sprint-5)
-- [Planned: indexing and graph (sprint 6)](#planned-indexing-and-graph-sprint-6)
-- [Planned: long horizon (sprint 7)](#planned-long-horizon-sprint-7)
+  - [Feature flag sunset audit](#feature-flag-sunset-audit)
+- [Decisions and deferrals](#decisions-and-deferrals)
+  - [INT8 quantization evaluation (R5)](#int8-quantization-evaluation-r5)
+  - [Implemented: graph centrality and community detection (N2)](#implemented-graph-centrality-and-community-detection-n2)
+  - [Implemented: auto entity extraction (R10)](#implemented-auto-entity-extraction-r10)
+  - [Implemented: memory summary generation (R8)](#implemented-memory-summary-generation-r8)
+  - [Implemented: cross-document entity linking (S5)](#implemented-cross-document-entity-linking-s5)
 
 ---
 
@@ -139,6 +174,22 @@ Novelty boost values and interference score distributions are logged at query ti
 
 The 5% sample rate keeps storage costs low while still catching calibration drift. A try-catch wrapper guarantees that telemetry failures never affect scoring results. If the observation write fails, the search result is unchanged and the failure is swallowed silently.
 
+### Full reporting and ablation study framework (R13-S3)
+
+The ablation study framework disables one retrieval channel at a time (vector, BM25, FTS5, graph or trigger) and measures Recall@20 delta against a full-pipeline baseline. "What happens if we turn off the graph channel?" is now a question with a measured answer rather than speculation.
+
+The framework uses dependency injection for the search function, making it testable without the full pipeline. Statistical significance is assessed via a sign test (exact binomial distribution) because it is robust with small query sets. Verdict classification ranges from CRITICAL (channel removal causes significant regression) through negligible to HARMFUL (channel removal actually improves results). Results are stored in `eval_metric_snapshots` with negative timestamp IDs to distinguish ablation runs from production evaluation data. Runs behind the `SPECKIT_ABLATION` flag.
+
+The reporting dashboard aggregates per-sprint metric summaries (mean, min, max, latest, count) and per-channel performance views (hit count, average latency, query count) from the evaluation database. Trend analysis compares consecutive runs to detect regressions. Sprint labels are inferred from metadata JSON. A `isHigherBetter()` helper correctly interprets trend direction for different metric types. Both the ablation runner and the dashboard are exposed as new MCP tools: `eval_run_ablation` and `eval_reporting_dashboard`.
+
+### Shadow scoring and channel attribution (R13-S2)
+
+Full A/B comparison infrastructure ran alternative scoring algorithms in parallel, logging results without affecting live ranking. The system computed detailed comparison metrics including Kendall tau rank correlation, per-result score deltas, and production-only versus shadow-only result sets. Channel attribution tagged each result with its source channels and computed Exclusive Contribution Rate per channel: how often each channel was the sole source for a result in the top-k window.
+
+Ground truth expansion via implicit user selection tracking and an LLM-judge stub interface were included for future corpus growth.
+
+Shadow scoring completed its evaluation purpose and has been deprecated. The `isShadowScoringEnabled()` function is hardcoded to `false` and the `SPECKIT_SHADOW_SCORING` environment variable is inert. The flag is scheduled for removal in the next maintenance pass. Channel attribution logic remains active within the 4-stage pipeline.
+
 ---
 
 ## Graph signal activation
@@ -158,6 +209,44 @@ The new multiplier targets 15% or higher contribution, which is enough to matter
 ### Edge density measurement
 
 A SQL query computes the edges-per-node ratio from the `causal_edges` table. This number determines how much graph signal the system can extract. If density falls below 0.5, the system flags an escalation decision for auto entity extraction (R10) in a future sprint. The R4 exit gate is density-conditional: when graph coverage is too thin, the gate evaluates R4 implementation correctness (unit tests, zero-return behavior) rather than demanding the +2% MRR@5 lift that would be unreasonable with a sparse graph. That conditional gating is a pragmatic design choice. No point holding a feature to a metric it cannot influence.
+
+### Weight history audit tracking
+
+Every causal edge now carries `created_by` and `last_accessed` metadata fields tracking who created the edge and when it was last used. All strength modifications are logged to a `weight_history` table recording old strength, new strength, the actor (`changed_by`), timestamp and reason.
+
+Edge bounds are enforced at insert time. Auto-generated edges (those with `created_by='auto'`) are rejected when a node already has 20 edges (`MAX_EDGES_PER_NODE`) and clamped to a maximum strength of 0.5 (`MAX_AUTO_STRENGTH`). A `rollbackWeights()` function restores edges from weight history with a fallback to the oldest entry if timestamp matching fails due to same-millisecond updates.
+
+This audit infrastructure supports the N3-lite consolidation engine: Hebbian strengthening, staleness detection and edge bounds enforcement all rely on accurate weight history and provenance tracking.
+
+### Graph momentum scoring (N2a)
+
+Graph connectivity changes over time, and that trajectory carries signal. A memory gaining three new edges this week is more actively relevant than one whose connections have been static for months.
+
+Graph momentum computes a temporal degree delta: `current_degree - degree_7d_ago`. The `degree_snapshots` table records per-node degree counts at daily granularity with a UNIQUE constraint on `(memory_id, snapshot_date)`. The `snapshotDegrees()` function captures the current state, and `computeMomentum()` looks back 7 days to calculate the delta.
+
+The momentum signal applies as an additive bonus in Stage 2 of the pipeline, capped at +0.05 per result. Batch computation via `computeMomentumScores()` is session-cached to avoid repeated database queries within a single search request. Cache invalidation follows the established pattern from `graph-search-fn.ts`: caches clear on edge mutations via `clearGraphSignalsCache()`.
+
+When no snapshot exists for the 7-day lookback (common during initial rollout), the momentum defaults to zero rather than penalizing the memory. Runs behind the `SPECKIT_GRAPH_SIGNALS` flag (default ON, shared with N2b).
+
+### Causal depth signal (N2b)
+
+Not all memories sit at the same level of abstraction. A root decision that caused five downstream implementation memories occupies a different position in the knowledge graph than a leaf node.
+
+Causal depth measures each memory's maximum distance from root nodes (those with in-degree zero) via BFS traversal. The raw depth is normalized by graph diameter to produce a [0,1] score. A memory at depth 3 in a graph with diameter 6 scores 0.5.
+
+Like momentum, the depth signal applies as an additive bonus in Stage 2, capped at +0.05. Batch computation via `computeCausalDepthScores()` shares the same session cache infrastructure as momentum. Both signals are applied together by `applyGraphSignals()`, which iterates over pipeline rows and adds the combined bonus.
+
+The combined N2a+N2b adjustment is modest by design: up to +0.10 total. This keeps graph signals as a tiebreaker rather than a dominant ranking factor. Runs behind the `SPECKIT_GRAPH_SIGNALS` flag (default ON, shared with N2a).
+
+### Community detection (N2c)
+
+Individual memories are retrieved based on query similarity, but they exist within communities of related knowledge. Community detection identifies these clusters so that when one member surfaces, its neighbors get a retrieval boost.
+
+The primary algorithm is BFS connected components over the causal edge adjacency list. This is fast and sufficient when the graph has natural cluster boundaries. When the largest connected component exceeds 50% of all nodes (meaning the graph is too densely connected for BFS to produce meaningful clusters), the system escalates to a simplified pure-TypeScript Louvain modularity optimization. The Louvain implementation performs iterative node moves between communities to maximize modularity score Q, converging when no single move improves Q.
+
+Community assignments are stored in the `community_assignments` table with a UNIQUE constraint on `memory_id`. Recomputation is debounced: communities recalculate only when the graph has changed since the last run, at most once per session.
+
+The `applyCommunityBoost()` function in the pipeline injects up to 3 community co-members into the result set at 0.3x the source memory's score. Community injection runs in Stage 2 at position 2b (between causal boost and graph signals) so that injected rows also receive N2a+N2b momentum and depth adjustments. Runs behind the `SPECKIT_COMMUNITY_DETECTION` flag (default ON).
 
 ---
 
@@ -199,7 +288,7 @@ The combined multiplier uses `Infinity` for never-decay cases, which produces `R
 
 A four-factor weighted formula scores each spec folder: `score = (recency * 0.40) + (importance * 0.30) + (activity * 0.20) + (validation * 0.10)`. Recency uses a decay function `1 / (1 + days * 0.10)` so a 7-day-old folder scores about 0.59 and a 10-day-old folder about 0.50. Importance averages the tier weights of all memories in the folder. Activity caps at 1.0 when a folder has 5 or more memories. Archive folders (`z_archive/`, `scratch/`, `test-`, `prototype/`) receive a 0.1-0.2 multiplier to keep them out of top results.
 
-This scoring enables two-phase retrieval: first rank folders by aggregated score, then search within the top-ranked folders. A future DocScore formula (`(1/sqrt(M+1)) * SUM(MemoryScore(m))`) is specified for damped aggregation once normalized memory scores from the score normalization module are available. Runs behind the `SPECKIT_FOLDER_SCORING` flag.
+This scoring enables two-phase retrieval: first rank folders by aggregated score, then search within the top-ranked folders. The DocScore formula `(1/sqrt(M+1)) * SUM(score(m))` provides damped aggregation so large folders do not dominate by volume alone. Runs behind the `SPECKIT_FOLDER_SCORING` flag (default ON).
 
 ### Embedding cache (R18)
 
@@ -215,13 +304,25 @@ A full pipeline trace through `hybrid-search.ts`, `intent-classifier.ts` and `ad
 
 System A (`INTENT_WEIGHT_PROFILES` in adaptive fusion) controls how much each channel contributes during RRF fusion. System B (`INTENT_WEIGHT_ADJUSTMENTS` in the intent classifier) controls how result attributes (similarity, importance, recency) are weighted after fusion. These operate on different dimensions at different pipeline stages and serve complementary purposes.
 
-A minor inefficiency exists (recency boost from System A is discarded when System B re-scores), but it is harmless. No code change needed. The investigation is documented in `scratch/wave-2-S2-A3-investigation.md`.
+A minor inefficiency exists (recency boost from System A is discarded when System B re-scores), but it is harmless. No code change needed. The 4-stage pipeline (R6) resolved this structurally: Stage 2 applies intent weights only for non-hybrid search types via an `isHybrid` boolean gate, so the code path for double-weighting is absent by design.
 
 ### RRF K-value sensitivity analysis (FUT-5)
 
 The K parameter in Reciprocal Rank Fusion controls how much rank position matters. A low K amplifies rank differences while a high K compresses them.
 
 A grid search over K values {20, 40, 60, 80, 100} measured MRR@5 delta per value using Kendall tau correlation for ranking stability. The optimal K was identified and documented. Before this analysis, K was chosen by convention rather than measurement. Now it is empirically grounded.
+
+### Negative feedback confidence signal (A4)
+
+When you mark a memory as not useful via `memory_validate(wasUseful: false)`, the signal now flows into composite scoring as a demotion multiplier. The multiplier starts at 1.0, decreases by 0.1 per negative validation and floors at 0.3 so a memory is never suppressed below 30% of its natural score. Time-based recovery with a 30-day half-life gradually restores the multiplier: the penalty halves every 30 days since the last negative validation.
+
+Negative feedback events are persisted to a `negative_feedback_events` table. The search handler reads these events and applies the multiplier during the feedback signals step in Stage 2 of the pipeline. Runs behind the `SPECKIT_NEGATIVE_FEEDBACK` flag (default ON).
+
+### Auto-promotion on validation (T002a)
+
+Positive validations now trigger automatic tier promotion. When a normal-tier memory accumulates 5 positive validations, it is promoted to important. When an important-tier memory reaches 10, it is promoted to critical. A throttle safeguard limits promotions to 3 per 8-hour rolling window to prevent runaway promotion during bulk validation sessions.
+
+Constitutional, critical, temporary and deprecated tiers are non-promotable. Each promotion is logged to a `memory_promotion_audit` table for traceability. The `memory_validate` response includes `autoPromotion` metadata showing whether promotion was attempted, the previous and new tier, validation count and the reason.
 
 ---
 
@@ -267,6 +368,12 @@ The budget is computed early in the pipeline (before channel execution) so downs
 
 The savings add up. If 60% of your queries are simple, you recover roughly 40% of the token budget that was previously wasted on over-delivering.
 
+### Query expansion (R12)
+
+Embedding-based query expansion broadens retrieval for complex queries by mining similar memories from the vector index and extracting related terms to append to the original query, producing an enriched combined query string. Stop-words are filtered out and tokens shorter than 3 characters are discarded.
+
+When R15 classifies a query as "simple", expansion is suppressed because expanding a trigger-phrase lookup would add noise. If expansion produces no additional terms, the original query proceeds unchanged. In the 4-stage pipeline, Stage 1 runs the baseline and expanded-query searches in parallel with deduplication (baseline-first). Runs behind the `SPECKIT_EMBEDDING_EXPANSION` flag (default ON).
+
 ---
 
 ## Memory quality and indexing
@@ -297,7 +404,169 @@ Overflow events are logged with query ID, candidate count, total tokens, budget 
 
 A cached one-sentence description per spec folder (derived from spec.md) is stored in a `descriptions.json` file. The `memory_context` orchestration layer checks these descriptions before issuing vector queries.
 
-If the target folder can be identified from the description alone, the system skips full-corpus search entirely. This is a lightweight routing optimization that reduces unnecessary computation for scoped queries where the user already has a specific folder in mind.
+If the target folder can be identified from the description alone, the system skips full-corpus search entirely. This is a lightweight routing optimization that reduces unnecessary computation for scoped queries where the user already has a specific folder in mind. Runs behind the `SPECKIT_FOLDER_DISCOVERY` flag (default ON).
+
+### Pre-storage quality gate (TM-04)
+
+A three-layer quality gate on memory save validates content before it enters the index. Layer 1 checks structural validity (title exists, content at least 50 characters, valid spec folder path format). Layer 2 scores content quality across five dimensions (title quality, trigger quality, length quality, anchor quality, metadata quality) with a 0.4 signal density threshold. Layer 3 checks semantic deduplication via cosine similarity against existing memories in the same spec folder, rejecting near-duplicates above 0.92.
+
+The gate starts in warn-only mode for 14 days after activation per the MR12 mitigation: it logs would-reject decisions without blocking saves while the thresholds are being validated. After the warn-only period, hard rejections apply. Runs behind the `SPECKIT_SAVE_QUALITY_GATE` flag (default ON).
+
+### Reconsolidation-on-save (TM-06)
+
+After embedding generation, the save pipeline checks the top-3 most similar memories in the same spec folder. Similarity at or above 0.88 triggers a merge where content is combined and a frequency counter increments. Similarity between 0.75 and 0.88 triggers conflict resolution: the old memory is deprecated and a `supersedes` causal edge is created. Below 0.75, the memory stores as a new complement.
+
+A checkpoint must exist for the spec folder before reconsolidation can run. When no checkpoint is found, the system logs a warning and skips reconsolidation rather than risking destructive merges without a safety net. Runs behind the `SPECKIT_RECONSOLIDATION` flag (default ON).
+
+### Smarter memory content generation (S1)
+
+Raw markdown including code fences, nested lists and YAML frontmatter was being embedded as-is, diluting embedding quality with formatting noise. A content normalizer now strips this noise before both embedding generation and BM25 indexing.
+
+Seven primitives run in sequence: strip YAML frontmatter, strip anchor markers, strip HTML comments, strip code fence markers (retaining the code body), normalize markdown tables, normalize markdown lists and normalize headings. Two composite functions apply the pipeline: `normalizeContentForEmbedding()` strips more aggressively (removes code blocks entirely) while `normalizeContentForBM25()` preserves more structure for lexical matching. Both are idempotent and never return empty string from non-empty input.
+
+The normalizer has no feature flag because it is a non-destructive improvement. It is always active in the `memory-save.ts` embedding path and the `bm25-index.ts` tokenization path.
+
+### Anchor-aware chunk thinning (R7)
+
+When large files are split into chunks during indexing, not all chunks carry equal value. Anchor-aware chunk thinning scores each chunk using a composite of anchor presence (weight 0.6, binary 0 or 1) and content density (weight 0.4, 0-1 scale). Content density strips HTML comments, collapses whitespace, penalizes short chunks under 100 characters and adds a structure bonus (up to +0.2) for headings, code blocks and list items.
+
+Chunks scoring below the 0.3 threshold are dropped from the index, reducing storage and search noise. The thinning guarantee: the function never returns an empty array regardless of scoring. Always active in the chunking path with no separate feature flag.
+
+### Encoding-intent capture at index time (R16)
+
+An `encoding_intent` field classifies content type at index time as `document`, `code` or `structured_data` using heuristic scoring. The code path scores fenced code blocks, import/export/function keyword density and programming punctuation density. The structured data path scores YAML frontmatter, pipe tables and key-value patterns. The classification threshold is 0.4; anything below defaults to `document`.
+
+The classification is stored as read-only metadata on the `encoding_intent` column for both parent records and individual chunks. It has no retrieval-time scoring impact. The intent is to build a labeled dataset that future work can use for type-aware retrieval. Runs behind the `SPECKIT_ENCODING_INTENT` flag (default ON).
+
+### Auto entity extraction (R10)
+
+Memory content contains implicit entities — technology names, architectural concepts, project identifiers — that are valuable for cross-document linking but were never explicitly captured. Manual entity tagging does not scale, and the system had zero entities in its catalog.
+
+Auto entity extraction runs at save time using five pure-TypeScript regex rules with no external NLP dependencies. Rule 1 captures capitalized multi-word sequences (proper nouns like "Claude Code" or "Spec Kit Memory"). Rule 2 extracts technology names from code fence language annotations. Rule 3 identifies nouns following key phrases ("using", "with", "via", "implements"). Rule 4 pulls content from markdown headings. Rule 5 captures quoted strings.
+
+Extracted entities pass through a denylist filter (`entity-denylist.ts`) containing approximately 65 combined stop words across three categories: common nouns ("the", "this", "example"), technology stop words ("function", "class", "const") and generic modifiers ("new", "old", "simple"). Single-character entities and entities shorter than 2 characters are also filtered.
+
+Deduplicated entities are stored in the `memory_entities` table with a UNIQUE constraint on `(memory_id, entity_text)`. The `entity_catalog` table maintains canonical names with alias normalization (lowercase, stripped punctuation, collapsed whitespace) and a `memory_count` field tracking how many memories reference each entity. An `edge_density` check (`totalEdges / totalMemories`) provides a diagnostic metric.
+
+Entities are deliberately stored in a separate table rather than as causal edges. Mixing them into `causal_edges` would hit the `MAX_EDGES_PER_NODE=20` limit, distort N2 graph algorithms and pollute N3-lite consolidation. Runs behind the `SPECKIT_AUTO_ENTITIES` flag (default ON).
+
+---
+
+## Pipeline architecture
+
+### 4-stage pipeline refactor (R6)
+
+The retrieval pipeline was restructured into four bounded stages with clear responsibilities, a single authoritative scoring point and a strict score-immutability invariant in the final stage.
+
+Stage 1 (Candidate Generation) executes search channels based on query type: multi-concept, deep mode with query expansion, embedding expansion with R15 mutual exclusion, or standard hybrid search. The R8 memory summary channel runs in parallel when the scale gate is met (>5K memories), merging and deduplicating results by memory ID. Constitutional memory injection and quality/tier filtering run at the end of Stage 1.
+
+Stage 2 (Fusion and Signal Integration) applies all scoring signals in a fixed order: session boost, causal boost, community co-retrieval (N2c — inject co-members into result set), graph signals (N2a+N2b — additive momentum and depth bonuses), FSRS testing effect, intent weights (non-hybrid only, G2 prevention), artifact routing, feedback signals (learned trigger boosts and negative feedback demotions), artifact result limiting, anchor metadata annotation (S2) and validation metadata enrichment with a bounded multiplier clamped to 0.8-1.2 (S3). Community injection (N2c) runs before graph signals (N2a+N2b) so that injected rows also receive momentum and depth adjustments. The G2 prevention is structural: an `isHybrid` boolean gates the intent weight step so the code path is absent for hybrid search.
+
+Stage 3 (Rerank and Aggregate) handles optional cross-encoder reranking (gated by `SPECKIT_CROSS_ENCODER`) and MPAB chunk collapse with parent reassembly preserving document order.
+
+Stage 4 (Filter and Annotate) enforces the "no score changes" invariant via dual enforcement: compile-time `Stage4ReadonlyRow` readonly fields plus runtime `verifyScoreInvariant()` assertion checking all six score fields. Within this invariant, it applies memory state filtering, TRM evidence gap detection and annotation metadata.
+
+Runs behind the `SPECKIT_PIPELINE_V2` flag (default ON). When disabled, the legacy `postSearchPipeline` path handles the same work.
+
+### MPAB chunk-to-memory aggregation (R1)
+
+When a memory file splits into chunks, each chunk gets its own score. Multi-Parent Aggregated Bonus combines those chunk scores into a single memory-level score using the formula `sMax + 0.3 * sum(remaining) / sqrt(N)`. The top chunk score becomes the base, and the remaining chunks contribute a damped bonus.
+
+Guards handle the edge cases: N=0 returns 0, N=1 returns the raw score and N>1 applies MPAB. The bonus coefficient (0.3) is exported as `MPAB_BONUS_COEFFICIENT` for tuning. The aggregation runs in Stage 3 of the 4-stage pipeline after RRF fusion and before state filtering. Runs behind the `SPECKIT_DOCSCORE_AGGREGATION` flag (default ON).
+
+### Chunk ordering preservation (B2)
+
+When multi-chunk results collapse back into a single memory during MPAB aggregation, chunks are now sorted by their original `chunk_index` so the consuming agent reads content in document order rather than score order. Full parent content is loaded from the database when possible. On DB failure, the best-scoring chunk is emitted as a fallback with `contentSource: 'file_read_fallback'` metadata.
+
+### Template anchor optimization (S2)
+
+Anchor markers in memory files (structured sections like `<!-- ANCHOR:state -->`) are parsed and attached as metadata to search pipeline rows. The module extracts anchor IDs and derives semantic types from structured IDs (for example, `DECISION-pipeline-003` yields type `DECISION`). Simple IDs like `summary` pass through as-is.
+
+This is a pure annotation step wired into Stage 2 as step 8. It never modifies any score fields. The enrichment makes Stage 3 (rerank) and Stage 4 (filter) anchor-aware without score side-effects. No feature flag; always active.
+
+### Validation signals as retrieval metadata (S3)
+
+Spec document validation metadata integrates into the scoring layer as an additional ranking dimension in Stage 2. Four signal sources contribute: importance tier mapped to a numeric quality score (constitutional=1.0 through deprecated=0.1), the direct `quality_score` database column, `<!-- SPECKIT_LEVEL: N -->` content marker extraction and validation completion markers (`<!-- VALIDATED -->`, `<!-- VALIDATION: PASS -->`).
+
+The combined multiplier is bounded to 0.8-1.2 via a clamping function, composed of quality factor (0.9-1.1), spec level bonus (0-0.06), completion bonus (0-0.04) and checklist bonus (0-0.01). Well-maintained documentation ranks slightly above neglected documentation when both are relevant. No feature flag; always active.
+
+### Learned relevance feedback (R11)
+
+The system learns from user result selections. When a user marks a search result as useful via `memory_validate` with a `queryId`, query terms are extracted and stored in a separate `learned_triggers` column. This column is explicitly isolated from the FTS5 index to prevent contamination, which would be irreversible without a full re-index.
+
+Ten safeguards protect against noise: a 100+ stop-word denylist, rate cap of 3 terms per selection and 8 per memory, 30-day TTL decay, FTS5 isolation verified by 5 critical tests, noise floor (top-3 exclusion), rollback mechanism, provenance audit log, one-week shadow period, 72-hour minimum memory age and sprint gate review.
+
+Learned triggers boost future searches via a 0.7x weight applied during the feedback signals step in Stage 2. The boost applies alongside the query, not replacing it. Runs behind the `SPECKIT_LEARN_FROM_SELECTION` flag (default OFF, requires 28 calendar days of R13 evaluation logging before activation).
+
+---
+
+## Retrieval enhancements
+
+### Dual-scope memory auto-surface (TM-05)
+
+Memory auto-surface hooks fire at two lifecycle points beyond explicit search: tool dispatch (when an agent calls a memory-aware tool, relevant memories surface automatically) and session compaction (when context is compressed, critical memories are re-injected).
+
+Each hook point has a per-point token budget of 4,000 tokens maximum. The tool dispatch hook checks incoming tool arguments for context hints (input, query, prompt, specFolder, filePath or concepts) and surfaces constitutional-tier and trigger-matched memories. Constitutional memories are cached for 1 minute via an in-memory cache. The compaction hook routes `memory_context` resume-mode calls through the auto-surface path. Both hooks are scoped to six memory-aware tools: `memory_context`, `memory_search`, `memory_match_triggers`, `memory_list`, `memory_save` and `memory_index_scan`.
+
+### Constitutional memory as expert knowledge injection (PI-A4)
+
+Constitutional-tier memories receive a `retrieval_directive` metadata field formatted as explicit instruction prefixes for LLM consumption. Examples: "Always surface when: user asks about memory save rules" or "Prioritize when: debugging search quality."
+
+Rule patterns are extracted from content using a ranked list of imperative verbs (must, always, never, should, require) and condition-introducing words (when, if, for, during). Scanning is capped at 2,000 characters from the start of content, and each directive component is capped at 120 characters. The `enrichWithRetrievalDirectives()` function maps over results without filtering or reordering. The enrichment is wired into `hooks/memory-surface.ts` before returning results.
+
+### Spec folder hierarchy as retrieval structure (S4)
+
+Spec folder paths from memory metadata are parsed into an in-memory hierarchy tree. The `buildHierarchyTree()` function performs two-pass construction: the first pass creates nodes from all distinct `spec_folder` values including implicit intermediate parents, the second pass links children to parents via path splitting.
+
+The `queryHierarchyMemories()` function returns parent, sibling and ancestor memories with relevance scoring: self receives 1.0, parent 0.8, grandparent 0.6, sibling 0.5, with a floor of 0.3. The graph search function traverses this tree so that related folders surface as contextual results alongside direct matches, making spec folder organization a direct retrieval signal rather than metadata that only serves filtering. Always active with no feature flag.
+
+### Lightweight consolidation (N3-lite)
+
+Four sub-components handle ongoing memory graph maintenance as a weekly batch cycle. Contradiction scanning finds memory pairs above 0.85 cosine similarity with keyword negation conflicts using a dual strategy: vector-based (cosine on sqlite-vec embeddings) plus heuristic fallback (word overlap). Both use a `hasNegationConflict()` keyword asymmetry check against approximately 20 negation terms (not, never, deprecated, replaced, and others). The system surfaces full contradiction clusters rather than isolated pairs via 1-hop causal edge neighbor expansion.
+
+Hebbian edge strengthening reinforces recently accessed edges at +0.05 per cycle with a 30-day decay of 0.1, respecting the auto-edge strength cap. Staleness detection flags edges unfetched for 90 or more days without deleting them. Edge bounds enforcement reports current edge counts versus the 20-edge-per-node maximum.
+
+All weight modifications are logged to the `weight_history` table. The cycle fires after every successful `memory_save` when enabled. Runs behind the `SPECKIT_CONSOLIDATION` flag (default ON).
+
+### Memory summary search channel (R8)
+
+Large memory files bury their key information in paragraphs of context. A 2,000-word implementation summary might contain three sentences that actually answer a retrieval query. Searching against the full content dilutes embedding similarity with irrelevant noise.
+
+R8 generates extractive summaries at save time using a pure-TypeScript TF-IDF implementation with zero dependencies. The `computeTfIdf()` function scores each sentence by term frequency times inverse document frequency across all sentences in the document, normalized to [0,1]. The `extractKeySentences()` function selects the top-3 scoring sentences and returns them in original document order rather than score order, preserving narrative coherence.
+
+Generated summaries are stored in the `memory_summaries` table alongside a summary-specific embedding vector computed by the same embedding function used for full content. The `querySummaryEmbeddings()` function performs cosine similarity search against these summary embeddings, returning results as `PipelineRow` objects compatible with the main pipeline.
+
+The summary channel runs as a parallel search channel in Stage 1 of the 4-stage pipeline, alongside hybrid, vector and multi-concept channels. It follows the R12 embedding expansion pattern: execute in parallel, merge results and deduplicate by memory ID with baseline results taking priority. This is deliberately a parallel channel rather than a pre-filter to avoid recall loss.
+
+A runtime scale gate activates the channel only when the system exceeds 5,000 indexed memories with successful embeddings. Below that threshold, the summary channel adds overhead without measurable benefit because the base channels already cover the corpus effectively. The code exists regardless of scale; the gate simply skips execution. Runs behind the `SPECKIT_MEMORY_SUMMARIES` flag (default ON).
+
+### Cross-document entity linking (S5)
+
+Memories in different spec folders often discuss the same concepts without any explicit connection between them. A decision record in one folder mentions "embedding cache" and an implementation summary in another folder implements it, but the retrieval system has no way to connect them unless a causal edge exists.
+
+Cross-document entity linking bridges this gap using the entity catalog populated by R10. The `buildEntityCatalog()` function groups entities from the `memory_entities` table by canonical name. The `findCrossDocumentMatches()` function identifies entities appearing in two or more distinct spec folders, which represent genuine cross-document relationships.
+
+For each cross-document match, `createEntityLinks()` inserts causal edges with `relation='supports'`, `strength=0.7` and `created_by='entity_linker'`. The `supports` relation was chosen over adding a new relation type to avoid ALTER TABLE complexity on the SQLite `causal_edges` CHECK constraint. Entity-derived links are genuinely supportive relationships: if two documents reference the same entity, they support each other's context.
+
+An infrastructure gate checks that the `entity_catalog` has entries before running. Without R10 providing extracted entities, S5 has nothing to operate on. The `runEntityLinking()` orchestrator chains catalog build, match finding and edge creation with statistics reporting.
+
+A density guard prevents runaway edge creation: when edge density (total edges divided by total memories) exceeds a threshold, new entity links are skipped to avoid overwhelming the graph. Runs behind the `SPECKIT_ENTITY_LINKING` flag (default ON). Requires `SPECKIT_AUTO_ENTITIES` to also be enabled.
+
+---
+
+## Tooling and scripts
+
+### Tree thinning for spec folder consolidation (PI-B1)
+
+A bottom-up merge strategy thins small files during spec folder context loading. Files under 200 tokens have their summary merged into the parent document. Files under 500 tokens use their content directly as the summary, skipping separate summary generation.
+
+Memory file thresholds differ: under 100 tokens for content-as-summary, 100-300 tokens for merged-into-parent, 300+ tokens kept as-is. The `applyTreeThinning()` function runs in `workflow.ts` at Step 7.6 before pipeline stages and is applied to the rendered context payload. Stats track total files, thinned count, merged count and tokens saved.
+
+### Progressive validation for spec documents (PI-B2)
+
+The `progressive-validate.sh` script (748 LOC) wraps `validate.sh` with four progressive levels. Level 1 (Detect) identifies all violations. Level 2 (Auto-fix) applies safe mechanical corrections like missing dates, heading levels and whitespace with before/after diff logging. Level 3 (Suggest) presents non-automatable issues with guided remediation options. Level 4 (Report) produces structured output in JSON or human-readable format.
+
+Flags include `--level N`, `--dry-run`, `--json`, `--strict`, `--quiet` and `--verbose`. Exit codes maintain compatibility with `validate.sh`: 0 for pass, 1 for warnings, 2 for errors. The dry-run mode previews all changes before applying them.
 
 ---
 
@@ -311,196 +580,46 @@ A governance framework caps active flags at six, enforces a 90-day lifespan per 
 
 The B8 signal ceiling limits active scoring signals to 12 until automated evaluation (R13) is mature enough to validate new signals reliably.
 
----
+### Feature flag sunset audit
 
-## Planned: feedback and quality (sprint 4)
+A comprehensive audit at Sprint 7 exit found 61 unique `SPECKIT_` flags across the codebase. Disposition: 27 flags are ready to graduate to permanent-ON defaults (removing the flag check), 9 flags are identified as dead code for removal and 3 flags remain as active operational knobs (`ADAPTIVE_FUSION`, `COACTIVATION_STRENGTH`, `PRESSURE_POLICY`).
 
-### MPAB chunk-to-memory aggregation (R1)
+The current active flag inventory stands at 20 flags in `search-flags.ts`. Four Sprint 0 core flags (MMR, TRM, MULTI_QUERY, CROSS_ENCODER) default ON. Ten graduated flags from Sprints 3-6 default ON. Five deferred-feature flags (GRAPH_SIGNALS, COMMUNITY_DETECTION, MEMORY_SUMMARIES, AUTO_ENTITIES, ENTITY_LINKING) graduated to default ON. One flag (SPECKIT_SHADOW_SCORING) is hardcoded OFF and scheduled for removal. The `SPECKIT_ABLATION` flag defaults OFF as an opt-in evaluation tool.
 
-When a memory file splits into chunks, each chunk gets its own score. Mean-Plus-Average-Bonus aggregation will combine those chunk scores into a single memory-level score.
-
-Guards handle the edge cases: N=0 returns 0, N=1 returns the raw score and N>1 applies MPAB with index-based max removal. The aggregation adds `_chunkHits` metadata so you can see how many chunks contributed to the final score. Runs behind the `SPECKIT_DOCSCORE_AGGREGATION` flag.
-
-### Learned relevance feedback (R11)
-
-The system currently ignores what you do with search results. Learned relevance feedback changes that. User selection behavior trains a `learned_triggers` column stored separately from the main content and explicitly excluded from the FTS5 index to prevent contamination (the single biggest risk in this feature).
-
-Ten safeguards protect against noise: a 100-word denylist, rate cap of 3 learned triggers per 8 hours, 30-day TTL decay, FTS5 isolation, noise floor (top-3 only), rollback mechanism, provenance audit log, one-week shadow period, 72-hour minimum memory age and sprint gate review.
-
-Activation requires 28 calendar days of R13 evaluation logging. The safeguards may seem excessive, but FTS5 contamination is irreversible in production, so the caution is earned.
-
-### Shadow scoring and channel attribution (R13-S2)
-
-Full A/B comparison infrastructure will run alternative scoring in parallel, logging results without affecting live ranking.
-
-The key new metric is Exclusive Contribution Rate: how often each channel is the sole source for a result in the top-k window. This metric answers the question "would results change if we removed this channel?" which is more useful than raw per-channel accuracy.
-
-Ground truth Phase B adds implicit feedback collection from user selections, growing the evaluation corpus automatically.
-
-### Negative feedback confidence signal (A4)
-
-When you mark a memory as not useful via `memory_validate(wasUseful: false)`, that signal currently only affects the confidence score. A4 will wire it into composite scoring as a demotion multiplier with a 0.3 floor and gradual decay.
-
-Repeated negative feedback causes measurable ranking reduction. The 0.3 floor prevents a memory from being buried entirely by a few bad ratings since it might still be relevant to other queries.
-
-### Chunk ordering preservation (B2)
-
-When multi-chunk results collapse back into a single memory, chunks are currently reordered by score. That breaks reading flow. B2 will sort chunks by their original `chunk_index` so the consuming agent reads content in document order. A small change, but one that affects readability of every multi-chunk result.
-
-### Pre-storage quality gate (TM-04)
-
-A multi-layer quality gate on memory save will add structural validation (Layer 1), content quality scoring with a signal density threshold of 0.4 or higher (Layer 2) and semantic dedup rejecting saves above 0.92 cosine similarity to existing memories (Layer 3).
-
-The gate starts in warn-only mode for two weeks before enforcing rejections. That ramp-up period lets you observe what would be rejected without losing data while the thresholds are being validated.
-
-### Reconsolidation-on-save (TM-06)
-
-After embedding generation, the save pipeline will check the top-3 most similar memories in the same spec folder. Similarity above 0.88 triggers a merge where content is combined and a frequency counter increments. Similarity between 0.75-0.88 triggers replacement: the old memory is deprecated and a `supersedes` causal edge is created. Below 0.75, the memory stores as a new complement.
-
-A checkpoint is required before first enable because the merge operation is destructive. Runs behind the `SPECKIT_RECONSOLIDATION` flag.
-
-### LLM-judge ground truth generation (G-NEW-3 phase C)
-
-An LLM judge will generate relevance labels for query-selection pairs, expanding the ground truth corpus to at least 200 pairs.
-
-Phase C depends on Phase B (implicit feedback collection) accumulating 200 query-selection pairs first. R11 learned trigger mutations cannot be enabled until this corpus size is reached. The dependency chain is deliberate: collect data, label it, validate the system, then let the system learn.
+Flag graduation (promoting from flag-gated to permanent default-ON) and dead code removal are deferred to a separate maintenance task.
 
 ---
 
-## Planned: pipeline refactor (sprint 5)
-
-### 4-stage pipeline refactor (R6)
-
-The retrieval pipeline will be restructured into four bounded stages: Candidate Generation (5 channels execute), Fusion and Signal Integration (RRF and all scoring signals applied once to prevent G2-style double-weighting), Rerank and Aggregate (cross-encoder, MMR, MPAB) and Filter and Annotate (presentation layer).
-
-Stage 4 enforces a "no score changes" invariant via TypeScript type guards and runtime assertions. If code in Stage 4 attempts to modify a score, it fails at compile time.
-
-The refactor is conditional on Sprint 2 normalization results. If normalization resolves the scoring issues cleanly, the full refactor may be unnecessary. Decomposed into 8 sub-tasks (T002a through T002h). Runs behind the `SPECKIT_PIPELINE_V2` flag.
-
-### Spec folder pre-filter (R9)
-
-When you specify a spec folder in your query, the search currently runs the full corpus and then filters. R9 will restrict the search to that folder before running the pipeline, avoiding computation on memories that will be discarded anyway.
-
-For unscoped queries, nothing changes. This is a latency optimization for the common case where you know which folder you care about.
-
-### Query expansion (R12)
-
-Embedding-based query expansion will broaden retrieval for complex queries by generating additional search terms from the query embedding neighborhood.
-
-When R15 classifies a query as "simple", expansion is suppressed because expanding a trigger-phrase lookup would add noise. If expansion produces no additional terms, the original query proceeds unchanged. Mutual exclusion with R15 ensures the two features do not interfere. Runs behind the `SPECKIT_EMBEDDING_EXPANSION` flag.
-
-### Template anchor optimization (S2)
-
-Anchor markers in memory files (structured sections like `<!-- ANCHOR:state -->`) will become an independent scoring dimension in the composite scoring model, expanding it from five factors to seven.
-
-Memories with well-defined anchors score higher because anchors indicate structured, retrievable content. Missing anchors are handled gracefully: the dimension contributes zero rather than penalizing. Applied in Stage 2 of the pipeline.
-
-### Validation signals as retrieval metadata (S3)
-
-Spec document validation metadata (from `validate.sh` passes) will integrate into the scoring layer as an additional ranking dimension in Stage 2. A validated spec.md scores slightly higher than an unvalidated one.
-
-Missing validation signals are omitted without penalty. The effect is small but directionally correct: well-maintained documentation should rank above neglected documentation when both are relevant.
-
-### Dual-scope memory auto-surface (TM-05)
-
-Memory auto-surface hooks will fire at two lifecycle points beyond explicit search: tool dispatch (when an agent calls a tool, relevant memories surface automatically) and session compaction (when context is compressed, critical memories are re-injected).
-
-Each hook point has a per-point token budget of 4,000 tokens maximum. The hooks extend the existing auto-surface configuration in `hooks/auto-surface.ts`.
-
-### Constitutional memory as expert knowledge injection (PI-A4)
-
-Constitutional-tier memories will receive a `retrieval_directive` metadata field formatted as explicit instruction prefixes for LLM consumption. Examples: "Always surface when: user asks about memory save rules" or "Prioritize when: debugging search quality."
-
-Existing constitutional memory content is parsed to identify rule patterns and extract directives automatically. Deferred from Sprint 4 per review recommendation REC-07.
-
-### Tree thinning for spec folder consolidation (PI-B1)
-
-A bottom-up merge strategy will thin small files during spec folder context loading. Files under 200 tokens have their summary merged into the parent document. Files under 500 tokens use their content directly as the summary, skipping separate summary generation.
-
-Memory file thresholds differ: 300 tokens for thinning and 100 tokens for text-is-summary. The optimization runs before Stage 1 in `generate-context.js` and does not affect scoring logic.
-
-### Progressive validation for spec documents (PI-B2)
-
-The `validate.sh` script currently returns binary pass/fail. Progressive validation will add four levels: Detect (identify violations), Auto-fix (apply safe mechanical corrections like missing dates, heading levels and whitespace with before/after diff logging), Suggest (present non-automatable issues with guided options) and Report (structured output with exit 0/1/2 compatibility).
-
-A dry-run mode previews all changes before applying them so you can review corrections before they land.
-
----
-
-## Planned: indexing and graph (sprint 6)
-
-### Anchor-aware chunk thinning (R7)
-
-Anchor markers in indexed content will influence chunk scoring so that anchor-bearing chunks rank higher than content-only chunks. A thinning threshold drops low-scoring chunks from the index entirely, reducing storage and search noise.
-
-The constraint: Recall@20 must stay within 10% of the pre-thinning baseline. If thinning costs too much recall, the threshold is raised until the constraint is met.
-
-### Encoding-intent capture at index time (R16)
-
-An `encoding_intent` field will classify content type (code, prose, structured data) at index time and store it alongside the embedding as metadata. In Sprint 6, this is capture only with no retrieval-time scoring impact.
-
-The intent is to build a labeled dataset that future sprints can use for type-aware retrieval (searching for code differently than searching for prose). Runs behind the `SPECKIT_ENCODING_INTENT` flag.
-
-### Spec folder hierarchy as retrieval structure (S4)
-
-Spec folder paths from memory metadata will be parsed into an in-memory hierarchy tree. The graph search function will traverse this tree so that parent and sibling memories surface as contextual results alongside direct matches.
-
-This makes your spec folder organization a direct retrieval signal rather than metadata that only serves filtering.
-
-### Lightweight consolidation (N3-lite)
-
-Four sub-components handle ongoing memory graph maintenance. Contradiction scanning finds memory pairs above 0.85 cosine similarity with keyword negation (one says "always" and the other says "never"). Hebbian edge strengthening adds +0.05 per retrieval cycle with caps and 30-day decay of 0.1 to reinforce frequently co-retrieved memories.
-
-Staleness detection flags edges unfetched for 90 or more days. Edge bounds enforcement caps nodes at 20 edges and limits auto-generated edges to strength 0.5.
-
-The system surfaces full contradiction clusters rather than isolated pairs because contradictions often involve more than two memories. Runs behind the `SPECKIT_CONSOLIDATION` flag.
-
-### Graph centrality and community detection (N2)
-
-Three new graph capabilities extend existing centrality computation in `fsrs.ts`. Graph momentum tracks temporal degree delta over a 7-day sliding window to detect memories gaining connections. Causal depth signal normalizes max-depth paths from root memories to give deeper causal chains more weight.
-
-Community detection starts with connected components via BFS and escalates to Louvain modularity when clusters are too coarse. The target: graph channel attribution above 10% of final top-k results.
-
-Sprint 6b is gated on a feasibility spike because the N2c community detection component alone carries a 40-80 hour estimate with production quality concerns.
-
-### Auto entity extraction (R10)
-
-Rule-based heuristics will extract entities from memory content using noun-phrase extraction (via `compromise` npm or similar), gated on edge density below 1.0.
-
-Auto-extracted entities are tagged with `created_by='auto'` and capped at strength 0.5 to limit their influence until validated. The false positive rate must stay below 20% on manual review of at least 50 sampled entities. Also gated on Sprint 6b behind a feasibility spike.
-
----
-
-## Planned: long horizon (sprint 7)
-
-### Memory summary generation (R8)
-
-Extractive or TF-IDF key-sentence summaries will serve as a pre-filter in the search pipeline, reducing search space for large corpora.
-
-The feature activates only when the system exceeds 5,000 active memories with embeddings. Below that threshold, the overhead is not worth the savings. The pre-filter must add less than 50ms to p95 search latency. Runs behind the `SPECKIT_MEMORY_SUMMARIES` flag.
-
-### Smarter memory content generation (S1)
-
-Content extraction heuristics for markdown sources will improve with heading-aware extraction, code-block stripping and list normalization. Right now, raw markdown (including code fences and nested lists) gets embedded as-is, which dilutes the embedding quality with formatting noise.
-
-Quality is verified via manual review of at least 10 before/after samples, targeting measurable improvement in 8 out of 10 samples.
-
-### Cross-document entity linking (S5)
-
-Entity resolution across documents will use exact-match plus normalized-alias matching for verified entities. The feature activates when the system exceeds 1,000 active memories or 50 verified entities.
-
-If R10 auto-entity false positive rates from Sprint 6 are not confirmed below 20%, linking restricts to manually verified entities only. That restriction is a safety valve: bad entities create bad links that degrade retrieval. Runs behind the `SPECKIT_ENTITY_LINKING` flag.
-
-### Full reporting and ablation study framework (R13-S3)
-
-A full evaluation dashboard will provide historical trend visualization and per-sprint, per-channel metric views.
-
-The ablation study framework is the more interesting part: it enables or disables individual retrieval channels and measures Recall@20 delta per component. "What happens if we turn off the graph channel?" becomes a question with a measured answer rather than speculation. This is the only P1 requirement in Sprint 7.
+## Decisions and deferrals
 
 ### INT8 quantization evaluation (R5)
 
-Current production metrics (active memory count, p95 search latency, embedding dimensions) will be measured against activation criteria: more than 10K memories, more than 50ms latency or more than 1,536 dimensions.
+Decision: **NO-GO**. All three activation criteria were unmet.
 
-If any criterion is met, INT8 quantization is evaluated using a custom quantized BLOB with KL-divergence calibration, explicitly not using sqlite-vec's `vec_quantize_i8` function. Original float vectors are preserved alongside the quantized version.
+Active memories with embeddings: 2,412 measured versus the 10,000 threshold (24.1%). P95 search latency: approximately 15ms measured versus the 50ms threshold (approximately 30%). Embedding dimensions: 1,024 measured versus the 1,536 threshold (66.7%).
 
-The decision is documented regardless of outcome because "not yet needed" is a valid and useful finding.
+The estimated 7.1 MB storage savings (3.9% of 180 MB total DB) did not justify 5.32% estimated recall risk, custom quantized BLOB complexity, or KL-divergence calibration overhead. Re-evaluate when the corpus grows approximately 4x (above 10K memories), sustained p95 exceeds 50ms, or the embedding provider changes to dimensions above 1,536.
+
+### Implemented: graph centrality and community detection (N2)
+
+Originally deferred at Sprint 6b pending a feasibility spike. Three graph capabilities were planned: graph momentum (N2a), causal depth signal (N2b) and community detection (N2c).
+
+**Now implemented.** N2a and N2b share a single flag (`SPECKIT_GRAPH_SIGNALS`, default ON) providing additive score adjustments up to +0.05 each in Stage 2. N2c runs behind `SPECKIT_COMMUNITY_DETECTION` (default ON) with BFS connected components escalating to a pure-TypeScript Louvain implementation when the largest component exceeds 50% of nodes. Schema migrations v19 added `degree_snapshots` and `community_assignments` tables. See [Graph momentum scoring (N2a)](#graph-momentum-scoring-n2a), [Causal depth signal (N2b)](#causal-depth-signal-n2b) and [Community detection (N2c)](#community-detection-n2c) for full descriptions.
+
+### Implemented: auto entity extraction (R10)
+
+Originally deferred at Sprint 6b pending a feasibility spike alongside N2. Rule-based heuristics would extract entities from memory content, gated on edge density.
+
+**Now implemented.** Five regex extraction rules with a 65-word denylist, stored in a dedicated `memory_entities` table (not causal_edges) with an `entity_catalog` for canonical name resolution. Runs at save time behind `SPECKIT_AUTO_ENTITIES` (default ON). Schema migration v20 added `memory_entities` and `entity_catalog` tables. Zero external NLP dependencies. See [Auto entity extraction (R10)](#auto-entity-extraction-r10) for the full description. Unblocks S5 (cross-document entity linking).
+
+### Implemented: memory summary generation (R8)
+
+Originally skipped at Sprint 7 because the scale gate measured 2,411 active memories, below the 5,000 threshold.
+
+**Now implemented.** Pure-TypeScript TF-IDF extractive summarizer generates top-3 key sentences at save time, stored with summary-specific embeddings in the `memory_summaries` table. Operates as a parallel search channel in Stage 1 (not a pre-filter, avoiding recall loss). The runtime scale gate remains: the channel skips execution below 5,000 indexed memories. Runs behind `SPECKIT_MEMORY_SUMMARIES` (default ON). Schema migration v20 added the `memory_summaries` table. See [Memory summary search channel (R8)](#memory-summary-search-channel-r8) for the full description.
+
+### Implemented: cross-document entity linking (S5)
+
+Originally skipped at Sprint 7 because zero entities existed in the system. R10 had not been built, so there was no entity catalog to link against.
+
+**Now implemented.** With R10 providing extracted entities, S5 scans the `entity_catalog` for entities appearing in two or more spec folders and creates `supports` causal edges with `strength=0.7` and `created_by='entity_linker'`. A density guard prevents runaway edge creation. Runs behind `SPECKIT_ENTITY_LINKING` (default ON), requires `SPECKIT_AUTO_ENTITIES` to also be enabled. See [Cross-document entity linking (S5)](#cross-document-entity-linking-s5) for the full description.
