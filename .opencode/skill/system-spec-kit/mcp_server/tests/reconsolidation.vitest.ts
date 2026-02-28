@@ -412,7 +412,7 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('Conflict Path (0.75 - 0.88)', () => {
-    it('CP1: Replaces content and adds supersedes edge', () => {
+    it('CP1: Marks existing memory deprecated and adds supersedes edge', () => {
       testDb.prepare(`
         INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, created_at, updated_at)
         VALUES (200, 'test-spec', '/test/200.md', 'Old Title', 'Old content', datetime('now'), datetime('now'))
@@ -438,10 +438,15 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
       expect(result.newMemoryId).toBe(201);
       expect(result.similarity).toBe(0.80);
 
-      // Verify DB update
-      const row = testDb.prepare('SELECT title, content_text FROM memory_index WHERE id = 200').get();
-      expect(row.title).toBe('New Title');
-      expect(row.content_text).toBe('New replacement content');
+      // Verify superseded memory is preserved and demoted.
+      const row = testDb.prepare('SELECT title, content_text, importance_tier FROM memory_index WHERE id = 200').get() as {
+        title: string;
+        content_text: string;
+        importance_tier: string;
+      };
+      expect(row.title).toBe('Old Title');
+      expect(row.content_text).toBe('Old content');
+      expect(row.importance_tier).toBe('deprecated');
 
       // Verify causal edge
       expect(result.causalEdgeId).not.toBeNull();

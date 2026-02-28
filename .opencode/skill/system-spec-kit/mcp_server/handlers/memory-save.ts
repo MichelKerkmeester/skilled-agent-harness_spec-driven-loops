@@ -1357,10 +1357,14 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             },
             storeMemory: (memory) => {
               const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+              const callbackSpecLevel = isSpecDocumentType(parsed.documentType)
+                ? detectSpecLevelFromParsed(memory.filePath)
+                : null;
               const memoryEncodingIntent = isEncodingIntentEnabled()
                 ? classifyEncodingIntent(memory.content)
                 : undefined;
-              return vectorIndex.indexMemory({
+
+              const memoryId = vectorIndex.indexMemory({
                 specFolder: memory.specFolder,
                 filePath: memory.filePath,
                 title: memory.title,
@@ -1369,8 +1373,61 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
                 embedding: memory.embedding as Float32Array,
                 encodingIntent: memoryEncodingIntent,
                 documentType: parsed.documentType || 'memory',
+                specLevel: callbackSpecLevel,
                 contentText: memory.content,
+                qualityScore: parsed.qualityScore,
+                qualityFlags: parsed.qualityFlags,
               });
+
+              const fileMetadata = incrementalIndex.getFileMetadata(memory.filePath);
+              const fileMtimeMs = fileMetadata ? fileMetadata.mtime : null;
+
+              database.prepare(`
+                UPDATE memory_index
+                SET content_hash = ?,
+                    context_type = ?,
+                    importance_tier = ?,
+                    memory_type = ?,
+                    type_inference_source = ?,
+                    stability = ?,
+                    difficulty = ?,
+                    last_review = datetime('now'),
+                    review_count = 0,
+                    file_mtime_ms = ?,
+                    encoding_intent = COALESCE(?, encoding_intent),
+                    document_type = ?,
+                    spec_level = ?,
+                    quality_score = ?,
+                    quality_flags = ?
+                WHERE id = ?
+              `).run(
+                parsed.contentHash,
+                parsed.contextType,
+                parsed.importanceTier,
+                parsed.memoryType,
+                parsed.memoryTypeSource,
+                fsrsScheduler.DEFAULT_INITIAL_STABILITY,
+                fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
+                fileMtimeMs,
+                memoryEncodingIntent,
+                parsed.documentType || 'memory',
+                callbackSpecLevel,
+                parsed.qualityScore ?? 0,
+                JSON.stringify(parsed.qualityFlags ?? []),
+                memoryId
+              );
+
+              if (bm25Index.isBm25Enabled()) {
+                try {
+                  const bm25 = bm25Index.getIndex();
+                  bm25.addDocument(String(memoryId), memory.content);
+                } catch (bm25Err: unknown) {
+                  const message = toErrorMessage(bm25Err);
+                  console.warn(`[memory-save] BM25 indexing failed (recon conflict store): ${message}`);
+                }
+              }
+
+              return memoryId;
             },
             generateEmbedding: async (content: string) => {
               return embeddings.generateDocumentEmbedding(content);
@@ -1393,7 +1450,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             reason: `memory_save: reconsolidation ${reconResult.action}`,
             priorHash: null,
             newHash: parsed.contentHash,
-            linkedMemoryIds: [reconId],
+            linkedMemoryIds: reconResult.action === 'conflict'
+              ? [reconResult.newMemoryId, reconResult.existingMemoryId]
+              : [reconId],
             decisionMeta: {
               tool: 'memory_save',
               action: `reconsolidation_${reconResult.action}`,

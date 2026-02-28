@@ -15,7 +15,7 @@
 //   6. Feedback signals        — learned trigger boosts + negative demotions
 //   7. Artifact limiting       — result count cap from routing strategy
 //   8. Anchor metadata         — extract named ANCHOR sections (annotation)
-//   9. Validation metadata     — spec quality signals as retrieval metadata (annotation)
+//   9. Validation metadata     — spec quality signals enrichment + quality scoring
 //
 // INVARIANT: Hybrid search already applies intent-aware scoring
 // internally (RRF / RSF fusion). Post-search intent weighting is
@@ -51,10 +51,68 @@ interface StrengthenResult {
   difficulty: number;
 }
 
+interface ValidationMetadataLike {
+  qualityScore?: number;
+  specLevel?: number;
+  completionStatus?: 'complete' | 'partial' | 'unknown';
+  hasChecklist?: boolean;
+}
+
 // ── Constants ──
 
 /** Weight applied to learned-trigger score boosts (0.7x of organic triggers). */
 const LEARNED_TRIGGER_WEIGHT = 0.7;
+
+const MIN_VALIDATION_MULTIPLIER = 0.8;
+const MAX_VALIDATION_MULTIPLIER = 1.2;
+
+function clampMultiplier(value: number): number {
+  if (!Number.isFinite(value)) return 1;
+  if (value < MIN_VALIDATION_MULTIPLIER) return MIN_VALIDATION_MULTIPLIER;
+  if (value > MAX_VALIDATION_MULTIPLIER) return MAX_VALIDATION_MULTIPLIER;
+  return value;
+}
+
+/**
+ * Apply validation-signal scoring at the Stage 2 single scoring point.
+ *
+ * Uses quality metadata extracted from spec artifacts to apply a bounded
+ * multiplier over the current composite score. This keeps S3 integrated
+ * in ranking while preserving score stability.
+ */
+function applyValidationSignalScoring(results: PipelineRow[]): PipelineRow[] {
+  if (!Array.isArray(results) || results.length === 0) return results;
+
+  const adjusted = results.map((row) => {
+    const metadata = row.validationMetadata as ValidationMetadataLike | undefined;
+    if (!metadata || typeof metadata !== 'object') return row;
+
+    const baseScore = resolveBaseScore(row);
+    const quality = typeof metadata.qualityScore === 'number' && Number.isFinite(metadata.qualityScore)
+      ? Math.max(0, Math.min(1, metadata.qualityScore))
+      : 0.5;
+
+    const qualityFactor = 0.9 + (quality * 0.2); // [0.9, 1.1]
+    const specLevelBonus = typeof metadata.specLevel === 'number' && Number.isFinite(metadata.specLevel)
+      ? Math.max(0, Math.min(0.06, (metadata.specLevel - 1) * 0.02))
+      : 0;
+
+    const completionBonus = metadata.completionStatus === 'complete'
+      ? 0.04
+      : metadata.completionStatus === 'partial'
+        ? 0.015
+        : 0;
+
+    const checklistBonus = metadata.hasChecklist ? 0.01 : 0;
+    const multiplier = clampMultiplier(qualityFactor + specLevelBonus + completionBonus + checklistBonus);
+    const scored = Math.min(1, Math.max(0, baseScore * multiplier));
+
+    if (scored === baseScore) return row;
+    return { ...row, score: scored };
+  });
+
+  return adjusted.sort((a, b) => resolveBaseScore(b) - resolveBaseScore(a));
+}
 
 // ── Internal helpers ──
 
@@ -520,12 +578,13 @@ export async function executeStage2(input: Stage2Input): Promise<Stage2Output> {
     console.warn(`[stage2-fusion] anchor metadata enrichment failed: ${message}`);
   }
 
-  // ── 9. Validation metadata enrichment ──
-  // Pure annotation: extract spec quality signals (SPECKIT_LEVEL, quality_score,
-  // importance_tier, completion markers) and attach as `validationMetadata` key.
-  // No score fields are modified — safe to apply post-scoring.
+  // ── 9. Validation metadata enrichment + scoring ──
+  // Extract spec quality signals (SPECKIT_LEVEL, quality_score,
+  // importance_tier, completion markers) and attach as `validationMetadata` key,
+  // then apply bounded quality scoring multipliers at this single scoring point.
   try {
     results = enrichResultsWithValidationMetadata(results);
+    results = applyValidationSignalScoring(results);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     console.warn(`[stage2-fusion] validation metadata enrichment failed: ${message}`);
@@ -576,4 +635,5 @@ export const __testables = {
   applyTestingEffect,
   enrichResultsWithAnchorMetadata,
   enrichResultsWithValidationMetadata,
+  applyValidationSignalScoring,
 };

@@ -47,6 +47,15 @@ export const PROMOTION_PATHS: Readonly<Record<string, { target: string; threshol
   important: { target: 'critical', threshold: PROMOTE_TO_CRITICAL_THRESHOLD },
 };
 
+/** Rolling window length for promotion throttle safeguard (hours). */
+export const PROMOTION_WINDOW_HOURS = 8;
+
+/** Maximum allowed promotions inside one rolling window. */
+export const MAX_PROMOTIONS_PER_WINDOW = 3;
+
+/** Rolling window length in milliseconds. */
+export const PROMOTION_WINDOW_MS = PROMOTION_WINDOW_HOURS * 60 * 60 * 1000;
+
 /** Tiers that cannot be promoted (already at top or special-purpose). */
 export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
   'critical',
@@ -56,7 +65,34 @@ export const NON_PROMOTABLE_TIERS: ReadonlySet<string> = new Set([
 ]);
 
 /* ---------------------------------------------------------------
-   3. CORE FUNCTIONS
+   3. PROMOTION THROTTLE SAFEGUARD
+   --------------------------------------------------------------- */
+
+const PROMOTION_AUDIT_TABLE_SQL = `
+  CREATE TABLE IF NOT EXISTS memory_promotion_audit (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    memory_id INTEGER NOT NULL,
+    previous_tier TEXT NOT NULL,
+    new_tier TEXT NOT NULL,
+    validation_count INTEGER NOT NULL,
+    promoted_at INTEGER NOT NULL
+  )
+`;
+
+function ensurePromotionAuditTable(db: Database): void {
+  db.exec(PROMOTION_AUDIT_TABLE_SQL);
+}
+
+function countRecentPromotions(db: Database, nowMs: number): number {
+  const cutoffMs = nowMs - PROMOTION_WINDOW_MS;
+  const row = db.prepare(
+    'SELECT COUNT(*) AS count FROM memory_promotion_audit WHERE promoted_at >= ?'
+  ).get(cutoffMs) as { count?: number } | undefined;
+  return row?.count ?? 0;
+}
+
+/* ---------------------------------------------------------------
+   4. CORE FUNCTIONS
    --------------------------------------------------------------- */
 
 /**
@@ -164,10 +200,36 @@ export function executeAutoPromotion(db: Database, memoryId: number): AutoPromot
       return check;
     }
 
+    // Safeguard: cap promotion throughput to avoid runaway tier inflation.
+    ensurePromotionAuditTable(db);
+    const nowMs = Date.now();
+    const recentPromotions = countRecentPromotions(db, nowMs);
+    if (recentPromotions >= MAX_PROMOTIONS_PER_WINDOW) {
+      return {
+        promoted: false,
+        previousTier: check.previousTier,
+        newTier: check.previousTier,
+        validationCount: check.validationCount,
+        reason: `promotion_window_rate_limited: ${recentPromotions}/${MAX_PROMOTIONS_PER_WINDOW} in ${PROMOTION_WINDOW_HOURS}h`,
+      };
+    }
+
     // Execute the promotion
     db.prepare(
       'UPDATE memory_index SET importance_tier = ?, updated_at = ? WHERE id = ?'
     ).run(check.newTier, new Date().toISOString(), memoryId);
+
+    db.prepare(`
+      INSERT INTO memory_promotion_audit
+        (memory_id, previous_tier, new_tier, validation_count, promoted_at)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(
+      memoryId,
+      check.previousTier,
+      check.newTier,
+      check.validationCount,
+      nowMs
+    );
 
     console.warn(
       `[auto-promotion] Memory ${memoryId} promoted: ${check.previousTier} -> ${check.newTier} ` +

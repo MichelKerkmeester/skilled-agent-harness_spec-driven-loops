@@ -167,8 +167,8 @@ describe('Ground Truth Feedback (R13-S2)', () => {
 
   /* ─── Phase C: LLM-Judge ─── */
 
-  describe('Phase C: generateLlmJudgeLabels (stub)', () => {
-    it('returns stub labels with relevance=0 and confidence=0', () => {
+  describe('Phase C: generateLlmJudgeLabels (deterministic heuristic)', () => {
+    it('returns operational labels with bounded relevance and confidence', () => {
       const pairs = [
         { queryId: 'q1', memoryId: 42, queryText: 'test query', memoryContent: 'test content' },
         { queryId: 'q2', memoryId: 43, queryText: 'another query', memoryContent: 'another content' },
@@ -179,8 +179,10 @@ describe('Ground Truth Feedback (R13-S2)', () => {
       expect(labels).toHaveLength(2);
       expect(labels[0].queryId).toBe('q1');
       expect(labels[0].memoryId).toBe(42);
-      expect(labels[0].relevance).toBe(0);
-      expect(labels[0].confidence).toBe(0);
+      expect(labels[0].relevance).toBeGreaterThanOrEqual(0);
+      expect(labels[0].relevance).toBeLessThanOrEqual(3);
+      expect(labels[0].confidence).toBeGreaterThanOrEqual(0);
+      expect(labels[0].confidence).toBeLessThanOrEqual(1);
       expect(labels[0].reasoning).toBeDefined();
     });
 

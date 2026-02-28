@@ -291,6 +291,46 @@ const memoryCausalUnlink: ToolDefinition = {
   inputSchema: { type: 'object', properties: { edgeId: { type: 'number', description: 'Edge ID to delete (required)' } }, required: ['edgeId'] },
 };
 
+const evalRunAblation: ToolDefinition = {
+  name: 'eval_run_ablation',
+  description: '[L6:Analysis] Run a controlled channel ablation study (R13-S3) and optionally persist Recall@20 deltas to eval_metric_snapshots. Requires SPECKIT_ABLATION=true. Token Budget: 1200.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      channels: {
+        type: 'array',
+        items: { type: 'string', enum: ['vector', 'bm25', 'fts5', 'graph', 'trigger'] },
+        description: 'Channels to ablate (default: all channels).'
+      },
+      groundTruthQueryIds: {
+        type: 'array',
+        items: { type: 'number' },
+        description: 'Optional subset of ground truth query IDs to evaluate.'
+      },
+      recallK: { type: 'number', description: 'Recall cutoff K (default: 20).' },
+      storeResults: { type: 'boolean', default: true, description: 'Persist ablation metrics to eval_metric_snapshots (default: true).' },
+      includeFormattedReport: { type: 'boolean', default: true, description: 'Include human-readable markdown report in response (default: true).' },
+    },
+    required: [],
+  },
+};
+
+const evalReportingDashboard: ToolDefinition = {
+  name: 'eval_reporting_dashboard',
+  description: '[L6:Analysis] Generate R13-S3 reporting dashboard output with sprint/channel trend aggregation from eval DB metrics. Token Budget: 1200.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      sprintFilter: { type: 'array', items: { type: 'string' }, description: 'Optional sprint label filters.' },
+      channelFilter: { type: 'array', items: { type: 'string' }, description: 'Optional channel filters.' },
+      metricFilter: { type: 'array', items: { type: 'string' }, description: 'Optional metric-name filters.' },
+      limit: { type: 'number', description: 'Maximum sprint groups to return (most recent).' },
+      format: { type: 'string', enum: ['text', 'json'], default: 'text', description: 'Formatted report payload type.' },
+    },
+    required: [],
+  },
+};
+
 // L7: Maintenance - Indexing and system operations (Token Budget: 1000)
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
@@ -336,6 +376,8 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryCausalLink,
   memoryCausalStats,
   memoryCausalUnlink,
+  evalRunAblation,
+  evalReportingDashboard,
   // L7: Maintenance
   memoryIndexScan,
   memoryGetLearningHistory,

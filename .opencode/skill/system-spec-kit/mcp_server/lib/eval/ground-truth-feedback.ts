@@ -7,13 +7,14 @@
 //   is recorded as implicit relevance signal for ground truth expansion.
 //
 // Phase C: LLM-judge relevance labeling for ground truth expansion.
-//   Provides the interface and agreement computation for LLM-based
-//   relevance judging. The actual LLM call is out of scope — this
-//   module provides the stub interface and agreement metrics.
+//   This module provides a deterministic judge implementation that
+//   scores query-memory relevance using lexical overlap heuristics.
+//   It can be replaced with a model-backed judge later without
+//   changing the persistence or agreement APIs.
 //
 // Design notes:
 //   - Selections are persisted to the eval DB for durability.
-//   - LLM-judge interface is a stub — returns the type contract only.
+//   - LLM-judge interface is deterministic (non-stub fallback).
 //   - Agreement rate target: >= 80% between LLM-judge and manual labels.
 // ---------------------------------------------------------------
 
@@ -158,6 +159,32 @@ function getDb() {
   }
 }
 
+const JUDGE_MIN_TERM_LENGTH = 3;
+
+const JUDGE_STOP_WORDS = new Set([
+  'the', 'and', 'for', 'with', 'from', 'that', 'this', 'into', 'onto', 'over',
+  'under', 'about', 'after', 'before', 'between', 'through', 'during', 'while',
+  'when', 'where', 'what', 'which', 'would', 'could', 'should', 'have', 'has',
+  'had', 'were', 'was', 'are', 'is', 'been', 'being', 'then', 'than', 'also',
+  'into', 'within', 'without', 'your', 'their', 'there', 'here', 'just', 'only',
+]);
+
+function tokenizeForJudge(text: string): string[] {
+  return text
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .map((token) => token.trim())
+    .filter((token) => token.length >= JUDGE_MIN_TERM_LENGTH)
+    .filter((token) => !JUDGE_STOP_WORDS.has(token));
+}
+
+function clamp01(value: number): number {
+  if (!Number.isFinite(value)) return 0;
+  if (value < 0) return 0;
+  if (value > 1) return 1;
+  return value;
+}
+
 /**
  * Ensure the feedback tables exist.
  * Idempotent — safe to call multiple times.
@@ -295,29 +322,66 @@ export function getSelectionHistory(
 /**
  * Generate LLM-judge relevance labels for query-selection pairs.
  *
- * STUB: This function defines the interface contract for LLM-based
- * relevance judging. The actual LLM API call is out of scope for
- * this module. Callers should implement the LLM interaction and
- * pass results through this interface.
+ * Deterministic fallback implementation for LLM-judge relevance labels.
  *
- * The stub returns labels with relevance=0 and confidence=0 to
- * indicate that no LLM judgment has been performed yet.
+ * Uses lexical overlap between query and memory content to assign
+ * relevance grades (0-3) and confidence (0-1). This provides an
+ * operational Phase C path without external model dependencies.
+ *
+ * Scoring bands (query token overlap):
+ *   - >= 0.45 or strong phrase match => relevance 3
+ *   - >= 0.25                       => relevance 2
+ *   - >= 0.10                       => relevance 1
+ *   - otherwise                     => relevance 0
  *
  * @param querySelectionPairs - Pairs of query text and memory content to judge.
- * @returns Array of LlmJudgeLabel stubs (relevance=0, confidence=0).
+ * @returns Array of deterministic LlmJudgeLabel values.
  */
 export function generateLlmJudgeLabels(
   querySelectionPairs: Array<{ queryId: string; memoryId: number; queryText: string; memoryContent: string }>,
 ): LlmJudgeLabel[] {
-  // STUB: Returns the interface contract with zero-values.
-  // A future implementation will call an LLM API to generate
-  // actual relevance grades and confidence scores.
   return querySelectionPairs.map(pair => ({
-    queryId: pair.queryId,
-    memoryId: pair.memoryId,
-    relevance: 0,
-    confidence: 0,
-    reasoning: 'LLM-judge stub — actual LLM call not yet implemented',
+    ...(() => {
+      const queryText = pair.queryText ?? '';
+      const memoryContent = pair.memoryContent ?? '';
+      const queryTokens = [...new Set(tokenizeForJudge(queryText))];
+      const memoryTokenSet = new Set(tokenizeForJudge(memoryContent));
+
+      if (queryTokens.length === 0 || memoryTokenSet.size === 0) {
+        return {
+          queryId: pair.queryId,
+          memoryId: pair.memoryId,
+          relevance: 0,
+          confidence: 0,
+          reasoning: 'Heuristic judge: insufficient lexical signal (empty query or content tokens)',
+        };
+      }
+
+      const matchedTerms = queryTokens.filter((token) => memoryTokenSet.has(token));
+      const overlap = matchedTerms.length / queryTokens.length;
+      const normalizedQuery = queryText.trim().toLowerCase();
+      const phraseMatch = normalizedQuery.length >= 12 && memoryContent.toLowerCase().includes(normalizedQuery);
+
+      let relevance = 0;
+      if (phraseMatch || overlap >= 0.45) {
+        relevance = 3;
+      } else if (overlap >= 0.25) {
+        relevance = 2;
+      } else if (overlap >= 0.1) {
+        relevance = 1;
+      }
+
+      const confidenceBase = 0.2 + (overlap * 0.7) + (phraseMatch ? 0.1 : 0);
+      const confidence = Math.round(clamp01(confidenceBase) * 1000) / 1000;
+
+      return {
+        queryId: pair.queryId,
+        memoryId: pair.memoryId,
+        relevance,
+        confidence,
+        reasoning: `Heuristic judge: overlap=${overlap.toFixed(3)} matched=${matchedTerms.length}/${queryTokens.length} phraseMatch=${phraseMatch}`,
+      };
+    })(),
   }));
 }
 

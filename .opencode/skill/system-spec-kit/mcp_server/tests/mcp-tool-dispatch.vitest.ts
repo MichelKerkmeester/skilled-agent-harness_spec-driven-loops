@@ -27,6 +27,8 @@ const TOOL_HANDLER_MAP: Array<{ tool: string; handler: string; layer: string }> 
   { tool: 'memory_causal_link', handler: 'handleMemoryCausalLink', layer: 'L6' },
   { tool: 'memory_causal_stats', handler: 'handleMemoryCausalStats', layer: 'L6' },
   { tool: 'memory_causal_unlink', handler: 'handleMemoryCausalUnlink', layer: 'L6' },
+  { tool: 'eval_run_ablation', handler: 'handleEvalRunAblation', layer: 'L6' },
+  { tool: 'eval_reporting_dashboard', handler: 'handleEvalReportingDashboard', layer: 'L6' },
   { tool: 'memory_index_scan', handler: 'handleMemoryIndexScan', layer: 'L7' },
   { tool: 'memory_get_learning_history', handler: 'handleGetLearningHistory', layer: 'L7' },
 ];
@@ -52,13 +54,15 @@ const SNAKE_CASE_MAP: Array<{ camel: string; snake: string }> = [
   { camel: 'handleMemoryCausalLink', snake: 'handle_memory_causal_link' },
   { camel: 'handleMemoryCausalStats', snake: 'handle_memory_causal_stats' },
   { camel: 'handleMemoryCausalUnlink', snake: 'handle_memory_causal_unlink' },
+  { camel: 'handleEvalRunAblation', snake: 'handle_eval_run_ablation' },
+  { camel: 'handleEvalReportingDashboard', snake: 'handle_eval_reporting_dashboard' },
   { camel: 'handleMemoryIndexScan', snake: 'handle_memory_index_scan' },
   { camel: 'handleMemoryContext', snake: 'handle_memory_context' },
 ];
 
 describe('MCP Protocol Tool Dispatch (T533) [deferred - requires DB test fixtures]', () => {
 
-  describe('Tool Dispatch Verification (22 tools)', () => {
+  describe('Tool Dispatch Verification (24 tools)', () => {
     TOOL_HANDLER_MAP.forEach((entry, i) => {
       const testNum = i + 1;
 

@@ -59,6 +59,9 @@ import {
   scanForPromotions,
   PROMOTE_TO_IMPORTANT_THRESHOLD,
   PROMOTE_TO_CRITICAL_THRESHOLD,
+  MAX_PROMOTIONS_PER_WINDOW,
+  PROMOTION_WINDOW_HOURS,
+  PROMOTION_WINDOW_MS,
 } from '../lib/search/auto-promotion';
 
 // Module under test: Negative Feedback
@@ -793,6 +796,53 @@ describe('Auto-Promotion Engine (T002a)', () => {
     const result = checkAutoPromotion(testDb, 9999);
     expect(result.promoted).toBe(false);
     expect(result.reason).toBe('memory_not_found');
+  });
+
+  it('R11-AP12: safeguards cap promotions to 3 per 8-hour rolling window', () => {
+    insertMemory(testDb, 1, { tier: 'normal', validationCount: 5 });
+    insertMemory(testDb, 2, { tier: 'normal', validationCount: 5 });
+    insertMemory(testDb, 3, { tier: 'normal', validationCount: 5 });
+    insertMemory(testDb, 4, { tier: 'normal', validationCount: 5 });
+
+    const r1 = executeAutoPromotion(testDb, 1);
+    const r2 = executeAutoPromotion(testDb, 2);
+    const r3 = executeAutoPromotion(testDb, 3);
+    const r4 = executeAutoPromotion(testDb, 4);
+
+    expect(r1.promoted).toBe(true);
+    expect(r2.promoted).toBe(true);
+    expect(r3.promoted).toBe(true);
+    expect(r4.promoted).toBe(false);
+    expect(r4.reason).toContain('promotion_window_rate_limited');
+    expect(r4.reason).toContain(`${MAX_PROMOTIONS_PER_WINDOW}`);
+    expect(r4.reason).toContain(`${PROMOTION_WINDOW_HOURS}h`);
+  });
+
+  it('R11-AP13: old promotions outside the 8-hour window do not block promotion', () => {
+    // Create audit table and seed historical promotion events outside the rolling window.
+    testDb.exec(`
+      CREATE TABLE IF NOT EXISTS memory_promotion_audit (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        memory_id INTEGER NOT NULL,
+        previous_tier TEXT NOT NULL,
+        new_tier TEXT NOT NULL,
+        validation_count INTEGER NOT NULL,
+        promoted_at INTEGER NOT NULL
+      )
+    `);
+
+    const oldTs = Date.now() - PROMOTION_WINDOW_MS - 1_000;
+    for (let i = 0; i < MAX_PROMOTIONS_PER_WINDOW; i++) {
+      testDb.prepare(`
+        INSERT INTO memory_promotion_audit
+          (memory_id, previous_tier, new_tier, validation_count, promoted_at)
+        VALUES (?, ?, ?, ?, ?)
+      `).run(100 + i, 'normal', 'important', 5, oldTs);
+    }
+
+    insertMemory(testDb, 5, { tier: 'normal', validationCount: 5 });
+    const result = executeAutoPromotion(testDb, 5);
+    expect(result.promoted).toBe(true);
   });
 });
 

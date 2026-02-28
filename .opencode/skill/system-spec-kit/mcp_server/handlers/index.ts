@@ -11,6 +11,7 @@ import * as memoryBulkDelete from './memory-bulk-delete';
 import * as checkpoints from './checkpoints';
 import * as sessionLearning from './session-learning';
 import * as causalGraph from './causal-graph';
+import * as evalReporting from './eval-reporting';
 // T061: L1 Orchestration - unified entry point
 import * as memoryContext from './memory-context';
 
@@ -99,6 +100,14 @@ export {
   handle_get_learning_history,
 } from './session-learning';
 
+// Eval reporting handlers (R13-S3 MCP exposure)
+export {
+  handleEvalRunAblation,
+  handleEvalReportingDashboard,
+  handle_eval_run_ablation,
+  handle_eval_reporting_dashboard,
+} from './eval-reporting';
+
 // Causal graph handlers (T043-T047)
 export {
   handleMemoryDriftWhy,
@@ -131,5 +140,6 @@ export {
   checkpoints,
   sessionLearning,
   causalGraph,
+  evalReporting,
   memoryContext,
 };

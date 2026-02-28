@@ -24,6 +24,7 @@ import {
 } from '../lib/search/validation-metadata';
 import type { ValidationMetadata } from '../lib/search/validation-metadata';
 import type { PipelineRow } from '../lib/search/pipeline/types';
+import { __testables as stage2Testables } from '../lib/search/pipeline/stage2-fusion';
 
 // ── Helpers ──
 
@@ -395,5 +396,50 @@ describe('TIER_QUALITY_SCORES and VALIDATION_COMPLETE_MARKERS exports', () => {
   it('VALIDATION_COMPLETE_MARKERS has at least 3 known markers', () => {
     expect(VALIDATION_COMPLETE_MARKERS.length).toBeGreaterThanOrEqual(3);
     expect(VALIDATION_COMPLETE_MARKERS).toContain('<!-- VALIDATED -->');
+  });
+});
+
+/* ---------------------------------------------------------------
+   Stage 2 integration: validation metadata contributes to ranking
+   --------------------------------------------------------------- */
+
+describe('Stage2 validation scoring integration', () => {
+  it('applies higher score to higher-quality validation metadata', () => {
+    const rows: PipelineRow[] = [
+      makeRow({
+        id: 1,
+        score: 0.5,
+        validationMetadata: {
+          qualityScore: 0.95,
+          specLevel: 3,
+          completionStatus: 'complete',
+          hasChecklist: true,
+        },
+      }),
+      makeRow({
+        id: 2,
+        score: 0.5,
+        validationMetadata: {
+          qualityScore: 0.2,
+          completionStatus: 'unknown',
+          hasChecklist: false,
+        },
+      }),
+    ];
+
+    const adjusted = stage2Testables.applyValidationSignalScoring(rows);
+    expect(adjusted[0].id).toBe(1);
+    expect((adjusted[0].score as number)).toBeGreaterThan(adjusted[1].score as number);
+  });
+
+  it('leaves score unchanged when validation metadata is absent', () => {
+    const rows: PipelineRow[] = [
+      makeRow({ id: 10, score: 0.42 }),
+      makeRow({ id: 11, score: 0.37 }),
+    ];
+
+    const adjusted = stage2Testables.applyValidationSignalScoring(rows);
+    expect(adjusted[0].score).toBe(0.42);
+    expect(adjusted[1].score).toBe(0.37);
   });
 });

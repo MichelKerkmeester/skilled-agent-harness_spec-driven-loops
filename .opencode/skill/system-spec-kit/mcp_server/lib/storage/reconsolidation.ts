@@ -6,7 +6,7 @@
 // in the spec folder:
 // - similarity >= 0.88: MERGE (duplicate - merge content,
 //   increment frequency counter)
-// - similarity 0.75-0.88: CONFLICT (replace memory, add causal
+// - similarity 0.75-0.88: CONFLICT (supersede prior memory via causal
 //   'supersedes' edge)
 // - similarity < 0.75: COMPLEMENT (store new memory unchanged)
 //
@@ -279,10 +279,15 @@ export function mergeContent(existing: string, incoming: string): string {
    --------------------------------------------------------------- */
 
 /**
- * Replace an existing memory with a new one (similarity 0.75-0.88).
+ * Resolve a conflict between highly similar memories (similarity 0.75-0.88).
  *
- * Updates the existing memory's content with the new memory's content,
- * and creates a 'supersedes' causal edge from new to old.
+ * Preferred path (when caller provides a distinct new memory ID):
+ * - Mark existing memory as deprecated (superseded)
+ * - Create a 'supersedes' causal edge from new -> existing
+ *
+ * Legacy fallback (when no new ID is available):
+ * - Update existing memory content/title in-place
+ * - Skip edge creation (avoids self-referential edges)
  *
  * @param existingMemory - The existing memory being superseded
  * @param newMemory - The new memory replacing it
@@ -295,35 +300,23 @@ export function executeConflict(
   db: Database.Database
 ): ConflictResult {
   try {
-    // Update the existing memory with new content
-    db.prepare(`
-      UPDATE memory_index
-      SET content_text = ?,
-          title = ?,
-          updated_at = datetime('now')
-      WHERE id = ?
-    `).run(newMemory.content, newMemory.title, existingMemory.id);
-
-    // Update the embedding for the replaced memory
-    if (newMemory.embedding) {
-      try {
-        const buffer = embeddingToBuffer(newMemory.embedding);
-        db.prepare(
-          'UPDATE vec_memories SET embedding = ? WHERE rowid = ?'
-        ).run(buffer, existingMemory.id);
-      } catch {
-        // Non-fatal: content is updated even if embedding update fails
-      }
-    }
-
     // Add causal 'supersedes' edge only when caller provides a distinct new ID.
     // AI-GUARD: Prevent self-referential supersedes edges (source == target).
     let edgeId: number | null = null;
     const hasDistinctNewId =
-      newMemory.id !== undefined &&
+      typeof newMemory.id === 'number' &&
+      Number.isFinite(newMemory.id) &&
       newMemory.id !== existingMemory.id;
 
     if (hasDistinctNewId) {
+      // Preferred TM-06 path: preserve superseded content and mark as deprecated.
+      db.prepare(`
+        UPDATE memory_index
+        SET importance_tier = 'deprecated',
+            updated_at = datetime('now')
+        WHERE id = ?
+      `).run(existingMemory.id);
+
       const sourceId = String(newMemory.id);
       const targetId = String(existingMemory.id);
       edgeId = causalEdges.insertEdge(
@@ -333,6 +326,26 @@ export function executeConflict(
         1.0,
         `TM-06 reconsolidation conflict: similarity ${(existingMemory.similarity * 100).toFixed(1)}%`
       );
+    } else {
+      // Legacy fallback: in-place replacement when caller cannot provide new ID.
+      db.prepare(`
+        UPDATE memory_index
+        SET content_text = ?,
+            title = ?,
+            updated_at = datetime('now')
+        WHERE id = ?
+      `).run(newMemory.content, newMemory.title, existingMemory.id);
+
+      if (newMemory.embedding) {
+        try {
+          const buffer = embeddingToBuffer(newMemory.embedding);
+          db.prepare(
+            'UPDATE vec_memories SET embedding = ? WHERE rowid = ?'
+          ).run(buffer, existingMemory.id);
+        } catch {
+          // Non-fatal: content is updated even if embedding update fails
+        }
+      }
     }
 
     return {
@@ -412,7 +425,7 @@ export async function reconsolidate(
     return null;
   }
 
-  const { findSimilar, generateEmbedding } = options;
+  const { findSimilar, storeMemory, generateEmbedding } = options;
 
   // Step 1: Find similar memories
   const similarMemories = findSimilarMemories(
@@ -442,7 +455,30 @@ export async function reconsolidate(
       return executeMerge(topMatch, newMemory, db, generateEmbedding);
 
     case 'conflict':
-      return executeConflict(topMatch, newMemory, db);
+      {
+        let conflictMemory = newMemory;
+
+        // TM-06 live-save path: materialize a distinct memory ID before conflict
+        // so supersedes edges can be created deterministically.
+        if (conflictMemory.id === undefined) {
+          try {
+            const storedId = storeMemory(newMemory);
+            if (
+              typeof storedId === 'number' &&
+              Number.isFinite(storedId) &&
+              storedId > 0 &&
+              storedId !== topMatch.id
+            ) {
+              conflictMemory = { ...newMemory, id: storedId };
+            }
+          } catch (err: unknown) {
+            const message = err instanceof Error ? err.message : String(err);
+            console.warn('[reconsolidation] conflict pre-store failed, falling back to in-place conflict:', message);
+          }
+        }
+
+        return executeConflict(topMatch, conflictMemory, db);
+      }
 
     case 'complement':
       // AI-WHY: Complement is a routing decision only; caller persists once.

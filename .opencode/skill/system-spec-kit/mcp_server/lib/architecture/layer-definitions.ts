@@ -89,7 +89,16 @@ export const LAYER_DEFINITIONS: Record<LayerId, LayerDefinition> = {
     tokenBudget: 1200,
     priority: 6,
     useCase: 'Trace decision history, understand memory relationships, measure learning.',
-    tools: ['memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink', 'task_preflight', 'task_postflight']
+    tools: [
+      'memory_drift_why',
+      'memory_causal_link',
+      'memory_causal_stats',
+      'memory_causal_unlink',
+      'task_preflight',
+      'task_postflight',
+      'eval_run_ablation',
+      'eval_reporting_dashboard'
+    ]
   },
   L7: {
     id: 'L7',

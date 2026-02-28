@@ -214,3 +214,19 @@ export interface BulkDeleteArgs {
   olderThanDays?: number;
   skipCheckpoint?: boolean;
 }
+
+export interface EvalRunAblationArgs {
+  channels?: Array<'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger'>;
+  groundTruthQueryIds?: number[];
+  recallK?: number;
+  storeResults?: boolean;
+  includeFormattedReport?: boolean;
+}
+
+export interface EvalReportingDashboardArgs {
+  sprintFilter?: string[];
+  channelFilter?: string[];
+  metricFilter?: string[];
+  limit?: number;
+  format?: 'text' | 'json';
+}
