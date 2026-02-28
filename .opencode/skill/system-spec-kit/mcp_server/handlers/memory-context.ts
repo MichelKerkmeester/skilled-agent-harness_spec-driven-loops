@@ -103,6 +103,36 @@ interface TokenBudgetEnforcement {
   returnedResultCount?: number;
 }
 
+function extractResultRowsFromContextResponse(responseText: string): Array<Record<string, unknown>> {
+  try {
+    const parsed = JSON.parse(responseText) as Record<string, unknown>;
+    const outerData = parsed?.data as Record<string, unknown> | undefined;
+
+    const directRows = Array.isArray(outerData?.results)
+      ? outerData.results as Array<Record<string, unknown>>
+      : null;
+    if (directRows) {
+      return directRows;
+    }
+
+    const nestedContent = Array.isArray(outerData?.content)
+      ? outerData.content as Array<{ type?: string; text?: string }>
+      : [];
+    const nestedText = nestedContent[0]?.text;
+    if (typeof nestedText !== 'string' || nestedText.length === 0) {
+      return [];
+    }
+
+    const nestedEnvelope = JSON.parse(nestedText) as Record<string, unknown>;
+    const nestedData = nestedEnvelope?.data as Record<string, unknown> | undefined;
+    return Array.isArray(nestedData?.results)
+      ? nestedData.results as Array<Record<string, unknown>>
+      : [];
+  } catch {
+    return [];
+  }
+}
+
 /* ---------------------------------------------------------------
    2. TOKEN BUDGET ENFORCEMENT (T205)
    
@@ -650,9 +680,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       let resultCount = 0;
       try {
         if (_contextResponse?.content?.[0]?.text) {
-          const parsed = JSON.parse(_contextResponse.content[0].text) as Record<string, unknown>;
-          const data = parsed?.data as Record<string, unknown> | undefined;
-          const innerResults = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+          const innerResults = extractResultRowsFromContextResponse(_contextResponse.content[0].text);
           resultIds = innerResults.map(r => r.id as number).filter(id => typeof id === 'number');
           resultCount = innerResults.length;
         }
@@ -678,9 +706,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       let finalScores: number[] = [];
       try {
         if (_contextResponse?.content?.[0]?.text) {
-          const parsed = JSON.parse(_contextResponse.content[0].text) as Record<string, unknown>;
-          const data = parsed?.data as Record<string, unknown> | undefined;
-          const innerResults = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+          const innerResults = extractResultRowsFromContextResponse(_contextResponse.content[0].text);
           finalMemoryIds = innerResults.map(r => (r.id ?? r.memoryId) as number).filter(id => typeof id === 'number');
           finalScores = innerResults.map(r => (r.score ?? r.similarity ?? 0) as number);
         }

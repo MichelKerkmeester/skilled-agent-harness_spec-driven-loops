@@ -61,7 +61,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 
 ### Core Principle
 
-> Install once, verify at each step. Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
+> **Install once, verify at each step.** Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
 
 ### Architecture
 
@@ -794,6 +794,30 @@ Recovery: ask your AI "Index all memory files" (calls `memory_index_scan({ force
    ls -la .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
    ```
 3. Restart your AI client completely.
+
+### Build Fails with TypeScript Errors
+
+If `npm run build` fails with type errors in workspace packages:
+
+```bash
+cd .opencode/skill/system-spec-kit
+npx tsc --build --noCheck --force
+```
+
+This bypasses type checking for a runtime-only build. Use this when you need the server running quickly and will address type errors separately.
+
+### Stale Search Results After Database Restore
+
+After restoring a database backup or switching branches, the MCP server process may hold cached state from the previous database.
+
+```bash
+# Fully restart your AI client (not just reload)
+# OpenCode: exit and re-launch
+# Claude Code: restart VS Code
+# Claude Desktop: quit and reopen the application
+```
+
+The MCP process loads the database on startup. A client reload does not always restart the MCP server process.
 
 ### Root Cause Summary (Post-Update Failures)
 

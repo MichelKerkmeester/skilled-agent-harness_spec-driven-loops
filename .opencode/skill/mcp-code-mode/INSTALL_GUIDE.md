@@ -63,6 +63,10 @@ Guide me through each step with the exact commands and configuration needed.
 
 Code Mode MCP is a TypeScript execution environment that provides unified access to 159 MCP tools across 6 manuals through progressive disclosure. Instead of exposing all tools to your AI context (causing token exhaustion), Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
 
+### Core Principle
+
+> **Install once, verify at each step.** Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
+
 ### Source Repository
 
 | Property             | Value                                                                                                     |

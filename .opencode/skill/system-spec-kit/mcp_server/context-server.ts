@@ -61,6 +61,7 @@ import * as memoryParser from './lib/parsing/memory-parser';
 import * as workingMemory from './lib/cache/cognitive/working-memory';
 import * as attentionDecay from './lib/cache/cognitive/attention-decay';
 import * as coActivation from './lib/cache/cognitive/co-activation';
+import { initScoringObservability } from './lib/telemetry/scoring-observability';
 // T059: Archival manager for automatic archival of ARCHIVED state memories
 import * as archivalManager from './lib/cache/cognitive/archival-manager';
 // T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
@@ -590,6 +591,14 @@ async function main(): Promise<void> {
     const database = vectorIndex.getDb();
     if (!database) {
       throw new Error('Database not initialized after initializeDb(). Cannot start server.');
+    }
+
+    try {
+      initScoringObservability(database);
+      console.error('[context-server] Scoring observability initialized');
+    } catch (scoringObsErr: unknown) {
+      const message = scoringObsErr instanceof Error ? scoringObsErr.message : String(scoringObsErr);
+      console.warn('[context-server] Scoring observability init failed (non-fatal):', message);
     }
 
     if (isLearnedFeedbackEnabled()) {

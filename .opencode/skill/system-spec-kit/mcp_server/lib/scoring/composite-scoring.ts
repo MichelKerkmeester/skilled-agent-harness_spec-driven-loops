@@ -22,6 +22,7 @@ export type ScoringInput = Partial<MemoryDbRow> & Record<string, unknown>;
 // Try to import, fallback to inline calculation if not yet available
 interface FsrsSchedulerModule {
   calculateRetrievability: (stability: number, elapsedDays: number) => number;
+  applyClassificationDecay?: (stability: number, contextType: string, importanceTier: string) => number;
   FSRS_FACTOR: number;
   FSRS_DECAY: number;
   TIER_MULTIPLIER?: Readonly<Record<string, number>>;
@@ -141,6 +142,34 @@ const RETRIEVABILITY_TIER_MULTIPLIER: Readonly<Record<string, number>> = {
   scratch: 3.0,
 };
 
+const CLASSIFICATION_CONTEXT_STABILITY_MULTIPLIER: Readonly<Record<string, number>> = {
+  decision: Infinity,
+  research: 2.0,
+  implementation: 1.0,
+  discovery: 1.0,
+  general: 1.0,
+};
+
+const CLASSIFICATION_TIER_STABILITY_MULTIPLIER: Readonly<Record<string, number>> = {
+  constitutional: Infinity,
+  critical: Infinity,
+  important: 1.5,
+  normal: 1.0,
+  temporary: 0.5,
+  deprecated: 0.25,
+};
+
+function applyClassificationDecayFallback(stability: number, contextType: string, importanceTier: string): number {
+  const contextMult = CLASSIFICATION_CONTEXT_STABILITY_MULTIPLIER[contextType] ?? 1.0;
+  const tierMult = CLASSIFICATION_TIER_STABILITY_MULTIPLIER[importanceTier] ?? 1.0;
+
+  if (!isFinite(contextMult) || !isFinite(tierMult)) {
+    return Infinity;
+  }
+
+  return stability * contextMult * tierMult;
+}
+
 // REQ-017: Importance weight multipliers
 export const IMPORTANCE_MULTIPLIERS: Readonly<Record<string, number>> = {
   constitutional: 2.0,
@@ -216,9 +245,16 @@ function parseLastAccessed(value: number | string | undefined | null): number | 
 export function calculateRetrievabilityScore(row: ScoringInput): number {
   const stability = (row.stability as number | undefined) || 1.0;
   const lastReview = (row.lastReview as string | undefined) || row.updated_at || row.created_at;
+  const contextType = typeof row.context_type === 'string'
+    ? row.context_type.toLowerCase()
+    : typeof row.contextType === 'string'
+      ? row.contextType.toLowerCase()
+      : 'general';
   const tier = typeof row.importance_tier === 'string'
     ? row.importance_tier.toLowerCase()
     : 'normal';
+  const classificationDecayEnabled = process.env.SPECKIT_CLASSIFICATION_DECAY === 'true'
+    || process.env.SPECKIT_CLASSIFICATION_DECAY === '1';
 
   // AI-GUARD: Return neutral 0.5 when no timestamp — prevents NaN propagation
   if (!lastReview) {
@@ -230,17 +266,35 @@ export function calculateRetrievabilityScore(row: ScoringInput): number {
 
   const elapsedMs = Date.now() - timestamp;
   const elapsedDays = Math.max(0, elapsedMs / (1000 * 60 * 60 * 24));
-  const tierMultiplier = fsrsScheduler?.TIER_MULTIPLIER?.[tier]
-    ?? RETRIEVABILITY_TIER_MULTIPLIER[tier]
-    ?? RETRIEVABILITY_TIER_MULTIPLIER.normal;
-  const adjustedElapsedDays = elapsedDays * tierMultiplier;
+
+  // TM-03: Classification decay applies at stability-level; when enabled do not
+  // additionally apply elapsed-time tier multipliers to avoid double decay.
+  let adjustedStability = stability;
+  if (classificationDecayEnabled) {
+    if (fsrsScheduler?.applyClassificationDecay) {
+      adjustedStability = fsrsScheduler.applyClassificationDecay(stability, contextType, tier);
+    } else {
+      adjustedStability = applyClassificationDecayFallback(stability, contextType, tier);
+    }
+    if (!isFinite(adjustedStability)) {
+      return 1;
+    }
+  }
+
+  let adjustedElapsedDays = elapsedDays;
+  if (!classificationDecayEnabled) {
+    const tierMultiplier = fsrsScheduler?.TIER_MULTIPLIER?.[tier]
+      ?? RETRIEVABILITY_TIER_MULTIPLIER[tier]
+      ?? RETRIEVABILITY_TIER_MULTIPLIER.normal;
+    adjustedElapsedDays = elapsedDays * tierMultiplier;
+  }
 
   if (fsrsScheduler && typeof fsrsScheduler.calculateRetrievability === 'function') {
-    return fsrsScheduler.calculateRetrievability(stability, adjustedElapsedDays);
+    return fsrsScheduler.calculateRetrievability(adjustedStability, adjustedElapsedDays);
   }
 
   // AI-WHY: Inline FSRS power-law formula used when fsrs-scheduler module unavailable
-  const retrievability = Math.pow(1 + FSRS_FACTOR * (adjustedElapsedDays / stability), FSRS_DECAY);
+  const retrievability = Math.pow(1 + FSRS_FACTOR * (adjustedElapsedDays / adjustedStability), FSRS_DECAY);
 
   return Math.max(0, Math.min(1, retrievability));
 }

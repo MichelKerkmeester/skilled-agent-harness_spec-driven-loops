@@ -6,6 +6,7 @@
 import { describe, it, expect, beforeEach, beforeAll, afterAll } from 'vitest';
 import Database from 'better-sqlite3';
 import * as causalEdges from '../lib/storage/causal-edges';
+import { clearDegreeCache, computeDegreeScores } from '../lib/search/graph-search-fn';
 
 // ───────────────────────────────────────────────────────────────
 // TEST: CAUSAL EDGES UNIT (Vitest)
@@ -561,6 +562,37 @@ describe('Causal Edges Unit Tests', () => {
       resetEdges();
       const count = causalEdges.deleteEdgesForMemory('999');
       expect(count).toBe(0);
+    });
+  });
+
+  describe('degree cache invalidation on edge mutations', () => {
+    beforeEach(() => {
+      resetEdges();
+      clearDegreeCache();
+    });
+
+    it('DC1: updateEdge invalidates cached degree scores', () => {
+      const edgeId = causalEdges.insertEdge('1', '2', 'caused', 0.2);
+      causalEdges.insertEdge('3', '4', 'caused', 1.0);
+      const before = computeDegreeScores(testDb, [1]).get('1') ?? 0;
+
+      const ok = causalEdges.updateEdge(edgeId, { strength: 1.0 });
+      const after = computeDegreeScores(testDb, [1]).get('1') ?? 0;
+
+      expect(ok).toBe(true);
+      expect(after).toBeGreaterThan(before);
+    });
+
+    it('DC2: deleteEdgesForMemory invalidates cached degree scores', () => {
+      causalEdges.insertEdge('1', '2', 'caused', 1.0);
+      const before = computeDegreeScores(testDb, [1]).get('1') ?? 0;
+
+      const deleted = causalEdges.deleteEdgesForMemory('1');
+      const after = computeDegreeScores(testDb, [1]).get('1') ?? 0;
+
+      expect(before).toBeGreaterThan(0);
+      expect(deleted).toBeGreaterThan(0);
+      expect(after).toBe(0);
     });
   });
 

@@ -499,4 +499,25 @@ describe('T028 Channel Enforcement + Precision Verification', () => {
   it('SANITY: QUALITY_FLOOR is 0.2 and is exported from channel-representation', () => {
     expect(QUALITY_FLOOR).toBe(0.2);
   });
+
+  it('T19: preserves global score order when topK is smaller than result list', () => {
+    const fused: FusedResult[] = [
+      makeFused('a1', 0.95, 'vector'),
+      makeFused('b1', 0.90, 'bm25'),
+      makeFused('a2', 0.85, 'vector'),
+      makeFused('b2', 0.80, 'bm25'),
+    ];
+    const channels = new Map<string, ChannelResult[]>([
+      ['vector', [makeChannel('a1', 0.95), makeChannel('a2', 0.85)]],
+      ['bm25',   [makeChannel('b1', 0.90), makeChannel('b2', 0.80)]],
+      ['graph',  [makeChannel('g1', 0.10)]],
+    ]);
+
+    const result = enforceChannelRepresentation(fused, channels, 1);
+    const scores = result.results.map(r => r.score);
+
+    for (let i = 0; i < scores.length - 1; i++) {
+      expect(scores[i]).toBeGreaterThanOrEqual(scores[i + 1]);
+    }
+  });
 });

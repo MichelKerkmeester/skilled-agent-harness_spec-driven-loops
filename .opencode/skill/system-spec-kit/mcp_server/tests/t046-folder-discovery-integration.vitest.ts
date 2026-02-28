@@ -284,7 +284,8 @@ describe('CHK-PI-B3-002: discoverSpecFolder', () => {
     const result = discoverSpecFolder('authentication login', [specsDir]);
 
     expect(result).not.toBeNull();
-    expect(result!).toContain('001-authentication');
+    expect(result!).toBe('001-authentication');
+    expect(path.isAbsolute(result!)).toBe(false);
   });
 
   it('T046-16: returns null when no folder meets threshold', () => {

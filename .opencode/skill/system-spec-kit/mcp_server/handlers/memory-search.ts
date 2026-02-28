@@ -873,6 +873,15 @@ function applyIntentWeightsToResults(
   );
 }
 
+function shouldApplyPostSearchIntentWeighting(
+  searchType: string,
+  intentWeights: IntentWeights | null,
+  detectedIntent: string | null,
+): boolean {
+  // Hybrid search already applies intent-aware scoring internally.
+  return searchType !== 'hybrid' && !!intentWeights && !!detectedIntent;
+}
+
 /* ---------------------------------------------------------------
    9. POST-SEARCH PIPELINE (shared across search paths)
 --------------------------------------------------------------- */
@@ -979,7 +988,7 @@ async function postSearchPipeline(
   // P3-01 + P3-14 FIX: Actually apply intent weights to modify scores
   let weightedResults = causallyBoostedResults;
   let weightsWereApplied = false;
-  if (intentWeights && detectedIntent) {
+  if (shouldApplyPostSearchIntentWeighting(searchType, intentWeights, detectedIntent)) {
     weightedResults = applyIntentWeightsToResults(causallyBoostedResults, intentWeights);
     weightsWereApplied = true;
   }
@@ -1552,19 +1561,21 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     { bypassCache }
   );
 
+  let responseToReturn: MCPResponse = cachedResult;
+
   // T123: Apply session deduplication AFTER cache
   if (sessionId && enableDedup && sessionManager.isEnabled()) {
     let resultsData: Record<string, unknown> | null = null;
-    if (cachedResult?.content?.[0]?.text && typeof cachedResult.content[0].text === 'string') {
+    if (responseToReturn?.content?.[0]?.text && typeof responseToReturn.content[0].text === 'string') {
       try {
-        resultsData = JSON.parse(cachedResult.content[0].text) as Record<string, unknown>;
+        resultsData = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
       } catch (err: unknown) {
         const message = toErrorMessage(err);
         console.warn('[memory-search] Failed to parse cached response for dedup:', message);
-        return cachedResult;
+        resultsData = null;
       }
-    } else if (cachedResult && typeof cachedResult === 'object') {
-      resultsData = cachedResult as unknown as Record<string, unknown>;
+    } else if (responseToReturn && typeof responseToReturn === 'object') {
+      resultsData = responseToReturn as unknown as Record<string, unknown>;
     }
 
     const data = (resultsData && typeof resultsData.data === 'object' && resultsData.data !== null)
@@ -1611,8 +1622,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
         resultsData.summary += ` (${filteredCount} duplicates filtered, ~${tokensSaved} tokens saved)`;
       }
 
-      return {
-        ...cachedResult,
+      responseToReturn = {
+        ...responseToReturn,
         content: [{ type: 'text', text: JSON.stringify(resultsData, null, 2) }]
       } as MCPResponse;
     }
@@ -1626,8 +1637,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       let resultIds: number[] = [];
       let resultCount = 0;
       try {
-        if (cachedResult?.content?.[0]?.text) {
-          const parsed = JSON.parse(cachedResult.content[0].text) as Record<string, unknown>;
+        if (responseToReturn?.content?.[0]?.text) {
+          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
           const data = parsed?.data as Record<string, unknown> | undefined;
           const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
           resultIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
@@ -1653,8 +1664,8 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       let finalMemoryIds: number[] = [];
       let finalScores: number[] = [];
       try {
-        if (cachedResult?.content?.[0]?.text) {
-          const parsed = JSON.parse(cachedResult.content[0].text) as Record<string, unknown>;
+        if (responseToReturn?.content?.[0]?.text) {
+          const parsed = JSON.parse(responseToReturn.content[0].text) as Record<string, unknown>;
           const data = parsed?.data as Record<string, unknown> | undefined;
           const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
           finalMemoryIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
@@ -1672,7 +1683,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     }
   } catch { /* eval logging must never break search */ }
 
-  return cachedResult;
+  return responseToReturn;
 }
 
 /* ---------------------------------------------------------------
@@ -1692,6 +1703,7 @@ export const __testables = {
   applyArtifactRouting,
   collapseAndReassembleChunkResults,
   buildDeepQueryVariants,
+  shouldApplyPostSearchIntentWeighting,
 };
 
 // Backward-compatible aliases (snake_case)

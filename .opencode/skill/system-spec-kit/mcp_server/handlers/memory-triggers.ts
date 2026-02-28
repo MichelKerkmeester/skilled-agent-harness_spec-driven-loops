@@ -201,6 +201,23 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     _evalRunId = evalEntry.evalRunId;
   } catch { /* eval logging must never break triggers handler */ }
 
+  const logFinalTriggerEval = (memoryIds: number[], latencyMs: number): void => {
+    try {
+      if (_evalRunId && _evalQueryId) {
+        logFinalResult({
+          evalRunId: _evalRunId,
+          queryId: _evalQueryId,
+          resultMemoryIds: memoryIds,
+          scores: memoryIds.map(() => 1.0), // trigger matches are binary
+          fusionMethod: 'trigger',
+          latencyMs,
+        });
+      }
+    } catch {
+      /* eval logging must never break triggers handler */
+    }
+  };
+
   const useCognitive = includeCognitive &&
     sessionId &&
     workingMemory.isEnabled() &&
@@ -216,10 +233,14 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     }
   }
 
-  const results: TriggerMatch[] = triggerMatcher.matchTriggerPhrases(prompt, limit * 2);
+  const triggerMatchResult = triggerMatcher.matchTriggerPhrasesWithStats(prompt, limit * 2);
+  const results: TriggerMatch[] = triggerMatchResult.matches;
+  const detectedSignals = Array.isArray(triggerMatchResult.stats?.signals)
+    ? triggerMatchResult.stats.signals
+    : [];
 
   if (!results || results.length === 0) {
-    return createMCPEmptyResponse({
+    const noMatchResponse = createMCPEmptyResponse({
       tool: 'memory_match_triggers',
       summary: 'No matching trigger phrases found',
       data: {
@@ -237,6 +258,9 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       ],
       startTime: startTime
     });
+
+    logFinalTriggerEval([], Date.now() - startTime);
+    return noMatchResponse;
   }
 
   let formattedResults: FormattedResult[];
@@ -379,6 +403,9 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   if (coldCount !== undefined && coldCount > 0) {
     hints.push(`${coldCount} COLD-tier memories excluded for token efficiency`);
   }
+  if (detectedSignals.length > 0) {
+    hints.push(`Signal vocabulary applied (${detectedSignals.length} category matches)`);
+  }
 
   const _triggersResponse = createMCPSuccessResponse({
     tool: 'memory_match_triggers',
@@ -392,7 +419,8 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
     hints,
     startTime: startTime,
     extraMeta: {
-      latencyMs: latencyMs
+      latencyMs: latencyMs,
+      triggerSignals: detectedSignals,
     }
   });
 
@@ -414,19 +442,8 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   } catch { /* instrumentation must never cause triggers handler to fail */ }
 
   // T005: Eval logger — capture final trigger results at exit (fail-safe)
-  try {
-    if (_evalRunId && _evalQueryId) {
-      const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
-      logFinalResult({
-        evalRunId: _evalRunId,
-        queryId: _evalQueryId,
-        resultMemoryIds: triggerMemoryIds,
-        scores: triggerMemoryIds.map(() => 1.0), // trigger matches are binary
-        fusionMethod: 'trigger',
-        latencyMs: latencyMs,
-      });
-    }
-  } catch { /* eval logging must never break triggers handler */ }
+  const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
+  logFinalTriggerEval(triggerMemoryIds, latencyMs);
 
   return _triggersResponse;
 }

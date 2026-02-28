@@ -266,7 +266,7 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
       // Check for spec.md directly in this folder
       const specMdPath = path.join(entryPath, 'spec.md');
       if (fs.existsSync(specMdPath)) {
-        const folderEntry = _processSpecFolder(entryPath, specMdPath, now);
+          const folderEntry = _processSpecFolder(basePath, entryPath, specMdPath, now);
         if (folderEntry) {
           folders.push(folderEntry);
         }
@@ -296,7 +296,7 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
 
         const subSpecMdPath = path.join(subPath, 'spec.md');
         if (fs.existsSync(subSpecMdPath)) {
-          const subFolderEntry = _processSpecFolder(subPath, subSpecMdPath, now);
+          const subFolderEntry = _processSpecFolder(basePath, subPath, subSpecMdPath, now);
           if (subFolderEntry) {
             folders.push(subFolderEntry);
           }
@@ -322,6 +322,7 @@ export function generateFolderDescriptions(specsBasePaths: string[]): Descriptio
  * @returns A FolderDescription, or null if extraction fails.
  */
 function _processSpecFolder(
+  basePath: string,
   folderPath: string,
   specMdPath: string,
   timestamp: string,
@@ -338,9 +339,13 @@ function _processSpecFolder(
   if (!description) return null;
 
   const keywords = extractKeywords(description);
+  const normalizedRelativeFolder = path.relative(basePath, folderPath).replace(/\\/g, '/');
+  if (!normalizedRelativeFolder || normalizedRelativeFolder.startsWith('..')) {
+    return null;
+  }
 
   return {
-    specFolder: folderPath,
+    specFolder: normalizedRelativeFolder,
     description,
     keywords,
     lastUpdated: timestamp,

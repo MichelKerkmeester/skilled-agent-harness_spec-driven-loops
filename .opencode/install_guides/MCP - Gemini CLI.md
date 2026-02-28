@@ -424,6 +424,8 @@ All 6 checklist items above pass with no errors.
 
 Your AI client successfully invokes Gemini via Bash and receives a coherent response. The system is operational.
 
+❌ **STOP if validation fails** - Check authentication credentials, verify the gemini binary is in PATH, and review [Troubleshooting](#9-troubleshooting).
+
 ---
 
 ## 6. Usage

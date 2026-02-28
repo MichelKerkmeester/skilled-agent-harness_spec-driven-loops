@@ -368,6 +368,7 @@ export function computeColdStartDetectionRate(
   groundTruth: GroundTruthEntry[],
   memoryTimestamps: Record<number, Date>,
   cutoffHours: number = 48,
+  k: number = 10,
 ): number {
   if (results.length === 0 || groundTruth.length === 0) return 0;
 
@@ -389,8 +390,9 @@ export function computeColdStartDetectionRate(
   // No cold-start candidates → metric not applicable → return 0
   if (recentRelevantIds.size === 0) return 0;
 
-  // Check if any recent relevant memory appears in top results
-  for (const r of results) {
+  // Check if any recent relevant memory appears in top-K results
+  const topResults = topK(results, k);
+  for (const r of topResults) {
     if (recentRelevantIds.has(r.memoryId)) return 1;
   }
 

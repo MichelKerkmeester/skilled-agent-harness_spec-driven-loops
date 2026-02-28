@@ -628,3 +628,87 @@ describe('C138-P0: Adaptive Fallback in searchWithFallback', () => {
     expect(Array.isArray(results)).toBe(true);
   });
 });
+
+describe('Sprint 1 Search-Core Fixes (Task #2)', () => {
+  const ORIGINAL_ENV = {
+    SPECKIT_COMPLEXITY_ROUTER: process.env.SPECKIT_COMPLEXITY_ROUTER,
+    SPECKIT_DYNAMIC_TOKEN_BUDGET: process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET,
+    SPECKIT_FOLDER_SCORING: process.env.SPECKIT_FOLDER_SCORING,
+    SPECKIT_FOLDER_TOP_K: process.env.SPECKIT_FOLDER_TOP_K,
+  };
+
+  afterEach(() => {
+    for (const [key, value] of Object.entries(ORIGINAL_ENV)) {
+      if (value === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = value;
+      }
+    }
+  });
+
+  it('S1-FIX-01: routeQuery trigger-phrase path is reachable from hybridSearchEnhanced', async () => {
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'true';
+    const mockDb = createMockDb();
+    hybridSearch.init(mockDb, mockVectorSearch, mockGraphSearch);
+
+    const longTrigger = 'explain authentication token refresh integration details now please';
+    const embedding = new Float32Array(384).fill(0.2);
+    const results = await hybridSearch.hybridSearchEnhanced(longTrigger, embedding, {
+      limit: 10,
+      triggerPhrases: [longTrigger],
+    });
+
+    const s3meta = (results as unknown as Record<string, unknown>)._s3meta as
+      | { routing?: { tier?: string } }
+      | undefined;
+
+    expect(s3meta?.routing?.tier).toBe('simple');
+  });
+
+  it('S1-FIX-02: folder scoring integrates into hybrid runtime behind feature flag', async () => {
+    process.env.SPECKIT_FOLDER_SCORING = 'true';
+    process.env.SPECKIT_FOLDER_TOP_K = '2';
+    const mockDb = createMockDb();
+    hybridSearch.init(mockDb, mockVectorSearch, mockGraphSearch);
+
+    const embedding = new Float32Array(384).fill(0.1);
+    const results = await hybridSearch.hybridSearchEnhanced('authentication module', embedding, { limit: 10 });
+
+    expect(results.length).toBeGreaterThan(0);
+    const hasFolderMeta = results.some((r) => {
+      const rec = r as Record<string, unknown>;
+      return typeof rec.specFolder === 'string' && typeof rec.folderRank === 'number';
+    });
+    expect(hasFolderMeta).toBe(true);
+  });
+
+  it('S1-FIX-03: dynamic token budget is applied to live hybrid results', async () => {
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'true';
+    process.env.SPECKIT_DYNAMIC_TOKEN_BUDGET = 'true';
+
+    const hugeVectorSearch = (_embedding: unknown, options: Record<string, unknown> = {}) => {
+      const limit = (options.limit as number) || 20;
+      return Array.from({ length: limit }, (_v, idx) => ({
+        id: idx + 1000,
+        title: `Huge Result ${idx + 1}`,
+        content: 'x'.repeat(6000),
+        similarity: 0.99 - idx * 0.01,
+      }));
+    };
+
+    const mockDb = createMockDb();
+    hybridSearch.init(mockDb, hugeVectorSearch, null);
+
+    const embedding = new Float32Array(384).fill(0.3);
+    const results = await hybridSearch.hybridSearchEnhanced('fix bug', embedding, { limit: 20 });
+
+    const s3meta = (results as unknown as Record<string, unknown>)._s3meta as
+      | { tokenBudget?: { budget?: number; applied?: boolean } }
+      | undefined;
+
+    expect(s3meta?.tokenBudget?.applied).toBe(true);
+    expect(s3meta?.tokenBudget?.budget).toBe(1500);
+    expect(results.length).toBeLessThan(20);
+  });
+});

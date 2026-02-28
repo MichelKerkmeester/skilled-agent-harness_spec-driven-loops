@@ -144,11 +144,8 @@ describe('Edge Density (T011)', () => {
 
   /* -----------------------------------------------------------
      D2: Sparse graph → R10 escalation
-     Note: By graph theory, density = edgeCount / uniqueNodeCount where
-     uniqueNodeCount <= 2 * edgeCount. So the minimum achievable density
-     with at least one edge is 0.5 (disjoint pairs). "Sparse" (density < 0.5)
-     therefore means density = 0 (no edges at all) in this model.
-     The D2 suite tests the zero-edge sparse scenario and R10 escalation.
+     Density uses edgeCount / totalMemories, so non-empty sparse graphs
+     are possible and should trigger escalation when below 0.5.
   ----------------------------------------------------------- */
   describe('D2: Sparse graph → R10 escalation', () => {
     // No edges inserted in beforeEach — sparse = empty edge table
@@ -194,8 +191,7 @@ describe('Edge Density (T011)', () => {
       expect(result.r10Recommendation).toMatch(/sprint|timeline|priority/i);
     });
 
-    it('returns density = 0.5 for 4 disjoint-pair edges (8 unique nodes)', () => {
-      // 4 edges, 8 unique nodes: density = 0.5 (boundary — treated as "moderate")
+    it('returns density = 0.4 for 4 edges over 10 memories (non-empty sparse graph)', () => {
       insertEdges(db, [
         ['1', '2'],
         ['3', '4'],
@@ -204,8 +200,10 @@ describe('Edge Density (T011)', () => {
       ]);
       const result = measureEdgeDensity(db);
       expect(result.edgeCount).toBe(4);
-      expect(result.nodeCount).toBe(8);
-      expect(result.density).toBeCloseTo(0.5, 10);
+      expect(result.totalMemories).toBe(10);
+      expect(result.density).toBeCloseTo(0.4, 10);
+      expect(result.classification).toBe('sparse');
+      expect(result.r10Escalation).toBe(true);
     });
   });
 

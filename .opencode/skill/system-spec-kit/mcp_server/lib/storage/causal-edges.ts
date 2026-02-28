@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
+import { clearDegreeCache } from '../search/graph-search-fn';
 
 /* -------------------------------------------------------------
    1. CONSTANTS
@@ -74,6 +75,14 @@ interface CausalChainNode {
 
 let db: Database.Database | null = null;
 
+function invalidateDegreeCache(): void {
+  try {
+    clearDegreeCache();
+  } catch (_error: unknown) {
+    // cache invalidation is best-effort; never block edge mutations
+  }
+}
+
 /* -------------------------------------------------------------
    4. INITIALIZATION
 ----------------------------------------------------------------*/
@@ -91,7 +100,8 @@ function insertEdge(
   targetId: string,
   relation: RelationType,
   strength: number = 1.0,
-  evidence: string | null = null
+  evidence: string | null = null,
+  shouldInvalidateCache: boolean = true,
 ): number | null {
   if (!db) {
     console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
@@ -112,6 +122,10 @@ function insertEdge(
       SELECT id FROM causal_edges
       WHERE source_id = ? AND target_id = ? AND relation = ?
     `) as Database.Statement).get(sourceId, targetId, relation) as { id: number } | undefined;
+
+    if (shouldInvalidateCache) {
+      invalidateDegreeCache();
+    }
 
     return row?.id ?? null;
   } catch (error: unknown) {
@@ -142,7 +156,8 @@ function insertEdgesBatch(
         edge.targetId,
         edge.relation,
         edge.strength ?? 1.0,
-        edge.evidence ?? null
+        edge.evidence ?? null,
+        false,
       );
       if (id !== null) inserted++;
       else failed++;
@@ -151,6 +166,9 @@ function insertEdgesBatch(
 
   try {
     insertTx();
+    if (inserted > 0) {
+      invalidateDegreeCache();
+    }
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] insertEdgesBatch error: ${msg}`);
@@ -296,6 +314,10 @@ function updateEdge(
       `UPDATE causal_edges SET ${parts.join(', ')} WHERE id = ?`
     ) as Database.Statement).run(...params);
 
+    if ((result as { changes: number }).changes > 0) {
+      invalidateDegreeCache();
+    }
+
     return (result as { changes: number }).changes > 0;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
@@ -311,6 +333,9 @@ function deleteEdge(edgeId: number): boolean {
     const result = (db.prepare(
       'DELETE FROM causal_edges WHERE id = ?'
     ) as Database.Statement).run(edgeId);
+    if ((result as { changes: number }).changes > 0) {
+      invalidateDegreeCache();
+    }
     return (result as { changes: number }).changes > 0;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
@@ -327,6 +352,9 @@ function deleteEdgesForMemory(memoryId: string): number {
       DELETE FROM causal_edges
       WHERE source_id = ? OR target_id = ?
     `) as Database.Statement).run(memoryId, memoryId);
+    if ((result as { changes: number }).changes > 0) {
+      invalidateDegreeCache();
+    }
     return (result as { changes: number }).changes;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);

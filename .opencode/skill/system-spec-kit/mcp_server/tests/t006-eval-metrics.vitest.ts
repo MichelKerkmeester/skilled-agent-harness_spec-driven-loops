@@ -338,6 +338,28 @@ describe('T006d: Cold-Start Detection Rate', () => {
     expect(computeColdStartDetectionRate(results, gt, timestamps)).toBe(0);
   });
 
+  it('T006-D19b: Top-K semantics only inspect the first K ranked results', () => {
+    const recentDate = new Date(Date.now() - 10 * 60 * 60 * 1000); // 10h ago
+    const results = [
+      makeResult(99, 1),
+      makeResult(98, 2),
+      makeResult(97, 3),
+      makeResult(96, 4),
+      makeResult(95, 5),
+      makeResult(94, 6),
+      makeResult(93, 7),
+      makeResult(92, 8),
+      makeResult(91, 9),
+      makeResult(90, 10),
+      makeResult(1, 11),
+    ];
+    const gt = [makeGT(1, 2)];
+    const timestamps = { 1: recentDate };
+
+    expect(computeColdStartDetectionRate(results, gt, timestamps, 48, 10)).toBe(0);
+    expect(computeColdStartDetectionRate(results, gt, timestamps, 48, 100)).toBe(1);
+  });
+
   it('T006-D20: Custom cutoff hours — 2h cutoff, memory 3h old → not cold-start', () => {
     const date3hAgo = new Date(Date.now() - 3 * 60 * 60 * 1000);
     const results = [makeResult(1, 1)];

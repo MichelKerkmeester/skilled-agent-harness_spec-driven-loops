@@ -192,6 +192,14 @@ describe('Context Server', () => {
         expect(schemaRegex.test(toolSchemasCode)).toBe(true)
       })
     }
+
+    it('T15b: context-server imports scoring observability init', () => {
+      expect(sourceCode).toMatch(/initScoringObservability\s*}\s*from\s*'\.\/lib\/telemetry\/scoring-observability'/)
+    })
+
+    it('T15c: context-server initializes scoring observability at startup', () => {
+      expect(sourceCode).toMatch(/initScoringObservability\(database\)/)
+    })
   })
 
   // =================================================================

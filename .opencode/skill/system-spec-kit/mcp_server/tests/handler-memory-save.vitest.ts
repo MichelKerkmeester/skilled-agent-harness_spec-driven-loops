@@ -4,9 +4,13 @@
 // ---------------------------------------------------------------
 
 import { describe, it, expect } from 'vitest';
+import fs from 'fs';
+import path from 'path';
 
 // DB-dependent imports - commented out for deferred test suite
 import * as handler from '../handlers/memory-save';
+
+const MEMORY_SAVE_SOURCE = fs.readFileSync(path.join(__dirname, '..', 'handlers', 'memory-save.ts'), 'utf8');
 
 describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', () => {
   // DB-dependent imports would go here when unskipped
@@ -50,6 +54,10 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
       for (const alias of aliases) {
         expect(typeof handler[alias]).toBe('function');
       }
+    });
+
+    it('T518-6b: indexMemoryFile integrates runQualityLoop in save flow', () => {
+      expect(MEMORY_SAVE_SOURCE).toContain('const qualityLoopResult = runQualityLoop(');
     });
   });
 

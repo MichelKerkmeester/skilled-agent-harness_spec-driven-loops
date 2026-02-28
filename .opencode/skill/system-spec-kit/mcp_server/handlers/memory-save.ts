@@ -973,6 +973,39 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     validation.warnings.forEach((w: string) => console.warn(`[memory]   - ${w}`));
   }
 
+  // T008: Integrate verify-fix-verify quality loop into the save pipeline.
+  // Feature behavior remains gated by SPECKIT_QUALITY_LOOP inside runQualityLoop().
+  const qualityLoopResult = runQualityLoop(parsed.content, {
+    title: parsed.title ?? '',
+    triggerPhrases: parsed.triggerPhrases,
+    specFolder: parsed.specFolder,
+    contextType: parsed.contextType,
+    importanceTier: parsed.importanceTier,
+  });
+
+  parsed.qualityScore = qualityLoopResult.score.total;
+  parsed.qualityFlags = qualityLoopResult.score.issues;
+
+  if (qualityLoopResult.fixes.length > 0) {
+    console.info(`[memory-save] Quality loop applied ${qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
+  }
+
+  if (!qualityLoopResult.passed && qualityLoopResult.rejected) {
+    return {
+      status: 'rejected',
+      id: 0,
+      specFolder: parsed.specFolder,
+      title: parsed.title ?? '',
+      triggerPhrases: parsed.triggerPhrases,
+      contextType: parsed.contextType,
+      importanceTier: parsed.importanceTier,
+      qualityScore: parsed.qualityScore,
+      qualityFlags: parsed.qualityFlags,
+      warnings: validation.warnings,
+      message: qualityLoopResult.rejectionReason,
+    };
+  }
+
   // CHUNKING BRANCH: Large files get split into parent + child records
   if (needsChunking(parsed.content)) {
     console.info(`[memory-save] File exceeds chunking threshold (${parsed.content.length} chars), using chunked indexing`);

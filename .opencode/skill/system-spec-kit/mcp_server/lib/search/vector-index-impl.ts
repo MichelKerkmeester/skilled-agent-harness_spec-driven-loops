@@ -25,6 +25,7 @@ import { SERVER_DIR } from '../../core/config';
 import { IVectorStore } from '../interfaces/vector-store';
 import * as embeddingsProvider from '../providers/embeddings';
 import { initEmbeddingCache } from '../cache/embedding-cache';
+import { computeInterferenceScoresBatch } from '../scoring/interference-scoring';
 
 // MCP-safe logger — all output goes to stderr (stdout reserved for JSON-RPC)
 const logger = createLogger('VectorIndex');
@@ -159,6 +160,27 @@ function parse_trigger_phrases(value: string | string[] | undefined): string[] {
     return Array.isArray(parsed) ? parsed : [];
   } catch (_: unknown) {
     return [];
+  }
+}
+
+function refresh_interference_scores_for_folder(database: Database.Database, specFolder: string): void {
+  if (!specFolder) return;
+
+  try {
+    const rows = database.prepare(
+      'SELECT id FROM memory_index WHERE spec_folder = ? AND parent_id IS NULL'
+    ).all(specFolder) as Array<{ id: number }>;
+
+    if (rows.length === 0) return;
+
+    const memoryIds = rows.map(r => r.id);
+    const scores = computeInterferenceScoresBatch(database, memoryIds);
+    const updateStmt = database.prepare('UPDATE memory_index SET interference_score = ? WHERE id = ?');
+    for (const id of memoryIds) {
+      updateStmt.run(scores.get(id) ?? 0, id);
+    }
+  } catch (error: unknown) {
+    console.warn(`[vector-index] interference score refresh failed for '${specFolder}': ${get_error_message(error)}`);
   }
 }
 
@@ -1862,6 +1884,8 @@ function index_memory(params: IndexMemoryParams) {
       `).run(row_id, embedding_buffer);
     }
 
+    refresh_interference_scores_for_folder(database, specFolder);
+
     return metadata_id;
   });
 
@@ -1911,6 +1935,7 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
           quality_flags = ?
       WHERE id = ?
     `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
+    refresh_interference_scores_for_folder(database, specFolder);
     return existing.id;
   }
 
@@ -1927,6 +1952,7 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
   );
 
   const row_id = BigInt(result.lastInsertRowid);
+  refresh_interference_scores_for_folder(database, specFolder);
   logger.info(`Deferred indexing: Memory ${Number(row_id)} saved without embedding (BM25/FTS5 searchable)`);
 
   return Number(row_id);
@@ -1953,6 +1979,7 @@ function update_memory(params: UpdateMemoryParams) {
   const now = new Date().toISOString();
 
   const update_memory_tx = database.transaction(() => {
+    const existingRow = database.prepare('SELECT spec_folder FROM memory_index WHERE id = ?').get(id) as { spec_folder: string | null } | undefined;
     const updates = ['updated_at = ?'];
     const values: unknown[] = [now];
 
@@ -2022,6 +2049,10 @@ function update_memory(params: UpdateMemoryParams) {
       database.prepare(`
         INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)
       `).run(BigInt(id), embedding_buffer);
+    }
+
+    if (existingRow?.spec_folder) {
+      refresh_interference_scores_for_folder(database, existingRow.spec_folder);
     }
 
     return id;

@@ -238,19 +238,22 @@ python scripts/package_skill.py skill-path        # Package skill
 ### Template
 `assets/install_guide_template.md`
 
-### Required Sections
-| # | Section | Validation Gate |
-|---|---------|-----------------|
-| 1 | AI-First Install Prompt | - |
-| 2 | Overview (features, architecture) | - |
-| 3 | Prerequisites | `phase_1_complete` |
-| 4 | Installation | `phase_2_complete` |
-| 5 | Configuration | `phase_4_complete` |
-| 6 | Verification | `phase_5_complete` |
-| 7 | Usage | - |
-| 8 | Features | - |
-| 9 | Troubleshooting | - |
-| 10 | Resources | - |
+### Required Sections (0-10)
+| # | Section | Required | Validation Gate |
+|---|---------|----------|-----------------|
+| 0 | AI-First Install Guide | ✅ Yes | - |
+| 1 | Overview | ✅ Yes | - |
+| 2 | Prerequisites | ✅ Yes | `phase_1_complete` |
+| 3 | Installation | ✅ Yes | `phase_2_complete`, `phase_3_complete` |
+| 4 | Configuration | ✅ Yes | `phase_4_complete` |
+| 5 | Verification | ✅ Yes | `phase_5_complete` |
+| 6 | Usage | ✅ Yes | - |
+| 7 | Features | ⚠️ Optional | - |
+| 8 | Examples | ⚠️ Optional | - |
+| 9 | Troubleshooting | ✅ Yes | - |
+| 10 | Resources | ✅ Yes | - |
+
+**Key requirements**: Core Principle blockquote in Section 1, STOP block after each validation checkpoint (5+ total).
 
 ### Phase Validation Pattern
 ```markdown

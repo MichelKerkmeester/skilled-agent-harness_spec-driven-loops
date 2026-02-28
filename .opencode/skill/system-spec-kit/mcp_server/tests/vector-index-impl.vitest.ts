@@ -1030,6 +1030,46 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       });
     });
 
+    it('indexMemory populates and maintains interference_score on insert/update paths', () => {
+      if (!sqliteVecAvailable) return;
+
+      const idA = mod.indexMemory({
+        specFolder: 'specs/test-interference',
+        filePath: path.join(TMP_DIR, 'interference-a.md'),
+        title: 'Cache Invalidation Strategy Alpha',
+        triggerPhrases: ['cache invalidation', 'stale cache'],
+        importanceWeight: 0.6,
+        embedding: makeEmbedding(11),
+      });
+
+      const idB = mod.indexMemory({
+        specFolder: 'specs/test-interference',
+        filePath: path.join(TMP_DIR, 'interference-b.md'),
+        title: 'Cache Invalidation Strategy Beta',
+        triggerPhrases: ['cache invalidation', 'stale cache'],
+        importanceWeight: 0.6,
+        embedding: makeEmbedding(12),
+      });
+
+      const db = mod.getDb();
+      expect(db).toBeTruthy();
+
+      const rowA = db!.prepare('SELECT interference_score FROM memory_index WHERE id = ?').get(idA) as { interference_score: number };
+      const rowB = db!.prepare('SELECT interference_score FROM memory_index WHERE id = ?').get(idB) as { interference_score: number };
+      expect(rowA.interference_score).toBeGreaterThanOrEqual(1);
+      expect(rowB.interference_score).toBeGreaterThanOrEqual(1);
+
+      mod.updateMemory({
+        id: idA,
+        title: 'Cache Invalidation Strategy Alpha Updated',
+        triggerPhrases: ['cache invalidation', 'stale cache'],
+      });
+
+      const rowAAfter = db!.prepare('SELECT interference_score FROM memory_index WHERE id = ?').get(idA) as { interference_score: number };
+      expect(Number.isFinite(rowAAfter.interference_score)).toBe(true);
+      expect(rowAAfter.interference_score).toBeGreaterThanOrEqual(0);
+    });
+
     it('vectorSearch returns results', () => {
       if (!sqliteVecAvailable) return;
       const query = makeEmbedding(1);

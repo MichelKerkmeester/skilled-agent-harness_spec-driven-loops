@@ -5,7 +5,7 @@
 import { getIndex } from './bm25-index';
 import { fuseResultsMulti } from './rrf-fusion';
 import { hybridAdaptiveFuse } from './adaptive-fusion';
-import { spreadActivation } from '../cache/cognitive/co-activation';
+import { CO_ACTIVATION_CONFIG, spreadActivation } from '../cache/cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
@@ -18,6 +18,13 @@ import { fuseResultsRsfMulti, isRsfEnabled } from './rsf-fusion';
 import { enforceChannelRepresentation } from './channel-enforcement';
 import { truncateByConfidence } from './confidence-truncation';
 import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
+import {
+  isFolderScoringEnabled,
+  lookupFolders,
+  computeFolderRelevanceScores,
+  enrichResultsWithFolderScores,
+  twoPhaseRetrieval,
+} from './folder-relevance';
 
 // Sprint 4 modules — all flag-gated, disabled by default
 import { isMpabEnabled, collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation';
@@ -57,8 +64,11 @@ interface HybridSearchOptions {
   useVector?: boolean;
   useGraph?: boolean;
   includeArchived?: boolean;
+  includeContent?: boolean;
   /** Classified query intent for adaptive fusion weight selection (e.g. 'understand', 'fix_bug'). */
   intent?: string;
+  /** Optional trigger phrases for query-classifier trigger-match routing path. */
+  triggerPhrases?: string[];
 }
 
 interface HybridSearchResult {
@@ -151,9 +161,6 @@ const MMR_DEFAULT_LAMBDA = 0.7;
 
 /** Number of top results used as seeds for co-activation spreading. */
 const SPREAD_ACTIVATION_TOP_N = 5;
-
-/** Multiplier applied to co-activation boost scores before adding to result scores. */
-const CO_ACTIVATION_BOOST_FACTOR = 0.1;
 
 let db: Database.Database | null = null;
 let vectorSearchFn: VectorSearchFn | null = null;
@@ -500,7 +507,7 @@ async function hybridSearchEnhanced(
     // ── Sprint 3 Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) ──
     // AI-WHY: When enabled, classifies query complexity and restricts channels to a
     // subset (e.g., simple queries skip graph+degree). When disabled, all channels run.
-    const routeResult = routeQuery(query);
+    const routeResult = routeQuery(query, options.triggerPhrases);
     const activeChannels = new Set<ChannelName>(routeResult.channels);
     const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
     const skippedChannels = allPossibleChannels.filter(ch => !activeChannels.has(ch));
@@ -876,7 +883,7 @@ async function hybridSearchEnhanced(
               const boost = spreadMap.get(result.id as number);
               if (boost !== undefined) {
                 (result as Record<string, unknown>).score =
-                  ((result.score as number) ?? 0) + boost * CO_ACTIVATION_BOOST_FACTOR;
+                  ((result.score as number) ?? 0) + boost * CO_ACTIVATION_CONFIG.boostFactor;
               }
             }
           }
@@ -967,6 +974,58 @@ async function hybridSearchEnhanced(
         } catch (_shadowErr: unknown) {
           // AI-GUARD: Shadow scoring must never affect production results
         }
+      }
+
+      // Sprint 1: Folder relevance / two-phase retrieval (SPECKIT_FOLDER_SCORING)
+      if (db && isFolderScoringEnabled() && reranked.length > 0) {
+        try {
+          const numericIds = reranked
+            .map(r => r.id)
+            .filter((id): id is number => typeof id === 'number');
+
+          if (numericIds.length > 0) {
+            const folderMap = lookupFolders(db, numericIds);
+            if (folderMap.size > 0) {
+              const folderScores = computeFolderRelevanceScores(reranked, folderMap);
+              const rawTopK = process.env.SPECKIT_FOLDER_TOP_K;
+              const parsedTopK = rawTopK ? parseInt(rawTopK, 10) : NaN;
+              const topK = Number.isFinite(parsedTopK) && parsedTopK > 0 ? parsedTopK : 5;
+
+              const twoPhaseResults = twoPhaseRetrieval(reranked, folderScores, folderMap, topK);
+              const postFolderResults = twoPhaseResults.length > 0 ? twoPhaseResults : reranked;
+              reranked = enrichResultsWithFolderScores(postFolderResults, folderScores, folderMap) as HybridSearchResult[];
+            }
+          }
+        } catch (_folderErr: unknown) {
+          // AI-GUARD: Folder scoring is optional and must not break retrieval
+        }
+      }
+
+      // Preserve non-enumerable Sprint 4 eval metadata across truncation reallocation.
+      const s4shadowMeta = (reranked as unknown as Record<string, unknown>)['_s4shadow'];
+      const s4attributionMeta = (reranked as unknown as Record<string, unknown>)['_s4attribution'];
+
+      // Sprint 3/4: Apply token budget truncation before returning live results
+      const budgeted = truncateToBudget(reranked, budgetResult.budget, {
+        includeContent: options.includeContent ?? false,
+        queryId: `hybrid-${Date.now()}`,
+      });
+      reranked = budgeted.results;
+
+      if (s4shadowMeta !== undefined && reranked.length > 0) {
+        Object.defineProperty(reranked, '_s4shadow', {
+          value: s4shadowMeta,
+          enumerable: false,
+          configurable: true,
+        });
+      }
+
+      if (s4attributionMeta !== undefined && reranked.length > 0) {
+        Object.defineProperty(reranked, '_s4attribution', {
+          value: s4attributionMeta,
+          enumerable: false,
+          configurable: true,
+        });
       }
 
       // Sprint 3: Attach pipeline metadata to results for eval/debugging

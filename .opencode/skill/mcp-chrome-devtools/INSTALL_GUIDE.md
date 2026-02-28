@@ -70,6 +70,10 @@ Not working? Go to [Troubleshooting](#9-troubleshooting).
 
 Chrome DevTools gives AI assistants browser debugging capabilities through two approaches. The CLI (`bdg`) is the primary method: direct, fast and token-efficient. The MCP fallback runs through Code Mode and suits multi-tool orchestration or parallel browser testing.
 
+### Core Principle
+
+> **Install once, verify at each step.** Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
+
 ### Source Repository
 
 | Property         | Value                                                                                       |
@@ -523,6 +527,8 @@ All 7 checklist items above pass with no errors.
 ### Validation: `phase_5_complete`
 
 Your AI client successfully captures a screenshot on request. The system is operational.
+
+❌ **STOP if validation fails** - Check MCP configuration, restart your AI client, and review [Troubleshooting](#9-troubleshooting).
 
 ---
 

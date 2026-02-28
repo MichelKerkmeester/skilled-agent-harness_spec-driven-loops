@@ -104,12 +104,10 @@ export function enforceChannelRepresentation(
   // ---- Delegate to core channel-representation logic ----
   const analysis = analyzeChannelRepresentation(window, channelResultSets);
 
-  // analysis.topK = window + any promoted items appended at the end
-  // Re-sort by score descending so the output remains ordered.
-  const sortedWindow = [...analysis.topK].sort((a, b) => b.score - a.score);
-
-  // Reassemble: sorted window + unchanged tail
-  const finalResults: Array<FusedResult> = [...sortedWindow, ...tail] as Array<FusedResult>;
+  // Reassemble and globally re-sort by score to preserve strict ordering
+  // even when topK < fusedResults.length and promotions are inserted.
+  const finalResults: Array<FusedResult> = [...analysis.topK, ...tail]
+    .sort((a, b) => b.score - a.score) as Array<FusedResult>;
 
   return {
     results: finalResults,

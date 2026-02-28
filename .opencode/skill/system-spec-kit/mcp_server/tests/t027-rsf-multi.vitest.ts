@@ -256,12 +256,29 @@ describe('T027: RSF Multi-List and Cross-Variant Fusion', () => {
       ];
 
       const results = fuseResultsRsfMulti(lists);
-      // Items present in 1 of 3 sources → penalty = 1/3
+      // Empty channels are excluded from denominator, so this behaves as 1 active source.
       expect(results.length).toBe(2);
+      const item1 = results.find(r => r.id === 1);
+      expect(item1!.rsfScore).toBeCloseTo(1.0, 5);
       for (const r of results) {
         expect(r.rsfScore).toBeGreaterThanOrEqual(0);
         expect(r.rsfScore).toBeLessThanOrEqual(1);
       }
+    });
+
+    it('T027.5.4: empty channels do not penalize coverage in denominator', () => {
+      const lists = [
+        makeList('vector', [makeItem(1, 0.9), makeItem(2, 0.2)]),
+        makeList('bm25',   [makeItem(1, 0.8)]),
+        makeList('graph',  []),
+      ];
+
+      const results = fuseResultsRsfMulti(lists);
+      const item1 = results.find(r => r.id === 1);
+
+      // Item 1 appears in both active sources (2/2) so no penalty should apply.
+      expect(item1).toBeDefined();
+      expect(item1!.rsfScore).toBeCloseTo(1.0, 5);
     });
   });
 

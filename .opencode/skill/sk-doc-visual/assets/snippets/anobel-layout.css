@@ -1,0 +1,35 @@
+:root {
+  /* 
+    Layout & Visual Tokens - Anobel Theme 
+    Derived from: readme-guide-anobel.html
+  */
+  
+  /* Dimensions */
+  --anobel-container-max: 96rem;
+  --anobel-sidebar-w: 240px;
+  --anobel-right-sidebar-w: 220px;
+  
+  /* Spacing & Gaps */
+  --anobel-gap-xl: 5rem;
+  --anobel-gap-lg: 3rem;
+  --anobel-section-y: clamp(5rem, 12vh, 10rem);
+  
+  /* Border Radius */
+  --anobel-radius-card: 12px;
+  --anobel-radius-bento: 1rem; /* 16px */
+  --anobel-radius-interactive: 6px;
+  --anobel-radius-pill: 9999px;
+  
+  /* Visual Effects */
+  --anobel-blur: 16px;
+  --anobel-glass-shadow: 0 8px 32px rgba(59, 130, 246, 0.05);
+  
+  /* Transitions */
+  --anobel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --anobel-duration: 0.3s;
+  --anobel-duration-reveal: 0.6s;
+  
+  /* Z-Index Layers */
+  --anobel-z-sticky: 100;
+  --anobel-z-progress: 200;
+}

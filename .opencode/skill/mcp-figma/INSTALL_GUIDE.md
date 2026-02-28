@@ -1,6 +1,6 @@
 # Figma MCP Installation Guide
 
-Complete installation and configuration guide for Figma MCP, enabling programmatic access to Figma design files. Covers file retrieval (designs, nodes, versions), image export (PNG, SVG, PDF), component and style extraction, team project management, and collaborative commenting.
+Complete installation and configuration guide for Figma MCP, enabling programmatic access to Figma design files. Covers file retrieval (designs, nodes, versions), image export (PNG, SVG, PDF), component and style extraction, team project management, and collaborative commenting. Two installation options are available: the Official Figma MCP (HTTP, OAuth) for simplicity and Framelink (stdio, API key) for Code Mode integration. Both options deliver token-efficient design data access for AI-assisted development workflows.
 
 > **Part of OpenCode Installation.** See [Master Installation Guide](../README.md) for complete setup.
 
@@ -69,6 +69,10 @@ Guide me through the setup and verify it works.
 ## 1. Overview
 
 Figma MCP provides programmatic access to Figma's design platform. It enables AI assistants to read design files, export images, extract components and styles, manage team projects, and handle collaborative comments.
+
+### Core Principle
+
+> **Install once, verify at each step.** Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
 
 ### Available Options
 
@@ -648,7 +652,7 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 - [ ] Tools return expected data structures?
 - [ ] Rate limiting and pagination work correctly?
 
-System is operational when all items above are confirmed.
+❌ **STOP if validation fails** - Check MCP configuration, verify API key or OAuth credentials, and restart your AI client.
 
 ---
 

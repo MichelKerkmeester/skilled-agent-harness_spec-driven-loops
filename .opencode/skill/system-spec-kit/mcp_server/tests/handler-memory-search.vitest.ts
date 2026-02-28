@@ -165,3 +165,13 @@ describe('T002: Chunk Collapse Dedup (G3)', () => {
     expect(typeof collapseAndReassembleChunkResults).toBe('function');
   });
 });
+
+describe('Sprint-0 intent weighting guard', () => {
+  it('does not apply post-search intent weighting for hybrid path', () => {
+    const { shouldApplyPostSearchIntentWeighting } = handler.__testables;
+    expect(typeof shouldApplyPostSearchIntentWeighting).toBe('function');
+
+    expect(shouldApplyPostSearchIntentWeighting('hybrid', { similarity: 1, importance: 1, recency: 1 }, 'fix_bug')).toBe(false);
+    expect(shouldApplyPostSearchIntentWeighting('vector', { similarity: 1, importance: 1, recency: 1 }, 'fix_bug')).toBe(true);
+  });
+});

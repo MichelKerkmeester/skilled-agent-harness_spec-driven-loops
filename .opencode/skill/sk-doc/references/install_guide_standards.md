@@ -22,6 +22,12 @@ This reference defines standards for install guide documentation. Install guides
 - **Platform-awareness** - Clear paths for different environments
 - **AI-friendly** - Parseable structure with copyable commands
 
+**Requirements**:
+- All guides follow an 11-section structure (sections 0-10)
+- Section 1 (Overview) must include a Core Principle blockquote
+- Every validation checkpoint must be followed by a STOP block
+- Guides should contain 5+ STOP blocks across all phases
+
 ---
 
 <!-- /ANCHOR:overview -->
@@ -59,32 +65,61 @@ Phase 5: Verification     → Validate: System works end-to-end
 <!-- ANCHOR:required-sections -->
 ## 3. REQUIRED SECTIONS
 
-| Section | Required | Purpose |
-|---------|----------|---------|
-| **Title + Overview** | ✅ Yes | What this installs, time estimate, difficulty |
-| **Prerequisites** | ✅ Yes | Required tools, versions, permissions |
-| **Installation** | ✅ Yes | Step-by-step install commands |
-| **Configuration** | ⚠️ Conditional | Required if config needed post-install |
-| **Verification** | ✅ Yes | Prove installation succeeded |
-| **Troubleshooting** | ✅ Yes | Common errors and fixes |
-| **Next Steps** | ⚠️ Optional | What to do after successful install |
+Every install guide follows an 11-section structure (sections 0-10), with 9 required and 2 optional:
+
+| # | Section | Required | Validation Gate |
+|---|---------|----------|-----------------|
+| 0 | **AI-First Install Guide** | ✅ Yes | - |
+| 1 | **Overview** | ✅ Yes | - |
+| 2 | **Prerequisites** | ✅ Yes | `phase_1_complete` |
+| 3 | **Installation** | ✅ Yes | `phase_2_complete`, `phase_3_complete` |
+| 4 | **Configuration** | ✅ Yes | `phase_4_complete` |
+| 5 | **Verification** | ✅ Yes | `phase_5_complete` |
+| 6 | **Usage** | ✅ Yes | - |
+| 7 | **Features** | ⚠️ Optional | - |
+| 8 | **Examples** | ⚠️ Optional | - |
+| 9 | **Troubleshooting** | ✅ Yes | - |
+| 10 | **Resources** | ✅ Yes | - |
 
 ### Section Examples
 
-**Title + Overview**:
+**Section 0 - AI-First Install Guide** (copy-paste prompt):
 ```markdown
-# Installing MCP Server for OpenCode
+## AI-FIRST INSTALL GUIDE
 
-**Time**: ~10 minutes | **Difficulty**: Intermediate | **Platform**: macOS/Linux
+**Copy and paste this prompt to your AI assistant:**
+I want to install [Tool] from [URL]. Please help me...
 ```
 
-**Prerequisites** (checklist format required):
+**Section 1 - Overview** (must include Core Principle blockquote):
 ```markdown
-## Prerequisites
+## 1. OVERVIEW
+
+[Tool] is [description]. It provides [benefits].
+
+### Core Principle
+
+> **Install once, verify at each step.** Each phase has a validation checkpoint - do not proceed until the checkpoint passes.
+```
+
+**Section 2 - Prerequisites** (checklist format required):
+```markdown
+## 2. PREREQUISITES
 - [ ] Node.js v18+ installed (`node --version`)
 - [ ] npm v9+ installed (`npm --version`)
 - [ ] Terminal access with standard permissions
+
+### Validation: `phase_1_complete`
+...
+❌ **STOP if validation fails** - Fix prerequisites before continuing.
 ```
+
+Each validation checkpoint MUST be followed by a STOP block:
+```markdown
+❌ **STOP if validation fails** - [Brief instruction on what to check]
+```
+
+Install guides should contain 5+ STOP blocks across all validation checkpoints.
 
 ---
 
@@ -249,11 +284,13 @@ $env:MCP_PATH = "$HOME\.mcp"
 
 ### Pre-Publish Checklist
 
+- [ ] All 11 sections present (0-10, with 7 and 8 optional)
+- [ ] Core Principle blockquote in Section 1 (Overview)
 - [ ] All phases have validation checkpoints
+- [ ] 5+ STOP blocks after validation checkpoints
 - [ ] Prerequisites testable (commands provided)
 - [ ] Troubleshooting table has 5+ entries
 - [ ] Platform requirements in overview
 - [ ] Time estimate included
 - [ ] All code blocks have language tags
-- [ ] STOP conditions at each validation
 <!-- /ANCHOR:cross-references -->

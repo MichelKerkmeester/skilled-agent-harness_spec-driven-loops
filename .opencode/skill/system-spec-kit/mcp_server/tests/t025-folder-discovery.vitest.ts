@@ -292,7 +292,7 @@ describe('T009 generateFolderDescriptions', () => {
 
     const cache = generateFolderDescriptions([tmpDir]);
 
-    const folder = cache.folders.find(f => f.specFolder === specDir);
+    const folder = cache.folders.find(f => f.specFolder === '001-test');
     expect(folder).toBeDefined();
     expect(folder!.description).toBe('Test Specification');
   });

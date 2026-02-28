@@ -190,11 +190,11 @@ function fuseResultsRsf(listA: RankedList, listB: RankedList): RsfResult[] {
 function fuseResultsRsfMulti(lists: RankedList[]): RsfResult[] {
   if (lists.length === 0) return [];
 
-  // Filter out empty lists while keeping track of total for penalty calculation
+  // Filter out empty lists; only active channels should affect coverage penalties.
   const nonEmptyLists = lists.filter(l => l.results.length > 0);
   if (nonEmptyLists.length === 0) return [];
 
-  const totalSources = lists.length;
+  const totalSources = nonEmptyLists.length;
 
   // --- Step 1 & 2: Extract raw scores and build per-source normalized maps ---
   const sourceMaps: Array<{

@@ -1,6 +1,6 @@
 # AGENTS.md Customization Guide
 
-Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) for your specific project type, installed MCP tools, and available skills. Covers front-end, back-end, and full-stack configurations with interactive AI-assisted setup.
+Complete guide for customizing the AI agent configuration file (AGENTS.md) for your specific project type, installed MCP tools, and available skills. Covers front-end, back-end, and full-stack configurations with interactive AI-assisted setup. Follow each phase checkpoint before proceeding to avoid cascading failures.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
 > **Scope**: AGENTS.md
@@ -9,23 +9,25 @@ Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) 
 
 ## TABLE OF CONTENTS
 
-1. [OVERVIEW](#1--overview)
-2. [AGENTS.md GATES REFERENCE](#2--agentsmd-gates-reference)
-3. [FILE NAMING CONVENTION](#3--file-naming-convention)
-4. [PROJECT TYPE CUSTOMIZATION](#4--project-type-customization)
-5. [MCP TOOLING ALIGNMENT](#5--mcp-tooling-alignment)
-6. [SKILLS ALIGNMENT](#6--skills-alignment)
-7. [COMMANDS REFERENCE](#7--commands-reference)
-8. [PROJECT-SPECIFIC ADDITIONS](#8--project-specific-additions)
-9. [VALIDATION CHECKLIST](#9--validation-checklist)
+0. [AI-FIRST SETUP GUIDE](#0-ai-first-setup-guide)
+1. [OVERVIEW](#1-overview)
+2. [PREREQUISITES](#2-prerequisites)
+3. [SETUP](#3-setup)
+4. [CONFIGURATION](#4-configuration)
+5. [VERIFICATION](#5-verification)
+6. [USAGE](#6-usage)
+7. [FEATURES](#7-features)
+8. [EXAMPLES](#8-examples)
+9. [TROUBLESHOOTING](#9-troubleshooting)
+10. [RESOURCES](#10-resources)
 
 ---
 
-## AI-FIRST SET-UP GUIDE
+## 0. AI-FIRST SETUP GUIDE
 
 **Copy and paste this prompt for interactive AGENTS.md customization:**
 
-```
+```text
 I need to customize the AGENTS.md file for my project. Please guide me through an interactive setup by asking me questions one at a time.
 
 **Questions to ask me (one at a time, wait for my answer):**
@@ -35,7 +37,7 @@ I need to customize the AGENTS.md file for my project. Please guide me through a
    - Back-end (API, database, server-side)
    - Full-stack (both front-end and back-end)
 
-2. **MCP Servers**: What MCP servers are installed? 
+2. **MCP Servers**: What MCP servers are installed?
    (Please check my opencode.json and .utcp_config.json to verify)
 
 3. **Available Skills**: What skills exist in my .opencode/skill/ directory?
@@ -66,21 +68,25 @@ My project is at: [your project path]
 **What the AI will do:**
 - Ask you questions one at a time to understand your setup
 - Audit your installed MCP servers by reading your config files
-- Check your available skills in .opencode/skill/
+- Check your available skills in `.opencode/skill/`
 - Generate customized AGENTS.md sections tailored to your project
 - Provide copy-paste ready configuration blocks
 
-**Expected customization time:** 10-15 minutes
+**Expected setup time:** 10-15 minutes
 
 ---
 
 ## 1. OVERVIEW
 
+AGENTS.md is an AI agent configuration file that defines behavior guardrails, standards, and decision frameworks for AI assistants working on your project. It serves as the "operating manual" that AI agents read before executing any task. The universal template includes all possible tools, skills, and patterns. Your project likely uses a subset, so customization is essential.
+
+### Core Principle
+
+> **Customize once, validate at each step.** Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
+
 ### What is AGENTS.md?
 
-AGENTS.md is an AI agent configuration file that defines behavior guardrails, standards, and decision frameworks for AI assistants working on your project. It serves as the "operating manual" that AI agents read before executing any task.
-
-**Core Functions:**
+AGENTS.md defines:
 - **Behavior guardrails** - Mandatory gates that prevent common mistakes
 - **Tool routing** - Decision trees for selecting the right tool for each task
 - **Skills system** - On-demand specialized capabilities for complex workflows
@@ -99,13 +105,13 @@ The universal template (`AGENTS (Universal).md`) includes ALL possible tools, sk
 | Custom skills          | Add project-specific skill definitions    |
 | Team conventions       | Add coding standards, review requirements |
 
-### When to Customize vs Use As-Is
+### When to Customize vs. Use As-Is
 
 **Customize when:**
 - Your project type differs from full-stack (front-end only, backend only)
-- You haven't installed all MCP servers referenced in the template
+- You have not installed all MCP servers referenced in the template
 - You have project-specific conventions or requirements
-- AI agents are trying to use tools that don't exist
+- AI agents are trying to use tools that do not exist
 
 **Use as-is when:**
 - Full-stack project with all MCP servers installed
@@ -114,70 +120,84 @@ The universal template (`AGENTS (Universal).md`) includes ALL possible tools, sk
 
 ---
 
-## 2. AGENTS.md GATES REFERENCE
+## 2. PREREQUISITES
 
-Quick reference for the mandatory gates defined in AGENTS.md. Gates are checkpoints that AI agents must pass before taking actions.
+**Phase 1** focuses on auditing what is already installed before making any changes.
 
-### Gate Summary Table
+### Required: Audit Your Environment
 
-| Gate/Rule                          | Trigger                               | Action                                             | Block Type |
-| ---------------------------------- | ------------------------------------- | -------------------------------------------------- | ---------- |
-| **Gate 1:** Understanding          | Each new user message                 | `memory_match_triggers()` → Classify intent        | SOFT       |
-| **Gate 2:** Skill Routing          | Every task                            | Run `skill_advisor.py` → Route if confidence > 0.8 | REQUIRED   |
-| **Gate 3:** Spec Folder            | File modification detected            | Ask A/B/C/D options before tools                   | HARD BLOCK |
-| **Memory Context Loading** (rule)  | User selects A or C in Gate 3         | Load memory when using existing spec folder        | SOFT       |
-| **Memory Save Rule** (post-exec)   | "save context", "/memory:save"        | Validate folder → Execute `generate-context.js`    | HARD       |
-| **Completion Verification** (post-exec) | Claiming "done", "complete"      | Load checklist.md → Verify all items               | HARD       |
+Before customizing, you need to know what tools and skills are available in your project.
 
-### Gate Flow Diagram
+**Step 1: Check native MCP servers**
 
-```
-User Message
-     ↓
-┌──────────────────────────┐
-│ Gate 1: Understanding    │──→ memory_match_triggers() → Classify intent
-└────────────┬─────────────┘
-             ↓
-┌──────────────────────────┐
-│ Gate 2: Skill Routing    │──→ skill_advisor.py → Route if >0.8
-└────────────┬─────────────┘
-             ↓
-┌──────────────────────────┐
-│ Gate 3: Spec Folder      │──→ File modification? → Ask A/B/C/D
-└────────────┬─────────────┘
-             ↓
-┌──────────────────────────┐
-│ Memory Context Loading   │──→ Load memory for existing spec folder
-└────────────┬─────────────┘
-             ↓
-        ✅ EXECUTE TASK
-             ↓
-┌──────────────────────────┐
-│ Memory Save Rule         │──→ generate-context.js required
-└────────────┬─────────────┘
-             ↓
-┌──────────────────────────┐
-│ Completion Verification  │──→ Verify checklist.md
-└────────────┬─────────────┘
-             ↓
-        ✅ CLAIM DONE
+```bash
+# Check opencode.json for native MCP servers
+cat opencode.json | jq '.mcp'
+
+# Example output:
+# {
+#   "servers": {
+#     "sequential-thinking": { ... },
+#     "semantic-memory": { ... },
+#     "code-mode": { ... }
+#   }
+# }
 ```
 
-### Block Types Explained
+**Step 2: Check Code Mode tools**
 
-| Block Type    | Meaning                           | User Action               |
-| ------------- | --------------------------------- | ------------------------- |
-| **HARD**      | Cannot proceed without resolution | Must respond or fix issue |
-| **SOFT**      | Can be bypassed with [skip]       | Optional engagement       |
-| **MANDATORY** | Always runs, cannot skip          | Automatic                 |
+```bash
+# Check .utcp_config.json for Code Mode tools
+cat .utcp_config.json | jq '.manuals'
+
+# Example output:
+# {
+#   "webflow": { ... },
+#   "figma": { ... },
+#   "clickup": { ... }
+# }
+```
+
+**Step 3: List available skills**
+
+```bash
+# List all skills in the skill directory
+ls -la .opencode/skill/
+
+# Example output:
+# mcp-code-mode/
+# mcp-figma/
+# system-spec-kit/
+# mcp-chrome-devtools/
+# sk-code--web/
+# sk-git/
+```
+
+### Validation: `phase_1_complete`
+
+```bash
+# All commands should succeed:
+cat opencode.json | jq '.mcp'         # → shows MCP server config
+ls .opencode/skill/                    # → lists skill directories
+```
+
+**Checklist:**
+- [ ] `opencode.json` exists and contains MCP configuration?
+- [ ] `.utcp_config.json` exists (if using Code Mode)?
+- [ ] All skills in `.opencode/skill/` directory listed?
+- [ ] Project type identified: [ ] Front-end [ ] Backend [ ] Full-stack
+
+❌ **STOP if validation fails** - Ensure `opencode.json` exists and the skills directory is populated before continuing.
 
 ---
 
-## 3. FILE NAMING CONVENTION
+## 3. SETUP
+
+**Phase 2** covers renaming the universal template and placing it correctly in your project.
 
 ### Remove "(Universal)" for Project-Specific Use
 
-The template file is named `AGENTS (Universal).md` to indicate it's a starting point. For your project:
+The template file is named `AGENTS (Universal).md` to indicate it is a starting point. For your project:
 
 ```bash
 # Step 1: Rename for your project
@@ -191,33 +211,56 @@ cp "AGENTS.md" "AGENTS (Template).md"
 
 AI assistants automatically read `AGENTS.md` from the project root:
 
-| Tool            | File Detection                                     |
-| --------------- | -------------------------------------------------- |
-| **OpenCode**    | Reads `AGENTS.md` from project root on startup     |
-| **Claude Code** | Reads `AGENTS.md` from project root |
-| **Cursor**      | Reads `.cursorrules` or `AGENTS.md`                |
-| **Windsurf**    | Reads `.windsurfrules` or `AGENTS.md`              |
+| Tool            | File Detection                                 |
+| --------------- | ---------------------------------------------- |
+| **OpenCode**    | Reads `AGENTS.md` from project root on startup |
+| **Claude Code** | Reads `AGENTS.md` from project root            |
+| **Cursor**      | Reads `.cursorrules` or `AGENTS.md`            |
+| **Windsurf**    | Reads `.windsurfrules` or `AGENTS.md`          |
 
 ### File Location
 
-```
+```text
 your-project/
-├── AGENTS.md              ← AI agents read this
-├── AGENTS (Template).md   ← Reference copy (optional)
+├── AGENTS.md              <- AI agents read this
+├── AGENTS (Template).md   <- Reference copy (optional)
 ├── .opencode/
 │   └── skill/
 └── src/
 ```
 
+### Validation: `phase_2_complete`
+
+```bash
+# Confirm AGENTS.md is in the project root
+ls -la AGENTS.md
+# → -rw-r--r--  ... AGENTS.md
+
+# Confirm it is readable
+head -5 AGENTS.md
+# → # AI Agent Framework (or similar H1)
+```
+
+**Checklist:**
+- [ ] File renamed to `AGENTS.md` (removed "Universal")?
+- [ ] File is located in project root directory?
+- [ ] File is readable (not empty)?
+
+❌ **STOP if validation fails** - Confirm the rename completed and the file is in the project root, not a subdirectory.
+
 ---
 
-## 4. PROJECT TYPE CUSTOMIZATION
+## 4. CONFIGURATION
 
-### 4.1 Front-end Projects (Webflow, CSS, JavaScript)
+**Phase 3** covers customizing AGENTS.md for your project type, MCP tooling, skills, commands, and any project-specific patterns. This is the primary customization phase.
+
+### 4.1 Project Type Customization
+
+#### Front-end Projects (Webflow, CSS, JavaScript)
 
 Front-end projects emphasize visual development, browser tools, and design integration.
 
-#### Tool Emphasis
+**Tool Emphasis**
 
 | Keep/Emphasize    | Remove/De-emphasize  |
 | ----------------- | -------------------- |
@@ -227,16 +270,16 @@ Front-end projects emphasize visual development, browser tools, and design integ
 | CSS/JS patterns   | Backend frameworks   |
 | Visual regression | Server configuration |
 
-#### Primary Skills
+**Primary Skills**
 
-| Skill                       | Purpose                                           |
-| --------------------------- | ------------------------------------------------- |
+| Skill                 | Purpose                                           |
+| --------------------- | ------------------------------------------------- |
 | `mcp-chrome-devtools` | Browser debugging, visual testing, DOM inspection |
-| `mcp-code-mode`             | Webflow, Figma integration via Code Mode          |
+| `mcp-code-mode`       | Webflow, Figma integration via Code Mode          |
 
-#### Confidence Weight Adjustments
+**Confidence Weight Adjustments**
 
-Update §4 with front-end focused weights:
+Update your confidence weights section with front-end focused values:
 
 ```markdown
 | Weight Category      | Frontend |
@@ -246,13 +289,13 @@ Update §4 with front-end focused weights:
 | State/Data flow      | 15%      |
 | Type safety/Security | 10%      |
 | Performance          | 10%      |
-| Accessibility        | 15%      | ← Increased (visual focus) |
+| Accessibility        | 15%      |
 | Tooling/Risk         | 10%      |
 ```
 
-#### Code Focus Areas
+**Code Focus Areas**
 
-Add to §5 or create new section:
+Add to your code standards section:
 
 ```markdown
 ### Front-end Code Standards
@@ -265,11 +308,11 @@ Add to §5 or create new section:
 
 ---
 
-### 4.2 Back-end Projects (API, Database, Server)
+#### Back-end Projects (API, Database, Server)
 
 Backend projects emphasize data integrity, security, and API design.
 
-#### Tool Emphasis
+**Tool Emphasis**
 
 | Keep/Emphasize    | Remove/De-emphasize |
 | ----------------- | ------------------- |
@@ -279,29 +322,27 @@ Backend projects emphasize data integrity, security, and API design.
 | Unit testing      | CSS patterns        |
 | CI/CD integration | Visual testing      |
 
-#### Primary Skills
+**Primary Skills**
 
-| Skill            | Purpose                                                      |
-| ---------------- | ------------------------------------------------------------ |
-| `sk-code--web` | Implementation, debugging, verification lifecycle            |
+| Skill          | Purpose                                               |
+| -------------- | ----------------------------------------------------- |
+| `sk-code--web` | Implementation, debugging, verification lifecycle     |
 
-#### Confidence Weight Adjustments
-
-Update §4 with backend focused weights:
+**Confidence Weight Adjustments**
 
 ```markdown
 | Weight Category       | Backend |
 | --------------------- | ------- |
 | Requirements clarity  | 25%     |
-| API/Component design  | 20%     | ← Increased (API focus)         |
+| API/Component design  | 20%     |
 | State/Data flow       | 15%     |
-| Type safety/Security  | 20%     | ← Increased (security critical) |
+| Type safety/Security  | 20%     |
 | Performance           | 10%     |
-| Accessibility/Testing | 5%      | ← Decreased                     |
+| Accessibility/Testing | 5%      |
 | Tooling/Risk          | 5%      |
 ```
 
-#### Code Focus Areas
+**Code Focus Areas**
 
 ```markdown
 ### Backend Code Standards
@@ -314,22 +355,22 @@ Update §4 with backend focused weights:
 
 ---
 
-### 4.3 Full-stack Projects
+#### Full-stack Projects
 
 Full-stack projects use the complete template with balanced weights.
 
-#### Tool Emphasis
+**Tool Emphasis**
 
 Include all tool types with contextual routing:
 
 ```markdown
 ### Tool Routing by Layer
-- **Frontend work** → Chrome DevTools, Webflow, Figma
-- **Backend work** → Database tools, API testing
-- **Both** → Grep/Glob, Memory
+- **Frontend work** -> Chrome DevTools, Webflow, Figma
+- **Backend work** -> Database tools, API testing
+- **Both** -> Grep/Glob, Memory
 ```
 
-#### Balanced Weight Distribution
+**Balanced Weight Distribution**
 
 Use the default weights from the template:
 
@@ -347,171 +388,69 @@ Use the default weights from the template:
 
 ---
 
-### 4.4 Before/After Customization Examples
+### 4.2 MCP Tooling Alignment
 
-Concrete examples showing how to customize from Universal to project-specific.
-
-#### Example: Frontend Project (Webflow/CSS/JS)
-
-**Before (Universal Template):**
-- All 9 skills installed
-- All 3 MCP servers configured
-- All 19 commands available
-
-**After (Frontend-Optimized):**
-
-| Component             | Status | Items                     | Reason                          |
-| --------------------- | ------ | ------------------------- | ------------------------------- |
-| **Skills - Keep**     | ✅      | system-spec-kit           | Context preservation needed     |
-|                       | ✅      | mcp-chrome-devtools | Browser debugging essential     |
-|                       | ✅      | sk-code--web            | Implementation workflow         |
-|                       | ✅      | mcp-code-mode             | Webflow/Figma integration       |
-| **Skills - Remove**   | ❌      | sk-git             | Optional for solo projects      |
-| **MCP - Keep**        | ✅      | spec_kit_memory           | Required for spec-kit skill     |
-|                       | ✅      | code_mode                 | External tool access            |
-| **MCP - Remove**      | ❌      | sequential_thinking       | Overkill for frontend           |
-| **Commands - Keep**   | ✅      | /memory:*                 | Context preservation            |
-|                       | ✅      | /spec_kit:*               | Documentation workflow          |
-| **Commands - Remove** | ❌      | /search:*                 | Using simple grep instead       |
-
-#### Example: Backend API Project
-
-**Before (Universal Template):**
-- All 9 skills installed
-- All 3 MCP servers configured
-
-**After (Backend-Optimized):**
-
-| Component           | Status | Items                     | Reason                                   |
-| ------------------- | ------ | ------------------------- | ---------------------------------------- |
-| **Skills - Keep**   | ✅      | system-spec-kit           | Research context preservation            |
-|                     | ✅      | sk-code--web            | Implementation lifecycle                 |
-|                     | ✅      | sk-git             | PR/commit workflows                      |
-| **Skills - Remove** | ❌      | mcp-chrome-devtools | No browser UI                            |
-|                     | ❌      | mcp-code-mode             | No Webflow/Figma needed                  |
-| **MCP - Keep**      | ✅      | spec_kit_memory           | Context preservation                     |
-|                     | ✅      | sequential_thinking       | Complex reasoning                        |
-| **MCP - Remove**    | ❌      | code_mode                 | No external design tools                 |
-
----
-
-## 5. MCP TOOLING ALIGNMENT
-
-### 5.1 Audit Installed Components
-
-Before customizing, audit what's actually installed:
-
-<details>
-<summary><strong>Audit Commands</strong></summary>
-
-```bash
-# Check opencode.json for Native MCP servers
-cat opencode.json | jq '.mcp'
-
-# Example output:
-# {
-#   "servers": {
-#     "sequential-thinking": { ... },
-#     "semantic-memory": { ... },
-#     "code-mode": { ... }
-#   }
-# }
-
-# Check .utcp_config.json for Code Mode tools
-cat .utcp_config.json | jq '.manuals'
-
-# Example output:
-# {
-#   "webflow": { ... },
-#   "figma": { ... },
-#   "clickup": { ... }
-# }
-
-# List available skills
-ls -la .opencode/skill/
-
-# Example output:
-# mcp-code-mode/
-# mcp-figma/
-# system-spec-kit/
-# mcp-chrome-devtools/
-# sk-code--web/
-# sk-git/
-```
-
-</details>
-
-### 5.2 Native MCP Servers Reference
+#### Native MCP Servers Reference
 
 **Current Installation (3 servers):**
 
-| Server                | Tool Prefix             | Purpose                                                        |
-| --------------------- | ----------------------- | -------------------------------------------------------------- |
-| `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning                                   |
-| `spec-kit-memory`     | `memory_*`              | Context preservation                                           |
-| `code-mode`           | `call_tool_chain()`     | External tool orchestration                                    |
+| Server                | Tool Prefix             | Purpose                     |
+| --------------------- | ----------------------- | --------------------------- |
+| `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning |
+| `spec-kit-memory`     | `memory_*`              | Context preservation        |
+| `code-mode`           | `call_tool_chain()`     | External tool orchestration |
 
-### 5.3 Update Tool Routing Decision Tree
+#### Update Tool Routing Decision Tree
 
-Remove lines for tools you haven't installed:
+Remove lines for tools you have not installed:
 
-<details>
-<summary><strong>Original (All Tools)</strong></summary>
-
-```markdown
-### Tool Routing Decision Tree
-
-Known file path? → Read()
-Research/prior work? → memory_search() [NATIVE MCP]
-Text pattern? → Grep()
-File structure? → Glob()
-Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
-Browser debugging? → mcp-chrome-devtools skill
-External MCP tools? → call_tool_chain() [Webflow, Figma, ClickUp]
-Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
-```
-
-</details>
-
-<details>
-<summary><strong>Front-end Customization (No Sequential Thinking)</strong></summary>
+**Original (All Tools):**
 
 ```markdown
 ### Tool Routing Decision Tree
 
-Known file path? → Read()
-Research/prior work? → memory_search() [NATIVE MCP]
-Text pattern? → Grep()
-File structure? → Glob()
-Browser debugging? → mcp-chrome-devtools skill
-External MCP tools? → call_tool_chain() [Webflow, Figma]
-Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
+Known file path? -> Read()
+Research/prior work? -> memory_search() [NATIVE MCP]
+Text pattern? -> Grep()
+File structure? -> Glob()
+Complex reasoning? -> sequential_thinking_sequentialthinking() [NATIVE MCP]
+Browser debugging? -> mcp-chrome-devtools skill
+External MCP tools? -> call_tool_chain() [Webflow, Figma, ClickUp]
+Multi-step workflow? -> Read skill SKILL.md [see Skills section]
 ```
 
-</details>
-
-<details>
-<summary><strong>Backend Customization (No Browser Tools, No Figma)</strong></summary>
+**Front-end Customization (No Sequential Thinking):**
 
 ```markdown
 ### Tool Routing Decision Tree
 
-Known file path? → Read()
-Research/prior work? → memory_search() [NATIVE MCP]
-Text pattern? → Grep()
-File structure? → Glob()
-Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
-Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
+Known file path? -> Read()
+Research/prior work? -> memory_search() [NATIVE MCP]
+Text pattern? -> Grep()
+File structure? -> Glob()
+Browser debugging? -> mcp-chrome-devtools skill
+External MCP tools? -> call_tool_chain() [Webflow, Figma]
+Multi-step workflow? -> Read skill SKILL.md [see Skills section]
 ```
 
-</details>
+**Backend Customization (No Browser Tools, No Figma):**
 
-### 5.4 Update Native MCP Tools Reference
+```markdown
+### Tool Routing Decision Tree
 
-Only include tools configured in `opencode.json`:
+Known file path? -> Read()
+Research/prior work? -> memory_search() [NATIVE MCP]
+Text pattern? -> Grep()
+File structure? -> Glob()
+Complex reasoning? -> sequential_thinking_sequentialthinking() [NATIVE MCP]
+Multi-step workflow? -> Read skill SKILL.md [see Skills section]
+```
 
-<details>
-<summary><strong>Full Reference (All Native Tools)</strong></summary>
+#### Update Native MCP Tools Reference
+
+Only include tools configured in `opencode.json`.
+
+**Full Reference (All Native Tools):**
 
 ```markdown
 ### Native MCP Tools Reference
@@ -527,10 +466,7 @@ SEQUENTIAL THINKING (optional):
   sequential_thinking_sequentialthinking()
 ```
 
-</details>
-
-<details>
-<summary><strong>Minimal Reference (Memory Only)</strong></summary>
+**Minimal Reference (Memory Only):**
 
 ```markdown
 ### Native MCP Tools Reference
@@ -543,14 +479,11 @@ SEMANTIC MEMORY (context/research):
   memory_index_scan()     # Bulk indexing
 ```
 
-</details>
+#### Update Code Mode Tools Reference
 
-### 5.5 Update Code Mode Tools Reference
+Only include tools in `.utcp_config.json`.
 
-Only include tools in `.utcp_config.json`:
-
-<details>
-<summary><strong>Front-end Tools (Webflow + Figma)</strong></summary>
+**Front-end Tools (Webflow + Figma):**
 
 ```markdown
 ### Code Mode Tools Reference
@@ -568,10 +501,7 @@ FIGMA:
 Discovery: search_tools(), list_tools(), or read .utcp_config.json
 ```
 
-</details>
-
-<details>
-<summary><strong>Project Management Tools (ClickUp Only)</strong></summary>
+**Project Management Tools (ClickUp Only):**
 
 ```markdown
 ### Code Mode Tools Reference
@@ -585,68 +515,59 @@ CLICKUP:
 Discovery: search_tools(), list_tools(), or read .utcp_config.json
 ```
 
-</details>
-
 ---
 
-## 6. SKILLS ALIGNMENT
+### 4.3 Skills Alignment
 
-### 6.1 Complete Skills Reference
+#### Complete Skills Reference
 
 **Current Installation (9 skills):**
 
-| Skill                       | Version  | Primary Triggers                                                 | Purpose                                               |
-| --------------------------- | -------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
-| `mcp-figma`                 | v1.0.0   | "Figma", "design", "component", "style"                          | Figma design tool integration                         |
-| `mcp-code-mode`             | v1.2.0   | "ClickUp", "Figma", "Webflow", "external tool"                   | MCP orchestration for external tools                  |
-| `system-spec-kit`           | v2.2.0   | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
-| `mcp-chrome-devtools` | v2.1.0   | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
-| `sk-code--full-stack`| v1.0.0   | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
-| `sk-code--opencode`  | v1.3.2   | "opencode code", "system code", "TypeScript", "Python"           | OpenCode system code standards                        |
-| `sk-code--web`   | v1.0.9   | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
-| `sk-doc`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
-| `sk-git`             | v1.5.0   | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
+| Skill                  | Version | Primary Triggers                                          | Purpose                                          |
+| ---------------------- | ------- | --------------------------------------------------------- | ------------------------------------------------ |
+| `mcp-figma`            | v1.0.0  | "Figma", "design", "component", "style"                   | Figma design tool integration                    |
+| `mcp-code-mode`        | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"            | MCP orchestration for external tools             |
+| `system-spec-kit`      | v2.2.0  | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
+| `mcp-chrome-devtools`  | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
+| `sk-code--full-stack`  | v1.0.0  | "implement", "debug", "verify", "refactor" (full-stack)   | Full-stack implementation lifecycle orchestrator |
+| `sk-code--opencode`    | v1.3.2  | "opencode code", "system code", "TypeScript", "Python"    | OpenCode system code standards                   |
+| `sk-code--web`         | v1.0.9  | "implement", "debug", "verify", "refactor" (frontend)     | Web development implementation lifecycle         |
+| `sk-doc`               | v5.2.0  | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
+| `sk-git`               | v1.5.0  | "commit", "branch", "PR", "push", "git"                   | Git workflow orchestration                       |
 
-### 6.2 Skill Routing Table
+#### Skill Routing Table
 
 When Gate 2 runs `skill_advisor.py`, it maps user intent to skills:
 
-| User Says                         | Skill Triggered           | Confidence |
-| --------------------------------- | ------------------------- | ---------- |
-| "save this context"               | system-spec-kit           | 0.95       |
-| "/memory:save"                    | system-spec-kit           | 0.98       |
-| "remember this decision"          | system-spec-kit           | 0.85       |
-| "take a screenshot"               | mcp-chrome-devtools | 0.95       |
-| "debug in browser"                | mcp-chrome-devtools | 0.88       |
-| "check the DOM"                   | mcp-chrome-devtools | 0.82       |
-| "implement the login feature"     | sk-code--web            | 0.90       |
-| "help me debug this error"        | sk-code--web            | 0.85       |
-| "verify the changes work"         | sk-code--web            | 0.82       |
-| "create a commit"                 | sk-git             | 0.95       |
-| "open a PR"                       | sk-git             | 0.92       |
-| "push to remote"                  | sk-git             | 0.90       |
-| "get Webflow site data"           | mcp-code-mode             | 0.90       |
-| "update Figma component"          | mcp-code-mode             | 0.88       |
-| "check ClickUp tasks"             | mcp-code-mode             | 0.85       |
+| User Says                         | Skill Triggered       | Confidence |
+| --------------------------------- | --------------------- | ---------- |
+| "save this context"               | system-spec-kit       | 0.95       |
+| "/memory:save"                    | system-spec-kit       | 0.98       |
+| "remember this decision"          | system-spec-kit       | 0.85       |
+| "take a screenshot"               | mcp-chrome-devtools   | 0.95       |
+| "debug in browser"                | mcp-chrome-devtools   | 0.88       |
+| "check the DOM"                   | mcp-chrome-devtools   | 0.82       |
+| "implement the login feature"     | sk-code--web          | 0.90       |
+| "help me debug this error"        | sk-code--web          | 0.85       |
+| "verify the changes work"         | sk-code--web          | 0.82       |
+| "create a commit"                 | sk-git                | 0.95       |
+| "open a PR"                       | sk-git                | 0.92       |
+| "push to remote"                  | sk-git                | 0.90       |
+| "get Webflow site data"           | mcp-code-mode         | 0.90       |
+| "update Figma component"          | mcp-code-mode         | 0.88       |
+| "check ClickUp tasks"             | mcp-code-mode         | 0.85       |
 
-### 6.3 Native Skill Discovery (OpenCode v1.0.190+)
+#### Native Skill Discovery (OpenCode v1.0.190+)
 
-OpenCode now has **built-in skill discovery** - no manual skills table needed!
-
-<details>
-<summary><strong>How Native Skills Work</strong></summary>
+OpenCode has built-in skill discovery. No manual skills table is required.
 
 **Automatic Discovery:**
 - OpenCode scans `.opencode/skill/*/SKILL.md` on startup
 - Skills are surfaced via `skills_*` functions (e.g., `skills_workflows_code`, `skills_system_spec_kit`)
 - Frontmatter fields (`name`, `description`, `allowed-tools`) provide metadata
 
-**No Manual List Required:**
-- The old `<available_skills>` XML block is no longer needed
-- Skills are auto-indexed from SKILL.md frontmatter
-- Just ensure your skills are in `.opencode/skill/` with valid SKILL.md files
-
 **Simplified AGENTS.md Section:**
+
 ```markdown
 ### Skill Routing (Gate 2)
 
@@ -661,71 +582,18 @@ Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 **Usage notes:**
 - Do not invoke a skill that is already loaded in your context
 - Each skill invocation is stateless
-- Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required
+- Skills are auto-indexed from SKILL.md frontmatter, no manual list maintenance required
 ```
-
-</details>
-
-### 6.4 Example: Front-end Project Skills
-
-<details>
-<summary><strong>Front-end Skills (Typical)</strong></summary>
-
-For a front-end project, you would typically have these skills in `.opencode/skill/`:
-
-| Skill                       | Purpose                                             |
-| --------------------------- | --------------------------------------------------- |
-| `mcp-code-mode`             | MCP orchestration for Webflow and Figma integration |
-| `mcp-chrome-devtools` | Browser debugging via Chrome DevTools Protocol      |
-| `system-spec-kit`           | Context preservation across sessions                |
-
-**Skills to consider removing:**
-- `sk-git` - Optional for solo/simple projects
-
-**Verify your skills:**
-```bash
-ls -la .opencode/skill/
-```
-
-**Skills are auto-discovered** - no XML configuration needed!
-
-</details>
-
-### 6.5 Example: Backend Project Skills
-
-<details>
-<summary><strong>Backend Skills (Typical)</strong></summary>
-
-For a backend/API project, you would typically have these skills in `.opencode/skill/`:
-
-| Skill             | Purpose                                                                              |
-| ----------------- | ------------------------------------------------------------------------------------ |
-| `sk-code--web`  | Implementation lifecycle orchestrator for complex multi-file changes and refactoring |
-| `system-spec-kit` | Context preservation for research tasks and finding prior architectural decisions    |
-| `sk-git`   | Git workflow for PRs, commits, branches                                              |
-
-**Skills to consider removing:**
-- `mcp-chrome-devtools` - No browser UI to debug
-- `mcp-code-mode` - No Webflow/Figma integration needed
-
-**Verify your skills:**
-```bash
-ls -la .opencode/skill/
-```
-
-**Skills are auto-discovered** - no XML configuration needed!
-
-</details>
 
 ---
 
-## 7. COMMANDS REFERENCE
+### 4.4 Commands
 
-### 7.1 All Available Commands (19 total)
+#### All Available Commands (19 total)
 
 Commands are slash-prefixed shortcuts for common workflows.
 
-#### Create Commands (6)
+**Create Commands (6)**
 
 | Command                   | Description                  | Output                         |
 | ------------------------- | ---------------------------- | ------------------------------ |
@@ -736,23 +604,23 @@ Commands are slash-prefixed shortcuts for common workflows.
 | `/create:skill_asset`     | Create skill asset file      | Asset in skill/assets/         |
 | `/create:skill_reference` | Create skill reference doc   | Reference in skill/references/ |
 
-#### Memory Commands (4)
+**Memory Commands (4)**
 
-| Command              | Description                | Output                      |
-| -------------------- | -------------------------- | --------------------------- |
-| `/memory:checkpoint` | Create context checkpoint  | Checkpoint for restoration  |
-| `/memory:database`   | Manage memory database     | Database operations         |
-| `/memory:save`       | Save current context       | Memory file in spec folder  |
-| `/memory:search`     | Search saved memories      | Matching memories list      |
+| Command              | Description                | Output                     |
+| -------------------- | -------------------------- | -------------------------- |
+| `/memory:checkpoint` | Create context checkpoint  | Checkpoint for restoration |
+| `/memory:database`   | Manage memory database     | Database operations        |
+| `/memory:save`       | Save current context       | Memory file in spec folder |
+| `/memory:search`     | Search saved memories      | Matching memories list     |
 
-#### Search Commands (2)
+**Search Commands (2)**
 
 | Command         | Description               | Output                 |
 | --------------- | ------------------------- | ---------------------- |
 | `/search:code`  | Semantic code search      | Matching code snippets |
 | `/search:index` | Build/manage search index | Index status/results   |
 
-#### SpecKit Commands (7)
+**SpecKit Commands (7)**
 
 | Command               | Description                           | Output                      |
 | --------------------- | ------------------------------------- | --------------------------- |
@@ -764,26 +632,7 @@ Commands are slash-prefixed shortcuts for common workflows.
 | `/spec_kit:research`  | Technical investigation               | Research findings           |
 | `/spec_kit:resume`    | Resume previous session               | Continued work              |
 
-### 7.2 Command Usage Examples
-
-```bash
-# Save context before ending session
-/memory:save
-
-# Search for prior work on authentication
-/memory:search auth implementation
-
-# Start a new feature with full workflow
-/spec_kit:complete
-
-# Resume work from yesterday
-/spec_kit:resume
-
-# Find code related to payments
-/search:code payment processing
-```
-
-### 7.3 Customizing Commands for Project Type
+#### Customizing Commands for Project Type
 
 **Front-end projects - essential commands:**
 - `/memory:save` - Preserve design decisions
@@ -795,13 +644,13 @@ Commands are slash-prefixed shortcuts for common workflows.
 - `/search:*` - Code discovery
 - `/spec_kit:*` - Full workflow
 
-**Remove commands** by not referencing them in your AGENTS.md. Commands are defined in `.opencode/commands/`.
+Remove commands by not referencing them in your AGENTS.md. Commands are defined in `.opencode/commands/`.
 
 ---
 
-## 8. PROJECT-SPECIFIC ADDITIONS
+### 4.5 Project-Specific Additions
 
-### 8.1 Custom Commands
+#### Custom Commands
 
 Add project-specific slash commands:
 
@@ -816,7 +665,7 @@ Add project-specific slash commands:
 | `/sync:webflow`   | Sync changes with Webflow                |
 ```
 
-### 8.2 Project Conventions
+#### Project Conventions
 
 Document team conventions:
 
@@ -839,7 +688,7 @@ Document team conventions:
 - Breaking changes require migration guide
 ```
 
-### 8.3 Code Quality Standards Links
+#### Code Quality Standards Links
 
 Reference external documentation:
 
@@ -855,7 +704,7 @@ Project standards are defined in:
 **Enforcement:** These standards override general practices. Check before proposing solutions.
 ```
 
-### 8.4 Webflow-Specific Patterns (Front-end)
+#### Webflow-Specific Patterns (Front-end)
 
 ```markdown
 ### Webflow Integration
@@ -877,7 +726,7 @@ Project standards are defined in:
 - CMS template: In embed within collection
 ```
 
-### 8.5 API Conventions (Backend)
+#### API Conventions (Backend)
 
 ```markdown
 ### API Standards
@@ -902,89 +751,49 @@ Project standards are defined in:
 - Always include `error_code` for programmatic handling
 ```
 
+### Validation: `phase_3_complete`
+
+```bash
+# Confirm AGENTS.md has been updated for your project type
+grep -i "project type\|front-end\|backend\|full-stack" AGENTS.md
+
+# Confirm tool references only include installed tools
+cat opencode.json | jq '.mcp | keys'
+
+# Confirm skill references match actual skills directory
+ls .opencode/skill/
+```
+
+**Checklist:**
+- [ ] Project type configuration complete (front-end, backend, or full-stack)?
+- [ ] Confidence weights updated for project type?
+- [ ] Tool Routing Decision Tree updated (removed missing tools)?
+- [ ] Native MCP Tools Reference reflects installed tools only?
+- [ ] Code Mode Tools Reference reflects `.utcp_config.json` contents?
+- [ ] Skills table updated (removed skills not in `.opencode/skill/`)?
+- [ ] Commands list reflects `.opencode/commands/` directory?
+- [ ] Project-specific conventions or patterns added?
+
+❌ **STOP if validation fails** - Review each checklist item and fix mismatches between AGENTS.md references and your actual installed tools before continuing.
+
 ---
 
-## 9. VALIDATION CHECKLIST
+## 5. VERIFICATION
 
-Use this checklist after customizing AGENTS.md:
+**Phase 4** confirms your customized AGENTS.md works correctly end-to-end.
 
-### Pre-Customization Verification
+### Validation Checklist
 
-```markdown
-## Pre-Customization Checklist
-
-### Environment Audit
-- [ ] Verified opencode.json exists and contains MCP configuration
-- [ ] Verified .utcp_config.json exists (if using Code Mode)
-- [ ] Listed all skills in .opencode/skill/ directory
-- [ ] Identified project type: [ ] Front-end [ ] Backend [ ] Full-stack
-```
-
-### Post-Customization Verification
-
-```markdown
-## AGENTS.md Customization Checklist
-
-### File Setup
-- [ ] Renamed to AGENTS.md (removed "Universal")
-- [ ] Original saved as AGENTS (Template).md for reference
-- [ ] File located in project root directory
-- [ ] File readable by AI agent (test with simple query)
-
-### Gates Configuration
-- [ ] All 3 gates + behavioral rules documented with correct triggers
-- [ ] Gate flow diagram accurate for project
-- [ ] Block types (HARD/SOFT/MANDATORY) correctly labeled
-
-### Project Type Configuration
-- [ ] Identified project type: [ ] Front-end [ ] Backend [ ] Full-stack
-- [ ] Updated confidence weights in §4 for project type
-- [ ] Added project-specific code standards to §5
-- [ ] Removed irrelevant patterns and examples
-
-### MCP Tooling Alignment
-- [ ] Audited opencode.json - listed installed MCP servers
-- [ ] Audited .utcp_config.json - listed Code Mode tools
-- [ ] Updated Tool Routing Decision Tree (removed missing tools)
-- [ ] Updated Native MCP Tools Reference (only installed tools)
-- [ ] Updated Code Mode Tools Reference (only configured tools)
-- [ ] Verified tool references don't point to non-existent tools
-
-### Skills Alignment
-- [ ] Verified all 9 skills or documented which are removed
-- [ ] Skills table has correct versions and triggers
-- [ ] Skill routing table reflects actual routing behavior
-- [ ] skill_advisor.py routes correctly (test with sample)
-
-### Commands Alignment
-- [ ] All 19 commands documented or subset specified
-- [ ] Command categories match installed commands
-- [ ] Usage examples work in current environment
-
-### Project-Specific Content
-- [ ] Added custom commands (if any)
-- [ ] Documented project conventions
-- [ ] Added links to code quality standards
-- [ ] Included platform-specific patterns (Webflow/API/etc.)
-
-### Testing & Verification
-- [ ] AI agent reads AGENTS.md on session start
-- [ ] Skill routing works (test Gate 2 with sample request)
-- [ ] Tool references resolve to actual tools
-- [ ] Memory system functions correctly
-- [ ] Spec folder workflow operates as expected
-```
-
-### Quick Validation Commands
+Run these quick checks to confirm the configuration is sound:
 
 ```bash
 # Verify AGENTS.md exists and is readable
-cat AGENTS.md | head -20
+head -20 AGENTS.md
 
-# Verify skill routing
-python .opencode/skill/scripts/skill_advisor.py "help me debug CSS"
+# Verify skill routing script works
+python3 .opencode/skill/scripts/skill_advisor.py "help me debug CSS"
 
-# Verify MCP tools
+# Verify MCP tools are configured
 cat opencode.json | jq '.mcp.servers | keys'
 
 # Verify skills directory
@@ -992,37 +801,214 @@ ls .opencode/skill/
 
 # Verify commands directory
 ls .opencode/commands/
-
-# Test memory system (run in AI session)
-# memory_search("test query")
 ```
 
-### Common Issues & Fixes
+### Validation: `phase_4_complete`
 
-| Issue                   | Cause                                 | Fix                              |
-| ----------------------- | ------------------------------------- | -------------------------------- |
-| "Tool not found" errors | AGENTS.md references uninstalled tool | Remove from Tool Routing section |
-| Skill routing fails     | Skill not in .opencode/skill/         | Remove from Skills Table         |
-| Wrong weights applied   | Project type mismatch                 | Update confidence weights        |
-| Memory not surfacing    | Triggers not matching                 | Check memory_match_triggers()    |
-| Gate 2 skipped          | skill_advisor.py missing              | Verify script exists and runs    |
-| Command not recognized  | Command not in .opencode/commands/    | Verify command exists            |
-| Gate flow broken        | Missing gate documentation            | Verify all 3 gates + rules listed |
+```bash
+# All commands should succeed:
+head -5 AGENTS.md                                   # -> H1 title visible
+python3 .opencode/skill/scripts/skill_advisor.py "save context"  # -> system-spec-kit
+cat opencode.json | python3 -m json.tool            # -> valid JSON
+ls .opencode/skill/                                 # -> skill directories listed
+```
+
+**Checklist:**
+- [ ] AGENTS.md is readable and starts with expected H1?
+- [ ] `skill_advisor.py` routes correctly (test with sample request)?
+- [ ] `opencode.json` contains valid JSON?
+- [ ] Tool references in AGENTS.md resolve to actual installed tools?
+- [ ] Memory system accessible (no connection errors)?
+- [ ] Spec folder workflow operates as expected?
+
+❌ **STOP if validation fails** - Fix any mismatches between AGENTS.md references and your actual environment before testing with a live AI session.
+
+### AI Agent Test
+
+**Phase 5** confirms the AI agent reads and follows AGENTS.md correctly.
+
+Start a new AI session and ask:
+
+```text
+What AGENTS.md file are you reading? What gates are defined? What skills are available?
+```
+
+Expected responses:
+- Agent names the correct AGENTS.md location
+- Agent lists the gates (Understanding, Skill Routing, Spec Folder)
+- Agent lists only skills that exist in `.opencode/skill/`
+- Agent does not reference tools that are not installed
+
+### Success Criteria (`phase_5_complete`)
+
+- [ ] AI reads AGENTS.md on session start
+- [ ] Skill routing works (Gate 2 activates with sample request)
+- [ ] Tool references resolve to actual tools
+- [ ] Memory system functions correctly
+- [ ] Spec folder workflow operates as expected
+
+❌ **STOP if validation fails** - If the AI references missing tools or skips gates, re-check your customization from Phase 3 and correct the mismatched references.
 
 ---
 
-## Appendix: Quick Reference
+## 6. USAGE
 
-### Current Installation Summary
+### Gates Reference
 
-| Category        | Count | Items                                                                                                                                                     |
-| --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-doc, sk-git |
-| **MCP Servers** | 3     | sequential-thinking, spec-kit-memory, code-mode                                                                                                           |
-| **Commands**    | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                                           |
-| **Gates + Rules** | 3 + 3 | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification)               |
+Quick reference for the mandatory gates defined in AGENTS.md. Gates are checkpoints that AI agents must pass before taking actions.
 
-### Minimal AGENTS.md Structure
+**Gate Summary Table**
+
+| Gate/Rule                               | Trigger                        | Action                                             | Block Type |
+| --------------------------------------- | ------------------------------ | -------------------------------------------------- | ---------- |
+| **Gate 1:** Understanding               | Each new user message          | `memory_match_triggers()` -> Classify intent       | SOFT       |
+| **Gate 2:** Skill Routing               | Every task                     | Run `skill_advisor.py` -> Route if confidence > 0.8 | REQUIRED   |
+| **Gate 3:** Spec Folder                 | File modification detected     | Ask A/B/C/D options before tools                   | HARD BLOCK |
+| **Memory Context Loading** (rule)       | User selects A or C in Gate 3  | Load memory when using existing spec folder        | SOFT       |
+| **Memory Save Rule** (post-exec)        | "save context", "/memory:save" | Validate folder -> Execute `generate-context.js`   | HARD       |
+| **Completion Verification** (post-exec) | Claiming "done", "complete"    | Load checklist.md -> Verify all items              | HARD       |
+
+### Gate Flow Diagram
+
+```text
+User Message
+     |
++---------------------------+
+| Gate 1: Understanding     |---> memory_match_triggers() -> Classify intent
++----------+----------------+
+           |
++---------------------------+
+| Gate 2: Skill Routing     |---> skill_advisor.py -> Route if >0.8
++----------+----------------+
+           |
++---------------------------+
+| Gate 3: Spec Folder       |---> File modification? -> Ask A/B/C/D
++----------+----------------+
+           |
++---------------------------+
+| Memory Context Loading    |---> Load memory for existing spec folder
++----------+----------------+
+           |
+        EXECUTE TASK
+           |
++---------------------------+
+| Memory Save Rule          |---> generate-context.js required
++----------+----------------+
+           |
++---------------------------+
+| Completion Verification   |---> Verify checklist.md
++----------+----------------+
+           |
+        CLAIM DONE
+```
+
+### Command Usage Examples
+
+```bash
+# Save context before ending session
+/memory:save
+
+# Search for prior work on authentication
+/memory:search auth implementation
+
+# Start a new feature with full workflow
+/spec_kit:complete
+
+# Resume work from yesterday
+/spec_kit:resume
+
+# Find code related to payments
+/search:code payment processing
+```
+
+---
+
+## 7. FEATURES
+
+### Detailed Gates Table
+
+| Gate                  | Trigger Condition              | Required Action                                  | What Happens if Skipped              |
+| --------------------- | ------------------------------ | ------------------------------------------------ | ------------------------------------ |
+| Gate 1: Understanding | Every new user message         | Run `memory_match_triggers()`, classify intent   | Missing context, potential wrong answer |
+| Gate 2: Skill Routing | Every non-trivial task         | Run `skill_advisor.py` with 0.8 threshold        | Wrong tool used, quality degraded    |
+| Gate 3: Spec Folder   | Any file modification detected | Ask A/B/C/D before any tool use                  | Untracked changes, no documentation  |
+
+### Block Types Explained
+
+| Block Type    | Meaning                           | User Action               |
+| ------------- | --------------------------------- | ------------------------- |
+| **HARD**      | Cannot proceed without resolution | Must respond or fix issue |
+| **SOFT**      | Can be bypassed with [skip]       | Optional engagement       |
+| **MANDATORY** | Always runs, cannot skip          | Automatic                 |
+
+### Post-Execution Rules
+
+**Memory Save Rule (HARD BLOCK)**
+- Trigger: "save context", "save memory", `/memory:save`, memory file creation
+- If spec folder established at Gate 3, use it (do not re-ask)
+- Script: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
+- Violation: Write tool on `memory/` path means DELETE and re-run via script
+
+**Completion Verification Rule (HARD BLOCK)**
+- Trigger: Claiming "done", "complete", "finished", "works"
+- Load `checklist.md` and verify ALL items with evidence
+- Skip only for Level 1 tasks (no checklist.md required)
+
+---
+
+## 8. EXAMPLES
+
+### Before/After Customization Examples
+
+#### Example: Frontend Project (Webflow/CSS/JS)
+
+**Before (Universal Template):**
+- All 9 skills installed
+- All 3 MCP servers configured
+- All 19 commands available
+
+**After (Frontend-Optimized):**
+
+| Component             | Status | Items                 | Reason                      |
+| --------------------- | ------ | --------------------- | --------------------------- |
+| **Skills - Keep**     | Yes    | system-spec-kit       | Context preservation needed |
+|                       | Yes    | mcp-chrome-devtools   | Browser debugging essential |
+|                       | Yes    | sk-code--web          | Implementation workflow     |
+|                       | Yes    | mcp-code-mode         | Webflow/Figma integration   |
+| **Skills - Remove**   | No     | sk-git                | Optional for solo projects  |
+| **MCP - Keep**        | Yes    | spec_kit_memory       | Required for spec-kit skill |
+|                       | Yes    | code_mode             | External tool access        |
+| **MCP - Remove**      | No     | sequential_thinking   | Overkill for frontend       |
+| **Commands - Keep**   | Yes    | /memory:*             | Context preservation        |
+|                       | Yes    | /spec_kit:*           | Documentation workflow      |
+| **Commands - Remove** | No     | /search:*             | Using simple grep instead   |
+
+---
+
+#### Example: Backend API Project
+
+**Before (Universal Template):**
+- All 9 skills installed
+- All 3 MCP servers configured
+
+**After (Backend-Optimized):**
+
+| Component           | Status | Items               | Reason                           |
+| ------------------- | ------ | ------------------- | -------------------------------- |
+| **Skills - Keep**   | Yes    | system-spec-kit     | Research context preservation    |
+|                     | Yes    | sk-code--web        | Implementation lifecycle         |
+|                     | Yes    | sk-git              | PR/commit workflows              |
+| **Skills - Remove** | No     | mcp-chrome-devtools | No browser UI                    |
+|                     | No     | mcp-code-mode       | No Webflow/Figma needed          |
+| **MCP - Keep**      | Yes    | spec_kit_memory     | Context preservation             |
+|                     | Yes    | sequential_thinking | Complex reasoning                |
+| **MCP - Remove**    | No     | code_mode           | No external design tools         |
+
+---
+
+#### Example: Minimal AGENTS.md Structure
+
+When stripping AGENTS.md to essentials, follow this structure:
 
 ```markdown
 # AI Agent Framework
@@ -1049,6 +1035,168 @@ ls .opencode/commands/
 [Customize: Only available skills]
 ```
 
+---
+
+## 9. TROUBLESHOOTING
+
+### "Tool not found" Errors
+
+**Error:** `Error: tool 'webflow_sites_list' not found` or similar tool resolution errors.
+
+**Cause:** AGENTS.md references a tool (e.g., Webflow, Figma, ClickUp) that is not configured in `.utcp_config.json` or the Code Mode MCP server is not running.
+
+**Fix:**
+
+```bash
+# Check what tools are actually configured
+cat .utcp_config.json | jq '.manuals | keys'
+
+# Check Code Mode MCP server status
+cat opencode.json | jq '.mcp["code-mode"]'
+```
+
+Remove any tool references from AGENTS.md that do not appear in the output above.
+
+---
+
+### Skill Routing Fails
+
+**Error:** Gate 2 does not activate, or `skill_advisor.py` returns no recommendation.
+
+**Cause:** The skill referenced is not present in `.opencode/skill/`, or the `skill_advisor.py` script is missing or misconfigured.
+
+**Fix:**
+
+```bash
+# Verify skill_advisor.py exists
+ls .opencode/skill/scripts/skill_advisor.py
+
+# Run a test routing check
+python3 .opencode/skill/scripts/skill_advisor.py "save my context" --threshold 0.8
+
+# List actual skills installed
+ls .opencode/skill/
+```
+
+Update the skills table in AGENTS.md to match only what is installed.
+
+---
+
+### Wrong Confidence Weights Applied
+
+**Error:** AI agent proceeds when it should ask, or asks when it should proceed.
+
+**Cause:** Confidence weight table in AGENTS.md does not match the project type. Full-stack weights applied to a front-end project, for example, will skew routing.
+
+**Fix:**
+
+```markdown
+# In AGENTS.md, locate your confidence weights section and replace with project-specific values.
+# Front-end: increase Accessibility to 15%, decrease API/Component design to 15%.
+# Backend: increase Type safety/Security to 20%, decrease Accessibility to 5%.
+# Full-stack: use default balanced weights.
+```
+
+Refer to the weight tables in Section 4.1 of this guide.
+
+---
+
+### Memory Not Surfacing Context
+
+**Error:** AI agent does not recall prior decisions, or `memory_match_triggers()` returns no results.
+
+**Cause:** Trigger phrases in AGENTS.md do not match the phrases used when memory was saved, or the memory index is out of date.
+
+**Fix:**
+
+```bash
+# Check what memories exist
+# (Run inside an AI session)
+# memory_list()
+
+# Rebuild the index if stale
+# memory_index_scan({ force: true })
+
+# Check trigger phrases in your AGENTS.md Gate 1 section
+grep -i "memory_match_triggers" AGENTS.md
+```
+
+Ensure the trigger phrases in your AGENTS.md align with the terms you use when saving context.
+
+---
+
+### Gate 3 Spec Folder Not Prompted
+
+**Error:** AI starts modifying files without asking which spec folder to use.
+
+**Cause:** Gate 3 documentation is missing or incomplete in AGENTS.md. The gate trigger list must include "rename", "move", "create", "update", "modify", "edit", "fix", "implement", "write", and other modification verbs.
+
+**Fix:**
+
+```bash
+# Verify Gate 3 is documented in AGENTS.md
+grep -A 10 "GATE 3\|Gate 3\|Spec Folder" AGENTS.md
+```
+
+If Gate 3 is missing or has incomplete triggers, restore it from the universal template at `AGENTS (Template).md`.
+
+---
+
+### Gate Flow Broken or Skipped
+
+**Error:** AI agent skips gates, does not call `memory_match_triggers()`, or goes straight to execution.
+
+**Cause:** Gate documentation section is malformed, has missing trigger conditions, or the agent is using a cached version of AGENTS.md from before your customization.
+
+**Fix:**
+
+```bash
+# Confirm Gate documentation is present and correctly formatted
+grep -n "Gate 1\|Gate 2\|Gate 3\|GATE 1\|GATE 2\|GATE 3" AGENTS.md
+
+# Restart your AI client to force a fresh read of AGENTS.md
+# Then start a new session and ask:
+# "What gates are defined in AGENTS.md?"
+```
+
+If gates are missing, restore from `AGENTS (Template).md` and re-apply your customizations from Phase 3.
+
+---
+
+### Commands Not Recognized
+
+**Error:** `/memory:save` or other slash commands return "command not found".
+
+**Cause:** The command file does not exist in `.opencode/commands/`, or the command path is incorrect.
+
+**Fix:**
+
+```bash
+# List all available commands
+ls .opencode/commands/
+
+# Check a specific command exists
+ls .opencode/commands/memory/save.md
+
+# Verify the commands directory structure
+find .opencode/commands -name "*.md" | head -20
+```
+
+Update AGENTS.md to reference only the commands that exist in your `.opencode/commands/` directory.
+
+---
+
+## 10. RESOURCES
+
+### Quick Reference: Current Installation Summary
+
+| Category          | Count  | Items                                                                                                                       |
+| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| **Skills**        | 9      | mcp-figma, mcp-code-mode, system-spec-kit, mcp-chrome-devtools, sk-code--full-stack, sk-code--opencode, sk-code--web, sk-doc, sk-git |
+| **MCP Servers**   | 3      | sequential-thinking, spec-kit-memory, code-mode                                                                             |
+| **Commands**      | 19     | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                             |
+| **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |
+
 ### File Size Guidelines
 
 | Section           | Recommended Lines |
@@ -1062,6 +1210,35 @@ ls .opencode/commands/
 | §7 Skills         | 60-100            |
 | **Total**         | **450-630**       |
 
+### Phase Checkpoint Summary
+
+| Checkpoint         | What It Validates                                  |
+| ------------------ | -------------------------------------------------- |
+| `phase_1_complete` | MCP servers audited, skills directory listed       |
+| `phase_2_complete` | AGENTS.md renamed and located in project root      |
+| `phase_3_complete` | Customization for project type complete            |
+| `phase_4_complete` | Validation checklist passes                        |
+| `phase_5_complete` | AI agent reads AGENTS.md and follows gates correctly |
+
+### Related Files
+
+| File                                          | Purpose                                  |
+| --------------------------------------------- | ---------------------------------------- |
+| `AGENTS (Universal).md`                       | Source template for all project types    |
+| `AGENTS (Template).md`                        | Your saved reference copy                |
+| `opencode.json`                               | Native MCP server configuration          |
+| `.utcp_config.json`                           | Code Mode external tools configuration   |
+| `.opencode/skill/`                            | Installed skills directory               |
+| `.opencode/commands/`                         | Available slash commands directory       |
+| `.opencode/skill/scripts/skill_advisor.py`    | Gate 2 skill routing script              |
+
+### External Links
+
+- **Master Installation Guide**: [./README.md](./README.md)
+- **OpenCode Documentation**: [https://opencode.ai/docs](https://opencode.ai/docs)
+- **Spec Kit Memory Guide**: [./MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md)
+- **Code Mode Guide**: [./MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)
+
 ---
 
-*Last updated: January 2025*
+*Last updated: February 2026*

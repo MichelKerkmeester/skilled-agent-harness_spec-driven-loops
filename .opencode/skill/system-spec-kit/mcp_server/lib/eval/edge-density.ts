@@ -1,10 +1,11 @@
 // ─── MODULE: Edge Density (Sprint 1 T003) ───
 //
 // Measures the edge density of the causal graph:
-//   density = edge_count / unique_node_count
+//   density = edge_count / total_memories
 //
-// where "unique nodes" = the set of all memory IDs that participate
-// in at least one edge (union of source_id and target_id values).
+// This denominator makes sparse non-empty graphs measurable.
+// Fallback for legacy/partial datasets: if total_memories is 0,
+// use unique participating nodes as denominator.
 //
 // Density classifications:
 //   >= 1.0  → "dense"    — graph is highly connected
@@ -88,9 +89,10 @@ export function measureEdgeDensity(database: Database.Database): EdgeDensityResu
       .get() as { cnt: number };
     const totalMemories = memRow.cnt;
 
-    // AI-GUARD: Division by zero protection when nodeCount is 0
-    // Compute density (guard against division by zero)
-    const density = nodeCount > 0 ? edgeCount / nodeCount : 0;
+    // Density denominator uses total memories for meaningful sparse-graph semantics.
+    // If memory_index is empty but edges exist, fall back to participating nodes.
+    const denominator = totalMemories > 0 ? totalMemories : nodeCount;
+    const density = denominator > 0 ? edgeCount / denominator : 0;
 
     // Classify
     const classification = classifyDensity(density);
@@ -98,7 +100,7 @@ export function measureEdgeDensity(database: Database.Database): EdgeDensityResu
     // R10 escalation
     const r10Escalation = density < MODERATE_THRESHOLD;
     const r10Recommendation = r10Escalation
-      ? buildR10Recommendation(density, edgeCount, nodeCount)
+      ? buildR10Recommendation(density, edgeCount, nodeCount, totalMemories)
       : undefined;
 
     return {
@@ -179,10 +181,12 @@ function buildR10Recommendation(
   density: number,
   edgeCount: number,
   nodeCount: number,
+  totalMemories: number,
 ): string {
   const targetDensity = MODERATE_THRESHOLD;
+  const denominator = totalMemories > 0 ? totalMemories : nodeCount;
   const edgesNeeded =
-    nodeCount > 0 ? Math.ceil(targetDensity * nodeCount) - edgeCount : 0;
+    denominator > 0 ? Math.ceil(targetDensity * denominator) - edgeCount : 0;
 
   return [
     `Current density ${density.toFixed(4)} is below the 0.5 threshold for reliable graph signals.`,

@@ -191,6 +191,35 @@ describe('Composite Scoring', () => {
       expect(normal).toBeGreaterThan(scratch)
     })
 
+    it('T418c: classification decay path applies when enabled (no double decay)', () => {
+      const previousFlag = process.env.SPECKIT_CLASSIFICATION_DECAY
+      process.env.SPECKIT_CLASSIFICATION_DECAY = 'true'
+
+      try {
+        const now = Date.now()
+        const elapsed = new Date(now - 1000 * 60 * 60 * 24 * 14).toISOString()
+
+        const result = calcR({
+          stability: 5.0,
+          lastReview: elapsed,
+          context_type: 'general',
+          importance_tier: 'important',
+        })
+
+        // Expected path with classification decay:
+        // stabilityAdjusted = 5.0 * 1.5, elapsedDays unchanged (no tier multiplier)
+        const expected = Math.pow(1 + (19 / 81) * (14 / (5 * 1.5)), -0.5)
+
+        expect(result).toBeCloseTo(expected, 2)
+      } finally {
+        if (previousFlag == null) {
+          delete process.env.SPECKIT_CLASSIFICATION_DECAY
+        } else {
+          process.env.SPECKIT_CLASSIFICATION_DECAY = previousFlag
+        }
+      }
+    })
+
     it('T419: R decreases monotonically with elapsed time', () => {
       const now = Date.now()
       const rDay1 = calcR({ stability: 5.0, lastReview: new Date(now - 1000 * 60 * 60 * 24).toISOString() })
