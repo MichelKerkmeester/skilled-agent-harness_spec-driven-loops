@@ -2,7 +2,7 @@
 name: debug
 description: "Fresh-perspective debugging specialist — use when prior attempts have failed (3+ retries) or root cause is elusive. Receives structured context handoff, NOT conversation history, to avoid inheriting assumptions. 4-phase methodology: Observe, Analyze, Hypothesize, Fix."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.2
 max_turns: 20
 timeout_mins: 15

@@ -2,7 +2,7 @@
 name: speckit
 description: "Spec folder documentation specialist — EXCLUSIVE authority over spec folder files (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md). Use for creating, updating, and validating Level 1-3+ documentation with CORE+ADDENDUM template enforcement."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.1
 max_turns: 20
 timeout_mins: 10

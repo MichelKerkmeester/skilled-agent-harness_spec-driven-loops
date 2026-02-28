@@ -2,7 +2,7 @@
 name: handover
 description: "Session continuation specialist — use when ending a session or switching context. Gathers state from spec folder files (spec.md, plan.md, tasks.md, memory/) and generates handover.md with context transfer, next steps, and validation checklist."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.1
 max_turns: 10
 timeout_mins: 5

@@ -1,0 +1,756 @@
+// @ts-nocheck
+// ---------------------------------------------------------------
+// TEST: Reconsolidation-on-Save (TM-06)
+// ---------------------------------------------------------------
+
+import { describe, it, expect, beforeEach, afterEach, beforeAll, afterAll, vi } from 'vitest';
+import Database from 'better-sqlite3';
+import * as causalEdges from '../lib/storage/causal-edges';
+import {
+  isReconsolidationEnabled,
+  findSimilarMemories,
+  determineAction,
+  executeMerge,
+  executeConflict,
+  executeComplement,
+  mergeContent,
+  reconsolidate,
+  MERGE_THRESHOLD,
+  CONFLICT_THRESHOLD,
+  SIMILAR_MEMORY_LIMIT,
+} from '../lib/storage/reconsolidation';
+import type {
+  SimilarMemory,
+  NewMemoryData,
+  ReconsolidationAction,
+} from '../lib/storage/reconsolidation';
+
+// ───────────────────────────────────────────────────────────────
+// TEST HELPERS
+// ───────────────────────────────────────────────────────────────
+
+/** Create a simple embedding vector of given dimension */
+function makeEmbedding(dim: number, fill: number = 1.0): number[] {
+  return Array(dim).fill(fill);
+}
+
+/** Create a mock findSimilar function */
+function mockFindSimilar(results: SimilarMemory[]) {
+  return (_embedding: any, _options: any) => results;
+}
+
+/** Create a mock storeMemory function */
+function mockStoreMemory(returnId: number) {
+  return (_memory: any) => returnId;
+}
+
+/** Create a base valid new memory object */
+function makeNewMemory(overrides: Partial<NewMemoryData> = {}): NewMemoryData {
+  return {
+    title: 'Test Memory Title',
+    content: 'This is the content of the new memory that is being saved for testing purposes.',
+    specFolder: 'test-spec',
+    filePath: '/test/memory.md',
+    embedding: makeEmbedding(10),
+    triggerPhrases: ['test', 'memory'],
+    importanceTier: 'normal',
+    importanceWeight: 0.5,
+    ...overrides,
+  };
+}
+
+/** Create a base existing similar memory */
+function makeSimilarMemory(overrides: Partial<SimilarMemory> = {}): SimilarMemory {
+  return {
+    id: 100,
+    file_path: '/test/existing.md',
+    title: 'Existing Memory',
+    content_text: 'This is the existing memory content that was previously stored.',
+    similarity: 0.90,
+    spec_folder: 'test-spec',
+    frequency_counter: 1,
+    ...overrides,
+  };
+}
+
+describe('Reconsolidation-on-Save (TM-06)', () => {
+  let testDb: any;
+
+  beforeAll(() => {
+    testDb = new Database(':memory:');
+
+    // Create memory_index table matching production schema
+    testDb.exec(`
+      CREATE TABLE IF NOT EXISTS memory_index (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        spec_folder TEXT NOT NULL DEFAULT '',
+        file_path TEXT NOT NULL DEFAULT '',
+        title TEXT,
+        content_text TEXT,
+        frequency_counter INTEGER DEFAULT 0,
+        importance_weight REAL DEFAULT 0.5,
+        importance_tier TEXT DEFAULT 'normal',
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+        embedding_status TEXT DEFAULT 'pending'
+      )
+    `);
+
+    // Create vec_memories table (simplified for testing)
+    testDb.exec(`
+      CREATE TABLE IF NOT EXISTS vec_memories (
+        rowid INTEGER PRIMARY KEY,
+        embedding BLOB
+      )
+    `);
+
+    // Create causal_edges table
+    testDb.exec(`
+      CREATE TABLE IF NOT EXISTS causal_edges (
+        id INTEGER PRIMARY KEY,
+        source_id TEXT NOT NULL,
+        target_id TEXT NOT NULL,
+        relation TEXT NOT NULL CHECK(relation IN (
+          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+        )),
+        strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+        evidence TEXT,
+        extracted_at TEXT DEFAULT (datetime('now')),
+        UNIQUE(source_id, target_id, relation)
+      )
+    `);
+
+    // Initialize causal edges module
+    causalEdges.init(testDb);
+  });
+
+  afterAll(() => {
+    if (testDb) {
+      try { testDb.close(); } catch {}
+    }
+  });
+
+  beforeEach(() => {
+    // Clean tables before each test
+    testDb.exec('DELETE FROM memory_index');
+    testDb.exec('DELETE FROM vec_memories');
+    testDb.exec('DELETE FROM causal_edges');
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Feature Flag
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Feature Flag', () => {
+    const originalEnv = process.env.SPECKIT_RECONSOLIDATION;
+
+    afterEach(() => {
+      if (originalEnv !== undefined) {
+        process.env.SPECKIT_RECONSOLIDATION = originalEnv;
+      } else {
+        delete process.env.SPECKIT_RECONSOLIDATION;
+      }
+    });
+
+    it('RF1: Disabled by default', () => {
+      delete process.env.SPECKIT_RECONSOLIDATION;
+      expect(isReconsolidationEnabled()).toBe(false);
+    });
+
+    it('RF2: Enabled when env var is "true"', () => {
+      process.env.SPECKIT_RECONSOLIDATION = 'true';
+      expect(isReconsolidationEnabled()).toBe(true);
+    });
+
+    it('RF3: Case insensitive', () => {
+      process.env.SPECKIT_RECONSOLIDATION = 'TRUE';
+      expect(isReconsolidationEnabled()).toBe(true);
+    });
+
+    it('RF4: Disabled for "false"', () => {
+      process.env.SPECKIT_RECONSOLIDATION = 'false';
+      expect(isReconsolidationEnabled()).toBe(false);
+    });
+
+    it('RF5: Flag OFF means reconsolidate returns null', async () => {
+      delete process.env.SPECKIT_RECONSOLIDATION;
+      const result = await reconsolidate(
+        makeNewMemory(),
+        testDb,
+        {
+          findSimilar: mockFindSimilar([]),
+          storeMemory: mockStoreMemory(1),
+        }
+      );
+      expect(result).toBeNull();
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Constants
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Constants', () => {
+    it('CT1: MERGE_THRESHOLD is 0.88', () => {
+      expect(MERGE_THRESHOLD).toBe(0.88);
+    });
+
+    it('CT2: CONFLICT_THRESHOLD is 0.75', () => {
+      expect(CONFLICT_THRESHOLD).toBe(0.75);
+    });
+
+    it('CT3: SIMILAR_MEMORY_LIMIT is 3', () => {
+      expect(SIMILAR_MEMORY_LIMIT).toBe(3);
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Action Determination
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Action Determination', () => {
+    it('AD1: similarity >= 0.88 -> merge', () => {
+      expect(determineAction(0.88)).toBe('merge');
+      expect(determineAction(0.90)).toBe('merge');
+      expect(determineAction(0.95)).toBe('merge');
+      expect(determineAction(1.0)).toBe('merge');
+    });
+
+    it('AD2: similarity 0.75-0.879 -> conflict', () => {
+      expect(determineAction(0.75)).toBe('conflict');
+      expect(determineAction(0.80)).toBe('conflict');
+      expect(determineAction(0.879)).toBe('conflict');
+    });
+
+    it('AD3: similarity < 0.75 -> complement', () => {
+      expect(determineAction(0.74)).toBe('complement');
+      expect(determineAction(0.50)).toBe('complement');
+      expect(determineAction(0.0)).toBe('complement');
+    });
+
+    it('AD4: Boundary: exactly 0.88 is merge', () => {
+      expect(determineAction(0.88)).toBe('merge');
+    });
+
+    it('AD5: Boundary: exactly 0.75 is conflict', () => {
+      expect(determineAction(0.75)).toBe('conflict');
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Find Similar Memories
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Find Similar Memories', () => {
+    it('FS1: Returns results from findSimilar callback', () => {
+      const expected = [makeSimilarMemory({ id: 1, similarity: 0.9 })];
+      const results = findSimilarMemories(
+        makeEmbedding(10),
+        'test-spec',
+        mockFindSimilar(expected)
+      );
+      expect(results).toHaveLength(1);
+      expect(results[0].id).toBe(1);
+    });
+
+    it('FS2: Returns empty array on error', () => {
+      const errorFn = () => { throw new Error('Search failed'); };
+      const results = findSimilarMemories(
+        makeEmbedding(10),
+        'test-spec',
+        errorFn
+      );
+      expect(results).toHaveLength(0);
+    });
+
+    it('FS3: Passes limit parameter', () => {
+      let capturedOptions: any = null;
+      const captureFn = (_emb: any, opts: any) => {
+        capturedOptions = opts;
+        return [];
+      };
+      findSimilarMemories(makeEmbedding(10), 'test-spec', captureFn, 5);
+      expect(capturedOptions.limit).toBe(5);
+    });
+
+    it('FS4: Default limit is SIMILAR_MEMORY_LIMIT', () => {
+      let capturedOptions: any = null;
+      const captureFn = (_emb: any, opts: any) => {
+        capturedOptions = opts;
+        return [];
+      };
+      findSimilarMemories(makeEmbedding(10), 'test-spec', captureFn);
+      expect(capturedOptions.limit).toBe(SIMILAR_MEMORY_LIMIT);
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Merge Content Helper
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Merge Content', () => {
+    it('MC1: Empty existing returns incoming', () => {
+      const result = mergeContent('', 'new content');
+      expect(result).toBe('new content');
+    });
+
+    it('MC2: Empty incoming returns existing', () => {
+      const result = mergeContent('existing content', '');
+      expect(result).toBe('existing content');
+    });
+
+    it('MC3: Duplicate lines are not repeated', () => {
+      const result = mergeContent('line A\nline B', 'line A\nline B');
+      expect(result).toBe('line A\nline B'); // No merge section added
+    });
+
+    it('MC4: New unique lines are appended', () => {
+      const result = mergeContent('line A\nline B', 'line A\nline C');
+      expect(result).toContain('line A');
+      expect(result).toContain('line B');
+      expect(result).toContain('line C');
+      expect(result).toContain('<!-- Merged content -->');
+    });
+
+    it('MC5: Merged content has separator marker', () => {
+      const result = mergeContent('existing', 'new unique line');
+      expect(result).toContain('<!-- Merged content -->');
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Merge Path (>= 0.88)
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Merge Path (>= 0.88)', () => {
+    it('MP1: Merges content and increments frequency', async () => {
+      // Seed existing memory in DB
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, frequency_counter, created_at, updated_at)
+        VALUES (100, 'test-spec', '/test/existing.md', 'Existing', 'Existing content line A', 2, datetime('now'), datetime('now'))
+      `).run();
+
+      const existing = makeSimilarMemory({
+        id: 100,
+        content_text: 'Existing content line A',
+        frequency_counter: 2,
+        similarity: 0.90,
+      });
+
+      const newMem = makeNewMemory({ content: 'New unique content line B' });
+
+      const result = await executeMerge(existing, newMem, testDb);
+
+      expect(result.action).toBe('merge');
+      expect(result.existingMemoryId).toBe(100);
+      expect(result.frequencyCounter).toBe(3); // 2 + 1
+      expect(result.similarity).toBe(0.90);
+
+      // Verify DB update
+      const row = testDb.prepare('SELECT content_text, frequency_counter FROM memory_index WHERE id = 100').get();
+      expect(row.frequency_counter).toBe(3);
+      expect(row.content_text).toContain('Existing content line A');
+      expect(row.content_text).toContain('New unique content line B');
+    });
+
+    it('MP2: Frequency counter starts at 0 if not present', async () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, frequency_counter, created_at, updated_at)
+        VALUES (101, 'test-spec', '/test/101.md', 'No freq', 'Base content', 0, datetime('now'), datetime('now'))
+      `).run();
+
+      const existing = makeSimilarMemory({
+        id: 101,
+        content_text: 'Base content',
+        frequency_counter: undefined,
+        similarity: 0.92,
+      });
+
+      const result = await executeMerge(existing, makeNewMemory({ content: 'Extra content' }), testDb);
+      expect(result.frequencyCounter).toBe(1); // 0 + 1
+    });
+
+    it('MP3: Merge with embedding regeneration callback', async () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, frequency_counter, created_at, updated_at)
+        VALUES (102, 'test-spec', '/test/102.md', 'With emb', 'Original', 0, datetime('now'), datetime('now'))
+      `).run();
+      testDb.prepare(`
+        INSERT INTO vec_memories (rowid, embedding) VALUES (102, ?)
+      `).run(Buffer.from(new Float32Array([1, 0, 0]).buffer));
+
+      const existing = makeSimilarMemory({
+        id: 102,
+        content_text: 'Original',
+        similarity: 0.89,
+      });
+
+      const generateEmbedding = async () => new Float32Array([0, 1, 0]);
+
+      const result = await executeMerge(existing, makeNewMemory({ content: 'Additional content' }), testDb, generateEmbedding);
+      expect(result.action).toBe('merge');
+      // Embedding was updated (non-fatal; we just check it doesn't crash)
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Conflict Path (0.75 - 0.88)
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Conflict Path (0.75 - 0.88)', () => {
+    it('CP1: Replaces content and adds supersedes edge', () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, created_at, updated_at)
+        VALUES (200, 'test-spec', '/test/200.md', 'Old Title', 'Old content', datetime('now'), datetime('now'))
+      `).run();
+
+      const existing = makeSimilarMemory({
+        id: 200,
+        content_text: 'Old content',
+        title: 'Old Title',
+        similarity: 0.80,
+      });
+
+      const newMem = makeNewMemory({
+        id: 201,
+        title: 'New Title',
+        content: 'New replacement content',
+      });
+
+      const result = executeConflict(existing, newMem, testDb);
+
+      expect(result.action).toBe('conflict');
+      expect(result.existingMemoryId).toBe(200);
+      expect(result.newMemoryId).toBe(201);
+      expect(result.similarity).toBe(0.80);
+
+      // Verify DB update
+      const row = testDb.prepare('SELECT title, content_text FROM memory_index WHERE id = 200').get();
+      expect(row.title).toBe('New Title');
+      expect(row.content_text).toBe('New replacement content');
+
+      // Verify causal edge
+      expect(result.causalEdgeId).not.toBeNull();
+      const edges = causalEdges.getEdgesFrom('201');
+      expect(edges).toHaveLength(1);
+      expect(edges[0].relation).toBe('supersedes');
+      expect(edges[0].target_id).toBe('200');
+    });
+
+    it('CP2: Supersedes edge has TM-06 evidence', () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, created_at, updated_at)
+        VALUES (210, 'test-spec', '/test/210.md', 'Old', 'Old', datetime('now'), datetime('now'))
+      `).run();
+
+      const existing = makeSimilarMemory({ id: 210, similarity: 0.82 });
+      const newMem = makeNewMemory({ id: 211 });
+
+      executeConflict(existing, newMem, testDb);
+
+      const edges = causalEdges.getEdgesFrom('211');
+      expect(edges[0].evidence).toContain('TM-06');
+      expect(edges[0].evidence).toContain('reconsolidation');
+    });
+
+    it('CP3: Conflict with no new memory ID uses existing ID', () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, created_at, updated_at)
+        VALUES (220, 'test-spec', '/test/220.md', 'Old', 'Old', datetime('now'), datetime('now'))
+      `).run();
+
+      const existing = makeSimilarMemory({ id: 220, similarity: 0.78 });
+      const newMem = makeNewMemory({ id: undefined }); // No ID yet
+
+      const result = executeConflict(existing, newMem, testDb);
+      expect(result.newMemoryId).toBe(220); // Falls back to existing ID
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Complement Path (< 0.75)
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Complement Path (< 0.75)', () => {
+    it('CMP1: Stores new memory unchanged', () => {
+      const newMem = makeNewMemory();
+      const storeMemory = mockStoreMemory(300);
+
+      const result = executeComplement(newMem, storeMemory, 0.60);
+
+      expect(result.action).toBe('complement');
+      expect(result.newMemoryId).toBe(300);
+      expect(result.similarity).toBe(0.60);
+    });
+
+    it('CMP2: Passes null similarity when no candidates', () => {
+      const newMem = makeNewMemory();
+      const storeMemory = mockStoreMemory(301);
+
+      const result = executeComplement(newMem, storeMemory, null);
+
+      expect(result.action).toBe('complement');
+      expect(result.similarity).toBeNull();
+    });
+
+    it('CMP3: Calls storeMemory with the new memory', () => {
+      const newMem = makeNewMemory();
+      let capturedMemory: any = null;
+      const storeMemory = (mem: any) => {
+        capturedMemory = mem;
+        return 302;
+      };
+
+      executeComplement(newMem, storeMemory, 0.50);
+
+      expect(capturedMemory).toBe(newMem);
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Full Reconsolidation Orchestrator
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Reconsolidation Orchestrator', () => {
+    const originalEnv = process.env.SPECKIT_RECONSOLIDATION;
+
+    beforeEach(() => {
+      process.env.SPECKIT_RECONSOLIDATION = 'true';
+    });
+
+    afterEach(() => {
+      if (originalEnv !== undefined) {
+        process.env.SPECKIT_RECONSOLIDATION = originalEnv;
+      } else {
+        delete process.env.SPECKIT_RECONSOLIDATION;
+      }
+    });
+
+    it('RO1: Merge path when similarity >= 0.88', async () => {
+      // Seed existing memory
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, frequency_counter, created_at, updated_at)
+        VALUES (400, 'test-spec', '/test/400.md', 'Existing', 'Existing content', 1, datetime('now'), datetime('now'))
+      `).run();
+
+      const findSimilar = mockFindSimilar([
+        makeSimilarMemory({ id: 400, similarity: 0.90, content_text: 'Existing content', frequency_counter: 1 }),
+      ]);
+
+      const result = await reconsolidate(
+        makeNewMemory({ content: 'New extra content' }),
+        testDb,
+        { findSimilar, storeMemory: mockStoreMemory(401) }
+      );
+
+      expect(result).not.toBeNull();
+      expect(result!.action).toBe('merge');
+      if (result!.action === 'merge') {
+        expect(result!.existingMemoryId).toBe(400);
+        expect(result!.frequencyCounter).toBe(2);
+      }
+    });
+
+    it('RO2: Conflict path when similarity 0.75-0.88', async () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, created_at, updated_at)
+        VALUES (410, 'test-spec', '/test/410.md', 'Old', 'Old content', datetime('now'), datetime('now'))
+      `).run();
+
+      const findSimilar = mockFindSimilar([
+        makeSimilarMemory({ id: 410, similarity: 0.80, content_text: 'Old content' }),
+      ]);
+
+      const result = await reconsolidate(
+        makeNewMemory({ id: 411, content: 'Replacement content' }),
+        testDb,
+        { findSimilar, storeMemory: mockStoreMemory(411) }
+      );
+
+      expect(result).not.toBeNull();
+      expect(result!.action).toBe('conflict');
+      if (result!.action === 'conflict') {
+        expect(result!.existingMemoryId).toBe(410);
+      }
+    });
+
+    it('RO3: Complement path when similarity < 0.75', async () => {
+      const findSimilar = mockFindSimilar([
+        makeSimilarMemory({ id: 420, similarity: 0.60 }),
+      ]);
+
+      const result = await reconsolidate(
+        makeNewMemory(),
+        testDb,
+        { findSimilar, storeMemory: mockStoreMemory(421) }
+      );
+
+      expect(result).not.toBeNull();
+      expect(result!.action).toBe('complement');
+      if (result!.action === 'complement') {
+        expect(result!.newMemoryId).toBe(421);
+        expect(result!.similarity).toBe(0.60);
+      }
+    });
+
+    it('RO4: No similar memories -> complement', async () => {
+      const findSimilar = mockFindSimilar([]);
+
+      const result = await reconsolidate(
+        makeNewMemory(),
+        testDb,
+        { findSimilar, storeMemory: mockStoreMemory(430) }
+      );
+
+      expect(result).not.toBeNull();
+      expect(result!.action).toBe('complement');
+      if (result!.action === 'complement') {
+        expect(result!.similarity).toBeNull();
+      }
+    });
+
+    it('RO5: Flag OFF returns null (normal store)', async () => {
+      delete process.env.SPECKIT_RECONSOLIDATION;
+
+      const result = await reconsolidate(
+        makeNewMemory(),
+        testDb,
+        { findSimilar: mockFindSimilar([]), storeMemory: mockStoreMemory(440) }
+      );
+
+      expect(result).toBeNull();
+    });
+
+    it('RO6: TM-04/TM-06 interaction: similarity 0.89 passes TM-04, triggers TM-06 merge', async () => {
+      // This test validates that similarity in [0.88, 0.92) is:
+      // - ALLOWED by TM-04 (threshold 0.92 for dedup rejection)
+      // - HANDLED by TM-06 as MERGE (threshold 0.88)
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, frequency_counter, created_at, updated_at)
+        VALUES (450, 'test-spec', '/test/450.md', 'Existing', 'Existing content', 0, datetime('now'), datetime('now'))
+      `).run();
+
+      const findSimilar = mockFindSimilar([
+        makeSimilarMemory({
+          id: 450,
+          similarity: 0.89, // Between TM-04 (0.92) and TM-06 merge (0.88)
+          content_text: 'Existing content',
+          frequency_counter: 0,
+        }),
+      ]);
+
+      // TM-06 action determination
+      const action = determineAction(0.89);
+      expect(action).toBe('merge'); // 0.89 >= 0.88 -> merge
+
+      // Full reconsolidate flow
+      const result = await reconsolidate(
+        makeNewMemory({ content: 'Additional content to merge' }),
+        testDb,
+        { findSimilar, storeMemory: mockStoreMemory(451) }
+      );
+
+      expect(result).not.toBeNull();
+      expect(result!.action).toBe('merge');
+      if (result!.action === 'merge') {
+        expect(result!.existingMemoryId).toBe(450);
+        expect(result!.frequencyCounter).toBe(1);
+      }
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Checkpoint Requirement
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Checkpoint Requirement', () => {
+    it('CHK1: SPECKIT_RECONSOLIDATION requires explicit enable (not default)', () => {
+      // The reconsolidation feature is behind a flag that defaults to OFF.
+      // This ensures users must explicitly enable it, giving them the
+      // opportunity to create a checkpoint first.
+      delete process.env.SPECKIT_RECONSOLIDATION;
+      expect(isReconsolidationEnabled()).toBe(false);
+    });
+
+    it('CHK2: Documentation note — checkpoint MUST be created before enabling', () => {
+      // This is a documentation-level test. The actual checkpoint creation
+      // is handled by the caller before setting SPECKIT_RECONSOLIDATION=true.
+      // We verify the flag mechanism exists to enforce this workflow.
+      expect(typeof isReconsolidationEnabled).toBe('function');
+      // The feature being behind a flag means:
+      // 1. User creates checkpoint via checkpoint_create()
+      // 2. User sets SPECKIT_RECONSOLIDATION=true
+      // 3. Reconsolidation is now active
+    });
+  });
+
+  /* ─────────────────────────────────────────────────────────────
+     Edge Cases
+  ──────────────────────────────────────────────────────────────── */
+
+  describe('Edge Cases', () => {
+    const originalEnv = process.env.SPECKIT_RECONSOLIDATION;
+
+    beforeEach(() => {
+      process.env.SPECKIT_RECONSOLIDATION = 'true';
+    });
+
+    afterEach(() => {
+      if (originalEnv !== undefined) {
+        process.env.SPECKIT_RECONSOLIDATION = originalEnv;
+      } else {
+        delete process.env.SPECKIT_RECONSOLIDATION;
+      }
+    });
+
+    it('EC1: findSimilar returns empty -> complement', async () => {
+      const result = await reconsolidate(
+        makeNewMemory(),
+        testDb,
+        { findSimilar: mockFindSimilar([]), storeMemory: mockStoreMemory(500) }
+      );
+      expect(result!.action).toBe('complement');
+    });
+
+    it('EC2: findSimilar throws -> complement (non-fatal)', async () => {
+      const errorFn = () => { throw new Error('vector search down'); };
+      const result = await reconsolidate(
+        makeNewMemory(),
+        testDb,
+        { findSimilar: errorFn as any, storeMemory: mockStoreMemory(501) }
+      );
+      // findSimilarMemories catches errors and returns [], leading to complement
+      expect(result!.action).toBe('complement');
+    });
+
+    it('EC3: Merge with null existing content handles gracefully', async () => {
+      testDb.prepare(`
+        INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, frequency_counter, created_at, updated_at)
+        VALUES (510, 'test-spec', '/test/510.md', 'Null content', NULL, 0, datetime('now'), datetime('now'))
+      `).run();
+
+      const existing = makeSimilarMemory({
+        id: 510,
+        content_text: null,
+        similarity: 0.90,
+        frequency_counter: 0,
+      });
+
+      const result = await executeMerge(existing, makeNewMemory({ content: 'New content' }), testDb);
+      expect(result.action).toBe('merge');
+      expect(result.frequencyCounter).toBe(1);
+    });
+
+    it('EC4: Boundary similarity 0.88 -> merge (not conflict)', async () => {
+      expect(determineAction(0.88)).toBe('merge');
+    });
+
+    it('EC5: Boundary similarity 0.75 -> conflict (not complement)', async () => {
+      expect(determineAction(0.75)).toBe('conflict');
+    });
+
+    it('EC6: Boundary similarity 0.7499 -> complement', async () => {
+      expect(determineAction(0.7499)).toBe('complement');
+    });
+  });
+});

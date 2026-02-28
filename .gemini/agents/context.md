@@ -2,7 +2,7 @@
 name: context
 description: "Read-only codebase exploration agent — use for ALL file search, pattern discovery, dependency tracing, and context gathering tasks. Returns structured Context Packages. Never modifies files."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.1
 max_turns: 10
 timeout_mins: 5
@@ -47,17 +47,17 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ### Tools
 
-| Tool                    | Type        | Purpose                   | When to Use                          |
-| ----------------------- | ----------- | ------------------------- | ------------------------------------ |
-| `Glob`                  | Codebase    | File discovery by pattern | Find files matching name/extension   |
-| `Grep`                  | Codebase    | Text/code pattern search  | Find keywords, function calls, usage |
-| `Read`                  | Codebase    | File content inspection   | Examine implementations, configs     |
-| `List`                  | Codebase    | Directory listing         | Explore folder structure             |
-| `memory_match_triggers` | Memory (L2) | Trigger phrase matching   | Quick context surfacing (Layer 1)    |
-| `memory_context`        | Memory (L1) | Unified context retrieval | Intent-aware routing (Layer 1/3)     |
-| `memory_search`         | Memory (L2) | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion | Deep memory retrieval (Layer 3) |
-| `memory_list`           | Memory (L3) | Browse stored memories    | Discover what memories exist         |
-| `memory_stats`          | Memory (L3) | Memory system statistics  | Check memory health and coverage     |
+| Tool                    | Type        | Purpose                                                      | When to Use                          |
+| ----------------------- | ----------- | ------------------------------------------------------------ | ------------------------------------ |
+| `Glob`                  | Codebase    | File discovery by pattern                                    | Find files matching name/extension   |
+| `Grep`                  | Codebase    | Text/code pattern search                                     | Find keywords, function calls, usage |
+| `Read`                  | Codebase    | File content inspection                                      | Examine implementations, configs     |
+| `List`                  | Codebase    | Directory listing                                            | Explore folder structure             |
+| `memory_match_triggers` | Memory (L2) | Trigger phrase matching                                      | Quick context surfacing (Layer 1)    |
+| `memory_context`        | Memory (L1) | Unified context retrieval                                    | Intent-aware routing (Layer 1/3)     |
+| `memory_search`         | Memory (L2) | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion | Deep memory retrieval (Layer 3)      |
+| `memory_list`           | Memory (L3) | Browse stored memories                                       | Discover what memories exist         |
+| `memory_stats`          | Memory (L3) | Memory system statistics                                     | Check memory health and coverage     |
 
 ### Tool Selection Guide
 
@@ -354,13 +354,13 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 
 ### Memory Tools (Spec Kit Memory MCP)
 
-| Tool                    | Level | Purpose                                   |
-| ----------------------- | ----- | ----------------------------------------- |
-| `memory_context`        | L1    | Unified entry point for context retrieval |
-| `memory_match_triggers` | L2    | Fast trigger phrase matching              |
+| Tool                    | Level | Purpose                                                      |
+| ----------------------- | ----- | ------------------------------------------------------------ |
+| `memory_context`        | L1    | Unified entry point for context retrieval                    |
+| `memory_match_triggers` | L2    | Fast trigger phrase matching                                 |
 | `memory_search`         | L2    | 3-channel hybrid search (Vector, BM25, FTS5) with RRF fusion |
-| `memory_list`           | L3    | Browse stored memories                    |
-| `memory_stats`          | L3    | Memory system statistics                  |
+| `memory_list`           | L3    | Browse stored memories                                       |
+| `memory_stats`          | L3    | Memory system statistics                                     |
 
 ### Skills
 

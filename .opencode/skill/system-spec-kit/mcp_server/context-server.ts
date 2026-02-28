@@ -6,6 +6,7 @@
 // shutdown, and main orchestration only.
 // ---------------------------------------------------------------
 
+import fs from 'fs';
 import path from 'path';
 
 /* ---------------------------------------------------------------
@@ -302,7 +303,31 @@ async function recoverPendingFiles(basePath: string): Promise<PendingRecoveryRes
   console.error('[context-server] Checking for pending memory files...');
 
   try {
-    const rawResults = transactionManager.recoverAllPendingFiles(basePath);
+    // BUG-028 FIX: Restrict scan to known memory file locations to prevent OOM when scanning large workspaces
+    const scanLocations = [
+      path.join(basePath, 'specs'),
+      path.join(basePath, '.opencode', 'specs')
+    ];
+
+    // Also scan constitutional directories (.opencode/skill/*/constitutional/)
+    const skillDir = path.join(basePath, '.opencode', 'skill');
+    try {
+      if (fs.existsSync(skillDir)) {
+        const entries = fs.readdirSync(skillDir, { withFileTypes: true });
+        for (const entry of entries) {
+          if (entry.isDirectory() && !entry.name.startsWith('.')) {
+            const constDir = path.join(skillDir, entry.name, 'constitutional');
+            if (fs.existsSync(constDir)) {
+              scanLocations.push(constDir);
+            }
+          }
+        }
+      }
+    } catch {
+      // Non-fatal: constitutional directory discovery failed
+    }
+
+    const rawResults = scanLocations.flatMap(loc => transactionManager.recoverAllPendingFiles(loc));
 
     // Aggregate per-file results into a summary
     const found = rawResults.length;

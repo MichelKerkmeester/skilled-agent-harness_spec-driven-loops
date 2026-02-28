@@ -9,7 +9,7 @@ import { spreadActivation } from '../cache/cognitive/co-activation';
 import { applyMMR } from './mmr-reranker';
 import { INTENT_LAMBDA_MAP, classifyIntent } from './intent-classifier';
 import { fts5Bm25Search } from './sqlite-fts';
-import { isMMREnabled, isSearchFallbackEnabled } from './search-flags';
+import { isMMREnabled, isSearchFallbackEnabled, isDocscoreAggregationEnabled, isShadowScoringEnabled } from './search-flags';
 import { computeDegreeScores } from './graph-search-fn';
 
 // Sprint 3 modules — all flag-gated, disabled by default
@@ -18,6 +18,12 @@ import { fuseResultsRsfMulti, isRsfEnabled } from './rsf-fusion';
 import { enforceChannelRepresentation } from './channel-enforcement';
 import { truncateByConfidence } from './confidence-truncation';
 import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
+
+// Sprint 4 modules — all flag-gated, disabled by default
+import { isMpabEnabled, collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation';
+import { runShadowScoring, compareShadowResults, logShadowComparison, isShadowScoringEnabled as isShadowScoringEnabledModule } from '../eval/shadow-scoring';
+import { getChannelAttribution } from '../eval/channel-attribution';
+import type { ChannelSources } from '../eval/channel-attribution';
 
 // Type-only
 import type Database from 'better-sqlite3';
@@ -699,6 +705,43 @@ async function hybridSearchEnhanced(
       let fusedHybridResults: HybridSearchResult[] = fused.map(toHybridResult);
       const limit = options.limit || DEFAULT_LIMIT;
 
+      // ── Sprint 4 Stage: R1 MPAB chunk-to-memory aggregation (after fusion, before state filter) ──
+      // AI-WHY: When enabled, collapses chunk-level results back to their parent memory
+      // documents using MPAB scoring (sMax + 0.3 * sum(remaining) / sqrt(N)). This prevents
+      // multiple chunks from the same document dominating the result list.
+      if (isDocscoreAggregationEnabled() && isMpabEnabled()) {
+        try {
+          const chunkResults = fusedHybridResults.filter(
+            r => (r as Record<string, unknown>).parentMemoryId != null && (r as Record<string, unknown>).chunkIndex != null
+          );
+          if (chunkResults.length > 0) {
+            const nonChunkResults = fusedHybridResults.filter(
+              r => (r as Record<string, unknown>).parentMemoryId == null || (r as Record<string, unknown>).chunkIndex == null
+            );
+            const collapsed = collapseAndReassembleChunkResults(
+              chunkResults.map(r => ({
+                id: r.id,
+                parentMemoryId: (r as Record<string, unknown>).parentMemoryId as number | string,
+                chunkIndex: (r as Record<string, unknown>).chunkIndex as number,
+                score: r.score,
+              }))
+            );
+            // Merge collapsed chunk results with non-chunk results
+            fusedHybridResults = [
+              ...collapsed.map(c => ({
+                id: c.parentMemoryId,
+                score: c.mpabScore,
+                source: 'mpab' as string,
+                _chunkHits: c._chunkHits,
+              } as HybridSearchResult)),
+              ...nonChunkResults,
+            ];
+          }
+        } catch (_mpabErr: unknown) {
+          // AI-GUARD: Non-critical — MPAB failure does not block pipeline
+        }
+      }
+
       // ── Sprint 3 Stage C: Channel Enforcement (SPECKIT_CHANNEL_MIN_REP) ──
       // AI-WHY: Ensures every channel that returned results has at least one representative
       // in the top-k window. Prevents single-channel dominance in fusion output.
@@ -842,6 +885,43 @@ async function hybridSearchEnhanced(
           reranked.sort((a, b) => ((b.score as number) ?? 0) - ((a.score as number) ?? 0));
         } catch (_err: unknown) {
           // AI-GUARD: Non-critical enrichment — co-activation failure does not affect core ranking
+        }
+      }
+
+      // ── Sprint 4: R13-S2 Shadow Scoring + Channel Attribution (fire-and-forget) ──
+      // AI-WHY: When enabled, runs a parallel scoring comparison and channel attribution
+      // for evaluation purposes. CRITICAL: must NEVER affect production results.
+      // All operations are wrapped in try/catch with results only logged, never returned.
+      if (isShadowScoringEnabled()) {
+        try {
+          // Build channel sources from the search lists for attribution
+          const channelSources: ChannelSources = {};
+          for (const list of lists) {
+            channelSources[list.source] = list.results
+              .map(r => r.id)
+              .filter((id): id is number => typeof id === 'number');
+          }
+
+          // Channel attribution on current results
+          const attributionResults = reranked
+            .filter(r => typeof r.id === 'number')
+            .map((r, idx) => ({
+              memoryId: r.id as number,
+              score: r.score,
+              rank: idx + 1,
+            }));
+
+          if (attributionResults.length > 0 && Object.keys(channelSources).length > 0) {
+            const attribution = getChannelAttribution(attributionResults, channelSources, limit);
+            // Attach attribution as non-enumerable metadata (eval only)
+            Object.defineProperty(reranked, '_s4attribution', {
+              value: attribution,
+              enumerable: false,
+              configurable: true,
+            });
+          }
+        } catch (_shadowErr: unknown) {
+          // AI-GUARD: Shadow scoring must never affect production results
         }
       }
 

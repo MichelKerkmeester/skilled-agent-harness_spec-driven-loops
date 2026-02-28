@@ -2,7 +2,7 @@
 name: research
 description: "Technical investigation specialist — use for evidence gathering, feasibility analysis, architecture exploration, and technology comparison. Produces research.md with cited findings. Has web access for external documentation lookup."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.1
 max_turns: 20
 timeout_mins: 15

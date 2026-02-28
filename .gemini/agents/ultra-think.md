@@ -2,7 +2,7 @@
 name: ultra-think
 description: "Multi-strategy planning architect that dispatches diverse thinking strategies for optimal plans. Outputs plans only, never modifies files. Explores the solution space through Analytical, Creative, Critical, Pragmatic, and Holistic lenses, then synthesizes via formal comparative scoring."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.1
 max_turns: 30
 timeout_mins: 20
@@ -115,9 +115,9 @@ Task Type Received
 
 ### Strategy Count Guidelines
 
-| Strategies | When to Use                                     |
-| ---------- | ----------------------------------------------- |
-| N=2        | Simple tasks with clear constraints             |
+| Strategies | When to Use                                         |
+| ---------- | --------------------------------------------------- |
+| N=2        | Simple tasks with clear constraints                 |
 | N=3        | Default and maximum: balanced coverage + validation |
 
 ---

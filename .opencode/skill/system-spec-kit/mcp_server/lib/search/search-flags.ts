@@ -52,3 +52,37 @@ export function isSearchFallbackEnabled(): boolean {
 export function isFolderDiscoveryEnabled(): boolean {
   return process.env.SPECKIT_FOLDER_DISCOVERY?.toLowerCase() === 'true';
 }
+
+// ── Sprint 4: Hybrid RAG Fusion Refinement flags ──
+
+/**
+ * R1 MPAB: Document-level chunk-to-memory score aggregation.
+ * Default: FALSE (opt-in). Set SPECKIT_DOCSCORE_AGGREGATION=true to enable.
+ */
+export function isDocscoreAggregationEnabled(): boolean {
+  return process.env.SPECKIT_DOCSCORE_AGGREGATION?.toLowerCase() === 'true';
+}
+
+/**
+ * R13-S2: Shadow scoring for A/B comparison evaluation.
+ * Default: FALSE (opt-in). Set SPECKIT_SHADOW_SCORING=true to enable.
+ */
+export function isShadowScoringEnabled(): boolean {
+  return process.env.SPECKIT_SHADOW_SCORING?.toLowerCase() === 'true';
+}
+
+/**
+ * TM-04: Pre-storage quality gate for memory saves.
+ * Default: FALSE (opt-in). Set SPECKIT_SAVE_QUALITY_GATE=true to enable.
+ */
+export function isSaveQualityGateEnabled(): boolean {
+  return process.env.SPECKIT_SAVE_QUALITY_GATE?.toLowerCase() === 'true';
+}
+
+/**
+ * TM-06: Reconsolidation-on-save for memory deduplication.
+ * Default: FALSE (opt-in). Set SPECKIT_RECONSOLIDATION=true to enable.
+ */
+export function isReconsolidationEnabled(): boolean {
+  return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() === 'true';
+}

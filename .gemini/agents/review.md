@@ -2,7 +2,7 @@
 name: review
 description: "Read-only code review specialist — use for PR reviews, pre-commit checks, quality scoring (0-100), security audits, and pattern validation. Returns structured reports with P0/P1/P2 severity issues. Never modifies files."
 kind: local
-model: gemini-3.1-pro
+model: gemini-3.1-pro-preview
 temperature: 0.1
 max_turns: 15
 timeout_mins: 5
@@ -64,10 +64,10 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ### Skills
 
-| Skill | Domain | Use When | Key Features |
-| --- | --- | --- | --- |
-| `sk-code` | Review baseline | Every review invocation | Universal findings-first rules, security/correctness minimums, severity contract |
-| `sk-code--*` | Stack overlay | After baseline load, selected from stack/codebase signals | Stack-specific style/process/build/test conventions |
+| Skill        | Domain          | Use When                                                  | Key Features                                                                     |
+| ------------ | --------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `sk-code`    | Review baseline | Every review invocation                                   | Universal findings-first rules, security/correctness minimums, severity contract |
+| `sk-code--*` | Stack overlay   | After baseline load, selected from stack/codebase signals | Stack-specific style/process/build/test conventions                              |
 
 **Overlay selection**:
 - Choose the best matching available `sk-code--*` overlay from stack/codebase signals

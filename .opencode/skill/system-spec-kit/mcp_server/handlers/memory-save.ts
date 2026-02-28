@@ -34,6 +34,12 @@ import type { MCPResponse } from './types';
 import type BetterSqlite3 from 'better-sqlite3';
 import { clearConstitutionalCache } from '../hooks/memory-surface';
 
+// Sprint 4: Quality gate + reconsolidation — all flag-gated, disabled by default
+import { runQualityGate, isQualityGateEnabled } from '../lib/validation/save-quality-gate';
+import { reconsolidate, isReconsolidationEnabled } from '../lib/storage/reconsolidation';
+import type { ReconsolidationResult } from '../lib/storage/reconsolidation';
+import { isSaveQualityGateEnabled, isReconsolidationEnabled as isReconsolidationFlagEnabled } from '../lib/search/search-flags';
+
 import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
 import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
 
@@ -1043,6 +1049,55 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     }
   }
 
+  // ── Sprint 4: TM-04 Quality Gate (before PE gating, after embedding) ──
+  // AI-WHY: When enabled, runs 3-layer validation (structural, content quality, semantic dedup)
+  // before allowing the memory to proceed to PE gating and storage. Rejected memories return early.
+  if (isSaveQualityGateEnabled() && isQualityGateEnabled()) {
+    try {
+      const qualityGateResult = runQualityGate({
+        title: parsed.title,
+        content: parsed.content,
+        specFolder: parsed.specFolder,
+        triggerPhrases: parsed.triggerPhrases,
+        embedding: embedding,
+        findSimilar: embedding ? (emb, opts) => {
+          return findSimilarMemories(emb as Float32Array, {
+            limit: opts.limit,
+            specFolder: opts.specFolder,
+          }).map(m => ({
+            id: m.id,
+            file_path: m.file_path,
+            similarity: m.similarity,
+          }));
+        } : null,
+      });
+
+      if (!qualityGateResult.pass && !qualityGateResult.warnOnly) {
+        console.info(`[memory-save] TM-04: Quality gate REJECTED save for ${path.basename(filePath)}: ${qualityGateResult.reasons.join('; ')}`);
+        return {
+          status: 'rejected',
+          id: 0,
+          specFolder: parsed.specFolder,
+          title: parsed.title ?? '',
+          message: `Quality gate rejected: ${qualityGateResult.reasons.join('; ')}`,
+          qualityGate: {
+            pass: false,
+            reasons: qualityGateResult.reasons,
+            layers: qualityGateResult.layers,
+          },
+        };
+      }
+
+      if (qualityGateResult.wouldReject) {
+        console.warn(`[memory-save] TM-04: Quality gate WARN-ONLY for ${path.basename(filePath)}: ${qualityGateResult.reasons.join('; ')}`);
+      }
+    } catch (qgErr: unknown) {
+      const message = toErrorMessage(qgErr);
+      console.warn(`[memory-save] TM-04: Quality gate error (proceeding with save): ${message}`);
+      // AI-GUARD: Quality gate errors must not block saves
+    }
+  }
+
   // PE GATING
   let peDecision: PeDecision = { action: 'CREATE', similarity: 0 };
   let candidates: SimilarMemory[] = [];
@@ -1163,6 +1218,102 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
           console.info(`[PE-Gate] CREATE: Low similarity (${peDecision.similarity.toFixed(1)}%)`);
         }
         break;
+    }
+  }
+
+  // ── Sprint 4: TM-06 Reconsolidation-on-Save (after PE gating, before new memory creation) ──
+  // AI-WHY: When enabled, checks for similar memories and performs merge (>=0.88 similarity),
+  // conflict/supersede (0.75-0.88), or complement (<0.75). If reconsolidation handles the memory
+  // (merge or conflict), we skip normal DB insert and return the reconsolidation result.
+  if (isReconsolidationFlagEnabled() && isReconsolidationEnabled() && embedding) {
+    try {
+      const reconResult: ReconsolidationResult | null = await reconsolidate(
+        {
+          title: parsed.title,
+          content: parsed.content,
+          specFolder: parsed.specFolder,
+          filePath,
+          embedding,
+          triggerPhrases: parsed.triggerPhrases,
+          importanceTier: parsed.importanceTier,
+        },
+        database,
+        {
+          findSimilar: (emb, opts) => {
+            const results = vectorIndex.vectorSearch(emb as Float32Array, {
+              limit: opts.limit,
+              specFolder: opts.specFolder,
+              minSimilarity: 50,
+              includeConstitutional: false,
+            });
+            return results.map((r: Record<string, unknown>) => ({
+              id: r.id as number,
+              file_path: r.file_path as string,
+              title: (r.title as string) ?? null,
+              content_text: (r.content as string) ?? null,
+              similarity: ((r.similarity as number) ?? 0) / 100,
+              spec_folder: parsed.specFolder,
+            }));
+          },
+          storeMemory: (memory) => {
+            const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+            return vectorIndex.indexMemory({
+              specFolder: memory.specFolder,
+              filePath: memory.filePath,
+              title: memory.title,
+              triggerPhrases: memory.triggerPhrases ?? [],
+              importanceWeight,
+              embedding: memory.embedding as Float32Array,
+              documentType: parsed.documentType || 'memory',
+              contentText: memory.content,
+            });
+          },
+          generateEmbedding: async (content: string) => {
+            return embeddings.generateDocumentEmbedding(content);
+          },
+        }
+      );
+
+      if (reconResult && reconResult.action !== 'complement') {
+        // Reconsolidation handled the memory (merge or conflict) — skip normal CREATE path
+        console.info(`[memory-save] TM-06: Reconsolidation ${reconResult.action} for ${path.basename(filePath)}`);
+
+        const reconId = reconResult.action === 'merge'
+          ? reconResult.existingMemoryId
+          : reconResult.action === 'conflict'
+            ? reconResult.newMemoryId
+            : 0;
+
+        appendMutationLedgerSafe(database, {
+          mutationType: 'update',
+          reason: `memory_save: reconsolidation ${reconResult.action}`,
+          priorHash: null,
+          newHash: parsed.contentHash,
+          linkedMemoryIds: [reconId],
+          decisionMeta: {
+            tool: 'memory_save',
+            action: `reconsolidation_${reconResult.action}`,
+            similarity: reconResult.similarity,
+            specFolder: parsed.specFolder,
+            filePath,
+          },
+          actor: 'mcp:memory_save',
+        });
+
+        return {
+          status: reconResult.action === 'merge' ? 'merged' : 'superseded',
+          id: reconId,
+          specFolder: parsed.specFolder,
+          title: parsed.title ?? '',
+          reconsolidation: reconResult,
+          message: `Reconsolidation: ${reconResult.action} (similarity: ${reconResult.similarity?.toFixed(3) ?? 'N/A'})`,
+        };
+      }
+      // reconResult is null or complement — fall through to normal CREATE path
+    } catch (reconErr: unknown) {
+      const message = toErrorMessage(reconErr);
+      console.warn(`[memory-save] TM-06: Reconsolidation error (proceeding with normal save): ${message}`);
+      // AI-GUARD: Reconsolidation errors must not block saves
     }
   }
 
