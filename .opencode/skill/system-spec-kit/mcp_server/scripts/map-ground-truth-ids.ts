@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 // ---------------------------------------------------------------
-// SCRIPT: Map Ground Truth Placeholder IDs to Real Production DB IDs
+// MODULE: Map Ground Truth Placeholder IDs to Real Production DB IDs
 //
 // Sprint 0 closure task: resolve memoryId=-1 placeholders in
 // ground-truth-data.ts by matching queries against real memories

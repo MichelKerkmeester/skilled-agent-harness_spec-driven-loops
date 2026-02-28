@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 // ---------------------------------------------------------------
-// SCRIPT: Run BM25-Only Baseline Measurement (T008)
+// MODULE: Run BM25-Only Baseline Measurement (T008)
 //
 // Sprint 0 closure: Execute the BM25-only baseline against the
 // live production context-index.sqlite and record results in the
