@@ -156,7 +156,7 @@ contextType: "implementation"
 - [ ] CHK-S13 [P1] G-NEW-2: Agent consumption instrumentation active; initial pattern report drafted
 - [ ] CHK-S15 [P1] Co-activation boost strength (A7) increased to 0.25-0.3x; effective contribution ≥15% at hop 2
 - [ ] CHK-S16 [P1] TM-08 importance signal vocabulary expanded — CORRECTION and PREFERENCE signal categories recognized by trigger extraction
-- [ ] CHK-S17 [P1] Feature flag count ≤6 at Sprint 1 exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S17 [P1] Feature flag count ≤6 at Sprint 1 exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 2: Scoring Calibration [P1]
 
@@ -168,7 +168,7 @@ contextType: "implementation"
 - [ ] CHK-S25 [P1] RRF K-value sensitivity investigation completed; optimal K documented
 - [ ] CHK-S26 [P1] TM-01 interference scoring signal operational — interference_score column populated at index time; composite scoring applies negative weight behind flag
 - [ ] CHK-S27 [P1] TM-03 classification-based decay verified — decisions and constitutional memories show 0 decay; temporary memories decay at 0.5x rate; standard memories unchanged
-- [ ] CHK-S28 [P1] Feature flag count ≤6 at Sprint 2 exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S28 [P1] Feature flag count ≤6 at Sprint 2 exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 3: Query Intelligence [P1]
 
@@ -178,7 +178,7 @@ contextType: "implementation"
 - [ ] CHK-S33 [P1] Off-ramp evaluation: check MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
 - [ ] CHK-S34 [P1] Confidence-based result truncation produces >=3 results and reduces tail by >30%
 - [ ] CHK-S35 [P1] Dynamic token budget allocation respects tier limits (1500/2500/4000)
-- [ ] CHK-S36 [P1] Feature flag count ≤6 at Sprint 3 exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S36 [P1] Feature flag count ≤6 at Sprint 3 exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 4: Feedback Loop [P1]
 
@@ -199,7 +199,7 @@ contextType: "implementation"
 - [ ] [P0] [CHK-TM06-SOFT] TM-06 reconsolidation "replace" action uses soft-delete: superseded memories excluded from search but retained in database
 - [ ] CHK-S4E [P1] Sprint 4a (R1+R13-S2+TM-04) completed and verified BEFORE Sprint 4b (R11+TM-06) begins — evidence: Sprint 4a gate items (CHK-S41, CHK-S43, CHK-S46, CHK-S4A) all marked [x] before T027/T059 start
 - [ ] CHK-S4F [P1] R11 activation deferred until ≥2 full R13 eval cycles completed (minimum 28 calendar days of data) — evidence: R13 eval_metric_snapshots table shows ≥2 distinct eval cycle timestamps spanning ≥28 days
-- [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S4G [P1] Feature flag count ≤6 at Sprint 4 exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 5: Pipeline Refactor [P1]
 
@@ -213,7 +213,7 @@ contextType: "implementation"
 - [ ] CHK-S57 [P1] S2 template anchor optimization: anchor-aware retrieval metadata available and functional
 - [ ] CHK-S58 [P1] S3 validation signals integrated as retrieval metadata in scoring pipeline
 - [ ] CHK-S5A [P1] TM-05 dual-scope injection operational — memory auto-surface hooks active at >=2 lifecycle points with per-point token budgets enforced
-- [ ] CHK-S5B [P1] Feature flag count ≤6 at Sprint 5 exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S5B [P1] Feature flag count ≤6 at Sprint 5 exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 6a: Practical Improvements [P1]
 
@@ -224,16 +224,16 @@ contextType: "implementation"
 - [ ] CHK-S67 [P1] S4 spec folder hierarchy traversal functional in retrieval
 - [ ] CHK-S68 [P1] N3-lite safety bounds enforced: MAX_EDGES_PER_NODE cap and MAX_STRENGTH_INCREASE=0.05/cycle verified
 - [ ] CHK-S68a [P0] MR10 weight_history audit tracking verified — all N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs
-- [ ] CHK-S69a [P1] Feature flag count ≤6 at Sprint 6a exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S69a [P1] Feature flag count ≤6 at Sprint 6a exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 6b: Graph Sophistication [P1] (GATED)
 
 - [ ] CHK-S6B-PRE [P0] Sprint 6b entry gate — feasibility spike completed, OQ-S6-001/002 resolved, REQ-S6-004 density-conditioned
 - [ ] CHK-S61 [P1] R10 false positive rate < 20% on manual review
 - [ ] CHK-S62 [P1] N2 graph channel attribution > 10% of final top-K
-- [ ] CHK-S64 [P1] Active feature flag count <= 6
+- [ ] CHK-S64 [P1] Active feature flag count <= 6 (≤8 absolute ceiling per NFR-O01)
 - [ ] CHK-S65 [P1] All health dashboard targets met (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
-- [ ] CHK-S69b [P1] Feature flag count ≤6 at Sprint 6b exit + sunset decisions documented (see CHK-S0F)
+- [ ] CHK-S69b [P1] Feature flag count ≤6 at Sprint 6b exit (≤8 absolute ceiling per NFR-O01) + sunset decisions documented (see CHK-S0F)
 
 ### Sprint 7: Long Horizon [P2]
 
@@ -243,7 +243,7 @@ contextType: "implementation"
 - [ ] CHK-S73 [P2] R13-S3 full reporting dashboard + ablation study framework operational
 - [ ] CHK-S74 [P2] R5 INT8 quantization decision documented (implement or defer with rationale)
 - [ ] CHK-S75 [P2] Final feature flag sunset audit completed — all sprint-specific flags resolved
-- [ ] CHK-S76 [P2] Feature flag count ≤6 at Sprint 7 exit + final sunset audit (see CHK-S0F); ideally 0 remaining flags
+- [ ] CHK-S76 [P2] Feature flag count ≤6 at Sprint 7 exit (≤8 absolute ceiling per NFR-O01) + final sunset audit (see CHK-S0F); ideally 0 remaining flags
 - [ ] [P1] [CHK-S77] R8 summary pre-filtering verified (if activated): summary quality >=80% relevance
 - [ ] [P1] [CHK-S78] S1 content generation matches template schema >=95% automated validation
 - [ ] [P1] [CHK-S79] S5 entity links established with >=90% precision

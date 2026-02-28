@@ -34,11 +34,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Embedding Cache (R18)
 
-- [ ] T001 [P] Create `embedding_cache` table with migration — schema: `content_hash TEXT, model_id TEXT, embedding BLOB, dimensions INT, created_at TEXT, last_used_at TEXT, PRIMARY KEY (content_hash, model_id)` [8-12h] — R18 (REQ-S2-001)
-  - [ ] T001a Create table migration with backup protocol — Implementation hint: Use `db.exec('CREATE TABLE IF NOT EXISTS embedding_cache ...')` pattern from existing migrations in `db.ts`
-  - [ ] T001b Implement cache lookup logic in embedding pipeline — Implementation hint: Check `SELECT embedding FROM embedding_cache WHERE content_hash = ? AND model_id = ?` before calling embedding API; update `last_used_at` on hit
-  - [ ] T001c Implement cache store logic on embedding generation — Implementation hint: After successful embedding generation, `INSERT OR REPLACE INTO embedding_cache ...`
-  - [ ] T001d Add `last_used_at` update for cache eviction support — Enables future LRU eviction; `UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?`
+- [x] T001 [P] Create `embedding_cache` table with migration — schema: `content_hash TEXT, model_id TEXT, embedding BLOB, dimensions INT, created_at TEXT, last_used_at TEXT, PRIMARY KEY (content_hash, model_id)` [8-12h] — R18 (REQ-S2-001)
+  - [x] T001a Create table migration with backup protocol — Implementation hint: Use `db.exec('CREATE TABLE IF NOT EXISTS embedding_cache ...')` pattern from existing migrations in `db.ts`
+  - [x] T001b Implement cache lookup logic in embedding pipeline — Implementation hint: Check `SELECT embedding FROM embedding_cache WHERE content_hash = ? AND model_id = ?` before calling embedding API; update `last_used_at` on hit
+  - [x] T001c Implement cache store logic on embedding generation — Implementation hint: After successful embedding generation, `INSERT OR REPLACE INTO embedding_cache ...`
+  - [x] T001d Add `last_used_at` update for cache eviction support — Enables future LRU eviction; `UPDATE embedding_cache SET last_used_at = datetime('now') WHERE content_hash = ? AND model_id = ?`
   - Acceptance: Cache hit rate >90% on re-index of unchanged content; cache lookup adds <1ms p95; model_id change triggers cache miss (correct behavior)
 <!-- /ANCHOR:phase-1 -->
 
@@ -47,7 +47,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Cold-Start Boost (N4)
 
-- [ ] T002 [P] Implement cold-start boost with exponential decay behind `SPECKIT_NOVELTY_BOOST` flag (`composite-scoring.ts`) [3-5h] — N4 (REQ-S2-002)
+- [x] T002 [P] Implement cold-start boost with exponential decay behind `SPECKIT_NOVELTY_BOOST` flag (`composite-scoring.ts`) [3-5h] — N4 (REQ-S2-002)
   - Formula: `boost = 0.15 * exp(-elapsed_hours / 12)`
   - Applied BEFORE FSRS temporal decay
   - Combined score cap at 0.95
@@ -61,11 +61,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: G2 Investigation
 
-- [ ] T003 [P] Investigate double intent weighting — trace intent weight application through full pipeline (`hybrid-search.ts`) [4-6h] — G2 (REQ-S2-003)
-  - [ ] T003a Identify all locations where intent weights are applied — Implementation hint: Search for `intent` weight application in 3 files: `hybrid-search.ts`, `intent-classifier.ts`, `adaptive-fusion.ts`. Trace the data flow from classification through to final scoring.
-  - [ ] T003b Determine: bug or intentional design — Decision criteria: If weights are applied once in classification AND once in fusion, it is likely a bug (double-counting). If applied in classification for channel selection AND in fusion for score weighting (different purposes), it may be intentional.
-  - [ ] T003c If bug: fix. If intentional: document rationale — Either way, dark-run comparison before/after to verify no MRR@5 regression
-  - [ ] T003d Select normalization method — measure actual RRF and composite score distributions on 100-query sample; compare linear scaling vs. min-max output stability; document selection in decision record before Phase 4 begins [1-2h] {T003b} — OQ-S2-003 resolution
+- [x] T003 [P] Investigate double intent weighting — trace intent weight application through full pipeline (`hybrid-search.ts`) [4-6h] — G2 (REQ-S2-003)
+  - [x] T003a Identify all locations where intent weights are applied — Implementation hint: Search for `intent` weight application in 3 files: `hybrid-search.ts`, `intent-classifier.ts`, `adaptive-fusion.ts`. Trace the data flow from classification through to final scoring.
+  - [x] T003b Determine: bug or intentional design — Decision criteria: If weights are applied once in classification AND once in fusion, it is likely a bug (double-counting). If applied in classification for channel selection AND in fusion for score weighting (different purposes), it may be intentional.
+  - [x] T003c If bug: fix. If intentional: document rationale — Either way, dark-run comparison before/after to verify no MRR@5 regression
+  - [x] T003d Select normalization method — measure actual RRF and composite score distributions on 100-query sample; compare linear scaling vs. min-max output stability; document selection in decision record before Phase 4 begins [1-2h] {T003b} — OQ-S2-003 resolution
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -73,9 +73,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Score Normalization (depends on Phase 3)
 
-- [ ] T004 Implement score normalization — both RRF and composite to [0,1] range (`rrf-fusion.ts`, `composite-scoring.ts`) [4-6h] {T003} — Calibration (REQ-S2-004)
+- [x] T004 Implement score normalization — both RRF and composite to [0,1] range (`rrf-fusion.ts`, `composite-scoring.ts`) [4-6h] {T003} — Calibration (REQ-S2-004)
   - Note: Normalization approach may depend on G2 outcome
-- [ ] T004a [P] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100}, measure MRR@5 delta per value [2-3h] {T004} — Calibration (REQ-S2-005)
+- [x] T004a [P] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100}, measure MRR@5 delta per value [2-3h] {T004} — Calibration (REQ-S2-005)
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -83,7 +83,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-5 -->
 ## Phase 5: Interference Scoring (TM-01)
 
-- [ ] T005 [P] Implement interference scoring — add `interference_score` column to `memory_index` (migration), compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`, apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] — TM-01 (REQ-S2-006)
+- [x] T005 [P] Implement interference scoring — add `interference_score` column to `memory_index` (migration), compute at index time by counting memories with cosine similarity > 0.75 in same `spec_folder`, apply as `-0.08 * interference_score` in `composite-scoring.ts` behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] — TM-01 (REQ-S2-006)
   - Note: 0.75 similarity threshold and -0.08 penalty coefficient are initial calibration values, subject to tuning after 2 eval cycles. N4 boost is applied BEFORE TM-01 penalty in composite scoring pipeline (N4 establishes floor, TM-01 penalizes cluster density).
 <!-- /ANCHOR:phase-5 -->
 
@@ -92,7 +92,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-6 -->
 ## Phase 6: Classification-Based Decay (TM-03)
 
-- [ ] T006 [P] Implement classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) [3-5h] — TM-03 (REQ-S2-007)
+- [x] T006 [P] Implement classification-based decay in `fsrs-scheduler.ts` — decay policy multipliers by `context_type` (decisions: no decay, research: 2x stability, implementation/discovery/general: standard) and `importance_tier` (constitutional/critical: no decay, important: 1.5x, normal: standard, temporary: 0.5x) [3-5h] — TM-03 (REQ-S2-007)
 <!-- /ANCHOR:phase-6 -->
 
 ---
@@ -100,16 +100,16 @@ contextType: "implementation"
 <!-- ANCHOR:phase-7 -->
 ## Phase 7: Verification
 
-- [ ] T007 Verify dark-run results for N4, normalization, and TM-01 — new memories visible, old not displaced, MRR@5 not regressed, interference penalty correct [included] {T002, T004, T005}
-- [ ] T-FS2 Feature flag sunset review at Sprint 2 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T007} — NFR-O01/O02/O03
-- [ ] T008 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005, T006, T007, T-FS2}
-  - [ ] R18 cache hit >90% on unchanged content re-index
-  - [ ] N4 dark-run passes
-  - [ ] G2 resolved: fixed or documented as intentional
-  - [ ] Score distributions normalized to [0,1]
-  - [ ] RRF K-value investigation completed; optimal K documented
-  - [ ] TM-01 interference penalty active; high-similarity cluster scores reduced; no false penalties
-  - [ ] TM-03 classification-based decay verified — constitutional/critical memories not decaying; temporary memories decaying faster
+- [x] T007 Verify dark-run results for N4, normalization, and TM-01 — new memories visible, old not displaced, MRR@5 not regressed, interference penalty correct [included] {T002, T004, T005}
+- [x] T-FS2 Feature flag sunset review at Sprint 2 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T007} — NFR-O01/O02/O03
+- [x] T008 [GATE] Sprint 2 exit gate verification [0h] {T001, T002, T003, T004, T004a, T005, T006, T007, T-FS2}
+  - [x] R18 cache hit >90% on unchanged content re-index
+  - [x] N4 dark-run passes
+  - [x] G2 resolved: fixed or documented as intentional
+  - [x] Score distributions normalized to [0,1]
+  - [x] RRF K-value investigation completed; optimal K documented
+  - [x] TM-01 interference penalty active; high-similarity cluster scores reduced; no false penalties
+  - [x] TM-03 classification-based decay verified — constitutional/critical memories not decaying; temporary memories decaying faster
 <!-- /ANCHOR:phase-7 -->
 
 ---
@@ -117,13 +117,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-8 -->
 ## Phase 8 (PI-A1): Folder-Level Relevance Scoring via DocScore Aggregation
 
-- [ ] T009 [P] Implement folder-level relevance scoring in reranker — compute `FolderScore(F) = (1/sqrt(M+1)) * SUM(MemoryScore(m))` by grouping normalized memory scores by `spec_folder`; expose FolderScore as metadata on each search result; implement two-phase retrieval path (top-K folders by FolderScore then within-folder search) [4-8h] {T004} — PI-A1
+- [x] T009 [P] Implement folder-level relevance scoring in reranker — compute `FolderScore(F) = (1/sqrt(M+1)) * SUM(MemoryScore(m))` by grouping normalized memory scores by `spec_folder`; expose FolderScore as metadata on each search result; implement two-phase retrieval path (top-K folders by FolderScore then within-folder search) [4-8h] {T004} — PI-A1
   - Formula: `FolderScore = (1 / sqrt(M + 1)) * SUM(MemoryScore(m) for m in folder F)` where M = memory count in F
   - Damping factor `1/sqrt(M+1)` is mandatory — prevents large folders from dominating by volume
   - Pure scoring addition to existing reranker — no schema changes, no new tables
   - Requires [0,1]-normalized MemoryScore values from score normalization (T004) to be meaningful
   - Extends R-006 (weight rebalancing surface) and R-007 (post-reranker stage in scoring pipeline)
-- [ ] T010 [P] Add lightweight observability — log N4 boost values and TM-01 interference scores at query time, sampled at 5% of queries [2-4h] {T002, T005} — Observability (P2)
+- [x] T010 [P] Add lightweight observability — log N4 boost values and TM-01 interference scores at query time, sampled at 5% of queries [2-4h] {T002, T005} — Observability (P2)
 <!-- /ANCHOR:phase-8 -->
 
 ---
@@ -131,13 +131,13 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks T001-T009 (including T004a, T005, T006) marked `[x]` — T009 is required (PI-A1, P1)
-- [ ] T010 completed or deferred with documented reason (observability, P2 — optional)
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Sprint 2 exit gate (T008) passed
-- [ ] 18-26 new tests added and passing
-- [ ] 158+ existing tests still passing
-- [ ] Feature flag `SPECKIT_NOVELTY_BOOST` enabled (or decision to keep disabled documented)
+- [x] All tasks T001-T009 (including T004a, T005, T006) marked `[x]` — T009 is required (PI-A1, P1)
+- [x] T010 completed or deferred with documented reason (observability, P2 — optional)
+- [x] No `[B]` blocked tasks remaining
+- [x] Sprint 2 exit gate (T008) passed
+- [x] 18-26 new tests added and passing
+- [x] 158+ existing tests still passing
+- [x] Feature flag `SPECKIT_NOVELTY_BOOST` enabled (or decision to keep disabled documented)
 <!-- /ANCHOR:completion -->
 
 ---

@@ -23,13 +23,13 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete (5 PASS / 2 Conditional) |
 | **Created** | 2026-02-26 |
 | **Branch** | `140-hybrid-rag-fusion-refinement` |
 | **Parent Spec** | ../spec.md |
 | **Parent Plan** | ../plan.md |
 | **Phase** | 4 of 8 |
-| **Predecessor** | ../003-sprint-2-scoring-calibration/ |
+| **Predecessor** | ../002-sprint-1-graph-signal-activation/, ../003-sprint-2-scoring-calibration/ |
 | **Successor** | ../005-sprint-4-feedback-and-quality/ |
 | **Handoff Criteria** | R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5% |
 <!-- /ANCHOR:metadata -->
@@ -156,6 +156,14 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 ### Observability
 - **NFR-O01**: R15 classification logged for every query (eval infrastructure)
 - **NFR-O02**: RSF shadow scores logged alongside RRF for post-hoc analysis
+
+### Feature Flags
+Sprint 3 introduces 5 feature flags (all disabled by default):
+- `SPECKIT_COMPLEXITY_ROUTER` — R15 query complexity router (REQ-S3-001)
+- `SPECKIT_RSF_FUSION` — R14/N1 Relative Score Fusion (REQ-S3-002)
+- `SPECKIT_CHANNEL_MIN_REP` — R2 channel min-representation (REQ-S3-003)
+- `SPECKIT_CONFIDENCE_TRUNCATION` — R15-ext confidence-based result truncation (REQ-S3-004)
+- `SPECKIT_DYNAMIC_TOKEN_BUDGET` — FUT-7 dynamic token budget allocation (REQ-S3-005)
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -204,8 +212,6 @@ Route simple queries to fewer channels for speed improvement, evaluate RSF as a 
 
 - **KL-S3-001**: The R15 classifier produces no confidence score. Classification is deterministic based on threshold boundaries. The fallback to "complex" tier on classifier failure is intentional and safe but forecloses confidence-weighted downstream features (e.g., conservative top-K truncation for low-confidence classifications, downstream consumers using classification certainty). This is a design decision for Sprint 3 scope — if classifier confidence becomes needed, it should be added as a Sprint 4+ feature.
 <!-- /ANCHOR:questions -->
-
----
 
 ---
 

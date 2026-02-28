@@ -28,6 +28,9 @@ import { expandQuery } from '../lib/search/query-expander';
 // C136-09: Artifact-class routing (spec/plan/tasks/checklist/memory)
 import { applyRoutingWeights, getStrategyForQuery } from '../lib/search/artifact-routing';
 
+// T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
+import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger';
+
 // Core utilities
 import { checkDatabaseUpdated, isEmbeddingModelReady, waitForEmbeddingModel } from '../core';
 
@@ -1000,17 +1003,9 @@ async function postSearchPipeline(
     extraData._telemetry = retrievalTelemetry.toJSON(t);
   }
 
-  const chunkPrep = includeContent
-    ? collapseAndReassembleChunkResults(finalResults)
-    : {
-        results: finalResults,
-        stats: {
-          collapsedChunkHits: 0,
-          chunkParents: 0,
-          reassembled: 0,
-          fallback: 0,
-        },
-      };
+  // G3: Chunk dedup must ALWAYS run regardless of includeContent —
+  // collapsed parents need dedup even when content is not loaded.
+  const chunkPrep = collapseAndReassembleChunkResults(finalResults);
 
   if (chunkPrep.stats.chunkParents > 0) {
     extraData.chunkReassembly = chunkPrep.stats;
@@ -1122,6 +1117,19 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   if (specFolder !== undefined && typeof specFolder !== 'string') {
     throw new Error('specFolder must be a string');
   }
+
+  // T005: Eval logger — capture query at pipeline entry (fail-safe)
+  let _evalQueryId = 0;
+  let _evalRunId = 0;
+  try {
+    const evalEntry = logSearchQuery({
+      query: normalizedQuery ?? (Array.isArray(concepts) ? concepts.join(', ') : ''),
+      intent: explicitIntent ?? null,
+      specFolder: specFolder ?? null,
+    });
+    _evalQueryId = evalEntry.queryId;
+    _evalRunId = evalEntry.evalRunId;
+  } catch { /* eval logging must never break search */ }
 
   const artifactRoutingQuery = resolveArtifactRoutingQuery(
     normalizedQuery,
@@ -1525,6 +1533,31 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       });
     }
   } catch { /* instrumentation must never cause search to fail */ }
+
+  // T005: Eval logger — capture final results at pipeline exit (fail-safe)
+  try {
+    if (_evalRunId && _evalQueryId) {
+      let finalMemoryIds: number[] = [];
+      let finalScores: number[] = [];
+      try {
+        if (cachedResult?.content?.[0]?.text) {
+          const parsed = JSON.parse(cachedResult.content[0].text) as Record<string, unknown>;
+          const data = parsed?.data as Record<string, unknown> | undefined;
+          const results = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+          finalMemoryIds = results.map(r => r.id as number).filter(id => typeof id === 'number');
+          finalScores = results.map(r => (r.score ?? r.similarity ?? 0) as number);
+        }
+      } catch { /* ignore parse errors */ }
+      logFinalResult({
+        evalRunId: _evalRunId,
+        queryId: _evalQueryId,
+        resultMemoryIds: finalMemoryIds,
+        scores: finalScores,
+        fusionMethod: 'rrf',
+        latencyMs: Date.now() - _searchStartTime,
+      });
+    }
+  } catch { /* eval logging must never break search */ }
 
   return cachedResult;
 }

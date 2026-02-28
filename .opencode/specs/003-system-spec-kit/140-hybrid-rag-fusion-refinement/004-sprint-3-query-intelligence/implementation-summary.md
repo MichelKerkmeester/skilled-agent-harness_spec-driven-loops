@@ -64,9 +64,10 @@ Sprint 3 added query-level intelligence to the retrieval pipeline: a 3-tier comp
 ## Exit Gate Status
 | Gate | Criterion | Result |
 |------|-----------|--------|
-| 1 | R15 classifies queries into 3 tiers with safe fallback | PASS |
-| 2 | RSF all 3 variants implemented (single-pair, multi-list, cross-variant) | PASS |
-| 3 | R2 post-fusion channel min-representation with quality floor 0.2 | PASS |
-| 4 | R15-ext confidence truncation with minimum 3 results guaranteed | PASS |
-| 5 | FUT-7 dynamic token budget by complexity tier (1500/2500/4000) | PASS |
-| 6 | All features behind independent feature flags, disabled by default | PASS |
+| 1 | R15 simple p95 < 30ms | CONDITIONAL PASS (simulated 20ms — not measured in production) |
+| 2 | RSF Kendall tau >= 0.4 | PASS (tau = 0.8507) |
+| 3 | R2 top-3 precision within 5% of baseline | CONDITIONAL PASS (unit tests only — live precision not measured) |
+| 4 | Confidence truncation reduces irrelevant tail results by >30% | PASS (66.7% reduction) |
+| 5 | Dynamic token budget applied per complexity tier | PASS |
+| 6 | Off-ramp evaluated (PROCEED decision) | PASS |
+| 7 | Feature flags at Sprint 3 exit <= 6 | PASS (5/6 — COMPLEXITY_ROUTER, RSF_FUSION, CHANNEL_MIN_REP, CONFIDENCE_TRUNCATION, DYNAMIC_TOKEN_BUDGET) |

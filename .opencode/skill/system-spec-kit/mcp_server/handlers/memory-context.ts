@@ -30,6 +30,9 @@ import { isIdentityInRollout } from '../lib/cache/cognitive/rollout-policy';
 // Telemetry
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
+
+// T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
+import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger';
 import * as vectorIndex from '../lib/search/vector-index';
 
 // Shared handler types
@@ -379,6 +382,20 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
   }
 
   const normalizedInput = input.trim();
+
+  // T005: Eval logger — capture context query at entry (fail-safe)
+  let _evalQueryId = 0;
+  let _evalRunId = 0;
+  try {
+    const evalEntry = logSearchQuery({
+      query: normalizedInput,
+      intent: explicit_intent ?? null,
+      specFolder: spec_folder ?? null,
+    });
+    _evalQueryId = evalEntry.queryId;
+    _evalRunId = evalEntry.evalRunId;
+  } catch { /* eval logging must never break context handler */ }
+
   const requestedSessionId = typeof session_id === 'string' && session_id.trim().length > 0
     ? session_id.trim()
     : null;
@@ -627,6 +644,31 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
       });
     }
   } catch { /* instrumentation must never cause context handler to fail */ }
+
+  // T005: Eval logger — capture final context results at exit (fail-safe)
+  try {
+    if (_evalRunId && _evalQueryId) {
+      let finalMemoryIds: number[] = [];
+      let finalScores: number[] = [];
+      try {
+        if (_contextResponse?.content?.[0]?.text) {
+          const parsed = JSON.parse(_contextResponse.content[0].text) as Record<string, unknown>;
+          const data = parsed?.data as Record<string, unknown> | undefined;
+          const innerResults = Array.isArray(data?.results) ? data.results as Array<Record<string, unknown>> : [];
+          finalMemoryIds = innerResults.map(r => (r.id ?? r.memoryId) as number).filter(id => typeof id === 'number');
+          finalScores = innerResults.map(r => (r.score ?? r.similarity ?? 0) as number);
+        }
+      } catch { /* ignore parse errors */ }
+      logFinalResult({
+        evalRunId: _evalRunId,
+        queryId: _evalQueryId,
+        resultMemoryIds: finalMemoryIds,
+        scores: finalScores,
+        fusionMethod: effectiveMode,
+        latencyMs: Date.now() - _contextStartTime,
+      });
+    }
+  } catch { /* eval logging must never break context handler */ }
 
   return _contextResponse;
 }

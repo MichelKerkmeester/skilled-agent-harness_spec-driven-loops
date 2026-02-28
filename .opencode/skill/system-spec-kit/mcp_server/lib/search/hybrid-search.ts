@@ -12,11 +12,23 @@ import { fts5Bm25Search } from './sqlite-fts';
 import { isMMREnabled } from './search-flags';
 import { computeDegreeScores } from './graph-search-fn';
 
+// Sprint 3 modules — all flag-gated, disabled by default
+import { routeQuery } from './query-router';
+import { fuseResultsRsfMulti, isRsfEnabled } from './rsf-fusion';
+import { enforceChannelRepresentation } from './channel-enforcement';
+import { truncateByConfidence } from './confidence-truncation';
+import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-token-budget';
+
 // Type-only
 import type Database from 'better-sqlite3';
 import type { SpreadResult } from '../cache/cognitive/co-activation';
 import type { MMRCandidate } from './mmr-reranker';
-import type { FusionResult } from './rrf-fusion';
+import type { FusionResult, RankedList } from './rrf-fusion';
+import type { ChannelName } from './query-router';
+import type { RsfResult } from './rsf-fusion';
+import type { EnforcementResult } from './channel-enforcement';
+import type { TruncationResult } from './confidence-truncation';
+import type { BudgetResult } from './dynamic-token-budget';
 
 /* ─── 1. INTERFACES ─── */
 
@@ -73,6 +85,25 @@ function toHybridResult(result: FusionResult): HybridSearchResult {
     score: typeof scoreCandidate === 'number' ? scoreCandidate : result.rrfScore,
     source: typeof sourceCandidate === 'string' ? sourceCandidate : primarySource,
   };
+}
+
+/* ─── 1b. SPRINT 3 PIPELINE METADATA ─── */
+
+/**
+ * Optional metadata about Sprint 3 pipeline stages attached to enhanced search results.
+ * Only populated when the corresponding feature flags are enabled.
+ */
+interface Sprint3PipelineMeta {
+  /** Query complexity routing result (SPECKIT_COMPLEXITY_ROUTER). */
+  routing?: { tier: string; channels: string[]; skippedChannels: string[] };
+  /** RSF shadow fusion result (SPECKIT_RSF_FUSION) — shadow-mode only, not used for ranking. */
+  rsfShadow?: { resultCount: number; topRsfScore: number };
+  /** Channel enforcement result (SPECKIT_CHANNEL_MIN_REP). */
+  enforcement?: { applied: boolean; promotedCount: number; underRepresentedChannels: string[] };
+  /** Confidence truncation result (SPECKIT_CONFIDENCE_TRUNCATION). */
+  truncation?: { truncated: boolean; originalCount: number; truncatedCount: number };
+  /** Dynamic token budget result (SPECKIT_DYNAMIC_TOKEN_BUDGET). */
+  tokenBudget?: { tier: string; budget: number; applied: boolean };
 }
 
 /* ─── 2. MODULE STATE ─── */
@@ -431,6 +462,37 @@ async function hybridSearchEnhanced(
       weight?: number;
     }> = [];
 
+    // Sprint 3: Pipeline metadata collector (populated by flag-gated stages)
+    const s3meta: Sprint3PipelineMeta = {};
+
+    // ── Sprint 3 Stage A: Query Classification + Routing (SPECKIT_COMPLEXITY_ROUTER) ──
+    // AI-WHY: When enabled, classifies query complexity and restricts channels to a
+    // subset (e.g., simple queries skip graph+degree). When disabled, all channels run.
+    const routeResult = routeQuery(query);
+    const activeChannels = new Set<ChannelName>(routeResult.channels);
+    const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
+    const skippedChannels = allPossibleChannels.filter(ch => !activeChannels.has(ch));
+
+    if (skippedChannels.length > 0) {
+      s3meta.routing = {
+        tier: routeResult.tier,
+        channels: routeResult.channels,
+        skippedChannels,
+      };
+    }
+
+    // ── Sprint 3 Stage E: Dynamic Token Budget (SPECKIT_DYNAMIC_TOKEN_BUDGET) ──
+    // AI-WHY: Compute tier-aware budget early so it's available for downstream truncation.
+    // When disabled, getDynamicTokenBudget returns the default 4000 budget with applied=false.
+    const budgetResult = getDynamicTokenBudget(routeResult.tier);
+    if (budgetResult.applied) {
+      s3meta.tokenBudget = {
+        tier: budgetResult.tier,
+        budget: budgetResult.budget,
+        applied: budgetResult.applied,
+      };
+    }
+
     // Channel results collected independently, merged after all complete
     let semanticResults: Array<{ id: number | string; source: string; [key: string]: unknown }> = [];
     let ftsChannelResults: HybridSearchResult[] = [];
@@ -439,8 +501,8 @@ async function hybridSearchEnhanced(
     // All channels use synchronous better-sqlite3; sequential execution
     // is correct — Promise.all adds overhead without parallelism.
 
-    // Vector channel
-    if (embedding && vectorSearchFn) {
+    // Vector channel — gated by Sprint 3 routing
+    if (activeChannels.has('vector') && embedding && vectorSearchFn) {
       try {
         const vectorResults = vectorSearchFn(embedding, {
           limit: options.limit || DEFAULT_LIMIT,
@@ -460,24 +522,28 @@ async function hybridSearchEnhanced(
       }
     }
 
-    // FTS channel (internal error handling in ftsSearch)
-    ftsChannelResults = ftsSearch(query, options);
-    if (ftsChannelResults.length > 0) {
-      // AI-WHY: FTS weight 0.8 < vector 1.0 because FTS lacks semantic understanding
-      // but provides strong exact-match signal; weights are later overridden by adaptive fusion.
-      lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.8 });
+    // FTS channel (internal error handling in ftsSearch) — gated by Sprint 3 routing
+    if (activeChannels.has('fts')) {
+      ftsChannelResults = ftsSearch(query, options);
+      if (ftsChannelResults.length > 0) {
+        // AI-WHY: FTS weight 0.8 < vector 1.0 because FTS lacks semantic understanding
+        // but provides strong exact-match signal; weights are later overridden by adaptive fusion.
+        lists.push({ source: 'fts', results: ftsChannelResults, weight: 0.8 });
+      }
     }
 
-    // BM25 channel (internal error handling in bm25Search)
-    bm25ChannelResults = bm25Search(query, options);
-    if (bm25ChannelResults.length > 0) {
-      // AI-WHY: BM25 weight 0.6 is lowest lexical channel — in-memory BM25 index
-      // has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
-      lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
+    // BM25 channel (internal error handling in bm25Search) — gated by Sprint 3 routing
+    if (activeChannels.has('bm25')) {
+      bm25ChannelResults = bm25Search(query, options);
+      if (bm25ChannelResults.length > 0) {
+        // AI-WHY: BM25 weight 0.6 is lowest lexical channel — in-memory BM25 index
+        // has less precise scoring than SQLite FTS5 BM25; kept for coverage breadth.
+        lists.push({ source: 'bm25', results: bm25ChannelResults, weight: 0.6 });
+      }
     }
 
-    // Graph channel (T008: metrics collection)
-    const useGraph = (options.useGraph !== false);
+    // Graph channel (T008: metrics collection) — gated by Sprint 3 routing
+    const useGraph = (options.useGraph !== false) && activeChannels.has('graph');
     if (useGraph && graphSearchFn) {
       try {
         graphMetrics.totalQueries++; // counted only if channel executes
@@ -501,8 +567,8 @@ async function hybridSearchEnhanced(
     // AI-WHY: Degree channel is gated behind SPECKIT_DEGREE_BOOST flag because graph-degree
     // scoring is experimental — it re-ranks based on causal-edge connectivity, which can
     // over-promote hub memories in densely-linked graphs.
-    // Degree channel (T002: 5th RRF channel behind SPECKIT_DEGREE_BOOST flag)
-    if (db && process.env.SPECKIT_DEGREE_BOOST === 'true') {
+    // Degree channel (T002: 5th RRF channel behind SPECKIT_DEGREE_BOOST flag) — also gated by Sprint 3 routing
+    if (activeChannels.has('degree') && db && process.env.SPECKIT_DEGREE_BOOST === 'true') {
       try {
         // Collect all numeric IDs from existing channels
         const allResultIds = new Set<number>();
@@ -576,8 +642,94 @@ async function hybridSearchEnhanced(
       }
 
       const fused = fuseResultsMulti(lists);
-      const fusedHybridResults: HybridSearchResult[] = fused.map(toHybridResult);
+
+      // ── Sprint 3 Stage B: RSF Shadow Fusion (SPECKIT_RSF_FUSION) ──
+      // AI-WHY: RSF runs as shadow comparison alongside RRF — its results are logged
+      // for eval but NOT used for ranking. This allows A/B comparison of fusion methods.
+      if (isRsfEnabled()) {
+        try {
+          const rsfLists: RankedList[] = lists.map(l => ({
+            source: l.source,
+            results: l.results.map(r => ({ ...r, id: r.id })),
+            weight: l.weight,
+          }));
+          const rsfResults: RsfResult[] = fuseResultsRsfMulti(rsfLists);
+          s3meta.rsfShadow = {
+            resultCount: rsfResults.length,
+            topRsfScore: rsfResults.length > 0 ? rsfResults[0].rsfScore : 0,
+          };
+          // AI-WHY: Shadow-mode only — RSF results are NOT used for ranking.
+          // Logged for eval infrastructure comparison of RRF vs RSF orderings.
+          console.debug(
+            `[hybrid-search] RSF shadow: ${rsfResults.length} results, ` +
+            `top RSF score=${rsfResults[0]?.rsfScore?.toFixed(4) ?? 'N/A'}, ` +
+            `top RRF score=${fused[0]?.rrfScore?.toFixed(4) ?? 'N/A'}`
+          );
+        } catch (_rsfErr: unknown) {
+          // AI-GUARD: Non-critical shadow — RSF failure does not affect RRF pipeline
+        }
+      }
+
+      let fusedHybridResults: HybridSearchResult[] = fused.map(toHybridResult);
       const limit = options.limit || DEFAULT_LIMIT;
+
+      // ── Sprint 3 Stage C: Channel Enforcement (SPECKIT_CHANNEL_MIN_REP) ──
+      // AI-WHY: Ensures every channel that returned results has at least one representative
+      // in the top-k window. Prevents single-channel dominance in fusion output.
+      // When disabled, passes results through unchanged.
+      try {
+        const channelResultSets = new Map<string, Array<{ id: number | string; score: number; [key: string]: unknown }>>();
+        for (const list of lists) {
+          channelResultSets.set(list.source, list.results.map(r => ({
+            ...r,
+            id: r.id,
+            score: typeof (r as Record<string, unknown>).score === 'number'
+              ? (r as Record<string, unknown>).score as number
+              : typeof (r as Record<string, unknown>).similarity === 'number'
+                ? (r as Record<string, unknown>).similarity as number
+                : 0,
+          })));
+        }
+
+        const enforcementResult: EnforcementResult = enforceChannelRepresentation(
+          fusedHybridResults.map(r => ({ ...r, source: r.source || 'hybrid' })),
+          channelResultSets,
+          limit,
+        );
+
+        if (enforcementResult.enforcement.applied) {
+          fusedHybridResults = enforcementResult.results as HybridSearchResult[];
+          s3meta.enforcement = {
+            applied: true,
+            promotedCount: enforcementResult.enforcement.promotedCount,
+            underRepresentedChannels: enforcementResult.enforcement.underRepresentedChannels,
+          };
+        }
+      } catch (_enfErr: unknown) {
+        // AI-GUARD: Non-critical — enforcement failure does not block pipeline
+      }
+
+      // ── Sprint 3 Stage D: Confidence Truncation (SPECKIT_CONFIDENCE_TRUNCATION) ──
+      // AI-WHY: Trims low-confidence tail from fused results using gap analysis.
+      // A gap > 2x median signals a relevance cliff — results below are noise.
+      // When disabled, passes results through unchanged.
+      try {
+        const truncationResult: TruncationResult = truncateByConfidence(
+          fusedHybridResults.map(r => ({ ...r, id: r.id, score: r.score })),
+        );
+
+        if (truncationResult.truncated) {
+          // AI-WHY: Map truncated ScoredResults back to HybridSearchResult — preserve all fields
+          fusedHybridResults = truncationResult.results.map(r => r as HybridSearchResult);
+          s3meta.truncation = {
+            truncated: true,
+            originalCount: truncationResult.originalCount,
+            truncatedCount: truncationResult.truncatedCount,
+          };
+        }
+      } catch (_truncErr: unknown) {
+        // AI-GUARD: Non-critical — truncation failure does not block pipeline
+      }
 
       // C138: MMR reranking — retrieve embeddings from vec_memories for diversity pruning.
       // Fused results don't carry embeddings through RRF, so we look them up from the
@@ -665,6 +817,13 @@ async function hybridSearchEnhanced(
         } catch (_err: unknown) {
           // AI-GUARD: Non-critical enrichment — co-activation failure does not affect core ranking
         }
+      }
+
+      // Sprint 3: Attach pipeline metadata to results for eval/debugging
+      // AI-WHY: Metadata is attached as non-enumerable _s3meta property to avoid
+      // polluting result serialization while remaining accessible for debugging.
+      if (Object.keys(s3meta).length > 0 && reranked.length > 0) {
+        (reranked as unknown as Record<string, unknown>)._s3meta = s3meta;
       }
 
       return reranked;
@@ -913,6 +1072,10 @@ export {
   getTokenBudget,
   DEFAULT_TOKEN_BUDGET,
   SUMMARY_MAX_CHARS,
+  // Sprint 3: Re-exported module functions for caller access
+  routeQuery,
+  getDynamicTokenBudget,
+  isDynamicTokenBudgetEnabled,
 };
 
 export type {
@@ -922,4 +1085,6 @@ export type {
   // T007: Token budget types
   OverflowLogEntry,
   TruncateToBudgetResult,
+  // Sprint 3: Pipeline metadata type
+  Sprint3PipelineMeta,
 };

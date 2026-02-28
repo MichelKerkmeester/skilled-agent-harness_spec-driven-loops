@@ -30,6 +30,9 @@ import { createMCPSuccessResponse, createMCPEmptyResponse } from '../lib/respons
 // T004: Consumption instrumentation
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
 
+// T005: Eval logger — fail-safe, no-op when SPECKIT_EVAL_LOGGING !== "true"
+import { logSearchQuery, logFinalResult } from '../lib/eval/eval-logger';
+
 // Shared handler types
 import type { MCPResponse } from './types';
 
@@ -184,6 +187,19 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
   }
 
   const startTime = Date.now();
+
+  // T005: Eval logger — capture trigger query at entry (fail-safe)
+  let _evalQueryId = 0;
+  let _evalRunId = 0;
+  try {
+    const evalEntry = logSearchQuery({
+      query: prompt,
+      intent: 'trigger_match',
+      specFolder: null,
+    });
+    _evalQueryId = evalEntry.queryId;
+    _evalRunId = evalEntry.evalRunId;
+  } catch { /* eval logging must never break triggers handler */ }
 
   const useCognitive = includeCognitive &&
     sessionId &&
@@ -396,6 +412,21 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       });
     }
   } catch { /* instrumentation must never cause triggers handler to fail */ }
+
+  // T005: Eval logger — capture final trigger results at exit (fail-safe)
+  try {
+    if (_evalRunId && _evalQueryId) {
+      const triggerMemoryIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
+      logFinalResult({
+        evalRunId: _evalRunId,
+        queryId: _evalQueryId,
+        resultMemoryIds: triggerMemoryIds,
+        scores: triggerMemoryIds.map(() => 1.0), // trigger matches are binary
+        fusionMethod: 'trigger',
+        latencyMs: latencyMs,
+      });
+    }
+  } catch { /* eval logging must never break triggers handler */ }
 
   return _triggersResponse;
 }

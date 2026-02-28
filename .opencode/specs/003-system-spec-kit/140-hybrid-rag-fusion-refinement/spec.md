@@ -57,7 +57,7 @@ The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an 
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | P0 (Sprint 0), P1 (Sprints 1-3), P2 (Sprints 4-7) |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-02-26 |
 | **Complexity** | 90/100 |
 | **Branch** | `140-hybrid-rag-fusion-refinement` |
@@ -143,10 +143,10 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 
 | Phase | Folder | Scope | Dependencies | Status |
 |-------|--------|-------|--------------|--------|
-| 1 | `001-sprint-0-measurement-foundation/` | G1, G3, R17, R13-S1, G-NEW-1, B7, D4, TM-02, A2, Eval-the-eval, G-NEW-3 (Phase A) (50-77h) | None (BLOCKING) | Pending |
-| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2, TM-08, PI-A3, PI-A5 (26-39h) | Sprint 0 gate | Pending |
-| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization, TM-01, TM-03, FUT-5, PI-A1 (28-43h) | Sprint 0 gate | Pending |
-| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2, R15-ext, FUT-7, PI-A2 (deferred), PI-B3 (34-53h) | Sprint 1 AND Sprint 2 gates | Pending |
+| 1 | `001-sprint-0-measurement-foundation/` | G1, G3, R17, R13-S1, G-NEW-1, B7, D4, TM-02, A2, Eval-the-eval, G-NEW-3 (Phase A) (50-77h) | None (BLOCKING) | Complete |
+| 2 | `002-sprint-1-graph-signal-activation/` | R4, A7, density measurement, G-NEW-2, TM-08, PI-A3, PI-A5 (42-61h) | Sprint 0 gate | Complete |
+| 3 | `003-sprint-2-scoring-calibration/` | R18, N4, G2, score normalization, TM-01, TM-03, FUT-5, PI-A1 (28-43h) | Sprint 0 gate | Complete |
+| 4 | `004-sprint-3-query-intelligence/` | R15, R14/N1, R2, R15-ext, FUT-7, PI-A2 (deferred), PI-B3 (34-53h) | Sprint 1 AND Sprint 2 gates | Complete |
 | 5 | `005-sprint-4-feedback-and-quality/` | R1, R11, R13-S2, A4, B2, TM-04, TM-06, G-NEW-3 (Phase C) (72-109h) | Sprint 3 gate + R13 2 eval cycles | Pending |
 
 > **Sprint 4 Split Recommendation:** Sprint 4 should be considered for decomposition into two sub-phases:
@@ -174,7 +174,7 @@ Transform the system into a measurably improving, graph-differentiated, feedback
 | 001-sprint-0 | 003-sprint-2 | Same Sprint 0 exit gate (S1 and S2 run **in parallel** after S0) | R13 eval metrics |
 
 **Sprint 0 Ground Truth Diversity Requirement (HARD GATE):**
-Ground truth corpus MUST include >=15 manually curated natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week about Y?"), cross-document queries ("how does A relate to B?"), and hard negatives (queries where specific memories should NOT rank highly). Minimum: >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document/temporal). This diversity requirement is a hard exit gate criterion alongside the existing "at least 100 queries" minimum (50 minimum for initial baseline; >=100 required for BM25 contingency decision) — both must be satisfied.
+Ground truth corpus MUST include >=30 manually curated natural-language queries covering: graph relationship queries ("what decisions led to X?"), temporal queries ("what was discussed last week about Y?"), cross-document queries ("how does A relate to B?"), and hard negatives (queries where specific memories should NOT rank highly). Minimum: >=5 queries per intent type, >=3 query complexity tiers (simple single-concept, moderate multi-concept, complex cross-document/temporal). This diversity requirement is a hard exit gate criterion alongside the existing "at least 100 queries" minimum (50 minimum for initial baseline; >=100 required for BM25 contingency decision) — both must be satisfied.
 | 002-sprint-1 AND 003-sprint-2 | 004-sprint-3 | S1: R4 MRR@5 delta >+2% absolute, edge density measured; S2: Cache hit >90%, score distributions normalized, G2 resolved | R13 eval metrics |
 | 004-sprint-3 | 005-sprint-4 | R15 p95 <30ms, RSF Kendall tau computed, R2 precision within 5% | R13 eval metrics |
 | 005-sprint-4 | 006-sprint-5 | R1 MRR@5 within 2%, R11 noise <5%, R13-S2 operational | R13 eval metrics |
@@ -224,7 +224,7 @@ Ground truth corpus MUST include >=15 manually curated natural-language queries 
 | REQ-037 | **A2:** Full-context ceiling evaluation (LLM baseline comparison) [2h] | Full-context ceiling MRR@5 recorded; 2x2 decision matrix (A2 × G-NEW-1) evaluated at Sprint 0 exit | S0 |
 | REQ-038 | **B8:** Signal count ceiling governance (max 15 active scoring signals) [1-2h] | Signal ceiling policy documented and enforced; escape clause requires R13 orthogonal-value evidence | Cross-cutting |
 | REQ-052 | **Eval-the-eval:** Hand-verification of R13 evaluation output — manually compute MRR@5 for 5 randomly selected queries and compare to R13's computed values [2-3h] | Hand-calculated MRR@5 matches R13 output within ±0.01 for all 5 queries; any discrepancy investigated and resolved before R13 output is used for roadmap decisions | S0 |
-| REQ-040 | **TM-01:** Interference scoring signal — negative weight penalizing memories with high-similarity competitors in same spec_folder [4-6h] | Interference score computed at index time; composite scoring includes -0.08 * interference factor behind feature flag | S2 |
+| REQ-040 | **TM-01:** Interference scoring signal — negative weight penalizing memories with high-similarity competitors in same spec_folder [4-6h]. Implementation note: Uses Jaccard word-overlap similarity (text-based) rather than cosine similarity. This deviation from the original specification was a deliberate design choice to avoid embedding computation overhead in the scoring path. | Interference score computed at index time; composite scoring includes -0.08 * interference factor behind feature flag | S2 |
 | REQ-041 | **TM-03:** Classification-based decay policies — FSRS decay multipliers vary by context_type and importance_tier (decisions: no decay, temporary: fast decay) [3-5h] | Decay behavior differs measurably between context_types; decisions/constitutional memories show 0 decay over 30 days | S2 |
 | REQ-042 | **TM-04:** Pre-storage quality gate — multi-layer validation pipeline (structural + content quality + semantic dedup) BEFORE embedding generation [6-10h] | Quality score computed for every save; saves below 0.4 threshold rejected; near-duplicates (>0.92 similarity) flagged | S4 |
 | REQ-043 | **TM-06:** Reconsolidation-on-save — automatic duplicate/conflict/complement decision when saving memories similar to existing ones [6-10h] | Similarity >=0.88 merges (frequency increment); 0.75-0.88 soft-replaces (with supersedes edge; old memory marked as `superseded` status — excluded from search results but retained in database for selective recovery); <0.75 stores as new | S4 |
@@ -614,10 +614,10 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 | R-005 | BM25 >= 80% of hybrid (contingency) | High | Unknown | Sprint 0 measurement + decision matrix |
 | R-006 | Effort variance (316-472h base; 348-523h with TM; 463-689h grand total with PageIndex — see executive summary) | Medium | Medium | Metric-gated sprints enable early stopping |
 | R-007 | R6 pipeline refactor regression | High | Medium | Checkpoint before start; 0-diff gate; off-ramp |
-| R-008 | Eval ground truth contamination from biased trigger-phrase synthetic data (MR-bias) — synthetic ground truth derived from trigger phrases evaluates a system that retrieves partly via trigger phrases, inflating MRR@5 scores | High | High | **MANDATORY**: Include >=20 manually curated natural-language queries (non-trigger-phrase) in ground truth corpus; require statistical significance (p<0.05, paired t-test or bootstrap CI) for BM25 contingency decision; minimum 100 diverse queries before any threshold-based roadmap decision |
+| R-008 | Eval ground truth contamination from biased trigger-phrase synthetic data (MR-bias) — synthetic ground truth derived from trigger phrases evaluates a system that retrieves partly via trigger phrases, inflating MRR@5 scores | High | High | **MANDATORY**: Include >=30 manually curated natural-language queries (non-trigger-phrase) in ground truth corpus; require statistical significance (p<0.05, paired t-test or bootstrap CI) for BM25 contingency decision; minimum 100 diverse queries before any threshold-based roadmap decision |
 | R-009 | Solo developer bottleneck — 18-26 weeks, no absence protocol | Medium | High | Document bus factor plan; identify critical path items for potential delegation |
 | R-010 | Cumulative dark-run overhead — concurrent runs could reach 177ms p95 by S5 | Medium | Medium | Sequential dark-runs; disable prior sprint dark-runs before starting new ones |
-| R-011 | BM25 measurement reliability — 50 queries insufficient for statistical significance on >=80%/50-80%/<50% threshold decision; confidence intervals too wide | High | High | Require minimum 100 diverse queries for BM25 contingency decision; statistical significance (p<0.05) required; ≥5 queries per intent type, ≥3 complexity tiers; ≥20 manually curated (non-trigger-phrase) queries |
+| R-011 | BM25 measurement reliability — 50 queries insufficient for statistical significance on >=80%/50-80%/<50% threshold decision; confidence intervals too wide | High | High | Require minimum 100 diverse queries for BM25 contingency decision; statistical significance (p<0.05) required; ≥5 queries per intent type, ≥3 complexity tiers; >=30 manually curated (non-trigger-phrase) queries |
 | R-012 | Graph topology power-law distribution after G1 fix — bimodal R4 scoring | Medium | Low | R4 degree normalization (log-scale or percentile-based) |
 
 ---

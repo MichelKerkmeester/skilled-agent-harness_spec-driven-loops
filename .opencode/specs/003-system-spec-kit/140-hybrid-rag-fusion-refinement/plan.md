@@ -77,7 +77,7 @@ This plan implements 43 recommendations across 8 metric-gated sprints (348-523h 
 - [ ] Sprint exit gate metrics met
 - [ ] All new tests pass + all existing tests pass (158+ at S0, growing each sprint)
 - [ ] Dark-run comparison shows no regressions (for scoring changes)
-- [ ] Feature flag count remains <= 6
+- [ ] Feature flag count remains <= 6 operative limit (<=8 absolute ceiling per NFR-O01)
 - [ ] tasks.md updated with completion status
 
 ### Gate Metric Evaluation Protocol
@@ -166,14 +166,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 0.5 | **G-NEW-1:** BM25-only baseline measurement | 4-6 | Evaluation | — |
 | 0.6 | **TM-02:** Content-hash fast-path dedup in memory_save pipeline (SHA256 O(1) check before embedding) | 2-3 | Memory quality | — |
 | 0.7 | **G-NEW-2 Pre-Analysis:** Lightweight agent consumption pattern survey — "What query patterns do AI agents actually use? What results do they select? What do they ignore?" Informs ground truth query design (T007). Position BEFORE ground truth generation. Full G-NEW-2 (8-12h) remains in Sprint 1. | 3-4 | Evaluation | — |
-| | **Total** | **50-77h** | | |
-
-#### PageIndex Integration
-
-| ID | Item | Hours | Subsystem | Flag |
-|----|------|-------|-----------|------|
-| PI-A5 | **Verify-Fix-Verify for Memory Quality** — bounded quality loop (verify → auto-fix → re-verify → warn-flag; never silent drop) | 12-16 | Memory quality | `SPECKIT_VERIFY_FIX_VERIFY` |
-| | **Sprint 0 PageIndex subtotal** | **+12-16h** | | |
+| | **Total** | **56-89h** | | |
 
 **Exit Gate:**
 - [ ] Graph hit rate > 0% (G1 verified)
@@ -214,7 +207,8 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | ID | Item | Hours | Subsystem | Flag |
 |----|------|-------|-----------|------|
 | PI-A3 | **Pre-Flight Token Budget Validation** — validate `SUM(token_count)` against budget limit before result assembly; truncate candidate list early | 4-6 | Pipeline / result assembly | — |
-| | **Sprint 1 PageIndex subtotal** | **+4-6h** | | |
+| PI-A5 | **Verify-Fix-Verify for Memory Quality** — bounded quality loop (verify → auto-fix → re-verify → warn-flag; never silent drop) | 12-16 | Memory quality | `SPECKIT_VERIFY_FIX_VERIFY` |
+| | **Sprint 1 PageIndex subtotal** | **+16-22h** | | |
 
 **Exit Gate:**
 - [ ] R4 dark-run: no single memory appears in >60% of results
@@ -262,7 +256,9 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 3.1 | **R15:** Query complexity router | 10-16 | Pipeline | `SPECKIT_COMPLEXITY_ROUTER` |
 | 3.2 | **R14/N1:** Relative Score Fusion parallel to RRF | 10-14 | Fusion | `SPECKIT_RSF_FUSION` |
 | 3.3 | **R2:** Channel minimum-representation constraint | 6-10 | Fusion | `SPECKIT_CHANNEL_MIN_REP` |
-| | **Total** | **34-53h** | | |
+| 3.4 | **REQ-047 (R15-ext):** Confidence-based truncation | 5-8 | Pipeline | `SPECKIT_CONFIDENCE_TRUNCATION` |
+| 3.5 | **REQ-048 (FUT-7):** Dynamic token budget | 3-5 | Pipeline | `SPECKIT_DYNAMIC_TOKEN_BUDGET` |
+| | **Total** | **42-66h** | | |
 
 #### PageIndex Integration
 
@@ -302,13 +298,6 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 | 4.5 | **TM-06:** Reconsolidation-on-save (duplicate/conflict/complement auto-decision) | 6-10 | Memory quality | `SPECKIT_RECONSOLIDATION` |
 | | **Total** | **72-109h** | | |
 
-#### PageIndex Integration
-
-| ID | Item | Hours | Subsystem | Flag |
-|----|------|-------|-----------|------|
-| PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — inject constitutional memories as system-level context (domain knowledge directives) before ranked results; separate display slot | 8-12 | Search handlers / post-processing | `SPECKIT_CONSTITUTIONAL_INJECT` |
-| | **Sprint 4 PageIndex subtotal** | **+8-12h** | | |
-
 **Prerequisite:** R13 must have completed at least 2 full eval cycles. *An eval cycle is defined as: 100+ queries processed by R13 evaluation infrastructure AND 14+ calendar days of R13 logging (both conditions must be met). Two full cycles = minimum 200 queries AND 28+ calendar days. Synthetic fallback: replay 200 logged queries to simulate cycles in test environments.*
 
 **Sprint 4 Split (MANDATORY):** Sprint 4 MUST be decomposed into two sub-phases for risk isolation. Sprint 4 touches 4 subsystems at 72-109h, violating the "max 2 subsystems per sprint" design principle (§1). The split isolates R11's CRITICAL FTS5 contamination risk:
@@ -345,9 +334,10 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 
 | ID | Item | Hours | Subsystem | Flag |
 |----|------|-------|-----------|------|
+| PI-A4 | **Constitutional Memory as Expert Knowledge Injection** — inject constitutional memories as system-level context (domain knowledge directives) before ranked results; separate display slot | 8-12 | Search handlers / post-processing | `SPECKIT_CONSTITUTIONAL_INJECT` |
 | PI-B1 | **Tree Thinning for Spec Folder Consolidation** — bottom-up merge of small child spec files into parent when `token_count(child) < MIN_CHILD_TOKENS` AND combined size is within budget | 10-14 | Spec-Kit logic | — |
 | PI-B2 | **Progressive Validation for Spec Documents** — 4-level fix pipeline: schema check → anchor integrity → cross-reference validation → semantic consistency; each level gates the next | 16-24 | Spec-Kit logic / validation | `SPECKIT_PROGRESSIVE_VALIDATION` |
-| | **Sprint 5 PageIndex subtotal** | **+26-38h** | | |
+| | **Sprint 5 PageIndex subtotal** | **+34-50h** | | |
 
 **Internal Phasing:**
 - **Phase A (Pipeline):** R6 pipeline refactor — checkpoint before start; exit gate: 0 ordering differences in positions 1-5 AND weighted rank correlation >0.995 for full result set (relaxed from strict "0 ordering differences" which is fragile for floating-point arithmetic)
@@ -391,7 +381,7 @@ Stages 1-2 run BEFORE embedding generation (zero-cost rejection). Stages 4-5 run
 - [ ] R10 false positive rate < 20%
 - [ ] N2 graph channel attribution > 10%
 - [ ] N3-lite detects at least 1 known contradiction
-- [ ] Feature flag count <= 6
+- [ ] Feature flag count <= 6 operative limit (<=8 absolute ceiling per NFR-O01)
 
 ---
 
@@ -557,10 +547,10 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 
 | Sprint | Complexity | Estimated Effort |
 |--------|------------|------------------|
-| Sprint 0: Epistemological Foundation | High (blocking) | 50-77h |
-| Sprint 1: Graph Signal Activation | Medium | 26-39h |
+| Sprint 0: Epistemological Foundation | High (blocking) | 56-89h |
+| Sprint 1: Graph Signal Activation | Medium | 42-61h (includes PI-A3 4-6h + PI-A5 12-16h deferred from S0) |
 | Sprint 2: Scoring Calibration | Medium | 28-43h |
-| Sprint 3: Query Intelligence | Medium-High | 34-53h |
+| Sprint 3: Query Intelligence | Medium-High | 42-66h (includes REQ-047 5-8h + REQ-048 3-5h) |
 | Sprint 4: Feedback Loop | High | 72-109h |
 | Sprint 5: Pipeline Refactor | Very High | 68-98h (R6 decomposed: 37-56h across 5 sub-tasks + 24-37h Phase B) |
 | Sprint 6a: Graph Deepening (Practical) | Medium-High | 33-51h |
@@ -576,8 +566,8 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 - Solo developer (~15h/week): 20-30 weeks (S0-S6) — reduced from 23-34 weeks by S1/S2 parallelization saving 3-5 weeks
 - Dual developers: 8-12 weeks (independent tracks A-G assigned; S1/S2 parallelization is the primary acceleration)
 - Critical path: G1→R4→R13-S1→R14/N1→R6 = ~90-125h sequential regardless of parallelism
-- **Note on Sprint 0 total:** Sprint 0 effort is 50-77h (includes G-NEW-2 pre-analysis, 3-4h). This lightweight survey informs ground truth generation quality and pays for itself by preventing evaluation corpus bias.
-- **Note on CHK-S0F3 validation effort:** The p<0.05 statistical significance requirement on >=100 diverse queries (CHK-S0F3) requires manual relevance labeling not included in T008 (4-6h) or T008b (2-3h) effort estimates. Expect an additional 8-15h for this validation work. Total Sprint 0 effort with this addition: ~58-92h.
+- **Note on Sprint 0 total:** Sprint 0 effort is 56-89h (actual from tasks.md; includes G-NEW-2 pre-analysis, 3-4h). This lightweight survey informs ground truth generation quality and pays for itself by preventing evaluation corpus bias.
+- **Note on CHK-S0F3 validation effort:** The p<0.05 statistical significance requirement on >=100 diverse queries (CHK-S0F3) requires manual relevance labeling not included in T008 (4-6h) or T008b (2-3h) effort estimates. Expect an additional 8-15h for this validation work. Total Sprint 0 effort with this addition: ~64-104h.
 <!-- /ANCHOR:effort -->
 
 ---
@@ -866,7 +856,7 @@ Sprint 0 (Foundation) ───────┤   [build-gate: R4 during S0]  ├
 1. Sprint gate failure → Investigate root cause; attempt 1 fix cycle → If persistent, escalate
 2. BM25 contingency (>= 80%) → Architecture review before Sprint 1+
 3. R6 ordering regression → Revert to checkpoint; evaluate off-ramp
-4. Feature flag count > 6 → Mandatory sunset audit
+4. Feature flag count > 6 operative / > 8 absolute ceiling (NFR-O01) → Mandatory sunset audit
 
 **Flag Graduation Process:** A flag graduates from feature flag to permanent code when: (1) Sprint exit gate passes with flag enabled, (2) Dark-run comparison shows no regression for >=2 consecutive eval cycles, (3) Flag has been in `enable` state for >=14 days without incident. Graduation action: Remove flag check from code, keep the enabled behavior as default. Flag cleanup tasks are tracked as T-FS{N} sunset tasks per sprint.
 <!-- /ANCHOR:communication -->
@@ -898,20 +888,20 @@ Implement before or during Sprint 0-1. No dependency on R13 eval framework.
 Implement after R13-S1 is operational (Sprint 0 exit gate passed).
 
 - **PI-A2** (S3, 12-16h) — Search fallback chain degrades gracefully; needs R13 to measure recall improvement per tier
-- **PI-A4** (S4, 8-12h) — Constitutional injection as expert knowledge; needs R13 channel attribution to verify no displacement of ranked results
+- **PI-A4** (S5, 8-12h) — Constitutional injection as expert knowledge; needs R13 channel attribution to verify no displacement of ranked results (deferred from S4 to S5)
 
 ### Phase 3: Deeper Changes (Weeks 5-8, ~38-54h)
 
 Implement during or after Sprint 4-5. These require more invasive changes.
 
 - **PI-B1** (S5, 10-14h) — Tree thinning requires spec folder index and merge logic; impacts spec-kit write path
-- **PI-A5** (S0, 12-16h) — Verify-Fix-Verify loop replaces simple quality gate; bounded iteration prevents infinite loops
+- **PI-A5** (S1, 12-16h) — Verify-Fix-Verify loop replaces simple quality gate; bounded iteration prevents infinite loops (deferred from S0 to S1)
 - **PI-B2** (S5, 16-24h) — Progressive 4-level validation pipeline; most complex; requires complete validation infrastructure
 
 ### Integration Notes
 
-- **PI-A5 sprint placement**: Assigned to **S0** in the sprint table (authoritative placement). The Phase 3 listing in the migration pathway reflects implementation complexity, not sprint assignment. PI-A5 is S0 scope and SHOULD complete during S0 but MUST NOT block S0 exit gate items (G1, G3, R13-S1, G-NEW-1)
-- **Feature flag count**: PI-A2 (`SPECKIT_SEARCH_FALLBACK`), PI-A4 (`SPECKIT_CONSTITUTIONAL_INJECT`), PI-B2 (`SPECKIT_PROGRESSIVE_VALIDATION`), PI-A5 (`SPECKIT_VERIFY_FIX_VERIFY`), PI-A1 (`SPECKIT_FOLDER_SCORE`) = 5 additional flags; must be managed within the 6-simultaneous-flag governance ceiling
+- **PI-A5 sprint placement**: Deferred from S0 to **S1** in the sprint table (authoritative placement). PI-A5 is S1 scope alongside PI-A3. The Phase 3 listing in the migration pathway reflects implementation complexity, not sprint assignment
+- **Feature flag count**: PI-A2 (`SPECKIT_SEARCH_FALLBACK`), PI-A4 (`SPECKIT_CONSTITUTIONAL_INJECT`), PI-B2 (`SPECKIT_PROGRESSIVE_VALIDATION`), PI-A5 (`SPECKIT_VERIFY_FIX_VERIFY`), PI-A1 (`SPECKIT_FOLDER_SCORE`) = 5 additional flags; must be managed within the 6-flag operative limit (8-flag absolute ceiling per NFR-O01)
 - **PI-B3 LLM dependency**: `folder_description` generation requires an LLM call at index time; cache aggressively and only regenerate on spec folder content change
 
 <!--

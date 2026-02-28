@@ -37,16 +37,16 @@ contextType: "implementation"
 
 ### R15 Subtask Decomposition
 
-- [ ] T001a [P] Define classifier boundaries and feature design — query length (chars), term count (whitespace-split), trigger phrase presence (exact match), semantic complexity heuristic (stop-word ratio). Classification boundaries: simple (≤3 terms OR trigger match), complex (>8 terms AND no trigger), moderate (interior). Config-driven thresholds. [2-4h] — R15
+- [x] T001a [P] Define classifier boundaries and feature design — query length (chars), term count (whitespace-split), trigger phrase presence (exact match), semantic complexity heuristic (stop-word ratio). Classification boundaries: simple (≤3 terms OR trigger match), complex (>8 terms AND no trigger), moderate (interior). Config-driven thresholds. [2-4h] — R15
   - **Acceptance**: Classifier correctly assigns 10+ test queries per tier
 
-- [ ] T001b Implement tier-to-channel-subset routing and flag wiring — map classification tiers to channel subsets (simple=2, moderate=3-4, complex=5), enforce minimum 2 channels, add `SPECKIT_COMPLEXITY_ROUTER` flag [3-4h] {T001a} — R15
+- [x] T001b Implement tier-to-channel-subset routing and flag wiring — map classification tiers to channel subsets (simple=2, moderate=3-4, complex=5), enforce minimum 2 channels, add `SPECKIT_COMPLEXITY_ROUTER` flag [3-4h] {T001a} — R15
   - **Acceptance**: Routing table is config-driven, not hardcoded; min-2-channel invariant holds
 
-- [ ] T001c Integrate classifier into pipeline entry point — wire classifier+router into the existing pipeline, ensure both full pipeline and routed pipeline can run simultaneously [2-4h] {T001b} — R15
+- [x] T001c Integrate classifier into pipeline entry point — wire classifier+router into the existing pipeline, ensure both full pipeline and routed pipeline can run simultaneously [2-4h] {T001b} — R15
   - **Acceptance**: Pipeline accepts classifier output and routes to correct channel subset
 
-- [ ] T001d Shadow comparison run and p95 latency verification — run both full pipeline and routed pipeline simultaneously, compare results, verify p95 <30ms for simple queries [1-2h] {T001c} — R15
+- [x] T001d Shadow comparison run and p95 latency verification — run both full pipeline and routed pipeline simultaneously, compare results, verify p95 <30ms for simple queries [1-2h] {T001c} — R15
   - **Acceptance**: Shadow-run confirms no recall degradation; p95 <30ms verified
 <!-- /ANCHOR:phase-1 -->
 
@@ -55,13 +55,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: R14/N1 Relative Score Fusion
 
-- [ ] T002a [P] Implement RSF single-pair variant — foundation implementation of Relative Score Fusion for a single pair of ranked lists, behind `SPECKIT_RSF_FUSION` flag [4-5h] — R14/N1
+- [x] T002a [P] Implement RSF single-pair variant — foundation implementation of Relative Score Fusion for a single pair of ranked lists, behind `SPECKIT_RSF_FUSION` flag [4-5h] — R14/N1
   - **Acceptance**: Single-pair RSF produces valid fused ranking; output clamped to [0,1]
 
-- [ ] T002b Implement RSF multi-list variant — extend RSF to handle multiple ranked lists simultaneously [3-5h] {T002a} — R14/N1
+- [x] T002b Implement RSF multi-list variant — extend RSF to handle multiple ranked lists simultaneously [3-5h] {T002a} — R14/N1
   - **Acceptance**: Multi-list variant produces consistent results with single-pair on 2-list input
 
-- [ ] T002c Implement RSF cross-variant variant — cross-variant RSF for comparing results across different fusion strategies [3-4h] {T002b} — R14/N1
+- [x] T002c Implement RSF cross-variant variant — cross-variant RSF for comparing results across different fusion strategies [3-4h] {T002b} — R14/N1
   - **Acceptance**: Cross-variant RSF runs in shadow mode alongside RRF; results logged
 <!-- /ANCHOR:phase-2 -->
 
@@ -70,13 +70,13 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: R2 Channel Min-Representation
 
-- [ ] T003a [P] Implement post-fusion channel representation check — scan top-k results for channel diversity, identify under-represented channels that returned results [2-4h] {T001d} — R2
+- [x] T003a [P] Implement post-fusion channel representation check — scan top-k results for channel diversity, identify under-represented channels that returned results [2-4h] {T001d} — R2
   - **Acceptance**: Representation check correctly identifies channels with <1 result in top-k
 
-- [ ] T003b Implement quality floor enforcement and flag wiring — promote under-represented channel results only if score >= 0.2, add `SPECKIT_CHANNEL_MIN_REP` flag, skip enforcement for channels that returned no results [2-4h] {T003a} — R2
+- [x] T003b Implement quality floor enforcement and flag wiring — promote under-represented channel results only if score >= 0.2, add `SPECKIT_CHANNEL_MIN_REP` flag, skip enforcement for channels that returned no results [2-4h] {T003a} — R2
   - **Acceptance**: Quality floor prevents low-quality promotion; flag gates all R2 behavior; empty channels excluded
 
-- [ ] T003c Verify R2 precision impact — measure top-3 precision with R2 enabled vs baseline, confirm within 5% [2-3h] {T003b} — R2
+- [x] T003c Verify R2 precision impact — measure top-3 precision with R2 enabled vs baseline, confirm within 5% [2-3h] {T003b} — R2
   - **Acceptance**: Top-3 precision within 5% of baseline; regression test added
 <!-- /ANCHOR:phase-3 -->
 
@@ -85,10 +85,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3b -->
 ## Phase 3b: Query Optimization
 
-- [ ] T006 Implement confidence-based result truncation — adaptive top-K cutoff based on score confidence gap between consecutive results [5-8h] {T001d} — R15 extension
+- [x] T006 Implement confidence-based result truncation — adaptive top-K cutoff based on score confidence gap between consecutive results [5-8h] {T001d} — R15 extension
   - Score gap threshold: if gap between rank N and N+1 exceeds 2x median gap, truncate at N
   - Must respect minimum result count (3) regardless of confidence
-- [ ] T007 [P] Implement dynamic token budget allocation — adjust returned context size by query complexity tier [3-5h] {T001d} — R15 extension (FUT-7)
+- [x] T007 [P] Implement dynamic token budget allocation — adjust returned context size by query complexity tier [3-5h] {T001d} — R15 extension (FUT-7)
   - Simple: 1500 tokens | Moderate: 2500 tokens | Complex: 4000 tokens
   - Budget applies to total returned content, not per-result
 <!-- /ANCHOR:phase-3b -->
@@ -99,7 +99,7 @@ contextType: "implementation"
 ## PageIndex Tasks
 
 - [ ] ~~T008~~ **DEFERRED** — PI-A2 search strategy degradation fallback chain deferred from Sprint 3. Will be re-evaluated after Sprint 3 using measured frequency of low-result (<3) and low-similarity (<0.4) query outcomes from Sprint 0-3 data. See UT review R1.
-- [ ] T009 [P] [P2] Implement PI-B3 description-based spec folder discovery — generate 1-sentence descriptions from spec.md per folder, cache in descriptions.json, integrate lookup into memory_context orchestration layer before vector queries [4-8h] — PI-B3
+- [x] T009 [P] [P2] Implement PI-B3 description-based spec folder discovery — generate 1-sentence descriptions from spec.md per folder, cache in descriptions.json, integrate lookup into memory_context orchestration layer before vector queries [4-8h] — PI-B3
 <!-- /ANCHOR:pageindex -->
 
 ---
@@ -107,10 +107,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Shadow Comparison + Verification
 
-- [ ] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
-- [ ] T-IP-S3 [P0] **Interaction pair test: R15+R2** — verify R15 minimum = 2 channels even for "simple" tier; R2 channel-minimum representation not violated by R15 routing [1-2h] {T001d, T003c} — CHK-037
-- [ ] T-FS3 Feature flag sunset review at Sprint 3 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T004} — NFR-O01/O02/O03
-- [ ] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007, T-FS3}
+- [x] T004 Run shadow comparison: RSF vs RRF on 100+ queries, compute Kendall tau [included] {T002c}
+- [x] T-IP-S3 [P0] **Interaction pair test: R15+R2** — verify R15 minimum = 2 channels even for "simple" tier; R2 channel-minimum representation not violated by R15 routing [1-2h] {T001d, T003c} — CHK-037
+- [x] T-FS3 Feature flag sunset review at Sprint 3 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T004} — NFR-O01/O02/O03
+- [x] T005 [GATE] Sprint 3 exit gate + off-ramp evaluation [0h] {T001d, T002c, T003c, T004, T006, T007, T-FS3}
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -118,13 +118,13 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P1 tasks T001a-T001d, T002a-T002c, T003a-T003c, T004-T007 marked `[x]`
-- [ ] P2 task T009 (PI-B3) completed or deferred with documented reason
-- [ ] No `[B]` blocked tasks remaining
-- [ ] R15 p95 <30ms for simple queries verified
-- [ ] RSF Kendall tau computed (tau <0.4 = reject RSF)
-- [ ] R2 top-3 precision within 5% of baseline verified
-- [ ] Off-ramp evaluated: MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
+- [x] All P1 tasks T001a-T001d, T002a-T002c, T003a-T003c, T004-T007 marked `[x]`
+- [x] P2 task T009 (PI-B3) completed or deferred with documented reason
+- [x] No `[B]` blocked tasks remaining
+- [x] R15 p95 <30ms for simple queries verified
+- [x] RSF Kendall tau computed (tau <0.4 = reject RSF)
+- [x] R2 top-3 precision within 5% of baseline verified
+- [x] Off-ramp evaluated: MRR@5 >= 0.7, constitutional >= 95%, cold-start >= 90%
 <!-- /ANCHOR:completion -->
 
 ---
