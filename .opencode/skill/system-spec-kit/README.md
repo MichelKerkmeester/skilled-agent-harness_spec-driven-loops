@@ -14,7 +14,7 @@ importance_tier: "normal"
 
 > Your AI assistant forgets everything between sessions. Not anymore.
 
-Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search with 3-channel hybrid retrieval (Vector, FTS5, BM25) and causal graph intelligence.
+Unified documentation and context preservation skill providing spec folder workflows, memory management and MCP-powered semantic search with multi-channel hybrid retrieval (Vector, FTS5/BM25, Graph, Degree) and causal graph intelligence.
 
 ---
 
@@ -79,8 +79,16 @@ Cross-workflow alignment is mandatory:
 
 | Capability | Description |
 | --- | --- |
-| **Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5 and BM25; co-activation/session/causal signals are applied post-fusion |
+| **Hybrid Search + Post-Fusion** | Primary scatter-gather across vector, FTS5/BM25, graph and degree; co-activation/session/causal signals are applied post-fusion |
 | **Adaptive RRF Fusion** | Intent-weighted profiles replace fixed-weight RRF when `SPECKIT_ADAPTIVE_FUSION=true` |
+| **RSF Fusion** | Reciprocal Similarity Fusion as alternative to RRF with single-pair, multi-list and cross-variant modes (`SPECKIT_RSF_FUSION=true`) |
+| **Degree Channel + Co-Activation** | 5th RRF channel with typed-weighted degree scoring and fan-effect sqrt divisor |
+| **Embedding Cache** | Persistent SQLite cache with LRU eviction for embedding reuse |
+| **Query Complexity Routing** | Classifier routes simple/moderate/complex queries to optimal pipeline |
+| **Interference Scoring** | TM-01 penalizes high-similarity near-duplicates in result sets |
+| **Classification Decay** | TM-03 tier-based and context-type stability multipliers for FSRS |
+| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
+| **Dynamic Token Budget** | Tier-aware budgets (1500/2500/4000) for result delivery |
 | **Causal Lineage Insights** | Causal tools and boosts surface decision lineage for "why" and dependency questions |
 | **MMR Diversity Reranking** | Lambda mapped to detected intent for relevance-diversity balance |
 | **Evidence Gap Detection** | TRM with Z-score confidence flags missing context before retrieval |
@@ -102,8 +110,8 @@ Cross-workflow alignment is mandatory:
 | **Importance Tiers** | 6 (constitutional to deprecated) |
 | **Memory Types** | 9 (working, episodic, procedural, semantic, etc.) |
 | **ANCHOR Coverage** | 533 anchors across 78 skill READMEs |
-| **Test Coverage** | 4,770 tests across 159 files |
-| **Last Verified** | 2026-02-21 |
+| **Test Coverage** | 5,797 tests across 196 files |
+| **Last Verified** | 2026-02-27 |
 
 ### Requirements
 
@@ -179,7 +187,7 @@ When in doubt, choose the higher level.
 
 ### MCP Server (`mcp_server/`)
 
-The cognitive memory engine. It provides 22 MCP tools over stdio for semantic search, memory management, causal graph operations, checkpoints and session learning.
+The cognitive memory engine. It provides 25 MCP tools over stdio for semantic search, memory management, causal graph operations, checkpoints and session learning.
 
 **Key characteristics after spec 138:**
 - Hybrid scatter-gather search pipeline
@@ -339,19 +347,29 @@ The memory system implements biologically-inspired cognitive features:
 | Recovery: Hope you backed up | Recovery: Checkpoints = undo button for your index |
 | "Why" queries: Impossible | "Why" queries: Causal graph traces decision lineage |
 
-### 6-Channel Search Pipeline
+### Search Pipeline
 
-After spec 138, `memory_search` and `memory_context` use a scatter-gather architecture across six channels:
+After spec 138 and Sprints 1-3, `memory_search` and `memory_context` use a scatter-gather architecture across multiple channels:
 
 ```
-Vector (1.0x) + FTS5/BM25 (1.0x) + Graph (1.5x)
+Vector (1.0x) + FTS5/BM25 (1.0x) + Graph (1.5x) + Degree (1.0x)
 + Co-Activation (+0.25) + Session Boost (capped) + Causal Edges (2-hop)
          |
          v
 Adaptive RRF Fusion (intent-weighted profiles, k=60)
+── or RSF Fusion (reciprocal similarity, when SPECKIT_RSF_FUSION=true) ──
+         |
+         v
+Query Complexity Routing (simple → fast path, complex → full pipeline)
          |
          v
 MMR Diversity Reranking (lambda mapped to intent)
+         |
+         v
+Confidence Truncation (2x median gap, min 3 results)
+         |
+         v
+Dynamic Token Budget (1500/2500/4000 by tier)
          |
          v
 Evidence Gap Detection (TRM with Z-score confidence)
@@ -706,7 +724,7 @@ See [mcp_server/README.md](./mcp_server/README.md) for:
 ```bash
 # Run full MCP server test suite (from mcp_server directory)
 cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run
-# Expected: 4,770 tests passing across 159 files
+# Expected: 5,797 tests passing across 196 files
 ```
 
 ---
@@ -778,12 +796,14 @@ A: Yes. Major flags including `SPECKIT_ADAPTIVE_FUSION`, `SPECKIT_CAUSAL_BOOST` 
 │   └── dist/                  # Compiled JavaScript output
 ├── shared/                    # Shared workspace (@spec-kit/shared)
 ├── mcp_server/                # Spec Kit Memory MCP [TypeScript source]
-│   ├── context-server.ts      # MCP server entry (22 tools)
+│   ├── context-server.ts      # MCP server entry (25 tools)
 │   ├── core/                  # Core initialization
 │   ├── handlers/              # Tool handlers (9 functional + 2 infra)
-│   ├── lib/                   # 63 library modules
+│   ├── lib/                   # Library modules
 │   │   ├── cognitive/         # FSRS, PE gating, 5-state model
-│   │   ├── search/            # Vector, BM25, adaptive RRF, MMR, causal boost
+│   │   ├── search/            # Vector, BM25, adaptive RRF, RSF, MMR, query classifier, confidence truncation, dynamic token budget, channel representation, folder discovery, causal boost
+│   │   ├── cache/             # Persistent embedding cache (SQLite with LRU eviction)
+│   │   ├── eval/              # Edge density measurement
 │   │   ├── session/           # Deduplication, crash recovery
 │   │   ├── storage/           # SQLite, causal edges, mutation ledger
 │   │   ├── providers/         # Embedding providers (Voyage, OpenAI, HF local)

@@ -43,6 +43,8 @@ Current modules:
 - `memory-crud-utils.ts`
 - `memory-bulk-delete.ts`
 - `memory-index.ts`
+- `memory-index-alias.ts`
+- `memory-index-discovery.ts`
 - `checkpoints.ts`
 - `session-learning.ts`
 - `causal-graph.ts`
@@ -60,7 +62,7 @@ Current modules:
 - Core persistence uses `memory_index` (not `memories`) with FTS/vector/checkpoint support.
 - Spec 126 alignment:
   - `memory-index` supports `includeSpecDocs` and indexes spec docs plus memory files.
-  - `memory-save` preserves `document_type` and `spec_level` across create/update/reinforce flows.
+  - `memory-save` preserves `document_type` and `spec_level` across create/update/reinforce flows. Integrates with embedding cache for deduplication of unchanged content.
   - scan flow can build spec-document causal chains after indexing.
 
 

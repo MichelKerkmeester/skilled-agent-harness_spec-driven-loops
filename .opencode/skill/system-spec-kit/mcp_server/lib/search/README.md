@@ -176,7 +176,10 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 | -------------------- | -------------------------------------------------------------------------------------------- |
 | **TypeScript**       | `hybrid-search.ts`, `cross-encoder.ts`, `intent-classifier.ts`, `bm25-index.ts`             |
 | **TypeScript**       | `vector-index.ts` (typed facade) -> `vector-index-impl.ts` (full implementation)             |
-| **TypeScript**       | `reranker.ts` (score-based reranking), `rrf-fusion.ts` (RRF score fusion)                    |
+| **TypeScript**       | `reranker.ts`, `rrf-fusion.ts`, `rsf-fusion.ts` (fusion algorithms)                          |
+| **TypeScript**       | `query-classifier.ts`, `query-router.ts`, `query-expander.ts` (query pipeline)               |
+| **TypeScript**       | `channel-representation.ts`, `channel-enforcement.ts`, `confidence-truncation.ts` (quality)   |
+| **TypeScript**       | `dynamic-token-budget.ts`, `folder-discovery.ts`, `folder-relevance.ts` (budget & discovery)  |
 
 ### Facade Pattern: vector-index
 
@@ -202,23 +205,40 @@ vector-index-impl.ts     (3333 LOC)
 
 ### Module Listing
 
-| File                     | LOC    | Language   | Purpose                                             |
-| ------------------------ | ------ | ---------- | --------------------------------------------------- |
-| `vector-index.ts`        | ~700   | TypeScript | Typed facade: interfaces, type exports, delegation  |
-| `vector-index-impl.ts`   | ~3333  | TypeScript | Full implementation: schema, CRUD, search, caching  |
-| `hybrid-search.ts`       | ~381   | TypeScript | Orchestrates vector/BM25/graph fusion via RRF       |
-| `cross-encoder.ts`       | ~433   | TypeScript | Reranking with Voyage/Cohere providers              |
-| `intent-classifier.ts`   | ~291   | TypeScript | 7 intent types with keyword patterns                |
-| `bm25-index.ts`          | ~241   | TypeScript | Pure TypeScript BM25 (REQ-028, v1.2.0)              |
-| `reranker.ts`            | -      | TypeScript | Score-based reranking utility (sort + truncate)     |
-| `rrf-fusion.ts`          | -      | TypeScript | Reciprocal Rank Fusion scoring logic                |
-| `artifact-routing.ts`    | -      | TypeScript | 9 artifact classes with per-type retrieval strategy routing |
-| `adaptive-fusion.ts`     | -      | TypeScript | Intent-aware weighted RRF with dark-run mode, feature flag SPECKIT_ADAPTIVE_FUSION |
-| `causal-boost.ts`        | -      | TypeScript | Causal-neighbor score boosting for graph traversal  |
-| `session-boost.ts`       | -      | TypeScript | Session-attention score boosting                    |
-| `graph-search-fn.ts`     | -      | TypeScript | Graph-structure search channel (4th retrieval channel) |
+| File                       | LOC    | Language   | Purpose                                             |
+| -------------------------- | ------ | ---------- | --------------------------------------------------- |
+| `vector-index.ts`          | ~700   | TypeScript | Typed facade: interfaces, type exports, delegation  |
+| `vector-index-impl.ts`     | ~3333  | TypeScript | Full implementation: schema, CRUD, search, caching  |
+| `hybrid-search.ts`         | ~900   | TypeScript | Orchestrates vector/BM25/graph fusion via RRF/RSF   |
+| `cross-encoder.ts`         | ~433   | TypeScript | Reranking with Voyage/Cohere providers              |
+| `intent-classifier.ts`     | ~500   | TypeScript | 7 intent types with keyword patterns                |
+| `bm25-index.ts`            | ~280   | TypeScript | Pure TypeScript BM25 (REQ-028, v1.2.0)              |
+| `reranker.ts`              | -      | TypeScript | Score-based reranking utility (sort + truncate)     |
+| `rrf-fusion.ts`            | -      | TypeScript | Reciprocal Rank Fusion scoring logic                |
+| `rsf-fusion.ts`            | -      | TypeScript | Relative Score Fusion — normalized score-based alternative to RRF (Sprint 3) |
+| `artifact-routing.ts`      | -      | TypeScript | 9 artifact classes with per-type retrieval strategy routing |
+| `adaptive-fusion.ts`       | -      | TypeScript | Intent-aware weighted RRF with dark-run mode, feature flag SPECKIT_ADAPTIVE_FUSION |
+| `causal-boost.ts`          | -      | TypeScript | Causal-neighbor score boosting for graph traversal  |
+| `session-boost.ts`         | -      | TypeScript | Session-attention score boosting                    |
+| `graph-search-fn.ts`       | -      | TypeScript | Graph-structure search channel with typed-weighted degree computation |
+| `query-classifier.ts`      | -      | TypeScript | Routes queries by complexity tier (simple ≤3 tokens, moderate, complex >8) (Sprint 3) |
+| `query-router.ts`          | -      | TypeScript | Tier-to-channel-subset routing for selective pipeline execution (Sprint 3) |
+| `query-expander.ts`        | -      | TypeScript | Rule-based synonym expansion for mode="deep" multi-query RAG |
+| `channel-representation.ts`| -      | TypeScript | Ensures minimum channel representation in top-k results (QUALITY_FLOOR=0.2) (Sprint 3) |
+| `channel-enforcement.ts`   | -      | TypeScript | Pipeline-ready wrapper around channel min-representation check (Sprint 3) |
+| `confidence-truncation.ts` | -      | TypeScript | Removes low-confidence tail using 2x median gap heuristic (min 3 results) (Sprint 3) |
+| `dynamic-token-budget.ts`  | -      | TypeScript | Per-tier token budgets: simple=1500, moderate=2500, complex=4000 (Sprint 3) |
+| `folder-discovery.ts`      | -      | TypeScript | Spec folder description discovery and caching for PI-B3 (Sprint 3) |
+| `folder-relevance.ts`      | -      | TypeScript | Folder-level relevance scoring via damped DocScore aggregation |
+| `context-budget.ts`        | -      | TypeScript | Token-budget-aware result selection with graph region diversity |
+| `evidence-gap-detector.ts` | -      | TypeScript | Z-score confidence check on RRF scores to detect low-confidence retrieval |
+| `mmr-reranker.ts`          | -      | TypeScript | Maximal Marginal Relevance for post-fusion diversity pruning |
+| `fsrs.ts`                  | -      | TypeScript | Temporal-structural coherence: FSRS stability augmented with graph centrality |
+| `sqlite-fts.ts`            | -      | TypeScript | SQLite FTS5 BM25 weighted scoring, extracted from hybrid-search for independent use |
+| `search-flags.ts`          | -      | TypeScript | Default-on runtime feature flags for search pipeline controls |
+| `graph-flags.ts`           | -      | TypeScript | Legacy compatibility shim for graph channel gate (SPECKIT_GRAPH_UNIFIED) |
 
-**Total**: ~5,379+ LOC across 13 files (all TypeScript)
+**Total**: ~10,000+ LOC across 30 files (all TypeScript)
 
 ### Data Flow
 
@@ -593,11 +613,12 @@ console.log(`Schema version: ${version}`);
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-16
+**Version**: 1.8.0
+**Last Updated**: 2026-02-27
 **Maintainer**: system-spec-kit MCP server
 
 **Migration Status**:
-- TypeScript migration is **complete**: all 8 code files are TypeScript (0 `.js` source files)
+- TypeScript migration is **complete**: all 30 code files are TypeScript (0 `.js` source files)
 - `vector-index.ts` is a typed facade. `vector-index-impl.ts` is the full implementation
-- `reranker.ts` and `rrf-fusion.ts` provide score-based reranking and RRF fusion utilities
+- `rrf-fusion.ts` and `rsf-fusion.ts` provide RRF and Relative Score Fusion algorithms
+- Sprint 3 additions: query complexity routing, channel representation, confidence truncation, dynamic token budgets, folder discovery

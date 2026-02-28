@@ -43,8 +43,8 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 166 | All `.vitest.ts` format |
-| Total Tests | 3,872+ | Across all test files |
+| Test Files | 196 | All `.vitest.ts` format |
+| Total Tests | 5,797 | Across all test files |
 | Test Framework | Vitest | TypeScript-native, no compilation step needed |
 | Coverage Target | 80/70/50 | Unit 80%, Integration 70%, E2E 50% |
 
@@ -53,10 +53,11 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | Feature | Description |
 |---------|-------------|
 | **Vitest Framework** | Modern TypeScript-native test runner with built-in assertions |
-| **Full Coverage** | 142 test files covering cognitive, search, handlers and integration |
+| **Full Coverage** | 196 test files covering cognitive, search, handlers, integration and eval |
 | **Category Organization** | Tests grouped by functional domain (cognitive, search, handlers, integration, unit) |
 | **Type Safety** | Full TypeScript with type checking at test level |
 | **Spec 126/127 Reality Checks** | Coverage for 3-source indexing, 7 intents, schema v13 document fields, document-type scoring and `includeSpecDocs` |
+| **Sprint Eval Tests** | Sprint 1-3 feature evaluation, cross-sprint integration, BM25 baseline, embedding cache |
 
 ### Requirements
 
@@ -155,6 +156,13 @@ tests/
 ├── causal-boost.vitest.ts                 # Causal graph score boosting
 ├── session-boost.vitest.ts                # Session-recency score boosting
 ├── adaptive-fusion.vitest.ts              # 15 tests for adaptive fusion
+├── adaptive-fallback.vitest.ts            # Adaptive fallback behavior
+├── mmr-reranker.vitest.ts                 # MMR reranking
+├── pagerank.vitest.ts                     # PageRank scoring
+├── query-expander.vitest.ts               # Query expansion
+├── sqlite-fts.vitest.ts                   # SQLite FTS5 search
+├── structure-aware-chunker.vitest.ts      # Structure-aware document chunking
+├── memory-search-quality-filter.vitest.ts # Memory search quality filtering
 ├── retrieval-trace.vitest.ts              # 17 tests for typed retrieval-trace contracts
 ├── retrieval-telemetry.vitest.ts          # 22 tests for retrieval telemetry
 │
@@ -183,6 +191,7 @@ tests/
 ├── handler-causal-graph.vitest.ts         # Causal graph handler
 ├── handler-checkpoints.vitest.ts          # Checkpoints handler
 ├── handler-helpers.vitest.ts              # Handler utilities
+├── intent-routing.vitest.ts              # Intent routing handler tests
 │
 ├── # Infrastructure Tests
 ├── schema-migration.vitest.ts             # Schema migrations
@@ -215,6 +224,15 @@ tests/
 ├── config-cognitive.vitest.ts             # Cognitive configuration
 ├── anchor-id-simplification.vitest.ts     # Anchor ID simplification rules
 ├── anchor-prefix-matching.vitest.ts       # Anchor prefix matching logic
+├── db-state-graph-reinit.vitest.ts        # DB state graph reinitialization
+├── evidence-gap-detector.vitest.ts        # Evidence gap detection
+├── graph-flags.vitest.ts                  # Graph feature flags
+├── graph-regression-flag-off.vitest.ts    # Graph regression when flags off
+├── graph-search-fn.vitest.ts              # Graph search functions
+├── hybrid-search-flags.vitest.ts          # Hybrid search feature flags
+├── search-flags.vitest.ts                 # Search feature flags
+├── regression-010-index-large-files.vitest.ts # Large file indexing regression
+├── tool-input-schema.vitest.ts            # Tool input schema validation
 │
 ├── # Memory Operations Tests
 ├── memory-context.vitest.ts               # Unified context entry
@@ -253,6 +271,8 @@ tests/
 ├── integration-session-dedup.vitest.ts    # Session dedup integration
 ├── integration-trigger-pipeline.vitest.ts # Trigger pipeline integration
 ├── phase2-integration.vitest.ts           # Phase 2 end-to-end integration
+├── integration-138-pipeline.vitest.ts    # Spec 138 pipeline integration
+├── pipeline-integration.vitest.ts        # General pipeline integration
 │
 ├── # Targeted Bug Fix / Spec Tests
 ├── t105-t106-safety.vitest.ts             # Safety constraint tests
@@ -269,6 +289,51 @@ tests/
 ├── t302-session-cleanup.vitest.ts         # Session cleanup
 ├── t503-learning-stats-filters.vitest.ts  # Learning stats filters
 ├── spec126-full-spec-doc-indexing.vitest.ts # Spec-doc indexing, schema v13, scoring, intent expansion
+├── t054-content-hash-dedup.vitest.ts     # Content hash deduplication
+│
+├── # Sprint 0 Eval Tests (Measurement Foundation)
+├── t004-eval-db.vitest.ts                # Eval database infrastructure
+├── t005-eval-logger.vitest.ts            # Eval logging pipeline
+├── t006-eval-metrics.vitest.ts           # Eval metrics computation
+├── t006fg-ceiling-quality.vitest.ts      # Ceiling quality proxy
+├── t007-ground-truth.vitest.ts           # Ground truth dataset
+├── t008-bm25-baseline.vitest.ts          # BM25 baseline measurement
+├── t010-degree-computation.vitest.ts     # Degree computation
+├── t010b-rrf-degree-channel.vitest.ts    # RRF degree channel
+├── t010c-consumption-logger.vitest.ts    # Consumption logging
+├── t010d-scoring-observability.vitest.ts # Scoring observability
+├── t011-edge-density.vitest.ts           # Edge density measurement
+├── t012-signal-vocab.vitest.ts           # Signal vocabulary
+├── t013-eval-the-eval.vitest.ts          # Meta-evaluation
+├── t013-token-budget.vitest.ts           # Token budget enforcement
+├── t014-quality-loop.vitest.ts           # Quality feedback loop
+├── t015-embedding-cache.vitest.ts        # Embedding cache
+├── t016-cold-start.vitest.ts             # Cold start handling
+├── t017-g2-intent.vitest.ts              # G2 intent classification
+├── t018-score-normalization.vitest.ts    # Score normalization
+├── t019-interference.vitest.ts           # Channel interference
+├── t020-decay.vitest.ts                  # Decay mechanisms
+├── t020-folder-relevance.vitest.ts       # Folder relevance scoring
+├── t021-cross-sprint-integration.vitest.ts # Cross-sprint integration
+├── t022-query-classifier.vitest.ts       # Query classification
+├── t023-rsf-fusion.vitest.ts             # RSF fusion
+├── t024-channel-representation.vitest.ts # Channel representation
+├── t025-folder-discovery.vitest.ts       # Folder discovery
+├── t026-query-router.vitest.ts           # Query routing
+├── t027-rsf-multi.vitest.ts              # RSF multi-channel
+├── t028-channel-enforcement.vitest.ts    # Channel enforcement
+├── t029-confidence-truncation.vitest.ts  # Confidence truncation
+├── t030-dynamic-token-budget.vitest.ts   # Dynamic token budget
+├── t031-shadow-comparison.vitest.ts      # Shadow comparison
+├── t032-rsf-vs-rrf-kendall.vitest.ts     # RSF vs RRF Kendall tau
+├── t033-r15-r2-interaction.vitest.ts     # R15-R2 interaction
+│
+├── # Sprint 1-3 Feature Eval Tests
+├── t040-sprint1-feature-eval.vitest.ts   # Sprint 1 feature evaluation
+├── t041-sprint2-feature-eval.vitest.ts   # Sprint 2 feature evaluation
+├── t042-sprint3-feature-eval.vitest.ts   # Sprint 3 feature evaluation
+├── t043-cross-sprint-integration.vitest.ts # Cross-sprint integration
+│
 ├── # Unit Tests (Focused Type/Logic Validation)
 ├── unit-composite-scoring-types.vitest.ts # Composite scoring types
 ├── unit-folder-scoring-types.vitest.ts    # Folder scoring types
@@ -358,6 +423,7 @@ describe('Attention Decay', () => {
 | Integration | End-to-end pipelines (save, search, session, causal graph) |
 | Infrastructure | Schema migration, retry, incremental indexing, transactions |
 | Unit | Focused type/logic validation for specific modules |
+| Eval | Sprint 0 measurement foundation, Sprint 1-3 feature evals, cross-sprint integration |
 
 ### Running Tests
 
@@ -398,8 +464,8 @@ npx vitest run
 #  PASS  tests/composite-scoring.vitest.ts (101 tests)
 #  PASS  tests/working-memory.vitest.ts (51 tests)
 #  ...
-#  Test Files  142 passed
-#  Tests       3872+ passed
+#  Test Files  196 passed
+#  Tests       5797 passed
 ```
 
 ### Example 2: Run Specific Feature Test
@@ -513,7 +579,7 @@ npx vitest --version
 
 # List test files
 ls tests/*.vitest.ts | wc -l
-# Expected: 166
+# Expected: 196
 
 # Run tests with detailed output
 npx vitest run --reporter=verbose 2>&1 | head -50
@@ -595,6 +661,12 @@ Use `npx vitest run` output and CI logs for current verification details.
 | Archival Manager | `archival-manager.vitest.ts` | Archival system lifecycle |
 | Spec Document Indexing | `spec126-full-spec-doc-indexing.vitest.ts` | Schema v13 fields (`document_type`, `spec_level`), 8 spec doc types, scoring multipliers, 7 intents |
 | Index Scan Hardening | `handler-memory-index-cooldown.vitest.ts` | Scan cooldown/rate-limit behavior for `memory_index_scan` |
+| Sprint 1 Eval | `t040-sprint1-feature-eval.vitest.ts` | Sprint 1 feature evaluation metrics |
+| Sprint 2 Eval | `t041-sprint2-feature-eval.vitest.ts` | Sprint 2 feature evaluation metrics |
+| Sprint 3 Eval | `t042-sprint3-feature-eval.vitest.ts` | Sprint 3 feature evaluation metrics |
+| Cross-Sprint | `t043-cross-sprint-integration.vitest.ts` | Cross-sprint integration validation |
+| Embedding Cache | `t015-embedding-cache.vitest.ts` | Embedding cache deduplication and hit rates |
+| BM25 Baseline | `t008-bm25-baseline.vitest.ts` | BM25 lexical baseline measurement |
 
 ### External Resources
 

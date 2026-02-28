@@ -60,8 +60,11 @@ The cache module provides in-memory caching for MCP tool outputs to reduce redun
 
 ```
 cache/
-├── tool-cache.ts   # Core caching implementation
-└── README.md       # This file
+├── tool-cache.ts       # Core tool output caching implementation
+├── embedding-cache.ts  # Persistent SQLite embedding cache with LRU eviction (Sprint 3)
+├── scoring/            # Cache-aware composite scoring (symlink to ../cognitive)
+├── cognitive -> ../cognitive  # Symlink to cognitive module
+└── README.md           # This file
 ```
 
 ### Key Files
@@ -69,6 +72,7 @@ cache/
 | File | Purpose |
 |------|---------|
 | `tool-cache.ts` | Cache implementation with TTL, LRU eviction, invalidation and statistics |
+| `embedding-cache.ts` | Persistent SQLite embedding cache: avoids re-computing embeddings for identical content. Uses content-hash + model-ID keys with LRU eviction (Sprint 3) |
 
 <!-- /ANCHOR:structure -->
 
@@ -132,6 +136,25 @@ await withCache(toolName, args, asyncFn, options);
 | `hitRate` | Percentage of hits vs total requests |
 
 **Exported constant:** `CONFIG` (aliased from `TOOL_CACHE_CONFIG`)
+
+### Embedding Cache (`embedding-cache.ts`)
+
+**Purpose**: Persistent SQLite-backed embedding cache to avoid redundant API calls for identical content.
+
+| Aspect | Value |
+|--------|-------|
+| **Key Strategy** | SHA-256 content hash + model ID |
+| **Storage** | SQLite table `embedding_cache` |
+| **Eviction** | LRU-based eviction when capacity exceeded |
+| **LRU Tracking** | `lastUsedAt` timestamp updated on cache hits |
+
+| Function | Purpose |
+|----------|---------|
+| `initEmbeddingCacheTable(db)` | Create `embedding_cache` table (idempotent) |
+| `getEmbeddingFromCache(db, contentHash, modelId)` | Retrieve cached embedding (updates LRU timestamp) |
+| `putEmbeddingInCache(db, contentHash, modelId, embedding, dimensions)` | Store embedding in cache |
+| `getEmbeddingCacheStats(db)` | Get cache statistics (total entries, size, age range) |
+| `evictOldestEmbeddings(db, keepCount)` | LRU eviction to trim cache to `keepCount` entries |
 
 <!-- /ANCHOR:features -->
 
@@ -218,5 +241,5 @@ const stats = getStats();
 
 ---
 
-**Version**: 1.8.0
-**Last Updated**: 2026-02-16
+**Version**: 1.9.0
+**Last Updated**: 2026-02-27

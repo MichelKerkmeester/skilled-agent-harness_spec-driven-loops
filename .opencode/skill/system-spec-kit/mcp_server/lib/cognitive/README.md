@@ -245,11 +245,11 @@ half_life = 60 days → stability ≈ 4.69 days
 
 ```
 cognitive/                      # TypeScript source files (10 modules)
-├── fsrs-scheduler.ts           # FSRS v4 power-law decay (240 lines)
+├── fsrs-scheduler.ts           # FSRS v4 power-law decay + TM-03 classification-based decay (340 lines)
 ├── prediction-error-gate.ts    # Duplicate detection & conflict logging (510 lines)
 ├── tier-classifier.ts          # 5-state model classifier (452 lines)
 ├── attention-decay.ts          # Multi-factor attention decay (409 lines)
-├── co-activation.ts            # Spreading activation (296 lines)
+├── co-activation.ts            # Spreading activation with R17 fan-effect sqrt divisor (350 lines)
 ├── working-memory.ts           # Session-scoped activation (410 lines)
 ├── archival-manager.ts         # 90-day archival lifecycle (395 lines)
 ├── temporal-contiguity.ts      # Time-based contiguity boosting (158 lines)
@@ -262,11 +262,11 @@ cognitive/                      # TypeScript source files (10 modules)
 
 | Module                     | Purpose                   | Key Exports                                                                 |
 | -------------------------- | ------------------------- | --------------------------------------------------------------------------- |
-| `fsrs-scheduler.ts`        | FSRS v4 implementation    | `calculateRetrievability`, `updateStability`, `processReview`               |
+| `fsrs-scheduler.ts`        | FSRS v4 + TM-03 classification decay | `calculateRetrievability`, `updateStability`, `processReview`, `applyClassificationDecay` |
 | `tier-classifier.ts`       | State classification      | `classifyState`, `classifyTier`, `getStateContent`, `filterAndLimitByState` |
 | `attention-decay.ts`       | Multi-factor decay        | `applyFsrsDecay`, `calculateCompositeAttention`, `getAttentionBreakdown`    |
 | `prediction-error-gate.ts` | Conflict detection        | `evaluateMemory`, `detectContradiction`, `logConflict`                      |
-| `co-activation.ts`         | Semantic spreading        | `spreadActivation`, `populateRelatedMemories`, `boostScore`                 |
+| `co-activation.ts`         | Semantic spreading (R17 fan-effect sqrt divisor) | `spreadActivation`, `populateRelatedMemories`, `boostScore`  |
 | `working-memory.ts`        | Session memory management | `setAttentionScore`, `getWorkingMemory`, `batchUpdateScores`                |
 | `archival-manager.ts`      | Lifecycle management      | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                    |
 | `temporal-contiguity.ts`   | Time-based linking        | `vectorSearchWithContiguity`, `getTemporalNeighbors`, `buildTimeline`       |
@@ -1058,4 +1058,4 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned. It is compiled from
 
 <!-- /ANCHOR:related -->
 
-*Cognitive Subsystem v1.8.0, Research-Backed Memory Management*
+*Cognitive Subsystem v1.9.0, Research-Backed Memory Management — Updated: 2026-02-27*

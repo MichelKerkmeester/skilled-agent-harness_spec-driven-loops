@@ -60,8 +60,8 @@ None of it works because none of it understands what matters.
 
 This MCP server gives your AI assistant persistent memory with intelligence built in:
 
-- **3-channel hybrid search** (Vector, FTS5, BM25) finds what you mean, not what you typed
-- **Post-fusion enhancements**: RRF, Adaptive Fusion, MMR, Co-activation and Recency Boost are applied after retrieval, not separate search channels
+- **5-channel hybrid search** (Vector, FTS5, BM25, Skill Graph, Degree) finds what you mean, not what you typed
+- **Post-fusion enhancements**: RRF, RSF, Adaptive Fusion, MMR, Co-activation, Recency Boost, Interference Scoring, Confidence Truncation and Dynamic Token Budget are applied after retrieval, not separate search channels
 - **Cognitive decay** keeps relevant memories fresh and lets stale ones fade
 - **Causal graph** traces decision lineage ("Why did we choose JWT?")
 - **Session awareness** prevents duplicate context and saves tokens
@@ -77,7 +77,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **Recovery**      | Hope                | Crash recovery with zero data loss                       |
 | **Sessions**      | None                | Deduplication with ~50% tokens saved on follow-up        |
 | **Context**       | Full documents      | ANCHOR-based section retrieval (93% token savings)       |
-| **Search**        | Vector only         | 3-channel (Vector, FTS5, BM25) with adaptive RRF fusion  |
+| **Search**        | Vector only         | 5-channel (Vector, FTS5, BM25, Graph, Degree) with RRF + RSF fusion |
 | **State**         | Stateless           | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
 | **Tiers**         | None                | 6-tier importance with configurable boosts               |
 | **Decay**         | None or exponential | FSRS power-law (validated on 100M+ users)                |
@@ -91,12 +91,12 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | Category                | Count                                                    |
 | ----------------------- | -------------------------------------------------------- |
 | **MCP Tools**           | 23                                                       |
-| **Library Modules**     | 76                                                       |
-| **Handler Modules**     | 19                                                       |
-| **Embedding Providers** | 3                                                        |
-| **Feature Flags**       | 16 (all default enabled; explicit `FLAG=false` disables) |
-| **Test Coverage**       | 155 test files                                           |
-| **Last Verified**       | 2026-02-22                                               |
+| **Library Modules**     | 99                                                                               |
+| **Handler Modules**     | 21                                                                               |
+| **Embedding Providers** | 3                                                                                |
+| **Feature Flags**       | 26 (12 default enabled; 14 dark-run flags from Sprint 1-3, default disabled)     |
+| **Test Coverage**       | 196 test files, 5,797 tests                                                      |
+| **Last Verified**       | 2026-02-27                                                                       |
 
 ### Requirements
 
@@ -148,7 +148,7 @@ ls dist/context-server.js
 
 # Run full test suite
 npx vitest run
-# Expected: tests passing across 164 files
+# Expected: 5,797 tests passing across 196 files
 ```
 
 ### MCP Configuration
@@ -192,7 +192,7 @@ tools/index.ts             (dispatchTool: routes call to correct handler)
   search   triggers  save   context   index   points  learning  crud    graph
         |
         v
-lib/                       (76 library modules: search, cognitive, storage, etc.)
+lib/                       (99 library modules: search, cognitive, storage, eval, etc.)
         |
         v
 dist/context-server.js     (compiled output, executed at runtime by node)
@@ -213,14 +213,14 @@ dist/context-server.js     (compiled output, executed at runtime by node)
 
 | Directory     | Purpose                                                        |
 | ------------- | -------------------------------------------------------------- |
-| `handlers/`   | 19 handler modules (functional + infrastructure)               |
-| `lib/`        | 76 library modules (cognitive, search, scoring, storage, etc.) |
-| `tools/`      | Tool registration wrappers per category                        |
-| `core/`       | Initialization, config, database state                         |
-| `formatters/` | Search result and token-metric formatting                      |
-| `scripts/`    | CLI utilities                                                  |
-| `tests/`      | 164 test files                                                 |
-| `dist/`       | Compiled JavaScript output (runtime target)                    |
+| `handlers/`   | 21 handler modules (functional + infrastructure)                       |
+| `lib/`        | 99 library modules (cognitive, search, scoring, eval, storage, etc.)   |
+| `tools/`      | Tool registration wrappers per category                                |
+| `core/`       | Initialization, config, database state                                 |
+| `formatters/` | Search result and token-metric formatting                              |
+| `scripts/`    | CLI utilities                                                          |
+| `tests/`      | 196 test files, 5,797 tests                                           |
+| `dist/`       | Compiled JavaScript output (runtime target)                            |
 
 ---
 
@@ -337,77 +337,116 @@ The causal graph supports 6 relationship types for tracing decision history:
 ## 5. SEARCH SYSTEM
 <!-- ANCHOR:search-system -->
 
-### 4-Channel Hybrid Search Pipeline
+### 5-Channel Hybrid Search Pipeline
 
-Specs 137, 138 (hybrid-rag-fusion) and 139 expanded the pipeline from 3 to 4 primary retrieval channels with a scatter-gather architecture. Post-fusion enhancements (RRF, Adaptive Fusion, MMR, Co-activation, Recency Boost) are applied after retrieval and are not counted as separate channels:
+Specs 137-139 expanded the pipeline from 3 to 4 primary retrieval channels. Sprint 1 (spec 140) added a 5th degree channel with typed-weighted graph degree computation. Sprint 3 added RSF fusion, query complexity routing, confidence truncation, channel min-representation and dynamic token budgets. Post-fusion enhancements are applied after retrieval and are not counted as separate channels:
 
 ```
 Query
    |
    v
 +------------------+
-|  INTENT DETECT   |  (auto-detects: add_feature, fix_bug, refactor,
+|  QUERY CLASSIFY  |  (simple / moderate / complex — Sprint 3)
+|  + INTENT DETECT |  (add_feature, fix_bug, refactor,
 |  + ARTIFACT      |   security_audit, understand, find_spec, find_decision)
 |  ROUTING         |  (9 artifact classes with per-type strategies)
 +--------+---------+
          |
          v
-+----------+----------+----------+----------+
-| VECTOR   | FTS5     | BM25     | SKILL    |
-| 1024d    | Full-    | Keyword  | GRAPH    |
-| (1.0x)   | text     | ranking  | (1.5x)   |
-+----+-----+----+-----+----+-----+----+-----+
-     |          |          |          |
-     +----------+----------+----------+
-                     |
-                     v
-       +-------------+-------------+
-       |  ADAPTIVE RRF FUSION      |
-       |  k=60, +10% convergence   |
-       |  intent-weighted profiles  |
-       +-------------+-------------+
-                                |
-                                v
-       +-------------+-------------+
-       |  POST-FUSION ENHANCEMENTS  |
-       |  Co-activation (+0.25)     |
-       |  Session/Recency Boost     |
-       |  Causal 2-hop boost        |
-       +-------------+-------------+
-                     |
-                     v
-       +-------------+-------------+
-       |  MMR DIVERSITY RERANKING  |
-       |  lambda mapped to intent  |
-       +-------------+-------------+
-                     |
-                     v
-       +-------------+-------------+
-       |  EVIDENCE GAP DETECTION   |
++--------+--------+---------+---------+---------+
+| VECTOR | FTS5   | BM25    | SKILL   | DEGREE  |
+| 1024d  | Full-  | Keyword | GRAPH   | Typed-  |
+| (1.0x) | text   | ranking | (1.5x)  | weight  |
++---+----+---+----+---+-----+---+-----+---+-----+
+    |        |        |         |         |
+    +--------+--------+---------+---------+
+                      |
+                      v
+       +--------------+--------------+
+       |  ADAPTIVE RRF FUSION        |
+       |  k=60, +10% convergence     |
+       |  intent-weighted profiles    |
+       |  5th degree channel (Sprint 1)|
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  RSF FUSION (Sprint 3)      |
+       |  Reciprocal Similarity      |
+       |  Fusion for diversity       |
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  CHANNEL MIN-REP (Sprint 3) |
+       |  QUALITY_FLOOR = 0.2        |
+       |  R2 representation guard    |
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  POST-FUSION ENHANCEMENTS   |
+       |  Co-activation (+0.25)      |
+       |  Session/Recency Boost      |
+       |  Causal 2-hop boost         |
+       |  Interference penalty (S2)  |
+       |  Cold-start N4 boost (S2)   |
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  MMR DIVERSITY RERANKING    |
+       |  lambda mapped to intent    |
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  CONFIDENCE TRUNCATION (S3) |
+       |  2x median gap cutoff       |
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  EVIDENCE GAP DETECTION     |
        |  TRM with Z-score confidence|
-       +-------------+-------------+
-                     |
-                     v
+       +--------------+--------------+
+                      |
+                      v
+       +--------------+--------------+
+       |  DYNAMIC TOKEN BUDGET (S3)  |
+       |  1500 / 2500 / 4000 tokens  |
+       |  Scaled by query complexity  |
+       +--------------+--------------+
+                      |
+                      v
               Final Ranked Results
 ```
 
 ### Channel Descriptions
 
-| Channel | Source                        | Weight | Purpose                    |
-| ------- | ----------------------------- | ------ | -------------------------- |
-| Vector  | `sqlite-vec` 1024d embeddings | 1.0x   | Semantic similarity        |
-| FTS5    | SQLite full-text search       | 1.0x   | Full-text lexical matching |
-| BM25    | SQLite FTS5 BM25 ranking      | 1.0x   | Keyword relevance scoring  |
+| Channel    | Source                            | Weight | Purpose                                      |
+| ---------- | --------------------------------- | ------ | -------------------------------------------- |
+| Vector     | `sqlite-vec` 1024d embeddings     | 1.0x   | Semantic similarity                          |
+| FTS5       | SQLite full-text search           | 1.0x   | Full-text lexical matching                   |
+| BM25       | SQLite FTS5 BM25 ranking          | 1.0x   | Keyword relevance scoring                    |
+| Skill Graph| Causal edge graph traversal       | 1.5x   | Graph-aware relevance                        |
+| Degree     | Typed-weighted graph degree (S1)  | 1.0x   | Hub importance via SQL + TS normalization    |
 
 ### Post-Fusion Enhancements
 
-These processing stages are applied after the 4 primary channels are fused via RRF. They boost or rerank results but are not independent search channels:
+These processing stages are applied after the 5 primary channels are fused via RRF. They boost or rerank results but are not independent search channels:
 
-| Enhancement   | Source                  | Effect        | Purpose                       |
-| ------------- | ----------------------- | ------------- | ----------------------------- |
-| Co-activation | Working memory patterns | +0.25 boost   | Related memory surfacing      |
-| Recency Boost | `working_memory` table  | Hard cap 0.20 | Session context recency       |
-| Causal 2-hop  | Causal edge traversal   | Injected      | Transitively related memories |
+| Enhancement            | Source                         | Effect                    | Purpose                                       |
+| ---------------------- | ------------------------------ | ------------------------- | --------------------------------------------- |
+| Co-activation          | Working memory patterns        | +0.25 boost               | Related memory surfacing                      |
+| Recency Boost          | `working_memory` table         | Hard cap 0.20             | Session context recency                       |
+| Causal 2-hop           | Causal edge traversal          | Injected                  | Transitively related memories                 |
+| RSF Fusion (S3)        | Reciprocal Similarity Fusion   | Diversity-aware fusion    | Complement RRF with similarity-based ranking  |
+| Interference (S2)      | TM-01 interference penalty     | -0.08 * score             | Penalize competing/contradictory memories     |
+| Cold-start N4 (S2)     | Novelty boost                  | 0.15 * exp(-elapsed/12)  | Boost recently indexed memories               |
+| Channel min-rep (S3)   | R2 representation guard        | QUALITY_FLOOR = 0.2       | Ensure all channels contribute to results     |
+| Confidence trunc. (S3) | 2x median gap cutoff           | Tail removal              | Remove low-confidence trailing results        |
+| Dynamic budget (S3)    | Query complexity classification | 1500/2500/4000 tokens     | Scale token budget to query complexity        |
 
 ### Adaptive RRF Fusion
 
@@ -581,27 +620,28 @@ mcp_server/
 │   ├── index.ts            # Hook exports
 │   └── memory-surface.ts   # Memory surfacing hook
 │
-├── lib/                    # Library modules (76 total)
+├── lib/                    # Library modules (99 total)
 │   ├── architecture/       # Layer definitions, tool-to-layer mapping (1)
-│   ├── cache/              # Tool result caching + nested cognitive/ and scoring/ (2)
+│   ├── cache/              # Tool result caching, embedding cache + nested cognitive/ and scoring/ (3)
 │   ├── chunking/           # Anchor-aware large-file chunker (50K threshold) (1)
 │   ├── cognitive/          # FSRS, PE gating, 5-state model, co-activation, rollout policy (10)
 │   ├── config/             # Memory types and type inference helpers (2)
 │   ├── contracts/          # ContextEnvelope, RetrievalTrace, DegradedModeContract (1)
 │   ├── errors/             # Core errors, recovery hints (49 codes) (3)
+│   ├── eval/               # Eval framework: logger, metrics, ground truth, BM25 baseline, ceiling, edge density (10) [Sprint 0-1]
 │   ├── extraction/         # Extraction adapter, redaction gate (2)
 │   ├── interfaces/         # Vector store interface (1)
 │   ├── learning/           # Corrections tracking (2)
 │   ├── manage/             # PageRank scoring (1)
-│   ├── parsing/            # Memory parser, trigger matcher, entity scope (3)
+│   ├── parsing/            # Memory parser, trigger matcher (+ CORRECTION/PREFERENCE signals), entity scope (3)
 │   ├── providers/          # Embedding providers, retry manager (2)
 │   ├── response/           # MCP response envelope helpers (1)
-│   ├── scoring/            # Composite scoring, importance tiers, folder scoring (4)
-│   ├── search/             # Vector, BM25, RRF, adaptive fusion, MMR, causal boost, graph search (22)
+│   ├── scoring/            # Composite scoring, importance tiers, folder scoring, interference scoring (5)
+│   ├── search/             # Vector, BM25, RRF, RSF, adaptive fusion, MMR, causal boost, graph search, degree, query classifier, confidence truncation, dynamic budget, channel representation, folder discovery (30)
 │   ├── session/            # Session deduplication (1)
 │   ├── storage/            # SQLite, causal edges, mutation ledger, incremental index, schema downgrade (9)
-│   ├── telemetry/          # 4-dimension retrieval telemetry (1)
-│   ├── utils/              # Format helpers, path security, retry, logger (4)
+│   ├── telemetry/          # 4-dimension retrieval telemetry, scoring observability, consumption logger (4)
+│   ├── utils/              # Format helpers, path security, retry, logger, canonical path (5)
 │   └── validation/         # Pre-flight validation (1)
 │
 ├── tools/                  # Tool registration wrappers
@@ -616,7 +656,7 @@ mcp_server/
 │   ├── search-results.ts   # Format search results
 │   └── token-metrics.ts    # Token estimation
 │
-├── tests/                  # Test suite (164 test files)
+├── tests/                  # Test suite (196 test files, 5,797 tests)
 ├── dist/                   # Compiled JavaScript output (generated via tsc)
 │   └── context-server.js   # Runtime entry point
 ├── database/               # SQLite database storage
@@ -654,7 +694,9 @@ mcp_server/
 
 ### Feature Flags
 
-All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the flags below default to enabled:
+All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the 12 original flags default to enabled. Sprint 1-3 (spec 140) added 14 dark-run flags that default to disabled:
+
+#### Default Enabled (specs 137-139)
 
 | Flag                         | Default | Description                                                                           |
 | ---------------------------- | ------- | ------------------------------------------------------------------------------------- |
@@ -670,6 +712,27 @@ All flags are evaluated via `isFeatureEnabled()`. After specs 137-139, the flags
 | `SPECKIT_SESSION_BOOST`      | `true`  | Enable session-attention score boost                                                  |
 | `SPECKIT_ADAPTIVE_FUSION`    | `true`  | Enable intent-aware weighted RRF fusion                                               |
 | `SPECKIT_PRESSURE_POLICY`    | `true`  | Enable token-pressure mode override in `memory_context` (set `false` to disable)      |
+
+#### Dark-Run Flags (Sprint 1-3, spec 140 — default disabled)
+
+These flags gate new Sprint 1-3 features. All default to disabled (opt-in). Set `FLAG=true` to enable:
+
+| Flag                              | Default | Sprint | Description                                                                   |
+| --------------------------------- | ------- | ------ | ----------------------------------------------------------------------------- |
+| `SPECKIT_DEGREE_BOOST`            | `false` | S1     | 5th RRF channel: typed-weighted graph degree computation                     |
+| `SPECKIT_NOVELTY_BOOST`           | `false` | S2     | N4 cold-start boost: `0.15 * exp(-elapsed/12)` for recently indexed memories |
+| `SPECKIT_INTERFERENCE_SCORE`      | `false` | S2     | TM-01 interference penalty: `-0.08 * score` for competing memories           |
+| `SPECKIT_CLASSIFICATION_DECAY`    | `false` | S2     | TM-03 classification-based FSRS decay multipliers                            |
+| `SPECKIT_SCORE_NORMALIZATION`     | `false` | S2     | Score normalization for composite scoring pipeline                           |
+| `SPECKIT_RSF_FUSION`              | `false` | S3     | Reciprocal Similarity Fusion (RSF) — diversity-aware complement to RRF       |
+| `SPECKIT_COMPLEXITY_ROUTER`       | `false` | S3     | Query complexity classifier (simple/moderate/complex) routing                |
+| `SPECKIT_CHANNEL_MIN_REP`         | `false` | S3     | Channel min-representation R2 guard (QUALITY_FLOOR=0.2)                      |
+| `SPECKIT_CONFIDENCE_TRUNCATION`   | `false` | S3     | Confidence truncation with 2x median gap cutoff                              |
+| `SPECKIT_DYNAMIC_TOKEN_BUDGET`    | `false` | S3     | Dynamic token budget scaled by query complexity (1500/2500/4000)             |
+| `SPECKIT_FOLDER_SCORING`          | `false` | S1     | Spec folder relevance scoring boost                                          |
+| `SPECKIT_CONSUMPTION_LOG`         | `true`  | S0     | Token consumption logging to eval database                                   |
+| `SPECKIT_EVAL_LOGGING`            | `false` | S0     | Eval framework logging (search metrics to eval DB)                           |
+| `SPECKIT_SIGNAL_VOCAB`            | `false` | S1     | Signal vocabulary detection (CORRECTION/PREFERENCE categories)               |
 
 ### Database Schema
 

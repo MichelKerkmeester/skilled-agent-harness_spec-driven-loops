@@ -45,7 +45,7 @@ The parsing module provides core functionality for extracting structured data fr
 | Feature | Description |
 |---------|-------------|
 | **ANCHOR Extraction** | Parse paired tags (`<!-- ANCHOR:id --> ... <!-- /ANCHOR:id -->`) for targeted retrieval |
-| **Trigger Matching** | Match user prompts against cached trigger phrases with Unicode support |
+| **Trigger Matching** | Match user prompts against cached trigger phrases with Unicode support and CORRECTION/PREFERENCE signal categories (Sprint 1) |
 | **Memory Type Inference** | Automatic classification (research, implementation, decision, discovery) via `inferMemoryType` from config |
 | **Spec Document Classification** | Derives `documentType` and `specLevel` from file paths for full spec folder indexing |
 | **Causal Link Extraction** | Parse relationship metadata (caused_by, supersedes, derived_from, blocks, related_to) |
@@ -129,6 +129,7 @@ parsing/
 | **Caching** | 60-second TTL cache with LRU regex cache (max 100) |
 | **Unicode** | NFC normalization with optional accent stripping |
 | **Word Boundaries** | Unicode-aware matching (Latin characters A-z, accented chars) |
+| **Signal Categories** | CORRECTION and PREFERENCE signal vocabulary (Sprint 1, TM-08) |
 
 **Exported functions:**
 
@@ -239,5 +240,5 @@ console.log(`Match time: ${result.stats.matchTimeMs}ms`);
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-16
+**Version**: 1.7.3
+**Last Updated**: 2026-02-27

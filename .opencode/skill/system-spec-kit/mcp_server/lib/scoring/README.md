@@ -53,7 +53,7 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 4 | Core scoring algorithms (.ts source files) |
+| Modules | 5 | Core scoring algorithms (.ts source files) |
 | Importance Tiers | 6 | constitutional, critical, important, normal, temporary, deprecated |
 | Scoring Factors | 5 | temporal, usage, importance, pattern, citation |
 | Export Functions | 40+ | Scoring utilities and helpers |
@@ -150,10 +150,11 @@ Phase-aware scoring adjusts retrieval relevance based on the active spec phase c
 
 ```
 scoring/
- composite-scoring.ts     # 5-factor and 6-factor composite scoring
+ composite-scoring.ts     # 5-factor and 6-factor composite scoring, N4 cold-start boost, score normalization
  importance-tiers.ts      # 6-tier importance configuration
  folder-scoring.ts        # Re-exports from @spec-kit/shared/scoring/folder-scoring
  confidence-tracker.ts    # User validation and promotion
+ interference-scoring.ts  # TM-01 interference penalty for redundant memories (Sprint 2)
  README.md                # This file
 ```
 
@@ -163,10 +164,11 @@ scoring/
 
 | File | Purpose |
 |------|---------|
-| `composite-scoring.ts` | Main scoring engine with 5-factor REQ-017 model |
+| `composite-scoring.ts` | Main scoring engine with 5-factor REQ-017 model, N4 cold-start novelty boost, score normalization, interference penalty integration |
 | `importance-tiers.ts` | Tier definitions, boost functions, SQL helpers |
 | `folder-scoring.ts` | Re-export from @spec-kit/shared/scoring/folder-scoring |
 | `confidence-tracker.ts` | Feedback loop: validation -> promotion |
+| `interference-scoring.ts` | TM-01 interference penalty: counts similar memories in same spec_folder, applied as scoring penalty to demote redundant results |
 
 <!-- /ANCHOR:structure -->
 
@@ -282,11 +284,11 @@ const info = getConfidenceInfo(db, memoryId);
 
 ---
 
-**Version**: 1.7.2
-**Last Updated**: 2026-02-16
+**Version**: 1.8.0
+**Last Updated**: 2026-02-27
 
 **Migration Notes**:
-- 4 of 6 modules migrated to TypeScript (.ts) as source of truth
+- 5 of 7 modules migrated to TypeScript (.ts) as source of truth
 - `index.js` and `scoring.js` remain as compiled JS only in `dist/lib/scoring/` (barrel re-exports and base decay utilities, never had .ts source)
 - Compiled output in `dist/lib/scoring/`
 - `folder-scoring.ts` re-exports from `@spec-kit/shared/scoring/folder-scoring`

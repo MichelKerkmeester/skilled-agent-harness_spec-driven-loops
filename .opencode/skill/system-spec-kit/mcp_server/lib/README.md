@@ -40,13 +40,13 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Module Categories | 18+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces, contracts, telemetry, extraction |
+| Module Categories | 22+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces, contracts, telemetry, extraction, eval, chunking, manage |
 | Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
 | Search Intents | 7 | add_feature, fix_bug, refactor, security_audit, understand, find_spec, find_decision |
 | Index Sources | 3 | spec memories, constitutional files, spec documents (`includeSpecDocs`) |
 | Schema Milestones | v13+ | v13 introduced `document_type` and `spec_level` for spec-doc indexing and scoring |
-| Total Modules | 63 | Organized into 19 domain-specific folders |
-| Last Verified | 2026-02-20 | Module category and total counts revalidated via Glob |
+| Total Modules | 99 | Organized into 22 domain-specific folders |
+| Last Verified | 2026-02-27 | Module category and total counts revalidated after Sprint 1-3 |
 
 ### Key Features
 
@@ -58,8 +58,14 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | **Folder Ranking** | Composite scoring for spec folders based on recency, relevance and importance |
 | **Document-Type Scoring** | Document-aware ranking supports spec lifecycle docs (spec/plan/tasks/checklist/decision-record/implementation-summary/research/handover) |
 | **Spec Document Indexing** | 3-source indexing pipeline supports optional spec-doc ingestion via `includeSpecDocs` (default: true) |
-| **Content Parsing** | Memory file parsing, trigger matching and entity scope detection |
+| **Content Parsing** | Memory file parsing, trigger matching (with CORRECTION/PREFERENCE signals) and entity scope detection |
 | **Batch Processing** | Utilities for batch operations, retry logic and rate limiting |
+| **Embedding Cache** | Persistent SQLite cache for embedding reuse with LRU eviction |
+| **Query Routing** | Complexity classifier routes simple/moderate/complex queries to optimal pipelines |
+| **RSF Fusion** | Reciprocal Similarity Fusion as alternative to RRF (single-pair, multi-list, cross-variant) |
+| **Interference Scoring** | TM-01 penalizes high-similarity near-duplicates in result sets |
+| **Confidence Truncation** | Removes low-confidence tail results using 2x median gap detection |
+| **Dynamic Token Budget** | Tier-aware budgets (1500/2500/4000) for result delivery |
 
 ### Requirements
 
@@ -119,23 +125,42 @@ console.log(`Found ${results.length} relevant memories`);
 
 ```
 lib/                            # TypeScript source files
-├── search/                     # Search and retrieval (12 modules)
+├── search/                     # Search and retrieval (30 modules)
 │   ├── vector-index.ts         # Vector similarity search with SQLite
 │   ├── vector-index-impl.ts    # Core vector index implementation
-│   ├── hybrid-search.ts        # Combined semantic + keyword search
-│   ├── rrf-fusion.ts           # Reciprocal Rank Fusion scoring
+│   ├── hybrid-search.ts        # Combined semantic + keyword search + token budget
+│   ├── rrf-fusion.ts           # Reciprocal Rank Fusion scoring (5 channels incl. degree)
+│   ├── rsf-fusion.ts           # Reciprocal Similarity Fusion (Sprint 3 alternative to RRF)
 │   ├── reranker.ts             # Result reranking
+│   ├── mmr-reranker.ts         # MMR diversity reranking
 │   ├── bm25-index.ts           # BM25 lexical indexing
+│   ├── sqlite-fts.ts           # SQLite FTS5 full-text search
 │   ├── cross-encoder.ts        # Cross-encoder reranking
 │   ├── intent-classifier.ts    # 7 intent types classification
+│   ├── query-classifier.ts     # Query complexity classifier (simple/moderate/complex)
+│   ├── query-expander.ts       # Multi-query RAG fusion expansion
+│   ├── query-router.ts         # Query routing based on complexity
 │   ├── artifact-routing.ts     # 9 artifact classes with per-type retrieval strategies
 │   ├── adaptive-fusion.ts      # Intent-aware weighted RRF with dark-run mode
 │   ├── causal-boost.ts         # Causal relationship boosting
 │   ├── session-boost.ts        # Session-aware relevance boosting
+│   ├── graph-search-fn.ts      # Typed-weighted degree computation (Sprint 1)
+│   ├── graph-flags.ts          # Graph feature flags
+│   ├── search-flags.ts         # Search feature flags
+│   ├── channel-enforcement.ts  # Channel enforcement policies
+│   ├── channel-representation.ts # Min-representation R2 (QUALITY_FLOOR=0.2)
+│   ├── confidence-truncation.ts # Confidence truncation (2x median gap, min 3 results)
+│   ├── dynamic-token-budget.ts # Dynamic token budget (1500/2500/4000 by tier)
+│   ├── context-budget.ts       # Context budget estimation
+│   ├── evidence-gap-detector.ts # TRM with Z-score confidence
+│   ├── folder-discovery.ts     # Spec folder description discovery
+│   ├── folder-relevance.ts     # Folder-level relevance scoring
+│   ├── fsrs.ts                 # FSRS core algorithm
 │   └── README.md               # Module documentation
 │
-├── scoring/                    # Ranking and scoring (4 modules)
-│   ├── composite-scoring.ts    # Multi-factor composite scores (5-factor)
+├── scoring/                    # Ranking and scoring (5 modules)
+│   ├── composite-scoring.ts    # Multi-factor composite scores (5-factor + N4 boost + normalization)
+│   ├── interference-scoring.ts # TM-01 interference penalty (-0.08 * score)
 │   ├── folder-scoring.ts       # Spec folder ranking
 │   ├── importance-tiers.ts     # Tier-based importance weights
 │   ├── confidence-tracker.ts   # Confidence tracking
@@ -200,11 +225,25 @@ lib/                            # TypeScript source files
 │   ├── envelope.ts             # Standardized response envelope
 │   └── README.md               # Module documentation
 │
-├── cache/                      # Caching layer (2 modules)
+├── cache/                      # Caching layer (3 modules + subdirs)
 │   ├── tool-cache.ts           # Tool result caching
+│   ├── embedding-cache.ts      # Persistent SQLite embedding cache with LRU eviction
+│   ├── cognitive/              # Cognitive cache modules
 │   ├── scoring/
 │   │   └── composite-scoring.ts # Cache-aware composite scoring
 │   └── README.md               # Module documentation
+│
+├── eval/                       # Evaluation and metrics (10 modules)
+│   ├── eval-db.ts              # Evaluation database
+│   ├── eval-logger.ts          # Evaluation logging
+│   ├── eval-metrics.ts         # Evaluation metrics
+│   ├── eval-quality-proxy.ts   # Quality proxy scoring
+│   ├── eval-ceiling.ts         # Ceiling evaluation
+│   ├── bm25-baseline.ts        # BM25 baseline measurement
+│   ├── edge-density.ts         # Edge density measurement (Sprint 1)
+│   ├── ground-truth-data.ts    # Ground truth dataset
+│   ├── ground-truth-generator.ts # Ground truth generation
+│   └── k-value-analysis.ts     # K-value sensitivity analysis
 │
 ├── config/                     # Configuration (2 modules)
 │   ├── memory-types.ts         # Memory type definitions
@@ -273,6 +312,15 @@ dist/lib/                       # Compiled JavaScript + type definitions
 | `storage/index-refresh.ts` | Index refresh utilities |
 | `learning/corrections.ts` | Learning from corrections |
 | `scoring/importance-tiers.ts` | Six-tier importance classification system |
+| `scoring/interference-scoring.ts` | TM-01 interference penalty for near-duplicates |
+| `search/query-classifier.ts` | Query complexity routing (simple/moderate/complex) |
+| `search/rsf-fusion.ts` | Reciprocal Similarity Fusion alternative to RRF |
+| `search/confidence-truncation.ts` | Low-confidence tail removal (2x median gap) |
+| `search/dynamic-token-budget.ts` | Per-tier token budgets (1500/2500/4000) |
+| `search/graph-search-fn.ts` | Typed-weighted degree computation for RRF 5th channel |
+| `search/channel-representation.ts` | Min-representation R2 (QUALITY_FLOOR=0.2) |
+| `cache/embedding-cache.ts` | Persistent SQLite embedding cache with LRU eviction |
+| `eval/edge-density.ts` | Edge density measurement for graph analysis |
 | `parsing/entity-scope.ts` | Entity scope detection |
 | `utils/retry.ts` | Retry utilities |
 | `utils/logger.ts` | Logging utilities |
@@ -681,4 +729,4 @@ console.log('Embedding dimensions:', embedding.length);
 
 ---
 
-*Documentation version: 1.4 | Last updated: 2026-02-11*
+*Documentation version: 1.5 | Last updated: 2026-02-27*
