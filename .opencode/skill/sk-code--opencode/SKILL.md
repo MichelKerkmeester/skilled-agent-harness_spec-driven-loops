@@ -324,6 +324,7 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
 - Optional strict mode: `--fail-on-warn` makes warnings build-breaking.
 - Style rules (`JS-*`, `TS-*`, `PY-*`, `SH-*`) are warning-first by default.
 - Parse/integrity rules (`COMMON-*`, `JSON-*`, `JSONC-*`) are error-class by default.
+- Header style invariants and AI-intent comment policy checks are manual checklist gates; the verifier checks marker-level headers only.
 - Context-aware advisory downgrade is applied in archival/contextual paths (`z_archive`, `scratch`, `memory`, `research`, `context`, `assets`, `examples`, `fixtures`, and test-heavy paths).
 - TypeScript module-header enforcement is skipped for test files (`*.test.ts`, `*.spec.ts`, `*.vitest.ts` + TSX variants) and pattern assets.
 - JavaScript strict-mode enforcement is skipped for `.mjs`.
@@ -339,7 +340,7 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
 
 1. **Follow file header format for the language**
    - JavaScript: Box-drawing `// ─── MODULE_TYPE: NAME ───` + `'use strict'`
-   - TypeScript: Box-drawing `// --- MODULE: NAME ---` (no `'use strict'`; tsconfig handles it)
+   - TypeScript: Module header block `// --- MODULE: NAME ---` (no `'use strict'`; tsconfig handles it)
    - Python: Shebang `#!/usr/bin/env python3` + box-drawing header
    - Shell: Shebang `#!/usr/bin/env bash` + header + `set -euo pipefail`
    - JSONC: Box comment header (JSON cannot have comments)
@@ -414,7 +415,7 @@ The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-a
 | Filesystem Safety  | Canonical path containment checks on create/move/delete flows | P0 |
 | Spec Folder Safety | `NNN-name` validation + approved roots for spec operations | P0 |
 | Error Handling     | All error paths handled                  | P1       |
-| AI Comment Policy  | Max 3/10 + AI-intent comment tags only   | P1       |
+| AI Comment Policy  | Max 3/10 + AI-intent tags only (manual checklist gate) | P1 |
 | KISS/DRY/SOLID     | SRP/OCP/LSP/ISP/DIP violations identified | P1      |
 | Documentation      | Public functions have doc comments       | P1       |
 | Reference Comments | Task/bug/req references where applicable | P2       |
@@ -440,7 +441,7 @@ P0 Items (MUST pass):
 □ Spec folder operations enforce `NNN-name` and approved roots
 
 P1 Items (Required):
-□ AI comment policy enforced (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
+□ AI comment policy enforced via manual checklist review (max 3/10, AI-WHY/AI-GUARD/AI-INVARIANT/AI-TRACE/AI-RISK)
 □ Error handling implemented
 □ Public functions documented
 □ KISS/DRY + SOLID checks applied (SRP/OCP/LSP/ISP/DIP)

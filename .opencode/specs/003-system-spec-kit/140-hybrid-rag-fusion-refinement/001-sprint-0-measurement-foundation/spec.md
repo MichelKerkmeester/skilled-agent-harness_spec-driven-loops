@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Sprint 0 — Measurement Foundation"
 description: "Fix graph channel (0% hit rate), chunk collapse dedup, co-activation hub domination, and establish evaluation infrastructure with BM25 baseline."
+# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2
 trigger_phrases:
   - "sprint 0"
   - "measurement foundation"

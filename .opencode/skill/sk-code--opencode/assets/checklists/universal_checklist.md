@@ -37,7 +37,7 @@ These items MUST be fixed before any commit.
 ```markdown
 [ ] File has appropriate header comment identifying the component
     - JavaScript: Box header with 'use strict'
-    - TypeScript: Box header (no 'use strict'; tsconfig handles it)
+    - TypeScript: Module header block `// --- MODULE: NAME ---` (no 'use strict'; tsconfig handles it)
     - Python: Shebang + COMPONENT comment block
     - Shell: Shebang + COMPONENT comment block
     - Config: JSONC comment header
@@ -63,27 +63,6 @@ These items MUST be fixed before any commit.
 
 // KEEP - explanatory comment
 // Note: Using setTimeout because requestAnimationFrame not available in Node
-```
-
-### WHY Comments
-
-```markdown
-[ ] Inline comments follow AI-intent policy (max 3 comments per 10 LOC)
-    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
-    - Comments explain reasoning, not mechanics
-    - Business rules, invariants, and edge cases documented
-```
-
-**Bad (WHAT)**:
-```python
-# Set x to 5
-x = 5
-```
-
-**Good (WHY)**:
-```python
-# AI-WHY: use 5 retries per SLA requirement for transient network failures
-max_retries = 5
 ```
 
 ### Numbered ALL-CAPS Section Invariant
@@ -129,6 +108,27 @@ These must be addressed or receive approval to defer.
     - Python: snake_case functions, UPPER_SNAKE constants
     - Shell: snake_case functions, UPPER_SNAKE constants
     - Config: camelCase keys
+```
+
+### AI-Intent Comments (Manual Review)
+
+```markdown
+[ ] Inline comments follow AI-intent policy (P1, manual checklist gate)
+    - Allowed prefixes: AI-WHY, AI-GUARD, AI-INVARIANT, AI-TRACE, AI-RISK
+    - Maximum 3 comments per 10 LOC
+    - Comments explain reasoning, not mechanics
+```
+
+**Bad (WHAT)**:
+```python
+# Set x to 5
+x = 5
+```
+
+**Good (WHY)**:
+```python
+# AI-WHY: use 5 retries per SLA requirement for transient network failures
+max_retries = 5
 ```
 
 ### TODO Format

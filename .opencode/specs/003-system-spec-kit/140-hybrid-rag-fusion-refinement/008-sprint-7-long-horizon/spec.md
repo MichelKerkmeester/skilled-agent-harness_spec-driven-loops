@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Sprint 7 — Long Horizon"
 description: "Address scale-dependent features (memory summaries, content generation, entity linking), complete evaluation infrastructure, and evaluate INT8 quantization."
+# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2
 trigger_phrases:
   - "sprint 7"
   - "long horizon"

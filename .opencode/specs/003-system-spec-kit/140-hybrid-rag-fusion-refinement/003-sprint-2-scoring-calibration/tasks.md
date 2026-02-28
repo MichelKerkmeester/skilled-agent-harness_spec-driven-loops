@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 2 — Scoring Calibration"
 description: "Task breakdown for Sprint 2: embedding cache, cold-start boost, G2 investigation, score normalization"
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "sprint 2 tasks"
   - "scoring calibration tasks"

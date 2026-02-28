@@ -38,12 +38,7 @@ Define deterministic configuration quality checks so config updates stay parseab
 
 - JSONC uses numbered ALL-CAPS section headers for major blocks.
 - Do not convert header style to sentence case or unnumbered variants.
-
-### AI-Intent Comment Policy (JSONC Only)
-
-- Maximum 3 comments per 10 lines.
-- Allowed prefixes: `AI-WHY`, `AI-INVARIANT`, `AI-TRACE`, `AI-RISK`.
-- Narrative comments are disallowed.
+- Header style checks are manual/checklist gates (not hard-failed by `verify_alignment_drift.py`).
 
 ### Deterministic Defaults
 
@@ -71,6 +66,13 @@ Define deterministic configuration quality checks so config updates stay parseab
 - **SRP**: each config section should control one behavior domain.
 - **OCP**: add new behavior through new section entries before editing stable defaults.
 - **LSP/ISP/DIP**: section consumers should not require special-case type branching due to inconsistent shape.
+
+### AI-Intent Comment Policy (JSONC Only)
+
+- Maximum 3 comments per 10 lines.
+- Allowed prefixes: `AI-WHY`, `AI-GUARD`, `AI-INVARIANT`, `AI-TRACE`, `AI-RISK`.
+- Narrative comments are disallowed.
+- This policy is a P1 manual/checklist gate (not hard-failed by `verify_alignment_drift.py`).
 <!-- /ANCHOR:p1-required -->
 
 ---
@@ -93,7 +95,7 @@ Define deterministic configuration quality checks so config updates stay parseab
 python -m json.tool config.json
 grep -v '^\s*//' config.jsonc | python -m json.tool
 
-# Header and comment policy checks (JSONC)
-rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$|AI-WHY|AI-INVARIANT|AI-TRACE|AI-RISK" .opencode/skill/sk-code--opencode/references/config
+# Header and comment policy spot-checks (JSONC, manual review support)
+rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$|AI-WHY|AI-GUARD|AI-INVARIANT|AI-TRACE|AI-RISK" .opencode/skill/sk-code--opencode/references/config
 ```
 <!-- /ANCHOR:verification -->

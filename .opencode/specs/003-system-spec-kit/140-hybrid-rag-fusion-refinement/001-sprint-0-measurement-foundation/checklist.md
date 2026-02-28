@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 0 — Measurement Foundation"
 description: "Verification checklist for Sprint 0: graph ID fix, chunk collapse, eval infrastructure, BM25 baseline"
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "sprint 0 checklist"
   - "measurement foundation checklist"

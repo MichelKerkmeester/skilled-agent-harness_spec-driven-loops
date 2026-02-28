@@ -28,7 +28,7 @@ Defines consistent styling rules for TypeScript files to ensure readability, mai
 <!-- ANCHOR:file-header-format -->
 ## 2. FILE HEADER FORMAT
 
-All TypeScript files MUST begin with a boxed header identifying the module.
+All TypeScript files MUST begin with a module header block identifying the module.
 
 ### Template
 
@@ -41,7 +41,7 @@ All TypeScript files MUST begin with a boxed header identifying the module.
 ### Requirements
 
 - Box width: 63 characters total (dash line)
-- Module name: Left-aligned within box
+- Module name: Left-aligned within header block
 - No `'use strict'` directive required (TypeScript `strict` mode in tsconfig replaces it)
 - Immediately followed by imports
 

@@ -1,4 +1,19 @@
+---
+title: "Implementation Summary: Sprint 2 — Scoring Calibration"
+description: "Sprint 2 implementation summary covering scoring normalization, embedding cache, novelty boost, interference scoring, and classification-based decay."
+# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
+trigger_phrases:
+  - "sprint 2 implementation"
+  - "scoring calibration implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Implementation Summary — Sprint 2: Scoring Calibration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
 
 ## Overview
 

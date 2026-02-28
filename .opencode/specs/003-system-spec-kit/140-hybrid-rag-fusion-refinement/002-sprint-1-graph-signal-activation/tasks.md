@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 1 — Graph Signal Activation"
 description: "Task breakdown for Sprint 1: typed-weighted degree as 5th RRF channel, edge density, agent UX"
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "sprint 1 tasks"
   - "graph signal tasks"

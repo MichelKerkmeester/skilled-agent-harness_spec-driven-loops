@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: Sprint 2 — Scoring Calibration"
 description: "Implement embedding cache, cold-start boost, G2 investigation, and score normalization to resolve 15:1 magnitude mismatch."
+# SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2
 trigger_phrases:
   - "sprint 2 plan"
   - "scoring calibration plan"

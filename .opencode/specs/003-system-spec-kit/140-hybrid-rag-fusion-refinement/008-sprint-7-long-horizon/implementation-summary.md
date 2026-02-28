@@ -1,6 +1,7 @@
 ---
 title: "Implementation Summary: Sprint 7 — Long Horizon"
 description: "Sprint 7 implementation summary: R13-S3 ablation framework + reporting dashboard, S1 content normalization, R5 NO-GO decision, feature flag audit, DEF-014 closure"
+# SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2
 trigger_phrases:
   - "sprint 7 implementation"
   - "sprint 7 summary"

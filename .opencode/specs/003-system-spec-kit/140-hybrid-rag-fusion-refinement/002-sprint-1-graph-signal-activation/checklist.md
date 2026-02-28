@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 1 — Graph Signal Activation"
 description: "Verification checklist for Sprint 1: R4 typed-degree channel, edge density, agent UX"
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "sprint 1 checklist"
   - "graph signal checklist"

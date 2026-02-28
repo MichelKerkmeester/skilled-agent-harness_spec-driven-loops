@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Sprint 2 — Scoring Calibration"
 description: "Resolve dual scoring magnitude mismatch, add cold-start boost, embedding cache, and investigate double intent weighting."
+# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2
 trigger_phrases:
   - "sprint 2"
   - "scoring calibration"

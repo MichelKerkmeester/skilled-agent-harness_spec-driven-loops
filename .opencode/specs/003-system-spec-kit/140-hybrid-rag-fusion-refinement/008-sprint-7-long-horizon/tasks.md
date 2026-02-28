@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 7 — Long Horizon"
 description: "Task breakdown for Sprint 7: Long Horizon — COMPLETED. R8/S5 skipped (scale gates), S1/R13-S3/R5/T005a/DEF-014 completed. Exit gate and program completion verification passed."
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "sprint 7 tasks"
   - "long horizon tasks"

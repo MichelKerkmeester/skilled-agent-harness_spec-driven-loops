@@ -1,4 +1,19 @@
+---
+title: "Implementation Summary: Sprint 3 — Query Intelligence"
+description: "Sprint 3 implementation summary covering query complexity routing, RSF shadow fusion, channel representation guarantees, and adaptive truncation."
+# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
+trigger_phrases:
+  - "sprint 3 implementation"
+  - "query intelligence implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Implementation Summary — Sprint 3: Query Intelligence
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
 
 ## Overview
 

@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 2 — Scoring Calibration"
 description: "Verification checklist for Sprint 2: embedding cache, cold-start boost, G2 investigation, score normalization"
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "sprint 2 checklist"
   - "scoring calibration checklist"

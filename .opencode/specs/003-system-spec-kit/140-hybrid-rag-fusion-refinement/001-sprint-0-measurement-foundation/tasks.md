@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 0 — Measurement Foundation"
 description: "Task breakdown for Sprint 0: graph ID fix, chunk collapse, eval infrastructure, BM25 baseline"
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "sprint 0 tasks"
   - "measurement foundation tasks"

@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Hybrid RAG Fusion Refinement"
-description: "~201 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, Sprint 4 split verification, concurrency verification, schema migration verification, dangerous interaction pair verification (DIP-001—DIP-009), and FTS5 sync verification."
+description: "~200 verification items across program-level checks, sprint exit gates (P0-P2 aligned with off-ramp), L3+ governance, 8 PageIndex integration items (CHK-PI-A1—CHK-PI-B3), feature flag sunset reviews per sprint, ground truth diversity gates, Sprint 4 split verification, concurrency verification, schema migration verification, dangerous interaction pair verification (DIP-001—DIP-009), and FTS5 sync verification."
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "hybrid rag checklist"
   - "sprint verification"
@@ -249,7 +250,6 @@ contextType: "implementation"
 - [x] [P1] [CHK-S79] S5 entity links established with >=90% precision — verified in Sprint 7 child CHK-S7-014/064 [x] (SKIPPED: R10 never built, zero entities — documented)
 - [x] [P1] [CHK-S7A] R13-S3 evaluation dashboard operational — verified in Sprint 7 child CHK-S7-010/060 [x] (reporting-dashboard.ts; 34 tests pass)
 - [x] [P1] [CHK-S7B] R5 activation decision documented with evidence — verified in Sprint 7 child CHK-S7-015/065 [x] (NO-GO documented with measured values)
-- [x] [P1] [CHK-S7C] Final feature flag sunset audit completed: all flags resolved — verified in Sprint 7 child CHK-S7-067 [x] (61 flags: 27 GRADUATE, 9 REMOVE, 3 KEEP)
 <!-- /ANCHOR:sprint-gates -->
 
 ---
@@ -383,15 +383,15 @@ contextType: "implementation"
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 36 | 30/36 |
-| P1 Items | 151 | 101/151 |
+| P1 Items | 150 | 100/150 |
 | P2 Items | 14 | 11/14 |
-| **Total** | **201** | **142/201** |
+| **Total** | **200** | **141/200** |
 
-> **Note**: Actual count is 201 items (P0=36, P1=151, P2=14 including 1 P2-CONDITIONAL). CHK-PI-A2 marked DEFERRED. Includes: program-level checks, sprint exit gates (S0-S7 + S6a/S6b), 8 PageIndex integration items, L3+ governance (architecture/performance/deployment/compliance/docs), feature flag sunset reviews, ground truth diversity gates, B8 signal ceiling tracking, Sprint 4 split verification, rollback verification per sprint, concurrency verification, schema migration verification, dangerous interaction pair verification (DIP-001 through DIP-009), and FTS5 sync verification.
+> **Note**: Actual count is 200 items (P0=36, P1=150, P2=14 including 1 P2-CONDITIONAL). CHK-PI-A2 marked DEFERRED. Includes: program-level checks, sprint exit gates (S0-S7 + S6a/S6b), 8 PageIndex integration items, L3+ governance (architecture/performance/deployment/compliance/docs), feature flag sunset reviews, ground truth diversity gates, B8 signal ceiling tracking, Sprint 4 split verification, rollback verification per sprint, concurrency verification, schema migration verification, dangerous interaction pair verification (DIP-001 through DIP-009), and FTS5 sync verification.
 >
 > **Sprint 0-3 verification**: 90 items verified (26 P0, 64 P1). 2 P0 items deferred (CHK-S10, CHK-S11) requiring live measurement.
 >
-> **Sprint 4-7 sync**: 52 additional items verified from child sprint checklists (4 P0, 37 P1, 11 P2). Remaining 59 unchecked items are Sprint 6b scope (deferred), dangerous interaction pairs (DIP-001 through DIP-009), cross-cutting performance/concurrency items, or items not yet verified in child sprints.
+> **Sprint 4-7 sync**: 51 additional items verified from child sprint checklists (4 P0, 36 P1, 11 P2). Remaining 59 unchecked items are Sprint 6b scope (deferred), dangerous interaction pairs (DIP-001 through DIP-009), cross-cutting performance/concurrency items, or items not yet verified in child sprints.
 
 **Verification Date**: 2026-02-28
 
@@ -406,7 +406,7 @@ Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 Sprint gate priorities aligned with off-ramp: S0-S1 = P0, S2-S4 = P1, S5-S6 = P1 (elevated from P2), S7 = P2
 PageIndex items (CHK-PI-A1 — CHK-PI-B3): all P1, grouped in "PageIndex Integration Verification" section
-Feature flag sunset items (CHK-S0F/S0G, S17/S18, S28/S29, S36/S37, S4G/S4H, S5B/S5C, S69, S76/S77): P1/P2, per-sprint
+Feature flag sunset items (CHK-S0F/S0G, S17/S18, S28/S29, S36/S37, S4G/S4H, S5B/S5C, S69, S75/S76): P1/P2, per-sprint
 Ground truth diversity items (CHK-S0C, S0D, S0E): P0, Sprint 0 blocking
 Sprint 4 split verification (CHK-S4E, S4F): P1, ensures R11 safety sequencing
 -->

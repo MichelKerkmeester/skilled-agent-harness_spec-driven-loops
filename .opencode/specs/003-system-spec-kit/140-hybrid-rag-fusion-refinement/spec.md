@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Hybrid RAG Fusion Refinement"
 description: "Graph channel broken (0% hit rate), dual scoring 15:1 mismatch, zero evaluation metrics. 43-recommendation program (+ 8 PageIndex-derived) across 8 metric-gated sprints to achieve graph-differentiated, feedback-aware retrieval."
+# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2
 trigger_phrases:
   - "hybrid rag fusion"
   - "graph channel fix"
@@ -15,30 +16,6 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
-## Table of Contents
-
-- [Executive Summary](#executive-summary)
-- [1. Metadata](#1-metadata)
-- [2. Problem & Purpose](#2-problem--purpose)
-- [3. Scope](#3-scope)
-- [Phase Documentation Map](#phase-documentation-map)
-- [4. Requirements](#4-requirements)
-- [5. Success Criteria](#5-success-criteria)
-- [6. Risks & Dependencies](#6-risks--dependencies)
-- [7. Non-Functional Requirements](#7-non-functional-requirements)
-- [8. Edge Cases](#8-edge-cases)
-- [9. Complexity Assessment](#9-complexity-assessment)
-- [10. Risk Matrix](#10-risk-matrix)
-- [11. User Stories](#11-user-stories)
-- [12. Approval Workflow](#12-approval-workflow)
-- [13. Compliance Checkpoints](#13-compliance-checkpoints)
-- [14. Stakeholder Matrix](#14-stakeholder-matrix)
-- [14A. Architectural Decision Records (ADRs)](#14a-architectural-decision-records-adrs)
-- [15. Change Log](#15-change-log)
-- [16. Open Questions](#16-open-questions)
-- [17. Deferred Items](#17-deferred-items)
-- [18. Related Documents](#18-related-documents)
-
 ---
 
 ## EXECUTIVE SUMMARY
@@ -51,12 +28,13 @@ The spec-kit memory MCP server's graph channel produces a 0% hit rate due to an 
 
 ---
 
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
 | **Level** | 3+ |
-| **Priority** | P0 (Sprint 0), P1 (Sprints 1-3), P2 (Sprints 4-7) |
+| **Priority** | P0 (Sprints 0-1), P1 (Sprints 2-6; S5-S6 elevated for safety-critical NFRs), P2 (Sprint 7) |
 | **Status** | In Progress |
 | **Created** | 2026-02-26 |
 | **Complexity** | 90/100 |
@@ -412,7 +390,7 @@ CREATE INDEX idx_eval_metrics_sprint ON eval_metric_snapshots(sprint);
 - **SC-002**: Graph channel hit rate exceeds 20% (from 0% baseline)
 - **SC-003**: Channel diversity (unique sources in top-5) exceeds 3.0 (from ~2.0 baseline)
 - **SC-004**: Search latency p95 remains < 300ms for complex queries (500ms hard limit)
-- **SC-005**: Active feature flags remain at 8 or fewer at any time (peak 7 at S4/S5)
+- **SC-005**: Active feature flags meet budget: target <=6 at each sprint gate, hard ceiling <=8 at all times (peak 7 at S4/S5)
 - **SC-006**: Evaluation ground truth exceeds 500 query-relevance pairs
 - **SC-007**: Graph edge density exceeds 1.0 edges/node
 <!-- /ANCHOR:success-criteria -->
@@ -535,7 +513,7 @@ See research/3 - recommendations-hybrid-rag-fusion-refinement §5 for corrected 
 - **NFR-D05**: **FTS5 Consistency:** The `memory_health` tool MUST compare `memory_fts` row count vs `memory_index` row count and report divergence >0 as a warning with remediation hint ("Run memory_index_scan with force:true to rebuild FTS5 index")
 
 ### Operational
-- **NFR-O01**: Maximum 8 simultaneous active feature flags at any time (peak 7 at S4/S5)
+- **NFR-O01**: Feature-flag budget — operational target <=6 active flags at each sprint gate, hard ceiling <=8 at all times (historical peak: 7 at S4/S5)
 - **NFR-O02**: Maximum flag lifespan: 90 days from creation to permanent decision
 - **NFR-O03**: Monthly flag sunset audit required
 - **NFR-O04**: All scoring changes MUST use dark-run comparison before enabling
@@ -697,14 +675,14 @@ If graph has 0 edges after G1 fix, R4 produces zero scores for all memories. Thi
 - [ ] Dark-run results logged via R13 infrastructure
 
 ### Feature Flag Governance
-- [ ] Maximum 8 simultaneous active flags (peak 7 at S4/S5)
+- [ ] NFR-O01 budget enforced: target <=6 active flags at each sprint gate, hard ceiling <=8 at all times (historical peak: 7 at S4/S5)
 - [ ] 90-day lifespan enforced
 - [ ] Monthly sunset audit conducted
 - [ ] Flag naming convention: `SPECKIT_{FEATURE}`
 
 #### Feature Flag Sunset Schedule
 
-Each sprint exit gate MUST include a flag disposition decision for all prior flags. The plan introduces 24 total flags across 8 sprints. The following sunset schedule tracks active flag counts (ceiling raised from 6 to 8 to accommodate S4-S5 peak):
+Each sprint exit gate MUST include a flag disposition decision for all prior flags. The plan introduces 24 total flags across 8 sprints. The following sunset schedule tracks active flag counts against NFR-O01 budget (target <=6 active flags, hard ceiling <=8; historical S4-S5 peak = 7):
 
 | Sprint Exit | Flags Introduced This Sprint | Flags to Permanently Enable or Remove | Active After Gate | Lifecycle Stage |
 |-------------|------------------------------|---------------------------------------|-------------------|-----------------|
@@ -717,7 +695,7 @@ Each sprint exit gate MUST include a flag disposition decision for all prior fla
 | S6 | `SPECKIT_ENCODING_INTENT`, `SPECKIT_AUTO_ENTITIES`, `SPECKIT_CONSOLIDATION` | `SPECKIT_DOCSCORE_AGGREGATION` → permanent; `SPECKIT_LEARN_FROM_SELECTION` → decide (permanent or remove based on noise rate); `SPECKIT_SAVE_QUALITY_GATE` → permanent; `SPECKIT_CONSTITUTIONAL_INJECT` → permanent | 6 | permanent / sunset |
 | S7 | `SPECKIT_MEMORY_SUMMARIES`, `SPECKIT_ENTITY_LINKING` | `SPECKIT_PIPELINE_V2` → permanent; `SPECKIT_EMBEDDING_EXPANSION` → permanent; `SPECKIT_PROGRESSIVE_VALIDATION` → permanent | 5 | permanent / sunset |
 
-> **Ceiling note**: Peak active flag count reaches 7 at S4 and S5. NFR-O01 ceiling is 8 to accommodate the S4/S5 peak. The rule below mitigates risk.
+> **Historical exception note**: Sprint 4 and Sprint 5 peaked at 7 active flags while remaining under the NFR-O01 hard ceiling (<=8). Subsequent sprint exits return to the <=6 target budget.
 >
 > **H6 note**: `SPECKIT_SEARCH_FALLBACK` removed from sunset schedule — PI-A2 (search fallback chain) was DEFERRED and no such flag was ever introduced.
 >

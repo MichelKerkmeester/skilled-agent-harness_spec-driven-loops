@@ -1,4 +1,19 @@
+---
+title: "Implementation Summary: Sprint 1 — Graph Signal Activation"
+description: "Sprint 1 implementation summary covering typed degree activation, edge density measurement, co-activation tuning, and signal vocabulary expansion."
+# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
+trigger_phrases:
+  - "sprint 1 implementation"
+  - "graph signal activation implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Implementation Summary — Sprint 1: Graph Signal Activation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
 
 ## Overview
 

@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 7 — Long Horizon"
 description: "Verification checklist for Sprint 7: memory summaries, content generation, entity linking, full reporting, R5 INT8 evaluation"
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "sprint 7 checklist"
   - "long horizon checklist"

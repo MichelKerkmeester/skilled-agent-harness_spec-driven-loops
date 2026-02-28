@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 3 — Query Intelligence"
 description: "Task breakdown for query complexity routing, RSF evaluation, and channel min-representation."
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "sprint 3 tasks"
   - "query intelligence tasks"

@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Sprint 1 — Graph Signal Activation"
 description: "Activate typed-weighted degree as 5th RRF channel and measure graph signal contribution."
+# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2
 trigger_phrases:
   - "sprint 1"
   - "graph signal"

@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 3 — Query Intelligence"
 description: "Verification checklist for query complexity routing, RSF evaluation, and channel min-representation."
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "sprint 3 checklist"
   - "query intelligence checklist"

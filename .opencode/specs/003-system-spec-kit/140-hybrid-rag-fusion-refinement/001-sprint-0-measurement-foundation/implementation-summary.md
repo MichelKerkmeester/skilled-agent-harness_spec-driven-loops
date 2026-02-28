@@ -1,13 +1,19 @@
 ---
-title: "Implementation Summary — Sprint 0: Measurement Foundation"
-description: "Summary of Sprint 0 implementation: graph ID fix, chunk dedup, eval infrastructure, BM25 baseline scaffolding."
+title: "Implementation Summary: Sprint 0 — Measurement Foundation"
+description: "Sprint 0 implementation summary covering graph ID fix, chunk dedup, evaluation infrastructure, and BM25 baseline scaffolding."
+# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 trigger_phrases:
-  - "sprint 0 implementation summary"
-  - "measurement foundation summary"
+  - "sprint 0 implementation"
+  - "measurement foundation implementation summary"
 importance_tier: "important"
 contextType: "implementation"
 ---
 # Implementation Summary — Sprint 0: Measurement Foundation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
 
 ## Overview
 

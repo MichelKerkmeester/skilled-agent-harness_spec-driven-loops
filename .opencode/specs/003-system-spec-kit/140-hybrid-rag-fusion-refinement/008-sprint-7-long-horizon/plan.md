@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: Sprint 7 — Long Horizon"
 description: "Memory summaries, smarter content generation, cross-document entity linking, full reporting with ablation studies, and R5 INT8 quantization evaluation."
+# SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2
 trigger_phrases:
   - "sprint 7 plan"
   - "long horizon plan"

@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: Sprint 3 — Query Intelligence"
 description: "Query complexity routing, RSF evaluation, and channel min-representation implementation plan."
+# SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2
 trigger_phrases:
   - "sprint 3 plan"
   - "query intelligence plan"

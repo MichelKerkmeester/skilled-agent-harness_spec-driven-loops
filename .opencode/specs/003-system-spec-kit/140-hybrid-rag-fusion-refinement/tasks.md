@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Hybrid RAG Fusion Refinement"
 description: "100+ tasks across 8 metric-gated sprints (355-536h S0-S6, 400-598h S0-S7; +52-80h test-writing effort = 407-616h S0-S6, 452-678h S0-S7) organized by workstream with sprint gate verification tasks, feature flag sunset reviews, and ground truth diversification."
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "hybrid rag tasks"
   - "sprint tasks"
@@ -31,6 +32,8 @@ contextType: "implementation"
 **Workstream Tags**: W-A (Quick Wins + Scoring), W-B (Graph), W-C (Measurement + Feedback), W-D (Pipeline + Spec-Kit), W-E (Eval Infrastructure), W-G (Graph Research), W-I (Integration Testing), W-Q (Quality Validation)
 
 > **Note:** GATE and GATE-PRE tasks intentionally omit workstream tags as they are cross-cutting verification activities.
+
+**NFR-O01 flag budget (canonical wording):** target <=6 active flags at each sprint gate, hard ceiling <=8 at all times (historical S4-S5 peak = 7).
 <!-- /ANCHOR:notation -->
 
 ---
@@ -43,7 +46,7 @@ contextType: "implementation"
 > **Child folder**: `001-sprint-0-measurement-foundation/`
 
 - [x] T000a [W-C] Record pre-Sprint-0 performance baseline — current p95 search latency, memory count, existing system behavior snapshot [1-2h] {} — Baseline
-- [x] T000b [W-A] Establish feature flag governance rules — document 6-flag max, 90-day lifespan, naming convention, monthly sunset audit process, and INCONCLUSIVE state (extend measurement window by max 14 days, one extension per flag, mandatory hard-deadline decision date) [1-2h] {} — NFR-O01/O02/O03
+- [x] T000b [W-A] Establish feature flag governance rules — document NFR-O01 flag budget (target <=6 active flags per gate, hard ceiling <=8), 90-day lifespan, naming convention, monthly sunset audit process, and INCONCLUSIVE state (extend measurement window by max 14 days, one extension per flag, mandatory hard-deadline decision date) [1-2h] {} — NFR-O01/O02/O03
   - B8 signal ceiling: max 12 active scoring signals until R13 automated eval; escape clause requires R13 evidence of orthogonal value
 - [x] T000c [W-C] Audit `search-weights.json` — verify `maxTriggersPerMemory` status, smart ranking section behavior [1-2h] {} — OQ-003
 - [x] T001 [W-B] Fix graph channel ID format — convert `mem:${edgeId}` to numeric memory IDs at BOTH locations (`graph-search-fn.ts` lines 110 AND 151) [3-5h] {} — G1
@@ -87,8 +90,8 @@ contextType: "implementation"
   - Rationale: R13 becomes the decision engine for all subsequent sprints — verifying its output correctness is mandatory before trusting its metrics for the BM25 contingency decision
   - **Effort note**: CHK-S0F3 (p<0.05 on >=100 diverse queries) requires manual relevance labeling not included in the T008b estimate (2-3h). Expect an additional 8-15h for curating, labeling, and validating the full 100+ query corpus with verified relevance judgments.
 - [x] T054 [W-A] Implement content-hash fast-path dedup in memory_save handler — SHA256 check before embedding generation, reject exact duplicates in same spec_folder [2-3h] {} — TM-02/REQ-039
-- [x] T-FS0 [W-A] Feature flag sunset review at Sprint 0 exit — review all active feature flags; flags from completed work with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 1 [0.5-1h] {T008} — NFR-O01/O02/O03
-- [x] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision (requires statistical significance p<0.05 on >=100 diverse queries), eval-the-eval validation passed (T008b), ground truth diversity verified (≥15 manual queries, ≥5/intent, ≥3 tiers), latency baselines recorded, flag count ≤6 [0h] {T000a-T008, T008b, T000d, T000e, T000g, T004a, T054, T-FS0}
+- [x] T-FS0 [W-A] Feature flag sunset review at Sprint 0 exit — review all active feature flags; flags from completed work with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding to Sprint 1 [0.5-1h] {T008} — NFR-O01/O02/O03
+- [x] T009 [GATE] Sprint 0 exit gate verification: graph hit rate >0%, chunk dedup verified, baseline metrics for 50+ queries, BM25 baseline recorded, BM25 contingency decision (requires statistical significance p<0.05 on >=100 diverse queries), eval-the-eval validation passed (T008b), ground truth diversity verified (≥15 manual queries, ≥5/intent, ≥3 tiers), latency baselines recorded, NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T000a-T008, T008b, T000d, T000e, T000g, T004a, T054, T-FS0}
 <!-- /ANCHOR:sprint-0 -->
 
 ---
@@ -109,8 +112,8 @@ contextType: "implementation"
 > **Review Note (REF-057):** Consider moving G-NEW-2 pre-analysis to Sprint 0 to inform R13 eval design. Currently in Sprint 1 — evaluate during Sprint 0 planning.
 
 - [x] T013 [W-B] Enable R4 if dark-run passes hub domination and MRR@5 criteria [0h] {T010, T011} — R4
-- [x] T-FS1 [W-A] Feature flag sunset review at Sprint 1 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 2 [0.5-1h] {T013} — NFR-O01/O02/O03
-- [x] T014 [GATE] Sprint 1 exit gate verification: R4 MRR@5 delta >+2%, edge density measured, no single memory >60% presence, G-NEW-2 instrumentation active, flag count ≤6 [0h] {T010-T013, PI-A5, PI-A3, T-FS1}
+- [x] T-FS1 [W-A] Feature flag sunset review at Sprint 1 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding to Sprint 2 [0.5-1h] {T013} — NFR-O01/O02/O03
+- [x] T014 [GATE] Sprint 1 exit gate verification: R4 MRR@5 delta >+2%, edge density measured, no single memory >60% presence, G-NEW-2 instrumentation active, NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T010-T013, PI-A5, PI-A3, T-FS1}
 <!-- /ANCHOR:sprint-1 -->
 
 ---
@@ -129,8 +132,8 @@ contextType: "implementation"
 - [x] T020a [P] [W-A] Investigate RRF K-value sensitivity — grid search K ∈ {20, 40, 60, 80, 100} [2-3h] {T009} — FUT-5
 - [x] T056 [P] [W-A] Implement interference scoring signal — add interference_score column, compute at index time (count similar memories in spec_folder), apply as -0.08 weight in composite scoring behind `SPECKIT_INTERFERENCE_SCORE` flag [4-6h] {T009} — TM-01/REQ-040
 - [x] T057 [P] [W-A] Implement classification-based decay policies — modify fsrs-scheduler.ts to apply decay multipliers by context_type (decisions: no decay, research: 2x stability) and importance_tier (critical: no decay, temporary: 0.5x stability) [3-5h] {T009} — TM-03/REQ-041
-- [x] T-FS2 [W-A] Feature flag sunset review at Sprint 2 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 3 [0.5-1h] {T019} — NFR-O01/O02/O03
-- [x] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized, flag count ≤6 [0h] {T015-T019, T020a, T056, T057, PI-A1, T-FS2}
+- [x] T-FS2 [W-A] Feature flag sunset review at Sprint 2 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding to Sprint 3 [0.5-1h] {T019} — NFR-O01/O02/O03
+- [x] T020 [GATE] Sprint 2 exit gate verification: cache hit >90%, N4 dark-run: new memories (<48h) appear in top-10 when query-relevant without displacing memories ranked ≥5 in baseline, G2 resolved, score distributions normalized, NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T015-T019, T020a, T056, T057, PI-A1, T-FS2}
 <!-- /ANCHOR:sprint-2 -->
 
 ---
@@ -147,8 +150,8 @@ contextType: "implementation"
 - [x] T024 [W-C] Run shadow comparison: R14/N1 vs RRF on 100+ queries, compute Kendall tau [included] {T022}
 - [x] T025a [W-B] Implement confidence-based result truncation — adaptive top-K cutoff [5-8h] {T021} — R15 extension
 - [x] T025b [P] [W-B] Implement dynamic token budget allocation by complexity tier [3-5h] {T021} — FUT-7
-- [x] T-FS3 [W-A] Feature flag sunset review at Sprint 3 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 4 [0.5-1h] {T024} — NFR-O01/O02/O03
-- [x] T025-GATE [GATE] Sprint 3 exit gate verification: R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5%, flag count ≤6 [0h] {T021-T024, T025a, T025b, PI-B3, T-FS3}
+- [x] T-FS3 [W-A] Feature flag sunset review at Sprint 3 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding to Sprint 4 [0.5-1h] {T024} — NFR-O01/O02/O03
+- [x] T025-GATE [GATE] Sprint 3 exit gate verification: R15 p95 <30ms simple, RSF Kendall tau computed, R2 precision within 5%, NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T021-T024, T025a, T025b, PI-B3, T-FS3}
 
 **OFF-RAMP: After T025-GATE, evaluate "good enough" thresholds (MRR@5 >= 0.7, constitutional surfacing >= 95%, cold-start detection >= 90%). If all met, Sprints 4-7 are optional.**
 <!-- /ANCHOR:sprint-3 -->
@@ -182,8 +185,8 @@ contextType: "implementation"
 - [ ] T-IP-S4 [W-Q] Intent-pattern integration testing — validate intent-pattern scoring interaction [1-2h] {T026} — Integration
   - Sprint: S4 | Priority: Medium
   - Depends on: T026 (intent-aware retrieval)
-- [ ] T-FS4 [W-A] Feature flag sunset review at Sprint 4 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 5 [0.5-1h] {T030} — NFR-O01/O02/O03
-- [ ] T031 [GATE] Sprint 4 exit gate verification: R1 within 2%, R11 noise <5%, R13-S2 operational, Sprint 4a (R1+R13-S2+TM-04) verified BEFORE Sprint 4b (R11+TM-06), flag count ≤6 [0h] {T026-T030, T058, T059, T-IP-S4, T-FS4}
+- [ ] T-FS4 [W-A] Feature flag sunset review at Sprint 4 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding to Sprint 5 [0.5-1h] {T030} — NFR-O01/O02/O03
+- [ ] T031 [GATE] Sprint 4 exit gate verification: R1 within 2%, R11 noise <5%, R13-S2 operational, Sprint 4a (R1+R13-S2+TM-04) verified BEFORE Sprint 4b (R11+TM-06), NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T026-T030, T058, T059, T-IP-S4, T-FS4}
 <!-- /ANCHOR:sprint-4 -->
 
 ---
@@ -208,8 +211,8 @@ contextType: "implementation"
 - [x] T038 [P] [W-D] Implement template anchor optimization [5-8h] {T035} — S2 — completed in Sprint 5 child
 - [x] T039 [P] [W-D] Implement validation signals as retrieval metadata [4-6h] {T035} — S3 — completed in Sprint 5 child
 - [x] T060 [P] [W-D] Implement dual-scope injection strategy — add memory auto-surface hooks at tool dispatch and compaction lifecycle points, with per-point token budgets [4-6h] {T035} — TM-05/REQ-044 — completed in Sprint 5 child
-- [x] T-FS5 [W-A] Feature flag sunset review at Sprint 5 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 6 [0.5-1h] {T039} — NFR-O01/O02/O03 — completed in Sprint 5 child
-- [x] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation, flag count ≤6 [0h] {T033-T039, PI-A4, PI-B1, PI-B2, T-FS5} — completed in Sprint 5 child
+- [x] T-FS5 [W-A] Feature flag sunset review at Sprint 5 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding to Sprint 6 [0.5-1h] {T039} — NFR-O01/O02/O03 — completed in Sprint 5 child
+- [x] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation, NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T033-T039, PI-A4, PI-B1, PI-B2, T-FS5} — completed in Sprint 5 child
 <!-- /ANCHOR:sprint-5 -->
 
 ---
@@ -239,8 +242,8 @@ contextType: "implementation"
 - [ ] T-PI-S6 [W-I] PageIndex integration testing — end-to-end testing of PageIndex-derived scoring in production pipeline [2-4h] {PI-A1, PI-A4, PI-A5} — Integration
   - Sprint: S6a | Priority: Medium
   - Depends on: PI-A1, PI-A4, PI-A5
-- [x] T-FS6a [W-A] Feature flag sunset review at Sprint 6a exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding [0.5-1h] {T042, T043, T044, T046} — NFR-O01/O02/O03 — completed in Sprint 6 child
-- [x] T047a [GATE] Sprint 6a exit gate verification: R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection, weight_history verified, flag count ≤6 [0h] {T041d, T042-T044, T046, T-IP-S6, T-PI-S6, T-FS6a} — completed in Sprint 6 child
+- [x] T-FS6a [W-A] Feature flag sunset review at Sprint 6a exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) before proceeding [0.5-1h] {T042, T043, T044, T046} — NFR-O01/O02/O03 — completed in Sprint 6 child
+- [x] T047a [GATE] Sprint 6a exit gate verification: R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection, weight_history verified, NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T041d, T042-T044, T046, T-IP-S6, T-PI-S6, T-FS6a} — completed in Sprint 6 child
 
 ## Sprint 6b: Graph Sophistication [45-69h] (GATED)
 
@@ -259,8 +262,8 @@ contextType: "implementation"
   - Sprint: S6b | Priority: High
   - Time-boxed investigation; output is recommendation document
   - Depends on: T041 (graph deepening baseline)
-- [ ] T-FS6b [W-A] Feature flag sunset review at Sprint 6b exit [0.5-1h] {T041, T045, T-S6-SPIKE} — NFR-O01/O02/O03
-- [ ] T047b [GATE] Sprint 6b exit gate verification: N2 attribution >10% or density-conditional deferral, R10 FP <20% (if implemented), flag count ≤6 [0h] {T-S6B-GATE, T041, T045, T-S6-SPIKE, T-FS6b}
+- [ ] T-FS6b [W-A] Feature flag sunset review at Sprint 6b exit — enforce NFR-O01 flag budget (target <=6 active, hard ceiling <=8) [0.5-1h] {T041, T045, T-S6-SPIKE} — NFR-O01/O02/O03
+- [ ] T047b [GATE] Sprint 6b exit gate verification: N2 attribution >10% or density-conditional deferral, R10 FP <20% (if implemented), NFR-O01 flag budget met (target <=6 active; hard ceiling <=8) [0h] {T-S6B-GATE, T041, T045, T-S6-SPIKE, T-FS6b}
 <!-- /ANCHOR:sprint-6 -->
 
 ---
@@ -375,7 +378,7 @@ contextType: "implementation"
 
 - [x] All sprint exit gates S0-S3 (T009, T014, T020, T025-GATE) PASSED; S5-S7 gates (T040, T047a, T053) PASSED — completed in Sprint 5/6/7 children; S4 gate (T031) pending; T047b pending if Sprint 6b executed
 - [ ] No `[B]` blocked tasks remaining
-- [x] Feature flag count <= 6 (verified through S0-S3 sunset reviews; S5-S7 sunset reviews completed in children)
+- [x] NFR-O01 flag budget met (target <=6 active per gate; hard ceiling <=8) (verified through S0-S3 sunset reviews; S5-S7 sunset reviews completed in children)
 - [ ] R13 cumulative health dashboard meets targets (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
 - [ ] All 158+ original tests + ~138-193 new tests passing
 

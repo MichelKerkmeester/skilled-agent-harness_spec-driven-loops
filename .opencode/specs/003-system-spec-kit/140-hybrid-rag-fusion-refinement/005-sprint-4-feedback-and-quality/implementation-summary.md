@@ -36,7 +36,7 @@ contextType: "implementation"
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Sprint 4 delivers five new capabilities that close the feedback loop in the Spec Kit Memory system. You can now aggregate chunk scores into document-level relevance (R1 MPAB), learn from user selections to improve future searches (R11), run shadow A/B comparisons without affecting production (R13-S2), block low-quality saves before they enter the index (TM-04), and automatically consolidate duplicate memories on save (TM-06). All five features ship behind opt-in feature flags, defaulting to OFF for safe rollout.
+Sprint 4 delivers five new capabilities that close the feedback loop in the Spec Kit Memory system. You can now aggregate chunk scores into document-level relevance (R1 MPAB), learn from user selections to improve future searches (R11), run shadow A/B comparisons without affecting production (R13-S2), block low-quality saves before they enter the index (TM-04), and automatically consolidate duplicate memories on save (TM-06). At Sprint 4 delivery time, all Sprint 4 flags were intentionally shipped as opt-in and OFF-by-default as a safety-first rollout exception.
 
 ### R1 MPAB Chunk-to-Memory Aggregation
 
@@ -97,9 +97,9 @@ After embedding generation, checks the top-3 most similar memories in the same s
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-All features shipped behind opt-in feature flags defaulting to OFF. Five parallel opus agents implemented the independent modules simultaneously in worktree isolation, followed by a fifth integration agent that wired everything together. Each agent verified its own tests before completing. The integration agent confirmed all 315 tests pass together and TypeScript compiles with zero errors. Existing tests (handler-memory-save, rollout-policy, integration-save-pipeline) were re-verified at 173/173 and 27/27 passing.
+All features shipped behind opt-in feature flags defaulting to OFF at Sprint 4 release. Five parallel opus agents implemented the independent modules simultaneously in worktree isolation, followed by a fifth integration agent that wired everything together. Each agent verified its own tests before completing. The integration agent confirmed all 315 tests pass together and TypeScript compiles with zero errors. Existing tests (handler-memory-save, rollout-policy, integration-save-pipeline) were re-verified at 173/173 and 27/27 passing.
 
-The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM-06 can be enabled immediately (S4a). R11 learned feedback requires the 28-day R13 eval cycle prerequisite before enabling (S4b).
+The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM-06 can be enabled immediately (S4a). R11 learned feedback requires the 28-day R13 eval cycle prerequisite before enabling (S4b). Transition from OFF-default to default-ON/permanent requires four criteria: sprint gate evidence passed, no open P0 regressions, NFR-O01 flag budget compliance (target <=6 active, hard ceiling <=8), and a documented sunset decision at the corresponding T-FS gate.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -169,6 +169,8 @@ The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM
 | `SPECKIT_RECONSOLIDATION` | TM-06 reconsolidation-on-save | OFF | S4a |
 | `SPECKIT_LEARN_FROM_SELECTION` | R11 learned relevance feedback | OFF | S4b |
 | `SPECKIT_NEGATIVE_FEEDBACK` | A4 negative feedback confidence demotion | OFF | S4b |
+
+Sprint 4 OFF-default status is historical rollout posture, not a permanent policy. Each flag transitions only when the four criteria in "How It Was Delivered" are satisfied.
 
 ---
 
