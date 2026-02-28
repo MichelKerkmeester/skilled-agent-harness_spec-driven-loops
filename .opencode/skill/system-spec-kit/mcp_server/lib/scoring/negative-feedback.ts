@@ -9,6 +9,8 @@
 // Decay: gradual recovery over time (30-day half-life)
 // ---------------------------------------------------------------
 
+import type { DatabaseExtended as Database } from '../../../shared/types';
+
 /* ---------------------------------------------------------------
    1. CONSTANTS
    --------------------------------------------------------------- */
@@ -34,6 +36,21 @@ export const RECOVERY_HALF_LIFE_MS = 30 * 24 * 60 * 60 * 1000;
  * Recovery half-life in days (for human-readable reference).
  */
 export const RECOVERY_HALF_LIFE_DAYS = 30;
+
+/** Persistence table for negative-validation history. */
+const NEGATIVE_FEEDBACK_TABLE_SQL = `
+  CREATE TABLE IF NOT EXISTS negative_feedback_events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    memory_id INTEGER NOT NULL,
+    created_at_ms INTEGER NOT NULL
+  )
+`;
+
+/** Index to keep per-memory lookups fast in search scoring. */
+const NEGATIVE_FEEDBACK_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_negative_feedback_events_memory
+  ON negative_feedback_events(memory_id, created_at_ms DESC)
+`;
 
 /* ---------------------------------------------------------------
    2. CORE FUNCTIONS
@@ -105,4 +122,60 @@ export function applyNegativeFeedback(
 ): number {
   const multiplier = computeConfidenceMultiplier(negativeCount, lastNegativeAt);
   return score * multiplier;
+}
+
+/** Ensure negative-feedback persistence structures exist (idempotent). */
+export function ensureNegativeFeedbackTable(db: Database): void {
+  db.exec(NEGATIVE_FEEDBACK_TABLE_SQL);
+  db.exec(NEGATIVE_FEEDBACK_INDEX_SQL);
+}
+
+/** Record one negative validation event for a memory. */
+export function recordNegativeFeedbackEvent(db: Database, memoryId: number, atMs: number = Date.now()): void {
+  ensureNegativeFeedbackTable(db);
+  db.prepare(
+    'INSERT INTO negative_feedback_events (memory_id, created_at_ms) VALUES (?, ?)'
+  ).run(memoryId, atMs);
+}
+
+export interface NegativeFeedbackStats {
+  negativeCount: number;
+  lastNegativeAt: number | null;
+}
+
+/**
+ * Batch-load negative feedback stats for a set of memory IDs.
+ * Returns an empty map when no IDs are provided.
+ */
+export function getNegativeFeedbackStats(
+  db: Database,
+  memoryIds: number[]
+): Map<number, NegativeFeedbackStats> {
+  const stats = new Map<number, NegativeFeedbackStats>();
+  if (!Array.isArray(memoryIds) || memoryIds.length === 0) {
+    return stats;
+  }
+
+  ensureNegativeFeedbackTable(db);
+  const uniqueIds = Array.from(new Set(memoryIds.filter((id) => Number.isInteger(id) && id > 0)));
+  if (uniqueIds.length === 0) {
+    return stats;
+  }
+
+  const placeholders = uniqueIds.map(() => '?').join(', ');
+  const rows = db.prepare(
+    `SELECT memory_id, COUNT(*) AS negative_count, MAX(created_at_ms) AS last_negative_at
+     FROM negative_feedback_events
+     WHERE memory_id IN (${placeholders})
+     GROUP BY memory_id`
+  ).all(...uniqueIds) as Array<{ memory_id: number; negative_count: number; last_negative_at: number | null }>;
+
+  for (const row of rows) {
+    stats.set(row.memory_id, {
+      negativeCount: row.negative_count ?? 0,
+      lastNegativeAt: row.last_negative_at ?? null,
+    });
+  }
+
+  return stats;
 }

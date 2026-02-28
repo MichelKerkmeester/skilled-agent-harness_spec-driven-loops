@@ -21,7 +21,7 @@ import { getDynamicTokenBudget, isDynamicTokenBudgetEnabled } from './dynamic-to
 
 // Sprint 4 modules — all flag-gated, disabled by default
 import { isMpabEnabled, collapseAndReassembleChunkResults } from '../scoring/mpab-aggregation';
-import { runShadowScoring, compareShadowResults, logShadowComparison, isShadowScoringEnabled as isShadowScoringEnabledModule } from '../eval/shadow-scoring';
+import { runShadowScoring, logShadowComparison } from '../eval/shadow-scoring';
 import { getChannelAttribution } from '../eval/channel-attribution';
 import type { ChannelSources } from '../eval/channel-attribution';
 
@@ -919,6 +919,50 @@ async function hybridSearchEnhanced(
               enumerable: false,
               configurable: true,
             });
+          }
+
+          // Execute and log a real shadow comparison against pre-MMR baseline.
+          const productionResults = reranked
+            .filter((r): r is HybridSearchResult & { id: number } => typeof r.id === 'number')
+            .slice(0, limit)
+            .map((r, idx) => ({
+              memoryId: r.id,
+              score: r.score,
+              rank: idx + 1,
+            }));
+
+          const preMmrBaseline = [...fusedHybridResults]
+            .filter((r): r is HybridSearchResult & { id: number } => typeof r.id === 'number')
+            .sort((a, b) => b.score - a.score)
+            .slice(0, limit)
+            .map((r, idx) => ({
+              memoryId: r.id,
+              score: r.score,
+              rank: idx + 1,
+            }));
+
+          if (productionResults.length > 0 && preMmrBaseline.length > 0) {
+            const comparison = await runShadowScoring(query, productionResults, {
+              algorithmName: 'pre_mmr_baseline',
+              shadowScoringFn: () => preMmrBaseline,
+              metadata: {
+                stage: 'hybrid-search',
+                candidateCount: preMmrBaseline.length,
+              },
+            });
+
+            if (comparison) {
+              const logged = logShadowComparison(comparison);
+              Object.defineProperty(reranked, '_s4shadow', {
+                value: {
+                  logged,
+                  algorithm: comparison.algorithmName,
+                  summary: comparison.summary,
+                },
+                enumerable: false,
+                configurable: true,
+              });
+            }
           }
         } catch (_shadowErr: unknown) {
           // AI-GUARD: Shadow scoring must never affect production results

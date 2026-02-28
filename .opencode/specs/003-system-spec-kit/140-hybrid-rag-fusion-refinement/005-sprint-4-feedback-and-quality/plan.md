@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: Sprint 4 — Feedback and Quality"
 description: "MPAB chunk aggregation, learned relevance feedback, and shadow scoring infrastructure implementation plan."
+# SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2
 trigger_phrases:
   - "sprint 4 plan"
   - "feedback and quality plan"

@@ -1,6 +1,7 @@
 ---
 title: "Implementation Summary: Sprint 4 — Feedback and Quality"
 description: "Sprint 4 closes the feedback loop with MPAB chunk aggregation, learned relevance feedback, shadow scoring, pre-storage quality gates, and memory reconsolidation."
+# SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2
 trigger_phrases:
   - "sprint 4 implementation"
   - "feedback and quality summary"
@@ -26,7 +27,7 @@ contextType: "implementation"
 | **Level** | 2 |
 | **Total New Tests** | 315 |
 | **New Files** | 18 (11 source + 7 test) |
-| **Modified Files** | 3 |
+| **Modified Files** | 10 |
 | **TypeScript Errors** | 0 |
 <!-- /ANCHOR:metadata -->
 
@@ -43,7 +44,7 @@ Multi-Parent Aggregated Bonus computes document-level scores from individual chu
 
 ### R11 Learned Relevance Feedback
 
-Learns from user memory selections through a separate `learned_triggers` column that is explicitly isolated from the FTS5 index. Ten strict safeguards prevent noise injection: separate column, 30-day TTL, 100+ stop word denylist, rate cap (3 per selection, 8 per memory), top-3 exclusion, 1-week shadow period, 72h memory age minimum, sprint gate review, rollback mechanism, and provenance audit log. Includes auto-promotion (5 validations promotes normal to important, 10 promotes important to critical) and negative feedback confidence signal (floor at 0.3). Gated by `SPECKIT_LEARN_FROM_SELECTION`.
+Learns from user memory selections through a separate `learned_triggers` column that is explicitly isolated from the FTS5 index. Ten strict safeguards prevent noise injection: separate column, 30-day TTL, 100+ stop word denylist, rate cap (3 per selection, 8 per memory), top-3 exclusion, 1-week shadow period, 72h memory age minimum, sprint gate review, rollback mechanism, and provenance audit log. Includes auto-promotion (5 validations promotes normal to important, 10 promotes important to critical) and negative feedback confidence signal (floor at 0.3). Runtime wiring is now active in both `memory_validate` (`mcp_server/handlers/checkpoints.ts`) and `memory_search` (`mcp_server/handlers/memory-search.ts`). Gated by `SPECKIT_LEARN_FROM_SELECTION`.
 
 ### R13-S2 Shadow Scoring + Channel Attribution
 
@@ -72,9 +73,16 @@ After embedding generation, checks the top-3 most similar memories in the same s
 | `lib/storage/learned-triggers-schema.ts` | Created | Schema migration + FTS5 isolation verification |
 | `lib/search/auto-promotion.ts` | Created | T002a tier promotion (5/10 validation thresholds) |
 | `lib/scoring/negative-feedback.ts` | Created | T002b confidence multiplier (floor 0.3, 30-day half-life) |
-| `lib/search/search-flags.ts` | Modified | Added 4 Sprint 4 feature flags (all default OFF) |
+| `lib/search/search-flags.ts` | Modified | Added 5 Sprint 4 feature flags (all default OFF) |
 | `lib/search/hybrid-search.ts` | Modified | Wired MPAB aggregation + shadow scoring + channel attribution |
 | `handlers/memory-save.ts` | Modified | Wired quality gate + reconsolidation into save flow |
+| `mcp_server/handlers/checkpoints.ts` | Modified | Wired `memory_validate` auto-promotion, learned feedback persistence, ground-truth selection, and negative-feedback event logging |
+| `mcp_server/handlers/memory-search.ts` | Modified | Applied learned trigger boost and negative-feedback demotion in ranking |
+| `mcp_server/context-server.ts` | Modified | Runs `migrateLearnedTriggers()` and `verifyFts5Isolation()` at startup when learned feedback is enabled |
+| `mcp_server/lib/scoring/negative-feedback.ts` | Modified | Added negative-feedback persistence table support and stats API wiring |
+| `mcp_server/lib/search/search-flags.ts` | Modified | Added `SPECKIT_NEGATIVE_FEEDBACK` runtime flag |
+| `mcp_server/tool-schemas.ts` | Modified | Extended `memory_validate` tool schema arguments for learned feedback runtime wiring |
+| `mcp_server/tools/types.ts` | Modified | Extended `memory_validate` types to support new runtime validation inputs |
 | `tests/mpab-aggregation.vitest.ts` | Created | 33 tests for MPAB |
 | `tests/shadow-scoring.vitest.ts` | Created | 35 tests for shadow scoring + channel attribution |
 | `tests/ground-truth-feedback.vitest.ts` | Created | 27 tests for ground truth feedback |
@@ -119,6 +127,10 @@ The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM
 | Check | Result |
 |-------|--------|
 | TypeScript compilation (`tsc --noEmit`) | PASS, 0 errors |
+| Targeted runtime wiring tests (`npm run test -- tests/learned-feedback.vitest.ts tests/sprint4-integration.vitest.ts tests/handler-checkpoints.vitest.ts`) | PASS, 132 passed |
+| Memory-search handler tests (`npm run test -- tests/handler-memory-search.vitest.ts`) | PASS, 17 passed |
+| Targeted typecheck (`npx tsc --noEmit`) | PASS |
+| Targeted lint (`npx eslint context-server.ts handlers/checkpoints.ts handlers/memory-search.ts lib/scoring/negative-feedback.ts lib/search/search-flags.ts tool-schemas.ts tools/types.ts`) | PASS |
 | Sprint 4 unit tests (7 test files) | PASS, 315/315 |
 | MPAB aggregation tests | PASS, 33/33 |
 | Shadow scoring + attribution tests | PASS, 35/35 |
@@ -142,7 +154,7 @@ The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM
 3. **R11 query weight is provisional.** The 0.7x weight for learned triggers should be derived from channel attribution data (R13-S2) during the idle window.
 4. **TM-04 warn-only mode requires manual enablement after 14 days.** No automatic transition from warn-only to enforcement mode.
 5. **G-NEW-3 Phase C LLM-judge is a stub.** The `generateLlmJudgeLabels()` function returns zero-valued labels as a type contract. Actual LLM integration is out of scope for Sprint 4.
-6. **Schema migration not yet executed.** The `migrateLearnedTriggers(db)` function exists but must be called during initialization when R11 is first enabled.
+6. **Startup migration/isolation is now conditional on R11 enablement.** `migrateLearnedTriggers(db)` and `verifyFts5Isolation(db)` now run at startup when `SPECKIT_LEARN_FROM_SELECTION=true`.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -156,6 +168,7 @@ The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM
 | `SPECKIT_SAVE_QUALITY_GATE` | TM-04 pre-storage quality gate | OFF | S4a |
 | `SPECKIT_RECONSOLIDATION` | TM-06 reconsolidation-on-save | OFF | S4a |
 | `SPECKIT_LEARN_FROM_SELECTION` | R11 learned relevance feedback | OFF | S4b |
+| `SPECKIT_NEGATIVE_FEEDBACK` | A4 negative feedback confidence demotion | OFF | S4b |
 
 ---
 

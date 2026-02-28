@@ -204,7 +204,22 @@ const memoryUpdate: ToolDefinition = {
 const memoryValidate: ToolDefinition = {
   name: 'memory_validate',
   description: '[L4:Mutation] Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence and validation counts may be promoted to critical tier. Token Budget: 500.',
-  inputSchema: { type: 'object', properties: { id: { type: 'number', description: 'Memory ID to validate' }, wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' } }, required: ['id', 'wasUseful'] },
+  inputSchema: {
+    type: 'object',
+    properties: {
+      id: { type: 'number', description: 'Memory ID to validate' },
+      wasUseful: { type: 'boolean', description: 'Whether the memory was useful (true increases confidence, false decreases it)' },
+      queryId: { type: 'string', description: 'Optional query identifier to attach implicit feedback/ground-truth selection context' },
+      queryTerms: { type: 'array', items: { type: 'string' }, description: 'Optional normalized query terms used for learned feedback term extraction' },
+      resultRank: { type: 'number', description: 'Optional rank position (1-based) of the selected memory in search results' },
+      totalResultsShown: { type: 'number', description: 'Optional total number of results shown to the user' },
+      searchMode: { type: 'string', description: 'Optional search mode context (search/context/trigger)' },
+      intent: { type: 'string', description: 'Optional classified intent associated with the originating query' },
+      sessionId: { type: 'string', description: 'Optional session identifier for selection telemetry' },
+      notes: { type: 'string', description: 'Optional free-form notes associated with this validation event' },
+    },
+    required: ['id', 'wasUseful']
+  },
 };
 
 const memoryBulkDelete: ToolDefinition = {

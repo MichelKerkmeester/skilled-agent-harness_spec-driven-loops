@@ -11,6 +11,10 @@ import * as vectorIndex from '../lib/search/vector-index';
 import * as bm25Index from '../lib/search/bm25-index';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as confidenceTracker from '../lib/scoring/confidence-tracker';
+import { executeAutoPromotion } from '../lib/search/auto-promotion';
+import { recordSelection } from '../lib/search/learned-feedback';
+import { recordUserSelection } from '../lib/eval/ground-truth-feedback';
+import { recordNegativeFeedbackEvent } from '../lib/scoring/negative-feedback';
 import { checkDatabaseUpdated } from '../core';
 import { requireDb, toErrorMessage } from '../utils';
 
@@ -47,6 +51,14 @@ interface CheckpointDeleteArgs {
 interface MemoryValidateArgs {
   id: number | string;
   wasUseful: boolean;
+  queryId?: string;
+  queryTerms?: string[];
+  resultRank?: number;
+  totalResultsShown?: number;
+  searchMode?: string;
+  intent?: string;
+  sessionId?: string;
+  notes?: string;
 }
 
 interface ValidationResult {
@@ -291,7 +303,18 @@ async function handleCheckpointDelete(args: CheckpointDeleteArgs): Promise<MCPRe
 async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPResponse> {
   const startTime = Date.now();
   await checkDatabaseUpdated();
-  const { id, wasUseful } = args;
+  const {
+    id,
+    wasUseful,
+    queryId,
+    queryTerms,
+    resultRank,
+    totalResultsShown,
+    searchMode,
+    intent,
+    sessionId,
+    notes,
+  } = args;
 
   if (id === undefined || id === null) {
     throw new Error('id is required');
@@ -306,6 +329,72 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
   vectorIndex.initializeDb();
   const database = requireDb();
   const result: ValidationResult = confidenceTracker.recordValidation(database, memoryId, wasUseful);
+
+  // T002a: Auto-promotion wiring on positive feedback.
+  let autoPromotion: {
+    attempted: boolean;
+    promoted: boolean;
+    previousTier?: string;
+    newTier?: string;
+    reason?: string;
+  } | null = null;
+
+  if (wasUseful) {
+    const promotionResult = executeAutoPromotion(database, memoryId);
+    autoPromotion = {
+      attempted: true,
+      promoted: promotionResult.promoted,
+      previousTier: promotionResult.previousTier,
+      newTier: promotionResult.newTier,
+      reason: promotionResult.reason,
+    };
+  }
+
+  // T002b: Negative-feedback confidence signal persistence for runtime scoring.
+  if (!wasUseful) {
+    recordNegativeFeedbackEvent(database, memoryId);
+  }
+
+  // T002 + T027a: Optional wiring from memory_validate to learned feedback + ground truth.
+  let learnedFeedback: {
+    attempted: boolean;
+    applied: boolean;
+    termsLearned: string[];
+    reason?: string;
+  } | null = null;
+  let groundTruthSelectionId: number | null = null;
+
+  if (wasUseful && typeof queryId === 'string' && queryId.trim().length > 0) {
+    groundTruthSelectionId = recordUserSelection(queryId, memoryId, {
+      searchMode,
+      intent,
+      selectedRank: resultRank,
+      totalResultsShown,
+      sessionId,
+      notes,
+    });
+
+    const normalizedTerms = Array.isArray(queryTerms)
+      ? queryTerms.filter((term) => typeof term === 'string' && term.trim().length > 0).map((term) => term.trim())
+      : [];
+
+    if (typeof resultRank === 'number' && Number.isFinite(resultRank) && resultRank > 0 && normalizedTerms.length > 0) {
+      const learnResult = recordSelection(queryId, memoryId, normalizedTerms, Math.floor(resultRank), database);
+      learnedFeedback = {
+        attempted: true,
+        applied: learnResult.applied,
+        termsLearned: learnResult.terms,
+        reason: learnResult.reason,
+      };
+    } else {
+      learnedFeedback = {
+        attempted: false,
+        applied: false,
+        termsLearned: [],
+        reason: 'missing_query_terms_or_rank',
+      };
+    }
+  }
 
   const summary = wasUseful
     ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
@@ -327,7 +416,10 @@ async function handleMemoryValidate(args: MemoryValidateArgs): Promise<MCPRespon
       wasUseful: wasUseful,
       confidence: result.confidence,
       validationCount: result.validationCount,
-      promotionEligible: result.promotionEligible
+      promotionEligible: result.promotionEligible,
+      autoPromotion,
+      learnedFeedback,
+      groundTruthSelectionId,
     },
     hints,
     startTime: startTime

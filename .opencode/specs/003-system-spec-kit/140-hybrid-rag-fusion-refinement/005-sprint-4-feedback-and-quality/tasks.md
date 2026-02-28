@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 4 — Feedback and Quality"
 description: "Task breakdown for MPAB chunk aggregation, learned relevance feedback, and shadow scoring."
+# SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2
 trigger_phrases:
   - "sprint 4 tasks"
   - "feedback and quality tasks"
@@ -43,6 +44,7 @@ contextType: "implementation"
 > **RECOMMENDED SPLIT — S4a / S4b (F3)**:
 > - **S4a tasks**: T001 + T001a (R1 MPAB) + T003 + T003a (R13-S2 eval) + T007 (TM-04 quality gate) — estimated 33-49h. No schema change. Delivers A/B infra + save quality gating.
 > - **S4b tasks**: T002 + T002a + T002b (R11 learned feedback) + T008 (TM-06 reconsolidation) — estimated 31-48h. Requires S4a verification + 28-day calendar window.
+<!-- /ANCHOR:checkpoint -->
 
 ---
 
@@ -58,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: R11 Learned Relevance Feedback
 
-- [ ] T002 Implement learned relevance feedback — schema migration (`learned_triggers` column) + separate column isolation + 10 safeguards (denylist 100+, rate cap 3/8h, TTL 30d decay, FTS5 isolation, noise floor top-3, rollback mechanism, provenance/audit log, shadow period 1 week, eligibility 72h, sprint gate review) + 0.7x query weight, behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] — R11
-  - T002a Implement memory importance auto-promotion — threshold-based tier promotion when validation count exceeds configurable threshold (default: 5 validations → promote normal→important, 10 → important→critical) [5-8h] — R11 extension
-  - T002b Activate negative feedback confidence signal — wire `memory_validate(wasUseful: false)` confidence score into composite scoring as demotion multiplier (floor=0.3, gradual decay); feature-flaggable [4-6h] — A4 (R11 extension, prerequisite for DEF-003)
+- [x] T002 Implement learned relevance feedback — schema migration (`learned_triggers` column) + separate column isolation + 10 safeguards (denylist 100+, rate cap 3/8h, TTL 30d decay, FTS5 isolation, noise floor top-3, rollback mechanism, provenance/audit log, shadow period 1 week, eligibility 72h, sprint gate review) + 0.7x query weight, behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] — R11
+  - [x] T002a Implement memory importance auto-promotion — threshold-based tier promotion when validation count exceeds configurable threshold (default: 5 validations → promote normal→important, 10 → important→critical) [5-8h] — R11 extension
+  - [x] T002b Activate negative feedback confidence signal — wire `memory_validate(wasUseful: false)` confidence score into composite scoring as demotion multiplier (floor=0.3, gradual decay); feature-flaggable [4-6h] — A4 (R11 extension, prerequisite for DEF-003)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -102,7 +104,7 @@ contextType: "implementation"
 <!-- ANCHOR:gnew3 -->
 ## G-NEW-3: Ground Truth Diversification
 
-- [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T-S4-PRE, R13 2-cycle prerequisite} — G-NEW-3
+- [x] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T-S4-PRE, R13 2-cycle prerequisite} — G-NEW-3
   - Acceptance: user selection events tracked and stored; selection data available for ground truth expansion
 - [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
   - Acceptance: LLM-judge generates relevance labels for query-selection pairs; ground truth corpus expanded to ≥200 pairs

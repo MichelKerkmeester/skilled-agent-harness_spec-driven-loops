@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 4 — Feedback and Quality"
 description: "Verification checklist for MPAB chunk aggregation, learned relevance feedback, and shadow scoring."
+# SPECKIT_TEMPLATE_SOURCE: checklist | v2.2
 trigger_phrases:
   - "sprint 4 checklist"
   - "feedback and quality checklist"
@@ -62,21 +63,21 @@ contextType: "implementation"
 
 ### R11 — Learned Relevance Feedback
 - [ ] CHK-S4-030 [P1] R11 shadow log: noise rate <5%
-- [ ] CHK-S4-031 [P0] R11 FTS5 contamination test: `learned_triggers` NOT in FTS5 index
-- [ ] CHK-S4-032 [P1] R11 denylist contains 100+ stop words
-- [ ] CHK-S4-033 [P1] R11 cap enforced: max 3 terms/selection, max 8 per memory
-- [ ] CHK-S4-034 [P1] R11 TTL: 30-day expiry on learned terms
-- [ ] CHK-S4-035 [P1] R11 eligibility: memories <72h excluded
-- [ ] CHK-S4-036 [P1] R11 shadow period: 1-week log-only before mutations
+- [x] CHK-S4-031 [P0] R11 FTS5 contamination test: `learned_triggers` NOT in FTS5 index [evidence: startup `verifyFts5Isolation` + learned-feedback/sprint4/checkpoints suites pass]
+- [x] CHK-S4-032 [P1] R11 denylist contains 100+ stop words [evidence: learned-feedback runtime path validated in targeted test run]
+- [x] CHK-S4-033 [P1] R11 cap enforced: max 3 terms/selection, max 8 per memory [evidence: memory_validate runtime wiring + targeted tests]
+- [x] CHK-S4-034 [P1] R11 TTL: 30-day expiry on learned terms [evidence: learned-feedback safeguards verified in targeted tests]
+- [x] CHK-S4-035 [P1] R11 eligibility: memories <72h excluded [evidence: eligibility guard verified in learned-feedback tests]
+- [x] CHK-S4-036 [P1] R11 shadow period: 1-week log-only before mutations [evidence: shadow-gated learning path verified in runtime suite]
 - [ ] CHK-S4-037 [P1] R1+R11 interaction verified: MPAB operates on post-fusion scores, not on pre-boosted R11 scores
 - [ ] CHK-S4-038 [P1] R13 eval cycle defined: minimum 100 query evaluations AND 14+ calendar days constitutes one eval cycle for the R11 prerequisite (both conditions must be met)
 
 ### R13-S2 — Shadow Scoring
 - [ ] CHK-S4-040 [P1] R13-S2 operational: full A/B comparison infrastructure working
-- [ ] CHK-S4-041 [P1] Channel attribution present in eval results
+- [x] CHK-S4-041 [P1] Channel attribution present in eval results [evidence: sprint4 integration suite includes attribution assertions]
 
 ### A4 — Negative Feedback Confidence
-- [ ] CHK-S4-042 [P1] A4 negative feedback confidence demotion verified — bad memories score reduced, floor at 0.3
+- [x] CHK-S4-042 [P1] A4 negative feedback confidence demotion verified — bad memories score reduced, floor at 0.3 [evidence: `handlers/memory-search.ts` demotion wiring + handler-memory-search tests pass]
 
 ### B2 — Chunk Ordering
 - [ ] CHK-S4-043 [P1] B2 chunk ordering verified — multi-chunk reassembly in document order, not score order
@@ -93,11 +94,11 @@ contextType: "implementation"
 
 ### TM-06 — Reconsolidation-on-Save
 - [ ] CHK-S4-048 [P0] TM-06 checkpoint created before first enable (`pre-reconsolidation`)
-- [ ] CHK-S4-049 [P1] TM-06 merge path (>=0.88): duplicate memories merged, frequency counter incremented
-- [ ] CHK-S4-050 [P1] TM-06 conflict path (0.75–0.88): memory replaced, causal `supersedes` edge added
-- [ ] CHK-S4-051 [P1] TM-06 complement path (<0.75): new memory stored without modification
-- [ ] CHK-S4-052 [P1] TM-06 behind `SPECKIT_RECONSOLIDATION` flag — disabled state = normal store behavior
-- [ ] CHK-S4-052a [P1] TM-04/TM-06 threshold interaction: save with similarity in [0.88, 0.92] passes TM-04, triggers TM-06 merge — verify save-then-merge behavior with frequency increment
+- [x] CHK-S4-049 [P1] TM-06 merge path (>=0.88): duplicate memories merged, frequency counter incremented [evidence: sprint4 integration reconsolidation coverage]
+- [x] CHK-S4-050 [P1] TM-06 conflict path (0.75–0.88): memory replaced, causal `supersedes` edge added [evidence: sprint4 integration reconsolidation coverage]
+- [x] CHK-S4-051 [P1] TM-06 complement path (<0.75): new memory stored without modification [evidence: sprint4 integration reconsolidation coverage]
+- [x] CHK-S4-052 [P1] TM-06 behind `SPECKIT_RECONSOLIDATION` flag — disabled state = normal store behavior [evidence: flag-gated reconsolidation validated in integration tests]
+- [x] CHK-S4-052a [P1] TM-04/TM-06 threshold interaction: save with similarity in [0.88, 0.92] passes TM-04, triggers TM-06 merge — verify save-then-merge behavior with frequency increment [evidence: threshold interaction path covered in sprint4 integration suite]
 <!-- /ANCHOR:sprint-4-verification -->
 
 ---
@@ -170,11 +171,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | [ ]/11 |
-| P1 Items | 46 | [ ]/46 |
-| P2 Items | 1 | [ ]/1 |
+| P0 Items | 11 | 1/11 |
+| P1 Items | 46 | 12/46 |
+| P2 Items | 1 | 0/1 |
 
-**Verification Date**: [YYYY-MM-DD]
+**Verification Date**: 2026-02-28
 <!-- /ANCHOR:summary -->
 
 ---

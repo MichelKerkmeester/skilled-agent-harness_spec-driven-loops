@@ -321,6 +321,33 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         hybridSearch.hybridSearchEnhanced('test', null, { limit: 5 });
       }).not.toThrow();
     });
+
+    it('T031-HYB-S4-01: shadow scoring attaches runtime comparison metadata when enabled', async () => {
+      const originalShadowFlag = process.env.SPECKIT_SHADOW_SCORING;
+      process.env.SPECKIT_SHADOW_SCORING = 'true';
+
+      try {
+        const results = await hybridSearch.hybridSearchEnhanced('authentication', mockEmbedding, { limit: 5 });
+        expect(results).toBeDefined();
+        expect(Array.isArray(results)).toBe(true);
+
+        if (results.length > 0) {
+          const shadowMeta = (results as unknown as Record<string, unknown>)._s4shadow as
+            | { algorithm?: string; logged?: boolean }
+            | undefined;
+
+          expect(shadowMeta).toBeDefined();
+          expect(shadowMeta?.algorithm).toBe('pre_mmr_baseline');
+          expect(typeof shadowMeta?.logged).toBe('boolean');
+        }
+      } finally {
+        if (originalShadowFlag === undefined) {
+          delete process.env.SPECKIT_SHADOW_SCORING;
+        } else {
+          process.env.SPECKIT_SHADOW_SCORING = originalShadowFlag;
+        }
+      }
+    });
   });
 
   // 5.5 RRF FUSION INTEGRATION TESTS

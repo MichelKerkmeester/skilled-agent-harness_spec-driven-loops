@@ -188,6 +188,33 @@ function escapeLikePattern(str: string): string {
   return str.replace(/%/g, '\\%').replace(/_/g, '\\_');
 }
 
+/**
+ * TM-06 safety gate: verify a pre-reconsolidation checkpoint exists.
+ * Accepts either exact name `pre-reconsolidation` or prefixed variants.
+ */
+function hasReconsolidationCheckpoint(database: BetterSqlite3.Database, specFolder: string): boolean {
+  try {
+    const tableExists = database.prepare(
+      "SELECT name FROM sqlite_master WHERE type='table' AND name='checkpoints'"
+    ).get();
+
+    if (!tableExists) {
+      return false;
+    }
+
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count
+      FROM checkpoints
+      WHERE (name = 'pre-reconsolidation' OR name LIKE 'pre-reconsolidation-%')
+        AND (spec_folder = ? OR spec_folder IS NULL OR spec_folder = '')
+    `).get(specFolder) as { count?: number } | undefined;
+
+    return (row?.count ?? 0) > 0;
+  } catch {
+    return false;
+  }
+}
+
 /* ─── 4. PE GATING HELPER FUNCTIONS ─── */
 
 /**
@@ -1227,89 +1254,103 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   // (merge or conflict), we skip normal DB insert and return the reconsolidation result.
   if (isReconsolidationFlagEnabled() && isReconsolidationEnabled() && embedding) {
     try {
-      const reconResult: ReconsolidationResult | null = await reconsolidate(
-        {
-          title: parsed.title,
-          content: parsed.content,
-          specFolder: parsed.specFolder,
-          filePath,
-          embedding,
-          triggerPhrases: parsed.triggerPhrases,
-          importanceTier: parsed.importanceTier,
-        },
-        database,
-        {
-          findSimilar: (emb, opts) => {
-            const results = vectorIndex.vectorSearch(emb as Float32Array, {
-              limit: opts.limit,
-              specFolder: opts.specFolder,
-              minSimilarity: 50,
-              includeConstitutional: false,
-            });
-            return results.map((r: Record<string, unknown>) => ({
-              id: r.id as number,
-              file_path: r.file_path as string,
-              title: (r.title as string) ?? null,
-              content_text: (r.content as string) ?? null,
-              similarity: ((r.similarity as number) ?? 0) / 100,
-              spec_folder: parsed.specFolder,
-            }));
-          },
-          storeMemory: (memory) => {
-            const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
-            return vectorIndex.indexMemory({
-              specFolder: memory.specFolder,
-              filePath: memory.filePath,
-              title: memory.title,
-              triggerPhrases: memory.triggerPhrases ?? [],
-              importanceWeight,
-              embedding: memory.embedding as Float32Array,
-              documentType: parsed.documentType || 'memory',
-              contentText: memory.content,
-            });
-          },
-          generateEmbedding: async (content: string) => {
-            return embeddings.generateDocumentEmbedding(content);
-          },
-        }
-      );
+      const hasCheckpoint = hasReconsolidationCheckpoint(database, parsed.specFolder);
+      if (!hasCheckpoint) {
+        console.warn(
+          '[memory-save] TM-06: Reconsolidation skipped - required checkpoint "pre-reconsolidation" not found'
+        );
+      }
 
-      if (reconResult && reconResult.action !== 'complement') {
-        // Reconsolidation handled the memory (merge or conflict) — skip normal CREATE path
-        console.info(`[memory-save] TM-06: Reconsolidation ${reconResult.action} for ${path.basename(filePath)}`);
-
-        const reconId = reconResult.action === 'merge'
-          ? reconResult.existingMemoryId
-          : reconResult.action === 'conflict'
-            ? reconResult.newMemoryId
-            : 0;
-
-        appendMutationLedgerSafe(database, {
-          mutationType: 'update',
-          reason: `memory_save: reconsolidation ${reconResult.action}`,
-          priorHash: null,
-          newHash: parsed.contentHash,
-          linkedMemoryIds: [reconId],
-          decisionMeta: {
-            tool: 'memory_save',
-            action: `reconsolidation_${reconResult.action}`,
-            similarity: reconResult.similarity,
+      if (!hasCheckpoint) {
+        // Continue normal create path without reconsolidation.
+      } else {
+        const reconResult: ReconsolidationResult | null = await reconsolidate(
+          {
+            title: parsed.title,
+            content: parsed.content,
             specFolder: parsed.specFolder,
             filePath,
+            embedding,
+            triggerPhrases: parsed.triggerPhrases,
+            importanceTier: parsed.importanceTier,
           },
-          actor: 'mcp:memory_save',
-        });
+          database,
+          {
+            findSimilar: (emb, opts) => {
+              const results = vectorIndex.vectorSearch(emb as Float32Array, {
+                limit: opts.limit,
+                specFolder: opts.specFolder,
+                minSimilarity: 50,
+                includeConstitutional: false,
+              });
+              return results.map((r: Record<string, unknown>) => ({
+                id: r.id as number,
+                file_path: r.file_path as string,
+                title: (r.title as string) ?? null,
+                content_text: (r.content as string) ?? null,
+                similarity: ((r.similarity as number) ?? 0) / 100,
+                spec_folder: parsed.specFolder,
+                frequency_counter: typeof (r.frequency_counter as unknown) === 'number'
+                  ? (r.frequency_counter as number)
+                  : 0,
+              }));
+            },
+            storeMemory: (memory) => {
+              const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+              return vectorIndex.indexMemory({
+                specFolder: memory.specFolder,
+                filePath: memory.filePath,
+                title: memory.title,
+                triggerPhrases: memory.triggerPhrases ?? [],
+                importanceWeight,
+                embedding: memory.embedding as Float32Array,
+                documentType: parsed.documentType || 'memory',
+                contentText: memory.content,
+              });
+            },
+            generateEmbedding: async (content: string) => {
+              return embeddings.generateDocumentEmbedding(content);
+            },
+          }
+        );
 
-        return {
-          status: reconResult.action === 'merge' ? 'merged' : 'superseded',
-          id: reconId,
-          specFolder: parsed.specFolder,
-          title: parsed.title ?? '',
-          reconsolidation: reconResult,
-          message: `Reconsolidation: ${reconResult.action} (similarity: ${reconResult.similarity?.toFixed(3) ?? 'N/A'})`,
-        };
+        if (reconResult && reconResult.action !== 'complement') {
+          // Reconsolidation handled the memory (merge or conflict) — skip normal CREATE path
+          console.info(`[memory-save] TM-06: Reconsolidation ${reconResult.action} for ${path.basename(filePath)}`);
+
+          const reconId = reconResult.action === 'merge'
+            ? reconResult.existingMemoryId
+            : reconResult.action === 'conflict'
+              ? reconResult.newMemoryId
+              : 0;
+
+          appendMutationLedgerSafe(database, {
+            mutationType: 'update',
+            reason: `memory_save: reconsolidation ${reconResult.action}`,
+            priorHash: null,
+            newHash: parsed.contentHash,
+            linkedMemoryIds: [reconId],
+            decisionMeta: {
+              tool: 'memory_save',
+              action: `reconsolidation_${reconResult.action}`,
+              similarity: reconResult.similarity,
+              specFolder: parsed.specFolder,
+              filePath,
+            },
+            actor: 'mcp:memory_save',
+          });
+
+          return {
+            status: reconResult.action === 'merge' ? 'merged' : 'superseded',
+            id: reconId,
+            specFolder: parsed.specFolder,
+            title: parsed.title ?? '',
+            reconsolidation: reconResult,
+            message: `Reconsolidation: ${reconResult.action} (similarity: ${reconResult.similarity?.toFixed(3) ?? 'N/A'})`,
+          };
+        }
+        // reconResult is null or complement — fall through to normal CREATE path
       }
-      // reconResult is null or complement — fall through to normal CREATE path
     } catch (reconErr: unknown) {
       const message = toErrorMessage(reconErr);
       console.warn(`[memory-save] TM-06: Reconsolidation error (proceeding with normal save): ${message}`);

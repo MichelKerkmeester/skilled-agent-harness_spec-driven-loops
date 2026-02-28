@@ -453,7 +453,7 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
       expect(edges[0].evidence).toContain('reconsolidation');
     });
 
-    it('CP3: Conflict with no new memory ID uses existing ID', () => {
+    it('CP3: Conflict with no new memory ID uses existing ID and avoids self-edge', () => {
       testDb.prepare(`
         INSERT INTO memory_index (id, spec_folder, file_path, title, content_text, created_at, updated_at)
         VALUES (220, 'test-spec', '/test/220.md', 'Old', 'Old', datetime('now'), datetime('now'))
@@ -464,6 +464,12 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
 
       const result = executeConflict(existing, newMem, testDb);
       expect(result.newMemoryId).toBe(220); // Falls back to existing ID
+      expect(result.causalEdgeId).toBeNull();
+
+      const selfSupersedes = causalEdges
+        .getEdgesFrom('220')
+        .filter((edge) => edge.relation === 'supersedes' && edge.target_id === '220');
+      expect(selfSupersedes).toHaveLength(0);
     });
   });
 
@@ -578,35 +584,40 @@ describe('Reconsolidation-on-Save (TM-06)', () => {
       const findSimilar = mockFindSimilar([
         makeSimilarMemory({ id: 420, similarity: 0.60 }),
       ]);
+      const storeMemory = vi.fn().mockReturnValue(421);
 
       const result = await reconsolidate(
         makeNewMemory(),
         testDb,
-        { findSimilar, storeMemory: mockStoreMemory(421) }
+        { findSimilar, storeMemory }
       );
 
       expect(result).not.toBeNull();
       expect(result!.action).toBe('complement');
       if (result!.action === 'complement') {
-        expect(result!.newMemoryId).toBe(421);
+        expect(result!.newMemoryId).toBe(0);
         expect(result!.similarity).toBe(0.60);
       }
+      expect(storeMemory).not.toHaveBeenCalled();
     });
 
     it('RO4: No similar memories -> complement', async () => {
       const findSimilar = mockFindSimilar([]);
+      const storeMemory = vi.fn().mockReturnValue(430);
 
       const result = await reconsolidate(
         makeNewMemory(),
         testDb,
-        { findSimilar, storeMemory: mockStoreMemory(430) }
+        { findSimilar, storeMemory }
       );
 
       expect(result).not.toBeNull();
       expect(result!.action).toBe('complement');
       if (result!.action === 'complement') {
+        expect(result!.newMemoryId).toBe(0);
         expect(result!.similarity).toBeNull();
       }
+      expect(storeMemory).not.toHaveBeenCalled();
     });
 
     it('RO5: Flag OFF returns null (normal store)', async () => {

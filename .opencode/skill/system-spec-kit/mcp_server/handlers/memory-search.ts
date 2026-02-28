@@ -17,7 +17,9 @@ import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
 import * as crossEncoder from '../lib/search/cross-encoder';
 import * as sessionBoost from '../lib/search/session-boost';
 import * as causalBoost from '../lib/search/causal-boost';
-import { isMultiQueryEnabled, isTRMEnabled } from '../lib/search/search-flags';
+import { queryLearnedTriggers } from '../lib/search/learned-feedback';
+import { applyNegativeFeedback, getNegativeFeedbackStats } from '../lib/scoring/negative-feedback';
+import { isMultiQueryEnabled, isTRMEnabled, isNegativeFeedbackEnabled } from '../lib/search/search-flags';
 import { getExtractionMetrics } from '../lib/extraction/extraction-adapter';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
@@ -111,6 +113,15 @@ interface DedupResult {
 interface RerankResult {
   results: MemorySearchRow[];
   rerankMetadata: Record<string, unknown>;
+}
+
+interface FeedbackSignalResult {
+  results: MemorySearchRow[];
+  metadata: {
+    applied: boolean;
+    learnedMatches: number;
+    negativeAdjusted: number;
+  };
 }
 
 interface ChunkReassemblyResult {
@@ -289,6 +300,86 @@ function applyArtifactRouting(results: MemorySearchRow[], routingResult?: Routin
   }
 
   return applyRoutingWeights(results as WeightedResult[], routingResult.strategy) as MemorySearchRow[];
+}
+
+function applyFeedbackSignals(results: MemorySearchRow[], queryText: string): FeedbackSignalResult {
+  const base: FeedbackSignalResult = {
+    results,
+    metadata: {
+      applied: false,
+      learnedMatches: 0,
+      negativeAdjusted: 0,
+    },
+  };
+
+  if (!Array.isArray(results) || results.length === 0 || typeof queryText !== 'string' || queryText.trim().length === 0) {
+    return base;
+  }
+
+  let database: ReturnType<typeof requireDb>;
+  try {
+    database = requireDb();
+  } catch {
+    return base;
+  }
+
+  let learnedMap = new Map<number, number>();
+  try {
+    const learnedMatches = queryLearnedTriggers(queryText, database);
+    learnedMap = new Map<number, number>(
+      learnedMatches
+        .filter((m) => Number.isInteger(m.memoryId) && m.memoryId > 0)
+        .map((m) => [m.memoryId, m.weight])
+    );
+  } catch {
+    // Non-fatal: keep learnedMap empty.
+  }
+
+  const numericIds = results
+    .map((result) => result.id)
+    .filter((id): id is number => Number.isInteger(id) && id > 0);
+  const negativeStats = isNegativeFeedbackEnabled()
+    ? getNegativeFeedbackStats(database, numericIds)
+    : new Map<number, { negativeCount: number; lastNegativeAt: number | null }>();
+
+  let learnedHits = 0;
+  let negativeAdjusted = 0;
+
+  const adjusted = results.map((result) => {
+    const baseScoreRaw = typeof result.score === 'number'
+      ? result.score
+      : typeof result.similarity === 'number'
+        ? result.similarity
+        : 0;
+    let adjustedScore = baseScoreRaw;
+
+    const learnedWeight = learnedMap.get(result.id);
+    if (typeof learnedWeight === 'number' && Number.isFinite(learnedWeight) && learnedWeight > 0) {
+      adjustedScore = adjustedScore * (1 + learnedWeight);
+      learnedHits++;
+    }
+
+    const negative = negativeStats.get(result.id);
+    if (negative && negative.negativeCount > 0) {
+      adjustedScore = applyNegativeFeedback(adjustedScore, negative.negativeCount, negative.lastNegativeAt);
+      negativeAdjusted++;
+    }
+
+    return {
+      ...result,
+      score: adjustedScore,
+      feedbackAdjustedScore: adjustedScore,
+    };
+  }).sort((a, b) => ((b.score as number) || 0) - ((a.score as number) || 0));
+
+  return {
+    results: adjusted,
+    metadata: {
+      applied: learnedHits > 0 || negativeAdjusted > 0,
+      learnedMatches: learnedHits,
+      negativeAdjusted,
+    },
+  };
 }
 
 function parseNullableInt(value: unknown): number | null {
@@ -894,10 +985,12 @@ async function postSearchPipeline(
   }
 
   const artifactWeightedResults = applyArtifactRouting(weightedResults, artifactRouting);
+  const feedbackSignalResult = applyFeedbackSignals(artifactWeightedResults, rerankQuery);
+  const feedbackAdjustedResults = feedbackSignalResult.results;
   const hasArtifactClass = !!artifactRouting && artifactRouting.detectedClass !== 'unknown';
   const artifactLimitedResults = hasArtifactClass
-    ? artifactWeightedResults.slice(0, Math.min(artifactRouting!.strategy.maxResults, limit))
-    : artifactWeightedResults;
+    ? feedbackAdjustedResults.slice(0, Math.min(artifactRouting!.strategy.maxResults, limit))
+    : feedbackAdjustedResults;
 
   const rerankStart = Date.now();
   const { results: finalResults, rerankMetadata } = await applyCrossEncoderReranking(
@@ -959,6 +1052,10 @@ async function postSearchPipeline(
       maxResultsApplied,
     };
     extraData.artifact_routing = extraData.artifactRouting;
+  }
+  if (feedbackSignalResult.metadata.applied) {
+    extraData.feedbackSignals = feedbackSignalResult.metadata;
+    extraData.feedback_signals = feedbackSignalResult.metadata;
   }
   if (rerankMetadata) {
     extraData.rerankMetadata = rerankMetadata;

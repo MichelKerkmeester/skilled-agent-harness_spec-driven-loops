@@ -70,6 +70,10 @@ export interface ConflictResult {
 /** Result of a complement (new) operation */
 export interface ComplementResult {
   action: 'complement';
+  /**
+   * Memory ID when already known by caller; 0 means "not persisted yet" and
+   * caller should execute normal create flow.
+   */
   newMemoryId: number;
   similarity: number | null;
 }
@@ -312,19 +316,24 @@ export function executeConflict(
       }
     }
 
-    // Add causal 'supersedes' edge: new supersedes existing
-    const sourceId = newMemory.id !== undefined
-      ? String(newMemory.id)
-      : String(existingMemory.id);
-    const targetId = String(existingMemory.id);
+    // Add causal 'supersedes' edge only when caller provides a distinct new ID.
+    // AI-GUARD: Prevent self-referential supersedes edges (source == target).
+    let edgeId: number | null = null;
+    const hasDistinctNewId =
+      newMemory.id !== undefined &&
+      newMemory.id !== existingMemory.id;
 
-    const edgeId = causalEdges.insertEdge(
-      sourceId,
-      targetId,
-      'supersedes',
-      1.0,
-      `TM-06 reconsolidation conflict: similarity ${(existingMemory.similarity * 100).toFixed(1)}%`
-    );
+    if (hasDistinctNewId) {
+      const sourceId = String(newMemory.id);
+      const targetId = String(existingMemory.id);
+      edgeId = causalEdges.insertEdge(
+        sourceId,
+        targetId,
+        'supersedes',
+        1.0,
+        `TM-06 reconsolidation conflict: similarity ${(existingMemory.similarity * 100).toFixed(1)}%`
+      );
+    }
 
     return {
       action: 'conflict',
@@ -403,7 +412,7 @@ export async function reconsolidate(
     return null;
   }
 
-  const { findSimilar, storeMemory, generateEmbedding } = options;
+  const { findSimilar, generateEmbedding } = options;
 
   // Step 1: Find similar memories
   const similarMemories = findSimilarMemories(
@@ -414,7 +423,13 @@ export async function reconsolidate(
 
   // No existing memories: complement (new)
   if (similarMemories.length === 0) {
-    return executeComplement(newMemory, storeMemory, null);
+    // AI-WHY: Do not persist in orchestrator complement path.
+    // Caller owns canonical create flow (prevents duplicate writes).
+    return {
+      action: 'complement',
+      newMemoryId: newMemory.id ?? 0,
+      similarity: null,
+    };
   }
 
   // Step 2: Get the most similar memory and determine action
@@ -430,11 +445,20 @@ export async function reconsolidate(
       return executeConflict(topMatch, newMemory, db);
 
     case 'complement':
-      return executeComplement(newMemory, storeMemory, topMatch.similarity);
+      // AI-WHY: Complement is a routing decision only; caller persists once.
+      return {
+        action: 'complement',
+        newMemoryId: newMemory.id ?? 0,
+        similarity: topMatch.similarity,
+      };
 
     default:
       // Exhaustive check
-      return executeComplement(newMemory, storeMemory, topMatch.similarity);
+      return {
+        action: 'complement',
+        newMemoryId: newMemory.id ?? 0,
+        similarity: topMatch.similarity,
+      };
   }
 }
 

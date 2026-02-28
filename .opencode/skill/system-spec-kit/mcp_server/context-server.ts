@@ -76,6 +76,8 @@ import * as transactionManager from './lib/storage/transaction-manager';
 // KL-4: Tool cache cleanup on shutdown
 import * as toolCache from './lib/cache/tool-cache';
 import { initExtractionAdapter } from './lib/extraction/extraction-adapter';
+import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema';
+import { isLearnedFeedbackEnabled } from './lib/search/learned-feedback';
 
 /* ---------------------------------------------------------------
    2. TYPES
@@ -588,6 +590,17 @@ async function main(): Promise<void> {
     const database = vectorIndex.getDb();
     if (!database) {
       throw new Error('Database not initialized after initializeDb(). Cannot start server.');
+    }
+
+    if (isLearnedFeedbackEnabled()) {
+      try {
+        const migrated = migrateLearnedTriggers(database);
+        const isolated = verifyFts5Isolation(database);
+        console.error(`[context-server] Learned triggers ready (migrated=${migrated}, fts5Isolated=${isolated})`);
+      } catch (learnedErr: unknown) {
+        const message = learnedErr instanceof Error ? learnedErr.message : String(learnedErr);
+        throw new Error(`[context-server] Learned feedback migration/isolation failed: ${message}`);
+      }
     }
 
     // Check SQLite version meets minimum requirement (3.35.0+)

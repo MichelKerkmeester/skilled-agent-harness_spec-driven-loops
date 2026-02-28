@@ -109,6 +109,14 @@ export interface HealthArgs {
 export interface MemoryValidateArgs {
   id: number | string;
   wasUseful: boolean;
+  queryId?: string;
+  queryTerms?: string[];
+  resultRank?: number;
+  totalResultsShown?: number;
+  searchMode?: string;
+  intent?: string;
+  sessionId?: string;
+  notes?: string;
 }
 
 export interface SaveArgs {

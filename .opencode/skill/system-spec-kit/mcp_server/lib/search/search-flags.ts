@@ -86,3 +86,11 @@ export function isSaveQualityGateEnabled(): boolean {
 export function isReconsolidationEnabled(): boolean {
   return process.env.SPECKIT_RECONSOLIDATION?.toLowerCase() === 'true';
 }
+
+/**
+ * T002b/A4: Negative-feedback confidence demotion in ranking.
+ * Default: FALSE (opt-in). Set SPECKIT_NEGATIVE_FEEDBACK=true to enable.
+ */
+export function isNegativeFeedbackEnabled(): boolean {
+  return process.env.SPECKIT_NEGATIVE_FEEDBACK?.toLowerCase() === 'true';
+}

@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Sprint 4 — Feedback and Quality"
 description: "Close the feedback loop with chunk aggregation, learned relevance feedback, and shadow scoring infrastructure."
+# SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2
 trigger_phrases:
   - "sprint 4"
   - "feedback and quality"
