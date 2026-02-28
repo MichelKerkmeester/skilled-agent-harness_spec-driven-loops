@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
+import { normalizeContentForBM25 } from '../parsing/content-normalizer';
 
 /* ---------------------------------------------------------------
    1. INTERFACES
@@ -242,7 +243,7 @@ class BM25Index {
       for (const row of rows) {
         const textParts: string[] = [];
         if (row.title) textParts.push(row.title);
-        if (row.content_text) textParts.push(row.content_text);
+        if (row.content_text) textParts.push(normalizeContentForBM25(row.content_text));
         if (row.trigger_phrases) textParts.push(row.trigger_phrases);
         if (row.file_path) textParts.push(row.file_path);
         const text = textParts.join(' ');

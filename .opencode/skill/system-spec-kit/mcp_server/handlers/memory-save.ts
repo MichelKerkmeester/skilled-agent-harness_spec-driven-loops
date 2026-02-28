@@ -45,6 +45,7 @@ import { isEncodingIntentEnabled, isSaveQualityGateEnabled, isReconsolidationEna
 
 import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
 import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
+import { normalizeContentForEmbedding } from '../lib/parsing/content-normalizer';
 
 // Create local path validator
 const validateFilePathLocal = createFilePathValidator(ALLOWED_BASE_PATHS, validateFilePath);
@@ -1113,8 +1114,10 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         embeddingStatus = 'success';
         console.info(`[memory-save] Embedding cache HIT for ${path.basename(filePath)}`);
       } else {
-        // Cache miss: generate embedding via provider
-        embedding = await embeddings.generateDocumentEmbedding(parsed.content);
+        // Cache miss: normalize content then generate embedding via provider
+        // S1: strip structural noise (frontmatter, anchors, HTML comments) before embedding
+        const normalizedContent = normalizeContentForEmbedding(parsed.content);
+        embedding = await embeddings.generateDocumentEmbedding(normalizedContent);
         if (embedding) {
           embeddingStatus = 'success';
           // Store in persistent cache for future re-index

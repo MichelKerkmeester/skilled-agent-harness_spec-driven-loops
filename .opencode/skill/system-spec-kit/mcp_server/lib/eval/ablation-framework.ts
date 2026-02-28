@@ -1,0 +1,528 @@
+// ─── MODULE: Ablation Framework (R13-S3) ───
+//
+// Controlled ablation studies for search channel contribution analysis.
+// Selectively disables one search channel at a time, measures Recall@20
+// delta against a full-pipeline baseline, and attributes per-channel
+// contribution to retrieval quality.
+//
+// Features:
+// - Channel toggle mechanism (vector, bm25, fts5, graph, trigger)
+// - Ablation runner with ground truth evaluation
+// - Delta calculation (baseline vs ablated Recall@20)
+// - Paired sign-test for statistical significance
+// - Results storage in eval_metric_snapshots table
+// - Human-readable ablation report formatting
+//
+// CRITICAL: Ablation studies are experimental and gated behind
+// SPECKIT_ABLATION=true. Every public function is wrapped in try-catch
+// and is a no-op when the flag is not set.
+// ---------------------------------------------------------------
+
+import { initEvalDb, getEvalDb } from './eval-db';
+import { computeRecall } from './eval-metrics';
+import type { EvalResult, GroundTruthEntry } from './eval-metrics';
+import {
+  GROUND_TRUTH_QUERIES,
+  GROUND_TRUTH_RELEVANCES,
+} from './ground-truth-data';
+import type { GroundTruthQuery } from './ground-truth-data';
+
+/* ─── 1. FEATURE FLAG ─── */
+
+/**
+ * Returns true only when SPECKIT_ABLATION=true (case-insensitive).
+ * Anything else (undefined, "false", "1", ...) disables ablation studies.
+ */
+export function isAblationEnabled(): boolean {
+  return process.env.SPECKIT_ABLATION?.toLowerCase() === 'true';
+}
+
+/* ─── 2. TYPES ─── */
+
+/** Known search channels that can be ablated. */
+export type AblationChannel = 'vector' | 'bm25' | 'fts5' | 'graph' | 'trigger';
+
+/** All channels available for ablation. */
+export const ALL_CHANNELS: AblationChannel[] = [
+  'vector',
+  'bm25',
+  'fts5',
+  'graph',
+  'trigger',
+];
+
+/** Configuration for an ablation study. */
+export interface AblationConfig {
+  /** Channels to ablate (one at a time). Defaults to ALL_CHANNELS. */
+  channels: AblationChannel[];
+  /** Subset of ground truth query IDs to use. Omit for all queries. */
+  groundTruthQueryIds?: number[];
+  /** Compare against an existing baseline run ID instead of computing one. */
+  baselineRunId?: string;
+  /** Recall cutoff K. Defaults to 20. */
+  recallK?: number;
+}
+
+/**
+ * A search function that the ablation runner calls for each query.
+ * The runner passes channel disable flags; the function must respect them.
+ *
+ * @param query - The search query text.
+ * @param disabledChannels - Set of channel names to disable for this run.
+ * @returns Array of EvalResult (memoryId, score, rank).
+ */
+export type AblationSearchFn = (
+  query: string,
+  disabledChannels: Set<AblationChannel>,
+) => EvalResult[] | Promise<EvalResult[]>;
+
+/** Result of ablating a single channel. */
+export interface AblationResult {
+  /** The channel that was disabled. */
+  channel: AblationChannel;
+  /** Recall@K with all channels enabled. */
+  baselineRecall20: number;
+  /** Recall@K with this channel disabled. */
+  ablatedRecall20: number;
+  /** ablatedRecall20 - baselineRecall20. Negative means channel contributes positively. */
+  delta: number;
+  /** Two-sided sign-test p-value for statistical significance (null if insufficient data). */
+  pValue: number | null;
+  /** Number of queries where removing this channel decreased recall. */
+  queriesHurt: number;
+  /** Number of queries where removing this channel increased recall. */
+  queriesHelped: number;
+  /** Number of queries unaffected by removing this channel. */
+  queriesUnchanged: number;
+  /** Total queries evaluated. */
+  queryCount: number;
+}
+
+/** Full ablation study report. */
+export interface AblationReport {
+  /** ISO timestamp of the study. */
+  timestamp: string;
+  /** Unique run identifier. */
+  runId: string;
+  /** Configuration used. */
+  config: AblationConfig;
+  /** Per-channel ablation results. */
+  results: AblationResult[];
+  /** Baseline Recall@K across all queries (all channels enabled). */
+  overallBaselineRecall: number;
+  /** Total wall-clock duration in milliseconds. */
+  durationMs: number;
+}
+
+/* ─── 3. INTERNAL HELPERS ─── */
+
+/**
+ * Get the eval DB instance. Prefers the already-initialized singleton
+ * (via getEvalDb) to avoid overwriting test DB paths. Falls back to
+ * initEvalDb() if no singleton exists yet.
+ */
+function getDb() {
+  try {
+    return getEvalDb();
+  } catch {
+    return initEvalDb();
+  }
+}
+
+/**
+ * Generate a unique run ID for this ablation study.
+ * Format: ablation-{timestamp}-{random4hex}
+ */
+function generateRunId(): string {
+  const ts = Date.now();
+  const rand = Math.random().toString(16).slice(2, 6);
+  return `ablation-${ts}-${rand}`;
+}
+
+/**
+ * Build ground truth entries for a specific query from the static dataset.
+ * Converts GroundTruthRelevance to GroundTruthEntry format expected by computeRecall.
+ */
+function getGroundTruthForQuery(queryId: number): GroundTruthEntry[] {
+  return GROUND_TRUTH_RELEVANCES
+    .filter(r => r.queryId === queryId)
+    .map(r => ({
+      queryId: r.queryId,
+      memoryId: r.memoryId,
+      relevance: r.relevance,
+    }));
+}
+
+/**
+ * Get the set of queries to evaluate, filtered by config.
+ */
+function getQueriesToEvaluate(config: AblationConfig): GroundTruthQuery[] {
+  if (config.groundTruthQueryIds && config.groundTruthQueryIds.length > 0) {
+    const idSet = new Set(config.groundTruthQueryIds);
+    return GROUND_TRUTH_QUERIES.filter(q => idSet.has(q.id));
+  }
+  return GROUND_TRUTH_QUERIES;
+}
+
+/**
+ * Compute two-sided sign-test p-value for paired observations.
+ *
+ * Tests H0: P(ablated < baseline) = P(ablated > baseline) = 0.5
+ * Uses the exact binomial distribution.
+ *
+ * @param nPositive - Number of queries where ablated < baseline (channel helped).
+ * @param nNegative - Number of queries where ablated > baseline (channel hurt).
+ * @returns p-value, or null if fewer than 5 non-tied observations.
+ *
+ * Precision note: For n > ~50, the iterative binomial coefficient exceeds
+ * Number.MAX_SAFE_INTEGER. The cumulative probability remains usable for
+ * practical ground truth sizes (<=110 queries) but is an approximation.
+ */
+function signTestPValue(nPositive: number, nNegative: number): number | null {
+  const n = nPositive + nNegative;
+  if (n < 5) return null; // Insufficient data for meaningful test
+
+  // Two-sided sign test: P(X <= min(n+, n-)) under Binomial(n, 0.5)
+  const k = Math.min(nPositive, nNegative);
+
+  // Compute cumulative binomial probability P(X <= k) for Binomial(n, 0.5)
+  let cumProb = 0;
+  let binomCoeff = 1;
+  const p = 0.5;
+
+  for (let i = 0; i <= k; i++) {
+    if (i > 0) {
+      binomCoeff = binomCoeff * (n - i + 1) / i;
+    }
+    cumProb += binomCoeff * Math.pow(p, n);
+  }
+
+  // Two-sided: multiply by 2, cap at 1
+  return Math.min(1.0, 2 * cumProb);
+}
+
+/**
+ * Compute mean Recall@K across a set of per-query recall values.
+ */
+function meanRecall(recalls: number[]): number {
+  if (recalls.length === 0) return 0;
+  const sum = recalls.reduce((a, b) => a + b, 0);
+  return sum / recalls.length;
+}
+
+/* ─── 4. PUBLIC API ─── */
+
+/**
+ * Run a controlled ablation study over the ground truth query set.
+ *
+ * For each channel in config.channels:
+ * 1. Run all queries with all channels enabled (baseline) — cached across channels
+ * 2. Run all queries with that one channel disabled (ablated)
+ * 3. Compute per-query Recall@K delta
+ * 4. Aggregate mean delta and sign-test p-value
+ *
+ * The searchFn is called once per query per condition. It receives
+ * the query text and a set of disabled channel names. When the set
+ * is empty, all channels should be active (baseline condition).
+ *
+ * @param searchFn - Search function that respects channel disable flags.
+ * @param config - Ablation configuration.
+ * @returns AblationReport with per-channel results, or null if ablation is disabled.
+ */
+export async function runAblation(
+  searchFn: AblationSearchFn,
+  config: AblationConfig = { channels: ALL_CHANNELS },
+): Promise<AblationReport | null> {
+  if (!isAblationEnabled()) return null;
+
+  const startTime = Date.now();
+  const runId = generateRunId();
+  const recallK = config.recallK ?? 20;
+  const queries = getQueriesToEvaluate(config);
+
+  if (queries.length === 0) {
+    console.warn('[ablation] No queries to evaluate.');
+    return null;
+  }
+
+  try {
+    // ── Step 1: Compute baseline (all channels enabled) ──
+    const baselineRecalls: Map<number, number> = new Map();
+    const noDisabled = new Set<AblationChannel>();
+
+    for (const q of queries) {
+      const gt = getGroundTruthForQuery(q.id);
+      if (gt.length === 0) continue; // Skip queries with no ground truth
+
+      const results = await Promise.resolve(searchFn(q.query, noDisabled));
+      const recall = computeRecall(results, gt, recallK);
+      baselineRecalls.set(q.id, recall);
+    }
+
+    const overallBaselineRecall = meanRecall([...baselineRecalls.values()]);
+
+    // ── Step 2: Ablate each channel ──
+    const ablationResults: AblationResult[] = [];
+
+    for (const channel of config.channels) {
+      const disabledSet = new Set<AblationChannel>([channel]);
+      const ablatedRecalls: Map<number, number> = new Map();
+
+      for (const q of queries) {
+        const gt = getGroundTruthForQuery(q.id);
+        if (gt.length === 0) continue;
+
+        const results = await Promise.resolve(searchFn(q.query, disabledSet));
+        const recall = computeRecall(results, gt, recallK);
+        ablatedRecalls.set(q.id, recall);
+      }
+
+      // ── Step 3: Compute deltas ──
+      let queriesHurt = 0;   // ablated < baseline (removing channel decreased quality)
+      let queriesHelped = 0;  // ablated > baseline (removing channel increased quality)
+      let queriesUnchanged = 0;
+      const queryDeltas: number[] = [];
+
+      for (const [queryId, baselineR] of baselineRecalls) {
+        const ablatedR = ablatedRecalls.get(queryId);
+        if (ablatedR === undefined) continue;
+
+        const delta = ablatedR - baselineR;
+        queryDeltas.push(delta);
+
+        // Use small epsilon for floating-point comparison
+        if (delta < -1e-9) queriesHurt++;
+        else if (delta > 1e-9) queriesHelped++;
+        else queriesUnchanged++;
+      }
+
+      const meanAblatedRecall = meanRecall([...ablatedRecalls.values()]);
+      const meanDelta = meanAblatedRecall - overallBaselineRecall;
+
+      // queriesHurt = channel was helping (removing it hurt quality)
+      // queriesHelped = channel was hurting (removing it helped quality)
+      const pValue = signTestPValue(queriesHurt, queriesHelped);
+
+      ablationResults.push({
+        channel,
+        baselineRecall20: overallBaselineRecall,
+        ablatedRecall20: meanAblatedRecall,
+        delta: meanDelta,
+        pValue,
+        queriesHurt,
+        queriesHelped,
+        queriesUnchanged,
+        queryCount: queryDeltas.length,
+      });
+    }
+
+    const report: AblationReport = {
+      timestamp: new Date().toISOString(),
+      runId,
+      config,
+      results: ablationResults,
+      overallBaselineRecall,
+      durationMs: Date.now() - startTime,
+    };
+
+    return report;
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.warn('[ablation] runAblation failed (non-fatal):', msg);
+    return null;
+  }
+}
+
+/**
+ * Store ablation results in the eval_metric_snapshots table.
+ *
+ * Inserts one row per channel with:
+ * - metric_name: 'ablation_recall@20_delta'
+ * - metric_value: the delta (negative = channel contributes positively)
+ * - channel: the ablated channel name
+ * - metadata: JSON with full AblationResult
+ *
+ * Also stores the baseline recall as a separate row.
+ *
+ * Fail-safe: never throws. Returns true if successfully stored.
+ *
+ * @param report - The AblationReport to persist.
+ * @returns true if successfully stored.
+ */
+export function storeAblationResults(report: AblationReport): boolean {
+  if (!isAblationEnabled()) return false;
+
+  try {
+    const db = getDb();
+
+    // Use a synthetic eval_run_id: negative timestamp to avoid collision
+    // with production run IDs (same pattern as bm25-baseline.ts).
+    const evalRunId = -(Date.parse(report.timestamp));
+
+    const insertSnapshot = db.prepare(`
+      INSERT INTO eval_metric_snapshots
+        (eval_run_id, metric_name, metric_value, channel, query_count, metadata, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const writeAll = db.transaction(() => {
+      // Store baseline recall
+      insertSnapshot.run(
+        evalRunId,
+        'ablation_baseline_recall@20',
+        report.overallBaselineRecall,
+        'all',
+        report.results[0]?.queryCount ?? 0,
+        JSON.stringify({
+          runId: report.runId,
+          config: report.config,
+          durationMs: report.durationMs,
+        }),
+        report.timestamp,
+      );
+
+      // Store per-channel deltas
+      for (const result of report.results) {
+        insertSnapshot.run(
+          evalRunId,
+          'ablation_recall@20_delta',
+          result.delta,
+          result.channel,
+          result.queryCount,
+          JSON.stringify({
+            runId: report.runId,
+            baselineRecall20: result.baselineRecall20,
+            ablatedRecall20: result.ablatedRecall20,
+            pValue: result.pValue,
+            queriesHurt: result.queriesHurt,
+            queriesHelped: result.queriesHelped,
+            queriesUnchanged: result.queriesUnchanged,
+          }),
+          report.timestamp,
+        );
+      }
+    });
+
+    writeAll();
+    return true;
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.warn('[ablation] storeAblationResults failed (non-fatal):', msg);
+    return false;
+  }
+}
+
+/**
+ * Format an ablation report as a human-readable markdown table.
+ *
+ * Sorts channels by absolute delta (largest contribution first).
+ * Marks statistically significant results (p < 0.05) with an asterisk.
+ *
+ * @param report - The AblationReport to format.
+ * @returns Formatted markdown string.
+ */
+export function formatAblationReport(report: AblationReport): string {
+  const lines: string[] = [];
+
+  lines.push(`## Ablation Study Report`);
+  lines.push(``);
+  lines.push(`- **Run ID:** ${report.runId}`);
+  lines.push(`- **Timestamp:** ${report.timestamp}`);
+  lines.push(`- **Baseline Recall@20:** ${report.overallBaselineRecall.toFixed(4)}`);
+  lines.push(`- **Duration:** ${report.durationMs}ms`);
+  lines.push(`- **Queries evaluated:** ${report.results[0]?.queryCount ?? 0}`);
+  lines.push(``);
+
+  // Sort by absolute delta descending (most impactful first)
+  const sorted = [...report.results].sort(
+    (a, b) => Math.abs(b.delta) - Math.abs(a.delta),
+  );
+
+  lines.push(`| Channel | Baseline | Ablated | Delta | p-value | Hurt | Helped | Unchanged | Verdict |`);
+  lines.push(`|---------|----------|---------|-------|---------|------|--------|-----------|---------|`);
+
+  for (const r of sorted) {
+    const sig = r.pValue !== null && r.pValue < 0.05 ? '*' : '';
+    const pStr = r.pValue !== null ? r.pValue.toFixed(4) : 'n/a';
+    const verdict = getVerdict(r);
+
+    lines.push(
+      `| ${r.channel} ` +
+      `| ${r.baselineRecall20.toFixed(4)} ` +
+      `| ${r.ablatedRecall20.toFixed(4)} ` +
+      `| ${r.delta >= 0 ? '+' : ''}${r.delta.toFixed(4)}${sig} ` +
+      `| ${pStr} ` +
+      `| ${r.queriesHurt} ` +
+      `| ${r.queriesHelped} ` +
+      `| ${r.queriesUnchanged} ` +
+      `| ${verdict} |`,
+    );
+  }
+
+  lines.push(``);
+  lines.push(`**Legend:** Delta = ablated - baseline. Negative delta = channel contributes positively.`);
+  lines.push(`Hurt = queries where removing channel decreased recall. * = significant at p<0.05.`);
+  lines.push(``);
+
+  // Channel contribution ranking
+  lines.push(`### Channel Contribution Ranking`);
+  lines.push(``);
+
+  const ranked = [...sorted].sort((a, b) => a.delta - b.delta); // Most negative delta = most valuable
+  for (let i = 0; i < ranked.length; i++) {
+    const r = ranked[i];
+    const contribution = -r.delta; // Invert: negative delta means positive contribution
+    lines.push(`${i + 1}. **${r.channel}** — contribution: ${contribution >= 0 ? '+' : ''}${contribution.toFixed(4)} Recall@20`);
+  }
+
+  return lines.join('\n');
+}
+
+/* ─── 5. INTERNAL HELPERS (VERDICT) ─── */
+
+/**
+ * Generate a human-readable verdict for a channel ablation result.
+ */
+function getVerdict(result: AblationResult): string {
+  const isSignificant = result.pValue !== null && result.pValue < 0.05;
+  const absDelta = Math.abs(result.delta);
+
+  if (absDelta < 0.001) {
+    return 'negligible';
+  }
+
+  if (result.delta < 0) {
+    // Removing the channel hurt quality — channel is valuable
+    if (isSignificant && absDelta >= 0.05) return 'CRITICAL';
+    if (isSignificant) return 'important';
+    return 'likely useful';
+  } else {
+    // Removing the channel helped quality — channel may be harmful
+    if (isSignificant && absDelta >= 0.05) return 'HARMFUL';
+    if (isSignificant) return 'possibly harmful';
+    return 'likely redundant';
+  }
+}
+
+/* ─── 6. CONVENIENCE: CHANNEL DISABLE MAP ─── */
+
+/**
+ * Convert an AblationChannel set to HybridSearchOptions flags.
+ *
+ * Maps ablation channel names to the corresponding useXxx: false flags
+ * expected by the hybridSearch / hybridSearchEnhanced functions.
+ *
+ * @param disabledChannels - Set of channels to disable.
+ * @returns Object with useVector, useBm25, useFts, useGraph flags.
+ */
+export function toHybridSearchFlags(
+  disabledChannels: Set<AblationChannel>,
+): { useVector: boolean; useBm25: boolean; useFts: boolean; useGraph: boolean; useTrigger: boolean } {
+  return {
+    useVector: !disabledChannels.has('vector'),
+    useBm25: !disabledChannels.has('bm25'),
+    useFts: !disabledChannels.has('fts5'),
+    useGraph: !disabledChannels.has('graph'),
+    useTrigger: !disabledChannels.has('trigger'),
+  };
+}
