@@ -7,8 +7,8 @@ title: "SK-Doc-Visual Additional Section and Component Extraction"
 # Feature Specification: SK-Doc-Visual Additional Section and Component Extraction
 
 ## EXECUTIVE SUMMARY
-This phase prepares implementation-ready Level 3 documentation for extracting additional section and component previews from `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html`.
-The plan preserves current preview conventions (`../variables/*` and `../variables/template-defaults.js`) and scopes work to planning artifacts only.
+This phase implemented additional section/component extraction work from `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html` and then consolidated overlapping section templates.
+The final output preserves preview conventions (`../variables/*` and `../variables/template-defaults.js`) while reducing the section library to fewer unique, generic templates.
 
 **Key Decisions**: Source-anchored extraction with line citations, consistent file naming across section/component previews.
 
@@ -20,7 +20,7 @@ The plan preserves current preview conventions (`../variables/*` and `../variabl
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planning complete, implementation pending |
+| **Status** | Implemented; manual browser verification follow-up pending |
 | **Created** | 2026-02-28 |
 <!-- /ANCHOR:metadata -->
 
@@ -37,27 +37,24 @@ Define a complete, evidence-backed implementation plan for expanding preview cov
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 ### In Scope
-- Author Level 3 planning documentation in `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/`.
-- Define extraction requirements and matrices for 12 sections and 5 components.
-- Define implementation phases, task breakdown, verification gates, and ADR conventions.
-- Create `memory/.gitkeep` and `scratch/.gitkeep`.
+- Implement additional section/component previews derived from the canonical README template.
+- Consolidate overlapping section templates into a smaller generic section library.
+- Synchronize skill and command documentation with the consolidated section model.
+- Update phase documentation and verification records.
 
 ### Out of Scope
-- Creating or modifying preview HTML files in `.opencode/skill/sk-doc-visual/assets/sections/`.
-- Creating or modifying preview HTML files in `.opencode/skill/sk-doc-visual/assets/components/`.
-- Creating `implementation-summary.md` before implementation completion.
+- Rewriting canonical template content in `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html`.
+- Runtime platform behavior changes outside sk-doc-visual preview/documentation scope.
 
 ### Files to Change
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/README.md` | Modify | Phase purpose and document map |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/spec.md` | Modify | Requirements and extraction matrix |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/plan.md` | Modify | Phased implementation and rollback |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/tasks.md` | Modify | Pending tasks grouped by phase |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/checklist.md` | Modify | Plan-stage verification status |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/decision-record.md` | Modify | ADR for extraction conventions |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/memory/.gitkeep` | Create | Preserve memory folder |
-| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/scratch/.gitkeep` | Create | Preserve scratch folder |
+| `.opencode/skill/sk-doc-visual/assets/sections/*` | Modify | Add/merge/remove section previews and reduce overlap |
+| `.opencode/skill/sk-doc-visual/assets/components/*` | Modify | Add 5 new component previews |
+| `.opencode/skill/sk-doc-visual/SKILL.md` | Modify | Reflect consolidated section model |
+| `.opencode/skill/sk-doc-visual/references/*.md` | Modify | Align profile and output conventions |
+| `.opencode/command/create/visual_html.md` | Modify | Align routed naming and verify example |
+| `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/*.md` | Modify | Record implementation outcomes and evidence |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -65,27 +62,27 @@ Define a complete, evidence-backed implementation plan for expanding preview cov
 ### P0 - Blockers
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Section extraction targets must be fully enumerated. | `spec.md` includes all 12 required section IDs with source line citations and planned output file names. |
-| REQ-002 | Component extraction targets must be fully enumerated. | `spec.md` includes `toc-link`, `site-nav-link`, `main-grid/sidebar shell`, `scroll-progress`, and `copy-code interaction contract` with source evidence. |
-| REQ-003 | Planning-only boundary must be explicit. | `spec.md`, `plan.md`, and `tasks.md` state that no HTML implementation occurs in this phase. |
-| REQ-004 | Existing preview conventions must be preserved. | Plan references shared head imports (`../variables/*`) and `../variables/template-defaults.js` from existing preview files. |
-| REQ-005 | Level 3 docs must be complete without placeholders. | `README.md`, `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` contain no placeholder text. |
+| REQ-001 | Section overlap must be reduced. | Final section library contains 8 section files including `operations-overview`, `setup-and-usage`, and `support`. |
+| REQ-002 | New component extraction targets must be delivered. | `toc-link`, `site-nav-link`, `main-grid-shell`, `scroll-progress`, and `copy-code-interaction` exist as standalone component previews. |
+| REQ-003 | Shared preview conventions must be preserved. | All section files include `../variables/*` imports and `../variables/template-defaults.js`. |
+| REQ-004 | Command/skill docs must match asset model. | `SKILL.md`, references, and `/create:visual_html` reflect consolidated sections and current output conventions. |
+| REQ-005 | Level 3 docs must be complete without placeholders. | Phase docs are synchronized and implementation summary reflects actual delivery status. |
 | REQ-006 | Phase validation must run after documentation updates. | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation` executed and output captured. |
 
 ### P1 - Required
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-007 | Implementation tasks must be granular and executable. | `tasks.md` contains actionable unchecked tasks for setup, extraction, file creation, and verification. |
-| REQ-008 | ADR must define naming and extraction conventions. | `decision-record.md` includes accepted ADR with alternatives and rollback plan. |
-| REQ-009 | Checklist must reflect plan-stage reality. | `checklist.md` keeps implementation checks pending and marks only planning evidence as complete. |
+| REQ-007 | Implementation tasks must be traceable to delivery. | `tasks.md` records completed extraction/consolidation tasks and remaining manual verification tasks. |
+| REQ-008 | ADR must define extraction and consolidation conventions. | `decision-record.md` includes accepted ADRs with alternatives and rollback plan. |
+| REQ-009 | Checklist must reflect implementation reality. | `checklist.md` contains evidence-backed completions and explicit pending browser checks. |
 <!-- /ANCHOR:requirements -->
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-- **SC-001**: All required Level 3 planning documents exist in `002-component-creation` with no placeholders.
-- **SC-002**: Extraction matrices include all requested sections/components with explicit source line citations.
-- **SC-003**: Validation command executes against the phase folder and results are reported.
-- **SC-004**: Plan clearly preserves current preview conventions and defers implementation work.
+- **SC-001**: Final section library reduced to 8 files without breaking shared scaffold conventions.
+- **SC-002**: 5 additional component previews exist in `assets/components`.
+- **SC-003**: Skill and command docs are synchronized to consolidated section anchors/output conventions.
+- **SC-004**: Validation command executes against the phase folder and results are reported.
 <!-- /ANCHOR:success-criteria -->
 
 <!-- ANCHOR:risks -->
@@ -154,46 +151,43 @@ Define a complete, evidence-backed implementation plan for expanding preview cov
 3. **Given** this phase output, **When** planning handoff occurs, **Then** tasks are grouped and executable without additional discovery.
 
 ## 12. OPEN QUESTIONS
-- None at plan stage; implementation can proceed once this plan is approved.
+- None. Remaining work is explicit manual browser verification recorded in `tasks.md` and `checklist.md`.
 <!-- /ANCHOR:questions -->
 
-## 13. EXTRACTION EVIDENCE MATRIX
+## 13. IMPLEMENTATION EVIDENCE MATRIX
 
-### 13.1 Additional Section Targets
-| # | Section ID | Source Line | Planned Preview File | Notes |
-|---|------------|-------------|----------------------|-------|
-| 1 | `spec-kit-documentation` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:608` | `.opencode/skill/sk-doc-visual/assets/sections/spec-kit-documentation-section.html` | Tables + validation automation blocks |
-| 2 | `memory-engine` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:765` | `.opencode/skill/sk-doc-visual/assets/sections/memory-engine-section.html` | Includes pipeline and cognitive feature cards |
-| 3 | `agent-network` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:864` | `.opencode/skill/sk-doc-visual/assets/sections/agent-network-section.html` | Agent table and routing narrative |
-| 4 | `command-architecture` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:934` | `.opencode/skill/sk-doc-visual/assets/sections/command-architecture-section.html` | Command namespace tables |
-| 5 | `skills-library` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1001` | `.opencode/skill/sk-doc-visual/assets/sections/skills-library-section.html` | Skill detection matrix |
-| 6 | `gate-system` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1043` | `.opencode/skill/sk-doc-visual/assets/sections/gate-system-section.html` | Gate cards and execution flow |
-| 7 | `code-mode-mcp` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1077` | `.opencode/skill/sk-doc-visual/assets/sections/code-mode-mcp-section.html` | Includes code-window interaction |
-| 8 | `extensibility` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1135` | `.opencode/skill/sk-doc-visual/assets/sections/extensibility-section.html` | List-based extensibility guidance |
-| 9 | `configuration` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1157` | `.opencode/skill/sk-doc-visual/assets/sections/configuration-section.html` | Provider cards + JSON snippet |
-| 10 | `usage-examples` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1205` | `.opencode/skill/sk-doc-visual/assets/sections/usage-examples-section.html` | Two code-window examples |
-| 11 | `troubleshooting` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1266` | `.opencode/skill/sk-doc-visual/assets/sections/troubleshooting-section.html` | Quick-fix table + diagnostics block |
-| 12 | `related-documents` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1362` | `.opencode/skill/sk-doc-visual/assets/sections/related-documents-section.html` | Link cards and changelog grid |
+### 13.1 Final Section Library (Consolidated)
+| # | Final Section ID | Final File | Source Coverage | Consolidation Source |
+|---|------------------|------------|-----------------|----------------------|
+| 1 | `top` | `.opencode/skill/sk-doc-visual/assets/sections/hero-section.html` | README top/hero framing | retained |
+| 2 | `quickstart` | `.opencode/skill/sk-doc-visual/assets/sections/quick-start-section.html` | README quick start | retained |
+| 3 | `features` | `.opencode/skill/sk-doc-visual/assets/sections/feature-grid-section.html` | README feature highlights | retained |
+| 4 | `operations-overview` | `.opencode/skill/sk-doc-visual/assets/sections/operations-overview-section.html` | architecture, systems, command, skills, gate, integration content | merged from `spec-kit-documentation`, `memory-engine`, `agent-network`, `command-architecture`, `skills-library`, `gate-system`, `tool-integration` |
+| 5 | `extensibility` | `.opencode/skill/sk-doc-visual/assets/sections/extensibility-section.html` | README extensibility | retained |
+| 6 | `setup-and-usage` | `.opencode/skill/sk-doc-visual/assets/sections/setup-and-usage-section.html` | configuration and usage workflows | merged from `configuration`, `usage-examples` |
+| 7 | `support` | `.opencode/skill/sk-doc-visual/assets/sections/support-section.html` | troubleshooting and FAQ support content | merged from `troubleshooting`, `faq` |
+| 8 | `related-documents` | `.opencode/skill/sk-doc-visual/assets/sections/related-documents-section.html` | README related docs | retained |
 
-### 13.2 Additional Component Targets
-| Component | Source Evidence | Planned Preview File | Extraction Contract |
-|-----------|-----------------|----------------------|---------------------|
-| `toc-link` | CSS definition `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:105`; right-sidebar usage `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1422` | `.opencode/skill/sk-doc-visual/assets/components/toc-link.html` | Include base, hover, and active states with `::before` marker behavior. |
-| `site-nav-link` | CSS definition `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:134`; left-sidebar usage `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:264` | `.opencode/skill/sk-doc-visual/assets/components/site-nav-link.html` | Include active state and icon slot variant. |
-| `main-grid/sidebar shell` | Grid/sidebar CSS `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:62`; responsive breakpoints `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:83`; shell markup `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:256`; sidebars `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:259` and `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1418` | `.opencode/skill/sk-doc-visual/assets/components/main-grid-shell.html` | Demonstrate desktop, tablet, and mobile shell behavior. |
-| `scroll-progress` | CSS and element `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:186` and `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:205`; update script `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1467` | `.opencode/skill/sk-doc-visual/assets/components/scroll-progress.html` | Include fixed top bar and width-update script contract. |
-| `copy-code interaction contract` | Code-window button markup `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:323`; query selectors `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1506`; clipboard action `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:1512` | `.opencode/skill/sk-doc-visual/assets/components/copy-code-interaction.html` | Preserve button aria label, icon swap, success class, and timeout reset behavior. |
+### 13.2 Delivered Component Targets
+| Component | Source Evidence | Delivered Preview File | Contract |
+|-----------|-----------------|------------------------|----------|
+| `toc-link` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:105`, `:1422` | `.opencode/skill/sk-doc-visual/assets/components/toc-link.html` | Base/hover/active states and active marker behavior |
+| `site-nav-link` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:134`, `:264` | `.opencode/skill/sk-doc-visual/assets/components/site-nav-link.html` | Active state and icon-capable variants |
+| `main-grid/sidebar shell` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:62`, `:83`, `:256`, `:1418` | `.opencode/skill/sk-doc-visual/assets/components/main-grid-shell.html` | Desktop/tablet/mobile shell behavior |
+| `scroll-progress` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:186`, `:205`, `:1467` | `.opencode/skill/sk-doc-visual/assets/components/scroll-progress.html` | Fixed top bar and width-update script contract |
+| `copy-code interaction contract` | `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html:323`, `:1506`, `:1512` | `.opencode/skill/sk-doc-visual/assets/components/copy-code-interaction.html` | Copy button aria label, icon swap, success class, timeout reset |
 
-### 13.3 Existing Preview Convention Baseline
+### 13.3 Shared Preview Convention Baseline
 | Convention | Evidence | Required Reuse |
 |------------|----------|----------------|
 | Shared variable imports | `.opencode/skill/sk-doc-visual/assets/sections/hero-section.html:8` | Keep `../variables/fluid-typography.css`, `colors.css`, `typography.css`, `layout.css` in new previews. |
 | Template defaults script | `.opencode/skill/sk-doc-visual/assets/sections/hero-section.html:17` | Keep `<script src="../variables/template-defaults.js" defer></script>`. |
 | Component preview scaffold parity | `.opencode/skill/sk-doc-visual/assets/components/code-window.html:8` and `.opencode/skill/sk-doc-visual/assets/components/code-window.html:17` | Use same head/bootstrap structure for newly added component previews. |
 
-### 13.4 Extraction Evidence Commands Used
-- `grep` pattern for section IDs in `readme-guide-v2.html` confirms all 12 requested sections and their line numbers.
-- `grep` pattern for component selectors and behavior confirms CSS, markup, and script anchors for all 5 requested components.
+### 13.4 Verification Commands Used
+- `ls .opencode/skill/sk-doc-visual/assets/sections` confirms final 8-file section library.
+- `rg` checks confirm all remaining section files include required `../variables/*` imports and `template-defaults.js`.
+- `rg` checks confirm removed section filenames are no longer present in section assets.
 
 ## RELATED DOCUMENTS
 - See `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` for execution sequencing and quality gates.

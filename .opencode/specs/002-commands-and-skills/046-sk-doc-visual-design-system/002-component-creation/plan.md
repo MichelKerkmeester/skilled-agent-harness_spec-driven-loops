@@ -18,8 +18,8 @@ title: "Implementation Plan"
 | **Validation Tool** | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` |
 
 ### Overview
-This plan defines how to extract 12 additional sections and 5 additional components into standalone preview files that follow current `sk-doc-visual` conventions.
-This phase delivers planning artifacts only; implementation tasks remain pending by design.
+This plan was executed to extract additional previews and then reduce overlap.
+Implementation produced 5 new component previews and consolidated sections to a final 8-file reusable section library.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -30,10 +30,10 @@ This phase delivers planning artifacts only; implementation tasks remain pending
 - [x] Dependencies and naming conventions documented
 
 ### Definition of Done
-- [ ] All planned section previews created under `.opencode/skill/sk-doc-visual/assets/sections/`
-- [ ] All planned component previews created under `.opencode/skill/sk-doc-visual/assets/components/`
-- [ ] Visual and interaction verification completed
-- [ ] `implementation-summary.md` authored during completion phase
+- [x] Section previews consolidated under `.opencode/skill/sk-doc-visual/assets/sections/` to the final 8-file set
+- [x] New component previews created under `.opencode/skill/sk-doc-visual/assets/components/`
+- [ ] Visual and interaction verification completed (manual browser evidence pending)
+- [x] `implementation-summary.md` authored during completion phase
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -42,7 +42,7 @@ This phase delivers planning artifacts only; implementation tasks remain pending
 Source-anchored extraction pattern with deterministic file naming and shared preview scaffolding.
 
 ### Key Components
-- **Section previews**: One file per remaining README section (`*-section.html`).
+- **Section previews**: Consolidated generic set (`hero`, `quickstart`, `features`, `operations-overview`, `extensibility`, `setup-and-usage`, `support`, `related-documents`).
 - **Component previews**: Isolated files for `toc-link`, `site-nav-link`, `main-grid shell`, `scroll-progress`, and copy-code interaction.
 - **Shared preview scaffold**: Reuse variable imports and `template-defaults.js` from existing preview files.
 
@@ -58,9 +58,14 @@ Canonical template source -> extraction matrix -> staged file creation -> visual
 - Prepare target file list and acceptance checklist for implementation.
 
 ### Phase 2: Section Extraction
-- Create 12 section preview files for the remaining README sections.
+- Create section previews for remaining README coverage.
 - Preserve section wrapper IDs, semantic structure, and internal class names.
 - Ensure each section preview uses `../variables/*` styles and `../variables/template-defaults.js`.
+
+### Phase 2b: Section Consolidation
+- Analyze overlap and merge similar sections into reusable generic templates.
+- Replace multiple highly similar sections with `operations-overview`, `setup-and-usage`, and `support`.
+- Remove redundant section files after merge.
 
 ### Phase 3: Component Extraction
 - Create standalone component previews for `toc-link`, `site-nav-link`, `main-grid shell`, `scroll-progress`, and copy-code interaction contract.
@@ -69,7 +74,7 @@ Canonical template source -> extraction matrix -> staged file creation -> visual
 ### Phase 4: Verification and Handoff
 - Verify each preview opens without missing variable dependencies.
 - Verify interactive components match source behavior contract.
-- Update checklist evidence and write `implementation-summary.md` only after implementation completes.
+- Update checklist evidence and implementation summary.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
@@ -106,13 +111,13 @@ Canonical template source -> extraction matrix -> staged file creation -> visual
 ## AI Execution Protocol
 ### Pre-Task Checklist
 - [x] Context and source lines loaded.
-- [x] Plan-only constraints documented.
+- [x] Consolidation targets documented.
 
 ### Execution Rules
 | Rule | Description |
 |------|-------------|
-| R1 | During this phase, modify only spec-folder markdown and `.gitkeep` files. |
-| R2 | Do not create section/component HTML files until implementation phase begins. |
+| R1 | Keep runtime template source (`readme-guide-v2.html`) unchanged. |
+| R2 | Modify only target preview assets and related phase/docs paths. |
 | R3 | Preserve existing preview dependency conventions. |
 | R4 | Capture source evidence for every target before coding. |
 
@@ -149,7 +154,7 @@ Canonical template source -> extraction matrix -> staged file creation -> visual
 ## L2: ENHANCED ROLLBACK
 ### Pre-implementation Safeguards
 - [x] Source matrix committed in planning docs.
-- [ ] Implementation branch checkpoint created.
+- [x] Implementation branch checkpoint created.
 - [ ] Optional screenshots captured for parity comparison.
 
 ### Rollback Procedure
@@ -197,7 +202,7 @@ Canonical template source -> extraction matrix -> staged file creation -> visual
 | Milestone | Description | Success Criteria | Target |
 |-----------|-------------|------------------|--------|
 | M1 | Planning approved | All plan docs validated, no placeholders | Complete |
-| M2 | Section previews complete | 12 new section files created and smoke-tested | Pending implementation |
-| M3 | Component previews complete | 5 component files created, interactions verified | Pending implementation |
-| M4 | Completion package ready | Checklist evidence complete + implementation summary authored | Pending implementation |
+| M2 | Section previews complete | Final 8-section consolidated library produced | Complete |
+| M3 | Component previews complete | 5 component files created, interactions statically verified | Complete |
+| M4 | Completion package ready | Checklist + implementation summary updated; browser verification follow-up pending | In progress |
 <!-- /ANCHOR:milestones -->

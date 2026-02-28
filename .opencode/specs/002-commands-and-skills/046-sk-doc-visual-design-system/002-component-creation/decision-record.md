@@ -19,13 +19,13 @@ title: "Decision Record"
 <!-- ANCHOR:adr-001-context -->
 ### Context
 Phase 001 established initial section/component previews and documented the design system baseline.
-Phase 002 needs to expand coverage with 12 additional sections and 5 additional components while preserving current preview conventions.
+Phase 002 expanded coverage with additional sections/components, then reduced overlap by consolidating many similar section templates.
 Without fixed extraction anchors and naming conventions, implementation will likely drift from the canonical source template.
 
 ### Constraints
 - Canonical source remains `.opencode/skill/sk-doc-visual/assets/templates/readme-guide-v2.html`.
 - Existing previews already standardize imports to `../variables/*` and `../variables/template-defaults.js`.
-- Current phase is planning-only; implementation and `implementation-summary.md` are deferred.
+- Consolidation must preserve required section anchors and reusable placeholder defaults.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
@@ -82,8 +82,8 @@ All future files inherit the same base scaffold used by current previews, and in
 <!-- ANCHOR:adr-001-impl -->
 ### Implementation
 **What changes**:
-- Planning docs in this phase folder now contain target matrices, sequence plans, pending tasks, and verification states.
-- Future implementation will create 12 section previews and 5 component previews with deterministic naming.
+- Phase docs contain extraction matrices, execution sequencing, implementation evidence, and consolidation outcomes.
+- Implementation created 5 component previews and moved section assets to an 8-file consolidated library.
 
 **How to roll back**:
 1. Revert files in `specs/002-commands-and-skills/046-sk-doc-visual-design-system/002-component-creation/`.
@@ -91,3 +91,59 @@ All future files inherit the same base scaffold used by current previews, and in
 3. Re-run validation before reattempting planning updates.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
+
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Consolidate Overlapping Section Templates into Generic Reusable Blocks
+
+### Metadata
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-02-28 |
+| **Deciders** | Michel Kerkmeester, OpenCode Agent |
+
+<!-- ANCHOR:adr-002-context -->
+### Context
+After extraction, section previews exhibited significant overlap (similar tables, code-window blocks, and support content).
+Maintaining many near-duplicate files increases upkeep cost and weakens reuse value.
+
+### Constraints
+- Preserve the shared scaffold and dependency imports.
+- Keep final section set semantically complete for README-style composition.
+- Avoid product-specific hard-coding in consolidated sections.
+<!-- /ANCHOR:adr-002-context -->
+
+<!-- ANCHOR:adr-002-decision -->
+### Decision
+**We chose**: Merge overlapping sections into three generic blocks:
+- `operations-overview-section.html`
+- `setup-and-usage-section.html`
+- `support-section.html`
+
+The final section library remains eight files total, balancing reuse and semantic coverage.
+<!-- /ANCHOR:adr-002-decision -->
+
+<!-- ANCHOR:adr-002-alternatives -->
+### Alternatives Considered
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Consolidate to 8 sections (chosen)** | Lower maintenance, clearer reusable primitives | Some specificity moved from file names to placeholders | 9/10 |
+| Keep all extracted sections separate | Maximum one-to-one source mapping | High duplication and maintenance burden | 5/10 |
+| Reduce to 4 sections | Very low maintenance | Over-compression and weaker semantic clarity | 6/10 |
+<!-- /ANCHOR:adr-002-alternatives -->
+
+<!-- ANCHOR:adr-002-consequences -->
+### Consequences
+**What improves**:
+- Fewer unique templates to maintain.
+- Better generic reuse for future README-like outputs.
+
+**What to watch**:
+- Manual browser parity checks are still required for full closeout.
+<!-- /ANCHOR:adr-002-consequences -->
+
+<!-- ANCHOR:adr-002-impl -->
+### Implementation
+Merged and removed redundant section files, then synchronized skill/command references to the consolidated anchor model.
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->
