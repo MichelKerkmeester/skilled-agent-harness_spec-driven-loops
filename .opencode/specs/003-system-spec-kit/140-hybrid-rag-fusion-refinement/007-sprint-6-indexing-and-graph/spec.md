@@ -1,6 +1,7 @@
 ---
 title: "Feature Specification: Sprint 6 — Indexing and Graph"
 description: "Deepen graph with centrality, community detection, and consolidation. Optimize indexing with anchor-aware thinning, intent capture, and entity extraction."
+SPECKIT_TEMPLATE_SOURCE: "spec-core + level2-verify + phase-child-header | v2.2"
 trigger_phrases:
   - "sprint 6"
   - "indexing and graph"
@@ -254,7 +255,7 @@ Maximize graph channel contribution through centrality and community detection, 
 ## 10. OPEN QUESTIONS
 
 - **OQ-S6-001**: What is the actual edge density after Sprint 1-5? Determines if R10 auto entity extraction is activated.
-- **OQ-S6-002** [RESOLVED]: T001a (temporal degree delta) and T001b (causal depth signal) are the chosen centrality approaches for Sprint 6. Betweenness, PageRank, and eigenvector centrality are deferred — to be reconsidered only if the Sprint 6b feasibility spike demonstrates that degree-based approaches are insufficient at measured graph density.
+- **OQ-S6-002** [RESOLVED]: T001a (temporal degree delta / Graph Momentum) and T001b (causal depth signal) are the chosen Sprint 6 centrality baseline. Katz, betweenness, PageRank, and eigenvector centrality are deferred, and may be reconsidered only if the Sprint 6b feasibility spike shows this baseline is insufficient at measured graph density. Evidence: `tasks.md` (T-S6B-GATE, T001a, T001b) and `implementation-summary.md` (Deferred Sprint 6b scope).
 - **OQ-S6-003**: What is the optimal contradiction similarity threshold? Spec says >0.85 but may need tuning.
 <!-- /ANCHOR:questions -->
 

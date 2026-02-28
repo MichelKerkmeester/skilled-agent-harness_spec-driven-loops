@@ -14,6 +14,7 @@ import {
   detectStaleEdges,
   checkEdgeBounds,
   runConsolidationCycle,
+  runConsolidationCycleIfEnabled,
   CONTRADICTION_SIMILARITY_THRESHOLD,
 } from '../lib/storage/consolidation';
 import {
@@ -369,6 +370,23 @@ describe('T002b: Hebbian strengthening', () => {
     expect(history.length).toBeGreaterThanOrEqual(1);
     expect(history[0].changed_by).toBe('hebbian');
   });
+
+  it('T-HEB-06: strengthening respects created_by auto cap from query selection', () => {
+    const db = createTestDb();
+    initCausalEdges(db);
+
+    db.prepare(`
+      INSERT INTO causal_edges (source_id, target_id, relation, strength, created_by, last_accessed)
+      VALUES ('1', '2', 'caused', 0.46, 'auto', datetime('now'))
+    `).run();
+
+    const result = runHebbianCycle(db);
+    expect(result.strengthened).toBeGreaterThanOrEqual(0);
+
+    const edge = (db.prepare("SELECT strength FROM causal_edges WHERE source_id = '1' AND target_id = '2'") as Database.Statement)
+      .get() as { strength: number };
+    expect(edge.strength).toBe(MAX_AUTO_STRENGTH);
+  });
 });
 
 /* ── T002c: Staleness detection ── */
@@ -482,5 +500,59 @@ describe('T002: Full consolidation cycle', () => {
     expect(result.hebbian.strengthened).toBe(0);
     expect(result.hebbian.decayed).toBe(0);
     expect(result.stale.flagged).toBe(0);
+  });
+
+  it('T-CONS-03: runConsolidationCycleIfEnabled returns null when flag is off', () => {
+    const saved = process.env.SPECKIT_CONSOLIDATION;
+    delete process.env.SPECKIT_CONSOLIDATION;
+
+    const db = createTestDb();
+    initCausalEdges(db);
+    const result = runConsolidationCycleIfEnabled(db);
+    expect(result).toBeNull();
+
+    if (saved === undefined) delete process.env.SPECKIT_CONSOLIDATION;
+    else process.env.SPECKIT_CONSOLIDATION = saved;
+  });
+
+  it('T-CONS-04: runConsolidationCycleIfEnabled runs when flag is true', () => {
+    const saved = process.env.SPECKIT_CONSOLIDATION;
+    process.env.SPECKIT_CONSOLIDATION = 'true';
+
+    const db = createTestDb();
+    initCausalEdges(db);
+    seedMemories(db, 2);
+    insertEdge('1', '2', 'caused', 0.5);
+
+    const result = runConsolidationCycleIfEnabled(db);
+    expect(result).not.toBeNull();
+    expect(result).toHaveProperty('hebbian');
+
+    if (saved === undefined) delete process.env.SPECKIT_CONSOLIDATION;
+    else process.env.SPECKIT_CONSOLIDATION = saved;
+  });
+
+  it('T-CONS-05: runtime hook enforces weekly cadence', () => {
+    const saved = process.env.SPECKIT_CONSOLIDATION;
+    process.env.SPECKIT_CONSOLIDATION = 'true';
+
+    const db = createTestDb();
+    initCausalEdges(db);
+    seedMemories(db, 2);
+    insertEdge('1', '2', 'caused', 0.5);
+
+    const first = runConsolidationCycleIfEnabled(db);
+    expect(first).not.toBeNull();
+
+    const second = runConsolidationCycleIfEnabled(db);
+    expect(second).toBeNull();
+
+    db.prepare("UPDATE consolidation_state SET last_run_at = datetime('now', '-8 days') WHERE id = 1").run();
+
+    const third = runConsolidationCycleIfEnabled(db);
+    expect(third).not.toBeNull();
+
+    if (saved === undefined) delete process.env.SPECKIT_CONSOLIDATION;
+    else process.env.SPECKIT_CONSOLIDATION = saved;
   });
 });

@@ -1,6 +1,7 @@
 ---
 title: "Verification Checklist: Sprint 6 — Indexing and Graph"
 description: "Verification checklist for Sprint 6: graph centrality, N3-lite consolidation, anchor-aware thinning, entity extraction, spec folder hierarchy"
+SPECKIT_TEMPLATE_SOURCE: "checklist | v2.2"
 trigger_phrases:
   - "sprint 6 checklist"
   - "indexing and graph checklist"
@@ -103,12 +104,12 @@ contextType: "implementation"
 
 ## Sprint 6a Exit Gate
 
-- [x] CHK-S6-060 [P1] R7 Recall@20 within 10% of baseline — **EVIDENCE**: `thinChunks()` preserves high-value chunks (anchor presence + content density scoring); safety guarantee never returns empty; 24 tests including retention boundary verification
-- [x] CHK-S6-060a [P1] R16 encoding-intent capture functional behind `SPECKIT_ENCODING_INTENT` flag — **EVIDENCE**: `classifyEncodingIntent()` populates field for new memories; schema v18 adds column; 18 tests pass including classification accuracy for document/code/structured_data
-- [x] CHK-S6-060b [P1] S4 hierarchy traversal functional — **EVIDENCE**: `queryHierarchyMemories()` returns parent-folder memories with relevance scoring (parent=0.8, sibling=0.5); 46 tests pass including multi-level hierarchy integration
+- [x] CHK-S6-060 [P1] R7 Recall@20 within 10% of baseline — **EVIDENCE**: chunked indexing now applies `thinChunks()` before child writes; integration test verifies indexed child count equals retained chunk count (`s6-r7-chunk-thinning.vitest.ts`)
+- [x] CHK-S6-060a [P1] R16 encoding-intent capture functional behind `SPECKIT_ENCODING_INTENT` flag — **EVIDENCE**: `memory-save.ts` passes classified intent and vector index persists `encoding_intent` in both embedded and deferred paths; integration tests R16-INT-01/02 verify DB persistence
+- [x] CHK-S6-060b [P1] S4 hierarchy traversal functional — **EVIDENCE**: active graph retrieval now augments results from `queryHierarchyMemories()` when `specFolder` is provided; pipeline test confirms `specFolder` propagation into graph search
 - [x] CHK-S6-060c [P1] T001d weight_history logging verified — **EVIDENCE**: `weight_history` table records edge_id, old_strength, new_strength, changed_by, changed_at, reason; `rollbackWeights()` can restore from history; tests T-WH-01 through T-WH-05 pass
 - [x] CHK-S6-063 [P1] N3-lite contradiction detection functional — **EVIDENCE**: Tests T-CONTRA-01/02 seed contradicting pair and verify detection; heuristic uses word overlap + negation keyword asymmetry; dual strategy (vector + heuristic)
-- [x] CHK-S6-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle — **EVIDENCE**: `insertEdge()` rejects 21st auto edge (T-BOUNDS-02); `runHebbianCycle()` caps at 0.05 (T-HEB-01). Auto edges capped at strength=0.5.
+- [x] CHK-S6-064 [P1] N3-lite edge bounds enforced — MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle — **EVIDENCE**: `insertEdge()` rejects 21st auto edge (T-BOUNDS-02); Hebbian query now selects `created_by` so auto cap is enforced during strengthening (T-HEB-06); runtime hook executes on weekly cadence when enabled (T-CONS-05).
 - [x] CHK-S6-065 [P1] Feature flag sunset audit — **EVIDENCE**: 15 flags total (4 Sprint 0 default-ON, 11 opt-in). No flags retired (all in measurement or positive). Survivors documented in tasks.md T-FS6a with justification per sprint.
 - [x] CHK-S6-065a [P1] Active feature flag count <=6 post-audit — **EVIDENCE**: Default deployment = 4 active (Sprint 0 core pipeline). ≤6 threshold met.
 - [x] CHK-S6-066 [P1] All health dashboard targets checked — **EVIDENCE**: 203 Sprint 6a tests pass; full regression 6589/6593 (4 pre-existing); TypeScript clean; no runtime errors

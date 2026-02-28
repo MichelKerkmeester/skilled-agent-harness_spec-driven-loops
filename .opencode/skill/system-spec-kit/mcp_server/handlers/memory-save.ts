@@ -27,9 +27,11 @@ import * as toolCache from '../lib/cache/tool-cache';
 import { createMCPSuccessResponse } from '../lib/response/envelope';
 import * as retryManager from '../lib/providers/retry-manager';
 import * as causalEdges from '../lib/storage/causal-edges';
+import { runConsolidationCycleIfEnabled } from '../lib/storage/consolidation';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path';
 import { requireDb, toErrorMessage } from '../utils';
 import { needsChunking, chunkLargeFile } from '../lib/chunking/anchor-chunker';
+import { thinChunks } from '../lib/chunking/chunk-thinning';
 import type { MCPResponse } from './types';
 import type BetterSqlite3 from 'better-sqlite3';
 import { clearConstitutionalCache } from '../hooks/memory-surface';
@@ -38,7 +40,8 @@ import { clearConstitutionalCache } from '../hooks/memory-surface';
 import { runQualityGate, isQualityGateEnabled } from '../lib/validation/save-quality-gate';
 import { reconsolidate, isReconsolidationEnabled } from '../lib/storage/reconsolidation';
 import type { ReconsolidationResult } from '../lib/storage/reconsolidation';
-import { isSaveQualityGateEnabled, isReconsolidationEnabled as isReconsolidationFlagEnabled } from '../lib/search/search-flags';
+import { classifyEncodingIntent } from '../lib/search/encoding-intent';
+import { isEncodingIntentEnabled, isSaveQualityGateEnabled, isReconsolidationEnabled as isReconsolidationFlagEnabled } from '../lib/search/search-flags';
 
 import { getMemoryHashSnapshot, appendMutationLedgerSafe } from './memory-crud-utils';
 import { lookupEmbedding, storeEmbedding, computeContentHash as cacheContentHash } from '../lib/cache/embedding-cache';
@@ -386,6 +389,7 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
     triggerPhrases: parsed.triggerPhrases,
     importanceWeight,
     embedding: embedding,
+    encodingIntent: isEncodingIntentEnabled() ? classifyEncodingIntent(parsed.content) : undefined,
     documentType: parsed.documentType || 'memory',
     specLevel,
     contentText: parsed.content,
@@ -670,7 +674,16 @@ async function indexChunkedMemoryFile(
   const canonicalFilePath = getCanonicalPathKey(filePath);
 
   const chunkResult = chunkLargeFile(parsed.content);
+  const thinningResult = thinChunks(chunkResult.chunks);
+  const retainedChunks = thinningResult.retained;
+  const droppedChunkCount = thinningResult.dropped.length;
+  const parentEncodingIntent = isEncodingIntentEnabled()
+    ? classifyEncodingIntent(parsed.content)
+    : undefined;
   console.info(`[memory-save] Chunking ${filePath}: ${chunkResult.strategy} strategy, ${chunkResult.chunks.length} chunks`);
+  if (droppedChunkCount > 0) {
+    console.info(`[memory-save] Chunk thinning retained ${retainedChunks.length}/${chunkResult.chunks.length} chunks`);
+  }
 
   // Wrap parent setup in transaction to prevent check-then-delete race condition
   const setupParent = database.transaction(() => {
@@ -706,6 +719,7 @@ async function indexChunkedMemoryFile(
             importance_tier = ?,
             importance_weight = ?,
             embedding_status = 'partial',
+            encoding_intent = COALESCE(?, encoding_intent),
             content_text = ?,
             updated_at = datetime('now'),
             file_mtime_ms = ?,
@@ -719,6 +733,7 @@ async function indexChunkedMemoryFile(
         parsed.contextType,
         parsed.importanceTier,
         importanceWeight,
+        parentEncodingIntent,
         chunkResult.parentSummary,
         fileMtimeMs,
         parsed.documentType || 'memory',
@@ -749,6 +764,7 @@ async function indexChunkedMemoryFile(
         triggerPhrases: parsed.triggerPhrases,
         importanceWeight,
         failureReason: 'Chunked parent: embedding in children',
+        encodingIntent: parentEncodingIntent,
         documentType: parsed.documentType || 'memory',
         specLevel,
         contentText: chunkResult.parentSummary,
@@ -814,9 +830,12 @@ async function indexChunkedMemoryFile(
   const childIds: number[] = [];
   const bm25FailedChunks: number[] = [];
 
-  for (let i = 0; i < chunkResult.chunks.length; i++) {
-    const chunk = chunkResult.chunks[i];
-    const chunkTitle = `${parsed.title || 'Untitled'} [chunk ${i + 1}/${chunkResult.chunks.length}]`;
+  for (let i = 0; i < retainedChunks.length; i++) {
+    const chunk = retainedChunks[i];
+    const chunkTitle = `${parsed.title || 'Untitled'} [chunk ${i + 1}/${retainedChunks.length}]`;
+    const chunkEncodingIntent = isEncodingIntentEnabled()
+      ? classifyEncodingIntent(chunk.content)
+      : undefined;
 
     try {
       // AI-WHY: Persistent embedding cache (REQ-S2-001) avoids re-calling the embedding
@@ -856,6 +875,7 @@ async function indexChunkedMemoryFile(
           triggerPhrases: [],
           importanceWeight,
           embedding: chunkEmbedding,
+          encodingIntent: chunkEncodingIntent,
           documentType: parsed.documentType || 'memory',
           contentText: chunk.content,
         });
@@ -867,6 +887,7 @@ async function indexChunkedMemoryFile(
           triggerPhrases: [],
           importanceWeight,
           failureReason: 'Chunk embedding failed',
+          encodingIntent: chunkEncodingIntent,
           documentType: parsed.documentType || 'memory',
           contentText: chunk.content,
         });
@@ -882,6 +903,7 @@ async function indexChunkedMemoryFile(
             context_type = ?,
             importance_tier = ?,
             embedding_status = ?,
+            encoding_intent = COALESCE(?, encoding_intent),
             stability = ?,
             difficulty = ?,
             last_review = datetime('now'),
@@ -895,6 +917,7 @@ async function indexChunkedMemoryFile(
         parsed.contextType,
         parsed.importanceTier,
         chunkEmbeddingStatus,
+        chunkEncodingIntent,
         fsrsScheduler.DEFAULT_INITIAL_STABILITY,
         fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
         childId
@@ -933,7 +956,8 @@ async function indexChunkedMemoryFile(
       tool: 'memory_save',
       status: 'chunked',
       chunkStrategy: chunkResult.strategy,
-      chunkCount: chunkResult.chunks.length,
+      chunkCount: retainedChunks.length,
+      droppedCount: droppedChunkCount,
       successCount,
       failedCount,
       specFolder: parsed.specFolder,
@@ -951,7 +975,7 @@ async function indexChunkedMemoryFile(
     contextType: parsed.contextType,
     importanceTier: parsed.importanceTier,
     embeddingStatus: 'partial',
-    message: `Chunked: ${successCount}/${chunkResult.chunks.length} chunks indexed (${chunkResult.strategy} strategy)` +
+    message: `Chunked: ${successCount}/${retainedChunks.length} chunks indexed (${chunkResult.strategy} strategy)` +
       (bm25FailedChunks.length > 0 ? ` (${bm25FailedChunks.length} BM25 failures)` : ''),
   };
 }
@@ -1330,6 +1354,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             },
             storeMemory: (memory) => {
               const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
+              const memoryEncodingIntent = isEncodingIntentEnabled()
+                ? classifyEncodingIntent(memory.content)
+                : undefined;
               return vectorIndex.indexMemory({
                 specFolder: memory.specFolder,
                 filePath: memory.filePath,
@@ -1337,6 +1364,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
                 triggerPhrases: memory.triggerPhrases ?? [],
                 importanceWeight,
                 embedding: memory.embedding as Float32Array,
+                encodingIntent: memoryEncodingIntent,
                 documentType: parsed.documentType || 'memory',
                 contentText: memory.content,
               });
@@ -1398,6 +1426,9 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   const specLevel = isSpecDocumentType(parsed.documentType)
     ? detectSpecLevelFromParsed(filePath)
     : null;
+  const encodingIntent = isEncodingIntentEnabled()
+    ? classifyEncodingIntent(parsed.content)
+    : undefined;
 
   if (embedding) {
     const indexWithMetadata = database.transaction(() => {
@@ -1411,6 +1442,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         triggerPhrases: parsed.triggerPhrases,
         importanceWeight,
         embedding: embedding,
+        encodingIntent,
         documentType: parsed.documentType || 'memory',
         specLevel,
         contentText: parsed.content,
@@ -1433,6 +1465,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             last_review = datetime('now'),
             review_count = 0,
             file_mtime_ms = ?,
+            encoding_intent = COALESCE(?, encoding_intent),
             document_type = ?,
             spec_level = ?,
             quality_score = ?,
@@ -1447,6 +1480,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         fsrsScheduler.DEFAULT_INITIAL_STABILITY,
         fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
         fileMtimeMs,
+        encodingIntent,
         parsed.documentType || 'memory',
         specLevel,
         parsed.qualityScore ?? 0,
@@ -1495,6 +1529,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         triggerPhrases: parsed.triggerPhrases,
         importanceWeight,
         failureReason: embeddingFailureReason,
+        encodingIntent,
         documentType: parsed.documentType || 'memory',
         specLevel,
         contentText: parsed.content,
@@ -1517,6 +1552,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
             last_review = datetime('now'),
             review_count = 0,
             file_mtime_ms = ?,
+            encoding_intent = COALESCE(?, encoding_intent),
             document_type = ?,
             spec_level = ?,
             quality_score = ?,
@@ -1531,6 +1567,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
         fsrsScheduler.DEFAULT_INITIAL_STABILITY,
         fsrsScheduler.DEFAULT_INITIAL_DIFFICULTY,
         fileMtimeMs,
+        encodingIntent,
         parsed.documentType || 'memory',
         specLevel,
         parsed.qualityScore ?? 0,
@@ -1871,6 +1908,21 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
       const message = err instanceof Error ? err.message : String(err);
       console.warn('[memory-save] Opportunistic retry failed:', message);
     });
+  }
+
+  // Sprint 6 N3-lite runtime integration (flag-gated)
+  try {
+    const consolidation = runConsolidationCycleIfEnabled(requireDb());
+    if (consolidation) {
+      response.consolidation = consolidation;
+      hints.push(
+        `N3-lite consolidation: +${consolidation.hebbian.strengthened} strengthened, ` +
+        `-${consolidation.hebbian.decayed} decayed, ${consolidation.stale.flagged} stale flagged`
+      );
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[memory-save] N3-lite consolidation skipped after save: ${message}`);
   }
 
   return createMCPSuccessResponse({

@@ -4,9 +4,34 @@
 // + content density, applies thinning threshold.
 // ---------------------------------------------------------------
 
-import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { afterEach, describe, it, expect, vi } from 'vitest';
 import { scoreChunk, thinChunks, DEFAULT_THINNING_THRESHOLD, ANCHOR_WEIGHT, DENSITY_WEIGHT } from '../lib/chunking/chunk-thinning';
+import { chunkLargeFile } from '../lib/chunking/anchor-chunker';
 import type { AnchorChunk } from '../lib/chunking/anchor-chunker';
+
+const tempDirs: string[] = [];
+
+function makeTempDir(prefix: string): string {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tempDirs.push(dir);
+  return dir;
+}
+
+afterEach(() => {
+  delete process.env.SPEC_KIT_DB_DIR;
+  delete process.env.MEMORY_ALLOWED_PATHS;
+
+  for (const dir of tempDirs.splice(0)) {
+    try {
+      fs.rmSync(dir, { recursive: true, force: true });
+    } catch {
+      // ignore test cleanup failures
+    }
+  }
+});
 
 /* ---------------------------------------------------------------
    HELPERS
@@ -306,5 +331,66 @@ describe('constants', () => {
     expect(DEFAULT_THINNING_THRESHOLD).toBe(0.3);
     expect(DEFAULT_THINNING_THRESHOLD).toBeGreaterThan(0);
     expect(DEFAULT_THINNING_THRESHOLD).toBeLessThan(1);
+  });
+});
+
+/* ---------------------------------------------------------------
+   8. Integration wiring — memory-save chunk flow uses thinChunks
+--------------------------------------------------------------- */
+
+describe('R7 integration wiring', () => {
+  it('uses thinChunks retained set in indexChunkedMemoryFile active path', async () => {
+    vi.resetModules();
+
+    const tempDir = makeTempDir('s6-r7-integration-');
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    process.env.MEMORY_ALLOWED_PATHS = process.cwd();
+
+    const dbPath = path.join(tempDir, 'context-index.sqlite');
+    const filePath = path.join(tempDir, 'chunked-memory.md');
+
+    const vectorIndex = await import('../lib/search/vector-index');
+    const memorySave = await import('../handlers/memory-save');
+
+    vectorIndex.initializeDb(dbPath);
+
+    const lowSignalSection = '# Low Signal\n\n' + '<!-- filler -->\n'.repeat(420);
+    const highSignalSection =
+      '# High Signal\n\n' +
+      'This section contains meaningful architecture details, implementation context, and decisions.\n'.repeat(120);
+    const content = `${lowSignalSection}\n\n${highSignalSection}`;
+
+    const chunked = chunkLargeFile(content);
+    const thinning = thinChunks(chunked.chunks);
+
+    expect(chunked.chunks.length).toBeGreaterThanOrEqual(2);
+    expect(thinning.dropped.length).toBeGreaterThan(0);
+
+    const parsed = {
+      specFolder: 'specs/003-system-spec-kit/test-r7',
+      filePath,
+      title: 'R7 chunk wiring test',
+      triggerPhrases: [],
+      content,
+      contentHash: 'r7-thinning-wiring-hash',
+      contextType: 'implementation',
+      importanceTier: 'normal',
+      memoryType: 'declarative',
+      memoryTypeSource: 'default',
+      documentType: 'memory',
+      qualityScore: 0,
+      qualityFlags: [],
+    };
+
+    const result = await memorySave.indexChunkedMemoryFile(filePath, parsed);
+    const db = vectorIndex.getDb();
+    expect(db).toBeTruthy();
+
+    // @ts-expect-error db is non-null from assertion above
+    const childCountRow = db.prepare('SELECT COUNT(*) as count FROM memory_index WHERE parent_id = ?').get(result.id) as { count: number };
+    expect(childCountRow.count).toBe(thinning.retained.length);
+
+    expect(result.message).toContain(`${thinning.retained.length}`);
+    vectorIndex.closeDb();
   });
 });

@@ -6,6 +6,7 @@
 // ---------------------------------------------------------------
 
 import type Database from 'better-sqlite3';
+import { isConsolidationEnabled } from '../search/search-flags';
 import {
   updateEdge,
   getStaleEdges,
@@ -17,7 +18,7 @@ import {
   DECAY_STRENGTH_AMOUNT,
   DECAY_PERIOD_DAYS,
 } from './causal-edges';
-import type { CausalEdge, WeightHistoryEntry } from './causal-edges';
+import type { CausalEdge } from './causal-edges';
 
 /* -------------------------------------------------------------
    1. TYPES
@@ -50,6 +51,9 @@ export interface ConsolidationResult {
 
 /** Cosine similarity threshold for contradiction candidates */
 const CONTRADICTION_SIMILARITY_THRESHOLD = 0.85;
+
+/** Consolidation cadence for runtime hook (weekly batch semantics) */
+const CONSOLIDATION_INTERVAL_DAYS = 7;
 
 /** Negation keywords for lightweight contradiction heuristic */
 const NEGATION_KEYWORDS = [
@@ -308,7 +312,7 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
   try {
     // Strengthen: edges accessed in the last cycle period (7 days)
     const recentEdges = (database.prepare(`
-      SELECT id, strength, last_accessed FROM causal_edges
+      SELECT id, strength, last_accessed, created_by FROM causal_edges
       WHERE last_accessed IS NOT NULL
         AND last_accessed > datetime('now', '-7 days')
         AND strength < 1.0
@@ -360,7 +364,7 @@ export function runHebbianCycle(database: Database.Database): { strengthened: nu
  * Detect stale edges (not accessed in 90+ days).
  * Flags them for review without deletion.
  */
-export function detectStaleEdges(database: Database.Database): CausalEdge[] {
+export function detectStaleEdges(_database: Database.Database): CausalEdge[] {
   return getStaleEdges(STALENESS_THRESHOLD_DAYS);
 }
 
@@ -435,6 +439,57 @@ export function runConsolidationCycle(database: Database.Database): Consolidatio
     stale: { flagged: staleEdges.length },
     edgeBounds: { rejected: rejectedCount },
   };
+}
+
+/**
+ * Runtime gate for N3-lite consolidation.
+ * Returns null when consolidation is disabled.
+ */
+export function runConsolidationCycleIfEnabled(
+  database: Database.Database,
+): ConsolidationResult | null {
+  if (!isConsolidationEnabled()) return null;
+
+  try {
+    (database.prepare(`
+      CREATE TABLE IF NOT EXISTS consolidation_state (
+        id INTEGER PRIMARY KEY CHECK(id = 1),
+        last_run_at TEXT
+      )
+    `) as Database.Statement).run();
+
+    const row = (database.prepare(
+      'SELECT last_run_at FROM consolidation_state WHERE id = 1'
+    ) as Database.Statement).get() as { last_run_at: string | null } | undefined;
+
+    if (row?.last_run_at) {
+      const due = (database.prepare(`
+        SELECT CASE
+          WHEN ? <= datetime('now', '-' || ? || ' days') THEN 1
+          ELSE 0
+        END AS is_due
+      `) as Database.Statement).get(row.last_run_at, CONSOLIDATION_INTERVAL_DAYS) as {
+        is_due: number;
+      };
+
+      if (due.is_due !== 1) {
+        return null;
+      }
+    }
+
+    const result = runConsolidationCycle(database);
+
+    (database.prepare(`
+      INSERT INTO consolidation_state (id, last_run_at)
+      VALUES (1, datetime('now'))
+      ON CONFLICT(id) DO UPDATE SET last_run_at = datetime('now')
+    `) as Database.Statement).run();
+
+    return result;
+  } catch {
+    // Fail-open for runtime hook: if cadence bookkeeping fails, still run once.
+    return runConsolidationCycle(database);
+  }
 }
 
 /* -------------------------------------------------------------

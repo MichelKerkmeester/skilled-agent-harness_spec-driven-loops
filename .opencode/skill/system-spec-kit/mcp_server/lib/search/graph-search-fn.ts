@@ -2,6 +2,7 @@
 // Causal graph search channel — uses FTS5 for node matching
 
 import { sanitizeFTS5Query } from './bm25-index';
+import { queryHierarchyMemories } from './spec-folder-hierarchy';
 
 import type Database from 'better-sqlite3';
 import type { GraphSearchFn } from './hybrid-search';
@@ -76,15 +77,49 @@ function isFtsTableAvailable(database: Database.Database): boolean {
 function queryCausalEdges(
   database: Database.Database,
   query: string,
-  limit: number
+  limit: number,
+  specFolder?: string,
 ): Array<Record<string, unknown>> {
+  const graphResults: Array<Record<string, unknown>> = [];
+
   try {
     // Prefer FTS5 matching for proper full-text search
     if (isFtsTableAvailable(database)) {
-      return queryCausalEdgesFTS5(database, query, limit);
+      graphResults.push(...queryCausalEdgesFTS5(database, query, limit));
+    } else {
+      // Fallback: LIKE matching when FTS5 table is unavailable
+      graphResults.push(...queryCausalEdgesLikeFallback(database, query, limit));
     }
-    // Fallback: LIKE matching when FTS5 table is unavailable
-    return queryCausalEdgesLikeFallback(database, query, limit);
+
+    // S4: hierarchy-aware fallback/augmentation for spec-scoped retrieval.
+    if (typeof specFolder === 'string' && specFolder.trim().length > 0) {
+      const hierarchyRows = queryHierarchyMemories(database, specFolder, Math.max(5, Math.ceil(limit / 2)));
+      for (const row of hierarchyRows) {
+        graphResults.push({
+          id: row.id,
+          score: Math.max(0, Math.min(1, row.relevance * 0.75)),
+          source: 'graph' as const,
+          sourceId: row.spec_folder,
+          targetId: specFolder,
+          relation: 'hierarchy',
+          title: row.title ?? `Hierarchy memory ${row.id}`,
+          specFolder: row.spec_folder,
+        });
+      }
+    }
+
+    // Deduplicate by memory id while preserving the highest score.
+    const deduped = new Map<number | string, Record<string, unknown>>();
+    for (const candidate of graphResults) {
+      const existing = deduped.get(candidate.id as number | string);
+      const existingScore = typeof existing?.score === 'number' ? existing.score : 0;
+      const nextScore = typeof candidate.score === 'number' ? candidate.score : 0;
+      if (!existing || nextScore > existingScore) {
+        deduped.set(candidate.id as number | string, candidate);
+      }
+    }
+
+    return Array.from(deduped.values()).slice(0, limit);
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[graph-search-fn] Causal edge query failed: ${msg}`);
@@ -401,7 +436,9 @@ function createUnifiedGraphSearchFn(
     const limit = typeof options['limit'] === 'number' ? options['limit'] : 20;
     const weights = getSubgraphWeights(typeof options['intent'] === 'string' ? options['intent'] : undefined);
 
-    return queryCausalEdges(database, query, limit)
+    const specFolder = typeof options['specFolder'] === 'string' ? options['specFolder'] : undefined;
+
+    return queryCausalEdges(database, query, limit, specFolder)
       .map((result) => ({
         ...result,
         score: (typeof result['score'] === 'number' ? result['score'] : 0) * weights.causalWeight,

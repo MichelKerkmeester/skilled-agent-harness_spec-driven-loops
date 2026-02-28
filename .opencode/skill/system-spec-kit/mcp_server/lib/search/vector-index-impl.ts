@@ -76,6 +76,7 @@ type IndexMemoryParams = {
   triggerPhrases?: string[];
   importanceWeight?: number;
   embedding: EmbeddingInput;
+  encodingIntent?: string;
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
@@ -93,6 +94,7 @@ type UpdateMemoryParams = {
   importanceTier?: string;
   embedding?: EmbeddingInput;
   canonicalFilePath?: string;
+  encodingIntent?: string;
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
@@ -1877,6 +1879,7 @@ function index_memory(params: IndexMemoryParams) {
     triggerPhrases = [],
     importanceWeight = 0.5,
     embedding,
+    encodingIntent,
     documentType = 'memory',
     specLevel = null,
     contentText = null,
@@ -1909,6 +1912,7 @@ function index_memory(params: IndexMemoryParams) {
       triggerPhrases,
       importanceWeight,
       embedding,
+      encodingIntent,
       contentText,
       qualityScore,
       qualityFlags,
@@ -1923,13 +1927,13 @@ function index_memory(params: IndexMemoryParams) {
       INSERT INTO memory_index (
         spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
         importance_weight, created_at, updated_at, embedding_model,
-        embedding_generated_at, embedding_status, document_type, spec_level,
+        embedding_generated_at, embedding_status, encoding_intent, document_type, spec_level,
         content_text, quality_score, quality_flags
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
       importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
-      documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
+      encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
     );
 
     const row_id = BigInt(result.lastInsertRowid);
@@ -1965,6 +1969,7 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
     triggerPhrases = [],
     importanceWeight = 0.5,
     failureReason = null,
+    encodingIntent,
     documentType = 'memory',
     specLevel = null,
     contentText = null,
@@ -1989,13 +1994,14 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
           embedding_status = 'pending',
           failure_reason = ?,
           updated_at = ?,
+          encoding_intent = COALESCE(?, encoding_intent),
           document_type = ?,
           spec_level = ?,
           content_text = ?,
           quality_score = ?,
           quality_flags = ?
       WHERE id = ?
-    `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
+    `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
     refresh_interference_scores_for_folder(database, specFolder);
     return existing.id;
   }
@@ -2004,12 +2010,12 @@ function index_memory_deferred(params: IndexMemoryDeferredParams) {
     INSERT INTO memory_index (
       spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
       importance_weight, created_at, updated_at, embedding_status,
-      failure_reason, retry_count, document_type, spec_level,
+      failure_reason, retry_count, encoding_intent, document_type, spec_level,
       content_text, quality_score, quality_flags
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?)
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?, ?)
   `).run(
     specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
-    importanceWeight, now, now, failureReason, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
+    importanceWeight, now, now, failureReason, encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags)
   );
 
   const row_id = BigInt(result.lastInsertRowid);
@@ -2030,6 +2036,7 @@ function update_memory(params: UpdateMemoryParams) {
     importanceTier,
     embedding,
     canonicalFilePath,
+    encodingIntent,
     documentType,
     specLevel,
     contentText,
@@ -2064,6 +2071,10 @@ function update_memory(params: UpdateMemoryParams) {
     if (canonicalFilePath !== undefined) {
       updates.push('canonical_file_path = ?');
       values.push(canonicalFilePath);
+    }
+    if (encodingIntent !== undefined) {
+      updates.push('encoding_intent = ?');
+      values.push(encodingIntent);
     }
     if (documentType !== undefined) {
       updates.push('document_type = ?');

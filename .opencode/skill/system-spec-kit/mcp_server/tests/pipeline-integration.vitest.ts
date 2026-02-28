@@ -202,6 +202,14 @@ describe('Suite 2 — Pipeline contract tests', () => {
     ).resolves.toBeDefined();
   });
 
+  it('S4: hybridSearchEnhanced forwards specFolder to graphSearchFn', async () => {
+    await hybridSearchEnhanced('test query', null, { useGraph: true, specFolder: '003-root/007-child' });
+
+    expect(mockGraphFn).toHaveBeenCalled();
+    const [, options] = mockGraphFn.mock.calls[0];
+    expect(options.specFolder).toBe('003-root/007-child');
+  });
+
   it('getGraphMetrics().totalQueries increases after hybridSearchEnhanced calls', async () => {
     resetGraphMetrics();
     const before = getGraphMetrics().totalQueries;

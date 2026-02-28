@@ -174,6 +174,30 @@ describe('createUnifiedGraphSearchFn', () => {
     expect(searchFn('memory', { limit: 10 })).toEqual([]);
   });
 
+  it('S4: augments graph retrieval with hierarchy memories when specFolder is provided', () => {
+    mockPrepare.mockImplementation((sql: string) => {
+      if (sql.includes("name='memory_fts'")) {
+        return { get: () => undefined, all: () => [] };
+      }
+      if (sql.includes('FROM causal_edges ce')) {
+        return { all: () => [], get: () => undefined };
+      }
+      if (sql.includes('FROM memory_index') && sql.includes('WHERE spec_folder IN')) {
+        return {
+          all: () => [{ id: 77, spec_folder: '003-root', title: 'hierarchy-parent' }],
+          get: () => undefined,
+        };
+      }
+      return { all: () => [], get: () => undefined };
+    });
+
+    const searchFn = createUnifiedGraphSearchFn(mockDb);
+    const results = searchFn('memory', { limit: 5, specFolder: '003-root/007-child' });
+
+    expect(results.some(r => r['id'] === 77)).toBe(true);
+    expect(results.some(r => r['relation'] === 'hierarchy')).toBe(true);
+  });
+
   it('sorts results by score descending and clamps scores to [0, 1]', () => {
     mockAll.mockReturnValue([
       makeCausalRow({ source_id: '1', target_id: '2', strength: 1.5 }),

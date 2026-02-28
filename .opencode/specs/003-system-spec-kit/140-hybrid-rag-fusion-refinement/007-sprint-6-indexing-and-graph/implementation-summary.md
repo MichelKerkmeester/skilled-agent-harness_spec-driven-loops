@@ -1,6 +1,7 @@
 ---
 title: "Implementation Summary: Sprint 6a — Indexing and Graph"
 description: "Sprint 6a implementation summary: weight_history audit, N3-lite consolidation, anchor-aware thinning, encoding-intent capture, spec folder hierarchy"
+SPECKIT_TEMPLATE_SOURCE: "implementation-summary | v2.2"
 trigger_phrases:
   - "sprint 6 implementation"
   - "sprint 6a summary"
@@ -19,7 +20,17 @@ contextType: "implementation"
 
 Sprint 6a implemented 5 major features for the Spec Kit Memory system: weight_history audit tracking (T001d/MR10), N3-lite consolidation engine (T002), anchor-aware chunk thinning (T003/R7), encoding-intent capture (T004/R16), and spec folder hierarchy retrieval (T006/S4). All Sprint 6a tasks completed; Sprint 6b (N2 centrality, R10 entity extraction) deferred pending feasibility spike.
 
-**Schema version**: 17 → 18 | **New tests**: 116 | **Files created**: 8 | **Files modified**: 12
+**Schema version**: 17 → 18 | **New tests**: 121 | **Files created**: 8 | **Files modified**: 12
+
+### Post-Review Gap Closure (2026-02-28)
+
+After a deep audit, Sprint 6a runtime integrations were hardened to match documented exit-gate claims:
+
+- **R7 wiring closed**: `indexChunkedMemoryFile()` now applies `thinChunks()` before writing child records; integration test verifies retained-count persistence.
+- **R16 wiring closed**: `encoding_intent` now persists through active + deferred indexing paths, with DB-level integration tests.
+- **S4 wiring closed**: graph search now augments results via hierarchy traversal when `specFolder` is present.
+- **N3-lite runtime hook added**: `runConsolidationCycleIfEnabled()` is now invoked from `memory_save` and enforces weekly cadence when `SPECKIT_CONSOLIDATION=true`.
+- **N3-lite bug fix**: Hebbian strengthening query now selects `created_by`, ensuring auto-edge cap enforcement during strengthening.
 
 ---
 

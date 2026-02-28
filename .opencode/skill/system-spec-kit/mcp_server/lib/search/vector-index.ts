@@ -65,6 +65,7 @@ interface IndexMemoryParams {
   triggerPhrases?: string[];
   importanceWeight?: number;
   embedding: Float32Array | number[];
+  encodingIntent?: string;
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;
@@ -79,6 +80,7 @@ interface UpdateMemoryParams {
   importanceWeight?: number;
   importanceTier?: string;
   embedding?: Float32Array | number[];
+  encodingIntent?: string;
   documentType?: string;
   specLevel?: number | null;
   contentText?: string | null;

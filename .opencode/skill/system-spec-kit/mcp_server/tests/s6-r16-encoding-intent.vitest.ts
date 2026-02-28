@@ -14,9 +14,33 @@
 //   T18      : Type export validation
 // ---------------------------------------------------------------
 
-import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { afterEach, describe, it, expect, vi } from 'vitest';
 import { classifyEncodingIntent } from '../lib/search/encoding-intent';
 import type { EncodingIntent } from '../lib/search/encoding-intent';
+
+const tempDirs: string[] = [];
+
+function makeTempDir(prefix: string): string {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tempDirs.push(dir);
+  return dir;
+}
+
+afterEach(() => {
+  delete process.env.SPEC_KIT_DB_DIR;
+  delete process.env.MEMORY_ALLOWED_PATHS;
+
+  for (const dir of tempDirs.splice(0)) {
+    try {
+      fs.rmSync(dir, { recursive: true, force: true });
+    } catch {
+      // ignore test cleanup failures
+    }
+  }
+});
 
 // ===============================================================
 // SECTION 1: Empty / null / undefined edge cases
@@ -369,5 +393,74 @@ describe('classifyEncodingIntent — type and return value guarantees', () => {
       const result = classifyEncodingIntent(sample);
       expect(validIntents).toContain(result);
     }
+  });
+});
+
+// ===============================================================
+// SECTION 8: Integration — persisted encoding_intent metadata
+// ===============================================================
+
+describe('encoding_intent persistence integration', () => {
+  it('R16-INT-01: indexMemory persists explicit encoding_intent for embedded rows', async () => {
+    vi.resetModules();
+    const tempDir = makeTempDir('s6-r16-index-');
+    const dbPath = path.join(tempDir, 'context-index.sqlite');
+
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    process.env.MEMORY_ALLOWED_PATHS = process.cwd();
+
+    const vectorIndex = await import('../lib/search/vector-index');
+    vectorIndex.initializeDb(dbPath);
+    const embeddingDim = vectorIndex.getEmbeddingDim();
+
+    const memoryId = vectorIndex.indexMemory({
+      specFolder: 'specs/003-system-spec-kit/test-r16',
+      filePath: path.join(tempDir, 'embedded.md'),
+      title: 'Embedded row',
+      triggerPhrases: [],
+      importanceWeight: 0.5,
+      embedding: new Float32Array(embeddingDim).fill(0.01),
+      encodingIntent: 'code',
+      contentText: 'const answer = 42;',
+    });
+
+    const db = vectorIndex.getDb();
+    expect(db).toBeTruthy();
+    // @ts-expect-error db is non-null from assertion above
+    const row = db.prepare('SELECT encoding_intent FROM memory_index WHERE id = ?').get(memoryId) as { encoding_intent: string } | undefined;
+
+    expect(row?.encoding_intent).toBe('code');
+    vectorIndex.closeDb();
+  });
+
+  it('R16-INT-02: indexMemoryDeferred persists explicit encoding_intent for deferred rows', async () => {
+    vi.resetModules();
+    const tempDir = makeTempDir('s6-r16-deferred-');
+    const dbPath = path.join(tempDir, 'context-index.sqlite');
+
+    process.env.SPEC_KIT_DB_DIR = tempDir;
+    process.env.MEMORY_ALLOWED_PATHS = process.cwd();
+
+    const vectorIndex = await import('../lib/search/vector-index');
+    vectorIndex.initializeDb(dbPath);
+
+    const memoryId = vectorIndex.indexMemoryDeferred({
+      specFolder: 'specs/003-system-spec-kit/test-r16',
+      filePath: path.join(tempDir, 'deferred.md'),
+      title: 'Deferred row',
+      triggerPhrases: [],
+      importanceWeight: 0.5,
+      encodingIntent: 'structured_data',
+      failureReason: 'test deferred',
+      contentText: '| key | value |',
+    });
+
+    const db = vectorIndex.getDb();
+    expect(db).toBeTruthy();
+    // @ts-expect-error db is non-null from assertion above
+    const row = db.prepare('SELECT encoding_intent FROM memory_index WHERE id = ?').get(memoryId) as { encoding_intent: string } | undefined;
+
+    expect(row?.encoding_intent).toBe('structured_data');
+    vectorIndex.closeDb();
   });
 });

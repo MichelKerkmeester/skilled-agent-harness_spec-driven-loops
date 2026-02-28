@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Sprint 6 — Indexing and Graph"
 description: "Task breakdown for Sprint 6: graph centrality, N3-lite consolidation, anchor-aware thinning, entity extraction, spec folder hierarchy"
+SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 trigger_phrases:
   - "sprint 6 tasks"
   - "indexing and graph tasks"
@@ -35,6 +36,7 @@ contextType: "implementation"
 ## Safety Gate
 
 - [x] T-S6-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {} — Safety gate for N3-lite edge mutations
+<!-- /ANCHOR:checkpoint -->
 
 ---
 
@@ -124,12 +126,12 @@ contextType: "implementation"
     - Sprint 6 (opt-in): SPECKIT_CONSOLIDATION, SPECKIT_ENCODING_INTENT — **KEEP** (new, needs measurement)
     - **Active in default deployment: 4 (Sprint 0 only). Typical max: 6-7 if user enables most useful opt-ins. ≤6 default threshold MET.**
 - [x] T007a [GATE] Sprint 6a exit gate verification [0h] {T001d, T002, T003, T004, T006, T-FS6a}
-  - [x] R7 Recall@20 within 10% of baseline — **EVIDENCE**: chunk-thinning safety: `thinChunks()` never returns empty array; anchor scoring preserves high-value chunks. 24 tests pass including retention boundary tests.
-  - [x] R16 encoding-intent capture functional behind flag — **EVIDENCE**: `classifyEncodingIntent()` returns document/code/structured_data; schema v18 adds `encoding_intent` column; 18 tests pass. Behind `SPECKIT_ENCODING_INTENT` flag.
-  - [x] S4 hierarchy traversal functional — **EVIDENCE**: `queryHierarchyMemories()` returns parent/sibling/ancestor memories with relevance scoring; 46 tests pass including multi-level hierarchy traversal.
+  - [x] R7 Recall@20 within 10% of baseline — **EVIDENCE**: `indexChunkedMemoryFile()` now applies `thinChunks()` retained set before child indexing; integration test verifies persisted child count equals retained chunk count (`s6-r7-chunk-thinning.vitest.ts`, R7 integration wiring).
+  - [x] R16 encoding-intent capture functional behind flag — **EVIDENCE**: `indexMemory()` / `indexMemoryDeferred()` now persist `encoding_intent`, and `memory-save.ts` passes classified intent when `SPECKIT_ENCODING_INTENT` is enabled; integration tests R16-INT-01/02 verify DB persistence.
+  - [x] S4 hierarchy traversal functional — **EVIDENCE**: `graph-search-fn.ts` now augments graph retrieval with `queryHierarchyMemories()` when `specFolder` is present, and pipeline integration confirms `specFolder` propagation to graph search.
   - [x] T001d weight_history logging verified — before/after values recorded — **EVIDENCE**: `weight_history` table in schema v18; `logWeightChange()` records old_strength, new_strength, changed_by, reason. Tests T-WH-01 through T-WH-05 verify logging and rollback.
   - [x] N3-lite contradiction scan identifies at least 1 known contradiction in curated test data — **EVIDENCE**: Tests T-CONTRA-01/02 seed contradicting pair and verify detection via `scanContradictions()` heuristic.
-  - [x] N3-lite edge bounds enforced (MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle) — **EVIDENCE**: `insertEdge()` rejects 21st auto edge (T-BOUNDS-02); Hebbian capped at 0.05/cycle (T-HEB-01).
+  - [x] N3-lite edge bounds enforced (MAX_EDGES_PER_NODE=20, MAX_STRENGTH_INCREASE=0.05/cycle) — **EVIDENCE**: `insertEdge()` rejects 21st auto edge (T-BOUNDS-02); Hebbian cap honors `created_by='auto'` after query fix (T-HEB-06); runtime hook `runConsolidationCycleIfEnabled()` enforces weekly cadence (T-CONS-05).
   - [x] Active feature flag count <=6 — **EVIDENCE**: 4 default-ON flags in typical deployment. See T-FS6a flag inventory.
   - [x] **Feature flag sunset audit**: List all active flags (`SPECKIT_CONSOLIDATION`, `SPECKIT_ENCODING_INTENT`, plus any from Sprints 1-5). Retire or consolidate any flags no longer needed. Document survivors with justification. — **EVIDENCE**: See T-FS6a. All 15 flags documented; 0 retired (all still in measurement or positive). Default active = 4, max active = 15 if all enabled.
   - [x] All health dashboard targets checked — **EVIDENCE**: 203 Sprint 6a tests pass; full regression 6589/6593 (4 pre-existing modularization limit failures); TypeScript clean.
