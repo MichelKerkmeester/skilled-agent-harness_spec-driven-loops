@@ -117,7 +117,7 @@ The weights were chosen to prioritize relevance over speed while still penalizin
 
 A corpus of 110 query-relevance pairs covers all seven intent types with at least five queries per type and at least three complexity tiers (simple factual, moderate relational, complex multi-hop).
 
-At least 30 queries are hand-written natural language, not derived from trigger phrases. That last detail matters: if your ground truth comes from the same trigger phrases the system already matches against, you are testing the system against itself.
+40 queries are hand-written natural language, not derived from trigger phrases. That last detail matters: if your ground truth comes from the same trigger phrases the system already matches against, you are testing the system against itself.
 
 Hard negative queries are included to verify that irrelevant memories rank low. The corpus also incorporates findings from the G-NEW-2 agent consumption analysis, so queries reflect how agents actually use the system rather than how a spec author imagines they do.
 
@@ -183,7 +183,7 @@ The boost applies before FSRS decay and caps the composite score at 0.95 to prev
 
 Memories in dense similarity clusters tend to crowd out unique results. If you have five near-identical memories about the same topic, all five can occupy the top results and push out a different memory that might be more relevant.
 
-Interference scoring penalizes cluster density: for each memory, the system counts how many neighbors exceed 0.75 cosine similarity within the same spec folder, then applies a `-0.08 * interference_score` penalty after the N4 novelty boost.
+Interference scoring penalizes cluster density: for each memory, the system counts how many neighbors exceed a 0.75 text similarity threshold (Jaccard over word tokens from title and trigger phrases) within the same spec folder, then applies a `-0.08 * interference_score` penalty after the N4 novelty boost.
 
 Both the threshold (0.75) and coefficient (-0.08) are provisional. They will be tuned empirically after two R13 evaluation cycles, tracked as FUT-S2-001. Runs behind the `SPECKIT_INTERFERENCE_SCORE` flag.
 
@@ -197,9 +197,9 @@ The combined multiplier uses `Infinity` for never-decay cases, which produces `R
 
 ### Folder-level relevance scoring (PI-A1)
 
-A damped aggregation formula (`(1/sqrt(M+1)) * SUM(MemoryScore(m))`) combines individual memory scores into a folder-level relevance score. The `1/sqrt(M+1)` damping factor prevents large folders from dominating by volume. Without it, a folder with 200 memories would outscore a folder with 10 memories even when the 10-memory folder contains more relevant content per item.
+A four-factor weighted formula scores each spec folder: `score = (recency * 0.40) + (importance * 0.30) + (activity * 0.20) + (validation * 0.10)`. Recency uses a decay function `1 / (1 + days * 0.10)` so a 7-day-old folder scores about 0.59 and a 10-day-old folder about 0.50. Importance averages the tier weights of all memories in the folder. Activity caps at 1.0 when a folder has 5 or more memories. Archive folders (`z_archive/`, `scratch/`, `test-`, `prototype/`) receive a 0.1-0.2 multiplier to keep them out of top results.
 
-This scoring enables two-phase retrieval: first rank folders by aggregated score, then search within the top-ranked folders. The feature requires normalized memory scores from the score normalization module to produce meaningful comparisons. Runs behind the `SPECKIT_FOLDER_SCORING` flag.
+This scoring enables two-phase retrieval: first rank folders by aggregated score, then search within the top-ranked folders. A future DocScore formula (`(1/sqrt(M+1)) * SUM(MemoryScore(m))`) is specified for damped aggregation once normalized memory scores from the score normalization module are available. Runs behind the `SPECKIT_FOLDER_SCORING` flag.
 
 ### Embedding cache (R18)
 
