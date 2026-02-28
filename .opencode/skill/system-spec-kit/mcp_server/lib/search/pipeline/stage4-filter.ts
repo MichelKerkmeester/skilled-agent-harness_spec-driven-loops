@@ -1,0 +1,318 @@
+// ---------------------------------------------------------------
+// MODULE: Stage 4 — Filter + Annotate
+// Sprint 5 (R6): Final stage of the 4-stage retrieval pipeline.
+//
+// ARCHITECTURAL INVARIANT: Stage 4 MUST NOT modify scores.
+// Any ordering change after Stage 3 is a bug. Score fields on
+// Stage4ReadonlyRow are compile-time readonly; the runtime assertion
+// via captureScoreSnapshot / verifyScoreInvariant provides a second
+// defence-in-depth layer.
+//
+// Responsibilities (in execution order):
+//   1. Capture score snapshot BEFORE any operations (runtime invariant)
+//   2. Apply memory-state filtering (filterByMemoryState)
+//   3. Apply evidence gap detection via TRM (Z-score confidence check)
+//   4. Add annotation metadata (feature flags, state stats, etc.)
+//   5. Verify score invariant AFTER all operations
+//
+// NOT in Stage 4: session dedup — that happens after cache in the
+// main handler to avoid double-counting and cache pollution.
+// ---------------------------------------------------------------
+
+import type { Stage4Input, Stage4Output, Stage4ReadonlyRow } from './types';
+import { captureScoreSnapshot, verifyScoreInvariant } from './types';
+import { isTRMEnabled, isMultiQueryEnabled } from '../search-flags';
+import { detectEvidenceGap, formatEvidenceGapWarning } from '../evidence-gap-detector';
+import { addTraceEntry } from '../../contracts/retrieval-trace';
+
+/* ---------------------------------------------------------------
+   1. CONSTANTS
+   --------------------------------------------------------------- */
+
+/**
+ * Memory state priority map. Higher number = higher priority.
+ * Used to compare states numerically so filtering is O(1) per row.
+ */
+const STATE_PRIORITY: Record<string, number> = {
+  HOT: 5,
+  WARM: 4,
+  COLD: 3,
+  DORMANT: 2,
+  ARCHIVED: 1,
+};
+
+/**
+ * Per-tier hard limits applied when `applyStateLimits` is true.
+ * Prevents any single tier from monopolising the result window.
+ */
+const STATE_LIMITS: Record<string, number> = {
+  HOT: 50,
+  WARM: 30,
+  COLD: 20,
+  DORMANT: 10,
+  ARCHIVED: 5,
+};
+
+/** Fallback priority for unknown/missing memoryState values. */
+const UNKNOWN_STATE_PRIORITY = 0;
+
+/* ---------------------------------------------------------------
+   2. TYPES
+   --------------------------------------------------------------- */
+
+/**
+ * Per-state tally produced by `filterByMemoryState`.
+ * Keys are state names (e.g. "HOT", "WARM"); values are counts.
+ */
+export type StateStats = Record<string, number>;
+
+/**
+ * Return value of the internal `filterByMemoryState` function.
+ */
+export interface FilterResult {
+  /** Rows that survived state filtering, in original order. */
+  filtered: Stage4ReadonlyRow[];
+  /** Pre-filter per-state counts (includes removed rows). */
+  statsBefore: StateStats;
+  /** Post-filter per-state counts. */
+  statsAfter: StateStats;
+  /** Total number of rows removed. */
+  removedCount: number;
+}
+
+/* ---------------------------------------------------------------
+   3. INTERNAL: filterByMemoryState
+   --------------------------------------------------------------- */
+
+/**
+ * Remove rows whose `memoryState` falls below `minState` priority and,
+ * optionally, enforce per-tier result limits via `STATE_LIMITS`.
+ *
+ * IMPORTANT: This function ONLY removes items — it never reorders or
+ * modifies score fields. The original ordering from Stage 3 is preserved
+ * for all rows that survive.
+ *
+ * @param results        - Read-only rows from Stage 3 output.
+ * @param minState       - Minimum acceptable state (e.g. "WARM").
+ * @param applyStateLimits - When true, cap each tier to STATE_LIMITS[tier].
+ * @returns FilterResult with the surviving rows and before/after stats.
+ */
+export function filterByMemoryState(
+  results: Stage4ReadonlyRow[],
+  minState: string,
+  applyStateLimits: boolean,
+): FilterResult {
+  const minPriority = STATE_PRIORITY[minState.toUpperCase()] ?? UNKNOWN_STATE_PRIORITY;
+
+  // ── 3a. Tally states before filtering ──
+  const statsBefore: StateStats = {};
+  for (const row of results) {
+    const state = (row.memoryState ?? 'UNKNOWN').toUpperCase();
+    statsBefore[state] = (statsBefore[state] ?? 0) + 1;
+  }
+
+  // ── 3b. State-priority filter ──
+  let passing = results.filter(row => {
+    const state = (row.memoryState ?? '').toUpperCase();
+    const priority = STATE_PRIORITY[state] ?? UNKNOWN_STATE_PRIORITY;
+    return priority >= minPriority;
+  });
+
+  // ── 3c. Per-tier limits (optional) ──
+  if (applyStateLimits) {
+    const tierCounters: Record<string, number> = {};
+    const limitPassing: Stage4ReadonlyRow[] = [];
+
+    for (const row of passing) {
+      const state = (row.memoryState ?? 'UNKNOWN').toUpperCase();
+      const limit = STATE_LIMITS[state] ?? Infinity;
+      const count = tierCounters[state] ?? 0;
+
+      if (count < limit) {
+        tierCounters[state] = count + 1;
+        limitPassing.push(row);
+      }
+      // Rows exceeding the per-tier limit are silently dropped (no score change).
+    }
+
+    passing = limitPassing;
+  }
+
+  // ── 3d. Tally states after filtering ──
+  const statsAfter: StateStats = {};
+  for (const row of passing) {
+    const state = (row.memoryState ?? 'UNKNOWN').toUpperCase();
+    statsAfter[state] = (statsAfter[state] ?? 0) + 1;
+  }
+
+  return {
+    filtered: passing,
+    statsBefore,
+    statsAfter,
+    removedCount: results.length - passing.length,
+  };
+}
+
+/* ---------------------------------------------------------------
+   4. INTERNAL: extractScoringValues
+   --------------------------------------------------------------- */
+
+/**
+ * Extract the best available numeric score from a row for evidence-gap
+ * analysis. Preference order: rrfScore → intentAdjustedScore → score →
+ * similarity. Returns 0 when no score field is present.
+ *
+ * @param row - A Stage4ReadonlyRow to inspect.
+ * @returns The best available numeric score, or 0.
+ */
+export function extractScoringValue(row: Stage4ReadonlyRow): number {
+  if (typeof row.rrfScore === 'number' && isFinite(row.rrfScore)) return row.rrfScore;
+  if (typeof row.intentAdjustedScore === 'number' && isFinite(row.intentAdjustedScore)) return row.intentAdjustedScore;
+  if (typeof row.score === 'number' && isFinite(row.score)) return row.score;
+  if (typeof row.similarity === 'number' && isFinite(row.similarity)) return row.similarity;
+  return 0;
+}
+
+/* ---------------------------------------------------------------
+   5. MAIN: executeStage4
+   --------------------------------------------------------------- */
+
+/**
+ * Execute Stage 4 of the 4-stage retrieval pipeline: Filter + Annotate.
+ *
+ * Stage 4 is the final pipeline stage. It removes results that fall below
+ * the configured minimum memory state, runs the Transparent Reasoning Module
+ * (TRM) evidence-gap check, attaches annotation metadata, and verifies the
+ * score invariant before returning.
+ *
+ * **Score invariant:** No score fields are modified in Stage 4. The compile-time
+ * guarantee is enforced via Stage4ReadonlyRow readonly fields; the runtime check
+ * via captureScoreSnapshot / verifyScoreInvariant provides defence-in-depth. If
+ * verifyScoreInvariant throws, it indicates a Stage 4 implementation bug.
+ *
+ * **Session dedup:** Session deduplication is intentionally NOT performed here.
+ * It happens after the cache layer in the main handler to avoid cache pollution.
+ *
+ * @param input - Stage4Input containing read-only results and pipeline config.
+ * @returns Stage4Output with filtered/annotated results and metadata.
+ * @throws Error if verifyScoreInvariant detects any score mutation (Stage 4 bug).
+ */
+export async function executeStage4(input: Stage4Input): Promise<Stage4Output> {
+  const stageStart = Date.now();
+  const { results, config } = input;
+
+  // ── Step 1: Capture score snapshot (runtime invariant) ──
+  //
+  // This snapshot is the source-of-truth for the "no score changes" assertion.
+  // It is taken over the FULL input set BEFORE any operations, so rows that
+  // are subsequently filtered out are still in the before-snapshot. The
+  // verifyScoreInvariant call skips rows not present in the after-set.
+  const scoresBefore = captureScoreSnapshot(results);
+
+  // ── Step 2: State filtering ──
+  const filterResult = filterByMemoryState(
+    results,
+    config.minState,
+    config.applyStateLimits,
+  );
+
+  let workingResults: Stage4ReadonlyRow[] = filterResult.filtered;
+  const stateFiltered = filterResult.removedCount;
+
+  // ── Step 3: Evidence gap detection (TRM) ──
+  let evidenceGapDetected = false;
+  let evidenceGapWarning: string | undefined;
+
+  if (isTRMEnabled()) {
+    const scores = workingResults.map(extractScoringValue);
+    const trm = detectEvidenceGap(scores);
+
+    evidenceGapDetected = trm.gapDetected;
+
+    if (trm.gapDetected) {
+      evidenceGapWarning = formatEvidenceGapWarning(trm);
+
+      // Annotate each result with the gap metadata (non-score field).
+      workingResults = workingResults.map(row => ({
+        ...row,
+        evidenceGap: { gapDetected: true, warning: evidenceGapWarning },
+      }));
+    }
+  }
+
+  // ── Step 4: Build annotation metadata ──
+  const featureFlags: Record<string, boolean> = {
+    trmEnabled: isTRMEnabled(),
+    multiQueryEnabled: isMultiQueryEnabled(),
+    stateLimitsApplied: config.applyStateLimits,
+  };
+
+  const stateStats: Record<string, unknown> = {
+    minState: config.minState,
+    before: filterResult.statsBefore,
+    after: filterResult.statsAfter,
+    removed: stateFiltered,
+  };
+
+  const annotations: Stage4Output['annotations'] = {
+    evidenceGapWarning,
+    stateStats,
+    featureFlags,
+  };
+
+  // ── Step 5: Verify score invariant (defence-in-depth) ──
+  //
+  // verifyScoreInvariant checks every row that survived filtering.
+  // Rows removed by filterByMemoryState are absent from workingResults,
+  // so the function correctly skips them (see types.ts implementation).
+  // Throws [Stage4Invariant] Error if any score field was mutated.
+  verifyScoreInvariant(scoresBefore, workingResults);
+
+  const durationMs = Date.now() - stageStart;
+
+  // ── Trace entry ──
+  if (config.trace) {
+    addTraceEntry(
+      config.trace,
+      'filter',
+      results.length,
+      workingResults.length,
+      durationMs,
+      {
+        stateFiltered,
+        evidenceGapDetected,
+        trmEnabled: isTRMEnabled(),
+        applyStateLimits: config.applyStateLimits,
+        minState: config.minState,
+      },
+    );
+  }
+
+  return {
+    final: workingResults,
+    metadata: {
+      stateFiltered,
+      sessionDeduped: 0,       // Session dedup is handled post-cache in the main handler
+      constitutionalInjected: 0, // Constitutional injection is handled by the main handler
+      evidenceGapDetected,
+      durationMs,
+    },
+    annotations,
+  };
+}
+
+/* ---------------------------------------------------------------
+   6. TEST SURFACE
+   --------------------------------------------------------------- */
+
+/**
+ * Exported internals for unit testing.
+ * Not intended for production use outside the test harness.
+ */
+export const __testables = {
+  filterByMemoryState,
+  extractScoringValue,
+  STATE_PRIORITY,
+  STATE_LIMITS,
+  UNKNOWN_STATE_PRIORITY,
+} as const;

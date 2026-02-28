@@ -46,6 +46,8 @@ import { extractTriggerPhrases } from '../lib/trigger-extractor';
 import { indexMemory, updateMetadataWithEmbedding } from './memory-indexer';
 import * as simFactory from '../lib/simulation-factory';
 import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader';
+import { applyTreeThinning } from './tree-thinning';
+import type { FileEntry as ThinFileEntry } from './tree-thinning';
 
 /* -----------------------------------------------------------------
    1. INTERFACES
@@ -408,6 +410,20 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
                    implSummary.decisions.length > 0;
 
   log(`   Generated summary: ${implSummary.filesCreated.length} created, ${implSummary.filesModified.length} modified, ${implSummary.decisions.length} decisions\n`);
+
+  // Step 7.6: Tree thinning — pre-pipeline token reduction (PI-B1)
+  // Operates on spec folder files BEFORE pipeline stages and scoring.
+  // Bottom-up merging of small files reduces token overhead in the retrieval pipeline.
+  log('Step 7.6: Applying tree thinning (PI-B1)...');
+  const thinFileInputs: ThinFileEntry[] = enhancedFiles.map((f) => ({
+    path: f.FILE_PATH,
+    content: f.DESCRIPTION || '',
+  }));
+  const thinningResult = applyTreeThinning(thinFileInputs);
+  log(`   Tree thinning: ${thinningResult.stats.totalFiles} files, ` +
+      `${thinningResult.stats.thinnedCount} content-as-summary, ` +
+      `${thinningResult.stats.mergedCount} merged-into-parent, ` +
+      `~${thinningResult.stats.tokensSaved} tokens saved\n`);
 
   // Step 8: Populate templates
   log('Step 8: Populating template...');

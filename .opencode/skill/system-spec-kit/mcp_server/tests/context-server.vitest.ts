@@ -308,14 +308,25 @@ describe('Context Server', () => {
     type RuntimeHarness = {
       registerAfterToolCallback: (fn: (tool: string, callId: string, result: unknown) => Promise<void>) => void
       dispatchToolMock: ReturnType<typeof vi.fn>
+      autoSurfaceMemoriesMock: ReturnType<typeof vi.fn>
+      autoSurfaceAtToolDispatchMock: ReturnType<typeof vi.fn>
       callToolHandler: (request: unknown, extra: unknown) => Promise<unknown>
     }
 
-    async function loadRuntimeHarness(): Promise<RuntimeHarness> {
+    async function loadRuntimeHarness(options?: { memoryAwareTools?: Set<string> }): Promise<RuntimeHarness> {
       vi.resetModules()
 
       const handlers = new Map<unknown, (request: unknown, extra: unknown) => Promise<unknown>>()
       const dispatchToolMock = vi.fn()
+      const autoSurfaceMemoriesMock = vi.fn(async () => ({ constitutional: [], triggered: [] }))
+      const autoSurfaceAtToolDispatchMock = vi.fn(async () => null)
+      const extractContextHintMock = vi.fn((toolArgs: Record<string, unknown>) => {
+        if (typeof toolArgs?.query === 'string') return toolArgs.query
+        if (typeof toolArgs?.input === 'string') return toolArgs.input
+        if (typeof toolArgs?.prompt === 'string') return toolArgs.prompt
+        return null
+      })
+      const memoryAwareTools = options?.memoryAwareTools ?? new Set<string>()
       const listToolsSchema = { name: 'ListToolsRequestSchema' }
       const callToolSchema = { name: 'CallToolRequestSchema' }
 
@@ -373,9 +384,10 @@ describe('Context Server', () => {
       }))
 
       vi.doMock('../hooks', () => ({
-        MEMORY_AWARE_TOOLS: new Set<string>(),
-        extractContextHint: vi.fn(() => null),
-        autoSurfaceMemories: vi.fn(async () => ({ constitutional: [], triggered: [] })),
+        MEMORY_AWARE_TOOLS: memoryAwareTools,
+        extractContextHint: extractContextHintMock,
+        autoSurfaceMemories: autoSurfaceMemoriesMock,
+        autoSurfaceAtToolDispatch: autoSurfaceAtToolDispatchMock,
       }))
 
       vi.doMock('../lib/architecture/layer-definitions', () => ({
@@ -446,6 +458,8 @@ describe('Context Server', () => {
       return {
         registerAfterToolCallback: module.registerAfterToolCallback,
         dispatchToolMock,
+        autoSurfaceMemoriesMock,
+        autoSurfaceAtToolDispatchMock,
         callToolHandler: callToolHandler as (request: unknown, extra: unknown) => Promise<unknown>,
       }
     }
@@ -590,6 +604,47 @@ describe('Context Server', () => {
       await new Promise((resolve) => setTimeout(resolve, 0))
 
       expect(callbackFinished).toBe(true)
+    })
+
+    it('T000e: non-memory-aware tools invoke TM-05 tool-dispatch hook at runtime', async () => {
+      const { dispatchToolMock, autoSurfaceAtToolDispatchMock, autoSurfaceMemoriesMock, callToolHandler } = await loadRuntimeHarness()
+      const surfaced = {
+        constitutional: [{ id: 1, title: 'Gate rule' }],
+        triggered: [{ memory_id: 2, matched_phrases: ['hook'] }],
+      }
+      dispatchToolMock.mockResolvedValue({ content: [{ type: 'text', text: '{}' }] })
+      autoSurfaceAtToolDispatchMock.mockResolvedValue(surfaced)
+
+      const response = await callToolHandler(
+        { id: 'call-4', params: { name: 'checkpoint_list', arguments: { query: 'recent checks' } } },
+        {}
+      )
+
+      expect(autoSurfaceAtToolDispatchMock).toHaveBeenCalledTimes(1)
+      expect(autoSurfaceAtToolDispatchMock).toHaveBeenCalledWith('checkpoint_list', { query: 'recent checks' })
+      expect(autoSurfaceMemoriesMock).not.toHaveBeenCalled()
+      expect((response as { autoSurfacedContext?: unknown }).autoSurfacedContext).toEqual(surfaced)
+    })
+
+    it('T000f: memory-aware tools keep SK-004 path and skip TM-05 dispatch hook', async () => {
+      const { dispatchToolMock, autoSurfaceAtToolDispatchMock, autoSurfaceMemoriesMock, callToolHandler } = await loadRuntimeHarness({
+        memoryAwareTools: new Set<string>(['memory_search']),
+      })
+      const surfaced = {
+        constitutional: [],
+        triggered: [{ memory_id: 3, matched_phrases: ['query'] }],
+      }
+      dispatchToolMock.mockResolvedValue({ content: [{ type: 'text', text: '{}' }] })
+      autoSurfaceMemoriesMock.mockResolvedValue(surfaced)
+
+      const response = await callToolHandler(
+        { id: 'call-5', params: { name: 'memory_search', arguments: { query: 'hook validation' } } },
+        {}
+      )
+
+      expect(autoSurfaceMemoriesMock).toHaveBeenCalledTimes(1)
+      expect(autoSurfaceAtToolDispatchMock).not.toHaveBeenCalled()
+      expect((response as { autoSurfacedContext?: unknown }).autoSurfacedContext).toEqual(surfaced)
     })
   })
 

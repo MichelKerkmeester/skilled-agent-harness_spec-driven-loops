@@ -38,7 +38,12 @@ import {
 import { validateInputLengths, validateToolInputSchema } from './utils';
 
 // Hooks
-import { MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceMemories } from './hooks';
+import {
+  MEMORY_AWARE_TOOLS,
+  extractContextHint,
+  autoSurfaceMemories,
+  autoSurfaceAtToolDispatch,
+} from './hooks';
 
 // Architecture
 import { getTokenBudget } from './lib/architecture/layer-definitions';
@@ -195,7 +200,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
     // T304: Enforce declared MCP tool schema contract before dispatch.
     validateToolInputSchema(name, args, TOOL_DEFINITIONS);
 
-    // SK-004: Auto-surface memories for memory-aware tools (after validation)
+    // SK-004/TM-05: Auto-surface memories before dispatch (after validation)
     let autoSurfacedContext: AutoSurfaceResult | null = null;
     if (MEMORY_AWARE_TOOLS.has(name)) {
       const contextHint: string | null = extractContextHint(args);
@@ -206,6 +211,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request, _extra: unknown)
           const msg = surfaceErr instanceof Error ? surfaceErr.message : String(surfaceErr);
           console.error(`[context-server] Auto-surface failed (non-fatal): ${msg}`);
         }
+      }
+    } else {
+      try {
+        autoSurfacedContext = await autoSurfaceAtToolDispatch(name, args);
+      } catch (surfaceErr: unknown) {
+        const msg = surfaceErr instanceof Error ? surfaceErr.message : String(surfaceErr);
+        console.error(`[context-server] Tool-dispatch auto-surface failed (non-fatal): ${msg}`);
       }
     }
 

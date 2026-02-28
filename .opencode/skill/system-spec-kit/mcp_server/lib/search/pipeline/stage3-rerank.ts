@@ -1,0 +1,481 @@
+// ---------------------------------------------------------------
+// MODULE: Stage 3 — Rerank + Aggregate
+// 4-Stage Retrieval Pipeline: Stage 3 of 4
+//
+// Responsibilities (in execution order):
+//   1. Cross-encoder reranking   — re-scores results via neural model
+//   2. MPAB chunk collapse        — dedup chunks, reassemble parents
+//
+// Pipeline position constraint (Sprint 4):
+//   MPAB MUST remain AFTER RRF fusion (Stage 2).
+//   Stage 3 is the only stage that may change scores after Stage 2.
+//
+// Score changes: YES
+// ---------------------------------------------------------------
+
+import type { Stage3Input, Stage3Output, PipelineRow } from './types';
+import * as crossEncoder from '../cross-encoder';
+import { isCrossEncoderEnabled } from '../search-flags';
+import { addTraceEntry } from '../../contracts/retrieval-trace';
+import { requireDb } from '../../../utils';
+import { toErrorMessage } from '../../../utils';
+
+// ── Constants ──────────────────────────────────────────────────
+
+/** Minimum number of results required before cross-encoder is worth invoking. */
+const MIN_RESULTS_FOR_RERANK = 2;
+
+/** Column order priority for assembling display text sent to cross-encoder. */
+const TEXT_FIELD_PRIORITY = ['content', 'file_path'] as const;
+
+// ── Internal Interfaces ────────────────────────────────────────
+
+/**
+ * Document format consumed by the cross-encoder reranker.
+ * Matches the RerankDocument interface in cross-encoder.ts:
+ *   { id: number | string; content: string; title?: string; [key: string]: unknown }
+ */
+interface RerankDocument {
+  id: string | number;
+  content: string;
+  score?: number;
+  [key: string]: unknown;
+}
+
+/**
+ * Aggregated statistics from the MPAB chunk-collapse pass.
+ */
+interface ChunkReassemblyStats {
+  /** Number of child chunk rows removed from the result set. */
+  collapsedChunkHits: number;
+  /** Number of distinct parent IDs encountered among chunk hits. */
+  chunkParents: number;
+  /** Number of parents whose content was successfully reassembled from DB. */
+  reassembled: number;
+  /** Number of parents that fell back to using best-chunk content. */
+  fallback: number;
+}
+
+/**
+ * Internal representation of a chunk group — all chunks belonging
+ * to a single parent, ready for collapse and reassembly.
+ */
+interface ChunkGroup {
+  parentId: number;
+  chunks: PipelineRow[];
+  /** The chunk with the highest similarity/score — the representative row. */
+  bestChunk: PipelineRow;
+}
+
+// ── Stage 3 Entry Point ────────────────────────────────────────
+
+/**
+ * Execute Stage 3: Rerank + Aggregate.
+ *
+ * Applies cross-encoder reranking (if enabled) and then collapses
+ * chunked memory hits into their parent documents (MPAB). The order
+ * is intentional: cross-encoder scores are computed on the raw chunks
+ * (fine-grained text), then parent reassembly aggregates the results.
+ *
+ * @param input - Stage 3 input containing scored results from Stage 2
+ *   and the shared pipeline configuration.
+ * @returns Stage 3 output with reranked, aggregated results and metadata.
+ */
+export async function executeStage3(input: Stage3Input): Promise<Stage3Output> {
+  const stageStart = Date.now();
+  const { scored, config } = input;
+
+  let results = scored;
+  let rerankApplied = false;
+
+  // ── Step 1: Cross-encoder reranking ───────────────────────────
+  const rerankStart = Date.now();
+  const beforeRerank = results.length;
+
+  results = await applyCrossEncoderReranking(config.query, results, {
+    rerank: config.rerank,
+    applyLengthPenalty: config.applyLengthPenalty,
+    limit: config.limit,
+  });
+
+  rerankApplied = results !== scored && config.rerank && isCrossEncoderEnabled();
+
+  if (config.trace) {
+    addTraceEntry(
+      config.trace,
+      'rerank',
+      beforeRerank,
+      results.length,
+      Date.now() - rerankStart,
+      { rerankApplied, provider: rerankApplied ? 'cross-encoder' : 'none' }
+    );
+  }
+
+  // ── Step 2: MPAB chunk collapse + parent reassembly ───────────
+  //
+  // MPAB must remain AFTER RRF (Stage 2 constraint). This step runs
+  // here in Stage 3 — never move it upstream.
+  const mpabStart = Date.now();
+  const beforeMpab = results.length;
+
+  const { results: aggregated, stats: chunkStats } =
+    await collapseAndReassembleChunkResults(results);
+
+  results = aggregated;
+
+  if (config.trace) {
+    addTraceEntry(
+      config.trace,
+      'final-rank',
+      beforeMpab,
+      results.length,
+      Date.now() - mpabStart,
+      {
+        collapsedChunkHits: chunkStats.collapsedChunkHits,
+        chunkParents: chunkStats.chunkParents,
+        reassembled: chunkStats.reassembled,
+        fallback: chunkStats.fallback,
+      }
+    );
+  }
+
+  return {
+    reranked: results,
+    metadata: {
+      rerankApplied,
+      chunkReassemblyStats: chunkStats,
+      durationMs: Date.now() - stageStart,
+    },
+  };
+}
+
+// ── Internal: Cross-Encoder Reranking ─────────────────────────
+
+/**
+ * Apply cross-encoder reranking to a list of pipeline results.
+ *
+ * Returns the original array unchanged if:
+ *   - The `rerank` option is not set
+ *   - The `SPECKIT_CROSS_ENCODER` feature flag is disabled
+ *   - There are fewer than {@link MIN_RESULTS_FOR_RERANK} results
+ *
+ * On any reranker error, logs a warning and returns the original
+ * results unmodified (graceful degradation).
+ *
+ * @param query       - The user's search query string.
+ * @param results     - Pipeline rows from Stage 2 fusion.
+ * @param options     - Rerank configuration flags.
+ * @returns Reranked pipeline rows (or original results on skip/error).
+ */
+async function applyCrossEncoderReranking(
+  query: string,
+  results: PipelineRow[],
+  options: {
+    rerank: boolean;
+    applyLengthPenalty: boolean;
+    limit: number;
+  }
+): Promise<PipelineRow[]> {
+  // Feature-flag guard
+  if (!options.rerank || !isCrossEncoderEnabled()) {
+    return results;
+  }
+
+  // Minimum-document guard
+  if (results.length < MIN_RESULTS_FOR_RERANK) {
+    return results;
+  }
+
+  // Build a lookup map so we can restore all original PipelineRow fields
+  // after reranking (the cross-encoder only knows about id + text + score).
+  const rowMap = new Map<string | number, PipelineRow>();
+  for (const row of results) {
+    rowMap.set(row.id, row);
+  }
+
+  // Map PipelineRow → RerankDocument (uses `content` field per cross-encoder interface)
+  const documents: RerankDocument[] = results.map((row) => ({
+    id: row.id,
+    content: resolveDisplayText(row),
+    score: row.score ?? row.similarity,
+  }));
+
+  try {
+    // Cast through unknown: our local RerankDocument is structurally equivalent to
+    // the cross-encoder module's internal RerankDocument but declared separately.
+    const reranked = await crossEncoder.rerankResults(
+      query,
+      documents as unknown as Parameters<typeof crossEncoder.rerankResults>[1],
+      {
+        limit: options.limit,
+        useCache: true,
+        applyLengthPenalty: options.applyLengthPenalty,
+      }
+    );
+
+    // Re-map reranked results back to PipelineRow, preserving all original
+    // fields and updating only the score-related values from the reranker.
+    const rerankedRows: PipelineRow[] = [];
+    for (const rerankResult of reranked) {
+      const original = rowMap.get(rerankResult.id);
+      if (!original) {
+        // Defensive: reranker returned an unknown id — skip it
+        continue;
+      }
+      rerankedRows.push({
+        ...original,
+        score: rerankResult.rerankerScore ?? rerankResult.score ?? original.score,
+        similarity: rerankResult.rerankerScore ?? rerankResult.score ?? original.similarity,
+      });
+    }
+
+    return rerankedRows;
+  } catch (err) {
+    // Graceful degradation — return original results on any reranker failure
+    console.warn(
+      `[stage3-rerank] Cross-encoder reranking failed: ${toErrorMessage(err)} — returning original results`
+    );
+    return results;
+  }
+}
+
+/**
+ * Resolve the content string used for cross-encoder scoring for a given row.
+ * Prefers `content` over `file_path`; falls back to an empty string if
+ * neither is available (rare edge case for index-only entries).
+ *
+ * This value is placed into the `content` field of the RerankDocument sent
+ * to the cross-encoder module.
+ *
+ * @param row - A pipeline result row.
+ * @returns Content string for the cross-encoder.
+ */
+function resolveDisplayText(row: PipelineRow): string {
+  for (const field of TEXT_FIELD_PRIORITY) {
+    const value = row[field];
+    if (typeof value === 'string' && value.length > 0) {
+      return value;
+    }
+  }
+  return '';
+}
+
+// ── Internal: MPAB Chunk Collapse + Parent Reassembly ─────────
+
+/**
+ * Collapse chunk-level hits and reassemble parent memory documents.
+ *
+ * MPAB (Multi-Part Aggregation + Backfill) algorithm:
+ *   1. Separate rows into chunks (has `parent_id`) and non-chunks.
+ *   2. Group chunks by `parent_id`.
+ *   3. For each group, elect the best chunk (highest score).
+ *   4. Attempt to load the full parent content from the database.
+ *   5. If the DB query succeeds, emit a reassembled parent row.
+ *   6. If the DB query fails, fall back to the best-chunk content.
+ *   7. Merge non-chunks + reassembled parents, sort by score descending.
+ *
+ * Pipeline position constraint: this function MUST NOT be called before
+ * RRF fusion (Stage 2). It is intentionally placed in Stage 3.
+ *
+ * @param results - Scored pipeline rows from (optionally reranked) Stage 3.
+ * @returns Object with aggregated rows and chunk reassembly statistics.
+ */
+async function collapseAndReassembleChunkResults(
+  results: PipelineRow[]
+): Promise<{ results: PipelineRow[]; stats: ChunkReassemblyStats }> {
+  const stats: ChunkReassemblyStats = {
+    collapsedChunkHits: 0,
+    chunkParents: 0,
+    reassembled: 0,
+    fallback: 0,
+  };
+
+  // Separate chunks from non-chunks
+  const nonChunks: PipelineRow[] = [];
+  const chunksByParent = new Map<number, PipelineRow[]>();
+
+  for (const row of results) {
+    const parentId = row.parent_id ?? row.parentId;
+    if (parentId != null && typeof parentId === 'number') {
+      // This row is a chunk — group by parent
+      const group = chunksByParent.get(parentId);
+      if (group) {
+        group.push(row);
+      } else {
+        chunksByParent.set(parentId, [row]);
+      }
+    } else {
+      nonChunks.push(row);
+    }
+  }
+
+  if (chunksByParent.size === 0) {
+    // No chunks to collapse — return results unchanged
+    return { results, stats };
+  }
+
+  stats.chunkParents = chunksByParent.size;
+
+  // Build chunk groups, electing the best chunk for each parent
+  const chunkGroups: ChunkGroup[] = [];
+  for (const [parentId, chunks] of chunksByParent) {
+    const bestChunk = electBestChunk(chunks);
+    chunkGroups.push({ parentId, chunks, bestChunk });
+    // All chunks beyond the best one are collapsed
+    stats.collapsedChunkHits += chunks.length - 1;
+  }
+
+  // Attempt DB reassembly for each parent group (in parallel)
+  const reassembledRows = await Promise.all(
+    chunkGroups.map((group) => reassembleParentRow(group, stats))
+  );
+
+  // Merge non-chunks + reassembled parent rows, sort by effective score
+  const merged = [...nonChunks, ...reassembledRows];
+  merged.sort((a, b) => effectiveScore(b) - effectiveScore(a));
+
+  return { results: merged, stats };
+}
+
+/**
+ * Elect the best representative chunk from a chunk group.
+ * Selection criteria: highest `score`, breaking ties by `similarity`.
+ *
+ * @param chunks - All chunk rows for a single parent.
+ * @returns The chunk with the highest effective score.
+ */
+function electBestChunk(chunks: PipelineRow[]): PipelineRow {
+  return chunks.reduce((best, current) =>
+    effectiveScore(current) > effectiveScore(best) ? current : best
+  );
+}
+
+/**
+ * Compute the effective numeric score for a pipeline row.
+ * Prefers `score`, falls back to `similarity`, then 0.
+ *
+ * @param row - A pipeline result row.
+ * @returns Numeric score value for comparison.
+ */
+function effectiveScore(row: PipelineRow): number {
+  if (typeof row.score === 'number' && isFinite(row.score)) return row.score;
+  if (typeof row.similarity === 'number' && isFinite(row.similarity)) return row.similarity;
+  return 0;
+}
+
+/**
+ * Attempt to reassemble a full parent memory row from the database.
+ *
+ * On success, returns a PipelineRow that merges:
+ *   - All best-chunk fields as the base
+ *   - Parent-level content from the DB (if available)
+ *   - `contentSource: 'reassembled_chunks'` to mark provenance
+ *
+ * On failure, returns the best-chunk row with
+ *   `contentSource: 'file_read_fallback'`.
+ *
+ * @param group  - The chunk group (parentId + chunks + bestChunk).
+ * @param stats  - Mutable stats object updated in place.
+ * @returns A PipelineRow representing the parent document.
+ */
+async function reassembleParentRow(
+  group: ChunkGroup,
+  stats: ChunkReassemblyStats
+): Promise<PipelineRow> {
+  const { parentId, bestChunk } = group;
+
+  try {
+    const db = requireDb();
+
+    // Query the parent memory row for content and metadata
+    const parentRow = db
+      .prepare(
+        `SELECT id, file_path, content, importance_tier, importance_weight,
+                quality_score, created_at, context_type
+         FROM memory_index
+         WHERE id = ?
+         LIMIT 1`
+      )
+      .get(parentId) as Record<string, unknown> | undefined;
+
+    if (!parentRow) {
+      // Parent not found in DB — use best chunk as fallback
+      stats.fallback++;
+      return markFallback(bestChunk);
+    }
+
+    // Merge parent metadata onto the best-chunk base row
+    const reassembled: PipelineRow = {
+      ...bestChunk,
+      // Override identity fields with parent values
+      id: parentId,
+      file_path: (parentRow.file_path as string | undefined) ?? bestChunk.file_path,
+      importance_tier: (parentRow.importance_tier as string | undefined) ?? bestChunk.importance_tier,
+      importance_weight: (parentRow.importance_weight as number | undefined) ?? bestChunk.importance_weight,
+      quality_score: (parentRow.quality_score as number | undefined) ?? bestChunk.quality_score,
+      created_at: (parentRow.created_at as string | undefined) ?? bestChunk.created_at,
+      context_type: (parentRow.context_type as string | undefined) ?? bestChunk.context_type,
+      // Use parent content if available; otherwise keep best-chunk content
+      content: (parentRow.content as string | undefined) ?? bestChunk.content,
+      contentSource: 'reassembled_chunks',
+      // Clear chunk-specific fields on the reassembled parent
+      parent_id: null,
+      parentId: null,
+      chunk_index: null,
+      chunkIndex: null,
+      chunk_label: null,
+      chunkLabel: null,
+      isChunk: false,
+    };
+
+    stats.reassembled++;
+    return reassembled;
+  } catch (err) {
+    // DB error — gracefully fall back to best-chunk content
+    console.warn(
+      `[stage3-rerank] MPAB DB reassembly failed for parent ${parentId}: ${toErrorMessage(err)} — using chunk fallback`
+    );
+    stats.fallback++;
+    return markFallback(bestChunk);
+  }
+}
+
+/**
+ * Mark a pipeline row as a chunk-content fallback.
+ * Clears chunk-specific identity fields and marks the content source.
+ *
+ * @param chunk - The elected best-chunk row.
+ * @returns A new PipelineRow annotated as a fallback parent representation.
+ */
+function markFallback(chunk: PipelineRow): PipelineRow {
+  return {
+    ...chunk,
+    contentSource: 'file_read_fallback',
+    // Promote chunk to parent-level identity by clearing chunk markers
+    parent_id: null,
+    parentId: null,
+    chunk_index: null,
+    chunkIndex: null,
+    chunk_label: null,
+    chunkLabel: null,
+    isChunk: false,
+  };
+}
+
+// ── Test Exports ───────────────────────────────────────────────
+
+/**
+ * Internal functions exported for unit testing.
+ * Do not rely on these in production code — the API is not stable.
+ *
+ * @internal
+ */
+export const __testables = {
+  applyCrossEncoderReranking,
+  collapseAndReassembleChunkResults,
+  electBestChunk,
+  effectiveScore,
+  resolveDisplayText,
+  reassembleParentRow,
+  markFallback,
+};

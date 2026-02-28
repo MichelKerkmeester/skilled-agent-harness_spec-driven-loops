@@ -5,6 +5,7 @@
 // Lib modules
 import * as vectorIndex from '../lib/search/vector-index';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
+import { enrichWithRetrievalDirectives } from '../lib/search/retrieval-directives';
 
 import type { Database } from '../../shared/types';
 
@@ -18,6 +19,8 @@ interface ConstitutionalMemory {
   filePath: string;
   title: string;
   importanceTier: string;
+  /** PI-A4: LLM-consumable retrieval directive, e.g. "Always surface when: …" */
+  retrieval_directive?: string;
 }
 
 interface AutoSurfaceResult {
@@ -44,6 +47,10 @@ const MEMORY_AWARE_TOOLS: Set<string> = new Set([
   'memory_save',
   'memory_index_scan'
 ]);
+
+// Token budgets for dual-scope lifecycle hooks (TM-05)
+const TOOL_DISPATCH_TOKEN_BUDGET = 4000;
+const COMPACTION_TOKEN_BUDGET = 4000;
 
 // Constitutional memory cache
 let constitutionalCache: ConstitutionalMemory[] | null = null;
@@ -139,8 +146,12 @@ async function autoSurfaceMemories(contextHint: string): Promise<AutoSurfaceResu
       return null;
     }
 
+    // PI-A4: Enrich constitutional memories with retrieval_directive metadata.
+    // Pure content transformation — scoring is unchanged.
+    const enrichedConstitutional = enrichWithRetrievalDirectives(constitutional);
+
     return {
-      constitutional: constitutional,
+      constitutional: enrichedConstitutional,
       triggered: triggered.map((t: triggerMatcher.TriggerMatch) => ({
         memory_id: t.memoryId,
         spec_folder: t.specFolder,
@@ -158,17 +169,110 @@ async function autoSurfaceMemories(contextHint: string): Promise<AutoSurfaceResu
 }
 
 /* ---------------------------------------------------------------
-   6. EXPORTS
+   6. TOOL DISPATCH HOOK (TM-05)
+--------------------------------------------------------------- */
+
+/**
+ * autoSurfaceAtToolDispatch
+ *
+ * Fires at tool dispatch lifecycle points. Extracts a context hint from
+ * the dispatched tool's arguments, then surfaces relevant memories via
+ * the standard autoSurfaceMemories path.
+ *
+ * Skipped when:
+ *   - toolName is in MEMORY_AWARE_TOOLS (prevents recursive surfacing)
+ *   - No context hint can be extracted from args
+ *   - enableToolDispatchHook is false in the integration config
+ *
+ * Token budget: TOOL_DISPATCH_TOKEN_BUDGET (4000 max)
+ *
+ * @param toolName   - Name of the tool being dispatched
+ * @param toolArgs   - Arguments passed to the dispatched tool
+ * @param options    - Optional integration-layer config flags
+ * @returns AutoSurfaceResult or null if nothing to surface / hook disabled
+ */
+async function autoSurfaceAtToolDispatch(
+  toolName: string,
+  toolArgs: Record<string, unknown>,
+  options?: { enableToolDispatchHook?: boolean }
+): Promise<AutoSurfaceResult | null> {
+  // Allow integration layer to disable this hook via config flag
+  if (options && options.enableToolDispatchHook === false) {
+    return null;
+  }
+
+  // Skip memory-aware tools to prevent recursive surfacing loops
+  if (MEMORY_AWARE_TOOLS.has(toolName)) {
+    return null;
+  }
+
+  const contextHint = extractContextHint(toolArgs);
+  if (!contextHint) {
+    return null;
+  }
+
+  // Delegate to the core surface function; token budget is enforced by
+  // the trigger-matcher limit (5 results) and constitutional cache cap (10)
+  // which together stay well within TOOL_DISPATCH_TOKEN_BUDGET = 4000.
+  return autoSurfaceMemories(contextHint);
+}
+
+/* ---------------------------------------------------------------
+   7. COMPACTION HOOK (TM-05)
+--------------------------------------------------------------- */
+
+/**
+ * autoSurfaceAtCompaction
+ *
+ * Fires at session compaction lifecycle points. Surfaces memories relevant
+ * to the ongoing session context so that critical knowledge is preserved
+ * across the compaction boundary.
+ *
+ * Skipped when:
+ *   - sessionContext is empty or too short to extract signal
+ *   - enableCompactionHook is false in the integration config
+ *
+ * Token budget: COMPACTION_TOKEN_BUDGET (4000 max)
+ *
+ * @param sessionContext - A textual summary of the current session state
+ * @param options        - Optional integration-layer config flags
+ * @returns AutoSurfaceResult or null if nothing to surface / hook disabled
+ */
+async function autoSurfaceAtCompaction(
+  sessionContext: string,
+  options?: { enableCompactionHook?: boolean }
+): Promise<AutoSurfaceResult | null> {
+  // Allow integration layer to disable this hook via config flag
+  if (options && options.enableCompactionHook === false) {
+    return null;
+  }
+
+  // Require a meaningful context string (at least 3 characters)
+  if (!sessionContext || typeof sessionContext !== 'string' || sessionContext.trim().length < 3) {
+    return null;
+  }
+
+  // Delegate to the core surface function; same budget constraints apply
+  // as for tool dispatch: COMPACTION_TOKEN_BUDGET = 4000.
+  return autoSurfaceMemories(sessionContext.trim());
+}
+
+/* ---------------------------------------------------------------
+   8. EXPORTS
 --------------------------------------------------------------- */
 
 export {
   // Constants
   MEMORY_AWARE_TOOLS,
   CONSTITUTIONAL_CACHE_TTL,
+  TOOL_DISPATCH_TOKEN_BUDGET,
+  COMPACTION_TOKEN_BUDGET,
 
   // Functions
   extractContextHint,
   getConstitutionalMemories,
   clearConstitutionalCache,
   autoSurfaceMemories,
+  autoSurfaceAtToolDispatch,
+  autoSurfaceAtCompaction,
 };

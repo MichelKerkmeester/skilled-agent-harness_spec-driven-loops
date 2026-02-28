@@ -94,3 +94,23 @@ export function isReconsolidationEnabled(): boolean {
 export function isNegativeFeedbackEnabled(): boolean {
   return process.env.SPECKIT_NEGATIVE_FEEDBACK?.toLowerCase() === 'true';
 }
+
+// ── Sprint 5: Pipeline Refactor flags ──
+
+/**
+ * R6: 4-stage pipeline architecture (Stage 1-4 with Stage 4 invariant).
+ * Default: FALSE (opt-in). Set SPECKIT_PIPELINE_V2=true to enable.
+ * When OFF, the legacy postSearchPipeline path is used (backward compatible).
+ */
+export function isPipelineV2Enabled(): boolean {
+  return process.env.SPECKIT_PIPELINE_V2?.toLowerCase() === 'true';
+}
+
+/**
+ * R12: Query expansion for embedding-based retrieval.
+ * Suppressed when R15 classification = "simple" (mutual exclusion).
+ * Default: FALSE (opt-in). Set SPECKIT_EMBEDDING_EXPANSION=true to enable.
+ */
+export function isEmbeddingExpansionEnabled(): boolean {
+  return process.env.SPECKIT_EMBEDDING_EXPANSION?.toLowerCase() === 'true';
+}

@@ -19,7 +19,10 @@ import * as sessionBoost from '../lib/search/session-boost';
 import * as causalBoost from '../lib/search/causal-boost';
 import { queryLearnedTriggers } from '../lib/search/learned-feedback';
 import { applyNegativeFeedback, getNegativeFeedbackStats } from '../lib/scoring/negative-feedback';
-import { isMultiQueryEnabled, isTRMEnabled, isNegativeFeedbackEnabled } from '../lib/search/search-flags';
+import { isMultiQueryEnabled, isTRMEnabled, isNegativeFeedbackEnabled, isPipelineV2Enabled } from '../lib/search/search-flags';
+// Sprint 5 (R6): 4-stage pipeline architecture
+import { executePipeline } from '../lib/search/pipeline';
+import type { PipelineConfig, PipelineResult, Stage4ReadonlyRow } from '../lib/search/pipeline';
 import { getExtractionMetrics } from '../lib/extraction/extraction-adapter';
 import * as retrievalTelemetry from '../lib/telemetry/retrieval-telemetry';
 import { initConsumptionLog, logConsumptionEvent } from '../lib/telemetry/consumption-logger';
@@ -988,7 +991,7 @@ async function postSearchPipeline(
   // P3-01 + P3-14 FIX: Actually apply intent weights to modify scores
   let weightedResults = causallyBoostedResults;
   let weightsWereApplied = false;
-  if (shouldApplyPostSearchIntentWeighting(searchType, intentWeights, detectedIntent)) {
+  if (shouldApplyPostSearchIntentWeighting(searchType, intentWeights, detectedIntent) && intentWeights) {
     weightedResults = applyIntentWeightsToResults(causallyBoostedResults, intentWeights);
     weightsWereApplied = true;
   }
@@ -1334,6 +1337,128 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     'memory_search',
     cacheArgs,
     async () => {
+      // Sprint 5 (R6): Route to 4-stage pipeline when SPECKIT_PIPELINE_V2 is enabled
+      if (isPipelineV2Enabled()) {
+        const pipelineConfig: PipelineConfig = {
+          query: normalizedQuery || '',
+          concepts: hasValidConcepts ? concepts : undefined,
+          searchType: (hasValidConcepts && concepts!.length >= 2)
+            ? 'multi-concept'
+            : 'hybrid',
+          mode,
+          limit,
+          specFolder,
+          tier,
+          contextType,
+          includeArchived,
+          includeConstitutional,
+          includeContent,
+          anchors,
+          qualityThreshold,
+          minState,
+          applyStateLimits,
+          useDecay,
+          rerank,
+          applyLengthPenalty,
+          sessionId,
+          enableDedup,
+          enableSessionBoost,
+          enableCausalBoost,
+          trackAccess,
+          detectedIntent,
+          intentConfidence,
+          intentWeights: intentWeights as unknown as PipelineConfig['intentWeights'],
+          artifactRouting: artifactRouting as unknown as PipelineConfig['artifactRouting'],
+          trace,
+        };
+
+        const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
+
+        // Build extra data from pipeline metadata for response formatting
+        const extraData: Record<string, unknown> = {
+          stateStats: pipelineResult.annotations.stateStats,
+          featureFlags: {
+            ...pipelineResult.annotations.featureFlags,
+            pipelineV2: true,
+          },
+          pipelineMetadata: pipelineResult.metadata,
+        };
+
+        if (pipelineResult.annotations.evidenceGapWarning) {
+          extraData.evidenceGapWarning = pipelineResult.annotations.evidenceGapWarning;
+        }
+
+        if (detectedIntent) {
+          extraData.intent = {
+            type: detectedIntent,
+            confidence: intentConfidence,
+            description: intentClassifier.getIntentDescription(detectedIntent as IntentType),
+            weightsApplied: pipelineResult.metadata.stage2.intentWeightsApplied,
+          };
+        }
+
+        if (artifactRouting) {
+          extraData.artifactRouting = artifactRouting;
+          extraData.artifact_routing = artifactRouting;
+        }
+
+        if (pipelineResult.metadata.stage2.feedbackSignalsApplied) {
+          extraData.feedbackSignals = { applied: true };
+          extraData.feedback_signals = { applied: true };
+        }
+
+        if (pipelineResult.metadata.stage3.rerankApplied) {
+          extraData.rerankMetadata = {
+            reranking_enabled: true,
+            reranking_requested: true,
+            reranking_applied: true,
+          };
+        }
+
+        if (pipelineResult.metadata.stage3.chunkReassemblyStats.chunkParents > 0) {
+          extraData.chunkReassembly = pipelineResult.metadata.stage3.chunkReassemblyStats;
+          extraData.chunk_reassembly = pipelineResult.metadata.stage3.chunkReassemblyStats;
+        }
+
+        if (pipelineResult.trace) {
+          extraData.retrievalTrace = pipelineResult.trace;
+        }
+
+        const appliedBoosts = {
+          session: { applied: pipelineResult.metadata.stage2.sessionBoostApplied },
+          causal: { applied: pipelineResult.metadata.stage2.causalBoostApplied },
+        };
+        extraData.appliedBoosts = appliedBoosts;
+        extraData.applied_boosts = appliedBoosts;
+
+        const formatted = await formatSearchResults(
+          pipelineResult.results as unknown as RawSearchResult[],
+          pipelineConfig.searchType,
+          includeContent,
+          anchors,
+          null,
+          null,
+          extraData
+        );
+
+        // Prepend evidence gap warning if present
+        if (pipelineResult.annotations.evidenceGapWarning && formatted?.content?.[0]?.text) {
+          try {
+            const parsed = JSON.parse(formatted.content[0].text) as Record<string, unknown>;
+            if (typeof parsed.summary === 'string') {
+              parsed.summary = `${pipelineResult.annotations.evidenceGapWarning}\n\n${parsed.summary}`;
+              formatted.content[0].text = JSON.stringify(parsed, null, 2);
+            }
+          } catch {
+            // Non-fatal
+          }
+        }
+
+        return formatted;
+      }
+
+      // ── Legacy pipeline path (SPECKIT_PIPELINE_V2=false) ──
+
       // Multi-concept search
       if (concepts && Array.isArray(concepts) && concepts.length >= 2) {
         if (concepts.length > 5) {

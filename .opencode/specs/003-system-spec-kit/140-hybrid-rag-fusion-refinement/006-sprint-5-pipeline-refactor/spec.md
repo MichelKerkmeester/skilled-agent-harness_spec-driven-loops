@@ -7,7 +7,7 @@ trigger_phrases:
   - "R6"
   - "4-stage pipeline"
 importance_tier: "normal"
-contextType: "implementation"
+contextType: "implementation" # SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + phase-child-header | v2.2
 ---
 # Feature Specification: Sprint 5 — Pipeline Refactor
 
@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 (elevated from P2 — safety-critical NFRs: Stage 4 invariant, pipeline integrity) |
-| **Status** | Draft |
+| **Status** | Implemented |
 | **Created** | 2026-02-26 |
 | **Branch** | `140-hybrid-rag-fusion-refinement` |
 | **Parent Spec** | ../spec.md |
@@ -110,7 +110,7 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 | lib/search/pipeline/ | Create | R6: Stage definitions and boundaries |
 | handlers/memory-search.ts, handlers/memory-context.ts | Modify | R9: Spec folder pre-filter, R12: Query expansion |
 | Template/validation handlers | Modify | S2: Anchor optimization, S3: Validation metadata |
-| `hooks/auto-surface.ts` | Modify | TM-05: Dual-scope injection hooks at tool dispatch and session compaction |
+| `hooks/memory-surface.ts` | Modify | TM-05: Dual-scope injection hooks at tool dispatch and session compaction |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -127,7 +127,14 @@ Establish a clean 4-stage pipeline with an architectural invariant (Stage 4 cann
 | REQ-S5-003 | **R12**: Query expansion (suppressed when R15="simple") | No simple query latency degradation. Flag: `SPECKIT_EMBEDDING_EXPANSION` |
 | REQ-S5-004 | **S2**: Template anchor optimization | Anchor-aware retrieval metadata present in results |
 | REQ-S5-005 | **S3**: Validation signals as retrieval metadata | Validation metadata integrated into scoring |
-| REQ-S5-006 | **TM-05**: Dual-scope memory auto-surface hooks at tool dispatch and session compaction lifecycle points, with per-point token budgets (4000 max). Extends `hooks/auto-surface.ts`. Behind config/logic in Spec-Kit integration layer | Memory auto-surface fires at tool dispatch and session compaction; per-point token budget of 4000 enforced; no regression in existing auto-surface behavior |
+| REQ-S5-006 | **TM-05**: Dual-scope memory auto-surface hooks at tool dispatch and session compaction lifecycle points, with per-point token budgets (4000 max). Extends `hooks/memory-surface.ts`. Behind config/logic in Spec-Kit integration layer | Memory auto-surface fires at tool dispatch and session compaction; per-point token budget of 4000 enforced; no regression in existing auto-surface behavior |
+
+### Acceptance Scenarios
+
+1. **Given** `SPECKIT_PIPELINE_V2` is enabled and Stage 3 produces ranked results, **When** Stage 4 filter/annotate executes, **Then** scores and ordering are unchanged.
+2. **Given** a query is scoped to a spec folder, **When** R9 pre-filtering runs before scoring, **Then** only in-scope candidates are processed and result relevance remains equivalent to baseline behavior.
+3. **Given** R15 classifies a query as `simple`, **When** R12 expansion logic is evaluated, **Then** expansion is skipped and simple-query latency remains within the defined guardrail.
+4. **Given** template-anchor and validation metadata are available for results, **When** Stage 2 composite scoring executes, **Then** both S2 and S3 signals are attached and applied at the single scoring point.
 <!-- /ANCHOR:requirements -->
 
 ---

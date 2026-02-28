@@ -7,7 +7,7 @@ trigger_phrases:
   - "R6 plan"
   - "4-stage pipeline plan"
 importance_tier: "normal"
-contextType: "implementation"
+contextType: "implementation" # SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2
 ---
 # Implementation Plan: Sprint 5 — Pipeline Refactor
 
@@ -112,7 +112,7 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 - [ ] R12: Implement query expansion with R15 mutual exclusion, behind `SPECKIT_EMBEDDING_EXPANSION` flag [10-15h]
 - [ ] S2: Implement template anchor optimization [5-8h]
 - [ ] S3: Implement validation signals as retrieval metadata [4-6h]
-- [ ] TM-05: Add memory auto-surface hooks at tool dispatch and session compaction lifecycle points in `hooks/auto-surface.ts` — per-point token budget of 4000 max; config/logic change in Spec-Kit integration layer [4-6h]
+- [ ] TM-05: Add memory auto-surface hooks at tool dispatch and session compaction lifecycle points in `hooks/memory-surface.ts` — per-point token budget of 4000 max; config/logic change in Spec-Kit integration layer [4-6h]
 
 ### Phase C: Verification
 - [ ] Verify R9 cross-folder identical results
