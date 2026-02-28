@@ -222,9 +222,20 @@ describe('T022: Graph Channel Feature Flag Regression', () => {
   ──────────────────────────────────────────────────────────────── */
 
   describe('T022: Graph channel metrics', () => {
+    const savedComplexityRouter = process.env.SPECKIT_COMPLEXITY_ROUTER;
 
     beforeEach(() => {
+      // Disable complexity router so graph channel is active for short queries
+      process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
       resetGraphMetrics();
+    });
+
+    afterEach(() => {
+      if (savedComplexityRouter === undefined) {
+        delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+      } else {
+        process.env.SPECKIT_COMPLEXITY_ROUTER = savedComplexityRouter;
+      }
     });
 
     it('T022-M1: getGraphMetrics() returns zero counts initially', () => {

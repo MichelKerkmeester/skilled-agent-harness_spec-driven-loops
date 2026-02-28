@@ -277,8 +277,10 @@ export interface ScoreSnapshot {
   id: number;
   similarity?: number;
   score?: number;
+  importance_weight?: number;
   rrfScore?: number;
   intentAdjustedScore?: number;
+  attentionScore?: number;
 }
 
 /**
@@ -289,8 +291,10 @@ export function captureScoreSnapshot(results: Stage4ReadonlyRow[]): ScoreSnapsho
     id: r.id,
     similarity: r.similarity,
     score: r.score,
+    importance_weight: r.importance_weight,
     rrfScore: r.rrfScore,
     intentAdjustedScore: r.intentAdjustedScore,
+    attentionScore: r.attentionScore,
   }));
 }
 
@@ -330,6 +334,16 @@ export function verifyScoreInvariant(
     if (row.intentAdjustedScore !== snap.intentAdjustedScore) {
       throw new Error(
         `[Stage4Invariant] Score mutation detected: id=${snap.id} intentAdjustedScore changed from ${snap.intentAdjustedScore} to ${row.intentAdjustedScore}`
+      );
+    }
+    if (row.importance_weight !== snap.importance_weight) {
+      throw new Error(
+        `[Stage4Invariant] Score mutation detected: id=${snap.id} importance_weight changed from ${snap.importance_weight} to ${row.importance_weight}`
+      );
+    }
+    if (row.attentionScore !== snap.attentionScore) {
+      throw new Error(
+        `[Stage4Invariant] Score mutation detected: id=${snap.id} attentionScore changed from ${snap.attentionScore} to ${row.attentionScore}`
       );
     }
   }

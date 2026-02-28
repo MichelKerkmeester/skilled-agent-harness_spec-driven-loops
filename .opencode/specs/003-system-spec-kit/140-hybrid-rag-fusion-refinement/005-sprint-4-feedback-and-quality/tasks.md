@@ -51,8 +51,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: R1 MPAB Chunk Aggregation
 
-- [ ] T001 [P] Implement MPAB chunk-to-memory aggregation — `computeMPAB(scores)` with N=0/N=1 guards, index-based max removal, `_chunkHits` metadata, behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] — R1
-  - T001a Preserve chunk ordering within documents — sort collapsed chunks by original document position before reassembly in `collapseAndReassembleChunkResults()` [2-4h] — B2
+- [x] T001 [P] Implement MPAB chunk-to-memory aggregation — `computeMPAB(scores)` with N=0/N=1 guards, index-based max removal, `_chunkHits` metadata, behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] — R1
+  - [x] T001a Preserve chunk ordering within documents — sort collapsed chunks by original document position before reassembly in `collapseAndReassembleChunkResults()` [2-4h] — B2
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -70,8 +70,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: R13-S2 Shadow Scoring
 
-- [ ] T003 Implement R13-S2 — shadow scoring + channel attribution + ground truth Phase B [15-20h] — R13-S2
-  - T003a Implement Exclusive Contribution Rate metric — measure how often each channel is the SOLE source for a result in top-K [2-3h] — R13-S2 extension
+- [x] T003 Implement R13-S2 — shadow scoring + channel attribution + ground truth Phase B [15-20h] — R13-S2
+  - [x] T003a Implement Exclusive Contribution Rate metric — measure how often each channel is the SOLE source for a result in top-K [2-3h] — R13-S2 extension
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,11 +79,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-4-tm04 -->
 ## Phase 4: TM-04 Pre-Storage Quality Gate
 
-- [ ] T007 [P] Implement multi-layer pre-storage quality gate in `memory_save` handler behind `SPECKIT_SAVE_QUALITY_GATE` flag [6-10h] — TM-04 (REQ-S4-004)
-  - T007a Layer 1: structural validation (existing checks, formalised)
-  - T007b Layer 2: content quality scoring — title, triggers, length, anchors, metadata, signal density; threshold >= 0.4
-  - T007c Layer 3: semantic dedup — cosine similarity > 0.92 against existing memories = reject
-  - T007d Warn-only mode (MR12): for first 2 weeks, log quality scores and would-reject decisions but do NOT block saves; tune thresholds based on false-rejection rate before enforcement
+- [x] T007 [P] Implement multi-layer pre-storage quality gate in `memory_save` handler behind `SPECKIT_SAVE_QUALITY_GATE` flag [6-10h] — TM-04 (REQ-S4-004)
+  - [x] T007a Layer 1: structural validation (existing checks, formalised)
+  - [x] T007b Layer 2: content quality scoring — title, triggers, length, anchors, metadata, signal density; threshold >= 0.4
+  - [x] T007c Layer 3: semantic dedup — cosine similarity > 0.92 against existing memories = reject
+  - [x] T007d Warn-only mode (MR12): for first 2 weeks, log quality scores and would-reject decisions but do NOT block saves; tune thresholds based on false-rejection rate before enforcement
 <!-- /ANCHOR:phase-4-tm04 -->
 
 ---
@@ -91,12 +91,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-5-tm06 -->
 ## Phase 5: TM-06 Reconsolidation-on-Save
 
-- [ ] T008 [P] Implement reconsolidation-on-save in `memory_save` handler behind `SPECKIT_RECONSOLIDATION` flag; create checkpoint before enabling [6-10h] — TM-06 (REQ-S4-005)
-  - T008a Checkpoint: `memory_checkpoint_create("pre-reconsolidation")` before first enable
-  - T008b After embedding generation, query top-3 most similar memories in `spec_folder`
-  - T008c Merge path (similarity >=0.88): merge content, increment frequency counter
-  - T008d Conflict path (0.75–0.88): replace memory, add causal `supersedes` edge
-  - T008e Complement path (<0.75): store new memory unchanged
+- [x] T008 [P] Implement reconsolidation-on-save in `memory_save` handler behind `SPECKIT_RECONSOLIDATION` flag; create checkpoint before enabling [6-10h] — TM-06 (REQ-S4-005)
+  - [x] T008a Checkpoint: `memory_checkpoint_create("pre-reconsolidation")` before first enable
+  - [x] T008b After embedding generation, query top-3 most similar memories in `spec_folder`
+  - [x] T008c Merge path (similarity >=0.88): merge content, increment frequency counter
+  - [x] T008d Conflict path (0.75–0.88): replace memory, add causal `supersedes` edge
+  - [x] T008e Complement path (<0.75): store new memory unchanged
 <!-- /ANCHOR:phase-5-tm06 -->
 
 ---
@@ -129,12 +129,12 @@ contextType: "implementation"
 - [ ] T-IP-S4 [P0] **Interaction pair test: R1+N4** — verify N4 cold-start boost applied BEFORE MPAB aggregation; combined boost capped at 0.95 [1-2h] {T001, T004} — CHK-035
 - [ ] T-FS4 Feature flag sunset review at Sprint 4 exit — review all active feature flags; permanently enable flags with positive metrics, remove flags with negative metrics, extend measurement window (max 14 days) for inconclusive flags; ensure ≤6 simultaneous active flags [0.5-1h] {T005} — NFR-O01/O02/O03
 - [ ] T006 [GATE] Sprint 4 exit gate verification [0h] {T001, T002, T003, T004, T005, T007, T008, T-FS4}
-  - [ ] R11 auto-promotion thresholds verified (5→important, 10→critical)
-  - [ ] R13-S2 Exclusive Contribution Rate metric operational
-  - [ ] A4 negative feedback: confidence demotion floor verified at 0.3; no over-suppression
-  - [ ] B2 chunk ordering: multi-chunk memories reassembled in document order, not score order
-  - [ ] TM-04 quality gate: low-quality saves blocked (signal density <0.4); semantic near-duplicates (>0.92) rejected
-  - [ ] TM-06 reconsolidation: merge/replace/store paths verified; checkpoint created before enable
+  - [x] R11 auto-promotion thresholds verified (5→important, 10→critical) [evidence: auto-promotion.ts `PROMOTE_TO_IMPORTANT_THRESHOLD = 5`, `PROMOTE_TO_CRITICAL_THRESHOLD = 10`; executeAutoPromotion() implements upward-only promotion with throttle safeguard]
+  - [x] R13-S2 Exclusive Contribution Rate metric operational [evidence: channel-attribution.ts `computeExclusiveContributionRate()` with `attributeChannels()` tagging per result; ECR = exclusiveCount/totalInTopK per channel]
+  - [x] A4 negative feedback: confidence demotion floor verified at 0.3; no over-suppression [evidence: negative-feedback.ts `CONFIDENCE_MULTIPLIER_FLOOR = 0.3`, `computeConfidenceMultiplier()` uses `Math.max(CONFIDENCE_MULTIPLIER_FLOOR, ...)` with 30-day recovery half-life]
+  - [x] B2 chunk ordering: multi-chunk memories reassembled in document order, not score order [evidence: mpab-aggregation.ts line 163 sorts by chunkIndex ascending; test "T001a: chunks maintain document position order" passes]
+  - [x] TM-04 quality gate: low-quality saves blocked (signal density <0.4); semantic near-duplicates (>0.92) rejected [evidence: save-quality-gate.ts `SIGNAL_DENSITY_THRESHOLD = 0.4`, `SEMANTIC_DEDUP_THRESHOLD = 0.92`; ~90 tests in save-quality-gate.vitest.ts]
+  - [x] TM-06 reconsolidation: merge/replace/store paths verified; checkpoint created before enable [evidence: reconsolidation.ts `MERGE_THRESHOLD = 0.88`, `CONFLICT_THRESHOLD = 0.75`; memory-save.ts `hasReconsolidationCheckpoint()` safety gate; sprint4-integration tests cover all 3 paths]
 <!-- /ANCHOR:phase-6 -->
 
 ---

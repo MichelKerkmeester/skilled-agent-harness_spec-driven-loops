@@ -554,8 +554,11 @@ describe('C138: Hybrid Search Pipeline Enhancements', () => {
 describe('C138-P0: useGraph:true Default Routing', () => {
   let mockEmbedding: Float32Array;
   let graphSearchCallCount: number;
+  const savedComplexityRouter = process.env.SPECKIT_COMPLEXITY_ROUTER;
 
   beforeEach(() => {
+    // Disable complexity router so all channels (including graph) are active for short queries
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
     graphSearchCallCount = 0;
     const trackingGraphSearch = (query: string, options: Record<string, unknown>) => {
       graphSearchCallCount++;
@@ -572,6 +575,14 @@ describe('C138-P0: useGraph:true Default Routing', () => {
       bm25.addDocument(String(doc.id), doc.content);
     }
     mockEmbedding = new Float32Array(384).fill(0.1);
+  });
+
+  afterEach(() => {
+    if (savedComplexityRouter === undefined) {
+      delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+    } else {
+      process.env.SPECKIT_COMPLEXITY_ROUTER = savedComplexityRouter;
+    }
   });
 
   it('C138-P0-T1: useGraph defaults to true — graph channel invoked', async () => {
@@ -704,5 +715,54 @@ describe('Sprint 1 Search-Core Fixes (Task #2)', () => {
     expect(s3meta?.tokenBudget?.applied).toBe(true);
     expect(s3meta?.tokenBudget?.budget).toBe(1500);
     expect(results.length).toBeLessThan(20);
+  });
+});
+
+// ── BUG-1 fix: Ablation channel disable integration tests ──
+describe('BUG-1: Ablation channel disable via useVector/useBm25/useFts options', () => {
+  let vectorCallCount: number;
+
+  beforeEach(() => {
+    vectorCallCount = 0;
+    const trackingVectorSearch = (_embedding: unknown, _opts: Record<string, unknown>) => {
+      vectorCallCount++;
+      return MOCK_DOCS.slice(0, 2).map((doc, i) => ({
+        ...doc,
+        score: 0.95 - i * 0.1,
+      }));
+    };
+    const mockDb = createMockDb();
+    hybridSearch.init(mockDb, trackingVectorSearch, null);
+    bm25Index.resetIndex();
+    const bm25 = bm25Index.getIndex();
+    for (const doc of MOCK_DOCS) {
+      bm25.addDocument(String(doc.id), doc.content);
+    }
+  });
+
+  it('BUG1-T1: useVector=false prevents vector search function from being called', async () => {
+    const embedding = new Float32Array(384).fill(0.1);
+    await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10, useVector: false });
+    expect(vectorCallCount).toBe(0);
+  });
+
+  it('BUG1-T2: useVector=true (default) calls vector search function', async () => {
+    const embedding = new Float32Array(384).fill(0.1);
+    await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10 });
+    expect(vectorCallCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('BUG1-T3: useFts=false removes FTS results from output', async () => {
+    const embedding = new Float32Array(384).fill(0.1);
+    const results = await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10, useFts: false });
+    const ftsSources = results.filter(r => r.source === 'fts');
+    expect(ftsSources.length).toBe(0);
+  });
+
+  it('BUG1-T4: useBm25=false removes BM25 results from output', async () => {
+    const embedding = new Float32Array(384).fill(0.1);
+    const results = await hybridSearch.hybridSearchEnhanced('authentication', embedding, { limit: 10, useBm25: false });
+    const bm25Sources = results.filter(r => r.source === 'bm25');
+    expect(bm25Sources.length).toBe(0);
   });
 });

@@ -509,6 +509,15 @@ async function hybridSearchEnhanced(
     // subset (e.g., simple queries skip graph+degree). When disabled, all channels run.
     const routeResult = routeQuery(query, options.triggerPhrases);
     const activeChannels = new Set<ChannelName>(routeResult.channels);
+
+    // ── Ablation override: allow callers to force-disable channels (BUG-1 fix) ──
+    // AI-WHY: The ablation framework passes useVector/useBm25/useFts=false to disable
+    // specific channels for contribution analysis. Without this intersection, ablation
+    // channel disable was a no-op because only routeQuery() controlled activeChannels.
+    if (options.useVector === false) activeChannels.delete('vector');
+    if (options.useBm25 === false) activeChannels.delete('bm25');
+    if (options.useFts === false) activeChannels.delete('fts');
+
     const allPossibleChannels: ChannelName[] = ['vector', 'fts', 'bm25', 'graph', 'degree'];
     const skippedChannels = allPossibleChannels.filter(ch => !activeChannels.has(ch));
 

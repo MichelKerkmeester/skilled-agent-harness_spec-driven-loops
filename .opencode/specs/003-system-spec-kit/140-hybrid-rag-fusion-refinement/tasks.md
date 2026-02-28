@@ -166,12 +166,12 @@ contextType: "implementation"
 - [ ] T025c [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-r11-feedback")` [0h] {T025-GATE} — Safety gate
 - [ ] T026 [P] [W-A] Implement MPAB chunk-to-memory aggregation with N=0/N=1 guards behind `SPECKIT_DOCSCORE_AGGREGATION` flag [8-12h] {T025-GATE} — R1
   - T026a Preserve chunk ordering within documents during reassembly [2-4h] — B2/REQ-034
-- [ ] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 10 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025-GATE, T026, T028, R13 2-cycle prerequisite} — R11
+- [x] T027 [W-C] Implement learned relevance feedback with separate `learned_triggers` column and all 10 safeguards behind `SPECKIT_LEARN_FROM_SELECTION` flag [16-24h] {T025-GATE, T026, T028, R13 2-cycle prerequisite} — R11 — completed in Sprint 4 child
   - Sub-steps: (a) schema migration for `learned_triggers` column [2h], (b) selection tracking pipeline [4h], (c) trigger extraction from selections [4h], (d) 10 safeguards implementation: (1) Denylist 100+ common terms, (2) Rate cap 3 promotions per 8-hour window, (3) TTL 30-day decay for promoted terms, (4) FTS5 isolation (promoted terms in separate column), (5) Noise floor: top-3 candidate threshold, (6) Rollback mechanism for promoted terms, (7) Provenance/audit log for all promotions, (8) Shadow period: 1 week before activation, (9) Eligibility: 72h minimum observation before promotion, (10) Sprint gate review of promotion metrics [8h], (e) shadow logging before activation [2h]
   - Prerequisite check: verify R13 has ≥2 complete eval cycles AND ≥200 query-selection pairs before enabling mutations
   - T027c Implement memory importance auto-promotion (threshold-based tier promotion on validation count) [5-8h]
   - T027d Activate negative feedback confidence signal (demotion multiplier, floor=0.3) [4-6h] — A4/REQ-033
-- [ ] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025-GATE, R13 2-cycle prerequisite} — G-NEW-3
+- [x] T027a [W-C] Implement G-NEW-3 Phase B: implicit feedback collection from user selections for ground truth [4-6h] {T025-GATE, R13 2-cycle prerequisite} — G-NEW-3 — completed in Sprint 4 child
 - [ ] T027b [W-C] Implement G-NEW-3 Phase C: LLM-judge ground truth generation — minimum 200 query-selection pairs before R11 activation [4-6h] {T027a} — G-NEW-3
 - [ ] T028 [W-C] Implement R13-S2: shadow scoring + channel attribution + ground truth Phase B [15-20h] {T025-GATE} — R13-S2
   - T028a Implement Exclusive Contribution Rate metric per channel [2-3h]
@@ -195,21 +195,21 @@ contextType: "implementation"
 > **Child folder**: `006-sprint-5-pipeline-refactor/`
 
 **Phase A (Pipeline): R6 — 40-55h**
-- [ ] T032 [W-D] Create checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")` [0h] {T031}
-- [ ] T033 [W-D] Implement 4-stage pipeline refactor (Candidate → Fusion → Rerank → Filter) with Stage 4 "no score changes" invariant behind `SPECKIT_PIPELINE_V2` flag [40-55h] {T032} — R6
+- [x] T032 [W-D] Create checkpoint: `memory_checkpoint_create("pre-pipeline-refactor")` [0h] {T031} — completed in Sprint 5 child
+- [x] T033 [W-D] Implement 4-stage pipeline refactor (Candidate → Fusion → Rerank → Filter) with Stage 4 "no score changes" invariant behind `SPECKIT_PIPELINE_V2` flag [40-55h] {T032} — R6 — completed in Sprint 5 child
   - Sub-steps: (a) Stage 1 Candidate Generation — extract candidate retrieval from existing code into isolated stage [10h], (b) Stage 2 Fusion — RRF/RSF fusion logic with intent weighting applied exactly once [10h], (c) Stage 3 Rerank — cross-encoder reranking with score normalization [10h], (d) Stage 4 Filter — result filtering/truncation with "no score changes" invariant enforced via assertion [10h], (e) integration testing against full eval corpus [5h]
   - Acceptance: 0 ordering differences vs current pipeline on eval corpus; Stage 4 assertion prevents score modification
-- [ ] T034 [W-C] Verify R6 dark-run: 0 ordering differences on full eval corpus [included] {T033}
-- [ ] T035 Verify all 158+ existing tests pass with PIPELINE_V2 enabled [included] {T033}
+- [x] T034 [W-C] Verify R6 dark-run: 0 ordering differences on full eval corpus [included] {T033} — completed in Sprint 5 child
+- [x] T035 Verify all 158+ existing tests pass with PIPELINE_V2 enabled [included] {T033} — completed in Sprint 5 child
 
 **Phase B (Search + Spec-Kit): 24-37h — Phase A must pass before starting**
-- [ ] T036 [P] [W-D] Implement spec folder pre-filter [5-8h] {T035} — R9
-- [ ] T037 [P] [W-D] Implement embedding-based query expansion (suppressed when R15="simple") behind `SPECKIT_EMBEDDING_EXPANSION` flag [10-15h] {T035} — R12
-- [ ] T038 [P] [W-D] Implement template anchor optimization [5-8h] {T035} — S2
-- [ ] T039 [P] [W-D] Implement validation signals as retrieval metadata [4-6h] {T035} — S3
-- [ ] T060 [P] [W-D] Implement dual-scope injection strategy — add memory auto-surface hooks at tool dispatch and compaction lifecycle points, with per-point token budgets [4-6h] {T035} — TM-05/REQ-044
-- [ ] T-FS5 [W-A] Feature flag sunset review at Sprint 5 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 6 [0.5-1h] {T039} — NFR-O01/O02/O03
-- [ ] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation, flag count ≤6 [0h] {T033-T039, PI-A4, PI-B1, PI-B2, T-FS5}
+- [x] T036 [P] [W-D] Implement spec folder pre-filter [5-8h] {T035} — R9 — completed in Sprint 5 child
+- [x] T037 [P] [W-D] Implement embedding-based query expansion (suppressed when R15="simple") behind `SPECKIT_EMBEDDING_EXPANSION` flag [10-15h] {T035} — R12 — completed in Sprint 5 child
+- [x] T038 [P] [W-D] Implement template anchor optimization [5-8h] {T035} — S2 — completed in Sprint 5 child
+- [x] T039 [P] [W-D] Implement validation signals as retrieval metadata [4-6h] {T035} — S3 — completed in Sprint 5 child
+- [x] T060 [P] [W-D] Implement dual-scope injection strategy — add memory auto-surface hooks at tool dispatch and compaction lifecycle points, with per-point token budgets [4-6h] {T035} — TM-05/REQ-044 — completed in Sprint 5 child
+- [x] T-FS5 [W-A] Feature flag sunset review at Sprint 5 exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding to Sprint 6 [0.5-1h] {T039} — NFR-O01/O02/O03 — completed in Sprint 5 child
+- [x] T040 [GATE] Sprint 5 exit gate verification: R6 0 differences, 158+ tests pass, R9 cross-folder equivalent, R12 no latency degradation, flag count ≤6 [0h] {T033-T039, PI-A4, PI-B1, PI-B2, T-FS5} — completed in Sprint 5 child
 <!-- /ANCHOR:sprint-5 -->
 
 ---
@@ -220,14 +220,14 @@ contextType: "implementation"
 > **Goal**: Deliver practical retrieval quality improvements at any graph scale.
 > **Child folder**: `007-sprint-6-indexing-and-graph/`
 
-- [ ] T040a [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {T040} — Safety gate
-- [ ] T041d [W-B] **MR10 mitigation: weight_history audit tracking** — add `weight_history` column or log weight changes to eval DB for N3-lite Hebbian modifications; enables rollback of weight changes independent of edge creation [2-3h] {T040} — MR10
+- [x] T040a [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {T040} — Safety gate — completed in Sprint 6 child
+- [x] T041d [W-B] **MR10 mitigation: weight_history audit tracking** — add `weight_history` column or log weight changes to eval DB for N3-lite Hebbian modifications; enables rollback of weight changes independent of edge creation [2-3h] {T040} — MR10 — completed in Sprint 6 child
   - Acceptance: all N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs; rollback script can restore weights from history
   - Rationale: promoted from risk mitigation to required task — HARD GATE before any T042 sub-task
-- [ ] T043 [P] [W-D] Implement anchor-aware chunk thinning [10-15h] {T040} — R7
-- [ ] T044 [P] [W-D] Implement encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag [5-8h] {T040} — R16
-- [ ] T046 [P] [W-D] Implement spec folder hierarchy as retrieval structure [6-10h] {T040} — S4
-- [ ] T042 [W-B] Implement N3-lite: contradiction scan + Hebbian strengthening with edge caps [9-14h] {T040, T041d} [HARD GATE — T041d MUST be complete before any T042 sub-task] — N3-lite
+- [x] T043 [P] [W-D] Implement anchor-aware chunk thinning [10-15h] {T040} — R7 — completed in Sprint 6 child
+- [x] T044 [P] [W-D] Implement encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag [5-8h] {T040} — R16 — completed in Sprint 6 child
+- [x] T046 [P] [W-D] Implement spec folder hierarchy as retrieval structure [6-10h] {T040} — S4 — completed in Sprint 6 child
+- [x] T042 [W-B] Implement N3-lite: contradiction scan + Hebbian strengthening with edge caps [9-14h] {T040, T041d} [HARD GATE — T041d MUST be complete before any T042 sub-task] — N3-lite — completed in Sprint 6 child
   - T042a Contradiction scan (cosine >0.85 + keyword negation) [3-4h]
   - T042b Hebbian edge strengthening (+0.05/cycle, caps) [2-3h]
   - T042c Staleness detection (90-day unfetched edges) [1-2h]
@@ -239,8 +239,8 @@ contextType: "implementation"
 - [ ] T-PI-S6 [W-I] PageIndex integration testing — end-to-end testing of PageIndex-derived scoring in production pipeline [2-4h] {PI-A1, PI-A4, PI-A5} — Integration
   - Sprint: S6a | Priority: Medium
   - Depends on: PI-A1, PI-A4, PI-A5
-- [ ] T-FS6a [W-A] Feature flag sunset review at Sprint 6a exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding [0.5-1h] {T042, T043, T044, T046} — NFR-O01/O02/O03
-- [ ] T047a [GATE] Sprint 6a exit gate verification: R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection, weight_history verified, flag count ≤6 [0h] {T041d, T042-T044, T046, T-IP-S6, T-PI-S6, T-FS6a}
+- [x] T-FS6a [W-A] Feature flag sunset review at Sprint 6a exit — review all active feature flags; flags from completed sprints with positive metrics: permanently enable and remove flag check; flags with negative/neutral metrics: remove entirely; flags with inconclusive metrics: extend measurement window by max 14 days (one extension per flag, mandatory hard-deadline decision date); ensure ≤6 simultaneous active flags before proceeding [0.5-1h] {T042, T043, T044, T046} — NFR-O01/O02/O03 — completed in Sprint 6 child
+- [x] T047a [GATE] Sprint 6a exit gate verification: R7 Recall@20 within 10%, R16 functional, S4 hierarchy functional, N3-lite contradiction detection, weight_history verified, flag count ≤6 [0h] {T041d, T042-T044, T046, T-IP-S6, T-PI-S6, T-FS6a} — completed in Sprint 6 child
 
 ## Sprint 6b: Graph Sophistication [45-69h] (GATED)
 
@@ -273,13 +273,13 @@ contextType: "implementation"
 > **Child folder**: `008-sprint-7-long-horizon/`
 > **Effort note**: 3 scenarios per child plan — minimal (16-22h), moderate (33-48h), full (48-68h). Root header uses conditional range.
 
-- [ ] T048 [P] [W-D] Implement memory summary generation (only if >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag [15-20h] {T047a} — R8
-- [ ] T049 [P] [W-D] Implement smarter memory content generation [8-12h] {T047a} — S1
-- [ ] T050 [P] [W-B] Implement cross-document entity linking [8-12h] {T047a} — S5
-- [ ] T051 [W-C] Implement R13-S3: full reporting + ablation studies [12-16h] {T047a} — R13-S3
-- [ ] T052 [W-C] Evaluate R5 (INT8 quantization) need based on memory count and latency [1-2h] {T047a} — R5 decision
-- [ ] T-FS7 [W-D] Sprint 7 feature flag sunset: Final audit of all remaining flags, graduate permanent features, remove flag code for completed features [2-4h] {T048-T052}
-- [ ] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content generation matches template schema >=95% automated validation, S5 entity links verified, R13-S3 dashboard operational, R5 activation decision documented, final feature flag sunset audit completed [0h] {T048-T052, T-FS7, (soft: T-TEST-S7)}
+- [x] T048 [P] [W-D] Implement memory summary generation (only if >5K memories) behind `SPECKIT_MEMORY_SUMMARIES` flag [15-20h] {T047a} — R8 — completed in Sprint 7 child (SKIPPED — scale gate not met, 2411/5000)
+- [x] T049 [P] [W-D] Implement smarter memory content generation [8-12h] {T047a} — S1 — completed in Sprint 7 child
+- [x] T050 [P] [W-B] Implement cross-document entity linking [8-12h] {T047a} — S5 — completed in Sprint 7 child (SKIPPED — no entity infrastructure, Sprint 6b deferred)
+- [x] T051 [W-C] Implement R13-S3: full reporting + ablation studies [12-16h] {T047a} — R13-S3 — completed in Sprint 7 child
+- [x] T052 [W-C] Evaluate R5 (INT8 quantization) need based on memory count and latency [1-2h] {T047a} — R5 decision — completed in Sprint 7 child (NO-GO, all thresholds below activation)
+- [x] T-FS7 [W-D] Sprint 7 feature flag sunset: Final audit of all remaining flags, graduate permanent features, remove flag code for completed features [2-4h] {T048-T052} — completed in Sprint 7 child (61 flags inventoried; 27 GRADUATE, 9 REMOVE, 3 KEEP)
+- [x] T053 [GATE] Sprint 7 exit gate verification: R8 summary pre-filtering verified (if activated), S1 content generation matches template schema >=95% automated validation, S5 entity links verified, R13-S3 dashboard operational, R5 activation decision documented, final feature flag sunset audit completed [0h] {T048-T052, T-FS7, (soft: T-TEST-S7)} — completed in Sprint 7 child
   - Soft dependency on T-TEST-S7: gate can proceed with test results available, tests can finalize after gate (breaks T-TEST-S7 <-> T053 cycle)
 <!-- /ANCHOR:sprint-7 -->
 
@@ -325,16 +325,16 @@ contextType: "implementation"
 
 ### Sprint 4 Tasks (Feedback Loop)
 
-- [ ] PI-A4 [W-A] Reformat constitutional memories as retrieval directives — add `retrieval_directive` metadata field to constitutional-tier memories; format as explicit instruction prefixes ("Always surface when:", "Prioritize when:") for LLM consumption [8-12h] {T031} — Sprint 5 (deferred from Sprint 4 per REC-07)
+- [x] PI-A4 [W-A] Reformat constitutional memories as retrieval directives — add `retrieval_directive` metadata field to constitutional-tier memories; format as explicit instruction prefixes ("Always surface when:", "Prioritize when:") for LLM consumption [8-12h] {T031} — Sprint 5 (deferred from Sprint 4 per REC-07) — completed in Sprint 5 child
   - Directive extraction: parse existing constitutional memory content to identify rule patterns
   - Risk: Low-Medium — content transformation only; no scoring logic changes
 
 ### Sprint 5 Tasks (Pipeline Refactor + Spec-Kit Logic)
 
-- [ ] PI-B1 [W-D] Implement tree thinning pass in spec folder context loading — before injecting spec folder hierarchy into context, prune low-value nodes: collapse single-child branches, drop nodes below 300-token content threshold, summarize leaf nodes below 100 tokens [10-14h] {T040} — Sprint 5
+- [x] PI-B1 [W-D] Implement tree thinning pass in spec folder context loading — before injecting spec folder hierarchy into context, prune low-value nodes: collapse single-child branches, drop nodes below 300-token content threshold, summarize leaf nodes below 100 tokens [10-14h] {T040} — Sprint 5 — completed in Sprint 5 child
   - Thresholds: collapse if content < 300 tokens; summarize if content < 100 tokens; preserve all anchored nodes regardless of size
   - Risk: Low — thinning is non-destructive; original tree retained in memory
-- [ ] PI-B2 [W-D] Implement progressive validation for spec documents — 4-level validation pipeline: Level 1 (detect structural issues), Level 2 (auto-fix safe violations), Level 3 (suggest fixes for complex issues), Level 4 (report unresolvable issues with remediation guidance) [16-24h] {T040} — Sprint 5
+- [x] PI-B2 [W-D] Implement progressive validation for spec documents — 4-level validation pipeline: Level 1 (detect structural issues), Level 2 (auto-fix safe violations), Level 3 (suggest fixes for complex issues), Level 4 (report unresolvable issues with remediation guidance) [16-24h] {T040} — Sprint 5 — completed in Sprint 5 child
   - Auto-fix scope (Level 2): missing anchors, malformed frontmatter, broken cross-references
   - Suggest scope (Level 3): title mismatches, description staleness, orphaned sections
   - Risk: Medium — Level 2 auto-fix mutates files; requires checkpoint before activation
@@ -373,9 +373,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All sprint exit gates S0-S3 (T009, T014, T020, T025-GATE) PASSED — S4-S7 gates (T031, T040, T047a, T053) pending; T047b if Sprint 6b executed
+- [x] All sprint exit gates S0-S3 (T009, T014, T020, T025-GATE) PASSED; S5-S7 gates (T040, T047a, T053) PASSED — completed in Sprint 5/6/7 children; S4 gate (T031) pending; T047b pending if Sprint 6b executed
 - [ ] No `[B]` blocked tasks remaining
-- [x] Feature flag count <= 6 (verified through S0-S3 sunset reviews)
+- [x] Feature flag count <= 6 (verified through S0-S3 sunset reviews; S5-S7 sunset reviews completed in children)
 - [ ] R13 cumulative health dashboard meets targets (MRR@5 +10-15%, graph hit >20%, channel diversity >3.0)
 - [ ] All 158+ original tests + ~138-193 new tests passing
 

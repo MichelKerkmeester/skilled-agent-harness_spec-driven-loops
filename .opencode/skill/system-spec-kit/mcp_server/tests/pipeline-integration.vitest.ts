@@ -161,8 +161,11 @@ describe('Suite 2 — Pipeline contract tests', () => {
   let hybridSearchEnhanced: typeof import('../lib/search/hybrid-search').hybridSearchEnhanced;
   let getGraphMetrics: typeof import('../lib/search/hybrid-search').getGraphMetrics;
   let resetGraphMetrics: typeof import('../lib/search/hybrid-search').resetGraphMetrics;
+  const savedComplexityRouter = process.env.SPECKIT_COMPLEXITY_ROUTER;
 
   beforeEach(async () => {
+    // Disable complexity router so all channels (including graph) are active for short test queries
+    process.env.SPECKIT_COMPLEXITY_ROUTER = 'false';
     vi.clearAllMocks();
     const mod = await import('../lib/search/hybrid-search');
     init = mod.init;
@@ -173,6 +176,14 @@ describe('Suite 2 — Pipeline contract tests', () => {
 
     // Wire mock graph function into the module.
     init(mockDb, null, mockGraphFn);
+  });
+
+  afterEach(() => {
+    if (savedComplexityRouter === undefined) {
+      delete process.env.SPECKIT_COMPLEXITY_ROUTER;
+    } else {
+      process.env.SPECKIT_COMPLEXITY_ROUTER = savedComplexityRouter;
+    }
   });
 
   it('hybridSearch with useGraph:true calls the graphSearchFn and returns graph results', async () => {

@@ -852,7 +852,7 @@ async function indexChunkedMemoryFile(
           chunkEmbedding = new Float32Array(new Uint8Array(cachedChunkBuf).buffer);
           chunkEmbeddingStatus = 'success';
         } else {
-          chunkEmbedding = await embeddings.generateDocumentEmbedding(chunk.content);
+          chunkEmbedding = await embeddings.generateDocumentEmbedding(normalizeContentForEmbedding(chunk.content));
           if (chunkEmbedding) {
             chunkEmbeddingStatus = 'success';
             const chunkBuf = Buffer.from(chunkEmbedding.buffer, chunkEmbedding.byteOffset, chunkEmbedding.byteLength);

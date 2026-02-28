@@ -518,9 +518,10 @@ function applyPostProcessingAndObserve(
         noveltyBoostApplied: noveltyBoost > 0,
         noveltyBoostValue: noveltyBoost,
         memoryAgeDays: isNaN(createdMs) ? 0 : (Date.now() - createdMs) / 86400000,
-        interferenceApplied: interferenceScore > 0 && process.env.SPECKIT_INTERFERENCE_SCORE === 'true',
+        // AI-WHY: Graduated flag — default ON. Use !== 'false' to match graduated semantics (BUG-4 fix).
+        interferenceApplied: interferenceScore > 0 && process.env.SPECKIT_INTERFERENCE_SCORE?.toLowerCase() !== 'false',
         interferenceScore,
-        interferencePenalty: process.env.SPECKIT_INTERFERENCE_SCORE === 'true' && interferenceScore > 0
+        interferencePenalty: process.env.SPECKIT_INTERFERENCE_SCORE?.toLowerCase() !== 'false' && interferenceScore > 0
           ? INTERFERENCE_PENALTY_COEFFICIENT * interferenceScore : 0,
         scoreBeforeBoosts,
         scoreAfterBoosts: finalScore,

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import path from 'path';
 import os from 'os';
 import fs from 'fs';
@@ -19,7 +19,25 @@ function getErrorMessage(error: unknown): string {
 //   atomicSaveMemory, getAtomicityMetrics, indexMemoryFile
 // ───────────────────────────────────────────────────────────────
 
+// Initialize a test DB at module scope so skipIf conditions can evaluate correctly.
+// The DB must be available before it() registrations (skipIf evaluates at registration time).
+const TEST_DB_DIR = path.join(os.tmpdir(), 'speckit-test-memory-save-extended-' + process.pid);
+const TEST_DB_PATH = path.join(TEST_DB_DIR, 'speckit-memory.db');
+let moduleDb: Database.Database | null = null;
+try {
+  fs.mkdirSync(TEST_DB_DIR, { recursive: true });
+  moduleDb = vectorIndex.initializeDb(TEST_DB_PATH);
+} catch {
+  moduleDb = null;
+}
+const hasModuleDb = moduleDb !== null;
+
 describe('MEMORY SAVE EXTENDED', () => {
+
+  afterAll(() => {
+    try { vectorIndex.closeDb(); } catch { /* ignore */ }
+    try { fs.rmSync(TEST_DB_DIR, { recursive: true, force: true }); } catch { /* ignore */ }
+  });
 
   /* ─────────────────────────────────────────────────────────────
      DB HELPERS
@@ -344,7 +362,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('logs basic decision without error', () => {
+    it.skipIf(!canRun || !hasModuleDb)('logs basic decision without error', () => {
       const decision = {
         action: 'REINFORCE',
         similarity: 0.97,
@@ -354,7 +372,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       expect(() => logPeFn!(decision, 'test-hash-001', 'specs/test-folder')).not.toThrow();
     });
 
-    it.skipIf(!canRun || !db)('logs contradiction decision', () => {
+    it.skipIf(!canRun || !hasModuleDb)('logs contradiction decision', () => {
       const decision = {
         action: 'SUPERSEDE',
         similarity: 0.92,
@@ -370,7 +388,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       expect(() => logPeFn!(decision, 'test-hash-002', 'specs/contradiction-folder')).not.toThrow();
     });
 
-    it.skipIf(!canRun || !db)('handles null existingMemoryId', () => {
+    it.skipIf(!canRun || !hasModuleDb)('handles null existingMemoryId', () => {
       const decision = {
         action: 'CREATE',
         similarity: 0.3,
@@ -380,7 +398,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       expect(() => logPeFn!(decision, 'test-hash-003', 'specs/create-folder')).not.toThrow();
     });
 
-    it.skipIf(!canRun || !db)('handles missing optional fields', () => {
+    it.skipIf(!canRun || !hasModuleDb)('handles missing optional fields', () => {
       const decision = {
         action: 'UPDATE',
         similarity: 0.91,
@@ -411,7 +429,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('error for non-existent ID', () => {
+    it.skipIf(!canRun || !hasModuleDb)('error for non-existent ID', () => {
       const parsed = {
         specFolder: 'specs/test',
         filePath: '/test/memory.md',
@@ -428,7 +446,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       expect(result.error).toContain('not found');
     });
 
-    it.skipIf(!canRun || !db)('returns correct shape for valid memory', () => {
+    it.skipIf(!canRun || !hasModuleDb)('returns correct shape for valid memory', () => {
       if (!db) return;
       const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
@@ -457,7 +475,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('returns error when reinforcement update affects zero rows', () => {
+    it.skipIf(!canRun || !hasModuleDb)('returns error when reinforcement update affects zero rows', () => {
       if (!db) return;
       const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
@@ -494,7 +512,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('error result has expected fields', () => {
+    it.skipIf(!canRun || !hasModuleDb)('error result has expected fields', () => {
       const parsed = {
         specFolder: 'specs/my-spec',
         filePath: '/test/memory.md',
@@ -538,7 +556,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('returns true for valid memory', () => {
+    it.skipIf(!canRun || !hasModuleDb)('returns true for valid memory', () => {
       if (!db) return;
       const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
@@ -561,14 +579,14 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('handles non-existent ID', () => {
+    it.skipIf(!canRun || !hasModuleDb)('handles non-existent ID', () => {
       // SQL UPDATE affects 0 rows but shouldn't throw
       const result = markSupersededFn!(99999);
       // Some implementations return true (no-op), some return false
       expect(typeof result).toBe('boolean');
     });
 
-    it.skipIf(!canRun || !db)('idempotent - no error on repeated calls', () => {
+    it.skipIf(!canRun || !hasModuleDb)('idempotent - no error on repeated calls', () => {
       expect(() => {
         markSupersededFn!(77777);
         markSupersededFn!(77777);
@@ -598,7 +616,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       }
     });
 
-    it.skipIf(!canRun || !db)('returns correct shape', () => {
+    it.skipIf(!canRun || !hasModuleDb)('returns correct shape', () => {
       if (!db) return;
       const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {
@@ -625,7 +643,7 @@ describe('MEMORY SAVE EXTENDED', () => {
       expect(result.title).toBe('Updated Title');
     });
 
-    it.skipIf(!canRun || !db)('includes metadata fields', () => {
+    it.skipIf(!canRun || !hasModuleDb)('includes metadata fields', () => {
       if (!db) return;
       const row = db.prepare('SELECT id FROM memory_index LIMIT 1').get() as { id: number } | undefined;
       if (!row) {

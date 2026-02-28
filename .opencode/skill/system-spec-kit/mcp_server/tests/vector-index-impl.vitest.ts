@@ -1155,13 +1155,43 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
   // ─────────────────────────────────────────────────────────────
   // GROUP 30: Enriched/Enhanced Search (embedding provider dependent)
   // ─────────────────────────────────────────────────────────────
-  describe('Enriched/Enhanced Search (embedding provider dependent)', () => {
-    it.skip('vectorSearchEnriched - requires embedding provider API key', () => {});
-    it.skip('enhancedSearch - requires embedding provider API key', () => {});
-    it.skip('cachedSearch - requires embedding provider API key', () => {});
-    it.skip('multiConceptSearchEnriched - requires embedding provider API key', () => {});
-    it.skip('generateQueryEmbedding - requires embedding provider API key', () => {});
-    it.skip('linkRelatedOnSave - requires embedding provider API key', () => {});
+  describe('Enriched/Enhanced Search (edge cases without API key)', () => {
+    it('vectorSearchEnriched — exported and falls back to keyword search without embedding', async () => {
+      expect(typeof mod.vectorSearchEnriched).toBe('function');
+      // Without an API key, embedding generation fails gracefully → keyword fallback
+      const results = await mod.vectorSearchEnriched('test query', 5);
+      expect(Array.isArray(results)).toBe(true);
+    });
+
+    it('enhancedSearch — exported and returns array for valid query', async () => {
+      expect(typeof mod.enhancedSearch).toBe('function');
+      const results = await mod.enhancedSearch('test query', 5);
+      expect(Array.isArray(results)).toBe(true);
+    });
+
+    it('cachedSearch — exported and returns array', async () => {
+      expect(typeof mod.cachedSearch).toBe('function');
+      const results = await mod.cachedSearch('test query', 5);
+      expect(Array.isArray(results)).toBe(true);
+    });
+
+    it('multiConceptSearchEnriched — exported and returns array for string concepts', async () => {
+      expect(typeof mod.multiConceptSearchEnriched).toBe('function');
+      const results = await mod.multiConceptSearchEnriched(['concept1', 'concept2'], 5);
+      expect(Array.isArray(results)).toBe(true);
+    });
+
+    it('generateQueryEmbedding — returns null for empty query', async () => {
+      expect(typeof mod.generateQueryEmbedding).toBe('function');
+      const result = await mod.generateQueryEmbedding('');
+      expect(result).toBeNull();
+    });
+
+    it('linkRelatedOnSave — returns without error for empty content', async () => {
+      expect(typeof mod.linkRelatedOnSave).toBe('function');
+      // Empty content triggers early return (no API call needed)
+      await expect(mod.linkRelatedOnSave(99999, '')).resolves.not.toThrow();
+    });
   });
 
   // ─────────────────────────────────────────────────────────────
