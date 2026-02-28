@@ -26,7 +26,21 @@ function createTestDb(): any {
       source_id TEXT NOT NULL,
       target_id TEXT NOT NULL,
       relation  TEXT NOT NULL,
-      strength  REAL DEFAULT 1.0
+      strength  REAL DEFAULT 1.0,
+      created_by TEXT DEFAULT 'manual',
+      last_accessed TEXT
+    )
+  `);
+
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS weight_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      edge_id INTEGER NOT NULL,
+      old_strength REAL NOT NULL,
+      new_strength REAL NOT NULL,
+      changed_by TEXT DEFAULT 'manual',
+      changed_at TEXT DEFAULT (datetime('now')),
+      reason TEXT
     )
   `);
 

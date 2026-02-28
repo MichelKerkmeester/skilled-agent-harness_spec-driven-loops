@@ -39,7 +39,7 @@ Refactor the retrieval pipeline into a clean 4-stage architecture: Stage 1 (Cand
 | 1 | Candidate Gen | 5 channels execute (FTS5, semantic, trigger, graph, co-activation) |
 | 2 | Fusion + Signal Integration | RRF/RSF, causal boost, co-activation, composite, intent weights (ONCE) |
 | 3 | Rerank + Aggregate | Cross-encoder rerank, MMR diversity, MPAB chunk aggregation |
-| 4 | Filter + Annotate | State filter, session dedup, constitutional injection, attribution — **NO SCORE CHANGES** |
+| 4 | Filter + Annotate | State filter, evidence-gap + feature/state metadata attribution; session dedup and constitutional injection run post-cache in handler — **NO SCORE CHANGES** |
 <!-- /ANCHOR:summary -->
 
 ---
@@ -73,7 +73,7 @@ Pipeline architecture — replace ad-hoc scoring/filtering with explicit 4-stage
 - **Stage 1: Candidate Generator**: Executes 5 channels in parallel, collects raw results
 - **Stage 2: Fusion Engine**: Single point for all scoring signals — RRF/RSF, causal boost, co-activation, composite, intent weights (applied ONCE here only)
 - **Stage 3: Reranker + Aggregator**: Cross-encoder rerank, MMR diversity enforcement, MPAB chunk-to-memory aggregation
-- **Stage 4: Filter + Annotator**: State filtering, session dedup, constitutional injection, channel attribution — NO score modifications (invariant)
+- **Stage 4: Filter + Annotator**: State filtering, evidence-gap detection, feature/state metadata attribution — NO score modifications (invariant). Session dedup and constitutional injection remain post-cache in handler runtime boundary.
 
 ### Data Flow
 1. Query enters Stage 1 --> 5 channels generate candidates

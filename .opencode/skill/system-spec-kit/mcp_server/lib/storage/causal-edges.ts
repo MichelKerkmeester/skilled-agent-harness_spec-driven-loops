@@ -38,6 +38,14 @@ const RELATION_WEIGHTS: Record<string, number> = {
 const DEFAULT_MAX_DEPTH = 3;
 const MAX_EDGES_LIMIT = 100;
 
+// Sprint 6 N3-lite edge bounds (NFR-R01, SC-005)
+const MAX_EDGES_PER_NODE = 20;
+const MAX_AUTO_STRENGTH = 0.5;
+const MAX_STRENGTH_INCREASE_PER_CYCLE = 0.05;
+const STALENESS_THRESHOLD_DAYS = 90;
+const DECAY_STRENGTH_AMOUNT = 0.1;
+const DECAY_PERIOD_DAYS = 30;
+
 /* -------------------------------------------------------------
    2. INTERFACES
 ----------------------------------------------------------------*/
@@ -50,6 +58,18 @@ interface CausalEdge {
   strength: number;
   evidence: string | null;
   extracted_at: string;
+  created_by: string;
+  last_accessed: string | null;
+}
+
+interface WeightHistoryEntry {
+  id: number;
+  edge_id: number;
+  old_strength: number;
+  new_strength: number;
+  changed_by: string;
+  changed_at: string;
+  reason: string | null;
 }
 
 interface GraphStats {
@@ -102,26 +122,53 @@ function insertEdge(
   strength: number = 1.0,
   evidence: string | null = null,
   shouldInvalidateCache: boolean = true,
+  createdBy: string = 'manual',
 ): number | null {
   if (!db) {
     console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
     return null;
   }
 
+  // NFR-R01: Auto edges capped at MAX_AUTO_STRENGTH
+  const effectiveStrength = createdBy === 'auto'
+    ? Math.min(strength, MAX_AUTO_STRENGTH)
+    : strength;
+
+  // NFR-R01: Edge bounds — reject if node already has MAX_EDGES_PER_NODE auto edges
+  if (createdBy === 'auto') {
+    const edgeCount = countEdgesForNode(sourceId);
+    if (edgeCount >= MAX_EDGES_PER_NODE) {
+      console.warn(`[causal-edges] Edge bounds: node ${sourceId} has ${edgeCount} edges (max ${MAX_EDGES_PER_NODE}), rejecting auto edge`);
+      return null;
+    }
+  }
+
   try {
-    const clampedStrength = Math.max(0, Math.min(1, strength));
+    const clampedStrength = Math.max(0, Math.min(1, effectiveStrength));
+
+    // Check if edge exists (for weight_history logging on conflict update)
+    const existing = (db.prepare(`
+      SELECT id, strength FROM causal_edges
+      WHERE source_id = ? AND target_id = ? AND relation = ?
+    `) as Database.Statement).get(sourceId, targetId, relation) as { id: number; strength: number } | undefined;
+
     (db.prepare(`
-      INSERT INTO causal_edges (source_id, target_id, relation, strength, evidence)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO causal_edges (source_id, target_id, relation, strength, evidence, created_by)
+      VALUES (?, ?, ?, ?, ?, ?)
       ON CONFLICT(source_id, target_id, relation) DO UPDATE SET
         strength = excluded.strength,
         evidence = COALESCE(excluded.evidence, causal_edges.evidence)
-    `) as Database.Statement).run(sourceId, targetId, relation, clampedStrength, evidence);
+    `) as Database.Statement).run(sourceId, targetId, relation, clampedStrength, evidence, createdBy);
 
     const row = (db.prepare(`
       SELECT id FROM causal_edges
       WHERE source_id = ? AND target_id = ? AND relation = ?
     `) as Database.Statement).get(sourceId, targetId, relation) as { id: number } | undefined;
+
+    // T001d: Log weight change on conflict update
+    if (existing && row && existing.strength !== clampedStrength) {
+      logWeightChange(row.id, existing.strength, clampedStrength, createdBy, 'insert-upsert');
+    }
 
     if (shouldInvalidateCache) {
       invalidateDegreeCache();
@@ -142,6 +189,7 @@ function insertEdgesBatch(
     relation: RelationType;
     strength?: number;
     evidence?: string | null;
+    createdBy?: string;
   }>
 ): { inserted: number; failed: number } {
   if (!db) return { inserted: 0, failed: edges.length };
@@ -158,6 +206,7 @@ function insertEdgesBatch(
         edge.strength ?? 1.0,
         edge.evidence ?? null,
         false,
+        edge.createdBy ?? 'manual',
       );
       if (id !== null) inserted++;
       else failed++;
@@ -290,11 +339,22 @@ function getCausalChain(
 
 function updateEdge(
   edgeId: number,
-  updates: { strength?: number; evidence?: string }
+  updates: { strength?: number; evidence?: string },
+  changedBy: string = 'manual',
+  reason: string | null = null,
 ): boolean {
   if (!db) return false;
 
   try {
+    // T001d: Capture old strength for weight_history logging
+    let oldStrength: number | undefined;
+    if (updates.strength !== undefined) {
+      const existing = (db.prepare(
+        'SELECT strength FROM causal_edges WHERE id = ?'
+      ) as Database.Statement).get(edgeId) as { strength: number } | undefined;
+      oldStrength = existing?.strength;
+    }
+
     const parts: string[] = [];
     const params: unknown[] = [];
 
@@ -314,11 +374,21 @@ function updateEdge(
       `UPDATE causal_edges SET ${parts.join(', ')} WHERE id = ?`
     ) as Database.Statement).run(...params);
 
-    if ((result as { changes: number }).changes > 0) {
+    const changed = (result as { changes: number }).changes > 0;
+
+    // T001d: Log weight change to weight_history
+    if (changed && updates.strength !== undefined && oldStrength !== undefined) {
+      const newStrength = Math.max(0, Math.min(1, updates.strength));
+      if (oldStrength !== newStrength) {
+        logWeightChange(edgeId, oldStrength, newStrength, changedBy, reason);
+      }
+    }
+
+    if (changed) {
       invalidateDegreeCache();
     }
 
-    return (result as { changes: number }).changes > 0;
+    return changed;
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : String(error);
     console.warn(`[causal-edges] updateEdge error: ${msg}`);
@@ -466,7 +536,135 @@ function createSpecDocumentChain(documentIds: Record<string, number>): { inserte
 }
 
 /* -------------------------------------------------------------
-   10. EXPORTS
+   10. WEIGHT HISTORY & AUDIT (T001d)
+----------------------------------------------------------------*/
+
+function logWeightChange(
+  edgeId: number,
+  oldStrength: number,
+  newStrength: number,
+  changedBy: string = 'manual',
+  reason: string | null = null,
+): void {
+  if (!db) return;
+  try {
+    (db.prepare(`
+      INSERT INTO weight_history (edge_id, old_strength, new_strength, changed_by, reason)
+      VALUES (?, ?, ?, ?, ?)
+    `) as Database.Statement).run(edgeId, oldStrength, newStrength, changedBy, reason);
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[causal-edges] logWeightChange error: ${msg}`);
+  }
+}
+
+function getWeightHistory(edgeId: number, limit: number = 50): WeightHistoryEntry[] {
+  if (!db) return [];
+  try {
+    return (db.prepare(`
+      SELECT * FROM weight_history WHERE edge_id = ? ORDER BY changed_at DESC LIMIT ?
+    `) as Database.Statement).all(edgeId, limit) as WeightHistoryEntry[];
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[causal-edges] getWeightHistory error: ${msg}`);
+    return [];
+  }
+}
+
+function rollbackWeights(edgeId: number, toTimestamp: string): boolean {
+  if (!db) return false;
+  try {
+    // Get current strength before rollback
+    const current = (db.prepare(
+      'SELECT strength FROM causal_edges WHERE id = ?'
+    ) as Database.Statement).get(edgeId) as { strength: number } | undefined;
+    if (!current) return false;
+
+    // Find the earliest history entry at or after the target timestamp
+    // If no exact match, fall back to the first entry for this edge
+    let entry = (db.prepare(`
+      SELECT old_strength FROM weight_history
+      WHERE edge_id = ? AND changed_at >= ?
+      ORDER BY changed_at ASC LIMIT 1
+    `) as Database.Statement).get(edgeId, toTimestamp) as { old_strength: number } | undefined;
+
+    if (!entry) {
+      // Fall back: get the oldest entry's old_strength (pre-change baseline)
+      entry = (db.prepare(`
+        SELECT old_strength FROM weight_history
+        WHERE edge_id = ?
+        ORDER BY changed_at ASC LIMIT 1
+      `) as Database.Statement).get(edgeId) as { old_strength: number } | undefined;
+    }
+    if (!entry) return false;
+
+    // Restore the edge to the old_strength value
+    const result = (db.prepare(
+      'UPDATE causal_edges SET strength = ? WHERE id = ?'
+    ) as Database.Statement).run(entry.old_strength, edgeId);
+
+    // Log the rollback
+    if (current.strength !== entry.old_strength) {
+      logWeightChange(edgeId, current.strength, entry.old_strength, 'rollback', `rollback to ${toTimestamp}`);
+    }
+
+    invalidateDegreeCache();
+    return (result as { changes: number }).changes > 0;
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[causal-edges] rollbackWeights error: ${msg}`);
+    return false;
+  }
+}
+
+/* -------------------------------------------------------------
+   11. EDGE BOUNDS & COUNTING (N3-lite NFR-R01)
+----------------------------------------------------------------*/
+
+function countEdgesForNode(nodeId: string): number {
+  if (!db) return 0;
+  try {
+    const row = (db.prepare(`
+      SELECT COUNT(*) as count FROM causal_edges
+      WHERE source_id = ? OR target_id = ?
+    `) as Database.Statement).get(nodeId, nodeId) as { count: number };
+    return row.count;
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[causal-edges] countEdgesForNode error: ${msg}`);
+    return 0;
+  }
+}
+
+function touchEdgeAccess(edgeId: number): void {
+  if (!db) return;
+  try {
+    (db.prepare(
+      "UPDATE causal_edges SET last_accessed = datetime('now') WHERE id = ?"
+    ) as Database.Statement).run(edgeId);
+  } catch (_error: unknown) {
+    // best-effort
+  }
+}
+
+function getStaleEdges(thresholdDays: number = STALENESS_THRESHOLD_DAYS): CausalEdge[] {
+  if (!db) return [];
+  try {
+    return (db.prepare(`
+      SELECT * FROM causal_edges
+      WHERE last_accessed IS NULL AND extracted_at < datetime('now', '-' || ? || ' days')
+         OR last_accessed < datetime('now', '-' || ? || ' days')
+      ORDER BY COALESCE(last_accessed, extracted_at) ASC
+    `) as Database.Statement).all(thresholdDays, thresholdDays) as CausalEdge[];
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[causal-edges] getStaleEdges error: ${msg}`);
+    return [];
+  }
+}
+
+/* -------------------------------------------------------------
+   12. EXPORTS
 ----------------------------------------------------------------*/
 
 export {
@@ -474,6 +672,12 @@ export {
   RELATION_WEIGHTS,
   DEFAULT_MAX_DEPTH,
   MAX_EDGES_LIMIT,
+  MAX_EDGES_PER_NODE,
+  MAX_AUTO_STRENGTH,
+  MAX_STRENGTH_INCREASE_PER_CYCLE,
+  STALENESS_THRESHOLD_DAYS,
+  DECAY_STRENGTH_AMOUNT,
+  DECAY_PERIOD_DAYS,
 
   init,
   insertEdge,
@@ -488,11 +692,22 @@ export {
   getGraphStats,
   findOrphanedEdges,
   createSpecDocumentChain,
+
+  // T001d: Weight history & audit
+  logWeightChange,
+  getWeightHistory,
+  rollbackWeights,
+
+  // N3-lite: Edge bounds & counting
+  countEdgesForNode,
+  touchEdgeAccess,
+  getStaleEdges,
 };
 
 export type {
   RelationType,
   CausalEdge,
+  WeightHistoryEntry,
   GraphStats,
   CausalChainNode,
 };

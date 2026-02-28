@@ -34,20 +34,20 @@ contextType: "implementation"
 <!-- ANCHOR:checkpoint -->
 ## Safety Gate
 
-- [ ] T-S6-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {} — Safety gate for N3-lite edge mutations
+- [x] T-S6-PRE [GATE-PRE] Create checkpoint: `memory_checkpoint_create("pre-graph-mutations")` [0h] {} — Safety gate for N3-lite edge mutations
 
 ---
 
 <!-- ANCHOR:sprint-6a -->
 ## Sprint 6a: Practical Improvements (R7, R16, S4, T001d, N3-lite) — 33-51h
 
-- [ ] T001d **MR10 mitigation: weight_history audit tracking** — add `weight_history` column or log weight changes to eval DB for N3-lite Hebbian modifications; enables rollback of weight changes independent of edge creation [2-3h] — MR10 (REQUIRED — promoted from risk mitigation)
+- [x] T001d **MR10 mitigation: weight_history audit tracking** — add `weight_history` column or log weight changes to eval DB for N3-lite Hebbian modifications; enables rollback of weight changes independent of edge creation [2-3h] — MR10 (REQUIRED — promoted from risk mitigation)
   - Acceptance: all N3-lite weight modifications logged with before/after values, timestamps, and affected edge IDs; rollback script can restore weights from history
   - Rationale: without weight_history, cumulative rollback to pre-S6 state is practically impossible after Hebbian weight modifications
-- [ ] T003 [P] Implement anchor-aware chunk thinning [10-15h] — R7 (REQ-S6-001)
+- [x] T003 [P] Implement anchor-aware chunk thinning [10-15h] — R7 (REQ-S6-001)
   - Sub-steps: (1) Parse anchor markers in indexed content. (2) Score chunks by anchor presence + content density. (3) Apply thinning threshold — drop chunks below score cutoff. (4) Run Recall@20 eval before/after.
   - Acceptance criteria: Recall@20 within 10% of pre-thinning baseline on eval query set.
-- [ ] T004 [P] Implement encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag [5-8h] — R16 (REQ-S6-002)
+- [x] T004 [P] Implement encoding-intent capture behind `SPECKIT_ENCODING_INTENT` flag [5-8h] — R16 (REQ-S6-002)
   - Sub-steps: (1) Add `encoding_intent` field to memory index schema. (2) Classify intent at index time (code, prose, structured data). (3) Store alongside embedding. (4) Expose in retrieval metadata (read-only; no retrieval-time scoring impact — index-only capture).
   - Acceptance criteria: `encoding_intent` field populated for all newly indexed memories when flag is enabled. Note: R16 captures intent at index time for metadata enrichment; it does not influence retrieval scoring in Sprint 6.
 - [ ] T006 [P] Implement spec folder hierarchy as retrieval structure [6-10h] — S4 (REQ-S6-006)

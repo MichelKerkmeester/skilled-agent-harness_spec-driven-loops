@@ -114,3 +114,23 @@ export function isPipelineV2Enabled(): boolean {
 export function isEmbeddingExpansionEnabled(): boolean {
   return process.env.SPECKIT_EMBEDDING_EXPANSION?.toLowerCase() === 'true';
 }
+
+// ── Sprint 6: Indexing and Graph flags ──
+
+/**
+ * N3-lite: Consolidation engine — contradiction scan, Hebbian strengthening,
+ * staleness detection, edge bounds enforcement.
+ * Default: FALSE (opt-in). Set SPECKIT_CONSOLIDATION=true to enable.
+ */
+export function isConsolidationEnabled(): boolean {
+  return process.env.SPECKIT_CONSOLIDATION?.toLowerCase() === 'true';
+}
+
+/**
+ * R16: Encoding-intent capture at index time.
+ * Records intent metadata (document, code, structured_data) alongside embeddings.
+ * Default: FALSE (opt-in). Set SPECKIT_ENCODING_INTENT=true to enable.
+ */
+export function isEncodingIntentEnabled(): boolean {
+  return process.env.SPECKIT_ENCODING_INTENT?.toLowerCase() === 'true';
+}

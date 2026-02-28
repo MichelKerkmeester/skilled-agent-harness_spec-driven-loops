@@ -56,8 +56,8 @@ Stage 3: Rerank + Aggregate
   └─ MPAB chunk collapse + parent reassembly
 
 Stage 4: Filter + Annotate (NO SCORE CHANGES)
-  └─ Memory state filtering, session dedup, constitutional injection
-  └─ TRM evidence gap detection
+  └─ Memory state filtering, TRM evidence gap detection, feature/state metadata
+  └─ Session dedup + constitutional injection remain post-cache in handler runtime boundary
   └─ Stage 4 Invariant: captureScoreSnapshot() → verifyScoreInvariant()
 ```
 
@@ -145,7 +145,7 @@ Stage 4: Filter + Annotate (NO SCORE CHANGES)
 
 - Thresholds: <200 tokens → merged-into-parent, <500 → content-as-summary, ≥500 → keep
 - Memory thresholds: <100 → content-as-summary, 100-300 → merged, ≥300 → keep
-- Wired into workflow.ts Step 7.6 (pre-pipeline)
+- Wired into workflow.ts Step 7.6 (pre-pipeline) and applied to rendered context payload (`FILES` + `KEY_FILES`) via effective-file reduction/merge-note mapping
 - **Tests**: 33 tests
 
 ### PI-B2 — Progressive Validation
@@ -184,7 +184,7 @@ Stage 4: Filter + Annotate (NO SCORE CHANGES)
 | `hooks/memory-surface.ts` | TM-05 dual-scope hooks + PI-A4 enrichment |
 | `lib/search/search-flags.ts` | 2 new flags: PIPELINE_V2, EMBEDDING_EXPANSION |
 | `tests/modularization.vitest.ts` | Extended limit for memory-search.js (1200 → 1450) |
-| `scripts/core/workflow.ts` | PI-B1 tree thinning wired at Step 7.6 |
+| `scripts/core/workflow.ts` | PI-B1 tree thinning wired and applied to effective rendered file list (merged entries collapsed with parent merge notes) |
 
 ---
 

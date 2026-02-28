@@ -38,7 +38,19 @@ describe('T048-T049 integration path', () => {
         relation TEXT NOT NULL,
         strength REAL DEFAULT 1.0,
         evidence TEXT,
-        extracted_at TEXT DEFAULT CURRENT_TIMESTAMP
+        extracted_at TEXT DEFAULT CURRENT_TIMESTAMP,
+        created_by TEXT DEFAULT 'manual',
+        last_accessed TEXT
+      );
+
+      CREATE TABLE IF NOT EXISTS weight_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        edge_id INTEGER NOT NULL REFERENCES causal_edges(id) ON DELETE CASCADE,
+        old_strength REAL NOT NULL,
+        new_strength REAL NOT NULL,
+        changed_by TEXT DEFAULT 'manual',
+        changed_at TEXT DEFAULT (datetime('now')),
+        reason TEXT
       );
     `);
 

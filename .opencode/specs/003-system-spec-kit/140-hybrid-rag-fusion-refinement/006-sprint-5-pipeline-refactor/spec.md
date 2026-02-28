@@ -284,7 +284,7 @@ All auto-fixes are logged with before/after diffs as the primary mitigation agai
 | 1 | Candidate Generation | 5 channels execute, raw results collected | N/A (raw scores) |
 | 2 | Fusion + Signal Integration | RRF/RSF, causal boost, co-activation, composite, intent weights (ONCE) | YES |
 | 3 | Rerank + Aggregate | Cross-encoder, MMR, MPAB | YES |
-| 4 | Filter + Annotate | State filter, session dedup, constitutional injection, attribution | **NO** |
+| 4 | Filter + Annotate | State filter, evidence-gap annotation, feature/state metadata attribution (session dedup + constitutional injection run post-cache in handler) | **NO** |
 
 **Architectural Invariant**: Stage 4 MUST NOT modify scores. Any ordering change after Stage 3 is a bug.
 

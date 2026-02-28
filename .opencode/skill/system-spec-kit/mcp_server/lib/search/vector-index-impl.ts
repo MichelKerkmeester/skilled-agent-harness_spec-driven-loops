@@ -341,7 +341,9 @@ function resolve_database_path() {
 // v14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
 // v15: Add quality_score and quality_flags columns for memory quality gates
 // v16: Add parent_id column for chunked indexing of large files (010-index-large-files)
-const SCHEMA_VERSION = 17;
+// v17: Add interference_score column for TM-01 (Sprint 2)
+// v18: Sprint 6 — weight_history table + causal_edges provenance + encoding_intent column
+const SCHEMA_VERSION = 18;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -775,6 +777,8 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
             strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
             evidence TEXT,
             extracted_at TEXT DEFAULT (datetime('now')),
+            created_by TEXT DEFAULT 'manual',
+            last_accessed TEXT,
             UNIQUE(source_id, target_id, relation)
           )
         `);
@@ -1123,6 +1127,62 @@ function run_migrations(database: Database.Database, from_version: number, to_ve
         logger.info('Migration v17: Created interference_score index');
       } catch (e: unknown) {
         console.warn('[VectorIndex] Migration v17 warning (idx_interference_score):', get_error_message(e));
+      }
+    },
+
+    18: () => {
+      // v17 -> v18: Sprint 6 — weight_history, causal_edges provenance, encoding_intent
+      // T001d: weight_history table for N3-lite Hebbian audit trail
+      // NFR-S01: created_by provenance on causal_edges
+      // REQ-S6-002: encoding_intent capture at index time
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS weight_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            edge_id INTEGER NOT NULL REFERENCES causal_edges(id) ON DELETE CASCADE,
+            old_strength REAL NOT NULL,
+            new_strength REAL NOT NULL,
+            changed_by TEXT DEFAULT 'manual',
+            changed_at TEXT DEFAULT (datetime('now')),
+            reason TEXT
+          )
+        `);
+        database.exec('CREATE INDEX IF NOT EXISTS idx_weight_history_edge ON weight_history(edge_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_weight_history_time ON weight_history(changed_at DESC)');
+        logger.info('Migration v18: Created weight_history table (T001d)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('already exists')) {
+          console.warn('[VectorIndex] Migration v18 warning (weight_history):', get_error_message(e));
+        }
+      }
+
+      // Add created_by and last_accessed to causal_edges for provenance tracking (NFR-S01)
+      try {
+        database.exec("ALTER TABLE causal_edges ADD COLUMN created_by TEXT DEFAULT 'manual'");
+        logger.info('Migration v18: Added created_by column to causal_edges');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v18 warning (created_by):', get_error_message(e));
+        }
+      }
+      try {
+        database.exec('ALTER TABLE causal_edges ADD COLUMN last_accessed TEXT');
+        logger.info('Migration v18: Added last_accessed column to causal_edges');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v18 warning (last_accessed):', get_error_message(e));
+        }
+      }
+
+      // Add encoding_intent to memory_index for R16 (REQ-S6-002)
+      try {
+        database.exec("ALTER TABLE memory_index ADD COLUMN encoding_intent TEXT DEFAULT 'document'");
+        database.exec('CREATE INDEX IF NOT EXISTS idx_encoding_intent ON memory_index(encoding_intent)');
+        logger.info('Migration v18: Added encoding_intent column to memory_index (R16)');
+      } catch (e: unknown) {
+        if (!get_error_message(e).includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v18 warning (encoding_intent):', get_error_message(e));
+        }
       }
     }
   };
@@ -1698,6 +1758,7 @@ function create_schema(database: Database.Database) {
       parent_id INTEGER REFERENCES memory_index(id) ON DELETE CASCADE,
       chunk_index INTEGER,
       chunk_label TEXT,
+      encoding_intent TEXT DEFAULT 'document',
       UNIQUE(spec_folder, file_path, anchor_id)
     )
   `);

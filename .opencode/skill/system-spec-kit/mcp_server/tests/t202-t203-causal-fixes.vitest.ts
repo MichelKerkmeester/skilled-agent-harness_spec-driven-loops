@@ -25,7 +25,22 @@ describe('T202 + T203: FlatEdge id & Relations Filter [deferred - requires DB te
         strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
         evidence TEXT,
         extracted_at TEXT DEFAULT (datetime('now')),
+        created_by TEXT DEFAULT 'manual',
+        last_accessed TEXT,
         UNIQUE(source_id, target_id, relation)
+      )
+    `);
+
+    // Sprint 6 T001d: weight_history
+    testDb.exec(`
+      CREATE TABLE IF NOT EXISTS weight_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        edge_id INTEGER NOT NULL REFERENCES causal_edges(id) ON DELETE CASCADE,
+        old_strength REAL NOT NULL,
+        new_strength REAL NOT NULL,
+        changed_by TEXT DEFAULT 'manual',
+        changed_at TEXT DEFAULT (datetime('now')),
+        reason TEXT
       )
     `);
 
