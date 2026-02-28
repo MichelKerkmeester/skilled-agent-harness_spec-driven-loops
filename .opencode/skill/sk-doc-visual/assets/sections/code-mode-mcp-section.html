@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Preview</title>
+  <link rel="stylesheet" href="../variables/fluid-typography.css">
+  <link rel="stylesheet" href="../variables/colors.css">
+  <link rel="stylesheet" href="../variables/typography.css">
+  <link rel="stylesheet" href="../variables/layout.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="../variables/template-defaults.js" defer></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    body {
+      font-family: var(--font-sans);
+      line-height: var(--lh-base);
+      font-weight: var(--weight-medium);
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+    }
+    .mono {
+      font-family: var(--font-mono);
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+    .page-container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="selection:bg-[var(--accent-muted)] min-h-screen relative w-full">
+
+<div class="page-container px-6 lg:px-12 py-12">
+<style>
+section[id] {
+  scroll-margin-top: 6rem;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-reveal);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.text-balance {
+  text-wrap: balance;
+}
+.glass-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: var(--transition-card);
+}
+.glass-card:hover {
+  border-color: var(--accent-hover);
+  box-shadow: var(--glass-shadow);
+  transform: translateY(-2px);
+}
+</style>
+<section id="{{section_id|default('code-mode-mcp')}}" class="space-y-10 reveal pt-4 active">
+  <div class="inline-flex items-center gap-3 border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-widest text-[var(--zinc-200)] mb-2">
+    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span> {{section_number|default("09")}} // {{section_title|default("CODE MODE MCP")}}
+  </div>
+  
+  <div class="space-y-8">
+    <p class="text-3xl font-semibold tracking-tighter text-[var(--zinc-200)] text-balance">
+      {{headline|default("98.7% context token savings.")}}
+    </p>
+    <p class="text-[var(--zinc-400)] text-sm leading-relaxed max-w-3xl">
+      {{description|default("External tool integration via TypeScript execution. Instead of loading all tool definitions into context upfront, Code Mode uses progressive disclosure.")}}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="relative group code-window rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface)] shadow-2xl flex flex-col">
+      <div class="absolute top-0 left-0 w-full h-9 bg-[var(--surface-l3-alpha)] backdrop-blur border-b border-[var(--border-light)] flex items-center justify-between px-4 z-10">
+            <div class="flex items-center gap-3">
+              <span class="text-[9px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">typescript</span>
+            </div>
+            <button class="opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity text-[var(--text-muted)] hover:text-[var(--text)] flex items-center p-1 rounded hover:bg-[var(--surface-l3)] focus-visible:ring-1 focus-visible:ring-[var(--accent)] outline-none" aria-label="Copy code">
+              <iconify-icon icon="lucide:copy" class="text-xs"></iconify-icon>
+            </button>
+      </div>
+      <pre class="p-5 pt-14 text-[11px] text-[var(--zinc-300)] mono overflow-x-auto leading-relaxed"><code><span class="text-[var(--zinc-500)]">// 1. Discover relevant tools</span>
+<span class="text-[var(--zinc-200)]">search_tools</span>({ task_description: <span class="text-[var(--success)]">"site management"</span> })
+
+<span class="text-[var(--zinc-500)]">// 2. Get parameter details</span>
+<span class="text-[var(--zinc-200)]">tool_info</span>({ tool_name: <span class="text-[var(--success)]">"sites_list"</span> })
+
+<span class="text-[var(--zinc-500)]">// 3. Execute securely</span>
+<span class="text-[var(--zinc-200)]">call_tool_chain</span>({ 
+  code: <span class="text-[var(--success)]">"await webflow.sites_list({})"</span> 
+})</code></pre>
+    </div>
+
+    <div class="glass-card p-6 flex flex-col justify-center space-y-6 shadow-lg border-[var(--border)]">
+      <h3 class="text-[10px] font-semibold tracking-widest text-[var(--text-muted)] uppercase">{{metrics_title|default("Performance Metrics")}}</h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between border-b border-[var(--border-light)] pb-3">
+          <span class="text-xs font-semibold text-[var(--zinc-300)]">{{metric1_label|default("Context tokens")}}</span>
+          <span class="text-xs mono text-[var(--success)] flex items-center gap-1"><iconify-icon icon="lucide:arrow-down"></iconify-icon> {{metric1_value|default("1.6k (was 141k)")}}</span>
+        </div>
+        <div class="flex items-center justify-between border-b border-[var(--border-light)] pb-3">
+          <span class="text-xs font-semibold text-[var(--zinc-300)]">{{metric2_label|default("Execution trips")}}</span>
+          <span class="text-xs mono text-[var(--success)] flex items-center gap-1"><iconify-icon icon="lucide:zap"></iconify-icon> {{metric2_value|default("1 combined TS call")}}</span>
+        </div>
+        <div class="flex items-center justify-between pb-1">
+          <span class="text-xs font-semibold text-[var(--zinc-300)]">{{metric3_label|default("Safety")}}</span>
+          <span class="text-xs mono text-[var(--success)] flex items-center gap-1"><iconify-icon icon="lucide:shield-check"></iconify-icon> {{metric3_value|default("Type-safe")}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+</div>
+<script>
+  // Code Block Copy Functionality
+  document.querySelectorAll('.code-window').forEach(window => {
+    const copyBtn = window.querySelector('button[aria-label="Copy code"]');
+    const code = window.querySelector('code');
+    
+    if(copyBtn && code) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(code.innerText).then(() => {
+          const icon = copyBtn.querySelector('iconify-icon');
+          const originalIcon = icon.getAttribute('icon');
+          icon.setAttribute('icon', 'lucide:check');
+          copyBtn.classList.add('text-[var(--success)]');
+          
+          setTimeout(() => {
+            icon.setAttribute('icon', originalIcon);
+            copyBtn.classList.remove('text-[var(--success)]');
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>
