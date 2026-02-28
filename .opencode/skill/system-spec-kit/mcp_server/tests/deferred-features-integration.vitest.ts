@@ -171,6 +171,7 @@ describe('Deferred Features: Integration Tests', () => {
   });
 
   afterEach(() => {
+    delete process.env.SPECKIT_ENTITY_LINKING_MAX_DENSITY;
     db.close();
   });
 
@@ -312,6 +313,22 @@ const middleware = createAuthMiddleware();
     it('hasEntityInfrastructure returns true after catalog entries', () => {
       updateEntityCatalog(db, [{ text: 'Test Entity', type: 'proper_noun', frequency: 1 }]);
       expect(hasEntityInfrastructure(db)).toBe(true);
+    });
+
+    it('density guard skips entity linking when graph is already dense', () => {
+      process.env.SPECKIT_ENTITY_LINKING_MAX_DENSITY = '0.3';
+
+      // 4 seed edges across 5 memories => density 0.8 (> 0.3)
+      seedEdges(db);
+
+      storeEntities(db, 1, [{ text: 'API Gateway', type: 'proper_noun', frequency: 1 }]);
+      storeEntities(db, 3, [{ text: 'API Gateway', type: 'proper_noun', frequency: 1 }]);
+      updateEntityCatalog(db, [{ text: 'API Gateway', type: 'proper_noun', frequency: 1 }]);
+
+      const result = runEntityLinking(db);
+      expect(result.linksCreated).toBe(0);
+      expect(result.skippedByDensityGuard).toBe(true);
+      expect(result.edgeDensity).toBeGreaterThan(result.densityThreshold ?? 0);
     });
   });
 

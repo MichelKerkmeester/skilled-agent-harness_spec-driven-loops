@@ -1719,6 +1719,14 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
       const linkResult = runEntityLinking(database);
       if (linkResult.linksCreated > 0) {
         console.info(`[entity-linking] Created ${linkResult.linksCreated} cross-doc links from ${linkResult.crossDocMatches} entity matches`);
+      } else if (linkResult.skippedByDensityGuard) {
+        const density = typeof linkResult.edgeDensity === 'number'
+          ? linkResult.edgeDensity.toFixed(3)
+          : 'unknown';
+        const threshold = typeof linkResult.densityThreshold === 'number'
+          ? linkResult.densityThreshold.toFixed(3)
+          : 'unknown';
+        console.info(`[entity-linking] Skipped by density guard (density=${density}, threshold=${threshold})`);
       }
     } catch (linkErr: unknown) {
       const message = toErrorMessage(linkErr);

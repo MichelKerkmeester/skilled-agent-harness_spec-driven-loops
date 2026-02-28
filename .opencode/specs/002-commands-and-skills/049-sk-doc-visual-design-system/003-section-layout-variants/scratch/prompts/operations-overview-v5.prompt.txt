@@ -1,11 +1,11 @@
 As @write agent, generate one complete standalone HTML file for a documentation section layout variant.
 
 TASK
-- Section key: setup-and-usage
-- Variant: v4
-- Direction: Failure-Aware Cookbook
-- Direction intent: Each step paired with quick failure diagnosis.
-- Section purpose: Detailed setup and practical usage section with config and command examples.
+- Section key: operations-overview
+- Variant: v5
+- Direction: Ops Scenario Matrix
+- Direction intent: Scenario matrix crossing operations state and response patterns.
+- Section purpose: Operational summary combining governance, lifecycle steps, and action examples.
 
 HARD REQUIREMENTS
 1) Adhere to style tokens and variables from supplied files (colors, typography, layout).
@@ -29,5 +29,3 @@ QUALITY CONTROLS
 - Avoid aggressive visual effects.
 - Avoid decorative noise.
 - Maintain clear hierarchy and implementation practicality.
-
-Previous attempt failed validation. Missing/forbidden signals: <meta name="color-scheme" content="light dark">, <section. Regenerate complete HTML only and satisfy all constraints exactly.

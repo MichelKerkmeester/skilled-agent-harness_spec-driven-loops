@@ -3,7 +3,7 @@
 // Cross-Document Entity Linking
 // ---------------------------------------------------------------
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import Database from 'better-sqlite3';
 
 import {
@@ -106,6 +106,10 @@ describe('S8 Entity Linker', () => {
 
   beforeEach(() => {
     db = createTestDb();
+  });
+
+  afterEach(() => {
+    delete process.env.SPECKIT_ENTITY_LINKING_MAX_DENSITY;
   });
 
   // ─────────────────────────────────────────────────────────
@@ -366,6 +370,58 @@ describe('S8 Entity Linker', () => {
       const result = createEntityLinks(db, matches);
       expect(result.linksCreated).toBe(0);
     });
+
+    it('skips link creation when projected density exceeds threshold', () => {
+      insertMemory(db, 1, 'specs/001-alpha');
+      insertMemory(db, 2, 'specs/002-beta');
+      insertMemory(db, 3, 'specs/003-gamma');
+      insertMemory(db, 4, 'specs/004-delta');
+
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('1', '3', 'caused', 'test')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('2', '3', 'caused', 'test')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('1', '4', 'caused', 'test')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('2', '4', 'caused', 'test')`).run();
+
+      const matches: EntityMatch[] = [{
+        canonicalName: 'dense graph entity',
+        memoryIds: [1, 2],
+        specFolders: ['specs/001-alpha', 'specs/002-beta'],
+      }];
+
+      const result = createEntityLinks(db, matches, { maxEdgeDensity: 1.0 });
+      expect(result.linksCreated).toBe(0);
+      expect(result.skippedByDensityGuard).toBe(true);
+      expect(result.edgeDensity).toBeCloseTo(1.0);
+      expect(result.densityThreshold).toBe(1.0);
+
+      const count = db.prepare(`SELECT COUNT(*) AS cnt FROM causal_edges`).get() as { cnt: number };
+      expect(count.cnt).toBe(4);
+    });
+
+    it('allows link creation when projected density equals threshold', () => {
+      insertMemory(db, 1, 'specs/001-alpha');
+      insertMemory(db, 2, 'specs/002-beta');
+      insertMemory(db, 3, 'specs/003-gamma');
+      insertMemory(db, 4, 'specs/004-delta');
+
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('1', '3', 'caused', 'test')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('2', '3', 'caused', 'test')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('3', '4', 'caused', 'test')`).run();
+
+      const matches: EntityMatch[] = [{
+        canonicalName: 'boundary density entity',
+        memoryIds: [1, 2],
+        specFolders: ['specs/001-alpha', 'specs/002-beta'],
+      }];
+
+      const result = createEntityLinks(db, matches, { maxEdgeDensity: 1.0 });
+      expect(result.linksCreated).toBe(1);
+      expect(result.skippedByDensityGuard).toBe(false);
+      expect(result.densityThreshold).toBe(1.0);
+
+      const count = db.prepare(`SELECT COUNT(*) AS cnt FROM causal_edges`).get() as { cnt: number };
+      expect(count.cnt).toBe(4);
+    });
   });
 
   // ─────────────────────────────────────────────────────────
@@ -503,6 +559,57 @@ describe('S8 Entity Linker', () => {
       expect(result.crossDocMatches).toBe(0);
     });
 
+    it('honors density-threshold env override for S5 linking', () => {
+      process.env.SPECKIT_ENTITY_LINKING_MAX_DENSITY = '1.5';
+
+      insertCatalogEntry(db, 'shared concept');
+
+      insertMemory(db, 1, 'specs/001-alpha');
+      insertMemory(db, 2, 'specs/002-beta');
+      insertMemory(db, 3, 'specs/003-gamma');
+      insertMemory(db, 4, 'specs/004-delta');
+
+      insertEntity(db, 1, 'Shared Concept');
+      insertEntity(db, 2, 'shared concept');
+
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('100', '200', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('101', '201', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('102', '202', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('103', '203', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('104', '204', 'caused', 'seed')`).run();
+
+      const result = runEntityLinking(db);
+      expect(result.linksCreated).toBe(1);
+      expect(result.crossDocMatches).toBe(1);
+      expect(result.densityThreshold).toBe(1.5);
+    });
+
+    it('falls back to default threshold for invalid density env value', () => {
+      process.env.SPECKIT_ENTITY_LINKING_MAX_DENSITY = 'not-a-number';
+
+      insertCatalogEntry(db, 'shared concept');
+
+      insertMemory(db, 1, 'specs/001-alpha');
+      insertMemory(db, 2, 'specs/002-beta');
+      insertMemory(db, 3, 'specs/003-gamma');
+      insertMemory(db, 4, 'specs/004-delta');
+
+      insertEntity(db, 1, 'Shared Concept');
+      insertEntity(db, 2, 'shared concept');
+
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('100', '200', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('101', '201', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('102', '202', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('103', '203', 'caused', 'seed')`).run();
+      db.prepare(`INSERT INTO causal_edges (source_id, target_id, relation, created_by) VALUES ('104', '204', 'caused', 'seed')`).run();
+
+      const result = runEntityLinking(db);
+      expect(result.linksCreated).toBe(0);
+      expect(result.skippedByDensityGuard).toBe(true);
+      expect(result.densityThreshold).toBe(1.0);
+      expect(result.edgeDensity).toBeCloseTo(1.25);
+    });
+
     it('creates correct number of pairwise links', () => {
       insertCatalogEntry(db, 'multi folder entity');
 
@@ -579,6 +686,12 @@ describe('S8 Entity Linker', () => {
     it('exposes normalizeEntityName function', () => {
       expect(typeof __testables.normalizeEntityName).toBe('function');
       expect(__testables.normalizeEntityName('TEST')).toBe('test');
+    });
+
+    it('exposes density-threshold helpers', () => {
+      expect(typeof __testables.sanitizeDensityThreshold).toBe('function');
+      expect(typeof __testables.getEntityLinkingDensityThreshold).toBe('function');
+      expect(typeof __testables.getGlobalEdgeDensityStats).toBe('function');
     });
 
     it('exposes getEdgeCount function', () => {

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="ve-artifact-type" content="spec">
+  <meta name="ve-source-doc" content="features.md">
+  <meta name="ve-speckit-level" content="1">
+  <meta name="ve-view-mode" content="artifact-dashboard">
+  <title>Feature Grid - Comparative Pillars</title>
+  <style>
+    :root {
+      --bg: #131314;
+      --bg-alpha: rgba(19, 19, 20, 0.85);
+      --surface: #1c1c1e;
+      --surface-l2: #252528;
+      --text: #fafafa;
+      --text-muted: #71717a;
+      --accent: #3b82f6;
+      --accent-muted: rgba(59, 130, 246, 0.1);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.05);
+      --zinc-200: #e4e4e7;
+      --zinc-400: #a1a1aa;
+      --zinc-500: #71717a;
+      
+      --container-max: 96rem;
+      --section-y: clamp(3rem, 7.5vh, 6rem);
+      --radius-bento: 1rem;
+      
+      --font-sans: 'Helvetica', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --lh-base: 1.75;
+      --lh-tight: 1.1;
+      
+      --transition-main: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --surface: #f4f4f5;
+        --surface-l2: #e4e4e7;
+        --text: #18181b;
+        --text-muted: #52525b;
+        --border: rgba(0, 0, 0, 0.1);
+        --border-light: rgba(0, 0, 0, 0.05);
+        --zinc-200: #18181b;
+        --zinc-400: #52525b;
+        --zinc-500: #71717a;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (prefers-contrast: more) {
+      :root {
+        --text-muted: var(--text);
+        --zinc-400: var(--zinc-200);
+        --zinc-500: var(--zinc-200);
+        --border: var(--text);
+      }
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: var(--lh-base);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: var(--section-y) 2rem;
+    }
+
+    .pillar-header {
+      margin-bottom: 4rem;
+      max-width: 65ch;
+    }
+
+    .pillar-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: var(--accent-muted);
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .pillar-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: var(--lh-tight);
+      margin: 0 0 1rem 0;
+      color: var(--zinc-200);
+      letter-spacing: -0.02em;
+    }
+
+    .pillar-desc {
+      font-size: 1.125rem;
+      color: var(--zinc-400);
+      margin: 0;
+    }
+
+    .pillars-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-bento);
+      overflow: hidden;
+    }
+
+    .pillar {
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition-main);
+    }
+
+    .pillar:not(:last-child) {
+      border-right: 1px solid var(--border);
+    }
+
+    .pillar:hover {
+      background: var(--surface-l2);
+    }
+
+    .pillar-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      color: var(--zinc-200);
+    }
+
+    .pillar-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pillar-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--zinc-200);
+      margin: 0 0 0.75rem 0;
+      letter-spacing: -0.01em;
+    }
+
+    .pillar-summary {
+      font-size: 0.875rem;
+      color: var(--zinc-400);
+      margin: 0 0 2.5rem 0;
+      min-height: 3em; 
+    }
+
+    .pillar-divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: 0 0 2.5rem 0;
+      width: 100%;
+    }
+
+    .trait-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .trait-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .trait-bullet {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--zinc-500);
+      margin-top: 0.25rem;
+      user-select: none;
+    }
+
+    .trait-text {
+      font-size: 0.875rem;
+      color: var(--zinc-200);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) {
+      .pillars-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .pillar:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .pillar-summary {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="container" aria-labelledby="pillars-heading">
+    <div class="pillar-header">
+      <span class="pillar-eyebrow" aria-hidden="true">Capability Matrix</span>
+      <h2 id="pillars-heading" class="pillar-title">Comparative Pillars</h2>
+      <p class="pillar-desc">
+        Evaluate core system modes side-by-side. Each pillar is optimized for distinct operational constraints and scaling requirements.
+      </p>
+    </div>
+
+    <div class="pillars-wrapper">
+      
+      <article class="pillar">
+        <div class="pillar-icon-wrap" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+          </svg>
+        </div>
+        <h3 class="pillar-name">Development</h3>
+        <p class="pillar-summary">
+          Optimized for iteration speed, deep introspection, and rapid prototyping.
+        </p>
+        <div class="pillar-divider" aria-hidden="true"></div>
+        <ul class="trait-list" aria-label="Development traits">
+          <li class="trait-item">
+            <span class="trait-bullet">01</span>
+            <span class="trait-text">Hot-reloading enabled by default with in-memory state retention.</span>
+          </li>
+          <li class="trait-item">
+            <span class="trait-bullet">02</span>
+            <span class="trait-text">Verbose logging profile with structured trace emission.</span>
+          </li>
+          <li class="trait-item">
+            <span class="trait-bullet">03</span>
+            <span class="trait-text">Bypasses strict authentication checks for local endpoints.</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="pillar">
+        <div class="pillar-icon-wrap" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>
+        </div>
+        <h3 class="pillar-name">Staging</h3>
+        <p class="pillar-summary">
+          Production-parity environment for behavioral validation and integration testing.
+        </p>
+        <div class="pillar-divider" aria-hidden="true"></div>
+        <ul class="trait-list" aria-label="Staging traits">
+          <li class="trait-item">
+            <span class="trait-bullet">01</span>
+            <span class="trait-text">Identical container topology to production infrastructure.</span>
+          </li>
+          <li class="trait-item">
+            <span class="trait-bullet">02</span>
+            <span class="trait-text">Connects to sanitized replicas of production databases.</span>
+          </li>
+          <li class="trait-item">
+            <span class="trait-bullet">03</span>
+            <span class="trait-text">Automated regression suites block deployment on failure.</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="pillar">
+        <div class="pillar-icon-wrap" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+          </svg>
+        </div>
+        <h3 class="pillar-name">Production</h3>
+        <p class="pillar-summary">
+          Hardened for maximum resilience, horizontal scaling, and zero-trust security.
+        </p>
+        <div class="pillar-divider" aria-hidden="true"></div>
+        <ul class="trait-list" aria-label="Production traits">
+          <li class="trait-item">
+            <span class="trait-bullet">01</span>
+            <span class="trait-text">Strict ingress rules with edge caching and rate limiting.</span>
+          </li>
+          <li class="trait-item">
+            <span class="trait-bullet">02</span>
+            <span class="trait-text">Read-only file systems with ephemeral data volumes.</span>
+          </li>
+          <li class="trait-item">
+            <span class="trait-bullet">03</span>
+            <span class="trait-text">Multi-region active-active deployment for high availability.</span>
+          </li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+</body>
+</html>

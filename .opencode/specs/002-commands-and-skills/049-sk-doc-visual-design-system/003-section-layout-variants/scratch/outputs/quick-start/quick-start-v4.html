@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" style="color-scheme: dark light;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Quick Start - Recipe Sequence</title>
+  
+  <meta name="ve-artifact-type" content="spec">
+  <meta name="ve-source-doc" content="specs/quick-start-v4.md">
+  <meta name="ve-speckit-level" content="1">
+  <meta name="ve-view-mode" content="artifact-dashboard">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Base Colors */
+      --bg: #131314;
+      --surface: #1c1c1e;
+      --surface-l2: #252528;
+      --surface-l3: #2d2d30;
+      --text: #fafafa;
+      --text-muted: #71717a;
+      
+      /* Accents & Borders */
+      --accent: #3b82f6;
+      --accent-muted: rgba(59, 130, 246, 0.1);
+      --accent-border: rgba(59, 130, 246, 0.2);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.05);
+      --border-faint: rgba(255, 255, 255, 0.02);
+      
+      /* Semantic & Zinc */
+      --success: #22c55e;
+      --success-alpha: rgba(34, 197, 94, 0.6);
+      --zinc-300: #d4d4d8;
+      --zinc-400: #a1a1aa;
+      --zinc-500: #71717a;
+      --zinc-600: #52525b;
+
+      /* Typography */
+      --font-sans: 'Inter', 'Helvetica', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --lh-base: 1.75;
+      --lh-tight: 1.1;
+
+      /* Layout & FX */
+      --container-max: 96rem;
+      --radius-card: 12px;
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      
+      /* Transitions */
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --duration: 0.3s;
+      --transition-main: all var(--duration) var(--ease);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f4f4f5;
+        --surface: #ffffff;
+        --surface-l2: #fafafa;
+        --surface-l3: #f4f4f5;
+        --text: #18181b;
+        --text-muted: #71717a;
+        --border: rgba(0, 0, 0, 0.08);
+        --border-light: rgba(0, 0, 0, 0.04);
+        --border-faint: rgba(0, 0, 0, 0.02);
+        --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    
+    html {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: var(--lh-base);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page-container {
+      width: 100%;
+      max-width: var(--container-max);
+      padding: 4rem 1.5rem;
+      margin: 0 auto;
+    }
+
+    /* Section Header */
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+    
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent);
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+      font-weight: 600;
+      line-height: var(--lh-tight);
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin: 0;
+      max-width: 65ch;
+    }
+
+    /* Recipe Sequence Layout */
+    .recipe-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    /* Timeline Ledger Line */
+    .recipe-list::before {
+      content: '';
+      position: absolute;
+      top: 2rem;
+      bottom: 2rem;
+      left: 2.5rem;
+      width: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .recipe-card {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition-main);
+    }
+
+    .recipe-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+    }
+
+    /* Step Indicator */
+    .step-marker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      background: var(--surface-l2);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      transition: var(--transition-main);
+    }
+
+    .recipe-card:hover .step-marker {
+      background: var(--accent-muted);
+      color: var(--accent);
+      border-color: var(--accent-border);
+    }
+
+    /* Content Area */
+    .step-body {
+      min-width: 0; 
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0 0 0.25rem 0;
+      color: var(--text);
+    }
+
+    .step-subtitle {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      margin: 0 0 1.25rem 0;
+    }
+
+    /* Prerequisite Sub-component */
+    .prereq-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .prereq-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: var(--surface-l2);
+      border-radius: 6px;
+      border: 1px solid var(--border-faint);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+    }
+
+    .prereq-req {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--zinc-300);
+    }
+
+    .prereq-status {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success-alpha);
+    }
+
+    .prereq-cmd {
+      color: var(--zinc-500);
+      font-size: 0.6875rem;
+    }
+
+    /* Code Window Sub-component */
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: var(--surface-l3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-lang {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .btn-copy {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.35rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-main);
+    }
+
+    .btn-copy:hover, .btn-copy:focus-visible {
+      color: var(--text);
+      background: var(--surface-l2);
+      outline: 1px solid var(--border-light);
+    }
+
+    .code-content {
+      margin: 0;
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--zinc-300);
+      white-space: pre;
+    }
+
+    .code-content span.dim {
+      color: var(--zinc-600);
+      user-select: none;
+    }
+
+    /* Accessibility / Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .recipe-card:hover {
+        transform: none;
+      }
+    }
+    
+    @media (forced-colors: active) {
+      .recipe-card { border: 1px solid CanvasText; }
+      .recipe-list::before { background: CanvasText; }
+    }
+
+    /* Mobile Context */
+    @media (max-width: 640px) {
+      .recipe-list::before {
+        display: none;
+      }
+      .recipe-card {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        padding: 1.25rem;
+      }
+      .step-marker {
+        width: fit-content;
+        height: auto;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        flex-direction: row;
+        gap: 0.5rem;
+      }
+      .step-marker::after {
+        content: 'Step';
+        text-transform: uppercase;
+        font-size: 0.625rem;
+        letter-spacing: 0.05em;
+      }
+      .prereq-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <section id="quick-start" class="recipe-sequence" aria-labelledby="quick-start-title">
+      
+      <header class="section-header">
+        <div class="section-eyebrow">Onboarding path</div>
+        <h2 id="quick-start-title" class="section-title">Quick Start</h2>
+        <p class="section-desc">Get your environment running locally in three executable steps. Action-oriented setup with minimal configuration.</p>
+      </header>
+
+      <div class="recipe-list">
+        
+        <article class="recipe-card">
+          <div class="step-marker" aria-label="Step 1">01</div>
+          <div class="step-body">
+            <h3 class="step-title">Verify Prerequisites</h3>
+            <p class="step-subtitle">Ensure your system meets the baseline requirements before proceeding.</p>
+            
+            <ul class="prereq-list" aria-label="Required Dependencies">
+              <li class="prereq-item">
+                <div class="prereq-req">
+                  <span class="prereq-status" aria-hidden="true"></span>
+                  Node.js v18.0+
+                </div>
+                <div class="prereq-cmd">node --version</div>
+              </li>
+              <li class="prereq-item">
+                <div class="prereq-req">
+                  <span class="prereq-status" aria-hidden="true"></span>
+                  Git CLI
+                </div>
+                <div class="prereq-cmd">git --version</div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="recipe-card">
+          <div class="step-marker" aria-label="Step 2">02</div>
+          <div class="step-body">
+            <h3 class="step-title">Clone & Install</h3>
+            <p class="step-subtitle">Pull the repository and install all required framework dependencies securely.</p>
+            
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="btn-copy" aria-label="Copy installation commands" title="Copy code">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+              <pre class="code-content"><code><span class="dim"># Clone the template repository</span>
+git clone https://github.com/example/workspace.git
+cd workspace
+
+<span class="dim"># Install dependencies via clean install</span>
+npm ci</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="recipe-card">
+          <div class="step-marker" aria-label="Step 3">03</div>
+          <div class="step-body">
+            <h3 class="step-title">Initialize Workspace</h3>
+            <p class="step-subtitle">Start the local development server and execute the baseline health check.</p>
+            
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">bash</span>
+                <button class="btn-copy" aria-label="Copy start command" title="Copy code">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+              </div>
+              <pre class="code-content"><code><span class="dim"># Start local development environment</span>
+npm run dev
+
+<span class="dim"># Target output expectation:</span>
+<span class="dim"># ➜  Local:   http://localhost:3000/</span>
+<span class="dim"># ➜  Network: use --host to expose</span></code></pre>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

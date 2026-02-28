@@ -13,6 +13,12 @@ import type Database from 'better-sqlite3';
 /** Maximum causal edges per node to prevent graph density explosion. */
 const MAX_EDGES_PER_NODE = 20;
 
+/** S5 density guard default: skip entity linking when projected density exceeds this threshold. */
+const DEFAULT_MAX_EDGE_DENSITY = 1.0;
+
+/** Environment variable for overriding S5 density guard threshold. */
+const ENTITY_LINKING_MAX_DENSITY_ENV = 'SPECKIT_ENTITY_LINKING_MAX_DENSITY';
+
 // ---------------------------------------------------------------------------
 // 2. INTERFACES
 // ---------------------------------------------------------------------------
@@ -27,6 +33,14 @@ export interface EntityLinkResult {
   linksCreated: number;
   entitiesProcessed: number;
   crossDocMatches: number;
+  skippedByDensityGuard?: boolean;
+  edgeDensity?: number;
+  densityThreshold?: number;
+  blockedByDensityGuard?: number;
+}
+
+interface EntityLinkingOptions {
+  maxEdgeDensity?: number;
 }
 
 export interface EntityLinkStats {
@@ -160,6 +174,56 @@ function getSpecFolder(db: Database.Database, memoryId: number): string | null {
 }
 
 /**
+ * Parse and validate the maximum edge density threshold for S5 linking.
+ * Accepts finite non-negative values; invalid inputs fall back to default.
+ */
+function sanitizeDensityThreshold(value: unknown): number {
+  const parsed = typeof value === 'number' ? value : Number.parseFloat(String(value));
+  if (!Number.isFinite(parsed) || parsed < 0) {
+    return DEFAULT_MAX_EDGE_DENSITY;
+  }
+  return parsed;
+}
+
+/**
+ * Resolve S5 density threshold from env var with safe fallback.
+ */
+function getEntityLinkingDensityThreshold(): number {
+  const raw = process.env[ENTITY_LINKING_MAX_DENSITY_ENV];
+  if (raw === undefined) {
+    return DEFAULT_MAX_EDGE_DENSITY;
+  }
+  return sanitizeDensityThreshold(raw);
+}
+
+/**
+ * Compute global graph density as total_edges / total_memories.
+ * Returns 0 when there are no memories or when a DB error occurs.
+ */
+function getGlobalEdgeDensityStats(
+  db: Database.Database,
+): { totalEdges: number; totalMemories: number; density: number } {
+  try {
+    const edgeRow = (db.prepare(
+      `SELECT COUNT(*) AS cnt FROM causal_edges`,
+    ) as Database.Statement).get() as { cnt: number };
+    const totalEdges = edgeRow?.cnt ?? 0;
+
+    const memoryRow = (db.prepare(
+      `SELECT COUNT(*) AS cnt FROM memory_index`,
+    ) as Database.Statement).get() as { cnt: number };
+    const totalMemories = memoryRow?.cnt ?? 0;
+
+    const density = totalMemories > 0 ? totalEdges / totalMemories : 0;
+    return { totalEdges, totalMemories, density };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[entity-linker] Failed to compute edge density: ${message}`);
+    return { totalEdges: 0, totalMemories: 0, density: 0 };
+  }
+}
+
+/**
  * Create causal_edges for cross-document entity matches.
  *
  * For each match, creates edges between pairs of memoryIds from different
@@ -173,10 +237,19 @@ function getSpecFolder(db: Database.Database, memoryId: number): string | null {
 export function createEntityLinks(
   db: Database.Database,
   matches: EntityMatch[],
+  options?: EntityLinkingOptions,
 ): EntityLinkResult {
   let linksCreated = 0;
   let entitiesProcessed = 0;
   const crossDocMatches = matches.length;
+  const maxEdgeDensity = options?.maxEdgeDensity === undefined
+    ? getEntityLinkingDensityThreshold()
+    : sanitizeDensityThreshold(options.maxEdgeDensity);
+  const densityStats = getGlobalEdgeDensityStats(db);
+  let totalEdges = densityStats.totalEdges;
+  const totalMemories = densityStats.totalMemories;
+  let blockedByDensityGuard = 0;
+  let skippedByDensityGuard = false;
 
   const insertStmt = db.prepare(`
     INSERT OR IGNORE INTO causal_edges (source_id, target_id, relation, strength, evidence, created_by)
@@ -210,6 +283,17 @@ export function createEntityLinks(
         const sourceId = String(idA);
         const targetId = String(idB);
 
+        // Global density guard: skip linking if this insert would push density
+        // above the configured threshold.
+        if (totalMemories > 0) {
+          const projectedDensity = (totalEdges + 1) / totalMemories;
+          if (projectedDensity > maxEdgeDensity) {
+            blockedByDensityGuard += 1;
+            skippedByDensityGuard = true;
+            continue;
+          }
+        }
+
         // Respect MAX_EDGES_PER_NODE for both source and target
         if (getEdgeCount(db, sourceId) >= MAX_EDGES_PER_NODE) continue;
         if (getEdgeCount(db, targetId) >= MAX_EDGES_PER_NODE) continue;
@@ -220,6 +304,7 @@ export function createEntityLinks(
           const result = insertStmt.run(sourceId, targetId, evidence);
           if (result.changes > 0) {
             linksCreated += 1;
+            totalEdges += 1;
           }
         } catch (error: unknown) {
           const message = error instanceof Error ? error.message : String(error);
@@ -229,7 +314,16 @@ export function createEntityLinks(
     }
   }
 
-  return { linksCreated, entitiesProcessed, crossDocMatches };
+  const edgeDensity = totalMemories > 0 ? totalEdges / totalMemories : 0;
+  return {
+    linksCreated,
+    entitiesProcessed,
+    crossDocMatches,
+    skippedByDensityGuard,
+    edgeDensity,
+    densityThreshold: maxEdgeDensity,
+    blockedByDensityGuard,
+  };
 }
 
 /**
@@ -332,7 +426,19 @@ export function runEntityLinking(db: Database.Database): EntityLinkResult {
       return emptyResult;
     }
 
-    return createEntityLinks(db, matches);
+    const maxEdgeDensity = getEntityLinkingDensityThreshold();
+    const { density } = getGlobalEdgeDensityStats(db);
+    if (density > maxEdgeDensity) {
+      return {
+        ...emptyResult,
+        skippedByDensityGuard: true,
+        edgeDensity: density,
+        densityThreshold: maxEdgeDensity,
+        blockedByDensityGuard: 0,
+      };
+    }
+
+    return createEntityLinks(db, matches, { maxEdgeDensity });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`[entity-linker] Pipeline failed: ${message}`);
@@ -352,6 +458,10 @@ export function runEntityLinking(db: Database.Database): EntityLinkResult {
  */
 export const __testables = {
   MAX_EDGES_PER_NODE,
+  DEFAULT_MAX_EDGE_DENSITY,
+  sanitizeDensityThreshold,
+  getEntityLinkingDensityThreshold,
+  getGlobalEdgeDensityStats,
   normalizeEntityName,
   getEdgeCount,
   getSpecFolder,

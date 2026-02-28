@@ -2,9 +2,9 @@ As @write agent, generate one complete standalone HTML file for a documentation 
 
 TASK
 - Section key: setup-and-usage
-- Variant: v4
-- Direction: Failure-Aware Cookbook
-- Direction intent: Each step paired with quick failure diagnosis.
+- Variant: v5
+- Direction: Checklist and Verify Rail
+- Direction intent: Checklist-driven setup with dedicated verification rail.
 - Section purpose: Detailed setup and practical usage section with config and command examples.
 
 HARD REQUIREMENTS
@@ -29,5 +29,3 @@ QUALITY CONTROLS
 - Avoid aggressive visual effects.
 - Avoid decorative noise.
 - Maintain clear hierarchy and implementation practicality.
-
-Previous attempt failed validation. Missing/forbidden signals: <meta name="color-scheme" content="light dark">, <section. Regenerate complete HTML only and satisfy all constraints exactly.
