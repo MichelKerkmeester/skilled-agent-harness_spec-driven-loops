@@ -1,13 +1,13 @@
 ---
 title: "Deep Research Report: 001-engram-main"
-description: "20-iteration deep research synthesis"
+description: "30-iteration deep research synthesis"
 ---
 
 # Deep Research Report: 001-engram-main
 
-Generated: 2026-04-10 23:54
-Iterations: 20
-Engine: Codex GPT-5.4 High (fast mode) + Copilot fallback
+Generated: 2026-04-11 00:54
+Iterations: 30
+Engine: Codex GPT-5.4 High (fast mode)
 
 ---
 
@@ -179425,6 +179425,649 @@ Total session time:     4m 10s
 Total code changes:     +0 -0
 Breakdown by AI model:
  gpt-5.4                  1.4m in, 16.0k out, 1.2m cached, 8.1k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 021: CROSS-SYSTEM PATTERNS
+
+## Focus
+CROSS-SYSTEM PATTERNS: Compare patterns from this system against the other 4 research phases. What converges across all systems? What's unique to this one?
+
+## Findings
+### Finding 1: All five systems encode a memory-usage protocol above the storage engine
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:53-138,375-395`; `002-mex-main/external/AGENTS.md:37-42`; `002-mex-main/external/SYNC.md:9-21`; `003-modus-memory-main/external/internal/mcp/memory.go:7-39`; `004-opencode-mnemosyne-main/external/src/index.ts:95-223`; `005-mempalace/external/mempalace/mcp_server.py:155-176`
+- **What it does**: Engram uses `ProfileAgent`/`ProfileAdmin`, eager vs deferred tools, and a `mem_context` core tool; Mex forces `ROUTER.md`/sync discipline; Modus trims to 11 memory tools; Mnemosyne injects a compaction action card; MemPalace returns `PALACE_PROTOCOL` in `status`.
+- **Why it matters**: The strongest convergence is not on SQLite, markdown, vectors, or graphs. It is that agents need a taught operating protocol. For Spec Kit Memory, the next win is a thinner memory action card/profile over existing `memory_context`, `memory_search`, `memory_save`, `session_bootstrap`, and recovery flows.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 2: Recovery, repair, and review stay outside the primary recall path across the whole set
+- **Source**: `001-engram-main/external/internal/store/store.go:948-1069,1613-1667`; `002-mex-main/external/SYNC.md:9-21`; `002-mex-main/external/src/sync/brief-builder.ts:7-97`; `003-modus-memory-main/external/internal/mcp/vault.go:856-897`; `004-opencode-mnemosyne-main/external/src/index.ts:138-223`; `005-mempalace/external/mempalace/mcp_server.py:70-100`; `005-mempalace/external/mempalace/repair.py:1-28`
+- **What it does**: Engram keeps `mem_search` on observations while `FormatContext()` renders prompts/sessions and `AddObservation()` handles dedupe/upsert; Mex runs drift -> targeted brief -> fix loops; Modus exposes explicit decay/reinforce operations; Mnemosyne separates recall from store/delete and compaction reminders; MemPalace keeps WAL and repair/rebuild commands outside search.
+- **Why it matters**: Cross-system agreement is that one universal search endpoint should not also own repair, review, recovery, and governance. Public should keep `memory_search` narrow and continue growing explicit doctor/review/passive-capture lanes around it.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 3: Cheap structural narrowing is universal; only the shape differs
+- **Source**: `001-engram-main/external/internal/store/store.go:1462-1584`; `002-mex-main/external/src/sync/brief-builder.ts:58-96`; `003-modus-memory-main/external/internal/mcp/vault.go:75-101`; `004-opencode-mnemosyne-main/external/src/index.ts:27-30,96-134`; `005-mempalace/external/mempalace/mcp_server.py:213-256`
+- **What it does**: Engram narrows with `topic_key`, `project`, and `scope`; Mex narrows repair work to specific drifted files with local filesystem/git context; Modus appends connected docs; Mnemosyne splits `project` vs `global`; MemPalace filters by `wing`/`room`.
+- **Why it matters**: The shared pattern is not “better global ranking.” It is “give the agent a cheap narrowing primitive before broader search.” Public already has scopes, anchors, graph routing, and code-search separation; the missing slice is a simpler human-facing exact/thread/timeline lane.
+- **Recommendation**: prototype later
+- **Impact**: medium
+
+### Finding 4: What is unique to Engram is its prompt-and-session digest lane, not its FTS stack
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:350-395,515-562`; `001-engram-main/external/internal/store/store.go:754-804,1613-1667`; `002-mex-main/external/AGENTS.md:37-42`; `003-modus-memory-main/external/internal/mcp/memory.go:7-39`; `004-opencode-mnemosyne-main/external/src/index.ts:96-223`; `005-mempalace/external/mempalace/mcp_server.py:169-176`
+- **What it does**: Engram alone persists user prompts, recent sessions, session summaries, and observations as separate artifacts, then renders them together through `FormatContext()` exposed as `mem_context`. The other systems teach startup rituals or memory usage, but do not combine a dedicated prompt log and session table into one deterministic digest lane this way.
+- **Why it matters**: This is the most reusable Engram-specific idea. Public should keep prompt/session continuity outside `memory_search` and add a deterministic recent-session digest inside `session_bootstrap`/`session_resume`, while still avoiding a second explicit lifecycle authority.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 5: What is unique to Engram is revisioned thread identity in the write path
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:302-324`; `001-engram-main/external/internal/store/store.go:948-1069,1474-1515`; `002-mex-main/external/AGENTS.md:37-42`; `003-modus-memory-main/external/internal/mcp/vault.go:75-101`; `004-opencode-mnemosyne-main/external/src/index.ts:138-201`; `005-mempalace/external/mempalace/mcp_server.py:231-256`
+- **What it does**: Engram’s `topic_key` path suggests a stable key, upserts by `project + scope + topic_key`, increments `revision_count`, increments `duplicate_count` on near-duplicate saves, and gives slash-form exact keys a direct search shortcut ahead of FTS. The other systems have patterns, adjacency, scopes, or taxonomy filters, but not this exact write-path identity model.
+- **Why it matters**: This is Engram’s clearest unique contribution. For Public, the safe port is an explicit `thread_key` plus exact lookup / chronology-around-hit for long-lived decisions and bug lines, not a retreat from hybrid retrieval into lexical-only ranking.
+- **Recommendation**: prototype later
+- **Impact**: high
+
+## Assessment
+- New information ratio: 0.27
+
+## Recommended Next Focus
+Turn the convergence into a four-track adoption matrix: `1)` thin startup/compaction memory action card, `2)` doctor/review/repair surfaces around existing retrieval, `3)` `thread_key` + exact lookup/timeline prototype, `4)` explicit non-goals: no second lifecycle authority, no scope replatforming, no collapse of code search into memory search.
+
+
+Total usage est:        1 Premium request
+API time spent:         4m 16s
+Total session time:     4m 34s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.6m in, 17.8k out, 1.5m cached, 10.5k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 022: IMPLEMENTATION BLUEPRINTS
+
+## Focus
+IMPLEMENTATION BLUEPRINTS: For the top 3 adopt-now recommendations, write concrete implementation blueprints with file paths, function signatures, and migration steps for our system.
+
+## Findings
+### Finding 1: Add a thin memory action card/profile as an instruction-layer helper, not a new tool authority
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:50-166,375-395`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-811`; `.opencode/skill/system-spec-kit/mcp_server/tests/context-server.vitest.ts:157-206`
+- **What it does**: Engram keeps agent-facing memory usage compact by separating `ProfileAgent`/`ProfileAdmin`, resolving them through `ResolveTools()`, and pairing that with fixed server instructions. Public already has dynamic startup guidance in `buildServerInstructions()`, but it is still a hard-coded text block rather than a reusable action-card builder.
+- **Why it matters**: This is the lowest-risk way to reduce prompt/tool clutter in Public without changing registration, trust, storage, or routing semantics. It also matches the cross-system pattern from iteration 021: agents need a taught memory protocol above the raw tool surface.
+- **Public blueprint**: Add `.opencode/skill/system-spec-kit/mcp_server/lib/context/memory-action-card.ts` with `export type MemoryActionCardProfile = 'default' | 'recovery'`, `export interface MemoryActionCard { profile: MemoryActionCardProfile; coreTools: string[]; diagnosticTools: string[]; recoverySteps: string[]; rules: string[]; }`, `export function buildMemoryActionCard(args: { staleCount: number; graphFreshness?: 'fresh' | 'stale' | 'empty' | 'error'; cocoIndexAvailable: boolean; }): MemoryActionCard`, and `export function formatMemoryActionCard(card: MemoryActionCard): string`. Update `.opencode/skill/system-spec-kit/mcp_server/context-server.ts` so `buildServerInstructions()` calls the helper instead of assembling the memory protocol inline.
+- **Migration steps**: 1. Extract the current “Key tools”, “Session Recovery”, “Structural Bootstrap”, and “Tool Routing” guidance from `context-server.ts` into the new helper. 2. Define one stable default profile grouping `memory_context`, `memory_search`, `memory_save`, `session_bootstrap`, `session_resume`, and a recovery grouping around `memory_health`, `session_health`, and `memory_index_scan`. 3. Keep `TOOL_DEFINITIONS` and dispatch unchanged so this remains presentation-only. 4. Extend `tests/context-server.vitest.ts` to assert the new formatted action card appears in startup instructions and that no tool count/registration behavior changes.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 2: Add a deterministic recent-session digest inside `session_resume`, then reuse it from `session_bootstrap`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:375-395,515-562`; `001-engram-main/external/internal/store/store.go:1613-1667`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-614`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-240`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1221-1238`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:385-435`; `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:50-136`; `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77-123`
+- **What it does**: Engram’s `FormatContext()` produces a fixed digest over recent sessions, prompts, and observations, and `mem_context` exposes that digest as a predictable startup surface. Public already composes richer resume/bootstrap payloads, but the resume content is not normalized into one bounded, deterministic summary section.
+- **Why it matters**: Public’s current resume path is strong but heavier to scan. A digest layer would improve startup clarity and compaction recovery while preserving the current fail-closed session model and avoiding any new `mem_session_start`/`mem_session_end` authority.
+- **Public blueprint**: Add `.opencode/skill/system-spec-kit/mcp_server/lib/session/recent-session-digest.ts` with `export interface RecentSessionDigestItem { label: string; detail: string; source: 'memory' | 'cached-summary'; }`, `export interface RecentSessionDigest { summary: string; items: RecentSessionDigestItem[]; specFolder: string | null; }`, `export function buildRecentSessionDigest(args: { memoryResult: Record<string, unknown>; cachedSummary?: CachedSessionSummaryDecision; specFolder?: string | null; maxItems?: number; }): RecentSessionDigest | null`, and `export function toRecentSessionDigestSection(digest: RecentSessionDigest): SharedPayloadSection`. Update `handlers/session-resume.ts` to emit both `recentSessionDigest` and a `recent-session-digest` payload section; update `handlers/session-bootstrap.ts` to reuse the resume-produced digest instead of recomputing it.
+- **Migration steps**: 1. Implement the digest helper as a pure formatter over the existing `memoryResult` and accepted cached-summary data. 2. In `session-resume.ts`, build the digest after `memoryResult` is loaded and before `payloadContract` is finalized, then append a stable section key. 3. In `session-bootstrap.ts`, pass the digest through to `nextActions`/summary text instead of adding a second fetch path. 4. Extend `tests/session-resume.vitest.ts` to assert digest presence/order and `tests/session-bootstrap.vitest.ts` to assert bootstrap reuses the digest. 5. Keep `resolveTrustedSession()` and the `memory_context` session-scope error path unchanged so the digest remains additive, not authoritative.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 3: Add an explicit read-only doctor/review surface that orchestrates existing diagnostics, instead of widening `memory_search`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:415-457,565-595`; `001-engram-main/external/internal/store/store.go:948-1069,1613-1667`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1023-1037`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:222-260`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:65-195`; `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:1-213`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:237-268,733-756`; `.opencode/skill/system-spec-kit/mcp_server/tools/memory-tools.ts:60-109`; `.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:45-84`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts:55-220`
+- **What it does**: Engram keeps chronology, capture, and lifecycle-adjacent work in separate tools instead of overloading `mem_search`. Public already follows that direction structurally: `memory_search` adds progressive disclosure after retrieval, `memory_health` handles diagnostics, `session_health` handles readiness, and `passive-enrichment.ts` only adds non-durable hints.
+- **Why it matters**: The missing piece is a single read-only orchestration surface that says “what is wrong, which existing tool should I call next, and which actions are safe.” That strengthens retrieval hygiene without pushing repair flags, review logic, or passive capture into `memory_search`.
+- **Public blueprint**: Add `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-doctor.ts` with `export interface MemoryDoctorArgs { specFolder?: string; mode?: 'overview' | 'aliases' | 'retrieval' | 'session'; includeRepairPlan?: boolean; }`, `export interface MemoryDoctorResult { status: 'ok' | 'warning' | 'critical'; diagnostics: Array<{ tool: 'memory_health' | 'session_health'; summary: string }>; suggestedActions: string[]; safeFollowUps: string[]; }`, and `export async function handleMemoryDoctor(args: MemoryDoctorArgs): Promise<MCPResponse>`. Register it in `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts`, route it through `.opencode/skill/system-spec-kit/mcp_server/tools/lifecycle-tools.ts` or a new orchestration tool module, and re-export from `handlers/index.ts`.
+- **Migration steps**: 1. Ship `memory_doctor` as a read-only composite that calls existing `handleMemoryHealth()` and `handleSessionHealth()` and summarizes when to use `memory_index_scan`, `session_bootstrap`, or `code_graph_scan`. 2. Add a focused `mode: 'aliases'` path that reuses `memory_health(reportMode: 'divergent_aliases')` instead of duplicating alias logic. 3. Keep `memory_search` unchanged; do not add repair or review flags there. 4. Leave `lib/enrichment/passive-enrichment.ts` non-durable and explicitly treat governed passive capture as a later feature, not part of this adopt-now slice. 5. Add a new handler test file for `memory_doctor` and extend schema/dispatch tests so the composite surface is covered without weakening the current confirmation gates on mutating repair.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+## Assessment
+- New information ratio: 0.24
+
+## Recommended Next Focus
+Translate these three blueprints into an implementation sequence for Public: start with the instruction-layer action card, then land the resume/bootstrap digest, then add the read-only `memory_doctor` composite before deciding whether any later `thread_key` or governed passive-capture work is worth prototyping.
+
+
+Total usage est:        1 Premium request
+API time spent:         8m 6s
+Total session time:     8m 35s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  3.3m in, 34.7k out, 3.1m cached, 13.9k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 023: MEMORY DECAY & RETENTION
+
+## Focus
+MEMORY DECAY & RETENTION: How does this system handle memory aging, relevance decay, forgetting? What temporal strategies should we adopt for long-lived memory systems?
+
+## Findings
+### Finding 1: Engram does not implement retrieval-time forgetting; it uses recency formatting and consolidation instead
+- **Source**: `001-engram-main/external/internal/store/store.go:754-840,1076-1105,1462-1584,1613-1667,3384-3392`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `001-engram-main/external/docs/ARCHITECTURE.md:40-48,86-95`
+- **What it does**: Engram persists sessions with `CreateSession()`/`EndSession()`, shows recent sessions/prompts/observations via `FormatContext()`, orders recent observations by `created_at DESC`, and searches by direct `topic_key` lookup plus FTS5 `rank`. There is no search-time decay factor, no archival state, no TTL, and no age-based demotion beyond those recency-oriented list orderings.
+- **Why it matters**: Engram’s answer to aging is not automatic forgetting; it is durable search plus a bounded recent-context surface. For Spec Kit Memory, that argues against flattening long-lived memory into plain recency or FTS ranking.
+- **Recommendation**: reject
+- **Impact**: high
+
+### Finding 2: Engram’s main anti-decay mechanism is memory hygiene through reconsolidation, not scheduled retention policy
+- **Source**: `001-engram-main/external/internal/store/store.go:948-1074,1313-1349,3328-3337`; `001-engram-main/external/docs/ARCHITECTURE.md:86-117`
+- **What it does**: `AddObservation()` upserts by `topic_key`, increments `revision_count`, collapses exact duplicates inside a 15-minute dedupe window, increments `duplicate_count`, and refreshes `last_seen_at`/`updated_at`. Deletion is soft by default through `deleted_at`, so stale memories are hidden rather than physically forgotten.
+- **Why it matters**: Engram’s real retention policy is “reduce noise before it becomes clutter.” The transferable lesson for Public is stronger reconsolidation/thread hygiene, not weaker decay.
+- **Recommendation**: prototype later
+- **Impact**: high
+
+### Finding 3: Public already has the temporal primitives Engram lacks, so the right strategy is tiered permanence plus archival, not flatter recency
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/fsrs-scheduler.ts:8-25,76-135,237-367,369-454`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/tier-classifier.ts:37-71,238-329,496-510`; `.opencode/skill/system-spec-kit/mcp_server/lib/cognitive/archival-manager.ts:181-201,357-445,558-685`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:188-203,505-520`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:52-80,128-195`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:133-145,216-234`
+- **What it does**: Public applies canonical FSRS long-term decay, classification-aware stability multipliers, no-decay treatment for permanent planning/constitutional/critical contexts, five memory states (`HOT`, `WARM`, `COLD`, `DORMANT`, `ARCHIVED`), optional state filtering, and a 90-day archival lane for low-access, low-confidence memories while protecting critical tiers.
+- **Why it matters**: Long-lived memory systems need explicit permanence classes, retrievability decay for engagement-sensitive material, and separate archival for low-value stale material. Engram is useful on consolidation hygiene, but Public already has the stronger temporal model.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 4: Recent-session digesting should stay separate from decay policy
+- **Source**: `001-engram-main/external/internal/store/store.go:818-840,1076-1105,1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-614`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-240`
+- **What it does**: Engram keeps startup continuity cheap by formatting a recent-session digest over sessions, prompts, and recent observations, while long-term search stays separate. Public’s richer resume/bootstrap path should preserve that separation.
+- **Why it matters**: Short-term continuity is not a substitute for durable forgetting policy. The right model is two-lane: deterministic recent-session briefing for startup/compaction recovery, plus independent long-term decay and archival for the corpus.
+- **Recommendation**: adopt now
+- **Impact**: medium
+
+## Assessment
+- New information ratio: 0.33
+
+## Recommended Next Focus
+Compare Engram’s consolidation-first hygiene against Modus Memory’s FSRS-first design and OpenCode Mnemosyne’s hybrid recall stack to decide which Public improvements belong in reconsolidation/thread management versus long-term ranking and archival.
+
+**Blocked on persistence**: this runtime denied writes to the phase folder, so I could not save `iteration-023.md`.
+
+
+Total usage est:        1 Premium request
+API time spent:         5m 9s
+Total session time:     5m 33s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  2.3m in, 22.7k out, 2.2m cached, 6.7k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 024: COMPACTION & CONTEXT SURVIVAL
+
+## Focus
+COMPACTION & CONTEXT SURVIVAL: How does this system handle context window limits, compaction events, and startup context reconstruction? Lessons for our compaction survival.
+
+## Findings
+### Finding 1: Engram treats compaction survival as a runtime-integration problem, not a search-ranking problem
+- **Source**: `001-engram-main/external/docs/AGENT-SETUP.md:23-61,65-105,145-169,311-372`; `001-engram-main/external/plugin/opencode/engram.ts:397-447`; `001-engram-main/external/plugin/claude-code/hooks/hooks.json:1-64`
+- **What it does**: Engram wires compaction recovery into the delivery layer for each client: OpenCode gets always-on system instructions plus an `experimental.session.compacting` hook, Claude Code gets `SessionStart`/`compact` hooks, and Codex/Gemini setup writes persistent instruction files and compact-prompt files. The recovery rule is stable across all of them: after compaction or context reset, recover with `mem_context` before resuming work.
+- **Why it matters**: The transferable lesson is architectural: compaction survival belongs in runtime hooks, startup prompts, and transport adapters that survive resets, not in `mem_search` itself. Public is already on this path with `.opencode/plugins/spec-kit-compact-code-graph.js` and the session bootstrap/resume surfaces, so the right move is to keep strengthening transport-owned recovery instead of widening retrieval tools.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 2: Engram's post-compaction checkpoint is clever but too agent-dependent to copy directly
+- **Source**: `001-engram-main/external/plugin/opencode/engram.ts:423-447`; `001-engram-main/external/plugin/claude-code/scripts/post-compaction.sh:30-88`; `001-engram-main/external/DOCS.md:470-477`
+- **What it does**: When compaction fires, Engram injects previous-session context and a "FIRST ACTION REQUIRED" instruction telling the next agent to immediately call `mem_session_summary` with the compacted summary, then call `mem_context`, and only then continue. This turns compaction into an explicit checkpoint handoff without needing a separate reducer or out-of-band state file.
+- **Why it matters**: The upside is portability: even thin MCP clients can persist a checkpoint if the agent follows the instruction. The downside is authority and brittleness: continuity depends on the next model step doing a write correctly. Public already has a stronger fail-closed direction with transport-only startup/compaction payloads, structural trust labels, and additive cached continuity inside `session_resume`/`session_bootstrap`, so it should not shift compaction recovery onto model-authored writeback.
+- **Recommendation**: reject
+- **Impact**: high
+
+### Finding 3: Engram's startup reconstruction works because `mem_context` is deterministic, bounded, and easy to scan
+- **Source**: `001-engram-main/external/internal/store/store.go:818-840,1076-1105,1145-1175,1613-1667`; `001-engram-main/external/plugin/claude-code/scripts/session-start.sh:39-99`; `001-engram-main/external/internal/mcp/mcp.go:375-395`
+- **What it does**: `FormatContext()` builds one predictable block with up to 5 recent sessions, 10 recent prompts, and `MaxContextResults` recent observations (default 20), truncating summaries/prompts to 200 chars and observations to 300 chars before returning the prose digest that `mem_context` exposes. Claude's startup hook then fetches that digest and injects it alongside the memory protocol at session start.
+- **Why it matters**: Compaction survival is not just "search again later"; it is having a bounded continuity surface the agent can actually consume at startup. Public's richer `session_resume` output is more capable, but it is also heavier. Engram reinforces the Phase 022 recommendation: land a deterministic recent-session digest inside `session_resume` and reuse it in `session_bootstrap` and transport startup/compaction blocks.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 4: Public already has the stronger substrate for bounded, trust-labeled compaction continuity
+- **Source**: `.opencode/plugins/spec-kit-compact-code-graph.js:185-223,323-417`; `.opencode/skill/system-spec-kit/mcp_server/lib/context/opencode-transport.ts:82-155`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-snapshot.ts:33-45,51-128,205-258`; `.opencode/skill/system-spec-kit/mcp_server/hooks/memory-surface.ts:250-300,419-557`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:101-131`
+- **What it does**: Public builds transport-only startup/message/compaction blocks from shared payload envelopes, caches and dedupes them in the OpenCode plugin, enforces token budgets on auto-surfaced priming output, computes structural bootstrap contracts with explicit `ready`/`stale`/`missing` states, and exposes additive continuity through `session_resume`, `session_bootstrap`, and `session_health`.
+- **Why it matters**: This is a better foundation than Engram's raw prose injection because it separates continuity payloads from retrieval authority and keeps provenance/trust visible. The Engram lesson here is not "copy the mechanism"; it is "finish the last mile" by making Public's startup and compaction surfaces more deterministic and more obviously action-oriented.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 5: Engram's cross-runtime "surviving compaction" snippets are packaging worth borrowing
+- **Source**: `001-engram-main/external/docs/AGENT-SETUP.md:147-169,211-230,311-372`; `001-engram-main/external/plugin/opencode/engram.ts:45-122`
+- **What it does**: Engram does not rely only on hooks. It also distributes tiny runtime-specific instruction snippets for Claude, OpenCode, Gemini, Codex, VS Code, Cursor, Windsurf, and Antigravity that all teach the same recovery habit: save proactively and call `mem_context` after compaction/context reset. The OpenCode plugin embeds the full memory protocol directly into the system prompt so the rule survives compaction even on models that only accept one system message.
+- **Why it matters**: Public's non-hook recovery story is presently stronger in the MCP/tooling layer than in portable prompt packaging. Engram shows there is product value in shipping a minimal "recovery card" for runtimes that cannot rely on hooks or plugin registration. That should be an instruction-layer export of existing Public recovery semantics, not a new authority surface.
+- **Recommendation**: prototype later
+- **Impact**: medium
+
+## Assessment
+- New information ratio: 0.39
+
+## Recommended Next Focus
+Decide which parts of Public's compaction survival should become a reusable cross-runtime recovery card: likely a deterministic recent-session digest plus a minimal post-reset action sequence, while explicitly rejecting Engram's model-must-write-the-compaction-summary pattern.
+
+
+Total usage est:        1 Premium request
+API time spent:         6m 9s
+Total session time:     6m 36s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  2.8m in, 26.8k out, 2.6m cached, 9.4k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 025: MULTI-AGENT MEMORY SAFETY
+
+## Focus
+MULTI-AGENT MEMORY SAFETY: How does this system handle concurrent agent access, merge conflicts, project isolation, and shared vs private memory scoping?
+
+## Findings
+### Finding 1: Engram’s concurrency safety is storage-level, not identity-level
+- **Source**: `001-engram-main/external/internal/store/store.go:403-418`; `001-engram-main/external/internal/store/store.go:1988-2033`; `001-engram-main/external/internal/store/store.go:2560-2570`
+- **What it does**: Engram enables SQLite `WAL` and `busy_timeout`, wraps writes in transactions via `withTx()`, and uses `AcquireSyncLease()` / `ReleaseSyncLease()` to serialize ownership of a sync target. That makes local multi-process writes and background sync coordination reasonably safe.
+- **Why it matters**: This is good protection against concurrent writers stepping on each other at the DB/sync-worker layer, but it does not authenticate which agent is allowed to reuse which session or memory scope.
+- **Recommendation**: prototype later
+- **Impact**: high
+
+### Finding 2: Engram’s durable scoping model is only `project` vs `personal`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:187-192`; `001-engram-main/external/internal/mcp/mcp.go:253-258`; `001-engram-main/external/internal/mcp/mcp.go:385-390`; `001-engram-main/external/internal/store/store.go:959-976`; `001-engram-main/external/internal/store/store.go:3166-3171`
+- **What it does**: MCP tools expose scope as `project` or `personal`, and `normalizeScope()` collapses everything except explicit `personal` back to `project`. Observation upserts and searches are then keyed by normalized project plus that flat scope.
+- **Why it matters**: For solo or lightly coordinated agents, this is simple and predictable. For real shared/private memory safety, it is too coarse: there is no tenant, user, agent, session, or shared-space boundary.
+- **Recommendation**: reject
+- **Impact**: high
+
+### Finding 3: Engram’s “merge” story is project-alias repair, not collaborative conflict resolution
+- **Source**: `001-engram-main/external/internal/store/store.go:2455-2500`; `001-engram-main/external/internal/store/store.go:3174-3218`; `001-engram-main/external/internal/mcp/mcp.go:602-619`; `001-engram-main/external/internal/mcp/mcp.go:694-724`; `001-engram-main/external/internal/mcp/mcp.go:1140-1171`; `001-engram-main/external/internal/store/store_test.go:4281-4393`
+- **What it does**: Engram normalizes project names on read/write, warns about similar project names, and offers admin-only `mem_merge_projects` to atomically collapse aliases like `Engram` and `engram-memory` into one canonical project.
+- **Why it matters**: This is a useful hygiene mechanism for namespace drift, but it is not a semantic merge protocol for concurrent agents editing shared memory. It repairs labeling mistakes after the fact.
+- **Recommendation**: prototype later
+- **Impact**: medium
+
+### Finding 4: Spec Kit Memory already has a stronger session-safety model than Engram
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:307-435`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1221-1238`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:450-470`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:1071-1143`
+- **What it does**: Public rejects caller-supplied `sessionId` values unless they match a server-managed session with corroborated identity, returns `E_SESSION_SCOPE` on mismatches, and performs per-session retrieval deduplication plus atomic “mark sent” tracking.
+- **Why it matters**: This directly addresses a multi-agent safety problem Engram does not solve: preventing one caller from reusing another caller’s continuity lane and preventing repeated re-surfacing within the same session.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 5: Public already has real shared/private collaboration governance; Engram does not
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:158-165`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:177-193`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-280`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:456-493`; `.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:135-175`; `.opencode/skill/system-spec-kit/mcp_server/lib/collab/shared-spaces.ts:507-719`; `.opencode/skill/system-spec-kit/mcp_server/handlers/shared-memory.ts:144-257`
+- **What it does**: Public supports normalized tenant/user/agent/session/shared-space scope, deny-by-default shared-space membership, rollout and kill-switch controls, role-gated access, governance audit trails, and conflict recording with strategies like `append_version` and `manual_merge`, recorded under an `IMMEDIATE` transaction to avoid racey conflict counts.
+- **Why it matters**: This is the correct layer for multi-agent shared vs private memory safety. Compared with Engram’s flat `project/personal` model, Public already has the stronger architecture for collaboration boundaries and conflict accountability.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+## Assessment
+- New information ratio: 0.48
+- Fallback note: CocoIndex was unavailable for this external path in-session, so this pass used targeted grep plus direct file reads.
+
+## Recommended Next Focus
+Trace true multi-writer remote-sync safety: compare Engram’s `sync_mutations` + lease model with Public’s governance, checkpoint, and shared-conflict surfaces to decide whether Public needs a first-class sync reconciliation layer.
+
+
+Total usage est:        1 Premium request
+API time spent:         3m 7s
+Total session time:     3m 27s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.6m in, 12.3k out, 1.5m cached, 4.9k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 026: SEMANTIC VS LEXICAL TRADE-OFFS
+
+## Focus
+SEMANTIC VS LEXICAL TRADE-OFFS: Deep analysis of when semantic search beats lexical and vice versa in this system. What hybrid strategies should we adopt?
+
+## Findings
+### Finding 1: Lexical search should own exact handles, artifact names, and stable thread keys
+- **Source**: `001-engram-main/external/internal/store/store.go:1474-1519,1546-1583,3384-3391`; `001-engram-main/external/docs/ARCHITECTURE.md:86-116`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`
+- **What it does**: Engram gives exact structured identifiers a deterministic lexical fast path: if a query contains `/`, `Search()` checks `topic_key = ?` first, prepends those hits ahead of normal FTS results, and only then falls back to `MATCH` ordered by `fts.rank`. Public already contains the same product signal: `query-router.ts` explicitly preserves BM25 for `find_spec`, `find_decision`, and artifact-like classes such as `spec`, `plan`, `tasks`, `checklist`, `decision-record`, `implementation-summary`, and `research`.
+- **Why it matters**: This is the clearest lexical win case. When the user knows the exact name or key, semantic similarity only widens recall. Public should treat artifact identifiers, exact labels, and future thread keys as first-class lexical lanes.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 2: Semantic retrieval should remain the default leader for natural-language discovery
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:49-170`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:482-530,654-809,952-958,1230-1235`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1253,1747-1779`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:75-200`; `001-engram-main/external/internal/store/store.go:1518-1583`
+- **What it does**: Public's `memory_search` is explicitly semantic-first, then runs a hybrid pipeline over vector, FTS, BM25, graph, and degree lanes with weighted RRF and default reranking. Within that fusion, vector stays primary, FTS is downweighted to `0.3` because higher weighting flooded top-k with noisy lexical matches, BM25 stays at `0.6` for breadth, and lexical-only fallback happens only after hybrid attempts fail. Engram has no semantic lane here; after exact `topic_key` lookup it relies on sanitized FTS5 `MATCH` plus `fts.rank`.
+- **Why it matters**: Semantic beats lexical on concept queries, paraphrases, cross-session synthesis, and any case where relevant memories do not repeat the exact query terms. Public's current architecture is right to keep semantic leadership.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 3: Lexical precision should stay split into specialized lanes, not collapsed into one generic keyword score
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184-520`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-classifier.ts:75-200`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/learned-feedback.ts:1-24,59-90`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/sqlite-fts.ts:146-220`
+- **What it does**: Public already separates lexical behaviors. `memory_match_triggers` does exact trigger-phrase matching with binary scores, decay, activation, co-activation, and tiered content shaping. Learned feedback writes inferred aliases into a separate `learned_triggers` column with a 30-day TTL and `0.7x` weight, explicitly avoiding FTS pollution. FTS5 itself uses weighted BM25 over title, trigger phrases, file path, and content.
+- **Why it matters**: Lexical wins in different ways for different reasons: trigger recall, artifact-name lookup, and lightweight learned aliases are not the same problem. Keeping them as separate lanes preserves precision and prevents generic lexical weighting from becoming noisy.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 4: Final ordering should be decided after fusion by semantic reranking, not by raw lexical scores
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts:123-240,290-433`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts:4-35,128-195`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:1221-1253`; `001-engram-main/external/internal/store/store.go:1521-1583`
+- **What it does**: Public does not stop at fusion. Stage 3 reranks fused candidates on chunk text via cross-encoder or local reranker, then applies MMR diversity while explicitly preserving non-embedded rows such as lexical-only hits. Stage 4 then preserves score/order invariants. Engram stops earlier: after exact-key prepends, ordering is just FTS rank.
+- **Why it matters**: This is what makes "semantic first, lexical preserved" real. Lexical lanes are strong candidate generators, but raw term scores should not be the final arbiter once semantic context is available.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 5: Public should add an explicit thread-key lookup lane instead of overloading semantic search to recover evolving topics
+- **Source**: `001-engram-main/external/internal/store/store.go:1474-1519,2898-2919`; `001-engram-main/external/docs/ARCHITECTURE.md:86-116`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:49-170`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:113-164`
+- **What it does**: Engram pairs stable `topic_key` upserts with direct lookup in `Search()`, so an evolving architecture or bug thread can be retrieved deterministically by key instead of approximately by meaning. Public has artifact-aware routing and strong semantic search, but no equivalent first-class thread-key lookup inside `memory_search`.
+- **Why it matters**: This is the main gap surfaced by the semantic-vs-lexical comparison. Public is better for concept discovery; Engram is better for "take me back to the exact durable thread."
+- **Recommendation**: NEW FEATURE
+- **Impact**: medium
+
+## Assessment
+- New information ratio: 0.60
+- Fallback note: CocoIndex was unavailable in-session for this pass, so the analysis used targeted grep plus direct file reads.
+
+## Recommended Next Focus
+Design a concrete routing matrix for Public: `exact key / artifact name -> lexical-first`, `trigger phrase -> trigger lane`, `short exact query -> lexical-preserving hybrid`, `natural-language concept query -> semantic-first hybrid`, then decide whether thread-key lookup belongs inside `memory_search` or as a sibling surface.
+
+Packet write was permission-blocked in this session, so this iteration is returned inline only.
+
+
+Total usage est:        1 Premium request
+API time spent:         4m 42s
+Total session time:     5m 3s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.5m in, 20.7k out, 1.4m cached, 7.7k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 027: DEVELOPER EXPERIENCE
+
+## Focus
+DEVELOPER EXPERIENCE: How easy is this system to set up, configure, debug, and maintain? What DX patterns should we steal for our memory system?
+
+## Findings
+### Finding 1: One-command runtime setup is Engram’s strongest DX advantage
+- **Source**: `001-engram-main/external/README.md:35-58`; `001-engram-main/external/docs/AGENT-SETUP.md:27-36,111-122,147-158`
+- **What it does**: Engram turns per-runtime integration into a productized install surface. The README gives one-line setup commands for Claude Code, OpenCode, Gemini CLI, Codex, and VS Code, while `engram setup opencode`, `engram setup gemini-cli`, and `engram setup codex` write the MCP registration plus the runtime-specific instruction files those clients need for compaction recovery and memory protocol loading.
+- **Why it matters**: Public already has the underlying recovery and context machinery (`session_bootstrap`, `session_resume`, `session_health`, `memory_context`), but its setup story is comparatively fragmented across MCP tools, plugins, code-graph, CocoIndex, and `generate-context.js`. The DX lesson is to add a single setup/export layer per runtime that installs the right bootstrap instructions and default recovery path on top of the existing system.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 2: Engram keeps runtime adapters thin and pushes memory semantics into the core product
+- **Source**: `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`
+- **What it does**: The OpenCode and Claude plugins are transport adapters, not alternate memory engines. They auto-start the server, ensure sessions, inject the memory protocol, and wire compaction/session hooks, but the actual memory model still lives in the core store and MCP tools.
+- **Why it matters**: This is the right maintenance shape for Public too. Public already has transport-owned recovery guidance in `session_bootstrap` and `session_resume`; the pattern to steal is thin, runtime-specific packaging around shared memory surfaces rather than duplicating continuity logic in every plugin or client integration.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 3: Tool profiles plus explicit eager/deferred guidance make the MCP surface easier to learn
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:7-13,50-79,121-138,169-210,375-579`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:230-239,733-756`
+- **What it does**: Engram explicitly separates `agent` versus `admin` tool profiles, supports `--tools=agent` or `--tools=admin`, and embeds server instructions that say which tools are core and always-in-context versus deferred. The tool descriptions themselves also teach usage patterns, including when to search, when to save, and when to close a session.
+- **Why it matters**: Public exposes a much broader surface that includes orchestration, discovery, health, resume, graph, and indexing tools. That power is valuable, but it is harder to discover. Engram’s DX pattern worth stealing is not feature reduction; it is shipping an agent-safe profile or beginner bundle with opinionated guidance layered on top of the full Spec Kit Memory surface.
+- **Recommendation**: prototype later
+- **Impact**: high
+
+### Finding 4: Engram’s direct session-summary and passive-capture tools are ergonomically simpler than Public’s save pipeline
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:460-579`; `.opencode/skill/system-spec-kit/scripts/README.md:104-118`; `.opencode/skill/system-spec-kit/scripts/loaders/data-loader.ts:67`
+- **What it does**: Engram exposes first-class MCP tools for end-of-session summaries and passive learning extraction, both with explicit schemas and usage guidance in the tool descriptions. Public’s current memory-save rule routes through `generate-context.js`, and even the internal loader guidance tells the agent to write structured JSON to `/tmp/save-context-data.json` before invoking the script.
+- **Why it matters**: Public’s structured save path is safer and richer, but it is noticeably less ergonomic. The DX pattern to steal is a friendlier front door: a high-level session-summary or passive-capture surface that compiles down to `generate-context.js` internally, so the robust save contract stays intact without making every caller manage temp JSON files.
+- **Recommendation**: NEW FEATURE
+- **Impact**: high
+
+### Finding 5: Engram is unusually explicit about degraded modes, platform caveats, and debugging paths
+- **Source**: `001-engram-main/external/docs/AGENT-SETUP.md:45-61,84-103`; `001-engram-main/external/docs/INSTALLATION.md:73-97,147-159`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:784-788`
+- **What it does**: Engram repeatedly documents the fallback path: plugin versus bare MCP, Windows hook caveats, antivirus false positives, exact config-file locations, and when a user should choose the manual route instead of the full integration. Public already has stronger health and recovery machinery, and `context-server.ts` does emit structural bootstrap guidance, but the operational story is spread across more subsystems and documents.
+- **Why it matters**: Debuggability is not only about runtime checks; it is also about reducing uncertainty during setup and recovery. Public should steal Engram’s habit of packaging the happy path and the fallback path together, ideally with a single setup/doctor document or command that points to `session_bootstrap`, `session_health`, `memory_health`, graph status, and CocoIndex status in one place.
+- **Recommendation**: adopt now
+- **Impact**: medium
+
+### Finding 6: Public should reject Engram’s hidden HTTP sidecar dependency as a DX model
+- **Source**: `001-engram-main/external/docs/AGENT-SETUP.md:33-43`; `001-engram-main/external/docs/PLUGINS.md:22-35,102-113`
+- **What it does**: Engram’s plugin-enhanced experience is not purely MCP stdio. For OpenCode and Claude plugin flows, the richer session-management path depends on an HTTP server process being available so the plugin can create sessions, import chunks, and inject continuity state.
+- **Why it matters**: That requirement is acceptable in Engram because the product is intentionally centered around one binary and one local DB, but it is the wrong DX direction for Public. Public should keep strengthening transport-owned bootstrap and read-only health/status surfaces instead of introducing an extra daemon requirement just to make continuity work.
+- **Recommendation**: reject
+- **Impact**: high
+
+## Assessment
+- New information ratio: 0.53
+- Fallback note: CocoIndex/semantic search was permission-blocked for this external path in-session, so this pass used targeted grep plus direct file reads.
+- Packet note: writeback to the phase folder was permission-blocked, so this iteration is returned inline only.
+
+## Recommended Next Focus
+Compare Engram’s explicit session-summary/passive-capture ergonomics against Public’s current save contract and decide whether Public should add a profile-aware setup command plus a friendlier session-end save wrapper without weakening the existing structured memory pipeline.
+
+
+Total usage est:        1 Premium request
+API time spent:         5m 3s
+Total session time:     5m 25s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.1m in, 16.3k out, 1.0m cached, 8.5k reasoning (Est. 1 Premium request)
+ gpt-5.4-mini             159.4k in, 10.6k out, 142.8k cached, 3.3k reasoning (Est. 0 Premium
+ requests)
+
+---
+
+# Iteration 028: BENCHMARK & METRICS
+
+## Focus
+BENCHMARK & METRICS: What does this system measure? What metrics should we track for memory quality, retrieval accuracy, and system health?
+
+## Findings
+### Finding 1: Engram’s only first-class benchmark surface is inventory, not quality
+- **Source**: `001-engram-main/external/internal/store/store.go:71-76,1588-1608`; `001-engram-main/external/internal/mcp/mcp.go:399-411`
+- **What it does**: Engram’s built-in `mem_stats` surface returns only `total_sessions`, `total_observations`, `total_prompts`, and the active `projects` list.
+- **Why it matters**: Those are useful capacity/adoption counters, but they are not retrieval-quality metrics. For Public, these belong in the baseline dashboard, not as a proxy for memory usefulness.
+- **Recommendation**: adopt now
+- **Impact**: medium
+
+### Finding 2: Engram’s real memory-quality telemetry is hygiene metadata on each observation
+- **Source**: `001-engram-main/external/internal/store/store.go:959-1056`; `001-engram-main/external/docs/ARCHITECTURE.md:86-95`
+- **What it does**: Engram measures evolving-memory quality through `revision_count`, `duplicate_count`, `last_seen_at`, and `deleted_at`: topic-key upserts bump revisions, hash-window dedupe bumps duplicate counters, and soft-delete keeps rows out of search without losing history.
+- **Why it matters**: This is a strong reminder that memory quality is partly corpus hygiene, not just ranking quality. Public already has `quality_score` and feedback confidence, but it should also expose explicit churn metrics such as revision rate, duplicate-suppression rate, soft-delete rate, and stale-memory rate.
+- **Recommendation**: NEW FEATURE
+- **Impact**: high
+
+### Finding 3: Engram’s passive-capture path is instrumented with yield metrics we should copy
+- **Source**: `001-engram-main/external/internal/store/store.go:3396-3495`; `001-engram-main/external/internal/mcp/mcp.go:565-590`
+- **What it does**: `PassiveCaptureResult` reports `Extracted`, `Saved`, and `Duplicates`, and the MCP tool description explicitly frames duplicate skipping as a success case rather than an error.
+- **Why it matters**: If Public adds a friendlier passive-learning or session-end capture wrapper, it should immediately log extraction yield, save yield, duplicate-skip rate, and zero-extraction rate. Those are the right first metrics for judging whether passive capture is useful or noisy.
+- **Recommendation**: NEW FEATURE
+- **Impact**: high
+
+### Finding 4: In the code examined, Engram does not expose first-class retrieval-accuracy evaluation; Public already does
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:41-46,50-74,399-590`; `001-engram-main/external/internal/store/store.go:1462-1547`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:648-790`; `.opencode/skill/system-spec-kit/mcp_server/lib/scoring/confidence-tracker.ts:83-179`; `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223-326`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:297-317,508-541`
+- **What it does**: Engram exposes search, save, context, lifecycle, passive capture, and basic stats, but I did not find a first-class retrieval-evaluation surface analogous to Public’s `memory_validate` or `eval_run_ablation`. Public already records confidence/validation counts and can run channel ablations with persisted `Recall@20` deltas.
+- **Why it matters**: Public’s benchmark backbone should be retrieval accuracy, not raw corpus counts. The core accuracy metrics to track are `Recall@K`, per-channel ablation deltas, positive-selection rate, selected-rank distribution, learned-feedback application rate, and confidence/validation trends.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 5: Public already has richer operational health telemetry than Engram; the gap is scorecarding, not instrumentation
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:126-154,205-320`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:296-594`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`; `.opencode/skill/system-spec-kit/mcp_server/handlers/causal-graph.ts:667-749`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:10-34`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:10-40`; `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/status.ts:27-77`; `.opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts:58-163`
+- **What it does**: Public already measures memory totals/statuses/tier breakdowns, trigger counts, embedding retry state, FTS drift, repair actions, session quality, code-graph freshness, CocoIndex readiness, causal-link coverage, and deep-loop convergence signals.
+- **Why it matters**: Engram’s simpler `mem_stats` should not tempt Public to shrink its telemetry model. The real missing piece is a unified benchmark surface that presents these as one operator-facing scorecard instead of many separate tools.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 6: Public’s benchmark model should be explicitly split into three planes
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:73-78,102-220,691-727`; `.opencode/skill/system-spec-kit/mcp_server/handlers/checkpoints.ts:767-790`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:520-610,724-807,904-934`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:1134-1154`
+- **What it does**: Public already exposes the ingredients for a 3-plane metric taxonomy:
+  1. **Memory quality**: trigger coverage, anchor correctness, token budget, coherence, `quality_score`, confidence, validation count, promotion eligibility.
+  2. **Retrieval accuracy**: `Recall@K`, ablation deltas, intent-confidence versus success, selected-rank distribution, learned-feedback application, exact-key/artifact-hit rate, fallback/evidence-gap rate.
+  3. **System health**: embedding readiness, vector availability, FTS parity, alias conflicts, session quality, graph freshness, code-graph parse health, CocoIndex availability, causal coverage, convergence blockers.
+- **Why it matters**: This is the clean benchmark architecture Public should use. A single blended “memory score” will hide whether failures come from bad memories, bad ranking, or broken infrastructure.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+## Assessment
+- New information ratio: 0.57
+- Fallback note: CocoIndex/semantic search was permission-blocked for this external path in-session, so this pass used targeted grep plus direct file reads.
+
+## Recommended Next Focus
+Design a concrete Public benchmark scorecard and eval schema that rolls up `quality_loop`, `memory_validate`, `eval_run_ablation`, `memory_health`, `session_health`, `code_graph_status`, `ccc_status`, and causal/coverage-graph signals into one report, then decide which missing hygiene metrics (`revision_rate`, `duplicate_rate`, passive-capture yield) need new storage.
+
+
+Total usage est:        1 Premium request
+API time spent:         3m 57s
+Total session time:     4m 20s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  2.0m in, 16.1k out, 1.9m cached, 7.2k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 029: ARCHITECTURE DECISION RECORD
+
+## Focus
+ARCHITECTURE DECISION RECORD: Document the key architectural decisions this system made and why. Which decisions should we adopt and which should we reject?
+
+## Findings
+### Finding 1: Agent/admin tool profile split is worth copying only as a delivery-layer bundle
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:38-80,121-138,160-167,169-210,375-619`
+- **What it does**: Engram defines `ProfileAgent` and `ProfileAdmin`, resolves them through `ResolveTools()`, filters registration with `shouldRegister()`, and pairs that split with explicit core versus deferred tool guidance.
+- **Why it matters**: Public's memory surface is broader and more capable than Engram's, so the win here is safer packaging and discoverability, not feature reduction.
+- **Recommendation**: prototype later
+- **Impact**: high
+
+### Finding 2: Explicit session lifecycle plus durable session summaries is Engram's strongest architecture decision
+- **Source**: `001-engram-main/external/internal/store/store.go:754-858,1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:76-99,111-149`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:1-120`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:1-127,163-220`
+- **What it does**: Engram persists sessions as first-class records, closes them with summaries, and formats recent sessions, prompts, and observations into startup context through `mem_session_start`, `mem_session_end`, `mem_session_summary`, and `mem_context`.
+- **Why it matters**: Public already has stronger recovery machinery than Engram, but it lacks an equally thin lifecycle front door. We should adopt the ergonomics lesson without replacing `session_bootstrap`, `session_resume`, or trusted session handling.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 3: Stable topic families are valuable, but Engram's raw upsert model is too lossy for Public
+- **Source**: `001-engram-main/external/internal/store/store.go:948-1068,3201-3278`; `001-engram-main/external/internal/mcp/mcp.go:302-324`; `001-engram-main/external/docs/ARCHITECTURE.md:86-117`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:92-178`
+- **What it does**: Engram uses `topic_key` families such as `architecture/`, `bug/`, and `decision/`, suggests keys from heuristics, and upserts later saves onto the latest matching observation while incrementing `revision_count`.
+- **Why it matters**: The stable-thread idea is strong for evolving ADRs and research threads, but Public's markdown evidence and `generate-context.js` flow are richer than Engram's overwrite-first storage model.
+- **Recommendation**: prototype later
+- **Impact**: high
+
+### Finding 4: Hygiene metadata should become a first-class operator scorecard in Public
+- **Source**: `001-engram-main/external/internal/store/store.go:948-1068,1588-1608`; `001-engram-main/external/docs/ARCHITECTURE.md:86-95`
+- **What it does**: Engram tracks `revision_count`, `duplicate_count`, `last_seen_at`, and `deleted_at` directly on observations and keeps soft-deleted rows out of normal search and context.
+- **Why it matters**: Public already has better retrieval-quality signals than Engram, but it does not expose churn and hygiene as explicitly. We should add these as observability metrics, not as replacements for `quality_score`, validation, or ablation-based evaluation.
+- **Recommendation**: NEW FEATURE
+- **Impact**: high
+
+### Finding 5: Exact-key lexical shortcuts should be adopted, but Engram's lexical-first search model should not
+- **Source**: `001-engram-main/external/internal/store/store.go:1462-1584,3382-3391`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-120`
+- **What it does**: Engram checks direct `topic_key` matches before FTS5 when the query contains `/`, sanitizes FTS input with `sanitizeFTS()`, and then orders by `fts.rank`.
+- **Why it matters**: Public should import the exact-handle lane for future thread keys and artifact names, but Engram's broader FTS-first retrieval would be a downgrade from Public's semantic-first hybrid architecture.
+- **Recommendation**: adopt now
+- **Impact**: high
+
+### Finding 6: Engram's coarse `project` versus `personal` scope model should be rejected for Public
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:187-192,253-258,385-390`; `001-engram-main/external/internal/store/store.go:959-976,3166-3171`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-120`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:357-435`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:104-116,207-227`
+- **What it does**: Engram normalizes scope to a flat `project` or `personal` boundary and keys saves and searches by normalized project plus that scope.
+- **Why it matters**: Public already carries `tenantId`, `userId`, `agentId`, `sharedSpaceId`, and trusted `effectiveSessionId` enforcement. Collapsing that model to Engram's scope would weaken shared/private safety and auditability.
+- **Recommendation**: reject
+- **Impact**: high
+
+### Finding 7: One-command runtime packaging is a real DX win we should adopt selectively
+- **Source**: `001-engram-main/external/README.md:23-58`; `001-engram-main/external/docs/ARCHITECTURE.md:16-48`
+- **What it does**: Engram packages one local memory backend behind MCP stdio and one-command runtime setup across multiple agent environments.
+- **Why it matters**: Public should copy the setup/bootstrap packaging lesson so continuity and recovery are easier to install, but it should not collapse its broader memory, graph, and governance architecture into Engram's simpler product shape.
+- **Recommendation**: adopt now
+- **Impact**: medium
+
+## Assessment
+- New information ratio: 0.42
+
+## Recommended Next Focus
+Consolidate the accepted, proposed, rejected, and new-feature decisions into the final `research/research.md` synthesis, create `implementation-summary.md`, rerun strict validation in a write-enabled runtime, and save final phase context with `generate-context.js`.
+
+
+Total usage est:        1 Premium request
+API time spent:         12m 44s
+Total session time:     13m 9s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  2.0m in, 57.7k out, 1.9m cached, 17.3k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 030: FINAL EXTENDED SYNTHESIS
+
+## Focus
+FINAL EXTENDED SYNTHESIS: integrate the full 30-iteration run, update the adopt/prototype/reject map, and collapse Engram’s ideas into one definitive recommendation set for Spec Kit Memory.
+
+## Findings
+### Finding 1: Add a deterministic recent-session digest, but keep Public’s existing trust-bound resume/bootstrap authority
+- **Source**: `001-engram-main/external/internal/store/store.go:1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-614`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-240`
+- **What it does**: Engram’s strongest reusable idea is not `mem_session_start`/`mem_session_end`; it is the bounded, deterministic digest over recent sessions, prompts, and observations that `mem_context` exposes. Public already has the stronger substrate in `session_resume`/`session_bootstrap`, but it lacks an equally cheap, stable recent-history block.
+- **Why it matters**: This is the highest-leverage continuity win from the full research run: better startup clarity, better compaction survival, and zero need to split lifecycle authority.
+- **Recommendation**: adopt now
+- **Priority**: P1
+- **Effort**: 3/5
+- **Impact score**: 5/5
+- **Impact**: high
+
+### Finding 2: Package memory usage as a thin action card plus one-command runtime setup, not as duplicated runtime-specific logic
+- **Source**: `001-engram-main/external/README.md:35-58`; `001-engram-main/external/docs/AGENT-SETUP.md:27-36,111-122,147-158`; `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-811`
+- **What it does**: Engram wins hard on DX: setup is productized, recovery instructions are portable, and plugins stay thin while the core memory semantics stay centralized.
+- **Why it matters**: Public already has the better memory core; what it lacks is a similarly easy install/bootstrap/export story. This should be a delivery-layer improvement over existing `session_bootstrap`, `session_resume`, `memory_context`, and health surfaces.
+- **Recommendation**: adopt now
+- **Priority**: P2
+- **Effort**: 3/5
+- **Impact score**: 5/5
+- **Impact**: high
+
+### Finding 3: Keep semantic-first hybrid retrieval as the main recall engine, but add an explicit exact-key lexical lane for handles and artifact names
+- **Source**: `001-engram-main/external/internal/store/store.go:1474-1519,1546-1583,3384-3391`; `001-engram-main/external/docs/ARCHITECTURE.md:86-116`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1253,1747-1779`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:184-520`
+- **What it does**: Engram proves the value of deterministic exact-key lookup, but not of lexical-first retrieval overall. Public’s semantic-first fusion, reranking, trigger lane, and lexical sublanes are already stronger; the gap is a first-class exact-handle lane for artifact names and future thread keys.
+- **Why it matters**: This is the cleanest search improvement surfaced across iterations 5, 8, 20, 21, and 26: exact identifiers should bypass ambiguity, while concept discovery should stay semantic-first.
+- **Recommendation**: adopt now
+- **Priority**: P3
+- **Effort**: 2/5
+- **Impact score**: 5/5
+- **Impact**: high
+
+### Finding 4: Add a read-only doctor/scorecard surface over existing diagnostics instead of widening `memory_search`
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:399-411,415-457`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:296-594`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`; `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223-326`; `.opencode/skill/system-spec-kit/mcp_server/handlers/quality-loop.ts:73-78,102-220,691-727`
+- **What it does**: Across the run, the consistent pattern was that recovery, repair, review, and benchmarking should sit beside recall, not inside it. Public already has the pieces; it lacks a single operator-facing composite.
+- **Why it matters**: This is the fastest way to improve observability and usability without touching ranking semantics or weakening trust boundaries.
+- **Recommendation**: adopt now
+- **Priority**: P4
+- **Effort**: 3/5
+- **Impact score**: 4/5
+- **Impact**: high
+
+### Finding 5: Prototype metadata-first `thread_key` plus chronology-around-hit, but do not copy Engram’s overwrite-first upsert model
+- **Source**: `001-engram-main/external/internal/store/store.go:948-1068,1474-1519,3201-3278`; `001-engram-main/external/internal/mcp/mcp.go:302-324,416-457`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/markdown-evidence-builder.ts:92-178`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:345-444`
+- **What it does**: Engram’s unique architectural idea is stable topic identity tied to exact lookup and surrounding chronology. The value is real, but its live-row upsert pattern is too lossy for Public’s evidence-rich markdown save model.
+- **Why it matters**: This is worth exploring for long-lived ADRs, research lines, and bug threads, but only as additive metadata and follow-up retrieval affordances.
+- **Recommendation**: prototype later
+- **Priority**: P5
+- **Effort**: 4/5
+- **Impact score**: 4/5
+- **Impact**: high
+
+### Finding 6: Governed passive capture plus hygiene telemetry is the main true net-new feature area
+- **Source**: `001-engram-main/external/internal/store/store.go:959-1056,3396-3495`; `001-engram-main/external/internal/mcp/mcp.go:565-590`; `.opencode/skill/system-spec-kit/mcp_server/lib/enrichment/passive-enrichment.ts:1-213`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-280`
+- **What it does**: Engram treats passive capture as a first-class extraction path and reports useful yield metrics (`Extracted`, `Saved`, `Duplicates`). It also exposes hygiene metadata (`revision_count`, `duplicate_count`, `deleted_at`, `last_seen_at`) more directly than Public does today.
+- **Why it matters**: If Public adds a session-end or passive-learning lane, it should arrive with provenance, reviewability, transactional semantics, and explicit hygiene/yield scorecarding from day one.
+- **Recommendation**: NEW FEATURE
+- **Priority**: P6
+- **Effort**: 4/5
+- **Impact score**: 5/5
+- **Impact**: high
+
+### Finding 7: Delivery-layer tool bundles are worth prototyping, but only as packaging over the full Spec Kit Memory surface
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:7-13,50-79,121-138,169-210,375-619`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:230-239,733-756`
+- **What it does**: Engram’s `ProfileAgent`/`ProfileAdmin` split helps discoverability and reduces prompt clutter, but it is primarily a packaging trick, not a core memory-system innovation.
+- **Why it matters**: The action-card/setup work should land first. Actual profile-aware registration or beginner bundles can come later if the broad Public tool surface still proves noisy.
+- **Recommendation**: prototype later
+- **Priority**: P7
+- **Effort**: 2/5
+- **Impact score**: 3/5
+- **Impact**: medium
+
+### Finding 8: Explicitly reject Engram’s permissive lifecycle/scope model and its lexical-first recovery shortcuts as design targets for Public
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:187-192,253-258,385-390,515-562`; `001-engram-main/external/internal/store/store.go:959-976,1462-1584`; `001-engram-main/external/plugin/opencode/engram.ts:423-447`; `001-engram-main/external/plugin/claude-code/scripts/post-compaction.sh:30-88`; `.opencode/skill/system-spec-kit/mcp_server/lib/session/session-manager.ts:357-435`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:158-165,177-193,218-280,456-493`
+- **What it does**: The most dangerous things to copy are Engram’s silent session auto-create behavior, coarse `project`/`personal` scope model, second explicit lifecycle authority, model-authored compaction writeback checkpointing, and lexical-first retrieval as a replacement for Public’s hybrid stack.
+- **Why it matters**: These all cut directly against Public’s strongest existing advantages: trusted session handling, governed scopes, spec-folder authority, transport-owned recovery, and semantic/graph-aware retrieval.
+- **Recommendation**: reject
+- **Priority**: P8
+- **Effort**: 1/5
+- **Impact score**: 5/5
+- **Impact**: high
+
+## Assessment
+- New information ratio: 0.14
+
+## Recommended Next Focus
+Implement P1-P4 as the production track, isolate P5-P7 as bounded prototypes, and record P8 as explicit non-goals so future work does not accidentally regress session trust, scope governance, or semantic-first retrieval.
+
+
+Total usage est:        1 Premium request
+API time spent:         2m 14s
+Total session time:     2m 30s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  677.8k in, 9.9k out, 600.1k cached, 4.4k reasoning (Est. 1 Premium
+ request)
 
 ---
 
