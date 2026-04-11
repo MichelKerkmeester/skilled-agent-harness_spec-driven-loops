@@ -1,12 +1,12 @@
 ---
 title: "Deep Research Report: 001-engram-main"
-description: "30-iteration deep research synthesis"
+description: "40-iteration deep research synthesis (042-compliant)"
 ---
 
 # Deep Research Report: 001-engram-main
 
-Generated: 2026-04-11 00:54
-Iterations: 30
+Generated: 2026-04-11 02:20
+Iterations: 40
 Engine: Codex GPT-5.4 High (fast mode)
 
 ---
@@ -180068,6 +180068,2141 @@ Total code changes:     +0 -0
 Breakdown by AI model:
  gpt-5.4                  677.8k in, 9.9k out, 600.1k cached, 4.4k reasoning (Est. 1 Premium
  request)
+
+---
+
+✗ memory_match_triggers (MCP: spec_kit_memory) · prompt: "DEEP RESEARCH iteration 31 of 40 on exter…
+  └ Permission denied and could not request permission from user
+
+✗ Run skill advisor (shell)
+  │ python3 .opencode/skill/scripts/skill_advisor.py "DEEP RESEARCH iteration 31 of 40 on an
+  │ external memory system. Focus: ADOPTION ROADMAP DRAFT: Based on all 30 prior iterations, create
+  │ a phased adoption roadmap with Q1/Q2/Q3 milestones. Include dependencies between adopted
+  │ patterns. Update the existing Engram phase-folder research docs within the pre-approved phase
+  │ folder only." --threshold 0.8
+  └ Permission denied and could not request permission from user
+
+● skill(system-spec-kit)
+
+I’ve got the phase context now. I’m checking the existing Engram research packet, validating its current state, and then I’ll draft the Q1/Q2/Q3 adoption roadmap on top of the prior findings rather than starting from scratch.
+
+● Read AGENTS.md
+  └ 1 line read
+
+● Read AGENTS.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/AGENTS.md
+  └ 35 lines read
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 4 files found
+
+✗ Validate Engram phase folder (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
+  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-k
+  │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+  │ --strict
+  └ Permission denied and could not request permission from user
+
+● Read AGENTS.md
+  └ L1:220 (220 lines read)
+
+● Search (glob)
+  │ "**/*" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/001-engram-main/research
+  └ 32 files found
+
+● Search (glob)
+  │ "*.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/001-engram-main
+  └ 81 files found
+
+✗ Read spec.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/spec.md
+  └ Path does not exist
+
+✗ Read plan.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/plan.md
+  └ Path does not exist
+
+✗ Read tasks.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/tasks.md
+  └ Path does not exist
+
+✗ Read checklist.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/checklist.md
+  └ Path does not exist
+
+✗ Read decision-record.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/decision-record.md
+  └ Path does not exist
+
+✗ Read implementation-summary.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/implementation-summary.md
+  └ Path does not exist
+
+The packet is missing the Level 3 phase docs entirely, so I’m treating that as the first fix. Next I’m reading the current report and the last iteration so the new roadmap lands cleanly in the existing structure instead of duplicating earlier synthesis.
+
+● Read phase-research-prompt.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/phase-research-prompt.md
+  └ 180 lines read
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L1:260 (238 lines read)
+
+● Read iteration-030.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-030.md
+  └ 100 lines read
+
+● Read iteration-029.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-029.md
+  └ L1:240 (68 lines read)
+
+I’ve confirmed the phase packet already has all 30 iteration artifacts plus a 30-iteration synthesis, but the packet-level Level 3 docs were never created. I’m pulling a compact map of the strongest prior recommendations now so the roadmap phases reflect the actual research trajectory, not just the last summary.
+
+● Search (grep)
+  │ "^### Finding|^## Focus|Recommendation\*\*:|Priority\*\*:|Impact score\*\*:" in iteration-0*.md
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/iterations)
+  └ 6 lines found
+
+● Search (grep)
+  │ "adopt now|prototype later|reject|NEW FEATURE" in iteration-0*.md
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/iterations)
+  └ 30 files found
+
+● Search (grep)
+  │ "recent-session digest|action card|one-command runtime setup|exact-handle
+  │ lane|doctor|scorecard|thread_key|passive capture|tool profile|ProfileAgent|ProfileAdmin|session
+  │ lifecycle|topic_key|hygiene telemetry" in iteration-0*.md
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/iterations)
+  └ 5 lines found
+
+● Read iteration-024.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-024.md
+  └ 54 lines read
+
+● Read iteration-025.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-025.md
+  └ 55 lines read
+
+● Read iteration-026.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-026.md
+  └ 57 lines read
+
+● Read iteration-027.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-027.md
+  └ 65 lines read
+
+● Read iteration-028.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-028.md
+  └ 65 lines read
+
+I’ve got the roadmap inputs now: the strongest “adopt now” items cluster around deterministic continuity, thin runtime packaging, exact-key lexical routing, and operator scorecards; the bounded prototypes cluster around thread keys, tool bundles, and passive capture. I’m grabbing a sibling packet as a formatting model so the missing phase docs and the roadmap update match the local spec style.
+
+● Search (glob)
+  │ "*.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/004-opencode-mnemosyne-main
+  └ 43 files found
+
+✗ Read spec.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/004-opencode-mnemosyne-main/spec.md
+  └ Path does not exist
+
+✗ Read plan.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/004-opencode-mnemosyne-main/plan.md
+  └ Path does not exist
+
+✗ Read tasks.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/004-opencode-mnemosyne-main/tasks.md
+  └ Path does not exist
+
+✗ Read checklist.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/004-opencode-mnemosyne-main/checklist.md
+  └ Path does not exist
+
+✗ Read decision-record.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/004-opencode-mnemosyne-main/decision-record.md
+  └ Path does not exist
+
+✗ Read implementation-summary.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/004-opencode-mnemosyne-main/implementation-summary.md
+  └ Path does not exist
+
+I’ve isolated the two real gaps: packet-level docs are missing, and the final roadmap iteration itself hasn’t been written. I’m splitting those cleanly—`@speckit` to repair the phase packet and `@deep-research` to draft iteration 031 plus the roadmap update against the existing synthesis.
+
+● Speckit(gpt-5.4) Creating phase docs
+  └ Agent started in background with agent_id: engram-phase-docs. You can use rea...
+
+● Deep-research(gpt-5.4) Drafting roadmap research
+  └ Agent started in background with agent_id: engram-iteration-031. You can use ...
+
+● Read store.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/store/store.go
+  └ L1474:1583 (110 lines read)
+
+● Read store.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/store/store.go
+  └ L1613:1667 (55 lines read)
+
+● Read mcp.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/mcp/mcp.go
+  └ L375:590 (216 lines read)
+
+● Read session-resume.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts
+  └ L400:614 (215 lines read)
+
+● Read session-bootstrap.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  └ L163:240 (78 lines read)
+
+● Read query-router.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts
+  └ L48:164 (117 lines read)
+
+● Read context-server.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  └ L741:811 (71 lines read)
+
+● Read (Speckit agent — Creating phase docs)
+  └ Running
+
+● Read (Deep-research agent — Drafting roadmap research)
+  └ Running
+
+The writers are still working, but they’ve already used a fair amount of tool activity, so I’m checking the packet directly for intermediate outputs. If the files are landing cleanly, I’ll verify the final state and only step in manually where needed.
+
+● Search (glob)
+  │ "*.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/001-engram-main
+  └ 81 files found
+
+● Search (glob)
+  │ "iteration-031.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research
+  │ -hybrid-rag-fusion-systems/001-engram-main/research/iterations
+  └ No matches found
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L1:220 (220 lines read)
+
+● Read (Speckit agent — Creating phase docs)
+  └ Running
+
+● Read (Deep-research agent — Drafting roadmap research)
+  └ Running
+
+I’ve got the roadmap structure pinned down already, so the only remaining risk is tool latency from the delegated writers. I’m giving them one more pass to finish cleanly before I decide whether to take over the packet edits directly.
+
+● Read (Deep-research agent — Drafting roadmap research)
+  └ Completed
+
+● Read (Speckit agent — Creating phase docs)
+  └ Running
+
+✗ Read (Checking agent engram-iteration-031)
+  └ Failed
+
+● Read (Speckit agent — Creating phase docs)
+  └ Running
+
+The delegated writers hit a runtime no-write policy, so I’m taking over the packet edits directly. I’ve already got the exact iteration 031 draft and the packet context; now I’m patching the phase docs and the canonical report in place, then I’ll run the packet validation through a command-only path.
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L80:180 (101 lines read)
+
+● skill(sk-doc)
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L180:260 (81 lines read)
+
+I’m checking one known-good Level 3 packet before I write, just to match the local sectioning closely enough for the spec validator instead of guessing the root-doc shape.
+
+● Search (glob)
+  │ "**/spec.md" in .opencode/specs
+  └ 8 files found
+
+✗ Read checklist.md
+  │ .opencode/specs/skilled-agent-orchestration/029-sk-deep-research-first-upgrade/checklist.md
+  └ Path does not exist
+
+✗ Read decision-record.md
+  │ .opencode/specs/skilled-agent-orchestration/029-sk-deep-research-first-upgrade/decision-record.m
+  │ d
+  └ Path does not exist
+
+● Read spec.md
+  │ .opencode/specs/skilled-agent-orchestration/029-sk-deep-research-first-upgrade/spec.md
+  └ L1:220 (141 lines read)
+
+● Read plan.md
+  │ .opencode/specs/skilled-agent-orchestration/029-sk-deep-research-first-upgrade/plan.md
+  └ L1:220 (133 lines read)
+
+● Read tasks.md
+  │ .opencode/specs/skilled-agent-orchestration/029-sk-deep-research-first-upgrade/tasks.md
+  └ L1:220 (82 lines read)
+
+● Read implementation-summary.md
+  │ .opencode/specs/skilled-agent-orchestration/029-sk-deep-research-first-upgrade/implementation-su
+  │ mmary.md
+  └ L1:220 (88 lines read)
+
+● Search (grep)
+  │ "^# Iteration 030|^## Iteration 031|^## Adoption Roadmap|^## Assessment|^Total usage est"
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/research.md)
+  └ 7 lines found
+
+● Read (Speckit agent — Creating phase docs)
+  └ Completed
+
+The delegates confirmed the two actual blockers: missing root docs and write restrictions inside their isolated runtimes. I can write from the main session, so I’m pulling the local Level 3 template headers once and then patching all missing docs plus the roadmap artifacts in one pass.
+
+● Search (glob)
+  │ "**/level_3/*.md" in .agents/skills/system-spec-kit/templates
+  └ 13 files found
+
+● Read spec.md
+  │ .agents/skills/system-spec-kit/templates/level_3/spec.md
+  └ L1:220 (220 lines read)
+
+● Read plan.md
+  │ .agents/skills/system-spec-kit/templates/level_3/plan.md
+  └ L1:220 (220 lines read)
+
+● Read tasks.md
+  │ .agents/skills/system-spec-kit/templates/level_3/tasks.md
+  └ L1:220 (89 lines read)
+
+● Read checklist.md
+  │ .agents/skills/system-spec-kit/templates/level_3/checklist.md
+  └ L1:220 (183 lines read)
+
+● Read decision-record.md
+  │ .agents/skills/system-spec-kit/templates/level_3/decision-record.md
+  └ L1:220 (126 lines read)
+
+● Read implementation-summary.md
+  │ .agents/skills/system-spec-kit/templates/level_3/implementation-summary.md
+  └ L1:220 (118 lines read)
+
+✗ Edit
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/spec.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/plan.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/tasks.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/checklist.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/decision-record.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/implementation-summary.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/research/iterations/iteration-031.md
+  └ Edit .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusio
+    n-systems/001-engram-main/research/research.md
+
+**Blocked on persistence.** Repo writes are denied in this runtime, so I could not create `research/iterations/iteration-031.md`, update `research/research.md`, or add the missing Level 3 packet docs in `001-engram-main`.
+
+**Iteration 031 roadmap draft:**
+1. **Q1 — adopt now**
+   - deterministic recent-session digest inside existing `session_resume` / `session_bootstrap`
+   - thin action card plus one-command runtime setup built on that digest
+   - exact-handle lexical lane for artifact names and future thread keys
+   - read-only doctor / scorecard over existing diagnostics and eval surfaces
+2. **Q2 — prototype later**
+   - metadata-first `thread_key` with chronology-around-hit
+   - delivery-layer tool bundles / profile packaging over the full surface
+3. **Q3 — new feature**
+   - bounded session-end / passive-capture wrappers that still preserve `generate-context.js` authority and scope governance
+
+**Dependencies:**
+- runtime setup depends on the deterministic digest
+- `thread_key` depends on the exact-key lexical lane
+- doctor / scorecard depends on existing diagnostics aggregation
+- passive / session-end wrappers depend on governance, provenance, and hygiene metrics
+
+**Explicit non-goals:**
+- no coarse scope collapse
+- no model-authored compaction writeback authority
+- no lexical-first replacement of Public’s hybrid retrieval
+- no hidden daemon / HTTP-sidecar requirement
+- no duplication of Modus BM25/FSRS ownership or Mnemosyne vector-first ownership
+
+I also prepared packet-local content for the missing root docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`), but the same write restriction blocked saving them.
+
+
+Total usage est:        1 Premium request
+API time spent:         15m 55s
+Total session time:     12m 0s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  4.1m in, 68.1k out, 3.9m cached, 21.1k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 032: MIGRATION RISK MATRIX
+
+## Focus
+MIGRATION RISK MATRIX: For each adopt-now pattern, detail what could break during migration. Include rollback plans and feature flags needed.
+
+## Findings
+### Finding 1: A deterministic recent-session digest is safe only if it stays additive to `session_resume` and `session_bootstrap`
+- **Source**: `001-engram-main/external/internal/store/store.go:1613-1667`; `001-engram-main/external/internal/mcp/mcp.go:375-395,460-562`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-240`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244,283-288`
+- **What it does**: Engram’s `FormatContext()` builds a bounded digest over recent sessions, prompts, and observations. Public already has the stronger authority surface in `session_resume` and `session_bootstrap`, so the transferable pattern is an additive digest block inside those existing payloads, not a second lifecycle API.
+- **Why it matters**: Highest-leverage continuity win, but it touches Public’s most trust-sensitive startup path.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+- **Migration risk**:
+  - Startup authority drift if the digest disagrees with existing `memory`, `cachedSummary`, or `structuralContext`.
+  - Token bloat if the digest appears in bootstrap, startup instructions, and compaction payloads at once.
+  - Scope/session leakage if it bypasses current resume/session boundaries.
+- **Feature flags needed**:
+  - `SPECKIT_RESUME_DIGEST_V1=false`
+  - `SPECKIT_RESUME_DIGEST_MODE=shadow|promoted`
+  - `SPECKIT_BOOTSTRAP_DIGEST_V1=false`
+- **Rollback plan**:
+  - Turn both digest flags off.
+  - Remove only the additive digest section.
+  - Keep `session_resume`, `session_bootstrap`, cached-summary gating, and structural trust unchanged.
+
+### Finding 2: A thin action card plus one-command runtime setup can easily duplicate or override Public’s existing recovery hooks
+- **Source**: `001-engram-main/external/README.md:45-58`; `001-engram-main/external/docs/AGENT-SETUP.md:27-43,69-84,111-122,147-158`; `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-809`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244`
+- **What it does**: Engram productizes runtime setup with one-command installers and thin plugins. Public already emits startup instructions and injects compaction context, so the reusable piece is packaging/export ergonomics, not a new transport model.
+- **Why it matters**: Fast DX win after digest work, but it crosses every runtime adapter boundary.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+- **Migration risk**:
+  - Runtime instruction drift if exported cards fall out of sync with real recovery order.
+  - Double injection if generated cards and the current compaction plugin both add overlapping recovery blocks.
+  - Hidden daemon assumptions if setup starts acting like Engram’s HTTP-backed plugin model.
+- **Feature flags needed**:
+  - `SPECKIT_RUNTIME_ACTION_CARD_V1=false`
+  - `SPECKIT_RUNTIME_SETUP_EXPORT_V1=false`
+  - Per-runtime kill switches: `..._OPENCODE_V1`, `..._CLAUDE_V1`, `..._CODEX_V1`, `..._GEMINI_V1`
+- **Rollback plan**:
+  - Disable export flags.
+  - Fall back to current `context-server.ts` instructions and existing plugin behavior.
+  - Keep recovery truth in core surfaces, not generated runtime files.
+
+### Finding 3: An exact-handle lexical lane can regress search quality if it escapes its narrow artifact-only scope
+- **Source**: `001-engram-main/external/internal/store/store.go:1474-1583`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-45,69-83,154-184`; `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:231-244,283-288`
+- **What it does**: Engram prepends exact `topic_key` hits before FTS results for handle-shaped queries. Public already keeps semantic-first routing and BM25 preservation for artifact-like searches; the migration target is a tiny exact-handle lane, not a lexical-first rewrite.
+- **Why it matters**: Search regressions would be immediate and user-visible.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+- **Migration risk**:
+  - Rank inversion if exact matches suppress vector/graph/BM25 results for merely slash-shaped queries.
+  - False positives/collisions from loose key normalization.
+  - Governance bugs if the lane ignores tenant/user/agent/shared-space filters.
+- **Feature flags needed**:
+  - `SPECKIT_EXACT_HANDLE_LANE_V1=false`
+  - `SPECKIT_EXACT_HANDLE_MODE=shadow|promoted`
+  - `SPECKIT_EXACT_HANDLE_ALLOWLIST=spec,plan,tasks,checklist,decision-record,implementation-summary,research`
+- **Rollback plan**:
+  - Disable the exact-handle flags.
+  - Return to the current hybrid router immediately.
+  - Keep any new key metadata additive and unused on rollback.
+
+### Finding 4: A read-only doctor/scorecard should compose current diagnostics, not become a new source of truth or a hidden repair surface
+- **Source**: `001-engram-main/external/internal/mcp/mcp.go:399-411`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30-57`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`; `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9-55`; `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:388-410`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:230-239,656-700,731-776`
+- **What it does**: Engram’s `mem_stats` shows the value of a lightweight operational surface. Public already has `memory_stats`, `memory_health`, `session_health`, `code_graph_status`, `ccc_status`, and `eval_reporting_dashboard`; the adopt-now move is a read-only composite wrapper over those tools.
+- **Why it matters**: Improves operability without touching ranking semantics or governance.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+- **Migration risk**:
+  - Status divergence if the scorecard recomputes instead of delegating to existing handlers.
+  - Accidental side effects if “doctor” exposes or triggers repair paths by default.
+  - Context clutter if the composite becomes an eager agent-facing tool.
+- **Feature flags needed**:
+  - `SPECKIT_DOCTOR_SCORECARD_V1=false`
+  - `SPECKIT_DOCTOR_INCLUDE_EVAL_V1=false`
+  - `SPECKIT_DOCTOR_REPAIR_ACTIONS=false`
+  - `SPECKIT_DOCTOR_AGENT_SURFACE=off|readonly`
+- **Rollback plan**:
+  - Disable the doctor flags.
+  - Keep the underlying diagnostics tools as the only operational surfaces.
+  - Ensure the first version stays read-only.
+
+## Sources Consulted
+- `001-engram-main/external/internal/store/store.go:1474-1583`
+- `001-engram-main/external/internal/store/store.go:1613-1667`
+- `001-engram-main/external/internal/mcp/mcp.go:50-167`
+- `001-engram-main/external/internal/mcp/mcp.go:375-590`
+- `001-engram-main/external/README.md:45-58`
+- `001-engram-main/external/docs/AGENT-SETUP.md:27-43,69-84,111-122,147-158`
+- `001-engram-main/external/docs/PLUGINS.md:13-37,48-57,76-120`
+- `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`
+- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-809`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-240`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,113-164`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-stats.ts:30-57`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:33-195`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/status.ts:9-47`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/code-graph/ccc-status.ts:9-55`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:388-410`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:41-45,69-83,154-184,230-239,656-700,731-776`
+- `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:226-244,283-288`
+- `research/iterations/iteration-030.md:1-100`
+
+## Assessment
+- New information ratio: 0.12
+- Questions addressed: [migration risk for deterministic recent-session digest, migration risk for thin runtime setup/action cards, migration risk for exact-handle lexical lane, migration risk for read-only doctor/scorecard]
+- Questions answered: [all four adopt-now migration tracks, required feature-flag families, rollback shape for each track]
+- Novelty justification: This is the first pass that turns the P1-P4 adopt-now set into a reversible rollout matrix tied to Public’s current recovery, routing, and diagnostics surfaces.
+
+## Ruled Out
+- Big-bang enablement across all runtimes at once
+- Replacing `session_resume` / `session_bootstrap` with a second explicit lifecycle authority
+- Global lexical bypass for any slash-shaped query
+- A doctor surface that can repair by default
+
+## Reflection
+- What worked: Using the clean adopt-now synthesis in `iteration-030.md` as the baseline, then tracing each item into current Public fault lines.
+- What did not work: The packet’s `research.md` tail and `iteration-031.md` content are noisy enough to be weak sources of truth for late-stage synthesis.
+- What I would do differently: Normalize the canonical packet docs earlier so late iterations do not have to work around transcript contamination.
+
+## Recommended Next Focus
+Feature-flag sequencing and shadow-mode graduation criteria for P1-P4, including rollout order and required telemetry before promotion.
+
+
+Total usage est:        1 Premium request
+API time spent:         5m 10s
+Total session time:     5m 29s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.5m in, 20.0k out, 1.4m cached, 8.4k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 033: TESTING STRATEGY
+
+## Focus
+TESTING STRATEGY: How should we test the adopted patterns? Unit tests, integration tests, memory quality regression tests. Concrete test plans.
+
+## Findings
+
+### Finding 1: Storage-layer invariants should be the first gate for any hygiene or thread-key adoption
+- **Source**: `001-engram-main/external/internal/store/store_test.go` [SOURCE: `001-engram-main/external/internal/store/store_test.go:68-110`; `001-engram-main/external/internal/store/store_test.go:112-169`; `001-engram-main/external/internal/store/store_test.go:261-311`; `001-engram-main/external/internal/store/store_test.go:543-590`; `001-engram-main/external/internal/store/store_test.go:869-930`]
+- **What it does**: Engram uses real-store tests to lock down duplicate reuse, `duplicate_count`, scope-filtered search/context, topic-key normalization, topic upsert `revision_count`, and passive-capture dedupe.
+- **Why it matters**: For Public, any adopted `thread_key`/exact-key lane, recent-session digest persistence, hygiene counters, or passive/session-end save wrapper will fail in subtle ways at the DB boundary before they fail at the handler boundary. **Concrete plan:** add fixture-backed storage tests for duplicate reuse vs new-row creation, normalized key reuse, governed-scope isolation, soft-delete exclusion from search/context, and session-summary persistence into resume-visible state.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 2: MCP surface changes need contract tests, not just implementation tests
+- **Source**: `001-engram-main/external/internal/mcp/mcp_test.go`; `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts` [SOURCE: `001-engram-main/external/internal/mcp/mcp_test.go:921-1231`; `001-engram-main/external/internal/mcp/mcp_test.go:1249-1319`; `001-engram-main/external/internal/mcp/mcp_test.go:1339-1490`; `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:50-135`; `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77-122`]
+- **What it does**: Engram tests profile allowlists, profile non-overlap, core-vs-deferred tool annotations, and default project-scoped session IDs; Public already tests `session_resume`/`session_bootstrap` payload contracts, stale-graph hints, and minimal-mode behavior.
+- **Why it matters**: If Public adopts thin agent/admin tool bundles, a one-command runtime setup layer, or an additive recent-session digest, the public MCP contract becomes the product. **Concrete plan:** add contract tests for tool visibility, annotation flags, feature-flagged digest fields, payload stability in full/minimal modes, and failure-mode hints when graph/memory subsystems are stale or unavailable.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 3: Passive capture and session-close behavior should be tested as end-to-end save flows
+- **Source**: `001-engram-main/external/internal/store/store_test.go`; `001-engram-main/external/internal/mcp/mcp_test.go` [SOURCE: `001-engram-main/external/internal/store/store_test.go:803-930`; `001-engram-main/external/internal/store/store_test.go:1427-1480`; `001-engram-main/external/internal/mcp/mcp_test.go:1351-1462`]
+- **What it does**: Engram tests passive extraction counts, saved vs duplicate counts, missing-session failure, persisted end-session summaries, timeline defaults, and automatic project-scoped session creation from save/session-summary/passive handlers.
+- **Why it matters**: Prior iterations already ranked passive capture and explicit lifecycle wrappers as possible additions. Those should not ship with parser-only coverage. **Concrete plan:** when prototyping these features in Public, add end-to-end cases for extracted/saved/duplicate counters, governance/provenance enforcement, default-session fallback, session-end summary visibility in resume/bootstrap, and dedupe against existing saved memories.
+- **Recommendation**: prototype later
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 4: Public already has the right memory-quality regression harness; it should become the promotion gate
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts` [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:4-20`; `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:52-77`; `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:170-196`; `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:218-260`; `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:1-12`; `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:45-77`; `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:455-617`; `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:703-787`; `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:908-1150`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:1-12`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:117-149`]
+- **What it does**: Public already supports channel ablation, ground-truth alignment checks, Recall@20 deltas, multi-metric reporting/storage, and per-channel attribution logging.
+- **Why it matters**: This is the strongest reusable testing asset for adopted patterns. **Concrete plan:** build a fixed eval pack with exact-artifact queries, concept queries, startup/resume queries, trigger-heavy prompts, and future thread-key lookups; run shadow ablations before promoting lexical boosts, digest-derived boosts, trigger weighting, or graph-context changes.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 5: The main testing gap in Public is reusable stateful fixtures, not missing assertions
+- **Source**: `.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts` [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:23-24`; `.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:46-124`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:70-133`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:144-332`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:208-257`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-save.vitest.ts:15-84`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:221-418`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:90-154`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:163-203`]
+- **What it does**: Public has some deferred DB-dependent suites and some source-inspection tests, but it also already proves that full fixture-backed save and lineage tests are feasible and valuable.
+- **Why it matters**: The adopted patterns now span search, save, lineage, governance, and startup continuity. **Concrete plan:** build one reusable seeded-fixture harness that can provision `memory_index`, eval DB rows, governed scope fields, trigger cache fixtures, and session/bootstrap inputs; then use it to un-defer trigger/save integration tests and add full-path tests for `generate-context.js`-produced memories, lineage supersedes, and governed resume/search behavior.
+- **Recommendation**: NEW FEATURE
+- **Impact**: high
+- **Source strength**: primary
+
+## Sources Consulted
+- `001-engram-main/external/internal/store/store_test.go:68-110`
+- `001-engram-main/external/internal/store/store_test.go:112-169`
+- `001-engram-main/external/internal/store/store_test.go:261-311`
+- `001-engram-main/external/internal/store/store_test.go:803-930`
+- `001-engram-main/external/internal/store/store_test.go:1427-1480`
+- `001-engram-main/external/internal/mcp/mcp_test.go:921-1231`
+- `001-engram-main/external/internal/mcp/mcp_test.go:1249-1319`
+- `001-engram-main/external/internal/mcp/mcp_test.go:1339-1490`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/session-resume.vitest.ts:50-135`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/session-bootstrap.vitest.ts:77-122`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:4-20`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/ablation-framework.vitest.ts:455-617`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-eval-channels.vitest.ts:117-149`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-save-ux-regressions.vitest.ts:221-418`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:90-203`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:144-332`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/integration-trigger-pipeline.vitest.ts:23-124`
+- `.opencode/skill/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts:208-257`
+
+## Assessment
+- **New information ratio**: 0.56
+- **Questions addressed**: storage-level unit strategy; MCP integration strategy; passive/session lifecycle coverage; retrieval-quality regression strategy; save/lineage fixture strategy
+- **Questions answered**: which adopted patterns need DB-backed invariants first; which need MCP contract tests; how to regression-test ranking changes; where Public already has eval/save/lineage scaffolding; what missing fixture layer is blocking fuller end-to-end coverage
+- **Novelty justification**: Prior iterations identified which ideas to adopt; this iteration turns them into a layered verification plan and identifies Public’s real bottleneck as reusable stateful fixtures, not missing ranking metrics.
+
+## Ruled Out
+- Relying on source-string assertions alone for retrieval changes — useful for smoke coverage, but insufficient for ranking, governance, or session-continuity behavior [`memory-search-integration.vitest.ts:208-257`].
+- Copying Engram’s coarse `project`/`personal` scope test matrix as-is — Public must test tenant/user/agent/shared-space boundaries too [`001-engram-main/external/internal/store/store_test.go:112-169`; `.opencode/skill/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:282-331`; `.opencode/skill/system-spec-kit/mcp_server/tests/memory-lineage-state.vitest.ts:163-203`].
+- Treating memory quality as manual QA — Public already has better automated ablation machinery, so ranking changes should not rely on ad hoc spot checks [`ablation-framework.ts:4-20,52-77`; `ablation-framework.vitest.ts:455-617`].
+
+## Reflection
+- **What worked**: Reading Engram’s test files before rereading more production code surfaced the intended behavioral guarantees fastest; then comparing them directly to Public’s existing test/eval suites made the missing layers obvious.
+- **What did not work**: The packet brief still referenced a nonexistent `external/engram-main` subtree and missing reducer state files, so direct state-file continuity from the phase folder was not usable.
+- **What I would do differently**: On the next pass, start from the real `external/` root and immediately split findings into three bins — storage invariants, MCP contracts, and quality regressions — to reduce search noise.
+
+## Recommended Next Focus
+Implementation rollout and acceptance criteria: define the shadow-mode thresholds, fixture datasets, and pass/fail gates for promoting the adopted patterns into Public without regressing resume quality, exact-artifact lookup, or governed memory isolation.
+
+
+Total usage est:        1 Premium request
+API time spent:         4m 36s
+Total session time:     4m 54s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.5m in, 16.7k out, 1.4m cached, 7.9k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 034: PERFORMANCE IMPLICATIONS
+
+## Focus
+PERFORMANCE IMPLICATIONS: Analyze performance trade-offs of adopted patterns. Search latency, storage growth, indexing overhead, startup time impact.
+
+## Findings
+
+### Finding 1: Exact key lookup is the highest-leverage low-cost latency optimization
+- **Source**: Engram `topic_key` index + direct lookup; Public artifact-preserving router [SOURCE: `001-engram-main/external/internal/store/store.go:572-577,1462-1519`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,68-71,113-157`]
+- **What it does**: Engram keeps `topic_key` on the main table, indexes it, and checks it directly before running FTS when the query looks like a structured key. Public already preserves BM25 for artifact-like queries and trims channel count for simple queries.
+- **Why it matters**: A future Public `thread_key` lane would be cheap to store and very fast to query because it can bypass vector, graph, rerank, and community fallback on exact-thread lookups.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 2: Public’s hybrid retrieval is inherently slower than Engram’s FTS path, so routing, cache, and quick-mode are mandatory safeguards
+- **Source**: Engram single FTS search; Public sequential hybrid channels, cache/dedup, mode routing, trigger fast-path [SOURCE: `001-engram-main/external/internal/store/store.go:1518-1583`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-976,994-1111`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:450-471,486-520,718-809`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:649-679,700-807,891-927`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156-177,444-505`]
+- **What it does**: Engram does direct-key lookup plus one sanitized FTS5 query ordered by `fts.rank`. Public runs vector/FTS/BM25/graph/degree sequentially, may rerank, waits for embeddings on cache miss, dedups across sessions, and routes low-latency cases into `memory_match_triggers` or smaller channel subsets.
+- **Why it matters**: Public’s quality wins come from extra stages, so performance depends on not paying full-pipeline cost for every query. The exact-key lane, quick mode, cache hits, and channel routing are not nice-to-haves; they are the cost-control layer.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 3: Deferred embeddings are the right write-latency pressure valve, but they turn write cost into background indexing debt
+- **Source**: Public deferred embedding pipeline and deferred row creation; startup catch-up path [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:119-190`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:138-210`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:728-829,1043-1073`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1305`]
+- **What it does**: Public can skip immediate embedding generation, create a deferred record, and recover/index later through startup scan or background retry. Engram does not need this because its write path is lexical-only SQLite + FTS.
+- **Why it matters**: This is the clearest save-time trade-off in Public: lower p50 save latency now, weaker semantic recall until background recovery catches up later. That trade is worth keeping because the alternative is making every save pay full embedding latency.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 4: Storage growth is the hidden cost of Public’s append-only + chunked lineage model
+- **Source**: Engram topic upserts and duplicate counters; Public append-only/chunked save path [SOURCE: `001-engram-main/external/internal/store/store.go:462-467,575-577,948-1068`; `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:166-229`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:831-905,927-1031`]
+- **What it does**: Engram reuses rows for stable topics and increments `revision_count` / `duplicate_count`. Public can create superseding rows, chunk large files into parent + child records, and then add enrichment metadata, causal links, entities, and summaries.
+- **Why it matters**: Public’s model is better for provenance and retrieval richness, but it will grow faster on disk and across secondary indexes. The efficient part worth borrowing is narrow thread/session-summary reuse, not a blanket shift to lossy in-place mutation.
+- **Recommendation**: prototype later
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 5: Startup cost in Public is already composite, so any recent-session digest must stay bounded and additive
+- **Source**: Engram DB open + bounded context formatter; Public composite resume/bootstrap + startup scan [SOURCE: `001-engram-main/external/internal/store/store.go:395-425,1613-1667`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-598`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-217`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1305`]
+- **What it does**: Engram startup is mostly SQLite open, pragmas, migrations, then a bounded formatter over recent sessions/prompts/observations. Public startup/resume already composes `memory_context`, graph status, CocoIndex availability, health hints, pending-file recovery, and optional startup indexing.
+- **Why it matters**: The continuity win from a recent-session digest is real, but adding unbounded digest work to Public’s boot path would stack CPU, I/O, and token cost on top of an already heavy startup surface.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 6: File-backed context saving only stays practical because Public already pays for aggressive incremental indexing
+- **Source**: generate-context file output and incremental scan controls [SOURCE: `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:81-88`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:148-205,212-245,367-388,486-505`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1305`]
+- **What it does**: `generate-context.js` writes memory files for later indexing instead of doing a direct DB-only save. `memory_index_scan` rate-limits scans, canonical-dedups alias paths, categorizes changed vs unchanged files, and only updates mtimes after successful indexing.
+- **Why it matters**: This shifts some save cost out of the interactive path, but it makes scan discipline part of the core performance story. Without incremental categorization and stale-cleanup control, startup scans and maintenance reindexes would get expensive fast.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+## Sources Consulted
+- `001-engram-main/external/internal/store/store.go:395-425,439-506,572-577,754-805,948-1068,1462-1583,1613-1667`
+- `001-engram-main/external/internal/mcp/mcp.go:50-80,121-138`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts:973-1111`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-56,68-71,113-157`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts:450-471,486-520,718-809`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:329-635,641-679,700-807,891-927`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts:156-177,444-505`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts:119-190`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts:138-229`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:728-829,831-905,927-1073`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts:148-205,212-245,367-388,486-505`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-598`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-217`
+- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:1230-1305`
+- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:81-88`
+
+## Assessment
+- **New information ratio**: 0.34
+- **Questions addressed**: exact-key lookup cost; hybrid-query latency; write-path latency; storage growth; indexing overhead; startup/resume cost
+- **Questions answered**: exact-key lookup cost; hybrid-query latency; write-path latency; storage growth; indexing overhead; startup/resume cost
+- **Novelty justification**: Earlier iterations identified which patterns were worth carrying forward; this pass mapped them to concrete hot paths and showed which ones are cheap shortcuts versus expensive pipeline additions.
+
+## Ruled Out
+- Replacing Public’s hybrid retrieval with Engram-style FTS-only search, because the latency win would come from dropping semantic and graph recall that Public intentionally depends on.
+- Using broad in-place topic/thread upserts for all memory classes, because it reduces storage but conflicts with append-only lineage, supersedence, and causal-history guarantees.
+- Making embeddings mandatory and eager on every save or startup, because it would worsen write latency and make boot more brittle around provider readiness.
+
+## Reflection
+- **What worked**: tracing Engram’s `Store` hot paths directly against Public’s search/save/startup handlers made the cost trade-offs obvious because both systems expose their real critical paths in a small number of files.
+- **What did not work**: CocoIndex and memory-context retrieval were unavailable in this environment, so semantic lookup had to be replaced with direct file-path reads.
+- **What I would do differently**: pre-build a tiny symbol-to-line map for the Engram and Spec Kit hot files before the pass to reduce time spent locating exact citation ranges.
+
+## Recommended Next Focus
+MEASUREMENT PLAN: define concrete p50/p95 targets and shadow instrumentation for query latency, save latency, pending-embedding backlog, index-scan duration, DB growth, and startup/resume time before implementing thread-key lanes or bounded recent-session digests.
+
+
+Total usage est:        1 Premium request
+API time spent:         4m 59s
+Total session time:     5m 27s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  3.1m in, 17.8k out, 2.9m cached, 9.2k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 035: COMPATIBILITY ANALYSIS
+
+## Focus
+COMPATIBILITY ANALYSIS: How do the adopted patterns interact with our existing CocoIndex, code-graph, and MCP tool stack? Conflict analysis.
+
+## Findings
+
+### Finding 1: Engram's profile split is compatible only as a delivery-layer bundle, not as a contraction of Public's broader MCP surface
+- **Source**: Engram profile allowlists and deferred/eager registration [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:38-167`; `001-engram-main/external/internal/mcp/mcp.go:399-619`]; Public MCP tool surface and routing hints [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-720`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:784-809`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:983-987`]
+- **What it does**: Engram separates agent-facing and admin-facing tools, then reinforces that split with eager/deferred instructions. Public already exposes a larger orchestrated surface: `session_resume`, `session_bootstrap`, `code_graph_query`, `code_graph_context`, and CocoIndex maintenance/status tools alongside memory tools.
+- **Why it matters**: The reusable idea is packaging and discoverability, not feature reduction. A literal Engram-style allowlist would make Public easier to learn, but it could also hide the structural and semantic tools that give Public its edge over a memory-only MCP server.
+- **Recommendation**: prototype later
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 2: Engram-style session lifecycle is compatible only as an additive digest inside `session_resume` and `session_bootstrap`
+- **Source**: Engram context/session tools and formatter [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:375-395`; `001-engram-main/external/internal/mcp/mcp.go:460-595`; `001-engram-main/external/internal/store/store.go:1613-1667`]; Public composite resume/bootstrap payloads [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-250`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`]
+- **What it does**: Engram exposes recent sessions, prompts, and observations through `mem_context`, plus explicit lifecycle tools like `mem_session_start`, `mem_session_end`, and `mem_session_summary`. Public already composes memory, code-graph state, CocoIndex availability, structural trust, and transport guidance into `session_resume` and `session_bootstrap`.
+- **Why it matters**: A bounded recent-session digest is still worth borrowing, but only if it stays subordinate to Public's existing authority surfaces. A parallel Engram-style lifecycle front door would create conflicting startup instructions and duplicate the system that already fuses recovery across memory, graph, and semantic search.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 3: An exact thread-key lane is highly compatible, but only as a fast path ahead of Public's hybrid and structural routers
+- **Source**: Engram topic-key indexing and direct lookup before FTS [SOURCE: `001-engram-main/external/internal/store/store.go:572-577`; `001-engram-main/external/internal/store/store.go:1462-1583`]; Public hybrid channel router and structural routing nudges [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-72`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:113-163`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:251-259`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:292-323`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:794-799`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-664`]
+- **What it does**: Engram checks exact `topic_key` matches first when the query looks key-like, then falls back to FTS. Public already routes queries across vector/FTS/BM25/graph/degree channels and separately nudges structural questions toward `code_graph_query` and semantic concept exploration toward CocoIndex-backed flows.
+- **Why it matters**: A future `thread_key` lookup can be a cheap compatibility win because it trims work for exact artifacts, stable threads, and session-summary lookups. The conflict appears only if that lexical fast path expands too far and starts capturing questions that should go to CocoIndex or code-graph instead.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 4: Engram's runtime setup ergonomics fit Public well, but adapters must stay thin because Public already centralizes transport and recovery logic
+- **Source**: Engram one-command runtime setup and thin plugin behavior [SOURCE: `001-engram-main/external/README.md:45-58`; `001-engram-main/external/docs/AGENT-SETUP.md:27-35`; `001-engram-main/external/docs/AGENT-SETUP.md:69-82`; `001-engram-main/external/docs/AGENT-SETUP.md:111-123`; `001-engram-main/external/docs/AGENT-SETUP.md:147-158`; `001-engram-main/external/docs/PLUGINS.md:13-57`]; Public server instructions and transport plan [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-811`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:558-596`]
+- **What it does**: Engram productizes installation with runtime-specific `setup` commands that write MCP registration, protocol instructions, and compaction-recovery prompts. Public already has the right core pieces: dynamic server instructions, structural bootstrap guidance, tool-routing hints, and an OpenCode transport plan emitted from `session_resume`.
+- **Why it matters**: This is the cleanest compatibility improvement for Public's MCP stack. The right move is to export the existing Public recovery/routing contract through one-command runtime setup, not to fork those semantics into per-runtime plugins or introduce a daemon-centric architecture.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 5: Engram's literal `mem_context`-first compaction recovery pattern should be rejected for Public's multi-tool stack
+- **Source**: Engram plugin recovery flow [SOURCE: `001-engram-main/external/docs/PLUGINS.md:31-57`; `001-engram-main/external/docs/PLUGINS.md:102-119`]; Public structural bootstrap and routing contract [SOURCE: `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:251-259`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:317-323`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:783-809`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:983-987`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:194-209`]
+- **What it does**: Engram tells agents to recover from compaction by calling `mem_context` and then continuing under the memory protocol. Public's recovery path is intentionally broader: `session_bootstrap` and `session_resume` expose structural readiness, graph freshness, CocoIndex availability, and explicit routing to `code_graph_query` or semantic search.
+- **Why it matters**: Copying Engram's recovery text literally would flatten Public's richer retrieval stack back into memory-only recovery. That would make startup continuity simpler, but wrong: agents could recover memory and still miss stale graph state, absent CocoIndex, or the need to route structural questions away from Grep.
+- **Recommendation**: reject
+- **Impact**: high
+- **Source strength**: primary
+
+## Sources Consulted
+- `001-engram-main/external/internal/mcp/mcp.go:38-167`
+- `001-engram-main/external/internal/mcp/mcp.go:375-395`
+- `001-engram-main/external/internal/mcp/mcp.go:399-619`
+- `001-engram-main/external/internal/store/store.go:572-577`
+- `001-engram-main/external/internal/store/store.go:1462-1583`
+- `001-engram-main/external/internal/store/store.go:1613-1667`
+- `001-engram-main/external/README.md:45-58`
+- `001-engram-main/external/docs/AGENT-SETUP.md:27-35`
+- `001-engram-main/external/docs/AGENT-SETUP.md:69-82`
+- `001-engram-main/external/docs/AGENT-SETUP.md:111-123`
+- `001-engram-main/external/docs/AGENT-SETUP.md:147-158`
+- `001-engram-main/external/docs/PLUGINS.md:13-57`
+- `001-engram-main/external/docs/PLUGINS.md:102-119`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-72`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:113-163`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:641-930`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-250`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:400-597`
+- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:209-323`
+- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-811`
+- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:983-987`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-720`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`
+
+## Assessment
+- **New information ratio**: 0.43
+- **Questions addressed**: tool-profile compatibility; session-lifecycle compatibility; exact-key/thread-key fit with hybrid routing; runtime setup fit with MCP stack; compaction conflict with code-graph and CocoIndex recovery
+- **Questions answered**: where Engram bundles map cleanly onto Public; where literal Engram patterns would conflict with `session_bootstrap` authority; how exact-key search can complement hybrid routing; how runtime setup should wrap existing transport/recovery logic; which recovery pattern to reject outright
+- **Novelty justification**: Earlier iterations ranked patterns in isolation; this pass established the concrete compatibility boundary between Engram's memory-only MCP ergonomics and Public's existing semantic, structural, and orchestration layers.
+
+## Ruled Out
+- Literal agent/admin tool reduction that hides `code_graph_query`, `code_graph_context`, or CocoIndex maintenance behind a memory-only profile, because that would erase core routing surfaces Public already depends on.
+- A second independent `mem_context`-style startup authority parallel to `session_resume` / `session_bootstrap`, because it would create contradictory recovery paths and trust semantics.
+- Copying Engram's post-compaction instruction verbatim ("call `mem_context` and continue"), because Public needs composite recovery that checks graph freshness and semantic-search readiness before routing follow-up work.
+
+## Reflection
+- **What worked**: Comparing Engram's MCP registration and plugin docs directly against Public's `session_resume`, `session_bootstrap`, `context-server`, and tool schemas made the compatibility boundary obvious because all routing authority is encoded in a few high-signal files.
+- **What did not work**: CocoIndex semantic code search was unavailable in this environment (`Permission denied and could not request permission from user`), so the comparison had to fall back to direct source reads and targeted grep instead of live semantic traversal.
+- **What I would do differently**: Build a compact crosswalk table first — Engram tool/profile/setup concept on one side, Public orchestration/semantic/structural surface on the other — to speed up future conflict-analysis passes.
+
+## Recommended Next Focus
+IMPLEMENTATION COMPATIBILITY PLAN: define the minimal delivery-layer changes that can ship without authority drift — profile-aware packaging, additive recent-session digest fields, exact-thread-key routing gates, and one-command runtime setup that exports Public's existing bootstrap/routing contract unchanged.
+
+
+Total usage est:        1 Premium request
+API time spent:         4m 30s
+Total session time:     4m 49s
+Total code changes:     +0 -0
+Breakdown by AI model:
+ gpt-5.4                  1.0m in, 20.1k out, 954.1k cached, 7.4k reasoning (Est. 1 Premium request)
+
+---
+
+● skill(sk-deep-research)
+
+I’m pulling the current research packet and source map first so I can land iteration 36 into the existing loop state rather than inventing a parallel track.
+
+● Read AGENTS.md
+  └ 1 line read
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 4 files found
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 3 files found
+
+● Read quick_reference.md
+  │ .agents/skills/sk-deep-research/references/quick_reference.md
+  └ 240 lines read
+
+I’ve got the packet shape; next I’m reading the live state, prior iteration artifacts, and the specific Engram/Public files that matter for the workflow-impact angle.
+
+● Search (glob)
+  │ "**/iteration-0*.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-resear
+  │ ch-hybrid-rag-fusion-systems/001-engram-main/research/iterations
+  └ 35 files found
+
+● Search (glob)
+  │ "**/AGENTS.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hyb
+  │ rid-rag-fusion-systems/001-engram-main/external
+  └ 1 file found
+
+✗ Read deep-research-state.jsonl
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/deep-research-state.jsonl
+  └ Path does not exist
+
+✗ Read deep-research-strategy.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/deep-research-strategy.md
+  └ Path does not exist
+
+✗ Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ File too large
+
+● Read phase-research-prompt.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/phase-research-prompt.md
+  └ 180 lines read
+
+● Read mcp.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/mcp/mcp.go
+  └ L1:260 (260 lines read)
+
+● Read store.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/store/store.go
+  └ L1450:1705 (256 lines read)
+
+● Read session-bootstrap.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  └ L163:250 (88 lines read)
+
+● Read context-server.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  └ L741:811 (71 lines read)
+
+The phase packet is incomplete at the root and the loop state isn’t in canonical filenames, so I’m mapping the actual on-disk layout before I write iteration 36.
+
+● Search (glob)
+  │ "**/*" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/001-engram-main/research
+  └ 37 files found
+
+● Read AGENTS.md
+  └ L1:220 (220 lines read)
+
+● Read AGENTS.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/AGENTS.md
+  └ 35 lines read
+
+● Read iteration-035.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-035.md
+  └ 98 lines read
+
+● Search (grep)
+  │ "Iteration 035|USER WORKFLOW IMPACT|Focus|Recommended Next Focus|New information ratio|Finding"
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/research.md)
+  └ 5 lines found
+
+● Search (grep)
+  │ "deep-research-|findings-registry|dashboard|state\.jsonl|strategy" (.opencode/specs/system-spec-
+  │ kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main)
+  └ 45 files found
+
+● Search (grep)
+  │ "mem_session_start|mem_session_end|mem_session_summary|mem_context|mem_capture_passive|mem_save_
+  │ prompt" (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-f
+  │ usion-systems/001-engram-main/external/internal/mcp/mcp.go)
+  └ 32 lines found
+
+● Search (grep)
+  │ "CreateSession|EndSession|SuggestTopicKey|sanitizeFTS|AddObservation|revision_count|duplicate_co
+  │ unt|deleted_at" (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybr
+  │ id-rag-fusion-systems/001-engram-main/external/internal/store/store.go)
+  └ 6 lines found
+
+I’ve confirmed the packet is missing its Level 3 root docs, and the live loop state is effectively the iteration files plus a very large synthesis draft. I’m validating now so I can fix the packet before adding the workflow-impact pass.
+
+✗ Validate Engram phase folder (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
+  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-k
+  │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+  │ --strict
+  └ Permission denied and could not request permission from user
+
+✗ Inspect phase files and research tail (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && printf '\n== phase root
+  │ ==\n' && find .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-
+  │ rag-fusion-systems/001-engram-main -maxdepth 2 -type f | sort && printf '\n== research tail
+  │ ==\n' && tail -n 160 .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-
+  │ hybrid-rag-fusion-systems/001-engram-main/research/research.md
+  └ Permission denied and could not request permission from user
+
+The direct validator shell path is blocked in this runtime, so I’m switching to evidence-driven packet repair: matching a neighboring research packet’s Level 3 structure, then I’ll update the Engram phase files and iteration artifacts in that same format.
+
+● Search (glob)
+  │ "*/spec.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid
+  │ -rag-fusion-systems
+  └ No matches found
+
+● Search (glob)
+  │ "*/plan.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid
+  │ -rag-fusion-systems
+  └ No matches found
+
+● Search (glob)
+  │ "*/tasks.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybri
+  │ d-rag-fusion-systems
+  └ No matches found
+
+● Search (glob)
+  │ "*/checklist.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-h
+  │ ybrid-rag-fusion-systems
+  └ No matches found
+
+● Search (glob)
+  │ "*/decision-record.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-rese
+  │ arch-hybrid-rag-fusion-systems
+  └ No matches found
+
+● Search (glob)
+  │ "*/implementation-summary.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/0
+  │ 01-research-hybrid-rag-fusion-systems
+  └ No matches found
+
+● Search (glob)
+  │ "*/research/research.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-re
+  │ search-hybrid-rag-fusion-systems
+  └ No matches found
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 5 files found
+
+● Search (glob)
+  │ "**/implementation-summary.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade
+  └ No matches found
+
+● Search (glob)
+  │ "**/decision-record.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade
+  └ No matches found
+
+● Search (glob)
+  │ "**/checklist.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade
+  └ No matches found
+
+● Search (glob)
+  │ "**/spec.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade
+  └ 5 files found
+
+✗ Search (glob)
+  │ "**/research.md" in #invalid
+  └ rg: #invalid: IO error for operation on #invalid: No such file or directory (os error 2)
+
+I’m pulling the canonical Spec Kit templates next so the phase docs I add match the expected metadata and section layout instead of guessing from memory.
+
+● List directory .opencode/skill/system-spec-kit/templates
+  └ 17 files found
+
+● Search (glob)
+  │ "**/*.md" in .opencode/skill/system-spec-kit/templates
+  └ 84 files found
+
+● Read check-spec-doc-integrity.sh
+  │ .opencode/skill/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh
+  └ L1:220 (139 lines read)
+
+● Read template_compliance_contract.md
+  │ .opencode/skill/system-spec-kit/references/validation/template_compliance_contract.md
+  └ L1:220 (220 lines read)
+
+● Read spec.md
+  │ .opencode/skill/system-spec-kit/templates/examples/level_3/spec.md
+  └ L1:260 (260 lines read)
+
+● Read plan.md
+  │ .opencode/skill/system-spec-kit/templates/examples/level_3/plan.md
+  └ L1:260 (259 lines read)
+
+● Read tasks.md
+  │ .opencode/skill/system-spec-kit/templates/examples/level_3/tasks.md
+  └ L1:260 (204 lines read)
+
+● Read checklist.md
+  │ .opencode/skill/system-spec-kit/templates/examples/level_3/checklist.md
+  └ L1:260 (194 lines read)
+
+● Read decision-record.md
+  │ .opencode/skill/system-spec-kit/templates/examples/level_3/decision-record.md
+  └ L1:260 (260 lines read)
+
+● Read implementation-summary.md
+  │ .opencode/skill/system-spec-kit/templates/examples/level_3/implementation-summary.md
+  └ L1:260 (227 lines read)
+
+I’ve got the packet templates. Now I’m reading the source and setup docs that directly affect developer workflow: runtime setup, startup instructions, session closure, and passive capture.
+
+✗ search (MCP: cocoindex_code) · runtime setup compaction recovery plugin instructions session summ…
+  └ Permission denied and could not request permission from user
+
+● Read README.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/README.md
+  └ L35:120 (85 lines read)
+
+● Read AGENT-SETUP.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/docs/AGENT-SETUP.md
+  └ L1:220 (220 lines read)
+
+● Read PLUGINS.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/docs/PLUGINS.md
+  └ L1:220 (133 lines read)
+
+● Read mcp.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/mcp/mcp.go
+  └ L350:620 (271 lines read)
+
+● Read session-resume.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts
+  └ L400:614 (215 lines read)
+
+● Read tool-schemas.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  └ L638:776 (139 lines read)
+
+Engram’s DX story is now clear enough to compare. I’m pulling Public’s current user-facing memory/recovery entry points so the findings stay concrete about commands, behavior changes, and migration cost.
+
+● Read generate-context.js
+  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  └ L1:220 (220 lines read)
+
+● Read memory-context.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  └ L641:930 (290 lines read)
+
+● Read memory-triggers.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  └ L444:505 (62 lines read)
+
+● Read README.md
+  │ .opencode/README.md
+  └ L300:420 (39 lines read)
+
+● Read CODEX.md
+  └ L1:220 (220 lines read)
+
+● Search (grep)
+  │ "generate-context\.js|session_bootstrap|session_resume|memory_context\(|/memory:save|/spec_kit:r
+  │ esume|memory_index_scan|code_graph_query|CocoIndex|code graph" in **/*.{md,ts,js,json,sh}
+  │ (.opencode)
+  └ 7 lines found
+
+● Search (glob)
+  │ "**/*memory*.md" in .opencode/command
+  └ No matches found
+
+● Search (glob)
+  │ "**/*resume*.md" in .opencode/command
+  └ 1 file found
+
+● Read save.md
+  │ .opencode/command/memory/save.md
+  └ L1:260 (260 lines read)
+
+● Read resume.md
+  │ .opencode/command/spec_kit/resume.md
+  └ L1:260 (260 lines read)
+
+● Read README.md
+  │ .opencode/install_guides/install_scripts/README.md
+  └ L80:170 (91 lines read)
+
+● Search (grep)
+  │ "# Iteration 035: COMPATIBILITY ANALYSIS|## Recommended Next Focus|Total usage est:"
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/research.md)
+  └ 7 lines found
+
+● Search (grep)
+  │ "thread_key|exact-key|digest|runtime setup|delivery-layer|passive"
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/research.md)
+  └ 5 lines found
+
+I found the latest synthesis region in `research.md`; I’m reading just that window so I can extend the canonical report without touching the earlier bulk content.
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L15620:15780 (72 lines read)
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L15780:15980 (131 lines read)
+
+● Search (grep)
+  │ "# Iteration 035: COMPATIBILITY ANALYSIS" (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion
+  │ -upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/research.md)
+  └ No matches found
+
+I’ve got enough evidence and template structure to hand the markdown work to the spec specialist. I’m having it create the missing phase docs and land iteration 36 into the packet in one pass, then I’ll inspect the result and tighten anything needed.
+
+● Speckit Write Engram docs
+  │ Edit
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/spec.md
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/plan.md
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/tasks.md
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/checklist.md
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/decision-record.md
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/implementation-summary.md
+  │   │ Create
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │   │ ion-systems/001-engram-main/research/iterations/iteration-036.md
+  │   └ Edit
+  │   .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusio
+  │     n-systems/001-engram-main/research/research.md
+  └ Check write access for phase folder (shell)
+      │ python -c "import os;
+      p='.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-resea
+      │ rch-hybrid-rag-fusion-systems/001-engram-main'; print(os.path.exists(p), os.access(p,
+      os.W_OK))"
+      └ Permission denied and could not request permission from user
+
+I’m blocked from repo writes, so I’m probing whether session-local artifacts are still writable. If they are, I can at least preserve the full iteration and doc content for handoff even though the phase folder itself is read-only.
+
+● Edit
+  └ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/iter36-probe.txt
+
+● Read decision-record.md
+  │ .opencode/skill/system-spec-kit/templates/level_3/decision-record.md
+  └ L1:260 (126 lines read)
+
+● Read spec.md
+  │ .opencode/skill/system-spec-kit/templates/level_3/spec.md
+  └ L1:260 (221 lines read)
+
+● Read checklist.md
+  │ .opencode/skill/system-spec-kit/templates/level_3/checklist.md
+  └ L1:240 (183 lines read)
+
+I can’t land these into the repo, so I’m preserving a ready-to-apply packet in the session workspace: the missing Level 3 docs plus the full iteration 36 content and the exact `research.md` insertion block.
+
+● Edit
+  │ Create
+  │ ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/spec.md
+  │ Create
+  │ ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/plan.md
+  │ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+  │ tasks.md
+  │ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+  │ checklist.md
+  │ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+  │ decision-record.md
+  │ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+  │ implementation-summary.md
+  │ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+  │ iteration-036.md
+  │ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+  │ research-insert-036.md
+  └ Create ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/
+    README.txt
+
+I couldn’t write into the phase folder itself, but I did preserve the full packet payload in session artifacts so nothing from this pass is lost. I’m doing one quick spot-check on the saved bundle, then I’ll hand you the exact blocker and where the deliverables live.
+
+● Read README.txt
+  │ ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/README.
+  │ txt
+  └ 20 lines read
+
+● Read iteration-036.md
+  │ ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/iterati
+  │ on-036.md
+  └ L1:120 (98 lines read)
+
+● Read tasks.md
+  │ ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/tasks.m
+  │ d
+  └ L1:120 (102 lines read)
+
+● Edit
+  └ Delete ~/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/iter36-probe.txt
+
+**Blocked on repo writes.** This runtime would not let me modify the phase folder, so I could not create/update:
+
+- `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/{spec.md,plan.md,tasks.md,checklist.md,decision-record.md,implementation-summary.md}`
+- `research/iterations/iteration-036.md`
+- `research/research.md`
+
+I still finished the research pass and saved a ready-to-apply packet here:
+
+`/Users/michelkerkmeester/.copilot/session-state/52fb188a-6831-46b0-b25a-2cadff4e7f89/files/engram-iter36-packet/`
+
+That bundle contains the missing Level 3 docs, the full **Iteration 036: USER WORKFLOW IMPACT** writeup, and the exact `research.md` insertion block. The main conclusions from iteration 036 are: **adopt now** one-command runtime setup + action-card, a thin close-session helper, an additive recent-session digest, and a migration crosswalk; **prototype later** a profile-aware starter workflow and an opt-in passive-capture helper. **CocoIndex was unavailable** in this runtime, so the pass used direct file reads plus `rg` fallback.
+
+
+Total usage est:        1 Premium request
+API time spent:         13m 36s
+Total session time:     14m 2s
+Total code changes:     +1207 -2
+Breakdown by AI model:
+ gpt-5.4                  3.3m in, 60.5k out, 3.1m cached, 13.9k reasoning (Est. 1 Premium request)
+
+---
+
+● skill(sk-deep-research)
+
+I’m anchoring on the existing Engram phase packet and the current research state, then I’ll write the iteration-037 artifact plus the corresponding state updates and synthesis delta.
+
+● Read AGENTS.md
+  └ 1 line read
+
+● Read AGENTS.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/AGENTS.md
+  └ 35 lines read
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 4 files found
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 3 files found
+
+● Read quick_reference.md
+  │ .agents/skills/sk-deep-research/references/quick_reference.md
+  └ 240 lines read
+
+● Read state_format.md
+  │ .agents/skills/sk-deep-research/references/state_format.md
+  └ 1 line read
+
+● Read loop_protocol.md
+  │ .agents/skills/sk-deep-research/references/loop_protocol.md
+  └ L1:220 (219 lines read)
+
+I found the phase folder is still missing the root Level 3 docs, and the research packet exists under `research/`. I’m checking the active state files now so I can land iteration 037 cleanly instead of guessing the packet shape.
+
+● Search (glob)
+  │ "**/*" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/001-engram-main/research
+  └ 38 files found
+
+✗ Read deep-research-config.json
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/deep-research-config.json
+  └ Path does not exist
+
+✗ Read deep-research-strategy.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/deep-research-strategy.md
+  └ Path does not exist
+
+✗ Read deep-research-state.jsonl
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/deep-research-state.jsonl
+  └ Path does not exist
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L1:260 (238 lines read)
+
+● Read iteration-036.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-036.md
+  └ L1:260 (260 lines read)
+
+I’ve confirmed the packet is running off iteration files plus a large synthesis draft rather than the canonical deep-research state files. I’m using that existing shape so iteration 037 lands consistently, then I’ll decide whether it’s worth normalizing the packet metadata in the same pass.
+
+● Read iteration-035.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-035.md
+  └ L1:220 (98 lines read)
+
+● Read iteration-034.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-034.md
+  └ L1:220 (98 lines read)
+
+● Search (grep)
+  │ "^# Iteration 03[45]|^## Focus|^## Findings|^## Sources Consulted|^## Assessment|^## Ruled
+  │ Out|^## Reflection|^## Recommended Next Focus" (.opencode/specs/system-spec-kit/999-hybrid-rag-f
+  │ usion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/research.md)
+  └ 7 lines found
+
+● Search (grep)
+  │ "architecture evolution|before/after|target architecture|adopt now|prototype later|reject"
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research)
+  └ 6 lines found
+
+The existing iteration files are clean and consistent. I’m pulling iteration 036 plus the exact Engram/Public source ranges now so the architecture map is grounded in code, not just the accumulated summaries.
+
+● Read iteration-036.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-036.md
+  └ L1:220 (220 lines read)
+
+● Read mcp.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/mcp/mcp.go
+  └ L360:620 (261 lines read)
+
+● Read store.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/store/store.go
+  └ L560:620 (61 lines read)
+
+● Read store.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/store/store.go
+  └ L1450:1675 (226 lines read)
+
+● Read session-resume.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts
+  └ L400:614 (215 lines read)
+
+● Read session-bootstrap.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts
+  └ L163:250 (88 lines read)
+
+● Read context-server.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/context-server.ts
+  └ L741:811 (71 lines read)
+
+● Read tool-schemas.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts
+  └ L638:776 (139 lines read)
+
+● Read query-router.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts
+  └ L1:220 (188 lines read)
+
+● Read memory-context.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts
+  └ L641:930 (290 lines read)
+
+● Read generate-context.js
+  │ .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
+  └ L1:220 (220 lines read)
+
+I’ve got the authority surfaces and the Engram primitives. I’m filling in the retrieval-path evidence now so the before/after map shows the actual hot paths that change, not just the tooling wrappers.
+
+● Read hybrid-search.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/lib/search/hybrid-search.ts
+  └ L973:1115 (143 lines read)
+
+● Read memory-search.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-search.ts
+  └ L450:809 (360 lines read)
+
+● Read memory-triggers.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+  └ L150:505 (356 lines read)
+
+● Read memory-index.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  └ L148:245 (98 lines read)
+
+● Read memory-index.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-index.ts
+  └ L367:505 (138 lines read)
+
+● Read create-record.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/save/create-record.ts
+  └ L166:229 (64 lines read)
+
+● Read memory-save.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts
+  └ L728:905 (178 lines read)
+
+I’ve got enough to draft the evolution map itself. I’m filling a few missing citation ranges—session storage, tool-profile resolution, and runtime setup—so the new iteration can point to exact files instead of broad file-level references.
+
+● Read mcp.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/mcp/mcp.go
+  └ L38:170 (133 lines read)
+
+● Read store.go
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/internal/store/store.go
+  └ L754:858 (105 lines read)
+
+● Read README.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/README.md
+  └ L35:58 (24 lines read)
+
+● Read AGENT-SETUP.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/docs/AGENT-SETUP.md
+  └ L27:36 (9 lines read)
+
+● Read AGENT-SETUP.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/docs/AGENT-SETUP.md
+  └ L111:158 (48 lines read)
+
+● Read PLUGINS.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/docs/PLUGINS.md
+  └ L13:120 (107 lines read)
+
+● Read session-health.ts
+  │ .opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts
+  └ L1:220 (195 lines read)
+
+● Search (grep)
+  │ "^# Iteration 036|^# Iteration 035|^# Iteration 034|^# Iteration 037"
+  │ (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sy
+  │ stems/001-engram-main/research/research.md)
+  └ No matches found
+
+● Search (grep)
+  │ "^## Recommended Next Focus" (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-
+  │ research-hybrid-rag-fusion-systems/001-engram-main/research/research.md)
+  └ 80 lines found
+
+● Read research.md tail (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && tail -n 120
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ 119 lines...
+
+I have the evidence and the target shape. I’m delegating the actual iteration-file authoring to the deep-research leaf agent so the markdown lands in the same packet style the earlier research loop used.
+
+● Deep-research Writing iteration artifact
+  │ Search (grep)
+  │   │ "thread_key|topic_key" (.opencode/skill/system-spec-kit)
+  │   └ No matches found
+  └ Search (grep)
+      │ "buildOpenCodeTransportPlan" (.opencode/skill/system-spec-kit/mcp_server)
+      └ 7 lines found
+
+✗ Edit
+  └ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+    ion-systems/001-engram-main/research/iterations/iteration-037.md
+
+The patch itself is ready, but the repository is still rejecting writes in this phase folder. I’m checking whether that’s a path-level permission issue or a tool-specific restriction before I decide whether this run is blocked.
+
+✗ Check folder writable (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && test -w
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations && echo WRITABLE || echo NOT_WRITABLE
+  └ Permission denied and could not request permission from user
+
+● Inspect write permissions (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && ls -ld . .opencode
+  │ .opencode/specs .opencode/specs/system-spec-kit
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade .opencode/specs/system-spec-kit/
+  │ 999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems .opencode/specs/system-sp
+  │ ec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main …
+  └ 13 lines...
+
+● Edit
+  └ Create ~/.copilot/session-state/cfb3568b-87bb-4f70-af9f-8e48fdbe6824/files/engram-iter37-packet/
+    iteration-037.md
+
+The repo path is still effectively read-only through this runtime, but I did preserve the iteration packet in the session workspace so nothing is lost. I’m doing one quick readback on that artifact, then I’ll hand off the exact saved path.
+
+● Read iteration-037.md
+  │ ~/.copilot/session-state/cfb3568b-87bb-4f70-af9f-8e48fdbe6824/files/engram-iter37-packet/iterati
+  │ on-037.md
+  └ L1:240 (174 lines read)
+
+● Check repo file status (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && git --no-pager status
+  │ --short .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fu
+  │ sion-systems/001-engram-main/research/iterations/iteration-037.md
+  └ 1 line...
+
+**Blocked on repo write permissions.** I completed iteration 037 and saved the ready-to-apply artifact at `/Users/michelkerkmeester/.copilot/session-state/cfb3568b-87bb-4f70-af9f-8e48fdbe6824/files/engram-iter37-packet/iteration-037.md`. The intended repo target is `.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research/iterations/iteration-037.md`, but this runtime rejected writes to that phase folder.
+
+**Content outcome:** the iteration delivers explicit **BEFORE/AFTER ASCII architecture maps** and grounds the production delta in four adopt-now changes: an additive recent-session digest inside `session_resume`/`session_bootstrap`, a thin close-session digest emission path, an exact `thread_key` fast lane ahead of the hybrid router, and one-command runtime setup plus action-card wrappers. It also states the invariants that do **not** change: hybrid retrieval stays primary, `code_graph_query`/`code_graph_context` and CocoIndex stay first-class, `generate-context.js` plus `memory_index_scan` remain the file-first save/index path, and no second lifecycle authority is introduced.
+
+
+Total usage est:        1 Premium request
+API time spent:         7m 55s
+Total session time:     8m 20s
+Total code changes:     +175 -0
+Breakdown by AI model:
+ gpt-5.4                  2.0m in, 33.7k out, 1.9m cached, 14.0k reasoning (Est. 1 Premium request)
+
+---
+
+# Iteration 038: OPEN QUESTIONS REGISTER
+
+## Focus
+OPEN QUESTIONS REGISTER: Catalog all remaining open questions, uncertainties, and items needing further investigation across all 37 prior iterations.
+
+## Findings
+### Finding 1: The recent-session digest direction is settled, but its authoritative insertion points and token budget are still open
+- **Source**: Engram bounded context formatter; Public composite resume/bootstrap, dynamic instructions, and compaction injection [SOURCE: `001-engram-main/external/internal/store/store.go:1613-1667`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-245`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:764-809`; `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`]
+- **What it does**: Engram exposes one bounded digest of recent sessions, prompts, and observations. Public already has four continuity surfaces in play: `session_resume`, `session_bootstrap`, dynamic server instructions, and compaction injection. The remaining open question is which of those surfaces should carry the new digest, in what form, and under what hard size budget so it stays additive instead of becoming a second recovery authority.
+- **Why it matters**: This is still the highest-leverage adopt-now item, but it is also the place most likely to create authority drift, duplicate context blocks, or startup-token bloat if specified loosely.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 2: Exact-handle lookup is ready, but `thread_key` normalization and governed-scope semantics are still underspecified
+- **Source**: Engram topic-key indexing, upsert, and direct lookup; Public router and governed-scope filters [SOURCE: `001-engram-main/external/internal/store/store.go:572-577`; `001-engram-main/external/internal/store/store.go:948-1068`; `001-engram-main/external/internal/store/store.go:1462-1583`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-157`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-280`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:456-493`]
+- **What it does**: Engram can normalize one `topic_key`, upsert onto the latest live row, and short-circuit slash-shaped queries into an exact lookup. Public can safely add an exact-handle lane for artifact names, but the open design question is broader: whether future `thread_key` values cover only artifacts, or also research lines, ADRs, bug threads, and session summaries, and how collisions behave across tenant/user/agent/shared-space boundaries.
+- **Why it matters**: This is the main unresolved prototype track. A weak key contract would either leak across governed scopes or become so narrow that it never improves retrieval meaningfully.
+- **Recommendation**: prototype later
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 3: Tool-profile packaging remains open because Public cannot hide structural and semantic tools behind a memory-only beginner surface
+- **Source**: Engram profile maps and eager/deferred instructions; Public structural and semantic tool surface [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:38-138`; `001-engram-main/external/internal/mcp/mcp.go:375-620`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-776`; `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-809`]
+- **What it does**: Engram proves that smaller agent/admin bundles reduce clutter and make onboarding easier. Public, however, derives much of its value from the coexistence of `session_bootstrap`, `session_resume`, `code_graph_query`, `code_graph_context`, and CocoIndex-aware routing. The unresolved question is how to package those capabilities for agents without collapsing back to a memory-only recovery and discovery model.
+- **Why it matters**: This is a delivery-layer uncertainty, not a core memory-model uncertainty, but a bad bundle design would quietly remove the very tools that distinguish Public from Engram.
+- **Recommendation**: prototype later
+- **Impact**: medium
+- **Source strength**: primary
+
+### Finding 4: Passive capture and close-session helpers still lack a Public-native authority model
+- **Source**: Engram session-summary, session-end, and passive-capture tools; Public JSON-primary context generation and governed ingest validation [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:460-595`; `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-88`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-280`; `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:456-493`]
+- **What it does**: Engram can save summaries directly and extract learnings from loose text with saved/duplicate accounting. Public currently treats `generate-context.js` and governed ingest rules as the authoritative save path. The open question is whether a friendly close-session or passive wrapper should emit structured JSON into that file-first workflow, call governed save directly, or offer both with explicit provenance and retention controls.
+- **Why it matters**: This remains the largest unresolved net-new feature area because it combines DX, provenance, retention, dedupe, and reviewability in one design decision.
+- **Recommendation**: NEW FEATURE
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 5: The doctor/scorecard concept is settled, but its source-of-truth contract and promotion thresholds are not
+- **Source**: Engram lightweight stats surface; Public health and evaluation surfaces [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:399-411`; `001-engram-main/external/internal/store/store.go:1588-1608`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:65-195`; `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223-326`; `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:170-260`]
+- **What it does**: The run already established that Public should expose a read-only composite scorecard rather than widen `memory_search`. The remaining questions are operational: which existing surfaces are mandatory in v1, whether any repair hints can appear without repair side effects, and what shadow-mode thresholds are required before digest, exact-handle, and packaging changes graduate from experiment to default behavior.
+- **Why it matters**: Without an explicit source-of-truth contract and promotion policy, the adopt-now track risks either promoting too early or sitting in permanent shadow mode with no exit criteria.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 6: The final run still needs one explicit go/no-go matrix that separates policy questions from true engineering blockers
+- **Source**: Late-run synthesis and Public promotion machinery [SOURCE: `research/iterations/iteration-030.md:1-91`; `research/iterations/iteration-032.md:1-129`; `research/iterations/iteration-033.md:1-85`; `research/iterations/iteration-034.md:1-90`; `research/iterations/iteration-035.md:1-90`; `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223-326`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:107-131`; `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:113-157`]
+- **What it does**: By iteration 037, the architecture direction was already stable: additive digest, thin runtime packaging, exact-handle routing, read-only scorecard, bounded `thread_key` prototype, and governed passive capture. What remains open is rollout governance: which of P1-P4 are blocked by unanswered policy questions, which can ship under flags immediately, and which must wait for the `thread_key` and passive-capture prototype results.
+- **Why it matters**: This is the last synthesis gap between “good recommendations” and an executable production plan for the final two iterations.
+- **Recommendation**: adopt now
+- **Impact**: medium
+- **Source strength**: secondary
+
+## Sources Consulted
+- `001-engram-main/external/internal/store/store.go:572-577`
+- `001-engram-main/external/internal/store/store.go:948-1068`
+- `001-engram-main/external/internal/store/store.go:1462-1667`
+- `001-engram-main/external/internal/mcp/mcp.go:38-138`
+- `001-engram-main/external/internal/mcp/mcp.go:375-620`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-resume.ts:409-597`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:168-245`
+- `.opencode/skill/system-spec-kit/mcp_server/context-server.ts:741-809`
+- `.opencode/plugins/spec-kit-compact-code-graph.js:396-417`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-776`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/search/query-router.ts:48-157`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:218-280`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:456-493`
+- `.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js:61-88`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:223-360`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-health.ts:65-195`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/eval-reporting.ts:223-326`
+- `.opencode/skill/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts:170-260`
+- `research/iterations/iteration-030.md:1-91`
+- `research/iterations/iteration-032.md:1-129`
+- `research/iterations/iteration-033.md:1-85`
+- `research/iterations/iteration-034.md:1-90`
+- `research/iterations/iteration-035.md:1-90`
+
+## Assessment
+- New information ratio: 0.11
+- Questions addressed: [authoritative placement and token budget for recent-session digest, `thread_key` normalization and governed-scope behavior, tool-profile packaging boundary, passive/session-end authority model, doctor/scorecard source-of-truth and promotion thresholds, final go/no-go separation between policy and engineering blockers]
+- Questions answered: [which unresolved items still remain after 37 iterations, which ones belong to adopt-now versus prototype/new-feature tracks, which uncertainties are policy-level rather than architecture-level]
+- Novelty justification: This is the first pass that turns the late-run recommendation stack into an explicit unresolved-questions register, making the remaining uncertainty small, named, and actionable.
+
+## Ruled Out
+- Treating the P1-P4 adopt-now set as fully specified already; the architecture direction is stable, but policy and rollout contracts are still incomplete.
+- Inferring Public’s `thread_key` or passive-capture semantics directly from Engram’s simpler `topic_key` and lifecycle model without governed-scope adaptation.
+- Reopening already rejected directions such as memory-only recovery authority, coarse scope collapse, or lexical-first replacement of Public’s hybrid retrieval.
+
+## Reflection
+- What worked: Reading the late synthesis iterations together with the exact Engram/Public authority surfaces made it easy to separate “resolved recommendation” from “still-open implementation question.”
+- What did not work: The packet still lacks canonical reducer state files, and some late artifacts are noisy enough that the iteration files had to be treated as the durable source of truth.
+- What I would do differently: Track an explicit open-questions table from the start of the run so the final extended passes can update a live register instead of reconstructing one from late-stage summaries.
+
+## Recommended Next Focus
+FINAL GO/NO-GO MATRIX: decide which unanswered questions block the production track, which can remain behind feature flags, and which belong permanently to bounded prototype work for iterations 039-040.
+```
+
+
+Changes   +0 -0
+Requests  1 Premium (6m 30s)
+Tokens    ↑ 1.3m • ↓ 18.0k • 1.2m (cached) • 8.6k (reasoning)
+
+---
+
+# Iteration 039: CROSS-PHASE SYNTHESIS
+
+## Focus
+CROSS-PHASE SYNTHESIS: Compare findings across all 5 external systems (Engram, Mex, Modus, Mnemosyne, MemPalace). What do 3+ systems agree on? Where do they diverge?
+
+## Findings
+### Finding 1: Four external systems and Spec Kit converge on scoped, role-separated memory surfaces, while Mex diverges into a scaffold-router control plane
+- **Source**: Engram MCP profile/tool registration, Mex scaffold router flow, Modus/Mnemosyne/MemPalace tool surfaces, and Spec Kit MCP schemas [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:38-65`; `001-engram-main/external/internal/mcp/mcp.go:375-395`; `001-engram-main/external/internal/mcp/mcp.go:460-595`; `002-mex-main/external/README.md:178-216`; `003-modus-memory-main/external/README.md:191-207`; `004-opencode-mnemosyne-main/external/README.md:37-59`; `004-opencode-mnemosyne-main/external/src/index.ts:95-203`; `005-mempalace/external/mempalace/mcp_server.py:7-18`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-50`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:210-220`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:236-269`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`]
+- **What it does**: Engram separates agent/admin tools and keeps explicit `mem_context` and session/save surfaces; Mnemosyne splits project/global/core recall-store-delete; MemPalace splits status/taxonomy/search/write tools; Spec Kit separates `memory_context`, `memory_search`, `memory_match_triggers`, `memory_health`, and session bootstrap/resume. Mex is the outlier: it pushes most control-plane behavior into `CLAUDE.md` -> `ROUTER.md` -> context/pattern scaffold files plus CLI verbs instead of a live memory MCP surface.
+- **Why it matters**: The strongest cross-system agreement is separation of responsibilities, not "one smarter search tool." For Public, that validates keeping explicit retrieval, continuity, maintenance, and graph authorities, with any future convenience wrapper staying a thin facade over those authorities rather than a second control plane.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 2: Four systems agree startup continuity should be cheap and layered, but they disagree on the carrier
+- **Source**: Engram bounded context/session tools, Mex bootstrap routing, Mnemosyne compaction hook, MemPalace wake-up layers, and Public resume/bootstrap routing [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:375-395`; `001-engram-main/external/internal/mcp/mcp.go:460-562`; `001-engram-main/external/internal/store/store.go:1613-1667`; `002-mex-main/external/README.md:178-216`; `004-opencode-mnemosyne-main/external/README.md:47-60`; `004-opencode-mnemosyne-main/external/README.md:80-87`; `004-opencode-mnemosyne-main/external/src/index.ts:208-220`; `005-mempalace/external/mempalace/layers.py:3-16`; `005-mempalace/external/mempalace/layers.py:76-85`; `005-mempalace/external/mempalace/layers.py:185-214`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-124`; `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-205`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`]
+- **What it does**: Engram composes recent sessions, prompts, and observations into a bounded `mem_context`; Mex keeps the always-loaded bootstrap tiny and routes deeper context on demand; Mnemosyne injects memory instructions at compaction time; MemPalace formalizes L0/L1 wake-up plus L2/L3 retrieval; Public already chooses between quick trigger matches, deep search, resume mode, and `session_bootstrap` next actions.
+- **Why it matters**: The transferable pattern is layered warm-up discipline at startup and compaction boundaries, not any single bootstrap format. Public should keep `memory_context` and `session_bootstrap` as the authorities and treat any recent-session digest or action-card addition as a bounded additive layer.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 3: Five systems agree durable memory needs an explicit hygiene or repair lane
+- **Source**: Engram stats/merge/session tools, Mex drift check/sync, Modus doctor scan, Mnemosyne delete semantics, MemPalace WAL/invalidation, and Public health/save contracts [SOURCE: `001-engram-main/external/internal/mcp/mcp.go:399-412`; `001-engram-main/external/internal/mcp/mcp.go:598-620`; `001-engram-main/external/internal/store/store.go:1588-1608`; `002-mex-main/external/README.md:72-113`; `003-modus-memory-main/external/cmd/modus-memory/doctor.go:13-31`; `003-modus-memory-main/external/cmd/modus-memory/doctor.go:42-60`; `003-modus-memory-main/external/cmd/modus-memory/doctor.go:63-83`; `003-modus-memory-main/external/cmd/modus-memory/doctor.go:108-158`; `004-opencode-mnemosyne-main/external/src/index.ts:193-202`; `005-mempalace/external/mempalace/mcp_server.py:70-100`; `005-mempalace/external/mempalace/mcp_server.py:169-176`; `005-mempalace/external/mempalace/knowledge_graph.py:180-192`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:236-269`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-468`; `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1273-1389`]
+- **What it does**: Engram pairs save/search with stats and project-merge curation; Mex treats drift detection and targeted sync as first-class maintenance; Modus ships a doctor pass for missing fields, duplicates, and contradictions; Mnemosyne gives explicit delete semantics for contradicted entries; MemPalace logs all writes and invalidates stale facts; Spec Kit already keeps `memory_health` and `memory_save` distinct, with confirmation and dry-run semantics.
+- **Why it matters**: This is the clearest five-system consensus after scoped APIs: memory is not just store+recall. Public should keep hygiene advisory, operator-visible, and separate from ranking so integrity or doctor surfaces improve trust without becoming a second retrieval authority.
+- **Recommendation**: adopt now
+- **Impact**: high
+- **Source strength**: primary
+
+### Finding 4: Relationship awareness is a four-system pattern, but the systems diverge sharply on how much graph they want
+- **Source**: Engram topic-key exact lookup, Mex scaffold edges, Modus crossrefs, MemPalace temporal KG, and Public causal/code-graph planes [SOURCE: `001-engram-main/external/internal/store/store.go:1474-1515`; `002-mex-main/external/README.md:78-80`; `002-mex-main/external/README.md:189-216`; `003-modus-memory-main/external/internal/index/crossref.go:9-15`; `003-modus-memory-main/external/internal/index/crossref.go:41-56`; `003-modus-memory-main/external/internal/index/crossref.go:154-213`; `005-mempalace/external/mempalace/knowledge_graph.py:5-16`; `005-mempalace/external/mempalace/knowledge_graph.py:61-88`; `005-mempalace/external/mempalace/knowledge_graph.py:121-178`; `005-mempalace/external/mempalace/knowledge_graph.py:196-214`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:483-500`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-665`]
+- **What it does**: Engram stabilizes evolving threads with `topic_key` exact lookup rather than a graph; Mex uses scaffold edges and indexes for navigational structure; Modus builds adjacency from subjects/tags/entities without introducing a graph store; MemPalace builds a temporal entity-relation graph with typed edges; Spec Kit already splits causal memory links from the structural code graph.
+- **Why it matters**: The consensus is that isolated records are not enough, but there is no shared graph architecture. Public should keep relation planes explicit and bounded: causal links for decision lineage, code graph for structure, lexical integrity for drift, and any exact-handle/thread lane as a lightweight complement rather than a universal graph.
+- **Recommendation**: prototype later
+- **Impact**: medium
+- **Source strength**: primary
+
+### Finding 5: The deepest divergence is the source of truth itself, which rules out wholesale adoption of any single external system
+- **Source**: Engram storage model, Mex scaffold authority, Modus markdown vault and operational learnings, Mnemosyne local hybrid store, MemPalace verbatim ChromaDB + taxonomy/KG, and Public tool surface [SOURCE: `001-engram-main/external/README.md:25-33`; `001-engram-main/external/README.md:58-69`; `001-engram-main/external/internal/store/store.go:1462-1583`; `002-mex-main/external/README.md:72-87`; `002-mex-main/external/README.md:178-216`; `003-modus-memory-main/external/README.md:27-31`; `003-modus-memory-main/external/README.md:53-58`; `003-modus-memory-main/external/README.md:191-207`; `003-modus-memory-main/external/internal/learnings/learnings.go:1-10`; `003-modus-memory-main/external/internal/learnings/learnings.go:66-155`; `004-opencode-mnemosyne-main/external/README.md:80-87`; `004-opencode-mnemosyne-main/external/src/index.ts:34-75`; `004-opencode-mnemosyne-main/external/src/index.ts:78-90`; `004-opencode-mnemosyne-main/external/src/index.ts:95-203`; `005-mempalace/external/README.md:13-21`; `005-mempalace/external/README.md:113-169`; `005-mempalace/external/README.md:190-205`; `005-mempalace/external/mempalace/searcher.py:21-52`; `005-mempalace/external/mempalace/searcher.py:93-152`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-50`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:236-269`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:483-500`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-665`; `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`]
+- **What it does**: Engram is a SQLite+FTS5 observation store; Mex is a markdown scaffold/router; Modus is a markdown vault with BM25/FSRS/crossrefs and operational learnings; Mnemosyne is a local hybrid document store wrapped as a plugin; MemPalace is verbatim ChromaDB plus taxonomy and temporal KG layers; Spec Kit is already a governed hybrid memory stack with separate causal and code-intelligence planes.
+- **Why it matters**: The five systems do **not** converge on one persistence model, one authoring surface, or one write authority. Public should selectively import patterns—layered continuity hints, advisory integrity/doctor flows, bounded exact-handle ideas, and thin ergonomic facades—while rejecting backend swaps.
+- **Recommendation**: reject
+- **Impact**: high
+- **Source strength**: primary
+
+## Sources Consulted
+- `001-engram-main/external/README.md:25-33`
+- `001-engram-main/external/README.md:58-69`
+- `001-engram-main/external/internal/mcp/mcp.go:38-65`
+- `001-engram-main/external/internal/mcp/mcp.go:375-395`
+- `001-engram-main/external/internal/mcp/mcp.go:399-412`
+- `001-engram-main/external/internal/mcp/mcp.go:460-620`
+- `001-engram-main/external/internal/store/store.go:1474-1583`
+- `001-engram-main/external/internal/store/store.go:1588-1667`
+- `002-mex-main/external/README.md:72-113`
+- `002-mex-main/external/README.md:178-216`
+- `003-modus-memory-main/external/README.md:27-31`
+- `003-modus-memory-main/external/README.md:53-58`
+- `003-modus-memory-main/external/README.md:191-207`
+- `003-modus-memory-main/external/cmd/modus-memory/doctor.go:13-31`
+- `003-modus-memory-main/external/cmd/modus-memory/doctor.go:42-60`
+- `003-modus-memory-main/external/cmd/modus-memory/doctor.go:63-83`
+- `003-modus-memory-main/external/cmd/modus-memory/doctor.go:108-158`
+- `003-modus-memory-main/external/internal/index/crossref.go:9-15`
+- `003-modus-memory-main/external/internal/index/crossref.go:41-56`
+- `003-modus-memory-main/external/internal/index/crossref.go:154-213`
+- `003-modus-memory-main/external/internal/learnings/learnings.go:1-10`
+- `003-modus-memory-main/external/internal/learnings/learnings.go:66-155`
+- `004-opencode-mnemosyne-main/external/README.md:37-87`
+- `004-opencode-mnemosyne-main/external/src/index.ts:34-75`
+- `004-opencode-mnemosyne-main/external/src/index.ts:78-90`
+- `004-opencode-mnemosyne-main/external/src/index.ts:95-220`
+- `005-mempalace/external/README.md:13-21`
+- `005-mempalace/external/README.md:113-169`
+- `005-mempalace/external/README.md:190-205`
+- `005-mempalace/external/mempalace/mcp_server.py:7-18`
+- `005-mempalace/external/mempalace/mcp_server.py:70-100`
+- `005-mempalace/external/mempalace/mcp_server.py:169-176`
+- `005-mempalace/external/mempalace/layers.py:3-16`
+- `005-mempalace/external/mempalace/layers.py:76-85`
+- `005-mempalace/external/mempalace/layers.py:185-214`
+- `005-mempalace/external/mempalace/knowledge_graph.py:5-16`
+- `005-mempalace/external/mempalace/knowledge_graph.py:61-88`
+- `005-mempalace/external/mempalace/knowledge_graph.py:121-214`
+- `005-mempalace/external/mempalace/searcher.py:21-52`
+- `005-mempalace/external/mempalace/searcher.py:93-152`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:40-50`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:210-220`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:236-269`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:483-500`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:638-665`
+- `.opencode/skill/system-spec-kit/mcp_server/tool-schemas.ts:739-776`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-context.ts:700-815`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:426-468`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/memory-save.ts:1273-1389`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:94-124`
+- `.opencode/skill/system-spec-kit/mcp_server/handlers/session-bootstrap.ts:163-205`
+
+## Assessment
+- New information ratio: 0.18
+- Questions addressed: [what 3+ systems independently agree on, where the external systems disagree at the architecture level, which agreements map cleanly onto Spec Kit, which divergences block any wholesale transplant]
+- Questions answered: [the strongest agreements are scoped tool surfaces, low-token layered continuity, and explicit hygiene/repair lanes; relationship layers matter but are not consensus-standardized; the deepest divergence is still the underlying source of truth and write authority model]
+- Novelty justification: This is the first Engram-packet pass that turns all five external systems into one source-backed import contract, separating reusable consensus from structural disagreement instead of leaving that comparison distributed across phase-local packets.
+
+## Ruled Out
+- Picking one external system as the new north-star backend, because every comparison keeps some ideas while rejecting the underlying authority model.
+- Folding integrity, doctor, or contradiction signals directly into retrieval ranking, because all five systems separate maintenance from at least one retrieval or storage boundary.
+- Replacing `session_bootstrap` / `memory_context` with a router-first markdown bootstrap, because Public already has a richer orchestration authority than Mex-style scaffold routing.
+- Collapsing topic threads, lexical edges, causal links, and structural code graph data into one universal graph surface, because the cross-phase evidence supports multiple bounded relation planes instead.
+
+## Reflection
+- What worked: Comparing the systems at the boundary they expose to agents—tool contract, continuity contract, hygiene contract, and relation contract—made agreement and divergence much clearer than replaying each phase narratively.
+- What did not work: The Engram packet still lacks canonical reducer-owned deep-research state files, and the strict `validate.sh` pass was blocked in this runtime by a permission boundary rather than a packet-level validation result.
+- What I would do differently: Start a cross-system comparison matrix much earlier in the run so the final iterations can close or rank rows directly instead of reconstructing the comparison from late-stage packets.
+
+## Recommended Next Focus
+Iteration 040 should convert this cross-phase contract into the final execution matrix:
+1. freeze the cross-system `adopt now / prototype later / reject` table,
+2. rank the adopt-now items into a single Q1/Q2 implementation order for Public,
+3. choose which one workflow-specific NEW FEATURE candidate advances first,
+4. bind every promoted item to budgets, ownership, and validation thresholds.
+```
+
+
+Changes   +0 -0
+Requests  1 Premium (12m 26s)
+Tokens    ↑ 2.0m • ↓ 58.4k • 1.7m (cached) • 12.4k (reasoning)
+
+---
+
+● skill(system-spec-kit)
+
+I’m grounding the final report in the existing phase folder and the last iterations first, then I’ll write the definitive recommendation packet and sync the canonical research docs.
+
+● Read AGENTS.md
+  └ 1 line read
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 4 files found
+
+● Read iteration-039.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-039.md
+  └ 128 lines read
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L1:260 (238 lines read)
+
+✗ Read checklist.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/checklist.md
+  └ Path does not exist
+
+✗ Read implementation-summary.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/implementation-summary.md
+  └ Path does not exist
+
+✗ Read spec.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/spec.md
+  └ Path does not exist
+
+✗ Read plan.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/plan.md
+  └ Path does not exist
+
+✗ Read tasks.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/tasks.md
+  └ Path does not exist
+
+The phase folder is thinner than the prompt assumed: it currently has `phase-research-prompt.md`, `research/`, `memory/`, and `external/`, but no root `spec.md`/`plan.md`/`tasks.md`/`checklist.md`/`implementation-summary.md`. I’m checking the exact folder state and validation result before I fill the missing packet docs and final synthesis.
+
+● Search (glob)
+  │ "research/iterations/*.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-
+  │ research-hybrid-rag-fusion-systems/001-engram-main
+  └ No matches found
+
+● Search (glob)
+  │ "**/*" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-
+  │ fusion-systems/001-engram-main
+  └ 7 files found
+
+✗ Validate Engram phase folder (shell)
+  │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && bash
+  │ .opencode/skill/system-spec-kit/scripts/spec/validate.sh
+  │ "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-k
+  │ it/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main"
+  │ --strict
+  └ Permission denied and could not request permission from user
+
+● Search (glob)
+  │ "**/AGENTS.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hyb
+  │ rid-rag-fusion-systems/001-engram-main/external
+  └ 1 file found
+
+● Read phase-research-prompt.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/phase-research-prompt.md
+  └ L1:220 (180 lines read)
+
+I’ve confirmed the packet is missing its root Level 3 docs, so I’m borrowing the structure from sibling research packets and the existing iteration files instead of inventing a new shape. I’m also checking the latest canonical report tail so iteration 040 lands cleanly in the right section.
+
+● Read AGENTS.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/external/AGENTS.md
+  └ L1:220 (35 lines read)
+
+● Search (glob)
+  │ "*/spec.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid
+  │ -rag-fusion-systems
+  └ No matches found
+
+✗ Read spec.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/005-mempalace/spec.md
+  └ Path does not exist
+
+✗ Read plan.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/005-mempalace/plan.md
+  └ Path does not exist
+
+✗ Read tasks.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/005-mempalace/tasks.md
+  └ Path does not exist
+
+✗ Read checklist.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/005-mempalace/checklist.md
+  └ Path does not exist
+
+✗ Read implementation-summary.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/005-mempalace/implementation-summary.md
+  └ Path does not exist
+
+● Search (grep)
+  │ "^# Iteration 03[0-9]|^# Iteration 040|^## Focus|^## Findings|^## Assessment|^## Recommended
+  │ Next Focus" (.opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-r
+  │ ag-fusion-systems/001-engram-main/research/research.md)
+  └ 7 lines found
+
+The sibling packets in this track are organized the same way — mostly `phase-research-prompt.md` plus `research/`, not full root spec docs — so I’m not going to assume a hidden template exists there. Next I’m pulling the report tail and line anchors directly, then I’ll write the missing packet docs in the same style as this research phase.
+
+● List directory .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-…
+  └ 5 files found
+
+● Read copilot-tool-output-1775866294727-igrnq9.txt
+  │ /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/copilot-tool-output-1775866294727-igrnq9.txt
+  └ L1:260 (90 lines read)
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L1500:1900 (401 lines read)
+
+● Read iteration-034.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-034.md
+  └ L1:220 (98 lines read)
+
+● Read iteration-038.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-038.md
+  └ L1:220 (103 lines read)
+
+I’ve got the final synthesis inputs now: the late-iteration report anchors, the open-questions register, and the exact Engram/Public source ranges that kept recurring. I’m pulling one good Level 3 packet example from elsewhere in the repo so the missing root docs land in a consistent house style instead of as ad hoc notes.
+
+● Read research.md
+  └ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+    tems/001-engram-main/research/research.md
+
+● Search (glob)
+  │ "**/implementation-summary.md" in .opencode/specs/system-spec-kit
+  └ 7 files found
+
+● Search (glob)
+  │ "**/spec.md" in .opencode/specs/system-spec-kit
+  └ 7 files found
+
+● Search (glob)
+  │ "**/checklist.md" in .opencode/specs/system-spec-kit
+  └ 7 files found
+
+● Read copilot-tool-output-1775866314669-xky3wb.txt
+  │ /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/copilot-tool-output-1775866314669-xky3wb.txt
+  └ L1:40 (40 lines read)
+
+● Read copilot-tool-output-1775866314665-j39auu.txt
+  │ /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/copilot-tool-output-1775866314665-j39auu.txt
+  └ L1:40 (40 lines read)
+
+● Read copilot-tool-output-1775866314706-3ubav7.txt
+  │ /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/copilot-tool-output-1775866314706-3ubav7.txt
+  └ L1:40 (40 lines read)
+
+● Read spec.md
+  │ .opencode/specs/system-spec-kit/025-nested-changelog-per-spec/spec.md
+  └ L1:220 (219 lines read)
+
+● Read checklist.md
+  │ .opencode/specs/system-spec-kit/025-nested-changelog-per-spec/checklist.md
+  └ L1:240 (170 lines read)
+
+● Read implementation-summary.md
+  │ .opencode/specs/system-spec-kit/025-nested-changelog-per-spec/implementation-summary.md
+  └ L1:240 (97 lines read)
+
+● Read research.md
+  └ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+    tems/001-engram-main/research/research.md
+
+I’ve got a clean Level 3 example now, and the Engram packet’s canonical report is very large but append-only. I’m pulling the last ~150 lines directly so I can append iteration 040 and update the top metadata without clobbering earlier research.
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L16940:17150 (173 lines read)
+
+● Read iteration-039.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-039.md
+  └ L1:220 (128 lines read)
+
+● Read plan.md
+  │ .opencode/specs/system-spec-kit/024-compact-code-graph/034-workflow-split-and-token-insight-cont
+  │ racts/plan.md
+  └ L1:220 (220 lines read)
+
+● Read tasks.md
+  │ .opencode/specs/system-spec-kit/024-compact-code-graph/034-workflow-split-and-token-insight-cont
+  │ racts/tasks.md
+  └ L1:260 (79 lines read)
+
+● Read decision-record.md
+  │ .opencode/specs/system-spec-kit/024-compact-code-graph/034-workflow-split-and-token-insight-cont
+  │ racts/decision-record.md
+  └ L1:240 (113 lines read)
+
+I’ve got enough structure now to write the closeout packet directly: a compact Level 3 root doc set, the final iteration file, an updated canonical report header plus appended iteration 040, and a one-page implementation summary that doubles as the decision brief. I’m checking whether `iteration-040.md` already exists first, then I’ll patch everything in one batch.
+
+● Search (glob)
+  │ "research/iterations/iteration-040.md" in .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-
+  │ upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main
+  └ No matches found
+
+● Read research.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/research.md
+  └ L1:40 (40 lines read)
+
+● Read iteration-035.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-035.md
+  └ L1:220 (98 lines read)
+
+● Read iteration-036.md
+  │ .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-sys
+  │ tems/001-engram-main/research/iterations/iteration-036.md
+  └ L1:220 (220 lines read)
+
+I’m writing the final packet now in one patch: missing root docs, the definitive iteration 040, the one-page decision brief, and a small executive summary block at the top of the canonical report so the final recommendations are easy to consume without scrolling the whole transcript.
+
+✗ Edit
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/spec.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/plan.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/tasks.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/checklist.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/decision-record.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/implementation-summary.md
+  │ Create .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fus
+  │ ion-systems/001-engram-main/research/iterations/iteration-040.md
+  └ Edit .opencode/specs/system-spec-kit/999-hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusio
+    n-systems/001-engram-main/research/research.md
+
+Repo writes are blocked in this runtime, so I’m testing the session workspace next. If that succeeds, I’ll still materialize the final report packet as ready-to-apply artifacts instead of stopping at a prose summary.
+
+● Edit
+  └ Create
+    ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-test.txt
+
+Since repo writes are locked, I’m materializing the final packet as a ready-to-apply bundle in the session workspace instead: the final iteration, one-page decision brief, root Level 3 docs, and the exact summary block to splice into `research/research.md`.
+
+● Edit
+  │ Delete
+  │ ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-test.txt
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/README.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/research-executive-summary-block.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/iteration-040.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/implementation-summary.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/spec.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/plan.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/tasks.md
+  │ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+  │ acket/checklist.md
+  └ Create ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-p
+    acket/decision-record.md
+
+The repo itself is still locked, but the final deliverable bundle is now materialized and ready to drop in. I’m just spot-checking the key artifacts in the session workspace so I can hand off the exact path cleanly.
+
+● Read README.md
+  │ ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-packet/R
+  │ EADME.md
+  └ L1:200 (29 lines read)
+
+● Read iteration-040.md
+  │ ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-packet/i
+  │ teration-040.md
+  └ L1:220 (146 lines read)
+
+● Read implementation-summary.md
+  │ ~/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-packet/i
+  │ mplementation-summary.md
+  └ L1:220 (82 lines read)
+
+**Blocked on in-repo writes**, but the **final Engram closeout packet is fully prepared** in session storage at:
+
+`/Users/michelkerkmeester/.copilot/session-state/4d2c5d62-9ea1-4497-b9fa-fd097ae8c929/files/engram-final-report-packet/`
+
+That bundle includes the ready-to-apply `iteration-040.md`, `implementation-summary.md` one-page decision brief, root `spec.md` / `plan.md` / `tasks.md` / `checklist.md` / `decision-record.md`, and the `research-executive-summary-block.md` to splice into `research/research.md`. The exact strict validator command was also blocked in this runtime with **`Permission denied and could not request permission from user`**.
+
+**Final ranking:** 1. bounded recent-session digest, 2. exact-handle lookup lane, 3. read-only doctor/scorecard surface, 4. thin runtime setup export, 5. close-session helper, 6. prototype `thread_key` / tool bundles / passive capture. **Decision guardrails:** reject memory-only recovery as a second control plane, and reject any backend swap or wholesale transplant of an external system.
+
+
+Changes   +591 -2
+Requests  1 Premium (9m 55s)
+Tokens    ↑ 1.7m • ↓ 43.7k • 1.6m (cached) • 11.2k (reasoning)
 
 ---
 
