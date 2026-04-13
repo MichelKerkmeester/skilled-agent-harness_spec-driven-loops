@@ -60,7 +60,7 @@ exec
 /bin/zsh -lc "rg -n \"coverage-graph-integration\\.vitest\\.ts|coverage-graph-stress\\.vitest\\.ts|session-isolation\\.vitest\\.ts|optimizer-replay-runner\\.vitest\\.ts|archived stale|stale test suites\" /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  exited 1 in 0ms:
 exec
-/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "POST-FIX VALIDATION iteration 28 deep review maintainability verify test quality fixes coverage-graph-integration.vitest.ts coverage-graph-stress.vitest.ts session-isolation.vitest.ts optimizer-replay-runner.vitest.ts archived stale test suites" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "POST-FIX VALIDATION iteration 28 deep review maintainability verify test quality fixes coverage-graph-integration.vitest.ts coverage-graph-stress.vitest.ts session-isolation.vitest.ts optimizer-replay-runner.vitest.ts archived stale test suites" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 394ms:
 python3: error: couldn't create cache file '/tmp/xcrun_db-zzaMYPFJ' (errno=Operation not permitted)
 [
@@ -3261,7 +3261,7 @@ Overlay portability: pair this baseline with stack-specific test guidance from `
  succeeded in 0ms:
 12:**Focus:** Phase 005-006 test quality: review .opencode/skill/sk-improve-agent/scripts/tests/ (5 vitest files) and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts for assertion quality, edge cases, and coverage of the documented contract.
 35:FOCUS: Phase 005-006 test quality: review .opencode/skill/sk-improve-agent/scripts/tests/ (5 vitest files) and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts for assertion quality, edge cases, and coverage of the documented contract.
-73:/bin/zsh -lc 'python3 .opencode/skill/scripts/skill_advisor.py "Deep review maintainability of vitest assertion quality, edge cases, and documented contract coverage for .opencode/skill/sk-improve-agent/scripts/tests/ and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+73:/bin/zsh -lc 'python3 .opencode/skill/skill-advisor/scripts/skill_advisor.py "Deep review maintainability of vitest assertion quality, edge cases, and documented contract coverage for .opencode/skill/sk-improve-agent/scripts/tests/ and .opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts plus coverage-graph-stress.vitest.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 605:.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-integration.vitest.ts
 632:.opencode/skill/system-spec-kit/scripts/tests/coverage-graph-stress.vitest.ts
 652:.opencode/skill/system-spec-kit/scripts/tests/optimizer-replay-runner.vitest.ts
