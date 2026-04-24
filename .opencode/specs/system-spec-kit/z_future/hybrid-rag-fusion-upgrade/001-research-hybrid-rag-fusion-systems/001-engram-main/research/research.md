@@ -1,8 +1,14 @@
 ---
-title: "Deep Research Report: 001-engram-main"
+title: "Dee [system-spec-kit/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/research]"
 description: "40-iteration deep research synthesis (042-compliant)"
+trigger_phrases:
+  - "dee"
+  - "research"
+  - "001"
+  - "engram"
+importance_tier: "normal"
+contextType: "research"
 ---
-
 # Deep Research Report: 001-engram-main
 
 Generated: 2026-04-11 02:20
