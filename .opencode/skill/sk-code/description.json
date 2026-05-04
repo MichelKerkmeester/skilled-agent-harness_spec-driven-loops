@@ -1,6 +1,6 @@
 {
   "name": "sk-code",
-  "description": "Surface-aware smart router for code work. Detects WEBFLOW frontend versus OPENCODE system code, then loads intent- and language-aware resources. WEBFLOW covers Webflow / vanilla HTML/CSS/JS animation projects. OPENCODE covers .opencode system code across JavaScript, TypeScript, Python, Shell, and JSON/JSONC.",
+  "description": "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment) and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
   "version": "2.0.0",
   "importance_tier": "high",
   "keywords": [

@@ -748,10 +748,10 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 #### CODE WORKFLOW
 
 **sk-code**
-- Surface-aware code workflow router: WEBFLOW frontend and OPENCODE system code
-- WEBFLOW route covers full content, Lighthouse/TBT/INP targets, CDN deployment, and browser verification
-- OPENCODE route covers JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, and skill files
-- Other stacks (Go, React/Next.js, generic Node.js, React Native, Swift) fall through to UNKNOWN disambiguation
+- **Multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes loaded per stack
+- **WEBFLOW** stack: Webflow / vanilla HTML/CSS/JS animation projects (motion.dev, GSAP, Lenis, HLS, Swiper, FilePond), CDN deployment, Lighthouse/TBT/INP targets, browser verification
+- **OPENCODE** stack: `.opencode/` system code across JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skill files
+- Smart-routing internals auto-detect the active stack from CWD/target paths and library markers; unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a disambiguation question
 - 3 mandatory phases: implementation → testing/debugging → verification
 
 **sk-code-review**

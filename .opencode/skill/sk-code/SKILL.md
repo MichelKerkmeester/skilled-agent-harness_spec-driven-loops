@@ -1,6 +1,6 @@
 ---
 name: sk-code
-description: "Smart-routing umbrella skill for code work. Detects code surface first (WEBFLOW frontend vs OPENCODE system code), then classifies intent and loads surface-aware resources. WEBFLOW covers Webflow / vanilla HTML/CSS/JS animation projects. OPENCODE covers .opencode system code across JavaScript, TypeScript, Python, Shell, and JSON/JSONC with language sub-detection. Unknown stacks fall through to disambiguation."
+description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment) and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 2.0.0
 ---

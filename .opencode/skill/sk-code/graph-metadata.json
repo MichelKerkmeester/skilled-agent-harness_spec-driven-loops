@@ -169,7 +169,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Surface-aware sk-code router with WEBFLOW and OPENCODE routes. OPENCODE absorbs the former standalone OpenCode language standards and verifier scripts; Go and NextJS placeholder routes were removed.",
+    "causal_summary": "Multi-stack coding standards, references, and assets — surface-aware patterns, checklists, and verification recipes for Webflow frontend and OpenCode system code. OPENCODE absorbs the former standalone OpenCode language standards and verifier scripts; Go and NextJS placeholder routes were removed. Smart-routing internals (WEBFLOW vs OPENCODE detection) auto-load matching standards.",
     "source_docs": [
       "SKILL.md",
       "README.md",

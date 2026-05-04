@@ -135,7 +135,7 @@ The skill system covers four distinct workflow domains.
 
 **MCP Tool Wrapping.** The five MCP skills route tool calls through Code Mode for token-efficient execution. mcp-code-mode is the hub: it handles ClickUp, Figma, Webflow, Notion, and Chrome DevTools through a single TypeScript execution layer. mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
-**Code Workflow Skills.** `sk-code` handles code-surface detection and implementation guidance for Webflow frontend and OpenCode system code. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
+**Code Workflow Skills.** `sk-code` provides **multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation, CDN deployment) and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP/agents/commands/skills). Smart-routing internals auto-detect the active stack. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
 
 **System Foundation.** system-spec-kit governs all file modifications through spec folder workflows (Levels 1-3+), template validation, and Spec Kit Memory for context preservation across sessions. It includes a hook system for automated context preservation at Claude Code lifecycle boundaries (PreCompact, SessionStart, Stop), a structural code graph with 4 MCP tools (code_graph_scan/query/status/context), and a CocoIndex bridge for semantic-to-structural expansion. It is the only skill that is mandatory for every task involving file changes.
 
@@ -164,7 +164,7 @@ The skill system covers four distinct workflow domains.
 
 | Skill | Version | Description |
 | --- | --- | --- |
-| `sk-code` | 1.1.0.0 | Surface-aware code router for Webflow frontend and OpenCode system code |
+| `sk-code` | 1.1.0.0 | Multi-stack coding standards, references, and assets (Webflow frontend + OpenCode system code) |
 | `sk-code-review` | 1.2.0.0 | Findings-first code review baseline with security and correctness minimums |
 
 **Documentation, Research, Prompt, and Improvement Skills**
@@ -210,7 +210,7 @@ The skill system covers four distinct workflow domains.
 │   ├── manual_testing_playbook/
 │   └── scripts/            # Python compat shim, graph export compiler, regression, fixtures, out
 ├── sk-improve-agent/       # Evaluator-first agent improvement loop
-├── sk-code/                # Surface-aware code router (Webflow + OpenCode)
+├── sk-code/                # Multi-stack coding standards, references, assets
 ├── sk-code-review/         # Findings-first code review baseline
 ├── sk-deep-research/       # Autonomous deep research loop
 ├── sk-deep-review/         # Autonomous iterative code review
