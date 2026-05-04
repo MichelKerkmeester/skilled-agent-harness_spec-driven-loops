@@ -200,6 +200,10 @@ unset SPECKIT_SKILL_ADVISOR_FORCE_LOCAL
 | `degraded` | Hook or daemon can run only in limited trust | Follow OP-001 in the playbook. |
 | `quarantined` | Malformed skill metadata was isolated | Follow OP-002 in the playbook. |
 
+### Indexer scan-vs-index counts
+
+`skill_graph_scan` reports two numbers: `scannedFiles` (every `graph-metadata.json` discovered) and `indexedFiles` (real skills indexed into SQLite). The delta is normally 1–2: the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding) and emits a `NON-SKILL-METADATA: skipped …` warning. A larger delta means real skills are being filtered — inspect the warning list.
+
 H5 operator scenarios live in the manual playbook under `04--operator-h5/`.
 
 ---

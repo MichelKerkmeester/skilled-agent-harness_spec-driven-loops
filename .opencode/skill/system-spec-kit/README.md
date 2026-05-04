@@ -1086,7 +1086,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh \
 | Skill                                                | Purpose                                                      |
 | ---------------------------------------------------- | ------------------------------------------------------------ |
 | [`sk-doc`](../sk-doc/SKILL.md)                       | Documentation quality standard (DQI scoring, HVR compliance) |
-| [`sk-code-opencode`](../sk-code-opencode/SKILL.md) | Code quality standard for OpenCode system code               |
+| [`sk-code`](../sk-code/SKILL.md)                   | Code workflow and quality standard for Webflow and OpenCode surfaces |
 | [`sk-git`](../sk-git/SKILL.md)                       | Git workflow orchestration (worktrees, commits, PRs)         |
 
 ### Project-Level References

@@ -36,7 +36,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/spec_kit:implement`)
+- Implementation tasks (use `sk-code` or `/spec_kit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 

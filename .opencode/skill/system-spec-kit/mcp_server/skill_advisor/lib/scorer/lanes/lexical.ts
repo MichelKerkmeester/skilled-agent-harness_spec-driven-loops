@@ -23,7 +23,6 @@ const SYNONYMS: Readonly<Record<string, readonly string[]>> = {
 };
 
 const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
-  'sk-code-opencode': ['classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
   'sk-doc': ['readme', 'feature catalog', 'playbook', 'taxonomy', 'documentation', 'docs', 'manual testing'],
   'system-spec-kit': ['spec folder', 'packet', 'plan', 'tasks', 'checklist', 'memory save', 'handover', 'implementation summary', 'corpus'],
   'sk-code-review': ['review', 'audit', 'findings', 'regression', 'drift', 'readiness', 'false positives'],
@@ -34,7 +33,7 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'mcp-chrome-devtools': ['chrome devtools', 'har', 'console errors', 'staging'],
   'sk-improve-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
-  'sk-code': ['css', 'html', 'javascript', 'webflow', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn'],
+  'sk-code': ['css', 'html', 'javascript', 'webflow', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
 };
 
 function expandedTokens(prompt: string): string[] {

@@ -529,9 +529,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `mcp-code-mode`        | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"            | MCP orchestration for external tools             |
 | `system-spec-kit`      | v2.2.0  | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
 | `mcp-chrome-devtools`  | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
-| `sk-code`  | v1.0.0  | "implement", "debug", "verify", "refactor" (full-stack)   | Full-stack implementation lifecycle orchestrator |
-| `sk-code-opencode`    | v1.3.2  | "opencode code", "system code", "TypeScript", "Python"    | OpenCode system code standards                   |
-| `sk-code`         | v1.0.9  | "implement", "debug", "verify", "refactor" (frontend)     | Web development implementation lifecycle         |
+| `sk-code`  | v1.1.0  | "implement", "debug", "verify", "opencode", "webflow"   | Webflow frontend and OpenCode system code router |
 | `sk-doc`               | v5.2.0  | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
 | `sk-git`               | v1.5.0  | "commit", "branch", "PR", "push", "git"                   | Git workflow orchestration                       |
 
@@ -1218,7 +1216,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**        | 17     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, mcp-figma, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-opencode, sk-code-review, sk-code, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
+| **Skills**        | 16     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, mcp-figma, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, spec-kit-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |

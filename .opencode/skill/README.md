@@ -43,7 +43,7 @@ Across this skill tree, `/spec_kit:resume` is the canonical recovery surface for
 
 `.opencode/skill/` holds 21 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
 
-Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code quality overlays that cover different stack contexts, documentation and improvement-loop utilities, and the system-spec-kit foundation that governs every file modification. The primary routing engine is now the native TypeScript Skill Advisor package at `system-spec-kit/mcp_server/skill_advisor/`, exposed through `advisor_recommend`, `advisor_status`, and `advisor_validate`. The Python `system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
+Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, and the system-spec-kit foundation that governs every file modification. The primary routing engine is now the native TypeScript Skill Advisor package at `system-spec-kit/mcp_server/skill_advisor/`, exposed through `advisor_recommend`, `advisor_status`, and `advisor_validate`. The Python `system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
 
 Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffolding workflow, gets a SKILL.md with proper frontmatter, and is discovered by the native advisor through graph metadata indexing. The Python shim can still discover it directly when fallback mode is active.
 
@@ -51,12 +51,12 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Total skill folders | 18 | Top-level skills under `.opencode/skill/` |
-| Folders with graph metadata | 18 | Every top-level skill folder under `.opencode/skill/` currently ships with `graph-metadata.json` |
+| Total skill folders | 17 | Top-level skills under `.opencode/skill/` |
+| Folders with graph metadata | 17 | Every top-level skill folder under `.opencode/skill/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-deep`, `sk-util`, `system` |
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode |
 | MCP integration skills | 4 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, mcp-figma |
-| Code quality overlays | 3 | sk-code, sk-code-opencode, sk-code-review |
+| Code workflow and review skills | 2 | sk-code, sk-code-review |
 | Documentation, research, review, and improvement skills | 5 | sk-improve-agent, sk-deep-research, sk-deep-review, sk-doc, sk-improve-prompt |
 | Git and system skills | 2 | sk-git, system-spec-kit |
 | Skills with local scripts/ | 12 | See Section 4 for the current script-bearing folders |
@@ -135,7 +135,7 @@ The skill system covers four distinct workflow domains.
 
 **MCP Tool Wrapping.** The five MCP skills route tool calls through Code Mode for token-efficient execution. mcp-code-mode is the hub: it handles ClickUp, Figma, Webflow, Notion, and Chrome DevTools through a single TypeScript execution layer. mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
-**Code Quality Overlays.** The four sk-code- skills form a layered review contract. sk-code-review provides a findings-first baseline. The three implementation overlays (opencode, web, full-stack) add stack-specific standards on top. They share terminology so switching overlays during a task requires no mental context switch.
+**Code Workflow Skills.** `sk-code` handles code-surface detection and implementation guidance for Webflow frontend and OpenCode system code. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
 
 **System Foundation.** system-spec-kit governs all file modifications through spec folder workflows (Levels 1-3+), template validation, and Spec Kit Memory for context preservation across sessions. It includes a hook system for automated context preservation at Claude Code lifecycle boundaries (PreCompact, SessionStart, Stop), a structural code graph with 4 MCP tools (code_graph_scan/query/status/context), and a CocoIndex bridge for semantic-to-structural expansion. It is the only skill that is mandatory for every task involving file changes.
 
@@ -164,8 +164,7 @@ The skill system covers four distinct workflow domains.
 
 | Skill | Version | Description |
 | --- | --- | --- |
-| `sk-code` | 1.0.1.0 | Smart-routing umbrella for application code (Webflow + React/Next/Node/Go/Swift/RN); Webflow runs full live content, non-Webflow stacks are placeholder stubs |
-| `sk-code-opencode` | 1.2.0.0 | Multi-language standards for OpenCode system code (JS, TS, Python, Shell, JSON) |
+| `sk-code` | 1.1.0.0 | Surface-aware code router for Webflow frontend and OpenCode system code |
 | `sk-code-review` | 1.2.0.0 | Findings-first code review baseline with security and correctness minimums |
 
 **Documentation, Research, Prompt, and Improvement Skills**
@@ -211,8 +210,7 @@ The skill system covers four distinct workflow domains.
 │   ├── manual_testing_playbook/
 │   └── scripts/            # Python compat shim, graph export compiler, regression, fixtures, out
 ├── sk-improve-agent/       # Evaluator-first agent improvement loop
-├── sk-code/                # Smart-routing umbrella for application code (Webflow live; non-Webflow placeholders)
-├── sk-code-opencode/       # OpenCode system code standards
+├── sk-code/                # Surface-aware code router (Webflow + OpenCode)
 ├── sk-code-review/         # Findings-first code review baseline
 ├── sk-deep-research/       # Autonomous deep research loop
 ├── sk-deep-review/         # Autonomous iterative code review
@@ -259,7 +257,6 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `mcp-figma` | Yes | Yes | No |
 | `sk-code` | Varies | Varies | Varies |
-| `sk-code-opencode` | Varies | Varies | Varies |
 | `sk-code-review` | Varies | Varies | Varies |
 | `sk-deep-research` | Yes | No | Yes |
 | `sk-deep-review` | Yes | No | Yes |
@@ -477,7 +474,7 @@ No. Add a valid SKILL.md and graph metadata. The native advisor picks it up thro
 
 **Q: Can I use multiple skills in the same task?**
 
-Yes. The advisor returns a ranked list. A task may load a primary skill (for example sk-code-review) and a secondary overlay (for example sk-code-opencode) at the same time. The calling agent manages which sections of each SKILL.md apply to the current step.
+Yes. The advisor returns a ranked list. A task may load a primary skill (for example `sk-code-review`) and a secondary skill (for example `sk-code`) when review findings need surface-specific evidence. The calling agent manages which sections of each SKILL.md apply to the current step.
 
 **Q: What is the difference between skill-local scripts and the shared scripts/ folder?**
 
@@ -503,7 +500,7 @@ The cap preserves a margin of uncertainty so the calling AI retains judgment on 
 | [sk-doc SKILL.md](sk-doc/SKILL.md) | Documentation quality standards and templates |
 | [sk-git SKILL.md](sk-git/SKILL.md) | Git workflow orchestration |
 | [sk-code-review SKILL.md](sk-code-review/SKILL.md) | Code review baseline |
-| [sk-code-opencode SKILL.md](sk-code-opencode/SKILL.md) | OpenCode system code standards |
+| [sk-code SKILL.md](sk-code/SKILL.md) | Webflow frontend and OpenCode system code workflows |
 | [cli-opencode SKILL.md](cli-opencode/SKILL.md) | OpenCode CLI orchestrator for full runtime dispatch and parallel detached sessions |
 
 <!-- /ANCHOR:related-documents -->

@@ -93,7 +93,7 @@ afterEach(() => {
 describe('smart-router static measurement harness', () => {
   it('runs on a five-prompt subset fixture and computes advisor accuracy', async () => {
     const root = tempWorkspace();
-    writeSkill(root, 'sk-code-opencode', routedSkill, [
+    writeSkill(root, 'sk-code', routedSkill, [
       'references/shared/universal_patterns.md',
       'references/typescript/style_guide.md',
       'references/config/json.md',
@@ -105,10 +105,10 @@ describe('smart-router static measurement harness', () => {
     ]);
 
     const corpusRows: CorpusRow[] = [
-      { id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code-opencode' },
+      { id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code' },
       { id: 'p2', prompt: 'Fix json config docs', skill_top_1: 'sk-doc' },
-      { id: 'p3', prompt: 'Run the full checklist for tsc', skill_top_1: 'sk-code-opencode' },
-      { id: 'p4', prompt: 'Update TypeScript examples', skill_top_1: 'sk-code-opencode' },
+      { id: 'p3', prompt: 'Run the full checklist for tsc', skill_top_1: 'sk-code' },
+      { id: 'p4', prompt: 'Update TypeScript examples', skill_top_1: 'sk-code' },
       { id: 'p5', prompt: 'Write docs', skill_top_1: 'sk-doc' },
     ];
 
@@ -116,28 +116,28 @@ describe('smart-router static measurement harness', () => {
       workspaceRoot: root,
       corpusRows,
       recordTelemetry: false,
-      buildBrief: async (prompt) => advisorResult(prompt.includes('docs') || prompt.includes('json') ? 'sk-doc' : 'sk-code-opencode'),
+      buildBrief: async (prompt) => advisorResult(prompt.includes('docs') || prompt.includes('json') ? 'sk-doc' : 'sk-code'),
     });
 
     expect(summary.totalPrompts).toBe(5);
     expect(summary.correct).toBe(5);
     expect(summary.accuracy).toBe(1);
-    expect(summary.perSkill.find((row) => row.skill === 'sk-code-opencode')?.onDemandHits).toBe(1);
+    expect(summary.perSkill.find((row) => row.skill === 'sk-code')?.onDemandHits).toBe(1);
     expect(summary.allowedResourceDistribution).toHaveProperty('2');
   });
 
   it('formats valid markdown with the methodology caveat', async () => {
     const root = tempWorkspace();
-    writeSkill(root, 'sk-code-opencode', routedSkill, [
+    writeSkill(root, 'sk-code', routedSkill, [
       'references/shared/universal_patterns.md',
       'references/typescript/style_guide.md',
     ]);
 
     const summary = await runMeasurement({
       workspaceRoot: root,
-      corpusRows: [{ id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code-opencode' }],
+      corpusRows: [{ id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code' }],
       recordTelemetry: false,
-      buildBrief: async () => advisorResult('sk-code-opencode'),
+      buildBrief: async () => advisorResult('sk-code'),
     });
     const markdown = formatMeasurementReport(summary);
 
@@ -148,16 +148,16 @@ describe('smart-router static measurement harness', () => {
 
   it('records static compliance telemetry to the separated default stream', async () => {
     const root = tempWorkspace();
-    writeSkill(root, 'sk-code-opencode', routedSkill, [
+    writeSkill(root, 'sk-code', routedSkill, [
       'references/shared/universal_patterns.md',
       'references/typescript/style_guide.md',
     ]);
 
     await runMeasurement({
       workspaceRoot: root,
-      corpusRows: [{ id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code-opencode' }],
+      corpusRows: [{ id: 'p1', prompt: 'Implement TypeScript support', skill_top_1: 'sk-code' }],
       recordTelemetry: true,
-      buildBrief: async () => advisorResult('sk-code-opencode'),
+      buildBrief: async () => advisorResult('sk-code'),
     });
 
     const staticStream = path.join(root, '.opencode', 'reports', 'smart-router-static', 'compliance.jsonl');

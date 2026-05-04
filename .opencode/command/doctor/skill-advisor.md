@@ -265,9 +265,18 @@ STATUS=FAIL ERROR="[message]"
 The command modifies **only** these files:
 - `lib/scorer/lanes/explicit.ts` — TOKEN_BOOSTS / PHRASE_BOOSTS dictionaries
 - `lib/scorer/lanes/lexical.ts` — CATEGORY_HINTS dictionary
-- `.opencode/skill/*/graph-metadata.json` — derived.trigger_phrases / derived.key_topics arrays
+- `.opencode/skill/*/graph-metadata.json` — `intent_signals`, `derived.trigger_phrases`, `derived.key_topics` arrays
 
 The command **never** modifies: SKILL.md content, weights-config.ts (lane weights), fusion scorer logic, daemon code.
+
+### Indexing Sequence (Phase 3 internal contract)
+
+Phase 3 (Apply) runs three steps in order — manual editors must replicate all three for changes to take effect:
+1. **Write** the source files listed above.
+2. **Recompile graph** via `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py --export-json --pretty` (regenerates `skill-graph.json` from per-skill `graph-metadata.json` files).
+3. **Re-index SQLite** via `advisor_rebuild({ force: true })` or `skill_graph_scan({})` (upserts into `database/skill-graph.sqlite`, which the runtime advisor actually reads).
+
+Skipping step 3 is the most common cause of "I edited my signals but scores didn't change" — the advisor never reads `graph-metadata.json` or `skill-graph.json` directly at runtime.
 
 ---
 

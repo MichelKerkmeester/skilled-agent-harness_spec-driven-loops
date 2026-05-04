@@ -4,7 +4,7 @@
   "brief": "ignored ambiguous predecessor brief",
   "recommendations": [
     {
-      "skill": "sk-code-opencode",
+      "skill": "sk-code",
       "confidence": 0.8,
       "uncertainty": 0.35,
       "passes_threshold": true

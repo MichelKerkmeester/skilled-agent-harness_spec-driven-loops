@@ -1,6 +1,6 @@
 ---
 title: Universal Error Recovery Decision Tree
-description: Stack-agnostic recovery procedure for build, deploy, test, and runtime failures across WEBFLOW, NEXTJS, and GO.
+description: Surface-agnostic recovery procedure for build, deploy, test, and runtime failures across WEBFLOW and OPENCODE routes.
 ---
 
 # Universal Error Recovery Decision Tree
@@ -13,7 +13,7 @@ Stack-agnostic recovery procedure: Document → Isolate → Verify prerequisites
 
 ### Purpose
 
-Provides the decision tree to walk when a build, deploy, test, or runtime command fails unexpectedly. Stack-specific recovery (CDN upload, minification, dlv breakpoints, hydration retries) lives in each stack's debugging doc; this universal flow runs first and pulls in stack-specific procedures only after isolation.
+Provides the decision tree to walk when a build, deploy, test, or runtime command fails unexpectedly. Surface-specific recovery (CDN upload, minification, MCP server checks, script diagnostics) lives in each surface's debugging doc; this universal flow runs first and pulls in surface-specific procedures only after isolation.
 
 ### Core Principle
 
@@ -32,7 +32,7 @@ The recovery hierarchy is universal. Specific commands and tools change per stac
 
 ### Key Sources
 
-- Per-stack debugging docs: `references/webflow/debugging/error_recovery.md`, `references/nextjs/debugging/debugging_workflows.md`, `references/go/debugging/debugging_workflows.md`.
+- Surface debugging docs: `references/webflow/debugging/error_recovery.md` and `references/opencode/shared/alignment_verification_automation.md`.
 - Universal debugging discipline: `assets/universal/checklists/debugging_checklist.md` (4-phase workflow).
 
 ---
@@ -68,19 +68,18 @@ Before re-running, confirm the obvious:
 - Right branch (`git branch --show-current`).
 - Auth tokens valid (`whoami` / token expiration check).
 - Disk space available.
-- Lockfile not corrupt (`rm -rf node_modules && npm ci` for JS / TS; `go mod tidy` for Go).
-- Cache not stale (`<tool> clean` — npm, gradle, swift package, `go clean -cache`).
+- Lockfile not corrupt (`rm -rf node_modules && npm ci` for JS / TS).
+- Cache not stale (`<tool> clean` — npm or the relevant package manager).
 
 ### Step 4 — Retry with verbose output
 
 Re-run the failing command with the most verbose flag the tool supports.
 
-| Stack              | Verbose flag                                                                  |
+| Surface            | Verbose flag                                                                  |
 | ------------------ | ----------------------------------------------------------------------------- |
 | WEBFLOW (Node tooling) | `--verbose`, `DEBUG=*`, `npm install --loglevel verbose`                  |
 | WEBFLOW (Wrangler / R2) | `wrangler r2 object put ... --verbose`                                   |
-| NEXTJS             | `npm run build --verbose`, `next build --debug`, `DEBUG=*`                    |
-| GO                 | `go test -v ./...`, `go build -x ./...`, `golangci-lint run -v`               |
+| OPENCODE           | `npm test -- --runInBand`, `DEBUG=*`, `python3 -m pytest -vv` where available |
 
 Read the verbose output linearly; the first new line that doesn't match a successful run is usually the cause.
 
@@ -94,13 +93,12 @@ If 3+ retries with isolation + prerequisite verification fail, STOP iterating bl
 
 ---
 
-## 3. STACK-SPECIFIC RECOVERY POINTERS
+## 3. SURFACE-SPECIFIC RECOVERY POINTERS
 
-| Stack    | Reference                                                                              |
+| Surface  | Reference                                                                              |
 | -------- | -------------------------------------------------------------------------------------- |
 | WEBFLOW  | `references/webflow/debugging/error_recovery.md` (CDN, minification, version mismatch) |
-| NEXTJS   | `references/nextjs/debugging/debugging_workflows.md` (Server vs Client, hydration)     |
-| GO       | `references/go/debugging/debugging_workflows.md` (dlv, slog, race detector, pprof)     |
+| OPENCODE | `references/opencode/shared/alignment_verification_automation.md` and language refs    |
 
 ---
 
@@ -126,4 +124,4 @@ State: what failed (verbatim), what you tried, what you suspect, and what you pr
 - `assets/universal/checklists/verification_checklist.md` - runs after recovery completes, before any "done" claim.
 - `references/universal/code_quality_standards.md` - severity contract (recovery failures are typically P0).
 - `references/router/phase_lifecycle.md` - Phase 2 Debugging position in the sk-code lifecycle.
-- Per-stack debugging refs under `references/{webflow,nextjs,go}/debugging/`.
+- Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.

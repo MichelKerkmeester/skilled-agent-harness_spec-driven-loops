@@ -37,7 +37,7 @@ function freshness(sourceSignature = 'sig-live'): AdvisorFreshnessResult {
     generation: 1,
     sourceSignature,
     skillFingerprints: new Map([
-      ['sk-code-opencode', { skillMdMtime: 1, skillMdSize: 10, skillMdHash: 'hash-opencode', graphMetaMtime: 1, graphMetaHash: 'graph-opencode' }],
+      ['sk-code', { skillMdMtime: 1, skillMdSize: 10, skillMdHash: 'hash-code', graphMetaMtime: 1, graphMetaHash: 'graph-code' }],
     ]),
     fallbackMode: 'sqlite',
     probedAt: '2026-04-19T10:00:00.000Z',
@@ -49,7 +49,7 @@ function mockAdvisor(): void {
   vi.mocked(runAdvisorSubprocess).mockResolvedValue({
     ok: true,
     recommendations: [{
-      skill: 'sk-code-opencode',
+      skill: 'sk-code',
       confidence: 0.91,
       uncertainty: 0.23,
       passes_threshold: true,

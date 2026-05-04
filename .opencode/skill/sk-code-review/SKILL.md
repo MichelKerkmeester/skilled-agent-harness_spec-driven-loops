@@ -1,15 +1,15 @@
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode and sk-code standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and surface-aware standards evidence from sk-code."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
 
-<!-- Keywords: sk-code-review, code-review, pull-request, findings-first, security-review, quality-gate, stack-agnostic, baseline-overlay -->
+<!-- Keywords: sk-code-review, code-review, pull-request, findings-first, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
 
 # Code Review Baseline - Stack-Agnostic Findings-First Review
 
-Universal `sk-code` review baseline for any codebase, implemented by `sk-code-review` and paired with one `sk-code-*` overlay skill for stack-specific rules.
+Universal findings-first review baseline paired with `sk-code` surface standards evidence for WEBFLOW or OPENCODE code.
 
 ## 1. WHEN TO USE
 
@@ -44,20 +44,18 @@ Use this skill when:
 
 ### Primary Detection Signal
 
-Review behavior follows a baseline+overlay model:
+Review behavior follows a baseline+surface-evidence model:
 
-- Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
-- Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
-  - Frontend/web context -> `sk-code`
-  - Default/other stacks -> `sk-code`
+- Baseline (always): `sk-code-review` findings-first doctrine.
+- Surface standards evidence (when available): `sk-code` detected WEBFLOW or OPENCODE resources.
+- Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
 
 ### Phase Detection
 
 ```text
 TASK CONTEXT
     |
-    +- STEP 0: Detect `sk-code` baseline + one `sk-code-*` overlay
+    +- STEP 0: Load `sk-code-review` baseline + `sk-code` surface evidence
     +- STEP 1: Score intents (top-2 when ambiguity delta <= 1.0)
     +- Phase 1: Scope and baseline checks
     +- Phase 2: Overlay alignment
@@ -95,9 +93,9 @@ assets/review/...
 
 | Rule Type | Source of Truth | Behavior |
 | --- | --- | --- |
-| Security/correctness minimums | `sk-code` baseline (`sk-code-review`) | Always enforced; never relaxed by overlay |
-| Stack style/process conventions | Overlay skill | Overlay guidance overrides baseline generic style/process advice |
-| Verification/build/test commands | Overlay skill | Overlay commands are authoritative for the detected stack |
+| Security/correctness minimums | `sk-code-review` baseline | Always enforced; never relaxed by surface guidance |
+| Surface style/process conventions | `sk-code` detected surface | Surface guidance overrides baseline generic style/process advice |
+| Verification/build/test commands | `sk-code` detected surface | Surface commands are authoritative for the detected surface |
 | Ambiguous conflicts | Escalation | Ask for clarification; do not guess |
 
 ### Unknown Fallback Checklist
@@ -195,17 +193,17 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
         selected.append(ranked[1][0])
     return selected[:max_intents]
 
-def detect_overlay_skill(task, workspace_files=None, changed_files=None) -> str:
+def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> str:
     text = _task_text(task)
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if "opencode" in text or ".opencode/" in files or "jsonc" in text or "mcp" in text:
-        return "sk-code-opencode"
+        return "sk-code:OPENCODE"
     if any(term in text for term in ["frontend", "web", "css", "dom", "browser", "webflow"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
-        return "sk-code"
-    return "sk-code"
+        return "sk-code:WEBFLOW"
+    return "sk-code:UNKNOWN"
 
 def route_review_resources(task, workspace_files=None, changed_files=None):
     inventory = discover_markdown_resources()
@@ -231,7 +229,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
             "intents": ["QUALITY"],
             "needs_disambiguation": True,
             "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "overlay_skill": detect_overlay_skill(task, workspace_files, changed_files),
+            "surface_evidence": detect_surface_evidence(task, workspace_files, changed_files),
             "resources": loaded,
         }
 
@@ -244,18 +242,18 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
             for relative_path in paths:
                 load_if_available(relative_path)
 
-    overlay_skill = detect_overlay_skill(task, workspace_files, changed_files)
+    surface_evidence = detect_surface_evidence(task, workspace_files, changed_files)
 
     precedence = {
         "baseline_minimums": ["security", "correctness"],
-        "overlay_overrides": ["style", "build", "test_commands", "stack_process"],
+        "surface_overrides": ["style", "build", "test_commands", "surface_process"],
         "on_conflict": "escalate",
     }
 
     return {
         "intents": intents,
         "scores": scores,
-        "overlay_skill": overlay_skill,
+        "surface_evidence": surface_evidence,
         "precedence": precedence,
         "resources": loaded,
     }
@@ -268,15 +266,15 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 ### Phase 1: Scope and Baseline
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
-2. Load baseline standards from `sk-code` references in this skill (`sk-code-review`).
-3. Detect one overlay skill by codebase/stack signals.
+2. Load baseline standards from this skill (`sk-code-review`).
+3. Load `sk-code` surface standards evidence when WEBFLOW or OPENCODE is detected.
 
-### Phase 2: Overlay Alignment
+### Phase 2: Surface Alignment
 
-1. Load overlay standards from one stack skill only.
+1. Load standards from `sk-code` for the detected surface only.
 2. Apply precedence matrix:
    - Baseline security/correctness minimums always apply.
-   - Overlay style/process/verification conventions win on conflicts.
+   - Surface style/process/verification conventions win on conflicts.
 3. If precedence cannot be resolved deterministically, escalate before scoring.
 
 ### Phase 3: Findings-First Analysis
@@ -309,7 +307,7 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVE / REQUEST_CHANGES / COMMENT]
 **Baseline used**: [sk-code (`sk-code-review`)]
-**Overlay skill used**: [sk-code-opencode | sk-code | sk-code]
+**Surface evidence used**: [sk-code:OPENCODE | sk-code:WEBFLOW | sk-code:UNKNOWN]
 
 ## Findings
 
@@ -339,22 +337,22 @@ After reporting findings, request explicit next action before any implementation
 ### ✅ ALWAYS
 
 - Keep findings first; summaries follow findings.
-- Enforce baseline security/correctness minimums regardless of overlay.
+- Enforce baseline security/correctness minimums regardless of surface.
 - Include file:line evidence for actionable findings.
 - State assumptions when evidence is incomplete.
-- Identify overlay skill used for standards alignment.
+- Identify `sk-code` surface evidence used for standards alignment.
 
 ### ❌ NEVER
 
-- Override stack-specific conventions with generic baseline style preferences.
+- Override surface-specific conventions with generic baseline style preferences.
 - Approve code with unaddressed P0 security/correctness defects.
 - Produce vague findings without concrete evidence.
 - Mix unrelated cleanup into targeted fix recommendations.
 
 ### ⚠️ ESCALATE IF
 
-- Stack detection is ambiguous and affects standards or verification commands.
-- Baseline and overlay guidance conflict in a non-deterministic way.
+- Surface detection is ambiguous and affects standards or verification commands.
+- Baseline and surface guidance conflict in a non-deterministic way.
 - Large diff size prevents reliable severity assignment without narrowed scope.
 - Requested remediation exceeds review scope and becomes architecture redesign.
 
@@ -383,7 +381,7 @@ After reporting findings, request explicit next action before any implementation
 ## 6. SUCCESS CRITERIA
 
 - Review output is findings-first and severity-ordered.
-- `sk-code` baseline + `sk-code-*` overlay contract is explicit in report context.
+- `sk-code-review` baseline + `sk-code` surface evidence contract is explicit in report context.
 - Security/correctness minimums are always covered.
 - Recommended fixes are actionable and scope-proportional.
 
@@ -393,10 +391,7 @@ After reporting findings, request explicit next action before any implementation
 
 - Primary review baseline for `@review` agents in `.opencode/agent/review.md`.
 - Referenced by review-dispatch steps in `spec_kit` and `create` command YAML workflows.
-- Complements, but does not replace, stack-specific skills:
-  - `sk-code-opencode`
-  - `sk-code`
-  - `sk-code`
+- Complements, but does not replace, `sk-code` surface-specific standards evidence.
 
 ---
 
@@ -404,4 +399,4 @@ After reporting findings, request explicit next action before any implementation
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md`, `references/removal_plan.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code-opencode` for OpenCode overlays, `sk-code` for app/frontend overlays, and `system-spec-kit` for packet-governed review workflows.
+Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code` for WEBFLOW and OPENCODE surface standards, and `system-spec-kit` for packet-governed review workflows.

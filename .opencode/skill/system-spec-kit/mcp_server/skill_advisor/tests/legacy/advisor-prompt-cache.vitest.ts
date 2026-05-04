@@ -23,7 +23,7 @@ describe('skill advisor prompt cache', () => {
       key,
       sourceSignature: 'sig-a',
       value: 'brief',
-      skillLabels: ['sk-code-opencode'],
+      skillLabels: ['sk-code'],
       nowMs: 10,
     });
 

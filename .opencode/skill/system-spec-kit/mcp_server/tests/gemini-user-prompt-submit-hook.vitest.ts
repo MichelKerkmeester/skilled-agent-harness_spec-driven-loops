@@ -57,7 +57,7 @@ describe('Gemini UserPromptSubmit advisor hook', () => {
     expect(output).toEqual({
       hookSpecificOutput: {
         hookEventName: 'BeforeAgent',
-        additionalContext: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
+        additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
       },
     });
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {
@@ -163,7 +163,7 @@ describe('Gemini UserPromptSubmit advisor hook', () => {
     expect(normalizeRuntimeOutput('gemini', live.output)).toEqual({
       runtime: 'gemini',
       transport: 'json_additional_context',
-      additionalContext: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
+      additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
       stderrVisible: false,
     });
   });

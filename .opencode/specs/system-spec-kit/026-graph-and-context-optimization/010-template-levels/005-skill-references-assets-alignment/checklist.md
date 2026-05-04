@@ -78,6 +78,20 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. Evidence: review/review-report.md records findingClass values for P1-001 and P2-001 through P2-004.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: review iterations record scopeProof for each active finding.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence: review/review-report.md lists affectedSurfaceHints for each active finding.
+- [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests when applicable. Evidence: no security/path/parser/redaction fix was applied in this review-only packet.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: review/review-report.md records active findings by severity and workstream.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: not applicable; this review wrote review artifacts only and did not change runtime code.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: primary review scope is pinned to implementation commit `e60b095416` and iteration files cite file:line evidence.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 
@@ -122,8 +136,8 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 12/12 |
-| P1 Items | 9 | 9/9 |
+| P0 Items | 16 | 16/16 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 2 | 2/2 |
 
 **Verification Date**: 2026-05-02

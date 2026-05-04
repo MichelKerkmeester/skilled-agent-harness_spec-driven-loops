@@ -72,12 +72,12 @@ describe('runAdvisorSubprocess', () => {
     spawnMock.mockReturnValue(child as never);
 
     const promise = runAdvisorSubprocess('implement feature X', { workspaceRoot, scriptPath });
-    child.stdout.emit('data', '[{"skill":"sk-code-opencode","confidence":0.91,"uncertainty":0.1}]');
+    child.stdout.emit('data', '[{"skill":"sk-code","confidence":0.91,"uncertainty":0.1}]');
     child.emit('close', 0, null);
     const result = await promise;
 
     expect(result.ok).toBe(true);
-    expect(result.recommendations[0]?.skill).toBe('sk-code-opencode');
+    expect(result.recommendations[0]?.skill).toBe('sk-code');
     expect(spawnMock.mock.calls[0]?.[1]).not.toContain('implement feature X');
     expect(spawnMock.mock.calls[0]?.[1]).toContain('--stdin');
     expect(child.stdin.write).toHaveBeenCalledWith('implement feature X');
@@ -104,7 +104,7 @@ describe('runAdvisorSubprocess', () => {
     spawnMock.mockReturnValue(child as never);
 
     const promise = runAdvisorSubprocess('implement feature X', { workspaceRoot, scriptPath });
-    child.stdout.emit('data', '[{"skill":"sk-code-opencode","confidence":"high","uncertainty":0.1}]');
+    child.stdout.emit('data', '[{"skill":"sk-code","confidence":"high","uncertainty":0.1}]');
     child.emit('close', 0, null);
     const result = await promise;
 
@@ -162,7 +162,7 @@ describe('runAdvisorSubprocess', () => {
     first.stderr.emit('data', 'SQLITE_BUSY database is locked');
     first.emit('close', 1, null);
     setTimeout(() => {
-      second.stdout.emit('data', '[{"skill":"sk-code-opencode","confidence":0.91,"uncertainty":0.1}]');
+      second.stdout.emit('data', '[{"skill":"sk-code","confidence":0.91,"uncertainty":0.1}]');
       second.emit('close', 0, null);
     }, 90);
     const result = await promise;

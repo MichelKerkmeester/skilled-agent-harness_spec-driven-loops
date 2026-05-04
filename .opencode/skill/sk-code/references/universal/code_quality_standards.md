@@ -5,7 +5,7 @@ description: Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quali
 
 # Universal Code Quality Standards
 
-Stack-agnostic severity tiers used by the Phase 1.5 Code Quality Gate across WEBFLOW, NEXTJS, and GO.
+Surface-agnostic severity tiers used by the Phase 1.5 Code Quality Gate across WEBFLOW and OPENCODE.
 
 ---
 
@@ -13,7 +13,7 @@ Stack-agnostic severity tiers used by the Phase 1.5 Code Quality Gate across WEB
 
 ### Purpose
 
-Defines the severity contract that wraps every per-stack code quality checklist in `sk-code`. P0 blocks completion; P1 requires explicit deferral approval; P2 is tracked but non-blocking. Per-stack rules (snake_case for WEBFLOW JS, TypeScript strict for NEXTJS, gofmt + golangci-lint for GO) live in each stack's checklist; this doc captures the universal contract those checklists implement.
+Defines the severity contract that wraps every surface code quality checklist in `sk-code`. P0 blocks completion; P1 requires explicit deferral approval; P2 is tracked but non-blocking. Surface rules (snake_case for WEBFLOW JS, OPENCODE TypeScript/Python/Shell/Config standards) live in each surface's checklist; this doc captures the universal contract those checklists implement.
 
 ### Core Principle
 
@@ -22,13 +22,13 @@ Severity tiers exist so reviewers and authors agree on what blocks "done". A rul
 ### When to Use
 
 - Before claiming Phase 1 (Implementation) complete — the Phase 1.5 Code Quality Gate.
-- When authoring or reviewing per-stack quality checklists.
+- When authoring or reviewing surface quality checklists.
 - When deciding whether a finding blocks merge or can ship as a follow-up.
 - When `sk-code-review` produces severity-ranked findings — the contract here aligns those tiers.
 
 ### Key Sources
 
-- Per-stack checklists: `assets/webflow/checklists/code_quality_checklist.md`, `assets/nextjs/checklists/code_quality_checklist.md`, `assets/go/checklists/code_quality_checklist.md`.
+- Surface checklists: `assets/webflow/checklists/code_quality_checklist.md` and `assets/opencode/checklists/`.
 - Findings-first review baseline: `sk-code-review` skill (severity model and review output contract).
 
 ---
@@ -55,7 +55,7 @@ P0 covers issues that have caused production incidents or reviewer-author confus
 2. **Input validation** — all external inputs (function parameters, API responses, file contents, env vars) validated at boundaries.
 3. **No commented-out code** — delete it; commented code rots and confuses readers.
 4. **No silent failures** — exceptions either surface to the caller or are logged with enough context to debug.
-5. **Naming convention adherence** — stack-specific (snake_case for WEBFLOW JS, camelCase for TypeScript, PascalCase for Go exported types, etc.).
+5. **Naming convention adherence** — surface-specific (snake_case for WEBFLOW JS, camelCase for OPENCODE TypeScript, snake_case for OPENCODE Python/Shell, etc.).
 6. **No hardcoded secrets** — credentials, API keys, tokens never inline; always env vars or secret stores.
 
 ---
@@ -68,7 +68,7 @@ P1 covers issues that degrade maintainability or reliability:
 2. **Test coverage at boundaries** — happy path plus at least one edge case per public surface.
 3. **Error message quality** — every error includes enough context for the operator to act.
 4. **Resource cleanup** — file handles, network connections, subscriptions, observers, timers all closed or canceled deterministically.
-5. **Type-safety enforcement** — language-appropriate (TypeScript strict mode, `go vet` clean, no `any`/`Any`, type hints on public functions).
+5. **Type-safety enforcement** — language-appropriate (TypeScript strict mode, no `any`/`Any`, type hints on public functions).
 
 ---
 
@@ -76,25 +76,24 @@ P1 covers issues that degrade maintainability or reliability:
 
 P2 covers issues that improve quality but don't affect correctness or maintainability:
 
-1. **Idiomatic refinements** — code follows community style guides (Effective Go, React/Next.js idioms, Webflow vanilla-JS conventions).
+1. **Idiomatic refinements** — code follows community style guides and project conventions.
 2. **Performance polish** — optimization beyond meeting NFR targets.
 3. **Test coverage beyond boundaries** — additional edge cases, fuzz tests, property tests.
 4. **Documentation completeness for internal helpers** — even private functions get explained.
 
 ---
 
-## 6. STACK-SPECIFIC OVERLAYS
+## 6. SURFACE-SPECIFIC CHECKLISTS
 
-Each stack has a quality checklist that adds stack-specific rules to these universal tiers:
+Each surface has quality checklists that add surface-specific rules to these universal tiers:
 
-| Stack    | Checklist                                          | Notes                                                                |
+| Surface  | Checklist                                          | Notes                                                                |
 | -------- | -------------------------------------------------- | -------------------------------------------------------------------- |
 | WEBFLOW  | `assets/webflow/checklists/code_quality_checklist.md` | LIVE — JS sections (snake_case, file headers, CDN-safe init); CSS sections (semantic prefixes, BEM, GPU-only animation, `i` flag on data-attribute selectors) |
-| NEXTJS   | `assets/nextjs/checklists/code_quality_checklist.md`  | STUB — TypeScript strict, no `any`, vanilla-extract recipes, server/client boundary, zod boundaries |
-| GO       | `assets/go/checklists/code_quality_checklist.md`      | STUB — gofmt clean, golangci-lint clean, error wrapping with `%w`, context propagation, no naked goroutines |
-| UNKNOWN  | n/a                                                | sk-code does not own Node.js / React Native / Swift; surface a disambiguation prompt |
+| OPENCODE | `assets/opencode/checklists/`                     | LIVE — JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, and shared rules |
+| UNKNOWN  | n/a                                                | sk-code does not own Go, React/Next.js, generic Node.js, React Native, or Swift; surface a disambiguation prompt |
 
-The stack overlay assigns specific severity (P0/P1/P2) to specific rules. This universal doc is the contract — the stack overlays are the implementations.
+The surface checklist assigns specific severity (P0/P1/P2) to specific rules. This universal doc is the contract and the surface checklists are the implementations.
 
 ---
 
@@ -102,8 +101,8 @@ The stack overlay assigns specific severity (P0/P1/P2) to specific rules. This u
 
 When you reach Phase 1.5 Code Quality Gate:
 
-1. Identify the file type and stack (the smart router does this; or check via the stack-detection block in SKILL.md §2).
-2. Load the matching stack checklist (see §6).
+1. Identify the file type and code surface (the smart router does this; or check via the surface-detection block in SKILL.md §2).
+2. Load the matching surface checklist (see §6).
 3. Validate every P0 item — fix any failures before proceeding.
 4. Validate every P1 item — fix or document approved deferral.
 5. Validate every P2 item — track for follow-up; non-blocking.
@@ -114,7 +113,7 @@ When you reach Phase 1.5 Code Quality Gate:
 
 ## 8. RELATIONSHIP TO `sk-code-review`
 
-This skill (`sk-code`) produces **overlay compliance evidence** at Phase 1.5. The formal **findings-first review output** (severity-ranked findings list, security/correctness/test minimums, risk reporting) belongs to `sk-code-review`.
+This skill (`sk-code`) produces **surface compliance evidence** at Phase 1.5. The formal **findings-first review output** (severity-ranked findings list, security/correctness/test minimums, risk reporting) belongs to `sk-code-review`.
 
 Use `sk-code-review` when:
 
@@ -125,9 +124,9 @@ Use `sk-code-review` when:
 Use this skill (`sk-code`) when:
 
 - You are the author validating your own implementation against the quality bar before claiming done.
-- You need stack-specific quality rules applied during development.
+- You need surface-specific quality rules applied during development.
 
-The two skills compose: `sk-code` overlays + `sk-code-review` baseline = full quality story.
+The two skills compose: `sk-code` surface evidence + `sk-code-review` baseline = full quality story.
 
 ---
 
@@ -138,4 +137,4 @@ The two skills compose: `sk-code` overlays + `sk-code-review` baseline = full qu
 - `assets/universal/checklists/debugging_checklist.md` - applies after Phase 1.5 fails and you need root-cause analysis.
 - `assets/universal/checklists/verification_checklist.md` - runs after Phase 1.5 clears, before any "done" claim.
 - `references/router/phase_lifecycle.md` - Phase 1.5 position in the sk-code lifecycle.
-- Per-stack quality checklists under `assets/{webflow,nextjs,go}/checklists/code_quality_checklist.md`.
+- Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.

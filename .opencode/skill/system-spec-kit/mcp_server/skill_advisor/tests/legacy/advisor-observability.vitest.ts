@@ -71,7 +71,7 @@ describe('advisor observability contract', () => {
       freshness: 'live',
       durationMs: 12.4,
       cacheHit: true,
-      skillLabel: 'sk-code-opencode',
+      skillLabel: 'sk-code',
       generation: 42,
     });
     const serialized = serializeAdvisorHookDiagnosticRecord(record);

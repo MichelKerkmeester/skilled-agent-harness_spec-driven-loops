@@ -748,21 +748,16 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 #### CODE WORKFLOW
 
 **sk-code**
-- Smart-routing umbrella for application code work — detects stack first then classifies intent and loads stack-aware resources
-- Three owned stacks: WEBFLOW (live — full content + Lighthouse/TBT/INP targets + CDN deployment), NEXTJS (stub — Next.js 14 + vanilla-extract + motion v12 + react-hook-form/zod + react-aria + Untitled UI scaffolding), GO (stub — gin + sqlc + Postgres + golang-jwt scaffolding)
-- Cross-stack pairing doc captures the Next.js↔Go API contract (JWT handoff, error envelope, CORS, deploy topology)
-- Other stacks (Node.js, React Native, Swift) fall through to UNKNOWN disambiguation
+- Surface-aware code workflow router: WEBFLOW frontend and OPENCODE system code
+- WEBFLOW route covers full content, Lighthouse/TBT/INP targets, CDN deployment, and browser verification
+- OPENCODE route covers JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, and skill files
+- Other stacks (Go, React/Next.js, generic Node.js, React Native, Swift) fall through to UNKNOWN disambiguation
 - 3 mandatory phases: implementation → testing/debugging → verification
 
 **sk-code-review**
-- Stack-agnostic code review baseline implementing the baseline + overlay model
+- Stack-agnostic code review baseline using `sk-code` surface evidence where applicable
 - Baseline always runs first: security checklist, correctness checklist, SOLID checklist, threat model
-- Security and correctness minimums are mandatory and NEVER relaxed by the overlay. P0/P1/P2 findings.
-
-**sk-code-opencode**
-- Multi-language standards for OpenCode system code across 5 languages
-- JavaScript (CommonJS), TypeScript (strict), Python (snake_case), Shell (set -euo pipefail), JSON/JSONC
-- Evidence-based patterns extracted from the actual codebase with `file:line` citations
+- Security and correctness minimums are mandatory and NEVER relaxed by surface-specific evidence. P0/P1/P2 findings.
 
 **sk-git**
 - Git workflow orchestrator coordinating 3 sub-skills
@@ -914,13 +909,13 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Review**
 - Code quality guardian with strict read-only permissions (cannot write or edit any file)
-- Loads `sk-code-review` baseline first, then one `sk-code-*` overlay matching the detected stack
-- Security and correctness minimums are mandatory and never relaxed by the overlay
+- Loads `sk-code-review` baseline first, then uses `sk-code` surface evidence for Webflow or OpenCode-specific standards
+- Security and correctness minimums are mandatory and never relaxed by surface-specific evidence
 - Produces findings-first severity analysis with quality scoring and pattern validation
 
 **Code**
-- Stack-aware application-code implementation specialist (write-capable LEAF, `mode: subagent`, `task: deny`)
-- Delegates stack detection to `sk-code` baseline + at most one `sk-code-*` overlay; never bakes stack rules into the agent body
+- Surface-aware code implementation specialist (write-capable LEAF, `mode: subagent`, `task: deny`)
+- Delegates code surface detection to `sk-code`; never bakes Webflow or OpenCode rules into the agent body
 - 7 dispatch modes: full implementation / surgical fix / refactor only / test add / scaffold new file / rename-move / dependency bump
 - 5-dimension acceptance rubric (100 pts total): Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15
 - Builder → Critic → Verifier adversarial self-check on every completion claim (challenges `DONE`, opposite axis from `@review`'s Hunter/Skeptic/Referee which challenges findings)

@@ -7,7 +7,7 @@
 ### Multi-Repository Architecture
 
 **Universal Framework:** This AGENTS.md is the public template for code work across stacks.
-Stack-specific behavior is handled automatically by the `sk-code` skill (sibling: `sk-code-opencode` for OpenCode harness code).
+Code work behavior is handled automatically by the `sk-code` skill, which routes between supported code surfaces.
 
 **Supported Stacks:**
 
@@ -15,13 +15,9 @@ Stack-specific behavior is handled automatically by the `sk-code` skill (sibling
 | ----------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | **Webflow**       | `src/2_javascript/`, `*.webflow.js`, motion.dev / GSAP / Lenis / HLS / Swiper / FilePond, `wrangler.toml` | snake_case JS, BEM CSS, IntersectionObserver gates, CDN versioning |
 | **OpenCode**      | `.opencode/skill/`, `.opencode/agent/`, MCP server folders                                | NodeNext ESM, CommonJS, Python advisors, shell automation          |
-| **Go**            | `go.mod`                                                                                  | Domain layers, repositories, table-driven tests                    |
-| **Swift**         | `Package.swift`, `*.xcodeproj`                                                            | MVVM, SwiftUI composition, async handling                          |
-| **React Native**  | `app.json` + expo / `package.json` + react-native                                         | Hooks, navigation, native modules                                  |
-| **React/Next.js** | `next.config.*` / `package.json` + react/next                                             | Component architecture, state boundaries                           |
-| **Node.js**       | `package.json` (fallback)                                                                 | Service layering, async flow, middleware                           |
+| **Unsupported / Unknown** | Go, Swift, React Native, React/Next.js, generic Node.js markers | Ask for explicit runtime surface and verification commands |
 
-**How It Works:** `sk-code` detects stack via marker files, loads patterns from `.opencode/skill/sk-code/references/{repo}/`, and selects stack-appropriate verification (see Quick Reference).
+**How It Works:** `sk-code` detects the code surface, loads patterns from `.opencode/skill/sk-code/references/{surface}/`, and selects surface-appropriate verification (see Quick Reference).
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
@@ -171,8 +167,7 @@ Hook-capable runtimes (Claude, Codex, Copilot, Gemini, OpenCode) may inject star
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate → DQI score → Verify                                                     |
-| **Application code**      | sk-code skill → smart router (detects stack: Webflow → live web content; React/Node/Go/Swift/RN → placeholder stub, canonical content retired); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
-| **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
+| **Code work**            | sk-code skill → smart router (detects Webflow frontend or OpenCode system code; unsupported stacks ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
 | **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |

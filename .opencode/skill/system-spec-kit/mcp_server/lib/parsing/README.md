@@ -55,7 +55,7 @@ Run parser and MCP validation from the repository root:
 ```bash
 npm --prefix .opencode/skill/system-spec-kit/mcp_server run typecheck
 npm --prefix .opencode/skill/system-spec-kit/mcp_server test
-python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/lib/parsing
+python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/lib/parsing
 ```
 
 <!-- /ANCHOR:validation-from-repo-root -->

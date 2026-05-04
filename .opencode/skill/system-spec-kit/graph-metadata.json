@@ -17,9 +17,9 @@
         "context": "git workflow integration"
       },
       {
-        "target": "sk-code-opencode",
+        "target": "sk-code",
         "weight": 0.3,
-        "context": "opencode standards"
+        "context": "opencode standards and verification"
       }
     ],
     "siblings": [],

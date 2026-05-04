@@ -55,7 +55,7 @@ Run loader validation from the repository root:
 ```bash
 npm --prefix .opencode/skill/system-spec-kit/scripts run build
 node -e "const loaders=require('./.opencode/skill/system-spec-kit/scripts/dist/loaders'); console.log(Object.keys(loaders).sort())"
-python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts/loaders
+python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts/loaders
 ```
 
 <!-- /ANCHOR:validation-from-repo-root -->

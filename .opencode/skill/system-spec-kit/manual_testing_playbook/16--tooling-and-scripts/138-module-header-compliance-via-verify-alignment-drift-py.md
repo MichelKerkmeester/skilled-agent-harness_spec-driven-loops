@@ -35,7 +35,7 @@ As a tooling validation operator, verify verify_alignment_drift.py returns 0 TS-
 ### Commands
 
 1. `cd .opencode/skill/system-spec-kit`
-2. `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .`
+2. `python3 ../sk-code/scripts/verify_alignment_drift.py --root .`
 3. Grep output for `TS-MODULE-HEADER` findings
 4. Verify 0 findings
 

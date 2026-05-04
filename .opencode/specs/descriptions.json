@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-03T11:03:36.502Z",
+  "generated": "2026-05-04T08:00:16.388Z",
   "folders": [
     {
       "specFolder": "00--ai-systems/001-global-shared",
@@ -627,7 +627,7 @@
         "dropdown",
         "fix"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "00--anobel.com/z_archive/019-form-attribute-audit",
@@ -677,7 +677,7 @@
         "anobel",
         "com"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "00--anobel.com/z_archive/023-performance-review",
@@ -886,7 +886,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/install-root/skills/spar-specify/assets",
@@ -896,7 +896,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/specs/completed/Spar-Install",
@@ -904,7 +904,7 @@
       "keywords": [
         "spar-install"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade/external/templates",
@@ -914,7 +914,7 @@
         "intent",
         "specifications"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/058-spec-kit-ux-adoptions",
@@ -954,7 +954,7 @@
         "test-report",
         "alignment"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.653Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/001-deep-research-recommendations",
@@ -981,7 +981,7 @@
         "implementation",
         "sk-improve-agent"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.676Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/003-followup-research",
@@ -995,7 +995,7 @@
         "002",
         "results"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.681Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests",
@@ -1009,7 +1009,7 @@
         "stress",
         "tests"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.686Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
@@ -1022,7 +1022,7 @@
         "executable",
         "wiring"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.694Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization",
@@ -1036,7 +1036,7 @@
         "fleet",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.698Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/001-agent-context",
@@ -1047,7 +1047,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.702Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/002-agent-debug",
@@ -1058,7 +1058,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.706Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/004-agent-review",
@@ -1069,7 +1069,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.710Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/005-agent-orchestrate",
@@ -1080,7 +1080,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.714Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/006-agent-multi-ai-council",
@@ -1092,7 +1092,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.718Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt",
@@ -1103,7 +1103,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.722Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/008-agent-deep-review",
@@ -1114,7 +1114,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.726Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/061-agent-optimization/009-agent-deep-research",
@@ -1125,7 +1125,7 @@
         "agent",
         "optimization"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.730Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests",
@@ -1150,7 +1150,7 @@
         "authoring",
         "001"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.734Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/002-deep-research-stress-runs",
@@ -1162,7 +1162,7 @@
         "runs",
         "002"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.738Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/003-deep-review-cp-scenarios",
@@ -1174,7 +1174,7 @@
         "authoring",
         "003"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.742Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests/004-deep-review-stress-runs",
@@ -1186,7 +1186,7 @@
         "runs",
         "004"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.746Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/063-sk-doc-agent-template-alignment",
@@ -1208,24 +1208,20 @@
         "064",
         "agent-create"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.750Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test",
-      "description": "Phase parent for completed skill-advisor reindex/stress-test baseline plus follow-on router calibration phases discovered by that campaign.",
+      "description": "Spec: 065 - skill-advisor routing quality program",
       "keywords": [
+        "spec",
         "065",
-        "skill",
-        "advisor",
-        "router",
-        "reindex",
-        "stress-test",
-        "memory-save",
-        "testing-playbook",
-        "alias",
-        "debug-review"
+        "skill-advisor",
+        "routing",
+        "quality",
+        "program"
       ],
-      "lastUpdated": "2026-05-03T11:10:00Z"
+      "lastUpdated": "2026-05-04T07:58:29.220Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/001-baseline-reindex-and-stress-results",
@@ -1280,7 +1276,7 @@
         "false-positive",
         "calibration"
       ],
-      "lastUpdated": "2026-05-03T11:10:00Z"
+      "lastUpdated": "2026-05-03T11:17:00Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing",
@@ -1293,7 +1289,7 @@
         "routing",
         "CP-105"
       ],
-      "lastUpdated": "2026-05-03T11:10:00Z"
+      "lastUpdated": "2026-05-03T12:05:00Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/004-skill-router-alias-canonicalization",
@@ -1306,7 +1302,7 @@
         "deep-review",
         "router"
       ],
-      "lastUpdated": "2026-05-03T11:10:00Z"
+      "lastUpdated": "2026-05-03T12:07:00Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
@@ -1320,7 +1316,17 @@
         "routing",
         "CP-100"
       ],
-      "lastUpdated": "2026-05-03T11:10:00Z"
+      "lastUpdated": "2026-05-03T12:09:00Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/066-sk-code-opencode-merger",
+      "description": "Feature Specification: sk-code-opencode-merger",
+      "keywords": [
+        "feature",
+        "specification",
+        "sk-code-opencode-merger"
+      ],
+      "lastUpdated": "2026-05-04T07:58:29.227Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -2146,7 +2152,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -3491,7 +3497,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/042-stress-coverage-audit-and-run",
@@ -3583,7 +3589,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/049-deep-research-finding-remediation",
@@ -4301,7 +4307,7 @@
         "backend",
         "resilience"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.762Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/009-end-user-scope-default",
@@ -4316,7 +4322,7 @@
         "graph",
         "indexing"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.767Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/010-fix-iteration-quality-meta-research",
@@ -4328,7 +4334,7 @@
         "quality",
         "meta-research"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.771Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/011-broader-scope-excludes-and-granular-skills",
@@ -4742,7 +4748,7 @@
       "lastUpdated": "2026-05-02T09:34:31.278Z"
     },
     {
-      "specFolder": "system-spec-kit/026-graph-and-context-optimization/012-sk-doc-smart-router-resilience-template",
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/011-sk-doc-smart-router-resilience-template",
       "description": "Feature Specification: Smart-Router Resilience Pattern in sk-doc Template",
       "keywords": [
         "feature",
@@ -4753,7 +4759,7 @@
         "sk-doc",
         "template"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-03T11:03:36.777Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -9010,7 +9016,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -9019,7 +9025,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-03T11:03:36.502Z"
+      "lastUpdated": "2026-05-04T08:00:16.388Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",

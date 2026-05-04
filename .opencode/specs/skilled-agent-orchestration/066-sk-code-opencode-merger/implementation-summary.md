@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-code-opencode-merger"
-description: "Planning-only summary for the sk-code-opencode merger packet. No runtime implementation was performed."
+description: "Implementation summary for the sk-code-opencode merger packet. The standalone OpenCode code skill was merged into sk-code as the OPENCODE surface."
 trigger_phrases:
   - "sk-code-opencode merger summary"
   - "planning only summary"
@@ -9,12 +9,11 @@ contextType: "implementation-summary"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/066-sk-code-opencode-merger"
-    last_updated_at: "2026-05-03T15:00:00Z"
-    last_updated_by: "multi-ai-council"
-    recent_action: "Deep-analysis session resolved all open questions and designed two-axis detection architecture"
-    next_safe_action: "Review updated plan, then approve or revise implementation scope"
-    blockers:
-      - "Implementation not started by user instruction"
+    last_updated_at: "2026-05-03T17:45:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Merged OpenCode standards into sk-code"
+    next_safe_action: "Review final diff and decide whether to commit"
+    blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md"
       - ".opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md"
@@ -23,10 +22,10 @@ _memory:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660665"
       session_id: "066-sk-code-opencode-merger-plan"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "No runtime implementation was performed."
+      - "Runtime implementation completed after user approved continuation."
       - "Historical changelogs: DELETE (13 files)."
       - "Telemetry JSONL: REWRITE/REGENERATE."
       - "Route name: 'opencode' (folder) / 'OPENCODE' (identifier)."
@@ -48,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 066-sk-code-opencode-merger |
-| **Completed** | Not implemented |
+| **Completed** | 2026-05-03 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -57,11 +56,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This turn built the planning packet only. It created the requested spec folder, analyzed the two target skill trees and the Barter sk-code reference implementation, designed a two-axis context-aware detection architecture for the merged `sk-code`, and resolved all four open questions. No runtime skill, agent, command, advisor, README, or install-guide files were changed.
+This implementation merged the standalone OpenCode system-code standards into `sk-code` as the `OPENCODE` surface route, preserving Webflow frontend routing as `WEBFLOW` and leaving unsupported stacks as `UNKNOWN`.
 
 ### Planning Packet
 
-The packet now contains a Level 3 specification with two-axis detection architecture, updated implementation plan, task list, verification checklist, ADR with resolved route name, and resource map.
+The packet now contains a Level 3 specification with completed tasks, verification evidence, ADR with resolved route name, and resource map.
 
 ### Deep Analysis Session (2026-05-03)
 
@@ -70,7 +69,19 @@ A deep-analysis session using Sequential Thinking compared three models:
 2. **Current sk-code-opencode**: language-detection-first (file extension → JS/TS/Python/Shell/Config → standards)
 3. **Barter sk-code**: two-step detection (git remote → project knowledge; marker files → verification commands only)
 
-The merged design uses **two-axis context-aware detection**: Code Surface (first gate, from CWD + changed files) → Intent Classification (second gate, weighted keyword scoring) → Per-surface resource loading with language sub-detection for OpenCode.
+The delivered design uses **two-axis context-aware detection**: Code Surface (first gate, from CWD + changed files) -> Intent Classification (second gate, weighted keyword scoring) -> Per-surface resource loading with language sub-detection for OpenCode.
+
+### Runtime Changes
+
+| Area | Delivered |
+|------|-----------|
+| `sk-code` | Rewritten as the single code-work skill with `WEBFLOW`, `OPENCODE`, and `UNKNOWN` surfaces. |
+| OpenCode standards | Moved into `.opencode/skill/sk-code/references/opencode/` and `.opencode/skill/sk-code/assets/opencode/checklists/`. |
+| Verifier | Moved to `.opencode/skill/sk-code/scripts/verify_alignment_drift.py`. |
+| Removed branches | Deleted Go and NextJS placeholder branches plus `cross_stack_pairing.md`. |
+| Review/CLI/docs | Updated `sk-code-review`, CLI dispatch guidance, agents, commands, repo docs, and install guides to the single-skill model. |
+| Advisor/tests | Updated scorer lanes, fixtures, hook expectations, telemetry, and generated graph artifacts to route OpenCode system code to `sk-code`. |
+| Obsolete skill | Deleted `.opencode/skill/sk-code-opencode/` after live references were clean. |
 
 ### Key Architectural Decisions
 
@@ -88,7 +99,7 @@ The merged design uses **two-axis context-aware detection**: Code Surface (first
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-I used the system-spec-kit Level 3 template flow, exact `rg` searches, direct file-tree inspection, memory context for the prior `054-sk-code-merger` packet, and a targeted code graph scan attempt. The code graph scan rejected the `includeSkills` parameter format twice, so structural graph refresh is noted as a limitation; exact path analysis still produced the resource map.
+Implementation used exact reference searches, direct file inspection, focused patches, advisor graph regeneration, smart-router measurement regeneration, skill graph scan/rebuild, and targeted vitest/verification commands. Remaining old-skill strings are intentionally historical/spec-folder identifiers only.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -98,12 +109,12 @@ I used the system-spec-kit Level 3 template flow, exact `rg` searches, direct fi
 
 | Decision | Why |
 |----------|-----|
-| Keep this packet plan-only | The user explicitly requested `DO NOT IMPLEMENT` |
-| Use Level 3 documentation | The future change spans skills, agents, commands, advisor code, tests, docs, and metadata |
+| Implement after continuation approval | The user instructed to continue if next steps were clear |
+| Use Level 3 documentation | The change spans skills, agents, commands, advisor code, tests, docs, and metadata |
 | Design two-axis detection | Single-axis stack detection can't distinguish Webflow frontend from OpenCode system code in the same repository |
 | Route name `opencode` / `OPENCODE` | Matches existing `webflow` / `WEBFLOW` convention |
 | Language sub-detection within OpenCode | Preserves sk-code-opencode's extension-based routing; absorbed as second-level routing |
-| Delete historical changelogs | 13 release artifact files; the merger IS the changelog |
+| Delete obsolete skill directory | The merger absorbs OpenCode standards into `sk-code`; old changelogs were removed with the directory |
 | Regenerate telemetry JSONL | Generated data; regeneration is cleaner than manual patching |
 | Barter comparison | Barter uses git-remote for project routing; we use CWD+changed-files because same repo has both surfaces |
 <!-- /ANCHOR:decisions -->
@@ -115,11 +126,14 @@ I used the system-spec-kit Level 3 template flow, exact `rg` searches, direct fi
 
 | Check | Result |
 |-------|--------|
-| Created requested spec folder | PASS, `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger` exists |
-| Rendered Level 3 templates | PASS, core spec files and `resource-map.md` created |
-| Exact reference search | PASS for planning, active references captured in `resource-map.md` |
-| Runtime implementation | NOT RUN, intentionally out of scope |
-| Code graph scan | FAIL, tool rejected `includeSkills` input format |
+| Focused advisor/router vitest suite | PASS, 11 files / 185 tests |
+| Alignment fixture preservation test | PASS, 1 file / 2 tests |
+| Alignment verifier | PASS, `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/mcp_server/skill_advisor` |
+| Advisor graph compile | PASS, 19 skills; warning only for 4631-byte graph exceeding 4KB target |
+| Skill graph scan/status | PASS, 19 skills, 68 edges, healthy, no stale skill IDs |
+| Smart-router measurement | PASS, regenerated with 130/197 advisor label accuracy and no removed-skill labels |
+| Exact live reference search | PASS, only historical/spec-folder identifiers remain |
+| Spec validation | PASS, `validate.sh ... --strict`, 0 errors / 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -127,7 +141,15 @@ I used the system-spec-kit Level 3 template flow, exact `rg` searches, direct fi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **No implementation was performed.** This is intentional and follows the user instruction.
-2. **Code graph refresh did not complete.** The scan tool rejected `includeSkills`; exact search and file-tree inspection were used instead.
-3. **All four open questions resolved** during the deep-analysis session (2026-05-03).
+1. **Generated advisor graph size warning remains.** `skill_graph_compiler.py --export-json` reports `WARNING: Output exceeds 4KB target (4631 bytes)`, but validation passes.
+2. **Historical references remain intentionally.** Old skill strings remain only in spec-folder identifiers or historical changelog text.
+3. **No packaged release was created.** This was a repository refactor/metadata update, not a release workflow.
+
+---
+
+<!-- ANCHOR:runbook -->
+## Runbook
+
+If this needs rollback, restore `.opencode/skill/sk-code-opencode/` and the previous advisor graph/telemetry from git, then rerun `skill_graph_scan` and advisor rebuild. If continuing forward, use `sk-code` for both Webflow frontend and `.opencode/` system-code work, and use `sk-code-review` only for findings-first review output.
+<!-- /ANCHOR:runbook -->
 <!-- /ANCHOR:limitations -->

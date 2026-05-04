@@ -179,4 +179,4 @@ Review prompt:
 - [solid_checklist.md](./solid_checklist.md) - Architecture cohesion and coupling checks.
 - [removal_plan.md](./removal_plan.md) - Safe deletion and deferred removal planning.
 
-Overlay portability: use this baseline with stack-specific controls from `sk-code-opencode` or `sk-code`.
+Surface portability: use this baseline with surface-specific controls from `sk-code`.

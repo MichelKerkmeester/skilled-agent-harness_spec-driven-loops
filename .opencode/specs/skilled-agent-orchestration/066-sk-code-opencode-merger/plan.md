@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: sk-code-opencode-merger"
-description: "Plan-only consolidation approach for absorbing sk-code-opencode into sk-code, removing Go and React/NextJS branches, and updating all downstream references."
+description: "Implemented consolidation approach for absorbing sk-code-opencode into sk-code, removing Go and React/NextJS branches, and updating downstream references."
 trigger_phrases:
   - "sk-code-opencode merger plan"
   - "single sk-code plan"
@@ -10,22 +10,21 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/066-sk-code-opencode-merger"
-    last_updated_at: "2026-05-03T15:00:00Z"
-    last_updated_by: "multi-ai-council"
-    recent_action: "Deep-analysis session designed two-axis context-aware detection architecture"
-    next_safe_action: "Review updated plan, then approve or revise implementation scope"
-    blockers:
-      - "DO NOT IMPLEMENT"
+    last_updated_at: "2026-05-03T21:45:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Implemented merger and completed 7-iteration deep review"
+    next_safe_action: "Review remediation diff and rerun targeted validation"
+    blockers: []
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md"
     session_dedup:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660661"
       session_id: "066-sk-code-opencode-merger-plan"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Planning only for this turn."
+      - "Initial planning-only phase completed; implementation was later approved and completed."
       - "Two-axis detection architecture designed (Code Surface → Intent Classification)."
       - "Route name resolved: opencode/OPENCODE."
       - "Changelogs: DELETE; Telemetry: REGENERATE."
@@ -51,7 +50,7 @@ _memory:
 
 ### Overview
 
-The implementation should merge `sk-code-opencode` into `sk-code` by adding a first-class OpenCode system-code route inside `sk-code`, moving or copying OpenCode standards resources into that route, and retiring the sibling skill after references are rewritten. In the same implementation, remove Go and React/NextJS placeholder branches from `sk-code` so the surviving multi-stack skill demonstrates a real route model: Webflow plus OpenCode system-code.
+The implementation merged `sk-code-opencode` into `sk-code` by adding a first-class OpenCode system-code route inside `sk-code`, moving OpenCode standards resources into that route, and retiring the sibling skill after references were rewritten. In the same implementation, Go and React/NextJS placeholder branches were removed from `sk-code` so the surviving multi-stack skill demonstrates a real route model: Webflow plus OpenCode system-code.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -65,16 +64,16 @@ The implementation should merge `sk-code-opencode` into `sk-code` by adding a fi
 - [x] Success criteria measurable.
 - [x] Dependencies identified.
 - [x] Resource map created with active blast-radius paths.
-- [ ] User approves moving from plan-only to implementation.
+- [x] User approves moving from plan-only to implementation.
 
 ### Definition of Done
 
-- [ ] `sk-code` exposes OpenCode system-code routing and resources.
-- [ ] `sk-code-opencode` is removed, archived, or reduced to a historical pointer per approved decision.
-- [ ] Go and React/NextJS placeholder branches are removed from `sk-code`.
-- [ ] Runtime agents and command YAMLs no longer require `sk-code-*` overlays.
-- [ ] Skill advisor code, fixtures, graph, and tests no longer emit `sk-code-opencode` as a live route.
-- [ ] Exact searches for live `sk-code-opencode` references return only approved historical artifacts.
+- [x] `sk-code` exposes OpenCode system-code routing and resources.
+- [x] `sk-code-opencode` is removed, archived, or reduced to a historical pointer per approved decision.
+- [x] Go and React/NextJS placeholder branches are removed from `sk-code`.
+- [x] Runtime agents and command YAMLs no longer require `sk-code-*` overlays.
+- [x] Skill advisor code, fixtures, graph, and tests no longer emit `sk-code-opencode` as a live route.
+- [x] Exact searches for live `sk-code-opencode` references return only approved historical artifacts.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -160,57 +159,57 @@ Required inventories:
 
 ### Phase 1: Setup and Freeze Scope
 
-- [ ] Confirm user approval to implement.
-- [ ] Re-run exact reference inventory from `resource-map.md`.
-- [ ] Delete historical changelogs (`sk-code-opencode/changelog/v1.*.md`, 13 files).
-- [ ] Create a temporary scratch inventory if needed.
+- [x] Confirm user approval to implement.
+- [x] Re-run exact reference inventory from `resource-map.md`.
+- [x] Delete historical changelogs (`sk-code-opencode/changelog/v1.*.md`, 13 files; removed with obsolete skill directory).
+- [x] Create a temporary scratch inventory if needed.
 
 ### Phase 2: Merge OpenCode Route into `sk-code`
 
-- [ ] Rewrite `sk-code/SKILL.md` with two-axis detection architecture (Code Surface → Intent Classification).
-- [ ] Rename `references/router/stack_detection.md` → `code_surface_detection.md`, add OPENCODE detection + language sub-detection.
-- [ ] Move `sk-code-opencode/references/{shared,javascript,typescript,python,shell,config}` into `sk-code/references/opencode/`.
-- [ ] Move `sk-code-opencode/assets/checklists/*` into `sk-code/assets/opencode/checklists/`.
-- [ ] Move `verify_alignment_drift.py` and `test_verify_alignment_drift.py` into `sk-code/scripts/`.
-- [ ] Add OPENCODE entries to `RESOURCE_MAPS` and `STACK_VERIFICATION_COMMANDS` (now `SURFACE_VERIFICATION_COMMANDS`).
-- [ ] Add language sub-detection route within OPENCODE surface (file extension + keyword weights → JS/TS/Python/Shell/Config).
-- [ ] Update `resource_loading.md`, `intent_classification.md`, and `phase_lifecycle.md`.
-- [ ] Update `sk-code/README.md`, `description.json`, and `graph-metadata.json`.
+- [x] Rewrite `sk-code/SKILL.md` with two-axis detection architecture (Code Surface → Intent Classification).
+- [x] Rename `references/router/stack_detection.md` → `code_surface_detection.md`, add OPENCODE detection + language sub-detection.
+- [x] Move `sk-code-opencode/references/{shared,javascript,typescript,python,shell,config}` into `sk-code/references/opencode/`.
+- [x] Move `sk-code-opencode/assets/checklists/*` into `sk-code/assets/opencode/checklists/`.
+- [x] Move `verify_alignment_drift.py` and `test_verify_alignment_drift.py` into `sk-code/scripts/`.
+- [x] Add OPENCODE entries to resource maps and verification guidance.
+- [x] Add language sub-detection route within OPENCODE surface (file extension + keyword weights → JS/TS/Python/Shell/Config).
+- [x] Update `resource_loading.md`, `intent_classification.md`, and `phase_lifecycle.md`.
+- [x] Update `sk-code/README.md`, `description.json`, and `graph-metadata.json`.
 
 ### Phase 3: Remove Go and React/NextJS Branches
 
-- [ ] Remove `sk-code/references/go` and `sk-code/assets/go` (entire directories, ~16 files).
-- [ ] Remove `sk-code/references/nextjs` and `sk-code/assets/nextjs` (entire directories, ~21 files).
-- [ ] Remove `references/router/cross_stack_pairing.md`.
-- [ ] Remove Go/NextJS route constants, RESOURCE_MAPS entries, keyword triggers, and verification commands from `SKILL.md`.
-- [ ] Reword `@code` supported-stack docs: `WEBFLOW, OPENCODE` replaces `WEBFLOW, GO, NEXTJS`.
+- [x] Remove `sk-code/references/go` and `sk-code/assets/go`.
+- [x] Remove `sk-code/references/nextjs` and `sk-code/assets/nextjs`.
+- [x] Remove `references/router/cross_stack_pairing.md`.
+- [x] Remove Go/NextJS route constants, resource-map entries, keyword triggers, and verification commands from `SKILL.md`.
+- [x] Reword public `@code` docs to generic `sk-code` router language while keeping surface specifics inside `sk-code`.
 
 ### Phase 4: Rewrite Downstream Contracts
 
-- [ ] Update four runtime `code`, `review`, `deep-review`, `orchestrate`, and `multi-ai-council` agent surfaces where they mention overlays or removed stacks.
-- [ ] Update `spec_kit_complete_*` and `spec_kit_implement_*` YAML assets.
-- [ ] Update CLI skills that teach baseline plus overlay dispatch.
-- [ ] Update `sk-code-review` contract and references.
-- [ ] Update READMEs and install guides.
+- [x] Update four runtime `code`, `review`, `deep-review`, `orchestrate`, and `multi-ai-council` agent surfaces where they mention overlays or removed stacks.
+- [x] Update `spec_kit_complete_*` and `spec_kit_implement_*` YAML assets.
+- [x] Update CLI skills that teach baseline plus overlay dispatch.
+- [x] Update `sk-code-review` contract and references.
+- [x] Update READMEs and install guides.
 
 ### Phase 5: Advisor and Generated Metadata
 
-- [ ] Update `skill_advisor` scorer lanes: `sk-code-opencode` entry removed; OpenCode code prompts route to `sk-code`.
-- [ ] Update fixtures and tests (28 files) that expect advisor briefs containing `sk-code-opencode`.
-- [ ] Regenerate `skill-graph.json`.
-- [ ] Regenerate telemetry JSONL (`compliance.jsonl`, `smart-router-measurement-results.jsonl`).
-- [ ] Refresh skill graph metadata and descriptions.
-- [ ] Delete `sk-code-opencode/` directory (final step, after all references clean).
+- [x] Update `skill_advisor` scorer lanes: `sk-code-opencode` entry removed; OpenCode code prompts route to `sk-code`.
+- [x] Update fixtures and tests that expected advisor briefs containing `sk-code-opencode`.
+- [x] Regenerate `skill-graph.json`.
+- [x] Regenerate telemetry JSONL (`compliance.jsonl`, `smart-router-measurement-results.jsonl`).
+- [x] Refresh skill graph metadata and descriptions.
+- [x] Delete `sk-code-opencode/` directory after live references were verified clean.
 
 ### Phase 6: Verification
 
-- [ ] Run exact reference checks for `sk-code-opencode` (should return only historical/archive matches or none).
-- [ ] Run exact reference checks for `sk-code-*` overlay language.
-- [ ] Run exact `sk-code` route search for removed `GO` and `NEXTJS` support claims.
-- [ ] Run spec validation.
-- [ ] Run targeted advisor/hook vitest suites.
-- [ ] Run moved verifier tests (`test_verify_alignment_drift.py`).
-- [ ] Run skill packaging or metadata checks if available.
+- [x] Run exact reference checks for `sk-code-opencode` (remaining matches are historical/spec-folder identifiers).
+- [x] Run exact reference checks for `sk-code-*` overlay language.
+- [x] Run exact `sk-code` route search for removed `GO` and `NEXTJS` support claims.
+- [x] Run spec validation.
+- [x] Run targeted advisor/hook vitest suites.
+- [x] Run moved verifier tests (`test_verify_alignment_drift.py`).
+- [x] Run skill graph/advisor metadata checks.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -235,11 +234,11 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| User approval to implement | Process | Red | This packet must remain plan-only |
-| Skill advisor tests | Internal | Yellow | Deleted skill may stay in recommendations |
-| Runtime agent parity | Internal | Yellow | Different runtimes may disagree on required skills |
-| Historical artifact policy | Decision | Yellow | Exact search cleanup target remains ambiguous |
-| Metadata generation scripts | Internal | Yellow | Skill graph and descriptions may drift if hand-edited |
+| User approval to implement | Process | Green | User approved implementation; packet is no longer plan-only |
+| Skill advisor tests | Internal | Green | Focused advisor/router suite passed |
+| Runtime agent parity | Internal | Green | Runtime agent mirrors updated and targeted wording scan is clean |
+| Historical artifact policy | Decision | Green | Changelogs deleted; telemetry regenerated; spec-history references classified |
+| Metadata generation scripts | Internal | Green | Skill graph and descriptions refreshed |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -270,7 +269,7 @@ Phase 4 Rewrite Contracts --------> Phase 5 Advisor Metadata
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | User approval | All implementation phases |
+| Setup | User approval completed | All implementation phases |
 | Merge OpenCode Route | Setup | Contract rewrite, advisor rewrite |
 | Remove Go/NextJS | Setup | Agent supported-stack rewrite |
 | Rewrite Contracts | Merge and removal decisions | Verification |
@@ -301,9 +300,9 @@ Phase 4 Rewrite Contracts --------> Phase 5 Advisor Metadata
 
 ### Pre-deployment Checklist
 
-- [ ] Snapshot exact search output before implementation.
-- [ ] Keep `sk-code-opencode` deletion as the last step.
-- [ ] Do not regenerate metadata until content paths settle.
+- [x] Snapshot exact search output before implementation.
+- [x] Keep `sk-code-opencode` deletion as the last step.
+- [x] Do not regenerate metadata until content paths settle.
 
 ### Rollback Procedure
 
@@ -342,7 +341,7 @@ Go/NextJS branch removal
 | Component | Depends On | Produces | Blocks |
 |-----------|------------|----------|--------|
 | `sk-code` route merge | Route name decision | New OpenCode standards branch | Advisor rewrite |
-| Go/NextJS removal | Scope approval | Smaller supported-stack set | Agent docs rewrite |
+| Go/NextJS removal | Approved scope | Smaller supported-stack set | Agent docs rewrite |
 | Agent/command rewrite | New `sk-code` route contract | Runtime-safe instructions | Completion |
 | Advisor rewrite | New skill graph shape | Correct recommendations | Completion |
 | Docs rewrite | Skill inventory decision | User-facing single-skill story | Completion |
@@ -353,16 +352,16 @@ Go/NextJS branch removal
 <!-- ANCHOR:critical-path -->
 ## L3: CRITICAL PATH
 
-1. **Approve implementation and historical policy** - 1 decision - CRITICAL
-2. **Merge OpenCode resources into `sk-code`** - 4-8 hours - CRITICAL
-3. **Rewrite skill advisor expectations** - 4-8 hours - CRITICAL
-4. **Rewrite runtime agents and review contract** - 4-8 hours - CRITICAL
-5. **Run reference and test verification** - 2-4 hours - CRITICAL
+1. **Approve implementation and historical policy** - completed - CRITICAL
+2. **Merge OpenCode resources into `sk-code`** - completed - CRITICAL
+3. **Rewrite skill advisor expectations** - completed - CRITICAL
+4. **Rewrite runtime agents and review contract** - completed - CRITICAL
+5. **Run reference and test verification** - completed - CRITICAL
 
-**Total Critical Path**: 15-29 hours after approval.
+**Total Critical Path**: completed after approval.
 
 **Parallel Opportunities**:
-- Go/NextJS removal can run in parallel with README/install guide updates after scope approval.
+- Go/NextJS removal ran alongside README/install guide updates after scope approval.
 - Runtime-specific agent rewrites can be split by runtime if write ownership is carefully separated.
 - Advisor tests and docs reference checks can run in parallel after the new route name is fixed.
 <!-- /ANCHOR:critical-path -->
@@ -374,10 +373,10 @@ Go/NextJS branch removal
 
 | Milestone | Exit Criteria |
 |-----------|---------------|
-| M1 Plan approved | User confirms implementation may begin |
-| M2 Single-skill route exists | `sk-code` contains OpenCode route docs/resources |
-| M3 Placeholder stacks removed | No `GO` or `NEXTJS` support claim remains in `sk-code` live docs |
-| M4 Reference contracts updated | Agents, commands, review skill, and docs no longer require `sk-code-*` overlays |
+| M1 Plan approved | Completed: user confirms implementation may begin |
+| M2 Single-skill route exists | Completed: `sk-code` contains OpenCode route docs/resources |
+| M3 Placeholder stacks removed | Completed: no `GO` or `NEXTJS` support claim remains in `sk-code` live docs |
+| M4 Reference contracts updated | Completed: agents, commands, review skill, and docs no longer require `sk-code-*` overlays |
 | M5 Advisor aligned | Advisor code/tests no longer use `sk-code-opencode` as live expected skill |
 | M6 Verified | Exact references and targeted tests pass or historical refs are documented |
 <!-- /ANCHOR:milestones -->

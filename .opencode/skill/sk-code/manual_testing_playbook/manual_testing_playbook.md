@@ -1,0 +1,264 @@
+---
+title: "sk-code: Manual Testing Playbook"
+description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
+---
+
+# sk-code: Manual Testing Playbook
+
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live sk-code skill — no mocks, no stubs, no "unautomatable" verdicts. Scenarios verify the AI's actual routing behavior: which surface it detects, which references/assets it loads, which agent it dispatches. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP (with a documented sandbox blocker).
+
+This document combines the full manual-validation contract for the `sk-code` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide. Per-feature files provide the deeper execution contract for each scenario, including the user request, expected detection markers, expected resource loading paths, and validation criteria.
+
+---
+
+This playbook package adopts the Feature Catalog split-document pattern. The root document acts as the directory, review surface, and orchestration guide; per-feature execution detail lives in the numbered category folders at the playbook root.
+
+Canonical package artifacts:
+- `manual_testing_playbook.md`
+- `01--surface-detection/`
+- `02--language-sub-detection/`
+- `03--routing-disambiguation/`
+- `04--skill-advisor-integration/`
+
+---
+
+## TABLE OF CONTENTS
+
+- [1. OVERVIEW](#1-overview)
+- [2. GLOBAL PRECONDITIONS](#2-global-preconditions)
+- [3. GLOBAL EVIDENCE REQUIREMENTS](#3-global-evidence-requirements)
+- [4. DETERMINISTIC COMMAND NOTATION](#4-deterministic-command-notation)
+- [5. REVIEW PROTOCOL AND RELEASE READINESS](#5-review-protocol-and-release-readiness)
+- [6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING](#6-sub-agent-orchestration-and-wave-planning)
+- [7. SURFACE DETECTION (`SD-001..SD-003`)](#7-surface-detection-sd-001sd-003)
+- [8. LANGUAGE SUB-DETECTION (`LS-001..LS-004`)](#8-language-sub-detection-ls-001ls-004)
+- [9. ROUTING DISAMBIGUATION (`RD-001..RD-002`)](#9-routing-disambiguation-rd-001rd-002)
+- [10. SKILL ADVISOR INTEGRATION (`SA-001`)](#10-skill-advisor-integration-sa-001)
+- [11. AUTOMATED TEST CROSS-REFERENCE](#11-automated-test-cross-reference)
+- [12. FEATURE CATALOG CROSS-REFERENCE INDEX](#12-feature-catalog-cross-reference-index)
+
+---
+
+## 1. OVERVIEW
+
+This playbook provides 10 deterministic scenarios across 4 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+
+Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
+- WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
+- OPENCODE surface detection (CWD or target path under `.opencode/`).
+- UNKNOWN fallback (Go / Swift / React Native markers — disambiguation expected).
+- OPENCODE language sub-detection (TypeScript, Python, Shell, JSON/JSONC) with correct sub-language reference loading.
+- Routing disambiguation under mixed-marker conditions and the sk-code vs sk-doc anti-pattern.
+- Skill advisor integration: confidence ≥ 0.80 win for positive controls, no false positives on doc-edit prompts.
+
+### Realistic Test Model
+
+1. A realistic user request is given to an orchestrator that has the sk-code skill registered.
+2. The orchestrator (Claude Code, OpenCode, Codex, Gemini, or Copilot) consults the skill advisor and decides whether to invoke sk-code, route to another skill, or ask for disambiguation.
+3. The operator captures: which skill won the advisor vote, which surface sk-code detected, which references/assets the AI loaded, which agent (if any) was dispatched, and what the AI's response actually was.
+4. The scenario passes only when the routing is correct, the resource-loading is exact (matches expected paths), and the user-visible outcome is sound.
+
+### What Each Feature File Should Explain
+
+- The realistic user request that should trigger the behavior.
+- The expected detection markers (verbatim from `references/router/code_surface_detection.md`).
+- The expected references and assets the AI MUST load (exact relative paths under `references/` and `assets/`).
+- The expected agent dispatch (if any — typically `@code` for write work, or none for read-only).
+- The pass/fail criteria with binary grading.
+- Failure triage steps.
+
+---
+
+## 2. GLOBAL PRECONDITIONS
+
+1. Working directory is project root and has `.git/`.
+2. The sk-code skill is present at `.opencode/skill/sk-code/` with surface subfolders intact: `references/{router,opencode,webflow,universal}/` and `assets/{opencode,webflow,universal}/`.
+3. The skill advisor at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` is callable and `skill-graph.json` includes the `sk-code` entry with `signals` array intact.
+4. The orchestrator runtime has a Skill Advisor Hook OR can invoke `skill_advisor.py` via Bash.
+5. The operator uses sandboxed scratch paths under `/tmp/skc-NNN-sandbox/` for any file fixtures the scenarios need (e.g. fake `wrangler.toml` to trigger WEBFLOW detection).
+6. **Concurrency cap**: When running multi-scenario waves, cap at 5 parallel scenarios. Scenarios that invoke `skill_advisor.py` are CPU-light and can run concurrently; scenarios that dispatch `@code` (write work) MUST run serially to avoid scope-collision on the working tree.
+7. Destructive scenarios (currently none in this playbook — all scenarios are READ-ONLY against the skill surface) MUST verify recovery is possible if added in future.
+
+---
+
+## 3. GLOBAL EVIDENCE REQUIREMENTS
+
+- The exact user prompt that was tested.
+- The skill advisor output (top-1 skill, confidence score, gap to second, advisorStatus).
+- The detected code surface (WEBFLOW / OPENCODE / UNKNOWN) reported by sk-code.
+- The exact list of references/assets the AI loaded (verbatim relative paths under `.opencode/skill/sk-code/`).
+- The agent dispatched (if any) with name and runtime (e.g. `@code` via `.opencode/agent/code.md`).
+- The AI's user-visible response (the answer it produced or the action it took).
+- The scenario verdict (PASS / PARTIAL / FAIL / SKIP) with one-line rationale.
+- Output transcripts saved under `/tmp/skc-NNN*.txt` per scenario.
+
+---
+
+## 4. DETERMINISTIC COMMAND NOTATION
+
+- Skill advisor probe: `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.8`.
+- Bash commands: `bash: <command>`.
+- AI agent prompts: `As @<agent>: <instruction>`.
+- Resource path notation: paths shown relative to `.opencode/skill/sk-code/` (e.g. `references/router/code_surface_detection.md`).
+- `→` separates sequential steps inside a scenario's Exact Command Sequence.
+- All evidence files live under `/tmp/skc-NNN*`. The playbook never writes to project paths outside `/tmp/` sandboxes.
+
+---
+
+## 5. REVIEW PROTOCOL AND RELEASE READINESS
+
+### Inputs Required
+
+1. `manual_testing_playbook.md` (this file).
+2. Per-feature files under `manual_testing_playbook/{NN--category-name}/`.
+3. Scenario execution evidence (advisor outputs, surface-detection logs, resource-loading transcripts).
+4. Feature-to-scenario coverage map (§12 FEATURE CATALOG CROSS-REFERENCE INDEX).
+5. Triage notes for all PARTIAL / FAIL outcomes.
+
+### Scenario Acceptance Rules
+
+For each executed scenario, check:
+1. Preconditions (§2) were satisfied.
+2. Exact prompt was used verbatim.
+3. Skill advisor returned the expected top-1 skill at the expected confidence band.
+4. sk-code detected the expected surface (or correctly returned UNKNOWN).
+5. The AI loaded EXACTLY the expected references/assets (no extra loads, no missed loads).
+6. The agent dispatch (if any) matched the expected dispatch.
+7. The user-visible outcome would satisfy a real user with the originating request.
+
+### Verdict Rules
+
+- `PASS`: all 7 acceptance checks true.
+- `PARTIAL`: routing correct (advisor + surface + agent) but resource-loading set has minor drift (e.g. extra universal/ load).
+- `FAIL`: any of (advisor lost, wrong surface, wrong agent, missing required reference) is true.
+- `SKIP`: a documented external blocker (e.g. advisor binary unavailable in sandbox).
+
+### Feature Verdict Rules
+
+- `PASS`: all mapped scenarios for the feature are PASS.
+- `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
+- `FAIL`: any mapped scenario is FAIL.
+
+Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Critical-path scenarios are SD-001, SD-002, SD-003 (the three primary surface-detection paths).
+
+### Release Readiness Rule
+
+Release is READY only when:
+1. No feature verdict is FAIL.
+2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
+3. Coverage is 100% of playbook scenarios (10 / 10).
+4. No unresolved blocking triage item remains.
+
+### Root-vs-Feature Rule
+
+Keep global verdict logic and routing-architecture explanations in this root playbook. Put scenario-specific acceptance caveats and resource-path expectations in the matching per-feature files.
+
+---
+
+## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
+
+### Purpose
+
+This section records wave planning and capacity guidance for the manual testing package.
+
+### Operational Rules
+
+1. Probe runtime capacity at start (`pgrep -f "python3 .*skill_advisor" | wc -l`).
+2. Reserve one operator (you) as coordinator.
+3. Saturate remaining worker slots up to 5 for advisor probes; 1 for `@code` dispatches.
+4. Pre-assign explicit scenario IDs to each wave before execution.
+5. Run the SA-001 advisor-probe wave LAST so it can reference outputs from SD-* and LS-* scenarios.
+6. After each wave, save evidence under `/tmp/skc-wave-NN/`, then begin the next wave.
+7. Record utilization, per-feature file references, and evidence paths in the final report.
+
+### What Belongs in Per-Feature Files
+
+- Real user request (the human-language ask the operator simulates).
+- Exact prompt to feed into the orchestrator's prompt entry.
+- Expected detection markers (cite `references/router/code_surface_detection.md` line numbers).
+- Expected reference/asset load list (exact relative paths).
+- Expected agent dispatch (or no-dispatch with rationale).
+- Pass/fail criteria.
+- Failure triage steps (e.g. "if WEBFLOW not detected, verify markers in code_surface_detection.md:30-37").
+
+---
+
+## 7. SURFACE DETECTION (`SD-001..SD-003`)
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `SD-001` | WEBFLOW Detection | Verify sk-code routes a vanilla-JS animation request to WEBFLOW surface | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver so it only runs once the hero section is visible.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: WEBFLOW; refs: webflow/* + router/* + universal/code_quality_standards.md | `/tmp/skc-SD001-advisor.txt`, `/tmp/skc-SD001-loaded-refs.txt` | PASS iff advisor wins sk-code AND surface == WEBFLOW AND `references/webflow/implementation/*` is in load set | If WEBFLOW not detected, verify `Lenis`, `src/2_javascript/`, `IntersectionObserver` markers in `references/router/code_surface_detection.md:30-37` |
+| `SD-002` | OPENCODE Detection | Verify sk-code routes a system-code task to OPENCODE surface | `Add a console.error fallback to .opencode/skill/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts when the input prompt is empty.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1, score ≥ 0.80; surface: OPENCODE; sub-language: TYPESCRIPT; refs: opencode/typescript/* + opencode/shared/* + router/* | `/tmp/skc-SD002-advisor.txt`, `/tmp/skc-SD002-loaded-refs.txt` | PASS iff surface == OPENCODE AND sub-language detected as TYPESCRIPT AND `references/opencode/typescript/*` in load set | If OPENCODE not detected, verify CWD/target check at `references/router/code_surface_detection.md:39-40` |
+| `SD-003` | UNKNOWN Fallback | Verify sk-code asks for disambiguation on unsupported stacks (Go) | `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1 with caveat OR no win; surface: UNKNOWN; AI asks "which runtime / verification commands?" | `/tmp/skc-SD003-advisor.txt`, `/tmp/skc-SD003-response.txt` | PASS iff surface == UNKNOWN AND AI explicitly asks for runtime/verification disambiguation AND no surface-specific refs are loaded | If sk-code silently proceeds, verify the disambiguation rule in SKILL.md "Unsupported / Unknown" row |
+
+Per-feature files: see `01--surface-detection/`.
+
+---
+
+## 8. LANGUAGE SUB-DETECTION (`LS-001..LS-004`)
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `LS-001` | OPENCODE/TypeScript | Verify TypeScript sub-language detection within OPENCODE | `Refactor the parseExecutorConfig function in .opencode/skill/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-codex.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: OPENCODE; sub-language: TYPESCRIPT; refs: opencode/typescript/{style_guide,quality_standards,quick_reference}.md + opencode/shared/* | `/tmp/skc-LS001-loaded-refs.txt` | PASS iff sub-language == TYPESCRIPT AND all 3 typescript/* refs loaded AND no python/shell refs loaded | Verify extension list in SKILL.md sub-detection table; check `.ts` is in TS extensions |
+| `LS-002` | OPENCODE/Python | Verify Python sub-language detection within OPENCODE | `Update the skill_advisor.py argparse block at .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: OPENCODE; sub-language: PYTHON; refs: opencode/python/{style_guide,quality_standards,quick_reference}.md + opencode/shared/* | `/tmp/skc-LS002-loaded-refs.txt` | PASS iff sub-language == PYTHON AND all 3 python/* refs loaded AND no typescript/shell refs loaded | Verify `.py` extension mapping; check `argparse` keyword is a Python signal |
+| `LS-003` | OPENCODE/Shell | Verify Shell sub-language detection within OPENCODE | `Add set -euo pipefail and a trap to .opencode/skill/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: OPENCODE; sub-language: SHELL; refs: opencode/shell/{style_guide,quality_standards,quick_reference}.md + opencode/shared/* | `/tmp/skc-LS003-loaded-refs.txt` | PASS iff sub-language == SHELL AND all 3 shell/* refs loaded AND no python/typescript refs loaded | Verify `.sh` and shebang signals in SKILL.md sub-detection table |
+| `LS-004` | OPENCODE/Config | Verify JSON/JSONC sub-language detection within OPENCODE | `Add a derived.last_active_child_id field to the .opencode/specs/skilled-agent-orchestration/059-code-agent/graph-metadata.json file with value "001-spec".` | advisor probe → invoke sk-code → inspect surface + sub-language + refs | surface: OPENCODE; sub-language: CONFIG; refs: opencode/config/{style_guide,quality_standards,quick_reference}.md + opencode/shared/* | `/tmp/skc-LS004-loaded-refs.txt` | PASS iff sub-language == CONFIG AND all 3 config/* refs loaded | Verify `.json`/`.jsonc` extensions and `schema`/`descriptor` keywords are config signals |
+
+Per-feature files: see `02--language-sub-detection/`.
+
+---
+
+## 9. ROUTING DISAMBIGUATION (`RD-001..RD-002`)
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `RD-001` | Mixed-Marker Ambiguity | Verify sk-code asks for clarification when WEBFLOW + OPENCODE markers co-occur | `I want to add a Lenis smooth-scroll initializer to my .opencode/skill/sk-doc/scripts/preview-server.js so the local preview server has smooth-scroll on its index page.` | advisor probe → invoke sk-code → inspect surface | advisor: sk-code top-1; surface: ambiguous (BOTH OPENCODE path AND WEBFLOW library marker); AI asks "is this an OpenCode internal tool or a Webflow shipping artifact?" | `/tmp/skc-RD001-response.txt` | PASS iff AI explicitly asks for surface clarification AND does not silently pick one | If AI silently picks OPENCODE (because of `.opencode/` path), document as a known-limitation finding |
+| `RD-002` | sk-code vs sk-doc Anti-Pattern | Verify skill advisor routes doc-edit prompts to sk-doc, NOT sk-code | `Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.` | advisor probe → inspect top-1 + score | advisor: sk-doc top-1, score ≥ 0.70; sk-code score lower | `/tmp/skc-RD002-advisor.txt` | PASS iff advisor top-1 != sk-code AND sk-doc is in the top-3 | If sk-code wins despite this being a doc-edit, propose anti-signal in skill-graph.json (Phase E5) |
+
+Per-feature files: see `03--routing-disambiguation/`.
+
+---
+
+## 10. SKILL ADVISOR INTEGRATION (`SA-001`)
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥12 of 15 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
+
+Per-feature file: see `04--skill-advisor-integration/001-advisor-probe-battery.md`.
+
+---
+
+## 11. AUTOMATED TEST CROSS-REFERENCE
+
+The sk-code skill currently has these automated tests:
+
+- `.opencode/skill/sk-code/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (OPENCODE alignment verifier).
+
+Tests NOT covered by automation (manual playbook is the only validation):
+- Surface detection routing decisions (SD-001, SD-002, SD-003).
+- Language sub-detection within OPENCODE (LS-001, LS-002, LS-003, LS-004).
+- Mixed-marker disambiguation (RD-001).
+- Advisor anti-pattern routing (RD-002).
+- End-to-end advisor probe accuracy (SA-001).
+
+---
+
+## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
+
+| Category | Feature ID | Per-Feature File | Critical Path |
+|---|---|---|---|
+| Surface Detection | SD-001 | `01--surface-detection/001-webflow-detection.md` | Yes |
+| Surface Detection | SD-002 | `01--surface-detection/002-opencode-detection.md` | Yes |
+| Surface Detection | SD-003 | `01--surface-detection/003-unknown-fallback.md` | Yes |
+| Language Sub-Detection | LS-001 | `02--language-sub-detection/001-opencode-typescript.md` | No |
+| Language Sub-Detection | LS-002 | `02--language-sub-detection/002-opencode-python.md` | No |
+| Language Sub-Detection | LS-003 | `02--language-sub-detection/003-opencode-shell.md` | No |
+| Language Sub-Detection | LS-004 | `02--language-sub-detection/004-opencode-config.md` | No |
+| Routing Disambiguation | RD-001 | `03--routing-disambiguation/001-mixed-marker-ambiguity.md` | No |
+| Routing Disambiguation | RD-002 | `03--routing-disambiguation/002-skcode-vs-skdoc.md` | Yes |
+| Skill Advisor Integration | SA-001 | `04--skill-advisor-integration/001-advisor-probe-battery.md` | Yes |
+
+**Total scenarios**: 10
+**Critical-path scenarios**: 5 (SD-001, SD-002, SD-003, RD-002, SA-001)
+**Categories**: 4

@@ -4,7 +4,7 @@
   "brief": null,
   "recommendations": [
     {
-      "skill": "sk-code-opencode",
+      "skill": "sk-code",
       "confidence": 0.61,
       "uncertainty": 0.52,
       "passes_threshold": false

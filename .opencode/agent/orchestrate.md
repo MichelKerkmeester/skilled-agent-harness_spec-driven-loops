@@ -96,7 +96,7 @@ flowchart TD
 | 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `sk-deep-research`                                             | `"general"`   |
 | 3        | Multi-strategy planning and architecture synthesis                        | `@multi-ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
 | 4        | `/create:*` documentation and component creation command execution        | `@create`          | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
-| 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` baseline + one `sk-code-*` overlay (auto-detected)      | `"general"`   |
+| 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code-review` baseline + `sk-code` router-selected evidence    | `"general"`   |
 | 6        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
 | 7        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via Task tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
 
@@ -310,7 +310,7 @@ TASK #1: Explore Toast Patterns
 TASK #2: Implement Notification System
 ├─ Scope: Build new system using patterns from Task #1
 ├─ Agent: @general
-├─ Skills: sk-code baseline + one overlay (selected from available sk-code-* overlays)
+├─ Skills: sk-code-review baseline + sk-code router-selected evidence
 ├─ Output: Functional notification system
 ├─ Success: Works in browser, tests pass
 └─ Depends: Task #1

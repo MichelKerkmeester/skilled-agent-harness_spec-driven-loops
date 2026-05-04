@@ -1,6 +1,6 @@
 ---
 title: "Code standards alignment"
-description: "Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code-opencode standards."
+description: "Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code OPENCODE route standards."
 ---
 
 # Code standards alignment
@@ -8,7 +8,7 @@ description: "Code standards alignment brought comments, MODULE/COMPONENT header
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code-opencode standards.
+Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and constant naming into line with sk-code OPENCODE route standards.
 
 This was a cleanup pass that made the code follow a consistent style across the project. It fixed 45 places where comments, file headers, naming patterns or import ordering did not match the agreed-upon rules. Think of it like an editor going through a document to make sure every chapter uses the same formatting and citation style.
 
@@ -17,7 +17,7 @@ This was a cleanup pass that made the code follow a consistent style across the 
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-All modified files were reviewed against sk-code-opencode standards. At HEAD, the live codebase uses MODULE/COMPONENT headers plus purposeful inline comments where explanation adds value. Legacy AI-intent prefixes (`AI-WHY`, `AI-TRACE`, `AI-GUARD`) are no longer part of the active convention, and `rg "AI-(WHY|TRACE|GUARD):" .opencode/skill/system-spec-kit/mcp_server` returns no matches.
+All modified files were reviewed against sk-code OPENCODE route standards. At HEAD, the live codebase uses MODULE/COMPONENT headers plus purposeful inline comments where explanation adds value. Legacy AI-intent prefixes (`AI-WHY`, `AI-TRACE`, `AI-GUARD`) are no longer part of the active convention, and `rg "AI-(WHY|TRACE|GUARD):" .opencode/skill/system-spec-kit/mcp_server` returns no matches.
 
 <!-- /ANCHOR:current-reality -->
 
@@ -29,8 +29,8 @@ All modified files were reviewed against sk-code-opencode standards. At HEAD, th
 ### 1) Purposeful comments and retired AI-intent prefixes
 
 - **Rule mapping**
-  - `sk-code-opencode/SKILL.md:357` documents the purposeful-comment rule used at HEAD.
-  - `sk-code-opencode/SKILL.md:437` keeps file headers as a P0 compliance check.
+  - `sk-code/references/opencode/shared/universal_patterns.md` documents the purposeful-comment rule used at HEAD.
+  - `sk-code/assets/opencode/checklists/typescript_checklist.md` keeps file headers as a compliance check.
 - **HEAD evidence**
   - `rg "AI-(WHY|TRACE|GUARD):" .opencode/skill/system-spec-kit/mcp_server` returns no matches at HEAD.
   - The live alignment posture uses standardized `// MODULE:` / `// COMPONENT:` headers and targeted explanatory comments rather than AI-intent marker prefixes.
@@ -38,8 +38,8 @@ All modified files were reviewed against sk-code-opencode standards. At HEAD, th
 ### 2) MODULE/COMPONENT headers
 
 - **Rule mapping**
-  - `sk-code-opencode/SKILL.md:341-343` (required file header format by language — TypeScript at line 343)
-  - `sk-code-opencode/SKILL.md:437` (P0: file header present and correct — was line 435)
+  - `sk-code/assets/opencode/checklists/typescript_checklist.md` (required file header format by language)
+  - `sk-code/references/opencode/typescript/quality_standards.md` (file header and module boundary standards)
 - **File-level evidence (10 files, 1 header each at HEAD)**
   - `mcp_server/handlers/memory-save.ts` → `1`
   - `mcp_server/lib/search/hybrid-search.ts` → `1`
@@ -57,7 +57,7 @@ All modified files were reviewed against sk-code-opencode standards. At HEAD, th
 ### 3) Import ordering and grouping
 
 - **Rule mapping**
-  - `sk-code-opencode/SKILL.md:431` (P2 import order — was line 429)
+  - `sk-code/references/opencode/typescript/style_guide.md` (import order)
 - **File-level evidence**
   - `mcp_server/handlers/memory-save.ts:6-21` has grouped import blocks:
     - `Node built-ins` → `Shared packages` → `Internal modules`
@@ -67,7 +67,7 @@ All modified files were reviewed against sk-code-opencode standards. At HEAD, th
 ### 4) Constant naming (`specFolderLocks` → `SPEC_FOLDER_LOCKS`)
 
 - **Rule mapping**
-  - `sk-code-opencode/SKILL.md:349` (TypeScript constants use UPPER_SNAKE)
+  - `sk-code/references/opencode/typescript/style_guide.md` (TypeScript constants use UPPER_SNAKE)
 - **File-level evidence**
   - `mcp_server/handlers/save/spec-folder-mutex.ts:10` defines `const SPEC_FOLDER_LOCKS = ...`.
   - `rg "\\bspecFolderLocks\\b" mcp_server/handlers/save mcp_server/handlers/memory-save.ts` returns no matches.

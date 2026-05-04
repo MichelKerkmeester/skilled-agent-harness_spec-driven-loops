@@ -1,6 +1,6 @@
 ---
 title: Universal Code Style Guide
-description: Language-agnostic naming, file structure, commenting, and formatting principles that hold across WEBFLOW, NEXTJS, and GO.
+description: Language-agnostic naming, file structure, commenting, and formatting principles for WEBFLOW and OPENCODE code surfaces.
 ---
 
 # Universal Code Style Guide
@@ -13,7 +13,7 @@ Language-agnostic style principles. Naming conventions and stack-specific enforc
 
 ### Purpose
 
-Codifies the style principles that apply regardless of stack — naming intent, file organization, commenting discipline, formatter use. The actual identifier convention (snake_case for WEBFLOW JS, camelCase for TypeScript, PascalCase for Go exported names) is stack-specific and lives under `references/{webflow,nextjs,go}/standards/`. Use this doc when the project lacks a stack-specific style guide, when reviewing a cross-stack convention question, or when a contributor is new to the stack.
+Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline, formatter use. The actual identifier convention is surface-specific and lives under `references/webflow/standards/` and `references/opencode/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
 
 ### Core Principle
 
@@ -24,11 +24,11 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 - When picking a name for a new variable, function, type, or file.
 - When deciding how to lay out a file's top-of-file structure.
 - When deciding whether to add a comment.
-- When a reviewer flags a style nit and you need the cross-stack contract.
+- When a reviewer flags a style nit and you need the surface-agnostic contract.
 
 ### Key Sources
 
-- Per-stack style guides: `references/webflow/standards/code_style_guide.md`, `references/nextjs/standards/code_style.md`, `references/go/standards/code_style.md`.
+- Surface style guides: `references/webflow/standards/code_style_guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.
 - Project-level enforcement (banned phrases, voice rules): the project CLAUDE.md / AGENTS.md is authoritative for this user's projects.
 
 ---
@@ -41,18 +41,17 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 - Reader-friendly beats author-friendly. Optimize for the future reader, not for typing speed.
 - A name with `_temp`, `_new`, `_v2` is a smell — it suggests the author didn't have a clear concept.
 
-### Stack-appropriate convention
+### Surface-appropriate convention
 
-Each stack has a community convention. Follow the stack convention; do not invent your own.
+Each surface and language has a convention. Follow the surface convention; do not invent your own.
 
-| Stack                | Identifier convention                                                                                       |
+| Surface              | Identifier convention                                                                                       |
 | -------------------- | ----------------------------------------------------------------------------------------------------------- |
 | WEBFLOW (vanilla JS) | `snake_case` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants            |
-| NEXTJS (TypeScript)  | `camelCase` for variables/functions; `PascalCase` for components/types; `UPPER_SNAKE` for constants; `kebab-case` for CSS class names |
-| GO                   | `camelCase` (unexported), `PascalCase` (exported); short receiver names; no underscores                      |
-| Python (sidecar)     | `snake_case` for variables/functions; `PascalCase` for classes; `UPPER_SNAKE` for constants                  |
+| OPENCODE JS/TS       | `camelCase` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants             |
+| OPENCODE Python/Shell | `snake_case` for variables/functions; `PascalCase` for classes; `UPPER_SNAKE` for constants                 |
 
-The per-stack code quality checklist (see `code_quality_standards.md` §6) enforces the convention.
+The surface code quality checklist (see `code_quality_standards.md` §6) enforces the convention.
 
 ### Universal anti-patterns
 
@@ -75,12 +74,11 @@ The per-stack code quality checklist (see `code_quality_standards.md` §6) enfor
 
 Most communities have a conventional order. Follow it.
 
-| Stack       | Top-of-file order                                                                                       |
+| Surface     | Top-of-file order                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
 | WEBFLOW JS  | File header (box-drawing) → constants → utilities → main IIFE → init                                     |
-| NEXTJS / TS | Imports (external → local) → types/interfaces → component → exports                                     |
-| GO          | Package decl → imports → constants → types → functions (exported first)                                 |
-| Python      | Module docstring → imports (stdlib → third-party → local) → constants → classes/functions              |
+| OPENCODE TS | Module header → imports (external → local) → types/interfaces → exports                                |
+| OPENCODE Python | Shebang → module docstring → imports (stdlib → third-party → local) → constants → classes/functions |
 
 ### Keep files small
 
@@ -115,9 +113,9 @@ i += 1
 
 Delete it. Git history preserves it. Commented code is cognitive load with no payoff.
 
-### Stack-specific commenting overlays
+### Surface-specific commenting notes
 
-Some stacks have additional commenting conventions (WEBFLOW JS uses three-line file headers with box-drawing characters; Go expects `// FunctionName ...` for exported functions). See the per-stack style guide.
+Some surfaces have additional commenting conventions (WEBFLOW JS uses three-line file headers with box-drawing characters; OPENCODE TypeScript uses `MODULE:` headers where required). See the surface style guide.
 
 ---
 
@@ -125,12 +123,12 @@ Some stacks have additional commenting conventions (WEBFLOW JS uses three-line f
 
 ### Use the language's standard formatter
 
-| Stack       | Formatter                       |
+| Surface     | Formatter                       |
 | ----------- | ------------------------------- |
 | WEBFLOW JS  | Prettier                        |
-| NEXTJS / TS | Prettier (Next.js project default) |
-| GO          | `gofmt` (or `goimports`)        |
-| Python      | Black or Ruff                   |
+| OPENCODE JS/TS | Prettier or project formatter |
+| OPENCODE Python | Black or Ruff                |
+| OPENCODE Shell | `shfmt` where available       |
 
 Don't fight the formatter. Configure once at the project root and never overwrite manually.
 
@@ -142,15 +140,14 @@ Don't fight the formatter. Configure once at the project root and never overwrit
 
 ---
 
-## 6. STACK-SPECIFIC POINTERS
+## 6. SURFACE-SPECIFIC POINTERS
 
 For the rules that ARE language-specific, see:
 
-| Stack    | Reference                                                                                  |
+| Surface  | Reference                                                                                  |
 | -------- | ------------------------------------------------------------------------------------------ |
 | WEBFLOW  | `references/webflow/standards/code_style_guide.md` (snake_case JS, semantic CSS prefixes, BEM, GPU animation) |
-| NEXTJS   | `references/nextjs/standards/code_style.md` (TypeScript strict, file organization)         |
-| GO       | `references/go/standards/code_style.md` (gofmt, error wrapping, context propagation)       |
+| OPENCODE | `references/opencode/` language standards and `assets/opencode/checklists/`               |
 
 ---
 
@@ -158,5 +155,5 @@ For the rules that ARE language-specific, see:
 
 - `references/universal/code_quality_standards.md` - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
 - `references/universal/error_recovery.md` - what to do when a style violation can't be auto-fixed.
-- Per-stack standards under `references/{webflow,nextjs,go}/standards/`.
-- `assets/{webflow,nextjs,go}/checklists/code_quality_checklist.md` - the per-stack checklists that operationalize this guide.
+- Surface standards under `references/webflow/standards/` and `references/opencode/`.
+- `assets/webflow/checklists/` and `assets/opencode/checklists/` - the surface checklists that operationalize this guide.

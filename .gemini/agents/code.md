@@ -44,18 +44,18 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ## 1. CORE WORKFLOW
 
-### Bounded Stack-Aware Implementation
+### Bounded Router-Guided Implementation
 
 1. **RECEIVE** → Parse scope from orchestrator (task description, target files, success criteria, packet/spec-folder context, dispatch mode if specified, verification expectation).
 2. **READ PACKET DOCS** → If a spec folder is named, read `spec.md`, `plan.md`, `tasks.md` to anchor scope. Spec-folder scope is FROZEN per `AGENTS.md` Iron Law.
-3. **INVOKE sk-code** → Read `.opencode/skill/sk-code/SKILL.md` and **execute its `route_code_resources(task)` pseudocode mentally** to produce a concrete tuple: `(detected_stack, top-1/top-2 intents, conditional resource paths, verification command)`. **HARD STOP**: if `detected_stack` is not in sk-code's supported list (currently WEBFLOW, GO, NEXTJS), escalate `UNKNOWN_STACK` BEFORE any edit — regardless of how obvious the fix appears or whether you have native knowledge of the language. The model's internal stack knowledge does NOT override sk-code's UNKNOWN return. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
+3. **INVOKE sk-code** → Read `.opencode/skill/sk-code/SKILL.md` and execute its smart router to produce a concrete tuple: `(resolved_route, top-1/top-2 intents, conditional resource paths, verification command)`. **HARD STOP**: if `sk-code` returns UNKNOWN or ambiguous routing, escalate `UNKNOWN_ROUTE` BEFORE any edit. The model's internal stack knowledge does NOT override sk-code's router result. Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
 4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
 5. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix.
 6. **RETURN** → Structured RETURN to orchestrator (see §8 format).
 
 ### Stack Delegation Contract
 
-@code does NOT pre-detect stack. The full marker-file probing logic lives in `.opencode/skill/sk-code/SKILL.md` and `.opencode/skill/sk-code/references/router/stack_detection.md`. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs stack hint or sibling skill").
+@code does NOT pre-detect the project route. The full code-routing logic lives in `.opencode/skill/sk-code/SKILL.md` and its router references. UNKNOWN/ambiguous returns from sk-code → escalate to orchestrator (e.g. "sk-code returned UNKNOWN for cwd=…; needs a route hint or a new route plan").
 
 ---
 
@@ -71,22 +71,21 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ## 3. Routing Scan
 
-### Skills (baseline + exactly one overlay)
+### Skills (single sk-code router)
 
 | Layer | Skill | When | Precedence |
 | --- | --- | --- | --- |
-| **Baseline** | `sk-code` | Always | Stack detection, intent routing, security/correctness minimums, detected-stack verification commands |
-| **Overlay** | one applicable `sk-code-*` skill | When stack/codebase signals identify an applicable implementation overlay | Overrides generic baseline style/process for the active code path |
+| **Router** | `sk-code` | Always | Smart detection, intent routing, router-selected standards, security/correctness minimums, verification commands |
 | **Excluded** | `sk-code-review` | Always excluded inside @code | Review-side only; @orchestrate dispatches @review separately |
-| **Fallback** | none | Stack or overlay cannot be determined | Return `UNKNOWN_STACK`; do not silently pick a default overlay |
+| **Fallback** | none | Route cannot be determined | Return `UNKNOWN_ROUTE`; do not silently pick a default route |
 
 **Precedence rules:**
-1. Load `sk-code` first on every @code invocation.
-2. Select at most ONE overlay from available `sk-code-*` skills.
-3. Overlay style/process guidance overrides generic baseline only where it speaks directly to the active code path.
-4. Baseline security/correctness minimums always remain enforced.
-5. Baseline verification commands remain authoritative for the detected stack unless the overlay gives a more specific command for the same stack.
-6. If `sk-code` returns UNKNOWN and no applicable overlay is certain, escalate `UNKNOWN_STACK`. NEVER guess.
+1. Load `sk-code` on every @code invocation.
+2. Let `sk-code` select exactly one supported route.
+3. Apply only the resources returned for that route and intent.
+4. `sk-code` security/correctness minimums always remain enforced.
+5. Returned verification commands are authoritative for the resolved route.
+6. If `sk-code` returns UNKNOWN, escalate `UNKNOWN_ROUTE`. NEVER guess.
 
 ### Tools
 
@@ -178,7 +177,7 @@ PRE-IMPLEMENTATION:
 [ ] File allowlist understood; any needed file outside dispatch scope is escalated before editing.
 [ ] Relevant spec-folder docs or packet-local plan/tasks named by orchestrator are read before implementation.
 [ ] `sk-code` invoked or loaded for the detected stack; UNKNOWN stack or cross-stack mismatch escalated.
-[ ] Applicable `sk-code` quality checklist path identified; stack-specific rules remain delegated to that checklist.
+[ ] Applicable `sk-code` quality checklist path identified; router-selected rules remain delegated to that checklist.
 [ ] Verification command or manual verification action identified before the first edit.
 [ ] Expected behavior and non-goals explicit enough to detect scope creep during implementation.
 ```
@@ -315,7 +314,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 - Stay within orchestrator-named file allowlist
 - Run Builder → Critic → Verifier on completion claim for non-fast-path work
 - Provide file:line citations for all RETURN claims
-- Adopt baseline+overlay precedence per §3 (overlay overrides generic baseline; baseline security/correctness minimums always enforced)
+- Adopt the single `sk-code` router contract per §3 (router-selected resources plus mandatory security/correctness minimums)
 - Capture command name + exit code + (if FAIL) first failing assertion in the RETURN body
 - Document confidence level per §10
 - Score using §5 rubric (no gut-feel scoring)

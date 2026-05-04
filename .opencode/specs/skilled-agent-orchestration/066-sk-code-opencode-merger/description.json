@@ -1,14 +1,18 @@
 {
-  "specFolder": "066-sk-code-opencode-merger",
-  "description": "sk-code-opencode-merger",
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/066-sk-code-opencode-merger",
+  "description": "Feature Specification: sk-code-opencode-merger",
   "keywords": [
+    "feature",
+    "specification",
     "sk-code-opencode-merger"
   ],
-  "lastUpdated": "2026-05-03T11:04:06.563Z",
+  "lastUpdated": "2026-05-04T07:58:29.227Z",
   "specId": "066",
   "folderSlug": "sk-code-opencode-merger",
-  "parentChain": [],
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -89,4 +89,4 @@ If any item is missing, keep the recommendation at P2 with follow-up actions.
 - [code_quality_checklist.md](./code_quality_checklist.md) - Reliability and edge-case checks before cleanup.
 - [solid_checklist.md](./solid_checklist.md) - Architecture ownership checks for extraction or deletion.
 
-Overlay portability: apply this removal plan with stack-specific constraints from `sk-code-opencode` or `sk-code`.
+Surface portability: apply this removal plan with surface-specific constraints from `sk-code`.

@@ -45,18 +45,18 @@ Escalation rule: if confidence is low but impact is high, classify toward the hi
 
 ---
 
-## 5. BASELINE + OVERLAY PRECEDENCE
+## 5. BASELINE + SURFACE PRECEDENCE
 
-Apply this skill as the baseline first, then pair it with exactly one overlay:
+Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
 
-- OpenCode system code -> `sk-code-opencode`
-- Frontend/web code -> `sk-code`
-- Default/other stacks -> `sk-code`
+- OpenCode system code -> `sk-code:OPENCODE`
+- Frontend/web code -> `sk-code:WEBFLOW`
+- Unknown surfaces -> baseline-only plus explicit uncertainty
 
 Precedence rules:
 
 - Baseline security and correctness minimums are always enforced.
-- Overlay style, process, build, and test conventions override generic baseline guidance.
+- Surface style, process, build, and test conventions override generic baseline guidance.
 - Unclear conflicts must be escalated rather than guessed.
 
 ---
@@ -68,7 +68,7 @@ Mandatory baseline families:
 - Correctness minimums: regression risk, contract safety, spec mismatch, destructive side effects, and boundary handling.
 - Security minimums: auth and authorization gaps, injection exposure, unsafe secrets handling, privilege misuse, and reliability risks with security impact.
 
-These minimums cannot be relaxed by an overlay.
+These minimums cannot be relaxed by surface guidance.
 
 ---
 

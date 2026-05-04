@@ -306,7 +306,7 @@ Key references:
 /spec_kit:deep-review:confirm "agent:deep-research" --max-iterations=5
 /spec_kit:deep-review "track:03--commands-and-skills"
 /spec_kit:deep-review:auto ".opencode/skill/sk-git/**/*.md" --convergence=0.15
-/spec_kit:deep-review:confirm "skill:sk-code-opencode" --spec-folder=specs/04--quality/041-review-opencode/
+/spec_kit:deep-review:confirm "skill:sk-code router-guidance" --spec-folder=specs/04--quality/041-review-code-router/
 ```
 
 ---

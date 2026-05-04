@@ -32,7 +32,7 @@ function freshness(overrides: Partial<AdvisorFreshnessResult> = {}): AdvisorFres
     generation: 1,
     sourceSignature: 'sig-live',
     skillFingerprints: new Map([
-      ['sk-code-opencode', { skillMdMtime: 1, skillMdSize: 10, skillMdHash: 'hash-opencode', graphMetaMtime: 1, graphMetaHash: 'graph-opencode' }],
+      ['sk-code', { skillMdMtime: 1, skillMdSize: 10, skillMdHash: 'hash-code', graphMetaMtime: 1, graphMetaHash: 'graph-code' }],
       ['sk-doc', { skillMdMtime: 1, skillMdSize: 10, skillMdHash: 'hash-doc', graphMetaMtime: 1, graphMetaHash: 'graph-doc' }],
     ]),
     fallbackMode: 'sqlite',
@@ -42,7 +42,7 @@ function freshness(overrides: Partial<AdvisorFreshnessResult> = {}): AdvisorFres
   };
 }
 
-function mockAdvisor(skill = 'sk-code-opencode') {
+function mockAdvisor(skill = 'sk-code') {
   vi.mocked(runAdvisorSubprocess).mockResolvedValue({
     ok: true,
     recommendations: [{
@@ -95,7 +95,7 @@ describe('buildSkillAdvisorBrief', () => {
     const rendered = renderAdvisorBrief(result);
 
     expect(result.status).toBe('ok');
-    expect(result.brief).toBe('Advisor: live; use sk-code-opencode 0.91/0.10 pass.');
+    expect(result.brief).toBe('Advisor: live; use sk-code 0.91/0.10 pass.');
     expect(result.brief).toBe(rendered);
     expect(result.sharedPayload?.provenance.producer).toBe('advisor');
     expect(result.sharedPayload?.metadata?.status).toBe('ok');
@@ -114,7 +114,7 @@ describe('buildSkillAdvisorBrief', () => {
       ok: true,
       recommendations: [
         {
-          skill: 'sk-code-opencode',
+          skill: 'sk-code',
           confidence: 0.91,
           uncertainty: 0.1,
           passes_threshold: true,
@@ -143,7 +143,7 @@ describe('buildSkillAdvisorBrief', () => {
     expect(result.status).toBe('ok');
     expect(result.metrics.tokenCap).toBe(120);
     expect(result.brief).toBe(
-      'Advisor: live; ambiguous: sk-code-opencode 0.91/0.10 vs sk-doc 0.89/0.11 pass.',
+      'Advisor: live; ambiguous: sk-code 0.91/0.10 vs sk-doc 0.89/0.11 pass.',
     );
     expect(result.brief).toBe(rendered);
     expect(result.sharedPayload?.summary).toBe(rendered);
@@ -295,9 +295,9 @@ describe('buildSkillAdvisorBrief', () => {
   });
 
   it('AS9 deleted-skill invalidates cached brief and re-runs advisor', async () => {
-    mockAdvisor('sk-code-opencode');
+    mockAdvisor('sk-code');
     const first = await buildSkillAdvisorBrief('implement feature X', options);
-    expect(first.brief).toContain('sk-code-opencode');
+    expect(first.brief).toContain('sk-code');
 
     vi.mocked(getAdvisorFreshness).mockReturnValue(freshness({
       skillFingerprints: new Map([

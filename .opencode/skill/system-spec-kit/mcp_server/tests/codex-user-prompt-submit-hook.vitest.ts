@@ -69,7 +69,7 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect(output).toEqual({
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
-        additionalContext: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
+        additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
       },
     });
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {
@@ -189,7 +189,7 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect(normalizeRuntimeOutput('codex', output)).toEqual({
       runtime: 'codex',
       transport: 'json_additional_context',
-      additionalContext: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
+      additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
       stderrVisible: false,
     });
   });

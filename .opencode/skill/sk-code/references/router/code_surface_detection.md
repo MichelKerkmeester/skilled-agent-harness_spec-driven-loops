@@ -1,0 +1,87 @@
+---
+title: Router Reference - Code Surface Detection
+description: Context-aware detection for WEBFLOW and OPENCODE surfaces in the unified sk-code router.
+---
+
+# Router Reference - Code Surface Detection
+
+`sk-code` detects the code surface before intent classification. Surface detection uses CWD plus changed or target files because the same repository can contain Webflow frontend code and OpenCode system code.
+
+---
+
+## 1. OVERVIEW
+
+### Core Principle
+
+Detect **where the work is happening** before deciding which standards apply.
+
+| Surface | Owns | Does Not Own |
+| --- | --- | --- |
+| WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.opencode/` system code |
+| OPENCODE | `.opencode/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
+| UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
+
+---
+
+## 2. DETECTION ORDER
+
+**Precedence**: OPENCODE target/CWD wins over WEBFLOW markers. WEBFLOW wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
+
+```bash
+# 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
+# CWD under .opencode/ OR any changed/target file under .opencode/
+
+# 2. WEBFLOW
+[ -d "src/2_javascript" ]
+ls *.webflow.js 2>/dev/null | head -1
+grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null
+grep -lqE "from ['\"]motion['\"]|motion\.dev|window\.gsap|gsap\.(to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond" \
+  src/**/*.{js,mjs,ts,html} *.{js,mjs,ts,html} 2>/dev/null
+[ -f "wrangler.toml" ]
+
+# 3. UNKNOWN
+# Ask which surface and verification commands apply.
+```
+
+**Why OPENCODE wins precedence**: `.opencode/` system tools (e.g. preview servers, mock fixtures, animation demos under `.opencode/skill/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
+
+**Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor libraries, `wrangler.toml`, `src/2_javascript/`). Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
+
+---
+
+## 3. OPENCODE LANGUAGE SUB-DETECTION
+
+After OPENCODE surface detection, select language resources by extension first:
+
+| Language | Extensions | Resource Folder |
+| --- | --- | --- |
+| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `references/opencode/javascript/` |
+| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `references/opencode/typescript/` |
+| PYTHON | `.py` | `references/opencode/python/` |
+| SHELL | `.sh`, `.bash` | `references/opencode/shell/` |
+| CONFIG | `.json`, `.jsonc` | `references/opencode/config/` |
+
+When multiple languages are touched, load shared OpenCode guidance plus each touched language quick reference/checklist.
+
+---
+
+## 4. TEST CASES
+
+| Context | Expected Surface | Reason |
+| --- | --- | --- |
+| `src/2_javascript/`, `package.json` | WEBFLOW | Webflow marker wins (no `.opencode/` target present) |
+| HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
+| CWD `.opencode/skill/sk-code` | OPENCODE | Skill/system code context |
+| Changed `.opencode/agent/code.md` | OPENCODE | Target file under `.opencode/` |
+| WEBFLOW marker (Lenis, GSAP) AND changed `.opencode/skill/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
+| Root `package.json` with no `.opencode/` target | UNKNOWN | Generic Node.js is not owned |
+| `go.mod` or `next.config.js` only | UNKNOWN | Go/NextJS placeholder routes were removed |
+
+---
+
+## 5. RELATED RESOURCES
+
+- `references/router/intent_classification.md`
+- `references/router/resource_loading.md`
+- `references/router/phase_lifecycle.md`
+- `SKILL.md` section 2

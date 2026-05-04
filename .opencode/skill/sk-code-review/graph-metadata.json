@@ -7,26 +7,16 @@
     "depends_on": [],
     "enhances": [
       {
-        "target": "sk-code-opencode",
-        "weight": 0.7,
-        "context": "review overlay for opencode"
-      },
-      {
         "target": "sk-code",
         "weight": 0.7,
-        "context": "review overlay for application code (web + multi-stack umbrella)"
+        "context": "review overlay for sk-code WEBFLOW and OPENCODE surfaces"
       }
     ],
     "siblings": [
       {
         "target": "sk-code",
         "weight": 0.4,
-        "context": "code quality peer (application code umbrella)"
-      },
-      {
-        "target": "sk-code-opencode",
-        "weight": 0.4,
-        "context": "code quality peer (system code)"
+        "context": "code quality peer for WEBFLOW and OPENCODE surfaces"
       }
     ],
     "conflicts_with": [],
@@ -140,7 +130,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode and sk-code standards. It matters because it establishes the findings-first review baseline that other stack-specific review overlays build on.",
+    "causal_summary": "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code WEBFLOW and OPENCODE standards. It matters because it establishes the findings-first review baseline that surface-specific evidence builds on.",
     "source_docs": [
       "SKILL.md",
       "README.md",

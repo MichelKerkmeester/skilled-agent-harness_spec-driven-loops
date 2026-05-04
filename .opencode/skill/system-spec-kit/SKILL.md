@@ -398,7 +398,7 @@ Use CocoIndex for semantic discovery, Code Graph for structural relationships, a
 14. **Suggest /memory:save when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
 16. **Suggest /spec_kit:plan :with-phases when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
-17. **Route all code creation/updates through `sk-code-opencode`** - Full alignment is mandatory before claiming completion
+17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion
 18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion
 19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 
@@ -437,7 +437,7 @@ Success means the selected spec folder uses the right template set, placeholders
 
 ## 6. INTEGRATION POINTS
 
-P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code updates route through `sk-code-opencode`; documentation updates route through `sk-doc`; git handoff routes through `sk-git`.
+P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code updates route through `sk-code`; documentation updates route through `sk-doc`; git handoff routes through `sk-git`.
 
 ### Quick Reference Commands
 
@@ -446,7 +446,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Canonical intake | `/spec_kit:plan --intake-only "Description"` |
 | Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
 | Validate | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
-| Verify code alignment drift | `python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit` |
+| Verify code alignment drift | `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit` |
 | Save context | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
@@ -464,4 +464,4 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 
-Related skills: `sk-doc` for authored documentation quality, `sk-code-opencode` for OpenCode code changes, `sk-git` for git handoff, `sk-deep-research` for iterative research, and `sk-deep-review` for iterative audit workflows.
+Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, `sk-deep-research` for iterative research, and `sk-deep-review` for iterative audit workflows.

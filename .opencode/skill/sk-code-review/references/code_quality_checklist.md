@@ -143,4 +143,4 @@ Severity guidance:
 - [removal_plan.md](./removal_plan.md) - Removal candidate classification and migration planning.
 - [test_quality_checklist.md](./test_quality_checklist.md) - Test quality, coverage, and anti-pattern checks.
 
-Overlay portability: pair this baseline with stack-specific quality guidance from `sk-code-opencode` or `sk-code`.
+Surface portability: pair this baseline with surface-specific quality guidance from `sk-code`.

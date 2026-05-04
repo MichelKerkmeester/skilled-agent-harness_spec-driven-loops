@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-code-opencode-merger"
-description: "Plan-only packet for merging sk-code-opencode into sk-code, removing Go and React/NextJS branches from sk-code, and auditing all downstream references before implementation."
+description: "Implemented packet for merging sk-code-opencode into sk-code, removing Go and React/NextJS branches from sk-code, and auditing downstream references."
 trigger_phrases:
   - "sk-code-opencode merger"
   - "merge sk-code-opencode into sk-code"
@@ -11,15 +11,14 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/066-sk-code-opencode-merger"
-    last_updated_at: "2026-05-03T15:00:00Z"
-    last_updated_by: "multi-ai-council"
-    recent_action: "Resolved open questions, designed two-axis detection architecture"
-    next_safe_action: "Review updated plan.md, then approve or revise implementation scope"
-    blockers:
-      - "User explicitly requested DO NOT IMPLEMENT during planning"
+    last_updated_at: "2026-05-03T21:45:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Implemented merger, cleaned public sk-code router wording, and ran 7-iteration deep review"
+    next_safe_action: "Review remediation diff and rerun targeted validation"
+    blockers: []
     key_files:
       - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code-opencode/SKILL.md"
+      - ".opencode/skill/sk-code/references/opencode/"
       - ".opencode/skill/sk-code-review/SKILL.md"
       - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts"
       - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
@@ -28,10 +27,10 @@ _memory:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660660"
       session_id: "066-sk-code-opencode-merger-plan"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Implementation is out of scope for this turn."
+      - "Initial planning was implementation-blocked; implementation was later approved and completed."
       - "Historical changelogs under sk-code-opencode: DELETE (13 files). The merger IS the changelog."
       - "Generated telemetry JSONL: REWRITE/REGENERATE after skill-graph.json is updated."
       - "Merged route name: 'opencode' (folder) / 'OPENCODE' (identifier), matching webflow/WEBFLOW convention."
@@ -46,9 +45,9 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-This packet plans the consolidation of the current `sk-code-opencode` OpenCode-system-code standards skill into the single remaining `sk-code` skill. The intended end state is one multi-stack `sk-code` that demonstrates how end users can combine stack branches by merging a language/system-code branch into the umbrella router, while removing the existing Go and React/NextJS placeholder branches from `sk-code`.
+This packet documents the consolidation of the former `sk-code-opencode` OpenCode-system-code standards skill into the single remaining `sk-code` skill. The implemented end state is one multi-stack `sk-code` that demonstrates how end users can combine stack branches by merging a language/system-code branch into the umbrella router, while removing the existing Go and React/NextJS placeholder branches from `sk-code`.
 
-**Key Decisions**: do not implement during this packet; merge OpenCode standards into `sk-code` as a first-class route using two-axis context-aware detection (Code Surface → Intent Classification); remove Go and React/NextJS placeholder routes; rewrite downstream references away from the old overlay model; DELETE historical changelogs; REWRITE telemetry JSONL.
+**Key Decisions**: merge OpenCode standards into `sk-code` as a first-class route using two-axis context-aware detection (Code Surface → Intent Classification); remove Go and React/NextJS placeholder routes; rewrite downstream references away from the old overlay model; DELETE historical changelogs; REWRITE telemetry JSONL.
 
 **Critical Dependencies**: skill advisor routing data, runtime agent instructions, command YAMLs, `sk-code-review` overlay contract, README/install guide inventories, and verification tests that currently assert `sk-code-opencode`.
 
@@ -60,7 +59,7 @@ This packet plans the consolidation of the current `sk-code-opencode` OpenCode-s
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft plan, implementation blocked by user instruction |
+| **Status** | Implemented; deep-review remediation in progress |
 | **Created** | 2026-05-03 |
 | **Branch** | `scaffold/066-sk-code-opencode-merger` |
 <!-- /ANCHOR:metadata -->
@@ -72,13 +71,13 @@ This packet plans the consolidation of the current `sk-code-opencode` OpenCode-s
 
 ### Problem Statement
 
-`sk-code` currently advertises itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-code-opencode` separately owns OpenCode system-code standards. That split now works against the desired end-user model: one visible `sk-code` should demonstrate multi-stack extension by absorbing OpenCode system-code routing, not by keeping a sibling standards skill.
+Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-code-opencode` separately owned OpenCode system-code standards. That split worked against the desired end-user model: one visible `sk-code` demonstrates multi-stack extension by absorbing OpenCode system-code routing, not by keeping a sibling standards skill.
 
 The caveat is that `sk-code-opencode` is not isolated. Exact references exist in global/project instructions, runtime agent definitions, `spec_kit` command assets, CLI skills, `sk-code-review`, skill advisor scoring lanes, tests, READMEs, install guides, generated skill graphs, and historical changelogs.
 
 ### Purpose
 
-Create an implementation-ready plan that explains what must change, what must be checked, and which file paths are in blast radius before any merge or removal happens.
+Document the implementation and verification path for the merger, including what changed, what was checked, and which file paths remain in blast radius for release-readiness review.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -89,15 +88,15 @@ Create an implementation-ready plan that explains what must change, what must be
 ### In Scope
 
 - Analyze `.opencode/skill/sk-code-opencode` and `.opencode/skill/sk-code`.
-- Plan removal of Go and React/NextJS placeholder branches from `sk-code`.
-- Plan merge of OpenCode standards resources, checklists, and verifier scripts into `sk-code`.
-- Identify every active file path that is affected or must be checked before implementation.
+- Remove Go and React/NextJS placeholder branches from `sk-code`.
+- Merge OpenCode standards resources, checklists, and verifier scripts into `sk-code`.
+- Identify every active file path that was affected or checked during implementation.
 - Document downstream reference classes: agents, commands, README/install guides, skills, advisor code, tests, metadata, and historical/generated artifacts.
 
 ### Out of Scope
 
-- Implementation edits outside this spec folder. The user explicitly said `DO NOT IMPLEMENT`.
-- Deleting or moving `sk-code-opencode` in this turn.
+- Reintroducing deleted placeholder route branches without a new approved route packet.
+- Treating historical `sk-code-opencode` spec references as live runtime dependencies.
 - Rewriting historical archived specs unless an implementation decision later chooses to update live indexes.
 - Running semantic CocoIndex search. Startup context says CocoIndex is missing; exact `rg` and memory retrieval were used instead.
 
@@ -105,13 +104,13 @@ Create an implementation-ready plan that explains what must change, what must be
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md` | Create | Planning specification |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md` | Create | Implementation plan only |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/tasks.md` | Create | Future implementation task list |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md` | Create | Planning and future verification checklist |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md` | Create | ADR for the consolidation approach |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md` | Create | Detailed blast-radius path map |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md` | Create | Planning-only summary, no implementation claim |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md` | Update | Implemented specification |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md` | Update | Implementation plan and delivered phase evidence |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/tasks.md` | Update | Completed implementation task list |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md` | Update | Completed verification checklist |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md` | Update | Accepted ADR for the consolidation approach |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md` | Update | Detailed blast-radius path map |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md` | Update | Implementation and verification summary |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -123,18 +122,18 @@ Create an implementation-ready plan that explains what must change, what must be
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Respect plan-only scope | No non-spec runtime files are edited in this turn |
+| REQ-001 | Preserve approved scope | Runtime edits stay within the approved merger and public wording cleanup scope |
 | REQ-002 | Produce a detailed resource map | `resource-map.md` lists affected and checked paths by category |
-| REQ-003 | Identify core merge work | Plan explains how `sk-code-opencode` resources would enter `sk-code` |
-| REQ-004 | Identify removal work | Plan lists Go and React/NextJS branches and router references to remove from `sk-code` |
-| REQ-005 | Identify reference fallout | Plan covers agents, commands, READMEs, install guides, skills, advisor code, tests, metadata, and generated artifacts |
+| REQ-003 | Complete core merge work | `sk-code-opencode` resources enter `sk-code` under the OpenCode route |
+| REQ-004 | Complete removal work | Go and React/NextJS placeholder branches and router references are removed from `sk-code` |
+| REQ-005 | Resolve reference fallout | Agents, commands, READMEs, install guides, skills, advisor code, tests, metadata, and generated artifacts are updated or classified historical |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | Preserve current OpenCode standards capability | Future `sk-code` route must still cover JS, TS, Python, Shell, and JSON/JSONC |
-| REQ-007 | Preserve alignment verifier behavior | Future verifier path (`sk-code/scripts/verify_alignment_drift.py`) must remain runnable after relocation |
+| REQ-006 | Preserve current OpenCode standards capability | `sk-code` OpenCode route covers JS, TS, Python, Shell, and JSON/JSONC |
+| REQ-007 | Preserve alignment verifier behavior | Verifier path (`sk-code/scripts/verify_alignment_drift.py`) remains runnable after relocation |
 | REQ-008 | Rewrite the baseline/overlay contract | Agents and review skills stop requiring one `sk-code-*` overlay when only one `sk-code` remains |
 | REQ-009 | Update skill advisor routing | Advisor fixtures, scoring lanes, skill graph, and hook tests no longer emit `sk-code-opencode` as a live skill |
 | REQ-010 | Document end-user multi-stack pattern | `sk-code` docs explain that a multi-stack skill is made by adding a surface route inside `sk-code`, using this merger as the example |
@@ -147,14 +146,14 @@ Create an implementation-ready plan that explains what must change, what must be
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The plan identifies `sk-code-opencode` as a first-class route to merge into `sk-code`, not as a sibling overlay to keep.
-- **SC-002**: The plan identifies Go and React/NextJS removal surfaces: `references/go`, `assets/go`, `references/nextjs`, `assets/nextjs`, and router references in `SKILL.md`, `README.md`, and `references/router/*`.
+- **SC-001**: `sk-code-opencode` is merged into `sk-code` as a first-class OpenCode route, not kept as a sibling overlay.
+- **SC-002**: Go and React/NextJS removal surfaces are removed from `sk-code` live router/resource branches.
 - **SC-003**: The resource map lists exact active file paths found by analysis, including commands, agents, skill advisor code/tests, docs, and skill files.
-- **SC-004**: The packet does not modify runtime skill, command, agent, advisor, or README files.
-- **SC-005**: **Given** a future implementer starts from this packet, **When** they open `resource-map.md`, **Then** they can see every planned path category before editing.
-- **SC-006**: **Given** a future implementer removes `sk-code-opencode`, **When** they run exact reference search, **Then** no live references to the removed skill remain outside intentional historical artifacts.
-- **SC-007**: **Given** a future implementer removes Go/React branches, **When** they inspect `sk-code`, **Then** stack detection no longer routes `GO` or `NEXTJS`.
-- **SC-008**: **Given** a future implementer updates skill advisor tests, **When** hook/advisor tests run, **Then** expected skill labels align to the new `sk-code` route.
+- **SC-004**: Runtime skill, command, agent, advisor, and README files are modified only under the approved implementation scope.
+- **SC-005**: **Given** a reviewer opens `resource-map.md`, **When** they audit the change, **Then** they can see every planned path category and follow-up state.
+- **SC-006**: **Given** exact reference search runs after deletion, **Then** no live references to the removed skill remain outside intentional historical artifacts.
+- **SC-007**: **Given** Go or NextJS markers appear, **When** `sk-code` is inspected, **Then** stack detection no longer claims those placeholder branches as supported.
+- **SC-008**: **Given** hook/advisor tests run, **Then** expected skill labels align to the new `sk-code` route.
 - **SC-009**: **Given** an end user reads `sk-code`, **When** they want a multi-stack skill, **Then** they see the pattern: add resource domains and routing branches inside `sk-code`, rather than creating sibling `sk-code-*` skills.
 - **SC-010**: **Given** generated metadata references old skill IDs, **When** implementation completes, **Then** generated graphs/descriptions are refreshed or intentionally marked historical.
 <!-- /ANCHOR:success-criteria -->
@@ -169,7 +168,7 @@ Create an implementation-ready plan that explains what must change, what must be
 | Dependency | Skill advisor scorer and fixtures | Routing may keep recommending deleted `sk-code-opencode` | Update scorer lanes, skill graph, fixtures, hook tests, and regression cases together |
 | Dependency | Runtime agent copies | OpenCode, Claude, Codex, and Gemini agents may drift | Update all four runtime agent sets in one verification phase |
 | Dependency | `sk-code-review` overlay contract | Formal review may continue looking for a non-existent overlay | Replace baseline plus overlay language with single `sk-code` plus detected route evidence |
-| Risk | Historical changelogs and telemetry contain old names | Exact searches will still show old references | Decide whether to leave as historical, move under archive, or annotate in resource map |
+| Risk | Historical changelogs and telemetry contain old names | Exact searches will still show old references | Changelogs deleted with obsolete skill; telemetry rewritten/regenerated; remaining spec history classified |
 | Risk | Removing Go/React from `sk-code` changes agent behavior | `@code` currently treats GO/NEXTJS as supported stacks | Rewrite supported-stack docs and UNKNOWN escalation language at the same time |
 | Risk | Verifier path changes break docs | Existing docs call `.opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py` | Move script into `sk-code/scripts/` and update every command example |
 <!-- /ANCHOR:risks -->
@@ -197,11 +196,11 @@ Create an implementation-ready plan that explains what must change, what must be
 
 ### Historical Artifacts
 
-- Changelogs and generated telemetry may intentionally preserve `sk-code-opencode` as history. The implementation must classify these as `historical` or update them deliberately.
+- Changelogs and generated telemetry could preserve `sk-code-opencode` as history. This implementation deleted obsolete changelogs, rewrote/regenerated live telemetry, and classified remaining spec-history references.
 
 ### Generated Data
 
-- `skill-graph.json`, `graph-metadata.json`, descriptions, and telemetry outputs may be regenerated instead of manually patched. The implementation plan must say which.
+- `skill-graph.json`, `graph-metadata.json`, descriptions, and telemetry outputs were regenerated or patched as documented in `implementation-summary.md` and `checklist.md`.
 
 ### Multi-Runtime Drift
 
@@ -215,8 +214,8 @@ Create an implementation-ready plan that explains what must change, what must be
 |-----------|-------|----------|
 | Scope | 22/25 | Two skill trees, four runtime agent trees, commands, tests, docs, generated metadata |
 | Risk | 20/25 | Routing breakage, deleted-skill references, verification script relocation |
-| Research | 16/20 | Exact reference inventory and prior spec review needed |
-| Multi-Agent | 8/15 | Future implementation may parallelize by surface, but this packet is single-agent planning |
+| Research | 16/20 | Exact reference inventory and prior spec review required |
+| Multi-Agent | 8/15 | Implementation stayed single-agent; review used command-owned deep review |
 | Coordination | 13/15 | Skill advisor, review contract, and runtime agent docs must land together |
 | **Total** | **79/100** | **Level 3** |
 
@@ -230,7 +229,7 @@ Create an implementation-ready plan that explains what must change, what must be
 | R-002 | `@code` rejects OpenCode system code because `sk-code` still thinks only app stacks are supported | High | Medium | Add `OPENCODE` or equivalent route before removing the sibling skill |
 | R-003 | `sk-code-review` still requires an overlay | High | High | Rewrite review contract to load `sk-code-review` plus `sk-code` route evidence |
 | R-004 | Go/React placeholder branches leave stale route entries | Medium | High | Remove folders and exact route constants together |
-| R-005 | Historical refs make cleanup look incomplete | Medium | Medium | Explicitly classify archive/changelog/telemetry handling before implementation |
+| R-005 | Historical refs make cleanup look incomplete | Medium | Medium | Historical refs classified; changelog and telemetry handling completed |
 
 ---
 
@@ -256,7 +255,7 @@ Create an implementation-ready plan that explains what must change, what must be
 
 ### US-003: Reference-Safe Migration (Priority: P1)
 
-**As a** future implementer, **I want** a complete path ledger, **so that** I can update every command, agent, README, skill, advisor, and test reference without blind spots.
+**As a** maintainer, **I want** a complete path ledger, **so that** I can audit every command, agent, README, skill, advisor, and test reference without blind spots.
 
 **Acceptance Criteria**:
 1. Given the resource map, When a path mentions `sk-code-opencode` or the overlay contract, Then it is classified for update, removal, regeneration, or historical retention.

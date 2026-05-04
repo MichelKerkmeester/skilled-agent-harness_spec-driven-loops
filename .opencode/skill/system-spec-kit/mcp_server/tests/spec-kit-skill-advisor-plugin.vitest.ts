@@ -24,7 +24,7 @@ const LEGACY_OPENCODE_LIFECYCLE_KEYS = [
   'onSessionEnd',
 ] as const;
 
-function bridgeResponse(brief = 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.') {
+function bridgeResponse(brief = 'Advisor: live; use sk-code 0.91/0.23 pass.') {
   return JSON.stringify({
     brief,
     status: brief ? 'ok' : 'skipped',
@@ -35,7 +35,7 @@ function bridgeResponse(brief = 'Advisor: live; use sk-code-opencode 0.91/0.23 p
       subprocessInvoked: true,
       recommendationCount: brief ? 1 : 0,
       tokenCap: 80,
-      skillLabel: brief ? 'sk-code-opencode' : null,
+      skillLabel: brief ? 'sk-code' : null,
     },
   });
 }
@@ -151,7 +151,7 @@ describe('Spec Kit skill advisor OpenCode plugin', () => {
     const result = await runPrompt(hooks, { prompt: 'implement feature X' });
 
     expect(result.output.system).toHaveLength(1);
-    expect(result.output.system[0]).toContain('sk-code-opencode');
+    expect(result.output.system[0]).toContain('sk-code');
   });
 
   it('does not push context when advisor returns an empty brief', async () => {
@@ -199,7 +199,7 @@ describe('Spec Kit skill advisor OpenCode plugin', () => {
     await vi.runOnlyPendingTimersAsync();
     const third = await thirdPromise;
 
-    expect(first.additionalContext).toContain('sk-code-opencode');
+    expect(first.additionalContext).toContain('sk-code');
     expect(second.additionalContext).toBe(first.additionalContext);
     expect(third.additionalContext).toBe(first.additionalContext);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
@@ -454,13 +454,13 @@ describe('Spec Kit skill advisor OpenCode plugin', () => {
     const nullSystemOutput: Record<string, unknown> = { system: null };
 
     await expect(runPrompt(hooks, { prompt: 'implement feature X' }, missingSystemOutput)).resolves.toEqual(
-      expect.objectContaining({ additionalContext: expect.stringContaining('sk-code-opencode') }),
+      expect.objectContaining({ additionalContext: expect.stringContaining('sk-code') }),
     );
     await expect(runPrompt(hooks, { prompt: 'review architecture Y' }, nullSystemOutput)).resolves.toEqual(
-      expect.objectContaining({ additionalContext: expect.stringContaining('sk-code-opencode') }),
+      expect.objectContaining({ additionalContext: expect.stringContaining('sk-code') }),
     );
-    expect(missingSystemOutput.system).toEqual([expect.stringContaining('sk-code-opencode')]);
-    expect(nullSystemOutput.system).toEqual([expect.stringContaining('sk-code-opencode')]);
+    expect(missingSystemOutput.system).toEqual([expect.stringContaining('sk-code')]);
+    expect(nullSystemOutput.system).toEqual([expect.stringContaining('sk-code')]);
   });
 
   it('normalizes object session IDs into deterministic string cache keys', async () => {
@@ -514,7 +514,7 @@ describe('Spec Kit skill advisor OpenCode plugin', () => {
     );
 
     expect(results.map((result) => result.additionalContext)).toEqual(
-      Array.from({ length: 5 }, () => expect.stringContaining('sk-code-opencode')),
+      Array.from({ length: 5 }, () => expect.stringContaining('sk-code')),
     );
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
@@ -634,8 +634,8 @@ describe('Spec Kit skill advisor OpenCode plugin', () => {
     const secondA = await runPrompt(hooksA, { prompt: 'implement feature X' });
     const secondB = await runPrompt(hooksB, { prompt: 'implement feature X' });
 
-    expect(firstA.additionalContext).toContain('sk-code-opencode');
-    expect(firstB.additionalContext).toContain('sk-code-opencode');
+    expect(firstA.additionalContext).toContain('sk-code');
+    expect(firstB.additionalContext).toContain('sk-code');
     expect(secondA.additionalContext).toBe(firstA.additionalContext);
     expect(secondB.additionalContext).toBe(firstB.additionalContext);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);

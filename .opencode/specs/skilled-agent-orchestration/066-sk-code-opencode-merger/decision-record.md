@@ -9,12 +9,11 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/066-sk-code-opencode-merger"
-    last_updated_at: "2026-05-03T15:00:00Z"
-    last_updated_by: "multi-ai-council"
-    recent_action: "ADR updated with final route name, two-axis detection, and artifact decisions"
-    next_safe_action: "Confirm decision before implementation"
-    blockers:
-      - "Decision remains proposed until implementation approval"
+    last_updated_at: "2026-05-03T21:45:00Z"
+    last_updated_by: "opencode"
+    recent_action: "ADR accepted and implementation completed"
+    next_safe_action: "Review remediation diff and rerun targeted validation"
+    blockers: []
     key_files:
       - ".opencode/skill/sk-code/SKILL.md"
       - ".opencode/skill/sk-code-opencode/SKILL.md"
@@ -22,7 +21,7 @@ _memory:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660664"
       session_id: "066-sk-code-opencode-merger-plan"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "One `sk-code` is the desired user-facing end state."
@@ -45,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed (deep-analysis complete, route name and detection architecture resolved) |
+| **Status** | Accepted and implemented |
 | **Date** | 2026-05-03 |
 | **Deciders** | User, maintainer |
 
@@ -60,9 +59,9 @@ The existing sibling model leaks across the repository. Agents, commands, review
 
 ### Constraints
 
-- The current turn is plan-only. No implementation edits outside the spec folder.
+- Initial planning was plan-only; implementation was later approved and completed under this packet.
 - The merge must preserve OpenCode standards for JavaScript, TypeScript, Python, Shell, and JSON/JSONC.
-- The Go and React/NextJS branches in `sk-code` are placeholder content and should be removed.
+- The Go and React/NextJS branches in `sk-code` were placeholder content and were removed.
 - Runtime agents exist in OpenCode, Claude, Codex, and Gemini variants.
 <!-- /ANCHOR:adr-001-context -->
 

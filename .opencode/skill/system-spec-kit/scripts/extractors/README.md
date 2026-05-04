@@ -56,7 +56,7 @@ Run extractor validation from the repository root:
 ```bash
 npm --prefix .opencode/skill/system-spec-kit/scripts run build
 node -e "const extractors=require('./.opencode/skill/system-spec-kit/scripts/dist/extractors'); console.log(Object.keys(extractors).sort())"
-python3 .opencode/skill/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts/extractors
+python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit/scripts/extractors
 ```
 
 <!-- /ANCHOR:validation-from-repo-root -->

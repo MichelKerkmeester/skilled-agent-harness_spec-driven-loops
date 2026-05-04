@@ -24,7 +24,7 @@ permission:
 
 Executes ONE review iteration within an autonomous review loop: read externalized state, review one focused dimension, produce P0/P1/P2 findings with file:line evidence, record edge cases and integration touchpoints, and update state for the next iteration.
 
-**Path Convention**: Use only `.opencode/agent/*.md` as the canonical runtime path reference.
+**Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/spec_kit:deep-review` and dispatches this agent once per iteration.
 
@@ -243,7 +243,7 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Coc
 | Skill | Purpose |
 |-------|---------|
 | `sk-code-review` | Shared review doctrine via `references/review_core.md` |
-| `sk-code-opencode` / `sk-code` | Stack-specific overlay |
+| `sk-code` | Router-selected standards evidence |
 
 ### Caller + Command Integrations
 

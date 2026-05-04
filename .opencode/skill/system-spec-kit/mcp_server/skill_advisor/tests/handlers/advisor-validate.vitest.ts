@@ -52,7 +52,7 @@ describe('advisor_validate handler', () => {
       [
         '{"timestamp":"2026-04-24T10:08:00.000Z","runtime":"codex","outcome":"accepted","skillLabel":"system-spec-kit"}',
         '{"timestamp":"2026-04-24T10:08:01.000Z","runtime":"codex","outcome"',
-        '{"timestamp":"2026-04-24T10:08:02.000Z","runtime":"codex","outcome":"corrected","skillLabel":"system-spec-kit","correctedSkillLabel":"sk-code-opencode"}',
+        '{"timestamp":"2026-04-24T10:08:02.000Z","runtime":"codex","outcome":"corrected","skillLabel":"system-spec-kit","correctedSkillLabel":"sk-code"}',
         '{"timestamp":"2026-04-24T10:08:03.000Z","runtime":"codex","outcome":"mystery","skillLabel":"system-spec-kit"}',
       ].join('\n'),
       'utf8',

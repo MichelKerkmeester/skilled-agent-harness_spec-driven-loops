@@ -217,7 +217,7 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'cli-codex' && /\b\.codex\/agents\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'sk-code-opencode' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
+  if (skillId === 'sk-code' && /\bgate-3-classifier\.ts\b/.test(promptLower)) {
     return true;
   }
   return false;
@@ -244,11 +244,11 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   }
   if (DEEP_RESEARCH_CYCLE.test(promptLower)) {
     if (recommendation.skill === 'sk-deep-research') return R.deepResearchCycleSkDeepResearchBonus;
-    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code-review' || recommendation.skill === 'sk-code-opencode') return R.deepResearchCycleOtherSkillsPenalty;
+    if (recommendation.skill === 'system-spec-kit' || recommendation.skill === 'sk-code-review' || recommendation.skill === 'sk-code') return R.deepResearchCycleOtherSkillsPenalty;
   }
   if (/\b(compare|audit|review)\b/.test(promptLower) && /\b(classifier|vocabulary|prose|implementation|agents\.md|drift|mismatch)\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code-review') return R.compareAuditCodeReviewBonus;
-    if (recommendation.skill === 'sk-code-opencode') return R.compareAuditCodeOpenCodePenalty;
+    if (recommendation.skill === 'sk-code') return R.compareAuditCodeOpenCodePenalty;
   }
   if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;

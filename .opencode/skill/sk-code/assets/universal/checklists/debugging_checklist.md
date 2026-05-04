@@ -3,19 +3,19 @@ title: Universal Debugging Checklist
 description: Stack-agnostic 4-phase debugging workflow checklist for any non-trivial debugging session.
 ---
 
-# Universal Debugging Checklist - Stack-Agnostic 4-Phase Workflow
+# Universal Debugging Checklist - Surface-Agnostic 4-Phase Workflow
 
-Stack-agnostic 4-phase debugging workflow. Use as a structured progression for any non-trivial debugging session across the WEBFLOW, NEXTJS, and GO stacks.
+Surface-agnostic 4-phase debugging workflow. Use as a structured progression for any non-trivial debugging session across the WEBFLOW and OPENCODE surfaces.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Captures the universal debugging protocol that applies regardless of stack: reproduce reliably, identify root cause, test one hypothesis at a time, fix at source. Stack-specific tooling (Chrome DevTools for WEBFLOW, React DevTools for NEXTJS, dlv for GO) is referenced from each stack's debugging docs — this checklist enforces the discipline that wraps those tools.
+Captures the universal debugging protocol that applies regardless of surface: reproduce reliably, identify root cause, test one hypothesis at a time, fix at source. Surface-specific tooling (Chrome DevTools for WEBFLOW, package/script diagnostics for OPENCODE) is referenced from each surface's debugging docs.
 
 ### Usage
 
-Walk this checklist top-to-bottom on any debugging session that survives more than two trivial fixes. Mark items `[x]` as you complete them and reference the stack-specific debugging workflow doc when you reach Phase 1's tool-selection step. Stop at the three-strike rule (Section 2.3) when three hypotheses fail.
+Walk this checklist top-to-bottom on any debugging session that survives more than two trivial fixes. Mark items `[x]` as you complete them and reference the surface-specific debugging workflow doc when you reach Phase 1's tool-selection step. Stop at the three-strike rule (Section 2.3) when three hypotheses fail.
 
 ---
 
@@ -54,14 +54,13 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 
 ---
 
-## 3. STACK-SPECIFIC DEBUG TOOLING
+## 3. SURFACE-SPECIFIC DEBUG TOOLING
 
-| Stack | Primary tool | Reference |
+| Surface | Primary tool | Reference |
 |---|---|---|
 | WEBFLOW | Chrome DevTools (Console + Network + Performance) | `references/webflow/debugging/debugging_workflows.md` |
-| NEXTJS | React DevTools, browser console, error boundaries (stub) | `references/nextjs/debugging/debugging_workflows.md` |
-| GO | `dlv debug`, `go test -run X -v`, `slog`, `pprof` (stub) | `references/go/debugging/debugging_workflows.md` |
-| UNKNOWN | Disambiguation prompt — sk-code does not own Node.js / React Native / Swift / other stacks | n/a |
+| OPENCODE | Targeted tests, package typecheck/build, `verify_alignment_drift.py` | `references/opencode/shared/alignment_verification_automation.md` |
+| UNKNOWN | Disambiguation prompt — sk-code does not own Go / React Native / Swift / React/Next.js / generic Node.js | n/a |
 
 ---
 
@@ -82,5 +81,4 @@ Walk this checklist top-to-bottom on any debugging session that survives more th
 - `references/universal/error_recovery.md` — universal recover-in-place / rollback / escalate decision tree.
 - `assets/universal/checklists/verification_checklist.md` — runs after debugging completes, before any "done" claim.
 - `references/webflow/debugging/debugging_workflows.md` — WEBFLOW deep-dive (DevTools workflows, network capture, multi-viewport).
-- `references/nextjs/debugging/debugging_workflows.md` — NEXTJS stub (Server vs Client Component bugs, hydration mismatches).
-- `references/go/debugging/debugging_workflows.md` — GO stub (dlv, slog, race detector, pprof).
+- `references/opencode/shared/alignment_verification_automation.md` — OPENCODE alignment diagnostics.

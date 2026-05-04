@@ -1322,8 +1322,8 @@ INTENT_BOOSTERS = {
     "template": ("sk-doc", 0.4),
 
     # ─────────────────────────────────────────────────────────────────
-    # SK-CODE: Smart-routing umbrella for application code
-    # (web/Webflow + multi-stack: React, Next, Node, Go, Swift, RN)
+    # SK-CODE: Surface-aware code router
+    # (WEBFLOW frontend + OPENCODE system code)
     # ─────────────────────────────────────────────────────────────────
     "a11y": ("sk-code", 0.6),
     "accessibility": ("sk-code", 0.6),
@@ -1342,42 +1342,30 @@ INTENT_BOOSTERS = {
     "tracing": ("sk-code", 0.5),
     "verification": ("sk-code", 0.5),
     "wcag": ("sk-code", 0.5),
-    # Stack keywords (web + multi-stack umbrella):
-    "react": ("sk-code", 1.4),
-    "nextjs": ("sk-code", 1.4),
-    "swift": ("sk-code", 1.6),
-    "swiftui": ("sk-code", 1.6),
-    "golang": ("sk-code", 1.6),
-    "nodejs": ("sk-code", 1.2),
-    "express": ("sk-code", 1.0),
-    "fastify": ("sk-code", 1.0),
+    # WEBFLOW route keywords:
     "expo": ("sk-code", 1.4),
     "webflow": ("sk-code", 1.8),
-    "service": ("sk-code", 0.6),
-    "handler": ("sk-code", 0.5),
-    "endpoint": ("sk-code", 0.5),
     "component": ("sk-code", 0.5),
-    "stack": ("sk-code", 0.4),
     "feature": ("sk-code", 0.4),
     "test": ("sk-code", 0.3),
 
     # ─────────────────────────────────────────────────────────────────
-    # SK-CODE--OPENCODE: OpenCode system code standards
+    # SK-CODE / OPENCODE route: OpenCode system code standards
     # (JavaScript MCP, Python scripts, Shell scripts, JSONC configs)
     # ─────────────────────────────────────────────────────────────────
-    "opencode": ("sk-code-opencode", 2.0),
-    "mcp": ("sk-code-opencode", 1.5),
-    "python": ("sk-code-opencode", 1.0),
-    "shell": ("sk-code-opencode", 1.0),
-    "bash": ("sk-code-opencode", 1.0),
-    "jsonc": ("sk-code-opencode", 1.5),
-    "shebang": ("sk-code-opencode", 1.2),
-    "snake_case": ("sk-code-opencode", 1.0),
-    "docstring": ("sk-code-opencode", 0.8),
-    "jsdoc": ("sk-code-opencode", 0.8),
-    "commonjs": ("sk-code-opencode", 1.0),
-    "require": ("sk-code-opencode", 0.6),
-    "strict": ("sk-code-opencode", 0.5),
+    "opencode": ("sk-code", 2.0),
+    "mcp": ("sk-code", 1.5),
+    "python": ("sk-code", 1.0),
+    "shell": ("sk-code", 1.0),
+    "bash": ("sk-code", 1.0),
+    "jsonc": ("sk-code", 1.5),
+    "shebang": ("sk-code", 1.2),
+    "snake_case": ("sk-code", 1.0),
+    "docstring": ("sk-code", 0.8),
+    "jsdoc": ("sk-code", 0.8),
+    "commonjs": ("sk-code", 1.0),
+    "require": ("sk-code", 0.6),
+    "strict": ("sk-code", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
     # CLI-GEMINI: Cross-AI orchestration via Gemini CLI
@@ -1412,7 +1400,7 @@ INTENT_BOOSTERS = {
     "site": ("mcp-code-mode", 0.6),
     "sites": ("mcp-code-mode", 0.6),
     "toolchain": ("mcp-code-mode", 0.6),
-    "typescript": ("sk-code-opencode", 0.8),
+    "typescript": ("sk-code", 0.8),
     "utcp": ("mcp-code-mode", 0.8),
     "webflow": ("mcp-code-mode", 2.5),
 
@@ -1450,21 +1438,21 @@ MULTI_SKILL_BOOSTERS = {
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
     "discover": [("mcp-coco-index", 0.5)],
     "css": [("sk-code", 0.6), ("mcp-chrome-devtools", 0.3)],
-    "code": [("sk-code", 0.2), ("sk-code-opencode", 0.1)],
+    "code": [("sk-code", 0.3)],
     "context": [("system-spec-kit", 0.4)],
     "deployment": [("sk-code", 0.4), ("sk-git", 0.3)],
     "export": [("mcp-figma", 0.3), ("mcp-chrome-devtools", 0.2)],
     "handler": [("sk-code", 0.3), ("mcp-code-mode", 0.2)],
     "layout": [("sk-code", 0.5), ("mcp-chrome-devtools", 0.2)],
     "mobile": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
-    "mcp": [("mcp-code-mode", 0.3), ("sk-code-opencode", 0.4)],
+    "mcp": [("mcp-code-mode", 0.3), ("sk-code", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("sk-code", 0.2)],
     "save": [("system-spec-kit", 0.4), ("sk-git", 0.2)],
-    "script": [("sk-code-opencode", 0.4)],
-    "server": [("sk-code-opencode", 0.3), ("mcp-code-mode", 0.2)],
+    "script": [("sk-code", 0.4)],
+    "server": [("sk-code", 0.3), ("mcp-code-mode", 0.2)],
     "session": [("system-spec-kit", 0.5)],
-    "standards": [("sk-code-opencode", 0.4), ("sk-code", 0.2)],
-    "style": [("sk-code-opencode", 0.2), ("sk-code", 0.4)],
+    "standards": [("sk-code", 0.6)],
+    "style": [("sk-code", 0.5)],
     "task": [("system-spec-kit", 0.3)],
     "test": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code", 0.2)],
@@ -1623,13 +1611,12 @@ PHRASE_INTENT_BOOSTERS = {
     ":review:auto": [("sk-deep-review", 3.0)],
     ":review:confirm": [("sk-deep-review", 3.0)],
     "figma css": [("mcp-figma", 0.8), ("sk-code", 0.4)],
-    "mcp server code": [("sk-code-opencode", 1.8)],
-    "system code style guidance": [("sk-code-opencode", 1.7)],
-    "python shell json standards": [("sk-code-opencode", 1.9)],
+    "mcp server code": [("sk-code", 1.8)],
+    "system code style guidance": [("sk-code", 1.7)],
+    "python shell json standards": [("sk-code", 1.9)],
     "full stack development workflow": [("sk-code", 2.1)],
     "implementation testing verification flow": [("sk-code", 1.8)],
     "detect project stack automatically": [("sk-code", 1.6)],
-    "full stack typescript": [("sk-code-opencode", 0.8)],
     "sk-code-review": [("sk-code-review", 2.8)],
     "/sk-code-review": [("sk-code-review", 2.8)],
     ".opencode/skill/sk-code-review": [("sk-code-review", 3.0)],

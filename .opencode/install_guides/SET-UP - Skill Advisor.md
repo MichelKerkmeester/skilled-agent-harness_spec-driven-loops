@@ -38,6 +38,18 @@ Steps:
 
 ## 1. PREREQUISITES
 
+**Fresh clone setup (run these FIRST):**
+
+```bash
+# 1. Install MCP server dependencies (no package-lock.json is committed; install resolves latest compatible versions)
+npm --prefix .opencode/skill/system-spec-kit/mcp_server install
+
+# 2. Build dist/ (compiled output the runtime loads)
+npm --prefix .opencode/skill/system-spec-kit/mcp_server run build
+```
+
+**Verification checks (after build):**
+
 | Requirement | Check |
 | --- | --- |
 | At least one skill exists | `ls .opencode/skill/*/SKILL.md` returns paths |
@@ -45,11 +57,32 @@ Steps:
 | `skill_graph_scan` available | Tool appears in your AI client's tool list |
 | Baseline tests pass | `npm --prefix .opencode/skill/system-spec-kit/mcp_server test -- skill_advisor` is green |
 
-**Build first if needed:**
-```bash
-npm --prefix .opencode/skill/system-spec-kit/mcp_server install
-npm --prefix .opencode/skill/system-spec-kit/mcp_server run build
-```
+---
+
+## 1.5 QUICK TUNING (no rebuild required) — recommended for external clones
+
+Most "tweak it to match my setup" needs are signal additions, not lane-weight changes. The simple path is:
+
+1. **Edit `intent_signals`** in the per-skill `graph-metadata.json`:
+   ```bash
+   # Example: add a code-work signal to sk-code
+   $EDITOR .opencode/skill/sk-code/graph-metadata.json
+   # Append phrases like "throw on missing", "add a flag" to the intent_signals array
+   ```
+2. **Re-index the SQLite graph** (REQUIRED — without this, signal edits have ZERO effect on routing):
+   - Via your AI client's MCP tool list: call `skill_graph_scan({})`
+   - Or via Python compatibility: `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py --export-json --pretty` then call `skill_graph_scan({})`
+3. **Verify**: query `advisor_recommend({ prompt: "your test phrase", options: { topK: 3 } })` — your skill should now appear.
+
+**Why this is the recommended path for external users:**
+- No TypeScript editing
+- No `npm run build` cycle
+- Instant feedback (re-index is < 1 second)
+- Skill-local: edits only affect the skill you touch, no risk to other skills
+
+The full `/doctor:skill-advisor` workflow (Section 2 below) is for batch optimization across all skills + lane-weight tuning. Use it after large repo restructures or when adding 5+ new skills.
+
+> **Critical**: The advisor reads scoring inputs from `.opencode/skill/system-spec-kit/mcp_server/database/skill-graph.sqlite`, NOT from `graph-metadata.json` directly. Editing JSON without running `skill_graph_scan` will produce identical pre-edit scores.
 
 ---
 
@@ -80,9 +113,11 @@ The command rebuilds `dist/`, runs `skill_graph_scan`, and runs the advisor test
 **Mutates only:**
 - `lib/scorer/lanes/explicit.ts` (TOKEN_BOOSTS, PHRASE_BOOSTS)
 - `lib/scorer/lanes/lexical.ts` (CATEGORY_HINTS)
-- `.opencode/skill/<name>/graph-metadata.json` (derived.triggers, derived.keywords)
+- `.opencode/skill/<name>/graph-metadata.json` (`intent_signals` array, `derived.trigger_phrases`, `derived.key_topics`)
 
 **Never touches:** any `SKILL.md` content, `weights-config.ts`, fusion scorer, daemon code.
+
+> **Indexing follow-up**: After Phase 3 mutates these files, the doctor command runs `advisor_rebuild` + `skill_graph_scan` automatically. If you edit any of these files MANUALLY (e.g. via the Quick Tuning recipe in §1.5), you MUST call `skill_graph_scan({})` yourself — the SQLite graph is the runtime source of truth.
 
 ---
 
@@ -144,6 +179,8 @@ npm --prefix .opencode/skill/system-spec-kit/mcp_server run build
 | Tests fail after apply | Rollback, then re-run with `--scope=derived` only |
 | Command not found | Verify `.opencode/command/doctor/skill-advisor.md` exists; restart your AI client |
 | Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` |
+| Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
+| `skill_graph_scan` reports `scannedFiles: 20, indexedFiles: 18` | Normal — the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding, not real skills). The 18 is your real skill count. |
 | Cannot parse `explicit.ts` | `git restore --source=HEAD -- .opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` (restores from HEAD without affecting unrelated WIP) |
 | MCP server missing | `npm --prefix .opencode/skill/system-spec-kit/mcp_server install && npm run build` |
 

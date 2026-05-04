@@ -125,7 +125,7 @@ describe('smart-router telemetry recording', () => {
 
     const record = recordSmartRouterCompliance({
       promptId: 'prompt-1',
-      selectedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
       predictedRoute: ['TYPESCRIPT'],
       allowedResources: ['always:references/shared/universal_patterns.md'],
       actualReads: ['references/shared/universal_patterns.md'],
@@ -169,7 +169,7 @@ describe('smart-router telemetry recording', () => {
 
     const record = recordSmartRouterCompliance({
       promptId: 'prompt-4',
-      selectedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
       predictedRoute: ['SHELL'],
       allowedResources: ['always:references/shell/style_guide.md\nbad'],
       actualReads: ['references/shell/style_guide.md\nbad'],
@@ -189,7 +189,7 @@ describe('smart-router telemetry recording', () => {
 
     startSmartRouterCompliancePrompt({
       promptId: 'prompt-zero',
-      selectedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
       predictedRoute: ['TYPESCRIPT'],
       allowedResources: ['expected:references/typescript/style_guide.md'],
       actualReads: [],
@@ -206,7 +206,7 @@ describe('smart-router telemetry recording', () => {
     process.env[TELEMETRY_DIR_ENV] = root;
     startSmartRouterCompliancePrompt({
       promptId: 'prompt-multi',
-      selectedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
       predictedRoute: ['TYPESCRIPT'],
       allowedResources: [
         'always:references/shared/universal_patterns.md',
@@ -217,16 +217,16 @@ describe('smart-router telemetry recording', () => {
 
     recordSmartRouterPromptObservation({
       promptId: 'prompt-multi',
-      selectedSkill: 'sk-code-opencode',
-      observedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
+      observedSkill: 'sk-code',
       predictedRoute: ['TYPESCRIPT'],
       allowedResources: ['always:references/shared/universal_patterns.md'],
       actualReads: ['references/shared/universal_patterns.md'],
     });
     recordSmartRouterPromptObservation({
       promptId: 'prompt-multi',
-      selectedSkill: 'sk-code-opencode',
-      observedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
+      observedSkill: 'sk-code',
       predictedRoute: ['TYPESCRIPT'],
       allowedResources: ['conditional:references/typescript/style_guide.md'],
       actualReads: ['references/typescript/style_guide.md'],
@@ -238,14 +238,14 @@ describe('smart-router telemetry recording', () => {
       'references/shared/universal_patterns.md',
       'references/typescript/style_guide.md',
     ]);
-    expect(record?.observedSkill).toBe('sk-code-opencode');
+    expect(record?.observedSkill).toBe('sk-code');
     expect(record?.complianceClass).toBe('conditional_expected');
   });
 
   it('classifies cross-skill reads as non-compliant even when resource names match', () => {
     const record = recordSmartRouterCompliance({
       promptId: 'prompt-cross-skill',
-      selectedSkill: 'sk-code-opencode',
+      selectedSkill: 'sk-code',
       observedSkill: 'sk-doc',
       predictedRoute: ['TYPESCRIPT'],
       allowedResources: ['always:SKILL.md'],

@@ -178,7 +178,7 @@ Instructions:
 
 Do's:
 - Apply the project's sk-code baseline.
-- Layer the appropriate stack-specific sk-code-* overlay selected from codebase signals.
+- Layer `sk-code` surface-specific evidence selected from codebase signals; add `sk-code-review` for findings-first review output.
 
 Don'ts:
 - Do not propose fixes — leave that for a follow-up dispatch.
@@ -449,4 +449,3 @@ and feeds it to generate-context.js.
 - `../references/opencode_tools.md` - Unique value props
 - `./prompt_quality_card.md` - Framework selection and CLEAR check
 - `../SKILL.md` - Smart router pseudocode
-

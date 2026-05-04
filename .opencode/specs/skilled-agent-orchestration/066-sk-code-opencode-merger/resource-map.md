@@ -1,6 +1,6 @@
 ---
 title: "Resource Map: sk-code-opencode-merger"
-description: "Path ledger for the plan-only sk-code-opencode into sk-code merger analysis."
+description: "Path ledger for the implemented sk-code-opencode into sk-code merger and review follow-up."
 trigger_phrases:
   - "resource map"
   - "sk-code-opencode merger paths"
@@ -10,21 +10,20 @@ contextType: "resource-map"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/066-sk-code-opencode-merger"
-    last_updated_at: "2026-05-03T15:00:00Z"
-    last_updated_by: "multi-ai-council"
-    recent_action: "Deep-analysis session resolved all open questions; deletion/regeneration decisions documented"
-    next_safe_action: "Await implementation approval"
-    blockers:
-      - "Implementation not approved"
+    last_updated_at: "2026-05-03T21:45:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Implementation completed and 7-iteration deep review produced remediation follow-up"
+    next_safe_action: "Review remediation diff and rerun targeted validation"
+    blockers: []
     key_files:
       - ".opencode/skill/sk-code/SKILL.md"
-      - ".opencode/skill/sk-code-opencode/SKILL.md"
-      - ".opencode/barter/sk-code/SKILL.md"
+      - ".opencode/skill/sk-code/references/opencode/"
+      - ".opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml"
     session_dedup:
       fingerprint: "sha256:0660660660660660660660660660660660660660660660660660660660660666"
       session_id: "066-sk-code-opencode-merger-plan"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Resource map created."
@@ -45,7 +44,7 @@ _memory:
 - **Total references**: 161 path entries
 - **By category**: READMEs=8, Documents=3, Commands=5, Agents=20, Skills=83, Specs=7, Scripts=2, Tests=28, Config=3, Meta=2
 - **Missing on disk**: 0
-- **Scope**: active non-archived paths analyzed for the future `sk-code-opencode` into `sk-code` merger; historical archived specs and scratch outputs were excluded from the active rewrite list
+- **Scope**: active non-archived paths analyzed for the implemented `sk-code-opencode` into `sk-code` merger; historical archived specs and scratch outputs were excluded from the active rewrite list
 - **Generated**: 2026-05-03T13:04:06+02:00
 
 Action vocabulary: `Created`, `Updated`, `Analyzed`, `Removed`, `Cited`, `Validated`, `Moved`, `Renamed`.
@@ -63,7 +62,7 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Analyzed | OK | Mentions `sk-code-opencode` and old skill counts |
 | `.opencode/skill/README.md` | Analyzed | OK | Skill inventory and code quality overlay narrative |
 | `.opencode/skill/sk-code/README.md` | Analyzed | OK | Says `sk-code-opencode` is a sibling, not subsumed |
-| `.opencode/skill/sk-code-opencode/README.md` | Analyzed | OK | Source README to merge, move, or archive |
+| `.opencode/skill/sk-code-opencode/README.md` | Deleted | OK | Historical source README; content merged into sk-code (skill itself deleted) |
 | `.opencode/skill/sk-code-review/README.md` | Analyzed | OK | Baseline plus overlay contract |
 | `.opencode/skill/system-spec-kit/scripts/extractors/README.md` | Analyzed | OK | Verifier path example points at old skill |
 | `.opencode/skill/system-spec-kit/scripts/loaders/README.md` | Analyzed | OK | Verifier path example points at old skill |
@@ -187,9 +186,9 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 | `.opencode/skill/sk-code/assets/nextjs/patterns/motion_v12_pattern.tsx` | Removed | OK | Future deletion candidate |
 | `.opencode/skill/sk-code/assets/nextjs/patterns/server_action_pattern.tsx` | Removed | OK | Future deletion candidate |
 | `.opencode/skill/sk-code/assets/nextjs/patterns/vanilla_extract_recipe.css.ts` | Removed | OK | Future deletion candidate |
-| `.opencode/skill/sk-code-opencode/SKILL.md` | Moved | OK | Source skill instructions to merge into `sk-code` |
-| `.opencode/skill/sk-code-opencode/README.md` | Moved | OK | Source README to merge or archive |
-| `.opencode/skill/sk-code-opencode/graph-metadata.json` | Moved | OK | Regenerate under `sk-code` or archive |
+| `.opencode/skill/sk-code-opencode/SKILL.md` | Deleted | OK | Historical input — content merged into sk-code SKILL.md |
+| `.opencode/skill/sk-code-opencode/README.md` | Deleted | OK | Historical input — content merged into sk-code README.md |
+| `.opencode/skill/sk-code-opencode/graph-metadata.json` | Deleted | OK | Historical input — regenerated under sk-code |
 | `.opencode/skill/sk-code-opencode/references/shared/universal_patterns.md` | Moved | OK | OpenCode universal patterns |
 | `.opencode/skill/sk-code-opencode/references/shared/code_organization.md` | Moved | OK | OpenCode organization guidance |
 | `.opencode/skill/sk-code-opencode/references/shared/hooks.md` | Moved | OK | Runtime hook guidance |
@@ -237,10 +236,10 @@ Status vocabulary: `OK`, `MISSING`, `PLANNED`.
 |------|--------|--------|------|
 | `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/spec.md` | Created | OK | This planning spec |
 | `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/plan.md` | Created | OK | This implementation plan |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/tasks.md` | Created | OK | Future task list |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md` | Created | OK | Verification checklist |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md` | Created | OK | ADR |
-| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md` | Created | OK | Planning-only summary |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/tasks.md` | Created | OK | Implementation task list (all 34 tasks complete) |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/checklist.md` | Created | OK | Verification checklist (30/30 items verified) |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/decision-record.md` | Created | OK | ADR — accepted and implemented |
+| `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/implementation-summary.md` | Created | OK | Post-implementation summary (completion_pct=100) |
 | `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md` | Created | OK | This resource map |
 <!-- /ANCHOR:specs -->
 

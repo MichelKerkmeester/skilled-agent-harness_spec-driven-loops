@@ -62,7 +62,7 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | Skill | Domain | Use When | Key Features |
 | --- | --- | --- | --- |
 | `system-spec-kit` | Documentation | Preserving context and decisions | Spec folders, memory, context saves |
-| `sk-code-*` | Code standards | Council seats need coding guidance | Language-specific quality checklists |
+| `sk-code` | Code standards | Council seats need coding guidance | Router-selected checklists |
 | `cli-codex` | External AI vantage | Need code-generation, refactoring, or implementation-plan contrast | Codex-style implementation scrutiny |
 | `cli-copilot` | External AI vantage | Need GitHub workflow, repo-practicality, or implementation handoff perspective | Copilot-style pragmatic planning |
 | `cli-gemini` | External AI vantage | Need broad research framing, alternatives, or ecosystem context | Gemini-style breadth and search-oriented thinking |

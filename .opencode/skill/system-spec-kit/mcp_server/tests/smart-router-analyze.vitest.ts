@@ -25,7 +25,7 @@ function tempRoot(): string {
 function record(overrides: Partial<ComplianceRecord>): ComplianceRecord {
   return {
     promptId: 'p1',
-    selectedSkill: 'sk-code-opencode',
+    selectedSkill: 'sk-code',
     predictedRoute: ['TYPESCRIPT'],
     allowedResources: ['always:references/shared/universal_patterns.md'],
     actualReads: ['references/shared/universal_patterns.md'],
@@ -67,7 +67,7 @@ describe('smart-router telemetry analyzer', () => {
 
     expect(analysis.totalRecords).toBe(4);
     expect(analysis.classDistribution.extra).toBe(1);
-    expect(analysis.perSkill.find((row) => row.skill === 'sk-code-opencode')?.overloadRate).toBe(0.5);
+    expect(analysis.perSkill.find((row) => row.skill === 'sk-code')?.overloadRate).toBe(0.5);
     expect(analysis.perSkill.find((row) => row.skill === 'sk-doc')?.underloadRate).toBe(0.5);
     expect(analysis.perSkill.find((row) => row.skill === 'sk-doc')?.onDemandTriggerRate).toBe(0.5);
   });
@@ -91,8 +91,8 @@ describe('smart-router telemetry analyzer', () => {
         record({
           complianceClass: 'extra',
           actualReads: ['SKILL.md'],
-          observedSkill: 'sk-code-opencode',
-          observedSkills: ['sk-code-opencode'],
+          observedSkill: 'sk-code',
+          observedSkills: ['sk-code'],
         }),
       ],
       generatedAt: '2026-04-19T21:00:00.000Z',
@@ -145,7 +145,7 @@ describe('smart-router telemetry analyzer', () => {
 
     expect(markdown).toMatch(/^# Smart Router Telemetry Analysis Report/);
     expect(markdown).toContain('| Class | Count | Share |');
-    expect(markdown).toContain('| sk-code-opencode | 1 |');
+    expect(markdown).toContain('| sk-code | 1 |');
   });
 
   it('writes telemetry analysis markdown reports to disk', () => {

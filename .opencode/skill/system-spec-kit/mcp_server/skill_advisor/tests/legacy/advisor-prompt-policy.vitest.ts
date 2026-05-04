@@ -26,7 +26,7 @@ describe('skill advisor prompt policy', () => {
   });
 
   it('fires for explicit skill, command, and governance markers', () => {
-    expect(shouldFireAdvisor('use sk-code-opencode here')).toMatchObject({
+    expect(shouldFireAdvisor('use sk-code here')).toMatchObject({
       fire: true,
       reason: 'explicit_skill_or_governance_marker',
     });

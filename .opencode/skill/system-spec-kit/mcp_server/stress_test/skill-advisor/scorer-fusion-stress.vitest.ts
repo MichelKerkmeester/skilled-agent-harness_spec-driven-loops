@@ -37,7 +37,7 @@ describe('skill advisor scorer fusion stress behavior', () => {
   it('keeps explicit workflow evidence ahead of weaker lexical candidates', () => {
     const projection = createFixtureProjection([
       skillProjection({
-        id: 'sk-code-opencode',
+        id: 'sk-code',
         keywords: ['typescript standards', 'opencode alignment'],
         intentSignals: ['stress test alignment', 'typescript standards'],
       }),
@@ -54,7 +54,7 @@ describe('skill advisor scorer fusion stress behavior', () => {
       includeAllCandidates: true,
     });
 
-    expect(result.topSkill).toBe('sk-code-opencode');
+    expect(result.topSkill).toBe('sk-code');
     expect(result.unknown).toBe(false);
     expect(result.recommendations[0]?.dominantLane).not.toBeNull();
   });

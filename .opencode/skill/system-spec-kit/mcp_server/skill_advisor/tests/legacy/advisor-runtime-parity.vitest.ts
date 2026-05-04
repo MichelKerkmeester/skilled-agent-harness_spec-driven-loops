@@ -116,7 +116,7 @@ function makeAdvisorSubprocessChild() {
   child.kill = vi.fn();
   queueMicrotask(() => {
     child.stdout.emit('data', JSON.stringify([{
-      skill: 'sk-code-opencode',
+      skill: 'sk-code',
       confidence: 0.91,
       uncertainty: 0.1,
       passes_threshold: true,

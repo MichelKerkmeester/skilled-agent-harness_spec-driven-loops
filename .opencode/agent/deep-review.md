@@ -243,7 +243,7 @@ Use Read, Write, Edit, Grep, Glob, Bash, memory tools, code graph tools, and Coc
 | Skill | Purpose |
 |-------|---------|
 | `sk-code-review` | Shared review doctrine via `references/review_core.md` |
-| `sk-code-opencode` / `sk-code` | Stack-specific overlay |
+| `sk-code` | Router-selected standards evidence |
 
 ### Caller + Command Integrations
 

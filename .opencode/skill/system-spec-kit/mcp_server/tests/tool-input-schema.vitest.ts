@@ -725,7 +725,7 @@ describe('skill_graph schema coverage', () => {
         queryType: 'subgraph',
         skillId: 'system-spec-kit',
         sourceSkillId: 'system-spec-kit',
-        targetSkillId: 'sk-code-opencode',
+        targetSkillId: 'sk-code',
         family: 'system',
         minInbound: 2,
         depth: 2,

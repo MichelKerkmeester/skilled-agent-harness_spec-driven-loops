@@ -5,17 +5,17 @@ description: Stack-agnostic verification gate to walk before any "done", "works"
 
 # Universal Verification Checklist - The Pre-Claim Gate
 
-Stack-agnostic verification gate. Walk this checklist BEFORE making any "done", "works", "complete", or "passing" claim across WEBFLOW, NEXTJS, or GO.
+Surface-agnostic verification gate. Walk this checklist BEFORE making any "done", "works", "complete", or "passing" claim across WEBFLOW or OPENCODE.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Codifies the universal protocol that gates every completion claim in sk-code. Stack-specific commands (npm scripts for NEXTJS, go test/golangci-lint for GO, the Webflow minification scripts plus a browser matrix for WEBFLOW) are listed in Section 3 below and detailed in each stack's verification doc — this checklist enforces the discipline that wraps those commands.
+Codifies the universal protocol that gates every completion claim in sk-code. Surface-specific commands (the Webflow minification scripts plus a browser matrix for WEBFLOW, and alignment/test commands for OPENCODE) are listed in Section 3 below and detailed in each surface's verification docs.
 
 ### Usage
 
-Run the 8-step Gate Function in Section 2 in order. All `STACK_VERIFICATION_COMMANDS` for the detected stack must exit 0 (Section 3). For WEBFLOW, also walk the browser matrix in Section 4. Without evidence (Section 6), "done" is a guess — attach the evidence block to the completion claim.
+Run the 8-step Gate Function in Section 2 in order. All `SURFACE_VERIFICATION_COMMANDS` for the detected surface must exit 0 (Section 3). For WEBFLOW, also walk the browser matrix in Section 4. Without evidence (Section 6), "done" is a guess — attach the evidence block to the completion claim.
 
 ---
 
@@ -24,8 +24,8 @@ Run the 8-step Gate Function in Section 2 in order. All `STACK_VERIFICATION_COMM
 Walk these in order before claiming any status:
 
 1. [ ] **IDENTIFY** — what command/action proves this claim?
-2. [ ] **RUN** — execute the stack's verification commands (`STACK_VERIFICATION_COMMANDS`).
-3. [ ] **TEST** — for WEBFLOW: open browser; for NEXTJS / GO: run unit + integration suites.
+2. [ ] **RUN** — execute the surface's verification commands (`SURFACE_VERIFICATION_COMMANDS`).
+3. [ ] **TEST** — for WEBFLOW: open browser; for OPENCODE: run targeted unit/integration checks where available.
 4. [ ] **VERIFY** — does output match expected? Exit code 0? Test count green?
 5. [ ] **VERIFY (WEBFLOW)** — multi-viewport (mobile + desktop) + DevTools console clean.
 6. [ ] **VERIFY (CRITICAL CHANGE)** — cross-browser / cross-platform check where applicable.
@@ -34,16 +34,15 @@ Walk these in order before claiming any status:
 
 ---
 
-## 3. STACK VERIFICATION COMMANDS
+## 3. SURFACE VERIFICATION COMMANDS
 
 Run all of these from the project root. ALL must exit 0 before claiming done.
 
-| Stack | Test | Lint | Build |
+| Surface | Test | Lint | Build |
 |---|---|---|---|
 | WEBFLOW | (see browser matrix in Section 4) | n/a (style enforced via checklist) | `node scripts/minify-webflow.mjs && node scripts/verify-minification.mjs && node scripts/test-minified-runtime.mjs` |
-| NEXTJS | `npm test` (when test suite exists) | `npm run lint` | `npm run type-check && npm run build` |
-| GO | `go test ./...` (use `-race` for race detector) | `golangci-lint run` | `go build ./...` |
-| UNKNOWN | sk-code does not own this stack — surface a disambiguation prompt instead | n/a | n/a |
+| OPENCODE | Targeted tests for touched package or script | `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root <changed-path>` | Package-specific build/typecheck where available |
+| UNKNOWN | sk-code does not own this surface — surface a disambiguation prompt instead | n/a | n/a |
 
 ---
 
@@ -67,7 +66,7 @@ For the full WEBFLOW matrix and Lighthouse details: `references/webflow/verifica
 
 ## 5. UNIVERSAL PRE-CLAIM CHECKLIST
 
-- [ ] All `STACK_VERIFICATION_COMMANDS[stack]` exit 0.
+- [ ] All `SURFACE_VERIFICATION_COMMANDS[surface]` exit 0.
 - [ ] No new warnings introduced (compare to last-known-good).
 - [ ] Code Quality Gate (Phase 1.5) checklist items marked `[x]` with evidence.
 - [ ] If a regression test was added (Phase 2), it passes.
@@ -111,5 +110,4 @@ Without evidence, "done" is a guess.
 - `references/router/phase_lifecycle.md` — Phase 3 Verification position in the sk-code lifecycle.
 - `assets/universal/checklists/debugging_checklist.md` — runs before this checklist when bugs surface.
 - `references/webflow/verification/verification_workflows.md` — WEBFLOW deep-dive (browser matrix, Lighthouse, multi-viewport).
-- `references/nextjs/verification/verification_workflows.md` — NEXTJS stub (type-check + lint + build sequence).
-- `references/go/verification/verification_workflows.md` — GO stub (`go test ./...` + `golangci-lint run` + race detector).
+- `references/opencode/shared/alignment_verification_automation.md` — OPENCODE alignment verification.

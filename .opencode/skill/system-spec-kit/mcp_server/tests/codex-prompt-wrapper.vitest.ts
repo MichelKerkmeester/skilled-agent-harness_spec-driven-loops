@@ -50,18 +50,19 @@ describe('Codex prompt-wrapper fallback', () => {
     });
 
     expect(output).toEqual({
-      promptWrapper: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
-      wrappedPrompt: '<!-- advisor brief: Advisor: live; use sk-code-opencode 0.91/0.23 pass. -->\nimplement a TypeScript hook',
+      promptWrapper: 'Advisor: live; use sk-code 0.91/0.23 pass.',
+      wrappedPrompt: '<!-- advisor brief: Advisor: live; use sk-code 0.91/0.23 pass. -->\nimplement a TypeScript hook',
     });
     expect(normalizeRuntimeOutput('codex', output)).toEqual({
       runtime: 'codex',
       transport: 'prompt_wrapper',
-      additionalContext: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
+      additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
       stderrVisible: false,
     });
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {
       runtime: 'codex',
       workspaceRoot: '/workspace/project',
+      subprocessTimeoutMs: 3000,
     });
   });
 
@@ -95,7 +96,7 @@ describe('Codex prompt-wrapper fallback', () => {
   });
 
   it('uses the markdown-comment preamble format', () => {
-    expect(createCodexWrappedPrompt('hello', 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.'))
-      .toBe('<!-- advisor brief: Advisor: live; use sk-code-opencode 0.91/0.23 pass. -->\nhello');
+    expect(createCodexWrappedPrompt('hello', 'Advisor: live; use sk-code 0.91/0.23 pass.'))
+      .toBe('<!-- advisor brief: Advisor: live; use sk-code 0.91/0.23 pass. -->\nhello');
   });
 });

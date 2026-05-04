@@ -96,7 +96,7 @@ describe('Copilot UserPromptSubmitted advisor workaround', () => {
     });
     expect(written).toContain(SPEC_KIT_COPILOT_CONTEXT_BEGIN);
     expect(written).toContain('Session context received. Current state:');
-    expect(written).toContain('Advisor: live; use sk-code-opencode 0.91/0.23 pass.');
+    expect(written).toContain('Advisor: live; use sk-code 0.91/0.23 pass.');
     expect(written).toContain('Workspace: /workspace/project');
     expect(written).toContain('Copilot CLI reads custom instructions on the next submitted prompt');
     expect(written).toContain('scoped to the Workspace above');
@@ -208,7 +208,7 @@ describe('Copilot UserPromptSubmitted advisor workaround', () => {
     });
     const written = await readFile(instructionsPath, 'utf8');
 
-    expect(result?.brief).toBe('Advisor: live; use sk-code-opencode 0.91/0.23 pass.');
+    expect(result?.brief).toBe('Advisor: live; use sk-code 0.91/0.23 pass.');
     expect(diagnostics.records.join('\n')).not.toContain('secret user prompt content');
     expect(written).not.toContain('secret user prompt content');
     expect(written).toContain('[managed block marker removed]');
