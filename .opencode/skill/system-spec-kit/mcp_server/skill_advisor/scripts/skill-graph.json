@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at": "2026-05-04T07:38:19.930409+00:00",
-  "skill_count": 19,
+  "skill_count": 18,
   "families": {
     "cli": [
       "cli-claude-code",
@@ -13,8 +13,7 @@
     "mcp": [
       "mcp-chrome-devtools",
       "mcp-coco-index",
-      "mcp-code-mode",
-      "mcp-figma"
+      "mcp-code-mode"
     ],
     "sk-code": [
       "sk-code",
@@ -94,16 +93,7 @@
     },
     "mcp-code-mode": {
       "prerequisite_for": {
-        "mcp-figma": 0.9,
         "mcp-chrome-devtools": 0.7
-      }
-    },
-    "mcp-figma": {
-      "depends_on": {
-        "mcp-code-mode": 0.9
-      },
-      "enhances": {
-        "sk-code": 0.4
       }
     },
     "sk-code": {
@@ -183,7 +173,6 @@
         "mcp-chrome-devtools": 0.7,
         "mcp-coco-index": 0.7,
         "mcp-code-mode": 0.7,
-        "mcp-figma": 0.7,
         "sk-code": 0.7,
         "sk-code-review": 0.7,
         "sk-deep-research": 0.7,
@@ -246,12 +235,6 @@
       "code mode",
       "mcp tool",
       "call tool chain"
-    ],
-    "mcp-figma": [
-      "figma",
-      "design file",
-      "figma component",
-      "figma export"
     ],
     "sk-code": [
       "code work",

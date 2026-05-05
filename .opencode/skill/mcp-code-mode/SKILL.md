@@ -473,6 +473,6 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/install.sh`, `scripts/update.sh`, `scripts/validate_config.py`.
 
-Related skills: `mcp-figma` for Figma access through Code Mode and `mcp-chrome-devtools` for browser debugging routes that can fall back to Code Mode.
+Related skills: `mcp-chrome-devtools` for browser debugging routes that can fall back to Code Mode.
 
 Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md).

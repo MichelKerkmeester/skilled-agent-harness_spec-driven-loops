@@ -639,7 +639,7 @@ Current shipped baseline: **80.5% full-corpus accuracy**, **77.5% holdout accura
 #### How It Works
 
 ```
-  YOU TYPE: "use figma to export designs"
+  YOU TYPE: "use chrome-devtools to inspect a page"
                       │
                       ▼
            ┌──────────────────────┐
@@ -821,11 +821,6 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Semantic code search via vector embeddings (Voyage Code 3 and All-MiniLM-L6-v2 models)
 - Natural-language discovery of code patterns and implementations across 28+ languages
 - Two access modes: CLI (`ccc`) for direct terminal use, MCP server for AI agent integration
-
-**mcp-figma**
-- 18 Figma tools across 6 categories: file access, asset export, design system extraction
-- Design tokens (colors, typography, effects), collaboration (comments), team management
-- Two setup options: Official Figma MCP (HTTP, OAuth) or Framelink (stdio, local)
 
 **mcp-chrome-devtools**
 - Chrome DevTools orchestrator with intelligent 2-mode routing

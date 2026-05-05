@@ -448,7 +448,6 @@ A: Without error handling, an unhandled exception stops the entire `call_tool_ch
 
 | Skill | Relationship |
 |-------|-------------|
-| [mcp-figma](../mcp-figma/SKILL.md) | Figma design file access via Code Mode |
 | [mcp-chrome-devtools](../mcp-chrome-devtools/SKILL.md) | Browser automation via Code Mode |
 | [system-spec-kit](../system-spec-kit/README.md) | Context preservation (native MCP, not via Code Mode) |
 

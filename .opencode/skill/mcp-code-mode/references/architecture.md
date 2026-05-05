@@ -511,4 +511,4 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 - [workflows.md](./workflows.md) - Complex multi-tool workflow examples
 
 ### Related Skills
-- `mcp-figma` - Figma design file access (via Code Mode)
+(no Code Mode-related skills)

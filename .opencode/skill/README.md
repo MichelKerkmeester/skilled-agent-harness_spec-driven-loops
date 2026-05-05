@@ -51,11 +51,11 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Total skill folders | 17 | Top-level skills under `.opencode/skill/` |
-| Folders with graph metadata | 17 | Every top-level skill folder under `.opencode/skill/` currently ships with `graph-metadata.json` |
+| Total skill folders | 16 | Top-level skills under `.opencode/skill/` |
+| Folders with graph metadata | 16 | Every top-level skill folder under `.opencode/skill/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-deep`, `sk-util`, `system` |
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode |
-| MCP integration skills | 4 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, mcp-figma |
+| MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
 | Documentation, research, review, and improvement skills | 5 | sk-improve-agent, sk-deep-research, sk-deep-review, sk-doc, sk-improve-prompt |
 | Git and system skills | 2 | sk-git, system-spec-kit |
@@ -158,7 +158,6 @@ The skill system covers four distinct workflow domains.
 | `mcp-chrome-devtools` | 1.0.7.0 | Browser debugging via CLI (bdg) with MCP fallback for multi-tool integration |
 | `mcp-coco-index` | 1.0.0 | Semantic code search via vector embeddings using natural-language queries |
 | `mcp-code-mode` | 1.0.7.0 | TypeScript-based MCP orchestration hub for all external tool calls |
-| `mcp-figma` | 1.0.7.0 | Figma design file access: file retrieval, image export, component and style extraction |
 
 **Code Quality Skills**
 
@@ -201,7 +200,6 @@ The skill system covers four distinct workflow domains.
 ├── mcp-chrome-devtools/    # Browser debugging via MCP
 ├── mcp-coco-index/         # Semantic code search via vector embeddings
 ├── mcp-code-mode/          # MCP orchestration hub (TypeScript)
-├── mcp-figma/              # Figma design file access via MCP
 ├── skill-advisor/          # Shared routing package
 │   ├── README.md
 │   ├── SET-UP_GUIDE.md
@@ -255,7 +253,6 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `mcp-chrome-devtools` | Yes | No | No |
 | `mcp-coco-index` | Yes | No | No |
 | `mcp-code-mode` | Yes | Yes | Yes |
-| `mcp-figma` | Yes | Yes | No |
 | `sk-code` | Varies | Varies | Varies |
 | `sk-code-review` | Varies | Varies | Varies |
 | `sk-deep-research` | Yes | No | Yes |

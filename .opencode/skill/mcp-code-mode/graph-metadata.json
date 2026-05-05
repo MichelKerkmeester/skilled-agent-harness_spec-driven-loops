@@ -10,11 +10,6 @@
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "mcp-figma",
-        "weight": 0.9,
-        "context": "figma tools via Code Mode"
-      },
-      {
         "target": "mcp-chrome-devtools",
         "weight": 0.7,
         "context": "devtools MCP fallback via Code Mode"

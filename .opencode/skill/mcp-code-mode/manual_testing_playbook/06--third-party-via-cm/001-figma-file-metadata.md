@@ -85,7 +85,7 @@ Capture the chain response with all four fields.
 
 | File | Role |
 |---|---|
-| `.opencode/skill/mcp-figma/SKILL.md` | Figma MCP tool catalog |
+| (none — Figma access is documented in the AI_Systems Figma agent, not in Code Mode skill files) | n/a |
 
 ---
 
