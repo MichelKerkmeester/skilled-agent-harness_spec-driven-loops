@@ -9,7 +9,31 @@ Both supported surfaces follow the same lifecycle. Surface detection changes whi
 
 ---
 
-## 1. PHASE MAP
+## 1. OVERVIEW
+
+### Purpose
+
+Define the shared execution lifecycle for supported code surfaces so research, implementation, quality, debugging, and verification happen in the expected order.
+
+### When to Use
+
+- When planning work across WEBFLOW or OPENCODE surfaces.
+- When deciding which phase-specific references and checklists to load.
+- When a failed quality or verification gate requires a controlled transition back to debugging or implementation.
+- When checking whether completion evidence is sufficient.
+
+### Core Principle
+
+Phase lifecycle defines the gated progression from research through verification with quality gates between stages.
+
+### Key Sources
+
+- [code_surface_detection.md](./code_surface_detection.md)
+- [intent_classification.md](./intent_classification.md)
+
+---
+
+## 2. PHASE MAP
 
 ```text
 Phase 0 Research (optional for simple work, required for complex/risky work)
@@ -22,7 +46,7 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 
 ---
 
-## 2. WEBFLOW PHASES
+## 3. WEBFLOW PHASES
 
 | Phase | Resources / Evidence |
 | --- | --- |
@@ -34,7 +58,7 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 
 ---
 
-## 3. OPENCODE PHASES
+## 4. OPENCODE PHASES
 
 | Phase | Resources / Evidence |
 | --- | --- |
@@ -52,7 +76,7 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ---
 
-## 4. IRON LAWS
+## 5. IRON LAWS
 
 1. No completion claim without Phase 3 verification evidence.
 2. No Phase 1 completion claim without Phase 1.5 quality gate.
@@ -60,7 +84,7 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 
 ---
 
-## 5. TRANSITIONS
+## 6. TRANSITIONS
 
 - 0 -> 1: enough context and plan exists.
 - 1 -> 1.5: code written or modified.
@@ -69,3 +93,11 @@ OPENCODE previously had standards-only behavior. In the merged `sk-code`, it rec
 - 1.5 -> 3: P0 items pass.
 - 3 -> 1/2: verification flags a problem.
 - 3 -> done: verification evidence is recorded.
+
+---
+
+## 7. RELATED RESOURCES
+
+- [code_surface_detection.md](./code_surface_detection.md)
+- [intent_classification.md](./intent_classification.md)
+- [resource_loading.md](./resource_loading.md)

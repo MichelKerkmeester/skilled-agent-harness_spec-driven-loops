@@ -831,29 +831,7 @@ function init_animation() {
 
 ---
 
-## 8. RELATED RESOURCES
-
-### Reference Files
-- [implementation_workflows.md](./implementation_workflows.md) - Implementation phase guidance
-- [debugging_workflows.md](../debugging/debugging_workflows.md) - Animation debugging techniques
-- [verification_workflows.md](../verification/verification_workflows.md) - Animation verification procedures
-- [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization patterns
-
-### Related Skills
-- `mcp-chrome-devtools` - CLI-based performance profiling and animation testing
-
-### External Resources
-- [Motion.dev Documentation](https://motion.dev) - Motion animation library documentation
-- [MDN Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) - Browser animation APIs
-- [Chrome DevTools Performance](https://developer.chrome.com/docs/devtools/performance/) - Performance profiling guide
-
----
-
-**Core principle:** CSS first for simplicity, Motion.dev for complexity. Keeps payloads small, performance high, and behavior predictable.
-
----
-
-## 9. MOTION.DEV ADVANCED PATTERNS
+## 8. MOTION.DEV ADVANCED PATTERNS
 
 ### Timeline Sequences
 
@@ -1052,3 +1030,25 @@ animate(element, {
 ```
 
 **Reference implementation:** `src/javascript/hero/hero_general.js:302-549`
+
+---
+
+## 9. RELATED RESOURCES
+
+### Reference Files
+- [implementation_workflows.md](./implementation_workflows.md) - Implementation phase guidance
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Animation debugging techniques
+- [verification_workflows.md](../verification/verification_workflows.md) - Animation verification procedures
+- [code_quality_standards.md](../standards/code_quality_standards.md) - CDN-safe initialization patterns
+
+### Related Skills
+- `mcp-chrome-devtools` - CLI-based performance profiling and animation testing
+
+### External Resources
+- [Motion.dev Documentation](https://motion.dev) - Motion animation library documentation
+- [MDN Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) - Browser animation APIs
+- [Chrome DevTools Performance](https://developer.chrome.com/docs/devtools/performance/) - Performance profiling guide
+
+---
+
+**Core principle:** CSS first for simplicity, Motion.dev for complexity. Keeps payloads small, performance high, and behavior predictable.

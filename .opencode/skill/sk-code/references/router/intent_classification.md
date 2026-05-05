@@ -9,7 +9,31 @@ Intent classification runs after code-surface detection and before resource load
 
 ---
 
-## 1. INTENTS
+## 1. OVERVIEW
+
+### Purpose
+
+Classify task text into the dominant work intent so the router can load the smallest relevant reference set after surface detection.
+
+### When to Use
+
+- After WEBFLOW, OPENCODE, or UNKNOWN surface detection.
+- When task wording includes implementation, debugging, verification, deployment, or standards signals.
+- When multiple resource families could match and intent scoring must select the primary path.
+- When Motion.dev terms appear and need routing as a resource intent rather than a surface.
+
+### Core Principle
+
+Intent classification scores task text against weighted keyword signals to pick the dominant work type after surface detection.
+
+### Key Sources
+
+- [code_surface_detection.md](./code_surface_detection.md)
+- [resource_loading.md](./resource_loading.md)
+
+---
+
+## 2. INTENTS
 
 | Intent | Strong Signals |
 | --- | --- |
@@ -30,7 +54,7 @@ Intent classification runs after code-surface detection and before resource load
 
 ---
 
-## 2. SCORING
+## 3. SCORING
 
 1. Sum weighted keyword hits from the request, target files, and known task context.
 2. Boost explicit phase signals: verification, debugging, testing, code quality.
@@ -58,7 +82,7 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 
 ---
 
-## 3. SURFACE-SPECIFIC NOTES
+## 4. SURFACE-SPECIFIC NOTES
 
 - WEBFLOW intent scoring favors browser/runtime terms, animation, forms, video, performance, deployment, and verification.
 - MOTION_DEV intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision_matrix terms; it supplements the detected surface rather than replacing it.
@@ -67,7 +91,7 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 
 ---
 
-## 4. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 - `references/router/code_surface_detection.md`
 - `references/router/resource_loading.md`

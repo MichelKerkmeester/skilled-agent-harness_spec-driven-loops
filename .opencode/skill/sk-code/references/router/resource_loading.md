@@ -9,7 +9,31 @@ Resource loading turns a detected surface plus selected intents into concrete re
 
 ---
 
-## 1. LOAD TIERS
+## 1. OVERVIEW
+
+### Purpose
+
+Map the detected surface and selected intents to the exact references, assets, and checklists needed for the active task.
+
+### When to Use
+
+- After code surface detection and intent classification complete.
+- When loading surface-specific implementation, debugging, verification, or standards resources.
+- When Motion.dev guidance is needed as a peer resource category.
+- When an unsupported surface must fall back to explicit clarification.
+
+### Core Principle
+
+Resource loading routes ALWAYS-load and tier-specific resources to the active surface and intent without over-loading the context.
+
+### Key Sources
+
+- [code_surface_detection.md](./code_surface_detection.md)
+- [intent_classification.md](./intent_classification.md)
+
+---
+
+## 2. LOAD TIERS
 
 | Tier | When | Resources |
 | --- | --- | --- |
@@ -21,7 +45,7 @@ Resource loading turns a detected surface plus selected intents into concrete re
 
 ---
 
-## 2. WEBFLOW MAP
+## 3. WEBFLOW MAP
 
 WEBFLOW loads from `references/webflow/` and `assets/webflow/`.
 
@@ -44,7 +68,7 @@ This is a contract, not a guideline. It prevents SD-001-style partial coverage w
 
 ---
 
-## 3. MOTION_DEV MAP
+## 4. MOTION_DEV MAP
 
 MOTION_DEV loads from `references/motion_dev/` and `assets/motion_dev/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, OPENCODE, or future surfaces when the request needs Motion API, integration, or decision guidance.
 
@@ -86,7 +110,7 @@ DECISION intent MUST name:
 
 ---
 
-## 4. OPENCODE MAP
+## 5. OPENCODE MAP
 
 OPENCODE loads from `references/opencode/` and `assets/opencode/`.
 
@@ -117,7 +141,7 @@ Language resources:
 
 ---
 
-## 5. VERIFICATION COMMANDS
+## 6. VERIFICATION COMMANDS
 
 | Surface | Commands |
 | --- | --- |
@@ -126,7 +150,7 @@ Language resources:
 
 ---
 
-## 6. UNKNOWN FALLBACK
+## 7. UNKNOWN FALLBACK
 
 If no supported surface matches, ask:
 
@@ -136,3 +160,11 @@ If no supported surface matches, ask:
 4. Should a new `sk-code` route be planned before implementation?
 
 Do not load Go/NextJS resources; those placeholder routes were removed.
+
+---
+
+## 8. RELATED RESOURCES
+
+- [code_surface_detection.md](./code_surface_detection.md)
+- [intent_classification.md](./intent_classification.md)
+- [phase_lifecycle.md](./phase_lifecycle.md)

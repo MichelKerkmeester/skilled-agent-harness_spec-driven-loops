@@ -699,3 +699,12 @@ element.style.height = `${targetHeight}px`;  // Animate to new height
 ---
 
 **For detailed workflows, see the main SKILL.md orchestrator**
+
+---
+
+## 12. RELATED RESOURCES
+
+- [code_quality_standards.md](./code_quality_standards.md)
+- [code_style_guide.md](./code_style_guide.md)
+- [shared_patterns.md](./shared_patterns.md)
+- [code_quality_checklist.md](../../../assets/webflow/checklists/code_quality_checklist.md)

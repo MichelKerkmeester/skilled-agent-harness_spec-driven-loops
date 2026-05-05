@@ -1,3 +1,8 @@
+---
+title: Alignment Verification Automation
+description: Repeatable verifier guidance for recurring OpenCode alignment drift checks.
+---
+
 # Alignment Verification Automation
 
 This document describes the repeatable verifier introduced for recurring alignment drift checks.
@@ -66,3 +71,11 @@ Notes:
 - Output includes both rule id and severity (`[RULE] [ERROR|WARN]`).
 - Exit code `0` means no blocking findings (warnings are non-blocking by default).
 - Exit code `1` means one or more errors were found, or warnings were found with `--fail-on-warn`.
+
+---
+
+## 5. RELATED RESOURCES
+
+- [code_organization.md](./code_organization.md)
+- [universal_patterns.md](./universal_patterns.md)
+- [hooks.md](./hooks.md)

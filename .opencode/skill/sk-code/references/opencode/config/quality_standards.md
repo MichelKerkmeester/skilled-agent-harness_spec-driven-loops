@@ -88,3 +88,12 @@ grep -v '^\s*//' config.jsonc | python -m json.tool
 # Header and comment policy spot-checks (JSONC, manual review support)
 rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .opencode/skill/sk-code/references/opencode/config
 ```
+
+---
+
+## 6. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md)
+- [style_guide.md](./style_guide.md)
+- [code_organization.md](../shared/code_organization.md)
+- [config_checklist.md](../../../assets/opencode/checklists/config_checklist.md)
