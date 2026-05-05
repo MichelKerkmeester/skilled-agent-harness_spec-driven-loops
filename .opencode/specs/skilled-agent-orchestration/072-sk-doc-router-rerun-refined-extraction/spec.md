@@ -6,11 +6,11 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "072-sk-doc-router-rerun-refined-extraction"
+    packet_pointer: "skilled-agent-orchestration/072-sk-doc-router-rerun-refined-extraction"
     last_updated_at: "2026-05-05T16:00:00Z"
     last_updated_by: "claude-orchestrator"
     recent_action: "Authored 072 spec.md after packet 071 closeout"
-    next_safe_action: "Build extract_metrics_v2.py; re-extract; author review-report-v2.md; commit + push"
+    next_safe_action: "Commit + push"
     blockers: []
     key_files:
       - .opencode/specs/skilled-agent-orchestration/071-sk-doc-router-stress-test/003-synthesize/scripts/extract_metrics.py
