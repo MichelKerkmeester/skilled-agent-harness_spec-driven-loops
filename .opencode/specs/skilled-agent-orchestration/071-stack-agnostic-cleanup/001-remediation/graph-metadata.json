@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/071-stack-agnostic-cleanup/001-remediation",
+  "spec_folder": "skilled-agent-orchestration/071-stack-agnostic-cleanup/001-remediation",
+  "parent_id": "skilled-agent-orchestration/071-stack-agnostic-cleanup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 071 remediation",
+      "stack agnostic cleanup verifier",
+      "001-remediation",
+      "phase 071 remediation plan",
+      "verifier remediation",
+      "stack agnostic cleanup",
+      "phase 071 remediation tasks",
+      "verifier findings tasks",
+      "phase 071 verification checklist",
+      "verifier remediation checklist",
+      "phase 071 remediation decisions",
+      "parent metadata repair"
+    ],
+    "key_topics": [
+      "phase",
+      "071",
+      "remediation",
+      "stack",
+      "agnostic",
+      "cleanup",
+      "verifier",
+      "001-remediation",
+      "plan",
+      "tasks",
+      "findings",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
+      ".opencode/skill/system-spec-kit/scripts/.folder-list.txt",
+      ".opencode/skill/system-spec-kit/scripts/.scan-lines.txt",
+      ".opencode/skill/mcp-code-mode/references/workflows.md",
+      ".opencode/skill/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md",
+      ".opencode/skill/mcp-chrome-devtools/examples/README.md",
+      "specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/graph-metadata.json",
+      ".opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/explicit.js",
+      ".opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/lexical.js",
+      ".opencode/skill/cli-opencode/README.md",
+      ".opencode/skill/cli-opencode/references/opencode_tools.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "specs/skilled-agent-orchestration/graph-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.py",
+        "kind": "file",
+        "path": ".opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/settings.py",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lexical.ts",
+        "kind": "code",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": ".folder-list.txt",
+        "kind": "file",
+        "path": ".opencode/skill/system-spec-kit/scripts/.folder-list.txt",
+        "source": "derived"
+      },
+      {
+        "name": ".scan-lines.txt",
+        "kind": "file",
+        "path": ".opencode/skill/system-spec-kit/scripts/.scan-lines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skill/mcp-code-mode/references/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "002-myservice-list-sites.md",
+        "kind": "doc",
+        "path": ".opencode/skill/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skill/mcp-chrome-devtools/examples/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.js",
+        "kind": "code",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/explicit.js",
+        "source": "derived"
+      },
+      {
+        "name": "lexical.js",
+        "kind": "code",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/dist/skill_advisor/lib/scorer/lanes/lexical.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode_tools.md",
+        "kind": "doc",
+        "path": ".opencode/skill/cli-opencode/references/opencode_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verifier Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The independent verifier for Phase 071 found nine remaining issues after the stack-agnostic cleanup. Five are P0 blockers in non-sk-code authored content, one is a P1 semantic mismatch, and three are P2 documentation or scope-handling items.",
+    "created_at": "2026-05-05T19:52:59Z",
+    "last_save_at": "2026-05-05T20:10:15.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

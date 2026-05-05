@@ -291,7 +291,7 @@ opencode run \
   --agent review \
   --variant high \
   --format json \
-  --dir /Users/me/repo \
+  --dir /path/to/repo \
   "As @review: audit @src/auth/handler.ts for OWASP Top 10 issues. Surface findings as P0 / P1 / P2 with file:line citations. READ-ONLY — do not propose fixes."
 ```
 
@@ -312,7 +312,7 @@ opencode run \
   --agent debug \
   --variant high \
   --format json \
-  --dir /Users/me/repo \
+  --dir /path/to/repo \
   "As @debug: Login returns 401 despite valid credentials. Error at @src/auth/handler.ts:45. Prior attempts: verified token expiry, checked DB connection, confirmed env vars. Run the Observe -> Analyze -> Hypothesize -> Fix methodology. Write findings to debug-delegation.md."
 ```
 
@@ -380,4 +380,3 @@ The conductor (calling AI) decides which path. The agent has no visibility into 
 - `./opencode_tools.md` - Why agent dispatch matters relative to sibling cli-* skills
 - `../assets/prompt_templates.md` - Copy-paste templates per agent
 - `../SKILL.md` - Smart router pseudocode
-

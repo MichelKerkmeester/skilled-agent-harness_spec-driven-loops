@@ -66,8 +66,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   worktree: [['sk-git', 1]],
   delete: [['system-spec-kit', 0.45]],
   scratch: [['system-spec-kit', 0.45]],
-  // sk-code surface keywords: WEBFLOW frontend + OPENCODE system code.
-  webflow: [['sk-code', 0.95]],
+  // sk-code surface keywords: frontend and system-code surfaces.
   animation: [['sk-code', 0.75]],
   flicker: [['sk-code', 0.4]],
   minify: [['sk-code', 0.65]],
@@ -79,11 +78,6 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   lcp: [['sk-code', 0.55]],
   fcp: [['sk-code', 0.55]],
   cls: [['sk-code', 0.55]],
-  lenis: [['sk-code', 0.85]],
-  swiper: [['sk-code', 0.85]],
-  hls: [['sk-code', 0.85]],
-  filepond: [['sk-code', 0.85]],
-  gsap: [['sk-code', 0.75]],
   motion: [['sk-code', 0.6]],
   observer: [['sk-code', 0.4]],
   intersection: [['sk-code', 0.4]],
@@ -159,7 +153,7 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'user prompt': [['sk-improve-prompt', 0.9]],
   'cleaner user prompt': [['sk-improve-prompt', 1]],
   'vector-search': [['mcp-coco-index', 1]],
-  // sk-code phrases: WEBFLOW frontend + OPENCODE system code.
+  // sk-code phrases: frontend and system-code surfaces.
   'motion v12': [['sk-code', 0.6]],
   'opencode skill': [['sk-code', 0.95]],
   'opencode agent': [['sk-code', 0.85]],
@@ -170,11 +164,7 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'typescript helper': [['sk-code', 0.75]],
   'python script': [['sk-code', 0.75]],
   'shell script': [['sk-code', 0.7]],
-  'webflow hero animation timing': [['sk-code', 0.95]],
-  'lenis scroll lock': [['sk-code', 0.85]],
-  'swiper carousel': [['sk-code', 0.85]],
-  'hls video player': [['sk-code', 0.85]],
-  'filepond upload': [['sk-code', 0.85]],
+  'frontend hero animation timing': [['sk-code', 0.95]],
   'parallel routes': [['sk-code', 0.85]],
   'route handler': [['sk-code', 0.7]],
   'metadata api': [['sk-code', 0.65]],

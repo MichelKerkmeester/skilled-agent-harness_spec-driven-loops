@@ -1334,7 +1334,7 @@ INTENT_BOOSTERS = {
 
     # ─────────────────────────────────────────────────────────────────
     # SK-CODE: Surface-aware code router
-    # (WEBFLOW frontend + OPENCODE system code)
+    # (frontend plus system-code surfaces)
     # ─────────────────────────────────────────────────────────────────
     "a11y": ("sk-code", 0.6),
     "accessibility": ("sk-code", 0.6),
@@ -1353,15 +1353,14 @@ INTENT_BOOSTERS = {
     "tracing": ("sk-code", 0.5),
     "verification": ("sk-code", 0.5),
     "wcag": ("sk-code", 0.5),
-    # WEBFLOW route keywords:
+    # Frontend route keywords:
     "expo": ("sk-code", 1.4),
-    "webflow": ("sk-code", 1.8),
     "component": ("sk-code", 0.5),
     "feature": ("sk-code", 0.4),
     "test": ("sk-code", 0.3),
 
     # ─────────────────────────────────────────────────────────────────
-    # SK-CODE / OPENCODE route: OpenCode system code standards
+    # SK-CODE / system-code route: system code standards
     # (JavaScript MCP, Python scripts, Shell scripts, JSONC configs)
     # ─────────────────────────────────────────────────────────────────
     "opencode": ("sk-code", 2.0),
@@ -1412,7 +1411,6 @@ INTENT_BOOSTERS = {
     "toolchain": ("mcp-code-mode", 0.6),
     "typescript": ("sk-code", 0.8),
     "utcp": ("mcp-code-mode", 0.8),
-    "webflow": ("mcp-code-mode", 2.5),
 
     # ─────────────────────────────────────────────────────────────────
     # SK-PROMPT-IMPROVER: Prompt engineering and enhancement
@@ -1529,7 +1527,7 @@ PHRASE_INTENT_BOOSTERS = {
     "browser verification checklist": [("sk-code", 1.6)],
     "css animation": [("sk-code", 0.8)],
     "api network": [("sk-code", 0.7), ("mcp-chrome-devtools", 0.4)],
-    "webflow deployment guidance": [("sk-code", 1.8)],
+    "frontend deployment guidance": [("sk-code", 1.8)],
     "external tool integration via code mode": [("mcp-code-mode", 2.0)],
     "template level validation": [("system-spec-kit", 0.8)],
     "spec folder workflow": [("system-spec-kit", 1.8)],
@@ -1950,8 +1948,8 @@ INTENT_NORMALIZATION_RULES = {
         "boosts": [("memory:save", 0.6)],
     },
     "tooling": {
-        "phrases": ["use mcp", "code mode", "chrome devtools", "use webflow"],
-        "tokens": {"mcp", "devtools", "chrome", "webflow", "notion", "toolchain"},
+        "phrases": ["use mcp", "code mode", "chrome devtools", "use external tool"],
+        "tokens": {"mcp", "devtools", "chrome", "notion", "toolchain"},
         "boosts": [("mcp-code-mode", 0.3), ("mcp-chrome-devtools", 0.3)],
     },
 }

@@ -14,42 +14,42 @@ ERR=4 WARN=0 | 00--ai-systems/005-sales-direct-communication | rules=ANCHORS_VAL
 ERR=2 WARN=0 | 00--ai-systems/005-sales-direct-communication/001-speed-of-execution | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
 ERR=3 WARN=0 | 00--ai-systems/004-prompt-improver/001-content-submission | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
 ERR=2 WARN=0 | 00--ai-systems/006-product-owner/001-variables-cg-p-2 | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
-ERR=1 WARN=4 | 00--anobel.com/012-notification-time-scheduling | rules=ANCHORS_VALID
-CLEAN | 00--anobel.com/031-fix-download-btn-transition-glitch
-ERR=0 WARN=2 | 00--anobel.com/014-notification-hero-spacing | rules=SECTION_COUNTS,SPEC_DOC_SUFFICIENCY
-CLEAN | 00--anobel.com/032-cloudflare-r2-migration
-ERR=2 WARN=5 | 00--anobel.com/012-notification-time-scheduling/scratch/legacy | rules=FOLDER_NAMING,TEMPLATE_HEADERS
-ERR=0 WARN=1 | 00--anobel.com/030-label-product-content-attr | rules=SECTION_COUNTS
-ERR=2 WARN=3 | 00--anobel.com/014-notification-hero-spacing/scratch/legacy | rules=FOLDER_NAMING,TEMPLATE_HEADERS
-ERR=2 WARN=3 | 00--anobel.com/029-anobel-performance-analysis | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
-ERR=2 WARN=3 | 00--anobel.com/033-form-upload-issues | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
-CLEAN | 00--anobel.com/035-hero-contact-success
+ERR=1 WARN=4 | 00--example-site/012-notification-time-scheduling | rules=ANCHORS_VALID
+CLEAN | 00--example-site/031-fix-download-btn-transition-glitch
+ERR=0 WARN=2 | 00--example-site/014-notification-hero-spacing | rules=SECTION_COUNTS,SPEC_DOC_SUFFICIENCY
+CLEAN | 00--example-site/032-cloudflare-r2-migration
+ERR=2 WARN=5 | 00--example-site/012-notification-time-scheduling/scratch/legacy | rules=FOLDER_NAMING,TEMPLATE_HEADERS
+ERR=0 WARN=1 | 00--example-site/030-label-product-content-attr | rules=SECTION_COUNTS
+ERR=2 WARN=3 | 00--example-site/014-notification-hero-spacing/scratch/legacy | rules=FOLDER_NAMING,TEMPLATE_HEADERS
+ERR=2 WARN=3 | 00--example-site/029-example-performance-analysis | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
+ERR=2 WARN=3 | 00--example-site/033-form-upload-issues | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
+CLEAN | 00--example-site/035-hero-contact-success
 ERR=4 WARN=4 | 00--barter/002-skill-doc-template-alignment | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY,TEMPLATE_HEADERS
-ERR=3 WARN=0 | 00--anobel.com/034-form-bot-problem | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
-ERR=7 WARN=3 | 00--anobel.com/038-hero-video-scroll | rules=ANCHORS_VALID,FILE_EXISTS,FRONTMATTER_MEMORY_BLOCK,FRONTMATTER_VALID,SPEC_DOC_INTEGRITY,TEMPLATE_HEADERS,TEMPLATE_SOURCE
-ERR=1 WARN=1 | 00--anobel.com/037-testimonial-slider | rules=TEMPLATE_SOURCE
-ERR=1 WARN=3 | 00--anobel.com/036-notification-toast-button | rules=SPEC_DOC_INTEGRITY
+ERR=3 WARN=0 | 00--example-site/034-form-bot-problem | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
+ERR=7 WARN=3 | 00--example-site/038-hero-video-scroll | rules=ANCHORS_VALID,FILE_EXISTS,FRONTMATTER_MEMORY_BLOCK,FRONTMATTER_VALID,SPEC_DOC_INTEGRITY,TEMPLATE_HEADERS,TEMPLATE_SOURCE
+ERR=1 WARN=1 | 00--example-site/037-testimonial-slider | rules=TEMPLATE_SOURCE
+ERR=1 WARN=3 | 00--example-site/036-notification-toast-button | rules=SPEC_DOC_INTEGRITY
 ERR=3 WARN=2 | skilled-agent-orchestration/022-mcp-coco-integration | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
 ERR=3 WARN=0 | skilled-agent-orchestration/026-cmd-create-manual-testing-playbook | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
 ERR=3 WARN=0 | skilled-agent-orchestration/025-cmd-create-feature-catalog | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
-ERR=0 WARN=2 | skilled-agent-orchestration/024-sk-deep-research-refinement | rules=EVIDENCE_CITED,SPEC_DOC_SUFFICIENCY
-ERR=1 WARN=4 | skilled-agent-orchestration/023-sk-deep-research-creation | rules=SPEC_DOC_SUFFICIENCY
-ERR=1 WARN=2 | skilled-agent-orchestration/029-sk-deep-research-first-upgrade | rules=SPEC_DOC_INTEGRITY
-ERR=2 WARN=0 | skilled-agent-orchestration/028-sk-deep-research-testing-playbook | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
+ERR=0 WARN=2 | skilled-agent-orchestration/024-deep-research-refinement | rules=EVIDENCE_CITED,SPEC_DOC_SUFFICIENCY
+ERR=1 WARN=4 | skilled-agent-orchestration/023-deep-research-creation | rules=SPEC_DOC_SUFFICIENCY
+ERR=1 WARN=2 | skilled-agent-orchestration/029-deep-research-first-upgrade | rules=SPEC_DOC_INTEGRITY
+ERR=2 WARN=0 | skilled-agent-orchestration/028-deep-research-testing-playbook | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
 ERR=2 WARN=0 | skilled-agent-orchestration/027-cmd-create-yaml-refinement | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
-ERR=1 WARN=2 | skilled-agent-orchestration/030-sk-deep-research-review-mode | rules=SPEC_DOC_INTEGRITY
+ERR=1 WARN=2 | skilled-agent-orchestration/030-deep-research-review-mode | rules=SPEC_DOC_INTEGRITY
 ERR=1 WARN=1 | skilled-agent-orchestration/033-skill-command-readme-rewrite | rules=SPEC_DOC_INTEGRITY
 ERR=1 WARN=1 | skilled-agent-orchestration/032-sk-doc-readme-hvr-improvements | rules=SPEC_DOC_INTEGRITY
-ERR=2 WARN=0 | skilled-agent-orchestration/034-sk-deep-research-review-folders | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
+ERR=2 WARN=0 | skilled-agent-orchestration/034-deep-research-review-folders | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
 ERR=1 WARN=0 | skilled-agent-orchestration/038-cmd-create-changelog-and-releases | rules=ANCHORS_VALID
 ERR=1 WARN=1 | skilled-agent-orchestration/031-sk-coco-index-cmd-integration | rules=SPEC_DOC_INTEGRITY
 ERR=2 WARN=1 | skilled-agent-orchestration/037-cmd-merge-spec-kit-phase | rules=ANCHORS_VALID,SPEC_DOC_SUFFICIENCY
-ERR=1 WARN=1 | skilled-agent-orchestration/036-sk-deep-research-review-split | rules=TEMPLATE_SOURCE
-ERR=3 WARN=0 | skilled-agent-orchestration/035-sk-deep-research-path-migration | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
-CLEAN | skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/002-sk-deep-review-improvements
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/040-sk-deep-research-review-improvement-1
+ERR=1 WARN=1 | skilled-agent-orchestration/036-deep-research-review-split | rules=TEMPLATE_SOURCE
+ERR=3 WARN=0 | skilled-agent-orchestration/035-deep-research-path-migration | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY,SPEC_DOC_SUFFICIENCY
+CLEAN | skilled-agent-orchestration/040-deep-research-review-improvement-1/002-deep-review-improvements
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/040-deep-research-review-improvement-1
 ERR=1 WARN=1 | skilled-agent-orchestration/039-cmd-spec-kit-codex-skill-routing | rules=SPEC_DOC_INTEGRITY
-ERR=1 WARN=0 | skilled-agent-orchestration/040-sk-deep-research-review-improvement-1/001-sk-deep-research-improvements | rules=SPEC_DOC_INTEGRITY
+ERR=1 WARN=0 | skilled-agent-orchestration/040-deep-research-review-improvement-1/001-deep-research-improvements | rules=SPEC_DOC_INTEGRITY
 ERR=2 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/002-sk-recursive-agent-full-skill | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY
 ERR=1 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/003-sk-recursive-agent-doc-alignment | rules=SPEC_DOC_INTEGRITY
 ERR=2 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/001-sk-recursive-agent-mvp | rules=ANCHORS_VALID,SPEC_DOC_INTEGRITY
@@ -62,22 +62,22 @@ ERR=1 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/007-sk-re
 ERR=7 WARN=5 | skilled-agent-orchestration/041-sk-recursive-agent-loop/008-sk-recursive-agent-holistic-evaluation | rules=ANCHORS_VALID,FILE_EXISTS,FRONTMATTER_VALID,LEVEL_MATCH,SPEC_DOC_INTEGRITY,TEMPLATE_HEADERS,TEMPLATE_SOURCE
 ERR=1 WARN=0 | skilled-agent-orchestration/041-sk-recursive-agent-loop/006-sk-recursive-agent-command-rename | rules=SPEC_DOC_INTEGRITY
 ERR=6 WARN=5 | skilled-agent-orchestration/041-sk-recursive-agent-loop/011-sk-agent-improver-advisor-readme-sync | rules=ANCHORS_VALID,FILE_EXISTS,FRONTMATTER_VALID,SPEC_DOC_INTEGRITY,TEMPLATE_HEADERS,TEMPLATE_SOURCE
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/005-agent-improver-deep-loop-alignment
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/046-cli-codex-tone-of-voice
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/003-wave-executor
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/003-wave-executor
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/007-skill-rename-improve-agent-prompt
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/043-cli-skill-improved-prompting
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/044-non-system-playbook-prompts
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/002-semantic-coverage-graph
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/009-round3-review-remediation
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/002-semantic-coverage-graph
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/009-round3-review-remediation
 TIMEOUT_OR_FAIL | skilled-agent-orchestration/045-sk-doc-changelog-template
 TIMEOUT_OR_FAIL | system-spec-kit/021-spec-kit-phase-system
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/004-offline-loop-optimizer
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/010-root-level-review-research-convention
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/001-runtime-truth-foundation
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment
-TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-sk-deep-research-review-improvement-2/008-further-deep-loop-improvements
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/004-offline-loop-optimizer
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/010-root-level-review-research-convention
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/001-runtime-truth-foundation
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/006-graph-testing-and-playbook-alignment
+TIMEOUT_OR_FAIL | skilled-agent-orchestration/042-deep-research-review-improvement-2/008-further-deep-loop-improvements
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/001-fusion-scoring-intelligence
 TIMEOUT_OR_FAIL | system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph

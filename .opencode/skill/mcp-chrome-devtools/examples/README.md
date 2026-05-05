@@ -119,10 +119,6 @@ performance-baselines/
 - Regression testing in CI/CD pipelines
 - Performance monitoring over time
 
-**Workflow integration:**
-- See: `.opencode/skill/sk-code/references/debugging/debugging_workflows.md` (Section 7)
-- See: `.opencode/skill/sk-code/references/implementation/performance_patterns.md` (Section 3)
-
 ---
 
 ### 3.2 animation-testing.sh
@@ -157,9 +153,6 @@ performance-baselines/
 - Performance regression testing
 - Visual diff generation
 - CI/CD animation checks
-
-**Workflow integration:**
-- See: `.opencode/skill/sk-code/references/implementation/animation_workflows.md` (Section 6)
 
 ---
 
@@ -215,10 +208,6 @@ viewport-tests/20241127-143022/
 - Responsive design validation
 - Mobile-specific issue detection
 - Visual regression across viewports
-
-**Workflow integration:**
-- See: `.opencode/skill/sk-code/references/verification/verification_workflows.md` (Section 2)
-- See: `.opencode/skill/sk-code/references/implementation/animation_workflows.md` (Multi-Viewport Testing)
 
 <!-- /ANCHOR:available-scripts -->
 

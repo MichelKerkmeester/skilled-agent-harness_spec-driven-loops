@@ -67,7 +67,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
 
@@ -125,7 +125,7 @@ opencode run \
   --agent deep-research \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
 
@@ -185,7 +185,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
 
@@ -297,4 +297,3 @@ The full Memory Handback Protocol is shared with cli-claude-code and cli-codex. 
 - `./agent_delegation.md` - Agent routing matrix
 - `../assets/prompt_templates.md` - Copy-paste templates per use case
 - `../SKILL.md` - Skill entry point and smart router pseudocode
-

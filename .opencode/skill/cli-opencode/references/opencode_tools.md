@@ -49,7 +49,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Analyze the spec-kit memory database health using memory_health, then propose three improvements with concrete file:line citations."
 ```
 
@@ -80,7 +80,7 @@ opencode run \
   --agent deep-research \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Run iteration N of the deep-research loop for the approved spec folder. State file at scratch/iteration-N.jsonl."
 ```
 
@@ -154,7 +154,7 @@ A calling AI in one repo (e.g. a sibling project) can dispatch into a different 
 ```bash
 # From a session in repo A, dispatch into repo B's runtime
 opencode run \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Barter \
+  --dir /path/to/other-repo \
   --model opencode-go/deepseek-v4-pro \
   --agent general \
   --variant high \

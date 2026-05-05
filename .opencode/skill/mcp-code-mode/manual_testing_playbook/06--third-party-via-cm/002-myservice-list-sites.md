@@ -1,6 +1,6 @@
 ---
 title: "CM-018 -- MyService list sites"
-description: "This scenario validates MyService site listing via Code Mode for `CM-018`. It focuses on confirming `myservice_list_sites` returns the operator's MyService sites."
+description: "This scenario validates MyService site listing via Code Mode for `CM-018`. It focuses on confirming `myservice_sites_list` returns the operator's MyService sites."
 ---
 
 # CM-018 -- MyService list sites
@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates MyService site listing via Code Mode for `CM-018`. It focuses on confirming `myservice.myservice_list_sites()` returns sites visible to the configured token — the discovery entry point for any external CMS / publish workflow.
+This scenario validates MyService site listing via Code Mode for `CM-018`. It focuses on confirming `myservice.myservice_sites_list()` returns sites visible to the configured token — the discovery entry point for any external CMS / publish workflow.
 
 ### Why This Matters
 
@@ -23,7 +23,7 @@ external CMS sync is the primary publish workflow operators rely on Code Mode fo
 
 Operators run the exact prompt and command sequence for `CM-018` and confirm the expected signals without contradictory evidence.
 
-- Objective: Verify `myservice.myservice_list_sites()` returns an array of site objects, each with `id` and a display-name field.
+- Objective: Verify `myservice.myservice_sites_list()` returns an array of site objects, each with `id` and a display-name field.
 - Real user request: `"What MyService sites do I have access to?"`
 - RCAF Prompt: `As a manual-testing orchestrator, list all MyService sites visible to the configured token through Code Mode against the live MyService API. Verify the response is a non-empty array (or explicit empty if account has no sites). Return a concise user-facing pass/fail verdict with the main reason.`
 - Expected execution process: single `call_tool_chain` invocation; assumes `myservice_MYSERVICE_TOKEN` env var per CM-008.
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CM-018` and confirm the
 
 ### Commands
 
-1. `call_tool_chain({ code: "const sites = await myservice.myservice_list_sites({}); return { count: sites.length, sample_id: sites[0]?.id, sample_name: sites[0]?.displayName || sites[0]?.name };" })`
+1. `call_tool_chain({ code: "const sites = await myservice.myservice_sites_list({}); return { count: sites.length, sample_id: sites[0]?.id, sample_name: sites[0]?.displayName || sites[0]?.name };" })`
 2. Inspect the returned object
 
 ### Expected
@@ -62,7 +62,7 @@ Capture the chain response with count, sample id (REDACTED if needed), sample na
 ### Failure Triage
 
 1. If 401: check `myservice_MYSERVICE_TOKEN` (note prefix per CM-008); regenerate token in MyService account settings.
-2. If response shape mismatch: `tool_info({tool_name: "myservice.myservice_list_sites"})` to confirm current shape; field names may vary by API version.
+2. If response shape mismatch: `tool_info({tool_name: "myservice.myservice_sites_list"})` to confirm current shape; field names may vary by API version.
 3. If empty array on an account that has sites: token may have insufficient scope; check MyService API token permissions.
 
 ### Optional Supplemental Checks

@@ -60,7 +60,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
 
@@ -97,7 +97,7 @@ opencode run \
   --agent deep-research \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
 
@@ -137,7 +137,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
 

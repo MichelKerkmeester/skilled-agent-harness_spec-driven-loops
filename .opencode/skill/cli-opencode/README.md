@@ -125,7 +125,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Use memory_search to find context for the approved spec folder." 2>&1
 ```
 
@@ -137,7 +137,7 @@ opencode run --share --port 4096 \
   --agent deep-research \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Run iteration 3 of the deep-research loop for the approved spec folder." 2>&1
 ```
 
@@ -313,7 +313,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Search Spec Kit Memory for context on the approved spec folder. Return top 5 hits as JSON." 2>&1
 ```
 
@@ -325,7 +325,7 @@ opencode run --share --port 4096 \
   --agent deep-research \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Run iteration 3 of the deep-research loop for the approved spec folder. Externalize state to scratch/iteration-3.jsonl." 2>&1
 ```
 
@@ -338,7 +338,7 @@ opencode run \
   --agent general \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "Use system-spec-kit to validate the approved spec folder. Return strict-mode validation report as JSON." 2>&1
 ```
 

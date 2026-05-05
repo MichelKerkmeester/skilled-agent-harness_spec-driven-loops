@@ -65,7 +65,7 @@ DEFAULT_EXCLUDED_PATTERNS: list[str] = [
 # Use glob patterns matching pathspec.GitIgnoreSpec semantics.
 CANONICAL_RESOURCE_PATHS: list[str] = [
     ".opencode/skill/*/assets/opencode/**",  # sk-code OpenCode authoring checklists + recipes
-    ".opencode/skill/*/assets/motion_dev/**",  # Cross-stack motion.dev assets (sk-code v3.1.0.0+)
+    ".opencode/skill/*/assets/*/**",  # Skill-specific asset subtrees; concrete library names come from owning skills
     ".opencode/skill/*/references/**",  # Skill reference docs (broadly canonical)
 ]
 

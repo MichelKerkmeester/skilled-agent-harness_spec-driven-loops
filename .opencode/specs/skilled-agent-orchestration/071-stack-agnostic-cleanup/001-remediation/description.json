@@ -1,0 +1,25 @@
+{
+  "specFolder": "specs/skilled-agent-orchestration/071-stack-agnostic-cleanup/001-remediation",
+  "description": "Phase 071 independent verifier remediation for stack-agnostic cleanup findings",
+  "keywords": [
+    "phase",
+    "071",
+    "independent",
+    "verifier",
+    "remediation",
+    "stack-agnostic",
+    "cleanup",
+    "findings"
+  ],
+  "lastUpdated": "2026-05-05T19:56:48.342Z",
+  "specId": "001",
+  "folderSlug": "remediation",
+  "parentChain": [
+    "specs",
+    "skilled-agent-orchestration",
+    "071-stack-agnostic-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

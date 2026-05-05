@@ -112,7 +112,7 @@ opencode run \
   --agent <agent-slug> \
   --variant high \
   --format json \
-  --dir /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public \
+  --dir "$REPO_ROOT" \
   "<prompt>"
 ```
 
@@ -291,4 +291,3 @@ This reference is pinned to OpenCode v1.3.17. If the live binary reports a diffe
 - `../assets/prompt_templates.md` - Copy-paste prompt templates per use case
 - `../assets/prompt_quality_card.md` - Framework selection and CLEAR 5-check
 - `../SKILL.md` - Skill entry point and smart router
-
