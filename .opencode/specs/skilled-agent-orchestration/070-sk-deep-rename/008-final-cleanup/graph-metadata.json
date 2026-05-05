@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup",
+  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup",
+  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/070-sk-deep-rename",
+      "skilled-agent-orchestration/070-sk-deep-rename/006-advisor-and-validate",
+      "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 008",
+      "final cleanup",
+      "iterative review loop",
+      "spec folder audit",
+      "deep-loop family",
+      "reference-category entity kind"
+    ],
+    "key_topics": [
+      "advisor-routing",
+      "deep-review",
+      "deep-loop-family",
+      "skill-graph-validation",
+      "entity-kind-normalization",
+      "strict-validation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "description.json",
+      "graph-metadata.json",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
+      ".opencode/skill/deep-review/graph-metadata.json",
+      ".opencode/skill/deep-research/graph-metadata.json",
+      ".opencode/skill/sk-code/graph-metadata.json"
+    ],
+    "entities": [
+      "deep-review",
+      "sk-code-review",
+      "deep-loop",
+      "deep-research",
+      "skill-graph.json",
+      "skill_graph_compiler.py",
+      "reference-category"
+    ],
+    "causal_summary": "Phase 008 closes the final approved Packet 070 P1 cleanup by making deep-review win iterative review-loop audit prompts, renaming the internal deep-loop family taxonomy, and normalizing a rejected sk-code metadata entity kind to the compiler allow-list.",
+    "created_at": "2026-05-05T17:45:00Z",
+    "last_save_at": "2026-05-05T18:05:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T17:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  },
+  "importance_tier": "important"
+}

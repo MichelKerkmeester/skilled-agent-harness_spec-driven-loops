@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
     "skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config",
     "skilled-agent-orchestration/070-sk-deep-rename/006-advisor-and-validate",
-    "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation"
+    "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation",
+    "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup"
   ],
   "manual": {
     "depends_on": [

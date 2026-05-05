@@ -198,7 +198,7 @@
       },
       {
         "name": "motion_dev",
-        "kind": "reference-category",
+        "kind": "reference",
         "path": ".opencode/skill/sk-code/references/motion_dev/quick_start.md",
         "source": "derived"
       },

@@ -33,7 +33,16 @@
     "deep review",
     "review loop",
     "iterative review",
-    "spec folder review"
+    "spec folder review",
+    "iterative review loop",
+    "spec folder audit",
+    "deep review loop",
+    "multi-pass review",
+    "iterative audit",
+    "iterative spec review",
+    "review iteration",
+    "convergence detection",
+    "review packet"
   ],
   "derived": {
     "trigger_phrases": [

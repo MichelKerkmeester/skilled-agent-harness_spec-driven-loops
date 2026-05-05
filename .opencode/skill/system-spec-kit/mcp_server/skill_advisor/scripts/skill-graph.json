@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T07:38:19.930409+00:00",
+  "generated_at": "2026-05-05T17:49:56.478107+00:00",
   "skill_count": 18,
   "families": {
     "cli": [
@@ -75,6 +75,19 @@
         "cli-gemini": 0.5
       }
     },
+    "deep-research": {
+      "siblings": {
+        "deep-review": 0.5
+      }
+    },
+    "deep-review": {
+      "depends_on": {
+        "sk-code-review": 0.8
+      },
+      "siblings": {
+        "deep-research": 0.5
+      }
+    },
     "mcp-chrome-devtools": {
       "depends_on": {
         "mcp-code-mode": 0.7
@@ -117,19 +130,6 @@
       },
       "prerequisite_for": {
         "deep-review": 0.8
-      }
-    },
-    "deep-research": {
-      "siblings": {
-        "deep-review": 0.5
-      }
-    },
-    "deep-review": {
-      "depends_on": {
-        "sk-code-review": 0.8
-      },
-      "siblings": {
-        "deep-research": 0.5
       }
     },
     "sk-doc": {
@@ -219,6 +219,26 @@
       "parallel detached session",
       "spec kit runtime"
     ],
+    "deep-research": [
+      "deep research",
+      "research loop",
+      "investigate"
+    ],
+    "deep-review": [
+      "deep review",
+      "review loop",
+      "iterative review",
+      "spec folder review",
+      "iterative review loop",
+      "spec folder audit",
+      "deep review loop",
+      "multi-pass review",
+      "iterative audit",
+      "iterative spec review",
+      "review iteration",
+      "convergence detection",
+      "review packet"
+    ],
     "mcp-chrome-devtools": [
       "chrome devtools",
       "browser debug",
@@ -247,6 +267,7 @@
       "opencode",
       "system code",
       "mcp",
+      "skill",
       "agent",
       "command",
       "typescript",
@@ -254,6 +275,13 @@
       "shell",
       "jsonc",
       "alignment verifier",
+      "motion.dev integration",
+      "motion-dev integration",
+      "motion_dev references",
+      "cross-stack animation",
+      "motion api",
+      "motion snippets",
+      "motion decision matrix",
       "refactor function",
       "refactor the",
       "throw on missing",
@@ -261,21 +289,6 @@
       "add a fallback",
       "add a parameter",
       "add a method",
-      "update .opencode",
-      "modify .opencode",
-      "edit .opencode",
-      "update x.ts",
-      "modify x.ts",
-      "update x.py",
-      "modify x.py",
-      "update x.sh",
-      "modify x.sh",
-      "add a cli flag",
-      "add cli flag",
-      "dry-run mode",
-      "typescript entry point",
-      "python entry point",
-      "shell script entry point",
       "implement function",
       "handle empty",
       "handle null",
@@ -290,7 +303,11 @@
       "lenis smooth-scroll",
       "gsap timeline",
       "hls.js video",
-      "intersectionobserver gate"
+      "intersectionobserver gate",
+      "build a tiny script",
+      "tiny script that counts",
+      "counts how many",
+      "build a script that"
     ],
     "sk-code-review": [
       "code review",
@@ -299,47 +316,28 @@
       "quality gate",
       "findings"
     ],
-    "deep-research": [
-      "deep research",
-      "research loop",
-      "investigate"
-    ],
-    "deep-review": [
-      "deep review",
-      "review loop",
-      "iterative review",
-      "spec folder review",
-      "iterative review loop",
-      "spec folder audit",
-      "deep review loop"
-    ],
     "sk-doc": [
       "create readme",
       "write documentation",
       "install guide",
       "feature catalog",
       "skill.md headline",
-      "update skill.md headline",
-      "update the sk-code skill.md headline",
-      "clarify the two-axis routing model",
-      "add a one-line summary",
-      "add one-line summary",
-      "clarify description",
-      "clarify the model",
-      "improve readme",
       "rewrite section",
-      "rewrite documentation section",
-      "rewrite readme section",
       "documentation section",
       "headline section",
+      "headline section to clarify",
       "update skill.md",
-      "readme body",
-      "description-only change",
+      "update sk-code skill.md",
+      "update the sk-code skill.md",
       "clarify the routing",
+      "clarify the routing model",
+      "clarify the two-axis routing",
       "rewrite the headline",
       "reorganize the readme",
       "reorganize readme into",
-      "reorganize the cli"
+      "reorganize the cli",
+      "add a one-line summary",
+      "one-line summary at the top"
     ],
     "sk-git": [
       "git workflow",
@@ -373,94 +371,6 @@
       "memory search"
     ]
   },
-  "anti_signals": {
-    "sk-code": [
-      "update skill.md headline",
-      "update the sk-code skill.md headline",
-      "clarify description",
-      "clarify the two-axis routing model",
-      "add a one-line summary",
-      "add one-line summary",
-      "improve readme",
-      "rewrite section",
-      "rewrite documentation section",
-      "readme body",
-      "description-only change"
-    ],
-    "sk-code-review": [
-      "iterative review loop",
-      "iterative review",
-      "review loop",
-      "spec folder audit"
-    ],
-    "system-spec-kit": [
-      "update .opencode",
-      "modify .opencode",
-      "edit .opencode",
-      "update x.ts",
-      "modify x.ts",
-      "update x.py",
-      "modify x.py",
-      "update x.sh",
-      "modify x.sh",
-      "add a cli flag",
-      "add cli flag",
-      "dry-run mode",
-      "typescript entry point",
-      "python entry point",
-      "shell script entry point"
-    ],
-    "mcp-coco-index": [
-      "i'm building",
-      "i am building",
-      "i'm working on",
-      "help me set up",
-      "set up a",
-      "set up the",
-      "show me the proper",
-      "show me how to",
-      "show me a runnable",
-      "how do i make",
-      "how do i set up",
-      "what's the proper",
-      "what is the proper",
-      "what cwv",
-      "what gates",
-      "guide me",
-      "build a webflow",
-      "build a vanilla",
-      "create a hero",
-      "implement a",
-      "implement the",
-      "scroll-driven hero animation",
-      "in-view animation snippet",
-      "cdn install pattern",
-      "version pin",
-      "verification snippet",
-      "prefers-reduced-motion",
-      "lenis smooth-scroll",
-      "motion.dev animation",
-      "motion.dev installed",
-      "motion.dev hero",
-      "animate-on-scroll",
-      "should i use motion",
-      "lcp",
-      "cls",
-      "inp",
-      "core web vitals",
-      "cwv thresholds",
-      "gpu-composited",
-      "version-pin",
-      "set up the js imports",
-      "set up js imports",
-      "help me set up the js",
-      "imports for a hero",
-      "lenis for smooth scroll",
-      "motion.dev and lenis",
-      "for smooth scroll",
-      "hero animation"
-    ]
-  },
   "conflicts": [],
   "hub_skills": [
     "cli-claude-code",
@@ -472,5 +382,19 @@
     "sk-code-review",
     "system-spec-kit"
   ],
-  "topology_warnings": {}
+  "topology_warnings": {},
+  "anti_signals": {
+    "sk-code-review": [
+      "iterative review loop",
+      "iterative review",
+      "review loop",
+      "multi-pass review",
+      "iterative audit",
+      "spec folder audit",
+      "convergence",
+      "review iteration",
+      "deep review",
+      "deep review loop"
+    ]
+  }
 }

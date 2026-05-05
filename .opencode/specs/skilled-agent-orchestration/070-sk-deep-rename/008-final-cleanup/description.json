@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup",
+  "description": "Phase 008 - Final cleanup for Packet 070 P1 findings: strengthen deep-review advisor routing, rename the internal sk-deep family to deep-loop, and normalize the sk-code metadata entity kind.",
+  "keywords": [
+    "phase",
+    "final-cleanup",
+    "deep-review",
+    "deep-loop",
+    "advisor-signals",
+    "skill-graph",
+    "entity-kind"
+  ],
+  "lastUpdated": "2026-05-05T17:45:00.000Z",
+  "specId": "070",
+  "folderSlug": "008-final-cleanup",
+  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
