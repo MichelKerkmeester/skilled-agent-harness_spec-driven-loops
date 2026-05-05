@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+  "spec_folder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev",
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/066-sk-code-opencode-merger",
+      "skilled-agent-orchestration/068-sk-doc-organization"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "069 sk-code motion-dev",
+      "sk-code motion.dev category",
+      "motion-dev cross-stack",
+      "sk-code playbook refinement",
+      "motion.dev assets and references",
+      "playbook motion.dev integration"
+    ],
+    "key_topics": [
+      "sk-code",
+      "motion-dev",
+      "manual-testing-playbook",
+      "cross-stack-category",
+      "phase-parent",
+      "sk-doc-alignment",
+      "webflow-cross-references"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "description.json",
+      "graph-metadata.json",
+      "001-playbook/implementation-summary.md",
+      "002-motion-dev/implementation-summary.md",
+      "003-cross-ref-metadata-sync/implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase parent for elevating motion.dev to a first-class cross-stack category under sk-code (peer to webflow, not nested) AND refining the existing manual_testing_playbook with motion.dev scenarios + animation regression + perf gates + cross-browser checks aligned to sk-doc standards. Three sub-phases: 001 refines the playbook, 002 populates motion_dev/ refs+assets from scratch citing official motion.dev docs and in-repo a_nobel_en_zn usage, 003 adds non-destructive See-also cross-references in webflow/* and refreshes sk-code metadata + router. Implementation by cli-codex (gpt-5.5 high, fast tier); verification by Opus sub-agent (@review or general-purpose) per packet.",
+    "created_at": "2026-05-05T07:30:00Z",
+    "last_save_at": "2026-05-05T11:00:00Z",
+    "save_lineage": "graph_only",
+    "last_active_child_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
+    "last_active_at": "2026-05-05T10:30:00Z",
+    "last_accessed_at": "2026-05-05T11:00:00Z",
+    "source_docs": [
+      "spec.md"
+    ]
+  },
+  "importance_tier": "important"
+}

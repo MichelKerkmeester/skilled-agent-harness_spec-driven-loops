@@ -21,6 +21,7 @@ Intent classification runs after code-surface detection and before resource load
 | DEPLOYMENT | `deploy`, `cdn`, `wrangler`, `release`, `metadata`, `skill graph` |
 | PERFORMANCE | `lighthouse`, `lcp`, `tbt`, `inp`, `cls`, `pagespeed`, `performance` |
 | ANIMATION | `animation`, `motion`, `transition`, `gsap`, `lenis`, `swiper` |
+| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `animate()`, `inView`, `scroll()`, `stagger`, `cross-stack animation` |
 | FORMS | `form`, `validation`, `filepond`, `schema`, `zod` |
 | VIDEO | `hls`, `video`, `stream`, `player` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
@@ -39,11 +40,14 @@ Intent classification runs after code-surface detection and before resource load
 
 Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load OPENCODE plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
+Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `references/motion_dev/` for cross-stack API/decision context; if the target is `.opencode/`, keep the surface as OPENCODE and load Motion only as reference material.
+
 ---
 
 ## 3. SURFACE-SPECIFIC NOTES
 
 - WEBFLOW intent scoring favors browser/runtime terms, animation, forms, video, performance, deployment, and verification.
+- MOTION_DEV intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision-matrix terms; it supplements the detected surface rather than replacing it.
 - OPENCODE intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
 - Unsupported surfaces stay UNKNOWN even if intent scoring is strong.
 

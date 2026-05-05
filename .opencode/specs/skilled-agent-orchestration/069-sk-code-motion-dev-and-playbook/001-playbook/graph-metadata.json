@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
+  "spec_folder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
+  "parent_id": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code playbook refinement",
+      "motion.dev manual testing",
+      "animation regression playbook",
+      "cross-browser performance gates"
+    ],
+    "key_topics": [
+      "sk-code",
+      "manual-testing-playbook",
+      "motion-dev",
+      "animation-regression",
+      "cross-browser",
+      "core-web-vitals"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "description.json",
+      "graph-metadata.json"
+    ],
+    "entities": [],
+    "causal_summary": "Packet 1 extends the existing sk-code manual testing playbook with two new sk-doc-aligned category folders: motion.dev and animation regression scenarios, plus cross-browser and performance-gate scenarios. Packet 2 owns full motion_dev reference population; Packet 3 owns webflow cross-references and metadata sync.",
+    "created_at": "2026-05-05T07:30:00Z",
+    "last_save_at": "2026-05-05T07:30:00Z",
+    "save_lineage": "graph_only",
+    "last_active_at": null,
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  },
+  "importance_tier": "important"
+}

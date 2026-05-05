@@ -543,6 +543,12 @@ function wait_for_library(global_name, options = {}) {
  * From ADR-002 (Spec 031): Replaces 17 parallel polling loops with a single
  * event-driven listener, eliminating CPU waste and race conditions.
  *
+ * Cross-stack Motion reference: for Motion API, import modes, and integration
+ * patterns outside Webflow-specific global loading, see
+ * ../../../references/motion_dev/quick-start.md and
+ * ../../../references/motion_dev/integration-patterns.md. For reusable Motion
+ * assets, see ../../motion_dev/install-card.md.
+ *
  * @param {Object} options - Configuration options
  * @param {number} options.timeout - Max wait time in ms (default: 1000)
  * @returns {Promise<Object>} The window.Motion object

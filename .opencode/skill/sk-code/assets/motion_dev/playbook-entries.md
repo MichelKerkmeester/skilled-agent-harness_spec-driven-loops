@@ -1,0 +1,121 @@
+---
+title: "Motion.dev Playbook Entries"
+description: "Scenario-ready entries for Packet 1's motion.dev and animation regression playbook category."
+---
+
+# Motion.dev Playbook Entries
+
+## 1. OVERVIEW
+
+These entries can be lifted into `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/` or used standalone. They expand Packet 1's MR-001 through MR-004 scenarios with API context from `references/motion_dev/`.
+
+## 2. SCENARIO ENTRIES
+
+### MR-001 - Motion.dev API Smoke
+
+Prompt:
+
+```text
+Create a sandboxed Webflow-style Motion smoke page that imports animate, inView, and spring from a pinned motion CDN URL. Run it in Chrome, verify exports are functions, run one animate() call, trigger one inView() callback, and return PASS/FAIL with console evidence.
+```
+
+Expected signals:
+- CDN URL uses a concrete version, not `@latest`.
+- `animate`, `inView`, and `spring` are functions.
+- `animate()` completes without an uncaught exception.
+- `inView()` fires after the target enters the viewport.
+
+Evidence:
+- `/tmp/skc-MR001-console.txt`
+- screenshot or short video of the animated element
+- exact CDN URL used
+
+API context:
+- `references/motion_dev/quick-start.md`
+- `references/motion_dev/animate-and-timelines.md`
+- `references/motion_dev/scroll-and-gestures.md`
+
+### MR-002 - CDN Bundle Version Pin
+
+Prompt:
+
+```text
+Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @latest, record the pinned version(s), and verify the pinned ESM bundle exposes animate, inView, scroll, and motionValue for the testimonial slider pattern.
+```
+
+Expected signals:
+- Production CDN URLs are version-pinned.
+- Documentation/example hits are classified separately from production loaders.
+- Required exports for `testimonial.js` are present: `animate`, `inView`, `scroll`, and `motionValue`.
+
+Evidence:
+- `/tmp/skc-MR002-version-pin.txt`
+- `/tmp/skc-MR002-export-probe.txt`
+
+API context:
+- `references/motion_dev/quick-start.md`
+- `references/motion_dev/integration-patterns.md`
+- `assets/motion_dev/install-card.md`
+
+### MR-003 - Prefers Reduced Motion
+
+Prompt:
+
+```text
+Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.
+```
+
+Expected signals:
+- Browser reports `matchMedia("(prefers-reduced-motion: reduce)").matches === true`.
+- Large transform or parallax-style motion is removed, instant, or replaced with opacity-only behavior.
+- UI remains usable and reaches correct final states.
+
+Evidence:
+- `/tmp/skc-MR003-normal.mp4`
+- `/tmp/skc-MR003-reduced.mp4`
+- console transcript
+
+API context:
+- `references/motion_dev/performance-and-pitfalls.md`
+- `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+- `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
+
+### MR-004 - Animation Regression Baseline
+
+Prompt:
+
+```text
+Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.
+```
+
+Expected signals:
+- Dropdown opens and closes with correct height/opacity/final hidden state.
+- Slider next/previous/drag flows snap to expected slides and update indicators.
+- Console has no Motion import/runtime error.
+
+Evidence:
+- `/tmp/skc-MR004-nav-dropdown.mp4`
+- `/tmp/skc-MR004-testimonial.mp4`
+- `/tmp/skc-MR004-console.txt`
+- `/tmp/skc-MR004-verdict.md`
+
+API context:
+- `references/motion_dev/animate-and-timelines.md`
+- `references/motion_dev/scroll-and-gestures.md`
+- `references/motion_dev/performance-and-pitfalls.md`
+
+## 3. CROSS-LINKS
+
+- Packet 1 root playbook: `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
+- Packet 1 MR category: `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/`
+- Motion quick start: `references/motion_dev/quick-start.md`
+- Motion integration patterns: `references/motion_dev/integration-patterns.md`
+- Motion performance guidance: `references/motion_dev/performance-and-pitfalls.md`
+
+## 4. CITATIONS
+
+- Motion install/API smoke: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate, https://motion.dev/docs/inview, https://motion.dev/docs/spring
+- Motion scroll/gesture context: https://motion.dev/docs/scroll, https://motion.dev/docs/hover, https://motion.dev/docs/press
+- Motion accessibility context: https://motion.dev/docs/react-accessibility, https://motion.dev/docs/react-use-reduced-motion
+- Local dropdown anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- Local slider anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js`

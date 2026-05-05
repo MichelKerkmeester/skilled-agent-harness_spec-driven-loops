@@ -162,6 +162,8 @@ const INIT_FLAG = '__componentNameInit';
 - [ ] **[P1] CHK-CMT-03**: Maximum 5 comments per 10 lines of code (not over-commented)
 - [ ] **[P1] CHK-CMT-04**: Platform constraints documented (WEBFLOW, MOTION, LENIS, HLS.JS)
 
+> **Cross-stack motion.dev reference**: For motion.dev API surface, decision matrix, and integration patterns that apply across stacks (not just Webflow), see [`../../references/motion_dev/quick-start.md`](../../references/motion_dev/quick-start.md) and the documents in [`references/motion_dev/`](../../references/motion_dev/). The MOTION constraint above remains a Webflow-CDN-specific platform marker.
+
 ### Function Comments
 
 - [ ] **[P1] CHK-CMT-05**: Functions have single-line purpose comment above

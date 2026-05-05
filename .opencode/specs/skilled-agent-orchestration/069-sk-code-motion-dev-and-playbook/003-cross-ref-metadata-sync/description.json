@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
+  "description": "Phase 003 — Cross-Reference + Metadata Sync: add See-also pointers to webflow/* docs that mention motion.dev (extend, do not relocate); refresh sk-code SKILL.md, README.md, description.json, graph-metadata.json, changelog; expose motion_dev as discoverable peer category in surface manifest.",
+  "keywords": [
+    "phase",
+    "cross-reference",
+    "metadata-sync",
+    "webflow",
+    "motion-dev",
+    "sk-code",
+    "router-manifest"
+  ],
+  "lastUpdated": "2026-05-05T07:30:00.000Z",
+  "specId": "069",
+  "folderSlug": "003-cross-ref-metadata-sync",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "069-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

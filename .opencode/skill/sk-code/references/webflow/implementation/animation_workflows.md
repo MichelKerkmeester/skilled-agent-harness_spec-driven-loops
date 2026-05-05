@@ -184,6 +184,8 @@ function close_dropdown(dropdown) {
 
 ## 4. MOTION.DEV INTEGRATION
 
+> **Cross-stack motion.dev reference**: For Motion API surface, decision matrix, snippets, and integration patterns that apply across stacks, see [`../../motion_dev/quick-start.md`](../../motion_dev/quick-start.md), [`../../motion_dev/decision-matrix.md`](../../motion_dev/decision-matrix.md), and [`../../motion_dev/integration-patterns.md`](../../motion_dev/integration-patterns.md). The Webflow guidance in this section remains authoritative for Webflow CDN loading, `window.Motion`, and Designer-specific initialization timing.
+
 ### Library Loading (Global Setup)
 
 **Load Motion.dev once as ES module in global.html:**

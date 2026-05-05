@@ -27,7 +27,7 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 | Phase | Resources / Evidence |
 | --- | --- |
 | Research | Webflow constraints, performance, browser/runtime context |
-| Implementation | `references/webflow/implementation/*`, Webflow patterns/assets |
+| Implementation | `references/webflow/implementation/*`, Webflow patterns/assets; add `references/motion_dev/` when Motion API or decision context is needed |
 | Code Quality | Webflow code quality checklist and standards |
 | Debugging | Webflow debugging resources plus browser console evidence |
 | Verification | Minification scripts and browser checks at relevant desktop/mobile viewports |
@@ -45,6 +45,10 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 | Verification | `verify_alignment_drift.py --root <changed-scope>` plus targeted tests/spec validation |
 
 OPENCODE previously had standards-only behavior. In the merged `sk-code`, it receives the full lifecycle.
+
+### Cross-Stack Motion.dev Resources
+
+`motion_dev/` can be loaded during research, implementation, code quality, debugging, or verification when Motion-specific API, performance, snippet, or decision guidance is relevant. It does not change the selected surface; it gives the active surface a shared Motion reference package.
 
 ---
 

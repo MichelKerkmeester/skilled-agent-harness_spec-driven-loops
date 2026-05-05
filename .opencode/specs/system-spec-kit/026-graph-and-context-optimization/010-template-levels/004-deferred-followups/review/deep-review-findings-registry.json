@@ -1,0 +1,41 @@
+{
+  "sessionId": "rvw-2026-05-04T00-00-00Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {"findingId":"F001","severity":"P2","status":"active","dimension":"implementation-spec-alignment","title":"Dual-path folder-existence check is redundant but not harmful","file":"scripts/spec/validate.sh","line":131},
+    {"findingId":"F002","severity":"P2","status":"active","dimension":"implementation-spec-alignment","title":"findSkillRoot fallback uses hardcoded relative path","file":"mcp_server/lib/validation/orchestrator.ts","line":49},
+    {"findingId":"F003","severity":"P2","status":"active","dimension":"implementation-spec-alignment","title":"Version mismatch between shell script and orchestrator","file":"scripts/spec/validate.sh","line":29},
+    {"findingId":"F004","severity":"P1","status":"active","dimension":"code-correctness","title":"Dead level parameter in loadManifest()","file":"mcp_server/lib/templates/level-contract-resolver.ts","line":88},
+    {"findingId":"F005","severity":"P2","status":"active","dimension":"code-correctness","title":"Fence regex divergence between stripFences and renderInlineGates","file":"mcp_server/lib/validation/orchestrator.ts","line":100},
+    {"findingId":"F006","severity":"P2","status":"active","dimension":"code-correctness","title":"collectKnownSessionIds scans all .md files without bounds","file":"mcp_server/lib/validation/orchestrator.ts","line":274},
+    {"findingId":"F007","severity":"P2","status":"active","dimension":"code-correctness","title":"ADR-001 special case in validateTemplateShape fragile","file":"mcp_server/lib/validation/orchestrator.ts","line":225},
+    {"findingId":"F008","severity":"P1","status":"active","dimension":"template-rendering-correctness","title":"copy_templates_batch silently returns 0 when no templates","file":"scripts/lib/template-utils.sh","line":143},
+    {"findingId":"F009","severity":"P2","status":"active","dimension":"template-rendering-correctness","title":"--out-dir uses filePath.split on Windows-unsafe path","file":"scripts/templates/inline-gate-renderer.ts","line":288},
+    {"findingId":"F010","severity":"P2","status":"active","dimension":"validator-coverage","title":"SECTIONS_PRESENT always passes without checking","file":"mcp_server/lib/validation/orchestrator.ts","line":364},
+    {"findingId":"F011","severity":"P2","status":"active","dimension":"cross-runtime-mirror-consistency","title":"Bash and Node level detection have divergent patterns","file":"scripts/spec/validate.sh","line":258},
+    {"findingId":"F012","severity":"P2","status":"active","dimension":"cross-runtime-mirror-consistency","title":"validate.sh has template hash validation that orchestrator lacks","file":"scripts/spec/validate.sh","line":226}
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [
+    {"findingId":"F005","from":"P1","to":"P2","iteration":2,"reason":"Behaviorally identical; cosmetic divergence only"}
+  ],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "implementation-spec-alignment": true,
+    "code-correctness": true,
+    "template-rendering-correctness": true,
+    "validator-coverage": true,
+    "cross-runtime-mirror-consistency": true
+  },
+  "findingsBySeverity": {"P0": 0, "P1": 2, "P2": 10},
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

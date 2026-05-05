@@ -1,6 +1,6 @@
 {
   "name": "sk-code",
-  "description": "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment) and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
+  "description": "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation.",
   "version": "2.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -15,6 +15,9 @@
     "css",
     "javascript",
     "motion.dev",
+    "motion-dev",
+    "motion_dev",
+    "cross-stack-animation",
     "gsap",
     "lenis",
     "swiper",
@@ -37,6 +40,10 @@
   ],
   "trigger_examples": [
     "fix Webflow animation flicker",
+    "motion.dev integration",
+    "cross-stack animation guidance",
+    "choose between Motion.dev GSAP CSS and WAAPI",
+    "create a Motion.dev timeline snippet",
     "minify the Webflow JS bundle",
     "Lighthouse audit shows poor LCP",
     "create a Webflow scroll animation with lenis",
@@ -47,7 +54,7 @@
     "verify alignment drift for changed system code",
     "update JSONC config schema for a skill"
   ],
-  "lastUpdated": "2026-05-03T17:10:00Z",
+  "lastUpdated": "2026-05-05T08:30:00Z",
   "merger_spec_folder": "skilled-agent-orchestration/066-sk-code-opencode-merger",
   "supported_surfaces": [
     "WEBFLOW",

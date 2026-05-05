@@ -114,6 +114,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'browser console': [['mcp-chrome-devtools', 0.75]],
   'cleaner prompt': [['sk-improve-prompt', 1]],
   'code review': [['sk-code-review', 1]],
+  'review the routing': [['sk-code-review', 0.6]],
+  'review the taxonomy': [['sk-code-review', 0.6]],
   'classifier vocabulary': [['sk-code-review', 0.9]],
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-improve-prompt', 0.95]],

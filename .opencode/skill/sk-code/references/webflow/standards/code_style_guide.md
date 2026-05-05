@@ -427,6 +427,8 @@ function example (param) { }
 3. **No commented-out code:** Delete unused code (git preserves history)
 4. **Platform-specific notes:** Document Webflow, Motion.dev, Lenis constraints
 
+> **Cross-stack motion.dev reference**: For Motion API assumptions and integration modes that can inform `MOTION:` comments across stacks, see [`../../motion_dev/quick-start.md`](../../motion_dev/quick-start.md) and [`../../motion_dev/integration-patterns.md`](../../motion_dev/integration-patterns.md). Webflow comment and naming conventions remain defined in this style guide.
+
 ### File Header Format
 
 Three-line header at the top of every file (see Section 3):

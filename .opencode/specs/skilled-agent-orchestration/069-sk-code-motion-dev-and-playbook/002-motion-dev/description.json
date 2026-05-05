@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev",
+  "description": "Phase 002 — Motion.dev Assets + References (Canonical Cross-Stack): populate sk-code/references/motion_dev/ and sk-code/assets/motion_dev/ from official motion.dev docs and a_nobel_en_zn/2_javascript usage; cite every API claim.",
+  "keywords": [
+    "phase",
+    "motion-dev",
+    "references",
+    "assets",
+    "cross-stack",
+    "sk-code",
+    "animation-library"
+  ],
+  "lastUpdated": "2026-05-05T07:30:00.000Z",
+  "specId": "069",
+  "folderSlug": "002-motion-dev",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "069-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

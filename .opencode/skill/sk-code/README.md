@@ -1,6 +1,6 @@
 # sk-code - Surface-Aware Code Skill
 
-`sk-code` is the single code-work skill. It detects whether the current work is Webflow/frontend code or OpenCode system code, then loads the correct resources.
+`sk-code` is the single code-work skill. It detects whether the current work is Webflow/frontend code or OpenCode system code, then loads the correct resources, including cross-stack motion.dev references when Motion-specific guidance is needed.
 
 ---
 
@@ -42,6 +42,7 @@ sk-code/
 │   │   ├── resource_loading.md
 │   │   └── phase_lifecycle.md
 │   ├── universal/              Shared code quality, style, research, error recovery
+│   ├── motion_dev/             Cross-stack motion.dev API, performance, decision, and integration refs
 │   ├── webflow/                Live Webflow/frontend resources
 │   └── opencode/               OpenCode system-code standards and references
 │       ├── shared/
@@ -53,6 +54,7 @@ sk-code/
 │
 ├── assets/
 │   ├── universal/
+│   ├── motion_dev/             Install card, playbook entries, and reusable Motion snippets
 │   ├── webflow/
 │   └── opencode/checklists/
 │
@@ -82,6 +84,8 @@ No completion claim is valid without fresh verification evidence.
 The former standalone OpenCode system-code skill is absorbed into this skill as the OPENCODE surface route. Go and NextJS placeholder branches were removed because they were not maintained live routes.
 
 Use route branches inside `sk-code` for future supported code surfaces rather than creating sibling code skills.
+
+`motion_dev/` is a peer resource category, not a separate code surface. It holds cross-stack Motion guidance that Webflow and future supported surfaces can link to while keeping Webflow-CDN and Designer-specific guidance under `webflow/`.
 
 ---
 

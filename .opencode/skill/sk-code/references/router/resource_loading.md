@@ -36,7 +36,23 @@ WEBFLOW loads from `references/webflow/` and `assets/webflow/`.
 
 ---
 
-## 3. OPENCODE MAP
+## 3. MOTION_DEV MAP
+
+MOTION_DEV loads from `references/motion_dev/` and `assets/motion_dev/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, OPENCODE, or future surfaces when the request needs Motion API, integration, or decision guidance.
+
+| Intent | Resources |
+| --- | --- |
+| ANIMATION / MOTION_DEV | `references/motion_dev/{quick-start,animate-and-timelines,scroll-and-gestures}.md` |
+| PERFORMANCE | `references/motion_dev/performance-and-pitfalls.md` |
+| IMPLEMENTATION / API | `references/motion_dev/integration-patterns.md`, `assets/motion_dev/snippets/*` |
+| CODE_QUALITY / DECISION | `references/motion_dev/decision-matrix.md`, `assets/motion_dev/install-card.md` |
+| TESTING / PLAYBOOK | `assets/motion_dev/playbook-entries.md` plus manual testing playbook Motion scenarios |
+
+When WEBFLOW and MOTION_DEV both match, load Webflow guidance for CDN, `window.Motion`, Designer, and browser verification constraints, then load `motion_dev/` for cross-stack Motion details.
+
+---
+
+## 4. OPENCODE MAP
 
 OPENCODE loads from `references/opencode/` and `assets/opencode/`.
 
@@ -67,7 +83,7 @@ Language resources:
 
 ---
 
-## 4. VERIFICATION COMMANDS
+## 5. VERIFICATION COMMANDS
 
 | Surface | Commands |
 | --- | --- |
@@ -76,7 +92,7 @@ Language resources:
 
 ---
 
-## 5. UNKNOWN FALLBACK
+## 6. UNKNOWN FALLBACK
 
 If no supported surface matches, ask:
 

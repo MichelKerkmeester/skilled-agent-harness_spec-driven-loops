@@ -44,6 +44,10 @@
     "html",
     "css",
     "javascript",
+    "motion.dev",
+    "motion-dev",
+    "motion_dev",
+    "cross-stack-animation",
     "opencode",
     "system-code",
     "typescript",
@@ -73,6 +77,13 @@
     "shell",
     "jsonc",
     "alignment verifier",
+    "motion.dev integration",
+    "motion-dev integration",
+    "motion_dev references",
+    "cross-stack animation",
+    "motion api",
+    "motion snippets",
+    "motion decision matrix",
     "refactor function",
     "refactor the",
     "throw on missing",
@@ -112,6 +123,12 @@
       "css",
       "javascript",
       "motion.dev",
+      "motion-dev",
+      "motion_dev",
+      "cross-stack animation",
+      "motion api",
+      "motion snippets",
+      "motion decision matrix",
       "gsap",
       "lenis",
       "swiper",
@@ -133,10 +150,26 @@
       "code",
       "surface-aware-routing",
       "webflow",
+      "motion_dev",
+      "cross-stack-animation",
       "opencode",
       "language-sub-detection",
       "code-quality",
       "verification"
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "references/router/code_surface_detection.md",
+      "references/router/intent_classification.md",
+      "references/router/resource_loading.md",
+      "references/router/phase_lifecycle.md",
+      "references/motion_dev/animate-and-timelines.md",
+      "references/motion_dev/decision-matrix.md",
+      "references/motion_dev/integration-patterns.md",
+      "references/motion_dev/performance-and-pitfalls.md",
+      "references/motion_dev/quick-start.md",
+      "references/motion_dev/scroll-and-gestures.md"
     ],
     "key_files": [
       ".opencode/skill/sk-code/SKILL.md",
@@ -145,6 +178,13 @@
       ".opencode/skill/sk-code/references/router/intent_classification.md",
       ".opencode/skill/sk-code/references/router/resource_loading.md",
       ".opencode/skill/sk-code/references/router/phase_lifecycle.md",
+      ".opencode/skill/sk-code/references/motion_dev/quick-start.md",
+      ".opencode/skill/sk-code/references/motion_dev/decision-matrix.md",
+      ".opencode/skill/sk-code/references/motion_dev/integration-patterns.md",
+      ".opencode/skill/sk-code/references/motion_dev/performance-and-pitfalls.md",
+      ".opencode/skill/sk-code/assets/motion_dev/install-card.md",
+      ".opencode/skill/sk-code/assets/motion_dev/playbook-entries.md",
+      ".opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js",
       ".opencode/skill/sk-code/references/webflow/implementation/implementation_workflows.md",
       ".opencode/skill/sk-code/references/opencode/shared/universal_patterns.md",
       ".opencode/skill/sk-code/scripts/verify_alignment_drift.py"
@@ -154,6 +194,12 @@
         "name": "sk-code",
         "kind": "skill",
         "path": ".opencode/skill/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion_dev",
+        "kind": "reference-category",
+        "path": ".opencode/skill/sk-code/references/motion_dev/quick-start.md",
         "source": "derived"
       },
       {
@@ -169,21 +215,17 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Multi-stack coding standards, references, and assets — surface-aware patterns, checklists, and verification recipes for Webflow frontend and OpenCode system code. OPENCODE absorbs the former standalone OpenCode language standards and verifier scripts; Go and NextJS placeholder routes were removed. Smart-routing internals (WEBFLOW vs OPENCODE detection) auto-load matching standards.",
-    "source_docs": [
-      "SKILL.md",
-      "README.md",
-      "references/router/code_surface_detection.md",
-      "references/router/intent_classification.md",
-      "references/router/resource_loading.md",
-      "references/router/phase_lifecycle.md"
-    ],
+    "causal_summary": "Multi-stack coding standards, references, and assets — surface-aware patterns, checklists, and verification recipes for Webflow frontend, cross-stack motion.dev animation guidance, and OpenCode system code. Smart-routing internals choose WEBFLOW, OPENCODE, or UNKNOWN first; motion_dev is a peer resource category loaded for Motion API, performance, snippets, integration, and decision-matrix context.",
     "created_at": "2026-04-30T08:30:00Z",
-    "last_updated_at": "2026-05-03T17:10:00Z",
+    "last_updated_at": "2026-05-05T08:30:00Z",
     "merger_packet": "skilled-agent-orchestration/066-sk-code-opencode-merger",
+    "motion_dev_packet": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
     "supported_surfaces": [
       "WEBFLOW",
       "OPENCODE"
+    ],
+    "peer_resource_categories": [
+      "motion_dev"
     ]
   }
 }

@@ -144,8 +144,10 @@ copy_templates_batch() {
         return 0
     fi
 
-    if ! "$renderer" --level "$render_level" --out-dir "$dest_dir" "${template_paths[@]}"; then
-        return $?
+    local renderer_exit=0
+    "$renderer" --level "$render_level" --out-dir "$dest_dir" "${template_paths[@]}" || renderer_exit=$?
+    if [[ $renderer_exit -ne 0 ]]; then
+        return $renderer_exit
     fi
 
     if [[ "$render_level" == "phase" && -f "$dest_dir/phase-parent.spec.md" ]]; then

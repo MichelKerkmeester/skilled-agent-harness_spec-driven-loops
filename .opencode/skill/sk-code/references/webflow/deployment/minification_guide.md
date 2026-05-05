@@ -124,6 +124,8 @@ if (window.Webflow?.push) {
 
 ### Motion.dev / GSAP References
 
+> **Cross-stack motion.dev reference**: For Motion API import modes and integration trade-offs that apply outside Webflow minification, see [`../../motion_dev/quick-start.md`](../../motion_dev/quick-start.md) and [`../../motion_dev/integration-patterns.md`](../../motion_dev/integration-patterns.md). The Webflow guidance below remains authoritative for CDN globals that minification must preserve.
+
 ```javascript
 // External library references must be preserved
 if (window.Motion && typeof window.Motion.animate === 'function') {

@@ -1,11 +1,11 @@
 ---
 name: sk-code
-description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment) and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
+description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 2.0.0
 ---
 
-<!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, motion.dev, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
+<!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
 
 # Code Workflows - Surface-Aware Smart Router
 
@@ -21,6 +21,8 @@ Use this skill when doing code work in either supported surface:
 
 - **WEBFLOW**: Webflow / vanilla frontend work in HTML, CSS, and JavaScript, including motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN/minification, and browser verification.
 - **OPENCODE**: OpenCode system work under `.opencode/`, including skills, agents, commands, MCP servers, hooks, scripts, tests, JSON/JSONC config, TypeScript, JavaScript, Python, and Shell.
+
+Also use this skill for cross-stack motion.dev reference work when the question is about Motion APIs, snippets, integration modes, performance pitfalls, or CSS/Motion/GSAP/WAAPI trade-offs that should live in `references/motion_dev/` or `assets/motion_dev/` rather than inside Webflow-only guidance.
 
 Use it for implementation, code quality, debugging, verification, test failures, build failures, and before any completion claim.
 
@@ -102,14 +104,17 @@ Ambiguous multi-language tasks load the top matching language references plus th
 - `references/universal/`: surface-agnostic error recovery, code quality, style, and research guidance.
 - `references/router/`: detection, intent scoring, loading, and lifecycle internals.
 - `references/webflow/`, `assets/webflow/`: live Webflow/frontend implementation, standards, debugging, verification, performance, deployment, checklists, and patterns.
+- `references/motion_dev/`, `assets/motion_dev/`: cross-stack motion.dev API, timeline, scroll/gesture, performance, decision-matrix, integration, install, playbook hook, and snippet resources. Webflow docs link here for generic Motion details while keeping Webflow-CDN and Designer guidance in `references/webflow/`.
 - `references/opencode/`, `assets/opencode/`: OpenCode system-code language standards, shared patterns, hooks, alignment automation, and quality checklists.
 - `scripts/`: Webflow build utilities plus OpenCode alignment verifier.
 
 ### Intent Classification
 
-After surface detection, score task text for intents: `IMPLEMENTATION`, `CODE_QUALITY`, `DEBUGGING`, `VERIFICATION`, `TESTING`, `DEPLOYMENT`, `PERFORMANCE`, `ANIMATION`, `FORMS`, `VIDEO`, `API`, `HOOKS`, `CONFIG`, and `LANGUAGE_STANDARDS`.
+After surface detection, score task text for intents: `IMPLEMENTATION`, `CODE_QUALITY`, `DEBUGGING`, `VERIFICATION`, `TESTING`, `DEPLOYMENT`, `PERFORMANCE`, `ANIMATION`, `MOTION_DEV`, `FORMS`, `VIDEO`, `API`, `HOOKS`, `CONFIG`, and `LANGUAGE_STANDARDS`.
 
 Top intent always loads. A close second intent also loads when scores are within the ambiguity threshold.
+
+`MOTION_DEV` is a resource intent, not a third code surface. It loads `references/motion_dev/` and `assets/motion_dev/` for cross-stack Motion questions after WEBFLOW/OPENCODE/UNKNOWN surface handling has established where implementation work is happening.
 
 ### Verification Commands
 
@@ -129,6 +134,7 @@ Top intent always loads. A close second intent also loads when scores are within
 2. Load Webflow implementation, debugging, verification, performance, and vendor-specific resources by intent.
 3. Verify with build/minification scripts and browser evidence when behavior changes.
 4. Update CDN/versioning guidance after JavaScript bundle changes.
+5. For Motion API or decision questions, load `references/motion_dev/` as the cross-stack peer reference and keep Webflow-specific CDN guidance in `references/webflow/`.
 
 ### OPENCODE Workflow
 

@@ -22,6 +22,8 @@ Follow code quality standards for all implementations:
 - **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](./webflow_patterns.md)
 - See [code_quality_standards.md](../standards/code_quality_standards.md) for complete standards
 
+> **Cross-stack motion.dev reference**: For Motion API and integration guidance that is not Webflow-specific, see [`../../motion_dev/quick-start.md`](../../motion_dev/quick-start.md) and [`../../motion_dev/integration-patterns.md`](../../motion_dev/integration-patterns.md). Webflow lifecycle, CDN timing, and Designer constraints remain covered by the Webflow implementation guides linked here.
+
 ### When to Use
 - Handling async operations and race conditions
 - Validating data and inputs

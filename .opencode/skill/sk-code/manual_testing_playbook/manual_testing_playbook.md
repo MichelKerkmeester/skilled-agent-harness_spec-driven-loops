@@ -19,6 +19,8 @@ Canonical package artifacts:
 - `02--language-sub-detection/`
 - `03--routing-disambiguation/`
 - `04--skill-advisor-integration/`
+- `05--motion-dev-and-animation-regression/`
+- `06--cross-browser-and-performance-gates/`
 
 ---
 
@@ -34,14 +36,16 @@ Canonical package artifacts:
 - [8. LANGUAGE SUB-DETECTION (`LS-001..LS-004`)](#8-language-sub-detection-ls-001ls-004)
 - [9. ROUTING DISAMBIGUATION (`RD-001..RD-002`)](#9-routing-disambiguation-rd-001rd-002)
 - [10. SKILL ADVISOR INTEGRATION (`SA-001`)](#10-skill-advisor-integration-sa-001)
-- [11. AUTOMATED TEST CROSS-REFERENCE](#11-automated-test-cross-reference)
-- [12. FEATURE CATALOG CROSS-REFERENCE INDEX](#12-feature-catalog-cross-reference-index)
+- [11. MOTION.DEV AND ANIMATION REGRESSION (`MR-001..MR-004`)](#11-motiondev-and-animation-regression-mr-001mr-004)
+- [12. CROSS-BROWSER AND PERFORMANCE GATES (`CB-001..CB-003`)](#12-cross-browser-and-performance-gates-cb-001cb-003)
+- [13. AUTOMATED TEST CROSS-REFERENCE](#13-automated-test-cross-reference)
+- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14-feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 10 deterministic scenarios across 4 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 17 deterministic scenarios across 6 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -50,6 +54,8 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - OPENCODE language sub-detection (TypeScript, Python, Shell, JSON/JSONC) with correct sub-language reference loading.
 - Routing disambiguation under mixed-marker conditions and the sk-code vs sk-doc anti-pattern.
 - Skill advisor integration: confidence ≥ 0.80 win for positive controls, no false positives on doc-edit prompts.
+- Motion.dev integration checks: pinned CDN/API smoke, reduced-motion behavior, animation regression baselines.
+- Cross-browser and performance gates: Chrome/Safari/Firefox behavior, LCP/CLS/INP thresholds, and compositor-friendly animation checks.
 
 ### Realistic Test Model
 
@@ -112,7 +118,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 1. `manual_testing_playbook.md` (this file).
 2. Per-feature files under `manual_testing_playbook/{NN--category-name}/`.
 3. Scenario execution evidence (advisor outputs, surface-detection logs, resource-loading transcripts).
-4. Feature-to-scenario coverage map (§12 FEATURE CATALOG CROSS-REFERENCE INDEX).
+4. Feature-to-scenario coverage map (§14 FEATURE CATALOG CROSS-REFERENCE INDEX).
 5. Triage notes for all PARTIAL / FAIL outcomes.
 
 ### Scenario Acceptance Rules
@@ -146,7 +152,7 @@ Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Criti
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (10 / 10).
+3. Coverage is 100% of playbook scenarios (17 / 17).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -229,7 +235,38 @@ Per-feature file: see `04--skill-advisor-integration/001-advisor-probe-battery.m
 
 ---
 
-## 11. AUTOMATED TEST CROSS-REFERENCE
+## 11. MOTION.DEV AND ANIMATION REGRESSION (`MR-001..MR-004`)
+
+> Motion.dev API surface and full reference docs are documented in [../references/motion_dev/](../references/motion_dev/) (populated in Packet 2 of this rework). The scenarios below test motion.dev integration points; consult the canonical motion.dev docs for full API details.
+
+Motion.dev install and API behavior referenced in these scenarios is anchored to the official Motion docs, especially `https://motion.dev/docs/quick-start`, plus API subpages such as `https://motion.dev/docs/animate`, `https://motion.dev/docs/inview`, `https://motion.dev/docs/spring`, and `https://motion.dev/docs/performance`.
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `MR-001` | Motion.dev API Smoke | Verify pinned CDN Motion exports and basic runtime calls work in a Webflow-style sandbox | `Create a sandboxed Webflow-style Motion smoke page that imports animate, inView, and spring from a pinned motion CDN URL. Run it in Chrome, verify exports are functions, run one animate() call, trigger one inView() callback, and return PASS/FAIL with console evidence.` | create sandbox -> open in Chrome -> inspect console -> run smoke calls -> save transcript | pinned CDN URL; `animate`, `inView`, `spring` are functions; no uncaught console errors | `/tmp/skc-MR001-console.txt`, screenshot/video | PASS iff exports exist and smoke calls complete without throwing | Verify CDN URL, pinned version, export names, and selector visibility |
+| `MR-002` | CDN Bundle Version Pin | Verify Motion CDN usage is version-pinned and not `@latest` | `Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @latest, record the pinned version(s), and verify the pinned ESM bundle exposes animate, inView, scroll, and motionValue for the testimonial slider pattern.` | `rg` CDN URLs -> classify production/docs hits -> probe pinned exports -> save results | no production `@latest`; pinned version(s) recorded; required exports present | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff production Motion URLs are pinned and required exports exist | Classify docs/example hits separately; fail production `@latest` |
+| `MR-003` | Prefers Reduced Motion | Verify Motion interactions respect `prefers-reduced-motion: reduce` | `Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.` | capture normal video -> enable reduced-motion emulation -> reload -> exercise flows -> capture reduced video | media query true; large transform motion removed or neutralized; UI still usable | `/tmp/skc-MR003-normal.mp4`, `/tmp/skc-MR003-reduced.mp4`, console transcript | PASS iff reduced-motion mode removes large motion while preserving state changes | Verify emulation, source guards, and Motion accessibility guidance |
+| `MR-004` | Animation Regression Baseline | Capture baseline videos for key Motion-driven UI elements | `Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.` | open target -> record dropdown -> record slider -> save console -> compare baseline | correct open/close and slider final states; no console errors; drift noted | `/tmp/skc-MR004-nav-dropdown.mp4`, `/tmp/skc-MR004-testimonial.mp4`, `/tmp/skc-MR004-verdict.md` | PASS iff current behavior matches baseline or establishes approved first baseline | Isolate markup, Motion API, timing constants, or reduced-motion settings |
+
+Per-feature files: see `05--motion-dev-and-animation-regression/`.
+
+---
+
+## 12. CROSS-BROWSER AND PERFORMANCE GATES (`CB-001..CB-003`)
+
+These scenarios validate browser compatibility and performance evidence for Motion-driven UI. They use browser tooling and fixed thresholds so release review can distinguish visual quirks from blocking regressions.
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `CB-001` | Cross-Browser Motion Animate | Verify Motion UI behavior in Chrome, Safari, and Firefox latest stable | `Run the Motion nav dropdown and testimonial slider scenarios in Chrome, Safari, and Firefox latest stable. Capture browser/version, console output, screenshots or videos, and any rendering quirks. Return PASS/FAIL per browser plus an aggregate verdict.` | run interactions in Chrome -> Safari -> Firefox -> save per-browser evidence -> write matrix | same final states; no uncaught Motion errors; quirks documented | `/tmp/skc-CB001-{browser}.txt`, `/tmp/skc-CB001-{browser}.mp4`, matrix | PASS iff all browsers reach correct final states and have clean runtime evidence | Isolate browser import support, WAAPI behavior, CSS differences, or reduced-motion settings |
+| `CB-002` | Core Web Vitals Gates | Verify Motion-heavy page stays under CWV thresholds | `Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav dropdown. Use Chrome DevTools Performance panel or PageSpeed Insights, capture the report, and return PASS/FAIL against LCP < 2.5s, CLS < 0.1, INP < 200ms.` | open target -> run DevTools/PageSpeed -> interact -> export report -> write verdict | LCP < 2.5s; CLS < 0.1; INP < 200ms | `/tmp/skc-CB002-report.json` or `.html`, `/tmp/skc-CB002-verdict.md` | PASS iff all metrics meet thresholds and no animation-specific regression appears | Inspect hero delay, layout shifts, long tasks, and interaction handlers |
+| `CB-003` | GPU Compositing | Verify Motion animations use compositor-friendly properties where expected | `Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav dropdown and testimonial slider. Verify transform/opacity animations are compositor-friendly, flag any height/layout animation, and return PASS/FAIL with screenshots and trace notes.` | enable paint/layer tooling -> record trace -> exercise flows -> inspect layout/paint/composite events -> write verdict | transform/opacity composited where expected; layout-affecting animations documented; no forced-layout loop | `/tmp/skc-CB003-trace.json`, `/tmp/skc-CB003-rendering.png`, verdict | PASS iff compositor-friendly behavior is confirmed and layout animation is bounded/documented | Inspect `scrollHeight`, `offsetHeight`, `translate3d`, `willChange`, and CWV correlation |
+
+Per-feature files: see `06--cross-browser-and-performance-gates/`.
+
+---
+
+## 13. AUTOMATED TEST CROSS-REFERENCE
 
 The sk-code skill currently has these automated tests:
 
@@ -241,10 +278,13 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Mixed-marker disambiguation (RD-001).
 - Advisor anti-pattern routing (RD-002).
 - End-to-end advisor probe accuracy (SA-001).
+- Motion.dev API smoke and CDN version pinning (MR-001, MR-002).
+- Reduced-motion and animation regression baseline checks (MR-003, MR-004).
+- Cross-browser, Core Web Vitals, and GPU/compositing checks (CB-001, CB-002, CB-003).
 
 ---
 
-## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -258,7 +298,14 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Routing Disambiguation | RD-001 | `03--routing-disambiguation/001-mixed-marker-ambiguity.md` | No |
 | Routing Disambiguation | RD-002 | `03--routing-disambiguation/002-skcode-vs-skdoc.md` | Yes |
 | Skill Advisor Integration | SA-001 | `04--skill-advisor-integration/001-advisor-probe-battery.md` | Yes |
+| Motion.dev And Animation Regression | MR-001 | `05--motion-dev-and-animation-regression/001-motion-api-smoke.md` | Yes |
+| Motion.dev And Animation Regression | MR-002 | `05--motion-dev-and-animation-regression/002-cdn-bundle-version-pin.md` | Yes |
+| Motion.dev And Animation Regression | MR-003 | `05--motion-dev-and-animation-regression/003-prefers-reduced-motion.md` | Yes |
+| Motion.dev And Animation Regression | MR-004 | `05--motion-dev-and-animation-regression/004-animation-regression-baseline.md` | Yes |
+| Cross-Browser And Performance Gates | CB-001 | `06--cross-browser-and-performance-gates/001-cross-browser-animate.md` | Yes |
+| Cross-Browser And Performance Gates | CB-002 | `06--cross-browser-and-performance-gates/002-cwv-gates.md` | Yes |
+| Cross-Browser And Performance Gates | CB-003 | `06--cross-browser-and-performance-gates/003-gpu-compositing.md` | Yes |
 
-**Total scenarios**: 10
-**Critical-path scenarios**: 5 (SD-001, SD-002, SD-003, RD-002, SA-001)
-**Categories**: 4
+**Total scenarios**: 17
+**Critical-path scenarios**: 12 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003)
+**Categories**: 6

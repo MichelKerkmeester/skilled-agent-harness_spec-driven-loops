@@ -413,6 +413,11 @@ create_graph_metadata_file() {
     if [[ -z "$summary_text" ]]; then
         summary_text="${FEATURE_DESCRIPTION:-Spec folder graph metadata scaffold}"
     fi
+    summary_text="${summary_text//\\/\\\\}"
+    summary_text="${summary_text//\"/\\\"}"
+    summary_text="${summary_text//$'\n'/\\n}"
+    summary_text="${summary_text//$'\r'/\\r}"
+    summary_text="${summary_text//$'\t'/\\t}"
 
     local source_docs_json='["spec.md","plan.md","tasks.md"]'
     local key_files_json='["spec.md","plan.md","tasks.md"]'
@@ -446,7 +451,7 @@ create_graph_metadata_file() {
     "status": "${status}",
     "key_files": ${key_files_json},
     "entities": [],
-    "causal_summary": "${summary_text//\"/\\\"}",
+    "causal_summary": "${summary_text}",
     "created_at": "${now_iso}",
     "last_save_at": "${now_iso}",
     "save_lineage": "graph_only",

@@ -115,6 +115,8 @@ node scripts/test-minified-runtime.mjs
 
 See: [performance_patterns.md](../implementation/performance_patterns.md)
 
+> **Cross-stack motion.dev reference**: For deeper Motion API, performance, and decision guidance beyond this Webflow quick reference, see [`../../motion_dev/quick-start.md`](../../motion_dev/quick-start.md), [`../../motion_dev/performance-and-pitfalls.md`](../../motion_dev/performance-and-pitfalls.md), and [`../../motion_dev/decision-matrix.md`](../../motion_dev/decision-matrix.md).
+
 ```javascript
 // ✅ Animate transform/opacity only (Motion.dev)
 import { animate } from "motion"

@@ -88,6 +88,8 @@ if (window.Webflow?.push) {
 | **Webflow.push Support** | `window.Webflow.push(start)`                | Integrates with Webflow's native queueing system               |
 | **Once-Only Listener**   | `{ once: true }`                            | Prevents memory leaks from duplicate listeners                 |
 
+> **Cross-stack motion.dev reference**: For Motion install modes, API availability, and non-Webflow integration patterns, see [`../../motion_dev/quick-start.md`](../../motion_dev/quick-start.md) and [`../../motion_dev/integration-patterns.md`](../../motion_dev/integration-patterns.md). The guard, delay, and `Webflow.push` rules above remain Webflow-specific.
+
 ### When to Adjust INIT_DELAY_MS
 
 | Delay              | When to Use                         | Example                                     |

@@ -21,6 +21,8 @@ Detect **where the work is happening** before deciding which standards apply.
 | OPENCODE | `.opencode/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
+`motion_dev/` is a peer resource category rather than a surface. Surface detection still chooses WEBFLOW, OPENCODE, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+
 ---
 
 ## 2. DETECTION ORDER
