@@ -1,0 +1,35 @@
+# sk-doc Routing Trace
+
+**1. Intent Selected: `OPTIMIZATION`**
+
+Keywords matched: "optimize", "token efficiency", "compress", "deduplicate", "sk-doc optimization guidance". The request is explicitly about reducing token footprint of an existing SKILL.md, which is the core OPTIMIZATION intent. Note: "llms.txt summary" is a sub-deliverable here, not a separate intent (no dedicated LLMS_TXT intent exists in the 11-intent map).
+
+**2. Conditional-Loaded Resources**
+
+References:
+- `references/optimization/token-efficiency.md` (compression heuristics, prose→table conversions)
+- `references/optimization/deduplication-patterns.md` (RESOURCE_MAP dedup, single-source-of-truth rules)
+- `references/optimization/llms-txt-spec.md` (llms.txt format + discovery contract)
+- `references/skill-anatomy.md` (SKILL.md frontmatter + section invariants to preserve)
+
+Assets:
+- `assets/templates/llms.txt.template`
+- `assets/checklists/optimization-checklist.md` (before/after token delta, section preservation, link integrity)
+
+Baseline always-loaded: SKILL.md core + RESOURCE_MAP block (not re-enumerated).
+
+**3. Response Shape**
+
+~3–5 line structure sk-doc would return:
+1. **Diagnosis block** — current line/token count, hot sections, dedup opportunities vs RESOURCE_MAP.
+2. **Optimization plan** — ordered transformations (prose→tables, collapse enumerations, extract to references/).
+3. **Proposed SKILL.md diff** — compressed version with preserved frontmatter, triggers, gates.
+4. **Generated `llms.txt`** — name, description, key resource links per llms.txt spec.
+5. **Verification checklist** — token delta, DQI score, link/anchor integrity, no semantic loss.
+
+No files written; routing-trace only.
+
+
+Changes   +0 -0
+Requests  15 Premium (21s)
+Tokens    ↑ 51.8k • ↓ 682 • 0 (cached)

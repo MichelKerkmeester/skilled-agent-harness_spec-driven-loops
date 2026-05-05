@@ -1,0 +1,20 @@
+**Routing trace (no execution):**
+
+1. **Intent selected:** `INSTALL_GUIDE` — keywords "install guide", "prerequisites", "installation", "configuration", "verification", "troubleshooting" all map cleanly to this intent.
+
+2. **Conditional loads for INSTALL_GUIDE:**
+   - `references/install-guide-structure.md` (canonical section order: Prerequisites → Installation → Configuration → Verification → Troubleshooting)
+   - `references/doc-quality-checklist.md` (DQI scoring baseline applied to all sk-doc outputs)
+   - `assets/templates/install-guide-template.md` (skeleton with section headings + placeholder blocks)
+   - `assets/snippets/troubleshooting-table.md` (standard symptom/cause/fix table format)
+   - Optionally: `references/code-block-conventions.md` for shell/env-var fencing rules
+
+3. **Response shape (~5 lines):**
+   - **Header block:** title, scope, audience, version compatibility matrix
+   - **Ordered sections:** Prerequisites (versioned tool list) → Installation (npm command + global config wiring steps) → Configuration (env-var table: name/required/default/description for `DB_URL`, `DB_SSL_MODE`) → Verification (numbered smoke-query + readiness-probe steps with expected output) → Troubleshooting (symptom → cause → resolution table)
+   - **Footer:** "Next steps" + cross-links, DQI self-score line
+
+
+Changes   +0 -0
+Requests  15 Premium (13s)
+Tokens    ↑ 51.8k • ↓ 537 • 21.7k (cached)
