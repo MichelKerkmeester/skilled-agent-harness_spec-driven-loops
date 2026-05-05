@@ -11,42 +11,81 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "078/002",
+      "spec-kit-load",
+      "authoring-time sk-code",
+      "cross-skill load contract",
+      "078/002 plan",
+      "078/002 tasks",
+      "078/002 summary",
+      "sk-code v3.2.1.0",
+      "cross-skill authoring-time"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "078",
+      "002",
+      "spec-kit-load",
+      "authoring-time",
+      "sk-code",
+      "cross-skill",
+      "load",
+      "contract",
       "plan",
       "tasks",
       "summary",
-      "impl",
-      "phase"
+      "add"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "tasks.md",
+      ".opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml",
+      ".opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml",
+      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skill/sk-code/SKILL.md",
+      ".opencode/skill/sk-code/description.json",
+      ".opencode/skill/sk-code/changelog/v3.2.1.0.md",
       "spec.md",
       "plan.md",
-      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/command/spec_kit/assets/spec_kit_complete_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_complete_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/command/spec_kit/assets/spec_kit_complete_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skill/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skill/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "v3.2.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skill/sk-code/changelog/v3.2.1.0.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -57,12 +96,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -84,25 +117,25 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,39 +147,33 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Skill Consumption",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
+        "name": "cli-codex",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
+        "name": "target",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
+        "name": "fields",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -162,39 +189,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "explicit",
+        "kind": "key_phrase",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 2** of the Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup specification.",
+    "causal_summary": "Add authoring-time sk-code load to both `/spec_kit:complete:auto` and `:confirm` YAMLs. Add a paragraph to system-spec-kit/SKILL.md documenting the cross-skill load contract (pull-style: the workflow tells the orchestrator WHEN to consult sk-code). Add a complementary paragraph to sk-code/SKILL.md declaring the contract from its side (push-style: the resources sk-code will surface when called from `/spec_kit:complete` with an `.opencode/` target). Closes 4 P1 findings: F-009-001, F-009-002, F-008-004, F-006-004.",
     "created_at": "2026-05-05T17:36:52Z",
-    "last_save_at": "2026-05-05T17:45:50.091Z",
+    "last_save_at": "2026-05-05T18:25:31.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

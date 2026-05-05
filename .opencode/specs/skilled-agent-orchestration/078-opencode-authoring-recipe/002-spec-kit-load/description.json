@@ -1,17 +1,40 @@
 {
-  "specFolder": "078-opencode-authoring-recipe/002-spec-kit-load",
-  "description": "Phase 2: spec-kit-load",
+  "level": "1",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/002-spec-kit-load",
+  "description": "Phase 2 of 078: cross-skill authoring-time sk-code load contract documented in /spec_kit:complete YAMLs (auto + confirm) and both SKILL.md surfaces. s",
   "keywords": [
     "phase",
-    "spec-kit-load"
+    "078",
+    "cross-skill",
+    "authoring-time",
+    "sk-code",
+    "load",
+    "contract",
+    "documented",
+    "complete",
+    "yamls",
+    "auto",
+    "confirm",
+    "skill",
+    "surfaces",
+    "patch",
+    "closes",
+    "findings",
+    "077",
+    "f-009-001",
+    "f-009-002",
+    "f-008-004",
+    "f-006-004"
   ],
-  "lastUpdated": "2026-05-05T17:36:53.425Z",
+  "lastUpdated": "2026-05-05T18:25:31.395Z",
   "specId": "002",
   "folderSlug": "spec-kit-load",
   "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
     "078-opencode-authoring-recipe"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

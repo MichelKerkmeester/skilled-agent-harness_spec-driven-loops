@@ -122,7 +122,7 @@ CLI exit codes:
 | CONDITIONAL | If intent signals match   | Intent-mapped references     |
 | ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
 
-`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../sk-deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
+`references/workflows/quick_reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/spec_kit:plan --intake-only` as the standalone intake entry, `/spec_kit:plan` and `/spec_kit:complete` smart delegation notes, and the pointer from `/spec_kit:deep-research` to `../deep-research/references/spec_check_protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
 
 ### Smart Router Pseudocode
 
@@ -399,6 +399,7 @@ Use CocoIndex for semantic discovery, Code Graph for structural relationships, a
 15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
 16. **Suggest /spec_kit:plan :with-phases when task requires multi-phase decomposition** - Complex specs spanning multiple sessions or workstreams
 17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion
+   - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/spec_kit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.opencode/skill/`, `.opencode/agent/`, `.opencode/command/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`assets/opencode/checklists/{surface}_authoring.md`) and `assets/opencode/recipes/spec_folder_write.md` BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code-review` baseline + `sk-code` router-selected evidence overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See `cross_skill_authoring_load` block in `spec_kit_complete_auto.yaml` and `spec_kit_complete_confirm.yaml` for the YAML contract.
 18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion
 19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
 
@@ -452,7 +453,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Upgrade level | `bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
 
-Canonical command lifecycle: `/spec_kit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/spec_kit:deep-research` follows `../sk-deep-research/references/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/spec_kit:plan` or `/spec_kit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skill/system-spec-kit/references/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
+Canonical command lifecycle: `/spec_kit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/spec_kit:deep-research` follows `../deep-research/references/spec_check_protocol.md` when research needs bounded `spec.md` anchoring, and `/spec_kit:plan` or `/spec_kit:complete` continue from the same folder while reusing the shared intake contract (`.opencode/skill/system-spec-kit/references/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
 
 **Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
 
@@ -464,4 +465,4 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/spec/validate.sh`, `scripts/spec/create.sh`, `scripts/dist/memory/generate-context.js`, `scripts/spec/check-completion.sh`.
 
-Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, `sk-deep-research` for iterative research, and `sk-deep-review` for iterative audit workflows.
+Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, `deep-research` for iterative research, and `deep-review` for iterative audit workflows.

@@ -2,7 +2,7 @@
 name: sk-code
 description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 3.2.0.0
+version: 3.2.1.0
 ---
 
 <!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, Motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
@@ -45,6 +45,20 @@ Documentation-only edits to skill markdown route to `sk-doc`, even when the file
 ### Review Baseline Contract
 
 `sk-code-review` owns findings format, severity model, and baseline security/quality/test review. `sk-code` owns surface detection and surface-specific standards evidence.
+
+### Cross-Skill Consumption
+
+When called from `/spec_kit:complete` with an `.opencode/` implementation target (`step_10_development` activity), `sk-code` surfaces the matching authoring checklist plus the `spec_folder_write` recipe AT WRITE-TIME (before the orchestrator's first write), not just at review-time.
+
+| Target Path | Authoring Checklist Surfaced | Recipe |
+|---|---|---|
+| `.opencode/skill/` | `assets/opencode/checklists/skill_authoring.md` | — |
+| `.opencode/agent/` | `assets/opencode/checklists/agent_authoring.md` | — |
+| `.opencode/command/` | `assets/opencode/checklists/command_authoring.md` | — |
+| `.opencode/specs/` | `assets/opencode/checklists/spec_folder_authoring.md` | `assets/opencode/recipes/spec_folder_write.md` |
+| MCP server source | `assets/opencode/checklists/mcp_server_authoring.md` | — |
+
+Authoring-time load is the contract documented in `system-spec-kit/SKILL.md §16-17 cross-skill routing` and the `cross_skill_authoring_load` block in `/spec_kit:complete` YAMLs. Review-time `sk-code-review` baseline + `sk-code` router-selected evidence overlay remains unchanged.
 
 ---
 
