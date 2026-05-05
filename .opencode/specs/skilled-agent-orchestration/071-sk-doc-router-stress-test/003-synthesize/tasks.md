@@ -1,27 +1,23 @@
 ---
-title: "Tasks: Phase 3: synthesize [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
-trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+title: "Tasks: Phase 3: synthesize"
+description: "T###: parser author, run, review-report author, commit."
+trigger_phrases: ["071/003 tasks"]
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-synthesize"
-    last_updated_at: "2026-05-05T10:27:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "071-sk-doc-router-stress-test/003-synthesize"
+    last_updated_at: "2026-05-05T15:35:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "All tasks complete"
+    next_safe_action: "(Phase 3 complete)"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-synthesize"
+      session_id: "phase3-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,68 +35,52 @@ _memory:
 |--------|---------|
 | `[ ]` | Pending |
 | `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Sample 1 log per CLI (codex stdout, copilot stdout, opencode JSONL) to understand format
+- [x] T002 Author extract_metrics.py with 3 parsers + frontmatter reader
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Run extract_metrics.py → matrix.csv with 45 rows
+- [x] T004 Print per-CLI summary stats (intent accuracy, avg duration, avg tokens, avg FP refs)
+- [x] T005 Author review-report.md with verdict + per-CLI ranking matrix + P0/P1/P2 findings + recommendations
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T006 wc -l matrix.csv = 46 (header + 45)
+- [x] T007 grep "Verdict" review-report.md returns the verdict line
+- [x] T008 grep "P0" review-report.md returns the methodology bug finding
+- [ ] T009 Commit Phase 3 work on main
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] matrix.csv shipped
+- [x] review-report.md shipped
+- [ ] Phase 3 commit on main
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Implementation Summary**: See `implementation-summary.md`
+- **Parent Spec**: See `../spec.md`
+- **Predecessor**: `../002-matrix-execute/implementation-summary.md`
+- **Headline output**: `review-report.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

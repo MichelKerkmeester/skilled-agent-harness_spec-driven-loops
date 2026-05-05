@@ -1,28 +1,23 @@
 ---
-title: "Implementation Plan: Phase 2: matrix-execute [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
-trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+title: "Implementation Plan: Phase 2: matrix-execute"
+description: "Bash dispatcher with 3-CLIs-in-parallel-per-scenario; 15 scenarios sequential; 120s timeout; per-cell logs + delta JSONL."
+trigger_phrases: ["071/002 plan"]
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-matrix-execute"
-    last_updated_at: "2026-05-05T10:27:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "071-sk-doc-router-stress-test/002-matrix-execute"
+    last_updated_at: "2026-05-05T15:30:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 2 plan authored"
+    next_safe_action: "(Phase 2 complete)"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-matrix-execute"
+      session_id: "phase2-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,13 +35,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Bash dispatcher; 3 CLI subprocess invocations per scenario |
+| **Framework** | Per-CLI delta JSONL + per-cell logs |
+| **Storage** | logs/, deltas/, scripts/ subdirs |
+| **Testing** | Side-effect scan (find -newer); residual rg |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+run-matrix.sh extracts the prompt from each scenario's Setup ``` block, dispatches 3 CLIs in parallel, captures stdout/stderr/exit/duration to logs and deltas. Methodology bug discovered + fixed mid-run via reflective framing.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +50,13 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] 15 scenarios from Phase 1 with reflective framing
+- [x] 3 CLIs available + authenticated
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All 45 cells executed
+- [x] Zero unintended side-effects
+- [x] One commit on main
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,34 +65,17 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+Single bash script. Outer loop sequential (per scenario); inner block parallel (3 CLIs `&` + `wait`).
 
 ### Data Flow
-[Brief description of how data moves through the system]
+```
+extract prompt from Setup ``` block
+ -> 3 CLI dispatches in parallel (codex via stdin, copilot inline, opencode via --format json)
+   -> capture stdout/stderr/exit/duration
+     -> append delta JSONL + write per-cell log
+       -> next scenario
+```
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -106,19 +83,19 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] mkdir logs/, deltas/, scripts/
+- [x] Author run-matrix.sh
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Initial dispatch (with imperative prompts) — surfaced methodology bug
+- [x] Patch all 15 scenarios with reflective framing
+- [x] Reset deltas + logs
+- [x] Re-dispatch — completed cleanly
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] 45/45 cells captured
+- [x] Side-effect scan clean
+- [x] Commit on main
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +105,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Cell-level | Each dispatch exit code | timeout, &, wait |
+| Aggregate | 45/45 deltas + logs | wc -l, find |
+| Side-effect | Active-scope dir scan | find -newer |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -140,7 +117,8 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| codex/copilot/opencode CLIs | External | Green | Cannot dispatch matrix |
+| Phase 1 scenarios | Internal | Green | Cannot extract prompts |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,16 +126,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: methodology bug, side-effects detected mid-run
+- **Procedure**: stop dispatcher, reset deltas/logs, fix scenarios, re-run
+- **Granularity**: full re-dispatch from scenario 1 (cheap; ~24 min wall-clock)
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

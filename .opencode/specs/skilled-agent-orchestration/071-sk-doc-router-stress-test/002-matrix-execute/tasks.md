@@ -1,27 +1,23 @@
 ---
-title: "Tasks: Phase 2: matrix-execute [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
-trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+title: "Tasks: Phase 2: matrix-execute"
+description: "T###: dispatcher author, dispatch, methodology fix, re-dispatch, capture, commit."
+trigger_phrases: ["071/002 tasks"]
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-matrix-execute"
-    last_updated_at: "2026-05-05T10:27:21Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "071-sk-doc-router-stress-test/002-matrix-execute"
+    last_updated_at: "2026-05-05T15:30:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "All tasks complete"
+    next_safe_action: "(Phase 2 complete)"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/002-matrix-execute"
+      session_id: "phase2-complete"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,66 +37,55 @@ _memory:
 | `[x]` | Completed |
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 mkdir logs/, deltas/, scripts/
+- [x] T002 Author run-matrix.sh dispatcher
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T003 Initial dispatch (imperative prompts) — produced 35/45 cells before user halt
+- [x] T004 Methodology bug surfaced: empty skeleton dirs at sk-doc/feature_catalog/
+- [x] T005 Cleanup: rm -rf empty skeleton + reset deltas/logs
+- [x] T006 Patch 15 scenarios with reflective framing prefix (commit db8668f52)
+- [x] T007 Re-dispatch matrix
+- [x] T008 Verify 45/45 cells + zero side-effects
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 wc -l deltas/*.jsonl returns 45 total
+- [x] T010 find logs -name "*.log" returns 45
+- [x] T011 Side-effect scan: only expected dirs (mcp_server/database, .advisor-state)
+- [ ] T012 Stage + commit Phase 2 work
+- [ ] T013 Mark Phase 2 complete in task list
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All cells captured
+- [x] Methodology fix in place
+- [ ] Phase 2 commit on main
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Implementation Summary**: See `implementation-summary.md`
+- **Parent Spec**: See `../spec.md`
+- **Predecessor**: `../001-scenario-author/implementation-summary.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

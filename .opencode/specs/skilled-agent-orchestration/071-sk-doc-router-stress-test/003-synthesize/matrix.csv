@@ -1,0 +1,46 @@
+scenario_id,scenario_title,category,cli,exit_code,duration_s,tokens_total,tokens_input,tokens_output,expected_intent,picked_intent,intent_match,expected_resources_count,mentioned_resources_count,true_positive_resources,false_positive_resources,false_negative_resources,accuracy_pct,response_chars
+SD-001,DOC_QUALITY intent: validate documentation quality for a skill,01--intent-detection,codex,0,27,35713,0,0,DOC_QUALITY,DOC_QUALITY,True,4,5,4,1,0,100.0,839
+SD-001,DOC_QUALITY intent: validate documentation quality for a skill,01--intent-detection,copilot,0,18,52240,51700,540,DOC_QUALITY,DOC_QUALITY,True,4,0,0,0,4,0.0,1361
+SD-001,DOC_QUALITY intent: validate documentation quality for a skill,01--intent-detection,opencode,0,35,40810,30103,219,DOC_QUALITY,DOC_QUALITY,True,4,3,0,3,4,0.0,1011
+SD-002,SKILL_CREATION intent: author a new sk-skill,01--intent-detection,codex,0,30,78921,0,0,SKILL_CREATION,SKILL_CREATION,True,3,4,3,1,0,100.0,817
+SD-002,SKILL_CREATION intent: author a new sk-skill,01--intent-detection,copilot,0,20,52260,51700,560,SKILL_CREATION,DOC_QUALITY,False,3,5,0,5,3,0.0,1296
+SD-002,SKILL_CREATION intent: author a new sk-skill,01--intent-detection,opencode,0,112,89419,43768,399,SKILL_CREATION,SKILL_CREATION,True,3,1,0,1,3,0.0,1387
+SD-003,AGENT_COMMAND intent: author paired @agent and /create command,01--intent-detection,codex,0,19,44119,0,0,AGENT_COMMAND,AGENT_COMMAND,True,3,4,3,1,0,100.0,743
+SD-003,AGENT_COMMAND intent: author paired @agent and /create command,01--intent-detection,copilot,0,19,52465,51700,765,AGENT_COMMAND,SKILL_CREATION,False,3,7,0,7,3,0.0,1860
+SD-003,AGENT_COMMAND intent: author paired @agent and /create command,01--intent-detection,opencode,0,35,41025,30243,346,AGENT_COMMAND,AGENT_COMMAND,True,3,4,0,4,3,0.0,1480
+SD-004,HVR intent loads only references/global/hvr_rules.md,02--resource-loading,codex,0,24,38569,0,0,HVR,HVR,True,1,2,1,1,0,100.0,686
+SD-004,HVR intent loads only references/global/hvr_rules.md,02--resource-loading,copilot,0,18,52493,51700,793,HVR,DOC_QUALITY,False,1,5,0,5,1,0.0,1789
+SD-004,HVR intent loads only references/global/hvr_rules.md,02--resource-loading,opencode,0,55,87840,44291,371,HVR,DOC_QUALITY,False,1,2,1,1,0,100.0,1304
+SD-005,FLOWCHART intent loads only assets/flowcharts/*,02--resource-loading,codex,0,22,6293,0,0,FLOWCHART,FLOWCHART,True,2,2,2,0,0,100.0,613
+SD-005,FLOWCHART intent loads only assets/flowcharts/*,02--resource-loading,copilot,0,18,52284,51700,584,FLOWCHART,FLOWCHART,True,2,4,0,4,2,0.0,1417
+SD-005,FLOWCHART intent loads only assets/flowcharts/*,02--resource-loading,opencode,0,48,87512,43971,389,FLOWCHART,FLOWCHART,True,2,4,2,2,0,100.0,1338
+SD-006,README_CREATION intent loads mixed references + assets,02--resource-loading,codex,0,23,42262,0,0,README_CREATION,INSTALL_GUIDE,False,2,2,2,0,0,100.0,588
+SD-006,README_CREATION intent loads mixed references + assets,02--resource-loading,copilot,0,15,52224,51700,524,README_CREATION,DOC_QUALITY,False,2,4,0,4,2,0.0,1304
+SD-006,README_CREATION intent loads mixed references + assets,02--resource-loading,opencode,0,79,88308,43957,652,README_CREATION,README_CREATION,True,2,4,2,2,0,100.0,2300
+SD-007,Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta,03--unknown-fallback,codex,0,29,8169,0,0,DOC_QUALITY+FLOWCHART,DOC_QUALITY,False,4,5,2,3,2,50.0,989
+SD-007,Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta,03--unknown-fallback,copilot,0,22,52540,51700,840,DOC_QUALITY+FLOWCHART,DOC_QUALITY,False,4,3,0,3,4,0.0,1847
+SD-007,Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta,03--unknown-fallback,opencode,0,56,87672,43539,455,DOC_QUALITY+FLOWCHART,DOC_QUALITY,False,4,7,4,3,0,100.0,1535
+SD-008,No-keyword prompt triggers UNKNOWN_FALLBACK_CHECKLIST,03--unknown-fallback,codex,0,27,36882,0,0,UNKNOWN,UNKNOWN_FALLBACK,False,2,1,0,1,2,0.0,847
+SD-008,No-keyword prompt triggers UNKNOWN_FALLBACK_CHECKLIST,03--unknown-fallback,copilot,0,19,52244,51700,544,UNKNOWN,DOC_QUALITY,False,2,0,0,0,2,0.0,1221
+SD-008,No-keyword prompt triggers UNKNOWN_FALLBACK_CHECKLIST,03--unknown-fallback,opencode,0,69,87935,43653,251,UNKNOWN,DOC_QUALITY,False,2,1,0,1,2,0.0,847
+SD-009,FEATURE_CATALOG vs PLAYBOOK tie within delta=1,03--unknown-fallback,codex,0,42,42265,0,0,FEATURE_CATALOG+PLAYBOOK,PLAYBOOK,False,2,6,0,6,2,0.0,957
+SD-009,FEATURE_CATALOG vs PLAYBOOK tie within delta=1,03--unknown-fallback,copilot,0,19,52377,51700,677,FEATURE_CATALOG+PLAYBOOK,SKILL_CREATION,False,2,4,0,4,2,0.0,1668
+SD-009,FEATURE_CATALOG vs PLAYBOOK tie within delta=1,03--unknown-fallback,opencode,0,65,89545,45181,527,FEATURE_CATALOG+PLAYBOOK,PLAYBOOK,False,2,5,0,5,2,0.0,1595
+SD-010,Short-prompt baseline: CHANGELOG intent across all 3 CLIs,04--cross-cli-dispatch,codex,0,30,93336,0,0,CHANGELOG,CHANGELOG,True,2,2,1,1,1,50.0,750
+SD-010,Short-prompt baseline: CHANGELOG intent across all 3 CLIs,04--cross-cli-dispatch,copilot,0,21,52334,51700,634,CHANGELOG,CHANGELOG,True,2,6,0,6,2,0.0,1577
+SD-010,Short-prompt baseline: CHANGELOG intent across all 3 CLIs,04--cross-cli-dispatch,opencode,0,84,88368,43786,442,CHANGELOG,CHANGELOG,True,2,2,1,1,1,50.0,1416
+SD-011,Large-prompt stress: cli-codex stdin-redirection mitigation,04--cross-cli-dispatch,codex,0,35,39387,0,0,SKILL_CREATION,SKILL_CREATION,True,3,2,0,2,3,0.0,923
+SD-011,Large-prompt stress: cli-codex stdin-redirection mitigation,04--cross-cli-dispatch,copilot,0,22,53300,52200,1100,SKILL_CREATION,SKILL_CREATION,True,3,9,0,9,3,0.0,2499
+SD-011,Large-prompt stress: cli-codex stdin-redirection mitigation,04--cross-cli-dispatch,opencode,124,120,40620,30277,45,SKILL_CREATION,,False,3,0,0,0,3,0.0,0
+SD-012,Multi-step dispatch: 3 sequential sk-doc invocations,04--cross-cli-dispatch,codex,0,38,50016,0,0,CHANGELOG | DOC_QUALITY | SKILL_CREATION,DOC_QUALITY,True,6,10,6,4,0,100.0,1560
+SD-012,Multi-step dispatch: 3 sequential sk-doc invocations,04--cross-cli-dispatch,copilot,0,62,273100,269600,3500,CHANGELOG | DOC_QUALITY | SKILL_CREATION,DOC_QUALITY,True,6,9,5,4,1,83.3,4490
+SD-012,Multi-step dispatch: 3 sequential sk-doc invocations,04--cross-cli-dispatch,opencode,124,120,40373,30291,45,CHANGELOG | DOC_QUALITY | SKILL_CREATION,,False,6,0,0,0,6,0.0,0
+SD-013,"Floor token cost: minimal-keyword query, 1 reference load",05--token-cost-baseline,codex,0,26,9425,0,0,HVR,HVR,True,1,2,1,1,0,100.0,570
+SD-013,"Floor token cost: minimal-keyword query, 1 reference load",05--token-cost-baseline,copilot,0,20,52204,51700,504,HVR,OPTIMIZATION,False,1,3,0,3,1,0.0,1220
+SD-013,"Floor token cost: minimal-keyword query, 1 reference load",05--token-cost-baseline,opencode,0,58,140856,50438,414,HVR,HVR,True,1,2,1,1,0,100.0,1109
+SD-014,"Median token cost: SKILL_CREATION query, 3 resources",05--token-cost-baseline,codex,0,19,44956,0,0,SKILL_CREATION,SKILL_CREATION,True,3,4,3,1,0,100.0,671
+SD-014,"Median token cost: SKILL_CREATION query, 3 resources",05--token-cost-baseline,copilot,0,22,52523,51700,823,SKILL_CREATION,SKILL_CREATION,True,3,9,0,9,3,0.0,2009
+SD-014,"Median token cost: SKILL_CREATION query, 3 resources",05--token-cost-baseline,opencode,0,70,87482,43813,422,SKILL_CREATION,SKILL_CREATION,True,3,4,3,1,0,100.0,1402
+SD-015,Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP,05--token-cost-baseline,codex,0,26,8872,0,0,ON_DEMAND_ALL,DOC_QUALITY,False,21,2,0,2,21,0.0,1105
+SD-015,Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP,05--token-cost-baseline,copilot,0,24,52700,51700,1000,ON_DEMAND_ALL,DOC_QUALITY,False,21,2,0,2,21,0.0,2037
+SD-015,Ceiling token cost: ON_DEMAND_KEYWORDS load all RESOURCE_MAP,05--token-cost-baseline,opencode,0,100,89995,44059,409,ON_DEMAND_ALL,DOC_QUALITY,False,21,1,0,1,21,0.0,1445
