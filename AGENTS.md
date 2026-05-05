@@ -6,12 +6,7 @@
 
 ### Multi-Repository Architecture
 
-**Universal Framework:** This AGENTS.md is the public template for code work across stacks.
-Code work behavior is handled automatically by the `sk-code` skill, which routes between supported code surfaces.
-
-> **Where stack specifics live:** `sk-code` is the shipped customization point — it carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). The other shipped skills (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-improve-*`, `cli-*`, `mcp-chrome-devtools`) are codebase-agnostic out of the box, so they work for any project without modification. Teams are free to add their own skills on top. See root [README §4 Customizing for Your Stack](README.md#customizing-for-your-stack).
-
-**Stack Surfaces (sk-code-owned):** the active set of detection markers, key patterns, and supported surfaces is defined inside `sk-code` — see `.opencode/skill/sk-code/SKILL.md` §2 Smart Routing for the current bundled detection list and `references/<surface>/` for per-surface conventions. Replace these with your own surfaces when you fork the template.
+**Universal Framework:** Code work behavior is handled automatically by the `sk-code` skill, which routes between code surfaces detected at dispatch time. The active set of detection markers and per-surface patterns lives inside `sk-code` — see `.opencode/skill/sk-code/SKILL.md` §2 Smart Routing for the current detection list and `references/<surface>/` for per-surface conventions.
 
 **How It Works:** `sk-code` detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skill/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing.
 

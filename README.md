@@ -4,13 +4,11 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode--spec-kit-skilled-agent-orchestration/releases)
 
-> Multi-agent AI development framework with cognitive memory, structured documentation, 11 agents, 19 skills, 23 command entry points, 63 MCP tools - built for OpenCode, Codex CLI, Claude Code, Gemini CLI, with Copilot support for MCP and startup-surface workflows.
+> Multi-agent AI development framework with cognitive memory, structured documentation, 11 agents, 17 skills, 23 command entry points, 63 MCP tools - built for OpenCode, Codex CLI, Claude Code, Gemini CLI, with Copilot support for MCP and startup-surface workflows.
 >
 > Don't buy me unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 **🧠 Persistent Memory** • **📋 Structured Docs** • **🤖 11 Specialized Agents** • **⚡ 5 Mirrored Runtimes**
-
-> **📦 This is a public repo template.** Fork it, then start by adapting **`sk-code`** — it's where the shipped stack-specific patterns live (frontend framework, animation library, CMS, backend language). The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box, so they work for any project without modification. You're free to add your own skills on top — many teams will. See [§4 Customizing for Your Stack](#customizing-for-your-stack) below.
 
 <!-- ANCHOR:table-of-contents -->
 
@@ -48,7 +46,7 @@ The framework adds three layers on top of the base platform:
 
 1. **Structured documentation** (Spec Kit) - every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
 2. **Cognitive memory** (MCP server) - a local-first memory engine storing decisions, context and project history in a searchable database. Like a personal librarian who remembers every conversation.
-3. **Coordinated agents** - 10 specialized agents routed by a gate system that loads the right skills at the right time. Like a team where the project manager delegates to the right specialist.
+3. **Coordinated agents** - 11 specialized agents routed by a gate system that loads the right skills at the right time. Like a team where the project manager delegates to the right specialist.
 
 | | |
 |---|---|
@@ -81,7 +79,7 @@ The framework adds three layers on top of the base platform:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 10 specialized│          │ 21 domain skills │
+         │ 11 specialized│          │ 17 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -166,6 +164,12 @@ Open OpenCode in your project directory. The framework is active. Try:
 ```
 
 This creates a spec folder, runs research, builds a plan and begins implementation - all with memory saved automatically. When you come back tomorrow, the memory engine remembers everything.
+
+### Adapting to Your Stack
+
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language) — start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top — drop them into `.opencode/skill/<your-skill>/` and they'll be picked up automatically.
+
+See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -731,7 +735,7 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 
 ### 🎯 Skills Library
 
-19 skills in `.opencode/skill/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+17 skills in `.opencode/skill/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### DOCUMENTATION
 
@@ -1313,7 +1317,7 @@ The runtime centers on a SQLite `memory_index` table with 56 columns plus compan
 
 ## 5. FAQ
 
-**Q: Do I need all 19 skills installed to use the framework?**
+**Q: Do I need all 17 skills installed to use the framework?**
 
 A: No. Skills are loaded on demand by Gate 2. You only need the ones relevant to your work. The two core skills -`system-spec-kit` and `sk-doc` - cover most documentation workflows. The MCP and cross-AI CLI skills require additional API keys or tools.
 &nbsp;
@@ -1372,7 +1376,7 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 - **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes, and session-resume auth flag
 - **[→ Architecture](.opencode/skill/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skill/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
-- **[→ Skills Index](.opencode/skill/README.md)** - All 19 skills with invocation patterns
+- **[→ Skills Index](.opencode/skill/README.md)** - All 17 skills with invocation patterns
 - **[→ Feature Catalog](.opencode/skill/system-spec-kit/feature_catalog/feature_catalog.md)** - 294-entry technical reference
 - **[→ Code Graph Runtime Catalog](.opencode/skill/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md)** - Package-local code graph runtime inventory
 - **[→ Code Graph Manual Playbook](.opencode/skill/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md)** - Operator scenarios for code graph validation
@@ -1387,4 +1391,4 @@ A: The feature catalog is a 294-entry reference across 22 categories documenting
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.5 | Last updated: 2026-05-01 | Framework: 11 agents, 19 skills, 23 commands, 63 MCP tools (54 spec_kit_memory + 7 code mode + 1 CocoIndex + 1 sequential thinking; canonical source `TOOL_DEFINITIONS` in `tool-schemas.ts`; deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.6 | Last updated: 2026-05-05 | Framework: 11 agents, 17 skills, 23 commands, 63 MCP tools (54 spec_kit_memory + 7 code mode + 1 CocoIndex + 1 sequential thinking; canonical source `TOOL_DEFINITIONS` in `tool-schemas.ts`; deferred / internal-only handlers do NOT count).*
