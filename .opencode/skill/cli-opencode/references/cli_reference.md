@@ -118,7 +118,7 @@ opencode run \
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `opencode-go/deepseek-v4-pro` | OpenCode Go is the default provider — routes DeepSeek and other open models through one API gateway with elevated reasoning at low cost; operator may override (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`) |
+| `--model` | `opencode-go/deepseek-v4-pro` | OpenCode Go is the default provider — routes DeepSeek and other open models through one API gateway with elevated reasoning at low cost; operator may override (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `openai/gpt-5.4`, `openai/gpt-5.4-fast`, `openai/gpt-5.3-codex`, `openai/gpt-5.2`) |
 | `--agent` | per use case | Required for use case 1 / 3; optional for use case 2 |
 | `--variant high` | high | Routine cli-opencode dispatches benefit from elevated reasoning effort |
 | `--format json` | json | Structured event stream is what external runtimes parse |

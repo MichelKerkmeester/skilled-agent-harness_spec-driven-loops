@@ -54,7 +54,7 @@ The skill includes a layered self-invocation guard. Three checks (env var lookup
 | **Use cases** | 3 | External runtime, in-OpenCode parallel detached, cross-AI handback |
 | **Self-invocation layers** | 3 | Env var, process ancestry, lock-file probe |
 | **Default invocation** | `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json` | Pinned shape for routine dispatches; OpenCode Go is the default provider — routes DeepSeek and other open models through one API gateway |
-| **Supported providers** | 2 | `opencode-go` (DEFAULT), `deepseek` |
+| **Supported providers** | 3 | `opencode-go` (DEFAULT), `deepseek`, `openai` |
 | **References** | 4 | cli_reference, integration_patterns, opencode_tools, agent_delegation |
 | **Assets** | 2 | prompt_quality_card, prompt_templates (13 templates) |
 | **Version baseline** | opencode v1.3.17 | Pinned in cli_reference §9 |
@@ -91,7 +91,7 @@ The skill includes a layered self-invocation guard. Three checks (env var lookup
 | Requirement | Value | Notes |
 |-------------|-------|-------|
 | **CLI** | OpenCode v1.3.17+ | `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install \| bash` |
-| **Auth** | Per-provider via `opencode providers login <provider>` | `opencode-go` (api), `deepseek` (api) |
+| **Auth** | Per-provider via `opencode providers login <provider>` | `opencode-go` (api), `deepseek` (api), `openai` (api) |
 | **Node.js** | 18+ | Required for the npm install path |
 
 <!-- /ANCHOR:overview -->
@@ -172,7 +172,7 @@ The skill is built around a self-invocation guard that protects against circular
 
 #### Models
 
-The skill ships with two providers — `opencode-go` (DEFAULT) and `deepseek`. Run `opencode models [provider]` for the full live list per install.
+The skill ships with three providers — `opencode-go` (DEFAULT), `deepseek`, and `openai`. Run `opencode models [provider]` for the full live list per install.
 
 | Provider | Model id | Variant range | Default for cli-opencode? |
 |----------|----------|---------------|---------------------------|
@@ -181,6 +181,10 @@ The skill ships with two providers — `opencode-go` (DEFAULT) and `deepseek`. R
 | opencode-go | `opencode-go/glm-5.1`, `opencode-go/kimi-k2.6`, `opencode-go/qwen3.6-plus` | provider-specific | No (alternative open models) |
 | deepseek | `deepseek/deepseek-v4-pro` | reasoning effort accepted | No (direct DeepSeek API — bypasses opencode-go) |
 | deepseek | `deepseek/deepseek-v4-flash` | non-reasoning | No (latency-optimized) |
+| openai | `openai/gpt-5.4` | reasoning effort accepted (low/medium/high) | No (premium paid alternative — direct OpenAI API) |
+| openai | `openai/gpt-5.4-fast` | reasoning effort accepted | No (latency-optimized OpenAI tier) |
+| openai | `openai/gpt-5.3-codex` | provider-specific | No (codex-tuned variant for code-heavy dispatches) |
+| openai | `openai/gpt-5.2` | provider-specific | No (legacy OpenAI tier) |
 
 #### Core Flags
 
@@ -246,16 +250,16 @@ cli-opencode/
 
 ### Authentication
 
-OpenCode resolves credentials through configured providers. Use `opencode providers list` (alias `auth list`) to enumerate. The skill supports `opencode-go` (api) and `deepseek` (api).
+OpenCode resolves credentials through configured providers. Use `opencode providers list` (alias `auth list`) to enumerate. The skill supports `opencode-go` (api), `deepseek` (api), and `openai` (api).
 
 | Method | Setup | Best For |
 |--------|-------|----------|
-| **API key via providers** | `opencode providers login opencode-go` / `opencode providers login deepseek` | OpenCode Go gateway, DeepSeek direct API |
+| **API key via providers** | `opencode providers login opencode-go` / `opencode providers login deepseek` / `opencode providers login openai` | OpenCode Go gateway (DEFAULT), DeepSeek direct API, OpenAI direct API (premium paid) |
 | **Credential file** | Per-provider config under `~/.local/share/opencode/auth.json` | Persistent setups |
 
 ### Model Defaults
 
-cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-AI dispatches. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single API key, and `deepseek-v4-pro` provides elevated reasoning at low cost for routine dispatches. Override per invocation:
+cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-AI dispatches. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single API key, and `deepseek-v4-pro` provides elevated reasoning at low cost for routine dispatches. Direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.4 --variant high` for premium paid dispatches) remain available when explicitly requested. Override per invocation:
 
 ```bash
 # Use a lower-tier opencode-go sibling
