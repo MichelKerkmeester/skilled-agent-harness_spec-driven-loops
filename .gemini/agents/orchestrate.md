@@ -82,7 +82,7 @@ flowchart TD
 | Priority | Task Type                                                                 | Agent                  | Tier | Skills                                                                            | subagent_type |
 | -------- | ------------------------------------------------------------------------- | ---------------------- | ---- | --------------------------------------------------------------------------------- | ------------- |
 | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
-| 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `sk-deep-research`                                             | `"general"`   |
+| 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"general"`   |
 | 3        | Multi-strategy planning and architecture synthesis                        | `@multi-ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
 | 4        | `/create:*` documentation and component creation command execution        | `@create`          | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
 | 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code-review` baseline + `sk-code` router-selected evidence    | `"general"`   |

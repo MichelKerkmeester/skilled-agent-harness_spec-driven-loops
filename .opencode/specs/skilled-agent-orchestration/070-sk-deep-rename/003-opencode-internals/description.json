@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals",
+  "description": "Phase 003 — Update all references to sk-deep-* across .opencode/ (other skills' SKILL.md and references, agent definitions, command files, MCP server code, scripts, test fixtures, active spec folders). Largest blast radius.",
+  "keywords": [
+    "phase",
+    "opencode-internals",
+    "cross-references",
+    "skill-md",
+    "agent",
+    "command",
+    "mcp-server"
+  ],
+  "lastUpdated": "2026-05-05T18:00:00.000Z",
+  "specId": "070",
+  "folderSlug": "003-opencode-internals",
+  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -20,8 +20,8 @@
       "sk-code-review"
     ],
     "sk-deep": [
-      "sk-deep-research",
-      "sk-deep-review"
+      "deep-research",
+      "deep-review"
     ],
     "sk-util": [
       "sk-doc",
@@ -116,20 +116,20 @@
         "sk-code": 0.4
       },
       "prerequisite_for": {
-        "sk-deep-review": 0.8
+        "deep-review": 0.8
       }
     },
-    "sk-deep-research": {
+    "deep-research": {
       "siblings": {
-        "sk-deep-review": 0.5
+        "deep-review": 0.5
       }
     },
-    "sk-deep-review": {
+    "deep-review": {
       "depends_on": {
         "sk-code-review": 0.8
       },
       "siblings": {
-        "sk-deep-research": 0.5
+        "deep-research": 0.5
       }
     },
     "sk-doc": {
@@ -175,8 +175,8 @@
         "mcp-code-mode": 0.7,
         "sk-code": 0.7,
         "sk-code-review": 0.7,
-        "sk-deep-research": 0.7,
-        "sk-deep-review": 0.7,
+        "deep-research": 0.7,
+        "deep-review": 0.7,
         "sk-doc": 0.7,
         "sk-git": 0.7,
         "sk-improve-agent": 0.7,
@@ -299,16 +299,19 @@
       "quality gate",
       "findings"
     ],
-    "sk-deep-research": [
+    "deep-research": [
       "deep research",
       "research loop",
       "investigate"
     ],
-    "sk-deep-review": [
+    "deep-review": [
       "deep review",
       "review loop",
       "iterative review",
-      "spec folder review"
+      "spec folder review",
+      "iterative review loop",
+      "spec folder audit",
+      "deep review loop"
     ],
     "sk-doc": [
       "create readme",
@@ -383,6 +386,12 @@
       "rewrite documentation section",
       "readme body",
       "description-only change"
+    ],
+    "sk-code-review": [
+      "iterative review loop",
+      "iterative review",
+      "review loop",
+      "spec folder audit"
     ],
     "system-spec-kit": [
       "update .opencode",

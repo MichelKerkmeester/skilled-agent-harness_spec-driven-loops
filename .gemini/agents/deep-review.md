@@ -1,6 +1,6 @@
 ---
 name: deep-review
-description: "LEAF review agent for sk-deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
+description: "LEAF review agent for deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
 temperature: 0.1
 ---
 
@@ -299,14 +299,14 @@ Promotion is blocked by active P0 or failed binary gates, conditional with activ
 - `resume`: continue the active review session; same `sessionId`, no archive.
 - `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
 - Deferred: `fork`, `completed-continue`.
-- Canonical event contract: `.opencode/skill/sk-deep-review/references/loop_protocol.md §Lifecycle Branches (current release)`.
+- Canonical event contract: `.opencode/skill/deep-review/references/loop_protocol.md §Lifecycle Branches (current release)`.
 
 Required read-only lineage metadata: `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, `releaseReadinessState`.
 
 Reducer boundary:
 
 - `review/deep-review-findings-registry.json` is reducer-owned canonical finding state.
-- `.opencode/skill/sk-deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
+- `.opencode/skill/deep-review/scripts/reduce-state.cjs` owns registry/dashboard/report refresh.
 - This leaf agent may read registry for continuity and deduplication.
 - This leaf agent must not overwrite reducer-owned files.
 

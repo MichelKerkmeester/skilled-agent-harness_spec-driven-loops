@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename",
+  "description": "Phase 002 — git mv .opencode/skill/sk-deep-review → deep-review and sk-deep-research → deep-research; update skill-graph.json keys + signal references; advisor_rebuild.",
+  "keywords": [
+    "phase",
+    "skill-folder-rename",
+    "git-mv",
+    "skill-graph",
+    "advisor-rebuild"
+  ],
+  "lastUpdated": "2026-05-05T18:00:00.000Z",
+  "specId": "070",
+  "folderSlug": "002-skill-folder-rename",
+  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

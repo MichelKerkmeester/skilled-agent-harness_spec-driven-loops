@@ -103,7 +103,7 @@ description = "Iterative investigation specialist with convergence detection."
 config_file = "agents/deep-research.toml"
 
 [agents.deep-review]
-description = "LEAF review agent for sk-deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
+description = "LEAF review agent for deep-review. Performs single review iteration: reads state, reviews one dimension with P0/P1/P2 findings, updates strategy and JSONL."
 config_file = "agents/deep-review.toml"
 
 [agents.improve-agent]

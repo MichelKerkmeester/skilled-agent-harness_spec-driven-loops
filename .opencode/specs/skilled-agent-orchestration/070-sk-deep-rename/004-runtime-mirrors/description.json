@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
+  "description": "Phase 004 — Update sk-deep-* references across runtime mirrors: .claude/, .codex/, .gemini/. Each runtime independent; parallel cli-codex per runtime.",
+  "keywords": [
+    "phase",
+    "runtime-mirrors",
+    "claude-code",
+    "codex",
+    "gemini"
+  ],
+  "lastUpdated": "2026-05-05T18:00:00.000Z",
+  "specId": "070",
+  "folderSlug": "004-runtime-mirrors",
+  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

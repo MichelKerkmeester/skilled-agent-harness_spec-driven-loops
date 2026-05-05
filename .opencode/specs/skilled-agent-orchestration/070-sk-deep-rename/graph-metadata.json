@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [
+    "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
+    "skilled-agent-orchestration/070-sk-deep-rename/002-skill-folder-rename",
+    "skilled-agent-orchestration/070-sk-deep-rename/003-opencode-internals",
+    "skilled-agent-orchestration/070-sk-deep-rename/004-runtime-mirrors",
+    "skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config",
+    "skilled-agent-orchestration/070-sk-deep-rename/006-advisor-and-validate",
+    "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation"
+  ],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 sk-deep rename",
+      "sk-deep-review to deep-review",
+      "sk-deep-research to deep-research",
+      "skill rename refactor",
+      "drop sk- prefix"
+    ],
+    "key_topics": [
+      "skill-rename",
+      "naming-consistency",
+      "cross-runtime-mirroring",
+      "skill-graph-refresh",
+      "advisor-rebuild",
+      "phase-parent"
+    ],
+    "importance_tier": "important",
+    "status": "in-progress",
+    "key_files": [
+      "spec.md",
+      "resource-map.md",
+      "description.json",
+      "graph-metadata.json"
+    ],
+    "entities": [],
+    "causal_summary": "Phase parent for renaming sk-deep-review → deep-review and sk-deep-research → deep-research across the entire repo. Six phases: 001 discovery + impact map, 002 skill folder rename + skill-graph keys, 003 opencode internals (.opencode/ tree), 004 runtime mirrors (.claude/.codex/.gemini parallel), 005 root docs + configs, 006 advisor rebuild + opus review. Implementation by cli-codex (gpt-5.5 high, fast tier); spec doc creation, orchestration, and final review by Claude.",
+    "created_at": "2026-05-05T18:00:00Z",
+    "last_save_at": "2026-05-05T18:00:00Z",
+    "save_lineage": "graph_only",
+    "last_active_child_id": null,
+    "last_active_at": null,
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ]
+  },
+  "importance_tier": "important"
+}

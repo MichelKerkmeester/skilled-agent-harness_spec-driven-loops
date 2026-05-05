@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/007-deep-review-remediation",
+  "description": "Phase 007 — Remediate deep review findings for Packet 070: restore source-side sk-deep-* rename narrative in child docs, replace stale changelog symlinks, tune deep-review advisor signals, and document approved P1 deferrals.",
+  "keywords": [
+    "phase",
+    "deep-review-remediation",
+    "sk-deep-review",
+    "deep-review",
+    "changelog-symlinks",
+    "advisor-signals",
+    "deferral-record"
+  ],
+  "lastUpdated": "2026-05-05T17:10:00.000Z",
+  "specId": "070",
+  "folderSlug": "007-deep-review-remediation",
+  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

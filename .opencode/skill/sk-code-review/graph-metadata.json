@@ -22,7 +22,7 @@
     "conflicts_with": [],
     "prerequisite_for": [
       {
-        "target": "sk-deep-review",
+        "target": "deep-review",
         "weight": 0.8,
         "context": "deep-review depends on review baseline"
       }

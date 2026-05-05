@@ -1,0 +1,17 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map",
+  "description": "Phase 001 — Comprehensive grep inventory of all references to sk-deep-review and sk-deep-research; group by area; flag edge cases (filename embeds, URL paths, MCP TS constants, sqlite indexed entries, snapshot files).",
+  "keywords": [
+    "phase",
+    "discovery",
+    "impact-analysis",
+    "grep-inventory",
+    "edge-cases"
+  ],
+  "lastUpdated": "2026-05-05T18:00:00.000Z",
+  "specId": "070",
+  "folderSlug": "001-discovery-impact-map",
+  "parentChain": ["skilled-agent-orchestration", "070-sk-deep-rename"],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

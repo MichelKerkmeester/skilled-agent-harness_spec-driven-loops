@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config",
+  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/005-root-and-config",
+  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/070-sk-deep-rename",
+      "skilled-agent-orchestration/070-sk-deep-rename/001-discovery-impact-map"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 005",
+      "root docs config rename",
+      "sk-deep root references",
+      "deep-review deep-research root configs"
+    ],
+    "key_topics": [
+      "skill-rename",
+      "root-docs",
+      "config-validation",
+      "residual-grep",
+      "phase-handoff"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "description.json",
+      "graph-metadata.json"
+    ],
+    "entities": [
+      "deep-review",
+      "deep-research",
+      "deep-review",
+      "deep-research",
+      "README.md",
+      "opencode.json",
+      ".utcp_config.json",
+      ".claude/settings.json",
+      ".claude/settings.local.json"
+    ],
+    "causal_summary": "Phase 005 updates the user-listed root documentation/config surface for the Packet 070 deep skill rename. It owns README.md if old names are present, validates listed JSON configs, and records strict child/parent validation evidence.",
+    "created_at": "2026-05-05T19:30:00Z",
+    "last_save_at": "2026-05-05T19:45:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": "2026-05-05T19:45:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  },
+  "importance_tier": "important"
+}

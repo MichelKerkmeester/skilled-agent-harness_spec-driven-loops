@@ -765,7 +765,7 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 - **git-commit**: conventional commit format, staged change analysis, scope detection
 - **git-finish**: PR creation via `gh pr create`, branch cleanup, integration workflows
 
-**sk-deep-research** 
+**deep-research** 
 - Autonomous research investigation system with iterative LEAF cycles
 - Fresh context per iteration, externalized JSONL state, 3-signal convergence detection (Rolling Average + MAD Noise Floor + Coverage/Age)
 - Semantic coverage graph with 7 relation types, question coverage tracking, sourceDiversity and evidenceDepth guards
@@ -773,7 +773,7 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 - Fail-closed corruption handling, graph convergence fallback scoring, terminal stop metadata parsing
 - Lifecycle modes: `new`, `resume`, `restart`. Dispatched by `/spec_kit:deep-research` command
 
-**sk-deep-review** 
+**deep-review** 
 - Autonomous code quality auditing system with iterative LEAF cycles
 - P0/P1/P2 severity-weighted findings across 4 dimensions (Correctness, Security, Traceability, Maintainability)
 - 3-signal convergence model, P0 override blocks stop, adversarial self-check (Hunter/Skeptic/Referee)
