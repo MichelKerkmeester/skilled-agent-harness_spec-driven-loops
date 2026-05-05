@@ -11,15 +11,9 @@ Code work behavior is handled automatically by the `sk-code` skill, which routes
 
 > **Customization scope (template discipline):** end users should **only edit `sk-code`** to adapt to their project's stack (frontend framework, animation library, CMS, backend language). Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-improve-*`, `cli-*`, `mcp-chrome-devtools`) is **codebase-agnostic by design** and must remain so to keep the upstream template pull-able. See root [README §4 Customizing for Your Stack](README.md#customizing-for-your-stack).
 
-**Supported Stacks:**
+**Stack Surfaces (sk-code-owned):** the active set of detection markers, key patterns, and supported surfaces is defined inside `sk-code` — see `.opencode/skill/sk-code/SKILL.md` §2 Smart Routing for the current bundled detection list and `references/<surface>/` for per-surface conventions. Replace these with your own surfaces when you fork the template.
 
-| Stack             | Detection Marker                                                                          | Key Patterns                                                       |
-| ----------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| **Webflow**       | `src/2_javascript/`, `*.webflow.js`, motion.dev / GSAP / Lenis / HLS / Swiper / FilePond, `wrangler.toml` | snake_case JS, BEM CSS, IntersectionObserver gates, CDN versioning |
-| **OpenCode**      | `.opencode/skill/`, `.opencode/agent/`, MCP server folders                                | NodeNext ESM, CommonJS, Python advisors, shell automation          |
-| **Unsupported / Unknown** | Go, Swift, React Native, React/Next.js, generic Node.js markers | Ask for explicit runtime surface and verification commands |
-
-**How It Works:** `sk-code` detects the code surface, loads patterns from `.opencode/skill/sk-code/references/{surface}/`, and selects surface-appropriate verification (see Quick Reference).
+**How It Works:** `sk-code` detects the active code surface from CWD/target paths and library markers, loads patterns from `.opencode/skill/sk-code/references/<surface>/`, and selects surface-appropriate verification (see Quick Reference). Surfaces it does not recognize trigger a disambiguation question rather than guessing.
 
 **The Iron Law:** NO completion claims without running stack-appropriate verification.
 
@@ -169,7 +163,7 @@ Hook-capable runtimes (Claude, Codex, Copilot, Gemini, OpenCode) may inject star
 | **Analysis/evaluation**   | `/memory:search` → preflight, postflight, causal graph, ablation, dashboard, history                                               |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate → DQI score → Verify                                                     |
-| **Code work**            | sk-code skill → smart router (detects Webflow frontend or OpenCode system code; unsupported stacks ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
+| **Code work**            | sk-code skill → smart router (auto-detects the active stack from CWD + library markers; unsupported surfaces ask for disambiguation); Phase 1-3 (Implement → Quality Gate → Debug → Verify) |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Deep research**         | `/spec_kit:deep-research` → Init → Loop iterations → Convergence → Synthesize → Memory save                                        |
 | **Deep review**           | `/spec_kit:deep-review` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                   |

@@ -324,7 +324,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 | Component           | Type       | Purpose                                               | Dependencies                            |
 | ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
-| Code Mode           | MCP Server | External tool orchestration (Webflow, Figma, ClickUp) | Node.js 18+                             |
+| Code Mode           | MCP Server | External tool orchestration (Figma, ClickUp, GitHub, your CMS, etc.) | Node.js 18+                             |
 | Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
 | Native Skills       | Built-in   | Skill discovery from .opencode/skill/                 | None (OpenCode v1.0.190+)               |
@@ -364,7 +364,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    ┌───────────────────────────────────┐
    │    EXTERNAL TOOLS (via Code Mode)     │
    │      (.utcp_config.json)              │
-   │  Webflow, Figma, ClickUp, GitHub...   │
+   │  Figma, ClickUp, GitHub, your CMS...  │
    └───────────────────────────────────┘
 
    NATIVE SKILLS: auto-discovered from .opencode/skill/*/SKILL.md
@@ -603,9 +603,9 @@ Code Mode enables access to external MCP tools. Each provider has its own detail
 | Provider | Tools | Install Guide |
 |----------|-------|---------------|
 | **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
-| **Webflow** | 42 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - CMS management, site operations |
 | **ClickUp** | 21 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Task management, project tracking |
 | **GitHub** | 26 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Repository operations, issues, PRs |
+| **Your CMS** (e.g., a CMS-vendor MCP server) | varies | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - CMS management, site operations |
 
 > **Note**: All Code Mode providers are configured in `.utcp_config.json`, NOT `opencode.json`. See each provider's install guide for configuration details.
 
@@ -820,7 +820,7 @@ Skills are automatically discovered from:
 | cli-copilot          | v1.2.0     | GitHub Copilot CLI orchestration                     |
 | cli-claude-code      | v1.0.0     | Claude Code CLI orchestration                        |
 | cli-gemini           | v1.1.0     | Gemini CLI orchestration for code and web research   |
-| sk-code  | v1.1.0.0   | Webflow frontend and OpenCode system code router     |
+| sk-code  | v1.1.0.0   | Stack-aware code workflow + quality standard (customizable per project) |
 | sk-code-review      | v1.2.0.0   | Findings-first baseline code review standards        |
 | sk-doc               | v1.1.2.0   | Unified markdown and skill management                |
 | sk-git               | v1.1.0.0   | Git workflow orchestrator                            |
@@ -937,7 +937,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 }
 ```
 
-**Note:** External tools (Webflow, Figma, ClickUp) are added to manuals array as needed. See Code Mode skill documentation for configuration examples.
+**Note:** External tools (Figma, ClickUp, GitHub, your CMS, etc.) are added to manuals array as needed. See Code Mode skill documentation for configuration examples.
 
 ### 12.3 Minimal Bundle Configuration
 
@@ -1135,8 +1135,8 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 
 | Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
 | ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
-| Front-end    | Chrome DevTools, Webflow, Figma | mcp-chrome-devtools, sk-code | Database tools, API patterns  |
-| Back-end     | API testing, Database tools     | sk-code               | Browser tools, Webflow, Figma |
+| Front-end    | Chrome DevTools, Figma, your CMS MCP | mcp-chrome-devtools, sk-code | Database tools, API patterns  |
+| Back-end     | API testing, Database tools     | sk-code               | Browser tools, your CMS MCP |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
 **Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
@@ -1276,7 +1276,7 @@ For the SpecKit chain, `/spec_kit:plan --intake-only` is the standalone intake e
 
 ### 16.5 Next Level (Week 1)
 
-- [ ] Configure external tools in `.utcp_config.json` (Webflow, Figma, ClickUp)
+- [ ] Configure external tools in `.utcp_config.json` (Figma, ClickUp, GitHub, your CMS, etc.)
 - [ ] Create project-specific skills for repeated workflows
 - [ ] Set up backup schedule for configurations
 - [ ] Practice spec folder workflow for all file modifications

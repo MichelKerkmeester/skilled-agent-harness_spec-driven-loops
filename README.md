@@ -906,13 +906,13 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Review**
 - Code quality guardian with strict read-only permissions (cannot write or edit any file)
-- Loads `sk-code-review` baseline first, then uses `sk-code` surface evidence for Webflow or OpenCode-specific standards
+- Loads `sk-code-review` baseline first, then uses `sk-code` surface evidence for stack-specific standards (whatever surface `sk-code` detected)
 - Security and correctness minimums are mandatory and never relaxed by surface-specific evidence
 - Produces findings-first severity analysis with quality scoring and pattern validation
 
 **Code**
 - Surface-aware code implementation specialist (write-capable LEAF, `mode: subagent`, `task: deny`)
-- Delegates code surface detection to `sk-code`; never bakes Webflow or OpenCode rules into the agent body
+- Delegates code surface detection to `sk-code`; never bakes stack-specific rules into the agent body (sk-code is the single customization point)
 - 7 dispatch modes: full implementation / surgical fix / refactor only / test add / scaffold new file / rename-move / dependency bump
 - 5-dimension acceptance rubric (100 pts total): Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15
 - Builder → Critic → Verifier adversarial self-check on every completion claim (challenges `DONE`, opposite axis from `@review`'s Hunter/Skeptic/Referee which challenges findings)
