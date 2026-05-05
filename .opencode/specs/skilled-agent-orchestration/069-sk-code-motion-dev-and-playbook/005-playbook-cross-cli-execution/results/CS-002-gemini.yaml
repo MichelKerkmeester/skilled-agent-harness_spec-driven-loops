@@ -1,27 +1,39 @@
 scenario: "CS-002"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 86.000
+duration_s: 166.389
 exit_code: 0
 tokens_in: null
 tokens_out: null
-advisor_top_1: "mcp-coco-index"
-surface: "N/A"
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
 refs_loaded:
-  - "references/motion_dev/quick_start.md"
-  - "references/motion_dev/integration_patterns.md"
-  - "references/motion_dev/decision_matrix.md"
-  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
   - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/quick_start.md"
   - "references/motion_dev/scroll_and_gestures.md"
 assets_loaded:
   - "assets/motion_dev/install_card.md"
+  - "assets/motion_dev/playbook_entries.md"
+  - "assets/motion_dev/snippets/animate_on_scroll.js"
+  - "assets/motion_dev/snippets/cdn_bootstrap.js"
+  - "assets/motion_dev/snippets/es_module_bootstrap.js"
+  - "assets/motion_dev/snippets/hover_gesture.js"
+  - "assets/motion_dev/snippets/in_view_reveal.js"
+  - "assets/motion_dev/snippets/layout_transition.js"
+  - "assets/motion_dev/snippets/spring_animation.js"
+  - "assets/motion_dev/snippets/stagger_animation.js"
+  - "assets/motion_dev/snippets/timeline_sequence.js"
 quality_flags: []
 agent: "none"
 response_excerpt: |
-  Since you are building a stack-agnostic vanilla HTML/CSS/JS page without Webflow, I'm loading the cross-stack Motion.dev guidance.
-  
-  I have referenced the Motion.dev integration patterns, timeline APIs, and performance pitfalls. I have explicitly omitted Webflow-specific CDN or animation workflows to avoid polluting your vanilla setup.
+  The cross-stack guidance for Motion.dev animations is located in the `.opencode/skill/sk-code/references/motion_dev/` and `assets/motion_dev/` directories.
 verdict: pending
 raw_stdout: "/tmp/skc-CS-002-gemini.txt"
 raw_stderr: "/tmp/skc-CS-002-gemini.err"

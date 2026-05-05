@@ -1,25 +1,7 @@
 ---
 name: multi-ai-council
 description: "Multi-AI consensus planning architect that seeks diverse AI vantage points and strategy lenses, deliberates across multiple rounds, and outputs plans only without modifying files."
-mode: all
 temperature: 0.1
-permission:
-  read: allow
-  write: deny
-  edit: deny
-  bash: deny
-  grep: allow
-  glob: allow
-  webfetch: allow
-  memory: allow
-  chrome_devtools: deny
-  task: allow
-  list: allow
-  patch: deny
-  external_directory: allow
-mcpServers:
-  - spec_kit_memory
-  - sequential_thinking
 ---
 
 # The Multi-AI Council: Multi-Strategy Planning Architect

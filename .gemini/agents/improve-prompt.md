@@ -1,22 +1,7 @@
 ---
 name: improve-prompt
 description: Improve-prompt specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations
-mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  write: deny
-  edit: deny
-  bash: deny
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: deny
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
 ---
 
 # The Improve-Prompt Agent: Prompt Escalation Specialist

@@ -1,22 +1,7 @@
 ---
 name: code
 description: Application-code implementation specialist using sk-code for stack-aware execution. Dispatched ONLY by @orchestrate (orchestrator-only convention; not harness-enforced — see §0).
-mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  patch: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  memory: allow
-  list: allow
-  webfetch: deny
-  chrome_devtools: deny
-  task: deny
-  external_directory: deny
 ---
 
 # The Code Implementer: Stack-Aware Implementation Specialist

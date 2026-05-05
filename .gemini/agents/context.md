@@ -1,25 +1,7 @@
 ---
 name: context
 description: "Production context agent — comprehensive retrieval with canonical continuity recovery and structured Context Packages"
-mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  write: deny
-  edit: deny
-  bash: deny
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: allow
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
-mcpServers:
-  - spec_kit_memory
-  - cocoindex_code
 ---
 
 # The Context Agent: Canonical Continuity Retrieval Specialist

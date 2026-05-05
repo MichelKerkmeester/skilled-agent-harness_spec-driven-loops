@@ -1,22 +1,7 @@
 ---
 name: debug
 description: User-invoked fresh-perspective debugging specialist with 5-phase methodology for root cause analysis. Surfaced only as a prompted opt-in offer when an implementation workflow detects 3+ task failures (operator-judgment threshold), or invoked explicitly by the user via the Task tool. Never auto-dispatched.
-mode: subagent
 temperature: 0.2
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  memory: allow
-  webfetch: deny
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
 ---
 
 # The Debugger: Fresh Perspective Specialist

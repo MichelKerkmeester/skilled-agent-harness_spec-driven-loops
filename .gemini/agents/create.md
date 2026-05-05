@@ -1,22 +1,7 @@
 ---
 name: create
 description: Dedicated LEAF executor for /create:* documentation commands; loads sk-doc templates and refuses non-create callers
-mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  webfetch: deny
-  memory: allow
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
 ---
 
 # The Create-Doc Agent: Template-First Documentation Executor

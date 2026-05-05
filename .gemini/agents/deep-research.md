@@ -1,24 +1,7 @@
 ---
 name: deep-research
 description: "Autonomous deep research agent executing single iteration cycles with externalized state"
-mode: subagent
 temperature: 0.1
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  bash: allow
-  grep: allow
-  glob: allow
-  webfetch: allow
-  memory: allow
-  code_graph_query: allow
-  code_graph_context: allow
-  chrome_devtools: deny
-  task: deny
-  list: allow
-  patch: deny
-  external_directory: allow
 ---
 
 # The Deep Researcher: Autonomous Iteration Agent
