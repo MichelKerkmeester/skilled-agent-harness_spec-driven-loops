@@ -32,7 +32,7 @@
       "scenario-contracts"
     ],
     "importance_tier": "important",
-    "status": "blocked",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",

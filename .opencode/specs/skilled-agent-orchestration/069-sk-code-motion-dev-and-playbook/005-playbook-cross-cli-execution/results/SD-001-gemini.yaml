@@ -1,25 +1,23 @@
 scenario: "SD-001"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 53.492
+duration_s: 67.779
 exit_code: 0
 tokens_in: null
 tokens_out: null
-advisor_top_1: "mcp-coco-index"
+advisor_top_1: "sk-code"
 surface: "WEBFLOW"
 refs_loaded:
-  - ".opencode/skill/sk-code/references/webflow/standards/quick_reference.md"
-  - ".opencode/skill/sk-code/references/motion_dev/integration_patterns.md"
-  - ".opencode/skill/sk-code/references/webflow/implementation/animation_workflows.md"
+  - "references/webflow/implementation/webflow_patterns.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
 assets_loaded:
-  - ".opencode/skill/sk-code/assets/motion_dev/snippets/cdn_bootstrap.js"
-  - ".opencode/skill/sk-code/assets/webflow/integrations/lenis_patterns.js"
+  - "assets/webflow/integrations/lenis_patterns.js"
+  - "assets/motion_dev/snippets/cdn_bootstrap.js"
 quality_flags: []
 agent: "none"
 response_excerpt: |
-  Two things to set up for Webflow: the CDN imports in your before-body custom code, and the `requestAnimationFrame` loop that Lenis needs to drive the smooth scroll. 
-  
-  I've loaded the standard Lenis and motion.dev bootstrap patterns. I'll draft the `<script>` tags and the initialization block for the hero animation. Do you want this structured as an ES module import map, or standard global script execution?
+  Before we add the imports, I need to ask about documentation. Are we working from an existing spec folder for this hero animation, or should I create a new one?
 verdict: pending
 raw_stdout: "/tmp/skc-SD-001-gemini.txt"
 raw_stderr: "/tmp/skc-SD-001-gemini.err"

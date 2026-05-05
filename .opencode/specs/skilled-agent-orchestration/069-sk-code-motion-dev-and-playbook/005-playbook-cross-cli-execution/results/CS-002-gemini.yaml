@@ -1,39 +1,18 @@
 scenario: "CS-002"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 166.389
-exit_code: 0
+duration_s: 501.398
+exit_code: 1
 tokens_in: null
 tokens_out: null
-advisor_top_1: "sk-code"
-surface: "UNKNOWN"
-refs_loaded:
-  - "references/router/code_surface_detection.md"
-  - "references/router/intent_classification.md"
-  - "references/router/resource_loading.md"
-  - "references/router/phase_lifecycle.md"
-  - "references/motion_dev/animate_and_timelines.md"
-  - "references/motion_dev/decision_matrix.md"
-  - "references/motion_dev/integration_patterns.md"
-  - "references/motion_dev/performance_and_pitfalls.md"
-  - "references/motion_dev/quick_start.md"
-  - "references/motion_dev/scroll_and_gestures.md"
-assets_loaded:
-  - "assets/motion_dev/install_card.md"
-  - "assets/motion_dev/playbook_entries.md"
-  - "assets/motion_dev/snippets/animate_on_scroll.js"
-  - "assets/motion_dev/snippets/cdn_bootstrap.js"
-  - "assets/motion_dev/snippets/es_module_bootstrap.js"
-  - "assets/motion_dev/snippets/hover_gesture.js"
-  - "assets/motion_dev/snippets/in_view_reveal.js"
-  - "assets/motion_dev/snippets/layout_transition.js"
-  - "assets/motion_dev/snippets/spring_animation.js"
-  - "assets/motion_dev/snippets/stagger_animation.js"
-  - "assets/motion_dev/snippets/timeline_sequence.js"
-quality_flags: []
-agent: "none"
+advisor_top_1: null
+surface: null
+refs_loaded: []
+assets_loaded: []
+quality_flags: ["empty_excerpt"]
+agent: null
 response_excerpt: |
-  The cross-stack guidance for Motion.dev animations is located in the `.opencode/skill/sk-code/references/motion_dev/` and `assets/motion_dev/` directories.
+  (no response)
 verdict: pending
 raw_stdout: "/tmp/skc-CS-002-gemini.txt"
 raw_stderr: "/tmp/skc-CS-002-gemini.err"
