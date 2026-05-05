@@ -1,0 +1,17 @@
+{
+  "specFolder": "068-sk-doc-organization/001-relocate",
+  "description": "Phase 1: relocate",
+  "keywords": [
+    "phase",
+    "relocate"
+  ],
+  "lastUpdated": "2026-05-05T07:55:03.867Z",
+  "specId": "001",
+  "folderSlug": "relocate",
+  "parentChain": [
+    "068-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

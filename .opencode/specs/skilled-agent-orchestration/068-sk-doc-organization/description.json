@@ -1,0 +1,24 @@
+{
+  "specFolder": "068-sk-doc-organization",
+  "description": "Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes",
+  "keywords": [
+    "reorganize",
+    "sk-doc",
+    "assets",
+    "promote",
+    "heavy-traffic",
+    "templates",
+    "root",
+    "propagate",
+    "references",
+    "across",
+    "runtimes"
+  ],
+  "lastUpdated": "2026-05-05T07:55:03.151Z",
+  "specId": "068",
+  "folderSlug": "sk-doc-organization",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}
