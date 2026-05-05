@@ -1,0 +1,17 @@
+{
+  "specFolder": "067-mcp-figma-transfer/003-mcp-figma-skill-removal",
+  "description": "Phase 3: mcp-figma-skill-removal",
+  "keywords": [
+    "phase",
+    "mcp-figma-skill-removal"
+  ],
+  "lastUpdated": "2026-05-05T07:49:59.800Z",
+  "specId": "003",
+  "folderSlug": "mcp-figma-skill-removal",
+  "parentChain": [
+    "067-mcp-figma-transfer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

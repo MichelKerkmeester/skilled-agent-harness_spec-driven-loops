@@ -1,0 +1,17 @@
+{
+  "specFolder": "067-mcp-figma-transfer/002-public-figma-agent",
+  "description": "Phase 2: public-figma-agent",
+  "keywords": [
+    "phase",
+    "public-figma-agent"
+  ],
+  "lastUpdated": "2026-05-05T07:49:59.118Z",
+  "specId": "002",
+  "folderSlug": "public-figma-agent",
+  "parentChain": [
+    "067-mcp-figma-transfer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

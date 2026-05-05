@@ -1,0 +1,17 @@
+{
+  "specFolder": "067-mcp-figma-transfer/001-barter-figma-agent",
+  "description": "Phase 1: barter-figma-agent",
+  "keywords": [
+    "phase",
+    "barter-figma-agent"
+  ],
+  "lastUpdated": "2026-05-05T07:49:58.416Z",
+  "specId": "001",
+  "folderSlug": "barter-figma-agent",
+  "parentChain": [
+    "067-mcp-figma-transfer"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
