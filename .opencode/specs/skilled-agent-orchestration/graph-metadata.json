@@ -1,8 +1,8 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/067-mcp-figma-transfer",
-    "last_active_at": "2026-05-05T11:35:00.000Z",
-    "last_save_at": "2026-05-05T11:35:00.000Z"
+    "last_active_child_id": "skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
+    "last_active_at": "2026-05-05T15:54:13.467Z",
+    "last_save_at": "2026-05-05T15:54:13.467Z"
   },
   "children_ids": [
     "skilled-agent-orchestration/051-cli-opencode-providers",
@@ -24,6 +24,7 @@
     "skilled-agent-orchestration/067-mcp-figma-transfer",
     "skilled-agent-orchestration/068-sk-doc-organization",
     "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
-    "skilled-agent-orchestration/070-sk-deep-rename"
+    "skilled-agent-orchestration/070-sk-deep-rename",
+    "skilled-agent-orchestration/076-sk-doc-router-coverage-v3"
   ]
 }
