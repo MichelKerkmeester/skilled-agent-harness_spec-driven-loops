@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/077-spec-kit-coco-sk-code-research",
+  "description": "10-iteration cli-codex deep-research audit of system-spec-kit + mcp-coco-index + sk-code OpenCode side. Surfaced 22 P1 + 20 P2 findings; synthesized i",
+  "keywords": [
+    "10-iteration",
+    "cli-codex",
+    "deep-research",
+    "audit",
+    "system-spec-kit",
+    "mcp-coco-index",
+    "sk-code",
+    "opencode",
+    "side",
+    "surfaced",
+    "findings",
+    "synthesized",
+    "4-phase",
+    "remediation",
+    "roadmap",
+    "research-only",
+    "planning",
+    "input",
+    "078"
+  ],
+  "lastUpdated": "2026-05-05T17:04:32.353Z",
+  "specId": "077",
+  "folderSlug": "spec-kit-coco-sk-code-research",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
