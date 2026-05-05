@@ -1,0 +1,22 @@
+{
+  "specFolder": "071-sk-doc-router-stress-test",
+  "description": "sk-doc smart router stress test (15 scenarios x 3 CLIs = 45 cell matrix)",
+  "keywords": [
+    "sk-doc",
+    "smart",
+    "router",
+    "stress",
+    "test",
+    "scenarios",
+    "clis",
+    "cell",
+    "matrix"
+  ],
+  "lastUpdated": "2026-05-05T10:27:19.679Z",
+  "specId": "071",
+  "folderSlug": "sk-doc-router-stress-test",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

@@ -1,0 +1,17 @@
+{
+  "specFolder": "071-sk-doc-router-stress-test/004-closeout",
+  "description": "Phase 4: closeout",
+  "keywords": [
+    "phase",
+    "closeout"
+  ],
+  "lastUpdated": "2026-05-05T10:27:22.717Z",
+  "specId": "004",
+  "folderSlug": "closeout",
+  "parentChain": [
+    "071-sk-doc-router-stress-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

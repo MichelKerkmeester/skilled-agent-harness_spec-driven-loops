@@ -1,0 +1,17 @@
+{
+  "specFolder": "071-sk-doc-router-stress-test/003-synthesize",
+  "description": "Phase 3: synthesize",
+  "keywords": [
+    "phase",
+    "synthesize"
+  ],
+  "lastUpdated": "2026-05-05T10:27:21.993Z",
+  "specId": "003",
+  "folderSlug": "synthesize",
+  "parentChain": [
+    "071-sk-doc-router-stress-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

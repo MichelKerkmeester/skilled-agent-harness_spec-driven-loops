@@ -1,0 +1,17 @@
+{
+  "specFolder": "071-sk-doc-router-stress-test/002-matrix-execute",
+  "description": "Phase 2: matrix-execute",
+  "keywords": [
+    "phase",
+    "matrix-execute"
+  ],
+  "lastUpdated": "2026-05-05T10:27:21.198Z",
+  "specId": "002",
+  "folderSlug": "matrix-execute",
+  "parentChain": [
+    "071-sk-doc-router-stress-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,84 @@
+---
+title: "sk-doc: Manual Testing Playbook"
+description: "Operator-facing index for sk-doc smart-router validation: intent detection, resource loading, unknown-fallback, cross-CLI dispatch, and token-cost baselines."
+---
+
+# sk-doc: Manual Testing Playbook
+
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live sk-doc skill — no mocks, no stubs. Scenarios verify the AI's actual routing behavior: which intent the smart router picks (per `SKILL.md` §2 RESOURCE_MAP / INTENT_MODEL), which resources it loads, and how it behaves under ambiguous, large, or multi-step inputs. Acceptable verdicts: PASS, PARTIAL, FAIL, or SKIP (with documented blocker).
+
+This document is the operator directory for the sk-doc manual testing playbook. Per-scenario execution detail lives in the numbered category folders below; each scenario file ships a YAML contract (id, expected_intent, expected_resources, token ranges) plus setup, expected behavior, cross-CLI variants, and success criteria.
+
+Source of truth for routing behavior: `.opencode/skill/sk-doc/SKILL.md` §2 Smart Routing (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
+
+---
+
+## Categories
+
+| # | Category | Folder | Scenario IDs | One-line summary |
+|---|----------|--------|--------------|------------------|
+| 1 | Intent Detection | `01--intent-detection/` | SD-001 .. SD-003 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND prompts. |
+| 2 | Resource Loading | `02--resource-loading/` | SD-004 .. SD-006 | Router loads only the expected resource set: references-only (HVR), assets-only (FLOWCHART), and mixed (README_CREATION). |
+| 3 | Unknown Fallback | `03--unknown-fallback/` | SD-007 .. SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. |
+| 4 | Cross-CLI Dispatch | `04--cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (codex stdin mitigation), multi-step dispatch stability. |
+| 5 | Token Cost Baseline | `05--token-cost-baseline/` | SD-013 .. SD-015 | Cost normalization: floor (1 resource), median (3 resources), ceiling (ON_DEMAND load-all). |
+
+---
+
+## Scenario Index
+
+### 01 — Intent Detection
+- **SD-001** — `01--intent-detection/001-doc-quality.md` — DOC_QUALITY: validate documentation quality for a skill.
+- **SD-002** — `01--intent-detection/002-skill-creation.md` — SKILL_CREATION: author a new sk-skill.
+- **SD-003** — `01--intent-detection/003-agent-command.md` — AGENT_COMMAND: author paired @agent and /create command.
+
+### 02 — Resource Loading
+- **SD-004** — `02--resource-loading/001-references-global-only.md` — HVR loads only `references/global/hvr_rules.md`.
+- **SD-005** — `02--resource-loading/002-assets-only.md` — FLOWCHART loads only `assets/flowcharts/*`.
+- **SD-006** — `02--resource-loading/003-mixed-references-assets.md` — README_CREATION loads mixed references + assets.
+
+### 03 — Unknown Fallback
+- **SD-007** — `03--unknown-fallback/001-ambiguous-multi-intent.md` — DOC_QUALITY + FLOWCHART tie within AMBIGUITY_DELTA=1.
+- **SD-008** — `03--unknown-fallback/002-no-keyword-match.md` — Zero-keyword prompt → UNKNOWN_FALLBACK_CHECKLIST.
+- **SD-009** — `03--unknown-fallback/003-disambiguation-required.md` — FEATURE_CATALOG ↔ PLAYBOOK tie disambiguation.
+
+### 04 — Cross-CLI Dispatch
+- **SD-010** — `04--cross-cli-dispatch/001-short-prompt-baseline.md` — Short-prompt CHANGELOG baseline across all 3 CLIs.
+- **SD-011** — `04--cross-cli-dispatch/002-large-prompt-stress.md` — ~3000-char prompt; cli-codex stdin-redirection mitigation.
+- **SD-012** — `04--cross-cli-dispatch/003-multi-step-dispatch.md` — 3 sequential sk-doc invocations with shared session context.
+
+### 05 — Token Cost Baseline
+- **SD-013** — `05--token-cost-baseline/001-minimal-load.md` — Floor: 1 reference (HVR).
+- **SD-014** — `05--token-cost-baseline/002-medium-load.md` — Median: 3 resources (SKILL_CREATION).
+- **SD-015** — `05--token-cost-baseline/003-max-load.md` — Ceiling: ON_DEMAND load-all RESOURCE_MAP.
+
+---
+
+## Global Preconditions
+
+1. `.opencode/skill/sk-doc/SKILL.md` is at HEAD-of-main and contains the §2 Smart Routing block (RESOURCE_MAP, INTENT_MODEL, UNKNOWN_FALLBACK_CHECKLIST, AMBIGUITY_DELTA, ON_DEMAND_KEYWORDS).
+2. All `references/global/*.md`, `references/specific/*.md`, `assets/skill/*.md`, `assets/documentation/*.md`, `assets/flowcharts/*.md`, `assets/agent_template.md`, and `assets/command_template.md` resolve on disk.
+3. Skill advisor binary callable: `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py --help` exits 0.
+4. Each of the 3 CLI runtimes (cli-codex, cli-copilot, cli-opencode) is installed and authenticated.
+5. Token-cost baselines (SD-013 → SD-014 → SD-015) MUST run in order on the same CLI to keep the floor/median/ceiling comparable.
+
+## Pass / Fail Grading
+
+For every scenario:
+
+- **PASS** iff: intent picked matches expected, false_positive_resource_load_count ≤ scenario tolerance, response references at least one expected_resource.
+- **PARTIAL** iff: intent correct but extra resources loaded above tolerance, OR response references resources but is incomplete.
+- **FAIL** iff: wrong intent, OR no expected_resource referenced, OR (for SD-008) any RESOURCE_MAP load.
+- **SKIP** iff: a Global Precondition is unmet — document the blocker.
+
+## Evidence Capture
+
+For each scenario run, capture:
+
+1. The exact prompt sent to the CLI.
+2. The CLI's resolved intent (and runner-up intents within AMBIGUITY_DELTA).
+3. The list of resources the CLI reports as loaded.
+4. Input + output token counts (for SD-010..SD-015).
+5. Wall-clock latency from dispatch to first byte (for SD-010..SD-012).
+
+Persist evidence under `/tmp/skd-<SCENARIO_ID>-<cli>.txt` so cross-CLI comparison is reproducible.
