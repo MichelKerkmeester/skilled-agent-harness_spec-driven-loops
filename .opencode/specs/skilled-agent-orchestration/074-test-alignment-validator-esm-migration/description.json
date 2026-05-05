@@ -1,0 +1,23 @@
+{
+  "specFolder": "074-test-alignment-validator-esm-migration",
+  "description": "Migrate test-alignment-validator from CommonJS to ESM (resolves import.meta blocker deferred from 073)",
+  "keywords": [
+    "migrate",
+    "test-alignment-validator",
+    "commonjs",
+    "esm",
+    "resolves",
+    "import",
+    "meta",
+    "blocker",
+    "deferred",
+    "073"
+  ],
+  "lastUpdated": "2026-05-05T15:20:01.138Z",
+  "specId": "074",
+  "folderSlug": "test-alignment-validator-esm-migration",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

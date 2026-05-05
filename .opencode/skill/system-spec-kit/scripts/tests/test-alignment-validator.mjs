@@ -1,13 +1,23 @@
 // ───────────────────────────────────────────────────────────────
-// 1. ALIGNMENT VALIDATOR DRIFT TESTS
+// 1. ALIGNMENT VALIDATOR DRIFT TESTS (ESM)
 // ───────────────────────────────────────────────────────────────
 // PURPOSE: Validate telemetry schema/docs drift detection behavior
-'use strict';
+//
+// Migrated from CommonJS in packet 074. The validator source uses
+// `import.meta.url` (ESM-only), which blocked the previous
+// `transpileModule(... ModuleKind.CommonJS) + Module._compile`
+// approach because TypeScript can't transpile import.meta to CJS.
+//
+// Strategy: transpile with `ModuleKind.ESNext`, write to a temp
+// `.mjs` file, then dynamic-import it.
 
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const Module = require('module');
+import * as fs from 'node:fs';
+import * as os from 'node:os';
+import * as path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const TEST_ROOT = path.resolve(__dirname, '..');
 const SKILL_ROOT = path.resolve(TEST_ROOT, '..');
@@ -43,29 +53,58 @@ function assert(condition, message) {
   }
 }
 
-function loadAlignmentValidatorModule() {
-  const typescript = require(TYPESCRIPT_MODULE_PATH);
-  const source = fs.readFileSync(ALIGNMENT_VALIDATOR_TS, 'utf8');
-  const sourceWithoutPromptDependency = source.replace(
-    /import\s+\{\s*promptUserChoice\s*\}\s+from\s+'\.\.\/utils\/prompt-utils';/,
+async function loadAlignmentValidatorModule() {
+  // typescript ships as CommonJS; load via createRequire.
+  const { createRequire } = await import('node:module');
+  const req = createRequire(import.meta.url);
+  const typescript = req(TYPESCRIPT_MODULE_PATH);
+
+  let source = fs.readFileSync(ALIGNMENT_VALIDATOR_TS, 'utf8');
+
+  // Stub the prompt-utils import (interactive UI, irrelevant to drift tests)
+  source = source.replace(
+    /import\s+\{\s*promptUserChoice\s*\}\s+from\s+'\.\.\/utils\/prompt-utils(?:\.js)?';/,
     "const promptUserChoice = async () => { throw new Error('promptUserChoice is unavailable in this test runtime'); };"
   );
 
-  const transpiled = typescript.transpileModule(sourceWithoutPromptDependency, {
+  // Stub the esm-entry helper (its only use is moduleDir for default-path
+  // resolution; tests always pass explicit { schemaPath, docsPath })
+  source = source.replace(
+    /import\s+\{\s*dirnameFromImportMeta\s*\}\s+from\s+'\.\.\/lib\/esm-entry(?:\.js)?';/,
+    "const dirnameFromImportMeta = (url) => path.dirname(new URL(url).pathname);"
+  );
+
+  const transpiled = typescript.transpileModule(source, {
     compilerOptions: {
-      module: typescript.ModuleKind.CommonJS,
+      module: typescript.ModuleKind.ESNext,
       target: typescript.ScriptTarget.ES2020,
       esModuleInterop: true,
+      moduleResolution: typescript.ModuleResolutionKind.NodeNext,
     },
     fileName: ALIGNMENT_VALIDATOR_TS,
   });
 
-  const loadedModule = new Module(ALIGNMENT_VALIDATOR_TS, module);
-  loadedModule.filename = ALIGNMENT_VALIDATOR_TS;
-  loadedModule.paths = Module._nodeModulePaths(path.dirname(ALIGNMENT_VALIDATOR_TS));
-  loadedModule._compile(transpiled.outputText, ALIGNMENT_VALIDATOR_TS);
-
-  return loadedModule.exports;
+  // Write transpiled ESM to a temp .mjs file inside spec-folder/ so any
+  // remaining relative imports (e.g. '../types/session-types' for type-only
+  // imports already stripped during transpile) would resolve. In practice,
+  // type-only imports are stripped to bare imports that ESNext resolves to
+  // empty modules, but using the spec-folder/ as the temp location avoids
+  // any surprises.
+  const tempPath = path.join(
+    os.tmpdir(),
+    `alignment-validator-test-${process.pid}-${Date.now()}.mjs`
+  );
+  fs.writeFileSync(tempPath, transpiled.outputText, 'utf8');
+  try {
+    const mod = await import(pathToFileURL(tempPath).href);
+    return mod;
+  } finally {
+    try {
+      fs.unlinkSync(tempPath);
+    } catch {
+      /* best-effort cleanup */
+    }
+  }
 }
 
 function makeDocsMarkdown(contentBySection) {
@@ -98,11 +137,11 @@ function makeSchemaSource(contentByInterface) {
 }
 
 async function run() {
-  log('\nRunning alignment-validator drift checks...\n');
+  log('\nRunning alignment-validator drift checks (ESM)...\n');
 
   let alignmentValidator = null;
   try {
-    alignmentValidator = loadAlignmentValidatorModule();
+    alignmentValidator = await loadAlignmentValidatorModule();
     pass('T-AV00: module loads from TypeScript source');
   } catch (error) {
     fail('T-AV00: module loads from TypeScript source', error.message);
