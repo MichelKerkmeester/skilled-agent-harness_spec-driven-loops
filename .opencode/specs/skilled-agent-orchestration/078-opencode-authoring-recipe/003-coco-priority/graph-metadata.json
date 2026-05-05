@@ -11,42 +11,52 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "078/003",
+      "coco-priority",
+      "canonical_resource_paths",
+      "canonical_resource_boost",
+      "078/003 plan",
+      "078/003 tasks",
+      "078/003 summary",
+      "mcp-coco-index v1.1.0"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
+      "078",
+      "003",
+      "coco-priority",
       "plan",
       "tasks",
       "summary",
-      "impl",
-      "phase"
+      "mcp-coco-index",
+      "add",
+      "default",
+      "list",
+      "per-project",
+      "field"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/skill/mcp-coco-index/changelog/v1.3.0.0.md",
+      ".opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "v1.3.0.0.md",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_authoring.md",
+        "kind": "doc",
+        "path": ".opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,25 +94,25 @@
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -114,39 +124,21 @@
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Canonical Resource Paths",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "System Python",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
-        "kind": "proper_noun",
+        "name": "cli-codex",
+        "kind": "key_phrase",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -162,6 +154,18 @@
         "source": "derived"
       },
       {
+        "name": "explicit Python",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "stdin",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -169,12 +173,6 @@
       },
       {
         "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -192,9 +190,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 3** of the Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup specification.",
+    "causal_summary": "Add a `CANONICAL_RESOURCE_PATHS` default list + per-project `canonical_resource_paths` field on `ProjectSettings`. Paths in this list bypass `**/.*` exclusion (always ingested) AND get a +0.10 ranking boost in `query._ranked_result`. Smoke test in `tests/test_settings.py` asserts `.opencode/skill/sk-code/assets/opencode/` is not excluded under defaults. Document the contract in `mcp-coco-index/SKILL.md`. Closes 3 P1 + 5 P2 findings: F-001-002, F-005-001, F-005-002, F-005-004, F-007-005, F-008-005, F-009-003, F-009-004.",
     "created_at": "2026-05-05T17:36:53Z",
-    "last_save_at": "2026-05-05T18:25:31.503Z",
+    "last_save_at": "2026-05-05T19:06:06.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

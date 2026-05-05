@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import os
 from collections.abc import Iterable
+from fnmatch import fnmatchcase
 from pathlib import Path, PurePath
 
 import cocoindex as coco
@@ -17,7 +18,7 @@ from cocoindex.resources.file import FilePathMatcher, PatternFilePathMatcher
 from cocoindex.resources.id import IdGenerator
 from pathspec import GitIgnoreSpec
 
-from .settings import PROJECT_SETTINGS
+from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import (
     CODEBASE_DIR,
     EMBEDDER,
@@ -191,6 +192,54 @@ class GitignoreAwareMatcher(FilePathMatcher):
         return self._delegate.is_file_included(path)
 
 
+def _path_parts_match(pattern_parts: tuple[str, ...], path_parts: tuple[str, ...]) -> bool:
+    if not path_parts:
+        return True
+    if not pattern_parts:
+        return False
+    pattern_part = pattern_parts[0]
+    if pattern_part == "**":
+        return True
+    if not fnmatchcase(path_parts[0], pattern_part):
+        return False
+    return _path_parts_match(pattern_parts[1:], path_parts[1:])
+
+
+def _is_canonical_ancestor(path: PurePath, canonical_patterns: list[str]) -> bool:
+    path_parts = tuple(part for part in path.as_posix().split("/") if part and part != ".")
+    return any(
+        _path_parts_match(tuple(part for part in pattern.split("/") if part), path_parts)
+        for pattern in canonical_patterns
+    )
+
+
+class CanonicalResourceMatcher(FilePathMatcher):
+    """Pattern matcher that lets explicit canonical paths bypass project exclusions."""
+
+    def __init__(
+        self,
+        included_patterns: list[str],
+        excluded_patterns: list[str],
+        canonical_patterns: list[str],
+    ) -> None:
+        self._delegate = PatternFilePathMatcher(
+            included_patterns=included_patterns,
+            excluded_patterns=excluded_patterns,
+        )
+        self._canonical_patterns = canonical_patterns
+
+    def is_dir_included(self, path: PurePath) -> bool:
+        if self._delegate.is_dir_included(path):
+            return True
+        return _is_canonical_ancestor(path, self._canonical_patterns)
+
+    def is_file_included(self, path: PurePath) -> bool:
+        rel_path = path.as_posix()
+        if is_canonical_path(rel_path, self._canonical_patterns):
+            return True
+        return self._delegate.is_file_included(path)
+
+
 @coco.fn(memo=True)
 async def process_file(
     file: localfs.File,
@@ -277,9 +326,10 @@ async def indexer_main() -> None:
         ),
     )
 
-    base_matcher = PatternFilePathMatcher(
+    base_matcher = CanonicalResourceMatcher(
         included_patterns=ps.include_patterns,
         excluded_patterns=ps.exclude_patterns,
+        canonical_patterns=ps.canonical_resource_paths,
     )
     matcher: FilePathMatcher = GitignoreAwareMatcher(base_matcher, gitignore_spec, project_root)
 

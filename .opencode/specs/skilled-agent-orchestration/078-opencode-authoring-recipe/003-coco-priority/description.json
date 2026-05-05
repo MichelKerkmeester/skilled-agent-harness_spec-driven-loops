@@ -1,17 +1,37 @@
 {
-  "specFolder": "078-opencode-authoring-recipe/003-coco-priority",
-  "description": "Phase 3: coco-priority",
+  "level": "1",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/003-coco-priority",
+  "description": "Phase 3 of 078: mcp-coco-index 1.1.0 ships canonical-resource-path opt-ins (ingestion bypass + rank boost). Closes F-001-002, F-005-001, F-005-002, F-",
   "keywords": [
     "phase",
-    "coco-priority"
+    "078",
+    "mcp-coco-index",
+    "ships",
+    "canonical-resource-path",
+    "opt-ins",
+    "ingestion",
+    "bypass",
+    "rank",
+    "boost",
+    "closes",
+    "f-001-002",
+    "f-005-001",
+    "f-005-002",
+    "f-005-004",
+    "f-007-005",
+    "f-008-005",
+    "f-009-003",
+    "f-009-004"
   ],
-  "lastUpdated": "2026-05-05T17:36:54.086Z",
+  "lastUpdated": "2026-05-05T19:06:06.611Z",
   "specId": "003",
   "folderSlug": "coco-priority",
   "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
     "078-opencode-authoring-recipe"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

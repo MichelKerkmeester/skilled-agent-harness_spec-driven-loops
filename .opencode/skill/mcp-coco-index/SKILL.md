@@ -2,7 +2,7 @@
 name: mcp-coco-index
 description: "Semantic code search via vector embeddings. CocoIndex Code enables natural-language discovery of relevant code, patterns, and implementations. CLI for direct use; MCP exposes a single `search` tool for AI agent integration."
 allowed-tools: [Bash, Read, Grep, Glob]
-version: 1.0.0
+version: 1.1.0
 ---
 
 <!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, all-MiniLM-L6-v2 -->
@@ -49,6 +49,32 @@ Natural language code search through two complementary approaches: CLI (ccc) for
 - The codebase has not been indexed yet (run `ccc index` first)
 - Simple string matching where the exact token is known
 - Non-code files (semantic search is optimized for source code)
+
+## Canonical Resource Paths
+
+Some paths in the workspace are EXPLICITLY canonical — official authoring checklists, recipes, and skill references that should always be ingested AND should outrank generic matches. mcp-coco-index ships with a default `CANONICAL_RESOURCE_PATHS` list and a per-project `canonical_resource_paths` setting.
+
+### Default Canonical Patterns (mcp-coco-index 1.1.0+)
+
+| Pattern | Why |
+|---|---|
+| `.opencode/skill/*/assets/opencode/**` | sk-code OpenCode authoring checklists + recipes (sk-code v3.2.0.0+) |
+| `.opencode/skill/*/assets/motion_dev/**` | Cross-stack Motion.dev assets (sk-code v3.1.0.0+) |
+| `.opencode/skill/*/references/**` | Skill reference docs (broadly canonical) |
+
+### Behavior
+
+1. **Bypass exclusion**: A path matching `canonical_resource_paths` is ALWAYS ingested even if matched by `exclude_patterns` (specifically `**/.*` hidden-directory exclusion).
+2. **Rank boost**: In `_ranked_result`, canonical paths receive a +0.10 score boost and emit a `canonical_resource_boost` ranking_signal.
+
+### Opt-in / Opt-out
+
+Override via `ccc_settings.yaml` `project.canonical_resource_paths`:
+- Empty list `[]` opts out entirely (no canonical bypass, no rank boost).
+- Add patterns to extend the default set.
+- Replace the default list to scope canonical handling to specific projects.
+
+This contract is the indexing-layer counterpart to system-spec-kit/SKILL.md §17 cross-skill authoring-time load and sk-code/SKILL.md "Cross-Skill Consumption" block (packet 078/002).
 
 ---
 

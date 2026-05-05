@@ -12,6 +12,7 @@ from pathlib import Path
 import pytest
 
 from cocoindex_code.settings import (
+    CANONICAL_RESOURCE_PATHS,
     DEFAULT_EXCLUDED_PATTERNS,
     DEFAULT_INCLUDED_PATTERNS,
     EmbeddingSettings,
@@ -22,6 +23,7 @@ from cocoindex_code.settings import (
     default_user_settings,
     find_parent_with_marker,
     find_project_root,
+    is_canonical_path,
     load_project_settings,
     load_user_settings,
     save_project_settings,
@@ -54,7 +56,34 @@ def test_default_project_settings() -> None:
     s = default_project_settings()
     assert s.include_patterns == DEFAULT_INCLUDED_PATTERNS
     assert s.exclude_patterns == DEFAULT_EXCLUDED_PATTERNS
+    assert s.canonical_resource_paths == CANONICAL_RESOURCE_PATHS
     assert s.language_overrides == []
+
+
+def test_default_canonical_resource_paths() -> None:
+    """Default ProjectSettings should include sk-code asset patterns."""
+    settings = ProjectSettings()
+    assert ".opencode/skill/*/assets/opencode/**" in settings.canonical_resource_paths
+
+
+def test_is_canonical_path_bypasses_exclusion() -> None:
+    """A path under .opencode/skill/sk-code/assets/opencode/ should be canonical."""
+    assert (
+        is_canonical_path(
+            ".opencode/skill/sk-code/assets/opencode/checklists/skill_authoring.md",
+            CANONICAL_RESOURCE_PATHS,
+        )
+        is True
+    )
+
+
+def test_canonical_resource_paths_round_trip(tmp_path: Path) -> None:
+    """to_dict / from_dict should preserve canonical_resource_paths."""
+    custom = ["foo/**", "bar/baz/**"]
+    settings = ProjectSettings(canonical_resource_paths=custom)
+    save_project_settings(tmp_path, settings)
+    loaded = load_project_settings(tmp_path)
+    assert loaded.canonical_resource_paths == custom
 
 
 @pytest.mark.usefixtures("_patch_user_dir")

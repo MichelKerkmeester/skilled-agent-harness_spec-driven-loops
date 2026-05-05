@@ -59,6 +59,16 @@ DEFAULT_EXCLUDED_PATTERNS: list[str] = [
     "**/.cocoindex_code",  # Our own index directory
 ]
 
+# Canonical resource paths: explicit opt-ins that BYPASS DEFAULT_EXCLUDED_PATTERNS
+# (specifically the **/.* hidden-directory exclusion) AND receive a rank boost in
+# query._ranked_result (+0.10 score, ranking_signals includes "canonical_resource_boost").
+# Use glob patterns matching pathspec.GitIgnoreSpec semantics.
+CANONICAL_RESOURCE_PATHS: list[str] = [
+    ".opencode/skill/*/assets/opencode/**",  # sk-code OpenCode authoring checklists + recipes
+    ".opencode/skill/*/assets/motion_dev/**",  # Cross-stack motion.dev assets (sk-code v3.1.0.0+)
+    ".opencode/skill/*/references/**",  # Skill reference docs (broadly canonical)
+]
+
 # ---------------------------------------------------------------------------
 # Dataclasses
 # ---------------------------------------------------------------------------
@@ -87,6 +97,7 @@ class LanguageOverride:
 class ProjectSettings:
     include_patterns: list[str] = field(default_factory=lambda: list(DEFAULT_INCLUDED_PATTERNS))
     exclude_patterns: list[str] = field(default_factory=lambda: list(DEFAULT_EXCLUDED_PATTERNS))
+    canonical_resource_paths: list[str] = field(default_factory=lambda: list(CANONICAL_RESOURCE_PATHS))
     language_overrides: list[LanguageOverride] = field(default_factory=list)
 
 
@@ -109,6 +120,18 @@ def default_user_settings() -> UserSettings:
 
 def default_project_settings() -> ProjectSettings:
     return ProjectSettings()
+
+
+def is_canonical_path(rel_path: str, canonical_patterns: list[str]) -> bool:
+    """Return True if rel_path matches any pattern in canonical_patterns.
+
+    Uses GitIgnoreSpec for consistent glob semantics with exclude_patterns.
+    Empty canonical_patterns list -> always returns False.
+    """
+    if not canonical_patterns:
+        return False
+    spec = GitIgnoreSpec.from_lines(canonical_patterns)
+    return spec.match_file(rel_path)
 
 
 # ---------------------------------------------------------------------------
@@ -260,6 +283,7 @@ def _project_settings_to_dict(settings: ProjectSettings) -> dict[str, Any]:
     d: dict[str, Any] = {
         "include_patterns": settings.include_patterns,
         "exclude_patterns": settings.exclude_patterns,
+        "canonical_resource_paths": settings.canonical_resource_paths,
     }
     if settings.language_overrides:
         d["language_overrides"] = [
@@ -275,6 +299,10 @@ def _project_settings_from_dict(d: dict[str, Any]) -> ProjectSettings:
     return ProjectSettings(
         include_patterns=d.get("include_patterns", list(DEFAULT_INCLUDED_PATTERNS)),
         exclude_patterns=d.get("exclude_patterns", list(DEFAULT_EXCLUDED_PATTERNS)),
+        canonical_resource_paths=d.get(
+            "canonical_resource_paths",
+            list(CANONICAL_RESOURCE_PATHS),
+        ),
         language_overrides=overrides,
     )
 

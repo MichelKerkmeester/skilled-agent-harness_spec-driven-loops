@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from .schema import QueryResult
+from .settings import PROJECT_SETTINGS, is_canonical_path
 from .shared import EMBEDDER, SQLITE_DB, query_prompt_name
 
 
@@ -177,6 +178,7 @@ def _ranked_result(
     row: tuple[Any, ...],
     *,
     implementation_intent: bool,
+    canonical_paths: list[str] | None = None,
 ) -> QueryResult:
     (
         file_path,
@@ -204,6 +206,10 @@ def _ranked_result(
             score -= 0.05
             ranking_signals.append("docs_penalty")
 
+    if canonical_paths and is_canonical_path(file_path, canonical_paths):
+        score += 0.10
+        ranking_signals.append("canonical_resource_boost")
+
     return QueryResult(
         file_path=file_path,
         language=language,
@@ -223,10 +229,18 @@ def _dedup_and_rank_rows(
     query: str,
     limit: int,
     offset: int,
+    canonical_paths: list[str] | None = None,
 ) -> QueryResults:
     implementation_intent = _has_implementation_intent(query)
     ranked = [
-        (_ranked_result(row, implementation_intent=implementation_intent), row)
+        (
+            _ranked_result(
+                row,
+                implementation_intent=implementation_intent,
+                canonical_paths=canonical_paths,
+            ),
+            row,
+        )
         for row in rows
     ]
     ranked.sort(key=lambda item: item[0].score, reverse=True)
@@ -274,6 +288,7 @@ async def query_codebase(
 
     db = env.get_context(SQLITE_DB)
     embedder = env.get_context(EMBEDDER)
+    project_settings = env.get_context(PROJECT_SETTINGS)
 
     # Generate query embedding.
     query_embedding = await embedder.embed(query, query_prompt_name)
@@ -299,4 +314,10 @@ async def query_codebase(
                 key=lambda r: r[8],
             )
 
-    return _dedup_and_rank_rows(rows, query=query, limit=limit, offset=offset)
+    return _dedup_and_rank_rows(
+        rows,
+        query=query,
+        limit=limit,
+        offset=offset,
+        canonical_paths=project_settings.canonical_resource_paths,
+    )
