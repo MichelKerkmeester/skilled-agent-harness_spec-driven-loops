@@ -1,31 +1,25 @@
 scenario: "CS-001"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 213.446
+duration_s: 45.164
 exit_code: 0
 tokens_in: null
 tokens_out: null
-advisor_top_1: "mcp-coco-index"
+advisor_top_1: "sk-code"
 surface: "WEBFLOW"
 refs_loaded:
-  - "references/webflow/implementation/animation_workflows.md"
-  - "references/webflow/implementation/implementation_workflows.md"
-  - "references/webflow/implementation/performance_patterns.md"
-  - "references/webflow/deployment/cdn_deployment.md"
   - "references/motion_dev/quick_start.md"
-  - "references/motion_dev/animate_and_timelines.md"
   - "references/motion_dev/scroll_and_gestures.md"
-  - "references/motion_dev/integration_patterns.md"
+  - "references/webflow/deployment/cdn_deployment.md"
 assets_loaded:
   - "assets/motion_dev/snippets/cdn_bootstrap.js"
   - "assets/motion_dev/snippets/in_view_reveal.js"
-  - "assets/motion_dev/snippets/animate_on_scroll.js"
 quality_flags: []
 agent: "none"
 response_excerpt: |
-  Load Motion.dev via CDN just before the closing body tag. Then use `inView` for the hero mount animation.
+  To set up a scroll-driven hero animation using Motion.dev in Webflow, you'll need the CDN bundle and an in-view animation script.
   
-  **CDN Bootstrap:**
+  1. Add the CDN install pattern to your page's "Before </body> tag" custom code:
 verdict: pending
 raw_stdout: "/tmp/skc-CS-001-gemini.txt"
 raw_stderr: "/tmp/skc-CS-001-gemini.err"

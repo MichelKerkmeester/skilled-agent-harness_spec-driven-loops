@@ -1,18 +1,25 @@
 scenario: "SD-001"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 66.481
+duration_s: 53.492
 exit_code: 0
 tokens_in: null
 tokens_out: null
 advisor_top_1: "mcp-coco-index"
 surface: "WEBFLOW"
-refs_loaded: []
-assets_loaded: []
-quality_flags: ["directory_placeholder_refs", "directory_placeholder_assets"]
+refs_loaded:
+  - ".opencode/skill/sk-code/references/webflow/standards/quick_reference.md"
+  - ".opencode/skill/sk-code/references/motion_dev/integration_patterns.md"
+  - ".opencode/skill/sk-code/references/webflow/implementation/animation_workflows.md"
+assets_loaded:
+  - ".opencode/skill/sk-code/assets/motion_dev/snippets/cdn_bootstrap.js"
+  - ".opencode/skill/sk-code/assets/webflow/integrations/lenis_patterns.js"
+quality_flags: []
 agent: "none"
 response_excerpt: |
-  I can help you set up the JS imports for motion.dev and Lenis. I will first query the code graph and search the repository for any existing Webflow initialization patterns to ensure we align with your current setup.
+  Two things to set up for Webflow: the CDN imports in your before-body custom code, and the `requestAnimationFrame` loop that Lenis needs to drive the smooth scroll. 
+  
+  I've loaded the standard Lenis and motion.dev bootstrap patterns. I'll draft the `<script>` tags and the initialization block for the hero animation. Do you want this structured as an ES module import map, or standard global script execution?
 verdict: pending
 raw_stdout: "/tmp/skc-SD-001-gemini.txt"
 raw_stderr: "/tmp/skc-SD-001-gemini.err"

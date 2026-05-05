@@ -1,0 +1,4 @@
+SCENARIO_ID,USER_PROMPT,CLI_LIST
+CS-001,"I'm building a Webflow site and want a scroll-driven hero animation using motion.dev. Show me the proper CDN install pattern and the in-view animation snippet.","gemini"
+CS-002,"I'm building a vanilla HTML/CSS/JS landing page (NOT Webflow no Webflow Designer involved) and want to add motion.dev animations. Where do I look for cross-stack guidance?","gemini"
+SD-001,"I'm building a Webflow site with motion.dev and Lenis for smooth scroll. Help me set up the JS imports for a hero animation.","gemini"
