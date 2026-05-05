@@ -11,6 +11,8 @@ This scenario verifies that Motion-driven animations prefer compositor-friendly 
 
 Reference: `https://motion.dev/docs/performance`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CB-003` and capture DevTools evidence.
@@ -66,14 +68,20 @@ Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav d
 3. If INP/CWV also regressed, run CB-002 and correlate long tasks with the trace.
 4. If a browser differs, run CB-001 before declaring a code-level regression.
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/performance_and_pitfalls.md` | Local compositor-friendly animation guidance |
+| `../../references/motion_dev/animate_and_timelines.md` | Local transform/opacity animation reference |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown height/opacity animation and forced reflow anchor |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider transform/motionValue/willChange anchor |
 | `https://motion.dev/docs/performance` | Official Motion performance and compositor guidance |
+
+---
 
 ## 5. SOURCE METADATA
 

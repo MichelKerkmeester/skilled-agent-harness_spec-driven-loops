@@ -14,6 +14,8 @@ References:
 - `https://motion.dev/docs/animate`
 - `https://motion.dev/docs/performance`
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CB-001` in three browsers and capture comparable evidence.
@@ -66,16 +68,23 @@ Run the Motion nav dropdown and testimonial slider scenarios in Chrome, Safari, 
 3. If only one browser reports reduced motion, check OS/browser accessibility settings.
 4. If all browsers fail, run MR-001 before browser-specific debugging.
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/quick_start.md` | Local Motion install/import reference |
+| `../../references/motion_dev/animate_and_timelines.md` | Local `animate()` and sequence guidance |
+| `../../references/motion_dev/performance_and_pitfalls.md` | Local browser/performance risk guidance |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown behavior under browser comparison |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider behavior under browser comparison |
 | `https://motion.dev/docs/quick-start` | Official Motion install reference |
 | `https://motion.dev/docs/animate` | Official animation reference |
 | `https://motion.dev/docs/performance` | Official performance and browser-testing guidance |
+
+---
 
 ## 5. SOURCE METADATA
 

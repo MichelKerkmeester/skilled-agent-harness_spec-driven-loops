@@ -27,7 +27,7 @@ Canonical package artifacts:
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1-overview)
-- [2. GLOBAL PRECONDITIONS](#2-global-preconditions)
+- [2. Global Preconditions](#2-global-preconditions)
 - [3. GLOBAL EVIDENCE REQUIREMENTS](#3-global-evidence-requirements)
 - [4. DETERMINISTIC COMMAND NOTATION](#4-deterministic-command-notation)
 - [5. REVIEW PROTOCOL AND RELEASE READINESS](#5-review-protocol-and-release-readiness)
@@ -75,10 +75,12 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 
 ---
 
-## 2. GLOBAL PRECONDITIONS
+## 2. Global Preconditions
+
+Motion peer-resource folders must be present before MR/CB scenarios run: `references/motion_dev/` and `assets/motion_dev/`.
 
 1. Working directory is project root and has `.git/`.
-2. The sk-code skill is present at `.opencode/skill/sk-code/` with surface subfolders intact: `references/{router,opencode,webflow,universal}/` and `assets/{opencode,webflow,universal}/`.
+2. The sk-code skill is present at `.opencode/skill/sk-code/` with surface and peer-resource subfolders intact: `references/{router,opencode,webflow,universal,motion_dev}/` and `assets/{opencode,webflow,universal,motion_dev}/`.
 3. The skill advisor at `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` is callable and `skill-graph.json` includes the `sk-code` entry with `signals` array intact.
 4. The orchestrator runtime has a Skill Advisor Hook OR can invoke `skill_advisor.py` via Bash.
 5. The operator uses sandboxed scratch paths under `/tmp/skc-NNN-sandbox/` for any file fixtures the scenarios need (e.g. fake `wrangler.toml` to trigger WEBFLOW detection).

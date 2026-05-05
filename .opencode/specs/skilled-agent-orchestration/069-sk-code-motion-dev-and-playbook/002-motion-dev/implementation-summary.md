@@ -59,7 +59,7 @@ The new reference set covers Motion installation, `animate()`, timeline-style se
 
 ### Reusable Assets
 
-The asset set adds a short install card, eight snippet files, and Packet 1 playbook hook entries. Snippets use Webflow-style `snake_case` because this repo's current frontend convention does, but each header notes that other stacks can adapt naming locally.
+The asset set adds a short install card, nine snippet files, and Packet 1 playbook hook entries. Snippets use Webflow-style `snake_case` because this repo's current frontend convention does, but each header notes that other stacks can adapt naming locally.
 
 ### Files Changed
 
@@ -74,7 +74,7 @@ The asset set adds a short install card, eight snippet files, and Packet 1 playb
 | `.opencode/skill/sk-code/references/motion_dev/*.md` | Created | Six canonical Motion reference docs |
 | `.opencode/skill/sk-code/assets/motion_dev/install_card.md` | Created | Quick install/version-pin reference |
 | `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | Created | Scenario-ready MR-001..MR-004 entries |
-| `.opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | Created | Eight runnable JavaScript snippets |
+| `.opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | Created, then remediated | Nine runnable JavaScript snippets after Phase 004 added `stagger_animation.js` and fixed the layout/ESM bootstrap snippets |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -108,7 +108,7 @@ I read the parent spec, Packet 1 examples, Level 2 templates, Webflow animation/
 | Strict spec validation | PASS, exit 0 |
 | Reference inventory | PASS, six `.md` files present |
 | Asset inventory | PASS, `install_card.md`, `playbook_entries.md`, and `snippets/` present |
-| Snippet inventory | PASS, eight `.js` files present |
+| Snippet inventory | PASS, nine `.js` files present after Phase 004 remediation |
 | Placeholder scan | PASS, no `[VERIFY:]` placeholders in new motion_dev files |
 <!-- /ANCHOR:verification -->
 

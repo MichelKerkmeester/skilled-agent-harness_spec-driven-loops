@@ -14,16 +14,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook"
-    last_updated_at: "2026-05-05T11:00:00Z"
-    last_updated_by: "claude-orchestrator"
-    recent_action: "All 3 packets complete + verified"
-    next_safe_action: "Ready for commit"
+    last_updated_at: "2026-05-05T12:00:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Phase 004 remediation complete; strict validation passed"
+    next_safe_action: "Parent packet ready for commit"
     blockers: []
     key_files:
       - "spec.md"
       - "001-playbook/implementation-summary.md"
       - "002-motion-dev/implementation-summary.md"
       - "003-cross-ref-metadata-sync/implementation-summary.md"
+      - "004-deep-review-remediation/implementation-summary.md"
       - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
       - ".opencode/skill/sk-code/references/motion_dev/quick_start.md"
       - ".opencode/skill/sk-code/SKILL.md"
@@ -56,7 +57,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-05 |
 | **Branch** | `main` |
 | **Parent Spec** | `../` (skilled-agent-orchestration top-level) |
@@ -121,9 +122,10 @@ This parent spec lists no files directly. Per-phase blast radius:
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | [001-playbook/](./001-playbook/) | Manual testing playbook refinement + sk-doc alignment | Draft |
-| 002 | [002-motion-dev/](./002-motion-dev/) | Motion.dev assets + references (canonical, cross-stack) | Draft |
-| 003 | [003-cross-ref-metadata-sync/](./003-cross-ref-metadata-sync/) | Webflow "See also" cross-refs + sk-code metadata sync + router/manifest update | Draft |
+| 001 | [001-playbook/](./001-playbook/) | Manual testing playbook refinement + sk-doc alignment | Complete |
+| 002 | [002-motion-dev/](./002-motion-dev/) | Motion.dev assets + references (canonical, cross-stack) | Complete |
+| 003 | [003-cross-ref-metadata-sync/](./003-cross-ref-metadata-sync/) | Webflow "See also" cross-refs + sk-code metadata sync + router/manifest update | Complete |
+| 004 | [004-deep-review-remediation/](./004-deep-review-remediation/) | Deep-review remediation for P0/P1/P2 findings and final PASS restoration | Complete |
 
 ### Phase Transition Rules
 
@@ -147,15 +149,18 @@ This parent spec lists no files directly. Per-phase blast radius:
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Does sk-code use a discoverable surface manifest that needs updating to expose motion_dev as a peer category? Phase 003 audits this and decides accordingly — do not invent a new mechanism.
-- Should motion_dev cite Webflow-CDN-specific install patterns (script tag with `https://cdn.jsdelivr.net/...`) AS a primary integration mode, or as one of several? Phase 002 decision based on in-repo usage proportion (currently CDN-dominant per `window.Motion` pattern in nav_dropdown.js).
+No open questions remain.
+
+Answered in continuity:
+- `motion_dev/` is exposed through existing SKILL.md, README, router docs, description metadata, and graph metadata; no standalone manifest exists.
+- Motion CDN/global and npm/ESM import modes are documented as parallel integration modes, with Webflow-specific CDN details staying in `webflow/` guidance and cross-stack API details in `motion_dev/`.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: See sub-folders `001-playbook/`, `002-motion-dev/`, `003-cross-ref-metadata-sync/` for per-phase spec.md, plan.md, tasks.md
+- **Phase children**: See sub-folders `001-playbook/`, `002-motion-dev/`, `003-cross-ref-metadata-sync/`, and `004-deep-review-remediation/` for per-phase spec.md, plan.md, tasks.md
 - **Parent Spec**: See `../` (skilled-agent-orchestration)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
 - **sk-doc playbook standards**: `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md`

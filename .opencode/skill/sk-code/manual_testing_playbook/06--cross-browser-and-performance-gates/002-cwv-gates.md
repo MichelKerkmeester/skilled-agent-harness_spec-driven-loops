@@ -18,6 +18,8 @@ References:
 - `https://motion.dev/docs/performance`
 - `https://web.dev/articles/vitals`
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CB-002` and capture numeric evidence.
@@ -73,15 +75,21 @@ Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav d
 3. If INP fails, inspect slider drag/click handlers, long tasks, and main-thread blocking.
 4. Compare failure patterns with Motion performance guidance before deciding remediation.
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/performance_and_pitfalls.md` | Local Motion performance and reduced-jank guidance |
+| `../../references/motion_dev/animate_and_timelines.md` | Local animation property and sequence guidance |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown interaction and height animation anchor |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Slider interaction and transform animation anchor |
 | `https://motion.dev/docs/performance` | Official Motion performance guidance |
 | `https://web.dev/articles/vitals` | Core Web Vitals metric definitions and thresholds reference |
+
+---
 
 ## 5. SOURCE METADATA
 

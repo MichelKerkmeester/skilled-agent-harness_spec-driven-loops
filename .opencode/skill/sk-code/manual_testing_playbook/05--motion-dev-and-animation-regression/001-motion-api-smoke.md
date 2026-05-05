@@ -15,6 +15,8 @@ The scenario uses official Motion docs as API references:
 - `https://motion.dev/docs/inview`
 - `https://motion.dev/docs/spring`
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `MR-001` and confirm the expected signals without contradictory browser evidence.
@@ -71,6 +73,8 @@ Create a sandboxed Webflow-style Motion smoke page that imports animate, inView,
 3. If `inView()` does not fire, confirm the target selector exists and is in the viewport.
 4. If the animation throws, reduce the target to only `opacity` and `transform` and retry.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -78,6 +82,9 @@ Create a sandboxed Webflow-style Motion smoke page that imports animate, inView,
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/quick_start.md` | Local Motion install and import-mode reference |
+| `../../references/motion_dev/animate_and_timelines.md` | Local `animate()` and sequence guidance |
+| `../../references/motion_dev/scroll_and_gestures.md` | Local `inView()` and viewport trigger guidance |
 | `https://motion.dev/docs/quick-start` | Official install and first-animation reference |
 | `https://motion.dev/docs/animate` | Official `animate()` reference |
 | `https://motion.dev/docs/inview` | Official `inView()` reference |
@@ -89,6 +96,8 @@ Create a sandboxed Webflow-style Motion smoke page that imports animate, inView,
 |---|---|
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | In-repo pinned ESM import pattern |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | In-repo `window.Motion` runtime availability pattern |
+
+---
 
 ## 5. SOURCE METADATA
 

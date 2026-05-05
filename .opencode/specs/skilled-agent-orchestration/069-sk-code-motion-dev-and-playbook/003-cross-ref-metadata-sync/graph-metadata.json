@@ -199,7 +199,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packets 1 and 2 created motion.dev playbook coverage and a populated cross-stack `motion_dev/` reference package, but existing Webflow docs still mention Motion mostly as Webflow-local guidance. The sk-code router and metadata also need to expose `motion_dev/` as a discoverable peer category without changing Webflow-specific content ownership.",
+    "causal_summary": "Delivered additive Webflow cross-references to the new cross-stack `motion_dev/` package, synchronized sk-code router/README/SKILL metadata so Motion.dev remains a peer resource intent instead of a third surface, and recorded the Packet 069 changelog without relocating existing Webflow-specific guidance.",
     "created_at": "2026-05-05T08:30:57.522Z",
     "last_save_at": "2026-05-05T08:32:24.972Z",
     "save_lineage": "graph_only",

@@ -11,6 +11,8 @@ This scenario captures repeatable visual regression evidence for Motion-driven U
 
 The goal is not pixel-perfect automation. The operator captures a baseline video, records timing and interaction notes, then compares future runs against the baseline for missing motion, jank, wrong end state, console errors, or accessibility regressions.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `MR-004` and produce a baseline bundle that future manual testers can reuse.
@@ -70,15 +72,22 @@ Record baseline videos for the Motion nav dropdown open/close flow and testimoni
 3. If Motion is unavailable, run MR-001 and MR-002 before investigating UI code.
 4. If only timing changed, compare constants and record whether the change was intentional.
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/animate_and_timelines.md` | Local `animate()` and sequence guidance |
+| `../../references/motion_dev/performance_and_pitfalls.md` | Local animation regression and performance risk guidance |
+| `../../assets/motion_dev/snippets/stagger_animation.js` | Local stagger example for list-style regression cases |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Dropdown Motion animation anchor |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Testimonial slider Motion animation anchor |
 | `https://motion.dev/docs/animate` | Official `animate()` behavior reference |
 | `https://motion.dev/docs/quick-start` | Official Motion install and first-animation reference |
+
+---
 
 ## 5. SOURCE METADATA
 

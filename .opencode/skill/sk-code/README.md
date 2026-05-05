@@ -18,7 +18,7 @@ Read .opencode/skill/sk-code/SKILL.md
 
 | Surface | Detection | Route |
 | --- | --- | --- |
-| WEBFLOW | `src/2_javascript/`, `*.webflow.js`, `Webflow.push`, `--vw-`, motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, `wrangler.toml` | Frontend HTML/CSS/JS, animation, CDN/minification, browser verification |
+| WEBFLOW | `src/2_javascript/`, `*.webflow.js`, `Webflow.push`, `--vw-`, `window.Motion`, GSAP, Lenis, HLS, Swiper, FilePond, `wrangler.toml` | Frontend HTML/CSS/JS, animation, CDN/minification, browser verification |
 | OPENCODE | CWD or changed/target files under `.opencode/` | OpenCode skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config |
 | UNKNOWN | Neither surface matched | Ask for the surface and verification commands |
 
@@ -85,7 +85,7 @@ The former standalone OpenCode system-code skill is absorbed into this skill as 
 
 Use route branches inside `sk-code` for future supported code surfaces rather than creating sibling code skills.
 
-`motion_dev/` is a peer resource category, not a separate code surface. It holds cross-stack Motion guidance that Webflow and future supported surfaces can link to while keeping Webflow-CDN and Designer-specific guidance under `webflow/`.
+`motion_dev/` is a peer resource category, not a separate code surface. Bare Motion package imports and generic motion.dev documentation mentions route as MOTION_DEV intent after WEBFLOW, OPENCODE, or UNKNOWN surface selection; they do not by themselves make a workspace WEBFLOW. The category holds cross-stack Motion guidance that Webflow and future supported surfaces can link to while keeping Webflow-CDN and Designer-specific guidance under `webflow/`.
 
 ---
 

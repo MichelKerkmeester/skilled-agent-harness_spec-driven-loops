@@ -14,6 +14,8 @@ References:
 - `https://motion.dev/docs/react-use-reduced-motion`
 - `https://motion.dev/docs/vue-motion-config`
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `MR-003` and compare normal-motion and reduced-motion evidence.
@@ -68,16 +70,22 @@ Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion te
 3. Inspect whether dropdown code uses Motion `animate()` without a reduced-motion branch.
 4. Compare expected accessibility behavior with Motion accessibility docs before filing remediation.
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/performance_and_pitfalls.md` | Local reduced-motion and performance pitfalls reference |
+| `../../references/motion_dev/quick_start.md` | Local cross-stack Motion setup reference |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | In-repo reduced-motion media query and slider behavior |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | Motion-driven dropdown behavior to check under reduced motion |
 | `https://motion.dev/docs/react-accessibility` | Official reduced-motion accessibility guidance |
 | `https://motion.dev/docs/react-use-reduced-motion` | Official reduced-motion hook behavior for Motion React |
 | `https://motion.dev/docs/vue-motion-config` | Official reduced-motion configuration options for Motion Vue |
+
+---
 
 ## 5. SOURCE METADATA
 

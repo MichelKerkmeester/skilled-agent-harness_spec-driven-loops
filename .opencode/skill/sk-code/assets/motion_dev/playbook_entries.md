@@ -113,6 +113,7 @@ API context:
 - `references/motion_dev/animate_and_timelines.md`
 - `references/motion_dev/scroll_and_gestures.md`
 - `references/motion_dev/performance_and_pitfalls.md`
+- `assets/motion_dev/snippets/stagger_animation.js`
 
 ## 3. CROSS-LINKS
 
@@ -121,6 +122,7 @@ API context:
 - Motion quick start: `references/motion_dev/quick_start.md`
 - Motion integration patterns: `references/motion_dev/integration_patterns.md`
 - Motion performance guidance: `references/motion_dev/performance_and_pitfalls.md`
+- Motion stagger snippet: `assets/motion_dev/snippets/stagger_animation.js`
 
 ## 4. RELATED RESOURCES
 

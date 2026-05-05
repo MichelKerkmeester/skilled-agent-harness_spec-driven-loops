@@ -28,7 +28,7 @@ This reference captures Motion's core JavaScript animation forms and maps them t
 ### Key Sources
 
 - Official: https://motion.dev/docs/animate
-- Official: https://motion.dev/docs/timeline
+- Official: https://motion.dev/docs/animate
 - In-repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
 - In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 
@@ -47,7 +47,7 @@ animate(".card", { opacity: [0, 1], x: [24, 0] }, { duration: 0.35, ease: "easeO
 Target forms:
 - CSS selector or element list for DOM/SVG animation (Source: https://motion.dev/docs/animate).
 - Numeric/color/string/object values for non-DOM or render-target-specific animation (Source: https://motion.dev/docs/animate).
-- Sequence arrays for timeline-style animation (Source: https://motion.dev/docs/animate, https://motion.dev/docs/timeline).
+- Sequence arrays for timeline-style animation (Source: https://motion.dev/docs/animate).
 
 Sequence segment form:
 
@@ -136,7 +136,7 @@ animate(dropdown, { opacity: [0, 1], height: ["0px", `${natural_height}px`] }, {
 ## 7. REFERENCES AND RELATED RESOURCES
 
 - Core `animate()` behavior, import modes, mini/hybrid distinction, options, controls, sequences, and stagger: https://motion.dev/docs/animate
-- Timeline/sequence entry point: https://motion.dev/docs/timeline
+- Timeline/sequence entry point: https://motion.dev/docs/animate
 - WAAPI improvements and seconds-based duration note: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
 - In-repo dropdown pattern: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
 - In-repo draggable slider pattern: `a_nobel_en_zn/2_javascript/slider/testimonial.js`

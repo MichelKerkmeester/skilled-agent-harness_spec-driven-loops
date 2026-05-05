@@ -79,7 +79,7 @@ The current repo also uses a dynamic CDN ESM fallback in `testimonial.js`, impor
 | API | Use | Source |
 |-----|-----|--------|
 | `animate` | Create and control animations for selectors, elements, values, objects, sequences, and more | https://motion.dev/docs/animate |
-| `timeline` / sequences | Motion's sequence form is handled through `animate(sequence, options)` with segment timing | https://motion.dev/docs/animate, https://motion.dev/docs/timeline |
+| `timeline` / sequences | Motion's sequence form is handled through `animate(sequence, options)` with segment timing | https://motion.dev/docs/animate |
 | `inView` | Trigger callbacks when elements enter/leave the viewport via Intersection Observer | https://motion.dev/docs/inview |
 | `scroll` | Bind animation progress or callbacks to scroll progress | https://motion.dev/docs/scroll |
 | `spring` | Generate spring easing/animation behavior, often with mini animate | https://motion.dev/docs/spring |
@@ -106,7 +106,7 @@ See [integration_patterns.md](./integration_patterns.md).
 
 - Official quick start and install modes: https://motion.dev/docs/quick-start
 - Core animate API and mini/hybrid distinction: https://motion.dev/docs/animate
-- Timeline/sequence behavior: https://motion.dev/docs/animate, https://motion.dev/docs/timeline
+- Timeline/sequence behavior: https://motion.dev/docs/animate
 - Scroll-linked animations: https://motion.dev/docs/scroll
 - Viewport triggers: https://motion.dev/docs/inview
 - Spring utility: https://motion.dev/docs/spring

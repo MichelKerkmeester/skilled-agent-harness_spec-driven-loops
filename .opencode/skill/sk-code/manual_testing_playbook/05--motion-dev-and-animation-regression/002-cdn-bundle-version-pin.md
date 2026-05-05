@@ -11,6 +11,8 @@ This scenario verifies that Motion CDN usage avoids `@latest` and uses an explic
 
 Reference: `https://motion.dev/docs/quick-start`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `MR-002` and confirm the expected signals without rewriting production code.
@@ -60,14 +62,21 @@ Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @lates
 2. If `@latest` appears in runtime code, fail and recommend pinning to the currently approved Motion version.
 3. If an export is missing, compare the pinned version and import style against `https://motion.dev/docs/quick-start`.
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
 |---|---|
 | `../manual_testing_playbook.md` | Root directory page and scenario summary |
+| `../../references/motion_dev/quick_start.md` | Local Motion install and version-pin reference |
+| `../../references/motion_dev/integration_patterns.md` | Local CDN/global/ESM integration guidance |
+| `../../assets/motion_dev/install_card.md` | Local install card with pinned-version notes |
 | `../../../../../a_nobel_en_zn/2_javascript/slider/testimonial.js` | Pinned ESM CDN import and required exports |
 | `../../../../../a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` | `window.Motion.animate` runtime guard |
 | `https://motion.dev/docs/quick-start` | Official CDN install and version-pin guidance |
+
+---
 
 ## 5. SOURCE METADATA
 

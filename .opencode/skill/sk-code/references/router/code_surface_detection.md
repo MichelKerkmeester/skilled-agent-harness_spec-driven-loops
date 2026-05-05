@@ -37,7 +37,7 @@ Detect **where the work is happening** before deciding which standards apply.
 [ -d "src/2_javascript" ]
 ls *.webflow.js 2>/dev/null | head -1
 grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null
-grep -lqE "from ['\"]motion['\"]|motion\.dev|window\.gsap|gsap\.(to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond" \
+grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond" \
   src/**/*.{js,mjs,ts,html} *.{js,mjs,ts,html} 2>/dev/null
 [ -f "wrangler.toml" ]
 
@@ -47,7 +47,7 @@ grep -lqE "from ['\"]motion['\"]|motion\.dev|window\.gsap|gsap\.(to|from|set|tim
 
 **Why OPENCODE wins precedence**: `.opencode/` system tools (e.g. preview servers, mock fixtures, animation demos under `.opencode/skill/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
 
-**Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor libraries, `wrangler.toml`, `src/2_javascript/`). Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
+**Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 
 ---
 

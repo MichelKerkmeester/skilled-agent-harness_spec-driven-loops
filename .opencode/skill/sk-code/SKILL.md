@@ -1,11 +1,11 @@
 ---
 name: sk-code
-description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
+description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 2.0.0
 ---
 
-<!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
+<!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, Motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
 
 # Code Workflows - Surface-Aware Smart Router
 
@@ -19,10 +19,10 @@ version: 2.0.0
 
 Use this skill when doing code work in either supported surface:
 
-- **WEBFLOW**: Webflow / vanilla frontend work in HTML, CSS, and JavaScript, including motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN/minification, and browser verification.
+- **WEBFLOW**: Webflow / vanilla frontend work in HTML, CSS, and JavaScript, including Motion.dev runtime usage, GSAP, Lenis, HLS, Swiper, FilePond, CDN/minification, and browser verification.
 - **OPENCODE**: OpenCode system work under `.opencode/`, including skills, agents, commands, MCP servers, hooks, scripts, tests, JSON/JSONC config, TypeScript, JavaScript, Python, and Shell.
 
-Also use this skill for cross-stack motion.dev reference work when the question is about Motion APIs, snippets, integration modes, performance pitfalls, or CSS/Motion/GSAP/WAAPI trade-offs that should live in `references/motion_dev/` or `assets/motion_dev/` rather than inside Webflow-only guidance.
+Also use this skill for cross-stack Motion.dev reference work when the question is about Motion APIs, snippets, integration modes, performance pitfalls, or CSS/Motion/GSAP/WAAPI trade-offs that should live in `references/motion_dev/` or `assets/motion_dev/` rather than inside Webflow-only guidance.
 
 Use it for implementation, code quality, debugging, verification, test failures, build failures, and before any completion claim.
 
@@ -60,11 +60,11 @@ if [[ "$PWD" == */.opencode/* ]] \
    || [[ "$TARGET_FILE" == */.opencode/* ]]; then
   SURFACE="OPENCODE"
 
-# 2. WEBFLOW - frontend HTML/CSS/JS and vanilla animation web
+# 2. WEBFLOW - frontend HTML/CSS/JS and Webflow-specific vanilla animation web
 elif [[ -d "src/2_javascript" ]] \
      || ls *.webflow.js 2>/dev/null | head -1 \
      || grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null \
-     || grep -lqE "from ['\"]motion['\"]|motion\.dev|window\.gsap|gsap\.(to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond" \
+     || grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugin)|new Lenis|new Hls|new Swiper|FilePond" \
         src/**/*.{js,mjs,ts,html} *.{js,mjs,ts,html} 2>/dev/null \
      || [[ -f "wrangler.toml" ]]; then
   SURFACE="WEBFLOW"
@@ -104,7 +104,7 @@ Ambiguous multi-language tasks load the top matching language references plus th
 - `references/universal/`: surface-agnostic error recovery, code quality, style, and research guidance.
 - `references/router/`: detection, intent scoring, loading, and lifecycle internals.
 - `references/webflow/`, `assets/webflow/`: live Webflow/frontend implementation, standards, debugging, verification, performance, deployment, checklists, and patterns.
-- `references/motion_dev/`, `assets/motion_dev/`: cross-stack motion.dev API, timeline, scroll/gesture, performance, decision-matrix, integration, install, playbook hook, and snippet resources. Webflow docs link here for generic Motion details while keeping Webflow-CDN and Designer guidance in `references/webflow/`.
+- `references/motion_dev/`, `assets/motion_dev/`: cross-stack Motion.dev API, timeline, scroll/gesture, performance, decision-matrix, integration, install, playbook hook, and snippet resources. Webflow docs link here for generic Motion details while keeping Webflow-CDN and Designer guidance in `references/webflow/`.
 - `references/opencode/`, `assets/opencode/`: OpenCode system-code language standards, shared patterns, hooks, alignment automation, and quality checklists.
 - `scripts/`: Webflow build utilities plus OpenCode alignment verifier.
 
