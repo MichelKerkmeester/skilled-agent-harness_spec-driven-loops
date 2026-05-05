@@ -97,10 +97,10 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],
   '/create:testing-playbook': [['create:testing-playbook', 1.8], ['command-create-testing-playbook', 1.2], ['sk-doc', 0.2]],
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
-  '/spec_kit:deep-research': [['sk-deep-research', 1.6], ['command-spec-kit', 0.45]],
-  '/spec_kit:deep-review': [['sk-deep-review', 1.6], ['command-spec-kit', 0.45]],
+  '/spec_kit:deep-research': [['deep-research', 1.6], ['command-spec-kit', 0.45]],
+  '/spec_kit:deep-review': [['deep-review', 1.6], ['command-spec-kit', 0.45]],
   '/spec_kit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
-  'auto review release readiness': [['sk-deep-review', 1]],
+  'auto review release readiness': [['deep-review', 1]],
   'chrome devtools': [['mcp-chrome-devtools', 1]],
   'staging url': [['mcp-chrome-devtools', 0.65]],
   'staging site': [['mcp-chrome-devtools', 0.65]],
@@ -119,10 +119,10 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'classifier vocabulary': [['sk-code-review', 0.9]],
   'commonjs helper': [['sk-code', 1]],
   'create a prompt': [['sk-improve-prompt', 0.95]],
-  'deep research': [['sk-deep-research', 1]],
-  'deep review': [['sk-deep-review', 1]],
-  'deep-research': [['sk-deep-research', 1.3]],
-  'deep-review': [['sk-deep-review', 1.3]],
+  'deep research': [['deep-research', 1]],
+  'deep review': [['deep-review', 1]],
+  'deep-research': [['deep-research', 1.3]],
+  'deep-review': [['deep-review', 1.3]],
   'gate 3': [['system-spec-kit', 0.35], ['sk-code', 0.25]],
   'gate-3-classifier': [['sk-code', 1]],
   'generate implementation-summary': [['system-spec-kit', 1]],
@@ -134,8 +134,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'negative-trigger whitelist': [['sk-code', 0.9]],
   'list any mismatches': [['sk-code-review', 0.8]],
   'pull request': [['sk-code-review', 0.45], ['sk-git', 0.45]],
-  'resume deep research': [['sk-deep-research', 1]],
-  'resume deep review': [['sk-deep-review', 1]],
+  'resume deep research': [['deep-research', 1]],
+  'resume deep review': [['deep-review', 1]],
   'resume the phase folder': [['system-spec-kit', 1]],
   'phase folder': [['system-spec-kit', 0.75]],
   'routing dashboard': [['sk-code', 0.35]],
@@ -238,15 +238,18 @@ export function scoreExplicitLane(prompt: string, projection: AdvisorProjection)
     push(scores, 'sk-code', 3.0, 'review-plus-write-disambiguation');
     push(scores, 'sk-code-review', -2.0, 'review-plus-write-disambiguation');
   }
-  if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration)\b/.test(lower) && /\bresearch\b/.test(lower)) {
-    push(scores, 'sk-deep-research', 0.85, 'research-loop');
+  if (/\b(continue|resume|launch|kick off|overnight|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\bresearch\b/.test(lower)) {
+    push(scores, 'deep-research', 0.85, 'research-loop');
   }
-  if (/\b(continue|resume|launch|start|convergence|iteration)\b/.test(lower) && /\breview\b/.test(lower)) {
-    push(scores, 'sk-deep-review', 0.85, 'review-loop');
+  if (/\b(continue|resume|launch|start|convergence|iteration|iterative|multi-pass|loop)\b/.test(lower) && /\breview\b/.test(lower)) {
+    push(scores, 'deep-review', 0.85, 'review-loop');
+    if (/\b(audit|spec folder|packet|convergence)\b/.test(lower)) {
+      push(scores, 'sk-code-review', -0.6, 'iterative-review-vs-pr-disambiguation');
+    }
   }
   if (/\b(figure out|find|diagnose|debug)\b.{0,40}\b(wrong|broken|failing|bug|issue)\b.{0,40}\bcode\b|\b(wrong|broken|failing)\b.{0,30}\bcode\b/.test(lower)) {
     push(scores, 'sk-code-review', 0.9, 'ambiguous-code-problem');
-    push(scores, 'sk-deep-review', 0.45, 'ambiguous-code-problem');
+    push(scores, 'deep-review', 0.45, 'ambiguous-code-problem');
     push(scores, 'sk-code', -0.45, 'ambiguous-code-problem');
   }
 

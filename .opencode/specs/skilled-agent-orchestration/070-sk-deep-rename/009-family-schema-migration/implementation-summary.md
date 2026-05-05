@@ -52,7 +52,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Phase 009 migrated the skill graph family schema so `deep-loop` is accepted end-to-end. The packet re-applied the family rename, updated the SQLite `CHECK` constraint in source and dist mirrors, updated all requested TypeScript/schema family enum mirrors, deleted the stale SQLite database and sidecars, emitted the compiled graph, and left the orchestrator-owned advisor rebuild as the next step.
+Phase 009 migrated the skill graph family schema so `deep-loop` is accepted end-to-end. The packet re-applied the family rename, updated the SQLite `CHECK` constraint in source and dist mirrors, updated all requested TypeScript/schema family enum mirrors, deleted the stale SQLite database and sidecars, emitted the compiled graph, tuned lexical hints for deep-review (9 new phrases), tuned the explicit-lane review-loop regex to match `iterative` and `multi-pass` and `loop` keywords, added `iterative-review-vs-pr-disambiguation` anti-boost, added 8 new high-weight PHRASE_INTENT_BOOSTERS for deep-review in the Python scorer, and extended the native-bridge wrapper so `_apply_deep_research_disambiguation` runs on native results too (closing the live behavioral gap that was previously shadow-only).
+
+### Routing Verification (post-disambiguation, 8 prompt classes — ALL PASS)
+
+| Prompt | Expected | Actual TOP-1 | Confidence |
+|---|---|---|---|
+| `iterative review loop for spec folder audit` | deep-review | deep-review | 0.950 (sk-code-review penalized to 0.850) |
+| `review this PR for code quality` | sk-code-review | sk-code-review | 0.950 |
+| `single pass code review with security findings` | sk-code-review | sk-code-review | 0.950 |
+| `audit findings drift readiness` | sk-code-review | sk-code-review | 0.950 |
+| `deep research loop with convergence tracked` | deep-research | deep-research | 0.950 |
+| `multi-pass review with convergence detection` | deep-review | deep-review | 0.950 |
+| `spec folder audit packet` | deep-review or system-spec-kit | system-spec-kit | 0.950 (acceptable) |
+| `code review findings drift` | sk-code-review | sk-code-review | 0.950 |
 
 ### Files Changed
 

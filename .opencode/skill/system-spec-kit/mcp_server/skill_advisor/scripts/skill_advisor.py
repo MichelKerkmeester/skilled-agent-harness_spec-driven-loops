@@ -219,17 +219,17 @@ SKILL_ALIAS_GROUPS = {
         "create:testing-playbook",
     },
     "memory:save": {"command-memory-save", "/memory:save", "memory:save"},
-    "sk-deep-research": {
+    "deep-research": {
         "command-spec-kit-deep-research",
         "/spec_kit:deep-research",
         "spec_kit:deep-research",
-        "sk-deep-research",
+        "deep-research",
     },
-    "sk-deep-review": {
+    "deep-review": {
         "command-spec-kit-deep-review",
         "/spec_kit:deep-review",
         "spec_kit:deep-review",
-        "sk-deep-review",
+        "deep-review",
     },
 }
 SKILL_ALIAS_TO_CANONICAL = {
@@ -458,7 +458,18 @@ def recommend_with_native_advisor(
         return None
     if response.get("status") != "ok":
         return None
-    return _legacy_recommendations_from_native(data)
+    recommendations = _legacy_recommendations_from_native(data)
+    if recommendations is not None:
+        prompt_lower = prompt.lower()
+        _apply_deep_research_disambiguation(recommendations, prompt_lower)
+        recommendations.sort(
+            key=lambda x: (
+                -float(x.get("confidence", 0.0)),
+                -float(x.get("score", 0.0) if isinstance(x.get("score"), (int, float)) else 0.0),
+                str(x.get("skill", "")),
+            )
+        )
+    return recommendations
 
 
 def _log_skill_graph_warning(message: str) -> None:
@@ -1249,8 +1260,8 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────
     # SK-AUTORESEARCH: Autonomous deep research loop
     # ─────────────────────────────────────────────────────────────────
-    "autoresearch": ("sk-deep-research", 2.0),
-    "convergence": ("sk-deep-research", 0.8),
+    "autoresearch": ("deep-research", 2.0),
+    "convergence": ("deep-research", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-GIT: Version control operations
@@ -1526,15 +1537,15 @@ PHRASE_INTENT_BOOSTERS = {
     "validate spec packet": [("system-spec-kit", 1.6)],
     "constitutional memory": [("system-spec-kit", 1.7)],
     # --- Autoresearch deep research loop ---
-    "deep research": [("sk-deep-research", 2.5)],
-    "research loop": [("sk-deep-research", 2.5)],
-    "autoresearch": [("sk-deep-research", 3.0)],
-    "/autoresearch": [("sk-deep-research", 3.0)],
-    "auto research": [("sk-deep-research", 2.8)],
-    "autonomous research": [("sk-deep-research", 2.5)],
-    "iterative research": [("sk-deep-research", 2.5)],
-    "multi-round research": [("sk-deep-research", 2.0)],
-    "overnight research": [("sk-deep-research", 2.0)],
+    "deep research": [("deep-research", 2.5)],
+    "research loop": [("deep-research", 2.5)],
+    "autoresearch": [("deep-research", 3.0)],
+    "/autoresearch": [("deep-research", 3.0)],
+    "auto research": [("deep-research", 2.8)],
+    "autonomous research": [("deep-research", 2.5)],
+    "iterative research": [("deep-research", 2.5)],
+    "multi-round research": [("deep-research", 2.0)],
+    "overnight research": [("deep-research", 2.0)],
     # --- Agent improvement loop ---
     "agent improvement": [("sk-improve-agent", 2.8)],
     "recursive agent": [("sk-improve-agent", 2.8)],
@@ -1592,23 +1603,30 @@ PHRASE_INTENT_BOOSTERS = {
     "mcp-coco-index": [("mcp-coco-index", 2.8)],
     "/mcp-coco-index": [("mcp-coco-index", 2.8)],
     ".opencode/skill/mcp-coco-index": [("mcp-coco-index", 3.0)],
-    "convergence detection": [("sk-deep-research", 2.0)],
+    "convergence detection": [("deep-research", 2.0)],
     # --- Deep review mode (iterative code audit) ---
-    "deep review": [("sk-deep-review", 2.5)],
-    "review loop": [("sk-deep-review", 2.5)],
-    "iterative review": [("sk-deep-review", 2.5)],
-    "code audit loop": [("sk-deep-review", 2.5)],
-    "review mode": [("sk-deep-review", 2.0)],
-    "release readiness review": [("sk-deep-review", 2.0)],
-    "spec folder review": [("sk-deep-review", 2.0), ("sk-code-review", 0.8)],
-    "review convergence": [("sk-deep-review", 2.5)],
-    "auto review release readiness": [("sk-deep-review", 7.0)],
-    "auto review security audit": [("sk-deep-review", 2.5)],
-    "auto review audit": [("sk-deep-review", 2.2)],
-    "auto review loop": [("sk-deep-review", 2.5)],
-    ":review": [("sk-deep-review", 3.0)],
-    ":review:auto": [("sk-deep-review", 3.0)],
-    ":review:confirm": [("sk-deep-review", 3.0)],
+    "deep review": [("deep-review", 2.5)],
+    "review loop": [("deep-review", 2.5)],
+    "iterative review": [("deep-review", 2.5)],
+    "iterative review loop": [("deep-review", 5.0)],
+    "spec folder audit": [("deep-review", 4.0)],
+    "iterative audit": [("deep-review", 3.5)],
+    "multi-pass review": [("deep-review", 3.5)],
+    "review iteration": [("deep-review", 3.0)],
+    "review packet": [("deep-review", 3.0)],
+    "convergence detection review": [("deep-review", 3.5)],
+    "code audit loop": [("deep-review", 2.5)],
+    "review mode": [("deep-review", 2.0)],
+    "release readiness review": [("deep-review", 2.0)],
+    "spec folder review": [("deep-review", 2.0), ("sk-code-review", 0.8)],
+    "review convergence": [("deep-review", 2.5)],
+    "auto review release readiness": [("deep-review", 7.0)],
+    "auto review security audit": [("deep-review", 2.5)],
+    "auto review audit": [("deep-review", 2.2)],
+    "auto review loop": [("deep-review", 2.5)],
+    ":review": [("deep-review", 3.0)],
+    ":review:auto": [("deep-review", 3.0)],
+    ":review:confirm": [("deep-review", 3.0)],
     "mcp server code": [("sk-code", 1.8)],
     "system code style guidance": [("sk-code", 1.7)],
     "python shell json standards": [("sk-code", 1.9)],
@@ -1702,7 +1720,7 @@ COMMAND_BRIDGES = {
     # T-SAP-03 (R46-001): per-subcommand bridges for /spec_kit family.
     # Previously all /spec_kit:* subcommands collapsed to `command-spec-kit`
     # at `kind_priority=2`, so `/spec_kit:deep-research` lost its owning-skill
-    # signal (should route to `sk-deep-research`, not `command-spec-kit`).
+    # signal (should route to `deep-research`, not `command-spec-kit`).
     # Dict insertion order IS iteration order in Python 3.7+, so the specific
     # subcommand markers MUST appear BEFORE the deprecated generic bridge —
     # `detect_explicit_command_intent()` returns on the first marker match.
@@ -1727,12 +1745,12 @@ COMMAND_BRIDGES = {
     "command-spec-kit-deep-research": {
         "description": "Run the autonomous deep-research loop using /spec_kit:deep-research.",
         "slash_markers": ["/spec_kit:deep-research", "spec_kit:deep-research"],
-        "owning_skill": "sk-deep-research",
+        "owning_skill": "deep-research",
     },
     "command-spec-kit-deep-review": {
         "description": "Run the autonomous deep-review loop using /spec_kit:deep-review.",
         "slash_markers": ["/spec_kit:deep-review", "spec_kit:deep-review"],
-        "owning_skill": "sk-deep-review",
+        "owning_skill": "deep-review",
     },
     "command-spec-kit-resume": {
         "description": "Resume an existing spec folder using /spec_kit:resume.",
@@ -1792,8 +1810,8 @@ COMMAND_BRIDGE_OWNER_NORMALIZATION = {
     "command-create-agent": "create:agent",
     "command-create-testing-playbook": "create:testing-playbook",
     "command-spec-kit-resume": "system-spec-kit",
-    "command-spec-kit-deep-research": "sk-deep-research",
-    "command-spec-kit-deep-review": "sk-deep-review",
+    "command-spec-kit-deep-research": "deep-research",
+    "command-spec-kit-deep-review": "deep-review",
 }
 
 COMMAND_BRIDGE_EXPLICIT_ALIASES = {
@@ -2686,9 +2704,9 @@ ITERATION_LOOP_PHRASES = (
 )
 
 # T-SAP-02 (R45-002): Deep-research disambiguation phrases. When the prompt
-# contains one of these and both `sk-deep-research` and `sk-code-review`
+# contains one of these and both `deep-research` and `sk-code-review`
 # appear as candidates within a thin margin, enforce a ≥ 0.10 confidence gap
-# so `sk-deep-research` keeps the primary slot. Wording-sensitive audit/review
+# so `deep-research` keeps the primary slot. Wording-sensitive audit/review
 # tokens must not steal a deep-research prompt back into the generic review
 # lane.
 DEEP_RESEARCH_DISAMBIGUATION_PHRASES = (
@@ -2707,7 +2725,7 @@ DEEP_RESEARCH_DISAMBIGUATION_PHRASES = (
 # Symmetric guard for deep-review vs code-review wording collisions.
 # NOTE: "auto review" is intentionally omitted because the shipped regression
 # corpus treats "auto review this PR" as an sk-code-review prompt. Strong
-# sk-deep-review phrases (e.g. "auto review release readiness") are already
+# deep-review phrases (e.g. "auto review release readiness") are already
 # covered by explicit multi-token PHRASE_INTENT_BOOSTERS entries that win
 # on raw score before this disambiguation tier executes.
 DEEP_REVIEW_DISAMBIGUATION_PHRASES = (
@@ -2727,16 +2745,16 @@ def _apply_deep_research_disambiguation(
     recommendations: List[Dict[str, Any]],
     prompt_lower: str,
 ) -> None:
-    """Ensure sk-deep-research beats sk-code-review by ≥ 0.10 on deep-research prompts.
+    """Ensure deep-research beats sk-code-review by ≥ 0.10 on deep-research prompts.
 
     T-SAP-02 (R45-002): audit/review-token overlap between deep-research prompts
     and code-review prompts produced sub-0.02 confidence ties. When the prompt
-    contains an unambiguous deep-research marker AND both `sk-deep-research`
+    contains an unambiguous deep-research marker AND both `deep-research`
     and `sk-code-review` appear as candidates, widen the margin to at least
     ``DISAMBIGUATION_MARGIN`` so the router returns a stable deep-research
     recommendation instead of a wording-sensitive tie.
 
-    Symmetric handling is applied for `sk-deep-review` vs `sk-code-review` via
+    Symmetric handling is applied for `deep-review` vs `sk-code-review` via
     ``DEEP_REVIEW_DISAMBIGUATION_PHRASES``.
     """
     if not prompt_lower or not recommendations:
@@ -2768,16 +2786,16 @@ def _apply_deep_research_disambiguation(
             loser["reason"] = f"{existing_reason}{note}"
 
     if any(phrase in prompt_lower for phrase in DEEP_RESEARCH_DISAMBIGUATION_PHRASES):
-        winner = _find("sk-deep-research")
+        winner = _find("deep-research")
         loser = _find("sk-code-review")
         if winner and loser:
-            _enforce_margin(winner, loser, "sk-deep-research")
+            _enforce_margin(winner, loser, "deep-research")
 
     if any(phrase in prompt_lower for phrase in DEEP_REVIEW_DISAMBIGUATION_PHRASES):
-        winner = _find("sk-deep-review")
+        winner = _find("deep-review")
         loser = _find("sk-code-review")
         if winner and loser:
-            _enforce_margin(winner, loser, "sk-deep-review")
+            _enforce_margin(winner, loser, "deep-review")
 
 
 def _apply_iteration_loop_tiebreaker(
@@ -2900,7 +2918,7 @@ def analyze_request(
     if _is_ambiguous_code_problem(prompt_lower):
         for skill, boost in (
             ("sk-code-review", 1.3),
-            ("sk-deep-review", 0.55),
+            ("deep-review", 0.55),
             ("sk-code", -0.65),
         ):
             skill_boosts[skill] = skill_boosts.get(skill, 0.0) + boost
