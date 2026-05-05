@@ -1,24 +1,22 @@
 {
+  "level": "phase",
   "specFolder": "068-sk-doc-organization",
-  "description": "Reorganize sk-doc/assets - promote heavy-traffic templates to assets root, propagate references across 4 runtimes",
+  "description": "Remediate sk-doc reorg deep-review findings (P1 broken link + 2 P2 doc accuracy)",
   "keywords": [
-    "reorganize",
+    "remediate",
     "sk-doc",
-    "assets",
-    "promote",
-    "heavy-traffic",
-    "templates",
-    "root",
-    "propagate",
-    "references",
-    "across",
-    "runtimes"
+    "reorg",
+    "deep-review",
+    "findings",
+    "broken",
+    "link",
+    "doc",
+    "accuracy"
   ],
-  "lastUpdated": "2026-05-05T07:55:03.151Z",
+  "lastUpdated": "2026-05-05T09:51:15.736Z",
   "specId": "068",
   "folderSlug": "sk-doc-organization",
   "parentChain": [],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }
