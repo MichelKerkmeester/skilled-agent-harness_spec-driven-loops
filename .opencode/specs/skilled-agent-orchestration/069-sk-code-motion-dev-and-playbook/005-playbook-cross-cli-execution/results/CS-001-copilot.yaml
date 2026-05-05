@@ -1,7 +1,7 @@
-scenario: "SD-001"
-cli: "codex"
+scenario: "CS-001"
+cli: "copilot"
 model: "gpt-5.5"
-duration_s: 52.442
+duration_s: 62.819
 exit_code: 0
 tokens_in: null
 tokens_out: null
@@ -11,18 +11,17 @@ refs_loaded:
   - "references/router/code_surface_detection.md"
   - "references/router/intent_classification.md"
   - "references/router/resource_loading.md"
-  - "references/webflow/implementation/implementation_workflows.md"
   - "references/webflow/implementation/animation_workflows.md"
-  - "references/webflow/implementation/third_party_integrations.md"
-  - "references/webflow/performance/resource_loading.md"
+  - "references/webflow/deployment/cdn_deployment.md"
+  - "references/webflow/standards/code_quality_standards.md"
   - "references/motion_dev/quick_start.md"
   - "references/motion_dev/integration_patterns.md"
-  - "references/motion_dev/animate_and_timelines.md"
   - "references/motion_dev/scroll_and_gestures.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
 agent: "none"
 response_excerpt: |
   |
 verdict: PASS
-verdict_rationale: "WEBFLOW detection loaded at least three Webflow implementation refs and no OPENCODE refs."
-raw_stdout: "/tmp/skc-SD-001-codex.txt"
-raw_stderr: "/tmp/skc-SD-001-codex.err"
+verdict_rationale: "WEBFLOW surface, sk-code routing, Motion quick-start/integration refs, and the in-view snippet asset were all present."
+raw_stdout: "/tmp/skc-CS-001-copilot.txt"
+raw_stderr: "/tmp/skc-CS-001-copilot.err"

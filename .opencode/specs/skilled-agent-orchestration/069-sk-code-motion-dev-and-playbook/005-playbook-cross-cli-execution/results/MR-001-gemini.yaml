@@ -1,0 +1,27 @@
+scenario: "MR-001"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 112.338
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "Motion API smoke routing loaded the core Motion.dev reference set needed for CDN/API verification."
+raw_stdout: "/tmp/skc-MR-001-gemini.txt"
+raw_stderr: "/tmp/skc-MR-001-gemini.err"

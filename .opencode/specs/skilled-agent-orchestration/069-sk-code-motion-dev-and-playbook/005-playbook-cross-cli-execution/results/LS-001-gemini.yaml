@@ -18,6 +18,7 @@ refs_loaded:
 agent: "@code"
 response_excerpt: |
   |
-verdict: pending
+verdict: PASS
+verdict_rationale: "OPENCODE TypeScript detection loaded the expected TypeScript refs and no wrong sub-language refs."
 raw_stdout: "/tmp/skc-LS-001-gemini.txt"
 raw_stderr: "/tmp/skc-LS-001-gemini.err"

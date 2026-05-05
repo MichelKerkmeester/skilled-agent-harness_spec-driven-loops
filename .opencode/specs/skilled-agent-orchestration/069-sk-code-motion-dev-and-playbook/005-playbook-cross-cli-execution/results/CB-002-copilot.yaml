@@ -1,0 +1,26 @@
+scenario: "CB-002"
+cli: "copilot"
+model: "gpt-5.5"
+duration_s: 90.061
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/webflow/performance/cwv_remediation.md"
+  - "references/webflow/performance/interaction_gated_loading.md"
+  - "references/webflow/performance/resource_loading.md"
+  - "references/webflow/verification/performance_checklist.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/decision_matrix.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "WEBFLOW performance routing loaded Webflow CWV/performance refs plus Motion performance guidance."
+raw_stdout: "/tmp/skc-CB-002-copilot.txt"
+raw_stderr: "/tmp/skc-CB-002-copilot.err"

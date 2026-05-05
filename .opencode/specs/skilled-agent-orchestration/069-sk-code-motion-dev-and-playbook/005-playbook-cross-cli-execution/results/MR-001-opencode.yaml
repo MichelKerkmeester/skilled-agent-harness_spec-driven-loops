@@ -1,0 +1,19 @@
+scenario: "MR-001"
+cli: "opencode"
+model: "github-copilot/gpt-5.5"
+duration_s: 26.399
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/webflow/"
+  - "references/motion/"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "The response identified Webflow and Motion categories, but used broad/non-canonical refs including references/motion/ instead of motion_dev paths."
+raw_stdout: "/tmp/skc-MR-001-opencode.txt"
+raw_stderr: "/tmp/skc-MR-001-opencode.err"

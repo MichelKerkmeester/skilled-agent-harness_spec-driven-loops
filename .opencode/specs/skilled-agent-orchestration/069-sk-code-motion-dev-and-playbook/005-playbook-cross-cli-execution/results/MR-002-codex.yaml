@@ -1,0 +1,21 @@
+scenario: "MR-002"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 46.730
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/resource_loading.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "CDN version-pin routing loaded Motion quick-start and integration guidance for pinned import verification."
+raw_stdout: "/tmp/skc-MR-002-codex.txt"
+raw_stderr: "/tmp/skc-MR-002-codex.err"

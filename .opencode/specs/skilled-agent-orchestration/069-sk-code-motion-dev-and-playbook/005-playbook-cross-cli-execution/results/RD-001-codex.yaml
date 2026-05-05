@@ -1,7 +1,7 @@
-scenario: "LS-003"
+scenario: "RD-001"
 cli: "codex"
 model: "gpt-5.5"
-duration_s: 36.154
+duration_s: 36.181
 exit_code: 0
 tokens_in: null
 tokens_out: null
@@ -12,16 +12,16 @@ refs_loaded:
   - "references/router/intent_classification.md"
   - "references/router/resource_loading.md"
   - "references/router/phase_lifecycle.md"
-  - "references/opencode/shared/code_organization.md"
   - "references/opencode/shared/universal_patterns.md"
+  - "references/opencode/shared/code_organization.md"
   - "references/opencode/shared/alignment_verification_automation.md"
-  - "references/opencode/shell/quick_reference.md"
-  - "references/opencode/shell/style_guide.md"
-  - "references/opencode/shell/quality_standards.md"
+  - "references/opencode/javascript/quick_reference.md"
+  - "references/opencode/javascript/style_guide.md"
+  - "references/opencode/javascript/quality_standards.md"
 agent: "none"
 response_excerpt: |
   |
 verdict: PASS
-verdict_rationale: "OPENCODE Shell detection loaded the expected shell and shared refs without wrong sub-language refs."
-raw_stdout: "/tmp/skc-LS-003-codex.txt"
-raw_stderr: "/tmp/skc-LS-003-codex.err"
+verdict_rationale: "Mixed-marker routing chose OPENCODE JavaScript precedence and avoided Webflow refs."
+raw_stdout: "/tmp/skc-RD-001-codex.txt"
+raw_stderr: "/tmp/skc-RD-001-codex.err"

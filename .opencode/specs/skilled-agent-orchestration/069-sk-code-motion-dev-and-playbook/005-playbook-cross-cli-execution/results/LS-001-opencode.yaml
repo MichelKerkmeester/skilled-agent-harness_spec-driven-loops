@@ -22,6 +22,7 @@ refs_loaded:
 agent: "none"
 response_excerpt: |
   |
-verdict: pending
+verdict: PASS
+verdict_rationale: "OPENCODE TypeScript detection loaded the expected TypeScript and shared refs without wrong sub-language refs."
 raw_stdout: "/tmp/skc-LS-001-opencode.txt"
 raw_stderr: "/tmp/skc-LS-001-opencode.err"

@@ -1,0 +1,19 @@
+scenario: "CS-003"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 48.626
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "mcp-coco-index"
+surface: "OPENCODE"
+refs_loaded:
+  - "references/opencode/typescript/"
+  - "references/motion_dev/"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "OPENCODE precedence was correct, but advisor top-1 was mcp-coco-index and refs were broad directory-level placeholders."
+raw_stdout: "/tmp/skc-CS-003-gemini.txt"
+raw_stderr: "/tmp/skc-CS-003-gemini.err"

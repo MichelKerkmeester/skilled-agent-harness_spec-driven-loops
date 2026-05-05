@@ -1,0 +1,23 @@
+scenario: "RD-002"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 36.346
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "OPENCODE"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+  - "references/opencode/shared/universal_patterns.md"
+  - "references/opencode/shared/code_organization.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: FAIL
+verdict_rationale: "The doc-only SKILL.md headline update routed to sk-code instead of the expected sk-doc advisor top-1."
+raw_stdout: "/tmp/skc-RD-002-codex.txt"
+raw_stderr: "/tmp/skc-RD-002-codex.err"

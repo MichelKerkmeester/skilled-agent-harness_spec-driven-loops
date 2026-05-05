@@ -1,0 +1,27 @@
+scenario: "SA-001"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 32.319
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/webflow/implementation/animation_workflows.md"
+  - "references/webflow/implementation/css_patterns.md"
+  - "references/webflow/implementation/webflow_patterns.md"
+  - "references/webflow/verification/verification_workflows.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "Advisor and surface were sk-code/WEBFLOW and the load set included Webflow animation plus Motion decision/performance refs."
+raw_stdout: "/tmp/skc-SA-001-codex.txt"
+raw_stderr: "/tmp/skc-SA-001-codex.err"

@@ -1,0 +1,23 @@
+scenario: "SA-001"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 36.611
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/webflow/implementation/animation_workflows.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "Advisor and surface were correct, but the load set was minimal and omitted several expected Webflow/Motion support refs."
+raw_stdout: "/tmp/skc-SA-001-gemini.txt"
+raw_stderr: "/tmp/skc-SA-001-gemini.err"

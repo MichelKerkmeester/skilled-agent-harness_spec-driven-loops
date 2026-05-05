@@ -1,0 +1,19 @@
+scenario: "CS-001"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 76.489
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "mcp-coco-index"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/webflow/implementation/animation_workflows.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "Surface was WEBFLOW and a Motion ref loaded, but advisor top-1 was mcp-coco-index and required quick-start/in-view assets were incomplete."
+raw_stdout: "/tmp/skc-CS-001-gemini.txt"
+raw_stderr: "/tmp/skc-CS-001-gemini.err"

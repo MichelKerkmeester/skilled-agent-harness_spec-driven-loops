@@ -1,0 +1,25 @@
+scenario: "CB-002"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 66.873
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "mcp-coco-index"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/webflow/performance/cwv_remediation.md"
+  - "references/webflow/performance/interaction_gated_loading.md"
+  - "references/webflow/performance/resource_loading.md"
+  - "references/webflow/performance/third_party.md"
+  - "references/webflow/performance/webflow_constraints.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/quick_start.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "Surface and Webflow/Motion performance refs were relevant, but advisor top-1 was mcp-coco-index and router refs were missing."
+raw_stdout: "/tmp/skc-CB-002-gemini.txt"
+raw_stderr: "/tmp/skc-CB-002-gemini.err"

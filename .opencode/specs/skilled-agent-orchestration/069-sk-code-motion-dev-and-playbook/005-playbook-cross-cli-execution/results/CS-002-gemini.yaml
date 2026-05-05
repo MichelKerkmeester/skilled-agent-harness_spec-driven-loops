@@ -1,0 +1,23 @@
+scenario: "CS-002"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 45.153
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "mcp-coco-index"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+  - "references/motion_dev/"
+  - "references/webflow/"
+agent: "none"
+response_excerpt: |
+  |
+verdict: FAIL
+verdict_rationale: "The explicit non-Webflow prompt was classified as WEBFLOW and loaded Webflow assets, violating the generic-node guard."
+raw_stdout: "/tmp/skc-CS-002-gemini.txt"
+raw_stderr: "/tmp/skc-CS-002-gemini.err"

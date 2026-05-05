@@ -1,0 +1,24 @@
+scenario: "CS-001"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 46.335
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/webflow/implementation/animation_workflows.md"
+  - "references/webflow/standards/code_quality_standards.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "WEBFLOW surface, sk-code routing, Motion quick-start, and the in-view snippet asset were all present with no agent dispatch."
+raw_stdout: "/tmp/skc-CS-001-codex.txt"
+raw_stderr: "/tmp/skc-CS-001-codex.err"

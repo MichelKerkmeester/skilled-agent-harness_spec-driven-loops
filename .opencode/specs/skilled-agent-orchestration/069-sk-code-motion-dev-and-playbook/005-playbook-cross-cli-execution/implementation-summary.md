@@ -133,3 +133,36 @@ The implementation followed the existing sk-doc playbook shape and the Packet 06
 2. **Token counts are best-effort.** Runner scripts store `null` when a CLI does not surface parseable input/output token counts.
 3. **YAML parsing is intentionally simple.** The scripts extract common YAML fields for aggregation, while raw transcripts remain the source of truth for edge cases.
 <!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:post-execution -->
+## POST-EXECUTION
+
+Phase D assigned verdicts for all 52 result YAMLs and wrote `playbook-execution-report.md`. Excluding the SMOKE harness row, the matrix is 35 PASS, 12 PARTIAL, 4 FAIL, and 0 SKIP; including SMOKE it is 36 PASS, 12 PARTIAL, 4 FAIL, and 0 SKIP.
+
+### Per-CLI Accuracy
+
+| CLI | Tested | PASS | PARTIAL | FAIL | Accuracy |
+|---|---:|---:|---:|---:|---:|
+| codex | 24 | 20 | 3 | 1 | 83.3% |
+| copilot | 9 | 9 | 0 | 0 | 100.0% |
+| gemini | 9 | 3 | 5 | 1 | 33.3% |
+| opencode | 9 | 3 | 4 | 2 | 33.3% |
+
+### Cross-Stack Hypothesis Result
+
+**PARTIALLY_PROVEN**: 28/29 cross-stack dispatches loaded canonical `references/motion_dev/*` paths, and 12/14 Webflow-owned cross-stack dispatches loaded Webflow and Motion.dev together. The main blockers are CS-002 generic non-Webflow misclassification in Gemini/OpenCode and RD-002 sk-doc advisor misses in Codex/OpenCode.
+
+### Files Modified During Aggregation
+
+- 52 result YAML files under `results/` received `verdict` and `verdict_rationale` values.
+- `playbook-execution-report.md` was created with the aggregate matrix, rankings, hypothesis verdict, findings, and recommendations.
+- `implementation-summary.md` received this POST-EXECUTION section.
+
+### Open Follow-Ups
+
+- P0: fix RD-002 advisor weighting so doc-only SKILL.md headline edits route to `sk-doc`.
+- P0: fix CS-002 generic-node guard so explicit non-Webflow Motion.dev prompts do not classify as WEBFLOW.
+- P1: require exact file paths for Motion.dev/Webflow refs and assets in result emitters; broad directory placeholders should be treated as incomplete.
+<!-- /ANCHOR:post-execution -->

@@ -1,7 +1,7 @@
-scenario: "LS-002"
-cli: "codex"
-model: "gpt-5.5"
-duration_s: 30.382
+scenario: "RD-002"
+cli: "opencode"
+model: "github-copilot/gpt-5.5"
+duration_s: 37.074
 exit_code: 0
 tokens_in: null
 tokens_out: null
@@ -15,13 +15,10 @@ refs_loaded:
   - "references/opencode/shared/universal_patterns.md"
   - "references/opencode/shared/code_organization.md"
   - "references/opencode/shared/alignment_verification_automation.md"
-  - "references/opencode/python/quick_reference.md"
-  - "references/opencode/python/style_guide.md"
-  - "references/opencode/python/quality_standards.md"
 agent: "none"
 response_excerpt: |
   |
-verdict: PASS
-verdict_rationale: "OPENCODE Python detection loaded the expected Python and shared refs without wrong sub-language refs."
-raw_stdout: "/tmp/skc-LS-002-codex.txt"
-raw_stderr: "/tmp/skc-LS-002-codex.err"
+verdict: FAIL
+verdict_rationale: "The doc-only SKILL.md headline update routed to sk-code instead of the expected sk-doc advisor top-1."
+raw_stdout: "/tmp/skc-RD-002-opencode.txt"
+raw_stderr: "/tmp/skc-RD-002-opencode.err"

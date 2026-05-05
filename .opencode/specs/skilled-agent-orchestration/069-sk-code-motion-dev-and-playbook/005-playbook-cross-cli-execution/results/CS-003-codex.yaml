@@ -1,7 +1,7 @@
-scenario: "LS-001"
-cli: "copilot"
+scenario: "CS-003"
+cli: "codex"
 model: "gpt-5.5"
-duration_s: 51.487
+duration_s: 27.673
 exit_code: 0
 tokens_in: null
 tokens_out: null
@@ -13,17 +13,21 @@ refs_loaded:
   - "references/router/resource_loading.md"
   - "references/router/phase_lifecycle.md"
   - "references/universal/code_quality_standards.md"
-  - "references/universal/error_recovery.md"
+  - "references/universal/code_style_guide.md"
   - "references/opencode/shared/universal_patterns.md"
   - "references/opencode/shared/code_organization.md"
   - "references/opencode/shared/alignment_verification_automation.md"
-  - "references/opencode/typescript/quick_reference.md"
-  - "references/opencode/typescript/style_guide.md"
   - "references/opencode/typescript/quality_standards.md"
+  - "references/opencode/typescript/style_guide.md"
+  - "references/opencode/typescript/quick_reference.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
 agent: "none"
 response_excerpt: |
   |
 verdict: PASS
-verdict_rationale: "OPENCODE TypeScript detection loaded the expected TypeScript and shared refs without wrong sub-language refs."
-raw_stdout: "/tmp/skc-LS-001-copilot.txt"
-raw_stderr: "/tmp/skc-LS-001-copilot.err"
+verdict_rationale: "OPENCODE TypeScript precedence won and Motion.dev refs loaded as supplementary context."
+raw_stdout: "/tmp/skc-CS-003-codex.txt"
+raw_stderr: "/tmp/skc-CS-003-codex.err"

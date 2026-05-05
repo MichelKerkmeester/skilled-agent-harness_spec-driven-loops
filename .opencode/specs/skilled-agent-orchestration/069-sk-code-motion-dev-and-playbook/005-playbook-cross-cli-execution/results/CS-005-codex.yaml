@@ -1,0 +1,24 @@
+scenario: "CS-005"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 26.516
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "The route stayed UNKNOWN with Motion refs, but the required in_view_reveal snippet and snake_case Webflow caveat were missing."
+raw_stdout: "/tmp/skc-CS-005-codex.txt"
+raw_stderr: "/tmp/skc-CS-005-codex.err"

@@ -1,0 +1,18 @@
+scenario: "SA-001"
+cli: "opencode"
+model: "github-copilot/gpt-5.5"
+duration_s: 28.948
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/webflow/"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "Advisor and surface were correct, but only a broad Webflow directory ref loaded and Motion decision refs were absent."
+raw_stdout: "/tmp/skc-SA-001-opencode.txt"
+raw_stderr: "/tmp/skc-SA-001-opencode.err"

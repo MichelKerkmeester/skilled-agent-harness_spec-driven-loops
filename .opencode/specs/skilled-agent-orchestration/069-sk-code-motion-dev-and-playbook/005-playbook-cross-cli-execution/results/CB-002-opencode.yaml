@@ -1,0 +1,22 @@
+scenario: "CB-002"
+cli: "opencode"
+model: "github-copilot/gpt-5.5"
+duration_s: 38.543
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/webflow/performance.md"
+  - "references/motion_dev/performance.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PARTIAL
+verdict_rationale: "Surface and advisor were correct, but refs used broad/non-canonical performance paths instead of the expected exact Webflow and Motion files."
+raw_stdout: "/tmp/skc-CB-002-opencode.txt"
+raw_stderr: "/tmp/skc-CB-002-opencode.err"

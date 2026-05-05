@@ -20,6 +20,7 @@ refs_loaded:
 agent: "none"
 response_excerpt: |
   |
-verdict: pending
+verdict: PARTIAL
+verdict_rationale: "OPENCODE TypeScript refs were correct, but advisor top-1 was system-spec-kit rather than sk-code."
 raw_stdout: "/tmp/skc-LS-001-codex.txt"
 raw_stderr: "/tmp/skc-LS-001-codex.err"

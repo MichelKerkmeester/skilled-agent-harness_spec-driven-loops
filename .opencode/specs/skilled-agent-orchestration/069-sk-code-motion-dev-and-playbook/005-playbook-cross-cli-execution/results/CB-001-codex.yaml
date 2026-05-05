@@ -1,0 +1,24 @@
+scenario: "CB-001"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 49.411
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "manual_testing_playbook/06--cross-browser-and-performance-gates/001-cross-browser-animate.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "Motion cross-browser routing kept surface UNKNOWN and loaded Motion quick-start, animate/timeline, performance, and the CB-001 playbook contract."
+raw_stdout: "/tmp/skc-CB-001-codex.txt"
+raw_stderr: "/tmp/skc-CB-001-codex.err"

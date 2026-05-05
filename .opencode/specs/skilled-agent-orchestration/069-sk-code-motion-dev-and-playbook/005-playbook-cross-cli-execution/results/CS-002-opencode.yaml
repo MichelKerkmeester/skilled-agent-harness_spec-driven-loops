@@ -1,0 +1,26 @@
+scenario: "CS-002"
+cli: "opencode"
+model: "github-copilot/gpt-5.5"
+duration_s: 54.810
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: FAIL
+verdict_rationale: "The explicit non-Webflow prompt was classified as WEBFLOW even though the response warned against Webflow-only guidance."
+raw_stdout: "/tmp/skc-CS-002-opencode.txt"
+raw_stderr: "/tmp/skc-CS-002-opencode.err"

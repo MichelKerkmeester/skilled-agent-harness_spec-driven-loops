@@ -17,6 +17,7 @@ refs_loaded:
 agent: "none"
 response_excerpt: |
   |
-verdict: pending
+verdict: PARTIAL
+verdict_rationale: "Surface and advisor were correct, but the Webflow implementation ref set was below the SD-001 contract threshold."
 raw_stdout: "/tmp/skc-SD-001-gemini.txt"
 raw_stderr: "/tmp/skc-SD-001-gemini.err"

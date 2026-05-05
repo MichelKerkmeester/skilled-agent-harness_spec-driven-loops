@@ -21,6 +21,7 @@ refs_loaded:
 agent: "none"
 response_excerpt: |
   |
-verdict: pending
+verdict: PASS
+verdict_rationale: "OPENCODE JavaScript detection loaded JS and shared OpenCode refs without Webflow leakage."
 raw_stdout: "/tmp/skc-SD-002-codex.txt"
 raw_stderr: "/tmp/skc-SD-002-codex.err"

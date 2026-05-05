@@ -1,0 +1,19 @@
+scenario: "RD-002"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 132.536
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-doc"
+surface: "OPENCODE"
+refs_loaded:
+  - "references/opencode/shared/universal_patterns.md"
+  - "references/opencode/shared/code_organization.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: PASS
+verdict_rationale: "The doc-only SKILL.md headline update correctly routed to sk-doc with OPENCODE only as target context."
+raw_stdout: "/tmp/skc-RD-002-gemini.txt"
+raw_stderr: "/tmp/skc-RD-002-gemini.err"
