@@ -123,3 +123,108 @@ python3 .opencode/skill/sk-doc/scripts/validate_document.py .opencode/skill/syst
 - `../eval/README.md` documents metric and channel analysis.
 - `../search/README.md` documents retrieval flow.
 - `../scoring/README.md` documents score composition.
+
+## 8. SCHEMA REFERENCE
+
+Field-level documentation for the telemetry interfaces in `retrieval-telemetry.ts`. The `validateTelemetrySchemaDocsDrift` validator parses these tables; keep field rows in lockstep with the TypeScript types when adding or removing fields.
+
+### LatencyMetrics
+
+| Field | Type |
+| --- | --- |
+| `totalLatencyMs` | `number` |
+| `candidateLatencyMs` | `number` |
+| `fusionLatencyMs` | `number` |
+| `rerankLatencyMs` | `number` |
+| `boostLatencyMs` | `number` |
+
+### ModeMetrics
+
+| Field | Type |
+| --- | --- |
+| `selectedMode` | `string \| null` |
+| `modeOverrideApplied` | `boolean` |
+| `pressureLevel` | `string \| null` |
+| `tokenUsageRatio` | `number` |
+
+### FallbackMetrics
+
+| Field | Type |
+| --- | --- |
+| `fallbackTriggered` | `boolean` |
+| `fallbackReason` | `string` |
+| `degradedModeActive` | `boolean` |
+
+### QualityMetrics
+
+| Field | Type |
+| --- | --- |
+| `resultCount` | `number` |
+| `avgRelevanceScore` | `number` |
+| `topResultScore` | `number` |
+| `boostImpactDelta` | `number` |
+| `extractionCountInSession` | `number` |
+| `qualityProxyScore` | `number` |
+
+### ArchitectureMetrics
+
+| Field | Type |
+| --- | --- |
+| `phase` | `MemoryRoadmapPhase` |
+| `capabilities` | `MemoryRoadmapCapabilityFlags` |
+| `scopeDimensionsTracked` | `number` |
+
+### GraphHealthMetrics
+
+| Field | Type |
+| --- | --- |
+| `killSwitchActive` | `boolean` |
+| `causalBoosted` | `number` |
+| `coActivationBoosted` | `number` |
+| `communityInjected` | `number` |
+| `graphSignalsBoosted` | `number` |
+| `totalGraphInjected` | `number` |
+
+### AdaptiveMetrics
+
+| Field | Type |
+| --- | --- |
+| `mode` | `'shadow' \| 'promoted' \| 'disabled'` |
+| `promotedCount` | `number` |
+| `demotedCount` | `number` |
+| `bounded` | `boolean` |
+| `maxDeltaApplied` | `number` |
+
+### TraceSamplingOptions
+
+| Field | Type |
+| --- | --- |
+| `limit` | `number` |
+| `minGraphInjected` | `number` |
+| `killSwitchOnly` | `boolean` |
+
+### SampledTracePayload
+
+| Field | Type |
+| --- | --- |
+| `timestamp` | `string \| null` |
+| `graphHealth` | `GraphHealthMetrics` |
+| `tracePayload` | `TelemetryTracePayload` |
+
+### RetrievalTelemetry
+
+| Field | Type |
+| --- | --- |
+| `enabled` | `boolean` |
+| `timestamp` | `string` |
+| `latency` | `LatencyMetrics` |
+| `mode` | `ModeMetrics` |
+| `fallback` | `FallbackMetrics` |
+| `quality` | `QualityMetrics` |
+| `architecture` | `ArchitectureMetrics` |
+| `graphHealth` | `GraphHealthMetrics` |
+| `adaptive` | `AdaptiveMetrics` |
+| `tracePayload` | `TelemetryTracePayload` |
+| `transitionDiagnostics` | `SessionTransitionTrace` |
+| `graphWalkDiagnostics` | `GraphWalkDiagnostics` |
+| `lifecycleForecastDiagnostics` | `LifecycleForecastDiagnostics` |
