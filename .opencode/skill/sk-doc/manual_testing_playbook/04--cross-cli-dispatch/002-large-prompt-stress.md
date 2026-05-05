@@ -16,14 +16,19 @@ created: 2026-05-05
 
 ## Setup
 
-A ~3000-char prompt embedding an entire user request plus the sk-doc invocation. The prompt should include:
+```
+DO NOT execute the work below. INSTEAD describe (in your response):
+1. Which sk-doc intent the router would select for the input (pick from the 11-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG; or UNKNOWN_FALLBACK if no keywords match)
+2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
+3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 
-- Full skill creation context (purpose, audience, intents, resources)
-- Existing reference snippets the new skill must cite
-- Acceptance criteria block
-- Explicit `sk-doc:` invocation as the final line
+DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
-The exact length must push past cli-codex's inline-prompt stall threshold (~2k chars empirically) so the stdin-redirection mitigation MUST be exercised for the codex variant.
+INPUT TO ROUTE:
+sk-doc: I need to create a new sk-skill named sk-graph-traversal that handles graph queries against the spec-kit memory database. Purpose: enable AI agents to discover spec-folder relationships, packet dependencies, and causal chains through structured graph queries. Audience: engineering agents working in OpenCode runtime. Intents the new skill must support: GRAPH_QUERY (read-only graph traversal), GRAPH_TRAVERSAL (multi-hop path resolution), GRAPH_INDEX (build/refresh index), GRAPH_HEALTH (diagnostic queries). Each intent should map to ~3 resource files. Acceptance criteria: SKILL.md with smart router pseudocode, references/ for query patterns, assets/ for query templates, scripts/ for index build automation. Existing reference snippets to cite: ~/MEGA/.../spec-kit-memory/mcp_server/lib/graph/graph-query.ts (current API), ~/MEGA/.../spec-kit-memory/lib/graph/types.ts (canonical types), ~/MEGA/.../system-spec-kit/scripts/spec/graph-validate.sh (existing validator). Output should include: SKILL.md scaffold, smart router INTENT_MODEL with weighted keywords, RESOURCE_MAP wiring 4 intents to 12 conditional resources, references/global/query_patterns.md outline, assets/skill/query_template.md outline, manual_testing_playbook scaffold for all 4 intents. Voice rules from sk-doc HVR apply. Run sk-doc to scaffold the entire package per the v2.2 template contract.
+```
+
+(~3000 chars; pushes past cli-codex's inline-prompt stall threshold; stdin-redirection mitigation MUST be exercised for codex variant)
 
 ## Expected Behavior
 

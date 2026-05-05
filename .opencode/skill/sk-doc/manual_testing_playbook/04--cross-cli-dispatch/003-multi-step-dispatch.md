@@ -19,11 +19,19 @@ created: 2026-05-05
 
 ## Setup
 
-Three sequential invocations sharing session context:
+```
+DO NOT execute the work below. INSTEAD describe (in your response):
+1. Which sk-doc intent the router would select for EACH of the 3 inputs in sequence (pick from RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, AGENT_COMMAND, FLOWCHART, INSTALL_GUIDE, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG)
+2. Which references/ and assets/ files each invocation's intent would CONDITIONAL-load
+3. Whether the router is expected to maintain session-context (e.g. skill name 'sk-foo' carried across turns) and how that affects intent stability
 
-1. `Create a sk-skill named sk-foo with two intents: search and index.`
-2. `Add validation rules to sk-foo: every reference must have a frontmatter id.`
-3. `Generate a changelog entry for sk-foo v0.1.0.`
+DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Trace routing across all 3 turns sequentially in your response.
+
+INPUTS TO ROUTE (3 turns, sequential):
+Turn 1: Create a sk-skill named sk-foo with two intents: search and index.
+Turn 2: Add validation rules to sk-foo: every reference must have a frontmatter id.
+Turn 3: Generate a changelog entry for sk-foo v0.1.0.
+```
 
 ## Expected Behavior
 
