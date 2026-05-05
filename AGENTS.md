@@ -9,7 +9,7 @@
 **Universal Framework:** This AGENTS.md is the public template for code work across stacks.
 Code work behavior is handled automatically by the `sk-code` skill, which routes between supported code surfaces.
 
-> **Customization scope (template discipline):** end users should **only edit `sk-code`** to adapt to their project's stack (frontend framework, animation library, CMS, backend language). Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-improve-*`, `cli-*`, `mcp-chrome-devtools`) is **codebase-agnostic by design** and must remain so to keep the upstream template pull-able. See root [README §4 Customizing for Your Stack](README.md#customizing-for-your-stack).
+> **Where stack specifics live:** `sk-code` is the shipped customization point — it carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). The other shipped skills (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-improve-*`, `cli-*`, `mcp-chrome-devtools`) are codebase-agnostic out of the box, so they work for any project without modification. Teams are free to add their own skills on top. See root [README §4 Customizing for Your Stack](README.md#customizing-for-your-stack).
 
 **Stack Surfaces (sk-code-owned):** the active set of detection markers, key patterns, and supported surfaces is defined inside `sk-code` — see `.opencode/skill/sk-code/SKILL.md` §2 Smart Routing for the current bundled detection list and `references/<surface>/` for per-surface conventions. Replace these with your own surfaces when you fork the template.
 

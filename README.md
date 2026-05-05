@@ -10,7 +10,7 @@
 
 **🧠 Persistent Memory** • **📋 Structured Docs** • **🤖 11 Specialized Agents** • **⚡ 5 Mirrored Runtimes**
 
-> **📦 This is a public repo template.** Fork it, then **customize only `sk-code`** to match your project's stack (frontend framework, animation library, CMS, backend language). Every other skill is **codebase-agnostic by design** — `system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, and the `cli-*` orchestrators all work for any project regardless of stack. Editing skills outside `sk-code` will fork you off the upstream template and break your ability to pull future updates cleanly. See [§4 Customizing for Your Stack](#customizing-for-your-stack) below.
+> **📦 This is a public repo template.** Fork it, then start by adapting **`sk-code`** — it's where the shipped stack-specific patterns live (frontend framework, animation library, CMS, backend language). The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box, so they work for any project without modification. You're free to add your own skills on top — many teams will. See [§4 Customizing for Your Stack](#customizing-for-your-stack) below.
 
 <!-- ANCHOR:table-of-contents -->
 
@@ -912,7 +912,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Code**
 - Surface-aware code implementation specialist (write-capable LEAF, `mode: subagent`, `task: deny`)
-- Delegates code surface detection to `sk-code`; never bakes stack-specific rules into the agent body (sk-code is the single customization point)
+- Delegates code surface detection to `sk-code`; the agent body itself stays stack-agnostic and reads sk-code's emitted surface evidence at dispatch time
 - 7 dispatch modes: full implementation / surgical fix / refactor only / test add / scaffold new file / rename-move / dependency bump
 - 5-dimension acceptance rubric (100 pts total): Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15
 - Builder → Critic → Verifier adversarial self-check on every completion claim (challenges `DONE`, opposite axis from `@review`'s Hunter/Skeptic/Referee which challenges findings)
@@ -1195,25 +1195,25 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 ## 4. CONFIGURATION
 
 <a id="customizing-for-your-stack"></a>
-### 🎯 Customizing for Your Stack — Edit `sk-code`, leave the rest alone
+### 🎯 Customizing for Your Stack — Start with `sk-code`
 
-This repo ships as a **public template**. The intended adoption flow is fork-and-customize, but the customization surface is **deliberately narrow**:
+This repo ships as a **public template**. Of the skills it ships with, only one carries stack-specific content — start there:
 
-| Skill / Surface | Customize? | Why |
+| Skill / Surface | Out-of-the-box | Notes |
 |---|---|---|
-| **`sk-code`** | ✅ **YES — adapt to your stack** | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres, or React Native + Reanimated, or Go + sqlc, etc.). |
-| `sk-doc` | ❌ NO — codebase-agnostic | Markdown quality + component creation. Works for any project. |
-| `sk-git` | ❌ NO — codebase-agnostic | Worktree + commit + PR workflow. Works for any project. |
-| `sk-code-review` | ❌ NO — stack-agnostic baseline | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts. |
-| `system-spec-kit` | ❌ NO — codebase-agnostic | Spec folder workflow + validator + memory. Works for any project. |
-| `mcp-coco-index` | ❌ NO — codebase-agnostic | Semantic code search via embeddings. Works for any project. |
-| `mcp-code-mode` | ❌ NO — codebase-agnostic | Multi-tool MCP orchestration. Works for any project. |
-| `deep-research` / `deep-review` | ❌ NO — codebase-agnostic | Iterative loop protocols. Work for any topic / target. |
-| `sk-improve-prompt` / `sk-improve-agent` | ❌ NO — codebase-agnostic | Prompt + agent improvement frameworks. Work for any project. |
-| `cli-*` (codex/copilot/gemini/claude-code/opencode) | ❌ NO — codebase-agnostic | External CLI orchestrators. Stack-independent. |
-| `mcp-chrome-devtools` | ❌ NO — codebase-agnostic | Browser tooling. Stack-independent. |
+| **`sk-code`** | 🎨 Stack-specific (the customization point) | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres, or React Native + Reanimated, or Go + sqlc, etc.). |
+| `sk-doc` | ✅ Codebase-agnostic | Markdown quality + component creation. Works for any project. |
+| `sk-git` | ✅ Codebase-agnostic | Worktree + commit + PR workflow. Works for any project. |
+| `sk-code-review` | ✅ Codebase-agnostic baseline | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts. |
+| `system-spec-kit` | ✅ Codebase-agnostic | Spec folder workflow + validator + memory. Works for any project. |
+| `mcp-coco-index` | ✅ Codebase-agnostic | Semantic code search via embeddings. Works for any project. |
+| `mcp-code-mode` | ✅ Codebase-agnostic | Multi-tool MCP orchestration. Works for any project. |
+| `deep-research` / `deep-review` | ✅ Codebase-agnostic | Iterative loop protocols. Work for any topic / target. |
+| `sk-improve-prompt` / `sk-improve-agent` | ✅ Codebase-agnostic | Prompt + agent improvement frameworks. Work for any project. |
+| `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic | External CLI orchestrators. Stack-independent. |
+| `mcp-chrome-devtools` | ✅ Codebase-agnostic | Browser tooling. Stack-independent. |
 
-**Why this discipline matters**: every skill outside `sk-code` is upstream-tracked. If you edit `sk-doc` or `system-spec-kit` to add your project's patterns, you fork off the template and lose the ability to pull future improvements cleanly. Keep your customization confined to `sk-code` — its `references/`, `assets/`, manual testing playbook, and resource map are designed to absorb stack-specific patterns.
+**Adding your own skills:** the shipped set is intentionally minimal — most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported; just drop them into `.opencode/skill/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **What "adapting `sk-code`" looks like**:
 - Replace `references/webflow/`, `references/opencode/`, `references/motion_dev/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
@@ -1222,7 +1222,7 @@ This repo ships as a **public template**. The intended adoption flow is fork-and
 - Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
 - Bump `sk-code` version + ship a changelog. Use the `assets/opencode/checklists/skill_authoring.md` checklist as your guide.
 
-The other skills will continue working unchanged: `sk-doc` will still validate your markdown, `sk-git` will still manage your branches, `system-spec-kit` will still spec your work, and `sk-code-review` will surface YOUR `sk-code` evidence at review time.
+The other shipped skills will continue working unchanged: `sk-doc` will still validate your markdown, `sk-git` will still manage your branches, `system-spec-kit` will still spec your work, and `sk-code-review` will surface YOUR `sk-code` evidence at review time.
 
 &nbsp;
 ### Core Configuration Files
