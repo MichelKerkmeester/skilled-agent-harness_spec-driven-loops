@@ -140,7 +140,8 @@ Ambiguous multi-language tasks load the top matching language references plus th
 - `references/webflow/`, `assets/webflow/`: live Webflow/frontend implementation, standards, debugging, verification, performance, deployment, checklists, and patterns.
 - `references/motion_dev/`, `assets/motion_dev/`: cross-stack Motion.dev API, timeline, scroll/gesture, performance, decision-matrix, integration, install, playbook hook, and snippet resources. Webflow docs link here for generic Motion details while keeping Webflow-CDN and Designer guidance in `references/webflow/`.
 - `references/opencode/`, `assets/opencode/`: OpenCode system-code language standards, shared patterns, hooks, alignment automation, and quality checklists.
-- `scripts/`: Webflow build utilities plus OpenCode alignment verifier.
+- `assets/webflow/scripts/`: Webflow build, minification, and runtime verification utilities.
+- `assets/scripts/`: Cross-surface helper scripts, including the OpenCode alignment verifier.
 
 ### OpenCode Authoring Resources
 
@@ -165,8 +166,8 @@ Top intent always loads. A close second intent also loads when scores are within
 
 | Surface | Required verification evidence |
 | --- | --- |
-| WEBFLOW | `node scripts/minify-webflow.mjs`, `node scripts/verify-minification.mjs`, `node scripts/test-minified-runtime.mjs`, plus desktop/mobile browser console clean evidence when runtime behavior changes |
-| OPENCODE | `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root <changed-scope>`, plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
+| WEBFLOW | `node .opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs`, `node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs`, `node .opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`, plus desktop/mobile browser console clean evidence when runtime behavior changes |
+| OPENCODE | `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>`, plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---
@@ -248,4 +249,4 @@ Ask for the runtime surface and required verification commands. Do not route gen
 
 Start with `references/router/code_surface_detection.md`, `references/router/intent_classification.md`, `references/router/resource_loading.md`, and `references/router/phase_lifecycle.md`. Then load `references/webflow/**` or `references/opencode/**` based on detected surface.
 
-Scripts: `scripts/minify-webflow.mjs`, `scripts/verify-minification.mjs`, `scripts/test-minified-runtime.mjs`, `scripts/verify_alignment_drift.py`, `scripts/test_verify_alignment_drift.py`.
+Scripts: `.opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs`, `.opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs`, `.opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`, `.opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py`, `.opencode/skill/sk-code/assets/scripts/test_verify_alignment_drift.py`.

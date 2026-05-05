@@ -103,8 +103,8 @@ See: [minification_guide.md](../deployment/minification_guide.md) and [cdn_deplo
 npx terser src/file.js --compress --mangle -o z_minified/file.js
 
 # 2. Verify
-node scripts/verify-minification.mjs
-node scripts/test-minified-runtime.mjs
+node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
 
 # 3. Update HTML versions (?v=X.X.X → ?v=X.X.X+1)
 # 4. Upload to Cloudflare R2 dashboard

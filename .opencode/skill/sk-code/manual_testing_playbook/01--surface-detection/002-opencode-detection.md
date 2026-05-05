@@ -96,7 +96,7 @@ Add a console.error fallback to .opencode/skill/system-spec-kit/mcp_server/lib/s
 - `.opencode/skill/sk-code/references/router/code_surface_detection.md` — OPENCODE marker definition (lines 39-40).
 - `.opencode/skill/sk-code/references/opencode/typescript/` — Expected-loaded TypeScript references.
 - `.opencode/skill/sk-code/references/opencode/shared/` — Expected-loaded shared OPENCODE references.
-- `.opencode/skill/sk-code/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
+- `.opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
 - `.opencode/agent/code.md` — @code agent dispatch convention.
 
 ## 5. SOURCE METADATA

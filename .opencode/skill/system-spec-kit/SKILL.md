@@ -446,7 +446,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Canonical intake | `/spec_kit:plan --intake-only "Description"` |
 | Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
 | Validate | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
-| Verify code alignment drift | `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit` |
+| Verify code alignment drift | `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skill/system-spec-kit` |
 | Save context | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .opencode/skill/system-spec-kit/scripts/spec/upgrade-level.sh specs/007-feature/ --to 2` |

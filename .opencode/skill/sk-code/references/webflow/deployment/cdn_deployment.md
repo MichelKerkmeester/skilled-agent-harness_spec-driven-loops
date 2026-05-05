@@ -186,8 +186,8 @@ grep -r "script_name.js?v=" src/0_html/
 ```
 □ JavaScript changes made and tested locally
 □ Minified using terser (see minification_guide.md)
-□ AST verification passed (node .opencode/skill/sk-code/scripts/verify-minification.mjs)
-□ Runtime test passed (node .opencode/skill/sk-code/scripts/test-minified-runtime.mjs)
+□ AST verification passed (node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs)
+□ Runtime test passed (node .opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs)
 □ Browser test passed (no console errors)
 ```
 
@@ -214,8 +214,8 @@ grep -r "script_name.js?v=" src/0_html/
 ```
 1. Edit JS      → src/2_javascript/[folder]/[file].js
 2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].js
-3. Verify       → node .opencode/skill/sk-code/scripts/verify-minification.mjs
-4. Test         → node .opencode/skill/sk-code/scripts/test-minified-runtime.mjs
+3. Verify       → node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs
+4. Test         → node .opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
 5. Update HTML  → Increment ?v=X.X.X in all referencing HTML files
 6. Upload       → Cloudflare Dashboard → R2 → Upload minified file
 7. Verify live  → Hard refresh, check console, test functionality
@@ -306,9 +306,9 @@ grep -r "script_name.js?v=" src/0_html/
 
 ### Scripts
 
-- `.opencode/skill/sk-code/scripts/verify-minification.mjs` - AST verification
-- `.opencode/skill/sk-code/scripts/test-minified-runtime.mjs` - Runtime testing
-- `.opencode/skill/sk-code/scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs` - Batch minification
 
 ### External
 

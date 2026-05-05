@@ -38,7 +38,7 @@ This checklist keeps new and modified OpenCode skills consistent with the shared
 ## 5. POST-CHECKS
 
 - [ ] Run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <path> --strict` when the skill change is part of a spec folder.
-- [ ] Run `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root .opencode/skill/<skill-name>` for OpenCode alignment drift.
+- [ ] Run `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skill/<skill-name>` for OpenCode alignment drift.
 - [ ] grep verification: `rg -n "version:|allowed-tools:|## 1\\. WHEN TO USE|## 2\\. SMART ROUTING" .opencode/skill/<skill-name>/SKILL.md`.
 - [ ] grep verification: `rg -n "\"version\"|\"keywords\"" .opencode/skill/<skill-name>/description.json`.
 - [ ] Cross-runtime mirror parity check if the skill is referenced by mirrored agents or commands.

@@ -293,7 +293,7 @@ Per-feature files: see `07--cross-stack-routing/`.
 
 The sk-code skill currently has these automated tests:
 
-- `.opencode/skill/sk-code/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (OPENCODE alignment verifier).
+- `.opencode/skill/sk-code/assets/scripts/test_verify_alignment_drift.py` — Pytest suite for `verify_alignment_drift.py` (OPENCODE alignment verifier).
 
 Tests NOT covered by automation (manual playbook is the only validation):
 - Surface detection routing decisions (SD-001, SD-002, SD-003).

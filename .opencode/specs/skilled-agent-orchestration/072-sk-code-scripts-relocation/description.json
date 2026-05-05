@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "specs/skilled-agent-orchestration/072-sk-code-scripts-relocation",
+  "description": "Relocated sk-code Webflow scripts into assets/webflow/scripts, moved generic alignment-drift validator into assets/scripts, updated 41 references, and",
+  "keywords": [
+    "relocated",
+    "sk-code",
+    "webflow",
+    "scripts",
+    "assets",
+    "moved",
+    "generic",
+    "alignment-drift",
+    "validator",
+    "updated",
+    "references",
+    "verified",
+    "stale",
+    "old",
+    "paths",
+    "gone"
+  ],
+  "lastUpdated": "2026-05-05T21:01:23.500Z",
+  "specId": "072",
+  "folderSlug": "sk-code-scripts-relocation",
+  "parentChain": [
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

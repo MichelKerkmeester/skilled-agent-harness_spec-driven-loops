@@ -187,7 +187,7 @@
       ".opencode/skill/sk-code/assets/webflow/patterns/wait_patterns.js",
       ".opencode/skill/sk-code/references/webflow/implementation/implementation_workflows.md",
       ".opencode/skill/sk-code/references/opencode/shared/universal_patterns.md",
-      ".opencode/skill/sk-code/scripts/verify_alignment_drift.py"
+      ".opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py"
     ],
     "entities": [
       {
@@ -211,7 +211,7 @@
       {
         "name": "verify_alignment_drift",
         "kind": "script",
-        "path": ".opencode/skill/sk-code/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       }
     ],

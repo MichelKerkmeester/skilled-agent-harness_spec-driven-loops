@@ -53,7 +53,7 @@ curl -sI https://cdn.example.com/js/[filename].js | grep -E "(HTTP|content-lengt
 **Symptoms:** Terser fails, minified file has syntax errors, runtime breaks
 
 **Recovery Steps:**
-1. Run verification first: `node scripts/verify-minification.mjs [file].js`
+1. Run verification first: `node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs [file].js`
 2. Check for ES6+ syntax issues in source
 3. Test original file works: Open in browser, check console
 4. Re-run minification with source maps: Add `--source-map` flag
@@ -62,8 +62,8 @@ curl -sI https://cdn.example.com/js/[filename].js | grep -E "(HTTP|content-lengt
 **Verification:**
 ```bash
 # Run full verification pipeline
-node scripts/verify-minification.mjs src/javascript/[file].js
-node scripts/test-minified-runtime.mjs dist/[file].min.js
+node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs src/javascript/[file].js
+node .opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs dist/[file].min.js
 ```
 
 ---

@@ -9,7 +9,7 @@ description: "Run a labeled probe set (>=15 positives + >=5 negatives) through t
 
 This scenario verifies the END-TO-END accuracy of sk-code routing via the skill advisor. Unlike SD-* / LS-* / RD-* scenarios that test single prompts, SA-001 runs a battery of ≥15 positive controls (should win sk-code at ≥0.80) and ≥5 negative controls (should NOT win sk-code).
 
-Baseline: per `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below sk-deep-research (88.6%) and sk-deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
+Baseline: per `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
 
 ## 2. SCENARIO CONTRACT
 
@@ -43,7 +43,7 @@ Baseline: per `.opencode/skill/system-spec-kit/scripts/observability/smart-route
 | N2 | none | read-only analysis | `Explain how skill_advisor.py computes uncertainty.` (golden set rr-iter2-013) |
 | N3 | spec_kit:resume | session continuity | `Resume the deep-review iteration from the last save point.` |
 | N4 | sk-doc | doc structure | `Reorganize the cli-codex README into Quick Start, Architecture, and Reference sections.` |
-| N5 | sk-deep-research | research, not code | `Investigate why the gate-3 classifier mis-categorizes resume prompts and report findings as a research summary.` |
+| N5 | deep-research | research, not code | `Investigate why the gate-3 classifier mis-categorizes resume prompts and report findings as a research summary.` |
 
 ### Pass/Fail Aggregate Rules
 
@@ -125,7 +125,7 @@ If negative FPR > 0:
 | Run | Positive (top-1 ≥ 0.80) | Negative (correct reject) | Combined | Notes |
 |---|---|---|---|---|
 | Baseline (smart-router-measurement-results.jsonl, 2026-05-03) | 50% (4/8) | n/a | n/a | Pre-remediation |
-| V1 (this battery, pre-remediation) | **5/15 = 33.3%** | 4/5 = 80.0% | 9/20 = 45% | sk-code lost to cli-codex/system-spec-kit/sk-deep-review on most code-work prompts; N01 false-positive |
+| V1 (this battery, pre-remediation) | **5/15 = 33.3%** | 4/5 = 80.0% | 9/20 = 45% | sk-code lost to cli-codex/system-spec-kit/deep-review on most code-work prompts; N01 false-positive |
 | V2 (after sk-code intent_signals additions, before DB re-index) | 5/15 = 33.3% | 4/5 = 80.0% | 9/20 = 45% | Identical scores — confirmed advisor reads from DB not JSON |
 | V3 (after `mcp__spec_kit_memory__skill_graph_scan` re-index) | 10/15 = 66.7% | 4/5 = 80.0% | 14/20 = 70% | +33pp positive jump from DB sync alone |
 | V4 (after sk-doc strong signals + sk-code script-build signals + re-index) | **11/15 = 73.3%** | **5/5 = 100%** | **16/20 = 80%** | **N01 false-positive RESOLVED**; P10 fixed via "build a tiny script" + "counts how many" signals |
@@ -137,7 +137,7 @@ If negative FPR > 0:
 | ID | Top-1 | sk-code rank | Why this is arguably correct |
 |---|---|---|---|
 | P03 | `skill_advisor` (0.820) | 2 (0.820) | Prompt is "Refactor skill_advisor.py to surface raw ambiguity counts" — touches the advisor's own internals; skill_advisor is the domain owner |
-| P04 | `sk-deep-review` (0.945) | 2 (0.820) | Prompt mentions "resume deep review phrase" classifier — sk-deep-review owns deep-review behavior |
+| P04 | `deep-review` (0.945) | 2 (0.820) | Prompt mentions "resume deep review phrase" classifier — deep-review owns deep-review behavior |
 | P07 | `system-spec-kit` (0.820) | 2 (0.820) | Prompt is about "Gate 3 confusion-matrix rows" — Gate 3 is system-spec-kit's domain |
 | P08 | `sk-improve-prompt` (0.820) | 2 (0.820) | "gate3-baseline.json fixture" generation — fixture/baseline patterns trigger improve-prompt |
 

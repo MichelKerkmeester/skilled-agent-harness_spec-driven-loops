@@ -145,8 +145,8 @@ Language resources:
 
 | Surface | Commands |
 | --- | --- |
-| WEBFLOW | `node scripts/minify-webflow.mjs`; `node scripts/verify-minification.mjs`; `node scripts/test-minified-runtime.mjs`; browser evidence when behavior changes |
-| OPENCODE | `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root <changed-scope>` plus targeted tests such as vitest, pytest, shellcheck, JSON validation, and spec validation |
+| WEBFLOW | `node .opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs`; `node .opencode/skill/sk-code/assets/webflow/scripts/verify-minification.mjs`; `node .opencode/skill/sk-code/assets/webflow/scripts/test-minified-runtime.mjs`; browser evidence when behavior changes |
+| OPENCODE | `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>` plus targeted tests such as vitest, pytest, shellcheck, JSON validation, and spec validation |
 
 ---
 

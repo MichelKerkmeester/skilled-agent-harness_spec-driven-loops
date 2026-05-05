@@ -4,8 +4,8 @@
 // ───────────────────────────────────────────────────────────────
 //
 // Usage:
-//   node scripts/minify-webflow.mjs          # Normal run (skip unchanged)
-//   node scripts/minify-webflow.mjs --force  # Force re-minify all
+//   node .opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs          # Normal run (skip unchanged)
+//   node .opencode/skill/sk-code/assets/webflow/scripts/minify-webflow.mjs --force  # Force re-minify all
 //
 // Minifies all JavaScript files from src/2_javascript/ to src/2_javascript/z_minified/
 // Uses terser with --compress --mangle for safe minification.

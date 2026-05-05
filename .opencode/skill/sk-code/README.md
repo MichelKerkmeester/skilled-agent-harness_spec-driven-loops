@@ -56,14 +56,14 @@ sk-code/
 │   ├── universal/
 │   ├── motion_dev/             Install card, playbook entries, and reusable Motion snippets
 │   ├── webflow/
-│   └── opencode/checklists/
-│
-└── scripts/
-    ├── minify-webflow.mjs
-    ├── verify-minification.mjs
-    ├── test-minified-runtime.mjs
-    ├── verify_alignment_drift.py
-    └── test_verify_alignment_drift.py
+│   │   └── scripts/
+│   │       ├── minify-webflow.mjs
+│   │       ├── verify-minification.mjs
+│   │       └── test-minified-runtime.mjs
+│   ├── opencode/checklists/
+│   └── scripts/
+│       ├── verify_alignment_drift.py
+│       └── test_verify_alignment_drift.py
 ```
 
 ---
@@ -73,7 +73,7 @@ sk-code/
 | Surface | Evidence |
 | --- | --- |
 | WEBFLOW | Webflow build/minification scripts plus browser evidence for runtime changes |
-| OPENCODE | `python3 .opencode/skill/sk-code/scripts/verify_alignment_drift.py --root <changed-scope>` plus targeted tests |
+| OPENCODE | `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>` plus targeted tests |
 
 No completion claim is valid without fresh verification evidence.
 
