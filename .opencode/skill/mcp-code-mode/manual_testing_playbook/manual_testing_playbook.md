@@ -7,7 +7,7 @@ description: "Operator-facing reference combining the manual testing directory, 
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-This document combines the full manual-validation contract for the `mcp-code-mode` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide while per-feature files carry the scenario-specific execution truth. Code Mode is the foundational orchestrator for ALL external MCP tool calls (ClickUp, Figma, Webflow, Chrome DevTools, GitHub, Notion); it defines the manual-namespace contract (`manual.tool` form), the environment-variable prefixing rule, and the `call_tool_chain` execution semantics that other MCP skills cross-reference.
+This document combines the full manual-validation contract for the `mcp-code-mode` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide while per-feature files carry the scenario-specific execution truth. Code Mode is the foundational orchestrator for ALL external MCP tool calls (ClickUp, Figma, MyService, Chrome DevTools, GitHub, Notion); it defines the manual-namespace contract (`manual.tool` form), the environment-variable prefixing rule, and the `call_tool_chain` execution semantics that other MCP skills cross-reference.
 
 ---
 
@@ -61,7 +61,7 @@ This playbook provides 26 deterministic scenarios across 7 categories validating
 - Working directory is project root containing `.utcp_config.json` and `.env`.
 - Node.js >= 18 is installed and resolvable via `node --version`.
 - The Code Mode native tools (`call_tool_chain`, `search_tools`, `list_tools`, `tool_info`) are available in the current session.
-- At least one external MCP server is configured in `.utcp_config.json` (e.g., `clickup`, `figma`, `chrome_devtools_1`, `webflow`, `github`, `notion`).
+- At least one external MCP server is configured in `.utcp_config.json` (e.g., `clickup`, `figma`, `chrome_devtools_1`, `myservice`, `github`, `notion`).
 - For scenarios that exercise an external MCP, the corresponding API token / credential is set in `.env` with the `{manual_name}_` prefix (see Section 9).
 - Destructive scenarios CM-021 (invalid config recovery) and CM-024 (deregister/re-register cycle) MUST run against a backup `.utcp_config.json`; restore the original after execution.
 
@@ -365,18 +365,18 @@ Expected signals: Step 1: response is an object; Step 2: response has `name` (st
 #### Test Execution
 > **Feature File:** [CM-017](06--third-party-via-cm/001-figma-file-metadata.md)
 
-### CM-018 | Webflow via CM — list sites
+### CM-018 | MyService via CM — list sites
 
 #### Description
-Verify `webflow.webflow_list_sites()` returns the operator's Webflow sites.
+Verify `myservice.myservice_list_sites()` returns the operator's MyService sites.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, list all Webflow sites visible to the configured token through Code Mode against the live Webflow API. Verify the response is a non-empty array (or explicit empty if account has no sites). Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, list all MyService sites visible to the configured token through Code Mode against the live MyService API. Verify the response is a non-empty array (or explicit empty if account has no sites). Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Step 1: response is an array; Step 2: each entry has `id` and `displayName` or equivalent; Step 3: array length >= 0 (empty is valid for fresh accounts).
 
 #### Test Execution
-> **Feature File:** [CM-018](06--third-party-via-cm/002-webflow-list-sites.md)
+> **Feature File:** [CM-018](06--third-party-via-cm/002-myservice-list-sites.md)
 
 ### CM-019 | GitHub via CM — list user repos
 
@@ -538,7 +538,7 @@ Expected signals: Step 1: call returns error; Step 2: error message contains "ma
 ### THIRD-PARTY VIA CM
 
 - CM-017: [Figma file metadata](06--third-party-via-cm/001-figma-file-metadata.md)
-- CM-018: [Webflow list sites](06--third-party-via-cm/002-webflow-list-sites.md)
+- CM-018: [MyService list sites](06--third-party-via-cm/002-myservice-list-sites.md)
 - CM-019: [GitHub list user repos](06--third-party-via-cm/003-github-list-user-repos.md)
 - CM-020: [Notion search workspace](06--third-party-via-cm/004-notion-search-workspace.md)
 

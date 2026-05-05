@@ -65,7 +65,7 @@ This is the most dangerous factor because by definition, you cannot directly obs
 | 0.9-1.0 | Completely unfamiliar, many assumptions |
 
 **Examples:**
-- Modifying a well-documented Webflow component: 0.1
+- Modifying a well-documented frontend component: 0.1
 - Implementing a new auth pattern without prior examples: 0.6
 - Integrating with an undocumented third-party API: 0.8
 
@@ -166,7 +166,7 @@ uncertainty = (epistemic_gaps × 0.30) + (model_boundaries × 0.25) +
 
 ### Example Calculation
 
-**Scenario:** Implementing a new authentication flow in a Webflow project
+**Scenario:** Implementing a new authentication flow in a frontend project
 
 | Factor | Score | Weight | Contribution |
 |--------|-------|--------|--------------|

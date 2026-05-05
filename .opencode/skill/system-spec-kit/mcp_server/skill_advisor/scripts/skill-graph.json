@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-05T18:08:08.219052+00:00",
+  "generated_at": "2026-05-05T19:21:10.255582+00:00",
   "skill_count": 18,
   "families": {
     "cli": [
@@ -259,7 +259,7 @@
     "sk-code": [
       "code work",
       "code surface detection",
-      "webflow",
+      "frontend",
       "frontend",
       "animation",
       "cdn",
@@ -275,9 +275,9 @@
       "shell",
       "jsonc",
       "alignment verifier",
-      "motion.dev integration",
+      "animation integration",
       "motion-dev integration",
-      "motion_dev references",
+      "animation references",
       "cross-stack animation",
       "motion api",
       "motion snippets",
@@ -300,9 +300,9 @@
       "argparse block",
       "vitest covering",
       "stable jsonl keys",
-      "lenis smooth-scroll",
-      "gsap timeline",
-      "hls.js video",
+      "smooth-scroll library",
+      "animation timeline",
+      "streaming video",
       "intersectionobserver gate",
       "build a tiny script",
       "tiny script that counts",
@@ -382,19 +382,5 @@
     "sk-code-review",
     "system-spec-kit"
   ],
-  "topology_warnings": {},
-  "anti_signals": {
-    "sk-code-review": [
-      "iterative review loop",
-      "iterative review",
-      "review loop",
-      "multi-pass review",
-      "iterative audit",
-      "spec folder audit",
-      "convergence",
-      "review iteration",
-      "deep review",
-      "deep review loop"
-    ]
-  }
+  "topology_warnings": {}
 }

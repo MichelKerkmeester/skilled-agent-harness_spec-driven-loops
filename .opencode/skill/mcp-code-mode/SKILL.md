@@ -1,6 +1,6 @@
 ---
 name: mcp-code-mode
-description: "MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Notion, Figma, Webflow, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration."
+description: "MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Notion, Figma, MyService, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration."
 allowed-tools: [mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
 version: 1.0.7.0
 ---
@@ -16,7 +16,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 ### Use Code Mode When
 
 **MANDATORY for ALL MCP tool calls**:
-- ✅ Calling ClickUp, Notion, Figma, Webflow, Chrome DevTools, or any other MCP tools
+- ✅ Calling ClickUp, Notion, Figma, MyService, Chrome DevTools, or any other MCP tools
 - ✅ Accessing external APIs through MCP servers
 - ✅ Managing tasks in project management tools
 - ✅ Interacting with design tools, databases, or services
@@ -46,7 +46,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 | Scenario                     | Code Mode Approach                                                      | Benefit                     |
 | ---------------------------- | ----------------------------------------------------------------------- | --------------------------- |
 | **Create ClickUp task**      | `call_tool_chain({ code: "await clickup.clickup_create_task({...})" })` | Type-safe, single execution |
-| **Multi-tool workflow**      | Figma → ClickUp → Webflow in one execution                              | State persists, 5× faster   |
+| **Multi-tool workflow**      | Figma → ClickUp → MyService in one execution                              | State persists, 5× faster   |
 | **Browser automation**       | Chrome DevTools MCP for testing/screenshots                             | Sandboxed, reliable         |
 | **Design-to-implementation** | Fetch Figma design → Create task → Update CMS                           | Atomic workflow             |
 | **External API access**      | Any MCP server (Notion, GitHub, etc.)                                   | Progressive tool loading    |
@@ -223,14 +223,14 @@ def route_code_mode_resources(task):
 
 ✅ **Correct**:
 ```typescript
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 await clickup.clickup_create_task({...});
 await figma.figma_get_file({...});
 ```
 
 ❌ **Wrong** (missing manual prefix):
 ```typescript
-await webflow.sites_list({});        // Error: Tool not found
+await myservice.sites_list({});        // Error: Tool not found
 await clickup.create_task({...});    // Error: Tool not found
 ```
 
@@ -241,7 +241,7 @@ await clickup.create_task({...});    // Error: Tool not found
 Many Code Mode tools require a `context` parameter (15-25 words) for analytics:
 
 ```typescript
-await webflow.webflow_sites_list({
+await myservice.myservice_sites_list({
   context: "Listing sites to identify collection structure for CMS update"
 });
 ```
@@ -250,7 +250,7 @@ This helps with usage tracking and debugging.
 
 ### Tool Name Translation
 
-> **Note:** `list_tools()` returns names in `a.b.c` format (e.g., `webflow.webflow.sites_list`). To call the tool, use underscore format: `webflow.webflow_sites_list()`. The `tool_info()` function shows the correct calling syntax.
+> **Note:** `list_tools()` returns names in `a.b.c` format (e.g., `myservice.myservice.sites_list`). To call the tool, use underscore format: `myservice.myservice_sites_list()`. The `tool_info()` function shows the correct calling syntax.
 
 ### Basic Workflow
 
@@ -278,7 +278,7 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
 **2. Code Mode MCP** (`.utcp_config.json`) - External tools accessed through Code Mode:
 - **MCP Config**: `.utcp_config.json` (project root)
 - **Environment Variables**: `.env` (project root)
-- **External tools**: Webflow, Figma, Chrome DevTools, ClickUp, Notion, etc.
+- **External tools**: MyService, Figma, Chrome DevTools, ClickUp, Notion, etc.
 - These are accessed via `call_tool_chain()` wrapper
 
 ### How to Discover Available Code Mode Tools
@@ -322,7 +322,7 @@ const info = await tool_info({
 
 **See Section 3: Critical Naming Pattern for the complete guide.**
 
-**Quick reminder**: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list()`)
+**Quick reminder**: `{manual_name}.{manual_name}_{tool_name}` (e.g., `myservice.myservice_sites_list()`)
 
 **Sequential Thinking Exception**:
 - NOT in `.utcp_config.json` - uses native MCP tools
@@ -365,7 +365,7 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 
 ### ✅ ALWAYS
 
-- **Use Code Mode for ALL MCP tool calls** - Mandatory for ClickUp, Notion, Figma, Webflow, Chrome DevTools, etc.
+- **Use Code Mode for ALL MCP tool calls** - Mandatory for ClickUp, Notion, Figma, MyService, Chrome DevTools, etc.
 - **Follow naming pattern**: `{manual_name}.{manual_name}_{tool_name}` (see [naming_convention.md](references/naming_convention.md))
 - **Use progressive discovery**: `search_tools()` before calling unknown tools
 - **Use try/catch** for error handling in multi-step workflows
@@ -376,7 +376,7 @@ Run `list_tools()` through Code Mode and group returned names by the prefix befo
 ### ❌ NEVER
 
 - **Skip Code Mode for MCP tools** - Direct MCP calls cause context exhaustion
-- **Use wrong naming pattern** - `webflow.sites_list` instead of `webflow.webflow_sites_list`
+- **Use wrong naming pattern** - `myservice.sites_list` instead of `myservice.myservice_sites_list`
 - **Guess tool names** - Use `search_tools()` to discover correct names
 - **Ignore TypeScript errors** - Type safety prevents runtime errors
 - **Skip error handling** - Unhandled errors crash entire workflow
@@ -426,15 +426,15 @@ Key integrations:
 ### Cross-Skill Collaboration
 
 **External Tool Integration**:
-- Use **mcp-code-mode** for external tool integration (Webflow, Figma, ClickUp, etc.)
-- Example: Create ClickUp task → Update Notion docs → Post to Webflow CMS
+- Use **mcp-code-mode** for external tool integration (MyService, Figma, ClickUp, etc.)
+- Example: Create ClickUp task → Update Notion docs → Post to external CMS
 
 **Workflow**: discover tools, call them inside one `call_tool_chain()` execution, return state for the caller, and surface errors explicitly.
 
 ### Triggers
 
 **Automatic activation when**:
-- User mentions MCP tool names (ClickUp, Notion, Figma, Webflow, etc.)
+- User mentions MCP tool names (ClickUp, Notion, Figma, MyService, etc.)
 - Request involves external tool integration
 - Multi-tool workflow described
 - Browser automation needed (Chrome DevTools)

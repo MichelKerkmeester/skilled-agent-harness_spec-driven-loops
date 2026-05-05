@@ -13,7 +13,7 @@ Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured M
 
 ### Purpose
 
-Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for Webflow, ClickUp, Figma, Notion, and Chrome DevTools.
+Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for MyService, ClickUp, Figma, Notion, and Chrome DevTools.
 
 ### Usage
 
@@ -39,14 +39,14 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
   },
   "manual_call_templates": [
     {
-      "name": "webflow",
+      "name": "myservice",
       "call_template_type": "mcp",
       "config": {
         "mcpServers": {
-          "webflow": {
+          "myservice": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["mcp-remote", "https://mcp.webflow.com/sse"],
+            "args": ["mcp-remote", "https://mcp.myservice.com/sse"],
             "env": {}
           }
         }
@@ -199,25 +199,25 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 - `config.mcpServers`: Object with MCP server configuration
 
 **Critical Naming Pattern**: Tools are called as `{manual_name}.{manual_name}_{tool_name}`
-- Example: `webflow.webflow_sites_list()`
+- Example: `myservice.myservice_sites_list()`
 - See [naming_convention.md](../references/naming_convention.md) for complete guide
 
 ---
 
 ## 4. MCP SERVER CONFIGURATIONS
 
-### Webflow (Remote MCP)
+### MyService (Remote MCP)
 
 ```json
 {
-  "name": "webflow",
+  "name": "myservice",
   "call_template_type": "mcp",
   "config": {
     "mcpServers": {
-      "webflow": {
+      "myservice": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["mcp-remote", "https://mcp.webflow.com/sse"],
+        "args": ["mcp-remote", "https://mcp.myservice.com/sse"],
         "env": {}
       }
     }
@@ -226,7 +226,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 ```
 
 **Features**: 40+ tools for sites, collections, pages, CMS items
-**Authentication**: Handled by Webflow's remote MCP server via browser OAuth flow. When first connecting, you'll be prompted to authenticate via Webflow's web interface. Credentials are managed server-side - no local token storage required.
+**Authentication**: Handled by MyService's remote MCP server via browser OAuth flow. When first connecting, you'll be prompted to authenticate via MyService's web interface. Credentials are managed server-side - no local token storage required.
 **Transport**: `stdio` (standard input/output)
 
 ### ClickUp
@@ -407,13 +407,13 @@ GITHUB_TOKEN=ghp_your_token_here
 **Important**: Manual name determines namespace for tool calls.
 
 **Example:**
-- Config: `"name": "webflow_prod"`
-- Tool calls: `webflow_prod.webflow_prod_sites_list()`
+- Config: `"name": "myservice_prod"`
+- Tool calls: `myservice_prod.myservice_prod_sites_list()`
 
 **Use case**: Multiple instances of same MCP server with different credentials
 ```json
-{"name": "webflow_prod", ...},
-{"name": "webflow_staging", ...}
+{"name": "myservice_prod", ...},
+{"name": "myservice_staging", ...}
 ```
 
 ---

@@ -69,7 +69,7 @@ Capture the grep result (REDACT value), the chain response (REDACT sensitive wor
 
 ### Optional Supplemental Checks
 
-- Add `webflow_WEBFLOW_TOKEN` and confirm Webflow tools work too; verifies the rule generalizes.
+- Add `myservice_MYSERVICE_TOKEN` and confirm MyService tools work too; verifies the rule generalizes.
 
 ---
 

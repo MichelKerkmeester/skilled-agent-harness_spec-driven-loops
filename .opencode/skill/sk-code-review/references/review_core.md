@@ -49,9 +49,8 @@ Escalation rule: if confidence is low but impact is high, classify toward the hi
 
 Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
 
-- OpenCode system code -> `sk-code:OPENCODE`
-- Frontend/web code -> `sk-code:WEBFLOW`
-- Unknown surfaces -> baseline-only plus explicit uncertainty
+- Detected code surface -> `sk-code:<surface>`
+- Unclear surfaces -> baseline-only plus explicit uncertainty
 
 Precedence rules:
 

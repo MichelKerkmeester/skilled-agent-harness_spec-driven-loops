@@ -39,7 +39,7 @@ trigger_phrases:
 
 MCP Code Mode is the mandatory execution layer for all external MCP tool calls. Instead of exposing hundreds of tool schemas directly into the AI context window, Code Mode provides a single `call_tool_chain` tool that executes TypeScript code with full access to your entire toolkit. Tools are discovered on demand and called using a consistent naming pattern, so the AI context stays small regardless of how many tools are configured.
 
-Code Mode applies to tools configured in `.utcp_config.json`: ClickUp, Figma, Webflow, Notion, Chrome DevTools, and other external MCP servers. It does not apply to native MCP tools such as Spec Kit Memory, Sequential Thinking, CocoIndex Code, or first-class app connectors exposed directly by the active runtime. This boundary is strict: using Code Mode for native tools wastes overhead, and bypassing Code Mode for external tools causes context exhaustion.
+Code Mode applies to tools configured in `.utcp_config.json`: ClickUp, Figma, MyService, Notion, Chrome DevTools, and other external MCP servers. It does not apply to native MCP tools such as Spec Kit Memory, Sequential Thinking, CocoIndex Code, or first-class app connectors exposed directly by the active runtime. This boundary is strict: using Code Mode for native tools wastes overhead, and bypassing Code Mode for external tools causes context exhaustion.
 
 The core Code Mode surface is four meta-tools: `call_tool_chain` executes arbitrary TypeScript with tool access, `search_tools` finds relevant tools by description, `list_tools` returns registered tool names, and `tool_info` returns the TypeScript interface for a specific tool. Some installations also expose manual-registration helpers, but workflows should discover the live surface at runtime instead of assuming those helpers exist. Together these meta-tools replace what would otherwise be a large external-tool inventory loaded upfront.
 
@@ -141,9 +141,9 @@ call_tool_chain({
 
 Code Mode's most important property is that it treats the AI's context window as a resource to protect. When an AI client loads 47 tool definitions directly, it consumes roughly 141,000 tokens before any real work begins. Code Mode reduces that to 1,600 tokens regardless of how many tools are configured. The mechanism is simple: the AI receives only the four Code Mode meta-tools, then uses `search_tools` to discover what it needs at call time.
 
-Multi-tool workflows gain the most from Code Mode. A workflow that fetches a Figma design, creates a ClickUp task, and updates a Webflow CMS item would traditionally require three separate AI reasoning loops and three round trips. Inside a single `call_tool_chain` execution, all three calls share variables, run sequentially or in parallel as needed, and return a single structured result. The AI processes the outcome once rather than re-parsing context after each step.
+Multi-tool workflows gain the most from Code Mode. A workflow that fetches a Figma design, creates a ClickUp task, and updates a external CMS item would traditionally require three separate AI reasoning loops and three round trips. Inside a single `call_tool_chain` execution, all three calls share variables, run sequentially or in parallel as needed, and return a single structured result. The AI processes the outcome once rather than re-parsing context after each step.
 
-The naming convention is the one area where Code Mode requires attention. Every external tool follows the pattern `{manual_name}.{manual_name}_{tool_name}`. The manual name comes from the `name` field in `.utcp_config.json` and acts as both the TypeScript namespace and the function prefix. Calling `webflow.sites_list({})` fails silently because the prefix is missing. The correct call is `webflow.webflow_sites_list({})`. Using `search_tools` and `tool_info` before writing execution code prevents this class of error entirely.
+The naming convention is the one area where Code Mode requires attention. Every external tool follows the pattern `{manual_name}.{manual_name}_{tool_name}`. The manual name comes from the `name` field in `.utcp_config.json` and acts as both the TypeScript namespace and the function prefix. Calling `myservice.sites_list({})` fails silently because the prefix is missing. The correct call is `myservice.myservice_sites_list({})`. Using `search_tools` and `tool_info` before writing execution code prevents this class of error entirely.
 
 Environment variable handling has one non-obvious rule. Code Mode prefixes all environment variables with the manual name from configuration. If the manual name is `clickup` and the config references `${CLICKUP_API_KEY}`, the `.env` file must declare `clickup_CLICKUP_API_KEY`. Using the unprefixed form causes an authentication error at runtime, not at startup. Checking required variables with `get_required_keys_for_tool` before running a workflow avoids this failure mode.
 
@@ -173,7 +173,7 @@ Environment variable handling has one non-obvious rule. Code Mode prefixes all e
 
 | Tool Category | Examples | How to Call |
 |---------------|----------|-------------|
-| Code Mode tools | ClickUp, Figma, Webflow, Notion, Chrome DevTools | Via call_tool_chain |
+| Code Mode tools | ClickUp, Figma, MyService, Notion, Chrome DevTools | Via call_tool_chain |
 | Native MCP tools | Spec Kit Memory, Sequential Thinking, CocoIndex | Call directly, NOT via call_tool_chain |
 | File operations | Read, Write, Edit, Grep, Glob, Bash | Call directly |
 
@@ -285,10 +285,10 @@ For full setup instructions including installing the MCP server package and vali
 ```typescript
 call_tool_chain({
   code: `
-    const sites = await webflow.webflow_sites_list({
+    const sites = await myservice.myservice_sites_list({
       context: "Listing sites to identify CMS collection structure"
     });
-    console.log("Found", sites.length, "Webflow sites");
+    console.log("Found", sites.length, "MyService sites");
     return sites;
   `
 });
@@ -308,7 +308,7 @@ call_tool_chain({
         description: "Build from latest approved Figma file"
       });
 
-      const cmsItem = await webflow.webflow_collections_items_create_item_live({
+      const cmsItem = await myservice.myservice_collections_items_create_item_live({
         collection_id: "design-queue-id",
         request: {
           items: [{
@@ -336,7 +336,7 @@ call_tool_chain({
 call_tool_chain({
   code: `
     const [sites, tasks, figmaFile] = await Promise.all([
-      webflow.webflow_sites_list({}),
+      myservice.myservice_sites_list({}),
       clickup.clickup_get_tasks({ listName: "Development" }),
       figma.figma_get_file({ fileKey: "abc123" })
     ]);
@@ -362,9 +362,9 @@ call_tool_chain({
 
 What you see: The execution fails immediately when calling an external tool, before any real work runs.
 
-Common causes: The tool name is missing the manual prefix. Calling `webflow.sites_list({})` fails because the correct name is `webflow.webflow_sites_list({})`. The pattern is always `{manual_name}.{manual_name}_{tool_name}`.
+Common causes: The tool name is missing the manual prefix. Calling `myservice.sites_list({})` fails because the correct name is `myservice.myservice_sites_list({})`. The pattern is always `{manual_name}.{manual_name}_{tool_name}`.
 
-Fix: Use `search_tools({ task_description: "webflow site list" })` to get the exact registered name, then call `tool_info` to confirm the interface. Never construct tool names from memory.
+Fix: Use `search_tools({ task_description: "myservice site list" })` to get the exact registered name, then call `tool_info` to confirm the interface. Never construct tool names from memory.
 
 ---
 

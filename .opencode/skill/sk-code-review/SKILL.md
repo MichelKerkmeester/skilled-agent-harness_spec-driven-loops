@@ -9,7 +9,7 @@ version: 1.2.0.0
 
 # Code Review Baseline - Stack-Agnostic Findings-First Review
 
-Universal findings-first review baseline paired with `sk-code` surface standards evidence for WEBFLOW or OPENCODE code.
+Universal findings-first review baseline paired with `sk-code` surface standards evidence for the detected code surface.
 
 ## 1. WHEN TO USE
 
@@ -47,7 +47,7 @@ Use this skill when:
 Review behavior follows a baseline+surface-evidence model:
 
 - Baseline (always): `sk-code-review` findings-first doctrine.
-- Surface standards evidence (when available): `sk-code` detected WEBFLOW or OPENCODE resources.
+- Surface standards evidence (when available): `sk-code` detected surface resources.
 - Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
 
 ### Phase Detection
@@ -105,7 +105,7 @@ If intent/stack detection is unclear, request:
 1. Review target scope (full diff, staged files, commit range, or explicit file list).
 2. Primary risk class (security, correctness, performance, maintainability).
 3. Architecture lens priority (KISS/DRY/SOLID strict or optional).
-4. Stack/context (OpenCode system code, web/frontend, or other/full-stack).
+4. Stack/context (system code, web/frontend, or other/full-stack).
 5. Desired output mode (findings-only or findings + gated fix follow-up).
 
 ### Smart Router Pseudocode
@@ -149,7 +149,7 @@ UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm review scope (diff/staged/files/commit range)",
     "Confirm risk priority (security/correctness/performance/maintainability/test quality/contract safety)",
     "Confirm architecture lens (KISS/DRY/SOLID required or optional)",
-    "Confirm stack context (opencode/web/full-stack)",
+    "Confirm stack context (system-code/web/full-stack)",
     "Confirm findings-only vs findings+fix follow-up",
 ]
 
@@ -197,13 +197,13 @@ def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> s
     text = _task_text(task)
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
-    if "opencode" in text or ".opencode/" in files or "jsonc" in text or "mcp" in text:
-        return "sk-code:OPENCODE"
-    if any(term in text for term in ["frontend", "web", "css", "dom", "browser", "webflow"]) or any(
+    if ".opencode/" in files or "jsonc" in text or "mcp" in text:
+        return "sk-code:<surface>"
+    if any(term in text for term in ["frontend", "web", "css", "dom", "browser"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
-        return "sk-code:WEBFLOW"
-    return "sk-code:UNKNOWN"
+        return "sk-code:<surface>"
+    return "sk-code:<surface>"
 
 def route_review_resources(task, workspace_files=None, changed_files=None):
     inventory = discover_markdown_resources()
@@ -267,7 +267,7 @@ def route_review_resources(task, workspace_files=None, changed_files=None):
 
 1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
 2. Load baseline standards from this skill (`sk-code-review`).
-3. Load `sk-code` surface standards evidence when WEBFLOW or OPENCODE is detected.
+3. Load `sk-code` surface standards evidence when a surface is detected.
 
 ### Phase 2: Surface Alignment
 
@@ -307,7 +307,7 @@ Required output contract:
 **Files reviewed**: X files, Y lines changed
 **Overall assessment**: [APPROVE / REQUEST_CHANGES / COMMENT]
 **Baseline used**: [sk-code (`sk-code-review`)]
-**Surface evidence used**: [sk-code:OPENCODE | sk-code:WEBFLOW | sk-code:UNKNOWN]
+**Surface evidence used**: [sk-code:<surface>]
 
 ## Findings
 
@@ -399,4 +399,4 @@ After reporting findings, request explicit next action before any implementation
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md`, `references/removal_plan.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code` for WEBFLOW and OPENCODE surface standards, and `system-spec-kit` for packet-governed review workflows.
+Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code` for surface-aware standards, and `system-spec-kit` for packet-governed review workflows.

@@ -211,7 +211,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 
 **Forbidden:** creating or continuing child-phase research/review packets under an ancestor/root spec's `research/` or `review/` folder.
 
-**See also:** `sk-deep-research/references/loop_protocol.md`, `sk-deep-review/references/loop_protocol.md`, and the `step_resolve_artifact_root` block in `command/spec_kit/assets/spec_kit_deep-research_auto.yaml`.
+**See also:** `deep-research/references/loop_protocol.md`, `deep-review/references/loop_protocol.md`, and the `step_resolve_artifact_root` block in `command/spec_kit/assets/spec_kit_deep-research_auto.yaml`.
 
 ---
 

@@ -57,7 +57,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
-| Documentation, research, review, and improvement skills | 5 | sk-improve-agent, sk-deep-research, sk-deep-review, sk-doc, sk-improve-prompt |
+| Documentation, research, review, and improvement skills | 5 | sk-improve-agent, deep-research, deep-review, sk-doc, sk-improve-prompt |
 | Git and system skills | 2 | sk-git, system-spec-kit |
 | Skills with local scripts/ | 12 | See Section 4 for the current script-bearing folders |
 | Native advisor tools | 3 | `advisor_recommend`, `advisor_status`, `advisor_validate` |
@@ -133,9 +133,9 @@ The skill system covers four distinct workflow domains.
 
 **CLI Delegation.** The five CLI skills (cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals.
 
-**MCP Tool Wrapping.** The five MCP skills route tool calls through Code Mode for token-efficient execution. mcp-code-mode is the hub: it handles ClickUp, Figma, Webflow, Notion, and Chrome DevTools through a single TypeScript execution layer. mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
+**MCP Tool Wrapping.** The five MCP skills route tool calls through Code Mode for token-efficient execution. mcp-code-mode is the hub: it handles ClickUp, Figma, Notion, Chrome DevTools, and other external services through a single TypeScript execution layer. mcp-coco-index adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
-**Code Workflow Skills.** `sk-code` provides **multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation, CDN deployment) and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP/agents/commands/skills). Smart-routing internals auto-detect the active stack. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
+**Code Workflow Skills.** `sk-code` provides **multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes for project-specific frontend and system-code surfaces (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP/agents/commands/skills). Smart-routing internals auto-detect the active stack. `sk-code-review` provides the findings-first review baseline and uses `sk-code` surface evidence where applicable.
 
 **System Foundation.** system-spec-kit governs all file modifications through spec folder workflows (Levels 1-3+), template validation, and Spec Kit Memory for context preservation across sessions. It includes a hook system for automated context preservation at Claude Code lifecycle boundaries (PreCompact, SessionStart, Stop), a structural code graph with 4 MCP tools (code_graph_scan/query/status/context), and a CocoIndex bridge for semantic-to-structural expansion. It is the only skill that is mandatory for every task involving file changes.
 
@@ -163,7 +163,7 @@ The skill system covers four distinct workflow domains.
 
 | Skill | Version | Description |
 | --- | --- | --- |
-| `sk-code` | 1.1.0.0 | Multi-stack coding standards, references, and assets (Webflow frontend + OpenCode system code) |
+| `sk-code` | 1.1.0.0 | Multi-stack coding standards, references, and assets (project-specific frontend and system-code surfaces) |
 | `sk-code-review` | 1.2.0.0 | Findings-first code review baseline with security and correctness minimums |
 
 **Documentation, Research, Prompt, and Improvement Skills**
@@ -171,8 +171,8 @@ The skill system covers four distinct workflow domains.
 | Skill | Version | Description |
 | --- | --- | --- |
 | `sk-improve-agent` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
-| `sk-deep-research` | 1.2.0 | Autonomous research loop with iterative investigation, externalized state, and convergence detection |
-| `sk-deep-review` | 1.0.0 | Autonomous iterative code review with severity-weighted findings, dimension coverage, convergence detection, and release readiness verdicts |
+| `deep-research` | 1.2.0 | Autonomous research loop with iterative investigation, externalized state, and convergence detection |
+| `deep-review` | 1.0.0 | Autonomous iterative code review with severity-weighted findings, dimension coverage, convergence detection, and release readiness verdicts |
 | `sk-doc` | 1.3.0.0 | Markdown quality enforcement, component templates, validation scripts, and DQI scoring |
 | `sk-improve-prompt` | 1.2.0.0 | Prompt engineering using 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) |
 
@@ -210,8 +210,8 @@ The skill system covers four distinct workflow domains.
 ├── sk-improve-agent/       # Evaluator-first agent improvement loop
 ├── sk-code/                # Multi-stack coding standards, references, assets
 ├── sk-code-review/         # Findings-first code review baseline
-├── sk-deep-research/       # Autonomous deep research loop
-├── sk-deep-review/         # Autonomous iterative code review
+├── deep-research/       # Autonomous deep research loop
+├── deep-review/         # Autonomous iterative code review
 ├── sk-doc/                 # Documentation quality and templates
 ├── sk-git/                 # Git workflow orchestrator
 ├── sk-improve-prompt/      # Prompt engineering specialist
@@ -255,8 +255,8 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `mcp-code-mode` | Yes | Yes | Yes |
 | `sk-code` | Varies | Varies | Varies |
 | `sk-code-review` | Varies | Varies | Varies |
-| `sk-deep-research` | Yes | No | Yes |
-| `sk-deep-review` | Yes | No | Yes |
+| `deep-research` | Yes | No | Yes |
+| `deep-review` | Yes | No | Yes |
 | `sk-doc` | Yes | Yes | Yes |
 | `sk-git` | Yes | Yes | No |
 | `sk-improve-prompt` | Yes | Yes | No |
@@ -497,7 +497,7 @@ The cap preserves a margin of uncertainty so the calling AI retains judgment on 
 | [sk-doc SKILL.md](sk-doc/SKILL.md) | Documentation quality standards and templates |
 | [sk-git SKILL.md](sk-git/SKILL.md) | Git workflow orchestration |
 | [sk-code-review SKILL.md](sk-code-review/SKILL.md) | Code review baseline |
-| [sk-code SKILL.md](sk-code/SKILL.md) | Webflow frontend and OpenCode system code workflows |
+| [sk-code SKILL.md](sk-code/SKILL.md) | project-specific frontend and system-code workflows |
 | [cli-opencode SKILL.md](cli-opencode/SKILL.md) | OpenCode CLI orchestrator for full runtime dispatch and parallel detached sessions |
 
 <!-- /ANCHOR:related-documents -->

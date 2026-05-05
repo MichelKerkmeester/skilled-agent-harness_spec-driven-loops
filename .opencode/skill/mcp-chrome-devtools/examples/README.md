@@ -391,7 +391,7 @@ bdg stop 2>&1
 - `animation_workflows.md` - Animation performance validation
 - `performance_patterns.md` - Performance optimization strategies
 - `verification_workflows.md` - Browser testing requirements
-- `webflow_patterns.md` - Webflow-specific patterns (ID duplication detection)
+- `frontend_patterns.md` - frontend-specific patterns (ID duplication detection)
 
 ### Related Skills
 

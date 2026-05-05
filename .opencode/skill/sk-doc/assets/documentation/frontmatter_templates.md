@@ -308,7 +308,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep
 ```yaml
 ---
 name: code-systematic-debugging
-description: Four-phase debugging framework for browser console errors, CSS layout issues, JavaScript animations, and Webflow-specific bugs
+description: Four-phase debugging framework for browser console errors, CSS layout issues, JavaScript animations, and platform-specific frontend bugs
 allowed-tools: Read, Bash, Grep
 ---
 ```

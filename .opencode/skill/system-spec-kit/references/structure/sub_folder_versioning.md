@@ -210,7 +210,7 @@ If a child name like `121-audit` exists under multiple parents, the script requi
 ```
 Error: Ambiguous child folder "121-audit" found in multiple parents:
   - specs/system-spec-kit/121-audit/
-  - specs/005-anobel/121-audit/
+  - specs/005-<user-repo>/121-audit/
 Please specify the full path: parent/child
 ```
 

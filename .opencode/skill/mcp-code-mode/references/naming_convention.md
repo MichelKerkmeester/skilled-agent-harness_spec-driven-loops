@@ -36,22 +36,22 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 **❌ Wrong:**
 ```typescript
-await webflow.sites_list({});
+await myservice.sites_list({});
 await clickup.create_task({...});
 await figma.get_file({...});
 ```
 
 **✅ Correct:**
 ```typescript
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 await clickup.clickup_create_task({...});
 await figma.figma_get_file({...});
 ```
 
 **Error message you'll see:**
 ```
-Error: Tool not found: webflow.sites_list
-Available tools: webflow.webflow_sites_list, webflow.webflow_collections_list, ...
+Error: Tool not found: myservice.sites_list
+Available tools: myservice.myservice_sites_list, myservice.myservice_collections_list, ...
 ```
 
 **Fix:** Add manual prefix to tool name: `{manual}_{tool}`
@@ -60,19 +60,19 @@ Available tools: webflow.webflow_sites_list, webflow.webflow_collections_list, .
 
 **❌ Wrong:**
 ```typescript
-await webflow.webflow.sites_list({});
+await myservice.myservice.sites_list({});
 await clickup.clickup.create_task({...});
 ```
 
 **✅ Correct:**
 ```typescript
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 await clickup.clickup_create_task({...});
 ```
 
 **Error message you'll see:**
 ```
-TypeError: webflow.webflow is not a function
+TypeError: myservice.myservice is not a function
 ```
 
 **Fix:** Use single dot: `manual.manual_tool` not `manual.manual.tool`
@@ -81,20 +81,20 @@ TypeError: webflow.webflow is not a function
 
 **❌ Wrong:**
 ```typescript
-await webflow.webflowSitesList({});
+await myservice.myserviceSitesList({});
 await clickup.clickUpCreateTask({...});
 ```
 
 **✅ Correct:**
 ```typescript
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 await clickup.clickup_create_task({...});
 ```
 
 **Error message you'll see:**
 ```
-Error: Tool not found: webflow.webflowSitesList
-Did you mean: webflow.webflow_sites_list?
+Error: Tool not found: myservice.myserviceSitesList
+Did you mean: myservice.myservice_sites_list?
 ```
 
 **Fix:** Use snake_case for tool names, not camelCase
@@ -104,21 +104,21 @@ Did you mean: webflow.webflow_sites_list?
 **❌ Wrong (using MCP server name from config):**
 ```json
 // .utcp_config.json has:
-"mcpServers": { "webflow": {...} }
+"mcpServers": { "myservice": {...} }
 
 // But manual name is different:
-"name": "webflow_prod"
+"name": "myservice_prod"
 ```
 
 ```typescript
 // Wrong - using MCP server name
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 ```
 
 **✅ Correct (using manual name):**
 ```typescript
 // Correct - using manual name
-await webflow_prod.webflow_prod_sites_list({});
+await myservice_prod.myservice_prod_sites_list({});
 ```
 
 **Fix:** Always use the `name` field from manual_call_templates, not the mcpServers key
@@ -127,19 +127,19 @@ await webflow_prod.webflow_prod_sites_list({});
 
 ## 3. CONFIGURATION EXAMPLES
 
-### Example 1: Webflow
+### Example 1: MyService
 
 **Configuration:**
 ```json
 {
-  "name": "webflow",
+  "name": "myservice",
   "call_template_type": "mcp",
   "config": {
     "mcpServers": {
-      "webflow": {
+      "myservice": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["mcp-remote", "https://mcp.webflow.com/sse"]
+        "args": ["mcp-remote", "https://mcp.myservice.com/sse"]
       }
     }
   }
@@ -149,27 +149,27 @@ await webflow_prod.webflow_prod_sites_list({});
 **Correct tool calls:**
 ```typescript
 // Site management
-await webflow.webflow_sites_list({});
-await webflow.webflow_sites_get({ site_id: "..." });
-await webflow.webflow_sites_publish({ site_id: "..." });
+await myservice.myservice_sites_list({});
+await myservice.myservice_sites_get({ site_id: "..." });
+await myservice.myservice_sites_publish({ site_id: "..." });
 
 // Collections
-await webflow.webflow_collections_list({ site_id: "..." });
-await webflow.webflow_collections_get({ collection_id: "..." });
+await myservice.myservice_collections_list({ site_id: "..." });
+await myservice.myservice_collections_get({ collection_id: "..." });
 
 // CMS Items
-await webflow.webflow_collections_items_list_items({ collection_id: "..." });
-await webflow.webflow_collections_items_create_item_live({
+await myservice.myservice_collections_items_list_items({ collection_id: "..." });
+await myservice.myservice_collections_items_create_item_live({
   collection_id: "...",
   request: { items: [{...}] }
 });
 
 // Pages
-await webflow.webflow_pages_list({ site_id: "..." });
-await webflow.webflow_pages_get_metadata({ page_id: "..." });
+await myservice.myservice_pages_list({ site_id: "..." });
+await myservice.myservice_pages_get_metadata({ page_id: "..." });
 
 // Guide/Help
-await webflow.webflow_webflow_guide_tool({});
+await myservice.myservice_myservice_guide_tool({});
 ```
 
 ### Example 2: ClickUp
@@ -344,47 +344,47 @@ await chrome_devtools_1.chrome_devtools_1_get_console_message({});
 ```typescript
 // Step 1: Search for tools by task description
 const tools = await search_tools({
-  task_description: "webflow site management",
+  task_description: "myservice site management",
   limit: 10
 });
 
 // Result:
 [
   {
-    name: "webflow.webflow_sites_list",
-    description: "List all Webflow sites",
+    name: "myservice.myservice_sites_list",
+    description: "List all MyService sites",
     interface: "() => Promise<{ sites: Site[] }>"
   },
   {
-    name: "webflow.webflow_sites_get",
-    description: "Get a specific Webflow site",
+    name: "myservice.myservice_sites_get",
+    description: "Get a specific MyService site",
     interface: "(params: { site_id: string }) => Promise<Site>"
   }
   // ... more tools
 ]
 
 // Step 2: Get detailed info for specific tool
-const info = await tool_info({ tool_name: "webflow.webflow_sites_list" });
+const info = await tool_info({ tool_name: "myservice.myservice_sites_list" });
 
 // Result:
 {
-  name: "webflow.webflow_sites_list",
-  description: "List all Webflow sites accessible with the current token",
+  name: "myservice.myservice_sites_list",
+  description: "List all MyService sites accessible with the current token",
   interface: `
-    interface WebflowSitesListParams {}
-    interface WebflowSite {
+    interface MyServiceSitesListParams {}
+    interface MyServiceSite {
       id: string;
       displayName: string;
       shortName: string;
       customDomains: string[];
       // ... more fields
     }
-    function webflow_sites_list(params: WebflowSitesListParams): Promise<{ sites: WebflowSite[] }>;
+    function myservice_sites_list(params: MyServiceSitesListParams): Promise<{ sites: MyServiceSite[] }>;
   `
 }
 
 // Step 3: Call the tool with correct naming
-const sites = await webflow.webflow_sites_list({});
+const sites = await myservice.myservice_sites_list({});
 ```
 
 ---
@@ -395,15 +395,15 @@ const sites = await webflow.webflow_sites_list({});
 
 **Error message:**
 ```
-Error: Tool not found: webflow.sites_list
-Available tools: webflow.webflow_sites_list, ...
+Error: Tool not found: myservice.sites_list
+Available tools: myservice.myservice_sites_list, ...
 ```
 
 **Solutions:**
 1. Check tool name includes manual prefix: `manual_tool` not just `tool`
 2. Use tool discovery to find exact name:
    ```typescript
-   const tools = await search_tools({ task_description: "webflow sites", limit: 5 });
+   const tools = await search_tools({ task_description: "myservice sites", limit: 5 });
    console.log(tools.map(t => t.name));
    ```
 3. Verify manual name in `.utcp_config.json` matches what you're using
@@ -412,7 +412,7 @@ Available tools: webflow.webflow_sites_list, ...
 
 **Error message:**
 ```
-TypeError: webflow.webflow is not a function
+TypeError: myservice.myservice is not a function
 ```
 
 **Cause:** Using double dot notation (`manual.manual.tool`)
@@ -423,8 +423,8 @@ TypeError: webflow.webflow is not a function
 
 **Error message:**
 ```
-Error: Tool not found: webflow.webflowSitesList
-Did you mean: webflow.webflow_sites_list?
+Error: Tool not found: myservice.myserviceSitesList
+Did you mean: myservice.myservice_sites_list?
 ```
 
 **Cause:** Using camelCase instead of snake_case
@@ -435,7 +435,7 @@ Did you mean: webflow.webflow_sites_list?
 
 **Error message:**
 ```
-ReferenceError: webflow_prod is not defined
+ReferenceError: myservice_prod is not defined
 ```
 
 **Cause:** Manual name in config doesn't match what you're using in code
@@ -445,10 +445,10 @@ ReferenceError: webflow_prod is not defined
 2. Use that exact name as namespace:
    ```json
    // Config has:
-   "name": "webflow_prod"
+   "name": "myservice_prod"
 
    // Use in code:
-   await webflow_prod.webflow_prod_sites_list({});
+   await myservice_prod.myservice_prod_sites_list({});
    ```
 
 ---
@@ -457,7 +457,7 @@ ReferenceError: webflow_prod is not defined
 
 | Manual Name         | Naming Pattern                             | Example                                        |
 | ------------------- | ------------------------------------------ | ---------------------------------------------- |
-| `webflow`           | `webflow.webflow_{tool}`                   | `webflow.webflow_sites_list()`                 |
+| `myservice`           | `myservice.myservice_{tool}`                   | `myservice.myservice_sites_list()`                 |
 | `clickup`           | `clickup.clickup_{tool}`                   | `clickup.clickup_create_task()`                |
 | `figma`             | `figma.figma_{tool}`                       | `figma.figma_get_file()`                       |
 | `notion`            | `notion.notion_API_{tool}`                 | `notion.notion_API_get_user()`                 |
@@ -474,7 +474,7 @@ ReferenceError: webflow_prod is not defined
 ```typescript
 // 1. Search for what you need
 const tools = await search_tools({
-  task_description: "create webflow collection item",
+  task_description: "create myservice collection item",
   limit: 5
 });
 
@@ -483,11 +483,11 @@ console.log(tools.map(t => t.name));
 
 // 3. Get full interface
 const info = await tool_info({
-  tool_name: "webflow.webflow_collections_items_create_item_live"
+  tool_name: "myservice.myservice_collections_items_create_item_live"
 });
 
 // 4. Call with correct name and params
-const result = await webflow.webflow_collections_items_create_item_live({
+const result = await myservice.myservice_collections_items_create_item_live({
   collection_id: "...",
   request: { items: [{...}] }
 });
@@ -509,8 +509,8 @@ const allTools = await list_tools();
 console.log('Available tools:', allTools.tools);
 
 // Filter to specific manual
-const webflowTools = allTools.tools.filter(t => t.startsWith('webflow.'));
-console.log('Webflow tools:', webflowTools);
+const myserviceTools = allTools.tools.filter(t => t.startsWith('myservice.'));
+console.log('MyService tools:', myserviceTools);
 ```
 
 ### 4. Reference Configuration File
@@ -521,7 +521,7 @@ console.log('Webflow tools:', webflowTools);
 cat .utcp_config.json | grep '"name"'
 
 # Should see:
-# "name": "webflow",
+# "name": "myservice",
 # "name": "clickup",
 # etc.
 ```

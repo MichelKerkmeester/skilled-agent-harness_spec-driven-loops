@@ -411,7 +411,7 @@ A: Run `git worktree list` to see all active worktrees. Remove the stale one wit
 | Skill | Relationship |
 |-------|-------------|
 | `system-spec-kit` | Spec folder creation pairs with git commit workflow. Reference spec folder in commit body. |
-| `sk-code` | WEBFLOW and OPENCODE code standards that define what should and should not be committed |
+| `sk-code` | surface-aware code standards that define what should and should not be committed |
 
 ### Framework Reference
 

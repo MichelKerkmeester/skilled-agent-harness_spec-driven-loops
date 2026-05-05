@@ -13,7 +13,7 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported 
 
 ### Purpose
 
-Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, Webflow, and Chrome DevTools MCP servers.
+Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, MyService, and Chrome DevTools MCP servers.
 
 ### Usage
 
@@ -49,9 +49,9 @@ notion_NOTION_TOKEN=ntn_your_token_here
 # (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
 github_GITHUB_TOKEN=ghp_your_token_here
 
-# Webflow Configuration (if using direct API, not remote MCP)
+# MyService Configuration (if using direct API, not remote MCP)
 # (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
-webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
+myservice_MYSERVICE_API_TOKEN=your_myservice_token_here
 
 # Chrome DevTools (usually no auth needed)
 # No environment variables required
@@ -144,13 +144,13 @@ github_GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 
 **Scopes**: Select based on needed permissions (read/write repos, issues, PRs, etc.)
 
-### Webflow (Optional - for direct API access)
+### MyService (Optional - for direct API access)
 
 **Required Variables:**
-- `webflow_WEBFLOW_API_TOKEN` - API token for Webflow workspace (prefixed)
+- `myservice_MYSERVICE_API_TOKEN` - API token for MyService workspace (prefixed)
 
 **How to Obtain:**
-1. Log in to Webflow
+1. Log in to MyService
 2. Go to Account Settings → API Access
 3. Generate new API token
 4. Copy token
@@ -158,10 +158,10 @@ github_GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 **Format (Code Mode prefixed):**
 ```bash
 # Code Mode requires prefixed variable names: {manual_name}_{VAR}
-webflow_WEBFLOW_API_TOKEN=your_webflow_api_token_here
+myservice_MYSERVICE_API_TOKEN=your_myservice_api_token_here
 ```
 
-**Note**: Webflow remote MCP (`mcp-remote https://mcp.webflow.com/sse`) doesn't require local token
+**Note**: MyService remote MCP (`mcp-remote https://mcp.myservice.com/sse`) doesn't require local token
 
 ### Chrome DevTools
 

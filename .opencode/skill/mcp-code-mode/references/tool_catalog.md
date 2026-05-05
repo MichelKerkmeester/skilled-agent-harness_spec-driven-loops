@@ -18,7 +18,7 @@ Use `search_tools()` or `list_tools()` to discover tools at runtime:
 ```typescript
 // Search by task description
 const tools = await search_tools({
-  task_description: "webflow CMS collections",
+  task_description: "myservice CMS collections",
   limit: 10
 });
 
@@ -27,7 +27,7 @@ const allTools = await list_tools();
 
 // Get specific tool interface
 const info = await tool_info({
-  tool_name: "webflow.webflow_collections_list"
+  tool_name: "myservice.myservice_collections_list"
 });
 ```
 
@@ -41,7 +41,7 @@ const info = await tool_info({
 
 ## 2. CONFIGURED MCP SERVERS
 
-1. **Webflow** - 40+ tools (Site & CMS management)
+1. **MyService** - 40+ tools (Site & CMS management)
 2. **ClickUp** - 20+ tools (Task & project management)
 3. **Figma** - 15+ tools (Design file access)
 4. **Chrome DevTools** - 52 tools (26 tools × 2 instances)
@@ -56,77 +56,77 @@ const info = await tool_info({
 
 ---
 
-## 3. WEBFLOW (40+ TOOLS)
+## 3. MYSERVICE (40+ TOOLS)
 
-**Manual name:** `webflow`
-**Naming pattern:** `webflow.webflow_{tool_name}`
+**Manual name:** `myservice`
+**Naming pattern:** `myservice.myservice_{tool_name}`
 
 ### Site Management (5 tools)
 
 | Tool Name | Purpose | Key Parameters |
 |-----------|---------|----------------|
-| `webflow_sites_list` | List all sites | None |
-| `webflow_sites_get` | Get site details | `site_id` |
-| `webflow_sites_publish` | Publish site | `site_id`, `domains` |
-| `webflow_sites_get_custom_domains` | Get custom domains | `site_id` |
-| `webflow_sites_update_publishing_settings` | Update publishing | `site_id`, `settings` |
+| `myservice_sites_list` | List all sites | None |
+| `myservice_sites_get` | Get site details | `site_id` |
+| `myservice_sites_publish` | Publish site | `site_id`, `domains` |
+| `myservice_sites_get_custom_domains` | Get custom domains | `site_id` |
+| `myservice_sites_update_publishing_settings` | Update publishing | `site_id`, `settings` |
 
 ### CMS Collections (8 tools)
 
 | Tool Name | Purpose | Key Parameters |
 |-----------|---------|----------------|
-| `webflow_collections_list` | List CMS collections | `site_id` |
-| `webflow_collections_get` | Get collection details | `collection_id` |
-| `webflow_collections_create` | Create new collection | `site_id`, `displayName`, `singularName` |
-| `webflow_collection_fields_create_static` | Add static field | `collection_id`, `fieldData` |
-| `webflow_collection_fields_create_reference` | Add reference field | `collection_id`, `fieldData`, `referencedCollection` |
-| `webflow_collection_fields_update` | Update field | `collection_id`, `field_id`, `updates` |
-| `webflow_collection_fields_delete` | Delete field | `collection_id`, `field_id` |
-| `webflow_collections_delete` | Delete collection | `collection_id` |
+| `myservice_collections_list` | List CMS collections | `site_id` |
+| `myservice_collections_get` | Get collection details | `collection_id` |
+| `myservice_collections_create` | Create new collection | `site_id`, `displayName`, `singularName` |
+| `myservice_collection_fields_create_static` | Add static field | `collection_id`, `fieldData` |
+| `myservice_collection_fields_create_reference` | Add reference field | `collection_id`, `fieldData`, `referencedCollection` |
+| `myservice_collection_fields_update` | Update field | `collection_id`, `field_id`, `updates` |
+| `myservice_collection_fields_delete` | Delete field | `collection_id`, `field_id` |
+| `myservice_collections_delete` | Delete collection | `collection_id` |
 
 ### CMS Items (7 tools)
 
 | Tool Name | Purpose | Key Parameters |
 |-----------|---------|----------------|
-| `webflow_collections_items_list_items` | List collection items | `collection_id`, `limit`, `offset` |
-| `webflow_collections_items_get_item` | Get specific item | `collection_id`, `item_id` |
-| `webflow_collections_items_create_item` | Create item (draft) | `collection_id`, `fieldData` |
-| `webflow_collections_items_create_item_live` | Create & publish item | `collection_id`, `fieldData` |
-| `webflow_collections_items_update_items` | Update items (draft) | `collection_id`, `item_ids`, `fieldData` |
-| `webflow_collections_items_update_items_live` | Update & publish items | `collection_id`, `item_ids`, `fieldData` |
-| `webflow_collections_items_delete_item` | Delete item | `collection_id`, `item_id` |
+| `myservice_collections_items_list_items` | List collection items | `collection_id`, `limit`, `offset` |
+| `myservice_collections_items_get_item` | Get specific item | `collection_id`, `item_id` |
+| `myservice_collections_items_create_item` | Create item (draft) | `collection_id`, `fieldData` |
+| `myservice_collections_items_create_item_live` | Create & publish item | `collection_id`, `fieldData` |
+| `myservice_collections_items_update_items` | Update items (draft) | `collection_id`, `item_ids`, `fieldData` |
+| `myservice_collections_items_update_items_live` | Update & publish items | `collection_id`, `item_ids`, `fieldData` |
+| `myservice_collections_items_delete_item` | Delete item | `collection_id`, `item_id` |
 
 ### Pages (5 tools)
 
 | Tool Name | Purpose | Key Parameters |
 |-----------|---------|----------------|
-| `webflow_pages_list` | List all pages | `site_id` |
-| `webflow_pages_get_content` | Get page content | `page_id` |
-| `webflow_pages_get_metadata` | Get page metadata | `page_id` |
-| `webflow_pages_update_page_settings` | Update page settings | `page_id`, `settings` |
-| `webflow_pages_update_static_content` | Update static content | `page_id`, `content` |
+| `myservice_pages_list` | List all pages | `site_id` |
+| `myservice_pages_get_content` | Get page content | `page_id` |
+| `myservice_pages_get_metadata` | Get page metadata | `page_id` |
+| `myservice_pages_update_page_settings` | Update page settings | `page_id`, `settings` |
+| `myservice_pages_update_static_content` | Update static content | `page_id`, `content` |
 
 ### Assets (3 tools)
 
 | Tool Name | Purpose | Key Parameters |
 |-----------|---------|----------------|
-| `webflow_assets_list` | List site assets | `site_id` |
-| `webflow_assets_create` | Upload new asset | `site_id`, `file` |
-| `webflow_assets_delete` | Delete asset | `asset_id` |
+| `myservice_assets_list` | List site assets | `site_id` |
+| `myservice_assets_create` | Upload new asset | `site_id`, `file` |
+| `myservice_assets_delete` | Delete asset | `asset_id` |
 
 ### Scripts (3 tools)
 
 | Tool Name | Purpose | Key Parameters |
 |-----------|---------|----------------|
-| `webflow_scripts_list` | List custom scripts | `site_id` |
-| `webflow_scripts_create` | Add custom script | `site_id`, `script`, `location` |
-| `webflow_scripts_update` | Update script | `script_id`, `script` |
+| `myservice_scripts_list` | List custom scripts | `site_id` |
+| `myservice_scripts_create` | Add custom script | `site_id`, `script`, `location` |
+| `myservice_scripts_update` | Update script | `script_id`, `script` |
 
 ### Other Tools
 
-- `webflow_webflow_guide_tool` - Get Webflow API documentation
-- `webflow_forms_list` - List forms
-- `webflow_forms_submissions_list` - List form submissions
+- `myservice_myservice_guide_tool` - Get MyService API documentation
+- `myservice_forms_list` - List forms
+- `myservice_forms_submissions_list` - List form submissions
 - And 10+ more tools for webhooks, domains, users, etc.
 
 ---
@@ -348,21 +348,21 @@ const info = await tool_info({
 ```typescript
 // Find tools for a specific task
 const tools = await search_tools({
-  task_description: "webflow CMS collection management",
+  task_description: "myservice CMS collection management",
   limit: 10
 });
 
 // Result:
 [
   {
-    name: "webflow.webflow_collections_list",
+    name: "myservice.myservice_collections_list",
     description: "List all CMS collections for a site",
-    tags: ["webflow", "cms", "collections", "list"]
+    tags: ["myservice", "cms", "collections", "list"]
   },
   {
-    name: "webflow.webflow_collections_create",
+    name: "myservice.myservice_collections_create",
     description: "Create a new CMS collection",
-    tags: ["webflow", "cms", "collections", "create"]
+    tags: ["myservice", "cms", "collections", "create"]
   }
   // ... more relevant tools
 ]
@@ -373,12 +373,12 @@ const tools = await search_tools({
 ### Example 2: List All Tools from Specific Manual
 
 ```typescript
-// Get all Webflow tools
+// Get all MyService tools
 const allTools = await list_tools();
-const webflowTools = allTools.tools.filter(t => t.startsWith('webflow.'));
+const myserviceTools = allTools.tools.filter(t => t.startsWith('myservice.'));
 
-console.log(`Found ${webflowTools.length} Webflow tools`);
-console.log(webflowTools);
+console.log(`Found ${myserviceTools.length} MyService tools`);
+console.log(myserviceTools);
 ```
 
 ---
@@ -388,7 +388,7 @@ console.log(webflowTools);
 ```typescript
 // Get full TypeScript interface for a tool
 const info = await tool_info({
-  tool_name: "webflow.webflow_collections_items_create_item_live"
+  tool_name: "myservice.myservice_collections_items_create_item_live"
 });
 
 console.log(info.interface);

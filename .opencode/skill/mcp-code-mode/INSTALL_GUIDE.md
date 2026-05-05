@@ -1,6 +1,6 @@
 # MCP Code Mode Installation Guide
 
-Complete installation and configuration guide for the Code Mode MCP server. This enables TypeScript-based orchestration of external MCP tools, giving you unified access to Webflow, Figma, ClickUp, GitHub, Chrome DevTools and other MCP servers through a single `call_tool_chain()` interface. It delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
+Complete installation and configuration guide for the Code Mode MCP server. This enables TypeScript-based orchestration of external MCP tools, giving you unified access to MyService, Figma, ClickUp, GitHub, Chrome DevTools and other MCP servers through a single `call_tool_chain()` interface. It delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
 
 > **Version:** 2.0.0
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../README.md) for complete setup.
@@ -20,11 +20,11 @@ Please help me:
 2. Verify I have npx available for running MCP servers
 3. Create the required configuration files (.utcp_config.json and .env)
 4. Configure Code Mode for my AI environment (I'm using: [Claude Code / OpenCode / VS Code Copilot])
-5. Add my first MCP server (e.g., Webflow, ClickUp, Figma, GitHub)
+5. Add my first MCP server (e.g., MyService, ClickUp, Figma, GitHub)
 6. Verify the installation is working with a test search
 7. Test a basic tool call using the correct naming pattern
 
-My preferred MCP servers are: [Webflow / ClickUp / Figma / GitHub / Chrome DevTools / other]
+My preferred MCP servers are: [MyService / ClickUp / Figma / GitHub / Chrome DevTools / other]
 
 Guide me through each step with the exact commands and configuration needed.
 ```
@@ -88,7 +88,7 @@ Code Mode MCP is a TypeScript execution environment that provides unified access
 | **chrome_devtools_1** | 26      | `chrome-devtools-mcp@latest`            |
 | **chrome_devtools_2** | 26      | `chrome-devtools-mcp@latest` (parallel) |
 | **clickup**           | 21      | `@taazkareem/clickup-mcp-server`        |
-| **webflow**           | 42      | `mcp-remote` (SSE)                      |
+| **myservice**           | 42      | `mcp-remote` (SSE)                      |
 | **Total**             | **159** | **6 manuals**                           |
 
 ### The "2-3 MCP Server Wall" Problem
@@ -136,7 +136,7 @@ Code Mode keeps your context flat at ~1.6k tokens regardless of how many servers
                            │ Tool Calls
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  MCP Servers: Webflow, ClickUp, Figma, GitHub, Chrome, etc. │
+│  MCP Servers: MyService, ClickUp, Figma, GitHub, Chrome, etc. │
 │  (159 tools accessible via Code Mode)                       │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -184,7 +184,7 @@ Before installing Code Mode MCP, ensure you have the following.
   - ClickUp: API key + Team ID (Settings > Apps)
   - Figma: Personal Access Token (Settings > Access Tokens)
   - GitHub: Personal Access Token (Settings > Developer settings)
-  - Webflow: OAuth (configured in Webflow dashboard)
+  - MyService: OAuth (configured in MyService dashboard)
 
 - **Git** for version control
 
@@ -512,18 +512,18 @@ Add servers to `.utcp_config.json` in the `manual_call_templates` array:
 }
 ```
 
-#### Webflow (Remote SSE)
+#### MyService (Remote SSE)
 
 ```json
 {
-  "name": "webflow",
+  "name": "myservice",
   "call_template_type": "mcp",
   "config": {
     "mcpServers": {
-      "webflow": {
+      "myservice": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["mcp-remote", "https://mcp.webflow.com/sse"],
+        "args": ["mcp-remote", "https://mcp.myservice.com/sse"],
         "env": {}
       }
     }
@@ -627,14 +627,14 @@ Add servers to `.utcp_config.json` in the `manual_call_templates` array:
       }
     },
     {
-      "name": "webflow",
+      "name": "myservice",
       "call_template_type": "mcp",
       "config": {
         "mcpServers": {
-          "webflow": {
+          "myservice": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["mcp-remote", "https://mcp.webflow.com/sse"],
+            "args": ["mcp-remote", "https://mcp.myservice.com/sse"],
             "env": {}
           }
         }
@@ -727,10 +727,10 @@ opencode
 
 ```
 # In your AI chat:
-Use search_tools to find tools related to "webflow sites"
+Use search_tools to find tools related to "myservice sites"
 ```
 
-The response should show available Webflow tools.
+The response should show available MyService tools.
 
 ### Check 4: Test a Basic Call
 
@@ -782,7 +782,7 @@ All tool calls must follow this exact pattern with a dot after the manual name a
 
 | Manual              | Pattern                                      | Example Call                                               |
 | ------------------- | -------------------------------------------- | ---------------------------------------------------------- |
-| `webflow`           | `webflow.webflow_{tool}`                     | `webflow.webflow_sites_list({})`                           |
+| `myservice`           | `myservice.myservice_{tool}`                     | `myservice.myservice_sites_list({})`                           |
 | `github`            | `github.github_{tool}`                       | `github.github_get_issue({...})`                           |
 | `clickup`           | `clickup.clickup_{tool}`                     | `clickup.clickup_create_task({...})`                       |
 | `figma`             | `figma.figma_{tool}`                         | `figma.figma_get_file({...})`                              |
@@ -792,25 +792,25 @@ All tool calls must follow this exact pattern with a dot after the manual name a
 
 | Error                         | Wrong                          | Correct                        |
 | ----------------------------- | ------------------------------ | ------------------------------ |
-| **Missing second part**       | `webflow.sites_list()`         | `webflow.webflow_sites_list()` |
-| **Dot instead of underscore** | `webflow.webflow.sites_list()` | `webflow.webflow_sites_list()` |
-| **camelCase**                 | `webflow.webflow_sitesList()`  | `webflow.webflow_sites_list()` |
-| **Wrong manual name**         | `wf.webflow_sites_list()`      | `webflow.webflow_sites_list()` |
+| **Missing second part**       | `myservice.sites_list()`         | `myservice.myservice_sites_list()` |
+| **Dot instead of underscore** | `myservice.myservice.sites_list()` | `myservice.myservice_sites_list()` |
+| **camelCase**                 | `myservice.myservice_sitesList()`  | `myservice.myservice_sites_list()` |
+| **Wrong manual name**         | `wf.myservice_sites_list()`      | `myservice.myservice_sites_list()` |
 
 ### Why This Pattern?
 
 The naming follows the `.utcp_config.json` structure:
 ```json
 {
-  "name": "webflow",           // First part (manual name)
+  "name": "myservice",           // First part (manual name)
   "config": {
     "mcpServers": {
-      "webflow": { ... }       // Second part (server name, joined with underscore to tool)
+      "myservice": { ... }       // Second part (server name, joined with underscore to tool)
     }
   }
 }
 // Tool name comes from the MCP server, combined with underscore
-// Result: webflow.webflow_sites_list
+// Result: myservice.myservice_sites_list
 ```
 
 ### Basic Workflow
@@ -820,7 +820,7 @@ The naming follows the `.utcp_config.json` structure:
 ```typescript
 // Search for relevant tools
 search_tools({
-  task_description: "webflow site management",
+  task_description: "myservice site management",
   limit: 10
 });
 
@@ -832,7 +832,7 @@ search_tools({
 ```typescript
 // Get full interface for specific tool
 tool_info({
-  tool_name: "webflow.webflow_sites_list"
+  tool_name: "myservice.myservice_sites_list"
 });
 
 // Returns: Full TypeScript interface definition
@@ -844,7 +844,7 @@ tool_info({
 // Execute TypeScript with direct tool access
 call_tool_chain({
   code: `
-    const sites = await webflow.webflow_sites_list({});
+    const sites = await myservice.myservice_sites_list({});
     console.log('Found sites:', sites.sites.length);
     return sites;
   `
@@ -922,8 +922,8 @@ timeout = base_overhead + (num_tools × tool_avg) + safety_margin
 call_tool_chain({
   code: `
     // Complex multi-tool workflow
-    const sites = await webflow.webflow_sites_list({});
-    const collections = await webflow.webflow_collections_list({ site_id: sites.sites[0].id });
+    const sites = await myservice.myservice_sites_list({});
+    const collections = await myservice.myservice_collections_list({ site_id: sites.sites[0].id });
     const task = await clickup.clickup_create_task({ name: "Review collections" });
     return { sites, collections, task };
   `,
@@ -958,7 +958,7 @@ call_tool_chain({
 ```typescript
 call_tool_chain({
   code: `
-    const sites = await webflow.webflow_sites_list({});
+    const sites = await myservice.myservice_sites_list({});
     return sites;
   `,
   timeout: 60000
@@ -1003,7 +1003,7 @@ list_tools();
 **Purpose**: Get complete TypeScript interface for a specific tool.
 
 **Parameters**:
-- `tool_name` (string, required): Full tool name (e.g., "webflow.webflow_sites_list")
+- `tool_name` (string, required): Full tool name (e.g., "myservice.myservice_sites_list")
 
 **Example**:
 ```typescript
@@ -1018,7 +1018,7 @@ tool_info({
 
 ## 8. Examples
 
-### Example 1: Webflow Site Management
+### Example 1: MyService Site Management
 
 **Scenario**: List all sites and their collections
 
@@ -1026,14 +1026,14 @@ tool_info({
 call_tool_chain({
   code: `
     // Get all sites
-    const sitesResult = await webflow.webflow_sites_list({});
+    const sitesResult = await myservice.myservice_sites_list({});
     const sites = sitesResult.sites;
 
     console.log(\`Found \${sites.length} sites\`);
 
     // Get collections for first site
     if (sites.length > 0) {
-      const collections = await webflow.webflow_collections_list({
+      const collections = await myservice.myservice_collections_list({
         site_id: sites[0].id
       });
 
@@ -1098,7 +1098,7 @@ call_tool_chain({
 
 ### Example 4: Multi-Tool Workflow
 
-**Scenario**: Figma to GitHub to Webflow pipeline
+**Scenario**: Figma to GitHub to MyService pipeline
 
 ```typescript
 call_tool_chain({
@@ -1121,9 +1121,9 @@ call_tool_chain({
       });
       console.log(\`Issue created: \${issue.html_url}\`);
 
-      // Step 3: Add to Webflow CMS queue
-      console.log('Adding to Webflow CMS...');
-      const cmsItem = await webflow.webflow_collections_items_create_item_live({
+      // Step 3: Add to external CMS queue
+      console.log('Adding to external CMS...');
+      const cmsItem = await myservice.myservice_collections_items_create_item_live({
         collection_id: "YOUR_COLLECTION_ID",
         request: {
           items: [{
@@ -1225,12 +1225,12 @@ call_tool_chain({
 
     // Execute operations with fallbacks
     const sites = await tryExecute('list-sites',
-      () => webflow.webflow_sites_list({})
+      () => myservice.myservice_sites_list({})
     );
 
     if (sites) {
       await tryExecute('get-collections',
-        () => webflow.webflow_collections_list({ site_id: sites.sites[0].id })
+        () => myservice.myservice_collections_list({ site_id: sites.sites[0].id })
       );
     }
 
@@ -1249,8 +1249,8 @@ call_tool_chain({
 
 | Error Message                                | Cause                        | Solution                                  |
 | -------------------------------------------- | ---------------------------- | ----------------------------------------- |
-| `Tool not found: webflow.sites_list`         | Missing second manual part   | Use `webflow.webflow_sites_list`          |
-| `Tool not found: webflow.webflow.sites_list` | Dot instead of underscore    | Use `webflow.webflow_sites_list`          |
+| `Tool not found: myservice.sites_list`         | Missing second manual part   | Use `myservice.myservice_sites_list`          |
+| `Tool not found: myservice.myservice.sites_list` | Dot instead of underscore    | Use `myservice.myservice_sites_list`          |
 | `Execution timeout exceeded`                 | Complex operation            | Increase `timeout` parameter              |
 | `UTCP_CONFIG_FILE not set`                   | Missing environment variable | Set path to `.utcp_config.json`           |
 | `Environment variable X not found`           | Missing in .env              | Add variable to `.env` file               |
@@ -1281,7 +1281,7 @@ See the [Prefixed Environment Variables](#critical-prefixed-environment-variable
 
 ### Tool Not Found Error
 
-**Problem**: `Error: Tool not found: webflow.sites_list`
+**Problem**: `Error: Tool not found: myservice.sites_list`
 
 **Cause**: Missing the second manual/server part in the tool name
 
@@ -1289,19 +1289,19 @@ See the [Prefixed Environment Variables](#critical-prefixed-environment-variable
 1. Use correct naming pattern: `{manual_name}.{manual_name}_{tool_name}`
    ```typescript
    // Wrong: missing second part
-   await webflow.sites_list({});
+   await myservice.sites_list({});
 
    // Wrong: dot instead of underscore
-   await webflow.webflow.sites_list({});
+   await myservice.myservice.sites_list({});
 
    // Correct
-   await webflow.webflow_sites_list({});
+   await myservice.myservice_sites_list({});
    ```
 
 2. Use tool discovery to find exact names:
    ```typescript
    const tools = await search_tools({
-     task_description: "webflow sites",
+     task_description: "myservice sites",
      limit: 10
    });
    console.log(tools.map(t => t.name));
@@ -1334,12 +1334,12 @@ See the [Prefixed Environment Variables](#critical-prefixed-environment-variable
 
 ### MCP Server Fails to Start
 
-**Problem**: `Error: Failed to start MCP server: webflow`
+**Problem**: `Error: Failed to start MCP server: myservice`
 
 **Solutions**:
 1. Test the command manually:
    ```bash
-   npx mcp-remote https://mcp.webflow.com/sse
+   npx mcp-remote https://mcp.myservice.com/sse
    ```
 
 2. Check npm/npx is in PATH:
@@ -1364,11 +1364,11 @@ See the [Prefixed Environment Variables](#critical-prefixed-environment-variable
 2. Check manual names do not have invalid characters:
    ```json
    // Good
-   "name": "webflow"
+   "name": "myservice"
    "name": "chrome_devtools_1"
 
    // Bad (hyphens not allowed)
-   "name": "webflow-api"
+   "name": "myservice-api"
    "name": "my server"
    ```
 
@@ -1404,17 +1404,17 @@ See the [Prefixed Environment Variables](#critical-prefixed-environment-variable
 
 ### TypeError: Not a Function
 
-**Problem**: `TypeError: webflow.webflow is not a function`
+**Problem**: `TypeError: myservice.myservice is not a function`
 
 **Cause**: Trying to call the server object as a function
 
 **Solution**: Add the tool name after the second part:
 ```typescript
 // Wrong: missing tool name
-await webflow.webflow();
+await myservice.myservice();
 
 // Correct: include tool name
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 ```
 
 ---
@@ -1431,7 +1431,7 @@ await webflow.webflow_sites_list({});
 | Server              | Package                                  | Tools | Authentication        |
 | ------------------- | ---------------------------------------- | ----- | --------------------- |
 | **GitHub**          | `@modelcontextprotocol/server-github`    | 26    | Personal Access Token |
-| **Webflow**         | `mcp-remote https://mcp.webflow.com/sse` | 42    | OAuth (dashboard)     |
+| **MyService**         | `mcp-remote https://mcp.myservice.com/sse` | 42    | OAuth (dashboard)     |
 | **ClickUp**         | `@taazkareem/clickup-mcp-server`         | 21    | API Key + Team ID     |
 | **Figma**           | `figma-developer-mcp`                    | 18    | Personal Access Token |
 | **Chrome DevTools** | `chrome-devtools-mcp@latest`             | 26    | None                  |
@@ -1518,7 +1518,7 @@ env | grep -E "(CLICKUP|FIGMA|GITHUB)"
 //             └── Manual name (from "name" field)
 
 // Examples:
-webflow.webflow_sites_list({});
+myservice.myservice_sites_list({});
 github.github_get_issue({ owner: "foo", repo: "bar", issue_number: 123 });
 clickup.clickup_create_task({ name: "My Task", listName: "Sprint" });
 figma.figma_get_file({ fileId: "abc123" });
@@ -1529,14 +1529,14 @@ chrome_devtools_1.chrome_devtools_1_new_page({});
 
 **Tool Discovery:**
 ```typescript
-const tools = await search_tools({ task_description: "webflow cms", limit: 10 });
+const tools = await search_tools({ task_description: "myservice cms", limit: 10 });
 console.log(tools.map(t => t.name));
 ```
 
 **Single Tool Call:**
 ```typescript
 call_tool_chain({
-  code: `await webflow.webflow_sites_list({})`
+  code: `await myservice.myservice_sites_list({})`
 });
 ```
 

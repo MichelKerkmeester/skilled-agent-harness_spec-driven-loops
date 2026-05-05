@@ -17,7 +17,7 @@ This document provides five comprehensive workflow patterns for Code Mode UTCP.
 
 **Patterns covered:**
 
-1. **Webflow Workflow** - Basic tool calling and data processing
+1. **MyService Workflow** - Basic tool calling and data processing
 2. **ClickUp Workflow** - Task creation with verification
 3. **Notion Workflow** - Database operations with `notion_API_` prefix
 4. **Multi-Tool Orchestration** - Complex cross-platform workflows
@@ -25,9 +25,9 @@ This document provides five comprehensive workflow patterns for Code Mode UTCP.
 
 ---
 
-## 2. WEBFLOW WORKFLOW
+## 2. MYSERVICE WORKFLOW
 
-**Scenario:** Get all Webflow sites and their CMS collections
+**Scenario:** Get all MyService sites and their CMS collections
 
 **Demonstrates:**
 - Basic tool calling
@@ -41,10 +41,10 @@ This document provides five comprehensive workflow patterns for Code Mode UTCP.
 ```typescript
 call_tool_chain({
   code: `
-    console.log('Fetching Webflow sites...');
+    console.log('Fetching MyService sites...');
 
     // Step 1: List all sites (note the naming pattern)
-    const sitesResult = await webflow.webflow_sites_list({});
+    const sitesResult = await myservice.myservice_sites_list({});
     const sites = sitesResult.sites;
 
     console.log(\`Found \${sites.length} site(s)\`);
@@ -56,7 +56,7 @@ call_tool_chain({
 
       console.log(\`Getting collections for: \${siteName}\`);
 
-      const collectionsResult = await webflow.webflow_collections_list({
+      const collectionsResult = await myservice.myservice_collections_list({
         site_id: siteId
       });
 
@@ -101,7 +101,7 @@ call_tool_chain({
     ]
   },
   logs: [
-    "Fetching Webflow sites...",
+    "Fetching MyService sites...",
     "Found 1 site(s)",
     "Getting collections for: A. Nobel & Zn"
   ]
@@ -284,7 +284,7 @@ call_tool_chain({
 
 ## 5. MULTI-TOOL ORCHESTRATION
 
-**Scenario:** Design-to-implementation workflow across three platforms (Figma → ClickUp → Webflow)
+**Scenario:** Design-to-implementation workflow across three platforms (Figma → ClickUp → MyService)
 
 **Demonstrates:**
 - Multi-tool orchestration
@@ -320,10 +320,10 @@ call_tool_chain({
 
     console.log(\`Task created: \${task.url}\`);
 
-    // Step 3: Update Webflow CMS collection with design reference
-    console.log('Updating Webflow CMS...');
+    // Step 3: Update external CMS collection with design reference
+    console.log('Updating external CMS...');
 
-    const cmsItem = await webflow.webflow_collections_items_create_item_live({
+    const cmsItem = await myservice.myservice_collections_items_create_item_live({
       collection_id: 'design-queue-collection-id',
       request: {
         items: [{
@@ -387,7 +387,7 @@ call_tool_chain({
     "Design has 15 components",
     "Creating implementation task...",
     "Task created: https://app.clickup.com/t/task123",
-    "Updating Webflow CMS...",
+    "Updating external CMS...",
     "Workflow complete!"
   ]
 }
@@ -395,7 +395,7 @@ call_tool_chain({
 
 **Key learnings:**
 - Three different MCP tools orchestrated in sequence
-- Data flows from Figma → ClickUp → Webflow
+- Data flows from Figma → ClickUp → MyService
 - Design data (`design.name`, `componentCount`) used in all three steps
 - Extended timeout (60s) for complex workflow
 - Single execution prevents context switching overhead
@@ -406,7 +406,7 @@ call_tool_chain({
 - ✅ Error handling (any failure rolls back entire workflow)
 - ✅ Single execution (no multiple round trips)
 - ✅ Console logging (track progress through complex workflow)
-- ✅ Complex data flow (Figma → ClickUp → Webflow)
+- ✅ Complex data flow (Figma → ClickUp → MyService)
 - ✅ Time efficiency (3 tools, 1 execution vs 15+ round trips)
 
 ---
@@ -433,11 +433,11 @@ call_tool_chain({
       errors: []
     };
 
-    // Step 1: Attempt to fetch Webflow sites with error handling
+    // Step 1: Attempt to fetch MyService sites with error handling
     try {
-      console.log('Attempting to fetch Webflow sites...');
+      console.log('Attempting to fetch MyService sites...');
 
-      const sitesResult = await webflow.webflow_sites_list({});
+      const sitesResult = await myservice.myservice_sites_list({});
       results.sites = sitesResult.sites;
 
       console.log(\`✓ Successfully fetched \${results.sites.length} sites\`);
@@ -465,7 +465,7 @@ call_tool_chain({
         const siteId = results.sites[0].id;
         console.log(\`Fetching collections for site: \${siteId}\`);
 
-        const collectionsResult = await webflow.webflow_collections_list({
+        const collectionsResult = await myservice.myservice_collections_list({
           site_id: siteId
         });
         results.collections = collectionsResult.collections;
@@ -514,7 +514,7 @@ call_tool_chain({
     timestamp: "2025-01-23T10:30:00Z"
   },
   logs: [
-    "Attempting to fetch Webflow sites...",
+    "Attempting to fetch MyService sites...",
     "✓ Successfully fetched 1 sites",
     "Fetching collections for site: ...",
     "✓ Successfully fetched 21 collections"
@@ -544,7 +544,7 @@ call_tool_chain({
     timestamp: "2025-01-23T10:30:05Z"
   },
   logs: [
-    "Attempting to fetch Webflow sites...",
+    "Attempting to fetch MyService sites...",
     "✓ Successfully fetched 1 sites",
     "Fetching collections for site: ...",
     "✗ Failed to fetch collections: Site not found or access denied",
@@ -574,7 +574,7 @@ call_tool_chain({
     failedAt: "fetch_sites"
   },
   logs: [
-    "Attempting to fetch Webflow sites...",
+    "Attempting to fetch MyService sites...",
     "✗ Failed to fetch sites: Authentication failed: Invalid API token"
   ]
 }
@@ -623,13 +623,13 @@ call_tool_chain({
   code: `
     // Independent operations - execute in parallel
     const [sites, workspace, figmaFile] = await Promise.all([
-      webflow.webflow_sites_list({}),
+      myservice.myservice_sites_list({}),
       clickup.clickup_get_workspace_hierarchy({}),
       figma.figma_get_file({ fileKey: "abc123" })
     ]);
     
     return {
-      webflow: { siteCount: sites.sites.length },
+      myservice: { siteCount: sites.sites.length },
       clickup: { spaceCount: workspace.spaces.length },
       figma: { fileName: figmaFile.name }
     };
@@ -646,13 +646,13 @@ call_tool_chain({
 call_tool_chain({
   code: `
     const results = await Promise.allSettled([
-      webflow.webflow_sites_list({}),
+      myservice.myservice_sites_list({}),
       clickup.clickup_get_workspace_hierarchy({}),
       figma.figma_get_file({ fileKey: "invalid-key" })  // Will fail
     ]);
     
     const processed = results.map((result, index) => {
-      const sources = ['webflow', 'clickup', 'figma'];
+      const sources = ['myservice', 'clickup', 'figma'];
       if (result.status === 'fulfilled') {
         return { source: sources[index], success: true, data: result.value };
       } else {
@@ -678,13 +678,13 @@ call_tool_chain({
   code: `
     // Phase 1: Fetch all data in parallel
     const [sites, workspace] = await Promise.all([
-      webflow.webflow_sites_list({}),
+      myservice.myservice_sites_list({}),
       clickup.clickup_get_workspace_hierarchy({})
     ]);
     
     // Phase 2: Sequential processing (depends on parallel results)
     const firstSite = sites.sites[0];
-    const collections = await webflow.webflow_collections_list({ 
+    const collections = await myservice.myservice_collections_list({ 
       site_id: firstSite.id 
     });
     
@@ -720,7 +720,7 @@ call_tool_chain({
       return results;
     }
     
-    const collectionsResult = await webflow.webflow_collections_list({ 
+    const collectionsResult = await myservice.myservice_collections_list({ 
       site_id: "your-site-id" 
     });
     
@@ -729,7 +729,7 @@ call_tool_chain({
       collectionsResult.collections.slice(0, 9),
       3,
       async (collection) => {
-        const items = await webflow.webflow_collections_items_list_items({
+        const items = await myservice.myservice_collections_items_list_items({
           collection_id: collection.id,
           limit: 5
         });
@@ -770,7 +770,7 @@ call_tool_chain({
     }
     
     return await safeParallel([
-      { name: 'webflow', fn: () => webflow.webflow_sites_list({}) },
+      { name: 'myservice', fn: () => myservice.myservice_sites_list({}) },
       { name: 'clickup', fn: () => clickup.clickup_get_workspace_hierarchy({}) },
       { name: 'figma', fn: () => figma.figma_get_file({ fileKey: "test" }) }
     ]);
@@ -786,10 +786,10 @@ call_tool_chain({
 ### Traditional Multi-Tool Approach (Without Code Mode)
 
 **Steps required:**
-1. Call `webflow_sites_list` → Wait 500ms → Process in AI context
-2. Extract site ID → Call `webflow_collections_list` → Wait 500ms → Process in AI context
+1. Call `myservice_sites_list` → Wait 500ms → Process in AI context
+2. Extract site ID → Call `myservice_collections_list` → Wait 500ms → Process in AI context
 3. Call `clickup_create_task` → Wait 500ms → Process in AI context
-4. Call `webflow_cms_create_item` → Wait 500ms → Process in AI context
+4. Call `myservice_cms_create_item` → Wait 500ms → Process in AI context
 
 **Total time:** ~2000ms + 4× context overhead
 **Total API calls:** 4 separate calls
@@ -887,16 +887,16 @@ call_tool_chain({
 
 **Good:**
 ```typescript
-const sitesResult = await webflow.webflow_sites_list({});
+const sitesResult = await myservice.myservice_sites_list({});
 const firstSite = sitesResult.sites[0];
-const collectionsForSite = await webflow.webflow_collections_list({ site_id: firstSite.id });
+const collectionsForSite = await myservice.myservice_collections_list({ site_id: firstSite.id });
 ```
 
 **Bad:**
 ```typescript
-const r = await webflow.webflow_sites_list({});
+const r = await myservice.myservice_sites_list({});
 const s = r.sites[0];
-const c = await webflow.webflow_collections_list({ site_id: s.id });
+const c = await myservice.myservice_collections_list({ site_id: s.id });
 ```
 
 ---
@@ -905,11 +905,11 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 
 **Five workflow patterns demonstrated:**
 
-1. **Single-tool workflow** (Webflow) - Basic tool calling, data processing
+1. **Single-tool workflow** (MyService) - Basic tool calling, data processing
 2. **Task creation workflow** (ClickUp) - Creation + verification pattern
 3. **Notion workflow** - Database querying and page creation with `notion_API_` prefix
-4. **Multi-tool orchestration** (Figma → ClickUp → Webflow) - Complex data flow
-5. **Error handling** (Webflow with fallbacks) - Robust error management
+4. **Multi-tool orchestration** (Figma → ClickUp → MyService) - Complex data flow
+5. **Error handling** (MyService with fallbacks) - Robust error management
 6. **Parallel execution** - Promise.all, Promise.allSettled, batching patterns
 
 **Key benefits of Code Mode:**

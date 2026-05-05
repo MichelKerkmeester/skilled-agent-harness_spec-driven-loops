@@ -63,7 +63,7 @@ Simple one-liner install? → Just document the command inline
 ### MCP Server Guides
 **Purpose**: Install and configure Model Context Protocol servers for AI assistants
 
-**Examples**: Spec-kit-memory, browser-debugger, Webflow MCP, Figma MCP
+**Examples**: Spec-kit-memory, browser-debugger, external-service MCP, Figma MCP
 
 **Key Sections**:
 - AI-First prompt for assisted installation
@@ -402,7 +402,7 @@ Complete installation and configuration guide for [tool name], [primary purpose]
 ```
 Complete installation and configuration guide for the Code Mode MCP server, enabling 
 TypeScript-based orchestration of external MCP tools. Provides unified access to 
-Webflow, Figma, ClickUp, GitHub, Chrome DevTools, and other MCP servers through a 
+Figma, ClickUp, GitHub, Chrome DevTools, and other external service MCP servers through a 
 single `call_tool_chain()` interface. Delivers 98.7% context reduction and 60% 
 faster execution compared to individual tool calls.
 ```

@@ -289,7 +289,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 9. Capture stderr (`2>&1`) to catch tool errors and warnings.
 10. Classify the use case (1 / 2 / 3) before dispatching — the smart router refuses dispatches that do not map to one of the three.
 11. **Run the Provider Auth Pre-Flight once per session** (see §3 Provider Auth Pre-Flight). Cache the configured-providers list. If the default `opencode-go` is missing, ASK the user — never silently substitute the model. If a later dispatch returns an auth error, invalidate the cache and rerun the pre-flight before retrying.
-12. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` detect WEBFLOW, OPENCODE, or UNKNOWN from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, keep the route UNKNOWN and ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
+12. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
 
 ### NEVER
 
@@ -393,4 +393,4 @@ Key integrations:
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/cli_reference.md`, `references/integration_patterns.md`, `assets/prompt_quality_card.md`, `assets/prompt_templates.md`, `references/agent_delegation.md`, `references/opencode_tools.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Related skills: `cli-claude-code`, `cli-codex`, `cli-copilot`, and `cli-gemini` for sibling cross-AI dispatch; `system-spec-kit` for handback; `sk-code` plus the selected overlay for generated code; `sk-deep-research` and `sk-deep-review` for loop execution; and `mcp-code-mode` for MCP-backed tools.
+Related skills: `cli-claude-code`, `cli-codex`, `cli-copilot`, and `cli-gemini` for sibling cross-AI dispatch; `system-spec-kit` for handback; `sk-code` plus the selected overlay for generated code; `deep-research` and `deep-review` for loop execution; and `mcp-code-mode` for MCP-backed tools.

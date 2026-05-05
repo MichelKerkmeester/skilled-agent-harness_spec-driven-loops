@@ -59,7 +59,7 @@ Some paths in the workspace are EXPLICITLY canonical — official authoring chec
 | Pattern | Why |
 |---|---|
 | `.opencode/skill/*/assets/opencode/**` | sk-code OpenCode authoring checklists + recipes (sk-code v3.2.0.0+) |
-| `.opencode/skill/*/assets/motion_dev/**` | Cross-stack Motion.dev assets (sk-code v3.1.0.0+) |
+| `.opencode/skill/*/assets/<library>/**` | Library-specific assets (sk-code v3.1.0.0+) |
 | `.opencode/skill/*/references/**` | Skill reference docs (broadly canonical) |
 
 ### Behavior

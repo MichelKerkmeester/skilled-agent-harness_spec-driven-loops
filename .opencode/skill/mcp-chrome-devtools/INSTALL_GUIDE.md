@@ -328,7 +328,7 @@ When using MCP, Chrome DevTools is a Code Mode provider, not a standalone MCP se
 ### When to Use MCP
 
 Use MCP when you:
-- Already use Code Mode for other tools such as Webflow or Figma
+- Already use Code Mode for other tools such as external services or Figma
 - Need to chain browser operations with other MCP tools
 - Require parallel browser testing to compare multiple sites at once
 - Need complex multi-step automation in TypeScript

@@ -426,7 +426,7 @@ wait
 A: Use cli-opencode when the task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime, when you want a parallel detached session for ablation or worker farms, or when a non-Anthropic CLI needs OpenCode-specific plugins. For raw model dispatches, use the appropriate sibling.
 
 **Q: Can OpenCode CLI search the web?**
-A: Indirectly — the dispatched session can call Code Mode (mcp-code-mode) to reach Webflow / ClickUp / Figma / Chrome DevTools, or call CocoIndex for semantic code search, but there is no first-class `--search` flag. For Google Search grounding use cli-gemini; for Codex's `--search` use cli-codex.
+A: Indirectly — the dispatched session can call Code Mode (mcp-code-mode) to reach external services / ClickUp / Figma / Chrome DevTools, or call CocoIndex for semantic code search, but there is no first-class `--search` flag. For Google Search grounding use cli-gemini; for Codex's `--search` use cli-codex.
 
 **Q: How does the self-invocation guard work?**
 A: Three layers (per ADR-001). Layer 1 checks for any `OPENCODE_*` env var. Layer 2 walks the process ancestry looking for `opencode`. Layer 3 probes `~/.opencode/state/<id>/lock`. ANY positive trips the guard. The router then refuses unless the prompt has explicit parallel-session keywords.

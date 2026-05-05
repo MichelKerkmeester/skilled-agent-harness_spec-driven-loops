@@ -302,7 +302,7 @@ Defined in `mcp_server/skill_advisor/lib/scorer/weights-config.ts:8-19` and exer
 
 `semantic_shadow` is locked at `0.00` live weight (ADR-006). The semantic lane is scored shadow-only and inert until a future weight rebalance is justified by measured live-corpus evidence; no automated promotion subsystem is wired today.
 
-Alias canonicalization lives in `mcp_server/skill_advisor/lib/scorer/aliases.ts`. It is intentionally narrow: command-backed skills may list exact accepted ids such as `sk-deep-review`, `spec_kit:deep-review`, `/spec_kit:deep-review`, and `command-spec-kit-deep-review`, but unrelated ids never compare equal through fuzzy or prefix matching.
+Alias canonicalization lives in `mcp_server/skill_advisor/lib/scorer/aliases.ts`. It is intentionally narrow: command-backed skills may list exact accepted ids such as `deep-review`, `spec_kit:deep-review`, `/spec_kit:deep-review`, and `command-spec-kit-deep-review`, but unrelated ids never compare equal through fuzzy or prefix matching.
 
 ### Daemon + freshness + trust states
 

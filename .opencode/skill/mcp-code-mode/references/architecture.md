@@ -72,7 +72,7 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
          ┌─────────────────┴─────────────────┐
          │                                   │
 ┌────────▼────────┐  ┌───────▼────────┐  ┌──▼──────────┐
-│  Webflow         │  │  ClickUp       │  │  Figma      │
+│  MyService         │  │  ClickUp       │  │  Figma      │
 │  MCP Server     │  │  MCP Server    │  │  MCP Server │
 │  (40+ tools)    │  │  (20+ tools)   │  │  (15+ tools)│
 └─────────────────┘  └────────────────┘  └─────────────┘
@@ -180,13 +180,13 @@ Result: 98.7% token savings, unlimited scalability
 
 ```
 AI Agent
-  ↓ (1) call_tool_chain({ code: "await webflow.webflow_sites_list({})" })
+  ↓ (1) call_tool_chain({ code: "await myservice.myservice_sites_list({})" })
 Code Mode MCP
   ↓ (2) Execute in V8 Isolate
 V8 Sandbox
-  ↓ (3) await webflow.webflow_sites_list({})
-Webflow MCP Server
-  ↓ (4) Fetch sites from Webflow API
+  ↓ (3) await myservice.myservice_sites_list({})
+MyService MCP Server
+  ↓ (4) Fetch sites from MyService API
   ↓ (5) Return { sites: [...] }
 V8 Sandbox
   ↓ (6) Capture result
@@ -204,7 +204,7 @@ AI Agent
 4. Tool discovery, schema inspection, and tool calls in one execution
 5. Aggregated results + logs returned to AI
 
-**Example (Figma → ClickUp → Webflow):**
+**Example (Figma → ClickUp → MyService):**
 
 ```
 AI Agent
@@ -218,8 +218,8 @@ V8 Sandbox (State Persisted)
   ├─ (2) const task = await clickup.clickup_create_task({ name: design.name })
   │   ↓ ClickUp MCP → Returns task data
   │   ↓ State: { design, task }
-  └─ (3) const cms = await webflow.webflow_collections_items_create({ data: { design, task } })
-      ↓ Webflow MCP → Returns CMS item
+  └─ (3) const cms = await myservice.myservice_collections_items_create({ data: { design, task } })
+      ↓ MyService MCP → Returns CMS item
       ↓ State: { design, task, cms }
       ↓ return { design, task, cms }
 Code Mode MCP
@@ -248,21 +248,21 @@ AI Agent
 
 ```
 AI Agent
-  ↓ search_tools({ task_description: "webflow collections" })
+  ↓ search_tools({ task_description: "myservice collections" })
 Code Mode MCP
   ↓ Search tool repository (keyword matching)
   ↓ Return: [
-      { name: "webflow.webflow_collections_list", description: "..." },
-      { name: "webflow.webflow_collections_get", description: "..." }
+      { name: "myservice.myservice_collections_list", description: "..." },
+      { name: "myservice.myservice_collections_get", description: "..." }
     ]
 AI Agent
-  ↓ tool_info({ tool_name: "webflow.webflow_collections_list" })
+  ↓ tool_info({ tool_name: "myservice.myservice_collections_list" })
 Code Mode MCP
   ↓ Load full interface for specific tool
-  ↓ Return: `function webflow_collections_list(params: { site_id: string }): Promise<...>`
+  ↓ Return: `function myservice_collections_list(params: { site_id: string }): Promise<...>`
 AI Agent
   ↓ Generate code using interface
-  ↓ call_tool_chain({ code: "await webflow.webflow_collections_list({ site_id: '...' })" })
+  ↓ call_tool_chain({ code: "await myservice.myservice_collections_list({ site_id: '...' })" })
 Code Mode MCP
   ↓ Execute code
 ```
@@ -350,7 +350,7 @@ const task = await clickup.clickup_create_task({
   name: design.name  // Can use design data
 });
 
-const cms = await webflow.webflow_collections_items_create({
+const cms = await myservice.myservice_collections_items_create({
   data: {
     designUrl: design.url,  // Still available
     taskUrl: task.url       // And task data
@@ -372,14 +372,14 @@ return { design, task, cms };  // All data returned
 {
   "manual_call_templates": [
     {
-      "name": "webflow",          // Becomes namespace
+      "name": "myservice",          // Becomes namespace
       "call_template_type": "mcp",
       "config": {
         "mcpServers": {
-          "webflow": {
+          "myservice": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["mcp-remote", "https://mcp.webflow.com/sse"]
+            "args": ["mcp-remote", "https://mcp.myservice.com/sse"]
           }
         }
       }
@@ -390,17 +390,17 @@ return { design, task, cms };  // All data returned
 
 **Runtime behavior:**
 1. Code Mode loads `.utcp_config.json` on startup
-2. Creates namespace for each `name` field (`webflow`, `clickup`, etc.)
+2. Creates namespace for each `name` field (`myservice`, `clickup`, etc.)
 3. Registers MCP servers with tool repository
 4. Makes namespaces available in V8 sandbox
 5. Routes tool calls to appropriate MCP server
 
 **In execution:**
 ```typescript
-// "webflow" namespace available because config has:
-// { "name": "webflow", ... }
+// "myservice" namespace available because config has:
+// { "name": "myservice", ... }
 
-await webflow.webflow_sites_list({});
+await myservice.myservice_sites_list({});
 //    ↑ namespace from config
 ```
 

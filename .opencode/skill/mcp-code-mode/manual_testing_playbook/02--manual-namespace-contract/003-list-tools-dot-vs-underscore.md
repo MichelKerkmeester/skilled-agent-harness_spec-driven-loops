@@ -70,7 +70,7 @@ Capture the chosen entry literal, the dot-form error, and the underscore-form re
 
 ### Optional Supplemental Checks
 
-- Test multiple manuals (e.g., `figma`, `webflow`) to confirm the rule is uniform across servers.
+- Test multiple manuals (e.g., `figma`, `myservice`) to confirm the rule is uniform across servers.
 
 ---
 

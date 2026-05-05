@@ -238,7 +238,7 @@ Common MCP tools include navigation, screenshots, console messages, viewport res
 
 #### When to Prefer MCP
 
-- Already using Code Mode for other tools (Webflow, Figma, etc.)
+- Already using Code Mode for other tools (external services, Figma, etc.)
 - Need to chain browser operations with other MCP tools
 - **Parallel browser testing** - compare multiple sites/viewports simultaneously
 - Complex multi-step automation in TypeScript

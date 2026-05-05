@@ -16,7 +16,7 @@ trigger_phrases:
 
 # sk-code-review
 
-`sk-code-review` is the findings-first review baseline. It enforces severity, evidence, security, and correctness rules. For stack/surface conventions, pair it with `sk-code` surface evidence (`WEBFLOW`, `OPENCODE`, or `UNKNOWN`).
+`sk-code-review` is the findings-first review baseline. It enforces severity, evidence, security, and correctness rules. For stack/surface conventions, pair it with `sk-code` surface evidence. `sk-code` is the source of truth for available surfaces.
 
 ---
 
@@ -32,9 +32,8 @@ sk-code-review baseline -> sk-code surface evidence -> findings-first output
 
 | Surface Evidence | Use When |
 | --- | --- |
-| `sk-code:WEBFLOW` | Webflow/frontend HTML/CSS/JS work |
-| `sk-code:OPENCODE` | `.opencode/` system code, scripts, skills, agents, commands, config |
-| `sk-code:UNKNOWN` | Surface is unclear; review baseline-only and disclose uncertainty |
+| `sk-code:<surface>` | `sk-code` has detected the stack or code surface |
+| Baseline-only | Surface is unclear; review baseline-only and disclose uncertainty |
 
 ---
 
@@ -86,7 +85,7 @@ sk-code-review baseline -> sk-code surface evidence -> findings-first output
 ## Review Context
 
 **Baseline used**: sk-code-review
-**Surface evidence used**: sk-code:WEBFLOW | sk-code:OPENCODE | sk-code:UNKNOWN
+**Surface evidence used**: sk-code:<surface>
 ```
 
 ---
@@ -99,4 +98,4 @@ sk-code-review baseline -> sk-code surface evidence -> findings-first output
 | [references/review_core.md](./references/review_core.md) | Shared review doctrine |
 | [references/security_checklist.md](./references/security_checklist.md) | Mandatory security and reliability checks |
 | [references/code_quality_checklist.md](./references/code_quality_checklist.md) | Correctness, KISS, DRY checks |
-| [sk-code SKILL.md](../sk-code/SKILL.md) | WEBFLOW and OPENCODE surface standards |
+| [sk-code SKILL.md](../sk-code/SKILL.md) | Source of truth for surface-aware standards |

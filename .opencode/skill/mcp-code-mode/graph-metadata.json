@@ -107,7 +107,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Notion, Figma, Webflow, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration. It matters because it standardizes how external MCP tools are discovered and invoked with low context overhead and type-safe execution.",
+    "causal_summary": "MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Notion, Figma, MyService, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration. It matters because it standardizes how external MCP tools are discovered and invoked with low context overhead and type-safe execution.",
     "source_docs": [
       "SKILL.md",
       "README.md",

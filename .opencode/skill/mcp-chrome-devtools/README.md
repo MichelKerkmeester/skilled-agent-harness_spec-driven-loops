@@ -501,7 +501,7 @@ jq '.state' status.json
 
 **Q: When should I use the CLI path versus the MCP path?**
 
-A: Use the CLI path (bdg) by default. It installs in one command, has lower token cost, and gives access to more CDP methods. Switch to MCP when you are already inside a `call_tool_chain()` block using other Code Mode tools (Figma, Webflow, etc.) and want to chain browser operations with them, or when you need two or more browsers running in parallel for side-by-side comparison testing. The skill's routing logic detects both cases automatically based on keyword signals in the request.
+A: Use the CLI path (bdg) by default. It installs in one command, has lower token cost, and gives access to more CDP methods. Switch to MCP when you are already inside a `call_tool_chain()` block using other Code Mode tools (Figma, external services, etc.) and want to chain browser operations with them, or when you need two or more browsers running in parallel for side-by-side comparison testing. The skill's routing logic detects both cases automatically based on keyword signals in the request.
 
 **Q: How do I prevent browser processes from accumulating across multiple script runs?**
 

@@ -42,14 +42,14 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
   },
   "manual_call_templates": [
     {
-      "name": "webflow",
+      "name": "myservice",
       "call_template_type": "mcp",
       "config": {
         "mcpServers": {
-          "webflow": {
+          "myservice": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["mcp-remote", "https://mcp.webflow.com/sse"],
+            "args": ["mcp-remote", "https://mcp.myservice.com/sse"],
             "env": {}
           }
         }
@@ -189,10 +189,10 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 **Examples:**
 ```json
-"name": "webflow"           // ✅ Good
+"name": "myservice"           // ✅ Good
 "name": "clickup"           // ✅ Good
 "name": "chrome_devtools_1" // ✅ Good (with instance number)
-"name": "webflow-api"       // ❌ Bad (hyphens not allowed)
+"name": "myservice-api"       // ❌ Bad (hyphens not allowed)
 "name": "my server"         // ❌ Bad (spaces not allowed)
 ```
 
@@ -318,8 +318,8 @@ notion_NOTION_TOKEN=ntn_your_token_here
 # GitHub Configuration (prefix: github)
 github_GITHUB_TOKEN=ghp_your_token_here
 
-# Webflow (prefix: webflow, if using direct API)
-webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
+# MyService (prefix: myservice, if using direct API)
+myservice_MYSERVICE_API_TOKEN=your_myservice_token_here
 
 # Chrome DevTools (usually no auth needed)
 # No environment variables required for Chrome DevTools
@@ -456,18 +456,18 @@ call_tool_chain({
 
 ## 6. COMMON SERVER CONFIGURATIONS
 
-### Webflow (Remote SSE)
+### MyService (Remote SSE)
 
 ```json
 {
-  "name": "webflow",
+  "name": "myservice",
   "call_template_type": "mcp",
   "config": {
     "mcpServers": {
-      "webflow": {
+      "myservice": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["mcp-remote", "https://mcp.webflow.com/sse"],
+        "args": ["mcp-remote", "https://mcp.myservice.com/sse"],
         "env": {}
       }
     }
@@ -477,7 +477,7 @@ call_tool_chain({
 
 **Notes:**
 - Uses `mcp-remote` wrapper for SSE transport
-- No authentication in env (handled via OAuth in Webflow dashboard)
+- No authentication in env (handled via OAuth in MyService dashboard)
 - Remote endpoint, no local installation
 
 ### ClickUp (stdio with npm)
@@ -617,7 +617,7 @@ Error: Environment variable CLICKUP_API_KEY not found
 
 **Symptoms:**
 ```
-Error: Failed to start MCP server: webflow
+Error: Failed to start MCP server: myservice
 ```
 
 **Solutions:**
@@ -675,7 +675,7 @@ python scripts/validate_config.py .utcp_config.json
 **Good:**
 ```json
 "manual_call_templates": [
-  { "name": "webflow", ... },
+  { "name": "myservice", ... },
   { "name": "clickup", ... },
   { "name": "figma", ... },
   { "name": "notion", ... },

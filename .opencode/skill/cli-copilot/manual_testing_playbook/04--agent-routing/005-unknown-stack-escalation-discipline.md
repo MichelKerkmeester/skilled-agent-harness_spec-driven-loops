@@ -7,7 +7,7 @@ description: "This scenario validates that @code refuses unsupported Rust applic
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CP-027`.
 
-> **SANDBOXED SCENARIO**: All artifacts live under `/tmp/cp-027-sandbox/`. The fixture is a Rust crate on purpose because `sk-code` owns WEBFLOW, GO and NEXTJS only.
+> **SANDBOXED SCENARIO**: All artifacts live under `/tmp/cp-027-sandbox/`. The fixture is a Rust crate on purpose because `sk-code` owns the project-configured code surfaces only.
 
 ---
 
@@ -132,7 +132,7 @@ grep -c "UNKNOWN_STACK" /tmp/cp-027-A-general.txt | tee /tmp/cp-027-A-unknown-st
 | File | Role |
 |---|---|
 | `.opencode/agent/code.md` | `@code` UNKNOWN_STACK and RETURN contract |
-| `.opencode/skill/sk-code/SKILL.md` | Stack router: WEBFLOW, GO, NEXTJS supported; other stacks UNKNOWN |
+| `.opencode/skill/sk-code/SKILL.md` | Stack router: surface tags emitted by sk-code's detection; unsupported stacks return UNKNOWN |
 | `004-code-vs-general-agent-perf-comparison.md` | CP-026 A/B dispatch shape |
 
 ---

@@ -71,7 +71,7 @@ Capture the GitHub tool counts at steps 4 and 7.
 
 ### Optional Supplemental Checks
 
-- Try with a manual that has many tools (e.g., webflow with 42); confirms disable works at scale.
+- Try with a manual that has many tools (e.g., myservice with 42); confirms disable works at scale.
 
 ---
 
