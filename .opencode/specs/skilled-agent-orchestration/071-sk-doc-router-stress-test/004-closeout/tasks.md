@@ -1,27 +1,23 @@
 ---
-title: "Tasks: Phase 4: closeout [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
-trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
+title: "Tasks: Phase 4: closeout"
+description: "T###: validate + metadata refresh + commit"
+trigger_phrases: ["071/004 tasks"]
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-closeout"
-    last_updated_at: "2026-05-05T10:27:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "071-sk-doc-router-stress-test/004-closeout"
+    last_updated_at: "2026-05-05T15:50:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 4 tasks authored"
+    next_safe_action: "Run jq metadata refresh + commit"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-closeout"
+      session_id: "phase4-closeout"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -39,68 +35,48 @@ _memory:
 |--------|---------|
 | `[ ]` | Pending |
 | `[x]` | Completed |
-| `[P]` | Parallelizable |
-| `[B]` | Blocked |
-
-**Task Format**: `T### [P?] Description (file path)`
 <!-- /ANCHOR:notation -->
 
 ---
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 validate.sh --strict pre-check PASSED
 <!-- /ANCHOR:phase-1 -->
 
 ---
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
-
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T002 Author 004 spec docs (spec, plan, tasks, implementation-summary)
+- [ ] T003 jq edit parent graph-metadata.json
+- [ ] T004 jq edit child graph-metadata.json files (4 children)
 <!-- /ANCHOR:phase-2 -->
 
 ---
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
-
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [ ] T005 validate.sh --strict re-run exits 0
+- [ ] T006 Final commit on main
+- [ ] T007 git branch shows main; no surviving 071-* branch
 <!-- /ANCHOR:phase-3 -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [ ] All tasks marked [x]
+- [ ] Packet 071 final commit on main
 <!-- /ANCHOR:completion -->
 
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Implementation Summary**: See `implementation-summary.md`
+- **Parent Spec**: See `../spec.md`
+- **Headline output**: `../003-synthesize/review-report.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

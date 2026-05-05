@@ -1,28 +1,23 @@
 ---
-title: "Implementation Plan: Phase 4: closeout [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
-trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
+title: "Implementation Plan: Phase 4: closeout"
+description: "validate + jq metadata refresh + commit. Mechanical."
+trigger_phrases: ["071/004 plan"]
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-closeout"
-    last_updated_at: "2026-05-05T10:27:22Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "071-sk-doc-router-stress-test/004-closeout"
+    last_updated_at: "2026-05-05T15:50:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 4 plan authored"
+    next_safe_action: "Refresh metadata + final commit"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/004-closeout"
+      session_id: "phase4-closeout"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
@@ -37,16 +32,14 @@ _memory:
 ## 1. SUMMARY
 
 ### Technical Context
-
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Stack** | bash + jq + validate.sh |
+| **Storage** | graph-metadata.json files |
+| **Testing** | jq queries + grep |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Mechanical closeout: validate.sh --strict + jq edits to 5 graph-metadata.json files + final commit. Mirrors packet 068's Phase 3 closeout pattern.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +48,12 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Phase 1-3 commits landed
+- [x] validate.sh --strict pre-check PASSED
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] graph-metadata refreshed
+- [ ] One final commit on main
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,34 +62,8 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
-
-### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
-
-### Data Flow
-[Brief description of how data moves through the system]
+jq inline-edit per file. No new code.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -106,19 +71,16 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Validate.sh --strict pre-check (already PASS)
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] jq edit parent graph-metadata.json (children_ids, status, last_active_child_id)
+- [ ] jq edit each child graph-metadata.json (parent_id, status)
+- [ ] Author 004 spec docs
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] validate.sh --strict re-run (must remain exit 0)
+- [ ] Final commit
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +90,9 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Each metadata file | jq query |
+| Aggregate | Parent + 4 children consistent | bash loop + jq |
+| Integration | validate.sh strict | validate.sh --strict |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -138,9 +100,11 @@ Required inventories:
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| Dependency | Type | Status | Impact if Blocked |
-|------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Dependency | Status |
+|------------|--------|
+| jq | Green |
+| validate.sh | Green |
+| Phase 1-3 commits | Green |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -148,16 +112,7 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: validate.sh --strict regresses
+- **Procedure**: `git reset --hard HEAD~1` (revert closeout commit)
+- **Granularity**: One commit
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-
