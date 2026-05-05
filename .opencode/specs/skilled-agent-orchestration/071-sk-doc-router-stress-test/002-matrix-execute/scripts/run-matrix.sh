@@ -34,17 +34,17 @@ run_cli() {
   local exit_code=0
   case "$cli" in
     codex)
-      echo "$prompt" | timeout 120 codex exec --sandbox workspace-write \
+      echo "$prompt" | timeout 180 codex exec --sandbox workspace-write \
         -c service_tier="fast" -c model="gpt-5.5" -c model_reasoning_effort="high" - \
         > "$log" 2>&1 || exit_code=$?
       ;;
     copilot)
-      timeout 120 copilot -p "$prompt" --model claude-opus-4.7 \
+      timeout 180 copilot -p "$prompt" --model claude-opus-4.7 \
         --allow-all-tools --no-ask-user \
         > "$log" 2>&1 || exit_code=$?
       ;;
     opencode)
-      timeout 120 opencode run --model opencode-go/deepseek-v4-pro \
+      timeout 180 opencode run --model opencode-go/deepseek-v4-pro \
         --agent general --variant high --format json \
         --dir "$REPO_ROOT" "$prompt" \
         > "$log" 2>&1 || exit_code=$?
@@ -57,7 +57,8 @@ run_cli() {
   local tokens=0
   case "$cli" in
     codex)
-      tokens=$(grep -oE 'tokens used[^0-9]*[0-9,]+' "$log" 2>/dev/null | tail -1 | grep -oE '[0-9,]+' | tr -d ',' | tail -1)
+      # codex emits "tokens used\n[indent]NN,NNN" — capture next-line digits via awk
+      tokens=$(awk '/tokens used/ {getline; gsub(/[^0-9]/,""); if (length($0)) {print; exit}}' "$log" 2>/dev/null)
       tokens=${tokens:-0}
       ;;
     copilot)
@@ -66,8 +67,9 @@ run_cli() {
       tokens="up=${up:-0},down=${down:-0}"
       ;;
     opencode)
-      tokens=$(jq -r '.usage // empty' "$log" 2>/dev/null | tr -d '\n' | head -c 200)
-      [ -z "$tokens" ] && tokens="(json-parse-failed)"
+      # opencode emits a JSONL stream mixed with stderr noise; filter to JSON lines first
+      tokens=$(grep -E '^\{' "$log" 2>/dev/null | jq -r 'select(.type=="step_finish") | .part.tokens.total // empty' 2>/dev/null | awk '{s+=$1} END {print s+0}')
+      tokens=${tokens:-0}
       ;;
   esac
 

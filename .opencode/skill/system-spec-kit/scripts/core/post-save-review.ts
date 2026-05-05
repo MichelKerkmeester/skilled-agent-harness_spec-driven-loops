@@ -594,6 +594,33 @@ export function reviewPostSaveQuality(input: PostSaveReviewInput): PostSaveRevie
   }
 
   try {
+    // Guard: when no in-memory content is supplied, the reviewer must read the
+    // saved file from disk. Phase-parent workflows pass the spec FOLDER path
+    // (the canonical save target ambiguous at parent level), and older callers
+    // sometimes pass paths that don't exist. Resolve those gracefully to a
+    // SKIPPED status with a clear reason instead of throwing EISDIR/ENOENT
+    // out of fs.readFileSync.
+    if (typeof content !== 'string') {
+      let savedStat: fs.Stats | null = null;
+      try {
+        savedStat = fs.statSync(savedFilePath);
+      } catch {
+        return {
+          status: 'SKIPPED',
+          issues: [],
+          skipReason: `savedFilePath does not exist: ${savedFilePath}`,
+          ...scoreSummary,
+        };
+      }
+      if (savedStat && savedStat.isDirectory()) {
+        return {
+          status: 'SKIPPED',
+          issues: [],
+          skipReason: `savedFilePath is a directory (phase-parent or unspecified target): ${savedFilePath}`,
+          ...scoreSummary,
+        };
+      }
+    }
     // Follow-up: the reviewer still does multiple focused string parses, but they
     // now operate on in-memory content for the workflow hot path instead of rereading disk.
     const fileContent = typeof content === 'string' ? content : fs.readFileSync(savedFilePath, 'utf8');

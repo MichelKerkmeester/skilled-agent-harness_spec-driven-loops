@@ -1,0 +1,29 @@
+{
+  "specFolder": "073-test-and-toolchain-cleanup",
+  "description": "Test + toolchain cleanup: fix test-alignment-validator ESM bug, run-matrix.sh token-extraction + opencode timeout, generate-context post-save EISDIR, ",
+  "keywords": [
+    "test",
+    "toolchain",
+    "cleanup",
+    "fix",
+    "test-alignment-validator",
+    "esm",
+    "bug",
+    "run-matrix",
+    "token-extraction",
+    "opencode",
+    "timeout",
+    "generate-context",
+    "post-save",
+    "eisdir",
+    "codex",
+    "stdin-redirection"
+  ],
+  "lastUpdated": "2026-05-05T15:06:20.343Z",
+  "specId": "073",
+  "folderSlug": "test-and-toolchain-cleanup",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
