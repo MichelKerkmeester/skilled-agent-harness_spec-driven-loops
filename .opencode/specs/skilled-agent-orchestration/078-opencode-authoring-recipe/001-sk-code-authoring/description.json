@@ -1,0 +1,36 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/001-sk-code-authoring",
+  "description": "Phase 1 of 078 OpenCode authoring recipe remediation: 5 authoring checklists + spec_folder_write recipe + STACK_FOLDERS contract restoration + stale l",
+  "keywords": [
+    "phase",
+    "078",
+    "opencode",
+    "authoring",
+    "recipe",
+    "remediation",
+    "checklists",
+    "contract",
+    "restoration",
+    "stale",
+    "link",
+    "fix",
+    "sk-code",
+    "bump",
+    "closes",
+    "findings",
+    "077",
+    "research"
+  ],
+  "lastUpdated": "2026-05-05T17:45:49.975Z",
+  "specId": "001",
+  "folderSlug": "sk-code-authoring",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "078-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

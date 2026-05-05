@@ -1,0 +1,30 @@
+{
+  "specFolder": "078-opencode-authoring-recipe",
+  "description": "Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-t",
+  "keywords": [
+    "remediation",
+    "per",
+    "077",
+    "research",
+    "4-phase",
+    "opencode",
+    "authoring",
+    "recipe",
+    "complete",
+    "authoring-time",
+    "load",
+    "cocoindex",
+    "canonical-priority",
+    "validator",
+    "mcp-tool",
+    "drift",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-05T17:36:52.064Z",
+  "specId": "078",
+  "folderSlug": "opencode-authoring-recipe",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

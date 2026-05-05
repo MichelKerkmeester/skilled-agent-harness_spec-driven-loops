@@ -1,0 +1,17 @@
+{
+  "specFolder": "078-opencode-authoring-recipe/003-coco-priority",
+  "description": "Phase 3: coco-priority",
+  "keywords": [
+    "phase",
+    "coco-priority"
+  ],
+  "lastUpdated": "2026-05-05T17:36:54.086Z",
+  "specId": "003",
+  "folderSlug": "coco-priority",
+  "parentChain": [
+    "078-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

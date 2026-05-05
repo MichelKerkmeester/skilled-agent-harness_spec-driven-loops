@@ -2,7 +2,7 @@
 name: sk-code
 description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 3.1.0.0
+version: 3.2.0.0
 ---
 
 <!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, Motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->
@@ -53,6 +53,16 @@ Documentation-only edits to skill markdown route to `sk-doc`, even when the file
 ### Code Surface Detection (FIRST)
 
 Detection is context-aware and uses CWD plus changed/target files. **Precedence**: OPENCODE target/CWD wins over WEBFLOW markers (because mixed-marker workspaces are common — `.opencode/` system tools sometimes ship frontend animation libraries internally). When neither matches, fall through to UNKNOWN.
+
+Machine-readable stack folder contract:
+
+```python
+STACK_FOLDERS = {
+    "WEBFLOW": ["src/2_javascript/", "*.webflow.js"],
+    "OPENCODE": [".opencode/skill/", ".opencode/agent/", ".opencode/command/", ".opencode/specs/"],
+    "MOTION_DEV": ["references/motion_dev/", "assets/motion_dev/"],
+}
+```
 
 ```bash
 # Use early-return precedence — never let later branches overwrite an earlier match.
@@ -115,6 +125,17 @@ Ambiguous multi-language tasks load the top matching language references plus th
 - `references/motion_dev/`, `assets/motion_dev/`: cross-stack Motion.dev API, timeline, scroll/gesture, performance, decision-matrix, integration, install, playbook hook, and snippet resources. Webflow docs link here for generic Motion details while keeping Webflow-CDN and Designer guidance in `references/webflow/`.
 - `references/opencode/`, `assets/opencode/`: OpenCode system-code language standards, shared patterns, hooks, alignment automation, and quality checklists.
 - `scripts/`: Webflow build utilities plus OpenCode alignment verifier.
+
+### OpenCode Authoring Resources
+
+| Resource | Path | When to load |
+|---|---|---|
+| skill_authoring | `assets/opencode/checklists/skill_authoring.md` | CONDITIONAL (intent: authoring new skill) |
+| agent_authoring | `assets/opencode/checklists/agent_authoring.md` | CONDITIONAL (intent: authoring new agent) |
+| command_authoring | `assets/opencode/checklists/command_authoring.md` | CONDITIONAL (intent: authoring new command) |
+| mcp_server_authoring | `assets/opencode/checklists/mcp_server_authoring.md` | CONDITIONAL (intent: authoring MCP server) |
+| spec_folder_authoring | `assets/opencode/checklists/spec_folder_authoring.md` | CONDITIONAL (intent: spec folder write) |
+| spec_folder_write recipe | `assets/opencode/recipes/spec_folder_write.md` | CONDITIONAL (intent: spec folder write) |
 
 ### Intent Classification
 

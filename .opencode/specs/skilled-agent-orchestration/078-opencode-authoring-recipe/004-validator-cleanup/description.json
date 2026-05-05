@@ -1,0 +1,17 @@
+{
+  "specFolder": "078-opencode-authoring-recipe/004-validator-cleanup",
+  "description": "Phase 4: validator-cleanup",
+  "keywords": [
+    "phase",
+    "validator-cleanup"
+  ],
+  "lastUpdated": "2026-05-05T17:36:54.763Z",
+  "specId": "004",
+  "folderSlug": "validator-cleanup",
+  "parentChain": [
+    "078-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

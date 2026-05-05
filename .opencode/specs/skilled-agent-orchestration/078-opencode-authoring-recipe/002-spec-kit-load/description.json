@@ -1,0 +1,17 @@
+{
+  "specFolder": "078-opencode-authoring-recipe/002-spec-kit-load",
+  "description": "Phase 2: spec-kit-load",
+  "keywords": [
+    "phase",
+    "spec-kit-load"
+  ],
+  "lastUpdated": "2026-05-05T17:36:53.425Z",
+  "specId": "002",
+  "folderSlug": "spec-kit-load",
+  "parentChain": [
+    "078-opencode-authoring-recipe"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
