@@ -232,8 +232,8 @@ A: The command reads the most recent changelog entry in the target component fol
 | [sk-doc SKILL.md](../../skill/sk-doc/SKILL.md) | Templates and standards used by create commands |
 | [feature_catalog_creation.md](../../skill/sk-doc/references/specific/feature_catalog_creation.md) | Standards for rooted feature catalog packages |
 | [manual_testing_playbook_creation.md](../../skill/sk-doc/references/specific/manual_testing_playbook_creation.md) | Standards for rooted testing playbook packages |
-| [agent_template.md](../../skill/sk-doc/assets/agents/agent_template.md) | Agent creation template |
-| [command_template.md](../../skill/sk-doc/assets/agents/command_template.md) | Command creation template |
+| [agent_template.md](../../skill/sk-doc/assets/agent_template.md) | Agent creation template |
+| [command_template.md](../../skill/sk-doc/assets/command_template.md) | Command creation template |
 | [skill_creation.md](../../skill/sk-doc/references/specific/skill_creation.md) | Skill creation workflow reference |
 
 <!-- /ANCHOR:related-documents -->

@@ -317,8 +317,8 @@ The workflow must load both the standards reference and the templates:
 - `.opencode/skill/sk-doc/references/global/validation.md`
 
 **Templates**
-- `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md`
-- `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md`
+- `.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md`
+- `.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md`
 
 The workflow is incomplete if it uses only the root template and ignores the per-feature file template.
 

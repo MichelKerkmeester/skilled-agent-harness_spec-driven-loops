@@ -163,8 +163,8 @@ reference_sources:
   validation: .opencode/skill/sk-doc/references/global/validation.md
 
 template_sources:
-  root_catalog: .opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md
-  feature_file: .opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md
+  root_catalog: .opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md
+  feature_file: .opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
 
 validation_scripts:
   validate_document: .opencode/skill/sk-doc/scripts/validate_document.py

@@ -29,8 +29,8 @@ This reference provides deep-dive technical guidance on execution modes, validat
 - Mode 2 (Skill Creation): [skill_creation.md](../specific/skill_creation.md)
 - Mode 3 (Flowcharts): [assets/flowcharts/](../../assets/flowcharts/)
 - Mode 4 (Install Guides): [install_guide_creation.md](../specific/install_guide_creation.md)
-- Mode 5 (Playbooks): [manual_testing_playbook_creation.md](../specific/manual_testing_playbook_creation.md), [manual_testing_playbook_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md)
-- Companion catalog workflow: [feature_catalog_creation.md](../specific/feature_catalog_creation.md) plus the [feature catalog template bundle](../../assets/documentation/feature_catalog/)
+- Mode 5 (Playbooks): [manual_testing_playbook_creation.md](../specific/manual_testing_playbook_creation.md), [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md), and [manual_testing_playbook_snippet_template.md](../../assets/testing_playbook/manual_testing_playbook_snippet_template.md)
+- Companion catalog workflow: [feature_catalog_creation.md](../specific/feature_catalog_creation.md) plus the [feature catalog template bundle](../../assets/feature_catalog/)
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in numbered category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -296,4 +296,4 @@ done
 
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../../assets/agents/command_template.md) - Command file templates
+- [command_template.md](../../assets/command_template.md) - Command file templates

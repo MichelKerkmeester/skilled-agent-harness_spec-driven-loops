@@ -138,7 +138,7 @@ Each binding line must appear on its own line, grep-checkable verbatim. Missing 
 
 ---
 
-## 2. CAPABILITY SCAN
+## 2. ROUTING SCAN
 
 ### Skills
 
@@ -183,10 +183,10 @@ Read `sk-doc` first, then read the matching template before writing.
 
 | Command | Output | Template |
 | --- | --- | --- |
-| `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skill/sk-doc/assets/agents/agent_template.md` |
+| `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors | `.opencode/skill/sk-doc/assets/agent_template.md` |
 | `/create:sk-skill` | New skill `SKILL.md` or doc-only skill resource | `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` and, when needed, `.opencode/skill/sk-doc/assets/skill/skill_reference_template.md` |
-| `/create:feature-catalog` | `feature_catalog/` package | `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` |
-| `/create:testing-playbook` | `manual_testing_playbook/` package | `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` |
+| `/create:feature-catalog` | `feature_catalog/` package | `.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md` |
+| `/create:testing-playbook` | `manual_testing_playbook/` package | `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` |
 | `/create:folder_readme` | `README.md` or install-guide markdown | `.opencode/skill/sk-doc/assets/documentation/readme_template.md` |
 | `/create:changelog` | Versioned changelog markdown | `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` |
 
@@ -279,10 +279,10 @@ Use hook-injected startup, graph, memory, or skill-advisor context as a routing 
 | Resource | Purpose |
 | --- | --- |
 | `.opencode/skill/sk-doc/SKILL.md` | Required skill routing and documentation creation standards |
-| `.opencode/skill/sk-doc/assets/agents/agent_template.md` | Production agent structure, BINDING, REFUSE, and summary contracts |
+| `.opencode/skill/sk-doc/assets/agent_template.md` | Production agent structure, BINDING, REFUSE, and summary contracts |
 | `.opencode/skill/sk-doc/assets/skill/skill_md_template.md` | Skill creation template for `/create:sk-skill` |
-| `.opencode/skill/sk-doc/assets/documentation/feature_catalog/feature_catalog_template.md` | Feature catalog package template |
-| `.opencode/skill/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template |
+| `.opencode/skill/sk-doc/assets/feature_catalog/feature_catalog_template.md` | Feature catalog package template |
+| `.opencode/skill/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md` | Manual testing playbook package template |
 | `.opencode/skill/sk-doc/assets/documentation/readme_template.md` | README template for `/create:folder_readme` |
 | `.opencode/skill/sk-doc/assets/documentation/changelog_template.md` | Changelog template for `/create:changelog` |
 

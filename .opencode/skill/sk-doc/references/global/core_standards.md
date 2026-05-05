@@ -313,7 +313,7 @@ Format: Plain text navigation file for LLMs
 - [skill_asset_template.md](../../assets/skill/skill_asset_template.md) - Bundled asset structure
 - [skill_reference_template.md](../../assets/skill/skill_reference_template.md) - Reference doc structure
 - [readme_template.md](../../assets/documentation/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../../assets/agents/command_template.md) - Command creation guide (19 sections)
+- [command_template.md](../../assets/command_template.md) - Command creation guide (19 sections)
 - [install_guide_template.md](../../assets/documentation/install_guide_template.md) - Install guide template (14 sections)
 - [llmstxt_templates.md](../../assets/documentation/llmstxt_templates.md) - llms.txt with decision framework
 - [frontmatter_templates.md](../../assets/documentation/frontmatter_templates.md) - Frontmatter by document type

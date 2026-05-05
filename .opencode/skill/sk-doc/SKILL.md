@@ -56,7 +56,7 @@ Create and manage OpenCode components (skills, agents, commands). Each component
 **Component Types:**
 - **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/specific/skill_creation.md)
 - **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_creation.md](./references/specific/agent_creation.md)
-- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/agents/command_template.md)
+- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
 
 For larger skills, split deep content into focused reference files and keep concise navigation in `SKILL.md` or `README.md`. When a skill has both cross-cutting standards and document-family guides, prefer `references/global/` for shared rules and `references/specific/` for creation-specific workflows.
 
@@ -121,13 +121,13 @@ Create manual testing playbooks with deterministic scenarios, structured evidenc
 
 **See**:
 - [manual_testing_playbook_creation.md](./references/specific/manual_testing_playbook_creation.md)
-- [manual_testing_playbook_template.md](./assets/documentation/testing_playbook/manual_testing_playbook_template.md)
+- [manual_testing_playbook_template.md](./assets/testing_playbook/manual_testing_playbook_template.md)
 
 ### Use Case: Feature Catalog Creation
 
 Create feature catalogs with a rooted feature inventory, numbered category sections, and per-feature reference files.
 
-**Feature Catalog** - Use `assets/documentation/feature_catalog/feature_catalog_template.md` when:
+**Feature Catalog** - Use `assets/feature_catalog/feature_catalog_template.md` when:
 - Creating a canonical current-state feature inventory for a skill or system
 - Linking manual playbooks back to a stable feature reference
 - Documenting current behavior with source-file anchors and stable slugs
@@ -136,7 +136,7 @@ Create feature catalogs with a rooted feature inventory, numbered category secti
 
 **See**:
 - [feature_catalog_creation.md](./references/specific/feature_catalog_creation.md)
-- [feature_catalog_template.md](./assets/documentation/feature_catalog/feature_catalog_template.md)
+- [feature_catalog_template.md](./assets/feature_catalog/feature_catalog_template.md)
 
 ### When NOT to Use (All Modes)
 
@@ -204,12 +204,12 @@ RESOURCE_MAP = {
     "DOC_QUALITY": ["references/global/validation.md", "references/global/workflows.md", "references/global/core_standards.md", "references/global/evergreen_packet_id_rule.md"],
     "OPTIMIZATION": ["references/global/optimization.md", "assets/documentation/llmstxt_templates.md"],
     "SKILL_CREATION": ["references/specific/skill_creation.md", "assets/skill/skill_md_template.md", "assets/skill/skill_reference_template.md"],
-    "AGENT_COMMAND": ["references/specific/agent_creation.md", "assets/agents/agent_template.md", "assets/agents/command_template.md"],
+    "AGENT_COMMAND": ["references/specific/agent_creation.md", "assets/agent_template.md", "assets/command_template.md"],
     "FLOWCHART": ["assets/flowcharts/simple_workflow.md", "assets/flowcharts/decision_tree_flow.md"],
     "INSTALL_GUIDE": ["assets/documentation/install_guide_template.md", "references/specific/install_guide_creation.md"],
     "HVR": ["references/global/hvr_rules.md"],
-    "PLAYBOOK": ["references/specific/manual_testing_playbook_creation.md", "assets/documentation/testing_playbook/manual_testing_playbook_template.md"],
-    "FEATURE_CATALOG": ["references/specific/feature_catalog_creation.md", "assets/documentation/feature_catalog/feature_catalog_template.md"],
+    "PLAYBOOK": ["references/specific/manual_testing_playbook_creation.md", "assets/testing_playbook/manual_testing_playbook_template.md"],
+    "FEATURE_CATALOG": ["references/specific/feature_catalog_creation.md", "assets/feature_catalog/feature_catalog_template.md"],
     "README_CREATION": ["references/specific/readme_creation.md", "assets/documentation/readme_template.md"],
     "CHANGELOG": ["assets/documentation/changelog_template.md"],
 }

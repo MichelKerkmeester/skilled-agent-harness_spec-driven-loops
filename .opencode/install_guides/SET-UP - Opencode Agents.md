@@ -36,11 +36,11 @@ Complete setup and configuration guide for OpenCode agents, covering both primar
 - Invokes `sk-doc` skill for documentation standards
 - Validates template alignment AFTER creating
 
-**Template Location:** `.opencode/skill/sk-doc/assets/agents/agent_template.md`
+**Template Location:** `.opencode/skill/sk-doc/assets/agent_template.md`
 
 **Verification (MUST pass before proceeding):**
 - [ ] Write agent exists: `ls .opencode/agent/write.md`
-- [ ] Agent template exists: `ls .opencode/skill/sk-doc/assets/agents/agent_template.md`
+- [ ] Agent template exists: `ls .opencode/skill/sk-doc/assets/agent_template.md`
 - [ ] Use `@general` prefix when invoking the prompt below
 
 **DO NOT** create agents without the @general agent. Manual creation bypasses quality gates and frontmatter validation.
@@ -350,7 +350,7 @@ Content here...
 ## 4. RELATED RESOURCES
 
 - [Skill Name](../skill/skill-name/SKILL.md)
-- [Template](../skill/sk-doc/assets/agents/agent_template.md)
+- [Template](../skill/sk-doc/assets/agent_template.md)
 ```
 
 ### Validation: `phase_2_complete`
@@ -1116,7 +1116,7 @@ done
 | `.opencode/agent/write.md`                        | Documentation creation agent          |
 | `.opencode/agent/orchestrate.md`                  | Task coordination agent               |
 | `.opencode/agent/context.md`                      | Context retrieval agent               |
-| `.opencode/skill/sk-doc/assets/agents/agent_template.md` | Agent file template             |
+| `.opencode/skill/sk-doc/assets/agent_template.md` | Agent file template             |
 | `AGENTS.md`                                       | Main AI behavior configuration        |
 
 ### Agent Files

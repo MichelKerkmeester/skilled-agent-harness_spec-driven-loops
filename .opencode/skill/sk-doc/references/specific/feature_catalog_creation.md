@@ -16,8 +16,8 @@ Feature catalogs are the canonical inventory for what a system does today. They 
 **Core Principle**: Use the root catalog for stable inventory and navigation, and use per-feature files for implementation truth and traceable source anchors.
 
 **Primary Sources**:
-- [feature_catalog_template.md](../../assets/documentation/feature_catalog/feature_catalog_template.md)
-- [feature_catalog_snippet_template.md](../../assets/documentation/feature_catalog/feature_catalog_snippet_template.md)
+- [feature_catalog_template.md](../../assets/feature_catalog/feature_catalog_template.md)
+- [feature_catalog_snippet_template.md](../../assets/feature_catalog/feature_catalog_snippet_template.md)
 - `.opencode/skill/system-spec-kit/feature_catalog/`
 
 **Current Reality Highlights**:
@@ -177,8 +177,8 @@ Feature catalogs and manual testing playbooks serve different purposes:
 
 ## 9. RELATED RESOURCES
 
-- [feature_catalog_template.md](../../assets/documentation/feature_catalog/feature_catalog_template.md) - root catalog scaffold
-- [feature_catalog_snippet_template.md](../../assets/documentation/feature_catalog/feature_catalog_snippet_template.md) - per-feature file scaffold
+- [feature_catalog_template.md](../../assets/feature_catalog/feature_catalog_template.md) - root catalog scaffold
+- [feature_catalog_snippet_template.md](../../assets/feature_catalog/feature_catalog_snippet_template.md) - per-feature file scaffold
 - [manual_testing_playbook_creation.md](./manual_testing_playbook_creation.md) - companion reference for validation-package design
 - [quick_reference.md](../global/quick_reference.md) - condensed commands and file locations
 - [workflows.md](../global/workflows.md) - execution-mode reference

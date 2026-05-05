@@ -297,7 +297,7 @@ python scripts/package_skill.py skill-path        # Package skill
 `references/specific/feature_catalog_creation.md`
 
 **Template**
-`assets/documentation/feature_catalog/feature_catalog_template.md`
+`assets/feature_catalog/feature_catalog_template.md`
 
 **Quick Steps**
 1. **Plan categories** -> Define the numbered capability sections and stable slugs
@@ -315,7 +315,7 @@ python scripts/package_skill.py skill-path        # Package skill
 `references/specific/manual_testing_playbook_creation.md`
 
 ### Template
-`assets/documentation/testing_playbook/manual_testing_playbook_template.md`
+`assets/testing_playbook/manual_testing_playbook_template.md`
 
 ### Playbook Layout
 | File | Content |
@@ -353,11 +353,11 @@ Validation note: the current validator checks the root playbook, but it does not
 ### Templates
 - [skill_md_template.md](../../assets/skill/skill_md_template.md) - SKILL.md file templates
 - [frontmatter_templates.md](../../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
-- [command_template.md](../../assets/agents/command_template.md) - Command file templates
-- [feature_catalog_template.md](../../assets/documentation/feature_catalog/feature_catalog_template.md) - Feature catalog template
-- [feature_catalog_snippet_template.md](../../assets/documentation/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template
-- [manual_testing_playbook_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_template.md) - Playbook creation template
-- [manual_testing_playbook_snippet_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature snippet template
+- [command_template.md](../../assets/command_template.md) - Command file templates
+- [feature_catalog_template.md](../../assets/feature_catalog/feature_catalog_template.md) - Feature catalog template
+- [feature_catalog_snippet_template.md](../../assets/feature_catalog/feature_catalog_snippet_template.md) - Per-feature catalog template
+- [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md) - Playbook creation template
+- [manual_testing_playbook_snippet_template.md](../../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - Per-feature snippet template
 
 ### Related Skills
 - `git-commit` - Git commit workflows

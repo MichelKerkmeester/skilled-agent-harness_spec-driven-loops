@@ -401,7 +401,7 @@ FOR WORKFLOW VIOLATIONS:
 | Changelog format examples | `.opencode/changelog/` (370+ existing files)               |
 | Release workflow          | `PUBLIC_RELEASE.md`                                        |
 | Git finish workflow       | `.opencode/skill/sk-git/references/finish_workflows.md`    |
-| Command template          | `.opencode/skill/sk-doc/assets/agents/command_template.md` |
+| Command template          | `.opencode/skill/sk-doc/assets/command_template.md` |
 | sk-doc skill              | `.opencode/skill/sk-doc/SKILL.md`                          |
 | system-spec-kit skill     | `.opencode/skill/system-spec-kit/SKILL.md`                 |
 

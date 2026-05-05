@@ -16,7 +16,7 @@ Agent creation is for cases where the system needs a named AI persona with expli
 **Core Principle**: Create an agent only when the role needs authority and tool policy. Put reusable knowledge and templates in skills, not in agents.
 
 **Primary Sources**:
-- [agent_template.md](../../assets/agents/agent_template.md)
+- [agent_template.md](../../assets/agent_template.md)
 - `.opencode/command/create/agent.md`
 - `.opencode/command/create/assets/create_agent_auto.yaml`
 - `.opencode/command/create/assets/create_agent_confirm.yaml`
@@ -147,7 +147,7 @@ Do not treat the old standalone `tools:` object as canonical. Use the unified `p
 
 ## 6. REQUIRED CONTENT SECTIONS
 
-Use [agent_template.md](../../assets/agents/agent_template.md) as the scaffold.
+Use [agent_template.md](../../assets/agent_template.md) as the scaffold.
 
 At minimum, production-ready agents should include:
 - a core workflow section
@@ -174,7 +174,7 @@ Recommended workflow:
 
 1. Define the agent's role, authority boundaries, and runtime directory.
 2. Decide whether the task truly needs a new agent instead of a skill or command.
-3. Start from [agent_template.md](../../assets/agents/agent_template.md).
+3. Start from [agent_template.md](../../assets/agent_template.md).
 4. Set frontmatter first, especially `mode` and `permission`.
 5. Write the core workflow and capability scan.
 6. Add explicit output verification and anti-patterns.
@@ -224,8 +224,8 @@ Before delivery, verify both document quality and runtime correctness.
 
 ## 10. RELATED RESOURCES
 
-- [agent_template.md](../../assets/agents/agent_template.md) - canonical agent scaffold
-- [command_template.md](../../assets/agents/command_template.md) - companion scaffold for slash-command entry points
+- [agent_template.md](../../assets/agent_template.md) - canonical agent scaffold
+- [command_template.md](../../assets/command_template.md) - companion scaffold for slash-command entry points
 - [skill_creation.md](./skill_creation.md) - companion workflow for reusable knowledge bundles
 - [quick_reference.md](../global/quick_reference.md) - condensed commands and file locations
 - [workflows.md](../global/workflows.md) - execution-mode reference

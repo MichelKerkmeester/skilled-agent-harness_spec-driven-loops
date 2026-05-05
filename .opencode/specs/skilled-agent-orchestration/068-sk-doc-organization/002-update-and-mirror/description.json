@@ -1,0 +1,17 @@
+{
+  "specFolder": "068-sk-doc-organization/002-update-and-mirror",
+  "description": "Phase 2: update-and-mirror",
+  "keywords": [
+    "phase",
+    "update-and-mirror"
+  ],
+  "lastUpdated": "2026-05-05T07:55:04.553Z",
+  "specId": "002",
+  "folderSlug": "update-and-mirror",
+  "parentChain": [
+    "068-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

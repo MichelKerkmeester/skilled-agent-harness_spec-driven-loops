@@ -16,8 +16,8 @@ Manual testing playbooks are operator-facing validation packages for skills with
 **Core Principle**: Keep shared rules in the root playbook, keep execution truth in per-feature files, and make every scenario deterministic enough that a different operator can reproduce the verdict.
 
 **Primary Sources**:
-- [manual_testing_playbook_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_template.md)
-- [manual_testing_playbook_snippet_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md)
+- [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md)
+- [manual_testing_playbook_snippet_template.md](../../assets/testing_playbook/manual_testing_playbook_snippet_template.md)
 - `.opencode/skill/system-spec-kit/manual_testing_playbook/`
 - `.opencode/skill/mcp-coco-index/manual_testing_playbook/`
 
@@ -209,8 +209,8 @@ That limitation must be documented honestly in both the reference and the genera
 
 ## 9. RELATED RESOURCES
 
-- [manual_testing_playbook_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_template.md) - root playbook scaffold
-- [manual_testing_playbook_snippet_template.md](../../assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md) - per-feature file scaffold
+- [manual_testing_playbook_template.md](../../assets/testing_playbook/manual_testing_playbook_template.md) - root playbook scaffold
+- [manual_testing_playbook_snippet_template.md](../../assets/testing_playbook/manual_testing_playbook_snippet_template.md) - per-feature file scaffold
 - [feature_catalog_creation.md](./feature_catalog_creation.md) - companion reference for the feature-catalog side of the contract
 - [quick_reference.md](../global/quick_reference.md) - condensed commands and file locations
 - [workflows.md](../global/workflows.md) - execution-mode reference
