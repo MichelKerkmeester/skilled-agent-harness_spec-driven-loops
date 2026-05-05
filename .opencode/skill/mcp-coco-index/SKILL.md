@@ -2,7 +2,7 @@
 name: mcp-coco-index
 description: "Semantic code search via vector embeddings. CocoIndex Code enables natural-language discovery of relevant code, patterns, and implementations. CLI for direct use; MCP exposes a single `search` tool for AI agent integration."
 allowed-tools: [Bash, Read, Grep, Glob]
-version: 1.1.0
+version: 1.1.1
 ---
 
 <!-- Keywords: cocoindex-code, semantic-search, vector-embeddings, code-search, mcp-server, ccc, codebase-indexing, voyage-code-3, all-MiniLM-L6-v2 -->
@@ -244,6 +244,23 @@ Use `ccc status`, `ccc index`, `ccc search "query" --lang <language> --path "<gl
 ### MCP Approach
 
 The MCP server exposes `search` only. Index/status/reset operations remain CLI-only unless routed through the Spec Kit Memory `ccc_*` tools. Use `refresh_index=true` on the first query, then `false` for follow-up searches when the codebase has not changed.
+
+### MCP Tool Coverage
+
+The MCP server exposes a SUBSET of CocoIndex Code's CLI surface. Maintenance operations (init, index, status, reset, daemon) are CLI-only by design -- they're operator-facing and should not be invoked by AI agents during automated workflows.
+
+| Operation | CLI | MCP |
+|---|---|---|
+| `search` | ✓ (`ccc search`) | ✓ (`mcp__cocoindex_code__search`) |
+| `index` | ✓ (`ccc index`) | ✗ (operator-only) |
+| `init` | ✓ (`ccc init`) | ✗ (operator-only) |
+| `status` | ✓ (`ccc status`) | ✗ (operator-only) |
+| `reset` | ✓ (`ccc reset`) | ✗ (operator-only) |
+| `daemon` | ✓ (`ccc daemon`) | ✗ (operator-only) |
+
+If you need to refresh the index from an AI agent, use `search(refresh_index=true)` once per session. After the first refresh, set `refresh_index=false` to avoid re-indexing on every query (see `refresh_index` parameter in the `search` tool docs).
+
+This split is intentional: index lifecycle is operator territory; search is the single AI-callable entry point.
 
 ### Embedding Models
 

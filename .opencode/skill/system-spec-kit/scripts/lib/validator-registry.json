@@ -168,6 +168,22 @@
     "description": "Checks generated description and graph metadata are present."
   },
   {
+    "rule_id": "GRAPH_METADATA_SHAPE",
+    "aliases": ["GRAPH_SHAPE", "GRAPH_METADATA_VALID"],
+    "script_path": "rules/check-graph-metadata-shape.sh",
+    "severity": "warn",
+    "category": "structural",
+    "description": "Validates graph-metadata.json shape: required packet/derived blocks, last_active_child_id pointer integrity for phase parents."
+  },
+  {
+    "rule_id": "DESCRIPTION_SHAPE",
+    "aliases": ["DESC_SHAPE", "DESCRIPTION_VALID"],
+    "script_path": "rules/check-description-shape.sh",
+    "severity": "warn",
+    "category": "structural",
+    "description": "Validates description.json shape: required name/description/level keys present and well-typed."
+  },
+  {
     "rule_id": "NORMALIZER_LINT",
     "aliases": ["NORMALIZER"],
     "script_path": "rules/check-normalizer-lint.sh",

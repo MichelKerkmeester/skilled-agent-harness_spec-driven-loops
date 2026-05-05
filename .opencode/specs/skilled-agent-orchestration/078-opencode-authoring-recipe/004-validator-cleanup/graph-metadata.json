@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
+      "078/004",
+      "validator-cleanup",
+      "graph-metadata-shape",
+      "ROLLOUT_FLAGS",
       "implementation",
       "plan",
+      "name",
+      "template",
       "plan core",
       "tasks",
       "tasks core",
-      "summary",
-      "impl summary core"
+      "summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
+      "078",
+      "004",
+      "validator-cleanup",
+      "graph-metadata-shape",
       "implementation",
       "plan",
+      "name",
+      "template",
+      "core",
       "tasks",
       "summary",
-      "impl",
-      "phase"
+      "add"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -78,13 +78,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Tool Registry Cleanup",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -96,13 +96,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Add",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,9 +192,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 4** of the Remediation per 077 research: 4-phase OpenCode authoring recipe, /spec_kit:complete authoring-time load, CocoIndex canonical-priority, validator/MCP-tool drift cleanup specification.",
+    "causal_summary": "Add two new validator rules (graph-metadata + description shape checks) registered in validator-registry.json. Fix ROLLOUT_FLAGS to point at a markdown file (or remove the directory entry). Document mcp-coco-index MCP coverage gap explicitly in mcp-coco-index/SKILL.md. Audit + refresh search telemetry doc to match runtime emitted fields. Closes 6 P1 + 3 P2 findings; final phase of 078 remediation.",
     "created_at": "2026-05-05T17:36:54Z",
-    "last_save_at": "2026-05-05T19:06:06.719Z",
+    "last_save_at": "2026-05-05T19:14:21.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

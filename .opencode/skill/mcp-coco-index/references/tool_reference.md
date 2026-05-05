@@ -392,7 +392,7 @@ The canonical field-to-REQ mapping lives in [`../changelog/CHANGELOG.md`](../cha
 | Field | Type | REQ | When present | Interpretation |
 |-------|------|-----|--------------|----------------|
 | `raw_score` | float (0.0–1.0) | REQ-005 | Always on fork queries | The pre-rerank relevance score. Preserved verbatim so callers can introspect or override the rerank. The `score` field is the post-rerank value. |
-| `rankingSignals` | object | REQ-006 | Always on fork queries | Per-result breakdown of the score derivation. Keys include the path-class delta (`+0.05` for implementation matches on implementation-intent queries; `-0.05` for docs/spec_research matches), the dedup pre-grouping signal, and the raw vector similarity. Use this to debug "why did THIS result rank where it did". |
+| `rankingSignals` | list of strings | REQ-006 | Always on fork queries | Per-result rerank signals emitted by `query._ranked_result`: `implementation_boost`, `spec_research_penalty`, `docs_penalty`, and `canonical_resource_boost`. Empty list means no rerank signal applied. |
 
 ### 7.4 Implementation-intent reranking (REQ-005)
 
@@ -402,7 +402,7 @@ When the query intent classifier detects an implementation-seeking question (e.g
 - `path_class ∈ {docs, spec_research}` → score reduced by `-0.05`
 - All other classes (`tests`, `generated`, `vendor`) → unchanged
 
-The boost is bounded so it cannot flip an obviously-wrong hit to the top; it nudges ties and near-ties toward implementation files. Both `score` (post-rerank) and `raw_score` (pre-rerank) are emitted so callers can audit the rerank decision.
+Canonical resource paths receive an additional `+0.10` boost and emit `canonical_resource_boost`, regardless of implementation intent. The implementation-intent boost is bounded so it cannot flip an obviously-wrong hit to the top; it nudges ties and near-ties toward implementation files. Both `score` (post-rerank) and `raw_score` (pre-rerank) are emitted so callers can audit the rerank decision.
 
 ### 7.5 Reading example
 
@@ -422,15 +422,13 @@ The boost is bounded so it cannot flip an obviously-wrong hit to the top; it nud
       "content_hash": "a3f2b1c8e9d0",                       // REQ-002
       "path_class": "implementation",                       // REQ-004
       "dedupedAliases": 2,        // 2 mirror copies were collapsed under this row
-      "rankingSignals": {         // REQ-006
-        "vectorSim": 0.76,
-        "pathClassDelta": 0.05,
-        "dedupGrouping": "by_realpath"
-      }
+      "rankingSignals": ["implementation_boost"] // REQ-006
     }
   ]
 }
 ```
+
+Verified against `query._ranked_result` as of mcp-coco-index 1.1.1 (packet 078/004).
 
 ### 7.6 Compatibility notes
 
@@ -462,4 +460,3 @@ _TODO: populate this section_
 | Cross-CLI Playbook | `.opencode/skill/mcp-coco-index/references/cross_cli_playbook.md` |
 | Config Templates | `.opencode/skill/mcp-coco-index/assets/config_templates.md`    |
 | Upstream Tests   | `.opencode/skill/mcp-coco-index/tests/`                        |
-

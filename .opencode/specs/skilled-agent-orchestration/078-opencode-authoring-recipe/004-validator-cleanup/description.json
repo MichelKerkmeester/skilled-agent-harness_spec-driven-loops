@@ -1,17 +1,36 @@
 {
-  "specFolder": "078-opencode-authoring-recipe/004-validator-cleanup",
-  "description": "Phase 4: validator-cleanup",
+  "level": "1",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/078-opencode-authoring-recipe/004-validator-cleanup",
+  "description": "Phase 4 (final) of 078: 2 new validator shape rules + ROLLOUT_FLAGS fix + MCP coverage doc + telemetry alignment. mcp-coco-index 1.1.0 → 1.1.1. Closes",
   "keywords": [
     "phase",
-    "validator-cleanup"
+    "final",
+    "078",
+    "new",
+    "validator",
+    "shape",
+    "rules",
+    "fix",
+    "mcp",
+    "coverage",
+    "doc",
+    "telemetry",
+    "alignment",
+    "mcp-coco-index",
+    "closes",
+    "077",
+    "findings",
+    "cluster"
   ],
-  "lastUpdated": "2026-05-05T17:36:54.763Z",
+  "lastUpdated": "2026-05-05T19:14:21.603Z",
   "specId": "004",
   "folderSlug": "validator-cleanup",
   "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
     "078-opencode-authoring-recipe"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
