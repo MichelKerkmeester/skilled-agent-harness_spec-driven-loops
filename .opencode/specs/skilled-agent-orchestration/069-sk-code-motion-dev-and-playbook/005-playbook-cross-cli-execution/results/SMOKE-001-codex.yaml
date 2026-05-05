@@ -1,0 +1,19 @@
+scenario: "SMOKE-001"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 28.952
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: pending
+raw_stdout: "/tmp/skc-SMOKE-001-codex.txt"
+raw_stderr: "/tmp/skc-SMOKE-001-codex.err"

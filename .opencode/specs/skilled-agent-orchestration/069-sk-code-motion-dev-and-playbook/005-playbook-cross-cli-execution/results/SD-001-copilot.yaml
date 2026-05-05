@@ -1,0 +1,36 @@
+scenario: "SD-001"
+cli: "copilot"
+model: "gpt-5.5"
+duration_s: 77.353
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+  - "references/universal/code_quality_standards.md"
+  - "references/universal/error_recovery.md"
+  - "references/webflow/standards/quick_reference.md"
+  - "references/webflow/standards/code_style_guide.md"
+  - "references/webflow/standards/code_quality_standards.md"
+  - "references/webflow/standards/shared_patterns.md"
+  - "references/webflow/implementation/implementation_workflows.md"
+  - "references/webflow/implementation/animation_workflows.md"
+  - "references/webflow/implementation/third_party_integrations.md"
+  - "references/webflow/implementation/async_patterns.md"
+  - "references/webflow/performance/resource_loading.md"
+  - "references/webflow/performance/third_party.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: pending
+raw_stdout: "/tmp/skc-SD-001-copilot.txt"
+raw_stderr: "/tmp/skc-SD-001-copilot.err"

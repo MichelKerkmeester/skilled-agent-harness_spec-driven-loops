@@ -1,0 +1,11 @@
+{"scenario":"SD-001","cli":"copilot","exit":0,"duration_s":15,"tokens":"up=51.4k,down=167","timestamp":"2026-05-05T10:36:02Z"}
+{"scenario":"SD-002","cli":"copilot","exit":124,"duration_s":120,"tokens":"up=450.3k,down=7.7k","timestamp":"2026-05-05T10:38:35Z"}
+{"scenario":"SD-003","cli":"copilot","exit":124,"duration_s":120,"tokens":"up=980.7k,down=3.6k","timestamp":"2026-05-05T10:40:35Z"}
+{"scenario":"SD-004","cli":"copilot","exit":0,"duration_s":22,"tokens":"up=157.6k,down=528","timestamp":"2026-05-05T10:40:57Z"}
+{"scenario":"SD-005","cli":"copilot","exit":0,"duration_s":18,"tokens":"up=51.5k,down=757","timestamp":"2026-05-05T10:41:31Z"}
+{"scenario":"SD-006","cli":"copilot","exit":0,"duration_s":57,"tokens":"up=209.9k,down=3.2k","timestamp":"2026-05-05T10:44:10Z"}
+{"scenario":"SD-007","cli":"copilot","exit":0,"duration_s":21,"tokens":"up=51.5k,down=420","timestamp":"2026-05-05T10:44:38Z"}
+{"scenario":"SD-008","cli":"copilot","exit":0,"duration_s":10,"tokens":"up=51.5k,down=115","timestamp":"2026-05-05T10:44:54Z"}
+{"scenario":"SD-009","cli":"copilot","exit":124,"duration_s":120,"tokens":"up=831.8k,down=6.7k","timestamp":"2026-05-05T10:47:03Z"}
+{"scenario":"SD-010","cli":"copilot","exit":0,"duration_s":17,"tokens":"up=51.5k,down=580","timestamp":"2026-05-05T10:47:20Z"}
+{"scenario":"SD-013","cli":"copilot","exit":0,"duration_s":9,"tokens":"up=51.5k,down=12","timestamp":"2026-05-05T10:47:56Z"}

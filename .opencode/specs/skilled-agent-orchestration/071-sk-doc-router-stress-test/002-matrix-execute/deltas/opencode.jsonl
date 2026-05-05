@@ -1,0 +1,12 @@
+{"scenario":"SD-001","cli":"opencode","exit":0,"duration_s":48,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:36:35Z"}
+{"scenario":"SD-002","cli":"opencode","exit":124,"duration_s":120,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:38:35Z"}
+{"scenario":"SD-003","cli":"opencode","exit":0,"duration_s":71,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:39:46Z"}
+{"scenario":"SD-004","cli":"opencode","exit":0,"duration_s":38,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:41:13Z"}
+{"scenario":"SD-005","cli":"opencode","exit":124,"duration_s":120,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:43:13Z"}
+{"scenario":"SD-006","cli":"opencode","exit":0,"duration_s":64,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:44:17Z"}
+{"scenario":"SD-007","cli":"opencode","exit":0,"duration_s":27,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:44:44Z"}
+{"scenario":"SD-008","cli":"opencode","exit":0,"duration_s":19,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:45:03Z"}
+{"scenario":"SD-009","cli":"opencode","exit":124,"duration_s":120,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:47:03Z"}
+{"scenario":"SD-010","cli":"opencode","exit":0,"duration_s":44,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:47:47Z"}
+{"scenario":"SD-013","cli":"opencode","exit":0,"duration_s":42,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:48:29Z"}
+{"scenario":"SD-014","cli":"opencode","exit":0,"duration_s":34,"tokens":"(json-parse-failed)","timestamp":"2026-05-05T10:49:03Z"}

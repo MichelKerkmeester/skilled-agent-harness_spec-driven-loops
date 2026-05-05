@@ -1,0 +1,27 @@
+scenario: "LS-001"
+cli: "opencode"
+model: "github-copilot/gpt-5.5"
+duration_s: 50.348
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "OPENCODE"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/opencode/typescript/quick_reference.md"
+  - "references/opencode/typescript/style_guide.md"
+  - "references/opencode/typescript/quality_standards.md"
+  - "references/opencode/shared/code_organization.md"
+  - "references/opencode/shared/universal_patterns.md"
+  - "references/opencode/shared/alignment_verification_automation.md"
+  - "references/universal/code_quality_standards.md"
+  - "references/universal/error_recovery.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: pending
+raw_stdout: "/tmp/skc-LS-001-opencode.txt"
+raw_stderr: "/tmp/skc-LS-001-opencode.err"

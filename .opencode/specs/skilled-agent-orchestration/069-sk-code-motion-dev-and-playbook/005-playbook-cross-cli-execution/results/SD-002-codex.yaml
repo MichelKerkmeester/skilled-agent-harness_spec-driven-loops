@@ -1,0 +1,26 @@
+scenario: "SD-002"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 32.631
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "OPENCODE"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+  - "references/opencode/javascript/quick_reference.md"
+  - "references/opencode/javascript/style_guide.md"
+  - "references/opencode/javascript/quality_standards.md"
+  - "references/opencode/shared/universal_patterns.md"
+  - "references/opencode/shared/code_organization.md"
+  - "references/opencode/shared/alignment_verification_automation.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: pending
+raw_stdout: "/tmp/skc-SD-002-codex.txt"
+raw_stderr: "/tmp/skc-SD-002-codex.err"

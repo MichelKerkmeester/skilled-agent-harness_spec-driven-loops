@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
+  "description": "Phase 005 — Cross-CLI Playbook Execution Harness: adds seven cross-stack sk-code routing scenarios, updates the root manual playbook to 24 scenarios, and creates read-only runner scripts for Codex, Copilot, Gemini, and OpenCode routing audits.",
+  "keywords": [
+    "phase",
+    "cross-cli",
+    "playbook",
+    "routing-audit",
+    "sk-code",
+    "motion-dev",
+    "harness"
+  ],
+  "lastUpdated": "2026-05-05T10:30:00.000Z",
+  "specId": "069",
+  "folderSlug": "005-playbook-cross-cli-execution",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "069-sk-code-motion-dev-and-playbook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

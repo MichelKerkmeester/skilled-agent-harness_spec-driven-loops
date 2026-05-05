@@ -1,0 +1,20 @@
+scenario: "SD-003"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 33.154
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "UNKNOWN"
+refs_loaded:
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/router/phase_lifecycle.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: pending
+raw_stdout: "/tmp/skc-SD-003-codex.txt"
+raw_stderr: "/tmp/skc-SD-003-codex.err"

@@ -21,6 +21,7 @@ Canonical package artifacts:
 - `04--skill-advisor-integration/`
 - `05--motion-dev-and-animation-regression/`
 - `06--cross-browser-and-performance-gates/`
+- `07--cross-stack-routing/`
 
 ---
 
@@ -38,14 +39,15 @@ Canonical package artifacts:
 - [10. SKILL ADVISOR INTEGRATION (`SA-001`)](#10-skill-advisor-integration-sa-001)
 - [11. MOTION.DEV AND ANIMATION REGRESSION (`MR-001..MR-004`)](#11-motiondev-and-animation-regression-mr-001mr-004)
 - [12. CROSS-BROWSER AND PERFORMANCE GATES (`CB-001..CB-003`)](#12-cross-browser-and-performance-gates-cb-001cb-003)
-- [13. AUTOMATED TEST CROSS-REFERENCE](#13-automated-test-cross-reference)
-- [14. FEATURE CATALOG CROSS-REFERENCE INDEX](#14-feature-catalog-cross-reference-index)
+- [13. CROSS-STACK ROUTING (`CS-001..CS-007`)](#13-cross-stack-routing-cs-001cs-007)
+- [14. AUTOMATED TEST CROSS-REFERENCE](#14-automated-test-cross-reference)
+- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15-feature-catalog-cross-reference-index)
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 17 deterministic scenarios across 6 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 24 deterministic scenarios across 7 categories validating the `sk-code` skill surface. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -56,6 +58,7 @@ Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code
 - Skill advisor integration: confidence ≥ 0.80 win for positive controls, no false positives on doc-edit prompts.
 - Motion.dev integration checks: pinned CDN/API smoke, reduced-motion behavior, animation regression baselines.
 - Cross-browser and performance gates: Chrome/Safari/Firefox behavior, LCP/CLS/INP thresholds, and compositor-friendly animation checks.
+- Cross-stack routing checks: Webflow plus Motion.dev, non-Webflow Motion.dev, OpenCode plus Motion.dev, decision-matrix use, snippet reuse, CWV dual loading, and reduced-motion guidance.
 
 ### Realistic Test Model
 
@@ -120,7 +123,7 @@ Motion peer-resource folders must be present before MR/CB scenarios run: `refere
 1. `manual_testing_playbook.md` (this file).
 2. Per-feature files under `manual_testing_playbook/{NN--category-name}/`.
 3. Scenario execution evidence (advisor outputs, surface-detection logs, resource-loading transcripts).
-4. Feature-to-scenario coverage map (§14 FEATURE CATALOG CROSS-REFERENCE INDEX).
+4. Feature-to-scenario coverage map (§15 FEATURE CATALOG CROSS-REFERENCE INDEX).
 5. Triage notes for all PARTIAL / FAIL outcomes.
 
 ### Scenario Acceptance Rules
@@ -147,14 +150,14 @@ For each executed scenario, check:
 - `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
-Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Critical-path scenarios are SD-001, SD-002, SD-003 (the three primary surface-detection paths).
+Hard rule: any critical-path scenario FAIL forces feature verdict to FAIL. Critical-path scenarios are SD-001, SD-002, SD-003 (the three primary surface-detection paths) plus CS-001, CS-002, and CS-003 for the cross-stack Motion.dev routing path.
 
 ### Release Readiness Rule
 
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-001, SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Coverage is 100% of playbook scenarios (17 / 17).
+3. Coverage is 100% of playbook scenarios (24 / 24).
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -268,7 +271,25 @@ Per-feature files: see `06--cross-browser-and-performance-gates/`.
 
 ---
 
-## 13. AUTOMATED TEST CROSS-REFERENCE
+## 13. CROSS-STACK ROUTING (`CS-001..CS-007`)
+
+These scenarios validate Motion.dev as a cross-stack peer resource rather than a third surface. They are designed for the Phase 005 cross-CLI harness, where each runtime must analyze routing decisions without editing files or dispatching agents.
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| `CS-001` | WEBFLOW Plus Motion.dev | Verify Webflow animation work also loads `motion_dev/*` peer refs | `I'm building a vanilla HTML/CSS/JS Webflow site with motion.dev animations on a hero section. Show me the proper CDN install pattern and the in-view animation snippet for src/2_javascript/hero.js.` | universal prompt -> runtime YAML -> inspect surface/refs/assets | surface: WEBFLOW; refs include webflow implementation and motion_dev quick/start/integration; agent none | `/tmp/skc-CS-001-<cli>.txt`, `results/CS-001-<cli>.yaml` | PASS iff WEBFLOW + motion_dev peer refs + no dispatch | If motion_dev missing, inspect `references/router/resource_loading.md` Section 3 |
+| `CS-002` | Non-Webflow Plus Motion.dev | Verify generic vanilla Motion.dev does not become WEBFLOW | `In a plain static HTML/CSS/JS microsite that is not Webflow, I want to use motion.dev for a hover card and in-view reveal. Which sk-code references would you load and how would you route this?` | universal prompt -> runtime YAML -> inspect surface/refs/assets | surface: UNKNOWN/N/A; refs include motion_dev only; no Webflow-owned route | `/tmp/skc-CS-002-<cli>.txt`, `results/CS-002-<cli>.yaml` | PASS iff not WEBFLOW and motion_dev refs load | If WEBFLOW wins, inspect generic-node guard |
+| `CS-003` | OPENCODE Plus Motion.dev | Verify `.opencode/` TypeScript target wins precedence with Motion supplementary refs | `Update .opencode/skill/sk-doc/scripts/preview-server.ts so its docs preview page can show a small motion.dev animate() demo. Analyze how sk-code should route this before any edit.` | universal prompt -> runtime YAML -> inspect OPENCODE TS refs plus motion_dev | surface: OPENCODE; TS refs load; motion_dev supplementary; no Webflow-owned route | `/tmp/skc-CS-003-<cli>.txt`, `results/CS-003-<cli>.yaml` | PASS iff OPENCODE + TS refs + motion_dev supplementary + no dispatch | If WEBFLOW wins, inspect OPENCODE precedence |
+| `CS-004` | Decision Matrix Routing | Verify Motion.dev vs CSS hover questions load `decision_matrix.md` | `For a hover state on cards, should I use motion.dev or plain CSS? I need the routing decision and the references you would load, not an implementation.` | universal prompt -> runtime YAML -> inspect refs and response trade-off | refs include `references/motion_dev/decision_matrix.md`; response compares CSS and Motion.dev | `/tmp/skc-CS-004-<cli>.txt`, `results/CS-004-<cli>.yaml` | PASS iff decision matrix loads and answer names conditions | If omitted, inspect resource-loading CODE_QUALITY/DECISION map |
+| `CS-005` | Snippet Reuse Cross-Stack | Verify cross-stack snippet reuse surfaces snippet plus snake_case caveat | `Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla JS page? Tell me which snippet and references you would load, and call out any naming-convention caveat.` | universal prompt -> runtime YAML -> inspect assets and response caveat | assets include `in_view_reveal.js`; response flags snake_case Webflow convention caveat | `/tmp/skc-CS-005-<cli>.txt`, `results/CS-005-<cli>.yaml` | PASS iff snippet and caveat both appear | If caveat missing, inspect Webflow style guide |
+| `CS-006` | CWV Gates Animation Heavy | Verify animation-heavy Webflow performance prompts load both Motion and Webflow CWV refs | `Our Webflow landing page in src/2_javascript/hero.js uses motion.dev for scroll reveals and hover cards. LCP and INP regressed. Which sk-code references would you load before advising fixes?` | universal prompt -> runtime YAML -> inspect performance refs | refs include `references/motion_dev/performance_and_pitfalls.md` and `references/webflow/performance/cwv_remediation.md` | `/tmp/skc-CS-006-<cli>.txt`, `results/CS-006-<cli>.yaml` | PASS iff both required performance refs load | If one side missing, inspect resource-loading PERFORMANCE maps |
+| `CS-007` | Prefers Reduced Motion | Verify Webflow plus Motion.dev reduced-motion prompts cite Motion accessibility guidance | `For a Webflow page with motion.dev-powered cards in src/2_javascript/cards.js, how should sk-code route a prefers-reduced-motion fix before editing?` | universal prompt -> runtime YAML -> inspect reduced-motion refs and response | surface: WEBFLOW; refs include Motion reduced-motion and Webflow verification guidance | `/tmp/skc-CS-007-<cli>.txt`, `results/CS-007-<cli>.yaml` | PASS iff both Webflow and Motion reduced-motion guidance load | If missing, inspect `performance_and_pitfalls.md` and `verification_workflows.md` |
+
+Per-feature files: see `07--cross-stack-routing/`.
+
+---
+
+## 14. AUTOMATED TEST CROSS-REFERENCE
 
 The sk-code skill currently has these automated tests:
 
@@ -283,10 +304,11 @@ Tests NOT covered by automation (manual playbook is the only validation):
 - Motion.dev API smoke and CDN version pinning (MR-001, MR-002).
 - Reduced-motion and animation regression baseline checks (MR-003, MR-004).
 - Cross-browser, Core Web Vitals, and GPU/compositing checks (CB-001, CB-002, CB-003).
+- Cross-stack Motion.dev smart-routing checks (CS-001, CS-002, CS-003, CS-004, CS-005, CS-006, CS-007).
 
 ---
 
-## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
@@ -307,7 +329,14 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Cross-Browser And Performance Gates | CB-001 | `06--cross-browser-and-performance-gates/001-cross-browser-animate.md` | Yes |
 | Cross-Browser And Performance Gates | CB-002 | `06--cross-browser-and-performance-gates/002-cwv-gates.md` | Yes |
 | Cross-Browser And Performance Gates | CB-003 | `06--cross-browser-and-performance-gates/003-gpu-compositing.md` | Yes |
+| Cross-Stack Routing | CS-001 | `07--cross-stack-routing/001-webflow-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-002 | `07--cross-stack-routing/002-non-webflow-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-003 | `07--cross-stack-routing/003-opencode-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-004 | `07--cross-stack-routing/004-decision-matrix-routing.md` | No |
+| Cross-Stack Routing | CS-005 | `07--cross-stack-routing/005-snippet-reuse-cross-stack.md` | No |
+| Cross-Stack Routing | CS-006 | `07--cross-stack-routing/006-cwv-gates-animation-heavy.md` | No |
+| Cross-Stack Routing | CS-007 | `07--cross-stack-routing/007-prefers-reduced-motion.md` | No |
 
-**Total scenarios**: 17
-**Critical-path scenarios**: 12 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003)
-**Categories**: 6
+**Total scenarios**: 24
+**Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)
+**Categories**: 7

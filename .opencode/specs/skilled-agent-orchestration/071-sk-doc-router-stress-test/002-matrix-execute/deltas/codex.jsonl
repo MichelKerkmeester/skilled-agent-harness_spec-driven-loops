@@ -1,0 +1,12 @@
+{"scenario":"SD-001","cli":"codex","exit":0,"duration_s":13,"tokens":"0","timestamp":"2026-05-05T10:36:00Z"}
+{"scenario":"SD-002","cli":"codex","exit":0,"duration_s":13,"tokens":"0","timestamp":"2026-05-05T10:36:48Z"}
+{"scenario":"SD-003","cli":"codex","exit":0,"duration_s":16,"tokens":"0","timestamp":"2026-05-05T10:38:51Z"}
+{"scenario":"SD-004","cli":"codex","exit":0,"duration_s":37,"tokens":"0","timestamp":"2026-05-05T10:41:12Z"}
+{"scenario":"SD-005","cli":"codex","exit":0,"duration_s":46,"tokens":"0","timestamp":"2026-05-05T10:41:59Z"}
+{"scenario":"SD-006","cli":"codex","exit":0,"duration_s":14,"tokens":"0","timestamp":"2026-05-05T10:43:27Z"}
+{"scenario":"SD-007","cli":"codex","exit":0,"duration_s":14,"tokens":"0","timestamp":"2026-05-05T10:44:31Z"}
+{"scenario":"SD-008","cli":"codex","exit":0,"duration_s":10,"tokens":"0","timestamp":"2026-05-05T10:44:54Z"}
+{"scenario":"SD-009","cli":"codex","exit":0,"duration_s":17,"tokens":"0","timestamp":"2026-05-05T10:45:20Z"}
+{"scenario":"SD-010","cli":"codex","exit":0,"duration_s":40,"tokens":"0","timestamp":"2026-05-05T10:47:43Z"}
+{"scenario":"SD-013","cli":"codex","exit":0,"duration_s":17,"tokens":"0","timestamp":"2026-05-05T10:48:04Z"}
+{"scenario":"SD-014","cli":"codex","exit":0,"duration_s":18,"tokens":"0","timestamp":"2026-05-05T10:48:47Z"}

@@ -1,0 +1,22 @@
+scenario: "SD-001"
+cli: "gemini"
+model: "gemini-3.1-pro-preview"
+duration_s: 120.413
+exit_code: 0
+tokens_in: null
+tokens_out: null
+advisor_top_1: "sk-code"
+surface: "WEBFLOW"
+refs_loaded:
+  - "references/webflow/implementation/implementation_workflows.md"
+  - "references/webflow/implementation/animation_workflows.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+  - "references/motion_dev/integration_patterns.md"
+agent: "none"
+response_excerpt: |
+  |
+verdict: pending
+raw_stdout: "/tmp/skc-SD-001-gemini.txt"
+raw_stderr: "/tmp/skc-SD-001-gemini.err"
