@@ -1,7 +1,7 @@
 scenario: "CS-005"
 cli: "codex"
 model: "gpt-5.5"
-duration_s: 26.516
+duration_s: 34.496
 exit_code: 0
 tokens_in: null
 tokens_out: null
@@ -13,12 +13,16 @@ refs_loaded:
   - "references/router/resource_loading.md"
   - "references/motion_dev/quick_start.md"
   - "references/motion_dev/integration_patterns.md"
-  - "references/motion_dev/scroll_and_gestures.md"
+  - "references/motion_dev/decision_matrix.md"
   - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+assets_loaded:
+  - "assets/motion_dev/snippets/animate_on_scroll.js"
+quality_flags: []
 agent: "none"
 response_excerpt: |
-  |
-verdict: PARTIAL
-verdict_rationale: "The route stayed UNKNOWN with Motion refs, but the required in_view_reveal snippet and snake_case Webflow caveat were missing."
+  Use `scroll()` when the animation should track scroll progress. This version is stack-agnostic: load Motion, add one target element, then adapt the import/loading style to your app.
+verdict: pending
 raw_stdout: "/tmp/skc-CS-005-codex.txt"
 raw_stderr: "/tmp/skc-CS-005-codex.err"

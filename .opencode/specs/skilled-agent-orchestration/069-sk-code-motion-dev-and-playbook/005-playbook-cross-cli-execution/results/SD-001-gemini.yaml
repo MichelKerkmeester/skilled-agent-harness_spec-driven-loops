@@ -1,23 +1,18 @@
 scenario: "SD-001"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 120.413
+duration_s: 66.481
 exit_code: 0
 tokens_in: null
 tokens_out: null
-advisor_top_1: "sk-code"
+advisor_top_1: "mcp-coco-index"
 surface: "WEBFLOW"
-refs_loaded:
-  - "references/webflow/implementation/implementation_workflows.md"
-  - "references/webflow/implementation/animation_workflows.md"
-  - "references/motion_dev/quick_start.md"
-  - "references/motion_dev/animate_and_timelines.md"
-  - "references/motion_dev/scroll_and_gestures.md"
-  - "references/motion_dev/integration_patterns.md"
+refs_loaded: []
+assets_loaded: []
+quality_flags: ["directory_placeholder_refs", "directory_placeholder_assets"]
 agent: "none"
 response_excerpt: |
-  |
-verdict: PARTIAL
-verdict_rationale: "Surface and advisor were correct, but the Webflow implementation ref set was below the SD-001 contract threshold."
+  I can help you set up the JS imports for motion.dev and Lenis. I will first query the code graph and search the repository for any existing Webflow initialization patterns to ensure we align with your current setup.
+verdict: pending
 raw_stdout: "/tmp/skc-SD-001-gemini.txt"
 raw_stderr: "/tmp/skc-SD-001-gemini.err"

@@ -1,19 +1,31 @@
 scenario: "CS-003"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 48.626
+duration_s: 85.295
 exit_code: 0
 tokens_in: null
 tokens_out: null
-advisor_top_1: "mcp-coco-index"
+advisor_top_1: "sk-code"
 surface: "OPENCODE"
 refs_loaded:
-  - "references/opencode/typescript/"
-  - "references/motion_dev/"
+  - "references/opencode/shared/universal_patterns.md"
+  - "references/opencode/shared/code_organization.md"
+  - "references/opencode/typescript/style_guide.md"
+  - "references/opencode/typescript/quality_standards.md"
+  - "references/opencode/typescript/quick_reference.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+assets_loaded:
+  - "assets/opencode/checklists/universal_checklist.md"
+  - "assets/opencode/checklists/typescript_checklist.md"
+quality_flags: []
 agent: "none"
 response_excerpt: |
-  |
-verdict: PARTIAL
-verdict_rationale: "OPENCODE precedence was correct, but advisor top-1 was mcp-coco-index and refs were broad directory-level placeholders."
+  Because you are writing a tool under `.opencode/`, the OpenCode system code surface takes precedence. The OpenCode TypeScript standards apply to your tool's core logic. Since your tool also includes a preview UI using Motion.dev, Motion.dev is loaded as a peer resource category. Both sets of standards (OpenCode TypeScript + Motion.dev) will be applied.
+verdict: pending
 raw_stdout: "/tmp/skc-CS-003-gemini.txt"
 raw_stderr: "/tmp/skc-CS-003-gemini.err"

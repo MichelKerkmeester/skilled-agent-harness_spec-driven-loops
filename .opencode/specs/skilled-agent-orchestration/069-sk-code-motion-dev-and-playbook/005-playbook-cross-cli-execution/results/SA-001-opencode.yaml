@@ -1,18 +1,30 @@
 scenario: "SA-001"
 cli: "opencode"
 model: "github-copilot/gpt-5.5"
-duration_s: 28.948
+duration_s: 49.730
 exit_code: 0
 tokens_in: null
 tokens_out: null
 advisor_top_1: "sk-code"
 surface: "WEBFLOW"
 refs_loaded:
-  - "references/webflow/"
+  - "references/router/code_surface_detection.md"
+  - "references/router/intent_classification.md"
+  - "references/router/resource_loading.md"
+  - "references/webflow/implementation/animation_workflows.md"
+  - "references/webflow/implementation/css_patterns.md"
+  - "references/webflow/performance/resource_loading.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+assets_loaded:
+  - "assets/motion_dev/install_card.md"
+  - "assets/motion_dev/snippets/cdn_bootstrap.js"
+quality_flags: []
 agent: "none"
 response_excerpt: |
-  |
-verdict: PARTIAL
-verdict_rationale: "Advisor and surface were correct, but only a broad Webflow directory ref loaded and Motion decision refs were absent."
+  For a simple hero opacity fade, use pure CSS rather than Motion.dev.
+verdict: pending
 raw_stdout: "/tmp/skc-SA-001-opencode.txt"
 raw_stderr: "/tmp/skc-SA-001-opencode.err"

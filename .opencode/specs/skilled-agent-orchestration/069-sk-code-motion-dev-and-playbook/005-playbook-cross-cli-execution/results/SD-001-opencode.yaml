@@ -1,7 +1,7 @@
 scenario: "SD-001"
 cli: "opencode"
 model: "github-copilot/gpt-5.5"
-duration_s: 51.283
+duration_s: 52.446
 exit_code: 0
 tokens_in: null
 tokens_out: null
@@ -11,17 +11,26 @@ refs_loaded:
   - "references/router/code_surface_detection.md"
   - "references/router/intent_classification.md"
   - "references/router/resource_loading.md"
+  - "references/webflow/implementation/implementation_workflows.md"
   - "references/webflow/implementation/animation_workflows.md"
   - "references/webflow/implementation/third_party_integrations.md"
   - "references/webflow/performance/resource_loading.md"
   - "references/motion_dev/quick_start.md"
   - "references/motion_dev/integration_patterns.md"
-  - "references/motion_dev/animate_and_timelines.md"
-  - "references/motion_dev/performance_and_pitfalls.md"
+assets_loaded:
+  - "assets/webflow/integrations/lenis_patterns.js"
+  - "assets/motion_dev/install_card.md"
+  - "assets/motion_dev/snippets/cdn_bootstrap.js"
+  - "assets/motion_dev/snippets/es_module_bootstrap.js"
+quality_flags: []
 agent: "none"
 response_excerpt: |
-  |
-verdict: PARTIAL
-verdict_rationale: "Surface and advisor were correct, but the Webflow implementation ref set was below the SD-001 contract threshold."
+  Before I make code changes, I need to know which spec folder to use for this work:
+  A) Existing spec folder
+  B) New spec folder
+  C) Update related spec folder
+  D) Skip spec folder
+  E) Phase folder
+verdict: pending
 raw_stdout: "/tmp/skc-SD-001-opencode.txt"
 raw_stderr: "/tmp/skc-SD-001-opencode.err"

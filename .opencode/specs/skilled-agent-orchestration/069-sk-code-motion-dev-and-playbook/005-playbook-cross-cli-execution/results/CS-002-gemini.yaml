@@ -1,23 +1,27 @@
 scenario: "CS-002"
 cli: "gemini"
 model: "gemini-3.1-pro-preview"
-duration_s: 45.153
+duration_s: 86.000
 exit_code: 0
 tokens_in: null
 tokens_out: null
 advisor_top_1: "mcp-coco-index"
-surface: "WEBFLOW"
+surface: "N/A"
 refs_loaded:
-  - "references/router/code_surface_detection.md"
-  - "references/router/intent_classification.md"
-  - "references/router/resource_loading.md"
-  - "references/router/phase_lifecycle.md"
-  - "references/motion_dev/"
-  - "references/webflow/"
+  - "references/motion_dev/quick_start.md"
+  - "references/motion_dev/integration_patterns.md"
+  - "references/motion_dev/decision_matrix.md"
+  - "references/motion_dev/performance_and_pitfalls.md"
+  - "references/motion_dev/animate_and_timelines.md"
+  - "references/motion_dev/scroll_and_gestures.md"
+assets_loaded:
+  - "assets/motion_dev/install_card.md"
+quality_flags: []
 agent: "none"
 response_excerpt: |
-  |
-verdict: FAIL
-verdict_rationale: "The explicit non-Webflow prompt was classified as WEBFLOW and loaded Webflow assets, violating the generic-node guard."
+  Since you are building a stack-agnostic vanilla HTML/CSS/JS page without Webflow, I'm loading the cross-stack Motion.dev guidance.
+  
+  I have referenced the Motion.dev integration patterns, timeline APIs, and performance pitfalls. I have explicitly omitted Webflow-specific CDN or animation workflows to avoid polluting your vanilla setup.
+verdict: pending
 raw_stdout: "/tmp/skc-CS-002-gemini.txt"
 raw_stderr: "/tmp/skc-CS-002-gemini.err"
