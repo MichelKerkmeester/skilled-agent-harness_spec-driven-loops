@@ -603,7 +603,6 @@ Code Mode enables access to external MCP tools. Each provider has its own detail
 
 | Provider | Tools | Install Guide |
 |----------|-------|---------------|
-| **Figma** | 18 | [mcp-figma INSTALL_GUIDE.md](../skill/mcp-figma/INSTALL_GUIDE.md) - Design file access, image export |
 | **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
 | **Webflow** | 42 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - CMS management, site operations |
 | **ClickUp** | 21 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Task management, project tracking |
@@ -816,7 +815,6 @@ Skills are automatically discovered from:
 | Skill                      | Version    | Purpose                                              |
 | -------------------------- | ---------- | ---------------------------------------------------- |
 | mcp-code-mode        | v1.0.7.0   | External tool orchestration                          |
-| mcp-figma            | v1.0.7.0   | Figma design file access and integration             |
 | system-spec-kit      | v2.2.26.0  | Spec folder + template system + context preservation |
 | mcp-chrome-devtools  | v1.0.7.0   | Browser debugging                                    |
 | cli-codex            | v1.2.0     | OpenAI Codex CLI orchestration for code and research |
@@ -1463,7 +1461,7 @@ bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Skills             | 16    | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, mcp-figma, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
+| Skills             | 15    | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
 | Commands           | 22    | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |

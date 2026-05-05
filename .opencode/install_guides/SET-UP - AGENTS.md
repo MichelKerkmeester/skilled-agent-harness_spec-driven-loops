@@ -166,7 +166,6 @@ ls -la .opencode/skill/
 
 # Example output:
 # mcp-code-mode/
-# mcp-figma/
 # system-spec-kit/
 # mcp-chrome-devtools/
 # sk-code/
@@ -525,7 +524,6 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 | Skill                  | Version | Primary Triggers                                          | Purpose                                          |
 | ---------------------- | ------- | --------------------------------------------------------- | ------------------------------------------------ |
-| `mcp-figma`            | v1.0.0  | "Figma", "design", "component", "style"                   | Figma design tool integration                    |
 | `mcp-code-mode`        | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"            | MCP orchestration for external tools             |
 | `system-spec-kit`      | v2.2.0  | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
 | `mcp-chrome-devtools`  | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
@@ -1216,7 +1214,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**        | 16     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, mcp-figma, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
+| **Skills**        | 15     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, spec-kit-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |
