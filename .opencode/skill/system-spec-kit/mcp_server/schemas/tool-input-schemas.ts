@@ -147,7 +147,7 @@ const skillGraphQueryTypeEnum = z.enum([
   'subgraph',
 ]);
 
-const skillFamilyEnum = z.enum(['cli', 'mcp', 'sk-code', 'sk-deep', 'sk-util', 'system']);
+const skillFamilyEnum = z.enum(['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system']);
 
 const coverageGraphLoopTypeEnum = z.enum(['research', 'review']);
 

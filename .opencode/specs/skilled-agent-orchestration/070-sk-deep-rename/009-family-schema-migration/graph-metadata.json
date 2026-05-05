@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/070-sk-deep-rename/009-family-schema-migration",
+  "spec_folder": "skilled-agent-orchestration/070-sk-deep-rename/009-family-schema-migration",
+  "parent_id": "skilled-agent-orchestration/070-sk-deep-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/070-sk-deep-rename",
+      "skilled-agent-orchestration/070-sk-deep-rename/008-final-cleanup"
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "070 phase 009",
+      "family schema migration",
+      "deep-loop family",
+      "skill graph check constraint",
+      "skill-graph sqlite reset"
+    ],
+    "key_topics": [
+      "deep-loop-family",
+      "skill-graph-schema",
+      "sqlite-reset",
+      "type-schema-mirrors",
+      "compiler-validation",
+      "strict-validation"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "description.json",
+      "graph-metadata.json",
+      ".opencode/skill/system-spec-kit/mcp_server/lib/skill-graph/skill-graph-db.ts",
+      ".opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.js",
+      ".opencode/skill/system-spec-kit/mcp_server/dist/lib/skill-graph/skill-graph-db.d.ts",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
+      ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_graph_compiler.py",
+      ".opencode/skill/deep-review/graph-metadata.json",
+      ".opencode/skill/deep-research/graph-metadata.json"
+    ],
+    "entities": [
+      "deep-loop",
+      "sk-deep",
+      "skill-graph.sqlite",
+      "SkillFamily",
+      "skill_graph_compiler.py",
+      "skill-graph-db.ts"
+    ],
+    "causal_summary": "Phase 009 performs the schema migration that unblocks the deep-loop family rename after Phase 008 exposed the SQLite CHECK constraint as the insertion-time blocker.",
+    "created_at": "2026-05-05T18:25:00Z",
+    "last_save_at": "2026-05-05T18:25:00Z",
+    "save_lineage": "graph_only",
+    "last_active_child_id": null,
+    "last_active_at": null,
+    "last_accessed_at": "2026-05-05T18:25:00Z",
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  },
+  "importance_tier": "critical"
+}

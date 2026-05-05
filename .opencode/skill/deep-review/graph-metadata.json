@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "skill_id": "deep-review",
-  "family": "sk-deep",
+  "family": "deep-loop",
   "category": "autonomous-loop",
   "edges": {
     "depends_on": [

@@ -36,7 +36,7 @@ export interface QueryArgs {
 }
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
-const SKILL_FAMILIES = new Set<SkillFamily>(['cli', 'mcp', 'sk-code', 'sk-deep', 'sk-util', 'system']);
+const SKILL_FAMILIES = new Set<SkillFamily>(['cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system']);
 
 // ───────────────────────────────────────────────────────────────
 // 2. HANDLER

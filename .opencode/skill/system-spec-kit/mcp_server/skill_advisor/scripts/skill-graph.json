@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-05T17:49:56.478107+00:00",
+  "generated_at": "2026-05-05T18:08:08.219052+00:00",
   "skill_count": 18,
   "families": {
     "cli": [
@@ -10,6 +10,10 @@
       "cli-gemini",
       "cli-opencode"
     ],
+    "deep-loop": [
+      "deep-research",
+      "deep-review"
+    ],
     "mcp": [
       "mcp-chrome-devtools",
       "mcp-coco-index",
@@ -18,10 +22,6 @@
     "sk-code": [
       "sk-code",
       "sk-code-review"
-    ],
-    "sk-deep": [
-      "deep-research",
-      "deep-review"
     ],
     "sk-util": [
       "sk-doc",

@@ -20,7 +20,7 @@ import { checkSqliteIntegrity } from '../utils/sqlite-integrity.js';
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────
 
-export type SkillFamily = 'cli' | 'mcp' | 'sk-code' | 'sk-deep' | 'sk-util' | 'system';
+export type SkillFamily = 'cli' | 'mcp' | 'sk-code' | 'deep-loop' | 'sk-util' | 'system';
 
 export type SkillEdgeType =
   | 'depends_on'
@@ -95,7 +95,7 @@ const ALLOWED_FAMILIES: readonly SkillFamily[] = [
   'cli',
   'mcp',
   'sk-code',
-  'sk-deep',
+  'deep-loop',
   'sk-util',
   'system',
 ];
@@ -123,7 +123,7 @@ const WEIGHT_BANDS: Readonly<Record<SkillEdgeType, readonly [number, number]>> =
 const SCHEMA_SQL = `
   CREATE TABLE IF NOT EXISTS skill_nodes (
     id TEXT PRIMARY KEY,
-    family TEXT NOT NULL CHECK(family IN ('cli', 'mcp', 'sk-code', 'sk-deep', 'sk-util', 'system')),
+    family TEXT NOT NULL CHECK(family IN ('cli', 'mcp', 'sk-code', 'deep-loop', 'sk-util', 'system')),
     category TEXT NOT NULL,
     schema_version INTEGER NOT NULL,
     domains TEXT,

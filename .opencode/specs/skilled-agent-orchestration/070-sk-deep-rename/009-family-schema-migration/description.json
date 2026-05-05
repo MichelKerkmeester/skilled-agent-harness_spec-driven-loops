@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/070-sk-deep-rename/009-family-schema-migration",
+  "description": "Phase 009 - Schema migration that makes the deep-loop family name valid end-to-end by updating skill graph constraints, type/schema mirrors, generated runtime mirrors, and resetting the SQLite database.",
+  "keywords": [
+    "phase",
+    "family-schema-migration",
+    "deep-loop",
+    "skill-graph",
+    "sqlite",
+    "check-constraint",
+    "type-mirrors"
+  ],
+  "lastUpdated": "2026-05-05T18:25:00.000Z",
+  "specId": "070",
+  "folderSlug": "009-family-schema-migration",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "070-sk-deep-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
