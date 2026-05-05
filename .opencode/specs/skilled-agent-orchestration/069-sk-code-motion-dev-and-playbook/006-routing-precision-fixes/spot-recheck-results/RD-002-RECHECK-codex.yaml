@@ -1,0 +1,19 @@
+scenario: "RD-002-RECHECK"
+cli: "codex"
+model: "gpt-5.5"
+duration_s: 30.467
+exit_code: 1
+tokens_in: null
+tokens_out: null
+advisor_top_1: null
+surface: null
+refs_loaded: []
+assets_loaded: []
+quality_flags: ["empty_excerpt"]
+agent: null
+response_excerpt: |
+  (no response)
+verdict: FAIL
+verdict_rationale: "Nested Codex could not reach api.openai.com in this sandbox, so the routing analysis did not execute. Parser hardening worked: empty output became refs_loaded/assets_loaded [] plus quality_flags empty_excerpt."
+raw_stdout: "/tmp/skc-RD-002-RECHECK-codex.txt"
+raw_stderr: "/tmp/skc-RD-002-RECHECK-codex.err"

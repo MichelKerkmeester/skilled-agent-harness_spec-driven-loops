@@ -49,6 +49,28 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 **Generic-Node guard**: WEBFLOW markers are gated to actual Webflow signals (vendor globals, Webflow paths, `wrangler.toml`, `src/2_javascript/`). Bare Motion package imports and generic Motion documentation mentions are MOTION_DEV intent signals after surface selection, not WEBFLOW surface markers. Generic Node.js outside `.opencode/` and without WEBFLOW markers stays UNKNOWN until the user clarifies the surface.
 
+### Explicit Non-Webflow Guards
+
+Prompt-level negative Webflow language wins before WEBFLOW fallback logic. If the user explicitly says any of the following, the surface MUST be UNKNOWN for implementation requests, or N/A for documentation-style cross-stack guidance:
+
+- `NOT Webflow`
+- `no Webflow Designer`
+- `without Webflow`
+- `non-Webflow`
+- `vanilla HTML/CSS/JS only`
+- `stack-agnostic`
+- equivalent wording that excludes Webflow as the implementation surface
+
+This guard applies even when the prompt mentions Motion.dev, GSAP, Lenis, Swiper, or vanilla animation work. Those terms can trigger the MOTION_DEV resource intent, but they must not promote an explicitly non-Webflow request to WEBFLOW.
+
+Expected CS-002 behavior:
+
+| Prompt | Expected Surface | Expected Resource Scope |
+| --- | --- | --- |
+| `I'm building a vanilla HTML/CSS/JS landing page (NOT Webflow no Webflow Designer involved) and want to add motion.dev animations.` | UNKNOWN or N/A | `references/motion_dev/*` exact files only; no `references/webflow/*` |
+| `Show stack-agnostic Motion.dev guidance for animate-on-scroll.` | N/A | `references/motion_dev/quick_start.md`, `references/motion_dev/scroll_and_gestures.md`, exact snippet assets |
+| `Update Webflow page code that uses window.Motion.` | WEBFLOW | Webflow implementation refs plus Motion.dev peer refs |
+
 ---
 
 ## 3. OPENCODE LANGUAGE SUB-DETECTION
@@ -76,6 +98,7 @@ When multiple languages are touched, load shared OpenCode guidance plus each tou
 | CWD `.opencode/skill/sk-code` | OPENCODE | Skill/system code context |
 | Changed `.opencode/agent/code.md` | OPENCODE | Target file under `.opencode/` |
 | WEBFLOW marker (Lenis, GSAP) AND changed `.opencode/skill/sk-doc/scripts/preview-server.js` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
+| Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.opencode/` target | UNKNOWN | Generic Node.js is not owned |
 | `go.mod` or `next.config.js` only | UNKNOWN | Go/NextJS placeholder routes were removed |
 

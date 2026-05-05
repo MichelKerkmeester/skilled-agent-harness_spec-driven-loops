@@ -126,6 +126,8 @@ This parent spec lists no files directly. Per-phase blast radius:
 | 002 | [002-motion-dev/](./002-motion-dev/) | Motion.dev assets + references (canonical, cross-stack) | Complete |
 | 003 | [003-cross-ref-metadata-sync/](./003-cross-ref-metadata-sync/) | Webflow "See also" cross-refs + sk-code metadata sync + router/manifest update | Complete |
 | 004 | [004-deep-review-remediation/](./004-deep-review-remediation/) | Deep-review remediation for P0/P1/P2 findings and final PASS restoration | Complete |
+| 005 | [005-playbook-cross-cli-execution/](./005-playbook-cross-cli-execution/) | Cross-CLI playbook execution audit and finding ledger | Complete |
+| 006 | [006-routing-precision-fixes/](./006-routing-precision-fixes/) | Routing precision remediation for Phase 005 findings | In Progress |
 
 ### Phase Transition Rules
 

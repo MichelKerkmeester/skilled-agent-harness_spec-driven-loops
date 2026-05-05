@@ -94,7 +94,19 @@ Motion is a strong default for sk-code animation references because:
 - it offers `animate()`, sequences, `scroll()`, `inView()`, `hover()`, `press()`, `spring()`, and motion values across vanilla JS surfaces (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview, https://motion.dev/docs/hover, https://motion.dev/docs/press, https://motion.dev/docs/spring),
 - current repo code already uses both guarded `window.Motion` and dynamic ESM import patterns (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
-## 7. REFERENCES AND RELATED RESOURCES
+## 7. CONTRACT REGRESSION EXAMPLES
+
+Use these examples when checking future router drift. They are routing contracts, not implementation requests.
+
+| Query | Expected Surface | Expected References |
+|-------|------------------|---------------------|
+| `Should I use motion.dev or pure CSS for hover states?` | N/A or UNKNOWN | `references/motion_dev/decision_matrix.md`, `references/motion_dev/quick_start.md`; cite the decision tree in this file |
+| `For a Webflow page, should scroll reveal use Motion.dev or CSS?` | WEBFLOW | `references/webflow/implementation/animation_workflows.md`, `references/webflow/implementation/performance_patterns.md`, `references/motion_dev/decision_matrix.md`, `references/motion_dev/scroll_and_gestures.md` |
+| `I'm building vanilla HTML/CSS/JS only, NOT Webflow, and deciding between Motion.dev and WAAPI.` | UNKNOWN or N/A | `references/motion_dev/decision_matrix.md`, `references/motion_dev/performance_and_pitfalls.md`; no `references/webflow/*` |
+
+Expected response shape: give the smallest-tool recommendation first, then name the trade-off. Do not emit directory placeholders such as `references/motion_dev/`.
+
+## 8. REFERENCES AND RELATED RESOURCES
 
 - Motion quick start: https://motion.dev/docs/quick-start
 - Motion animate/mini/hybrid/sequences: https://motion.dev/docs/animate

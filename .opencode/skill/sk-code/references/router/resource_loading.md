@@ -27,12 +27,20 @@ WEBFLOW loads from `references/webflow/` and `assets/webflow/`.
 
 | Intent | Examples |
 | --- | --- |
-| IMPLEMENTATION | `references/webflow/implementation/implementation_workflows.md`, animation/forms/vendor guides |
+| IMPLEMENTATION | MUST load the implementation trio: `references/webflow/implementation/animation_workflows.md`, `references/webflow/implementation/implementation_workflows.md`, `references/webflow/implementation/performance_patterns.md`; then add focused guides such as forms/vendor refs as needed |
 | CODE_QUALITY | `assets/webflow/checklists/code_quality_checklist.md`, Webflow standards |
 | DEBUGGING | `references/webflow/debugging/*`, universal debugging checklist |
 | VERIFICATION | `references/webflow/verification/verification_workflows.md`, verification checklist |
-| PERFORMANCE | `references/webflow/performance/*`, performance loading checklist |
+| PERFORMANCE | `references/webflow/performance/cwv_remediation.md`, `references/webflow/performance/resource_loading.md`, `references/webflow/performance/interaction_gated_loading.md` |
 | DEPLOYMENT | CDN and minification guides |
+
+Any WEBFLOW surface detection MUST load the implementation trio before intent-specific expansion:
+
+- `references/webflow/implementation/animation_workflows.md`
+- `references/webflow/implementation/implementation_workflows.md`
+- `references/webflow/implementation/performance_patterns.md`
+
+This is a contract, not a guideline. It prevents SD-001-style partial coverage where the surface is correct but implementation guidance falls below the expected threshold.
 
 ---
 
@@ -42,13 +50,39 @@ MOTION_DEV loads from `references/motion_dev/` and `assets/motion_dev/` as a pee
 
 | Intent | Resources |
 | --- | --- |
-| ANIMATION / MOTION_DEV | `references/motion_dev/{quick_start,animate_and_timelines,scroll_and_gestures}.md` |
+| ANIMATION / MOTION_DEV | `references/motion_dev/quick_start.md`, `references/motion_dev/animate_and_timelines.md`, `references/motion_dev/scroll_and_gestures.md` |
 | PERFORMANCE | `references/motion_dev/performance_and_pitfalls.md` |
-| IMPLEMENTATION / API | `references/motion_dev/integration_patterns.md`, `assets/motion_dev/snippets/*` |
+| IMPLEMENTATION / API | `references/motion_dev/integration_patterns.md`, exact snippet assets such as `assets/motion_dev/snippets/animate_on_scroll.js` and `assets/motion_dev/snippets/in_view_reveal.js` |
 | CODE_QUALITY / DECISION | `references/motion_dev/decision_matrix.md`, `assets/motion_dev/install_card.md` |
 | TESTING / PLAYBOOK | `assets/motion_dev/playbook_entries.md` plus manual testing playbook Motion scenarios |
 
 When WEBFLOW and MOTION_DEV both match, load Webflow guidance for CDN, `window.Motion`, Designer, and browser verification constraints, then load `motion_dev/` for cross-stack Motion details.
+
+When explicit non-Webflow language and MOTION_DEV both match, do not load `references/webflow/*` or `assets/webflow/*`. Load Motion.dev peer resources by exact path while keeping the surface UNKNOWN or N/A:
+
+- `references/motion_dev/quick_start.md`
+- `references/motion_dev/integration_patterns.md`
+- `references/motion_dev/decision_matrix.md`
+- `references/motion_dev/performance_and_pitfalls.md`
+- `references/motion_dev/animate_and_timelines.md`
+- `references/motion_dev/scroll_and_gestures.md`
+- exact snippet assets under `assets/motion_dev/snippets/` when the prompt asks for examples
+
+Do not emit directory placeholders such as `references/motion_dev/`, `assets/motion_dev/snippets/`, or `references/webflow/` in playbook result YAML. Name the exact canonical files.
+
+### Performance and Decision Contracts
+
+PERFORMANCE intent with Motion.dev or Webflow animation MUST name these canonical files when relevant:
+
+- `references/motion_dev/performance_and_pitfalls.md`
+- `references/webflow/performance/cwv_remediation.md`
+- `references/webflow/performance/resource_loading.md`
+
+DECISION intent MUST name:
+
+- `references/motion_dev/decision_matrix.md`
+- `references/webflow/implementation/animation_workflows.md` when comparing Motion.dev against Webflow-owned animation patterns
+- `references/webflow/implementation/performance_patterns.md` when the decision depends on performance constraints
 
 ---
 

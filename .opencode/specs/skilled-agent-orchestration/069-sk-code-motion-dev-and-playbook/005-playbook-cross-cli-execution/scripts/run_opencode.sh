@@ -47,12 +47,36 @@ err = Path(err_path).read_text(errors="replace") if Path(err_path).exists() else
 combined = raw + "\n" + err
 m = re.search(r"```ya?ml\s*(.*?)```", raw, re.S | re.I)
 yaml_text = m.group(1).strip() if m else (raw[raw.find("scenario:"):].strip() if "scenario:" in raw else "")
+quality_flags = []
 def scalar(key, default="null"):
     mm = re.search(rf"^{re.escape(key)}:\s*(.*?)\s*$", yaml_text, re.M)
     return mm.group(1).strip().strip('"').strip("'") if mm else default
+def block_scalar(key):
+    mm = re.search(rf"^{re.escape(key)}:\s*[|>]\s*\n((?:[ \t]+.*\n?)*)", yaml_text, re.M)
+    if not mm:
+        return ""
+    lines = []
+    for line in mm.group(1).splitlines():
+        if re.match(r"^\S", line):
+            break
+        lines.append(re.sub(r"^[ \t]{2}", "", line))
+    return "\n".join(lines).strip()
+def is_directory_placeholder(value):
+    normalized = value.strip().strip('"').strip("'")
+    return bool(normalized.endswith("/") or re.fullmatch(r"(?:references|assets)/[^/]+/?", normalized))
 def block_list(key):
     mm = re.search(rf"^{re.escape(key)}:\s*\n((?:\s+-\s*.*\n?)*)", yaml_text, re.M)
-    return [re.match(r"\s+-\s*(.*)", line).group(1).strip().strip('"').strip("'") for line in (mm.group(1).splitlines() if mm else []) if re.match(r"\s+-\s*(.*)", line)]
+    vals = []
+    for line in (mm.group(1).splitlines() if mm else []):
+        lm = re.match(r"\s+-\s*(.*)", line)
+        if not lm:
+            continue
+        value = lm.group(1).strip().strip('"').strip("'")
+        if is_directory_placeholder(value):
+            quality_flags.append("directory_placeholder_refs" if key == "references_loaded" else "directory_placeholder_assets")
+            continue
+        vals.append(value)
+    return vals
 def first_token(patterns):
     for p in patterns:
         mm = re.search(p, combined, re.I)
@@ -62,15 +86,33 @@ def first_token(patterns):
 def q(v):
     return "null" if v in {"", "null"} else '"' + v.replace("\\", "\\\\").replace('"', '\\"') + '"'
 refs = block_list("references_loaded")
-excerpt = scalar("user_response", "")
-if excerpt in {"", "null"}:
-    excerpt = raw.strip()[:700]
+assets = block_list("assets_loaded")
+excerpt_source = block_scalar("user_response") or scalar("user_response", "")
+if excerpt_source.strip() in {"", "null", "|", ">"}:
+    quality_flags.append("empty_excerpt")
+    excerpt = "(no response)"
+else:
+    excerpt = excerpt_source.replace("\r", "").strip()[:700]
 tokens_in = first_token([r"tokens[_ -]?in[:=]\s*(\d+)", r"input tokens[:=]\s*(\d+)"])
 tokens_out = first_token([r"tokens[_ -]?out[:=]\s*(\d+)", r"output tokens[:=]\s*(\d+)"])
-lines = [f"scenario: {q(sid)}", f"cli: {q(cli)}", f"model: {q(model)}", f"duration_s: {duration or '0'}", f"exit_code: {exit_code}", f"tokens_in: {tokens_in}", f"tokens_out: {tokens_out}", f"advisor_top_1: {q(scalar('advisor_top_1_skill'))}", f"surface: {q(scalar('detected_surface'))}", "refs_loaded:"]
-lines.extend([f"  - {q(v)}" for v in refs] or ["  - null"])
-lines += [f"agent: {q(scalar('agent_dispatched'))}", "response_excerpt: |"]
-lines.extend(["  " + line for line in (excerpt or "NO_RESPONSE").replace("\r", "").strip()[:700].splitlines()])
+lines = [f"scenario: {q(sid)}", f"cli: {q(cli)}", f"model: {q(model)}", f"duration_s: {duration or '0'}", f"exit_code: {exit_code}", f"tokens_in: {tokens_in}", f"tokens_out: {tokens_out}", f"advisor_top_1: {q(scalar('advisor_top_1_skill'))}", f"surface: {q(scalar('detected_surface'))}"]
+if refs:
+    lines.append("refs_loaded:")
+    lines.extend([f"  - {q(v)}" for v in refs])
+else:
+    lines.append("refs_loaded: []")
+if assets:
+    lines.append("assets_loaded:")
+    lines.extend([f"  - {q(v)}" for v in assets])
+else:
+    lines.append("assets_loaded: []")
+unique_flags = []
+for flag in quality_flags:
+    if flag not in unique_flags:
+        unique_flags.append(flag)
+flags = "[" + ", ".join(q(flag) for flag in unique_flags) + "]"
+lines += [f"quality_flags: {flags}", f"agent: {q(scalar('agent_dispatched'))}", "response_excerpt: |"]
+lines.extend(["  " + line for line in excerpt.splitlines()])
 lines += ["verdict: pending", f"raw_stdout: {q(raw_path)}", f"raw_stderr: {q(err_path)}"]
 Path(result_path).write_text("\n".join(lines) + "\n")
 PY

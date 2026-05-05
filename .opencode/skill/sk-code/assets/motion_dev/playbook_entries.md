@@ -115,7 +115,19 @@ API context:
 - `references/motion_dev/performance_and_pitfalls.md`
 - `assets/motion_dev/snippets/stagger_animation.js`
 
-## 3. CROSS-LINKS
+## 3. CONTRACT REGRESSION EXAMPLES
+
+Use these examples to prevent snippet and caveat drift in cross-stack routing checks.
+
+| Query | Expected Surface | Expected Outputs |
+|-------|------------------|------------------|
+| `Show me a motion.dev animate-on-scroll example for any stack.` | N/A or UNKNOWN | `assets/motion_dev/snippets/animate_on_scroll.js`, `references/motion_dev/scroll_and_gestures.md`, `references/motion_dev/quick_start.md` |
+| `Give me a Webflow-safe Motion.dev in-view reveal snippet.` | WEBFLOW | `assets/motion_dev/snippets/in_view_reveal.js`, `references/webflow/implementation/animation_workflows.md`, `references/motion_dev/scroll_and_gestures.md`, plus the Webflow `snake_case` naming caveat |
+| `Reuse the Motion.dev stagger snippet in a stack-agnostic example, not Webflow.` | UNKNOWN or N/A | `assets/motion_dev/snippets/stagger_animation.js`, `references/motion_dev/animate_and_timelines.md`; no `references/webflow/*` |
+
+Expected response shape: name the exact snippet asset, include the relevant Motion.dev reference file, and only add the Webflow `snake_case` caveat when the prompt is Webflow-owned.
+
+## 4. CROSS-LINKS
 
 - Packet 1 root playbook: `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 - Packet 1 MR category: `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/`
@@ -124,7 +136,7 @@ API context:
 - Motion performance guidance: `references/motion_dev/performance_and_pitfalls.md`
 - Motion stagger snippet: `assets/motion_dev/snippets/stagger_animation.js`
 
-## 4. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 - Motion install/API smoke: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate, https://motion.dev/docs/inview, https://motion.dev/docs/spring
 - Motion scroll/gesture context: https://motion.dev/docs/scroll, https://motion.dev/docs/hover, https://motion.dev/docs/press

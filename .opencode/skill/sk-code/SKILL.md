@@ -28,6 +28,8 @@ Use it for implementation, code quality, debugging, verification, test failures,
 
 Do **not** use this skill for documentation-only changes (`sk-doc`), git workflow (`sk-git`), pure browser inspection (`mcp-chrome-devtools`), or formal findings-first review output (`sk-code-review` baseline plus this skill's surface evidence).
 
+Documentation-only edits to skill markdown route to `sk-doc`, even when the file lives under `.opencode/skill/`. Examples: updating a `SKILL.md` headline, clarifying a README paragraph, rewriting a description section, or adding a one-line summary at the top of a markdown file. Negative example: "Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary" is `sk-doc`, not `sk-code`, because the requested change is prose-only and does not modify executable behavior or routing logic.
+
 ### Phase Overview
 
 | Phase | Purpose | Requirement |
@@ -60,7 +62,13 @@ if [[ "$PWD" == */.opencode/* ]] \
    || [[ "$TARGET_FILE" == */.opencode/* ]]; then
   SURFACE="OPENCODE"
 
-# 2. WEBFLOW - frontend HTML/CSS/JS and Webflow-specific vanilla animation web
+# 2. Explicit non-Webflow guard - a prompt can ask for Motion.dev cross-stack
+# guidance without making the implementation surface WEBFLOW.
+elif printf '%s\n' "${PROMPT_TEXT:-}" | grep -Eiq \
+     '(^|[^[:alnum:]])(not webflow|no webflow designer|without webflow|non-webflow|vanilla html/css/js only|vanilla html css js only|stack-agnostic)([^[:alnum:]]|$)'; then
+  SURFACE="UNKNOWN"
+
+# 3. WEBFLOW - frontend HTML/CSS/JS and Webflow-specific vanilla animation web
 elif [[ -d "src/2_javascript" ]] \
      || ls *.webflow.js 2>/dev/null | head -1 \
      || grep -lq "Webflow\.push\|--vw-" src/**/*.{js,css,html} 2>/dev/null \
@@ -69,7 +77,7 @@ elif [[ -d "src/2_javascript" ]] \
      || [[ -f "wrangler.toml" ]]; then
   SURFACE="WEBFLOW"
 
-# 3. UNKNOWN - not owned by this skill; ask for runtime + verification commands
+# 4. UNKNOWN - not owned by this skill; ask for runtime + verification commands
 else
   SURFACE="UNKNOWN"
 fi

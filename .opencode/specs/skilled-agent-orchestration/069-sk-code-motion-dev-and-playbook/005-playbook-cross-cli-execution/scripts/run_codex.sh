@@ -60,10 +60,29 @@ def extract_yaml(text):
     return text[idx:].strip() if idx >= 0 else ""
 
 yaml_text = extract_yaml(raw)
+quality_flags = []
 
 def scalar(key, default="null"):
     m = re.search(rf"^{re.escape(key)}:\s*(.*?)\s*$", yaml_text, re.M)
     return m.group(1).strip().strip('"').strip("'") if m else default
+
+def block_scalar(key):
+    m = re.search(rf"^{re.escape(key)}:\s*[|>]\s*\n((?:[ \t]+.*\n?)*)", yaml_text, re.M)
+    if not m:
+        return ""
+    lines = []
+    for line in m.group(1).splitlines():
+        if re.match(r"^\S", line):
+            break
+        lines.append(re.sub(r"^[ \t]{2}", "", line))
+    return "\n".join(lines).strip()
+
+def is_directory_placeholder(value):
+    normalized = value.strip().strip('"').strip("'")
+    return bool(
+        normalized.endswith("/")
+        or re.fullmatch(r"(?:references|assets)/[^/]+/?", normalized)
+    )
 
 def block_list(key):
     m = re.search(rf"^{re.escape(key)}:\s*\n((?:\s+-\s*.*\n?)*)", yaml_text, re.M)
@@ -73,7 +92,14 @@ def block_list(key):
     for line in m.group(1).splitlines():
         lm = re.match(r"\s+-\s*(.*)", line)
         if lm:
-            vals.append(lm.group(1).strip().strip('"').strip("'"))
+            value = lm.group(1).strip().strip('"').strip("'")
+            if is_directory_placeholder(value):
+                if key == "references_loaded":
+                    quality_flags.append("directory_placeholder_refs")
+                else:
+                    quality_flags.append("directory_placeholder_assets")
+                continue
+            vals.append(value)
     return vals
 
 def first_token(patterns):
@@ -89,10 +115,13 @@ def yaml_quote(value):
     return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 refs = block_list("references_loaded")
-excerpt_source = scalar("user_response", "")
-if excerpt_source in {"", "null"}:
-    excerpt_source = raw.strip()[:700]
-excerpt = excerpt_source.replace("\r", "").strip()[:700]
+assets = block_list("assets_loaded")
+excerpt_source = block_scalar("user_response") or scalar("user_response", "")
+if excerpt_source.strip() in {"", "null", "|", ">"}:
+    quality_flags.append("empty_excerpt")
+    excerpt = "(no response)"
+else:
+    excerpt = excerpt_source.replace("\r", "").strip()[:700]
 tokens_in = first_token([r"tokens[_ -]?in[:=]\s*(\d+)", r"input tokens[:=]\s*(\d+)"])
 tokens_out = first_token([r"tokens[_ -]?out[:=]\s*(\d+)", r"output tokens[:=]\s*(\d+)"])
 
@@ -106,10 +135,24 @@ lines = [
     f"tokens_out: {tokens_out}",
     f"advisor_top_1: {yaml_quote(scalar('advisor_top_1_skill'))}",
     f"surface: {yaml_quote(scalar('detected_surface'))}",
-    "refs_loaded:",
 ]
-lines.extend([f"  - {yaml_quote(v)}" for v in refs] or ["  - null"])
+if refs:
+    lines.append("refs_loaded:")
+    lines.extend([f"  - {yaml_quote(v)}" for v in refs])
+else:
+    lines.append("refs_loaded: []")
+if assets:
+    lines.append("assets_loaded:")
+    lines.extend([f"  - {yaml_quote(v)}" for v in assets])
+else:
+    lines.append("assets_loaded: []")
+unique_flags = []
+for flag in quality_flags:
+    if flag not in unique_flags:
+        unique_flags.append(flag)
+flags = "[" + ", ".join(yaml_quote(flag) for flag in unique_flags) + "]"
 lines += [
+    f"quality_flags: {flags}",
     f"agent: {yaml_quote(scalar('agent_dispatched'))}",
     "response_excerpt: |",
 ]

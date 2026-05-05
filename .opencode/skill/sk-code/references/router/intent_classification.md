@@ -38,6 +38,20 @@ Intent classification runs after code-surface detection and before resource load
 4. Select a second intent when the score delta is small.
 5. For OPENCODE, run language sub-detection after intent selection.
 
+### Doc-Only Edit Anti-Signals
+
+Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc` scoring, even when the target file is under `.opencode/skill/`.
+
+| Prompt signal | Effect |
+| --- | --- |
+| `update headline`, `rewrite headline`, `headline section` | `sk-code -2`, `sk-doc +3` |
+| `clarify description`, `clarify the X model`, `documentation section` | `sk-code -2`, `sk-doc +3` |
+| `add a one-line summary`, `add summary at the top` | `sk-code -2`, `sk-doc +3` |
+| `improve readme`, `reorganize readme`, `rewrite section` | `sk-code -2`, `sk-doc +3` |
+| `SKILL.md` or `README.md` plus prose-only verbs | `sk-code -2`, `sk-doc +3` |
+
+Do not apply this anti-signal when the same request asks to modify executable code, parser logic, tests, shell behavior, TypeScript/Python entrypoints, JSON schema behavior, or routing algorithms. In that case, keep OPENCODE surface detection and load `sk-code`.
+
 Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load OPENCODE plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
 Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `references/motion_dev/` for cross-stack API/decision context; if the target is `.opencode/`, keep the surface as OPENCODE and load Motion only as reference material.

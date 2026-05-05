@@ -7,7 +7,9 @@
     "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/001-playbook",
     "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev",
     "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/003-cross-ref-metadata-sync",
-    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation"
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/004-deep-review-remediation",
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/005-playbook-cross-cli-execution",
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/006-routing-precision-fixes"
   ],
   "manual": {
     "depends_on": [],
