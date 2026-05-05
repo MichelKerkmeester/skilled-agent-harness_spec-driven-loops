@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "068-sk-doc-organization/002-update-and-mirror",
-  "spec_folder": "068-sk-doc-organization/002-update-and-mirror",
+  "packet_id": "068-sk-doc-organization/003-verify-and-ship",
+  "spec_folder": "068-sk-doc-organization/003-verify-and-ship",
   "parent_id": "068-sk-doc-organization",
   "children_ids": [],
   "manual": {
@@ -20,8 +20,8 @@
       "tasks.md"
     ],
     "entities": [],
-    "causal_summary": "Phase 2: update-and-mirror",
-    "created_at": "2026-05-05T07:55:03Z",
+    "causal_summary": "Phase 3: verify-and-ship",
+    "created_at": "2026-05-05T07:55:04Z",
     "last_save_at": "2026-05-05T09:05:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",

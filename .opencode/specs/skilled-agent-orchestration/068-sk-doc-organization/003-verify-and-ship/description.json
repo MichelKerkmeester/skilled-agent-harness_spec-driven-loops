@@ -1,0 +1,17 @@
+{
+  "specFolder": "068-sk-doc-organization/003-verify-and-ship",
+  "description": "Phase 3: verify-and-ship",
+  "keywords": [
+    "phase",
+    "verify-and-ship"
+  ],
+  "lastUpdated": "2026-05-05T07:55:05.242Z",
+  "specId": "003",
+  "folderSlug": "verify-and-ship",
+  "parentChain": [
+    "068-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

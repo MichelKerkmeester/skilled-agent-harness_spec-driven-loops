@@ -159,7 +159,8 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `references/global/` for documentation standards, validation rules, optimization guidance, voice rules, and shared execution workflows.
 - `references/specific/` for document-family and component creation guides such as skill creation, agent creation, install guides, feature catalogs, and manual testing playbooks.
 - `assets/documentation/` for README, frontmatter, llms.txt, install-guide, and changelog/release-notes templates.
-- `assets/skill/` for skill creation templates and `assets/agents/` for agent and command creation templates.
+- `assets/skill/` for skill creation templates; `assets/agent_template.md` and `assets/command_template.md` at the assets/ root for agent and command creation templates.
+- `assets/feature_catalog/` and `assets/testing_playbook/` at the assets/ root for feature catalog and manual testing playbook package templates.
 - `assets/flowcharts/` for reusable ASCII flowchart patterns and diagram examples.
 
 ### Resource Loading Levels
@@ -431,7 +432,7 @@ Need fast navigation? See [quick_reference.md](./references/global/quick_referen
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and references/specific/, templates under assets/documentation/, assets/skill/, assets/agents/, and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/global/quick_reference.md`, routed references under references/global/ and references/specific/, templates under assets/ root (`agent_template.md`, `command_template.md`, `feature_catalog/`, `testing_playbook/`) plus assets/documentation/, assets/skill/, and assets/flowcharts/, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/quick_validate.py`, `scripts/validate_flowchart.sh`.
 
