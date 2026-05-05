@@ -9,7 +9,7 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/075-cli-copilot-hallucination-caveat"
     last_updated_at: "2026-05-05T17:55:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Caveats added to cli-copilot SKILL.md + sk-doc SKILL.md"
+    recent_action: "Caveats shipped"
     next_safe_action: "Commit + push"
     blockers: []
     key_files:
