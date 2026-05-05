@@ -181,10 +181,9 @@ The skill ships with three providers — `opencode-go` (DEFAULT), `deepseek`, an
 | opencode-go | `opencode-go/glm-5.1`, `opencode-go/kimi-k2.6`, `opencode-go/qwen3.6-plus` | provider-specific | No (alternative open models) |
 | deepseek | `deepseek/deepseek-v4-pro` | reasoning effort accepted | No (direct DeepSeek API — bypasses opencode-go) |
 | deepseek | `deepseek/deepseek-v4-flash` | non-reasoning | No (latency-optimized) |
-| openai | `openai/gpt-5.4` | reasoning effort accepted (low/medium/high) | No (premium paid alternative — direct OpenAI API) |
-| openai | `openai/gpt-5.4-fast` | reasoning effort accepted | No (latency-optimized OpenAI tier) |
-| openai | `openai/gpt-5.3-codex` | provider-specific | No (codex-tuned variant for code-heavy dispatches) |
-| openai | `openai/gpt-5.2` | provider-specific | No (legacy OpenAI tier) |
+| openai | `openai/gpt-5.5` | reasoning effort accepted (low/medium/high) | No (standard premium paid alternative — direct OpenAI API) |
+| openai | `openai/gpt-5.5-pro` | reasoning effort accepted (low/medium/high) | No (top-tier OpenAI for complex dispatches — paid) |
+| openai | `openai/gpt-5.5-fast` | reasoning effort accepted | No (latency-optimized OpenAI tier — paid) |
 
 #### Core Flags
 
@@ -259,7 +258,7 @@ OpenCode resolves credentials through configured providers. Use `opencode provid
 
 ### Model Defaults
 
-cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-AI dispatches. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single API key, and `deepseek-v4-pro` provides elevated reasoning at low cost for routine dispatches. Direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.4 --variant high` for premium paid dispatches) remain available when explicitly requested. Override per invocation:
+cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-AI dispatches. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single API key, and `deepseek-v4-pro` provides elevated reasoning at low cost for routine dispatches. Direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.5-pro --variant high` for premium paid dispatches) remain available when explicitly requested. Override per invocation:
 
 ```bash
 # Use a lower-tier opencode-go sibling

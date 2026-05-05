@@ -175,7 +175,7 @@ env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
 opencode providers
 ```
 
-**Authentication options**: `opencode providers login <provider>` for OAuth and API key flows. Configured providers on a typical install: `opencode-go` (api, DEFAULT), `deepseek` (api, fallback), `openai` (api, premium alternative for `gpt-5.4`/`gpt-5.4-fast`/`gpt-5.3-codex`/`gpt-5.2`).
+**Authentication options**: `opencode providers login <provider>` for OAuth and API key flows. Configured providers on a typical install: `opencode-go` (api, DEFAULT), `deepseek` (api, fallback), `openai` (api, premium alternative for `gpt-5.5`/`gpt-5.5-pro`/`gpt-5.5-fast`).
 
 ### Provider Auth Pre-Flight (Smart Fallback)
 
@@ -204,7 +204,7 @@ echo "$PROVIDERS" | grep -q "openai"       && OPENAI_OK=1     || OPENAI_OK=0
 The skill default `opencode-go/deepseek-v4-pro` is not configured on this machine.
 A configured fallback is available. Pick one:
   A) Use `deepseek/deepseek-v4-pro --variant high` (direct DeepSeek API, configured now)
-  B) Use `openai/gpt-5.4 --variant high` (OpenAI premium, configured now — paid)
+  B) Use `openai/gpt-5.5-pro --variant high` (OpenAI premium, configured now — paid)
   C) Run `opencode providers login opencode-go` first, then retry the original dispatch
   D) Name a different model — paste the `--model <provider/model>` you want to use
 ```
@@ -237,7 +237,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.4`, `openai/gpt-5.4-fast`, `openai/gpt-5.3-codex`, `openai/gpt-5.2`) remain available when explicitly requested.
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*` and `openai/*` (e.g. `openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) remain available when explicitly requested.
 
 ### OpenCode Agent Delegation
 
@@ -280,7 +280,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 1. Verify OpenCode CLI is installed before first invocation; confirm version baseline against v1.3.17 (drift handling per `references/cli_reference.md` §9).
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive — refuse unless prompt has explicit parallel-session keywords.
-3. Pin model + agent + variant + format + dir explicitly. Default: `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `openai/gpt-5.4`).
+3. Pin model + agent + variant + format + dir explicitly. Default: `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `openai/gpt-5.5-pro`).
 4. Pass `--format json` unless the calling AI explicitly wants formatted output — JSON event stream is what external runtimes parse incrementally.
 5. Append `</dev/null` when backgrounding `opencode run` inside `while read` loops (otherwise stdin is silently consumed).
 6. **Pass the spec folder to the dispatched session** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the dispatched session cannot answer Gate 3 interactively in non-interactive `run` mode.
