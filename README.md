@@ -10,6 +10,8 @@
 
 **🧠 Persistent Memory** • **📋 Structured Docs** • **🤖 11 Specialized Agents** • **⚡ 5 Mirrored Runtimes**
 
+> **📦 This is a public repo template.** Fork it, then **customize only `sk-code`** to match your project's stack (frontend framework, animation library, CMS, backend language). Every other skill is **codebase-agnostic by design** — `system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, and the `cli-*` orchestrators all work for any project regardless of stack. Editing skills outside `sk-code` will fork you off the upstream template and break your ability to pull future updates cleanly. See [§4 Customizing for Your Stack](#customizing-for-your-stack) below.
+
 <!-- ANCHOR:table-of-contents -->
 
 ## TABLE OF CONTENTS
@@ -1192,6 +1194,37 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 
 ## 4. CONFIGURATION
 
+<a id="customizing-for-your-stack"></a>
+### 🎯 Customizing for Your Stack — Edit `sk-code`, leave the rest alone
+
+This repo ships as a **public template**. The intended adoption flow is fork-and-customize, but the customization surface is **deliberately narrow**:
+
+| Skill / Surface | Customize? | Why |
+|---|---|---|
+| **`sk-code`** | ✅ **YES — adapt to your stack** | Surface-aware code-quality patterns. Replace the shipped Webflow + OpenCode + Motion.dev surfaces with your own (e.g., Next.js + Tailwind + Postgres, or React Native + Reanimated, or Go + sqlc, etc.). |
+| `sk-doc` | ❌ NO — codebase-agnostic | Markdown quality + component creation. Works for any project. |
+| `sk-git` | ❌ NO — codebase-agnostic | Worktree + commit + PR workflow. Works for any project. |
+| `sk-code-review` | ❌ NO — stack-agnostic baseline | Pulls surface evidence FROM `sk-code`. Customize `sk-code` and the review baseline auto-adapts. |
+| `system-spec-kit` | ❌ NO — codebase-agnostic | Spec folder workflow + validator + memory. Works for any project. |
+| `mcp-coco-index` | ❌ NO — codebase-agnostic | Semantic code search via embeddings. Works for any project. |
+| `mcp-code-mode` | ❌ NO — codebase-agnostic | Multi-tool MCP orchestration. Works for any project. |
+| `deep-research` / `deep-review` | ❌ NO — codebase-agnostic | Iterative loop protocols. Work for any topic / target. |
+| `sk-improve-prompt` / `sk-improve-agent` | ❌ NO — codebase-agnostic | Prompt + agent improvement frameworks. Work for any project. |
+| `cli-*` (codex/copilot/gemini/claude-code/opencode) | ❌ NO — codebase-agnostic | External CLI orchestrators. Stack-independent. |
+| `mcp-chrome-devtools` | ❌ NO — codebase-agnostic | Browser tooling. Stack-independent. |
+
+**Why this discipline matters**: every skill outside `sk-code` is upstream-tracked. If you edit `sk-doc` or `system-spec-kit` to add your project's patterns, you fork off the template and lose the ability to pull future improvements cleanly. Keep your customization confined to `sk-code` — its `references/`, `assets/`, manual testing playbook, and resource map are designed to absorb stack-specific patterns.
+
+**What "adapting `sk-code`" looks like**:
+- Replace `references/webflow/`, `references/opencode/`, `references/motion_dev/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
+- Replace `assets/webflow/`, `assets/opencode/`, `assets/motion_dev/` with your stack's assets (checklists, recipes, snippets).
+- Update `SKILL.md` §2 Smart Routing — `STACK_FOLDERS` dict + the bash detection block — to match your stack's marker files and CWD signals.
+- Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
+- Bump `sk-code` version + ship a changelog. Use the `assets/opencode/checklists/skill_authoring.md` checklist as your guide.
+
+The other skills will continue working unchanged: `sk-doc` will still validate your markdown, `sk-git` will still manage your branches, `system-spec-kit` will still spec your work, and `sk-code-review` will surface YOUR `sk-code` evidence at review time.
+
+&nbsp;
 ### Core Configuration Files
 
 - **`CLAUDE.md`** - Gate definitions, behavior rules, coding anti-patterns. Used by Claude Code (primary runtime).

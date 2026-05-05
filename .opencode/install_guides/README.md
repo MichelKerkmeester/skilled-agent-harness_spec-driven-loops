@@ -1120,6 +1120,8 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 After installing OpenCode components, customize the AI agent configuration for your project.
 
+> **🎯 This is a public repo template.** End users should **only edit `sk-code`** to adapt to their stack. Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) is **codebase-agnostic by design** and works for any project regardless of frontend stack, animation library, CMS, or backend language. Editing skills outside `sk-code` will fork you off the upstream template and break clean update pulls. See §15.5 below for the customization surface map.
+
 ### 15.1 AGENTS.md Customization
 
 The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize it for your project:
@@ -1190,6 +1192,26 @@ ls .opencode/agent/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Detailed Guide**: [SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md)
+
+### 15.5 Customizing for Your Stack — `sk-code` is the only customization surface
+
+This template ships with `sk-code` configured for Webflow + OpenCode + cross-stack Motion.dev. To adapt for your stack:
+
+| Skill / Surface | Customize? | Why |
+|---|---|---|
+| **`sk-code`** | ✅ **YES — adapt to your stack** | Surface-aware code-quality patterns. Replace shipped surfaces with your own (e.g., Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc). |
+| Every other skill | ❌ NO — codebase-agnostic | `sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-improve-prompt`, `sk-improve-agent`, `cli-*`, `mcp-chrome-devtools` all work for any project. |
+
+**What "adapting `sk-code`" looks like:**
+1. Replace `references/{webflow,opencode,motion_dev}/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
+2. Replace `assets/{webflow,opencode,motion_dev}/` with your stack's assets.
+3. Update `SKILL.md` §2 — `STACK_FOLDERS` Python dict + the bash detection block — to match your stack's marker files and CWD signals.
+4. Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
+5. Bump `sk-code` version + ship a changelog. Use `assets/opencode/checklists/skill_authoring.md` as your reference.
+
+**Why this discipline matters:** every skill outside `sk-code` is upstream-tracked. If you edit `sk-doc` or `system-spec-kit` to add your project's patterns, you fork off the template and lose the ability to pull future improvements cleanly. Keep customization confined to `sk-code` — its references, assets, manual testing playbook, and resource map are designed to absorb stack-specific patterns.
+
+**Detailed Guide**: [Root README §4 Customizing for Your Stack](../../README.md#customizing-for-your-stack)
 
 ---
 
@@ -1460,7 +1482,7 @@ bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Skills             | 17    | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, sk-code, sk-code-review, sk-deep-research, sk-deep-review, sk-doc, sk-git, sk-improve-agent, sk-improve-prompt, system-spec-kit |
+| Skills             | 17    | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, sk-code, sk-code-review, deep-research, deep-review, sk-doc, sk-git, sk-improve-agent, sk-improve-prompt, system-spec-kit |
 | Commands           | 22    | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |

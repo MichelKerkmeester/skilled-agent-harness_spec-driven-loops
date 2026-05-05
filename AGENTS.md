@@ -9,6 +9,8 @@
 **Universal Framework:** This AGENTS.md is the public template for code work across stacks.
 Code work behavior is handled automatically by the `sk-code` skill, which routes between supported code surfaces.
 
+> **Customization scope (template discipline):** end users should **only edit `sk-code`** to adapt to their project's stack (frontend framework, animation library, CMS, backend language). Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, `mcp-code-mode`, `deep-research`, `deep-review`, `sk-improve-*`, `cli-*`, `mcp-chrome-devtools`) is **codebase-agnostic by design** and must remain so to keep the upstream template pull-able. See root [README §4 Customizing for Your Stack](README.md#customizing-for-your-stack).
+
 **Supported Stacks:**
 
 | Stack             | Detection Marker                                                                          | Key Patterns                                                       |

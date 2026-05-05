@@ -17,6 +17,8 @@ version: 3.2.1.0
 
 ## 1. WHEN TO USE
 
+> **🎯 Template customization surface.** This is the **only** skill end users should edit when adopting this template repo for their own project. Replace the shipped `references/{webflow,opencode,motion_dev}/` and `assets/{webflow,opencode,motion_dev}/` trees with your stack's references and assets. Update `STACK_FOLDERS` (§2) + `RESOURCE_MAP` to match. Every other skill (`sk-doc`, `sk-git`, `sk-code-review`, `system-spec-kit`, `mcp-coco-index`, etc.) is codebase-agnostic and must stay that way to keep upstream pulls clean. See root [README §4 Customizing for Your Stack](../../../README.md#customizing-for-your-stack).
+
 Use this skill when doing code work in either supported surface:
 
 - **WEBFLOW**: Webflow / vanilla frontend work in HTML, CSS, and JavaScript, including Motion.dev runtime usage, GSAP, Lenis, HLS, Swiper, FilePond, CDN/minification, and browser verification.
