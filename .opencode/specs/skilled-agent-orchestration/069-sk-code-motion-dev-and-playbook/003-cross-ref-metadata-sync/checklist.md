@@ -58,7 +58,7 @@ _memory:
 - [x] CHK-010 [P0] Webflow edits are non-destructive. Evidence: cross-ref patches add blockquote/JSDoc pointer lines near existing Motion references without removing content.
 - [x] CHK-011 [P0] Every Webflow file mentioning Motion has a `motion_dev/` pointer. Evidence: Motion mention files = 11; `motion_dev/` pointer files = 11.
 - [x] CHK-012 [P0] sk-code metadata refresh is consistent across metadata files. Evidence: SKILL.md, README.md, description.json, router docs, graph metadata/index, and changelog all expose `motion_dev/`.
-- [x] CHK-013 [P1] Cross-reference links are relative-path correct for source location. Evidence: Webflow reference docs use `../../motion_dev/...`; the Webflow asset uses `../../../references/motion_dev/...` and `../../motion_dev/install-card.md`.
+- [x] CHK-013 [P1] Cross-reference links are relative-path correct for source location. Evidence: Webflow reference docs use `../../motion_dev/...`; the Webflow asset uses `../../../references/motion_dev/...` and `../../motion_dev/install_card.md`.
 <!-- /ANCHOR:code-quality -->
 
 ---

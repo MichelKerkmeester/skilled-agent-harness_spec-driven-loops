@@ -47,7 +47,7 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 ## 3. SURFACE-SPECIFIC NOTES
 
 - WEBFLOW intent scoring favors browser/runtime terms, animation, forms, video, performance, deployment, and verification.
-- MOTION_DEV intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision-matrix terms; it supplements the detected surface rather than replacing it.
+- MOTION_DEV intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision_matrix terms; it supplements the detected surface rather than replacing it.
 - OPENCODE intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
 - Unsupported surfaces stay UNKNOWN even if intent scoring is strong.
 

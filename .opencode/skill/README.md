@@ -41,7 +41,7 @@ Across this skill tree, `/spec_kit:resume` is the canonical recovery surface for
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`.opencode/skill/` holds 21 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
+`.opencode/skill/` holds 17 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
 
 Skills divide into five categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, and the system-spec-kit foundation that governs every file modification. The primary routing engine is now the native TypeScript Skill Advisor package at `system-spec-kit/mcp_server/skill_advisor/`, exposed through `advisor_recommend`, `advisor_status`, and `advisor_validate`. The Python `system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
 
@@ -51,7 +51,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Total skill folders | 16 | Top-level skills under `.opencode/skill/` |
+| Total skill folders | 17 | Top-level skills under `.opencode/skill/` |
 | Folders with graph metadata | 16 | Every top-level skill folder under `.opencode/skill/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-deep`, `sk-util`, `system` |
 | CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode |

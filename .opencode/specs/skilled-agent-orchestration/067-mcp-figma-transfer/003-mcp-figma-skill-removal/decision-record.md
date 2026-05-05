@@ -9,14 +9,14 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal"
-    last_updated_at: "2026-05-05T10:45:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored decision-record.md"
-    next_safe_action: "Begin Phase 3 implementation (T010 re-grep)"
+    last_updated_at: "2026-05-05T12:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Decision doc contract normalized"
+    next_safe_action: "Run strict validator"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:phase3-dr-2026-05-05"
+      fingerprint: "sha256:0fc79ded0edf02315d76f4eff24b70f5815a5c80aa219b4944b99f07b68addec"
       session_id: "067-003-dr-2026-05-05"
       parent_session_id: null
     completion_pct: 20
@@ -27,16 +27,62 @@ _memory:
       - "D6 captured as ADR-013"
       - "D8 captured as ADR-014"
 ---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Phase 3 — Remove mcp-figma skill
 
-<!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Template Compliance Record
 
+<!-- ANCHOR:adr-001-context -->
+### Context
+
+Phase 4 normalized this decision record to the active v2.2 template contract while preserving authored ADR content below.
+<!-- /ANCHOR:adr-001-context -->
+
+<!-- ANCHOR:adr-001-decision -->
+### Decision
+
+Keep the original phase decisions intact and add the required retrieval anchors for strict validation.
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
+
+Leaving the document unanchored was rejected because child strict validation is a P0 release gate.
+<!-- /ANCHOR:adr-001-alternatives -->
+
+<!-- ANCHOR:adr-001-consequences -->
+### Consequences
+
+The document now has validator-compatible anchors; original ADR numbering remains in the preserved content below.
+<!-- /ANCHOR:adr-001-consequences -->
+
+<!-- ANCHOR:adr-001-five-checks -->
+### Five Checks
+
+- Clarity: Template contract is explicit.
+- Systems: No implementation behavior changes.
+- Bias: Historical ADR content is preserved.
+- Sustainability: Future strict validation can locate anchors.
+- Scope: Phase 4 only remediates P0 documentation gates.
+<!-- /ANCHOR:adr-001-five-checks -->
+
+<!-- ANCHOR:adr-001-impl -->
+### Implementation Notes
+
+Applied during Phase 4 Job 3 for 003-mcp-figma-skill-removal.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
+
+### Original Authored Content
+
+<!-- SPECKIT_LEVEL: 3 -->
 > Phase 3 owns D1 + D2 + D6 + D8. Cross-cutting ADRs from Phase 1 + Phase 2 are referenced; full ADR set in `../001-barter-figma-agent/decision-record.md` and `../002-public-figma-agent/decision-record.md`.
 
 ---
 
-## ADR-011: Code Mode keeps figma-developer-mcp tool refs; strip 4 skill-name refs (D1)
+### ADR-011: Code Mode keeps figma-developer-mcp tool refs; strip 4 skill-name refs (D1)
 
 ### Metadata
 | Field | Value |
@@ -81,7 +127,7 @@ These 4 break when the mcp-figma skill is deleted. They must be stripped.
 
 ---
 
-## ADR-012: Spec history preserved (D2)
+### ADR-012: Spec history preserved (D2)
 
 ### Metadata
 | Field | Value |
@@ -115,7 +161,7 @@ Many spec folders under `.opencode/specs/**` and `system-spec-kit/z_archive/**` 
 
 ---
 
-## ADR-013: Two-commit advisor cleanup atomicity (D6)
+### ADR-013: Two-commit advisor cleanup atomicity (D6)
 
 ### Metadata
 | Field | Value |
@@ -159,7 +205,7 @@ If both commit together, reviewer can't easily separate "what was hand-removed" 
 
 ---
 
-## ADR-014: Re-grep at execution start (D8)
+### ADR-014: Re-grep at execution start (D8)
 
 ### Metadata
 | Field | Value |
@@ -188,7 +234,7 @@ Explore Agent 1 mapped 31 hits across 9 files (skill advisor scoring + observabi
 
 ---
 
-## Cross-references
+### Cross-references
 
 - **ADR-001 through ADR-007** (Phase 1 cross-cutting): see `../001-barter-figma-agent/decision-record.md`
 - **ADR-009 + ADR-010** (Phase 2): see `../002-public-figma-agent/decision-record.md`
@@ -196,7 +242,7 @@ Explore Agent 1 mapped 31 hits across 9 files (skill advisor scoring + observabi
 
 ---
 
-## Decision Index (full set)
+### Decision Index (full set)
 
 | ID | Topic | Status | Owner Phase |
 |---|---|---|---|

@@ -60,13 +60,13 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T005 Create Packet 2 spec docs. Evidence: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` exist.
-- [x] T006 Create `quick-start.md`. Evidence: file exists under `references/motion_dev/`.
-- [x] T007 Create `animate-and-timelines.md`. Evidence: file exists under `references/motion_dev/`.
-- [x] T008 Create `scroll-and-gestures.md`. Evidence: file exists under `references/motion_dev/`.
-- [x] T009 Create `performance-and-pitfalls.md`. Evidence: file exists under `references/motion_dev/`.
-- [x] T010 Create `decision-matrix.md`. Evidence: file exists under `references/motion_dev/`.
-- [x] T011 Create `integration-patterns.md`. Evidence: file exists under `references/motion_dev/`.
-- [x] T012 Create `install-card.md` and `playbook-entries.md`. Evidence: both files exist under `assets/motion_dev/`.
+- [x] T006 Create `quick_start.md`. Evidence: file exists under `references/motion_dev/`.
+- [x] T007 Create `animate_and_timelines.md`. Evidence: file exists under `references/motion_dev/`.
+- [x] T008 Create `scroll_and_gestures.md`. Evidence: file exists under `references/motion_dev/`.
+- [x] T009 Create `performance_and_pitfalls.md`. Evidence: file exists under `references/motion_dev/`.
+- [x] T010 Create `decision_matrix.md`. Evidence: file exists under `references/motion_dev/`.
+- [x] T011 Create `integration_patterns.md`. Evidence: file exists under `references/motion_dev/`.
+- [x] T012 Create `install_card.md` and `playbook_entries.md`. Evidence: both files exist under `assets/motion_dev/`.
 - [x] T013 Create eight runnable snippets. Evidence: `snippets/` contains eight requested `.js` files.
 <!-- /ANCHOR:phase-2 -->
 

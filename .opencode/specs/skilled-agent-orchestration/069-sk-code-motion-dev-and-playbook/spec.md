@@ -25,7 +25,7 @@ _memory:
       - "002-motion-dev/implementation-summary.md"
       - "003-cross-ref-metadata-sync/implementation-summary.md"
       - ".opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skill/sk-code/references/motion_dev/quick-start.md"
+      - ".opencode/skill/sk-code/references/motion_dev/quick_start.md"
       - ".opencode/skill/sk-code/SKILL.md"
       - ".opencode/skill/sk-code/changelog/changelog-069-motion-dev-and-playbook.md"
     session_dedup:
@@ -36,7 +36,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Q: Does sk-code use a discoverable surface manifest? A: No standalone manifest; uses SKILL.md narrative + 4 router docs. Packet 3 updated all 5 in-place."
-      - "Q: Should motion_dev cite Webflow-CDN install patterns as primary? A: Both CDN module (+esm) and CDN legacy (window.Motion global) documented as parallel; npm path documented for non-Webflow stacks. Resolved in motion_dev/integration-patterns.md and assets/motion_dev/install-card.md."
+      - "Q: Should motion_dev cite Webflow-CDN install patterns as primary? A: Both CDN module (+esm) and CDN legacy (window.Motion global) documented as parallel; npm path documented for non-Webflow stacks. Resolved in motion_dev/integration_patterns.md and assets/motion_dev/install_card.md."
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -108,7 +108,7 @@ This parent spec lists no files directly. Per-phase blast radius:
 | Phase | Folder | Authoritative file ledger |
 |-------|--------|---------------------------|
 | 001 | `001-playbook/` | `manual_testing_playbook.md` + new category folders (e.g. `05--motion-dev-and-animation-regression/`, `06--cross-browser-and-performance-gates/`) under `.opencode/skill/sk-code/manual_testing_playbook/` |
-| 002 | `002-motion-dev/` | 6 new docs in `references/motion_dev/` (quick-start, animate-and-timelines, scroll-and-gestures, performance-and-pitfalls, decision-matrix, integration-patterns) + `assets/motion_dev/install-card.md`, `assets/motion_dev/snippets/*`, `assets/motion_dev/playbook-entries.md` |
+| 002 | `002-motion-dev/` | 6 new docs in `references/motion_dev/` (quick_start, animate_and_timelines, scroll_and_gestures, performance_and_pitfalls, decision_matrix, integration_patterns) + `assets/motion_dev/install_card.md`, `assets/motion_dev/snippets/*`, `assets/motion_dev/playbook_entries.md` |
 | 003 | `003-cross-ref-metadata-sync/` | "See also" pointers added to ~10 `references/webflow/*` and 1 `assets/webflow/*` files; refreshed `SKILL.md`, `README.md`, `description.json`, `graph-metadata.json`, and `changelog/` entries; router/manifest updates if applicable |
 <!-- /ANCHOR:scope -->
 

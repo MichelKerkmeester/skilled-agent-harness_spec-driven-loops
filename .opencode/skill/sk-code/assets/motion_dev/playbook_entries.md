@@ -5,9 +5,19 @@ description: "Scenario-ready entries for Packet 1's motion.dev and animation reg
 
 # Motion.dev Playbook Entries
 
+Scenario-ready entries for Packet 1's motion.dev and animation regression playbook category.
+
+---
+
 ## 1. OVERVIEW
 
+### Purpose
+
 These entries can be lifted into `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/` or used standalone. They expand Packet 1's MR-001 through MR-004 scenarios with API context from `references/motion_dev/`.
+
+### Usage
+
+Copy the relevant scenario entry into the manual testing playbook, then update artifact paths, browser setup notes, and API context links for the current test run.
 
 ## 2. SCENARIO ENTRIES
 
@@ -31,9 +41,9 @@ Evidence:
 - exact CDN URL used
 
 API context:
-- `references/motion_dev/quick-start.md`
-- `references/motion_dev/animate-and-timelines.md`
-- `references/motion_dev/scroll-and-gestures.md`
+- `references/motion_dev/quick_start.md`
+- `references/motion_dev/animate_and_timelines.md`
+- `references/motion_dev/scroll_and_gestures.md`
 
 ### MR-002 - CDN Bundle Version Pin
 
@@ -53,9 +63,9 @@ Evidence:
 - `/tmp/skc-MR002-export-probe.txt`
 
 API context:
-- `references/motion_dev/quick-start.md`
-- `references/motion_dev/integration-patterns.md`
-- `assets/motion_dev/install-card.md`
+- `references/motion_dev/quick_start.md`
+- `references/motion_dev/integration_patterns.md`
+- `assets/motion_dev/install_card.md`
 
 ### MR-003 - Prefers Reduced Motion
 
@@ -76,7 +86,7 @@ Evidence:
 - console transcript
 
 API context:
-- `references/motion_dev/performance-and-pitfalls.md`
+- `references/motion_dev/performance_and_pitfalls.md`
 - `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 - `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`
 
@@ -100,19 +110,19 @@ Evidence:
 - `/tmp/skc-MR004-verdict.md`
 
 API context:
-- `references/motion_dev/animate-and-timelines.md`
-- `references/motion_dev/scroll-and-gestures.md`
-- `references/motion_dev/performance-and-pitfalls.md`
+- `references/motion_dev/animate_and_timelines.md`
+- `references/motion_dev/scroll_and_gestures.md`
+- `references/motion_dev/performance_and_pitfalls.md`
 
 ## 3. CROSS-LINKS
 
 - Packet 1 root playbook: `.opencode/skill/sk-code/manual_testing_playbook/manual_testing_playbook.md`
 - Packet 1 MR category: `.opencode/skill/sk-code/manual_testing_playbook/05--motion-dev-and-animation-regression/`
-- Motion quick start: `references/motion_dev/quick-start.md`
-- Motion integration patterns: `references/motion_dev/integration-patterns.md`
-- Motion performance guidance: `references/motion_dev/performance-and-pitfalls.md`
+- Motion quick start: `references/motion_dev/quick_start.md`
+- Motion integration patterns: `references/motion_dev/integration_patterns.md`
+- Motion performance guidance: `references/motion_dev/performance_and_pitfalls.md`
 
-## 4. CITATIONS
+## 4. RELATED RESOURCES
 
 - Motion install/API smoke: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate, https://motion.dev/docs/inview, https://motion.dev/docs/spring
 - Motion scroll/gesture context: https://motion.dev/docs/scroll, https://motion.dev/docs/hover, https://motion.dev/docs/press

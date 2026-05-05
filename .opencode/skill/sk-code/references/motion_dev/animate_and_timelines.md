@@ -5,7 +5,36 @@ description: "Core animate API, sequence/timeline patterns, animateMini guidance
 
 # Motion.dev Animate and Timelines
 
-## 1. animate(target, keyframes, options) - value, keyframe array, segment forms
+Core animate API, sequence/timeline patterns, animateMini guidance, and local examples.
+
+---
+
+## 1. OVERVIEW
+
+### Core Principle
+
+Use `animate()` as the shared primitive for single-target animation, JavaScript-owned values, and sequence-style timelines.
+
+### Purpose
+
+This reference captures Motion's core JavaScript animation forms and maps them to local Webflow examples without duplicating Webflow-only operational guidance.
+
+### When to Use
+
+- You need selector, element, value, object, or sequence examples for `animate()`.
+- You are choosing between mini and hybrid Motion imports.
+- You need local examples for dropdown, slider, hover, or sequence-style animation.
+
+### Key Sources
+
+- Official: https://motion.dev/docs/animate
+- Official: https://motion.dev/docs/timeline
+- In-repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+
+---
+
+## 2. animate(target, keyframes, options) - value, keyframe array, segment forms
 
 `animate()` accepts selectors or elements for HTML/SVG styles and can also animate values, objects, motion values, and sequences when using the hybrid import (Source: https://motion.dev/docs/animate).
 
@@ -31,7 +60,7 @@ const sequence = [
 animate(sequence);
 ```
 
-## 2. animate(target, keyframes, options) - duration, easing, delay, repeat, repeatType
+## 3. animate(target, keyframes, options) - duration, easing, delay, repeat, repeatType
 
 Motion transition options configure playback. The docs show `duration`, `delay`, `ease`, `repeat`, and per-value transition overrides; durations are expressed in seconds in Motion's API (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/improvements-to-the-web-animations-api-dx).
 
@@ -50,7 +79,7 @@ animate(
 
 The current Webflow codebase often uses `easing` in options while official docs use `ease` in current examples. When authoring new generic snippets, prefer the official option name unless a local component pattern proves compatibility constraints (Sources: https://motion.dev/docs/animate; repo examples: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`).
 
-## 3. Timelines (sequence, parallel, with relative/absolute positioning)
+## 4. Timelines (sequence, parallel, with relative/absolute positioning)
 
 Motion's timeline-style sequencing is expressed as an array passed to `animate()`. Segment timing can be positioned:
 - sequentially by array order,
@@ -70,7 +99,7 @@ animate(sequence, { defaultTransition: { ease: "easeOut" } });
 
 `defaultTransition` can set default segment timing, and individual segment options can override it (Source: https://motion.dev/docs/animate).
 
-## 4. animateMini for tree-shakable bundles
+## 5. animateMini for tree-shakable bundles
 
 Motion documents two JavaScript `animate` sizes: the mini version from `motion/mini` for HTML/SVG style animation, and the hybrid version from `motion` for independent transforms, CSS variables, SVG paths, sequences, JavaScript objects, and WebGL (Source: https://motion.dev/docs/animate).
 
@@ -82,7 +111,7 @@ animateMini(".toast", { opacity: [0, 1], transform: ["translateY(8px)", "transla
 
 Use the mini import for bundle-sensitive HTML/SVG style animation. Use the hybrid import when you need independent transform axes like `x`, `y`, `rotateZ`, sequence arrays, or non-DOM values (Source: https://motion.dev/docs/animate).
 
-## 5. In-repo examples
+## 6. In-repo examples
 
 ### `window.Motion` guarded dropdowns
 
@@ -104,7 +133,7 @@ animate(dropdown, { opacity: [0, 1], height: ["0px", `${natural_height}px`] }, {
 
 `a_nobel_en_zn/2_javascript/slider/testimonial.js` ensures `animate` and `motionValue` exist, dynamically imports Motion when needed, and uses a motion value as the draggable loop's position state. The drag release branch uses `type: "inertia"`, `velocity`, and `modifyTarget` to snap to the nearest slide (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion API surface: https://motion.dev/docs/animate).
 
-## 6. CITATIONS
+## 7. REFERENCES AND RELATED RESOURCES
 
 - Core `animate()` behavior, import modes, mini/hybrid distinction, options, controls, sequences, and stagger: https://motion.dev/docs/animate
 - Timeline/sequence entry point: https://motion.dev/docs/timeline

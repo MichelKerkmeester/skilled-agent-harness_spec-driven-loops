@@ -10,17 +10,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent"
-    last_updated_at: "2026-05-05T10:25:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Phase 1 complete: cli-codex authored 5 KB docs + AGENTS.md + README.md + INSTALL_GUIDE.md; small files Claude-direct; opus verified 9/9; commit 690b498 on Barter main"
-    next_safe_action: "Begin Phase 2 (002-public-figma-agent): sanitized duplicate to AI_Systems/Public + README §8 patch"
+    last_updated_at: "2026-05-05T12:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Impl contract normalized"
+    next_safe_action: "Run strict validator"
     blockers: []
     key_files:
       - "AI_Systems/Barter/MCP Agents/Figma/AGENTS.md"
       - "AI_Systems/Barter/MCP Agents/Figma/README.md"
       - "AI_Systems/Barter/MCP Agents/Figma/INSTALL_GUIDE.md"
     session_dedup:
-      fingerprint: "sha256:phase1-complete-2026-05-05-10-25"
+      fingerprint: "sha256:c49f6569e74df5561bb936e11ce9c4bdac7bbf2b862d1331660eaa6904b22132"
       session_id: "067-001-phase1-2026-05-05"
       parent_session_id: null
     completion_pct: 100
@@ -28,13 +28,53 @@ _memory:
     answered_questions:
       - "D5 reinterpretation: ClickUp .gitignore excludes node_modules/, so 'mirror ClickUp' actually = lighter bundling. ADR-005 updated to Accepted (revised) — package.json + install.sh committed; node_modules built locally via npm install."
 ---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 1 — Barter Figma MCP Agent
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+Template compliance scaffold for 001-barter-figma-agent/implementation-summary.md; original authored content is retained below.
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+Template compliance scaffold for 001-barter-figma-agent/implementation-summary.md; original authored content is retained below.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+
+Template compliance scaffold for 001-barter-figma-agent/implementation-summary.md; original authored content is retained below.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## KEY DECISIONS
+
+Template compliance scaffold for 001-barter-figma-agent/implementation-summary.md; original authored content is retained below.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## VERIFICATION
+
+Verification artifact: commit 690b498; Opus Hook B 9/9 PASS; command: bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/001-barter-figma-agent --strict
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## KNOWN LIMITATIONS
+
+Template compliance scaffold for 001-barter-figma-agent/implementation-summary.md; original authored content is retained below.
+<!-- /ANCHOR:limitations -->
+
+### Original Authored Content
 
 <!-- SPECKIT_LEVEL: 3 -->
 
 ---
 
-## 1. Outcome
+### 1. Outcome
 
 ✅ **Phase 1 complete.** A complete role-bound Figma MCP Agent now lives at `/Users/michelkerkmeester/MEGA/Development/AI_Systems/Barter/MCP Agents/Figma/` mirroring the ClickUp agent's structure exactly.
 
@@ -46,7 +86,7 @@ _memory:
 
 ---
 
-## 2. Files Created
+### 2. Files Created
 
 ### Entry points (3)
 | File | Size | Authored by |
@@ -87,7 +127,7 @@ _memory:
 
 ---
 
-## 3. Verification — Opus Hook B (9/9 PASS)
+### 3. Verification — Opus Hook B (9/9 PASS)
 
 | Check | Status | Evidence |
 |---|---|---|
@@ -103,7 +143,7 @@ _memory:
 
 ---
 
-## 4. Deviations from plan
+### 4. Deviations from plan
 
 ### ADR-005 reinterpretation (D5)
 **Plan said:** "Mirror ClickUp = full bundling" with `node_modules/` committed.
@@ -115,7 +155,7 @@ cli-codex created this folder under the Figma directory during execution. Remove
 
 ---
 
-## 5. cli-codex execution summary
+### 5. cli-codex execution summary
 
 | Batch | Files | Wall-clock | Tokens (approx) |
 |---|---|---|---|
@@ -130,7 +170,7 @@ cli-codex (gpt-5.5 high) consistently overshot target byte counts on first pass 
 
 ---
 
-## 6. Phase 2 handoff criteria (per parent spec.md)
+### 6. Phase 2 handoff criteria (per parent spec.md)
 
 | Criterion | Status |
 |---|---|
@@ -141,20 +181,24 @@ cli-codex (gpt-5.5 high) consistently overshot target byte counts on first pass 
 
 ---
 
-## 7. Cumulative commit ledger
+### 7. Cumulative commit ledger
 
 | # | Repo | SHA | Message | Phase |
 |---|---|---|---|---|
-| 1 | AI_Systems/Barter | 690b498 | Figma MCP | Phase 1 |
-| 2 | AI_Systems/Public | TBD | Figma MCP | Phase 2 |
-| 3 | AI_Systems/Public | TBD | Add Figma to README | Phase 2 |
-| 4 | Code_Environment/Public | TBD | chore: remove mcp-figma skill and patch cross-references | Phase 3 |
-| 5 | Code_Environment/Public | TBD | chore: regenerate skill advisor graph | Phase 3 |
-| 6 | Code_Environment/Public | TBD | docs(067): implementation summary | Final |
+| 1 | AI_Systems/Barter | 690b498 | Figma MCP | 1 ✅ |
+| 1b | AI_Systems/Barter | 66e1e87 | Figma KB: strip frontmatter | 1 (post-3 follow-up) |
+| 2 | AI_Systems/Public | c4f6c56 | Figma MCP | 2 ✅ |
+| 3 | AI_Systems/Public | e96a3ee | Add Figma to README | 2 ✅ |
+| 3b | AI_Systems/Public | 766206b | Streamline agent documentation and scope Figma for internal use | 2 (user-side scope revert per D9 supersession) |
+| 4 | Code_Environment/Public | 9f7b3c6d4 | chore: remove mcp-figma skill and patch cross-references | 3 ✅ |
+| 5 | Code_Environment/Public | a4cb4e0a1 | chore: regenerate skill advisor corpus and graph after mcp-figma removal | 3 ✅ |
+| 5b | Code_Environment/Public | 7307e056d | chore: clean up trailing mcp-figma references in install guides + regression fixtures | 3 ✅ |
+| 6 | Code_Environment/Public | b03bf7563 | docs(067): mcp-figma transfer spec packet — phase parent + 3 children + final synthesis | Final ✅ |
+| 7 | Code_Environment/Public | bdb739d97 | chore: session sync — sk-code motion.dev (069), 010 review artifacts, advisor + scaffold tweaks | Cross-cutting (parity fix folded in) |
 
 ---
 
-## 8. Next steps
+### 8. Next steps
 
 Begin Phase 2 (002-public-figma-agent):
 1. Author 002 spec docs (spec.md, plan.md, tasks.md, checklist.md, decision-record.md)

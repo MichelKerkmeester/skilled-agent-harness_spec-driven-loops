@@ -40,7 +40,7 @@
       "graph-metadata.json"
     ],
     "entities": [],
-    "causal_summary": "Packet 2 populated .opencode/skill/sk-code/references/motion_dev/ (6 docs: quick-start, animate-and-timelines, scroll-and-gestures, performance-and-pitfalls, decision-matrix, integration-patterns) and .opencode/skill/sk-code/assets/motion_dev/ (install-card.md, playbook-entries.md, 8 runnable snippets) from official motion.dev docs and in-repo a_nobel_en_zn/2_javascript usage. Every API claim cites an official URL or in-repo file path. Packet 1 owns playbook scenarios that hook in via playbook-entries.md; Packet 3 owns webflow cross-references and skill metadata sync.",
+    "causal_summary": "Packet 2 populated .opencode/skill/sk-code/references/motion_dev/ (6 docs: quick_start, animate_and_timelines, scroll_and_gestures, performance_and_pitfalls, decision_matrix, integration_patterns) and .opencode/skill/sk-code/assets/motion_dev/ (install_card.md, playbook_entries.md, 8 runnable snippets) from official motion.dev docs and in-repo a_nobel_en_zn/2_javascript usage. Every API claim cites an official URL or in-repo file path. Packet 1 owns playbook scenarios that hook in via playbook_entries.md; Packet 3 owns webflow cross-references and skill metadata sync.",
     "created_at": "2026-05-05T08:00:00Z",
     "last_save_at": "2026-05-05T11:00:00Z",
     "save_lineage": "graph_only",

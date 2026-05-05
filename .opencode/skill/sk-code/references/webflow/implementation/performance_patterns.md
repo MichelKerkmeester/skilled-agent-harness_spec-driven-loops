@@ -14,7 +14,7 @@ Performance optimization checklist covering animations, assets, requests, and Co
 ### Purpose
 Comprehensive performance optimization patterns for frontend development targeting Motion.dev animations, HLS video streaming, and Webflow platform constraints.
 
-> **Cross-stack motion.dev reference**: For Motion-specific performance pitfalls, reduced-motion handling, and CSS/Motion/GSAP trade-offs outside Webflow, see [`../../motion_dev/performance-and-pitfalls.md`](../../motion_dev/performance-and-pitfalls.md) and [`../../motion_dev/decision-matrix.md`](../../motion_dev/decision-matrix.md). This Webflow performance guide remains authoritative for Webflow deployment and CWV evidence.
+> **Cross-stack motion.dev reference**: For Motion-specific performance pitfalls, reduced-motion handling, and CSS/Motion/GSAP trade-offs outside Webflow, see [`../../motion_dev/performance_and_pitfalls.md`](../../motion_dev/performance_and_pitfalls.md) and [`../../motion_dev/decision_matrix.md`](../../motion_dev/decision_matrix.md). This Webflow performance guide remains authoritative for Webflow deployment and CWV evidence.
 
 ### When to Use
 Apply during Phase 1 (Implementation) when:

@@ -9,28 +9,115 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal"
-    last_updated_at: "2026-05-05T10:45:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored Phase 3 plan.md"
-    next_safe_action: "Author tasks.md, checklist.md, decision-record.md"
+    last_updated_at: "2026-05-05T12:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Plan doc contract normalized"
+    next_safe_action: "Run strict validator"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:phase3-plan-2026-05-05"
+      fingerprint: "sha256:a8822c23a34d17e07367515c78cbaba83b2aa8d915e5146136bf6eff5525eb17"
       session_id: "067-003-plan-2026-05-05"
       parent_session_id: null
     completion_pct: 10
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 3 — Remove mcp-figma skill
+
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:quality-gates -->
+
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:architecture -->
+
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:affected-surfaces -->
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:phases -->
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:testing -->
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:dependencies -->
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:rollback -->
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:phase-deps -->
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:effort -->
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:enhanced-rollback -->
+
+<!-- ANCHOR:dependency-graph -->
+## L3: DEPENDENCY GRAPH
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:dependency-graph -->
+
+<!-- ANCHOR:critical-path -->
+## L3: CRITICAL PATH
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:critical-path -->
+
+<!-- ANCHOR:milestones -->
+## L3: MILESTONES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/plan.md; original authored content is retained below.
+<!-- /ANCHOR:milestones -->
+
+### Original Authored Content
 
 <!-- SPECKIT_LEVEL: 3 -->
 
 ---
 
-## 1. SUMMARY
+### 1. SUMMARY
 
 ### Technical Context
 
@@ -46,7 +133,7 @@ Apply the line-level edit map produced by Explore Agent 1, then physically remov
 
 ---
 
-## 2. QUALITY GATES
+### 2. QUALITY GATES
 
 ### Definition of Ready
 - [x] Phase 1 commit `690b498 Figma MCP` on Barter main verified
@@ -66,7 +153,7 @@ Apply the line-level edit map produced by Explore Agent 1, then physically remov
 
 ---
 
-## 3. APPROACH
+### 3. APPROACH
 
 ### Strategy
 **Re-grep first, edit second, delete third, regen fourth, commit twice.** The re-grep step (D8) catches any drift since the original Explore Agent 1 mapping was produced. Edits go in a single working-tree state; deletion of the skill folder happens in the same working tree; the entire payload commits atomically. Then doctor:skill-advisor :auto runs and its output commits separately.
@@ -167,7 +254,7 @@ Apply the line-level edit map produced by Explore Agent 1, then physically remov
 
 ---
 
-## 4. ARCHITECTURE
+### 4. ARCHITECTURE
 
 ### File edit ownership
 
@@ -192,7 +279,7 @@ Before any edit, capture current `grep -rn "mcp-figma" Code_Environment/Public/`
 
 ---
 
-## 5. EXPLORE AGENT 1 MAP (full)
+### 5. EXPLORE AGENT 1 MAP (full)
 
 (See spec.md §3 Files to Change for the count summary; this section preserves the full per-line mapping for executor reference.)
 
@@ -235,7 +322,7 @@ Before any edit, capture current `grep -rn "mcp-figma" Code_Environment/Public/`
 
 ---
 
-## 6. VERIFICATION GATES
+### 6. VERIFICATION GATES
 
 ### Hook E (re-grep cleanliness)
 - `grep -rn "mcp-figma" Code_Environment/Public/ --include="*.md" --include="*.json" --include="*.ts" --include="*.js" --include="*.py" --include="*.sh"` — zero hits outside `.opencode/specs/**` + `.opencode/skill/system-spec-kit/z_archive/**` + `.opencode/specs/z_future/**`
@@ -253,7 +340,7 @@ Before any edit, capture current `grep -rn "mcp-figma" Code_Environment/Public/`
 
 ---
 
-## 7. ROLLBACK
+### 7. ROLLBACK
 
 | Trigger | Action |
 |---------|--------|

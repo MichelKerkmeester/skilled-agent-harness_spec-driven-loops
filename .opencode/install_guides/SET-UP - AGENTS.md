@@ -520,16 +520,27 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 #### Complete Skills Reference
 
-**Current Installation (9 skills):**
+**Current Installation (17 skills):**
 
-| Skill                  | Version | Primary Triggers                                          | Purpose                                          |
-| ---------------------- | ------- | --------------------------------------------------------- | ------------------------------------------------ |
-| `mcp-code-mode`        | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"            | MCP orchestration for external tools             |
-| `system-spec-kit`      | v2.2.0  | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
-| `mcp-chrome-devtools`  | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
-| `sk-code`  | v1.1.0  | "implement", "debug", "verify", "opencode", "webflow"   | Webflow frontend and OpenCode system code router |
-| `sk-doc`               | v5.2.0  | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
-| `sk-git`               | v1.5.0  | "commit", "branch", "PR", "push", "git"                   | Git workflow orchestration                       |
+| Skill                  | Version  | Primary Triggers                                          | Purpose                                          |
+| ---------------------- | -------- | --------------------------------------------------------- | ------------------------------------------------ |
+| `cli-claude-code`      | v1.1.5.0 | "claude", "cross-AI", "second opinion"                   | Claude Code CLI orchestration                    |
+| `cli-codex`            | v1.4.2.0 | "codex", "cross-AI", "review"                            | Codex CLI orchestration                          |
+| `cli-copilot`          | v1.3.7.0 | "copilot", "delegate", "cloud"                            | GitHub Copilot CLI orchestration                 |
+| `cli-gemini`           | v1.2.5.0 | "gemini", "research", "web search"                        | Gemini CLI orchestration                         |
+| `cli-opencode`         | v1.3.0.0 | "opencode", "parallel", "handoff"                         | OpenCode CLI orchestration                       |
+| `mcp-chrome-devtools`  | v1.0.7.0 | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
+| `mcp-coco-index`       | v1.0.0   | "semantic search", "find code", "similar code"            | Semantic code search via CocoIndex               |
+| `mcp-code-mode`        | v1.0.7.0 | "ClickUp", "Figma", "Webflow", "external tool"            | MCP orchestration for external tools             |
+| `sk-code`              | v2.0.0   | "implement", "debug", "verify", "opencode", "webflow"    | Webflow frontend and OpenCode system code router |
+| `sk-code-review`       | v1.2.0.0 | "review", "audit", "PR"                                   | Findings-first code review                       |
+| `sk-deep-research`     | v1.6.2.0 | "deep research", "research loop", "convergence"           | Iterative research workflow                      |
+| `sk-deep-review`       | v1.3.2.0 | "deep review", "review loop", "quality audit"             | Iterative review workflow                        |
+| `sk-doc`               | v1.3.0.0 | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
+| `sk-git`               | v1.1.0.0 | "commit", "branch", "PR", "push", "git"                  | Git workflow orchestration                       |
+| `sk-improve-agent`     | v1.2.2.0 | "improve agent", "agent scoring", "promotion"             | Evaluator-first agent improvement                |
+| `sk-improve-prompt`    | v1.3.0.0 | "improve prompt", "prompt engineering", "CLEAR"           | Prompt improvement workflow                      |
+| `system-spec-kit`      | v3.3.1.0 | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
 
 #### Skill Routing Table
 
@@ -972,7 +983,7 @@ User Message
 #### Example: Frontend Project (Webflow/CSS/JS)
 
 **Before (Universal Template):**
-- All 9 skills installed
+- All 17 skills installed
 - All 3 MCP servers configured
 - All 19 commands available
 
@@ -997,7 +1008,7 @@ User Message
 #### Example: Backend API Project
 
 **Before (Universal Template):**
-- All 9 skills installed
+- All 17 skills installed
 - All 3 MCP servers configured
 
 **After (Backend-Optimized):**

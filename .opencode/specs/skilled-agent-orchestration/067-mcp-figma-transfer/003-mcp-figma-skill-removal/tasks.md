@@ -9,28 +9,67 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal"
-    last_updated_at: "2026-05-05T10:45:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored tasks.md"
-    next_safe_action: "Author checklist.md, decision-record.md"
+    last_updated_at: "2026-05-05T12:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Tasks doc contract normalized"
+    next_safe_action: "Run strict validator"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:phase3-tasks-2026-05-05"
+      fingerprint: "sha256:4e262114def17c639760527954e18124c73de26bd0478d83cbef708ffd089b10"
       session_id: "067-003-tasks-2026-05-05"
       parent_session_id: null
     completion_pct: 15
     open_questions: []
     answered_questions: []
 ---
+
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Phase 3 — Remove mcp-figma skill
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original authored content is retained below.
+<!-- /ANCHOR:notation -->
+
+<!-- ANCHOR:phase-1 -->
+## PHASE 1: SETUP
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original authored content is retained below.
+<!-- /ANCHOR:phase-1 -->
+
+<!-- ANCHOR:phase-2 -->
+## PHASE 2: IMPLEMENTATION
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original authored content is retained below.
+<!-- /ANCHOR:phase-2 -->
+
+<!-- ANCHOR:phase-3 -->
+## PHASE 3: VERIFICATION
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original authored content is retained below.
+<!-- /ANCHOR:phase-3 -->
+
+<!-- ANCHOR:completion -->
+## COMPLETION CRITERIA
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original authored content is retained below.
+<!-- /ANCHOR:completion -->
+
+<!-- ANCHOR:cross-refs -->
+## CROSS-REFERENCES
+
+Template compliance scaffold for 003-mcp-figma-skill-removal/tasks.md; original authored content is retained below.
+<!-- /ANCHOR:cross-refs -->
+
+### Original Authored Content
 
 <!-- SPECKIT_LEVEL: 3 -->
 
 ---
 
-## Task Notation
+### Task Notation
 
 | Prefix | Meaning |
 |--------|---------|
@@ -45,13 +84,13 @@ _memory:
 
 ---
 
-## Phase 3A — Re-grep at execution start (D8)
+### Phase 3A — Re-grep at execution start (D8)
 
 - [ ] **T010** [P0] Re-grep `mcp-figma` across Code_Environment/Public; confirm 31 hits across 9 files match Explore Agent 1 mapping
 - [ ] **T020** [P1] Re-grep mcp-code-mode `mcp-figma` skill-name refs; confirm 4 hits at known lines
 - [ ] **T030** [P1] Re-grep `figma-developer-mcp\|figma\.figma_` in mcp-code-mode; baseline ≥120 hits before edits
 
-## Phase 3B — File edits (Claude direct via Edit tool)
+### Phase 3B — File edits (Claude direct via Edit tool)
 
 ### Advisor scoring tables
 - [ ] **T040** [P0] Edit `graph-metadata.json`: DELETE edge entry (line 18), PATCH count 20→19 (line 62)
@@ -76,12 +115,12 @@ _memory:
 - [ ] **T150** [P0] Edit `mcp-code-mode/references/architecture.md` line 514: DELETE_LINE (mcp-figma cross-reference)
 - [ ] **T160** [P0] Edit `mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/001-figma-file-metadata.md` line 88: DELETE_LINE (path reference)
 
-## Phase 3C — Skill folder deletion
+### Phase 3C — Skill folder deletion
 
 - [ ] **T170** [P0] `rm -rf .opencode/skill/mcp-figma/` (memory rule: DELETE not archive)
 - [ ] **T180** [P0] Verify deletion: `test ! -d .opencode/skill/mcp-figma/`
 
-## Phase 3D — Commit 4 (deletion + cross-ref patches)
+### Phase 3D — Commit 4 (deletion + cross-ref patches)
 
 - [ ] **T190** [P0] `git status -s` — review staged set
 - [ ] **T200** [P0] Stage selectively (NEVER `-A`): each of 14 modified files + skill folder deletion
@@ -89,29 +128,29 @@ _memory:
 - [ ] **T220** [P0] Commit: `chore: remove mcp-figma skill and patch cross-references` with Co-Authored-By trailer
 - [ ] **T230** [P0] Capture commit SHA
 
-## Phase 3E — Skill advisor regen
+### Phase 3E — Skill advisor regen
 
 - [ ] **T240** [P0] Invoke `Skill: doctor:skill-advisor :auto`
 - [ ] **T250** [P1] Verify regen output: zero `mcp-figma` refs in skill-graph.json
 
-## Phase 3F — Verify advisor tests
+### Phase 3F — Verify advisor tests
 
 - [ ] **T260** [P0] Find advisor test runner (likely `vitest` in `system-spec-kit/mcp_server/skill_advisor/tests/` or `npm test`)
 - [ ] **T270** [P0] Run advisor tests; expect green
 - [ ] **T280** [P0] If failures: investigate; re-edit fixtures or scoring; re-run
 
-## Phase 3G — Commit 5 (advisor regen)
+### Phase 3G — Commit 5 (advisor regen)
 
 - [ ] **T290** [P0] `git diff` — review only advisor regen output
 - [ ] **T300** [P0] Commit: `chore: regenerate skill advisor graph` with Co-Authored-By trailer
 - [ ] **T310** [P0] Capture commit SHA
 
-## Phase 3H — Branch hygiene
+### Phase 3H — Branch hygiene
 
 - [ ] **T320** [P0] `git branch --show-current` — confirm `main`
 - [ ] **T330** [P1] If any feature branch auto-created earlier: switch back to main + carry uncommitted + delete branch
 
-## Phase 3I — Verification (opus subagent)
+### Phase 3I — Verification (opus subagent)
 
 - [ ] **T340** [P0] Dispatch opus for Hook E (re-grep cleanliness)
   - Confirms zero `mcp-figma` skill-name hits outside specs / z_archive / z_future
@@ -123,13 +162,13 @@ _memory:
   - Confirms `main` branch
   - Confirms unrelated dirty tree files surviving
 
-## Phase 3J — Phase summary
+### Phase 3J — Phase summary
 
 - [ ] **T370** [P0] Author `implementation-summary.md` with both commit SHAs + opus results
 
 ---
 
-## Estimated wall-clock
+### Estimated wall-clock
 
 | Phase | Time |
 |-------|------|

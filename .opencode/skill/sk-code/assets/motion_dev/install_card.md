@@ -3,9 +3,25 @@ title: "Motion.dev Install Card"
 description: "Quick copy-paste install, import, version-pin, and verification reference for Motion.dev."
 ---
 
-# Motion.dev Install Card
+# Motion.dev Install Card - Install and Import Snippets
 
-## CDN snippet
+Quick copy-paste install, import, version-pin, and verification reference for Motion.dev.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provide reusable Motion install snippets for CDN, npm, ESM, and quick export verification while keeping production examples version-pinned.
+
+### Usage
+
+Copy the matching snippet for the target stack, replace the pinned version only after checking the current package, and rerun the related Motion manual testing scenario after upgrades.
+
+---
+
+## 2. CDN SNIPPET
 
 Pinned examples in this card use `12.38.0`, the latest stable package version observed during authoring on 2026-05-05. Recheck the package before future upgrades; never copy `@latest` into production snippets. Motion's quick start recommends replacing `latest` with a concrete version (Source: https://motion.dev/docs/quick-start; version cross-check: https://motion.dev/).
 
@@ -27,7 +43,7 @@ ESM CDN:
 </script>
 ```
 
-## npm install snippet
+## 3. NPM INSTALL SNIPPET
 
 ```bash
 npm install motion
@@ -37,7 +53,7 @@ npm install motion
 import { animate, inView, scroll } from "motion";
 ```
 
-## ES module import patterns
+## 4. ES MODULE IMPORT PATTERNS
 
 Hybrid import:
 
@@ -58,14 +74,14 @@ const motion = await import("https://cdn.jsdelivr.net/npm/motion@12.38.0/+esm");
 window.Motion = { ...(window.Motion || {}), ...motion };
 ```
 
-## Version-pin guidance
+## 5. VERSION-PIN GUIDANCE
 
 - Pin Motion CDN URLs to an exact version.
 - Do not use `@latest` in production or reusable snippets.
 - Record the version in the owning reference or loader.
 - Re-run MR-002 from the manual testing playbook after changing the pinned version.
 
-## Verification snippet
+## 6. VERIFICATION SNIPPET
 
 CDN global:
 
@@ -80,7 +96,7 @@ import { animate } from "motion";
 console.log(animate);
 ```
 
-## Citations
+## 7. RELATED RESOURCES
 
 - Install modes and version-pin recommendation: https://motion.dev/docs/quick-start
 - Mini/hybrid import distinction: https://motion.dev/docs/animate

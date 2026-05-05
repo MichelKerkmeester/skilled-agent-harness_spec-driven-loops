@@ -5,7 +5,36 @@ description: "Performance guidance for Motion animations, bundle sizing, reduced
 
 # Motion.dev Performance and Pitfalls
 
-## 1. GPU-COMPOSITED PROPERTIES
+Performance guidance for Motion animations, bundle sizing, reduced-motion compliance, and Core Web Vitals risk.
+
+---
+
+## 1. OVERVIEW
+
+### Core Principle
+
+Motion improves control, but animation still has to protect compositing, reduced-motion preferences, and interaction latency.
+
+### Purpose
+
+This reference keeps Motion-specific performance choices aligned with local Webflow performance rules and browser Core Web Vitals risk.
+
+### When to Use
+
+- You are choosing animation properties, import size, or reduced-motion behavior.
+- You need to identify layout-thrashing Motion anti-patterns.
+- You are assessing LCP, CLS, or INP risk from animation work.
+
+### Key Sources
+
+- Official: https://motion.dev/docs/quick-start
+- Official: https://motion.dev/docs/animate
+- Official: https://motion.dev/docs/scroll
+- In-repo: `.opencode/skill/sk-code/references/webflow/implementation/performance_patterns.md`
+
+---
+
+## 2. GPU-COMPOSITED PROPERTIES
 
 Prefer `transform` and `opacity` for high-frequency or visible movement. Motion docs describe hardware acceleration for supported values and the `scroll()` page notes use of ScrollTimeline where supported for smoother browser-run scroll animations (Sources: https://motion.dev/docs/quick-start, https://motion.dev/docs/scroll).
 
@@ -15,7 +44,7 @@ animate(".card", { opacity: [0, 1], transform: ["translateY(12px)", "translateY(
 
 Existing sk-code Webflow guidance gives the same local rule: animate `transform` and `opacity` first, and manage `will-change` dynamically around active animations (Repo: `.opencode/skill/sk-code/references/webflow/implementation/performance_patterns.md`).
 
-## 2. LAYOUT-THRASHING ANTI-PATTERNS
+## 3. LAYOUT-THRASHING ANTI-PATTERNS
 
 Avoid animating layout properties like `top`, `left`, `width`, and `height` unless the UX requires measured layout transitions. These properties can cause layout recalculation and Core Web Vitals/INP risk in the local performance guide (Repo: `.opencode/skill/sk-code/references/webflow/implementation/performance_patterns.md`).
 
@@ -24,7 +53,7 @@ When height is required, use measured-height patterns and cleanup, as local drop
 - animate `height` from/to explicit pixels,
 - restore `height: auto` or hidden state in `onComplete` (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/navigation/nav_language_selector.js`).
 
-## 3. BUNDLE SIZE CONSIDERATIONS
+## 4. BUNDLE SIZE CONSIDERATIONS
 
 Motion documents a mini `animate()` import for small HTML/SVG style animation and a larger hybrid import for independent transforms, sequence arrays, CSS variables, SVG paths, objects, and WebGL (Source: https://motion.dev/docs/animate).
 
@@ -33,7 +62,7 @@ Decision:
 - Use the hybrid `motion` import when you need `x`/`y` independent transforms, sequences, motion values, or non-DOM values (Source: https://motion.dev/docs/animate).
 - Use CDN globals in Webflow/no-code contexts only when bundling is not available or a project already centralizes Motion loading (Source: https://motion.dev/docs/quick-start; repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`).
 
-## 4. PREFERS-REDUCED-MOTION COMPLIANCE
+## 5. PREFERS-REDUCED-MOTION COMPLIANCE
 
 Respect OS/browser reduced-motion preferences. Motion's React/Vue docs provide framework helpers and configuration, while vanilla JavaScript can use `window.matchMedia("(prefers-reduced-motion: reduce)")` before choosing transform-heavy animations (Sources: https://motion.dev/docs/react-use-reduced-motion, https://motion.dev/docs/react-accessibility, https://motion.dev/docs/vue-motion-config).
 
@@ -53,7 +82,7 @@ Local anchors:
 - `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses `matchMedia("(prefers-reduced-motion: reduce)")` to skip meaningful transition duration in snap behavior.
 - `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js` includes reduced-motion/mobile detection for video behavior.
 
-## 5. CWV IMPACT
+## 6. CWV IMPACT
 
 Animation can affect Core Web Vitals indirectly:
 - LCP risk: hiding hero content until animation dependencies load can delay visible content.
@@ -66,7 +95,7 @@ Mitigations:
 - Use `requestAnimationFrame` for render scheduling and avoid unnecessary per-frame DOM reads (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 - For scroll-linked animation, use `scroll()` where supported so the browser can use ScrollTimeline for supported animations (Source: https://motion.dev/docs/scroll).
 
-## 6. CITATIONS
+## 7. REFERENCES AND RELATED RESOURCES
 
 - Motion quick start and hardware acceleration note: https://motion.dev/docs/quick-start
 - Motion `animate()` mini/hybrid distinction: https://motion.dev/docs/animate

@@ -1,0 +1,1 @@
+{"type":"init","timestamp":"2026-05-05T09:15:00Z","sessionId":"068-deep-review-session-1","spec_folder":".opencode/specs/skilled-agent-orchestration/068-sk-doc-organization","review_target":"068-sk-doc-organization","executor":{"type":"cli-codex","model":"gpt-5.5","reasoningEffort":"high","serviceTier":"fast"},"maxIterations":7,"convergenceThreshold":0.10}

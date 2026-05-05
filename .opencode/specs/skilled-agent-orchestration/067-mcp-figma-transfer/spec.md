@@ -99,9 +99,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-barter-figma-agent/ | Author Figma MCP Agent at `AI_Systems/Barter/MCP Agents/Figma/` mirroring ClickUp structure | ✅ Complete (commit 690b498 on Barter main; opus hook B 9/9 PASS) |
-| 2 | 002-public-figma-agent/ | Sanitized duplicate at `AI_Systems/Public/Figma/` + Public/README.md §8 anchor patch | ✅ Complete (commits c4f6c56 + e96a3ee on Public main; opus hooks C+D 12/12 PASS) |
-| 3 | 003-mcp-figma-skill-removal/ | Delete mcp-figma skill + patch 14 cross-ref files + advisor SQLite re-index in Code_Environment/Public | ✅ Complete (commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d on Public main; opus hooks E+F+G PASS with 3 documented known failures) |
+| 1 | 001-barter-figma-agent/ | Author Figma MCP Agent at `AI_Systems/Barter/MCP Agents/Figma/` mirroring ClickUp structure | ✅ Complete (commits 690b498 + 66e1e87 on Barter main; opus hook B 9/9 PASS) |
+| 2 | 002-public-figma-agent/ | Sanitized duplicate at `AI_Systems/Public/Figma/` + Public/README.md §8 anchor patch (D9 superseded by user commit `766206b` to internal-only scope) | ✅ Complete (commits c4f6c56 + e96a3ee + 766206b on Public main; opus hooks C+D 12/12 PASS) |
+| 3 | 003-mcp-figma-skill-removal/ | Delete mcp-figma skill + patch 14 cross-ref files + advisor SQLite re-index in Code_Environment/Public | ✅ Complete (commits 9f7b3c6d4 + a4cb4e0a1 + 7307e056d on Public main; opus hooks E+F+G PASS with 295/296 tests and 1 known advisor-graph-health failure from sk-code `kind: "reference-category"` drift, out of scope per 069) |
+| 4 | 004-deep-review-remediation/ | Remediate 3 P0 + 13 P1 + 5 P2 findings from 7-iteration deep review (review/review-report.md) — child --strict validators, P0 checklist evidence, deep-review-state.jsonl backfill, install guide env var prefix, ledger sync, D9 supersession formalization, ADR-005 body rewrite, Hook F status, broken symlink + dead links, Public install_guide cwd, Barter+Public AGENTS.md byte-equivalence | ✅ Complete (cli-codex 3-job parallel remediation; all 4 children + parent --strict PASS; bdb739d97 + 7307e056d + 66e1e87 + 766206b commit ledger now reflected in all phase summaries) |
 
 ### Phase Transition Rules
 

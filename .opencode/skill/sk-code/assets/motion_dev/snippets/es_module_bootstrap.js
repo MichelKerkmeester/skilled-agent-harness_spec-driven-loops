@@ -2,7 +2,7 @@
  * @title ES Module Bootstrap
  * @description Skeleton for ES module imports and initialization, matching the repo's dynamic-import testimonial pattern.
  * @source https://motion.dev/docs/quick-start
- * @example Load this file with <script type="module" src="es-module-bootstrap.js"></script>.
+ * @example Load this file with <script type="module" src="es_module_bootstrap.js"></script>.
  */
 import {
   animate,

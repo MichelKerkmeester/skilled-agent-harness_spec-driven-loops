@@ -545,9 +545,9 @@ function wait_for_library(global_name, options = {}) {
  *
  * Cross-stack Motion reference: for Motion API, import modes, and integration
  * patterns outside Webflow-specific global loading, see
- * ../../../references/motion_dev/quick-start.md and
- * ../../../references/motion_dev/integration-patterns.md. For reusable Motion
- * assets, see ../../motion_dev/install-card.md.
+ * ../../../references/motion_dev/quick_start.md and
+ * ../../../references/motion_dev/integration_patterns.md. For reusable Motion
+ * assets, see ../../motion_dev/install_card.md.
  *
  * @param {Object} options - Configuration options
  * @param {number} options.timeout - Max wait time in ms (default: 1000)

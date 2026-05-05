@@ -5,7 +5,36 @@ description: "Stack-aware integration patterns for CDN, ES modules, Webflow, non
 
 # Motion.dev Integration Patterns
 
-## 1. CDN SCRIPT TAG
+Stack-aware integration patterns for CDN, ES modules, Webflow, non-Webflow stacks, and initialization safeguards.
+
+---
+
+## 1. OVERVIEW
+
+### Core Principle
+
+Load Motion through the stack's native dependency path, and guard DOM animation until the runtime and targets are ready.
+
+### Purpose
+
+This reference centralizes install and initialization patterns so Webflow-specific references can link here for generic Motion details.
+
+### When to Use
+
+- You need CDN, ESM, or npm import examples for Motion.
+- You are adapting Motion to Webflow, bundled, or SSR-style client code.
+- You need initialization guards for optional or late-loaded Motion.
+
+### Key Sources
+
+- Official: https://motion.dev/docs/quick-start
+- Official: https://motion.dev/docs/animate
+- In-repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
+
+---
+
+## 2. CDN SCRIPT TAG
 
 Motion's quick start documents script-tag usage for basic HTML pages and no-code tools, including Webflow, and recommends pinning a concrete version instead of `@latest` (Source: https://motion.dev/docs/quick-start).
 
@@ -21,7 +50,7 @@ Motion's quick start documents script-tag usage for basic HTML pages and no-code
 
 Local anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` destructures `animate` from `window.Motion || {}` and exits with a warning if it is unavailable.
 
-## 2. NPM / ES MODULES
+## 3. NPM / ES MODULES
 
 Bundled projects should use package imports so the bundler can resolve dependencies and tree-shake where possible (Source: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate).
 
@@ -35,7 +64,7 @@ import { animate, inView, motionValue, scroll } from "motion";
 
 Local anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses a dynamic import from a pinned CDN ESM URL as a Webflow-friendly fallback, then patches `window.Motion` with `animate`, `inView`, `scroll`, and `motionValue`.
 
-## 3. WEBFLOW-CDN-SPECIFIC NOTES
+## 4. WEBFLOW-CDN-SPECIFIC NOTES
 
 For Webflow, link to the existing Webflow references rather than duplicating all Webflow operational detail here:
 - `.opencode/skill/sk-code/references/webflow/implementation/animation_workflows.md`
@@ -51,14 +80,14 @@ Webflow patterns in this repo include:
 
 Source anchors: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`, `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`.
 
-## 4. NON-WEBFLOW STACKS
+## 5. NON-WEBFLOW STACKS
 
 Use the stack's native client-only lifecycle:
 - Bundled SPA/MPA: import from `"motion"` inside client-side modules (Source: https://motion.dev/docs/quick-start).
 - SSR/hydrated UI: defer DOM-targeting `animate()`, `scroll()`, `hover()`, and `inView()` until the client has `window` and DOM nodes available. This follows the browser API requirements implied by those functions accepting DOM selectors/elements (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview, https://motion.dev/docs/hover).
 - Bundle-sensitive UI: use `motion/mini` when only mini-supported HTML/SVG style animation is needed (Source: https://motion.dev/docs/animate).
 
-## 5. INITIALIZATION SAFEGUARDS
+## 6. INITIALIZATION SAFEGUARDS
 
 ### CDN-safe guard
 
@@ -106,7 +135,7 @@ export function init_motion_component(root = document) {
 }
 ```
 
-## 6. CITATIONS
+## 7. REFERENCES AND RELATED RESOURCES
 
 - Official install and script-tag guidance: https://motion.dev/docs/quick-start
 - Official mini/hybrid and target guidance: https://motion.dev/docs/animate

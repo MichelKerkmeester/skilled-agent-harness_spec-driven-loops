@@ -72,7 +72,7 @@ Create a cited, cross-stack motion.dev reference and asset package that document
 
 ### In Scope
 - Create six Markdown references under `.opencode/skill/sk-code/references/motion_dev/`.
-- Create `install-card.md`, `playbook-entries.md`, and eight runnable JavaScript snippets under `.opencode/skill/sk-code/assets/motion_dev/`.
+- Create `install_card.md`, `playbook_entries.md`, and eight runnable JavaScript snippets under `.opencode/skill/sk-code/assets/motion_dev/`.
 - Cite official Motion docs for every Motion API claim.
 - Cite representative in-repo paths for real local usage patterns, especially `window.Motion` and ES module loading.
 - Preserve cross-stack boundaries by linking to Webflow guidance rather than editing it.
@@ -92,9 +92,9 @@ Create a cited, cross-stack motion.dev reference and asset package that document
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev/tasks.md` | Create | Packet 2 task ledger |
 | `specs/skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook/002-motion-dev/checklist.md` | Create | Packet 2 verification checklist |
 | `.opencode/skill/sk-code/references/motion_dev/*.md` | Create | Six canonical Motion reference docs |
-| `.opencode/skill/sk-code/assets/motion_dev/install-card.md` | Create | Quick install/reference card |
+| `.opencode/skill/sk-code/assets/motion_dev/install_card.md` | Create | Quick install/reference card |
 | `.opencode/skill/sk-code/assets/motion_dev/snippets/*.js` | Create | Eight runnable Motion snippets |
-| `.opencode/skill/sk-code/assets/motion_dev/playbook-entries.md` | Create | Packet 1 playbook hook entries |
+| `.opencode/skill/sk-code/assets/motion_dev/playbook_entries.md` | Create | Packet 1 playbook hook entries |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -116,7 +116,7 @@ Create a cited, cross-stack motion.dev reference and asset package that document
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Populate all required reference docs | Six named reference Markdown files exist |
-| REQ-006 | Populate all required assets | `install-card.md`, `playbook-entries.md`, and eight snippets exist |
+| REQ-006 | Populate all required assets | `install_card.md`, `playbook_entries.md`, and eight snippets exist |
 | REQ-007 | Snippets are runnable | Snippets are self-contained, guard missing APIs, and document loading assumptions |
 | REQ-008 | Strict spec validation passes | `validate.sh .../002-motion-dev --strict` exits 0 |
 <!-- /ANCHOR:requirements -->

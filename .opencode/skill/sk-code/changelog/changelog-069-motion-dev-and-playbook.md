@@ -9,7 +9,7 @@ Packet `069-sk-code-motion-dev-and-playbook` makes motion.dev discoverable as a 
 
 #### Packet 2 — cross-stack motion_dev references and assets
 
-- Populated `references/motion_dev/` with quick-start, timeline, scroll/gesture, performance, decision-matrix, and integration references.
+- Populated `references/motion_dev/` with quick_start, animate_and_timelines, scroll_and_gestures, performance_and_pitfalls, decision_matrix, and integration_patterns references.
 - Populated `assets/motion_dev/` with an install card, playbook hook entries, and reusable JavaScript snippets.
 - Kept Webflow CDN-specific guidance linked rather than moved.
 

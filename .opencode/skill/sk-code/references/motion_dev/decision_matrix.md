@@ -5,7 +5,36 @@ description: "When to choose CSS, Motion.dev, GSAP, or direct Web Animations API
 
 # Motion.dev Decision Matrix
 
-## 1. DECISION TREE
+When to choose CSS, Motion.dev, GSAP, or direct Web Animations API for animation work.
+
+---
+
+## 1. OVERVIEW
+
+### Core Principle
+
+Default to the smallest animation tool that satisfies the current interaction requirements.
+
+### Purpose
+
+This reference gives sk-code a decision path for choosing CSS, Motion.dev, GSAP, or direct WAAPI without turning Motion into a blanket recommendation.
+
+### When to Use
+
+- You need to decide whether Motion is warranted for an animation task.
+- You are comparing Motion with CSS, GSAP, or direct Web Animations API.
+- You need a short rationale for dependency choice in Motion-related guidance.
+
+### Key Sources
+
+- Official: https://motion.dev/docs/quick-start
+- Official: https://motion.dev/docs/gsap-vs-motion
+- Official: https://motion.dev/docs/improvements-to-the-web-animations-api-dx
+- In-repo: `.opencode/skill/sk-code/references/webflow/implementation/animation_workflows.md`
+
+---
+
+## 2. DECISION TREE
 
 ```text
 Need animation?
@@ -25,7 +54,7 @@ Need animation?
 
 This matches the existing local rule: CSS first for simple states; Motion when programmatic control is needed (Repo: `.opencode/skill/sk-code/references/webflow/implementation/animation_workflows.md`). Motion docs support the programmatic side via `animate()`, sequences, `scroll()`, and `inView()` (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
-## 2. MOTION.DEV vs GSAP
+## 3. MOTION.DEV vs GSAP
 
 | Axis | Motion.dev | GSAP |
 |------|------------|------|
@@ -36,7 +65,7 @@ This matches the existing local rule: CSS first for simple states; Motion when p
 
 Recommendation: choose Motion for the sk-code examples in this packet because the repo already contains Motion patterns and the requested assets are Motion-specific. Choose GSAP only when a real timeline/plugin requirement beats the extra dependency and licensing review.
 
-## 3. MOTION.DEV vs RAW CSS
+## 4. MOTION.DEV vs RAW CSS
 
 Use raw CSS when:
 - a hover/focus/open/closed state can be expressed with `transition`,
@@ -50,7 +79,7 @@ Use Motion when:
 
 Local examples: `link_grid.js` could be CSS in many stacks, but uses Motion because the current Webflow implementation centralizes interactive color animation through JS. `testimonial.js` earns Motion because it uses drag state, inertia, and snap behavior (Repo: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
-## 4. MOTION.DEV vs Web Animations API
+## 5. MOTION.DEV vs Web Animations API
 
 Direct WAAPI is enough when a single DOM element needs a simple browser-native animation and you do not need Motion's import, controls, inferred keyframes, independent transform axes, spring/custom easing, sequences, or interruption behavior.
 
@@ -58,14 +87,14 @@ Motion's WAAPI comparison documents added developer-experience features includin
 
 Recommendation: use WAAPI directly only for tiny isolated effects. Use Motion when those helpers reduce code or avoid brittle animation-state handling.
 
-## 5. WHY MOTION.DEV
+## 6. WHY MOTION.DEV
 
 Motion is a strong default for sk-code animation references because:
 - official JS docs cover CDN and package-manager usage (Source: https://motion.dev/docs/quick-start),
 - it offers `animate()`, sequences, `scroll()`, `inView()`, `hover()`, `press()`, `spring()`, and motion values across vanilla JS surfaces (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview, https://motion.dev/docs/hover, https://motion.dev/docs/press, https://motion.dev/docs/spring),
 - current repo code already uses both guarded `window.Motion` and dynamic ESM import patterns (Repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
-## 6. CITATIONS
+## 7. REFERENCES AND RELATED RESOURCES
 
 - Motion quick start: https://motion.dev/docs/quick-start
 - Motion animate/mini/hybrid/sequences: https://motion.dev/docs/animate

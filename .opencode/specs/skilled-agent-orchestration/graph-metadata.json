@@ -1,10 +1,29 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
-    "last_active_at": "2026-05-02T08:57:37.883Z",
-    "last_save_at": "2026-05-02T08:57:37.883Z"
+    "last_active_child_id": "skilled-agent-orchestration/067-mcp-figma-transfer",
+    "last_active_at": "2026-05-05T11:35:00.000Z",
+    "last_save_at": "2026-05-05T11:35:00.000Z"
   },
   "children_ids": [
-    "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment"
+    "skilled-agent-orchestration/051-cli-opencode-providers",
+    "skilled-agent-orchestration/052-cli-skill-patterns",
+    "skilled-agent-orchestration/053-cli-skill-removal-mcp-clickup",
+    "skilled-agent-orchestration/054-sk-code-merger",
+    "skilled-agent-orchestration/055-cli-skill-removal-sk-code-merger-deprecated",
+    "skilled-agent-orchestration/056-sk-code-fullstack-branch",
+    "skilled-agent-orchestration/057-cmd-spec-kit-ux-upgrade",
+    "skilled-agent-orchestration/058-spec-kit-ux-adoptions",
+    "skilled-agent-orchestration/059-agent-implement-code",
+    "skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment",
+    "skilled-agent-orchestration/061-agent-optimization",
+    "skilled-agent-orchestration/062-deep-loop-command-flow-stress-tests",
+    "skilled-agent-orchestration/063-sk-doc-agent-template-alignment",
+    "skilled-agent-orchestration/064-agent-create",
+    "skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test",
+    "skilled-agent-orchestration/066-sk-code-opencode-merger",
+    "skilled-agent-orchestration/067-mcp-figma-transfer",
+    "skilled-agent-orchestration/068-sk-doc-organization",
+    "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
+    "skilled-agent-orchestration/070-sk-deep-rename"
   ]
 }

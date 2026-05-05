@@ -5,11 +5,34 @@ description: "Cross-stack entry point for installing Motion, choosing import mod
 
 # Motion.dev Quick Start
 
+Cross-stack entry point for installing Motion, choosing import modes, and deciding when sk-code should recommend Motion.dev.
+
+---
+
 ## 1. OVERVIEW
+
+### Core Principle
+
+Choose Motion when JavaScript-owned animation control earns its dependency; keep simple state transitions in CSS.
+
+### Purpose
 
 Motion is a web animation library for JavaScript, React, and Vue. Its JavaScript docs describe a hybrid engine that can animate HTML/CSS, SVG, WebGL, independent transforms, CSS variables, objects, and strings/colors/numbers, with browser acceleration when available (Source: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate).
 
 The cross-stack value for sk-code is that Motion can be used in Webflow via CDN globals, in bundled apps via `npm install motion`, and in future stack-specific references without treating it as a Webflow-only dependency (Source: https://motion.dev/docs/quick-start; in-repo Webflow examples: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
+
+### When to Use
+
+- You need the fastest orientation to Motion install modes and core APIs.
+- You are deciding whether Motion belongs in a Webflow, bundled, or future stack-specific workflow.
+- You need cross-stack pointers before loading deeper Motion references.
+
+### Key Sources
+
+- Official: https://motion.dev/docs/quick-start
+- Official: https://motion.dev/docs/animate
+- In-repo: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
+- In-repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 
 ## 2. INSTALLATION & IMPORT MODES
 
@@ -77,9 +100,9 @@ This directory is intentionally a peer to `webflow/`. Webflow-specific notes liv
 - Bundled apps should prefer package imports so bundlers can tree-shake and type-check imports (Source: https://motion.dev/docs/quick-start).
 - SSR stacks should avoid touching `window`, `document`, or DOM targets until the client runtime is active; this is a general DOM constraint, not a Motion-specific export (Source for import mode: https://motion.dev/docs/quick-start).
 
-See [integration-patterns.md](./integration-patterns.md).
+See [integration_patterns.md](./integration_patterns.md).
 
-## 6. CITATIONS
+## 6. REFERENCES AND RELATED RESOURCES
 
 - Official quick start and install modes: https://motion.dev/docs/quick-start
 - Core animate API and mini/hybrid distinction: https://motion.dev/docs/animate

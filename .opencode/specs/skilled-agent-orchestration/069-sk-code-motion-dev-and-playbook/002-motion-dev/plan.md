@@ -87,7 +87,7 @@ Reference/asset split:
 - **Snippet assets**: reusable JavaScript starts for common motion tasks.
 
 ### Data Flow
-Operators start at `quick-start.md`, follow deeper references for API context, then copy snippets from `assets/motion_dev/snippets/`. Manual-test operators can lift scenario text from `playbook-entries.md` into Packet 1's playbook category when needed.
+Operators start at `quick_start.md`, follow deeper references for API context, then copy snippets from `assets/motion_dev/snippets/`. Manual-test operators can lift scenario text from `playbook_entries.md` into Packet 1's playbook category when needed.
 <!-- /ANCHOR:architecture -->
 
 ---

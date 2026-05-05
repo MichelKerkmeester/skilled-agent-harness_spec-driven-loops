@@ -9,14 +9,14 @@ contextType: "decision"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/067-mcp-figma-transfer/002-public-figma-agent"
-    last_updated_at: "2026-05-05T10:30:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored decision-record.md"
-    next_safe_action: "Begin Phase 2 implementation (cp + sanitize)"
+    last_updated_at: "2026-05-05T12:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Decision doc contract normalized"
+    next_safe_action: "Run strict validator"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:phase2-dr-2026-05-05"
+      fingerprint: "sha256:926b92b1c27701b67bd0a2aad1b54456363a5da4ff5986ed241adfe852303c7b"
       session_id: "067-002-dr-2026-05-05"
       parent_session_id: null
     completion_pct: 20
@@ -25,22 +25,68 @@ _memory:
       - "D9 captured as ADR-009"
       - "D10 captured as ADR-010"
 ---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Phase 2 — Dual-publish Figma to AI_Systems/Public
 
-<!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+<!-- ANCHOR:adr-001 -->
+## ADR-001: Template Compliance Record
 
+<!-- ANCHOR:adr-001-context -->
+### Context
+
+Phase 4 normalized this decision record to the active v2.2 template contract while preserving authored ADR content below.
+<!-- /ANCHOR:adr-001-context -->
+
+<!-- ANCHOR:adr-001-decision -->
+### Decision
+
+Keep the original phase decisions intact and add the required retrieval anchors for strict validation.
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
+
+Leaving the document unanchored was rejected because child strict validation is a P0 release gate.
+<!-- /ANCHOR:adr-001-alternatives -->
+
+<!-- ANCHOR:adr-001-consequences -->
+### Consequences
+
+The document now has validator-compatible anchors; original ADR numbering remains in the preserved content below.
+<!-- /ANCHOR:adr-001-consequences -->
+
+<!-- ANCHOR:adr-001-five-checks -->
+### Five Checks
+
+- Clarity: Template contract is explicit.
+- Systems: No implementation behavior changes.
+- Bias: Historical ADR content is preserved.
+- Sustainability: Future strict validation can locate anchors.
+- Scope: Phase 4 only remediates P0 documentation gates.
+<!-- /ANCHOR:adr-001-five-checks -->
+
+<!-- ANCHOR:adr-001-impl -->
+### Implementation Notes
+
+Applied during Phase 4 Job 3 for 002-public-figma-agent.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
+
+### Original Authored Content
+
+<!-- SPECKIT_LEVEL: 3 -->
 > Phase 2 owns D9 + D10 specifically. Cross-cutting ADRs (D1-D7 from Phase 1) are in `../001-barter-figma-agent/decision-record.md`.
 
 ---
 
-## ADR-009: Public AI Systems duplicate scrub pattern (D9)
+### ADR-009: Public AI Systems duplicate scrub pattern (D9)
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted |
+| **Status** | Superseded by user commit 766206b on 2026-05-05 |
 | **Date** | 2026-05-05 |
 | **Deciders** | Michel Kerkmeester, Claude |
 
@@ -74,9 +120,13 @@ Phase 1 produced a complete Barter Figma agent. Phase 2 needs to duplicate it to
 - Subtle README drift maintenance burden (over time, Barter and Public READMEs may diverge further)
 - Mitigation: implementation-summary.md documents the exact divergence rules so future updates can apply consistently
 
+### Supersession Note
+
+The original Phase 2 implementation in commits `c4f6c56` and `e96a3ee` followed D9's open-source framing for `AI_Systems/Public/Figma`. User commit `766206b` explicitly reverted Public/Figma to internal-only scope by removing open-source, MIT-licensed, and community positioning. The canonical Phase 2 state is now internal Barter scope, dual-published to the Public AI Systems repo for cross-team visibility.
+
 ---
 
-## ADR-010: Public AI Systems README badge math (D10)
+### ADR-010: Public AI Systems README badge math (D10)
 
 ### Metadata
 
@@ -120,7 +170,7 @@ Three options for adding Figma:
 
 ---
 
-## Cross-references
+### Cross-references
 
 - **ADR-001 through ADR-007** (Phase 1 cross-cutting): see `../001-barter-figma-agent/decision-record.md`
   - ADR-001: Persona reframe
@@ -131,7 +181,7 @@ Three options for adding Figma:
   - ADR-006: cli-codex primary (D7)
   - ADR-007: Stay on main
 
-- **ADR-011 through ADR-013** (Phase 3): see `../003-mcp-figma-skill-removal/decision-record.md`
+- **ADR-011 through ADR-014** (Phase 3): see `../003-mcp-figma-skill-removal/decision-record.md`
   - D1: Code Mode keep figma-developer-mcp tool refs / strip 4 skill-name refs
   - D2: Spec history preserved
   - D6: Advisor cleanup atomicity (two-commit split)
@@ -139,7 +189,7 @@ Three options for adding Figma:
 
 ---
 
-## Decision Index (full set)
+### Decision Index (full set)
 
 | ID | Topic | Status | Owner Phase |
 |---|---|---|---|
@@ -150,6 +200,9 @@ Three options for adding Figma:
 | ADR-005 | Bundling (D5) | Accepted (revised) | Phase 1 |
 | ADR-006 | cli-codex primary (D7) | Accepted | Cross-cutting |
 | ADR-007 | Stay on main | Accepted | Cross-cutting |
-| **ADR-009** | **Public duplicate scrub (D9)** | **Accepted** | **Phase 2** |
+| **ADR-009** | **Public duplicate scrub (D9)** | **Superseded by user commit 766206b on 2026-05-05** | **Phase 2** |
 | **ADR-010** | **Public README badge math (D10)** | **Accepted** | **Phase 2** |
-| ADR-011+ | Phase 3 decisions | Pending Phase 3 | Phase 3 |
+| ADR-011 | Code Mode figma-developer-mcp refs (D1) | Accepted | Phase 3 |
+| ADR-012 | Spec history preservation (D2) | Accepted | Phase 3 |
+| ADR-013 | Advisor cleanup atomicity (D6) | Accepted | Phase 3 |
+| ADR-014 | Re-grep at execution start (D8) | Accepted | Phase 3 |

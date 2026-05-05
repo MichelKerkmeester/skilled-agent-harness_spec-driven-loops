@@ -42,11 +42,11 @@ MOTION_DEV loads from `references/motion_dev/` and `assets/motion_dev/` as a pee
 
 | Intent | Resources |
 | --- | --- |
-| ANIMATION / MOTION_DEV | `references/motion_dev/{quick-start,animate-and-timelines,scroll-and-gestures}.md` |
-| PERFORMANCE | `references/motion_dev/performance-and-pitfalls.md` |
-| IMPLEMENTATION / API | `references/motion_dev/integration-patterns.md`, `assets/motion_dev/snippets/*` |
-| CODE_QUALITY / DECISION | `references/motion_dev/decision-matrix.md`, `assets/motion_dev/install-card.md` |
-| TESTING / PLAYBOOK | `assets/motion_dev/playbook-entries.md` plus manual testing playbook Motion scenarios |
+| ANIMATION / MOTION_DEV | `references/motion_dev/{quick_start,animate_and_timelines,scroll_and_gestures}.md` |
+| PERFORMANCE | `references/motion_dev/performance_and_pitfalls.md` |
+| IMPLEMENTATION / API | `references/motion_dev/integration_patterns.md`, `assets/motion_dev/snippets/*` |
+| CODE_QUALITY / DECISION | `references/motion_dev/decision_matrix.md`, `assets/motion_dev/install_card.md` |
+| TESTING / PLAYBOOK | `assets/motion_dev/playbook_entries.md` plus manual testing playbook Motion scenarios |
 
 When WEBFLOW and MOTION_DEV both match, load Webflow guidance for CDN, `window.Motion`, Designer, and browser verification constraints, then load `motion_dev/` for cross-stack Motion details.
 

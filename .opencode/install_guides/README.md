@@ -80,7 +80,6 @@ All `.md` guide files in this directory (5 real + 7 symlinks), grouped by type:
 | [MCP - ClickUp.md](./MCP%20-%20ClickUp.md) | Symlink | ClickUp project management MCP |
 | [MCP - CocoIndex Code.md](./MCP%20-%20CocoIndex%20Code.md) | Symlink | CocoIndex semantic code search MCP |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
-| [MCP - Figma.md](./MCP%20-%20Figma.md) | Symlink | Figma design file access MCP |
 | [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
 | [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) | Symlink | Spec Kit Memory MCP server |
 | **SET-UP Guides** | | |
@@ -1450,7 +1449,7 @@ bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (4 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skill/`          | Skill definitions (18 skills)                 |
+| `.opencode/skill/`          | Skill definitions (17 skills)                 |
 | `.opencode/agent/`          | Base agent source definitions                 |
 | `.opencode/install_guides/` | Installation documentation                    |
 | `~/.opencode-backup/`       | Configuration backups                         |
@@ -1461,7 +1460,7 @@ bash .opencode/command/doctor/scripts/mcp-doctor.sh --fix
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Skills             | 15    | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-copilot, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
+| Skills             | 17    | cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, sk-code, sk-code-review, sk-deep-research, sk-deep-review, sk-doc, sk-git, sk-improve-agent, sk-improve-prompt, system-spec-kit |
 | Commands           | 22    | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                         |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                      |
