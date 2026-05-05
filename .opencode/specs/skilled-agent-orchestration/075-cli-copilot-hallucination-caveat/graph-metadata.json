@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "packet_id": "075-cli-copilot-hallucination-caveat",
+  "spec_folder": "075-cli-copilot-hallucination-caveat",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [],
+    "causal_summary": "cli-copilot hallucination caveat in README + sk-doc invocation hints (075)",
+    "created_at": "2026-05-05T15:24:06Z",
+    "last_save_at": "2026-05-05T18:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

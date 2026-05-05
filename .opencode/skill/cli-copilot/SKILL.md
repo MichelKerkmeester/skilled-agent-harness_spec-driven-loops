@@ -38,6 +38,7 @@ Orchestrate the GitHub Copilot CLI from external AI assistants (Gemini CLI, Code
 - GitHub authentication unavailable or expired.
 - Real-time web search (use Gemini CLI or specialized search tools instead).
 - Tasks where precise diff-based surgical editing is the only requirement.
+- **Routing-trace tasks where the caller consumes resource paths LITERALLY.** Per packets 071/072 stress-test data, claude-opus-4.7 (cli-copilot's default model) tends to HALLUCINATE plausible-sounding resource paths that don't exist in the target skill's filesystem (e.g. citing `dqi_rubric.md` for sk-doc DOC_QUALITY when no such file exists). cli-copilot scored 11.1% resource-accuracy vs cli-codex 66.7% on the sk-doc router stress matrix. **If the caller will literally `Read()` the cited paths**, prefer cli-codex (gpt-5.5/high/fast) or treat cli-copilot's routing trace as advisory only and verify against the actual filesystem before relying on cited paths.
 
 ---
 
