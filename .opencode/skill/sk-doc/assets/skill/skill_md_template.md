@@ -590,7 +590,7 @@ Install guide: [INSTALL_GUIDE.md](INSTALL_GUIDE.md) when the skill has installat
   - Domain example: `references/backend/go/`, `references/frontend/react/`
 - **assets/** = Subfolders ALLOWED when organizing many files by category
   - Group related templates together
-  - Example: `assets/agents/`, `assets/documentation/`, `assets/flowcharts/`
+  - Example: `assets/skill/`, `assets/documentation/`, `assets/flowcharts/`
 - **scripts/** = Typically flat, but subfolders OK for large script collections
 
 **Native Discovery**:

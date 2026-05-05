@@ -172,20 +172,21 @@ python scripts/package_skill.py skill-path        # Package skill
 │       ├── feature_catalog_creation.md (feature catalog standards and workflow)
 │       └── manual_testing_playbook_creation.md (playbook standards and workflow)
 ├── assets/
+│   ├── agent_template.md (agent definition template)
+│   ├── command_template.md (slash command template)
+│   ├── feature_catalog/ (feature catalog template bundle)
+│   ├── testing_playbook/ (manual testing playbook template bundle)
 │   ├── documentation/
 │   │   ├── frontmatter_templates.md (YAML frontmatter examples)
 │   │   ├── readme_template.md (README structure and patterns)
+│   │   ├── readme_code_template.md (README for code repos/projects)
 │   │   ├── install_guide_template.md (install guide template)
-│   │   ├── feature_catalog/ (feature catalog template bundle)
-│   │   ├── testing_playbook/ (manual testing playbook template bundle)
+│   │   ├── changelog_template.md (changelog/release-notes template)
 │   │   └── llmstxt_templates.md (llms.txt generation examples)
 │   ├── skill/
 │   │   ├── skill_md_template.md (SKILL.md file template)
 │   │   ├── skill_asset_template.md (skill asset template)
 │   │   └── skill_reference_template.md (skill reference template)
-│   ├── agents/
-│   │   ├── command_template.md (slash command template)
-│   │   └── agent_template.md (agent definition template)
 │   ├── flowcharts/ (ASCII flowchart examples)
 │   └── template_rules.json (validation rule definitions)
 └── scripts/

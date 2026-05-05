@@ -1,0 +1,17 @@
+{
+  "specFolder": "068-sk-doc-organization/004-remediation",
+  "description": "Phase 1: remediation",
+  "keywords": [
+    "phase",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-05T09:51:16.470Z",
+  "specId": "004",
+  "folderSlug": "remediation",
+  "parentChain": [
+    "068-sk-doc-organization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

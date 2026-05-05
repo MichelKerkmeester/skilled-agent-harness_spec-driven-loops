@@ -115,10 +115,10 @@ Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-relocate/ | Physical file moves: 2 dirs + 2 files promoted to `assets/` root; empty `agents/` subfolder physically deleted. Single cli-codex batched dispatch (`git mv` × 4 + `rmdir`). | Pending |
-| 2 | 002-update-and-mirror/ | Reference-string sweep: 4 fixed-string substitutions across canonical `.opencode/`, then mirror replication via rsync to `.claude/`/`.codex/` and TOML regeneration for `.gemini/`. cli-codex executes; Claude audits 4-way mirror parity. | Pending |
-| 3 | 003-verify-and-ship/ | Validation + Opus verification gate (@review + sk-code-review, fresh context, reruns validate.sh + rg in fresh shell). Implementation-summary, graph-metadata refresh, branch policy enforcement. | Pending |
-
+| 1 | 001-relocate/ | Physical file moves: 2 dirs + 2 files promoted to `assets/` root; empty `agents/` subfolder physically deleted. Single cli-codex batched dispatch (`git mv` × 4 + `rmdir`). | Complete |
+| 2 | 002-update-and-mirror/ | Reference-string sweep: 4 fixed-string substitutions across canonical `.opencode/`, then mirror replication via rsync to `.claude/`/`.codex/` and TOML regeneration for `.gemini/`. cli-codex executes; Claude audits 4-way mirror parity. | Complete |
+| 3 | 003-verify-and-ship/ | Validation + Opus verification gate (@review + sk-code-review, fresh context, reruns validate.sh + rg in fresh shell). Implementation-summary, graph-metadata refresh, branch policy enforcement. | Complete |
+| 4 | 004-remediation/ | Remediate 7-iter deep-review findings: fix P1 broken cross-link in `frontmatter_templates.md:770`, P2 outdated tree diagram in `quick_reference.md:174-188`, P2 illustrative `assets/agents/` examples in skill-creation guidance. Single small commit on main. | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -132,6 +132,9 @@ Per-phase detail lives in child plans.
 |------|-----|----------|--------------|
 | 001-relocate | 002-update-and-mirror | 4 git mv operations succeed; `assets/agents/` physically deleted; new files visible at `assets/{feature_catalog,testing_playbook,agent_template.md,command_template.md}`; references still point to OLD paths (expected — Phase 002 fixes them). | `ls -la assets/`; `test ! -e assets/agents`; `git status --porcelain` |
 | 002-update-and-mirror | 003-verify-and-ship | Zero residual `rg` hits in active scope; `.opencode↔.claude↔.codex` byte-identical via `diff -rq`; 4 `.gemini/*.toml` parse cleanly; `.codex/agents/create.toml` regenerated with sandbox + Path Convention preserved; canonical .opencode/install_guides/ + agent/create.md updated. | `rg --no-config --no-ignore-vcs 'assets/(documentation/(feature_catalog\|testing_playbook)\|agents/)'`; `diff -rq`; `python3 -c 'import tomllib; tomllib.loads(...)'` |
+| 003-verify-and-ship | 004-remediation | (Phase 3 ship; deep-review run surfaced P1 + 2 P2 findings → 004-remediation triggered) | 7-iter cli-copilot deep-review → review-report.md → CONDITIONAL → REMEDIATE_AND_SHIP |
+| 004-remediation | (final) | All deep-review findings resolved (P1-003-A link fix, iter4-F1 P2 tree rewrite, P2-003-A examples cleanup); validate.sh --strict still PASS | `rg`/manual link check; validate.sh --strict |
+| 003-verify-and-ship | 004-remediation | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
