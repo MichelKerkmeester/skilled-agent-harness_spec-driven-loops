@@ -1,0 +1,38 @@
+{
+  "level": "1",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
+  "description": "Extend sk-doc router test matrix coverage from 9-of-11 to all 11 intents (add OPTIMIZATION + INSTALL_GUIDE), build markdown-bullet-aware v3 extractor,",
+  "keywords": [
+    "extend",
+    "sk-doc",
+    "router",
+    "test",
+    "matrix",
+    "coverage",
+    "9-of-11",
+    "intents",
+    "add",
+    "optimization",
+    "build",
+    "markdown-bullet-aware",
+    "extractor",
+    "ship",
+    "csv",
+    "cells",
+    "review-report-v3",
+    "confirming",
+    "per-cli",
+    "ranking",
+    "072"
+  ],
+  "lastUpdated": "2026-05-05T15:49:21.203Z",
+  "specId": "076",
+  "folderSlug": "sk-doc-router-coverage-v3",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -17,7 +17,7 @@ Source of truth for routing behavior: `.opencode/skill/sk-doc/SKILL.md` §2 Smar
 
 | # | Category | Folder | Scenario IDs | One-line summary |
 |---|----------|--------|--------------|------------------|
-| 1 | Intent Detection | `01--intent-detection/` | SD-001 .. SD-003 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND prompts. |
+| 1 | Intent Detection | `01--intent-detection/` | SD-001 .. SD-003, SD-016 .. SD-017 | Router picks the correct intent for unambiguous DOC_QUALITY / SKILL_CREATION / AGENT_COMMAND / OPTIMIZATION / INSTALL_GUIDE prompts. |
 | 2 | Resource Loading | `02--resource-loading/` | SD-004 .. SD-006 | Router loads only the expected resource set: references-only (HVR), assets-only (FLOWCHART), and mixed (README_CREATION). |
 | 3 | Unknown Fallback | `03--unknown-fallback/` | SD-007 .. SD-009 | Router escalates ambiguous prompts via AMBIGUITY_DELTA top-2 return or UNKNOWN_FALLBACK_CHECKLIST. |
 | 4 | Cross-CLI Dispatch | `04--cross-cli-dispatch/` | SD-010 .. SD-012 | CLI-specific behavior: short-prompt baseline, large-prompt stress (codex stdin mitigation), multi-step dispatch stability. |
@@ -31,6 +31,8 @@ Source of truth for routing behavior: `.opencode/skill/sk-doc/SKILL.md` §2 Smar
 - **SD-001** — `01--intent-detection/001-doc-quality.md` — DOC_QUALITY: validate documentation quality for a skill.
 - **SD-002** — `01--intent-detection/002-skill-creation.md` — SKILL_CREATION: author a new sk-skill.
 - **SD-003** — `01--intent-detection/003-agent-command.md` — AGENT_COMMAND: author paired @agent and /create command.
+- **SD-016** — `01--intent-detection/004-optimization.md` — OPTIMIZATION: rewrite for token efficiency + llms.txt generation. (added in 076)
+- **SD-017** — `01--intent-detection/005-install-guide.md` — INSTALL_GUIDE: scaffold install guide for an MCP server. (added in 076)
 
 ### 02 — Resource Loading
 - **SD-004** — `02--resource-loading/001-references-global-only.md` — HVR loads only `references/global/hvr_rules.md`.
