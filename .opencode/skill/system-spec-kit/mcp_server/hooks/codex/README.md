@@ -116,6 +116,5 @@ Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the prompt-time advisor path
 - `../README.md`
 - `../claude/README.md`
 - `../gemini/README.md`
-- `../copilot/README.md`
 - `../../../references/hooks/skill-advisor-hook.md`
 <!-- /ANCHOR:related -->

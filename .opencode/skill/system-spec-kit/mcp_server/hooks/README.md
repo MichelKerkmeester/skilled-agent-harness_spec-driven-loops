@@ -34,7 +34,7 @@ trigger_phrases:
 
 Current state:
 
-- Runtime startup hooks transport compact startup context for Claude, Gemini, Copilot, and Codex.
+- Runtime startup hooks transport compact startup context for Claude, Gemini, and Codex.
 - Prompt-time hooks call the native advisor and inject a brief through each runtime surface.
 - `index.ts` exports helper modules used inside MCP responses and mutation flows.
 - OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge, not by a subfolder in this directory.
@@ -54,9 +54,9 @@ Current state:
 ┌────────────────┐      ┌────────────────────┐      ┌────────────────────┐
 │ Claude         │ ───▶ │ runtime hook files │ ───▶ │ startup or prompt  │
 │ Gemini         │      │ per runtime        │      │ context transport  │
-│ Copilot        │      └─────────┬──────────┘      └─────────┬──────────┘
-│ Codex          │                │                           │
-└────────────────┘                ▼                           ▼
+│ Codex          │      └─────────┬──────────┘      └─────────┬──────────┘
+└────────────────┘                │                           │
+                                  ▼                           ▼
                          ┌────────────────────┐      ┌────────────────────┐
                          │ native advisor     │      │ managed context    │
                          │ and startup brief  │      │ stdout, file, hook │
@@ -82,7 +82,6 @@ Dependency direction: runtime folders ───▶ shared helpers ───▶ M
 mcp_server/hooks/
 ├── claude/                        # Claude session, prompt, compaction, and transcript hooks
 ├── gemini/                        # Gemini startup, prompt, compaction, and cache hooks
-├── copilot/                       # Copilot startup, prompt, compaction, and instructions helpers
 ├── codex/                         # Codex session, prompt, pre-tool, and wrapper hooks
 ├── index.ts                       # Public helper exports
 ├── memory-surface.ts              # Context extraction and constitutional cache helpers
@@ -103,7 +102,6 @@ mcp_server/hooks/
 |---|---|
 | `claude/` | Claude runtime hook scripts and README. |
 | `gemini/` | Gemini runtime hook scripts and README. |
-| `copilot/` | Copilot hook scripts and managed instructions handling. |
 | `codex/` | Codex native hook scripts plus prompt-wrapper fallback. |
 | `index.ts` | Public export barrel for in-process helper modules. |
 | `memory-surface.ts` | Extracts context hints and surfaces constitutional or triggered memory. |
@@ -165,7 +163,6 @@ Main flow:
 |---|---|---|
 | `claude/session-prime.ts` | Hook script | Claude startup context injection. |
 | `gemini/session-prime.ts` | Hook script | Gemini startup context injection. |
-| `copilot/session-prime.ts` | Hook script | Copilot managed instructions refresh. |
 | `codex/session-start.ts` | Hook script | Codex native session-start injection. |
 | `*/user-prompt-submit.ts` | Hook script | Prompt-time skill advisor delivery for supported runtimes. |
 | `index.ts` | Module | Public exports for in-process helper functions. |

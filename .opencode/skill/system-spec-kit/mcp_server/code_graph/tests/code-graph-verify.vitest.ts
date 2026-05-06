@@ -375,24 +375,63 @@ describe('code-graph verify', () => {
       expect(mocks.setLastGoldVerification).not.toHaveBeenCalled();
     });
 
-    it('returns blocked with scope preflight mismatch when active and stored scopes differ', async () => {
+    it('proceeds with informational scopeMismatch when stored and active scopes differ', async () => {
+      // F-019: scope mismatch is informational only — verify proceeds
+      // and surfaces the canonical { stored, active, recommendation }
+      // envelope alongside the normal verification result.
       mocks.getStoredCodeGraphScope.mockReturnValueOnce({
         fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
         label: 'skills included',
         source: 'env',
       });
 
-      const response = await handleCodeGraphVerify({ batteryPath: VERIFY_FIXTURE_BATTERY_PATH });
+      const response = await handleCodeGraphVerify({
+        batteryPath: VERIFY_FIXTURE_BATTERY_PATH,
+        includeDetails: true,
+      });
       const parsed = JSON.parse(response.content[0].text);
 
-      expect(parsed.status).toBe('blocked');
+      expect(parsed.status).toBe('ok');
       expect(parsed.scopePreflight).toMatchObject({
         status: 'mismatch',
         activeScope: expect.objectContaining({ source: 'default' }),
         storedScope: expect.objectContaining({ source: 'env' }),
         reason: 'active scope differs from stored graph scope',
       });
-      expect(mocks.handleCodeGraphQuery).not.toHaveBeenCalled();
+      expect(parsed.scopeMismatch).toEqual({
+        stored: expect.objectContaining({ source: 'env' }),
+        active: expect.objectContaining({ source: 'default' }),
+        recommendation: 'rescan with matching scope or pass forceScopeChange',
+      });
+      // Verify still ran the gold-query battery and produced a result
+      expect(parsed.result).toEqual(expect.objectContaining({
+        batteryPath: VERIFY_FIXTURE_BATTERY_PATH,
+        passed: true,
+      }));
+      expect(mocks.handleCodeGraphQuery).toHaveBeenCalled();
+    });
+
+    it('does not surface scopeMismatch when stored and active scopes match (informational field is null/absent on parity)', async () => {
+      // F-019 contract: the informational field appears ONLY when
+      // scopes diverge. When they match (the default fixture state),
+      // the response carries scopePreflight.status === 'pass' and
+      // omits the scopeMismatch envelope entirely.
+      const response = await handleCodeGraphVerify({
+        batteryPath: VERIFY_FIXTURE_BATTERY_PATH,
+        includeDetails: true,
+      });
+      const parsed = JSON.parse(response.content[0].text);
+
+      expect(parsed.status).toBe('ok');
+      expect(parsed.scopePreflight).toMatchObject({
+        status: 'pass',
+        reason: 'active scope matches stored graph scope',
+      });
+      expect(parsed.scopeMismatch).toBeUndefined();
+      expect(parsed.result).toEqual(expect.objectContaining({
+        batteryPath: VERIFY_FIXTURE_BATTERY_PATH,
+        passed: true,
+      }));
     });
 
     it('returns ok with a VerifyResult when the graph is fresh', async () => {

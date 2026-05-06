@@ -221,14 +221,11 @@ export async function handleCodeGraphVerify(
       });
     }
 
-    if (scopePreflight.status === 'mismatch') {
-      return buildResponse({
-        status: 'blocked',
-        readiness,
-        scopePreflight,
-        ...(scopeMismatch ? { scopeMismatch } : {}),
-      });
-    }
+    // F-019: scope mismatch is informational only — verify proceeds
+    // and the `scopeMismatch` field on the response surfaces the
+    // canonical { stored, active, recommendation } shape so operators
+    // can decide whether to rescan or override. The legacy block
+    // branch was removed; readiness is now the only blocking signal.
 
     const battery = applyCategoryFilter(loadGoldBattery(canonicalBatteryPath), args.category);
     const result = {

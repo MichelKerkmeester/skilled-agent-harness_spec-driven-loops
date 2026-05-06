@@ -261,9 +261,12 @@ describe('F-019: code_graph_verify scope-aware preflight', () => {
     process.chdir(originalCwd);
   });
 
-  it('returns blocked with scope preflight mismatch when active and stored scopes differ', async () => {
-    // We dynamically import a clean verify handler with isolated
-    // mocks so the F-007 query mocks above don't leak into it.
+  it('proceeds with informational scopeMismatch when stored and active scopes differ', async () => {
+    // F-019: scope mismatch is informational only — verify proceeds
+    // and surfaces the canonical { stored, active, recommendation }
+    // envelope alongside the normal verification result. We dynamically
+    // import a clean verify handler with isolated mocks so the F-007
+    // query mocks above don't leak into it.
     vi.resetModules();
     const verifyMocks = {
       ensureCodeGraphReady: vi.fn(async () => ({
@@ -300,20 +303,27 @@ describe('F-019: code_graph_verify scope-aware preflight', () => {
     }));
     const { handleCodeGraphVerify } = await import('../handlers/verify.js');
 
-    const response = await handleCodeGraphVerify({ batteryPath: VERIFY_FIXTURE_BATTERY_PATH });
+    const response = await handleCodeGraphVerify({
+      batteryPath: VERIFY_FIXTURE_BATTERY_PATH,
+      includeDetails: true,
+    });
     const parsed = JSON.parse(response.content[0].text);
 
-    // The legacy preflight blocks reads under mismatch; the new
-    // F-019 informational field carries the canonical
-    // { stored, active, recommendation } envelope alongside.
-    expect(parsed.status).toBe('blocked');
+    // F-019: verify proceeds and surfaces the canonical
+    // { stored, active, recommendation } envelope as informational
+    // diagnostics. The gold-query battery still runs and the result
+    // payload is present.
+    expect(parsed.status).toBe('ok');
     expect(parsed.scopePreflight).toMatchObject({ status: 'mismatch' });
     expect(parsed.scopeMismatch).toEqual({
       stored: expect.objectContaining({ source: 'env' }),
       active: expect.objectContaining({ source: 'default' }),
       recommendation: 'rescan with matching scope or pass forceScopeChange',
     });
-    expect(verifyMocks.handleCodeGraphQuery).not.toHaveBeenCalled();
+    expect(parsed.result).toEqual(expect.objectContaining({
+      batteryPath: VERIFY_FIXTURE_BATTERY_PATH,
+    }));
+    expect(verifyMocks.handleCodeGraphQuery).toHaveBeenCalled();
 
     vi.doUnmock('../lib/ensure-ready.js');
     vi.doUnmock('../handlers/query.js');
