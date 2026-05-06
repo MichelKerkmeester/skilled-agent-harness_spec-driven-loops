@@ -546,6 +546,8 @@ describe('code_graph schema coverage', () => {
         includeCommands: false,
         includeSpecs: true,
         includePlugins: false,
+        forceZeroNodeReset: true,
+        forceScopeChange: true,
       },
     },
     {

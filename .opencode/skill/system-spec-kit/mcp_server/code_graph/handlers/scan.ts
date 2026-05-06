@@ -40,6 +40,7 @@ export interface ScanArgs {
   verify?: boolean;
   persistBaseline?: boolean;
   forceZeroNodeReset?: boolean;
+  forceScopeChange?: boolean;
 }
 
 export interface ScanResult {
@@ -340,10 +341,87 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const parseErrorCount = countParseErrorFiles(results);
   const parseErrorRatio = computeParseErrorRatio(parseErrorCount, results.length);
   const severeParseErrorScan = parseErrorRatio > DEFAULT_FATAL_PARSE_ERROR_RATIO;
-  const zeroNodePromotionBlocked = !effectiveIncremental
+  const fullScan = !effectiveIncremental;
+  const storedScope = graphDb.getStoredCodeGraphScope();
+  const candidateFingerprint = scopePolicy.fingerprint;
+  const scopeChangePromotionBlocked = fullScan
+    && priorStats.totalNodes > 0
+    && storedScope?.fingerprint
+    && storedScope.fingerprint !== candidateFingerprint
+    && args.forceScopeChange !== true;
+  const zeroNodePromotionBlocked = fullScan
     && candidatePersistableNodeCount === 0
     && priorNodeCount > 0
     && args.forceZeroNodeReset !== true;
+
+  if (scopeChangePromotionBlocked) {
+    recordParseDiagnosticsForResults(results);
+    const reason = 'scope_change_scan_rejected';
+    const failedScan = graphDb.recordFailedScan({
+      reason,
+      totalFiles: results.length,
+      totalNodes: candidatePersistableNodeCount,
+      parseErrorCount,
+      parseErrorRatio,
+      previousGitHead,
+      currentGitHead,
+      scopeFingerprint: scopePolicy.fingerprint,
+      scopeLabel: scopePolicy.label,
+      errors: results.flatMap((result) => result.parseErrors).slice(0, 10),
+    });
+    console.warn(
+      `[code-graph-scan] Blocked scope-change full scan promotion over existing graph (${priorNodeCount} prior node(s)); stored scope ${storedScope.fingerprint} differs from candidate scope ${candidateFingerprint}; pass forceScopeChange: true to allow scope replacement.`,
+    );
+    const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
+    const readinessBlock = buildReadinessBlock({
+      freshness: 'stale',
+      action: 'full_scan',
+      inlineIndexPerformed: false,
+      reason: 'scope-change scan rejected to preserve existing graph state',
+    });
+
+    return {
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          status: 'blocked',
+          reason,
+          data: {
+            filesScanned: results.length,
+            filesIndexed: 0,
+            filesSkipped: preParseSkippedCount,
+            totalNodes: priorStats.totalNodes,
+            totalEdges: priorStats.totalEdges,
+            errors: results.flatMap((result) => {
+              const filePath = relativize(result.filePath, canonicalWorkspace);
+              return result.parseErrors.map((error) => `${filePath}: ${relativizeScanError(error, canonicalWorkspace)}`);
+            }).slice(0, 10),
+            durationMs: Date.now() - startTime,
+            fullScanRequested: args.incremental === false,
+            effectiveIncremental,
+            fullReindexTriggered,
+            currentGitHead,
+            previousGitHead,
+            detectorProvenanceSummary,
+            graphEdgeEnrichmentSummary,
+            parseDiagnostics,
+            staleButValidGraphFiles: graphDb.countStaleButValidParseDiagnostics(),
+            failedScan,
+            warnings: [
+              `scope-change scan rejected; existing graph has ${priorNodeCount} node(s)`,
+              `stored scope fingerprint ${storedScope.fingerprint} differs from candidate scope fingerprint ${candidateFingerprint}; pass forceScopeChange: true if intentional`,
+              ...(results.warnings ?? []).map(warning => relativizeScanWarning(warning, canonicalWorkspace)),
+            ],
+            capExceeded: results.capExceeded ?? { maxNodes: false, depth: false, gitignoreSize: false },
+            readiness: readinessBlock,
+            canonicalReadiness: readinessBlock.canonicalReadiness,
+            trustState: readinessBlock.trustState,
+            lastPersistedAt: priorStats.lastScanTimestamp,
+          },
+        }, null, 2),
+      }],
+    };
+  }
 
   if (zeroNodePromotionBlocked) {
     recordParseDiagnosticsForResults(results);

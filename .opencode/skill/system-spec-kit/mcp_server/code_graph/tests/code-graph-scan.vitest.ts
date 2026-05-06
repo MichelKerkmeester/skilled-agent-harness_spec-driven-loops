@@ -389,6 +389,7 @@ describe('handleCodeGraphScan', () => {
       rootDir: process.cwd(),
       incremental: false,
       includeSkills: true,
+      forceScopeChange: true,
     });
 
     expect(mocks.indexFilesMock).toHaveBeenCalledWith(
@@ -1029,6 +1030,176 @@ describe('handleCodeGraphScan', () => {
     expect(payload.data.fullReindexTriggered).toBe(false);
     expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/deleted.ts');
     expect(mocks.upsertFileMock).not.toHaveBeenCalled();
+  });
+
+  it('blocks scope-mismatched full scan even when the candidate scan has nodes', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.getStatsMock.mockReturnValue({
+      totalFiles: 5600,
+      totalNodes: 56000,
+      totalEdges: 7000,
+      nodesByKind: { function: 56000 },
+      edgesByType: { CALLS: 7000 },
+      parseHealthSummary: { clean: 5600 },
+      lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'same-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
+      graphQualitySummary: {
+        detectorProvenanceSummary: null,
+        graphEdgeEnrichmentSummary: null,
+      },
+    });
+    mocks.getStoredCodeGraphScopeMock.mockReturnValue({
+      fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      label: 'all .opencode skill files included; agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      includeSkills: true,
+      includedSkillsList: null,
+      includeAgents: false,
+      includeCommands: false,
+      includeSpecs: false,
+      includePlugins: false,
+      source: 'scan-argument',
+    });
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount(Array.from({ length: 5 }, (_value, index) => ({
+      filePath: `/workspace/current-${index}.ts`,
+      language: 'typescript',
+      contentHash: `hash-${index}`,
+      nodes: [{ symbolId: `current-${index}::symbol` }],
+      edges: [],
+      detectorProvenance: 'structured',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }))));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      reason: string;
+      data: {
+        totalNodes: number;
+        failedScan: { reason: string };
+        warnings: string[];
+      };
+    };
+
+    expect(payload.status).toBe('blocked');
+    expect(payload.reason).toBe('scope_change_scan_rejected');
+    expect(payload.data.totalNodes).toBe(56000);
+    expect(payload.data.failedScan.reason).toBe('scope_change_scan_rejected');
+    expect(payload.data.warnings).toEqual(expect.arrayContaining([
+      expect.stringContaining('forceScopeChange: true'),
+    ]));
+    expect(mocks.removeFileMock).not.toHaveBeenCalled();
+    expect(mocks.persistIndexedFileResultMock).not.toHaveBeenCalled();
+    expect(mocks.setLastGitHeadMock).not.toHaveBeenCalled();
+    expect(mocks.setCodeGraphScopeMock).not.toHaveBeenCalled();
+    expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
+  });
+
+  it('allows forceScopeChange to replace a populated graph with a different nonzero scope', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.getStatsMock.mockReturnValue({
+      totalFiles: 5600,
+      totalNodes: 56000,
+      totalEdges: 7000,
+      nodesByKind: { function: 56000 },
+      edgesByType: { CALLS: 7000 },
+      parseHealthSummary: { clean: 5600 },
+      lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'same-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
+      graphQualitySummary: {
+        detectorProvenanceSummary: null,
+        graphEdgeEnrichmentSummary: null,
+      },
+    });
+    mocks.getStoredCodeGraphScopeMock.mockReturnValue({
+      fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      label: 'all .opencode skill files included; agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      includeSkills: true,
+      includedSkillsList: null,
+      includeAgents: false,
+      includeCommands: false,
+      includeSpecs: false,
+      includePlugins: false,
+      source: 'scan-argument',
+    });
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount(Array.from({ length: 5 }, (_value, index) => ({
+      filePath: `/workspace/current-${index}.ts`,
+      language: 'typescript',
+      contentHash: `hash-${index}`,
+      nodes: [{ symbolId: `current-${index}::symbol` }],
+      edges: [],
+      detectorProvenance: 'structured',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }))));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+      forceScopeChange: true,
+    });
+    const payload = JSON.parse(response.content[0].text) as { status: string };
+
+    expect(payload.status).toBe('ok');
+    expect(mocks.persistIndexedFileResultMock).toHaveBeenCalledTimes(5);
+    expect(mocks.setCodeGraphScopeMock).toHaveBeenCalledWith(expect.objectContaining({
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+    }));
+  });
+
+  it('allows a dramatic nonzero shrink when the stored scan scope is unchanged', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.getStatsMock.mockReturnValue({
+      totalFiles: 5600,
+      totalNodes: 56000,
+      totalEdges: 7000,
+      nodesByKind: { function: 56000 },
+      edgesByType: { CALLS: 7000 },
+      parseHealthSummary: { clean: 5600 },
+      lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'same-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
+      graphQualitySummary: {
+        detectorProvenanceSummary: null,
+        graphEdgeEnrichmentSummary: null,
+      },
+    });
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount(Array.from({ length: 5 }, (_value, index) => ({
+      filePath: `/workspace/current-${index}.ts`,
+      language: 'typescript',
+      contentHash: `hash-${index}`,
+      nodes: [{ symbolId: `current-${index}::symbol` }],
+      edges: [],
+      detectorProvenance: 'structured',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }))));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as { status: string };
+
+    expect(payload.status).toBe('ok');
+    expect(mocks.persistIndexedFileResultMock).toHaveBeenCalledTimes(5);
+    expect(mocks.setCodeGraphScopeMock).toHaveBeenCalledWith(expect.objectContaining({
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+    }));
   });
 
   it('does not wipe populated graph when subsequent full scan returns 0 nodes', async () => {

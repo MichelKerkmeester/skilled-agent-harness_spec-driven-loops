@@ -584,6 +584,7 @@ const codeGraphScan: ToolDefinition = {
       verify: { type: 'boolean', default: false, description: 'Run the gold-query verification battery after an explicit full scan (default: false)' },
       persistBaseline: { type: 'boolean', default: false, description: 'Persist the current edge-distribution baseline after a full scan even when one already exists' },
       forceZeroNodeReset: { type: 'boolean', default: false, description: 'Allow an explicit destructive reset when a full scan produces zero indexed nodes over a populated graph' },
+      forceScopeChange: { type: 'boolean', default: false, description: 'Allow replacing a populated code graph with a full scan from a different scope fingerprint' },
     },
     required: [],
   },
