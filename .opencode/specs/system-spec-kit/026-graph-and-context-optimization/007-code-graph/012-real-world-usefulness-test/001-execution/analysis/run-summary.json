@@ -1,0 +1,19 @@
+{
+  "trials_total": 74,
+  "assisted_completed": 36,
+  "assisted_blocked": 3,
+  "controls": 35,
+  "deferred_cells": 54,
+  "completed_cells": 8,
+  "estimated_tokens": 87586,
+  "external_invocations_observed": {
+    "cli-codex": 2,
+    "cli-copilot": 1,
+    "cli-gemini": 1
+  },
+  "verdicts": {
+    "codeGraph": "USEFUL",
+    "hooks": "MIXED",
+    "pluginRuntime": "OVERHEAD"
+  }
+}

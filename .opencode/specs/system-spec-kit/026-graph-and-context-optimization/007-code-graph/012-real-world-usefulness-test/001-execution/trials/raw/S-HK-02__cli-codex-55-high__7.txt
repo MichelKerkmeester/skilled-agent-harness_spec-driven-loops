@@ -1,0 +1,44 @@
+Prompt (rr-iter2-007): Rename the packet folder from `018-old-routing-study` to `019-routing-accuracy` and sweep the backlinks.
+Expected skill: system-spec-kit
+
+Advisor output:
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.8284,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.602523,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.602523,
+      "shadowScore": 0.531894,
+      "delta": -0.070629,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "deep-review",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.054545,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "deep-review",
+      "liveScore": 0.054545,
+      "shadowScore": 0.052121,
+      "delta": -0.002424,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

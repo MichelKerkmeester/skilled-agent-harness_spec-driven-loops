@@ -1,0 +1,4 @@
+copilot -p "Reply with exactly: copilot-ok" --allow-all-tools --no-ask-user --model gpt-5.2 --output-format text
+
+Error: No authentication information found.
+Copilot can be authenticated with GitHub using an OAuth Token or a Fine-Grained Personal Access Token.

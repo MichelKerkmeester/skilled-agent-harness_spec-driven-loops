@@ -1,0 +1,82 @@
+Prompt (rr-iter2-003): Add a `corpus/` subdirectory under the routing-accuracy phase and create a starter `labeled-prompts.jsonl`.
+Expected skill: system-spec-kit
+
+Advisor output:
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.8267,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.599063,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.599063,
+      "shadowScore": 0.54175,
+      "delta": -0.057313,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.566063,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.566063,
+      "shadowScore": 0.516375,
+      "delta": -0.049688,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-improve-prompt",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.24,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.3625,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-improve-prompt",
+      "liveScore": 0.3625,
+      "shadowScore": 0.320833,
+      "delta": -0.041667,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.116156,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-doc",
+      "liveScore": 0.116156,
+      "shadowScore": 0.121938,
+      "delta": 0.005782,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

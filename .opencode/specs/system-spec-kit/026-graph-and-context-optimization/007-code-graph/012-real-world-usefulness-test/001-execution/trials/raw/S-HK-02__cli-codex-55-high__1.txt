@@ -1,0 +1,25 @@
+Prompt (rr-iter2-001): Implement a negative-trigger whitelist in `gate-3-classifier.ts` and run the targeted tests.
+Expected skill: sk-code
+
+Advisor output:
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.8561,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.656542,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.656542,
+      "shadowScore": 0.581194,
+      "delta": -0.075348,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]

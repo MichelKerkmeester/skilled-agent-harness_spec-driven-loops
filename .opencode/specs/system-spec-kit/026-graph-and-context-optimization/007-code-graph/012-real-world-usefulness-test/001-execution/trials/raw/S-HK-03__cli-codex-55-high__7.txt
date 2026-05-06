@@ -1,0 +1,16 @@
+Prompt (rr-iter2-012): Analyze why `phase` used to misfire without making changes.
+Expected Gate 3: false
+
+Classifier output:
+{
+  "triggersGate3": false,
+  "reason": "no_match",
+  "matched": [],
+  "readOnlyMatched": [
+    {
+      "pattern": "analyze",
+      "kind": "token",
+      "category": "read_only"
+    }
+  ]
+}

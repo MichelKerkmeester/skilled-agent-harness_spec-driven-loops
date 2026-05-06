@@ -3,7 +3,9 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/001-execution"
+  ],
   "migrated": true,
   "migration_source": "legacy",
   "manual": {
@@ -207,7 +209,7 @@
     ],
     "causal_summary": "Phases 001-011 shipped capability and resilience for code graph tooling, hooks, and runtime integration surfaces. That proves the systems can exist, but it does not prove they help an engineer move faster or make better decisions during normal coding work. The missing evidence is a real-world usefulness campaign with controls, repeated trials, and runtime-specific observations.",
     "created_at": "2026-05-05T00:00:00.000Z",
-    "last_save_at": "2026-05-05T21:37:24.300Z",
+    "last_save_at": "2026-05-06T04:35:32.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

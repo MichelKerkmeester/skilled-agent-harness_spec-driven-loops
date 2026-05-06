@@ -1,0 +1,43 @@
+Prompt: fix the CSS layout flicker
+
+Advisor output:
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.855371,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.855371,
+      "shadowScore": 0.745173,
+      "delta": -0.110198,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "mcp-chrome-devtools",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.22,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.176089,
+    "dominant_lane": "derived_generated",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-chrome-devtools",
+      "liveScore": 0.176089,
+      "shadowScore": 0.141679,
+      "delta": -0.03441,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

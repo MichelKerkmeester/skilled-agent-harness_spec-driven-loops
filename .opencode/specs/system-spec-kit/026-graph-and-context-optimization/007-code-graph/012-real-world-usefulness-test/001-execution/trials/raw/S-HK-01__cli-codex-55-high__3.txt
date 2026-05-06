@@ -1,0 +1,15 @@
+Prompt:
+Execute the real-world usefulness test for packet 026/007/012/001.
+
+Startup surface:
+Session context received. Current state:
+
+- Memory: startup summary only (resume on demand)
+- Code Graph: stale -- 8,578 files -- 56.7K nodes -- 36.3K edges (last scan 2026-05-03; first structural read may refresh inline)
+- CocoIndex: missing
+- Note: this is a startup snapshot; later structural reads may differ if the repo state changed.
+
+What would you like to work on?
+
+Shared payload summary:
+Startup brief with stale structural context and no continuity notes

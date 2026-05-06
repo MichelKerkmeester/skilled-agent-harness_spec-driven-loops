@@ -1,0 +1,6 @@
+SQL invariant query gate3-classifier-export-surface
+
+[{"file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts","name":"gate-3-classifier","kind":"module"},
+{"file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts","name":"classifyPrompt","kind":"export"},
+{"file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/shared/gate-3-classifier.ts","name":"classifyPrompt","kind":"function"},
+{"file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/shared/index.ts","name":"classifyPrompt","kind":"export"}]

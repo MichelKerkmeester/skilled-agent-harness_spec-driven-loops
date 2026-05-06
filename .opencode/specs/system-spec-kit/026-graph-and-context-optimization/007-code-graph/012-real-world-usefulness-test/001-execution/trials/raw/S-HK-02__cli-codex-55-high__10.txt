@@ -1,0 +1,25 @@
+Prompt (rr-iter2-010): Generate `implementation-summary.md` for the phase after the corpus seeding pass.
+Expected skill: system-spec-kit
+
+Advisor output:
+[
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.572438,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.572438,
+      "shadowScore": 0.500625,
+      "delta": -0.071813,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]

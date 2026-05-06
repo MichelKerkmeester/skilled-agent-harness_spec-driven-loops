@@ -1,0 +1,82 @@
+Prompt (rr-iter2-008): Update `FEATURE_CATALOG.md` with the new routing-accuracy evaluation command.
+Expected skill: sk-doc
+
+Advisor output:
+[
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.26,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.447536,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-doc",
+      "liveScore": 0.447536,
+      "shadowScore": 0.411143,
+      "delta": -0.036393,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.26,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.414696,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.414696,
+      "shadowScore": 0.372179,
+      "delta": -0.042517,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.22,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.1587,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.1587,
+      "shadowScore": 0.1616,
+      "delta": 0.0029,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "create:agent",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.085714,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "create:agent",
+      "liveScore": 0.085714,
+      "shadowScore": 0.082857,
+      "delta": -0.002857,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

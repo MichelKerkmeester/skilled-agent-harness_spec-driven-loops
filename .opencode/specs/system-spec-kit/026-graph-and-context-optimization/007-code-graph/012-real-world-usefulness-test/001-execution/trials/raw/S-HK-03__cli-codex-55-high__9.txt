@@ -1,0 +1,22 @@
+Prompt (rr-iter2-014): Inspect the deep-research state log and summarize iteration progression.
+Expected Gate 3: false
+
+Classifier output:
+{
+  "triggersGate3": false,
+  "reason": "no_match",
+  "matched": [
+    {
+      "pattern": "deep-research",
+      "kind": "phrase",
+      "category": "resume"
+    }
+  ],
+  "readOnlyMatched": [
+    {
+      "pattern": "inspect",
+      "kind": "token",
+      "category": "read_only"
+    }
+  ]
+}

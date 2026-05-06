@@ -1,0 +1,44 @@
+Prompt (rr-iter2-004): Refactor `skill_advisor.py` to surface raw ambiguity counts in debug output.
+Expected skill: sk-code
+
+Advisor output:
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.2,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.565312,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.565312,
+      "shadowScore": 0.508438,
+      "delta": -0.056874,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "skill_advisor",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.525863,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "skill_advisor",
+      "liveScore": 0.525863,
+      "shadowScore": 0.481775,
+      "delta": -0.044088,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]

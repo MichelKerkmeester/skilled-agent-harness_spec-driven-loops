@@ -1,0 +1,63 @@
+Prompt (rr-iter2-009): Configure `.vscode/mcp.json` to mirror the current cocoindex server inputs.
+Expected skill: sk-code
+
+Advisor output:
+[
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.886,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.715,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.715,
+      "shadowScore": 0.611167,
+      "delta": -0.103833,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "mcp-code-mode",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.26,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.390292,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-code-mode",
+      "liveScore": 0.390292,
+      "shadowScore": 0.32525,
+      "delta": -0.065042,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "mcp-coco-index",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.22,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.133375,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "mcp-coco-index",
+      "liveScore": 0.133375,
+      "shadowScore": 0.118972,
+      "delta": -0.014403,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

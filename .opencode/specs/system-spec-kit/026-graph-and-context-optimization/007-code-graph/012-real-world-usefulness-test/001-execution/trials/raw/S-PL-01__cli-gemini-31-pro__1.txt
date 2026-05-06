@@ -1,0 +1,3 @@
+gemini -p "Reply with exactly: gemini-ok" -m gemini-3.1-pro-preview --approval-mode plan --output-format text
+
+Opening authentication page in your browser. Do you want to continue? [Y/n]:

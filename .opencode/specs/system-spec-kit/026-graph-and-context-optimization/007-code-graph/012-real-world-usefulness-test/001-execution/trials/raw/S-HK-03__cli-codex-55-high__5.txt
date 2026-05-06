@@ -1,0 +1,21 @@
+Prompt (rr-iter2-005): Fix the broken JSON example in `deep-research-config.json` and revalidate the packet.
+Expected Gate 3: true
+
+Classifier output:
+{
+  "triggersGate3": true,
+  "reason": "resume_match",
+  "matched": [
+    {
+      "pattern": "deep-research",
+      "kind": "phrase",
+      "category": "resume"
+    },
+    {
+      "pattern": "fix",
+      "kind": "token",
+      "category": "file_write"
+    }
+  ],
+  "readOnlyMatched": []
+}

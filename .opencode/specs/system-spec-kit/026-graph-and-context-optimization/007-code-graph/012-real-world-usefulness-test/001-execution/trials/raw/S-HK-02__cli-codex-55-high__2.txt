@@ -1,0 +1,63 @@
+Prompt (rr-iter2-002): Edit the routing phase README to document the new corpus file layout.
+Expected skill: sk-doc
+
+Advisor output:
+[
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.9356,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.811964,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-doc",
+      "liveScore": 0.811964,
+      "shadowScore": 0.71177,
+      "delta": -0.100194,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.22,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.549736,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.549736,
+      "shadowScore": 0.509016,
+      "delta": -0.04072,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.18,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.399245,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.399245,
+      "shadowScore": 0.354749,
+      "delta": -0.044496,
+      "dominantShadowLane": "explicit_author"
+    }
+  }
+]

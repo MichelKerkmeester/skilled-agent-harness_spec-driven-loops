@@ -1,0 +1,27 @@
+{
+  "level": 2,
+  "name": "Real-World Usefulness Test Execution",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/001-execution",
+  "description": "Execution child packet for 026/007/012: sandboxable code graph, hook, advisor, Gate 3, and runtime-smoke usefulness trials with synthesis and deferred live-runtime cells.",
+  "keywords": [
+    "execution",
+    "real-world",
+    "usefulness",
+    "code-graph",
+    "hooks",
+    "runtime",
+    "trial-log",
+    "synthesis"
+  ],
+  "lastUpdated": "2026-05-06T04:35:32.335Z",
+  "specId": "001",
+  "folderSlug": "execution",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-code-graph",
+    "012-real-world-usefulness-test"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

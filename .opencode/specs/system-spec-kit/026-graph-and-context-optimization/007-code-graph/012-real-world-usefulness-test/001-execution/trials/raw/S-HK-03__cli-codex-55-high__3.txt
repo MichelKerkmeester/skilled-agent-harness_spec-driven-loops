@@ -1,0 +1,21 @@
+Prompt (rr-iter2-003): Add a `corpus/` subdirectory under the routing-accuracy phase and create a starter `labeled-prompts.jsonl`.
+Expected Gate 3: true
+
+Classifier output:
+{
+  "triggersGate3": true,
+  "reason": "file_write_match",
+  "matched": [
+    {
+      "pattern": "create",
+      "kind": "token",
+      "category": "file_write"
+    },
+    {
+      "pattern": "add",
+      "kind": "token",
+      "category": "file_write"
+    }
+  ],
+  "readOnlyMatched": []
+}

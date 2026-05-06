@@ -1,0 +1,16 @@
+Prompt (rr-iter2-013): Explain how `skill_advisor.py` computes uncertainty.
+Expected Gate 3: false
+
+Classifier output:
+{
+  "triggersGate3": false,
+  "reason": "no_match",
+  "matched": [],
+  "readOnlyMatched": [
+    {
+      "pattern": "explain",
+      "kind": "token",
+      "category": "read_only"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+Prompt (rr-iter2-005): Fix the broken JSON example in `deep-research-config.json` and revalidate the packet.
+Expected skill: system-spec-kit
+
+Advisor output:
+[
+  {
+    "skill": "deep-research",
+    "kind": "skill",
+    "confidence": 0.8585,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.66125,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "deep-research",
+      "liveScore": 0.66125,
+      "shadowScore": 0.559042,
+      "delta": -0.102208,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.8204,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.586863,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.586863,
+      "shadowScore": 0.514358,
+      "delta": -0.072505,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.26,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.42315,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.42315,
+      "shadowScore": 0.382075,
+      "delta": -0.041075,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "deep-review",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.22,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.1145,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "deep-review",
+      "liveScore": 0.1145,
+      "shadowScore": 0.112042,
+      "delta": -0.002458,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

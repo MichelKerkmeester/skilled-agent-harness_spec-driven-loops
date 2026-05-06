@@ -1,0 +1,16 @@
+Prompt (rr-iter2-004): Refactor `skill_advisor.py` to surface raw ambiguity counts in debug output.
+Expected Gate 3: true
+
+Classifier output:
+{
+  "triggersGate3": true,
+  "reason": "file_write_match",
+  "matched": [
+    {
+      "pattern": "refactor",
+      "kind": "token",
+      "category": "file_write"
+    }
+  ],
+  "readOnlyMatched": []
+}

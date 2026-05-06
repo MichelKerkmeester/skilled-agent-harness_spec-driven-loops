@@ -1,0 +1,16 @@
+Prompt (rr-iter2-002): Edit the routing phase README to document the new corpus file layout.
+Expected Gate 3: true
+
+Classifier output:
+{
+  "triggersGate3": true,
+  "reason": "file_write_match",
+  "matched": [
+    {
+      "pattern": "edit",
+      "kind": "token",
+      "category": "file_write"
+    }
+  ],
+  "readOnlyMatched": []
+}

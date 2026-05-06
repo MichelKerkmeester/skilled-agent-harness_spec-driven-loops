@@ -1,0 +1,101 @@
+Prompt (rr-iter2-006): Write a Vitest covering `classifyPrompt()` for the `resume deep review` phrase.
+Expected skill: sk-code
+
+Advisor output:
+[
+  {
+    "skill": "deep-review",
+    "kind": "skill",
+    "confidence": 0.945,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.830314,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "deep-review",
+      "liveScore": 0.830314,
+      "shadowScore": 0.717229,
+      "delta": -0.113085,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.8599,
+    "uncertainty": 0.16,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.66403,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code",
+      "liveScore": 0.66403,
+      "shadowScore": 0.616944,
+      "delta": -0.047086,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-code-review",
+    "kind": "skill",
+    "confidence": 0.84,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend [disambiguation: deep-review reserved for this prompt]",
+    "source": "native",
+    "score": 0.72152,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-code-review",
+      "liveScore": 0.72152,
+      "shadowScore": 0.650728,
+      "delta": -0.070792,
+      "dominantShadowLane": "explicit_author"
+    }
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.072723,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "sk-doc",
+      "liveScore": 0.072723,
+      "shadowScore": 0.064196,
+      "delta": -0.008527,
+      "dominantShadowLane": "lexical"
+    }
+  },
+  {
+    "skill": "command-spec-kit",
+    "kind": "command",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.064286,
+    "dominant_lane": "lexical",
+    "status": "active",
+    "_shadow": {
+      "skillId": "command-spec-kit",
+      "liveScore": 0.064286,
+      "shadowScore": 0.068571,
+      "delta": 0.004285,
+      "dominantShadowLane": "lexical"
+    }
+  }
+]

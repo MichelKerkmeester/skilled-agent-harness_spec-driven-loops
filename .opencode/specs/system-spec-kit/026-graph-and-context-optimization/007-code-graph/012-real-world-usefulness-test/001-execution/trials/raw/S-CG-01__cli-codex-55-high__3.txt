@@ -1,0 +1,4 @@
+SQL callers query for validateTelemetrySchemaDocsDrift
+
+[{"caller":"validateContentAlignment","caller_kind":"function","file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts","line":495},
+{"caller":"validateFolderAlignment","caller_kind":"function","file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts","line":620}]

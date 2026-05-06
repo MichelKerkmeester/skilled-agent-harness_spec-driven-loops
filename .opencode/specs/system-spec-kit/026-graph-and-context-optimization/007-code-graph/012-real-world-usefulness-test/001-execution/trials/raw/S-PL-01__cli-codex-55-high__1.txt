@@ -1,0 +1,4 @@
+codex exec --sandbox read-only --ephemeral --cd <repo> -m gpt-5.5 "Reply with exactly: codex-ok"
+
+First attempt failed writing /Users/michelkerkmeester/.codex/sessions: Operation not permitted.
+Second attempt with CODEX_HOME=/private/tmp/codex-home failed to connect to wss://api.openai.com/v1/responses: failed to lookup address information.

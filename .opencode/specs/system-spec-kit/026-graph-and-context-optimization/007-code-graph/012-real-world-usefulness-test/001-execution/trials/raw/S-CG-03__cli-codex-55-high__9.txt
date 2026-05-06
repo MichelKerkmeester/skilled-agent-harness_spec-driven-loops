@@ -1,0 +1,5 @@
+SQL blast-radius query for validateTelemetrySchemaDocsDrift
+
+[{"edge_type":"CALLS","source":"validateContentAlignment","source_kind":"function","file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts","line":495},
+{"edge_type":"CALLS","source":"validateFolderAlignment","source_kind":"function","file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/alignment-validator.ts","line":620},
+{"edge_type":"IMPORTS","source":"validateTelemetrySchemaDocsDrift","source_kind":"import","file_path":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/scripts/spec-folder/index.ts","line":10}]
