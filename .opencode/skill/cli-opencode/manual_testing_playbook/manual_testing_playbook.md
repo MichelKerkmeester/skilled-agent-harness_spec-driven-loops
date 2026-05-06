@@ -380,7 +380,7 @@ Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte
 
 ## 10. AGENT ROUTING (`CO-013..CO-017`, `CO-032..CO-034`)
 
-This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. cli-opencode distinguishes 4 primary agents (directly invokable via --agent: general + plan as OpenCode built-ins; orchestrate + multi-ai-council as repo-defined primaries) from N subagents (context, review, write, debug, deep-research, deep-review, improve-agent, improve-prompt) which dispatch as Task subagents from a primary. CO-013..CO-017 + CO-032..CO-034 exercise both surfaces — direct primary invocation and primary-dispatches-subagent routing.
+This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. cli-opencode distinguishes 4 primary agents (directly invokable via --agent: general + plan as OpenCode built-ins; orchestrate + multi-ai-council as repo-defined primaries) from N subagents (context, review, write, debug, deep-research, deep-review, improve-agent, prompt-improver) which dispatch as Task subagents from a primary. CO-013..CO-017 + CO-032..CO-034 exercise both surfaces — direct primary invocation and primary-dispatches-subagent routing.
 
 ### CO-013 | General agent default route
 
@@ -628,13 +628,13 @@ Expected signals: 13 unique TEMPLATE headers. >=12 Framework lines. >=11 bash co
 
 #### Description
 
-Verify `assets/prompt_quality_card.md` documents the CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), the 7-framework selection table, the task-to-framework map and the escalation rule to `@improve-prompt` when complexity is `>= 7/10`.
+Verify `assets/prompt_quality_card.md` documents the CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), the 7-framework selection table, the task-to-framework map and the escalation rule to `@prompt-improver` when complexity is `>= 7/10`.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor about to construct a non-trivial OpenCode dispatch prompt, load the prompt quality card and verify it explicitly documents (a) the CLEAR 5-check, (b) the framework selection table with all 7 frameworks and complexity bands, (c) the task-to-framework map and (d) the escalation rule for complexity >= 7/10 to @improve-prompt.
+Prompt summary: As an external-AI conductor about to construct a non-trivial OpenCode dispatch prompt, load the prompt quality card and verify it explicitly documents (a) the CLEAR 5-check, (b) the framework selection table with all 7 frameworks and complexity bands, (c) the task-to-framework map and (d) the escalation rule for complexity >= 7/10 to @prompt-improver.
 
-Expected signals: All 5 CLEAR criteria listed. 7 frameworks present. Task map present. Escalation rule with threshold 7 present. @improve-prompt referenced.
+Expected signals: All 5 CLEAR criteria listed. 7 frameworks present. Task map present. Escalation rule with threshold 7 present. @prompt-improver referenced.
 
 #### Test Execution
 

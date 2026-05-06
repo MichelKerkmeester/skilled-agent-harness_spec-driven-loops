@@ -43,7 +43,7 @@ Agent loading error: Failed to load agent from .gemini/agents/code.md:
   Validation failed: Agent Definition: Unrecognized key(s) in object:
   'mode', 'permission'
 [similar errors for context, create, debug, deep-research, deep-review,
- improve-agent, improve-prompt, multi-ai-council, orchestrate, review]
+ improve-agent, prompt-improver, multi-ai-council, orchestrate, review]
 ```
 
 When agents fail to load, gemini's MCP integration becomes degraded ("MCP issues detected. Run /mcp list for status."). Without working MCP hooks, gemini's runtime cannot consult `skill_advisor.py` to fetch the canonical advisor result. It falls back to its own internal heuristic — which seems to favor `mcp-coco-index` for "find/look up/where do I look" intents regardless of our patches.

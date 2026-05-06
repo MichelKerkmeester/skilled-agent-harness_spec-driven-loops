@@ -17,7 +17,7 @@ Provide a small, always-load asset for Claude Code prompt construction that impr
 
 ### Usage
 
-Select a framework from the task map, run the CLEAR 5-check, and escalate to `@improve-prompt` when the task crosses the fast-path risk threshold.
+Select a framework from the task map, run the CLEAR 5-check, and escalate to `@prompt-improver` when the task crosses the fast-path risk threshold.
 
 ---
 
@@ -57,11 +57,11 @@ Select a framework from the task map, run the CLEAR 5-check, and escalate to `@i
 
 ---
 
-## 5. Escalate to `@improve-prompt`
+## 5. Escalate to `@prompt-improver`
 
 Use Task-based escalation when complexity is `>= 7/10`, compliance or security sensitivity appears, more than one stakeholder matters, or more than one requirement is unclear.
 
-Claude-specific example: if the task would otherwise need a long `claude -p` prompt plus `--permission-mode plan`, ask `@improve-prompt` for the final `ENHANCED_PROMPT` first and then pass that result to Claude Code.
+Claude-specific example: if the task would otherwise need a long `claude -p` prompt plus `--permission-mode plan`, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first and then pass that result to Claude Code.
 
 ---
 

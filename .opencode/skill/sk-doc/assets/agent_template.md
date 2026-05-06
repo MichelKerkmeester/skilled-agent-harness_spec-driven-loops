@@ -45,6 +45,8 @@ Production agent files should stay at or below **600 lines**. If an agent needs 
 
 ### Required Fields
 
+> **Description budget**: agent `description:` fields share the Claude Code skill-metadata budget (default 8,000 chars total). Keep each agent description **≤ 130 chars**, no stack/product enumerations. See [`assets/documentation/frontmatter_templates.md` § Description Budget & Trim Style](documentation/frontmatter_templates.md) for the canonical trim rules.
+
 ```yaml
 ---
 name: agent-name
@@ -687,7 +689,7 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | `@deep-research` | `deep-research.md` | LEAF research subagent | Single research iteration, externalized state, convergence-driven command orchestration |
 | `@deep-review` | `deep-review.md` | LEAF review subagent | Single review iteration, BINDING emission, canonical REFUSE, scoped review packet writes |
 | `@improve-agent` | `improve-agent.md` | LEAF proposal mutator | Bounded candidate generation, evaluator-first promotion discipline |
-| `@improve-prompt` | `improve-prompt.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
+| `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
 | `@multi-ai-council` | `multi-ai-council.md` | Planning agent, `mode: all` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@orchestrate` | `orchestrate.md` | Primary orchestrator | Task decomposition, specialist routing, integration synthesis, delegation governance |
 | `@review` | `review.md` | LEAF review subagent | Findings-first code review, quality rubric, read-only target discipline |

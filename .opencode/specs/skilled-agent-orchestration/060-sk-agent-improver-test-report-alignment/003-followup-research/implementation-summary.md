@@ -42,7 +42,7 @@ _memory:
 - Top recommendations: split 061/062 by proof layer; keep 061 as command-flow methodology or active CP contract correction; put executable GREEN wiring in 062
 - 061 packet sketch: command-capable temp root, `/improve:agent ".opencode/agent/cp-improve-target.md" :auto --spec-folder=/tmp/cp-061-spec --iterations=1`, layer-specific CP lanes, expected-RED evidence kept spec-local unless active release-surface honesty is satisfied
 - 062 packet sketch: auto/confirm YAML parity, benchmark profile/fixture/materializer (**static skill assets** under `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/` + `assets/benchmark-fixtures/`), `run-benchmark.cjs` wiring, nested `legal_stop_evaluated.details.gateResults`, stop enum truth, RT-028/RT-032 reconciliation
-- Other meta-agents flagged: `@deep-research` and `@deep-review` share the command-loop leaf pattern with `@improve-agent`; `@write`, `@improve-prompt`, `@debug`, `@context`, and `@review` are body-level; `@code` is body-level with caller gate; `@orchestrate` is primary orchestrator body
+- Other meta-agents flagged: `@deep-research` and `@deep-review` share the command-loop leaf pattern with `@improve-agent`; `@write`, `@prompt-improver`, `@debug`, `@context`, and `@review` are body-level; `@code` is body-level with caller gate; `@orchestrate` is primary orchestrator body
 - Reusable rubric template: entry-point fidelity, ordered artifact/journal truth, producer/consumer compatibility, governance/stop semantics, sandbox containment, evaluator asset completeness, verdict-mode honesty, scenario layer partition, cross-playbook oracle check, release-surface honesty, evidence source authority
 
 ## Metrics

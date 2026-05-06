@@ -23,7 +23,8 @@
       "Bash(mkdir -p /tmp/dr-009)",
       "Bash(rm -rf /tmp/dr-009/*)",
       "Bash(mkdir -p /tmp/docs-011)",
-      "Bash(rm -rf /tmp/docs-011/*)"
+      "Bash(rm -rf /tmp/docs-011/*)",
+      "Bash(awk '{printf \"PID=%s CPU%%=%s CPUtime=%s\\\\n\", $2, $3, $10}')"
     ]
   },
   "hooks": {

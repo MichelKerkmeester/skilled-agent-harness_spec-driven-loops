@@ -17,7 +17,7 @@ Provide a small, always-load asset for Gemini CLI prompt construction that impro
 
 ### Usage
 
-Select a framework from the task map, run the CLEAR 5-check, and escalate to `@improve-prompt` when the task crosses the fast-path risk threshold.
+Select a framework from the task map, run the CLEAR 5-check, and escalate to `@prompt-improver` when the task crosses the fast-path risk threshold.
 
 ---
 
@@ -57,11 +57,11 @@ Select a framework from the task map, run the CLEAR 5-check, and escalate to `@i
 
 ---
 
-## 5. Escalate to `@improve-prompt`
+## 5. Escalate to `@prompt-improver`
 
 Use Task-based escalation when complexity is `>= 7/10`, compliance or security sensitivity appears, more than one stakeholder matters, or more than one requirement is unclear.
 
-Gemini-specific example: if the task needs a long grounded prompt plus `-m gemini-3.1-pro-preview`, get the structured `ENHANCED_PROMPT` from `@improve-prompt` first and then hand that to Gemini CLI.
+Gemini-specific example: if the task needs a long grounded prompt plus `-m gemini-3.1-pro-preview`, get the structured `ENHANCED_PROMPT` from `@prompt-improver` first and then hand that to Gemini CLI.
 
 ---
 

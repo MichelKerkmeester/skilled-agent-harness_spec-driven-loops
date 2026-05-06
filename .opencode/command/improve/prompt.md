@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
-> This command runs a structured workflow. Only dispatch `@improve-prompt` when the resolved dispatch mode is Agent.
+> This command runs a structured workflow. Only dispatch `@prompt-improver` when the resolved dispatch mode is Agent.
 >
 > **YOUR FIRST ACTION:**
 > 1. Run Phase 0: @general agent self-verification (below)
@@ -15,7 +15,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
 > 4. Resolve dispatch mode (Inline or Agent)
 > 5. Execute the workflow steps defined in INSTRUCTIONS
 >
-> This command is **general-agent based**. In Agent mode, `@general` dispatches `@improve-prompt` after setup.
+> This command is **general-agent based**. In Agent mode, `@general` dispatches `@prompt-improver` after setup.
 
 ---
 
@@ -45,7 +45,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
     │   │ This command orchestrates sk-prompt skill         │
-    │   │ invocation and optional @improve-prompt dispatch.         │
+    │   │ invocation and optional @prompt-improver dispatch.         │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
     │   │   /improve:prompt [arguments]                              │
@@ -201,7 +201,7 @@ After Phase 0 and Setup Phase pass, execute the following workflow steps:
 - **DO NOT** dispatch unrelated agents from this document
 - **DO NOT** infer prompt text from context, screenshots, or conversation history
 - **DO NOT** save to a spec folder without explicit user choice from Q2
-- **ONLY** dispatch `@improve-prompt` when `dispatch_mode = AGENT`
+- **ONLY** dispatch `@prompt-improver` when `dispatch_mode = AGENT`
 - **FIRST ACTION** is always: run Phase 0, run Setup, then execute steps below
 
 ---
@@ -214,7 +214,7 @@ Create or improve AI prompts by invoking the **sk-prompt** skill. Transforms vag
 
 ## 1. PURPOSE
 
-This command provides a streamlined entry point for prompt engineering via the `sk-prompt` skill. Instead of manually loading the skill and navigating its pipeline, users invoke `/improve:prompt` with their text and receive either an inline enhancement or a fresh-context `@improve-prompt` result — with the option to save it to a spec folder's `prompts/` directory.
+This command provides a streamlined entry point for prompt engineering via the `sk-prompt` skill. Instead of manually loading the skill and navigating its pipeline, users invoke `/improve:prompt` with their text and receive either an inline enhancement or a fresh-context `@prompt-improver` result — with the option to save it to a spec folder's `prompts/` directory.
 
 **When to use:**
 - Enhancing a vague or basic AI prompt
@@ -294,7 +294,7 @@ enhancement_mode (from Setup Phase)
 
 - **Inline mode**: default for ordinary interactive prompt work
 - **Agent mode**: recommended when complexity is `>= 7/10`, when the caller explicitly wants isolation or parallelism, or when compliance/security constraints make a fresh context window safer
-- The command and the CLI mirror-card pipeline share the same escalation surface: `@improve-prompt`
+- The command and the CLI mirror-card pipeline share the same escalation surface: `@prompt-improver`
 
 ### Step 1a: Interactive Behavior (INTERACTIVE/auto modes only)
 
@@ -365,7 +365,7 @@ Your preference? (A or B)
 Follow the branch selected by `dispatch_mode`:
 
 **If `dispatch_mode = AGENT`:**
-1. Dispatch `Task(subagent_type="improve-prompt")` with:
+1. Dispatch `Task(subagent_type="prompt-improver")` with:
    - `raw_task = prompt_input`
    - `task_type = best-fit task family`
    - `complexity_hint = inferred or supplied complexity`

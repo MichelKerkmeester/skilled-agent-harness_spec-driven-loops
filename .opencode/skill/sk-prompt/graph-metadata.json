@@ -79,8 +79,8 @@
       ".opencode/skill/sk-prompt/references/patterns_evaluation.md",
       ".opencode/skill/sk-prompt/assets/cli_prompt_quality_card.md",
       ".opencode/skill/sk-prompt/assets/format_guide_markdown.md",
-      ".claude/agents/improve-prompt.md",
-      ".opencode/agent/improve-prompt.md"
+      ".claude/agents/prompt-improver.md",
+      ".opencode/agent/prompt-improver.md"
     ],
     "entities": [
       {
@@ -120,15 +120,15 @@
         "source": "derived"
       },
       {
-        "name": "@improve-prompt (claude runtime)",
+        "name": "@prompt-improver (claude runtime)",
         "kind": "agent",
-        "path": ".claude/agents/improve-prompt.md",
+        "path": ".claude/agents/prompt-improver.md",
         "source": "derived"
       },
       {
-        "name": "@improve-prompt",
+        "name": "@prompt-improver",
         "kind": "agent",
-        "path": ".opencode/agent/improve-prompt.md",
+        "path": ".opencode/agent/prompt-improver.md",
         "source": "derived"
       }
     ],

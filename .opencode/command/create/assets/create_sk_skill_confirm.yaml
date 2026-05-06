@@ -378,6 +378,7 @@ workflow:
       - Enforce hard minimum threshold (75)
       - Compare against operation target score
       - Run fix-and-revalidate loop if needed
+      - "Description budget check (packet 086): quick_validate.py warns when description > 130 chars (skill) and hard-fails > 1536 chars. Soft-warning is non-blocking; hard-fail blocks the fix_loop."
     thresholds:
       hard_minimum: 75
       operation_targets:
@@ -385,13 +386,17 @@ workflow:
         full-update: 90
         reference-only: 80
         asset-only: 80
+      description_soft_target_skill: 130
+      description_soft_target_command: 110
+      description_hard_cap: 1536
     fix_loop:
       max_retries: 3
-      action: "Apply fixes, rerun validation, stop on pass or hard failure"
+      action: "Apply fixes, rerun validation, stop on pass or hard failure. If quick_validate emits a description-length warning, surface the trim suggestion per .opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md § Description Budget & Trim Style."
     outputs:
       - validation_passed
       - dqi_score
       - dqi_band
+      - description_length_warnings
     checkpoint:
       question: "Validation complete (DQI=[dqi_score], band=[dqi_band]). Continue?"
       options:

@@ -597,8 +597,8 @@ workflow:
       agent_file: "[runtime_agent_path]/write.md"
       template_contract:
         source: "sk-doc"
-        validators: "validate_document.py + extract_structure.py"
-        precedence: "Template compliance and DQI quality checks are mandatory before completion."
+        validators: "validate_document.py + extract_structure.py + quick_validate.py (description-length budget)"
+        precedence: "Template compliance, DQI quality, and description-length budget are all checked before completion."
       rule_reference: "AGENTS.md §3 — sk-doc template alignment and quality validation"
       condition: "ONLY when this step is actively executing"
       blocking: false
@@ -607,13 +607,19 @@ workflow:
     - "Run @create quality validation to score the created agent definition file"
     - "Validation checks: frontmatter validity, permission config, behavioral rules"
     - "Score against 100-point rubric (Accuracy 40%, Completeness 35%, Consistency 25%)"
+    - "Description budget check (packet 086): run `python3 .opencode/skill/sk-doc/scripts/quick_validate.py <agent-dir> --json` against the agent's frontmatter. Soft-warn when description > 130 chars; hard-fail > 1536. Hard-fail blocks completion; soft-warn surfaces the trim suggestion but does not block."
     on_low_score:
       threshold: 70
       action: "Log warnings and suggest improvements; do not block workflow"
+    description_budget:
+      soft_target: 130
+      hard_cap: 1536
+      reference: ".opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md § Description Budget & Trim Style"
     outputs:
     - quality_score: number
     - validation_findings: list
     - improvement_suggestions: list (if score < 70)
+    - description_length_warnings: list
     checkpoint:
       question: "Quality validation complete (score: [quality_score]/100). Continue?"
       options:

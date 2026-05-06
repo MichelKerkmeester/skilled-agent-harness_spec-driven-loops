@@ -1,0 +1,25 @@
+{
+  "openQuestions": [
+    "Q1: persist-artifacts.sh helper concrete shape",
+    "Q2: §17 placement (agent body vs reference file)",
+    "Q3: §8 OUTPUT FORMAT shared schema artifact format and location",
+    "Q4: validator awareness of ai-council/ (free-form vs hint vs enforcement)",
+    "Q5: skill advisor scoring for multi-ai-council triggers",
+    "Q6: 4-runtime mirror-sync automation",
+    "Q7: state.jsonl forward-compat / versioning policy",
+    "Q8: /memory:save anchoring of council-completion",
+    "Q9: ADD-1..ADD-6 risk mitigation",
+    "Q10: lightweight-bound revisit conditions"
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

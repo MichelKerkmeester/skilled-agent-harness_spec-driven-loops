@@ -295,7 +295,7 @@ gemini "[prompt]" -m gemini-3.1-pro-preview -o text
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Verify Gemini CLI is installed before first invocation (`command -v gemini`).
 2. Use `-o text` for human-readable output unless programmatic processing requires `-o json`.
@@ -304,17 +304,17 @@ gemini "[prompt]" -m gemini-3.1-pro-preview -o text
 5. Use `gemini-3.1-pro-preview` as the model — it is the only supported model.
 6. Route to the appropriate `@agent` when the task matches a specialization (see Section 3 routing table).
 7. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 interactively.
-8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@improve-prompt` via the Task tool instead of loading `sk-prompt` inline.
+8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline.
 9. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
 
-### NEVER
+### ❌ NEVER
 
 1. Use `--yolo` on production codebases without explicit user approval (auto-approves writes/shell — damage risk).
 2. Trust Gemini output blindly for security-sensitive code, send sensitive data (keys/passwords/credentials) in prompts, or hammer the API with rapid sequential calls.
 3. Use Gemini for tasks where context is already loaded — direct action by the current agent is faster.
 4. Assume Gemini output is correct without verification — cross-reference codebase and project standards.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Gemini CLI is not installed and user has not acknowledged (provide `npm install -g @google/gemini-cli`).
 2. Rate limits are persistently exceeded (suggest API key setup or fallback strategy).

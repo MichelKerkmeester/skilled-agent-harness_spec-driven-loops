@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 
 ### Optional Supplemental Checks
 
-- For complexity >= 7/10 prompts, escalate to `@improve-prompt` per `assets/prompt_quality_card.md` §5 Escalation. Capture the returned `ENHANCED_PROMPT` as additional evidence.
+- For complexity >= 7/10 prompts, escalate to `@prompt-improver` per `assets/prompt_quality_card.md` §5 Escalation. Capture the returned `ENHANCED_PROMPT` as additional evidence.
 
 ---
 

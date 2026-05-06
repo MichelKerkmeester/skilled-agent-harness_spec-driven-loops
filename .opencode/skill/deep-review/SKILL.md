@@ -375,7 +375,7 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Read JSONL and strategy before review action.
 2. Review one dimension per iteration and write findings to `iteration-NNN.md`.
@@ -387,7 +387,7 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 8. Emit setup `BINDING:` lines before workflow output.
 9. Refuse nested dispatch with: `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.`
 
-### NEVER
+### ❌ NEVER
 
 1. **Dispatch sub-agents** — `@deep-review` is LEAF-only; it cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
 2. **Hold findings in context** — Write everything to iteration files; context is discarded after each dispatch.
@@ -404,7 +404,7 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 
 - `insight`: Low newInfoRatio but important finding that changes the verdict trajectory.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **3+ consecutive timeouts** — Infrastructure issue; pause loop and report to user.
 2. **State file corruption** — Cannot reconstruct iteration history from JSONL or iteration files.

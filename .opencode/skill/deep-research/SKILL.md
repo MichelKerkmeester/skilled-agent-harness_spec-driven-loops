@@ -278,7 +278,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Read state first** -- Agent must read JSONL and strategy.md before any research action
 2. **One focus per iteration** -- Pick ONE research sub-topic from strategy.md "Next Focus"
@@ -295,7 +295,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 13. **Respect reducer ownership** -- The workflow reducer, not the agent, is the source of truth for strategy machine-owned sections, dashboard metrics, and findings registry updates
 14. **Use canonical packet names only** -- Write `deep-research-*` artifacts and `research/.deep-research-pause`; legacy names are read-only migration aliases
 
-### NEVER
+### ❌ NEVER
 
 1. **Dispatch sub-agents** -- @deep-research is LEAF-only (NDP compliance)
 2. **Hold findings in context** -- Write everything to files
@@ -320,7 +320,7 @@ These concepts remain documented for future design work, but they are not part o
 3. **Wave orchestration on the same lineage** -- parallel fan-out remains reference-only
 4. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **3+ consecutive timeouts** -- Infrastructure issue, not research problem
 2. **State file corruption unrecoverable** -- Cannot reconstruct from JSONL or iteration files

@@ -56,7 +56,7 @@ Coverage note (2026-04-26): all categories validate the orchestrator-led cross-A
 ### Realistic Test Model
 
 1. A realistic user request is given to an external-AI orchestrator (NOT Claude Code itself - this skill is cross-AI only).
-2. The orchestrator decides whether to delegate to `claude -p`, choose a model tier, route to a Claude Code agent via `--agent` or escalate prompt construction to `@improve-prompt`.
+2. The orchestrator decides whether to delegate to `claude -p`, choose a model tier, route to a Claude Code agent via `--agent` or escalate prompt construction to `@prompt-improver`.
 3. The operator captures both the dispatch command and the user-visible Claude Code output.
 4. The scenario passes only when the workflow is sound, the self-invocation guard fires when relevant and the returned result would satisfy a real user.
 
@@ -614,13 +614,13 @@ Expected signals: Template file is readable and contains the labeled template (S
 
 #### Description
 
-Verify the prompt quality card at `assets/prompt_quality_card.md` defines the CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), the framework selection table and the escalation rule to `@improve-prompt` when complexity is `>= 7/10`.
+Verify the prompt quality card at `assets/prompt_quality_card.md` defines the CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), the framework selection table and the escalation rule to `@prompt-improver` when complexity is `>= 7/10`.
 
 #### Scenario Contract
 
 Prompt summary: As an external-AI conductor about to construct a non-trivial Claude Code prompt, load the prompt quality card and apply the CLEAR 5-check to a draft prompt for an architecture analysis task. Verify the card explicitly documents the 5-check, the framework selection table (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) with complexity bands and the escalation rule for complexity >= 7. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Card lists all 5 CLEAR criteria explicitly. Framework selection table includes all 7 frameworks with complexity bands. Escalation rule for complexity >= 7 to `@improve-prompt` is explicitly documented. Failure-pattern checklist is present.
+Expected signals: Card lists all 5 CLEAR criteria explicitly. Framework selection table includes all 7 frameworks with complexity bands. Escalation rule for complexity >= 7 to `@prompt-improver` is explicitly documented. Failure-pattern checklist is present.
 
 #### Test Execution
 

@@ -635,7 +635,7 @@ Desired user-visible outcome: A real working health-check server generated from 
 
 #### Description
 
-Verify the prompt_quality_card.md CLEAR 5-check is applied before dispatch and that an under-scored prompt is escalated to `@improve-prompt` per the documented threshold.
+Verify the prompt_quality_card.md CLEAR 5-check is applied before dispatch and that an under-scored prompt is escalated to `@prompt-improver` per the documented threshold.
 
 #### Scenario Contract
 

@@ -1411,7 +1411,7 @@ INTENT_BOOSTERS = {
     "utcp": ("mcp-code-mode", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
-    # SK-PROMPT-IMPROVER: Prompt engineering and enhancement
+    # SK-PROMPT: Prompt engineering and enhancement
     # ─────────────────────────────────────────────────────────────────
     "prompt": ("sk-prompt", 1.5),
     "prompts": ("sk-prompt", 1.2),
@@ -1758,7 +1758,7 @@ COMMAND_BRIDGES = {
         "description": "Evaluate and improve any agent across 5 dimensions using /improve:agent.",
         "slash_markers": ["/improve:agent", "improve:agent"],
     },
-    "command-improve-prompt": {
+    "command-prompt-improver": {
         "description": "Create or improve AI prompts using /improve:prompt.",
         "slash_markers": ["/improve:prompt", "improve:prompt"],
     },

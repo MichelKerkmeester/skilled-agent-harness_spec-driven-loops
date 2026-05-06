@@ -584,6 +584,8 @@ File shape contracts:
 
 Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md`.
 
+---
+
 ## 13. INVOCATION CONTRACT - FIRST-CALL VS SUBSEQUENT VS RESUME
 
 1. **First call**: if no `ai-council/` folder exists, create the skeleton: config, strategy, state log, empty `seats/`, and empty `deliberations/`. Dispatch round 1, write `seats/round-001/seat-MMM-*.md`, synthesize `deliberations/round-001.md`, then check convergence. If converged, write `council-report.md`; otherwise increment `current_round` and continue.
@@ -591,6 +593,8 @@ Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-l
 3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round. If all `seat_returned` events exist but no `deliberation_synthesized`, run synthesis. If deliberation exists without `round_end`, close the round and continue convergence handling.
 
 Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`.
+
+---
 
 ## 14. STATE SCHEMA - JSONL EVENT TYPES
 
@@ -614,6 +618,8 @@ type CouncilComplete = {event:"council_complete"; timestamp:string; final_report
 
 `ai-council-state.jsonl` is append-only. NEVER rewrite or truncate it. NEVER write secrets, credentials, tokens, or private keys to state events.
 
+---
+
 ## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE
 
 Default signal: `two-of-three-agree`. If 2 of 3 seats endorse essentially the same plan and the cross-critique round produces no new high-severity findings, declare convergence and write `council-report.md`.
@@ -634,13 +640,13 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 │          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Seek diverse AI vantage points (cli-codex, cli-gemini,            │
-│  │   cli-claude-code, cli-opencode, native @deep-research)                │
+│  ├─► Seek diverse AI vantage points (cli-codex, cli-gemini,             │
+│  │   cli-claude-code, cli-opencode, native @deep-research)              │
 │  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
 │  ├─► Deliberate across independent, critique, and reconciliation rounds │
 │  ├─► Score results via 5-dimension rubric (100 points)                  │
 │  ├─► Synthesize consensus plan from best-supported elements             │
-│  └─► Output plan for user review (no file modifications)                │
+│  └─► Output plan for user review (no file modifications)                  │
 │                                                                         │
 │  WORKFLOW (8 Steps)                                                     │
 │  ├─► 1. RECEIVE     Parse task, classify type                           │
@@ -648,14 +654,14 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 │  ├─► 3. DIVERSIFY   Select strategy and AI-vantage mix                  │
 │  ├─► 4. DISPATCH    Launch seats (parallel or sequential)               │
 │  ├─► 5. DELIBERATE  Compare, critique, reconcile                        │
-│  ├─► 6. SYNTHESIZE  Score all, resolve conflicts                        │
-│  ├─► 7. COMPOSE     Merge best elements into unified plan               │
+│  ├─► 6. SYNTHESIZE  Score all, resolve conflicts                         │
+│  ├─► 7. COMPOSE     Merge best elements into unified plan                │
 │  └─► 8. DELIVER     Multi-AI Council Report (plan only)                 │
 │                                                                         │
 │  OUTPUT                                                                 │
 │  ├─► Multi-AI Council Report (composition + comparison table)           │
 │  ├─► Implementation steps for user review                               │
-│  └─► Plan confidence score with evidence basis                          │
+│  └─► Plan confidence score with evidence basis                           │
 │                                                                         │
 │  LIMITS                                                                 │
 │  ├─► Max 3 council seats per task                                       │

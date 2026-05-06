@@ -77,7 +77,7 @@ What's missing is a structured plan for what to do next. Specifically:
 - Which gaps R1 surfaced are best closed at the agent-body layer vs the command layer
 - Whether the 6 P0/P1 diffs we already applied need further iteration or are sufficient
 - What 061 should look like operationally (not just "it should test command flow" but "here's the exact dispatch shape and grep contract")
-- Whether the test-layer-selection lesson generalizes — are there other meta-agents in the system that need the same treatment? (e.g. @write, @improve-prompt, @debug, @deep-research, @deep-review)
+- Whether the test-layer-selection lesson generalizes — are there other meta-agents in the system that need the same treatment? (e.g. @write, @prompt-improver, @debug, @deep-research, @deep-review)
 - How to write a reusable "meta-agent stress-test rubric" so future packets don't repeat the wrong-layer mistake
 
 ### Purpose
@@ -146,5 +146,5 @@ A successful 003 produces:
 - **Source-of-recommendations:** `../001-deep-research-recommendations/research/research.md` (854 lines)
 - **Methodology template:** `../../059-agent-implement-code/test-report.md`
 - **Modified source files (state after 002):** `.opencode/agent/improve-agent.md` (4 mirrors), `.opencode/skill/sk-improve-agent/{SKILL.md,scripts/scan-integration.cjs,scripts/score-candidate.cjs}`, `.opencode/command/improve/assets/improve_improve-agent_{auto,confirm}.yaml`
-- **Other meta-agents to classify (RQ-4):** `.opencode/agent/{write,improve-agent,improve-prompt,debug,deep-research,deep-review,context,orchestrate,review,code}.md`
+- **Other meta-agents to classify (RQ-4):** `.opencode/agent/{write,improve-agent,prompt-improver,debug,deep-research,deep-review,context,orchestrate,review,code}.md`
 <!-- /ANCHOR:references -->

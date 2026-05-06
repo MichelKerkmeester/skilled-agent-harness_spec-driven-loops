@@ -30,7 +30,7 @@ The other inspected agents are body-level or orchestrator-body disciplines:
 | Agent | Classification | Evidence |
 |---|---|---|
 | `@write` | Body-level LEAF | Template-first creation, sk-doc loading, validation, and DQI gates live in the body; no command owner is named [SOURCE: `.opencode/agent/write.md:22-31`, `.opencode/agent/write.md:42-65`]. |
-| `@improve-prompt` | Body-level LEAF | The body owns the 5-step prompt escalation and output package; write/edit/bash are denied [SOURCE: `.opencode/agent/improve-prompt.md:22-40`, `.opencode/agent/improve-prompt.md:86-107`]. |
+| `@prompt-improver` | Body-level LEAF | The body owns the 5-step prompt escalation and output package; write/edit/bash are denied [SOURCE: `.opencode/agent/prompt-improver.md:22-40`, `.opencode/agent/prompt-improver.md:86-107`]. |
 | `@debug` | Body-level LEAF | The body owns fresh-context handoff plus 5-phase observe/analyze/hypothesize/fix workflow [SOURCE: `.opencode/agent/debug.md:22-30`, `.opencode/agent/debug.md:105-149`]. |
 | `@context` | Body-level LEAF | The body owns canonical continuity retrieval and direct exploration; it never delegates or writes [SOURCE: `.opencode/agent/context.md:25-34`, `.opencode/agent/context.md:45-56`]. |
 | `@orchestrate` | Orchestrator body | The body itself is the senior commander and dispatch protocol; it is not a leaf called by a command loop [SOURCE: `.opencode/agent/orchestrate.md:18-35`, `.opencode/agent/orchestrate.md:87-113`]. |

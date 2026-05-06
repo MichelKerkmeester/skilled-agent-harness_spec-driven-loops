@@ -13,6 +13,7 @@ Validates:
 - Optional fields: allowed-tools, version
 - Name format: hyphen-case
 - Description: single line (no YAML block format)
+- Description length within budget (packet 086): soft warn at 130/110, hard fail at 1536
 - allowed-tools (if present): array format [Tool1, Tool2]
 - No angle brackets in description
 - No TODO placeholders in description
@@ -20,6 +21,11 @@ Validates:
 Output formats:
 - Human-readable (default)
 - JSON (with --json flag)
+
+Description budget reference: see
+.opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md
+§ "Description Budget & Trim Style". Constants below are the single source of
+truth for the python validators; doc-side constants live in the markdown file.
 """
 
 import argparse
@@ -27,7 +33,57 @@ import sys
 import json
 import re
 from pathlib import Path
-from typing import Any, Dict, List, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
+
+
+# ───────────────────────────────────────────────────────────────
+# Description budget constants (packet 086)
+# ───────────────────────────────────────────────────────────────
+# Soft targets are project conventions (warn, do not block).
+# Hard cap is the Claude Code internal limit on combined description+when_to_use.
+DESCRIPTION_SOFT_TARGET_SKILL = 130
+DESCRIPTION_SOFT_TARGET_COMMAND = 110
+DESCRIPTION_HARD_CAP = 1536
+
+
+def _detect_target_kind(skill_path: Path) -> str:
+    """Detect whether the validated artifact is a skill or a command from its path.
+
+    Returns 'command' for paths under .opencode/command/ or .claude/commands/, else 'skill'.
+    """
+    parts = [p.lower() for p in skill_path.resolve().parts]
+    if any(part in ('command', 'commands') for part in parts):
+        return 'command'
+    return 'skill'
+
+
+def check_description_length(
+    description: str,
+    soft_target: int,
+    hard_cap: int = DESCRIPTION_HARD_CAP,
+) -> Tuple[Optional[str], Optional[str]]:
+    """Evaluate description length against soft target and hard cap.
+
+    Returns (error_message, warning_message). Either may be None.
+    Operates on the unwrapped, post-quote-strip description value (caller's
+    responsibility to pre-process).
+    """
+    length = len(description)
+    if length > hard_cap:
+        return (
+            f"Description is {length} chars, exceeds Claude Code hard cap of {hard_cap} chars "
+            f"(combined description + when_to_use). Skill will fail to register.",
+            None,
+        )
+    if length > soft_target:
+        return (
+            None,
+            f"Description is {length} chars, exceeds soft target of {soft_target}. "
+            f"Project total budget is ~5,600 chars (default 8,000 minus built-ins); "
+            f"trim per .opencode/skill/sk-doc/assets/documentation/frontmatter_templates.md "
+            f"§ 'Description Budget & Trim Style'.",
+        )
+    return (None, None)
 
 
 # ───────────────────────────────────────────────────────────────
@@ -42,15 +98,29 @@ def strip_matching_quotes(value: str) -> str:
     return value
 
 
-def validate_skill(skill_path: Union[str, Path]) -> Tuple[bool, str, List[str]]:
+def validate_skill(
+    skill_path: Union[str, Path],
+    description_soft_target: Optional[int] = None,
+) -> Tuple[bool, str, List[str]]:
     """
     Validate a skill directory.
-    
+
+    Args:
+        skill_path: Path to the skill directory containing SKILL.md.
+        description_soft_target: Soft cap for description length in chars.
+            If None, auto-detect from path (130 for skills, 110 for commands).
+
     Returns:
         Tuple of (is_valid: bool, message: str, warnings: list)
     """
     skill_path = Path(skill_path)
     warnings: List[str] = []
+
+    if description_soft_target is None:
+        kind = _detect_target_kind(skill_path)
+        description_soft_target = (
+            DESCRIPTION_SOFT_TARGET_COMMAND if kind == 'command' else DESCRIPTION_SOFT_TARGET_SKILL
+        )
 
     skill_md = skill_path / 'SKILL.md'
     if not skill_md.exists():
@@ -99,6 +169,17 @@ def validate_skill(skill_path: Union[str, Path]) -> Tuple[bool, str, List[str]]:
 
         if 'TODO' in description.upper():
             warnings.append("Description contains TODO placeholder - please complete it")
+
+        # Packet 086: description-length budget check.
+        # Run AFTER the multiline-block rejection above and AFTER quote-strip,
+        # so we measure the user-visible length the harness will see.
+        length_error, length_warning = check_description_length(
+            description, description_soft_target
+        )
+        if length_error:
+            return False, length_error, warnings
+        if length_warning:
+            warnings.append(length_warning)
     else:
         return False, "Description appears to be empty or multiline (must be single line after colon)", warnings
 
@@ -131,11 +212,25 @@ def main() -> None:
         action='store_true',
         help="Output result as JSON",
     )
+    parser.add_argument(
+        '--description-soft-target',
+        dest='description_soft_target',
+        type=int,
+        default=None,
+        help=(
+            "Soft cap for description length in chars (warning, non-blocking). "
+            f"Auto-detects from path when omitted: {DESCRIPTION_SOFT_TARGET_SKILL} for skills, "
+            f"{DESCRIPTION_SOFT_TARGET_COMMAND} for commands. "
+            f"Hard cap is fixed at {DESCRIPTION_HARD_CAP} (Claude Code internal limit)."
+        ),
+    )
     args = parser.parse_args()
 
     json_output = args.json_output
     skill_path = args.skill_directory
-    valid, message, warnings = validate_skill(skill_path)
+    valid, message, warnings = validate_skill(
+        skill_path, description_soft_target=args.description_soft_target
+    )
     
     if json_output:
         result: Dict[str, Any] = {

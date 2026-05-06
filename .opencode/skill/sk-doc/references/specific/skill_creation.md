@@ -394,7 +394,7 @@ Answer these questions in SKILL.md:
 | Field           | Required | Quick Note                                     |
 | --------------- | -------- | ---------------------------------------------- |
 | `name`          | ✅        | Must match folder name, lowercase-with-hyphens |
-| `description`   | ✅        | Single line, specific about capabilities       |
+| `description`   | ✅        | Single line, ≤ 130 chars (skill) / ≤ 110 (command); see Pitfall 1 below for trim rules |
 | `allowed-tools` | ✅        | Array format (`[Read, Write, ...]`)           |
 | `version`       | ⚪        | Semantic versioning (e.g., `1.0.0`)            |
 
@@ -568,20 +568,35 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 
 ## 5. COMMON PITFALLS
 
-### Pitfall 1: Generic Descriptions
+### Pitfall 1: Generic or Bloated Descriptions
 
-**Problem**: Skill doesn't trigger because description is too vague.
+**Problem**: Skill doesn't trigger because description is too vague — OR the project total exceeds Claude Code's 8,000-char `SLASH_COMMAND_TOOL_CHAR_BUDGET` and the harness silently drops the skill from auto-discovery.
 
-**Example**:
+**Example — too generic**:
 ```yaml
-# Bad
+# Bad — vague, no routing keywords
 description: Helps with markdown files
-
-# Good
-description: Complete document quality pipeline with structure enforcement, content optimization (AI-friendly), and style guide compliance
 ```
 
-**Fix**: Be specific about capabilities and use cases.
+**Example — too bloated** (real packet 083 trim, 545 → 125 chars):
+```yaml
+# Bad — enumerates stacks, lists libraries, marketing prose
+description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
+```
+
+**Example — well-balanced**:
+```yaml
+# Good — verb + domain noun + smart-router phrase, ≤ 130 chars
+description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
+```
+
+**Trim rules** (see [`frontmatter_templates.md` § Description Budget & Trim Style](../../assets/documentation/frontmatter_templates.md) for the canonical reference):
+- **Soft target**: ≤ 130 chars for skills, ≤ 110 for commands. Hard cap 1,536 (Claude Code). Project ceiling 5,600 (leaves headroom for built-ins under 8,000 default).
+- **DROP**: product enumerations (ClickUp/Notion/Figma…), stack lists (Webflow/Motion.dev/GSAP…), marketing prose (`Mandatory for…`, `Provides…efficient…`), parenthetical jargon
+- **KEEP**: skill name token, primary verb, primary domain noun, mode suffixes (`:auto`/`:confirm`), numeric specifics (`9 steps`, `5-dim scoring`)
+- **Stack-agnostic rule** (memory-enforced): never enumerate Webflow/Go/Next.js etc. The smart router detects stacks at dispatch time; baked-in stack lists age poorly and dilute keyword density.
+
+**Fix**: Apply the trim rules to your description. Run `python3 .opencode/skill/sk-doc/scripts/quick_validate.py <skill-dir>` — it warns when over soft target and hard-fails at 1,536. Periodically run `/doctor:skill-budget :auto` to detect accumulated drift project-wide.
 
 ### Pitfall 2: Bloated SKILL.md
 

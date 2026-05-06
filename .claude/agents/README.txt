@@ -15,7 +15,7 @@ Agents:
   deep-research  — Autonomous research iterations
   deep-review    — Autonomous code review iterations
   improve-agent  — Agent evaluation and improvement
-  improve-prompt — Prompt engineering
+  prompt-improver — Prompt engineering
   orchestrate    — Multi-agent coordination
   review         — Code review (read-only)
   multi-ai-council    — Multi-strategy planning

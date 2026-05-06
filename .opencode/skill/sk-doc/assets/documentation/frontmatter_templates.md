@@ -190,12 +190,12 @@ name: 123-skill  # Cannot start with number
 
 ### `description` Field
 
-**Purpose**: Human-readable explanation of what the skill/command does
+**Purpose**: Human-readable explanation of what the skill/command does. Also feeds the Skill Advisor's lexical-lane scoring — the description's keyword density is what makes the skill discoverable to the model.
 
 **Format Requirements**:
 - One to two sentences maximum
 - **MUST be on a single line** (parser limitation)
-- 10-200 characters recommended
+- See **Description Budget & Trim Style** below for length targets and content rules
 
 **Critical Warning**:
 
@@ -225,6 +225,48 @@ description: Four-phase debugging framework for browser console errors and CSS i
 description: Validates  # Too short
 description:  # Empty
 ```
+
+### Description Budget & Trim Style
+
+The Claude Code harness imposes two limits that authors don't see directly:
+
+| Constant | Value | Source |
+|----------|------:|--------|
+| Per-skill soft target | **≤ 130 chars** | Project convention; routing-keyword density stays high |
+| Per-command soft target | **≤ 110 chars** | Project convention; commands are terser by nature |
+| Per-item hard cap | **1,536 chars** | Claude Code internal limit (combined `description` + `when_to_use`) |
+| Project soft-ceiling | **5,600 chars** | Total of all project descriptions; leaves ~2,400-char headroom for Claude Code built-ins under the default `SLASH_COMMAND_TOOL_CHAR_BUDGET = 8000` |
+
+When project total exceeds the 8,000-char default, Claude Code **silently drops** the longest descriptions from its available-skills list. Skills stay invocable explicitly, but the model can no longer auto-suggest them. (Packet 083 had to trim 36 descriptions because the project had grown to ~10,050 chars and 15 skills were dropped.)
+
+**Trim style — DROP**:
+- Product enumerations (`ClickUp/Notion/Figma/Chrome…`)
+- Stack lists (`Webflow/HTML/CSS/JS/Motion.dev/GSAP…`) — see *Stack-agnostic phrasing* below
+- Marketing prose (`Mandatory for…`, `Provides…efficient…`, `…best-in-class…`)
+- Parenthetical jargon (`(gold battery, staleness model, exclude-rule confidence tiers)`)
+
+**Trim style — KEEP**:
+- Skill name token (the literal skill name appearing in the description boosts the explicit-author lane)
+- Primary verb (`orchestrate`, `validate`, `dispatch`, `audit`)
+- Primary domain noun (`MCP`, `code-review`, `prompts`, `git workflow`)
+- Mode suffixes (`:auto`, `:confirm`, `:apply`) — these are advisor trigger tokens
+- Numeric specifics (`9 steps`, `5-dim scoring`, `4 MCP servers`) — they signal real capability
+
+**Stack-agnostic phrasing** (project rule): never enumerate specific stacks (Webflow / Go / Next.js / Python frameworks…) in skill descriptions. The smart router detects the active stack at dispatch time; baking stacks into the description ages poorly and consumes routing-keyword budget that should go to the verb + domain noun.
+
+**Before/after example** (sk-code, packet 083, 545 → 125 chars):
+
+```yaml
+# Before — 545 chars: enumerated stacks + library lists + marketing prose
+description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
+
+# After — 125 chars: skill name implicit, verb+domain noun preserved, smart-router phrase kept
+description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
+```
+
+The trimmed version retains every routing-keyword the advisor cares about (`coding`, `standards`, `verification`, `surface`, `code patterns`) while losing the brittle stack enumeration that would have to be edited every time a library is added.
+
+**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor:skill-budget :auto` periodically to detect accumulated drift across the project.
 
 ### `allowed-tools` Field
 

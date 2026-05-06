@@ -139,7 +139,7 @@ If negative FPR > 0:
 | P03 | `skill_advisor` (0.820) | 2 (0.820) | Prompt is "Refactor skill_advisor.py to surface raw ambiguity counts" — touches the advisor's own internals; skill_advisor is the domain owner |
 | P04 | `deep-review` (0.945) | 2 (0.820) | Prompt mentions "resume deep review phrase" classifier — deep-review owns deep-review behavior |
 | P07 | `system-spec-kit` (0.820) | 2 (0.820) | Prompt is about "Gate 3 confusion-matrix rows" — Gate 3 is system-spec-kit's domain |
-| P08 | `sk-prompt` (0.820) | 2 (0.820) | "gate3-baseline.json fixture" generation — fixture/baseline patterns trigger improve-prompt |
+| P08 | `sk-prompt` (0.820) | 2 (0.820) | "gate3-baseline.json fixture" generation — fixture/baseline patterns trigger prompt-improver |
 
 These are domain-specific skills winning over the general sk-code router. The probe set classification was over-aggressive — these prompts have legitimate dual-domain claims, and routing to the more specific skill is arguably correct. sk-code remains rank-2 in all four cases.
 

@@ -142,7 +142,7 @@ Delivery: enhanced prompt + transparency report + optional save
 | Command | Delegates To |
 |---------|-------------|
 | agent | @improve-agent (proposal-only candidate generation) |
-| prompt | @general workflow with optional `@improve-prompt` escalation |
+| prompt | @general workflow with optional `@prompt-improver` escalation |
 
 <!-- /ANCHOR:workflow-progression -->
 
@@ -160,7 +160,7 @@ Each mode maps to a YAML workflow file in `assets/`:
 - Auto: `improve_improve-agent_auto.yaml`
 - Confirm: `improve_improve-agent_confirm.yaml`
 
-`/improve:prompt` is a general-agent command that stays inline by default and optionally dispatches `@improve-prompt` for complex or isolation-sensitive cases. It does not load YAML assets.
+`/improve:prompt` is a general-agent command that stays inline by default and optionally dispatches `@prompt-improver` for complex or isolation-sensitive cases. It does not load YAML assets.
 
 ### Agent Improvement Scoring Modes
 
@@ -217,7 +217,7 @@ When max iterations is reached, all 5 dimensions plateau (3+ identical scores), 
 
 **Q: What is the difference between `/improve:prompt` and `/improve:agent`?**
 
-`/improve:prompt` enhances text prompts using frameworks and DEPTH methodology, with optional `@improve-prompt` escalation for complex cases. `/improve:agent` evaluates and improves agent definition files across their full integration surface.
+`/improve:prompt` enhances text prompts using frameworks and DEPTH methodology, with optional `@prompt-improver` escalation for complex cases. `/improve:agent` evaluates and improves agent definition files across their full integration surface.
 
 <!-- /ANCHOR:faq -->
 

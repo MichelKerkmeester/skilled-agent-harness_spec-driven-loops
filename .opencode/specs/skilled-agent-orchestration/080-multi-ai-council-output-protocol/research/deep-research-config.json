@@ -1,0 +1,58 @@
+{
+  "topic": "How to further improve the multi-ai-council agent and the ai-council/ output protocol convention introduced in packet 080. Reference deep-research and deep-review skill patterns as inspiration but do not promote multi-ai-council into a dedicated skill folder unless lightweight bound (ADR-001) provably fails. Investigate concrete improvements (helper script shape, §17 caller protocol, §8 shared schema artifact, validator hints, advisor wiring, state.jsonl forward-compat, mirror-sync automation), check whether existing spec-kit integration is solid, and surface risks of round-2 amendments (ADD-1..ADD-6).",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+  "createdAt": "2026-05-06T15:11:00.000Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-codex",
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "high",
+    "serviceTier": "standard",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "lineage": {
+    "sessionId": "dr-080-2026-05-06-1511",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": ["key-questions", "answered-questions", "what-worked", "what-failed", "exhausted-approaches", "ruled-out-directions", "next-focus"]
+  },
+  "capabilityMatrixPath": ".opencode/skill/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skill/deep-research/references/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skill/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skill/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

@@ -17,7 +17,7 @@ Provide a small, always-load asset for OpenCode CLI prompt construction that imp
 
 ### Usage
 
-Select a framework from the task map, run the CLEAR 5-check, and escalate to `@improve-prompt` when the task crosses the fast-path risk threshold.
+Select a framework from the task map, run the CLEAR 5-check, and escalate to `@prompt-improver` when the task crosses the fast-path risk threshold.
 
 ---
 
@@ -59,11 +59,11 @@ Select a framework from the task map, run the CLEAR 5-check, and escalate to `@i
 
 ---
 
-## 5. Escalate to `@improve-prompt`
+## 5. Escalate to `@prompt-improver`
 
 Use Task-based escalation when complexity is `>= 7/10`, compliance or security sensitivity appears, more than one stakeholder matters, or more than one requirement is unclear.
 
-OpenCode-specific example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@improve-prompt` for the final `ENHANCED_PROMPT` first and then pass that result to OpenCode.
+OpenCode-specific example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first and then pass that result to OpenCode.
 
 ---
 

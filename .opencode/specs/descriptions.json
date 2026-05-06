@@ -1095,11 +1095,11 @@
       "lastUpdated": "2026-05-03T11:03:36.718Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/061-agent-optimization/007-agent-improve-prompt",
-      "description": "Spec: @improve-prompt Agent Optimization",
+      "specFolder": "skilled-agent-orchestration/061-agent-optimization/007-agent-prompt-improver",
+      "description": "Spec: @prompt-improver Agent Optimization",
       "keywords": [
         "spec",
-        "improve-prompt",
+        "prompt-improver",
         "agent",
         "optimization"
       ],

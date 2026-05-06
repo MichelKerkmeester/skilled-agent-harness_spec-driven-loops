@@ -322,7 +322,7 @@ Use the agent directory that matches the active runtime/provider profile:
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/spec_kit:deep-review`
 - **`@multi-ai-council`** - Multi-strategy planning architect (planning-only)
 - **`@improve-agent`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/improve:agent`
-- **`@improve-prompt`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
+- **`@prompt-improver`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
 
 #### Distributed Governance Rule
 

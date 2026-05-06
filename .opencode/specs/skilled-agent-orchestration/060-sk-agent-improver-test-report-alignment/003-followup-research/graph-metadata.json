@@ -42,7 +42,7 @@
       "implementation-summary.md",
       ".opencode/agent/improve-agent.md",
       ".opencode/agent/write.md",
-      ".opencode/agent/improve-prompt.md",
+      ".opencode/agent/prompt-improver.md",
       ".opencode/agent/debug.md",
       ".opencode/agent/deep-research.md",
       ".opencode/agent/deep-review.md",
@@ -78,9 +78,9 @@
         "source": "derived"
       },
       {
-        "name": "improve-prompt.md",
+        "name": "prompt-improver.md",
         "kind": "doc",
-        "path": ".opencode/agent/improve-prompt.md",
+        "path": ".opencode/agent/prompt-improver.md",
         "source": "derived"
       },
       {

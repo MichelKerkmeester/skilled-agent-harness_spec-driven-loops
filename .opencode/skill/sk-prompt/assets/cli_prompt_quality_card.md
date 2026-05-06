@@ -15,7 +15,7 @@ Provide a compact, reusable asset for CLI prompt construction that improves prom
 
 ### Usage
 
-Load this card before building any CLI dispatch prompt. Select a framework from the task map, run the CLEAR pre-dispatch check, and escalate to `@improve-prompt` when the task crosses the fast-path risk threshold.
+Load this card before building any CLI dispatch prompt. Select a framework from the task map, run the CLEAR pre-dispatch check, and escalate to `@prompt-improver` when the task crosses the fast-path risk threshold.
 
 ---
 
@@ -61,7 +61,7 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
 
 ## 5. Escalation Triggers
 
-Dispatch `@improve-prompt` via the Task tool instead of loading `sk-prompt` inline when any of the following are true:
+Dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline when any of the following are true:
 
 - Complexity is `>= 7/10`
 - Compliance, policy, privacy, or security sensitivity is present

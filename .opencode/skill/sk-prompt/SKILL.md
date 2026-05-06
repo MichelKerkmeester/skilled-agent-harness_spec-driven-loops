@@ -24,7 +24,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 - Evaluating prompt quality with CLEAR scoring
 - Selecting the right prompt framework for a given task
 - Transforming vague requests into structured, effective prompts
-- Supporting indirect invocation from `@improve-prompt` agent dispatches and `cli_prompt_quality_card.md` fast-path escalation flows
+- Supporting indirect invocation from `@prompt-improver` agent dispatches and `cli_prompt_quality_card.md` fast-path escalation flows
 
 **Keyword Triggers**:
 - `$improve`, `$text`, `$short`, `$refine`, `$json`, `$yaml`
@@ -368,7 +368,7 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 
 ## 7. AGENT INVOCATION CONTRACT
 
-`@improve-prompt` is the fresh-context escalation surface for this skill. The agent loads the references in this skill, applies the same framework-selection and CLEAR rules, and returns a structured block that the caller can inject into a CLI dispatch without loading the full skill inline.
+`@prompt-improver` is the fresh-context escalation surface for this skill. The agent loads the references in this skill, applies the same framework-selection and CLEAR rules, and returns a structured block that the caller can inject into a CLI dispatch without loading the full skill inline.
 
 ### Expected Input Payload
 
@@ -415,12 +415,12 @@ ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
 
 - Keep routine `cli-*` dispatches inside the calling skill tree
 - Provide a compact framework-selection table and CLEAR 5-question check
-- Trigger escalation to `@improve-prompt` only when complexity, compliance, or ambiguity warrants the heavier path
+- Trigger escalation to `@prompt-improver` only when complexity, compliance, or ambiguity warrants the heavier path
 
 ### Two-Tier Behavior
 
 - **Fast path**: CLI skills load the local mirror card from their own `assets/` tree and apply the checklist inline.
-- **Deep path**: CLI skills dispatch `@improve-prompt`, which loads this skill's full reference set in fresh context and returns a structured enhancement block.
+- **Deep path**: CLI skills dispatch `@prompt-improver`, which loads this skill's full reference set in fresh context and returns a structured enhancement block.
 
 The card is intentionally compact and mirrors this skill's core routing heuristics rather than duplicating the full framework deep dives.
 

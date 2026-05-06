@@ -94,20 +94,6 @@ Predicate widening at one call site. The existing `ambiguousCluster` function in
 
 ---
 
-<!-- ANCHOR:verification -->
-## VERIFICATION
-
-| Test Type | Status | Notes |
-|-----------|--------|-------|
-| Unit: ambiguity dual-margin | PASS | 35 tests in scorer suite cover both axes; new SAD-002 test passes |
-| Unit: F-012-C2-04 invariant | PASS | "outside both margins → not ambiguous" still holds |
-| Regression: handler-level | PASS | 5 handler test files / 40 tests / all green |
-| Live MCP smoke | DEFERRED | MCP server held stale module; restart required |
-
-<!-- /ANCHOR:verification -->
-
----
-
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
@@ -120,6 +106,20 @@ Predicate widening at one call site. The existing `ambiguousCluster` function in
 | Leave `fusion.ts:380` `ambiguityPressure` unchanged | That's a separate uncertainty signal, not the `ambiguous` flag. Out of scope. |
 
 <!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Test Type | Status | Notes |
+|-----------|--------|-------|
+| Unit: ambiguity dual-margin | PASS | 35 tests in scorer suite cover both axes; new SAD-002 test passes |
+| Unit: F-012-C2-04 invariant | PASS | "outside both margins → not ambiguous" still holds |
+| Regression: handler-level | PASS | 5 handler test files / 40 tests / all green |
+| Live MCP smoke | DEFERRED | MCP server held stale module; restart required |
+
+<!-- /ANCHOR:verification -->
 
 ---
 

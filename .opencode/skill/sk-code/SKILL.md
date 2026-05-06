@@ -198,7 +198,7 @@ Ask for the runtime surface and required verification commands. Do not route gen
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Read target files before editing.
 2. Detect code surface before loading resources.
@@ -209,7 +209,7 @@ Ask for the runtime surface and required verification commands. Do not route gen
 7. For WEBFLOW, test relevant desktop and mobile browser behavior when runtime output changes.
 8. For OPENCODE, run `verify_alignment_drift.py` on the changed scope.
 
-### NEVER
+### ❌ NEVER
 
 1. Claim completion without verification evidence.
 2. Treat Go, Next.js, generic Node.js, React Native, or Swift as supported routes.
@@ -217,7 +217,7 @@ Ask for the runtime surface and required verification commands. Do not route gen
 4. Use Webflow browser rules for `.opencode/` system code.
 5. Leave commented-out code, production debug logs, or unchecked generated metadata drift.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Surface detection is ambiguous.
 2. Verification commands cannot be run locally.

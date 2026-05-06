@@ -945,7 +945,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Never scores, promotes, benchmarks or edits canonical targets. The `/improve:agent` command loop handles those.
 - Loop orchestration: scan integration surfaces, generate dynamic profile, dispatch this agent, score candidate across 5 dimensions (structural, ruleCoherence, integration, outputQuality, systemFitness), reduce state, check stop conditions
 
-**Improve-Prompt**
+**Prompt-Improver**
 - Prompt-escalation specialist for high-stakes external CLI invocations and other sensitive AI prompt work
 - Selects the best-fit framework from `sk-prompt`, applies DEPTH at the right energy level, and validates the result with CLEAR
 - Returns a structured prompt package with `FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, and `ESCALATION_NOTES`

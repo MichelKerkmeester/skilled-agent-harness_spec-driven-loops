@@ -116,9 +116,9 @@ config_file = "agents/deep-review.toml"
 description = "Proposal-only mutator for bounded improve-agent candidate generation with evaluator-first rules"
 config_file = "agents/improve-agent.toml"
 
-[agents.improve-prompt]
+[agents.prompt-improver]
 description = "Improve-prompt specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations"
-config_file = "agents/improve-prompt.toml"
+config_file = "agents/prompt-improver.toml"
 
 [agents.review]
 description = "Code review specialist focused on correctness, risk, and tests."

@@ -19,4 +19,4 @@ Agents:
   review        — Code review (read-only)
   speckit       — Spec folder documentation
   multi-ai-council   — Multi-strategy planning
-  improve-prompt — Prompt engineering
+  prompt-improver — Prompt engineering

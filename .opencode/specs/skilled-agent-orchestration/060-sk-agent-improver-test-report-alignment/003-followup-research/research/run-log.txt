@@ -31,7 +31,7 @@ I’ve got the deep-research contract loaded. I’m narrowing this first pass to
   │ tool|skill|orchestrator|orchestrat|invoked|managed|single iteration|review
   │ loop|deep-research|deep-review|/improve|/spec_kit|/memory|write
   │ files|READ-ONLY|read-only)" (.opencode/agent/write.md,
-  │ .opencode/agent/improve-prompt.md, .opencode/agent/debug.md,
+  │ .opencode/agent/prompt-improver.md, .opencode/agent/debug.md,
   │ .opencode/agent/deep-research.md, .opencode/agent/deep-review.md,
   │ .opencode/agent/context.md, .opencode/agent/orchestrate.md,
   │ .opencode/agent/review.md, .opencode/agent/code.md)
@@ -117,8 +117,8 @@ The R1 report confirms the central mismatch: Call B reached the thin mutator, wh
   │ .opencode/agent/debug.md
   └ L1:160 (159 lines read)
 
-● Read improve-prompt.md
-  │ .opencode/agent/improve-prompt.md
+● Read prompt-improver.md
+  │ .opencode/agent/prompt-improver.md
   └ L1:160 (160 lines read)
 
 ● Read write.md
@@ -745,8 +745,8 @@ Prior iterations already answer the broad rubric and Call B shape, so I’m shif
   │ t-alignment/003-followup-research/research/iterations/iteration-001.md
   └ L1:220 (188 lines read)
 
-● Read improve-prompt.md
-  │ .opencode/agent/improve-prompt.md
+● Read prompt-improver.md
+  │ .opencode/agent/prompt-improver.md
   └ L1:180 (180 lines read)
 
 ● Read deep-research.md
@@ -1768,7 +1768,7 @@ I’ve loaded the deep-research protocol and will keep this to one LEAF iteratio
   └ 5 files found
 
 ● Search (glob)
-  │ ".opencode/agent/{write,improve-prompt,debug,deep-research,deep-review,conte
+  │ ".opencode/agent/{write,prompt-improver,debug,deep-research,deep-review,conte
   │ xt,orchestrate,review,code}.md"
   └ 9 files found
 
@@ -1827,7 +1827,7 @@ The shell path was blocked by the runtime, so I’m switching to the built-in se
 ● Search (grep)
   │ "(command|YAML|workflow|dispatch|Task|LEAF|MUST|NEVER|skill|proposal|write|e
   │ dit|modify|orchestrate|review|body|frontmatter|tools|allowed-tools)"
-  │ (.opencode/agent/write.md, .opencode/agent/improve-prompt.md,
+  │ (.opencode/agent/write.md, .opencode/agent/prompt-improver.md,
   │ .opencode/agent/debug.md, .opencode/agent/deep-research.md,
   │ .opencode/agent/deep-review.md, .opencode/agent/context.md,
   │ .opencode/agent/orchestrate.md, .opencode/agent/review.md,

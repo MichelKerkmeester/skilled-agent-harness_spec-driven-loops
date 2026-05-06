@@ -92,7 +92,7 @@ The renumbering commit (`f061a654d`) updated forward-looking references (063→0
 | `../002-stress-test-implementation/stress-runs/stage4-summary.md` | R1 verdict table |
 | `../001-deep-research-recommendations/research/research.md` | 854-line prior synthesis (input #2) |
 | `.opencode/skill/sk-improve-agent/{SKILL.md, scripts/, references/, assets/}` | Triad surface area (re-read by iterations) |
-| `.opencode/agent/{write,improve-agent,improve-prompt,debug,deep-research,deep-review,context,orchestrate,review,code}.md` | RQ-4 meta-agent audit subjects |
+| `.opencode/agent/{write,improve-agent,prompt-improver,debug,deep-research,deep-review,context,orchestrate,review,code}.md` | RQ-4 meta-agent audit subjects |
 
 ---
 

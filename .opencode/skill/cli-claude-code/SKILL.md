@@ -336,7 +336,7 @@ claude -p "Now refactor the auth module based on the review" --continue --output
 
 ## 4. RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. Verify Claude Code CLI is installed before first invocation (`command -v claude`); check `$CLAUDECODE` for nesting.
 2. Use `--permission-mode plan` for review/analysis/exploration (no file writes); `--output-format text` unless JSON is specifically needed.
@@ -345,17 +345,17 @@ claude -p "Now refactor the auth module based on the review" --continue --output
 5. Specify `--model` explicitly: default `claude-sonnet-4-6` unless task needs Opus (deep reasoning) or Haiku (fast/cheap).
 6. Route to the appropriate `--agent <name>` when the task matches a specialization (see Section 3 routing table).
 7. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 interactively.
-8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@improve-prompt` via the Task tool instead of loading `sk-prompt` inline.
+8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline.
 9. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
 
-### NEVER
+### ❌ NEVER
 
 1. Use `--permission-mode bypassPermissions` without explicit user approval (auto-approves all writes/tool calls).
 2. Trust output blindly for security-sensitive code (review for XSS, injection, hardcoded secrets, eval), or send sensitive data (API keys, passwords, credentials) in prompts — Claude Code transmits to Anthropic's API.
 3. Hammer the API with rapid sequential calls — respect rate limits; use `--max-budget-usd` for cost control.
 4. Use Claude Code for tasks where context is already loaded — direct action by the calling AI is faster.
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. Claude Code CLI is not installed and user has not acknowledged (provide `npm install -g @anthropic-ai/claude-code`).
 2. Rate limits or budget caps are persistently hit (suggest increasing `--max-budget-usd` or checking quota).
