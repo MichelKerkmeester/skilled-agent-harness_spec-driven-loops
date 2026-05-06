@@ -6,6 +6,13 @@ trigger_phrases:
   - "cluster a to e verification"
 importance_tier: "critical"
 contextType: "verification"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/006-cluster-a-to-e"
+    last_updated_at: "2026-05-06T11:34:49Z"
+    last_updated_by: "cli-codex-gpt-5.5"
+    recent_action: "Aligned checklist with Level 2 contract"
+    next_safe_action: "Review verification blockers"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 # Verification Checklist: Code Graph + Advisor + Hooks Polish
@@ -36,6 +43,27 @@ contextType: "verification"
 
 ---
 
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [x] CHK-025 [P1] Existing handler envelope style is preserved. Evidence: targeted handler tests pass and new fields are additive.
+- [x] CHK-026 [P1] Shared helpers stay scoped to existing code graph/advisor surfaces. Evidence: no new cross-subsystem abstraction or DB schema was introduced.
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [x] CHK-020 [P0] New tests count is at least 8. Evidence: 11 focused tests added/updated across query, context, verify, scan, indexer, ensure-ready, advisor-rebuild, and context-server suites.
+- [x] CHK-021 [P1] `npx vitest run code_graph/tests/` passes. Evidence: PASS, 20 files and 270 tests.
+- [ ] CHK-022 [P1] Advisor test suite passes. Evidence: FAIL, `npx vitest run skill_advisor/tests/` reported 36 files passed, 3 files failed, 285 tests passed, 3 tests failed; failing parity/python compat expectations are outside the changed advisor rebuild predicate.
+- [ ] CHK-023 [P1] Hooks/general `tests/` suite passes. Evidence: FAIL, broad `npx vitest run tests/` reported 7 failed suites and 116 failed tests in the current dirty workspace; the scoped query fallback and structural scan regressions now pass.
+- [x] CHK-024 [P0] `npm run build` passes. Evidence: PASS, `npm run build` exits 0.
+<!-- /ANCHOR:testing -->
+
+---
+
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
@@ -50,18 +78,6 @@ contextType: "verification"
 - [x] CHK-018 [P1] F-013 Gemini docs updated without runtime code changes. Evidence: `hooks/gemini/README.md` now documents SessionStart, compact, SessionEnd registration and smoke examples.
 - [x] CHK-019 [P1] F-017 CocoIndex docs updated without runtime code changes. Evidence: `mcp-coco-index/references/tool_reference.md` now documents canonical snake_case live output plus an interop note.
 <!-- /ANCHOR:fix-completeness -->
-
----
-
-<!-- ANCHOR:testing -->
-## Testing
-
-- [x] CHK-020 [P0] New tests count is at least 8. Evidence: 11 focused tests added/updated across query, context, verify, scan, indexer, ensure-ready, advisor-rebuild, and context-server suites.
-- [x] CHK-021 [P1] `npx vitest run code_graph/tests/` passes. Evidence: PASS, 20 files and 270 tests.
-- [ ] CHK-022 [P1] Advisor test suite passes. Evidence: FAIL, `npx vitest run skill_advisor/tests/` reported 36 files passed, 3 files failed, 285 tests passed, 3 tests failed; failing parity/python compat expectations are outside the changed advisor rebuild predicate.
-- [ ] CHK-023 [P1] Hooks/general `tests/` suite passes. Evidence: FAIL, broad `npx vitest run tests/` produced many unrelated suite failures in the current dirty workspace; the scoped query fallback regression now passes.
-- [ ] CHK-024 [P0] `npm run build` passes. Evidence: FAIL, TypeScript build stops on missing pre-existing deleted module `matrix_runners/adapter-cli-copilot.js`.
-<!-- /ANCHOR:testing -->
 
 ---
 
@@ -80,8 +96,17 @@ contextType: "verification"
 
 - [x] CHK-040 [P1] Spec, plan, tasks, checklist, ADR, and implementation summary synchronized. Evidence: `implementation-summary.md` records delivered fixes and failed global verification gates.
 - [x] CHK-041 [P1] Parent `graph-metadata.json` includes `006-cluster-a-to-e`. Evidence: parent `children_ids` includes `system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/006-cluster-a-to-e`.
-- [ ] CHK-042 [P2] Strict validation passes for child and parent. Evidence: pending final strict validation run after documentation updates.
+- [x] CHK-042 [P2] Strict validation passes for child and parent. Evidence: PASS, child exit 0 and parent exit 0.
 <!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## FILE ORGANIZATION
+
+- [x] CHK-050 [P1] Source and test edits remain in requested files/surfaces. Evidence: code changes are limited to code graph, advisor, context-server, docs, and packet artifacts named in scope.
+- [x] CHK-051 [P1] Parent/child packet files remain under the requested spec hierarchy. Evidence: packet artifacts live under `006-cluster-a-to-e`, with parent `graph-metadata.json` updated.
+<!-- /ANCHOR:file-org -->
 
 ---
 
@@ -90,9 +115,9 @@ contextType: "verification"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
-| P1 Items | 11 | 9/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 15 | 13/15 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-05-06
 <!-- /ANCHOR:summary -->

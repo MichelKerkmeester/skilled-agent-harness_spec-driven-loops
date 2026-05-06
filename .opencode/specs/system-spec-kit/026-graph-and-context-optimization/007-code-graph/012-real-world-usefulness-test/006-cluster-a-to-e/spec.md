@@ -9,6 +9,13 @@ trigger_phrases:
   - "F-014 F-015 F-016 F-017"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/006-cluster-a-to-e"
+    last_updated_at: "2026-05-06T11:34:49Z"
+    last_updated_by: "cli-codex-gpt-5.5"
+    recent_action: "Aligned spec with Level 2 contract"
+    next_safe_action: "Review verification blockers"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Code Graph + Advisor + Hooks Polish
@@ -24,7 +31,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Blocked on global verification |
 | **Created** | 2026-05-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -117,7 +124,7 @@ Land the five remaining P1 clusters in one bounded packet, with tests for each b
 
 ---
 
-<!-- ANCHOR:non-functional -->
+<!-- ANCHOR:nfr -->
 ## 5. NON-FUNCTIONAL REQUIREMENTS
 
 | Category | Requirement |
@@ -127,16 +134,60 @@ Land the five remaining P1 clusters in one bounded packet, with tests for each b
 | Maintainability | Shared readiness policy should avoid divergent query/context decisions. |
 | Documentation | Doc-only findings remain doc-only. |
 | Testing | Add at least eight regression tests across code graph, advisor, and startup surfaces. |
-<!-- /ANCHOR:non-functional -->
+<!-- /ANCHOR:nfr -->
 
 ---
 
-<!-- ANCHOR:acceptance -->
-## 6. ACCEPTANCE CRITERIA
+<!-- ANCHOR:edge-cases -->
+## 6. EDGE CASES
+
+| Case | Expected Handling |
+|------|-------------------|
+| Stored fingerprint predates glob dimensions. | Treat as legacy-compatible on first comparison and do not crash. |
+| Stored scope differs from active runtime scope. | Keep reads blocked and surface active/stored scope diagnostics. |
+| Parse diagnostics backlog is above threshold. | Block guarded auto-rescan and report the backlog reason. |
+| Raw CocoIndex seed omits nested `lines`. | Accept `start_line` and `end_line` directly. |
+| Startup index writes generation but SQLite is absent. | Publish stale state with `post-index-assertion-failed`. |
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 7. COMPLEXITY
+
+This is a Level 2 packet because it touches several runtime surfaces but avoids schema migrations, new storage tables, and broad architecture changes. The risk is mostly behavioral correctness around readiness gates and startup publication, so focused regression coverage plus existing full-suite gates are sufficient.
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 8. SUCCESS CRITERIA
 
 - All five clusters are fixed or explicitly reported as failed with evidence.
 - New tests cover F-007, F-018, F-019, F-014, F-015, F-016, and glob fingerprint behavior.
 - `npx vitest run code_graph/tests/`, `npx vitest run skill_advisor/tests/` or equivalent advisor suite, and `npx vitest run tests/` pass or failures are reported verbatim.
 - `npm run build` completes and dist output is synchronized.
 - Child and parent strict spec validation pass before completion claim.
-<!-- /ANCHOR:acceptance -->
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 9. RISKS & DEPENDENCIES
+
+| Risk | Dependency or Mitigation |
+|------|--------------------------|
+| Guarded read-path scans could still replace data incorrectly. | Depends on Phase 005 scope-change guard; this packet adds scope and parse-backlog preflight. |
+| Legacy fingerprints lack glob terms. | v2 parser remains compatible and v3 is emitted when globs are present. |
+| Build and broad tests fail in dirty workspace. | Completion status remains blocked until unrelated deleted files and failing suites are repaired. |
+| Hook docs drift into runtime changes. | Cluster B remains markdown-only. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+1. Should the missing pre-existing `matrix_runners/adapter-cli-copilot.ts` and deleted Copilot hook tree be restored in this packet or handled as a separate cleanup packet?
+2. Should the broad parity/python compat failures in `skill_advisor/tests/` be triaged separately after this cluster packet?
+<!-- /ANCHOR:questions -->

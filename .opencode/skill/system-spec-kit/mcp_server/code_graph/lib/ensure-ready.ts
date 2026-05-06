@@ -19,6 +19,13 @@ import {
 } from './index-scope-policy.js';
 import { isRecord } from './query-result-adapter.js';
 import * as graphDb from './code-graph-db.js';
+// F-018: shared policy module (`auto-rescan-policy.ts`) is the
+// canonical reference for the read-path guard. ensure-ready
+// delegates here so callers that consume the helper directly
+// (read-path handlers via `shouldAutoRescan(...)`) and callers
+// that rely on `ReadyResult.autoRescanSafety` see identical
+// decisions.
+import { shouldAutoRescan } from './auto-rescan-policy.js';
 
 // ───────────────────────────────────────────────────────────────
 // Types
@@ -211,20 +218,18 @@ function evaluateGuardedFullScan(
   diagnostics: ReturnType<typeof buildReadinessDiagnostics>,
   parseErrorBacklogThreshold: number,
 ): Pick<ReadyResult, 'autoRescanSafety' | 'autoRescanBlockReason'> {
-  const scopesMatch = scopeFingerprintsMatchOrLegacy(
-    diagnostics.storedScope?.fingerprint,
-    diagnostics.activeScope?.fingerprint,
-  );
-  if (!scopesMatch) {
+  // F-018: delegate to the shared `auto-rescan-policy.ts` helper
+  // so this gate and the read-path handler gate stay in sync.
+  const decision = shouldAutoRescan({
+    storedScope: { fingerprint: diagnostics.storedScope?.fingerprint ?? null },
+    activeScope: { fingerprint: diagnostics.activeScope?.fingerprint ?? null },
+    parseDiagnosticsBacklog: diagnostics.parseErrorBacklog ?? 0,
+    parseDiagnosticsBacklogThreshold: parseErrorBacklogThreshold,
+  });
+  if (!decision.allowed) {
     return {
       autoRescanSafety: 'blocked',
-      autoRescanBlockReason: 'scope_mismatch',
-    };
-  }
-  if ((diagnostics.parseErrorBacklog ?? 0) > parseErrorBacklogThreshold) {
-    return {
-      autoRescanSafety: 'blocked',
-      autoRescanBlockReason: 'parse_error_backlog',
+      autoRescanBlockReason: decision.blockReason,
     };
   }
   return { autoRescanSafety: 'allowed' };

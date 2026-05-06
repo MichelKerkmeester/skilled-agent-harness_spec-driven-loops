@@ -7,6 +7,13 @@ trigger_phrases:
   - "read-path auto-rescan plan"
 importance_tier: "critical"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/006-cluster-a-to-e"
+    last_updated_at: "2026-05-06T11:34:49Z"
+    last_updated_by: "cli-codex-gpt-5.5"
+    recent_action: "Aligned plan with Level 2 contract"
+    next_safe_action: "Review verification blockers"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Code Graph + Advisor + Hooks Polish
@@ -120,8 +127,21 @@ Use narrowly-scoped shared helpers near the existing code graph readiness and sc
 
 ---
 
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+| Dependency | Status | Notes |
+|------------|--------|-------|
+| Phase 004 remediation | Complete | Earlier P0 remediation packet. |
+| Phase 005 scope guard | Complete | Required for guarded read-path auto-rescan safety. |
+| Existing code graph metadata helpers | Available | Reused for stored scope comparison. |
+| Existing Vitest suites | Mixed | Focused/code graph suites pass; broad suites have unrelated failures. |
+<!-- /ANCHOR:dependencies -->
+
+---
+
 <!-- ANCHOR:risks -->
-## 6. RISKS
+## 7. RISKS
 
 | Risk | Mitigation |
 |------|------------|
@@ -130,3 +150,56 @@ Use narrowly-scoped shared helpers near the existing code graph readiness and sc
 | Context-server startup tests may be brittle. | Keep assertion helper small and test predicate behavior without broad startup rewrites. |
 | Doc-only findings could drift into behavior changes. | Limit Cluster B and F-017 to markdown edits only. |
 <!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:effort -->
+## 8. EFFORT
+
+| Area | Estimate | Actual Result |
+|------|----------|---------------|
+| Cluster B docs | Small | Completed. |
+| Cluster D interop | Small | Completed with regression test. |
+| Cluster A read path | Medium | Completed with readiness/query/context/verify regressions. |
+| Cluster C advisor | Medium | Completed with targeted regressions. |
+| Cluster E fingerprint | Medium | Completed with scan and fingerprint regressions. |
+| Global verification | Medium | Blocked by unrelated dirty-worktree failures. |
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 9. ROLLBACK PLAN
+
+If any cluster needs to be backed out, revert only the files listed in the spec scope for that cluster and rerun its focused vitest target. Do not revert unrelated workspace deletions or modifications. For Cluster E specifically, preserve legacy v2 fingerprint parsing if v3 emission is rolled back so older metadata remains readable.
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+| Phase | Depends On | Reason |
+|-------|------------|--------|
+| Planning | Gate 3 pre-approval | Establishes packet docs and parent graph metadata. |
+| Cluster B | Planning | Documentation-only, low risk. |
+| Cluster D | Planning | Seed normalization and docs are independent. |
+| Cluster A | Phase 005 | Auto-rescan safety relies on scope-change guard. |
+| Cluster C | Planning | Advisor hardening is independent. |
+| Cluster E | Phase 005 | Extends the scope fingerprint guard introduced earlier. |
+| Verification | All clusters | Runs targeted and broad gates after edits. |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+| Cluster | Rollback Path | Verification |
+|---------|---------------|--------------|
+| A | Revert readiness/query/context/verify changes and related tests. | `npx vitest run code_graph/tests/ tests/ensure-ready.vitest.ts`. |
+| B | Revert README text only. | Markdown diff review. |
+| C | Revert advisor rebuild and startup assertion helpers/tests. | `npx vitest run tests/advisor-rebuild.vitest.ts tests/context-server.vitest.ts -t "F-015|advisor_rebuild"`. |
+| D | Revert context seed normalizer and CocoIndex docs. | `npx vitest run code_graph/tests/code-graph-context-handler.vitest.ts`. |
+| E | Revert v3 glob fingerprint emission and scan config plumbing. | `npx vitest run code_graph/tests/code-graph-scan.vitest.ts code_graph/tests/code-graph-indexer.vitest.ts`. |
+<!-- /ANCHOR:enhanced-rollback -->

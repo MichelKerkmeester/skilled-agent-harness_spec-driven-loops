@@ -73,6 +73,29 @@ function buildScopePreflight() {
   };
 }
 
+// F-019: Informational scope-mismatch field derived from the
+// already-computed preflight. Returns `null` when scopes match.
+// When they differ, surfaces the canonical { stored, active,
+// recommendation } shape so operators can decide whether to
+// rescan with matching scope or pass `forceScopeChange`. The
+// field is purely informational — verify proceeds either way.
+function buildScopeMismatchInfo(
+  preflight: ReturnType<typeof buildScopePreflight>,
+): {
+  stored: ReturnType<typeof scopeDiagnostic>;
+  active: ReturnType<typeof scopeDiagnostic>;
+  recommendation: string;
+} | null {
+  if (preflight.status !== 'mismatch') {
+    return null;
+  }
+  return {
+    stored: preflight.storedScope,
+    active: preflight.activeScope,
+    recommendation: 'rescan with matching scope or pass forceScopeChange',
+  };
+}
+
 function applyCategoryFilter(
   battery: GoldBattery,
   category: VerifyCategory | undefined,
@@ -184,12 +207,17 @@ export async function handleCodeGraphVerify(
     });
     const readiness = buildReadinessBlock(readyState);
     const scopePreflight = buildScopePreflight();
+    // F-019: Informational scopeMismatch field derived from the
+    // single preflight call (no extra DB query). Surfaces stored
+    // vs active scope and a remediation hint when the two differ.
+    const scopeMismatch = buildScopeMismatchInfo(scopePreflight);
 
     if (readyState.freshness !== 'fresh') {
       return buildResponse({
         status: 'blocked',
         readiness,
         scopePreflight,
+        ...(scopeMismatch ? { scopeMismatch } : {}),
       });
     }
 
@@ -198,6 +226,7 @@ export async function handleCodeGraphVerify(
         status: 'blocked',
         readiness,
         scopePreflight,
+        ...(scopeMismatch ? { scopeMismatch } : {}),
       });
     }
 
@@ -217,6 +246,7 @@ export async function handleCodeGraphVerify(
     return buildResponse({
       status: 'ok',
       scopePreflight,
+      ...(scopeMismatch ? { scopeMismatch } : {}),
       result,
     });
   } catch (error: unknown) {

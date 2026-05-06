@@ -14,9 +14,8 @@ _memory:
     last_updated_at: "2026-05-06T11:34:49Z"
     last_updated_by: "cli-codex-gpt-5.5"
     recent_action: "Implemented clusters A-E and recorded verification blockers"
-    next_safe_action: "Repair pre-existing deleted matrix/Copilot surfaces or rerun global gates in a clean workspace"
+    next_safe_action: "Triage broad advisor/hooks/general suite failures in a separate cleanup packet"
     blockers:
-      - "npm run build fails because matrix_runners/adapter-cli-copilot.js cannot be resolved from a pre-existing deleted source file."
       - "skill_advisor/tests parity/python-compat suites fail outside the changed advisor rebuild predicate."
       - "broad tests/ suite fails across unrelated dirty-worktree areas."
     key_files:
@@ -34,7 +33,7 @@ _memory:
       fingerprint: "sha256:6666666666666666666666666666666666666666666666666666666666666666"
       session_id: "026-007-012-006-cluster-a-to-e"
       parent_session_id: null
-    completion_pct: 82
+    completion_pct: 90
     open_questions:
       - "Should the pre-existing deleted cli-copilot/matrix files be restored in this packet or handled by a separate cleanup packet?"
     answered_questions: []
@@ -55,7 +54,7 @@ _memory:
 | **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/006-cluster-a-to-e` |
 | **Completed** | 2026-05-06 |
 | **Level** | 2 |
-| **Status** | Implemented; global verification blocked |
+| **Status** | Implemented; broad test verification blocked |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -113,7 +112,7 @@ Scope fingerprints now include sorted include/exclude glob dimensions when globs
 
 Implementation followed the requested order: planning docs, Cluster B documentation, Cluster D interop, Cluster A read-path changes, Cluster C advisor hardening, then Cluster E fingerprint hardening. Focused vitest coverage was added for each code-bearing finding, with doc-only findings verified by scoped file diffs.
 
-The focused regression set and full code graph suite pass. The required global gates are not green in this workspace because unrelated pre-existing deletions and broad suite failures are still present.
+The focused regression set, full code graph suite, TypeScript build, and strict child/parent validation pass. The required global Vitest gates are not green in this workspace because unrelated pre-existing deletions and broad suite failures are still present.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -142,10 +141,10 @@ The focused regression set and full code graph suite pass. The required global g
 | Query fallback compatibility vitest | PASS: 1 file, 6 tests. |
 | `npx vitest run code_graph/tests/` | PASS: 20 files, 270 tests. |
 | `npx vitest run skill_advisor/tests/` | FAIL: 36 files passed, 3 files failed, 285 tests passed, 3 tests failed. |
-| `npx vitest run tests/` | FAIL: broad suite reported many unrelated failures in the dirty workspace. |
-| `npm run build` | FAIL: `matrix_runners/run-matrix.ts` cannot resolve missing `./adapter-cli-copilot.js`. |
-| Child strict validation | Pending after summary write. |
-| Parent strict validation | Pending after summary write. |
+| `npx vitest run tests/` | FAIL: 7 failed suites and 116 failed tests observed in the dirty workspace. |
+| `npm run build` | PASS: exit 0. |
+| Child strict validation | PASS: exit 0. |
+| Parent strict validation | PASS: exit 0. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -153,7 +152,6 @@ The focused regression set and full code graph suite pass. The required global g
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Build is blocked outside this packet.** The TypeScript build fails on a missing matrix runner adapter from pre-existing deleted files, not on the cluster changes.
-2. **Global suites are not clean.** `skill_advisor/tests/` and `tests/` still fail in broad parity, hook, memory, and documentation areas unrelated to the targeted fixes.
-3. **Docs-only Copilot recreation is scoped.** The Copilot README was restored/updated for F-012, but the wider deleted Copilot hook tree remains a separate workspace issue.
+1. **Global suites are not clean.** `skill_advisor/tests/` and `tests/` still fail in broad parity, hook, memory, and documentation areas unrelated to the targeted fixes.
+2. **Docs-only Copilot recreation is scoped.** The Copilot README was restored/updated for F-012, but the wider deleted Copilot hook tree remains a separate workspace issue.
 <!-- /ANCHOR:limitations -->

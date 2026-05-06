@@ -238,6 +238,18 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
               graphAnswersOmitted: true,
               requiredAction,
               blockReason,
+              // F-007: surface scope + manifest diagnostics
+              // directly on the blocked payload's `data` object
+              // so operators can route on them without parsing
+              // `data.readiness`. Backward compatible: legacy
+              // callers reading `status` + `data.blockReason`
+              // continue to work; nested `data.readiness` still
+              // carries the same fields.
+              reason: readiness.reason,
+              activeScope: readiness.activeScope ?? null,
+              storedScope: readiness.storedScope ?? null,
+              manifestCount: readiness.manifestCount ?? null,
+              manifestDigest: readiness.manifestDigest ?? null,
               readiness: readinessBlock,
               canonicalReadiness: readinessBlock.canonicalReadiness,
               trustState: readinessBlock.trustState,

@@ -813,6 +813,11 @@ function buildBlockedReadPayload(
   subject: string,
 ) {
   const fallbackDecision = buildFallbackDecision(readiness);
+  // F-007: surface scope + manifest diagnostics directly on the
+  // blocked payload's `data` object so operators can route on
+  // them without parsing `data.readiness`. Backward compatible:
+  // legacy callers reading `status` + `data.blockReason` continue
+  // to work; nested `data.readiness` still carries the same fields.
   return {
     status: 'blocked',
     message: `code_graph_full_scan_required: ${readiness.reason}`,
@@ -824,6 +829,11 @@ function buildBlockedReadPayload(
       graphAnswersOmitted: true,
       requiredAction: 'code_graph_scan',
       blockReason: 'full_scan_required',
+      reason: readiness.reason,
+      activeScope: readiness.activeScope ?? null,
+      storedScope: readiness.storedScope ?? null,
+      manifestCount: readiness.manifestCount ?? null,
+      manifestDigest: readiness.manifestDigest ?? null,
       ...(fallbackDecision ? { fallbackDecision } : {}),
     }, readiness, `code_graph_query ${operation} blocked payload`),
   };

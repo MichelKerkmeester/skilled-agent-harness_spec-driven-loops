@@ -23,13 +23,28 @@ These hooks keep the canonical recovery chain aligned with `handover.md`, `_memo
 
 ## 2. HOOK REGISTRATION
 
-Register startup, compact, stop, and advisor hooks in `.gemini/settings.json`:
+All four Gemini lifecycle hooks register through `.gemini/settings.json` under
+`hooks.<EventName>[]`. The advisor brief, startup brief, post-compaction
+recovery, and session-end persistence each own a dedicated subsection below
+with its own smoke command. Run smoke checks from the repository root after
+`npm run build`.
+
+Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the
+current process session. The full contract lives at
+`../../../references/hooks/skill-advisor-hook.md`.
+
+### SessionStart Registration
+
+Gemini fires `SessionStart` for each new, resumed, or cleared session. The
+hook delivers the startup brief via `hookSpecificOutput.additionalContext`,
+branching on the `source` field (`startup` | `resume` | `clear`). A
+`source: "compact"` dispatch is supported defensively in case `BeforeAgent`
+injects a one-shot compact recovery — Gemini does not currently emit a
+native `PreCompress` source for `SessionStart`.
 
 ```json
 {
-  "hooksConfig": {
-    "enabled": true
-  },
+  "hooksConfig": { "enabled": true },
   "hooks": {
     "SessionStart": [
       {
@@ -42,7 +57,32 @@ Register startup, compact, stop, and advisor hooks in `.gemini/settings.json`:
           }
         ]
       }
-    ],
+    ]
+  }
+}
+```
+
+Smoke check:
+
+```bash
+printf '%s' '{"source":"startup","session_id":"smoke","cwd":"'"$PWD"'"}' \
+  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js
+```
+
+Expected stdout contains a JSON object with non-empty
+`hookSpecificOutput.additionalContext` carrying a `Session Context` section
+(or fallback text when the startup brief module is unavailable).
+
+### BeforeAgent Registration (Advisor)
+
+`BeforeAgent` is Gemini's prompt-time surface. The advisor hook calls
+`buildSkillAdvisorBrief()` and emits
+`hookSpecificOutput.additionalContext` only when the renderer returns a
+brief; otherwise it returns `{}` so Gemini appends nothing.
+
+```json
+{
+  "hooks": {
     "BeforeAgent": [
       {
         "hooks": [
@@ -54,7 +94,78 @@ Register startup, compact, stop, and advisor hooks in `.gemini/settings.json`:
           }
         ]
       }
-    ],
+    ]
+  }
+}
+```
+
+Smoke check:
+
+```bash
+printf '%s' '{"prompt":"smoke","cwd":"'"$PWD"'"}' \
+  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js
+```
+
+Expected stdout is either an empty `{}` (no brief rendered) or a JSON
+object whose `hookSpecificOutput.additionalContext` contains the rendered
+advisor brief.
+
+### Compact Registration (BeforeAgent One-Shot)
+
+Gemini does not expose a `PreCompress` event with a session-prime
+`compact` source. Post-compaction recovery is delivered through
+`compact-inject.ts`, registered as a second `BeforeAgent` entry. It checks
+the per-session compact-prime cache, validates TTL plus semantic guard,
+and injects the wrapped payload exactly once before clearing the cache.
+Subsequent `BeforeAgent` invocations are no-ops until a new
+PreCompress-equivalent caches a payload.
+
+```json
+{
+  "hooks": {
+    "BeforeAgent": [
+      {
+        "hooks": [
+          {
+            "name": "speckit-compact-inject",
+            "type": "command",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js'",
+            "timeout": 3000
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Co-locate this entry in the same `BeforeAgent` array as
+`speckit-user-prompt-advisor`; both hooks fail open and return early when
+their cache or advisor inputs are missing, so order is not load-bearing.
+
+Smoke check (no cached payload — exits silently):
+
+```bash
+printf '%s' '{"transcript_path":"/tmp/missing-transcript.jsonl","cwd":"'"$PWD"'","session_id":"smoke"}' \
+  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js
+```
+
+Expected stdout is empty when no compact-prime cache exists for the
+session. When a cache exists and is fresh, stdout contains
+`hookSpecificOutput.additionalContext` with the wrapped recovered payload
+plus recovery instructions, and the cache is cleared after the write.
+
+### SessionEnd Registration
+
+`SessionEnd` runs `session-stop.ts`, which persists session state and
+auto-detects the active spec folder by scanning the transcript for
+`.opencode/specs/<folder>/<child>/` paths. Transcripts larger than 5 MB
+are skipped to prevent OOM. A separate `--finalize` mode (no stdin
+required) cleans state files older than 24 hours.
+
+```json
+{
+  "hooks": {
     "SessionEnd": [
       {
         "hooks": [
@@ -71,35 +182,19 @@ Register startup, compact, stop, and advisor hooks in `.gemini/settings.json`:
 }
 ```
 
-For compact recovery, wire the Gemini compact/summary hook surface to:
+Smoke check:
 
 ```bash
-node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js
-```
-
-Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the current process session. The full contract lives at `../../../references/hooks/skill-advisor-hook.md`.
-
-## 3. SMOKE EXAMPLES
-
-Run these from the repository root after `npm run build`:
-
-```bash
-printf '%s' '{"source":"startup"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-prime.js
-
-printf '%s' '{"prompt":"smoke","cwd":"'"$PWD"'"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/user-prompt-submit.js
-
-printf '%s' '{"transcript_path":"/tmp/missing-transcript.jsonl","cwd":"'"$PWD"'"}' \
-  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/compact-inject.js
-
-printf '%s' '{"cwd":"'"$PWD"'","session_id":"smoke"}' \
+printf '%s' '{"cwd":"'"$PWD"'","session_id":"smoke","reason":"exit"}' \
   | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/gemini/session-stop.js
 ```
 
-Session-prime and compact emit Gemini hook JSON with `hookSpecificOutput.additionalContext` when context is available. The advisor emits `{}` when no brief is rendered. Session-stop persists state and exits 0 for a valid smoke payload.
+Expected behavior: hook persists state for `session_id` and exits 0; no
+stdout payload is required by `SessionEnd`. The `--finalize` cleanup pass
+runs as `node .../session-stop.js --finalize` without stdin.
 
-## 4. RELATED
+## 3. RELATED
 
 - `../README.md`
 - `../claude/README.md`
+- `../codex/README.md`
