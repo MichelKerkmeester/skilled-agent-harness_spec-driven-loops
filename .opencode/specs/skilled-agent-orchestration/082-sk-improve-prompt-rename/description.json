@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename",
   "description": "Feature Specification: sk-improve-prompt → sk-prompt skill rename — Phase Parent",
   "keywords": [
@@ -10,13 +11,14 @@
     "advisor-rebuild",
     "cross-runtime-mirroring"
   ],
-  "lastUpdated": "2026-05-06T12:24:00.000Z",
-  "level": "phase",
+  "lastUpdated": "2026-05-06T11:38:46.077Z",
   "specId": "082",
   "folderSlug": "sk-improve-prompt-rename",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_12-38__manual-context-save.md"
+  ]
 }
