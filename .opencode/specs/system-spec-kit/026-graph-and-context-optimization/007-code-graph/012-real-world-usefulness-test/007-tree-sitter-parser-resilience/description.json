@@ -3,7 +3,7 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/007-tree-sitter-parser-resilience",
   "title": "Tree-sitter parser resilience",
   "description": "Investigate and remediate tree-sitter parser memory-access-out-of-bounds crashes. Live testing showed ~17.5% of files (1,640/9,349) crash the parser when scope expands beyond skills-only to agents+commands+specs+plugins. Skills-only scope is clean. Plan: discriminate among three hypotheses (native version, WASM grammar, content-specific syntax) via minimum failing fixtures, then ship a persistent skip-list policy with telemetry so broad-scope scans stay usable while the root cause is pinned down.",
-  "status": "planned",
+  "status": "research_complete",
   "level": 2,
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test",
   "trigger_phrases": [

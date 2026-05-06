@@ -1,0 +1,15 @@
+# iter-006-bash-isolation variant=sh-excluded
+# target loops=50 max_parses=5000 max_wall_ms=60000
+# cohort filtered (sh-excluded): 18 files
+# ext distribution: {".js":2,".ts":10,".py":6}
+# sh-excluded loop=1 totalParses=18 ok=18 b1=0 b2=0 heapMb=5.8
+# sh-excluded loop=10 totalParses=180 ok=180 b1=0 b2=0 heapMb=6.0
+# sh-excluded loop=20 totalParses=360 ok=360 b1=0 b2=0 heapMb=6.2
+# sh-excluded loop=30 totalParses=540 ok=540 b1=0 b2=0 heapMb=6.3
+# sh-excluded loop=40 totalParses=720 ok=720 b1=0 b2=0 heapMb=6.5
+# sh-excluded loop=50 totalParses=900 ok=900 b1=0 b2=0 heapMb=5.1
+# sh-excluded DONE aborted=none
+# sh-excluded total_parses=900 ok=900 b1=0 b2=0 other=0
+# sh-excluded elapsed_ms=740
+# sh-excluded NO_B2_REPRODUCED across full run
+# sh-excluded VERDICT: NO_B2

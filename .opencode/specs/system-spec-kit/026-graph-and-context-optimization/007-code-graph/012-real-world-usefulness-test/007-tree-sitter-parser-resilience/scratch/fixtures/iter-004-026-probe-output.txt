@@ -1,0 +1,17 @@
+# cohort-replay
+# wts dir : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter
+# wasms   : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/system-spec-kit/mcp_server/node_modules/tree-sitter-wasms/out
+# cohort  : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-oob-cohort.txt
+# loaded api: Parser=function Language=function from node_modules/web-tree-sitter/web-tree-sitter.js
+file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js:1927
+      if (condition) throw new Error(message);
+                           ^
+
+Error
+    at failIf (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js:1927:28)
+    at getDylinkMetadata (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js:1944:7)
+    at Object.loadWebAssemblyModule (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js:2268:20)
+    at Language.load (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-026-probe/node_modules/web-tree-sitter/web-tree-sitter.js:1506:25)
+    at async file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/scratch/fixtures/iter-004-cohort-replay.mjs:81:7
+
+Node.js v25.6.1

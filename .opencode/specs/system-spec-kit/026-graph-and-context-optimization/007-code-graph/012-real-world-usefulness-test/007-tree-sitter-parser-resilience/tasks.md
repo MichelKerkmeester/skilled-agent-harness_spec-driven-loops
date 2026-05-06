@@ -69,13 +69,15 @@ _memory:
 
 - [ ] T007 Schema v5: add `parser_skip_list` table to `mcp_server/code_graph/lib/code-graph-db.ts` (columns: file_path PK, error_class, last_seen_at, attempt_count, last_success_at)
 - [ ] T008 Migration: v4 → v5 round-trip with backfill from existing parse_diagnostics rows
-- [ ] T009 Skip-list module: `mcp_server/code_graph/lib/parser-skip-list.ts` exporting `addToSkipList`, `lookupSkipList`, `recordSuccess`, `evictStale`
-- [ ] T010 Parser wrapper: in `mcp_server/code_graph/lib/parser.ts` (or equivalent), wrap tree-sitter call; on crash → upsert skip-list + emit ParseFailure
-- [ ] T011 Self-heal policy: after N consecutive scan-time successes, remove file from skip-list
+- [ ] T009 Skip-list module: `mcp_server/code_graph/lib/parser-skip-list.ts` exporting `addToSkipList`, `lookupSkipList`, `recordSuccess`, `evictStale`. **Default seed: 70 production B1 file paths backfilled from `parse_diagnostics`** (per research.md §10 — over-provisioned vs the 9-file iter-5 steady-state, since iter-7 verification probe F-7.1 showed 29/33 .sh throw B1 in fresh-bash-only mode and the production cohort is the most reliable source-of-truth).
+- [ ] T010 Parser wrapper: in `mcp_server/code_graph/lib/tree-sitter-parser.ts:712`, add pre-`parse()` skip-list lookup; in catch block at `:741-756`, on B1/B2 throw, upsert into skip-list + emit ParseFailure. (Citations from research.md §14.)
+- [ ] T011 Self-heal policy: **MANUAL REVIEW ONLY** — quarterly dashboard review; do NOT auto-unskip on N consecutive successes. (Per research.md §10 — auto-unskip risks reintroducing the corruption trigger if the bash WASM hasn't been replaced.)
 - [ ] T012 [P] Status surface: add `parserSkipList: { count, last_seen_at, sample }` to `mcp_server/code_graph/handlers/status.ts` response
 - [ ] T013 [P] Scan surface: add `parserSkipList.added` and `parserSkipList.healed` deltas to `mcp_server/code_graph/handlers/scan.ts` response
 - [ ] T014 Env flag: `SPECKIT_PARSER_SKIP_LIST_ENABLED` (default true); when false, parser wrapper rethrows (legacy behavior)
 - [ ] T015 [P] Vitest: `mcp_server/code_graph/tests/parser-skip-list.vitest.ts` covering add, lookup, eviction, self-heal, migration, concurrent scans, corrupted-state fail-open (≥10 cases)
+- [ ] T016 R-1' process quarantine sentinel (defense-in-depth, NEW post-research): on B2 throw, mark singleton `QUARANTINED_SENTINEL` in `tree-sitter-parser.ts`, fail subsequent parse calls fast with structured error. ~10 LOC.
+- [ ] T017 [P] Status surface: add `parser_health: 'ok' | 'quarantined'` field to `code_graph_status` response when quarantine sentinel is set; surface alongside skip-list count. Quarantine state cleared by MCP server restart only.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -87,7 +89,7 @@ _memory:
 - [ ] T017 Live driver: `node /tmp/cg-driver.mjs scan '{"incremental":false,"includeSkills":true,"includeAgents":"all","includeCommands":"all","includeSpecs":"all","includePlugins":"all"}'` returns `status: ok` with `<2%` parser-error rate
 - [ ] T018 [P] Skills-only regression check: `node /tmp/cg-driver.mjs scan '{"incremental":false,"includeSkills":true}'` returns zero parser errors
 - [ ] T019 [P] Status check: `node /tmp/cg-driver.mjs status '{}'` shows new `parserSkipList` field with sane shape
-- [ ] T020 Manual playbook 02 scenario: add and pass a "broad-scope scan with skip-list verification" scenario in `manual_testing_playbook/02--manual-scan-verify-status/`
+- [ ] T020 Manual playbook 02 scenario: add and pass a "broad-scope scan with skip-list verification" scenario in `manual_testing_playbook/02--manual-scan-verify-status/`. Scenario must verify: (1) `code_graph_scan` over full active scope completes with skip-list pre-filtering 70 known-bad .sh paths, (2) zero B1 throws observed, (3) zero B2 cascades observed, (4) `parser_health: 'ok'` in status, (5) skills-only scope still returns zero parser errors (regression check)
 <!-- /ANCHOR:phase-3 -->
 
 ---

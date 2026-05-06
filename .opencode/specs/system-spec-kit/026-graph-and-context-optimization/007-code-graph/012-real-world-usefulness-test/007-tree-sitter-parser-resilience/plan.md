@@ -75,7 +75,9 @@ Investigate the parser-collapse signal surfaced during live testing of the post-
 ## 3. ARCHITECTURE
 
 ### Pattern
-Defensive parser wrapper + persistent skip-list (LRU with last-seen timestamps).
+Defensive parser wrapper + persistent skip-list (LRU with last-seen timestamps) + process-quarantine sentinel (defense-in-depth, post-research).
+
+**Mechanism (confirmed by 7-iteration deep research, see `research/research.md`):** `tree-sitter-bash.wasm` is missing the `external_scanner_reset` exported symbol; `web-tree-sitter@0.24.7` masks this via `allowUndefined:true`; bash B1 stub-throws corrupt WASM module-level linear memory; after ~80 cumulative B1 throws, ANY language `parse()` begins throwing B2 `memory access out of bounds`. Reset-on-throw at the parser-instance level was empirically rejected (R-1, iter 6) — the corruption is module-level, not instance-level. **The architecture: prevent bash B1 throws via skip-list (R-3 primary), and on B2 quarantine the singleton (R-1' defense-in-depth) until process restart.**
 
 ### Key Components
 - **Parser wrapper** (`code_graph/lib/parser.ts`): wraps the tree-sitter call in a structured try/catch. On failure, emits a structured `ParseFailure { path, errorClass, attemptedAt }` and updates the skip-list.
@@ -100,7 +102,7 @@ File enumeration → parser wrapper → tree-sitter call
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `code_graph/lib/parser.ts` (or equivalent) | Producer of AST nodes | Wrap parse call; emit ParseFailure on crash | Vitest: forced-throw fixture |
+| `code_graph/lib/tree-sitter-parser.ts:712` | Producer of AST nodes (singleton at `:42`, alloc `:78-94`) | Pre-parse skip-list lookup; catch hook at `:741-756`; quarantine sentinel on B2 | Vitest: forced-throw + B2 fixture |
 | `code_graph/handlers/scan.ts` | Consumer of parseDiagnostics | Add skip-list count to response payload | Live driver script JSON shape diff |
 | `code_graph/handlers/status.ts` | Consumer of indexer state | Expose skipListSummary | Vitest: stub DB → status response shape |
 | `code_graph/lib/code-graph-db.ts` | Schema owner | Add `parser_skip_list` table (v5 schema bump) | Migration test: v4 → v5 round-trip |
