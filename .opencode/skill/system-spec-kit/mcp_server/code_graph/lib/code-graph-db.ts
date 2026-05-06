@@ -100,7 +100,7 @@ export interface FailedScanRecord {
 }
 
 /** Schema version for migration tracking */
-export const SCHEMA_VERSION = 4;
+export const SCHEMA_VERSION = 5;
 
 /** SQL schema for code graph tables */
 const SCHEMA_SQL = `
@@ -161,6 +161,16 @@ const SCHEMA_SQL = `
     last_seen_at TEXT NOT NULL
   );
 
+  CREATE TABLE IF NOT EXISTS parser_skip_list (
+    file_path     TEXT PRIMARY KEY,
+    error_class   TEXT NOT NULL CHECK (error_class IN ('B1', 'B2', 'OTHER')),
+    error_message TEXT,
+    added_at      TEXT NOT NULL,
+    last_seen_at  TEXT NOT NULL,
+    attempt_count INTEGER NOT NULL DEFAULT 1,
+    source        TEXT NOT NULL CHECK (source IN ('seed', 'runtime'))
+  );
+
   CREATE INDEX IF NOT EXISTS idx_nodes_file_id ON code_nodes(file_id);
   CREATE INDEX IF NOT EXISTS idx_nodes_symbol_id ON code_nodes(symbol_id);
   CREATE INDEX IF NOT EXISTS idx_nodes_kind ON code_nodes(kind);
@@ -172,6 +182,7 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_files_path ON code_files(file_path);
   CREATE INDEX IF NOT EXISTS idx_files_hash ON code_files(content_hash);
   CREATE INDEX IF NOT EXISTS idx_parse_diagnostics_last_seen ON parse_diagnostics(last_seen_at);
+  CREATE INDEX IF NOT EXISTS idx_parser_skip_list_class ON parser_skip_list(error_class);
 `;
 
 function getCurrentFileMtimeMs(filePath: string): number | null {
@@ -212,9 +223,36 @@ function ensureSchemaMigrations(database: Database.Database): void {
       error_count INTEGER NOT NULL DEFAULT 1,
       last_seen_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS parser_skip_list (
+      file_path     TEXT PRIMARY KEY,
+      error_class   TEXT NOT NULL CHECK (error_class IN ('B1', 'B2', 'OTHER')),
+      error_message TEXT,
+      added_at      TEXT NOT NULL,
+      last_seen_at  TEXT NOT NULL,
+      attempt_count INTEGER NOT NULL DEFAULT 1,
+      source        TEXT NOT NULL CHECK (source IN ('seed', 'runtime'))
+    );
     CREATE INDEX IF NOT EXISTS idx_file_line ON code_nodes(file_path, start_line);
     CREATE INDEX IF NOT EXISTS idx_parse_diagnostics_last_seen ON parse_diagnostics(last_seen_at);
+    CREATE INDEX IF NOT EXISTS idx_parser_skip_list_class ON parser_skip_list(error_class);
   `);
+
+  const now = new Date().toISOString();
+  database.prepare(`
+    INSERT OR IGNORE INTO parser_skip_list (
+      file_path, error_class, error_message, added_at, last_seen_at, attempt_count, source
+    )
+    SELECT
+      file_path,
+      'B1',
+      error_message,
+      ?,
+      ?,
+      MAX(1, error_count),
+      'seed'
+    FROM parse_diagnostics
+    WHERE error_message LIKE '%resolved is not a function%'
+  `).run(now, now);
 }
 
 /** Initialize (or get) the code graph database */

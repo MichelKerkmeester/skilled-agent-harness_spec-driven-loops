@@ -25,6 +25,7 @@ import { isRecord } from '../lib/query-result-adapter.js';
 import { buildReadinessBlock } from '../lib/readiness-contract.js';
 import { canonicalizeWorkspacePaths, isWithinWorkspace } from '../lib/utils/workspace-path.js';
 import { resolveIndexScopePolicy, scopeFingerprintsMatchOrLegacy } from '../lib/index-scope-policy.js';
+import { getSkipListSummary } from '../lib/parser-skip-list.js';
 import { handleCodeGraphQuery } from './query.js';
 
 export interface ScanArgs {
@@ -59,6 +60,11 @@ export interface ScanResult {
   detectorProvenanceSummary?: graphDb.DetectorProvenanceSummary;
   graphEdgeEnrichmentSummary?: graphDb.GraphEdgeEnrichmentSummary | null;
   parseDiagnostics: graphDb.ParseDiagnosticsSummary;
+  parserSkipList: {
+    added: number;
+    healed: number;
+    totalAfterScan: number;
+  };
   staleButValidGraphFiles: number;
   failedScan?: graphDb.FailedScanRecord | null;
   warnings: string[];
@@ -318,6 +324,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     excludeGlobs: args.excludeGlobs,
   });
   const config = getDefaultConfig(canonicalRootDir, scopePolicy);
+  const initialSkipListCount = getSkipListSummary().count;
 
   const previousGitHead = graphDb.getLastGitHead();
   const currentGitHead = getCurrentGitHead(canonicalRootDir);
@@ -373,6 +380,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
       `[code-graph-scan] Blocked scope-change full scan promotion over existing graph (${priorNodeCount} prior node(s)); stored scope ${storedScope.fingerprint} differs from candidate scope ${candidateFingerprint}; pass forceScopeChange: true to allow scope replacement.`,
     );
     const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
+    const skipListSummary = getSkipListSummary();
     const readinessBlock = buildReadinessBlock({
       freshness: 'stale',
       action: 'full_scan',
@@ -405,6 +413,11 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
             detectorProvenanceSummary,
             graphEdgeEnrichmentSummary,
             parseDiagnostics,
+            parserSkipList: {
+              added: Math.max(0, skipListSummary.count - initialSkipListCount),
+              healed: 0,
+              totalAfterScan: skipListSummary.count,
+            },
             staleButValidGraphFiles: graphDb.countStaleButValidParseDiagnostics(),
             failedScan,
             warnings: [
@@ -442,6 +455,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
       `[code-graph-scan] Blocked zero-node full scan promotion over existing graph (${priorNodeCount} prior node(s)); pass forceZeroNodeReset:true to allow destructive reset.`,
     );
     const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
+    const skipListSummary = getSkipListSummary();
     const readinessBlock = buildReadinessBlock({
       freshness: 'stale',
       action: 'full_scan',
@@ -474,6 +488,11 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
             detectorProvenanceSummary,
             graphEdgeEnrichmentSummary,
             parseDiagnostics,
+            parserSkipList: {
+              added: Math.max(0, skipListSummary.count - initialSkipListCount),
+              healed: 0,
+              totalAfterScan: skipListSummary.count,
+            },
             staleButValidGraphFiles: graphDb.countStaleButValidParseDiagnostics(),
             failedScan,
             warnings: [
@@ -626,6 +645,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const responseTotalNodes = persistedStats.totalNodes;
   const responseTotalEdges = persistedStats.totalEdges;
   const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
+  const skipListSummary = getSkipListSummary();
 
   const scanResult: ScanResult = {
     filesScanned: results.length,
@@ -643,6 +663,11 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     detectorProvenanceSummary,
     graphEdgeEnrichmentSummary,
     parseDiagnostics,
+    parserSkipList: {
+      added: Math.max(0, skipListSummary.count - initialSkipListCount),
+      healed: 0,
+      totalAfterScan: skipListSummary.count,
+    },
     staleButValidGraphFiles: graphDb.countStaleButValidParseDiagnostics(),
     failedScan,
     warnings: [

@@ -21,6 +21,7 @@ import {
   type RawCapture,
 } from './structural-indexer.js';
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../../skill_advisor/lib/metrics.js';
+import { addToSkipList, lookupSkipList, type SkipListEntry } from './parser-skip-list.js';
 
 // ── Types ──────────────────────────────────────────────────────
 // F043: RawCapture is now imported from structural-indexer.ts (single source of truth)
@@ -31,6 +32,7 @@ interface ParserAdapter {
     content: string,
     language: SupportedLanguage,
     edgeWeights?: Partial<Record<EdgeType, number>>,
+    filePath?: string,
   ): ParseResult;
 }
 
@@ -41,14 +43,50 @@ let ParserClass: any = null;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let parserInstance: any = null;
 let initPromise: Promise<void> | null = null;
+let parserHealth: 'ok' | 'quarantined' = 'ok';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const grammarCache = new Map<SupportedLanguage, any>();
 type ParserLanguage = Exclude<SupportedLanguage, 'doc'>;
 const SUPPORTED_LANGUAGES: ParserLanguage[] = ['javascript', 'typescript', 'python', 'bash'];
+const SKIP_LIST_ENABLED = process.env.SPECKIT_PARSER_SKIP_LIST_ENABLED !== 'false';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const localRequire = createRequire(import.meta.url);
+
+export function getParserHealth(): 'ok' | 'quarantined' {
+  return parserHealth;
+}
+
+export function classifyError(err: unknown): 'B1' | 'B2' | 'OTHER' {
+  const message = err instanceof Error ? err.message : String(err);
+  if (message.includes('resolved is not a function')) return 'B1';
+  if (message.includes('memory access out of bounds')) return 'B2';
+  return 'OTHER';
+}
+
+function earlyReturnSentinel(
+  content: string,
+  language: SupportedLanguage,
+  startTime: number,
+  reason: 'skip-list' | 'quarantined',
+  skipEntry: SkipListEntry | null,
+): ParseResult {
+  const detail = reason === 'skip-list' && skipEntry
+    ? `Parser skipped by skip-list (${skipEntry.errorClass}): ${skipEntry.errorMessage ?? 'no message'}`
+    : 'Tree-sitter parser quarantined after memory access out of bounds';
+  return {
+    filePath: skipEntry?.filePath ?? '',
+    language,
+    nodes: [],
+    edges: [],
+    detectorProvenance: detectorProvenanceFromParserBackend('treesitter'),
+    contentHash: generateContentHash(content),
+    parseHealth: 'error',
+    parseErrors: [detail],
+    parseDurationMs: Date.now() - startTime,
+  };
+}
 
 // FIX-011-FOLLOWUP-3: resolve grammar path via the tree-sitter-wasms package
 // itself (Node module resolution) rather than a relative `../../` walk.
@@ -658,6 +696,7 @@ export class TreeSitterParser implements ParserAdapter {
     content: string,
     language: SupportedLanguage,
     edgeWeights?: Partial<Record<EdgeType, number>>,
+    filePath?: string,
   ): ParseResult {
     if (language === 'doc') {
       return {
@@ -710,6 +749,18 @@ export class TreeSitterParser implements ParserAdapter {
         };
       }
 
+      if (SKIP_LIST_ENABLED) {
+        if (filePath) {
+          const skipEntry = lookupSkipList(filePath);
+          if (skipEntry) {
+            return earlyReturnSentinel(content, language, startTime, 'skip-list', skipEntry);
+          }
+        }
+        if (parserHealth === 'quarantined') {
+          return earlyReturnSentinel(content, language, startTime, 'quarantined', null);
+        }
+      }
+
       parserInstance.setLanguage(lang);
       const tree = parserInstance.parse(content);
       const lines = content.split('\n');
@@ -741,6 +792,17 @@ export class TreeSitterParser implements ParserAdapter {
     } catch (err: unknown) {
       if (isSpeckitMetricsEnabled()) {
         speckitMetrics.recordHistogram('spec_kit.graph.parse_duration_ms', Date.now() - speckitParseStart, { language, outcome: 'error' });
+      }
+      const errorClass = classifyError(err);
+      if (SKIP_LIST_ENABLED) {
+        if (errorClass === 'B1' || errorClass === 'B2') {
+          if (filePath) {
+            addToSkipList(filePath, errorClass, err instanceof Error ? err.message : String(err));
+          }
+          if (errorClass === 'B2') {
+            parserHealth = 'quarantined';
+          }
+        }
       }
       return {
         filePath: '',

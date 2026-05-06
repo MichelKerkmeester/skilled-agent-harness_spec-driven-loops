@@ -21,6 +21,8 @@ import {
 } from '../lib/index-scope-policy.js';
 import { isRecord } from '../lib/query-result-adapter.js';
 import { buildReadinessBlock } from '../lib/readiness-contract.js';
+import { getSkipListSummary } from '../lib/parser-skip-list.js';
+import { getParserHealth } from '../lib/tree-sitter-parser.js';
 
 type GoldVerificationTrust = 'live' | 'stale' | 'absent';
 
@@ -245,6 +247,8 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
     const parseDiagnostics = getParseDiagnosticsForStatus();
     const staleButValidGraphFiles = getStaleButValidGraphFilesForStatus();
     const lastFailedScan = getLastFailedScanForStatus();
+    const parserSkipList = getSkipListSummary();
+    const parserHealth = getParserHealth();
     const goldVerificationTrust = getGoldVerificationTrust(
       lastGoldVerification,
       freshness,
@@ -324,7 +328,9 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
             edgesByType: stats.edgesByType,
             edgeDriftSummary,
             parseHealth: stats.parseHealthSummary,
+            parserHealth,
             parseDiagnostics,
+            parserSkipList,
             staleButValidGraphFiles,
             ...(lastFailedScan ? { lastFailedScan } : {}),
             graphQualitySummary: stats.graphQualitySummary,

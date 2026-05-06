@@ -30,6 +30,8 @@ const mocks = vi.hoisted(() => ({
   getStats: vi.fn(),
   getStoredCodeGraphScope: vi.fn(),
   getTrackedFiles: vi.fn(),
+  getSkipListSummary: vi.fn(),
+  getParserHealth: vi.fn(),
   countStaleButValidParseDiagnostics: vi.fn(),
   countTrackedSkillFiles: vi.fn(),
   recordFailedScan: vi.fn(),
@@ -113,6 +115,14 @@ vi.mock('../lib/code-graph-db.js', () => ({
   setLastGitHead: mocks.setLastGitHead,
   setLastGraphEdgeEnrichmentSummary: mocks.setLastGraphEdgeEnrichmentSummary,
   upsertFile: mocks.upsertFile,
+}));
+
+vi.mock('../lib/parser-skip-list.js', () => ({
+  getSkipListSummary: mocks.getSkipListSummary,
+}));
+
+vi.mock('../lib/tree-sitter-parser.js', () => ({
+  getParserHealth: mocks.getParserHealth,
 }));
 
 import { handleCodeGraphQuery } from '../handlers/query.js';
@@ -240,6 +250,12 @@ describe('code-graph sibling readiness emission', () => {
     });
     mocks.getStats.mockReturnValue(createStats());
     mocks.getTrackedFiles.mockReturnValue([]);
+    mocks.getSkipListSummary.mockReturnValue({
+      count: 0,
+      lastSeenAt: null,
+      sample: [],
+    });
+    mocks.getParserHealth.mockReturnValue('ok');
     mocks.countStaleButValidParseDiagnostics.mockReturnValue(0);
     mocks.countTrackedSkillFiles.mockReturnValue(0);
     mocks.recordFailedScan.mockImplementation((record) => ({

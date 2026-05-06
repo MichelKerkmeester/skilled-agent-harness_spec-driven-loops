@@ -50,6 +50,8 @@ const mocks = vi.hoisted(() => ({
   recordCandidateManifestMock: vi.fn(),
   resolveCrossFileCallEdgesMock: vi.fn(),
   hasCrossFileCallResolutionActivityMock: vi.fn(),
+  getSkipListSummaryMock: vi.fn(),
+  getParserHealthMock: vi.fn(),
 }));
 
 function withPreParseSkippedCount<T>(
@@ -116,6 +118,14 @@ vi.mock('../lib/code-graph-db.js', () => ({
   getStats: mocks.getStatsMock,
   getStoredCodeGraphScope: mocks.getStoredCodeGraphScopeMock,
   countTrackedSkillFiles: mocks.countTrackedSkillFilesMock,
+}));
+
+vi.mock('../lib/parser-skip-list.js', () => ({
+  getSkipListSummary: mocks.getSkipListSummaryMock,
+}));
+
+vi.mock('../lib/tree-sitter-parser.js', () => ({
+  getParserHealth: mocks.getParserHealthMock,
 }));
 
 import { handleCodeGraphScan, relativizeScanError } from '../handlers/scan.js';
@@ -231,6 +241,12 @@ describe('handleCodeGraphScan', () => {
       recentErrors: [],
     });
     mocks.countStaleButValidParseDiagnosticsMock.mockReturnValue(0);
+    mocks.getSkipListSummaryMock.mockReturnValue({
+      count: 0,
+      lastSeenAt: null,
+      sample: [],
+    });
+    mocks.getParserHealthMock.mockReturnValue('ok');
     mocks.recordFailedScanMock.mockImplementation((record) => ({
       ...record,
       recordedAt: '2026-05-06T00:00:00.000Z',

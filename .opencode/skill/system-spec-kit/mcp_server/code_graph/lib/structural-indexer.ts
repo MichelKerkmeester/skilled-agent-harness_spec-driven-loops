@@ -120,6 +120,7 @@ interface ParserAdapter {
     content: string,
     language: SupportedLanguage,
     edgeWeights?: Partial<Record<EdgeType, number>>,
+    filePath?: string,
   ): ParseResult;
 }
 
@@ -819,6 +820,7 @@ class RegexParser implements ParserAdapter {
     content: string,
     language: SupportedLanguage,
     edgeWeights?: Partial<Record<EdgeType, number>>,
+    _filePath?: string,
   ): ParseResult {
     const startTime = Date.now();
     const contentHash = generateContentHash(content);
@@ -1242,7 +1244,7 @@ export async function parseFile(
 
   try {
     const parser = await getParser();
-    const parserResult = parser.parse(content, language, edgeWeights);
+    const parserResult = parser.parse(content, language, edgeWeights, filePath);
     return attachFilePath(parserResult, filePath);
   } catch (err: unknown) {
     return {
