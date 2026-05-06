@@ -1,5 +1,5 @@
 ---
-description: "Evaluate and improve any agent across 5 dimensions: proposal-first candidates, scoring, guarded promotion. :auto/:confirm."
+description: "Evaluate and improve any agent: 5 dimensions, proposals, scoring, guarded promotion. :auto/:confirm."
 argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -266,12 +266,12 @@ Copy config, strategy, charter, and manifest from skill assets into runtime root
 ### Step 5: Execute Loop
 
 Load the matching YAML workflow based on execution mode:
-- **AUTONOMOUS** -> `assets/improve_improve-agent_auto.yaml`
-- **INTERACTIVE** -> `assets/improve_improve-agent_confirm.yaml`
+- **AUTONOMOUS** -> `assets/improve_deep-agent-improvement_auto.yaml`
+- **INTERACTIVE** -> `assets/improve_deep-agent-improvement_confirm.yaml`
 
 Execute the YAML workflow step by step. Each iteration:
 1. Scan integration surfaces (refresh)
-2. Dispatch `@improve-agent` to write one bounded candidate
+2. Dispatch `@deep-agent-improvement` to write one bounded candidate
 3. Score candidate with the dynamic 5-dimension profile
 4. Run benchmark fixtures
 5. Append results to JSONL ledger
@@ -407,7 +407,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 - **Benchmark assets** (post-060/005): static at `.opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json` + `assets/benchmark-fixtures/*.json`. Materializer at `.opencode/skill/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.
 - **Stop-reason enum** (post-060/005): canonical values are `converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery`. Old `plateau`/`benchmarkPlateau` retired.
-- **CRITIC PASS verbatim emission** (post-060/006): `@improve-agent` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.
+- **CRITIC PASS verbatim emission** (post-060/006): `@deep-agent-improvement` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.
 
 ---
 

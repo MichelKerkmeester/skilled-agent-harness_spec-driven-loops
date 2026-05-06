@@ -83,8 +83,8 @@ improve/
 +-- agent.md                                # /improve:agent command
 +-- prompt.md                               # /improve:prompt command
 +-- assets/                                 # YAML workflow definitions
-    +-- improve_improve-agent_auto.yaml     # Agent improvement (autonomous)
-    +-- improve_improve-agent_confirm.yaml  # Agent improvement (interactive)
+    +-- improve_deep-agent-improvement_auto.yaml     # Agent improvement (autonomous)
+    +-- improve_deep-agent-improvement_confirm.yaml  # Agent improvement (interactive)
 ```
 
 <!-- /ANCHOR:structure -->
@@ -141,7 +141,7 @@ Delivery: enhanced prompt + transparency report + optional save
 
 | Command | Delegates To |
 |---------|-------------|
-| agent | @improve-agent (proposal-only candidate generation) |
+| agent | @deep-agent-improvement (proposal-only candidate generation) |
 | prompt | @general workflow with optional `@prompt-improver` escalation |
 
 <!-- /ANCHOR:workflow-progression -->
@@ -157,8 +157,8 @@ Delivery: enhanced prompt + transparency report + optional save
 | **Confirm** | `:confirm` | Pause at each step and wait for user approval |
 
 Each mode maps to a YAML workflow file in `assets/`:
-- Auto: `improve_improve-agent_auto.yaml`
-- Confirm: `improve_improve-agent_confirm.yaml`
+- Auto: `improve_deep-agent-improvement_auto.yaml`
+- Confirm: `improve_deep-agent-improvement_confirm.yaml`
 
 `/improve:prompt` is a general-agent command that stays inline by default and optionally dispatches `@prompt-improver` for complex or isolation-sensitive cases. It does not load YAML assets.
 

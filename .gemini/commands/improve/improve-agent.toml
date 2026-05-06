@@ -1,7 +1,7 @@
-description = "Evaluator-first proposal loop for bounded improve-agent experiments with target profiles, deterministic benchmarks, and guarded promotion controls"
+description = "Evaluator-first proposal loop for bounded deep-agent-improvement experiments with target profiles, deterministic benchmarks, and guarded promotion controls"
 prompt = '''
 ---
-description: Evaluator-first proposal loop for bounded improve-agent experiments with target profiles, deterministic benchmarks, and guarded promotion controls.
+description: Evaluator-first proposal loop for bounded deep-agent-improvement experiments with target profiles, deterministic benchmarks, and guarded promotion controls.
 argument-hint: "[target] [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -57,8 +57,8 @@ If setup values are missing, ask one consolidated setup prompt that covers only 
 ### Step 4: Load the Matching YAML Workflow
 
 Only after setup values are fully resolved:
-- auto mode -> `assets/improve_improve-agent_auto.yaml`
-- confirm mode -> `assets/improve_improve-agent_confirm.yaml`
+- auto mode -> `assets/improve_deep-agent-improvement_auto.yaml`
+- confirm mode -> `assets/improve_deep-agent-improvement_confirm.yaml`
 
 Execute that YAML workflow step by step.
 
@@ -68,7 +68,7 @@ Execute that YAML workflow step by step.
 - YAML owns loop execution once setup is resolved
 - Proposal-first mode is the default posture
 - Only `.opencode/agent/handover.md` is promotion-eligible in the current packet
-- Use `@improve-agent` when the YAML workflow requests a proposal-only mutator
+- Use `@deep-agent-improvement` when the YAML workflow requests a proposal-only mutator
 
 ### Step 6: Use Runtime Path Resolution Consistently
 
@@ -81,8 +81,8 @@ Use `[runtime_agent_path]` based on the active runtime profile:
 ## 4. EXAMPLES
 
 ```text
-/improve:improve-agent ".opencode/agent/handover.md" :confirm --spec-folder={spec_folder}
-/improve:improve-agent ".opencode/agent/context-prime.md" :auto --spec-folder={spec_folder} --iterations=3
+/improve:deep-agent-improvement ".opencode/agent/handover.md" :confirm --spec-folder={spec_folder}
+/improve:deep-agent-improvement ".opencode/agent/context-prime.md" :auto --spec-folder={spec_folder} --iterations=3
 ```
 
 ## 5. NOTES

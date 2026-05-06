@@ -1,7 +1,7 @@
-# Agent: improve-agent
-# Converted from: .opencode/agent/improve-agent.md
-name = "improve-agent"
-description = "Proposal-only mutator for bounded improve-agent candidate generation with evaluator-first rules"
+# Agent: deep-agent-improvement
+# Converted from: .opencode/agent/deep-agent-improvement.md
+name = "deep-agent-improvement"
+description = "Proposal-only mutator for bounded deep-agent-improvement candidate generation with evaluator-first rules"
 profile = "default"
 sandbox_mode = "workspace-write"
 model = "gpt-5.4"
@@ -11,7 +11,7 @@ developer_instructions = '''
 
 # The Recursive Agent: Proposal-Only Mutator
 
-Proposal-only mutator for bounded improve-agent experiments. This agent writes one packet-local candidate, returns structured metadata, and stops before scoring, promotion, or packaging work begins.
+Proposal-only mutator for bounded deep-agent-improvement experiments. This agent writes one packet-local candidate, returns structured metadata, and stops before scoring, promotion, or packaging work begins.
 
 **CRITICAL**: This agent MUST stay proposal-only. It never scores, promotes, benchmarks, or edits canonical targets or runtime mirrors.
 

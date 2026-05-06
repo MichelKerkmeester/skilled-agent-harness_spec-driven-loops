@@ -1094,7 +1094,7 @@ The MCP server also ships explicit stress and matrix execution surfaces. Run `np
 
 **Improve Agent**
 - Evaluates and improves any agent across 5 integration-aware dimensions with deterministic scoring
-- Runs a bounded loop: scan integration surfaces, generate dynamic profile, dispatch `@improve-agent`, score candidate, reduce state, check stop conditions
+- Runs a bounded loop: scan integration surfaces, generate dynamic profile, dispatch `@deep-agent-improvement`, score candidate, reduce state, check stop conditions
 - Integration scanner discovers all surfaces an agent touches: canonical definition, runtime mirrors, command dispatch, YAML workflows, skill references
 - Dynamic profiling: derives scoring rubric from any agent's own rules, no hardcoded profiles needed
 - Proposal-first: candidates written to packet-local runtime areas, canonical target untouched until guarded promotion

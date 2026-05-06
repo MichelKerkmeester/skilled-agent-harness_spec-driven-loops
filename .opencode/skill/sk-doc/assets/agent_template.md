@@ -688,7 +688,7 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | `@debug` | `debug.md` | LEAF debugging subagent | 5-phase root-cause workflow, prompted opt-in after repeated failures, scoped debug artifacts |
 | `@deep-research` | `deep-research.md` | LEAF research subagent | Single research iteration, externalized state, convergence-driven command orchestration |
 | `@deep-review` | `deep-review.md` | LEAF review subagent | Single review iteration, BINDING emission, canonical REFUSE, scoped review packet writes |
-| `@improve-agent` | `improve-agent.md` | LEAF proposal mutator | Bounded candidate generation, evaluator-first promotion discipline |
+| `@deep-agent-improvement` | `deep-agent-improvement.md` | LEAF proposal mutator | Bounded candidate generation, evaluator-first promotion discipline |
 | `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
 | `@multi-ai-council` | `multi-ai-council.md` | Planning agent, `mode: all` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@orchestrate` | `orchestrate.md` | Primary orchestrator | Task decomposition, specialist routing, integration synthesis, delegation governance |

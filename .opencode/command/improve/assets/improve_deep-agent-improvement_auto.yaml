@@ -152,8 +152,8 @@ workflow:
         description: "Refresh integration surface map before each iteration"
         command: "node .opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json"
       step_generate_candidate:
-        description: "Dispatch @improve-agent to write one bounded candidate"
-        action: "Dispatch @improve-agent to write a new candidate into candidates/"
+        description: "Dispatch @deep-agent-improvement to write one bounded candidate"
+        action: "Dispatch @deep-agent-improvement to write a new candidate into candidates/"
       step_emit_journal_event_candidate_generated:
         description: "Emit candidate_generated journal event after the candidate is written"
         command: "node .opencode/skill/deep-agent-improvement/scripts/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
