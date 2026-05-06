@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/089-multi-ai-council-persistence",
+  "spec_folder": "skilled-agent-orchestration/089-multi-ai-council-persistence",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "multi-ai-council persistence",
+      "persist-artifacts helper",
+      "ai-council caller protocol",
+      "output-schema.md",
+      "council §17",
+      "council mirror parity",
+      "multi-ai-council persistence plan",
+      "packet 089 plan",
+      "multi-ai-council persistence tasks",
+      "packet 089 tasks",
+      "multi-ai-council persistence checklist",
+      "multi-ai-council persistence adr"
+    ],
+    "key_topics": [
+      "multi-ai-council",
+      "persistence",
+      "persist-artifacts",
+      "helper",
+      "ai-council",
+      "caller",
+      "protocol",
+      "output-schema",
+      "council",
+      "mirror",
+      "parity",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs",
+      ".opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md",
+      ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+      ".opencode/agent/multi-ai-council.md",
+      ".claude/agents/multi-ai-council.md",
+      ".gemini/agents/multi-ai-council.md",
+      ".codex/agents/multi-ai-council.toml",
+      ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
+      ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      ".opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/research/research.md",
+      ".opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
+      ".opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
+      ".opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
+      "references/multi-ai-council/output-schema.md",
+      "scripts/tests/multi-ai-council-persist-artifacts.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "persist-artifacts.cjs",
+        "kind": "file",
+        "path": ".opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "output-schema.md",
+        "kind": "doc",
+        "path": ".opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-persist-artifacts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agent/multi-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/multi-ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-validator.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council-mirror-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skill/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-output-full.md",
+        "kind": "doc",
+        "path": ".opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-output-minimal.md",
+        "kind": "doc",
+        "path": ".opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-output-missing-required.md",
+        "kind": "doc",
+        "path": ".opencode/skill/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Council Persistence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lightweight",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 080 introduced the `ai-council/` subfolder convention but the agent retains `write: deny` per its planning-only invariant — actual persistence requires an orchestrator. Packet 080's 10-iteration deep-research (research.md §7) produced a concrete P0 scope: ship a persistence helper, document a normative caller protocol (§17), promote §8 OUTPUT FORMAT to a shared schema artifact, add fixture-driven tests, harden the validator regression test, and add 4-runtime mirror parity testing. This packet delivers all six items while preserving ADR-001's lightweight bound (no dedicated skill folder).",
+    "created_at": "2026-05-06T17:06:24Z",
+    "last_save_at": "2026-05-06T17:28:14.557Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

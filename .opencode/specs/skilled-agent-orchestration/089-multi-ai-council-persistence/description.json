@@ -1,0 +1,34 @@
+{
+  "level": "3",
+  "specFolder": "089-multi-ai-council-persistence",
+  "description": "Multi-AI Council Persistence — helper script + caller protocol §17 + output-schema artifact + fixtures + validator hardening + 4-runtime mirror parity",
+  "keywords": [
+    "multi-ai",
+    "council",
+    "persistence",
+    "helper",
+    "script",
+    "caller",
+    "protocol",
+    "output-schema",
+    "artifact",
+    "fixtures",
+    "validator",
+    "hardening",
+    "4-runtime",
+    "mirror",
+    "parity",
+    "packet-081",
+    "scope",
+    "packet-080",
+    "deep-research"
+  ],
+  "lastUpdated": "2026-05-06T17:28:14.557Z",
+  "specId": "089",
+  "folderSlug": "multi-ai-council-persistence",
+  "parentChain": [],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-28__packet-089-shipped-end-to-end-via-spec-kit.md"
+  ]
+}

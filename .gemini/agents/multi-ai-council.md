@@ -374,6 +374,8 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 
 ## 8. OUTPUT FORMAT
 
+The canonical schema for §8 lives at `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md` — both this section and the `persist-artifacts.cjs` helper cite it. Schema changes require lockstep update of all three.
+
 ### Multi-AI Council Report
 
 ```markdown
@@ -633,7 +635,30 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 ---
 
-## 16. SUMMARY
+## 16. CALLER PERSISTENCE PROTOCOL
+
+When `@multi-ai-council` returns a plan, the dispatching parent persists packet artifacts with `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`. The council agent itself stays planning-only: write, edit, bash, and patch remain denied. The helper consumes the §8 report shape documented in `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`.
+
+Caller patterns:
+
+1. **Top-level Task dispatch** (Claude Code or any AI assistant):
+   `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
+2. **`@orchestrate` at Depth 1**:
+   `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
+   Orchestrate runs this after the LEAF returns; the LEAF does not run the helper.
+3. **`/spec_kit:*` command YAMLs**:
+   planned post-dispatch invocation: `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> --input-file council-report.md`
+   Command wiring is deferred to a follow-on packet.
+4. **CLI-skill manual playbooks**:
+   use the same command from cli-claude-code, cli-codex, cli-opencode, or cli-gemini playbooks after the council report is captured.
+
+Depth-1 rule: the dispatching parent owns helper invocation. The LEAF returns the report as chat; the parent persists it under `<packet>/ai-council/`.
+
+Forward-only scope: this convention applies to council dispatches from this point forward. Pre-080 outputs in earlier packets remain in their original locations and are not migrated retroactively.
+
+---
+
+## 17. SUMMARY
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
