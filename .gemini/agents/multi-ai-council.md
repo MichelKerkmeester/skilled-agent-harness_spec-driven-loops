@@ -558,7 +558,76 @@ Fix verification gaps first
 
 ---
 
-## 12. SUMMARY
+## 12. OUTPUT PROTOCOL - `ai-council/` SUBFOLDER CONVENTION
+
+When invoked with a `spec_folder`, persist council artifacts under `ai-council/` for parity with `research/` from deep-research and `review/` from deep-review. Chat output may summarize the result, but the packet artifact is the source of truth for rounds, seats, critique, resume, and final plan.
+
+```text
+specs/<track>/<NNN-name>/ai-council/
+|-- ai-council-config.json     (one per packet, mutated across runs)
+|-- ai-council-strategy.md     (charter authored on first run)
+|-- ai-council-state.jsonl     (append-only state log)
+|-- seats/round-NNN/seat-MMM-<executor>.md
+|-- deliberations/round-NNN.md
+|-- critiques/round-NNN-critique.md  (rounds > 1)
+|-- council-report.md          (FINAL synthesized plan)
+```
+
+File shape contracts:
+- `ai-council-config.json`: `{spec_folder, current_round, max_rounds, seats_per_round, convergence_signal, created_at, updated_at, status}`. Mutate across runs; do not duplicate.
+- `ai-council-strategy.md`: charter with purpose, task framing, selected lenses, executor/vantage targets, evidence inputs, convergence rule, and known constraints.
+- `ai-council-state.jsonl`: append-only events: `round_start`, `seat_returned`, `deliberation_synthesized`, `round_end`, `council_complete`.
+- `seats/round-NNN/seat-MMM-<executor>.md`: frontmatter `{round, seat, executor, lens, status, timestamp, simulated?}` then proposal, evidence, risks, challenge, score.
+- `deliberations/round-NNN.md`: composition, seat comparison table, agreements, disagreements, cross-seat critique, synthesis, convergence decision.
+- `critiques/round-NNN-critique.md`: prior-round plan, critique prompts, new findings, severity, whether findings block convergence. Required for rounds > 1.
+- `council-report.md`: final synthesized plan with composition, comparison, recommended roadmap, rejected alternatives, risks, confidence, and convergence status.
+
+Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/folder-layout.md`.
+
+## 13. INVOCATION CONTRACT - FIRST-CALL VS SUBSEQUENT VS RESUME
+
+1. **First call**: if no `ai-council/` folder exists, create the skeleton: config, strategy, state log, empty `seats/`, and empty `deliberations/`. Dispatch round 1, write `seats/round-001/seat-MMM-*.md`, synthesize `deliberations/round-001.md`, then check convergence. If converged, write `council-report.md`; otherwise increment `current_round` and continue.
+2. **Subsequent call**: if `ai-council/` exists, read `ai-council-config.json` and `ai-council-state.jsonl`. Determine the next round from the highest `round_end` event + 1. Run new seats with prior deliberation as input, append state events, synthesize the new deliberation, then check convergence.
+3. **Resume after interruption**: read the state log and resume from the next incomplete event. If `round_start` exists without matching `round_end`, redo that round. If all `seat_returned` events exist but no `deliberation_synthesized`, run synthesis. If deliberation exists without `round_end`, close the round and continue convergence handling.
+
+Reference: `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`.
+
+## 14. STATE SCHEMA - JSONL EVENT TYPES
+
+Schema is convention-only for v1 per ADR-003; there is no runtime validator.
+
+```ts
+type RoundStart = {event:"round_start"; round:number; timestamp:string; seats:string[]};
+type SeatReturned = {event:"seat_returned"; round:number; seat:string; timestamp:string; status:"ok"|"timeout"|"error"; tokens?:number};
+type DeliberationSynthesized = {event:"deliberation_synthesized"; round:number; timestamp:string; convergence_score?:number};
+type RoundEnd = {event:"round_end"; round:number; timestamp:string; new_findings_count?:number};
+type CouncilComplete = {event:"council_complete"; timestamp:string; final_report_path:string; convergence?:boolean};
+```
+
+```jsonl
+{"event":"round_start","round":1,"timestamp":"<ISO-8601>","seats":["seat-001","seat-002","seat-003"]}
+{"event":"seat_returned","round":1,"seat":"seat-001","timestamp":"<ISO>","status":"ok","tokens":1200}
+{"event":"deliberation_synthesized","round":1,"timestamp":"<ISO>","convergence_score":0.82}
+{"event":"round_end","round":1,"timestamp":"<ISO>","new_findings_count":0}
+{"event":"council_complete","timestamp":"<ISO>","final_report_path":"<path>"}
+```
+
+`ai-council-state.jsonl` is append-only. NEVER rewrite or truncate it. NEVER write secrets, credentials, tokens, or private keys to state events.
+
+## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE
+
+Default signal: `two-of-three-agree`. If 2 of 3 seats endorse essentially the same plan and the cross-critique round produces no new high-severity findings, declare convergence and write `council-report.md`.
+
+Escape hatches:
+- `max_rounds` reached without convergence: emit `council_complete` with `convergence:false` and recommend user decision.
+- All seats fail in a round: do NOT fabricate convergence; report failure with per-seat status.
+- Single seat endorsement is insufficient diversity: re-run with stronger contrarian framing.
+
+Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
+
+---
+
+## 16. SUMMARY
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
