@@ -1,5 +1,5 @@
 ---
-description: Diagnose and optionally fix code-graph index health (stale, missed, bloat). Modes :auto/:confirm/:apply/:apply-confirm.
+description: Diagnose and fix code-graph index health (stale, missed, bloat). :auto/:confirm/:apply/:apply-confirm.
 argument-hint: "[:auto|:confirm|:apply|:apply-confirm] [--scope=stale|missed|bloat|all|excludes] [--tier-floor=high|medium|low|all]"
 allowed-tools: Read, Edit, Write, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__code_graph_status, mcp__spec_kit_memory__code_graph_query, mcp__spec_kit_memory__code_graph_context, mcp__spec_kit_memory__code_graph_scan, mcp__spec_kit_memory__detect_changes, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search
 ---

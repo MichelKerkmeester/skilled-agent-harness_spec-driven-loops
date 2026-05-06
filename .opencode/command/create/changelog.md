@@ -1,5 +1,5 @@
 ---
-description: Create a global or packet-local changelog entry. Detects topology; optional GitHub release. Modes :auto, :confirm.
+description: Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.
 argument-hint: "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
 ---

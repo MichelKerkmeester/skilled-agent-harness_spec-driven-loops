@@ -1,6 +1,6 @@
 ---
 name: debug
-description: User-invoked fresh-perspective debugging specialist with 5-phase methodology for root cause analysis. Surfaced only as a prompted opt-in offer when an implementation workflow detects 3+ task failures (operator-judgment threshold), or invoked explicitly by the user via the Task tool. Never auto-dispatched.
+description: User-invoked fresh-perspective debugger: 5-phase root-cause methodology, never auto-dispatched.
 mode: subagent
 temperature: 0.2
 permission:

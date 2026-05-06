@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-description: Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis
+description: Senior orchestration agent: task decomposition, delegation, quality eval, delivery synthesis.
 mode: primary
 temperature: 0.1
 permission:

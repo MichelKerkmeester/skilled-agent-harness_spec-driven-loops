@@ -1,7 +1,7 @@
 # Agent: multi-ai-council
 # Converted from: .opencode/agent/multi-ai-council.md
 name = "multi-ai-council"
-description = "Multi-AI consensus planning architect that seeks diverse AI vantage points and strategy lenses, deliberates across multiple rounds, and outputs plans only without modifying files."
+description = "Multi-AI council planning architect: diverse AI lenses, multi-round deliberation, plans only."
 sandbox_mode = "read-only"
 model = "gpt-5.4"
 model_reasoning_effort = "high"

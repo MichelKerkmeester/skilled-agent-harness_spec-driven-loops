@@ -1,6 +1,6 @@
 ---
 name: code
-description: Application-code implementation specialist using sk-code for stack-aware execution. Dispatched ONLY by @orchestrate (orchestrator-only convention; not harness-enforced — see §0).
+description: Application-code implementation specialist via sk-code. LEAF, dispatched only by @orchestrate.
 mode: subagent
 temperature: 0.1
 permission:

@@ -1,6 +1,6 @@
 ---
 name: multi-ai-council
-description: "Multi-AI consensus planning architect that seeks diverse AI vantage points and strategy lenses, deliberates across multiple rounds, and outputs plans only without modifying files."
+description: Multi-AI council planning architect: diverse AI lenses, multi-round deliberation, plans only.
 mode: all
 temperature: 0.1
 permission:

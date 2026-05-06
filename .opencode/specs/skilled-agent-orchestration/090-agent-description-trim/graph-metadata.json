@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/090-agent-description-trim",
+  "spec_folder": "skilled-agent-orchestration/090-agent-description-trim",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent description trim",
+      "090 agent trim",
+      "skill-budget over ceiling",
+      "090 plan",
+      "agent trim plan",
+      "090 tasks",
+      "agent trim tasks",
+      "090 implementation summary",
+      "agent description trim summary"
+    ],
+    "key_topics": [
+      "agent",
+      "description",
+      "trim",
+      "090",
+      "skill-budget",
+      "ceiling",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "doctor",
+      "audit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/agent/debug.md",
+      ".claude/agents/debug.md",
+      ".gemini/agents/debug.md",
+      ".codex/agents/debug.toml",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".opencode/agent/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.toml",
+        "kind": "file",
+        "path": ".codex/agents/debug.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Description Trim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Trim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Single Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Script",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Acted",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by packet 083's skill+command trim because that packet's scope was deliberately limited. Project description total currently sits at **6,086 chars**, **486 chars over the 5,600 soft ceiling** (still well under Claude Code's 8,000 hard default, so no skills are being dropped today, but headroom is gone). The 6 over-soft agents are: `debug` (306), `multi-ai-council` (179), `code` (178), `deep-review` (158), `prompt-improver` (145), `orchestrate` (134). Each is mirrored across 4 runtime surfaces (`.opencode/agent/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) — 24 files total.",
+    "created_at": "2026-05-06T16:56:10.042Z",
+    "last_save_at": "2026-05-06T16:56:10.042Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

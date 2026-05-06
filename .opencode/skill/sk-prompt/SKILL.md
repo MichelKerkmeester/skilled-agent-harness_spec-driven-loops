@@ -1,6 +1,6 @@
 ---
 name: sk-prompt
-description: "Prompt engineering specialist: transforms vague requests into structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring."
+description: "Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.3.0.0
 ---

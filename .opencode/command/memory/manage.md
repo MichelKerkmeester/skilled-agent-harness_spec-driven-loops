@@ -1,5 +1,5 @@
 ---
-description: Manage indexed-continuity DB: stats, scan, cleanup, retention, bulk-delete, tier, validate, checkpoint, ingest, CCC.
+description: Manage indexed-continuity DB: stats, scan, cleanup, retention, validate, checkpoint, ingest, CCC.
 argument-hint: "[scan [--force]] | [cleanup] | [retention-sweep [--dry-run]] | [bulk-delete <tier> [--older-than <days>] [--folder <spec>]] | [tier <id> <tier>] | [triggers <id>] | [validate <id> <useful|not>] | [delete <id>] | [health] | [checkpoint <subcommand>] | [ingest <subcommand>] | [ccc <status|reindex|feedback>]"
 allowed-tools: Read, spec_kit_memory_memory_stats, spec_kit_memory_memory_list, spec_kit_memory_memory_search, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_validate, spec_kit_memory_memory_update, spec_kit_memory_memory_delete, spec_kit_memory_memory_bulk_delete, spec_kit_memory_memory_retention_sweep, spec_kit_memory_memory_health, spec_kit_memory_checkpoint_create, spec_kit_memory_checkpoint_restore, spec_kit_memory_checkpoint_list, spec_kit_memory_checkpoint_delete, spec_kit_memory_memory_ingest_start, spec_kit_memory_memory_ingest_status, spec_kit_memory_memory_ingest_cancel, spec_kit_memory_ccc_status, spec_kit_memory_ccc_reindex, spec_kit_memory_ccc_feedback
 ---

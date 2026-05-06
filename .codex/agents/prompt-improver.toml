@@ -1,7 +1,7 @@
 # Agent: prompt-improver
 # Converted from: .opencode/agent/prompt-improver.md
 name = "prompt-improver"
-description = "Improve-prompt specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations"
+description = "Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages."
 profile = "default"
 sandbox_mode = "read-only"
 model = "gpt-5.4"

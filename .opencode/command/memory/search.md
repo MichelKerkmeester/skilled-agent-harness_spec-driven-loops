@@ -1,5 +1,5 @@
 ---
-description: Unified continuity retrieval: spec-doc context search, epistemic baselines, causal graph, ablations, dashboards.
+description: Unified continuity retrieval: spec-doc search, baselines, causal graph, ablations, dashboards.
 argument-hint: "<query> [--intent:<type>] | preflight <specFolder> <taskId> | postflight <specFolder> <taskId> | history <specFolder> | causal <memoryId> | link <sourceId> <targetId> <relation> | unlink <edgeId> | causal-stats | ablation | dashboard"
 allowed-tools: Read, spec_kit_memory_memory_context, spec_kit_memory_memory_quick_search, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers, spec_kit_memory_task_preflight, spec_kit_memory_task_postflight, spec_kit_memory_memory_drift_why, spec_kit_memory_memory_causal_link, spec_kit_memory_memory_causal_stats, spec_kit_memory_memory_causal_unlink, spec_kit_memory_eval_run_ablation, spec_kit_memory_eval_reporting_dashboard, spec_kit_memory_memory_get_learning_history
 ---

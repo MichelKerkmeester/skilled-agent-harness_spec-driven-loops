@@ -1,6 +1,6 @@
 ---
 name: prompt-improver
-description: Prompt-improver specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations
+description: Prompt-improver specialist: framework selection, CLEAR validation, dispatch-ready packages.
 mode: subagent
 temperature: 0.1
 permission:
