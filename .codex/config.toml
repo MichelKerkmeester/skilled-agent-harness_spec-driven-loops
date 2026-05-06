@@ -22,6 +22,12 @@ _NOTE_4_CLOUD_PROVIDERS = "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and s
 _NOTE_5_GET_VOYAGE_KEY = "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)"
 _NOTE_6_GET_OPENAI_KEY = "Get OpenAI key: https://platform.openai.com/api-keys"
 _NOTE_7_FEATURE_FLAGS = "Opt-out flags (all default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_EXTENDED_TELEMETRY, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST"
+_NOTE_8_CODE_GRAPH_SCOPE = "Maintainer mode — opt-in all 5 .opencode/ folders (skills, agents, commands, specs, plugins) to the structural code graph. Per-call code_graph_scan args (includeSkills/Agents/Commands/Specs/Plugins) override these env defaults."
+SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
+SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
+SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
+SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
+SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
 
 [mcp_servers.cocoindex_code]
 command = ".opencode/skill/mcp-coco-index/mcp_server/.venv/bin/ccc"

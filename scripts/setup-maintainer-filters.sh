@@ -21,15 +21,16 @@ if [[ ! -d .git ]]; then
 fi
 
 # CLEAN filter: working tree -> index. Strips maintainer mode for commits.
-#   Replaces SPECKIT_CODE_GRAPH_INDEX_<NAME>: "true" with "false".
+#   Replaces SPECKIT_CODE_GRAPH_INDEX_<NAME> = "true" with "false".
+#   Format-agnostic: matches both JSON ("KEY": "true") and TOML (KEY = "true").
 #   sed is reentry-safe: if the file already has "false", nothing happens.
 git config filter.maintainer-flags.clean \
-  'sed -E "s/(\"SPECKIT_CODE_GRAPH_INDEX_(SKILLS|AGENTS|COMMANDS|SPECS|PLUGINS)\"): *\"true\"/\1: \"false\"/g"'
+  'sed -E "s/(\"?SPECKIT_CODE_GRAPH_INDEX_(SKILLS|AGENTS|COMMANDS|SPECS|PLUGINS)\"?[ ]*[:=][ ]*)\"true\"/\1\"false\"/g"'
 
 # SMUDGE filter: index -> working tree. Re-enables maintainer mode locally
 #   on checkout/pull/clone. Replaces "false" with "true" for the same keys.
 git config filter.maintainer-flags.smudge \
-  'sed -E "s/(\"SPECKIT_CODE_GRAPH_INDEX_(SKILLS|AGENTS|COMMANDS|SPECS|PLUGINS)\"): *\"false\"/\1: \"true\"/g"'
+  'sed -E "s/(\"?SPECKIT_CODE_GRAPH_INDEX_(SKILLS|AGENTS|COMMANDS|SPECS|PLUGINS)\"?[ ]*[:=][ ]*)\"false\"/\1\"true\"/g"'
 
 # Required: tell git the filter is REQUIRED so a missing/failing filter
 # fails loudly instead of silently letting an unfiltered file through.
@@ -39,8 +40,8 @@ echo "Installed clean+smudge filters for opencode.json maintainer flags."
 echo
 echo "To rehydrate your working tree through the smudge filter so flags"
 echo "show as \"true\" locally (one-time after install):"
-echo "  git rm --cached opencode.json"
-echo "  git checkout -- opencode.json"
+echo "  git rm --cached opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml"
+echo "  git checkout -- opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml"
 echo
 echo "Verify:"
 echo "  grep SPECKIT_CODE_GRAPH_INDEX_SKILLS opencode.json     # should show \"true\""
