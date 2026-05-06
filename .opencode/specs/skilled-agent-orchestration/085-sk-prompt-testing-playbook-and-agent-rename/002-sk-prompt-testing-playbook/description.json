@@ -1,0 +1,17 @@
+{
+  "specFolder": "085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+  "description": "Phase 2: sk-prompt-testing-playbook",
+  "keywords": [
+    "phase",
+    "sk-prompt-testing-playbook"
+  ],
+  "lastUpdated": "2026-05-06T13:19:26.869Z",
+  "specId": "002",
+  "folderSlug": "sk-prompt-testing-playbook",
+  "parentChain": [
+    "085-sk-prompt-testing-playbook-and-agent-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

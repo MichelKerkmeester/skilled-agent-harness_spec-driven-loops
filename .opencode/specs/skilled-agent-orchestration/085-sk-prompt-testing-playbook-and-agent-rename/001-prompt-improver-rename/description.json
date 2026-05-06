@@ -1,0 +1,17 @@
+{
+  "specFolder": "085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
+  "description": "Phase 1: prompt-improver-rename",
+  "keywords": [
+    "phase",
+    "prompt-improver-rename"
+  ],
+  "lastUpdated": "2026-05-06T13:19:26.189Z",
+  "specId": "001",
+  "folderSlug": "prompt-improver-rename",
+  "parentChain": [
+    "085-sk-prompt-testing-playbook-and-agent-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
