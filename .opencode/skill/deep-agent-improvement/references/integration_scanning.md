@@ -21,7 +21,7 @@ Use this reference when:
 - Setting up a new agent as an evaluation target
 - Understanding why the integration dimension scored low
 - Debugging mirror drift or missing command references
-- Onboarding a new agent into the improve-agent loop
+- Onboarding a new agent into the deep-agent-improvement loop
 
 ### Core Principle
 

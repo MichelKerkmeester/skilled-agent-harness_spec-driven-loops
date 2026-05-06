@@ -336,7 +336,7 @@ The skill runs across all supported runtimes. Path resolution uses the active ru
 | Codex | `.codex/agents/` | (uses agent mirror) |
 | .agents | `.agents/agents/` | `.agents/commands/spec_kit/` |
 
-The `@improve-agent` agent and `/improve:agent` command are mirrored across all runtimes. The integration scanner checks mirror parity automatically.
+The `@deep-agent-improvement` agent and `/improve:agent` command are mirrored across all runtimes. The integration scanner checks mirror parity automatically.
 
 ---
 

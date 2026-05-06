@@ -1,11 +1,11 @@
 ---
 title: No-Go Conditions
-description: Explicit blockers that prevent safe expansion of the improve-agent workflow.
+description: Explicit blockers that prevent safe expansion of the deep-agent-improvement workflow.
 ---
 
 # No-Go Conditions
 
-Safety-brake reference for deciding when improve-agent must stop or refuse broader rollout. Use it when a packet is accumulating weak evidence, unstable repeatability, or blurred boundaries.
+Safety-brake reference for deciding when deep-agent-improvement must stop or refuse broader rollout. Use it when a packet is accumulating weak evidence, unstable repeatability, or blurred boundaries.
 
 ---
 

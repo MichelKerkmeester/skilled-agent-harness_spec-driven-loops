@@ -54,25 +54,25 @@ _memory:
 
 ### Agent file renames (cli-direct via `git mv`)
 
-- [ ] T-001 [CRITICAL] `git mv .opencode/agent/improve-agent.md .opencode/agent/deep-agent-improvement.md`
-- [ ] T-002 [P][CRITICAL] `git mv .claude/agents/improve-agent.md .claude/agents/deep-agent-improvement.md`
-- [ ] T-003 [P][CRITICAL] `git mv .gemini/agents/improve-agent.md .gemini/agents/deep-agent-improvement.md`
-- [ ] T-004 [P][CRITICAL] `git mv .codex/agents/improve-agent.toml .codex/agents/deep-agent-improvement.toml`
+- [x] T-001 [CRITICAL] `git mv .opencode/agent/improve-agent.md .opencode/agent/deep-agent-improvement.md`
+- [x] T-002 [P][CRITICAL] `git mv .claude/agents/improve-agent.md .claude/agents/deep-agent-improvement.md`
+- [x] T-003 [P][CRITICAL] `git mv .gemini/agents/improve-agent.md .gemini/agents/deep-agent-improvement.md`
+- [x] T-004 [P][CRITICAL] `git mv .codex/agents/improve-agent.toml .codex/agents/deep-agent-improvement.toml`
 
 ### Frontmatter rotation in renamed files
 
-- [ ] T-005 [P][CRITICAL] `.opencode/agent/deep-agent-improvement.md` — frontmatter `name: improve-agent` → `name: deep-agent-improvement`; body self-refs
-- [ ] T-006 [P][CRITICAL] `.claude/agents/deep-agent-improvement.md` — same shape
-- [ ] T-007 [P][CRITICAL] `.gemini/agents/deep-agent-improvement.md` — same shape
-- [ ] T-008 [P][CRITICAL] `.codex/agents/deep-agent-improvement.toml` — `name = "improve-agent"` → `name = "deep-agent-improvement"`
+- [x] T-005 [P][CRITICAL] `.opencode/agent/deep-agent-improvement.md` — frontmatter `name: improve-agent` → `name: deep-agent-improvement`; body self-refs
+- [x] T-006 [P][CRITICAL] `.claude/agents/deep-agent-improvement.md` — same shape
+- [x] T-007 [P][CRITICAL] `.gemini/agents/deep-agent-improvement.md` — same shape
+- [x] T-008 [P][CRITICAL] `.codex/agents/deep-agent-improvement.toml` — `name = "improve-agent"` → `name = "deep-agent-improvement"`
 
 ### YAML asset filename renames (atomic with agent.md content update)
 
-- [ ] T-009 [CRITICAL] `git mv .opencode/command/improve/assets/improve_improve-agent_auto.yaml .opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml`
-- [ ] T-010 [CRITICAL] `git mv .opencode/command/improve/assets/improve_improve-agent_confirm.yaml .opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml`
-- [ ] T-011 [P][CRITICAL] `git mv .claude/commands/improve/assets/improve_improve-agent_auto.yaml .claude/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
-- [ ] T-012 [P][CRITICAL] `git mv .claude/commands/improve/assets/improve_improve-agent_confirm.yaml .claude/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml`
-- [ ] T-013 [CRITICAL] Update `agent.md` body refs to new YAML filenames in `.opencode/command/improve/agent.md` (lines ~269-270) and `.claude/commands/improve/agent.md` (similar)
+- [x] T-009 [CRITICAL] `git mv .opencode/command/improve/assets/improve_improve-agent_auto.yaml .opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml`
+- [x] T-010 [CRITICAL] `git mv .opencode/command/improve/assets/improve_improve-agent_confirm.yaml .opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml`
+- [x] T-011 [P][CRITICAL] `git mv .claude/commands/improve/assets/improve_improve-agent_auto.yaml .claude/commands/improve/assets/improve_deep-agent-improvement_auto.yaml`
+- [x] T-012 [P][CRITICAL] `git mv .claude/commands/improve/assets/improve_improve-agent_confirm.yaml .claude/commands/improve/assets/improve_deep-agent-improvement_confirm.yaml`
+- [x] T-013 [CRITICAL] Update `agent.md` body refs to new YAML filenames in `.opencode/command/improve/agent.md` (lines ~269-270) and `.claude/commands/improve/agent.md` (similar)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -84,7 +84,7 @@ _memory:
 
 ### Mass sed (skill docs + command bodies + YAML internal content)
 
-- [ ] T-014 [CRITICAL] Mass `sed -i ''` across active scope:
+- [x] T-014 [CRITICAL] Mass `sed -i ''` across active scope:
   - `find .opencode/skill/deep-agent-improvement -type f \( -name '*.md' -o -name '*.json' -o -name '*.jsonl' \) -not -path '*/node_modules/*'`
   - `.opencode/command/improve/{agent.md,README.txt}` and `.opencode/command/improve/assets/improve_deep-agent-improvement_*.yaml`
   - `.claude/commands/improve/{agent.md,README.txt}` and `.claude/commands/improve/assets/*.yaml`
@@ -95,12 +95,12 @@ _memory:
 
 ### Root governance + runtime READMEs
 
-- [ ] T-015 Update `AGENTS.md` (line 324: `@improve-agent` → `@deep-agent-improvement`) + `README.md` (line 1097)
-- [ ] T-016 Update `.opencode/agent/README.txt` (line 18: agent registry entry)
+- [x] T-015 Update `AGENTS.md` (line 324: `@improve-agent` → `@deep-agent-improvement`) + `README.md` (line 1097)
+- [x] T-016 Update `.opencode/agent/README.txt` (line 18: agent registry entry)
 
 ### Changelog entry
 
-- [ ] T-017 Author `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` documenting:
+- [x] T-017 Author `.opencode/skill/deep-agent-improvement/changelog/v1.5.0.0.md` documenting:
   - The agent rename (079 + 085/001 precedents)
   - YAML asset filename renames
   - Migration note: external scripts hardcoding `@improve-agent` need update
@@ -111,13 +111,13 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-018 [CRITICAL] Active-scope residual grep — `rg -F '@improve-agent' .opencode .claude .gemini .codex AGENTS.md README.md | grep -v specs/ | grep -v z_archive/ | grep -v barter/` → 0 lines
-- [ ] T-019 [CRITICAL] Frontmatter grep — `rg -F 'name: improve-agent'` in active scope → 0 lines; `rg -F 'name = "improve-agent"'` → 0 lines
-- [ ] T-020 [CRITICAL] Advisor recommendation — `handleAdvisorRecommend({prompt: "improve agent loop"})` returns `deep-agent-improvement` top hit (no scoring regression)
-- [ ] T-021 [CRITICAL] Smoke dispatch — `node .opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs --agent .opencode/agent/deep-agent-improvement.md` exits 0 (or against the sandbox CP test fixture)
-- [ ] T-022 [CRITICAL] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename --strict` exits 0
-- [ ] T-023 Author `implementation-summary.md` Phase 3 section with verification evidence + commit SHAs
-- [ ] T-024 `/memory:save` to refresh continuity (completion_pct=100)
+- [x] T-018 [CRITICAL] Active-scope residual grep — `rg -F '@improve-agent' .opencode .claude .gemini .codex AGENTS.md README.md | grep -v specs/ | grep -v z_archive/ | grep -v barter/` → 0 lines
+- [x] T-019 [CRITICAL] Frontmatter grep — `rg -F 'name: improve-agent'` in active scope → 0 lines; `rg -F 'name = "improve-agent"'` → 0 lines
+- [x] T-020 [CRITICAL] Advisor recommendation — `handleAdvisorRecommend({prompt: "improve agent loop"})` returns `deep-agent-improvement` top hit (no scoring regression)
+- [x] T-021 [CRITICAL] Smoke dispatch — `node .opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs --agent .opencode/agent/deep-agent-improvement.md` exits 0 (or against the sandbox CP test fixture)
+- [x] T-022 [CRITICAL] `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename --strict` exits 0
+- [x] T-023 Author `implementation-summary.md` Phase 3 section with verification evidence + commit SHAs
+- [x] T-024 `/memory:save` to refresh continuity (completion_pct=100)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -125,10 +125,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 acceptance criteria from `spec.md` REQ-001..REQ-007 met
-- [ ] All P1 from REQ-008..REQ-012 met
-- [ ] T-001..T-024 all `[x]`
-- [ ] Working tree on `main`; no auto-branch
+- [x] All P0 acceptance criteria from `spec.md` REQ-001..REQ-007 met
+- [x] All P1 from REQ-008..REQ-012 met
+- [x] T-001..T-024 all `[x]`
+- [x] Working tree on `main`; no auto-branch
 <!-- /ANCHOR:completion -->
 
 ---

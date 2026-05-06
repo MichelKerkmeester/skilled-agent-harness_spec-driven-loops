@@ -105,8 +105,8 @@ diff /tmp/cp-045-pre.txt /tmp/cp-045-post.txt > /tmp/cp-045-tripwire.diff; echo 
 
 | File | Role |
 |---|---|
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Benchmark-completed event path |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Benchmark-completed event path |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` | Benchmark-completed event path |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Benchmark-completed event path |
 | `.opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json` | Static benchmark profile |
 | `.opencode/skill/deep-agent-improvement/assets/benchmark-fixtures/*.json` | Static benchmark fixtures |
 | `.opencode/skill/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs` | Fixture materializer |

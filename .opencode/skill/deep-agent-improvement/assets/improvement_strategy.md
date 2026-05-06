@@ -1,11 +1,11 @@
 ---
 title: Recursive Agent Strategy Template
-description: Mutable runtime strategy template for improve-agent sessions.
+description: Mutable runtime strategy template for deep-agent-improvement sessions.
 ---
 
 # Recursive Agent Strategy
 
-Mutable strategy template for a improve-agent run. Use it to capture the operator-owned goal and hypothesis while reserving the machine-owned sections for reducer updates after scoring and benchmarking.
+Mutable strategy template for a deep-agent-improvement run. Use it to capture the operator-owned goal and hypothesis while reserving the machine-owned sections for reducer updates after scoring and benchmarking.
 
 ---
 
@@ -13,7 +13,7 @@ Mutable strategy template for a improve-agent run. Use it to capture the operato
 
 ### Purpose
 
-Provides the working strategy file for a improve-agent run.
+Provides the working strategy file for a deep-agent-improvement run.
 
 ### Usage
 

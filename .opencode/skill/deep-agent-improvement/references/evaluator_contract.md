@@ -1,6 +1,6 @@
 ---
 title: Evaluator Contract
-description: Deterministic scoring and benchmark contract for target-profiled improve-agent experiments.
+description: Deterministic scoring and benchmark contract for target-profiled deep-agent-improvement experiments.
 ---
 
 # Evaluator Contract
@@ -13,7 +13,7 @@ Contract for how `deep-agent-improvement` scores candidates and benchmarks packe
 
 ### Purpose
 
-Defines the input and output contract for the prompt-surface scorer and the output benchmark runner so improve-agent runs remain deterministic enough for bounded local experimentation.
+Defines the input and output contract for the prompt-surface scorer and the output benchmark runner so deep-agent-improvement runs remain deterministic enough for bounded local experimentation.
 
 ### When to Use
 

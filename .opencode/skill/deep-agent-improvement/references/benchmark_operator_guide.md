@@ -5,7 +5,7 @@ description: Step-by-step guide for running repeatable fixture benchmarks for de
 
 # Benchmark Operator Guide
 
-Operational guide for running improve-agent benchmarks against packet-local outputs. Use it when you need deterministic evidence that a target profile still behaves consistently across repeated runs.
+Operational guide for running deep-agent-improvement benchmarks against packet-local outputs. Use it when you need deterministic evidence that a target profile still behaves consistently across repeated runs.
 
 ---
 

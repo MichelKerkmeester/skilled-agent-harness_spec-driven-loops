@@ -11,7 +11,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-This scenario sends the same small agent-improvement task to a generic implementer and to the disciplined `@improve-agent` path. The differential is whether Call B proves helper execution instead of treating `Read(SKILL.md)` as protocol execution.
+This scenario sends the same small agent-improvement task to a generic implementer and to the disciplined `@deep-agent-improvement` path. The differential is whether Call B proves helper execution instead of treating `Read(SKILL.md)` as protocol execution.
 
 ### Why This Matters
 
@@ -22,7 +22,7 @@ Packet 060 research found that loading `SKILL.md` does not fire scanner, profile
 Operators run the exact prompt and command sequence for `CP-040` and confirm the expected signals without contradictory evidence.
 
 - Objective: Confirm Call B creates packet-local improvement artifacts, cites helper execution, emits candidate journal boundaries, and leaves the canonical fixture unchanged.
-- Real user request: `Compare generic improvement against improve-agent protocol execution for the fixture target.`
+- Real user request: `Compare generic improvement against deep-agent-improvement protocol execution for the fixture target.`
 - RCAF Prompt:
 
   Same task body for both calls:
@@ -98,7 +98,7 @@ grep -c 'Read(".opencode/skill/deep-agent-improvement/SKILL.md")' /tmp/cp-040-B-
 
 | File | Role |
 |---|---|
-| `.opencode/agent/improve-agent.md` | Proposal-only mutator contract |
+| `.opencode/agent/deep-agent-improvement.md` | Proposal-only mutator contract |
 | `.opencode/skill/deep-agent-improvement/SKILL.md` | Protocol execution contract |
 | `.opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs` | Required scoring helper |
 | `.opencode/skill/deep-agent-improvement/test-fixtures/060-stress-test/` | Fixture source |

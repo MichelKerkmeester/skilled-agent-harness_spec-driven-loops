@@ -1,11 +1,11 @@
 ---
 title: Promotion Rules
-description: Keep, reject, and guarded promotion rules for improve-agent candidates.
+description: Keep, reject, and guarded promotion rules for deep-agent-improvement candidates.
 ---
 
 # Promotion Rules
 
-Policy reference for deciding whether a improve-agent candidate stays baseline-only, is rejected, or becomes promotion-eligible. Use it when score and benchmark evidence exist and you need the decision rule, not just the raw metrics.
+Policy reference for deciding whether a deep-agent-improvement candidate stays baseline-only, is rejected, or becomes promotion-eligible. Use it when score and benchmark evidence exist and you need the decision rule, not just the raw metrics.
 
 ---
 

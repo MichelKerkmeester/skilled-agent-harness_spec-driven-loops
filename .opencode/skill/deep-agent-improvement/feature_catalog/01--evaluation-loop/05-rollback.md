@@ -1,13 +1,13 @@
 ---
 title: "Rollback"
-description: "Restores the archived canonical target after a guarded improve-agent promotion."
+description: "Restores the archived canonical target after a guarded deep-agent-improvement promotion."
 ---
 
 # Rollback
 
 ## 1. OVERVIEW
 
-Restores the archived canonical target after a guarded improve-agent promotion.
+Restores the archived canonical target after a guarded deep-agent-improvement promotion.
 
 This feature covers the safety path that makes canonical mutation reversible once a promotion has already happened and later evidence shows the promoted file should be undone.
 

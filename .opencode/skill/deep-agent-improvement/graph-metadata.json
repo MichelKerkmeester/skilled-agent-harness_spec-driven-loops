@@ -39,7 +39,7 @@
       "integration aware agent evaluation",
       "deep-agent-improvement",
       "sk improve agent",
-      "improve-agent",
+      "deep-agent-improvement",
       "agent-improvement",
       "benchmark-harness"
     ],
@@ -65,8 +65,8 @@
       ".opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs",
       ".opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs",
       ".opencode/skill/deep-agent-improvement/assets/improvement_config.json",
-      ".claude/agents/improve-agent.md",
-      ".opencode/agent/improve-agent.md"
+      ".claude/agents/deep-agent-improvement.md",
+      ".opencode/agent/deep-agent-improvement.md"
     ],
     "entities": [
       {
@@ -124,15 +124,15 @@
         "source": "derived"
       },
       {
-        "name": "@improve-agent (claude runtime)",
+        "name": "@deep-agent-improvement (claude runtime)",
         "kind": "agent",
-        "path": ".claude/agents/improve-agent.md",
+        "path": ".claude/agents/deep-agent-improvement.md",
         "source": "derived"
       },
       {
-        "name": "@improve-agent",
+        "name": "@deep-agent-improvement",
         "kind": "agent",
-        "path": ".opencode/agent/improve-agent.md",
+        "path": ".opencode/agent/deep-agent-improvement.md",
         "source": "derived"
       }
     ],

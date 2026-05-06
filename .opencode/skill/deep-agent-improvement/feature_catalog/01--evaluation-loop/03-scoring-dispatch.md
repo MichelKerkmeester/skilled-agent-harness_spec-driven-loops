@@ -15,7 +15,7 @@ This feature covers the handoff from proposal output into the scorer, evidence h
 
 ## 2. CURRENT REALITY
 
-Both improve-agent YAML workflows call `score-candidate.cjs` after a candidate is written, then emit `candidate_scored`, record mutation coverage and dimension trajectory, run replay-stability and trade-off helpers, append packet evidence, and refresh the runtime state with `reduce-state.cjs`. Those steps are explicit shell commands in the YAML files, so the scoring path is not inferred from prose alone.
+Both deep-agent-improvement YAML workflows call `score-candidate.cjs` after a candidate is written, then emit `candidate_scored`, record mutation coverage and dimension trajectory, run replay-stability and trade-off helpers, append packet evidence, and refresh the runtime state with `reduce-state.cjs`. Those steps are explicit shell commands in the YAML files, so the scoring path is not inferred from prose alone.
 
 The benchmark runner exists as a real helper, but the YAML workflows currently describe benchmark execution as an action instead of a concrete `run-benchmark.cjs` command. In practice that means scoring dispatch is fully wired, while benchmark execution still depends on the surrounding operator or wrapper flow to provide the exact benchmark invocation and output set.
 
@@ -27,8 +27,8 @@ The benchmark runner exists as a real helper, but the YAML workflows currently d
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Workflow | Sequences score, mutation coverage, stability, trade-off, ledger, and reduction steps in autonomous mode. |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Workflow | Mirrors the dispatch sequence in interactive mode and pauses at review gates. |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` | Workflow | Sequences score, mutation coverage, stability, trade-off, ledger, and reduction steps in autonomous mode. |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Workflow | Mirrors the dispatch sequence in interactive mode and pauses at review gates. |
 | `.opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs` | Scorer | Produces the dynamic 5-dimension score output for a candidate. |
 | `.opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs` | Benchmark helper | Scores fixture outputs and optional integration-report inputs when a profile-specific benchmark set exists. |
 | `.opencode/skill/deep-agent-improvement/scripts/benchmark-stability.cjs` | Stability helper | Measures replay stability and emits `insufficientSample` until enough replays exist. |

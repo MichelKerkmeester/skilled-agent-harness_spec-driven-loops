@@ -36,7 +36,7 @@ The current release ships only this dynamic path. `target_manifest.jsonc` enable
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/agent/improve-agent.md` | Consumed target example | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
+| `.opencode/agent/deep-agent-improvement.md` | Consumed target example | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
 | `.opencode/skill/deep-agent-improvement/README.md` | Package reference | Documents that no static profiles ship in the current release. |
 
 ---

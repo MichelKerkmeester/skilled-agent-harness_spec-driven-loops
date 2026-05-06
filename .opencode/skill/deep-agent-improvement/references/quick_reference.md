@@ -13,7 +13,7 @@ Quick reminder for running `deep-agent-improvement` without re-reading the full 
 
 ### Purpose
 
-Provides a compact reminder of the improve-agent workflow, the canonical command shape, and the packet-local runtime layout.
+Provides a compact reminder of the deep-agent-improvement workflow, the canonical command shape, and the packet-local runtime layout.
 
 ### When to Use
 

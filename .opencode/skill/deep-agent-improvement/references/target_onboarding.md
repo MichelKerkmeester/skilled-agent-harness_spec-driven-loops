@@ -5,7 +5,7 @@ description: How to add a new bounded target to deep-agent-improvement without w
 
 # Target Onboarding Guide
 
-Workflow for onboarding new improve-agent targets while keeping evaluator discipline, manifest clarity, and promotion safety intact. Use it when a new target is genuinely needed rather than just interesting.
+Workflow for onboarding new deep-agent-improvement targets while keeping evaluator discipline, manifest clarity, and promotion safety intact. Use it when a new target is genuinely needed rather than just interesting.
 
 ---
 

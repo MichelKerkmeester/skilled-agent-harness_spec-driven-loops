@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename"
     last_updated_at: "2026-05-06T15:30:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Phase parent + 2 children scaffolded"
-    next_safe_action: "Phase 001 prompt-improver rename"
+    recent_action: "Both phases shipped + validated"
+    next_safe_action: "Final memory save + close packet"
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-085"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../` (skilled-agent-orchestration top-level) |

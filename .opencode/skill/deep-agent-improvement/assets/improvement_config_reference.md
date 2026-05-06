@@ -5,7 +5,7 @@ description: Field-level documentation for improvement_config.json runtime confi
 
 # Improvement Config Reference
 
-Field-level reference for `improvement_config.json`. Use this when modifying runtime configuration for a improve-agent packet.
+Field-level reference for `improvement_config.json`. Use this when modifying runtime configuration for a deep-agent-improvement packet.
 
 ---
 

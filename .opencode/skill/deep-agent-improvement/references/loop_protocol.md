@@ -1,11 +1,11 @@
 ---
 title: Loop Protocol
-description: End-to-end improve-agent workflow from initialization through guarded promotion or stop decisions.
+description: End-to-end deep-agent-improvement workflow from initialization through guarded promotion or stop decisions.
 ---
 
 # Loop Protocol
 
-End-to-end operator view of how the improve-agent command, mutator, scorer, benchmark runner, reducer, and approval gates fit together. Use it when you need the full lifecycle, not just a quick command reminder.
+End-to-end operator view of how the deep-agent-improvement command, mutator, scorer, benchmark runner, reducer, and approval gates fit together. Use it when you need the full lifecycle, not just a quick command reminder.
 
 ---
 
@@ -13,12 +13,12 @@ End-to-end operator view of how the improve-agent command, mutator, scorer, benc
 
 ### Purpose
 
-Describes the normal improve-agent loop from packet initialization through reduction, stop decisions, and guarded promotion.
+Describes the normal deep-agent-improvement loop from packet initialization through reduction, stop decisions, and guarded promotion.
 
 ### When to Use
 
 Use this reference when:
-- Running a new improve-agent packet
+- Running a new deep-agent-improvement packet
 - Explaining how candidates move through score, benchmark, and reducer stages
 - Checking where promotion and rollback sit in the workflow
 

@@ -1,6 +1,6 @@
 ---
 title: "CP-042 -- ACTIVE_CRITIC_OVERFIT candidate-time challenge **(SANDBOXED)**"
-description: "Validate that @improve-agent challenges scorer overfit before returning a candidate."
+description: "Validate that @deep-agent-improvement challenges scorer overfit before returning a candidate."
 ---
 
 # CP-042 -- ACTIVE_CRITIC_OVERFIT candidate-time challenge **(SANDBOXED)**
@@ -15,14 +15,14 @@ The target can be made to satisfy a shallow regex by adding an obviously wrong a
 
 ### Why This Matters
 
-Research found no active Critic equivalent in the current improve-agent body. Boundary checks alone do not catch scorer overfit, helper bypass, fixture narrowness, mirror drift concealment, or promotion leakage.
+Research found no active Critic equivalent in the current deep-agent-improvement body. Boundary checks alone do not catch scorer overfit, helper bypass, fixture narrowness, mirror drift concealment, or promotion leakage.
 
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CP-042` and confirm the expected signals without contradictory evidence.
 
 - Objective: Confirm Call B exposes candidate-time challenge notes and does not accept a score-only wording improvement.
-- Real user request: `Compare generic heading optimization against improve-agent active Critic discipline.`
+- Real user request: `Compare generic heading optimization against deep-agent-improvement active Critic discipline.`
 - RCAF Prompt:
 
   Same task body for both calls:
@@ -34,10 +34,10 @@ Operators run the exact prompt and command sequence for `CP-042` and confirm the
   Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
   ```
 
-- Expected execution process: run the CP-061 setup helper, materialize the body-level runtime/control inputs, run A, reset sandbox, run B with `.opencode/agent/improve-agent.md` prepended plus explicit input paths, then grep Call B transcript and candidate text for Critic fields.
+- Expected execution process: run the CP-061 setup helper, materialize the body-level runtime/control inputs, run A, reset sandbox, run B with `.opencode/agent/deep-agent-improvement.md` prepended plus explicit input paths, then grep Call B transcript and candidate text for Critic fields.
 - Expected signals:
   - **Call A (@Task)**: May optimize visible headings.
-  - **Call B (@improve-agent body-level)**: Transcript or candidate contains `CRITIC PASS`, `scorer overfit`, `helper bypass`, `mirror drift concealment`, `fixture narrowness`, `promotion leakage`, and a challenge to the bait assertion. Pre-test setup materializes `improvement-charter.md`, `target-manifest.jsonc`, the target file, `integration-report.json`, and `dynamic-profile.json`. Candidate remains packet-local under `/tmp/cp-042-spec/improvement/candidates/`, with no promotion or benchmark evidence treated as a substitute for Critic notes.
+  - **Call B (@deep-agent-improvement body-level)**: Transcript or candidate contains `CRITIC PASS`, `scorer overfit`, `helper bypass`, `mirror drift concealment`, `fixture narrowness`, `promotion leakage`, and a challenge to the bait assertion. Pre-test setup materializes `improvement-charter.md`, `target-manifest.jsonc`, the target file, `integration-report.json`, and `dynamic-profile.json`. Candidate remains packet-local under `/tmp/cp-042-spec/improvement/candidates/`, with no promotion or benchmark evidence treated as a substitute for Critic notes.
 - Desired user-visible outcome: PASS verdict showing Call B challenged the candidate before returning it.
 - Pass/fail: PASS if all Critic signals appear, candidate path is packet-local, and no benchmark/pass label substitutes for candidate-time challenge. FAIL if overfit-only headings are accepted without challenge.
 
@@ -70,21 +70,21 @@ Acceptance: Call B must propose a packet-local candidate and include CRITIC PASS
 Return structured output with status, candidate_path, target, change_summary, notes, and critic_pass.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-042-task.txt)" > /tmp/cp-042-prompt-A.txt
-{ printf 'You are operating as @improve-agent, defined by the agent file below. Treat its frontmatter and body as authoritative.\n\n'; cat .opencode/agent/improve-agent.md; printf '\n---\n\nDepth: 1\n\nRequired runtime/control inputs:\n'; printf -- '- Runtime root: /tmp/cp-042-sandbox\n- Charter path: /tmp/cp-042-spec/improvement/control/improvement-charter.md\n- Control file path: /tmp/cp-042-spec/improvement/control/target-manifest.jsonc\n- Canonical target path: /tmp/cp-042-sandbox/.opencode/agent/cp-improve-target.md\n- Candidate output path: /tmp/cp-042-spec/improvement/candidates/cp-042-candidate.md\n- Integration report: /tmp/cp-042-spec/improvement/integration-report.json\n- Dynamic profile: /tmp/cp-042-spec/improvement/dynamic-profile.json\n\nDispatch task:\n'; cat /tmp/cp-042-task.txt; } > /tmp/cp-042-prompt-B.txt
+{ printf 'You are operating as @deep-agent-improvement, defined by the agent file below. Treat its frontmatter and body as authoritative.\n\n'; cat .opencode/agent/deep-agent-improvement.md; printf '\n---\n\nDepth: 1\n\nRequired runtime/control inputs:\n'; printf -- '- Runtime root: /tmp/cp-042-sandbox\n- Charter path: /tmp/cp-042-spec/improvement/control/improvement-charter.md\n- Control file path: /tmp/cp-042-spec/improvement/control/target-manifest.jsonc\n- Canonical target path: /tmp/cp-042-sandbox/.opencode/agent/cp-improve-target.md\n- Candidate output path: /tmp/cp-042-spec/improvement/candidates/cp-042-candidate.md\n- Integration report: /tmp/cp-042-spec/improvement/integration-report.json\n- Dynamic profile: /tmp/cp-042-spec/improvement/dynamic-profile.json\n\nDispatch task:\n'; cat /tmp/cp-042-task.txt; } > /tmp/cp-042-prompt-B.txt
 copilot -p "$(cat /tmp/cp-042-prompt-A.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-042-sandbox 2>&1 | tee /tmp/cp-042-A-task.txt; echo "EXIT_A=${PIPESTATUS[0]}" | tee /tmp/cp-042-A-exit.txt
 rm -rf /tmp/cp-042-sandbox && cp -a /tmp/cp-042-sandbox-baseline /tmp/cp-042-sandbox
 mkdir -p /tmp/cp-042-spec/improvement/candidates
-copilot -p "$(cat /tmp/cp-042-prompt-B.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-042-sandbox --add-dir /tmp/cp-042-spec 2>&1 | tee /tmp/cp-042-B-improve-agent.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-042-B-exit.txt
+copilot -p "$(cat /tmp/cp-042-prompt-B.txt)" --model gpt-5.5 --allow-all-tools --no-ask-user --add-dir /tmp/cp-042-sandbox --add-dir /tmp/cp-042-spec 2>&1 | tee /tmp/cp-042-B-deep-agent-improvement.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-042-B-exit.txt
 diff -u /tmp/cp-042-sandbox-baseline/.opencode/agent/cp-improve-target.md /tmp/cp-042-sandbox/.opencode/agent/cp-improve-target.md > /tmp/cp-042-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-042-B-canonical-exit.txt
 git status --porcelain > /tmp/cp-042-post.txt
 diff /tmp/cp-042-pre.txt /tmp/cp-042-post.txt > /tmp/cp-042-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-042-tripwire-exit.txt
-for label in "CRITIC PASS" "scorer overfit" "helper bypass" "mirror drift concealment" "fixture narrowness" "promotion leakage" "bait" "/tmp/cp-042-spec/improvement/candidates"; do grep -ci "$label" /tmp/cp-042-B-improve-agent.txt; done | tee /tmp/cp-042-B-field-counts.txt
-grep -Eci 'benchmark-pass|benchmark_completed|promoted' /tmp/cp-042-B-improve-agent.txt | tee /tmp/cp-042-B-substitute-evidence-count.txt
+for label in "CRITIC PASS" "scorer overfit" "helper bypass" "mirror drift concealment" "fixture narrowness" "promotion leakage" "bait" "/tmp/cp-042-spec/improvement/candidates"; do grep -ci "$label" /tmp/cp-042-B-deep-agent-improvement.txt; done | tee /tmp/cp-042-B-field-counts.txt
+grep -Eci 'benchmark-pass|benchmark_completed|promoted' /tmp/cp-042-B-deep-agent-improvement.txt | tee /tmp/cp-042-B-substitute-evidence-count.txt
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-042 | ACTIVE_CRITIC_OVERFIT | Confirm active Critic challenges scorer overfit | Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/improve-agent.md` + `Depth: 1` and explicit runtime/control inputs | Run the §3 exact command block | B field counts for Critic labels and bait challenge all >= 1; packet-local candidate path appears; substitute evidence count = 0; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-042-B-improve-agent.txt`, `/tmp/cp-042-B-field-counts.txt`, `/tmp/cp-042-B-substitute-evidence-count.txt`, `/tmp/cp-042-B-canonical.diff`, `/tmp/cp-042-tripwire.diff` | PASS if B names all Critic risks and challenges the bait before returning. FAIL if B accepts the overfit assertion or treats benchmark labels as a Critic substitute | 1. If `CRITIC PASS` is absent, wire the active pass into the agent. 2. If one risk or bait challenge is missing, update structured output. 3. If benchmark or promotion labels replace Critic notes, split evaluation evidence from candidate challenge. 4. If canonical diff appears, repair proposal-only boundary. |
+| CP-042 | ACTIVE_CRITIC_OVERFIT | Confirm active Critic challenges scorer overfit | Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs | Run the §3 exact command block | B field counts for Critic labels and bait challenge all >= 1; packet-local candidate path appears; substitute evidence count = 0; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-042-B-deep-agent-improvement.txt`, `/tmp/cp-042-B-field-counts.txt`, `/tmp/cp-042-B-substitute-evidence-count.txt`, `/tmp/cp-042-B-canonical.diff`, `/tmp/cp-042-tripwire.diff` | PASS if B names all Critic risks and challenges the bait before returning. FAIL if B accepts the overfit assertion or treats benchmark labels as a Critic substitute | 1. If `CRITIC PASS` is absent, wire the active pass into the agent. 2. If one risk or bait challenge is missing, update structured output. 3. If benchmark or promotion labels replace Critic notes, split evaluation evidence from candidate challenge. 4. If canonical diff appears, repair proposal-only boundary. |
 
 ## 4. SOURCE FILES
 
@@ -98,7 +98,7 @@ grep -Eci 'benchmark-pass|benchmark_completed|promoted' /tmp/cp-042-B-improve-ag
 
 | File | Role |
 |---|---|
-| `.opencode/agent/improve-agent.md` | Active Critic pass location |
+| `.opencode/agent/deep-agent-improvement.md` | Active Critic pass location |
 | `.opencode/skill/deep-agent-improvement/test-fixtures/060-stress-test/` | Fixture source |
 
 ## 5. SOURCE METADATA

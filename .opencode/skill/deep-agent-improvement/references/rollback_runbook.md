@@ -1,6 +1,6 @@
 ---
 title: Rollback Runbook
-description: Rollback and post-promotion verification procedure for bounded improve-agent promotions.
+description: Rollback and post-promotion verification procedure for bounded deep-agent-improvement promotions.
 ---
 
 # Rollback Runbook

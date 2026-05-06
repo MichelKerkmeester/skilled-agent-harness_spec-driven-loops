@@ -24,8 +24,8 @@ Use this catalog as the canonical inventory for the live `deep-agent-improvement
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Evaluation loop | 6 features | `.opencode/command/improve/agent.md`, improve-agent YAML workflows, `scripts/*.cjs` |
-| Integration scanning | 3 features | `scan-integration.cjs`, `/improve:agent`, `.opencode/agent/improve-agent.md` |
+| Evaluation loop | 6 features | `.opencode/command/improve/agent.md`, deep-agent-improvement YAML workflows, `scripts/*.cjs` |
+| Integration scanning | 3 features | `scan-integration.cjs`, `/improve:agent`, `.opencode/agent/deep-agent-improvement.md` |
 | Scoring system | 4 features | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
 
 ---
@@ -38,7 +38,7 @@ These entries cover the session lifecycle from fresh runtime setup through propo
 
 #### Description
 
-Sets up a fresh packet-local improve-agent session before any candidate work begins.
+Sets up a fresh packet-local deep-agent-improvement session before any candidate work begins.
 
 #### Current Reality
 
@@ -58,7 +58,7 @@ Writes one bounded packet-local candidate without mutating the canonical target.
 
 #### Current Reality
 
-Candidate generation is delegated to the `improve-agent` subagent. That agent must read the copied charter and manifest first, must write only under the packet-local runtime area, returns structured metadata, and stops before scoring, benchmarking, promotion, or mirror synchronization begins.
+Candidate generation is delegated to the `deep-agent-improvement` subagent. That agent must read the copied charter and manifest first, must write only under the packet-local runtime area, returns structured metadata, and stops before scoring, benchmarking, promotion, or mirror synchronization begins.
 
 #### Source Files
 
@@ -132,7 +132,7 @@ See [`01--evaluation-loop/06-plateau-detection.md`](01--evaluation-loop/06-plate
 
 ## 3. INTEGRATION SCANNING
 
-These entries describe how deep-agent-improvement discovers the full agent surface across the repo, evaluates runtime mirrors, and wires command-driven orchestration through the improve-agent command and YAML workflows.
+These entries describe how deep-agent-improvement discovers the full agent surface across the repo, evaluates runtime mirrors, and wires command-driven orchestration through the deep-agent-improvement command and YAML workflows.
 
 ### Surface discovery
 
@@ -170,11 +170,11 @@ See [`02--integration-scanning/02-runtime-mirrors.md`](02--integration-scanning/
 
 #### Description
 
-Owns the command-driven orchestration path that turns the improve-agent skill into a runnable loop.
+Owns the command-driven orchestration path that turns the deep-agent-improvement skill into a runnable loop.
 
 #### Current Reality
 
-The `/improve:agent` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@improve-agent`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
+The `/improve:agent` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-agent-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
 
 #### Source Files
 

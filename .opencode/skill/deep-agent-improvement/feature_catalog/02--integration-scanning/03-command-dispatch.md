@@ -1,15 +1,15 @@
 ---
 title: "Command dispatch"
-description: "Routes improve-agent execution from the slash command into the auto and confirm workflow assets."
+description: "Routes deep-agent-improvement execution from the slash command into the auto and confirm workflow assets."
 ---
 
 # Command dispatch
 
 ## 1. OVERVIEW
 
-Routes improve-agent execution from the slash command into the auto and confirm workflow assets.
+Routes deep-agent-improvement execution from the slash command into the auto and confirm workflow assets.
 
-This feature covers the operator-facing command surface and the workflow assets that actually run the improve-agent loop.
+This feature covers the operator-facing command surface and the workflow assets that actually run the deep-agent-improvement loop.
 
 ---
 
@@ -17,7 +17,7 @@ This feature covers the operator-facing command surface and the workflow assets 
 
 `.opencode/command/improve/agent.md` is the command entrypoint. It resolves the target agent, spec folder, and execution mode, then tells the caller to load either the autonomous or interactive YAML workflow. The command markdown explicitly says not to dispatch agents from the command file itself.
 
-The real dispatch authority lives in the YAML assets. Both workflow files rescan integration, dispatch `@improve-agent` to write candidates, emit journal events with `improvement-journal.cjs`, and call the scoring, coverage, trade-off, and reducer helpers. Confirm mode adds approval gates around candidate generation and post-score review, while auto mode runs the same stages without those gates.
+The real dispatch authority lives in the YAML assets. Both workflow files rescan integration, dispatch `@deep-agent-improvement` to write candidates, emit journal events with `improvement-journal.cjs`, and call the scoring, coverage, trade-off, and reducer helpers. Confirm mode adds approval gates around candidate generation and post-score review, while auto mode runs the same stages without those gates.
 
 ---
 
@@ -28,9 +28,9 @@ The real dispatch authority lives in the YAML assets. Both workflow files rescan
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/command/improve/agent.md` | Command | Entry surface that gathers inputs and routes execution into the matching YAML workflow. |
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Workflow | Runs the full loop autonomously and emits session-end journal events after synthesis. |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Workflow | Runs the same loop with approval gates before candidate generation and after scoring. |
-| `.opencode/agent/improve-agent.md` | Proposal agent | Leaf agent that the workflows dispatch for bounded candidate generation. |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` | Workflow | Runs the full loop autonomously and emits session-end journal events after synthesis. |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Workflow | Runs the same loop with approval gates before candidate generation and after scoring. |
+| `.opencode/agent/deep-agent-improvement.md` | Proposal agent | Leaf agent that the workflows dispatch for bounded candidate generation. |
 
 ### Validation And Tests
 

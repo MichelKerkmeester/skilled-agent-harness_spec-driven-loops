@@ -3,7 +3,7 @@
   "id": "default",
   "version": "1.0",
   "family": "deep-agent-improvement",
-  "targetPath": ".opencode/agent/improve-agent.md",
+  "targetPath": ".opencode/agent/deep-agent-improvement.md",
   "fixtureDir": ".opencode/skill/deep-agent-improvement/assets/benchmark-fixtures",
   "fixtures": ["fixture-baseline", "fixture-improved", "fixture-edge"],
   "outputsDir": "{spec_folder}/improvement/benchmark-outputs",

@@ -450,4 +450,8 @@ Key integrations:
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/depth_framework.md`, `references/patterns_evaluation.md`, `assets/cli_prompt_quality_card.md`, `assets/format_guide_json.md`, `assets/format_guide_markdown.md`, `assets/format_guide_yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
+## RELATED PLAYBOOK
+
+Manual validation lives at `manual_testing_playbook/manual_testing_playbook.md`.
+
 Related skills: `sk-doc` for documentation outputs, `sk-code` for code-generation prompt context, and the `cli-*` skills that use the prompt quality card before dispatch.

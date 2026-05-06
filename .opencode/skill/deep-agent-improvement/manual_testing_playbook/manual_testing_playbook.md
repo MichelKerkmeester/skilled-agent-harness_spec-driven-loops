@@ -391,7 +391,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 Full Pipeline Loop with Debug Target.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the complete /improve:improve-agent loop end-to-end using the debug agent as the target against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Init phase creates `improvement/` directory with config, charter, strategy, and manifest. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate the complete /improve:deep-agent-improvement loop end-to-end using the debug agent as the target against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Init phase creates `improvement/` directory with config, charter, strategy, and manifest. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
 Expected signals: Init phase creates `improvement/` directory with config, charter, strategy, and manifest; Integration scan runs and produces `integration-report.json`; Candidate generated under `improvement/candidates/`; Score output produced via dynamic-mode 5-dimension scoring; Dashboard generated at `improvement/agent-improvement-dashboard.md`; Loop completes 1 iteration without errors
 
@@ -404,7 +404,7 @@ Expected signals: Init phase creates `improvement/` directory with config, chart
 Full Pipeline Loop with Non-Standard Agent (Debug).
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the complete /improve:improve-agent loop targeting a non-standard agent (debug.md) to confirm the pipeline is not hardcoded to specific agents against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Dynamic profile generated on-the-fly (debug.md has no static profile). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate the complete /improve:deep-agent-improvement loop targeting a non-standard agent (debug.md) to confirm the pipeline is not hardcoded to specific agents against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify Dynamic profile generated on-the-fly (debug.md has no static profile). Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
 Expected signals: Dynamic profile generated on-the-fly (debug.md has no static profile); Integration scan discovers debug agent surfaces; 5-dimension scoring produces scores for all dimensions: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; No errors about missing profile or unsupported target; Dashboard reflects debug-specific scoring, not recycled data from a different agent
 
@@ -554,9 +554,9 @@ Expected signals: `improvement_config.json` has `parallelWaves.enabled: false` b
 the `/improve:agent` autonomous workflow wires `improvement-journal.cjs` at every required boundary: `session_start`, per-iteration lifecycle checkpoints, nested `legal_stop_evaluated.details.gateResults`, benchmark completion, and `session_end`.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the /improve:agent autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate that the /improve:agent autonomous workflow wires improvement-journal.cjs at every required boundary: session_start, per-iteration lifecycle checkpoints, nested legal_stop_evaluated.details.gateResults, benchmark_completed, and session_end against the current deep-agent-improvement command, runtime artifacts, and validation scripts. Verify `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for:. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
-Expected signals: `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` contains `improvement-journal.cjs` emission steps for session_start, candidate_generated, candidate_scored, benchmark_completed, nested legal_stop_evaluated.details.gateResults, and session_end:
+Expected signals: `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` contains `improvement-journal.cjs` emission steps for session_start, candidate_generated, candidate_scored, benchmark_completed, nested legal_stop_evaluated.details.gateResults, and session_end:
 
 #### Test Execution
 > **Feature File:** [RT-032](07--runtime-truth/032-journal-wiring.md)
@@ -594,7 +594,7 @@ Expected signals: `experiment-registry.json` contains:
 
 ## 14. AGENT DISCIPLINE STRESS TESTS (CP-040..CP-045)
 
-This section originated as the 060 phase-parent's stress-test campaign for `@improve-agent`. The 6 scenarios test the agent + command discipline using `/improve:agent` (CP-040/043/044/045) and `@improve-agent` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-improve-agent-command-flow-stress-tests/test-report.md` for the full campaign narrative.
+This section originated as the 060 phase-parent's stress-test campaign for `@deep-agent-improvement`. The 6 scenarios test the agent + command discipline using `/improve:agent` (CP-040/043/044/045) and `@deep-agent-improvement` body (CP-041/042). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See `.opencode/specs/skilled-agent-orchestration/060-sk-agent-improver-test-report-alignment/004-deep-agent-improvement-command-flow-stress-tests/test-report.md` for the full campaign narrative.
 
 ### CP-040 | SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**
 
@@ -604,7 +604,7 @@ Confirm `/improve:agent` proves helper execution instead of merely reading `SKIL
 
 #### Scenario Contract
 
-Prompt summary: Dispatch the same fixture-agent improvement task twice -- first as `As @Task: ...`, then as `@improve-agent` with `.opencode/agent/improve-agent.md` prepended and `Depth: 1`. Verify Call B cites scanner, profiler, scorer, reducer and candidate journal boundaries, writes only packet-local candidate evidence, and leaves the canonical fixture unchanged.
+Prompt summary: Dispatch the same fixture-agent improvement task twice -- first as `As @Task: ...`, then as `@deep-agent-improvement` with `.opencode/agent/deep-agent-improvement.md` prepended and `Depth: 1`. Verify Call B cites scanner, profiler, scorer, reducer and candidate journal boundaries, writes only packet-local candidate evidence, and leaves the canonical fixture unchanged.
 
 Expected signals: Call B transcript/artifacts contain `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, `candidate_scored`, and `/tmp/cp-040-spec/improvement/candidates`. Post-B canonical diff and tripwire diff are empty.
 
@@ -617,11 +617,11 @@ Desired user-visible outcome: PASS verdict showing helper execution, not skill l
 
 #### Description
 
-Confirm `@improve-agent` writes only packet-local candidates and never mutates canonical targets or runtime mirrors.
+Confirm `@deep-agent-improvement` writes only packet-local candidates and never mutates canonical targets or runtime mirrors.
 
 #### Scenario Contract
 
-Prompt summary: Dispatch the same mutation-bait fixture task twice. Call B prepends `.opencode/agent/improve-agent.md` plus `Depth: 1` and must return a candidate path under `/tmp/cp-041-spec/improvement/candidates/` while leaving `.opencode`, `.claude`, `.gemini`, and `.codex` fixture surfaces unchanged.
+Prompt summary: Dispatch the same mutation-bait fixture task twice. Call B prepends `.opencode/agent/deep-agent-improvement.md` plus `Depth: 1` and must return a candidate path under `/tmp/cp-041-spec/improvement/candidates/` while leaving `.opencode`, `.claude`, `.gemini`, and `.codex` fixture surfaces unchanged.
 
 Expected signals: Call B candidate path count >= 1. Post-B diffs for canonical and all mirrors exit 0. Project tripwire diff is empty.
 
@@ -634,7 +634,7 @@ Desired user-visible outcome: PASS verdict showing proposal-only discipline held
 
 #### Description
 
-Confirm `@improve-agent` runs an active Critic pass against scorer overfit before returning a candidate.
+Confirm `@deep-agent-improvement` runs an active Critic pass against scorer overfit before returning a candidate.
 
 #### Scenario Contract
 

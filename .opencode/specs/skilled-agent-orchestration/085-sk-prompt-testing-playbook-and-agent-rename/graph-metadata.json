@@ -7,6 +7,8 @@
     "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
     "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
   ],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [
       "skilled-agent-orchestration/082-sk-improve-prompt-rename",
@@ -27,32 +29,112 @@
       "prompt-improver agent"
     ],
     "key_topics": [
-      "agent-rename",
-      "manual-testing-playbook",
-      "noun-as-agent-name",
-      "naming-convention",
-      "cross-runtime-mirroring",
-      "sk-doc-templates",
-      "phase-parent"
+      "085",
+      "sk-prompt",
+      "playbook",
+      "agent",
+      "rename",
+      "improve-prompt",
+      "prompt-improver",
+      "manual",
+      "testing",
+      "two",
+      "related",
+      "gaps"
     ],
     "importance_tier": "important",
-    "status": "in-progress",
+    "status": "complete",
     "key_files": [
-      "spec.md",
-      "description.json",
-      "graph-metadata.json"
+      ".opencode/command/improve/prompt.md",
+      ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+      ".opencode/specs/descriptions.json",
+      ".codex/config.toml",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase parent for two related sk-prompt + agent-improvement deliverables. Phase 001 renames the @improve-prompt agent to @prompt-improver across all 4 runtimes plus ~31 reference files via direct sed (per CLI parallelism memory rule). Phase 002 authors a 28-scenario manual testing playbook for sk-prompt via /create:testing-playbook command using sk-doc templates. Order: 001 first so Phase 002 references the final agent name without double-touching the playbook.",
+    "entities": [
+      {
+        "name": "prompt.md",
+        "kind": "doc",
+        "path": ".opencode/command/improve/prompt.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Testing Playbook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two related gaps surfaced after packet 082 renamed the skill `sk-improve-prompt` \u2192 `sk-prompt`:",
     "created_at": "2026-05-06T15:30:00Z",
-    "last_save_at": "2026-05-06T15:30:00Z",
-    "save_lineage": "graph_only",
-    "last_active_child_id": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename",
-    "last_active_at": "2026-05-06T15:30:00Z",
+    "last_save_at": "2026-05-06T17:02:13.480Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
-  },
-  "importance_tier": "important"
+    ],
+    "last_active_child_id": "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook",
+    "last_active_at": "2026-05-06T17:02:13.480Z"
+  }
 }

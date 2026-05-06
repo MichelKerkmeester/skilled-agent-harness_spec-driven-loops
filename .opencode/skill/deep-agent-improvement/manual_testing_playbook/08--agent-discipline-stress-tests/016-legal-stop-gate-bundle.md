@@ -96,8 +96,8 @@ grep -c "gate_evaluation" /tmp/cp-043-B-combined.txt | tee /tmp/cp-043-B-generic
 
 | File | Role |
 |---|---|
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Auto workflow journal boundary |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Confirm workflow journal boundary |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` | Auto workflow journal boundary |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Confirm workflow journal boundary |
 | `.opencode/skill/deep-agent-improvement/SKILL.md` | Legal-stop gate contract |
 
 ## 5. SOURCE METADATA

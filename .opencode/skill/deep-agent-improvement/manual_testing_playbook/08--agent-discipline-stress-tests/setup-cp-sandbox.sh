@@ -77,4 +77,4 @@ copy_file "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md" "${SANDBOX_DIR}/
 copy_file "${FIXTURE_ROOT}/.gemini/agents/cp-improve-target.md" "${SANDBOX_DIR}/.gemini/agents/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.codex/agents/cp-improve-target.toml" "${SANDBOX_DIR}/.codex/agents/cp-improve-target.toml"
 
-echo "Created improve-agent sandbox at ${SANDBOX_DIR}"
+echo "Created deep-agent-improvement sandbox at ${SANDBOX_DIR}"

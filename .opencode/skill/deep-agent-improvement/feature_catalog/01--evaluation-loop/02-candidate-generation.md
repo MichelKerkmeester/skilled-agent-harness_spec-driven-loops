@@ -1,13 +1,13 @@
 ---
 title: "Candidate generation"
-description: "Generates one bounded packet-local candidate through the proposal-only improve-agent subagent."
+description: "Generates one bounded packet-local candidate through the proposal-only deep-agent-improvement subagent."
 ---
 
 # Candidate generation
 
 ## 1. OVERVIEW
 
-Generates one bounded packet-local candidate through the proposal-only improve-agent subagent.
+Generates one bounded packet-local candidate through the proposal-only deep-agent-improvement subagent.
 
 This feature covers the proposal stage of the loop, where the evaluated agent can be changed only inside the packet-local runtime area and only after the control bundle has been read.
 
@@ -15,7 +15,7 @@ This feature covers the proposal stage of the loop, where the evaluated agent ca
 
 ## 2. CURRENT REALITY
 
-Candidate generation is delegated to `.opencode/agent/improve-agent.md`. That subagent requires five concrete inputs, reads the copied charter and manifest before writing, reads the canonical target and integration report, writes one candidate under `improvement/candidates/`, returns structured JSON metadata, and stops before scoring, benchmarking, promotion, or mirror synchronization begins.
+Candidate generation is delegated to `.opencode/agent/deep-agent-improvement.md`. That subagent requires five concrete inputs, reads the copied charter and manifest before writing, reads the canonical target and integration report, writes one candidate under `improvement/candidates/`, returns structured JSON metadata, and stops before scoring, benchmarking, promotion, or mirror synchronization begins.
 
 The YAML workflows own when candidate generation happens. Autonomous mode runs the proposal step whenever the loop continues, while confirm mode adds an approval gate before dispatching the candidate writer. The packet-local boundary is strict in the shipped agent: canonical targets and runtime mirrors are explicit never-edit surfaces.
 
@@ -27,9 +27,9 @@ The YAML workflows own when candidate generation happens. Autonomous mode runs t
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/agent/improve-agent.md` | Proposal agent | Defines the proposal-only contract, required inputs, and runtime-only write boundary. |
-| `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Workflow | Dispatches the candidate-generation step on each autonomous iteration. |
-| `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Workflow | Gates candidate generation behind operator approval in interactive mode. |
+| `.opencode/agent/deep-agent-improvement.md` | Proposal agent | Defines the proposal-only contract, required inputs, and runtime-only write boundary. |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_auto.yaml` | Workflow | Dispatches the candidate-generation step on each autonomous iteration. |
+| `.opencode/command/improve/assets/improve_deep-agent-improvement_confirm.yaml` | Workflow | Gates candidate generation behind operator approval in interactive mode. |
 | `.opencode/skill/deep-agent-improvement/SKILL.md` | Skill orchestration | Describes the bounded-candidate rule and the packet-local `candidates/` directory contract. |
 
 ### Validation And Tests

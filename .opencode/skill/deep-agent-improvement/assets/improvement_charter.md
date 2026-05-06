@@ -1,11 +1,11 @@
 ---
 title: Recursive Agent Charter
-description: Fixed policy charter for a improve-agent run.
+description: Fixed policy charter for a deep-agent-improvement run.
 ---
 
 # Recursive Agent Charter
 
-Fixed policy template for a improve-agent run. Use it as the non-negotiable control layer that tells the mutator, scorer, reducer, and operator what kind of improvement workflow is allowed.
+Fixed policy template for a deep-agent-improvement run. Use it as the non-negotiable control layer that tells the mutator, scorer, reducer, and operator what kind of improvement workflow is allowed.
 
 ---
 
@@ -13,7 +13,7 @@ Fixed policy template for a improve-agent run. Use it as the non-negotiable cont
 
 ### Purpose
 
-Defines the fixed policy boundary for a improve-agent run.
+Defines the fixed policy boundary for a deep-agent-improvement run.
 
 ### Usage
 

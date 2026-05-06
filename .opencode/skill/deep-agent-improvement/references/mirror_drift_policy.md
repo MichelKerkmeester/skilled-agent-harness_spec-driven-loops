@@ -1,6 +1,6 @@
 ---
 title: Mirror Drift Policy
-description: Policy for handling runtime mirror drift after canonical improve-agent promotion.
+description: Policy for handling runtime mirror drift after canonical deep-agent-improvement promotion.
 ---
 
 # Mirror Drift Policy

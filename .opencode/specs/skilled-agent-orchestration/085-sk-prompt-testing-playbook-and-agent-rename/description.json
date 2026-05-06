@@ -11,12 +11,14 @@
     "naming-convention",
     "noun-as-agent-name"
   ],
-  "lastUpdated": "2026-05-06T15:30:00.000Z",
+  "lastUpdated": "2026-05-06T17:02:09.455Z",
   "specId": "085",
   "folderSlug": "sk-prompt-testing-playbook-and-agent-rename",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-05-26_18-02__manual-context-save.md"
+  ]
 }
