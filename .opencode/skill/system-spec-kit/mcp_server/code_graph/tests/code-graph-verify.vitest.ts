@@ -561,5 +561,30 @@ describe('code-graph verify', () => {
       }));
       expect(parsed.result.queryCount).toBeGreaterThan(0);
     });
+
+    it('resolves the default gold-battery path correctly without phantom skill/ segment', async () => {
+      // Regression guard: the legacy hardcoded `../../../../../` URL path in
+      // gold-query-verifier.ts resolved correctly from the TS source location
+      // (mcp_server/code_graph/lib/) but produced `.opencode/skill/specs/...`
+      // when loaded from the compiled dist (mcp_server/dist/code_graph/lib/),
+      // because dist is one level deeper. The fix walks up to the workspace
+      // root via the .opencode marker, so the resolved DEFAULT path must NEVER
+      // contain `.opencode/skill/specs/`. This test enforces both that the
+      // exported constant has the correct shape AND that handleCodeGraphVerify
+      // succeeds with no batteryPath argument.
+      expect(DEFAULT_VERIFY_BATTERY_PATH).not.toContain('.opencode/skill/specs/');
+      expect(DEFAULT_VERIFY_BATTERY_PATH).toContain('.opencode/specs/');
+
+      const response = await handleCodeGraphVerify({});
+      const parsed = JSON.parse(response.content[0].text);
+
+      // Status may be 'ok' or 'blocked' (readiness gate) but must NOT be 'error'
+      // due to a phantom path failing the realpathSync check.
+      expect(parsed.status).not.toBe('error');
+      if (parsed.status === 'error') {
+        expect(parsed.error).not.toContain('.opencode/skill/specs/');
+        expect(parsed.error).not.toContain('batteryPath is invalid');
+      }
+    });
   });
 });

@@ -3,7 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 // Loads and validates the code-graph gold query battery.
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createLogger } from '../../lib/utils/logger.js';
 import {
@@ -14,16 +15,52 @@ import {
 
 const logger = createLogger('GoldQueryVerifier');
 
+/** Path inside the workspace, anchored at the project root, to the v1 gold battery. */
+const GOLD_BATTERY_RELATIVE_PATH =
+  '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json';
+
+/**
+ * Resolve the project root by walking up from this module's directory until
+ * a folder containing the `.opencode/specs/` semantic anchor is found.
+ *
+ * Anchored on `.opencode/specs/` (rather than just `.opencode/`) because a
+ * stray `mcp_server/.opencode/` test artifact otherwise short-circuits the
+ * walk one level too early. The stray contains only `skill/`, not `specs/`,
+ * so this stricter marker correctly skips it and lands at the real
+ * workspace root.
+ *
+ * Behaves identically whether the module is loaded from
+ * `mcp_server/code_graph/lib/` (TS source under vitest) or
+ * `mcp_server/dist/code_graph/lib/` (compiled MCP runtime). The legacy
+ * hardcoded `../../../../../` relative path was correct for the TS source
+ * location but produced a phantom `.opencode/skill/specs/...` path when
+ * loaded from `dist/`, breaking `code_graph_verify({})` at runtime.
+ */
+function resolveProjectRoot(): string {
+  const moduleDir = dirname(fileURLToPath(import.meta.url));
+  let current = moduleDir;
+  for (let i = 0; i < 12; i++) {
+    if (existsSync(resolve(current, '.opencode', 'specs'))) {
+      return current;
+    }
+    const parent = dirname(current);
+    if (parent === current) break; // filesystem root
+    current = parent;
+  }
+  // Fallback — should not happen in normal deployments
+  return process.cwd();
+}
+
 /**
  * Canonical on-disk path to the v1 gold battery shipped under the 007 research
  * assets folder. Re-exported so handlers do not redeclare the relative path.
  *
  * REQ-014: keep in sync if the asset moves under the 007 research packet.
  */
-export const DEFAULT_GOLD_BATTERY_PATH = fileURLToPath(new URL(
-  '../../../../../specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/assets/code-graph-gold-queries.json',
-  import.meta.url,
-));
+export const DEFAULT_GOLD_BATTERY_PATH = resolve(
+  resolveProjectRoot(),
+  GOLD_BATTERY_RELATIVE_PATH,
+);
 
 interface GoldQueryProbe {
   operation: string;
