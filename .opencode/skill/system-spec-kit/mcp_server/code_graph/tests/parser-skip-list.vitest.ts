@@ -266,4 +266,38 @@ describe('tree-sitter parser skip-list wrapper', () => {
     expect(getParserHealth()).toBe('quarantined');
     expect(second.parseErrors[0]).toContain('quarantined');
   });
+
+  it('clears quarantine via __resetParserHealth and lets the parse path re-engage', async () => {
+    vi.resetModules();
+    process.env.SPECKIT_PARSER_SKIP_LIST_ENABLED = 'true';
+    const tempDir = mkdtempSync(join(tmpdir(), 'parser-skip-list-reset-'));
+    tempDirs.push(tempDir);
+    const parseMock = vi.fn(() => {
+      throw new Error('RuntimeError: memory access out of bounds');
+    });
+    mockWebTreeSitter(parseMock);
+    const dynamicDb = await import('../lib/code-graph-db.js');
+    closeDynamicDb = dynamicDb.closeDb;
+    dynamicDb.initDb(tempDir);
+
+    const { TreeSitterParser, getParserHealth, __resetParserHealth } = await import('../lib/tree-sitter-parser.js');
+    await TreeSitterParser.init();
+    await TreeSitterParser.loadLanguage('bash');
+    const parser = new TreeSitterParser();
+
+    parser.parse('echo bad', 'bash', undefined, '/workspace/quarantine.sh');
+    expect(parseMock).toHaveBeenCalledTimes(1);
+    expect(getParserHealth()).toBe('quarantined');
+
+    const stillQuarantined = parser.parse('echo also-bad', 'bash', undefined, '/workspace/another.sh');
+    expect(parseMock).toHaveBeenCalledTimes(1);
+    expect(stillQuarantined.parseErrors[0]).toContain('quarantined');
+
+    __resetParserHealth();
+    expect(getParserHealth()).toBe('ok');
+
+    parser.parse('echo good', 'bash', undefined, '/workspace/post-reset.sh');
+    expect(parseMock).toHaveBeenCalledTimes(2);
+    expect(getParserHealth()).toBe('quarantined');
+  });
 });

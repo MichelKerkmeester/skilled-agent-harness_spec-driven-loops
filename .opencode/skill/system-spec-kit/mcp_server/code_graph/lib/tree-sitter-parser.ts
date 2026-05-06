@@ -58,6 +58,17 @@ export function getParserHealth(): 'ok' | 'quarantined' {
   return parserHealth;
 }
 
+/**
+ * Test-only reset for the module-level parserHealth singleton.
+ * Production code clears quarantine via MCP server restart only. The double-
+ * underscore prefix signals internal/test scope. Vitest cases that exercise
+ * the quarantine path call this in afterEach so the singleton does not leak
+ * across `it()` blocks within the same module instance.
+ */
+export function __resetParserHealth(): void {
+  parserHealth = 'ok';
+}
+
 export function classifyError(err: unknown): 'B1' | 'B2' | 'OTHER' {
   const message = err instanceof Error ? err.message : String(err);
   if (message.includes('resolved is not a function')) return 'B1';
