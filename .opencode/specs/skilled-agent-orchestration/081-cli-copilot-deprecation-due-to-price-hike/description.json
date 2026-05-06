@@ -1,6 +1,6 @@
 {
-  "specFolder": "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
   "level": 2,
+  "specFolder": "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
   "description": "cli-copilot Total Deprecation: physically remove the cli-copilot skill and every live-config reference. Driver: GitHub Copilot price hike making cli-copilot uneconomic vs cli-codex (gpt-5.5). Level 2 packet with 7-batch cli-codex dispatch model.",
   "keywords": [
     "feature",
@@ -9,14 +9,15 @@
     "total",
     "deprecation"
   ],
-  "lastUpdated": "2026-05-06T10:28:50.690Z",
+  "lastUpdated": "2026-05-06T11:24:21.454Z",
   "specId": "081",
   "folderSlug": "cli-copilot-deprecation-due-to-price-hike",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "06-05-26_11-28__manual-context-save.md"
+    "06-05-26_11-28__manual-context-save.md",
+    "06-05-26_12-24__manual-context-save.md"
   ]
 }
