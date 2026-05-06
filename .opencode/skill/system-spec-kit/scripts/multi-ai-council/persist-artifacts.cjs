@@ -3,6 +3,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const DEFAULT_TIMESTAMP = '1970-01-01T00:00:00.000Z';
+const SCHEMA_VERSION = '1.1';
+const PROTOCOL = 'multi-ai-council';
+const PRODUCER_VERSION = 'persist-artifacts.cjs@1.1.0';
 const OPTIONAL_ALIASES = {
   crossReferences: ['cross-references', 'cross references'],
   droppedAlternatives: ['dropped alternatives'],
@@ -29,6 +32,35 @@ function slugify(value) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 80) || 'unknown';
+}
+
+function metadataEvent(event) {
+  const { schema_version, protocol, producer, ...payload } = event || {};
+  return {
+    schema_version: SCHEMA_VERSION,
+    protocol: PROTOCOL,
+    producer: PRODUCER_VERSION,
+    ...payload,
+  };
+}
+
+function parseStateLine(line) {
+  const event = JSON.parse(line);
+  if (typeof event !== 'object' || event === null || Array.isArray(event)) {
+    throw new Error('[multi-ai-council] Expected object state event');
+  }
+  return {
+    schema_version: '1',
+    ...event,
+  };
+}
+
+function parseStateLog(jsonl) {
+  return String(jsonl || '')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map(parseStateLine);
 }
 
 function roundLabel(round) {
@@ -166,6 +198,7 @@ function collectExtraSections(sections) {
 
 function parseCouncilReport(markdown) {
   const sectionsList = splitSections(markdown);
+  const title = String(markdown || '').replace(/\r\n/g, '\n').split('\n').find((line) => /^#{1,2}\s+/.test(line));
   const composition = findSection(sectionsList, ['Council Composition']);
   const recommendedPlan = findSection(sectionsList, ['Recommended Plan']);
   const planConfidence = findSection(sectionsList, ['Plan Confidence']);
@@ -181,6 +214,7 @@ function parseCouncilReport(markdown) {
   return {
     ok: missing.length === 0,
     missing,
+    title: title ? normalizeText(title.replace(/^#{1,2}\s+/, '')) : '',
     sections: sectionsList.reduce((result, section) => {
       result[section.heading] = section.content;
       return result;
@@ -192,6 +226,53 @@ function parseCouncilReport(markdown) {
     optionalSections: collectOptionalSections(sectionsList),
     extraSections: collectExtraSections(sectionsList),
     rawMarkdown: String(markdown || '').replace(/\r\n/g, '\n').trim(),
+  };
+}
+
+function plainText(markdown) {
+  return normalizeText(String(markdown || '')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^\s*[-*]\s+/gm, '')
+    .replace(/^\s*\d+\.\s+/gm, ''));
+}
+
+function firstParagraph(markdown) {
+  const blocks = String(markdown || '')
+    .split(/\n\s*\n/)
+    .map(plainText)
+    .filter(Boolean);
+  return blocks[0] || 'Multi-AI Council completed and produced a recommended plan.';
+}
+
+function listItems(markdown) {
+  const items = [];
+  for (const line of String(markdown || '').split(/\r?\n/)) {
+    const match = line.match(/^\s*(?:[-*]|\d+\.)\s+(.+)$/);
+    if (match) items.push(plainText(match[1]));
+  }
+  return items.filter(Boolean);
+}
+
+function buildMemorySavePayload(parsed, packetSpecFolder) {
+  const recommendedPlan = parsed.recommendedPlan || '';
+  const droppedAlternatives = parsed.optionalSections.droppedAlternatives || '';
+  const risksMitigations = parsed.optionalSections.risksMitigations || '';
+  const implementationSteps = parsed.sections['Implementation Steps'] || '';
+  const decisions = listItems(recommendedPlan).concat(listItems(droppedAlternatives));
+  const followUps = listItems(risksMitigations).concat(listItems(implementationSteps));
+
+  return {
+    topic: parsed.title || 'Multi-AI Council',
+    spec_folder: path.resolve(packetSpecFolder),
+    session_summary: firstParagraph(recommendedPlan),
+    decisions,
+    files_changed: [],
+    follow_ups: followUps,
+    tests: [],
+    completion_status: followUps.length ? 'complete-with-deferrals' : 'complete',
   };
 }
 
@@ -278,7 +359,7 @@ ${parsed.planConfidence === null ? '[No numeric confidence captured]' : `${parse
     { event: 'deliberation_synthesized', round, timestamp, convergence_score: parsed.planConfidence },
     { event: 'round_end', round, timestamp, new_findings_count: parsed.extraSections.length },
     { event: 'council_complete', timestamp, final_report_path: 'ai-council/council-report.md', convergence: true },
-  ];
+  ].map(metadataEvent);
 
   const stateLog = `${stateEvents.map((event) => JSON.stringify(event)).join('\n')}\n`;
   const councilReport = `${parsed.rawMarkdown}\n`;
@@ -334,22 +415,35 @@ function appendStateLine(packetSpecFolder, event) {
   const statePath = path.resolve(aiCouncilRoot, 'ai-council-state.jsonl');
   assertInside(aiCouncilRoot, statePath);
   fs.mkdirSync(aiCouncilRoot, { recursive: true });
-  fs.appendFileSync(statePath, `${JSON.stringify(event)}\n`, 'utf8');
+  fs.appendFileSync(statePath, `${JSON.stringify(metadataEvent(event))}\n`, 'utf8');
   return statePath;
 }
 function parseArgs(argv) {
-  const args = { packetSpecFolder: null, round: 1, inputFile: null, strictOutput: false, force: false };
+  const args = {
+    packetSpecFolder: null,
+    round: 1,
+    inputFile: null,
+    strictOutput: false,
+    force: false,
+    memorySavePayloadOut: null,
+  };
   const rest = [...argv];
   args.packetSpecFolder = rest.shift() || null;
   while (rest.length) {
     const flag = rest.shift();
     if (flag === '--round') args.round = Number(rest.shift());
     else if (flag === '--input-file') args.inputFile = rest.shift();
+    else if (flag === '--memory-save-payload-out') args.memorySavePayloadOut = rest.shift();
     else if (flag === '--strict-output') args.strictOutput = true;
     else if (flag === '--force') args.force = true;
     else throw new Error(`[multi-ai-council] Unknown argument: ${flag}`);
   }
-  if (!args.packetSpecFolder) throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--strict-output] [--force]');
+  if (!args.packetSpecFolder) {
+    throw new Error('Usage: node persist-artifacts.cjs <packet-spec-folder> [--round NNN] [--input-file FILE] [--memory-save-payload-out FILE] [--strict-output] [--force]');
+  }
+  if (args.memorySavePayloadOut === undefined) {
+    throw new Error('[multi-ai-council] --memory-save-payload-out requires a file path');
+  }
   roundLabel(args.round);
   return args;
 }
@@ -378,6 +472,16 @@ function main(argv = process.argv.slice(2)) {
       console.error(`[multi-ai-council] Partial write failure:\n${result.conflicts.join('\n')}`);
       return 2;
     }
+    if (args.memorySavePayloadOut) {
+      try {
+        const payload = buildMemorySavePayload(parsed, args.packetSpecFolder);
+        fs.mkdirSync(path.dirname(path.resolve(args.memorySavePayloadOut)), { recursive: true });
+        fs.writeFileSync(path.resolve(args.memorySavePayloadOut), `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+      } catch (payloadError) {
+        console.warn(`[multi-ai-council] Failed to write memory-save payload: ${payloadError instanceof Error ? payloadError.message : String(payloadError)}`);
+        return 2;
+      }
+    }
     console.log(`[multi-ai-council] Wrote ${result.written.length} artifact(s) to ${path.resolve(args.packetSpecFolder, 'ai-council')}`);
     return 0;
   } catch (error) {
@@ -387,8 +491,14 @@ function main(argv = process.argv.slice(2)) {
 }
 
 module.exports = {
+  SCHEMA_VERSION,
+  PROTOCOL,
+  PRODUCER_VERSION,
   parseCouncilReport,
+  parseStateLine,
+  parseStateLog,
   renderArtifacts,
+  buildMemorySavePayload,
   writeArtifacts,
   appendStateLine,
   main,

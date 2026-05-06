@@ -623,6 +623,12 @@ type CouncilComplete = {event:"council_complete"; timestamp:string; final_report
 
 `ai-council-state.jsonl` is append-only. NEVER rewrite or truncate it. NEVER write secrets, credentials, tokens, or private keys to state events.
 
+### v1.1 Optional Metadata
+
+Helper-emitted rows may prefix each event with `schema_version`, `protocol`, and `producer`. Missing `schema_version` means implicit `"1"`; helper v1.1 emits `"1.1"`, `protocol:"multi-ai-council"`, and `producer:"persist-artifacts.cjs@<version>"`.
+
+Evolution is additive-only: v1 callers must keep working, and old rows are not rewritten. Full state-format rules live in `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`.
+
 ---
 
 ## 15. CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE
@@ -658,6 +664,21 @@ Caller patterns:
 Depth-1 rule: the dispatching parent owns helper invocation. The LEAF returns the report as chat; the parent persists it under `<packet>/ai-council/`.
 
 Forward-only scope: this convention applies to council dispatches from this point forward. Pre-080 outputs in earlier packets remain in their original locations and are not migrated retroactively.
+
+### Memory-Save Payload Routing
+
+Callers may add `--memory-save-payload-out FILE` when invoking the helper. On `council_complete`, the helper writes a `generate-context.js` compatible JSON payload; without the flag, no payload is written.
+
+```bash
+node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet> \
+  --input-file council-report.md \
+  --memory-save-payload-out /tmp/council-payload.json
+
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
+  /tmp/council-payload.json <packet>
+```
+
+The payload routes through existing decision-record, implementation-summary, and handover categories. No new ANCHOR family is introduced. See `.opencode/skill/system-spec-kit/references/multi-ai-council/command-wiring.md`.
 
 ---
 

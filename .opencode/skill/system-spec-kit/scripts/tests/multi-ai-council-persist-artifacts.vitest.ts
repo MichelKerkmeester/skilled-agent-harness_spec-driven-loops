@@ -18,6 +18,7 @@ const require = createRequire(import.meta.url);
 
 const helper = require(HELPER_PATH) as {
   parseCouncilReport: (markdown: string) => { ok: boolean; missing: string[] };
+  parseStateLog: (jsonl: string) => Array<Record<string, unknown>>;
   renderArtifacts: (parsed: unknown, options?: Record<string, unknown>) => {
     config: string;
     strategy: string;
@@ -27,6 +28,9 @@ const helper = require(HELPER_PATH) as {
     councilReport: string;
   };
   writeArtifacts: (packetSpecFolder: string, rendered: unknown) => { written: string[]; conflicts: string[] };
+  SCHEMA_VERSION: string;
+  PROTOCOL: string;
+  PRODUCER_VERSION: string;
 };
 
 const tempDirs: string[] = [];
@@ -111,5 +115,72 @@ describe('multi-ai-council persist-artifacts helper', () => {
     expect(parsed.ok).toBe(false);
     expect(parsed.missing).toEqual(expect.arrayContaining(['Recommended Plan', 'Plan Confidence']));
     expect(existsSync(join(packet, 'ai-council'))).toBe(false);
+  });
+
+  it('emits v1.1 metadata on all generated state lines', () => {
+    const parsed = helper.parseCouncilReport(fixture('council-output-full.md'));
+    const rendered = helper.renderArtifacts(parsed, { round: 1 });
+    const events = helper.parseStateLog(rendered.stateLog);
+
+    expect(events.length).toBeGreaterThan(0);
+    for (const event of events) {
+      expect(event.schema_version).toBe(helper.SCHEMA_VERSION);
+      expect(event.protocol).toBe(helper.PROTOCOL);
+      expect(event.producer).toBe(helper.PRODUCER_VERSION);
+    }
+  });
+
+  it('parses v1 state logs with implicit schema version', () => {
+    const stateLog = [
+      '{"event":"round_start","round":1,"timestamp":"2026-05-06T12:00:00.000Z","seats":["seat-001"]}',
+      '{"event":"council_complete","timestamp":"2026-05-06T12:01:00.000Z","final_report_path":"ai-council/council-report.md"}',
+      '',
+    ].join('\n');
+
+    const events = helper.parseStateLog(stateLog);
+    expect(events).toHaveLength(2);
+    expect(events[0].schema_version).toBe('1');
+    expect(events[1].event).toBe('council_complete');
+  });
+
+  it('writes generate-context compatible payload when payload flag is present', () => {
+    const packet = makeTempPacket();
+    const payloadPath = join(packet, 'payload.json');
+    const input = join(FIXTURE_DIR, 'council-output-full.md');
+
+    const stdout = execFileSync('node', [
+      HELPER_PATH,
+      packet,
+      '--input-file',
+      input,
+      '--memory-save-payload-out',
+      payloadPath,
+    ], { encoding: 'utf8', stdio: 'pipe' });
+
+    expect(stdout).toContain('[multi-ai-council] Wrote');
+    expect(existsSync(payloadPath)).toBe(true);
+    const payload = JSON.parse(readFileSync(payloadPath, 'utf8'));
+    expect(payload).toMatchObject({
+      spec_folder: packet,
+      files_changed: [],
+      tests: [],
+    });
+    expect(typeof payload.topic).toBe('string');
+    expect(typeof payload.session_summary).toBe('string');
+    expect(Array.isArray(payload.decisions)).toBe(true);
+    expect(Array.isArray(payload.follow_ups)).toBe(true);
+    expect(['complete', 'complete-with-deferrals']).toContain(payload.completion_status);
+  });
+
+  it('does not write a memory payload when payload flag is absent', () => {
+    const packet = makeTempPacket();
+    const payloadPath = join(packet, 'payload.json');
+    const input = join(FIXTURE_DIR, 'council-output-full.md');
+
+    execFileSync('node', [HELPER_PATH, packet, '--input-file', input], { encoding: 'utf8', stdio: 'pipe' });
+
+    expect(existsSync(payloadPath)).toBe(false);
+    expect(existsSync(join(packet, 'ai-council/council-report.md'))).toBe(true);
+    expect(existsSync(join(packet, 'ai-council/ai-council-state.jsonl'))).toBe(true);
   });
 });
