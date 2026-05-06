@@ -33,6 +33,14 @@ specs/<track>/<NNN-name>/ai-council/
 
 `council-report.md` is the final synthesized plan. It includes council composition, comparison, roadmap, rejected alternatives, risks, confidence, and convergence status.
 
+**Canonical writer:** the dispatching parent runs `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` after `@multi-ai-council` returns. The agent itself stays planning-only (write: deny). See agent body §16 CALLER PERSISTENCE PROTOCOL for the caller patterns and `references/multi-ai-council/command-wiring.md` for the canonical post-dispatch invocation.
+
+**Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/multi-ai-council/output-schema.md`.
+
 Cross-references:
-- Agent body: `.opencode/agent/multi-ai-council.md` §13
-- Decision record: `.opencode/specs/skilled-agent-orchestration/080-multi-ai-council-output-protocol/decision-record.md` ADR-002 and ADR-004
+- Agent body: `.opencode/agent/multi-ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 CALLER PERSISTENCE PROTOCOL
+- Helper: `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`
+- Schema: `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`
+- State format: `.opencode/skill/system-spec-kit/references/multi-ai-council/state-format.md`
+- Command wiring: `.opencode/skill/system-spec-kit/references/multi-ai-council/command-wiring.md`
+- Decision records: packet 080 ADR-002 (folder layout), ADR-004 (validator policy); packet 089 ADR-001..004 (helper/schema/§17/parity); packet 092 ADR-001..004 (v1.1 metadata + payload routing + advisor + command wiring)

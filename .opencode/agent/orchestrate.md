@@ -168,7 +168,7 @@ When dispatching ANY non-orchestrator agent, append this to the Task prompt:
 | @context  | `.opencode/agent/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
 | @create | `.opencode/agent/create.md` | `/create:*` command executor; sk-doc template-first; caller-restricted to create commands |
 | @deep-research | `.opencode/agent/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
-| @multi-ai-council | `.opencode/agent/multi-ai-council.md` | Planning-only multi-strategy architect (max 3 strategies)                              |
+| @multi-ai-council | `.opencode/agent/multi-ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see multi-ai-council §16 CALLER PERSISTENCE PROTOCOL). |
 | @review   | `.opencode/agent/review.md`   | Codebase-agnostic quality scoring                                                      |
 | @debug    | `.opencode/agent/debug.md`    | Isolated by design (no conversation context)                                           |
 | @code     | `.opencode/agent/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
