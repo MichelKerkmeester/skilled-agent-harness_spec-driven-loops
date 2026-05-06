@@ -93,9 +93,9 @@ Validator regression test + live smoke test on packet 080.
 - [x] T201 Audit `validate.sh` for unknown-subfolder behavior (validator accepts unknown subfolders by design; Node orchestrator at mcp_server/lib/validation/orchestrator.ts confirmed)
 - [x] T202 Confirm validator treats `ai-council/` as free-form (no code change required per ADR-004)
 - [x] T203 Add vitest case in `system-spec-kit/scripts/tests/multi-ai-council-validator.vitest.ts` (2 test cases; codex-dispatch reported targeted run passed)
-- [DEFERRED] T204 Smoke test: dispatch `@multi-ai-council` on packet 080 itself — agent retains `write: deny` permission (planning-only); orchestrator-level writes to `ai-council/` are out of scope for v1. Protocol is fully documented; future invocations exercise it.
-- [DEFERRED] T205 Verify canonical files appear in `ai-council/` (deferred with T204)
-- [DEFERRED] T206 Verify `council-report.md` structure matches spec §4 (deferred with T204; structure verified in agent body §13)
+- [x] T204 Smoke test: dispatched `@multi-ai-council` on packet 080 (rounds 1 + 2). Orchestrator-mediated persistence pattern used: agent stayed `write: deny`, Claude Code wrote `ai-council/` artifacts based on the agent's plan output. Round-2 produced "round-1 amended with addendum" verdict.
+- [x] T205 Verified canonical files appear in `ai-council/`: `ai-council-config.json`, `ai-council-strategy.md`, `ai-council-state.jsonl` (14 events), `seats/round-001/{seat-001,seat-002,seat-003}-*.md`, `seats/round-002/{seat-001,seat-002,seat-003}-*.md`, `deliberations/round-001.md`, `deliberations/round-002.md`, `critiques/round-002-critique.md`, `council-report.md`.
+- [x] T206 Verified `council-report.md` structure matches spec §4: Council Composition, Strategy Comparison table, Winning Strategy, Recommended Plan, Implementation Steps, Plan Confidence, Dropped Alternatives, Risks & Mitigations, Planning-Only Boundary, Cross-References.
 - [x] T207 Verify strict validation passes after Phase 2-3 (validate.sh --strict exit 0)
 - [x] T208 Verify resume-after-interrupt path documented in agent body (§14 + state-format.md)
 - [ ] T209 Commit Phase 3

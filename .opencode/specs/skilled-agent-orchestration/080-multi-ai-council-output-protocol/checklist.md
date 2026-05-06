@@ -71,8 +71,8 @@ _memory:
 
 - [x] **CHK-020** [P0] Vitest regression test confirms validator does not flag `ai-council/` as unknown (codex dispatch reported targeted run passed: 1 file, 2 tests)
 - [x] **CHK-021** [P0] Strict validation exit 0 on packet 080 after all phases land (validate.sh --strict)
-- [DEFERRED] **CHK-022** [P0] Smoke test: dispatching `@multi-ai-council` on packet 080 produces canonical `ai-council/` artifacts — DEFERRED: agent retains `write: deny` (planning-only); orchestrator-level writes are out of scope for v1. Protocol documented in agent §13-§16 and 4 reference files. Follow-on packet would grant ai-council/-scoped writes per deep-research/deep-review pattern.
-- [DEFERRED] **CHK-023** [P1] A second council dispatch on the same packet produces `round-002` files without overwriting round-001 — DEFERRED with CHK-022
+- [x] **CHK-022** [P0] Smoke test: dispatched `@multi-ai-council` on packet 080 (round 1, then round 2). Canonical `ai-council/` artifacts produced via orchestrator-mediated persistence (agent stayed `write: deny`; Claude Code wrote artifacts based on agent's plan output): config + strategy + state.jsonl (14 append-only events) + 6 seat files + 2 deliberations + 1 critique + council-report.md.
+- [x] **CHK-023** [P1] Round 2 produced `seats/round-002/`, `deliberations/round-002.md`, `critiques/round-002-critique.md` ALONGSIDE round-001 files (no overwrite of round-001). Round-2 verdict: "round-1 amended with addendum" — 6 refinements (ADD-1 through ADD-6) folded into council-report.md and packet-081 scope.
 - [x] **CHK-024** [P1] State.jsonl schema documented with examples in `references/multi-ai-council/state-format.md` (68 LOC, includes worked examples and resume semantics)
 <!-- /ANCHOR:testing -->
 
