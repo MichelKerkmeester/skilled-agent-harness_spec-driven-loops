@@ -37,6 +37,7 @@ Current state:
 - The indexer parses TypeScript, JavaScript, Python and shell files through tree-sitter with a regex fallback.
 - The database layer stores files, nodes and edges with schema version metadata and startup highlights.
 - Context builders merge structural graph, Memory MCP and CocoIndex inputs under token budgets.
+- The bash grammar's missing `external_scanner_reset` symbol is contained via a SQLite skip-list and a module-level `parserHealth: 'ok' | 'quarantined'` flag. See `parser-skip-list.ts` and the catch hook in `tree-sitter-parser.ts`.
 
 <!-- /ANCHOR:overview -->
 
@@ -86,6 +87,7 @@ lib/
 ├── index.ts                    │ Public library barrel
 ├── structural-indexer.ts       │ Workspace walk, parse and persist pipeline
 ├── tree-sitter-parser.ts       │ AST extraction and parser selection
+├── parser-skip-list.ts         │ B1/B2 parser-failure skip-list (schema v5)
 ├── code-graph-db.ts            │ SQLite schema and graph queries
 ├── code-graph-context.ts       │ Compact context assembly
 ├── seed-resolver.ts            │ File and line seeds to graph nodes
@@ -133,6 +135,7 @@ parser layer → startup or compaction surfaces
 lib/
 ├── structural-indexer.ts
 ├── tree-sitter-parser.ts
+├── parser-skip-list.ts
 ├── code-graph-db.ts
 ├── code-graph-context.ts
 ├── seed-resolver.ts
@@ -163,8 +166,9 @@ lib/
 | File | Responsibility |
 |---|---|
 | `structural-indexer.ts` | Walks files, applies scan filters, parses symbols and persists graph rows. Short-circuits `language='doc'` files (markdown, JSON, JSONC, YAML, YML, TOML) to register-only rows without tree-sitter parsing. |
-| `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges with fallback parser support. Skips the `'doc'` language entirely. |
-| `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. |
+| `tree-sitter-parser.ts` | Extracts AST-backed nodes and edges with fallback parser support. Skips the `'doc'` language entirely. Adds pre-parse skip-list lookup, post-parse B1/B2 catch hook and exports `getParserHealth()` and `classifyError()`. Schema v5, env-gated by `SPECKIT_PARSER_SKIP_LIST_ENABLED`. |
+| `parser-skip-list.ts` | Per-file skip-list for B1 and B2 tree-sitter failures. Exports `lookupSkipList`, `addToSkipList`, `recordSuccess`, `getSkipListSummary` and `seedFromProduction`. Fail-open on SQLite errors. |
+| `code-graph-db.ts` | Owns SQLite schema, graph CRUD, statistics and startup highlights. Schema v5 includes `parser_skip_list` and an idempotent v4 to v5 migration that seeds the table from `parse_diagnostics`. |
 | `code-graph-context.ts` | Builds token-bounded neighborhoods for `code_graph_context`. |
 | `seed-resolver.ts` | Resolves manual, graph and CocoIndex file-line seeds to indexed graph nodes. |
 | `compact-merger.ts` | Merges Memory MCP, code graph and CocoIndex context payloads. |
@@ -233,6 +237,8 @@ Indexing flow:
 | `resolveSeeds()` | Function | Maps context seeds to graph nodes. |
 | `ensureCodeGraphReady()` | Function | Checks readiness before graph reads. |
 | `buildStartupBrief()` | Function | Builds startup graph summary payloads. |
+| `lookupSkipList()` / `addToSkipList()` / `getSkipListSummary()` / `seedFromProduction()` / `recordSuccess()` | Functions | Skip-list reads, writes, summary and seed backfill in `parser-skip-list.ts`. |
+| `getParserHealth()` / `classifyError()` | Functions | Module-level parser-health getter and B1/B2 error classifier in `tree-sitter-parser.ts`. |
 
 <!-- /ANCHOR:entrypoints -->
 

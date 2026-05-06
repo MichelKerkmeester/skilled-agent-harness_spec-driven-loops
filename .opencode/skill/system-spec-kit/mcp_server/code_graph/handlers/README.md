@@ -37,6 +37,7 @@ Current state:
 - Structural graph handlers cover scan, query, status, context, verify and diff preflight reads.
 - CocoIndex bridge handlers cover status, reindex and feedback calls for the `ccc_*` tools.
 - Read handlers use shared readiness contracts instead of returning silent empty graph answers when the index is stale or missing.
+- Parser quarantine state surfaces through handler responses so operators can see `parserHealth: 'ok' | 'quarantined'` and the current skip-list sample without inspecting SQLite directly.
 
 <!-- /ANCHOR:overview -->
 
@@ -141,9 +142,9 @@ handlers/
 
 | File | Responsibility |
 |---|---|
-| `scan.ts` | Handles `code_graph_scan`, walks the workspace and updates the SQLite graph through the library indexer. Accepts `includeSkills` (boolean or `sk-*` list), `includeAgents`, `includeCommands`, `includeSpecs`, `includePlugins` per-call args; resolves the active scope policy via `../lib/index-scope-policy.ts`. Per-call args override the matching `SPECKIT_CODE_GRAPH_INDEX_*` env vars. |
+| `scan.ts` | Handles `code_graph_scan`, walks the workspace and updates the SQLite graph through the library indexer. Accepts `includeSkills` (boolean or `sk-*` list), `includeAgents`, `includeCommands`, `includeSpecs`, `includePlugins` per-call args; resolves the active scope policy via `../lib/index-scope-policy.ts`. Per-call args override the matching `SPECKIT_CODE_GRAPH_INDEX_*` env vars. Returns `parserSkipList: { added, healed, totalAfterScan }`. |
 | `query.ts` | Handles `code_graph_query` structural reads such as outline, calls, imports and blast radius. |
-| `status.ts` | Handles `code_graph_status` health probes with freshness, readiness, parse health and graph-quality fields. |
+| `status.ts` | Handles `code_graph_status` health probes with freshness, readiness, parse health and graph-quality fields. Returns `parserHealth: 'ok' | 'quarantined'` and `parserSkipList: { count, lastSeenAt, sample }`. |
 | `context.ts` | Handles `code_graph_context` neighborhoods from manual, graph or CocoIndex seeds. |
 | `verify.ts` | Handles `code_graph_verify` checks against the current index. |
 | `detect-changes.ts` | Handles `detect_changes` by mapping unified diffs to indexed symbols only when graph readiness is fresh. |

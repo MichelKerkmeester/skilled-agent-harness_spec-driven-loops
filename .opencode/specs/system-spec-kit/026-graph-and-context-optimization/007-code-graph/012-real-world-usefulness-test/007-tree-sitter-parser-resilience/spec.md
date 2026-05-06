@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Implemented (Phase 2) |
 | **Created** | 2026-05-06 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

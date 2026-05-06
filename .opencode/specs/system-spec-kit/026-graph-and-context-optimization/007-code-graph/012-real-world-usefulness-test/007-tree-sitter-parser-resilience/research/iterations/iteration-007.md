@@ -1,3 +1,16 @@
+---
+title: "Iteration 7: Final synthesis and convergence"
+description: "This iteration produced the final research synthesis, resource map and convergence updates. It also ran an informational fresh-bash-only probe that supported the 70-file production seed recommendation."
+trigger_phrases:
+  - "iteration 7"
+  - "final synthesis"
+  - "convergence"
+  - "fresh-bash-only probe"
+  - "70-file production seed"
+importance_tier: "important"
+contextType: "research-iteration"
+---
+
 # Iteration 7 — Final Synthesis
 
 **Timestamp:** 2026-05-06T20:30Z

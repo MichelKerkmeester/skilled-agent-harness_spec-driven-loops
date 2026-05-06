@@ -1,3 +1,16 @@
+---
+title: "Iteration 4: Cohort replay, 0.26.8 probe and Hypothesis C scan"
+description: "This iteration replayed the full 51-file OOB cohort through one shared parser and tested the web-tree-sitter 0.26.8 upgrade path. It found zero B2 events at the 51-file horizon, proved the bump requires rebuilt WASMs and downgraded Hypothesis C."
+trigger_phrases:
+  - "iteration 4"
+  - "cohort replay"
+  - "web-tree-sitter 0.26.8 probe"
+  - "dylink section"
+  - "Hypothesis C surface scan"
+importance_tier: "important"
+contextType: "research-iteration"
+---
+
 # Iteration 4 — Cohort replay + 0.26.8 swap probe + Hypothesis C surface scan
 
 **Date:** 2026-05-06

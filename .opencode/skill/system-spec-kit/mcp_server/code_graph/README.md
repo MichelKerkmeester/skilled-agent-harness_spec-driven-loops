@@ -39,6 +39,7 @@ Current state:
 - Context reads can return blocked payloads when a full scan is required before graph answers are safe.
 - Startup and compaction surfaces reuse the same graph summary payloads produced by the library.
 - Default scans target end-user repository code. Files under `.opencode/skill/**` are skipped unless a maintainer opts in.
+- Schema v5 adds a parser skip-list and quarantine reporting so broad internal scans can contain known bash parser failures without triggering the B1 to B2 cascade.
 
 <!-- /ANCHOR:overview -->
 
@@ -134,6 +135,7 @@ code_graph/
 │   ├── README.md
 │   ├── structural-indexer.ts
 │   ├── tree-sitter-parser.ts
+│   ├── parser-skip-list.ts
 │   ├── code-graph-db.ts
 │   ├── code-graph-context.ts
 │   ├── seed-resolver.ts
@@ -162,6 +164,7 @@ code_graph/
 | `handlers/context.ts` | Compact graph neighborhoods for LLM context windows. |
 | `handlers/detect-changes.ts` | Unified-diff to affected-symbol preflight. |
 | `lib/structural-indexer.ts` | Workspace walk, parse and persistence pipeline. |
+| `lib/parser-skip-list.ts` | Per-file parser skip-list for B1 and B2 tree-sitter failures, including lookup, write, summary and schema v5 seed backfill helpers. |
 | `lib/code-graph-db.ts` | SQLite schema, graph storage and startup highlights. |
 | `lib/code-graph-context.ts` | Context assembly with budget and partial-output metadata. |
 | `lib/index-scope-policy.ts` | Resolves end-user-vs-skill-inclusive scope policy from env + per-call args. Per-call boolean overrides env. |

@@ -1,3 +1,16 @@
+---
+title: "Iteration 2: B1 and B2 error-class discrimination"
+description: "This iteration tested bash WASM symbol exports and cross-grammar OOB fixture characteristics. It confirmed the B1 missing-symbol mechanism and rejected file size as the B2 discriminator."
+trigger_phrases:
+  - "iteration 2"
+  - "bash WASM symbol audit"
+  - "B1 vs B2 discrimination"
+  - "web-tree-sitter throw site"
+  - "external_scanner_reset"
+importance_tier: "important"
+contextType: "research-iteration"
+---
+
 # Iteration 2: Discriminate B1 (bash dynamic-linker) vs B2 (cross-grammar OOB)
 
 ## Focus

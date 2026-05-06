@@ -34,6 +34,7 @@ Current state:
 tests/
 +-- assets/                              # Static fixtures for verification tests
 +-- code-graph-*.vitest.ts               # Indexer, DB, query, context, readiness coverage
++-- parser-skip-list.vitest.ts           # Parser skip-list and quarantine resilience coverage
 +-- detect-changes.test.ts               # Diff parser and affected-symbol safety coverage
 +-- edge-*.test.ts                       # Edge drift and metadata sanitization coverage
 `-- phase-runner.test.ts                 # Phase dependency ordering and failure coverage
@@ -53,6 +54,7 @@ tests -> assets
 |---|---|---|
 | Indexing and persistence | `code-graph-indexer.vitest.ts`, `code-graph-atomic-persistence.vitest.ts` | Symbol IDs, content hashes, stale detection, node and edge writes. |
 | Scope policy and doc-language | `code-graph-indexer.vitest.ts`, `code-graph-scan.vitest.ts`, `code-graph-doc-language.test-d.ts` | 5-folder default excludes, env+per-call precedence, granular `sk-*` list selection, the 24-cell folder × file-type matrix that proves opted-in `.opencode/` folders persist `language='doc'` rows, and the type-level `SupportedLanguage` guard. |
+| Parser skip-list resilience | `parser-skip-list.vitest.ts` | B1/B2 classification, UPSERT and `attempt_count` semantics, fail-open on SQLite errors, `getSkipListSummary`, `seedFromProduction` backfill and quarantine-sentinel parse-site early return. |
 | Readiness and scope fingerprint | `code-graph-scope-readiness.vitest.ts`, `code-graph-siblings-readiness.vitest.ts` | Freshness gates, workspace scope decisions and v2 scope-fingerprint round-trip. |
 | Schema validation | `../tests/tool-input-schema.vitest.ts` | Accept and reject paths for `code_graph_scan` per-call args including `includeSkills` boolean, `sk-*` regex list, undefined defaults. |
 | Query and context handlers | `code-graph-query-handler.vitest.ts`, `code-graph-context-handler.vitest.ts` | MCP handler output contracts and graph context shaping. |

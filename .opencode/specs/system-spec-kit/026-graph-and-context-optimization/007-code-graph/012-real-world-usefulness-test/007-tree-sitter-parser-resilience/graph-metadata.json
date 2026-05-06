@@ -35,7 +35,7 @@
       "broad scope coverage"
     ],
     "importance_tier": "important",
-    "status": "research_complete",
+    "status": "phase_2_complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -50,7 +50,7 @@
     ],
     "causal_summary": "Live broad-scope scan crashes tree-sitter on ~17.5% of files. Investigate root cause (version vs WASM vs content), then ship a persistent skip-list policy with telemetry so full active scope stays usable.",
     "created_at": "2026-05-06T13:34:53Z",
-    "last_save_at": "2026-05-06T14:15:00Z",
+    "last_save_at": "2026-05-06T19:30:00Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
