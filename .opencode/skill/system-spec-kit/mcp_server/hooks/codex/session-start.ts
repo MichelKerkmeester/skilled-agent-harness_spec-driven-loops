@@ -197,6 +197,22 @@ function writeHookOutput(output: CodexSessionStartOutput | Record<string, never>
 }
 
 async function main(): Promise<void> {
+  // Headless smoke mode: verify hook output envelope formatting without
+  // running session-prime, contacting the API, or creating Codex session
+  // files. Useful for sandboxed test campaigns and CI smoke checks where
+  // distinguishing "hook script broken" from "downstream auth/network
+  // unavailable" matters. Exit code 0 + a valid envelope on stdout means
+  // the hook entry point is healthy.
+  if (process.argv.includes('--smoke')) {
+    const smoke: CodexSessionStartOutput = {
+      hookSpecificOutput: {
+        hookEventName: 'SessionStart',
+        additionalContext: '[smoke] codex session-start hook envelope OK',
+      },
+    };
+    await writeHookOutput(smoke);
+    return;
+  }
   const rawInput = await readStdin();
   const input = rawInput ? parseCodexSessionStartInput(rawInput) : null;
   const output = await handleCodexSessionStart(input, {

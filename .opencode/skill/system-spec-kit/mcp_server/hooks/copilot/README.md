@@ -49,6 +49,32 @@ printf '%s' '{"prompt":"<prompt>","cwd":"'"$PWD"'"}' | node .opencode/skill/syst
 Do not add top-level `type`, `bash`, or `timeoutSec` wrapper fields to `.claude/settings.local.json` for Copilot. That mixed wrapper shape is stale; Claude uses nested `hooks[]` command entries, while Copilot refreshes the managed custom-instructions file through its own writer scripts.
 
 Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip advisor generation for the current process. Set `SPECKIT_COPILOT_INSTRUCTIONS_DISABLED=1` to skip the custom-instructions writer. Set `SPECKIT_COPILOT_INSTRUCTIONS_PATH` when tests need an isolated target file.
+
+### Offline / Unauthenticated Preflight
+
+Copilot hook scripts are file-based — they refresh `$HOME/.copilot/copilot-instructions.md` and don't invoke the `copilot` binary or hit GitHub's API. That means hook health is independent of `copilot` CLI auth state, and execution campaigns should distinguish the two failure modes:
+
+- **Hook unhealthy**: the writer scripts under `dist/hooks/copilot/` fail to render or write the managed block.
+- **Copilot CLI unauthenticated**: `copilot -p "..."` fails with auth/login errors. Hook output is unaffected.
+
+To verify hook health offline (no network, no auth):
+
+```bash
+# 1. Session-prime writer — refreshes the managed block, prints a status JSON.
+SPECKIT_COPILOT_INSTRUCTIONS_PATH=/tmp/copilot-smoke.md \
+  node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/session-prime.js
+
+# 2. User-prompt writer — same surface, exercises the advisor brief path.
+SPECKIT_COPILOT_INSTRUCTIONS_PATH=/tmp/copilot-smoke.md \
+  printf '%s' '{"prompt":"smoke","cwd":"'"$PWD"'"}' \
+  | node .opencode/skill/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
+
+# 3. Verify the managed block exists with both expected markers.
+grep -c "SPEC-KIT-COPILOT-CONTEXT" /tmp/copilot-smoke.md
+# Expected: 2 (open + close marker)
+```
+
+Exit 0 + the markers present = hooks are healthy regardless of whether `copilot` itself can reach GitHub. A campaign reporting "Copilot blocked" should specify which mode failed.
 <!-- /ANCHOR:hook-registration -->
 
 <!-- ANCHOR:related -->

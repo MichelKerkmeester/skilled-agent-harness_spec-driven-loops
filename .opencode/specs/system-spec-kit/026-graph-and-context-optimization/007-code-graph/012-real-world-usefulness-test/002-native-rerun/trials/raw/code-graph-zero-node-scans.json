@@ -1,0 +1,40 @@
+{
+  "id": "native-code-graph-zero-node-scans",
+  "source": "native orchestrator measurement",
+  "events": [
+    {
+      "operation": "code_graph_scan",
+      "args": {
+        "includeSkills": false
+      },
+      "status": "completed_with_failure",
+      "result": {
+        "totalNodes": 0,
+        "totalEdges": 764,
+        "parserCrashCount": 10,
+        "parserCrashMessage": "memory access out of bounds"
+      },
+      "impact": "Wiped previous live graph state from 56843 nodes to 0 nodes."
+    },
+    {
+      "operation": "outline",
+      "subject": "sk-code/SKILL.md",
+      "status": "blocked",
+      "reason": "graph is empty (0 nodes)"
+    },
+    {
+      "operation": "code_graph_scan",
+      "args": {
+        "includeSkills": true
+      },
+      "status": "completed_with_failure",
+      "result": {
+        "totalNodes": 0,
+        "totalEdges": 764,
+        "parserCrashCount": 10,
+        "parserCrashMessage": "memory access out of bounds"
+      },
+      "impact": "Graph state did not recover after returning to original scan flags."
+    }
+  ]
+}

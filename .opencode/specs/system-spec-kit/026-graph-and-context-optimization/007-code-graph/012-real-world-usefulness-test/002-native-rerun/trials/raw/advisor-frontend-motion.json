@@ -1,0 +1,9 @@
+{
+  "id": "native-advisor-frontend-motion",
+  "source": "native MCP advisor_recommend probe",
+  "prompt": "implement a frontend component with motion animations",
+  "top1": "sk-code",
+  "score": 0.86,
+  "confidence": 0.95,
+  "verdict": "correct"
+}

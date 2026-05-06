@@ -1,0 +1,16 @@
+{
+  "id": "native-advisor-save-context",
+  "source": "native MCP advisor_recommend probe",
+  "prompt": "save context for current session",
+  "ranking": [
+    {
+      "skill": "system-spec-kit",
+      "score": 0.8
+    },
+    {
+      "skill": "memory:save",
+      "score": 0.7
+    }
+  ],
+  "verdict": "correct"
+}

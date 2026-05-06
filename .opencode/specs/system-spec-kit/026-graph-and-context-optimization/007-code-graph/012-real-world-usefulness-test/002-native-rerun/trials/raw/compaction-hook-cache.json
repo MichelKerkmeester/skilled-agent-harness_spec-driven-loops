@@ -1,0 +1,7 @@
+{
+  "id": "native-compaction-hook-cache",
+  "source": "native orchestrator measurement",
+  "observed_marker": "[SOURCE: hook-cache, cachedAt: 2026-05-05T17:46:32.487Z]",
+  "status": "partial",
+  "verdict": "formatting confirmed; relevance quality not independently measured"
+}

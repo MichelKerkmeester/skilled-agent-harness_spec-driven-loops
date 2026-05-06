@@ -1,0 +1,24 @@
+{
+  "id": "native-code-graph-drift-blocks",
+  "source": "native orchestrator measurement",
+  "queries": [
+    {
+      "operation": "calls_to",
+      "subject": "scoreLexicalLane",
+      "status": "blocked",
+      "reason": "candidate manifest drift: indexable file set has changed since last scan; inline full scan skipped for read path"
+    },
+    {
+      "operation": "blast_radius",
+      "subject": "recommend_with_native_advisor",
+      "status": "blocked",
+      "reason": "candidate manifest drift: indexable file set has changed since last scan; inline full scan skipped for read path"
+    },
+    {
+      "operation": "imports_to",
+      "subject": "skill-graph-db.ts",
+      "status": "blocked",
+      "reason": "candidate manifest drift: indexable file set has changed since last scan; inline full scan skipped for read path"
+    }
+  ]
+}

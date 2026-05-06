@@ -1,0 +1,16 @@
+{
+  "id": "native-code-graph-first-scan",
+  "source": "native orchestrator measurement",
+  "operation": "code_graph_scan",
+  "args": {
+    "includeSkills": true
+  },
+  "result": {
+    "status": "completed",
+    "filesScanned": 9280,
+    "filesIndexed": 9280,
+    "totalNodes": 56843,
+    "totalEdges": 36347,
+    "durationMs": 13376
+  }
+}

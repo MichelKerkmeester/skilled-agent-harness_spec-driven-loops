@@ -4,7 +4,8 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-code-graph",
   "children_ids": [
-    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/001-execution"
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/001-execution",
+    "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/002-native-rerun"
   ],
   "migrated": true,
   "migration_source": "legacy",

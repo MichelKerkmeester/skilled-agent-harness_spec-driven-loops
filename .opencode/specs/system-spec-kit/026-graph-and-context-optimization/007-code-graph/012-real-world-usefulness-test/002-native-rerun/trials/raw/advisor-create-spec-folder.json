@@ -1,0 +1,9 @@
+{
+  "id": "native-advisor-create-spec-folder",
+  "source": "native MCP advisor_recommend probe",
+  "prompt": "create new spec folder for refactor work",
+  "top1": "system-spec-kit",
+  "score": 0.8,
+  "confidence": 0.93,
+  "verdict": "correct"
+}

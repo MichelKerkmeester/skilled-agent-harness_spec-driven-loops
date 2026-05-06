@@ -1,0 +1,20 @@
+{
+  "id": "native-backlog-fixes",
+  "source": "native orchestrator verification",
+  "fixes": [
+    {
+      "file": "mcp_server/hooks/codex/session-start.ts",
+      "line": 5,
+      "change": "added --smoke flag",
+      "verification": "node ...session-start.js --smoke returned valid SessionStart envelope",
+      "status": "verified"
+    },
+    {
+      "file": "mcp_server/hooks/copilot/README.md",
+      "line": 27,
+      "change": "added Offline / Unauthenticated Preflight section",
+      "verification": "offline preflight produced two SPEC-KIT-COPILOT-CONTEXT markers",
+      "status": "verified"
+    }
+  ]
+}
