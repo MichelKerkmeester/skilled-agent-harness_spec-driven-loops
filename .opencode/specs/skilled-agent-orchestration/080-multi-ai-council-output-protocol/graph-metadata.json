@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+  "spec_folder": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      ".opencode/agent/multi-ai-council.md",
+      ".opencode/skill/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skill/system-spec-kit/references/"
+    ],
+    "supersedes": [],
+    "enhances": [
+      ".opencode/skill/deep-research",
+      ".opencode/skill/deep-review"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ai-council",
+      "multi-ai-council",
+      "council subfolder",
+      "council output",
+      "deliberation rounds",
+      "seat outputs",
+      "council protocol"
+    ],
+    "key_topics": [
+      "subfolder convention",
+      "agent output preservation",
+      "iterative planning",
+      "council deliberation"
+    ],
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "kind": "agent",
+        "id": "multi-ai-council",
+        "path": ".opencode/agent/multi-ai-council.md"
+      },
+      {
+        "kind": "script",
+        "id": "validate.sh",
+        "path": ".opencode/skill/system-spec-kit/scripts/spec/validate.sh"
+      }
+    ],
+    "status": "draft",
+    "level": 3
+  }
+}

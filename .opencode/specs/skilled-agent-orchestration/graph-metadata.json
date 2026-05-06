@@ -1,8 +1,8 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
-    "last_active_at": "2026-05-05T15:54:13.467Z",
-    "last_save_at": "2026-05-05T15:54:13.467Z"
+    "last_active_child_id": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+    "last_active_at": "2026-05-06T10:00:00.000Z",
+    "last_save_at": "2026-05-05T17:06:22.626Z"
   },
   "children_ids": [
     "skilled-agent-orchestration/051-cli-opencode-providers",
@@ -25,6 +25,8 @@
     "skilled-agent-orchestration/068-sk-doc-organization",
     "skilled-agent-orchestration/069-sk-code-motion-dev-and-playbook",
     "skilled-agent-orchestration/070-sk-deep-rename",
-    "skilled-agent-orchestration/076-sk-doc-router-coverage-v3"
+    "skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
+    "skilled-agent-orchestration/077-spec-kit-coco-sk-code-research",
+    "skilled-agent-orchestration/080-multi-ai-council-output-protocol"
   ]
 }
