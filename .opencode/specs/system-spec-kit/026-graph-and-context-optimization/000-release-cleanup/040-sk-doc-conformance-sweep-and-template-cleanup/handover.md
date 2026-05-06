@@ -44,7 +44,7 @@ This packet ran a coordinated sk-doc conformance sweep across 14 manual_testing_
 
 ### Tier 2a — 8 playbooks RCAF-conformant (mechanical sed)
 
-Across cli-claude-code, cli-codex, cli-gemini, cli-copilot, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-deep-research:
+Across cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-deep-research:
 
 - 215+ per-feature `^- Prompt:` labels relabeled to `^- RCAF Prompt:`
 - 7 root index headers renamed `FEATURE FILE INDEX` -> `FEATURE CATALOG CROSS-REFERENCE INDEX` (sk-deep-research already canonical)

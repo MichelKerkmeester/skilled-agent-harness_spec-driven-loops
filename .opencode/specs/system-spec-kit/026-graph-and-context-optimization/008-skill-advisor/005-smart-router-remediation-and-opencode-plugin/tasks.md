@@ -66,7 +66,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify 
 - [x] T030 Area B: Measure baseline ON_DEMAND hit rate on the 200-prompt corpus.
 - [x] T031 Area B: Apply conservative ON_DEMAND keyword additions across smart-routing skills.
 - [x] T032 Area B: Re-measure ON_DEMAND hit rate and document actual result.
-- [x] T040 Area C: Update `cli-codex`, `cli-copilot`, `cli-gemini`, and `cli-claude-code` zero-score fallbacks to UNKNOWN disambiguation.
+- [x] T040 Area C: Update `cli-codex`, `cli-gemini`, and `cli-claude-code` zero-score fallbacks to UNKNOWN disambiguation.
 - [x] T050 Area E: Create `.opencode/skill/system-spec-kit/scripts/observability/smart-router-telemetry.ts`.
 - [x] T051 Area E: Add telemetry Vitest coverage for compliance classes and JSONL roundtrip.
 - [x] T060 Area F: Create `.opencode/plugins/spec-kit-skill-advisor.js`.

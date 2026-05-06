@@ -6,7 +6,7 @@
 **Composite:** PASS 0 / PARTIAL 5 / FAIL 1
 
 **R1 → R2 progression:**
-- R1 (cli-copilot, parallel): PASS 0 / PARTIAL 5 / FAIL 1 (TIMEOUT)
+- R1 (parallel): PASS 0 / PARTIAL 5 / FAIL 1 (TIMEOUT)
 - R2 (opencode/github-copilot, sequential): PASS 0 / PARTIAL 5 / FAIL 1
 
 ## Per-CP Verdicts

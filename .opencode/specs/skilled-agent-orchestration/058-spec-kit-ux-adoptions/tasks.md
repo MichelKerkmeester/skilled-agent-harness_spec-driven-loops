@@ -98,7 +98,7 @@ _memory:
 - [ ] T021 [SP3] Document execution mode axis (`:auto`, `:confirm`, doctor `:apply` variants)
 - [ ] T022 [SP3] Document feature flag axis (`:with-phases`, `:with-research`, `--intake-only`, `--scope`, `--dry-run`)
 - [ ] T023 [SP3] Document lifecycle intent axis (plan, implement, complete, resume, deep-research, deep-review, create, doctor, improve, memory)
-- [ ] T024 [SP3] Document executor / provenance axis (native, cli-codex, cli-copilot, cli-gemini, cli-claude-code; reasoning effort, service tier, timeout)
+- [ ] T024 [SP3] Document executor / provenance axis (native, cli-codex, cli-gemini, cli-claude-code; reasoning effort, service tier, timeout)
 - [ ] T025 [SP3] Build a commands-by-axes compatibility matrix table
 - [ ] T026 [P] [SP3] Cross-link from `command/spec_kit/README.txt` and `system-spec-kit/SKILL.md`
 

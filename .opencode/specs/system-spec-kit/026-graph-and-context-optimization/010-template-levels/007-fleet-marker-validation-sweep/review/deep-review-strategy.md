@@ -7,7 +7,7 @@ Command-owned deep review of `.opencode/specs/system-spec-kit/026-graph-and-cont
 - Target: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-template-levels/007-fleet-marker-validation-sweep`
 - Target type: `spec_folder`
 - Execution mode: `auto`
-- Executor: `cli-copilot`, model `gpt-5.5`, requested reasoning effort `high`
+- Executor: model `gpt-5.5`, requested reasoning effort `high`
 - Max iterations: 5
 - Convergence threshold: 0.10
 - Resource map at target root: absent. Skip resource-map coverage gate and derive implementation scope from phase markers plus the 010 template-system implementation ledger.

@@ -92,7 +92,7 @@ Audit the implementation of the new `/spec_kit:skill-advisor` slash command, its
 
 ## Dispatch Notes
 
-- Executor: cli-copilot, model gpt-5.5, reasoningEffort high, no service-tier (copilot CLI does not support it).
+- Executor: model gpt-5.5, reasoningEffort high, no service-tier (copilot CLI does not support it).
 - Concurrency: sequential within this packet (each iteration depends on prior).
 - Per-iteration prompt at `review/prompts/iteration-NNN.md`.
 - Per-iteration findings at `review/iterations/iteration-NNN.md`.

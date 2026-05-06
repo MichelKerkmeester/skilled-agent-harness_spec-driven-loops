@@ -170,7 +170,7 @@ Required inventories:
 
 | Cell | Status | Reason |
 |------|--------|--------|
-| Plugin/runtime integration axis | DEFERRED | Needs a separate authenticated live-runtime campaign with cli-copilot, cli-gemini, Claude Code, and OpenCode. |
+| Plugin/runtime integration axis | DEFERRED | Needs a separate authenticated live-runtime campaign with cli-gemini, Claude Code, and OpenCode. |
 | Compaction recovery quality | PARTIAL | Formatting confirmed; relevance scoring needs a controlled trigger. |
 
 ### Scoring Mechanics

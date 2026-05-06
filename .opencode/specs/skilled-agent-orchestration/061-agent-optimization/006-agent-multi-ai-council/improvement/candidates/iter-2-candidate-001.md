@@ -153,22 +153,22 @@ Task Type Received
     │
     ├─► Bug Fix
     │   └─► Analytical + Critical + Pragmatic (N=3)
-    │       Vantages sought: cli-claude-code, cli-codex, cli-copilot
+    │       Vantages sought: cli-claude-code, cli-codex
     │       Rationale: root cause, edge cases, minimal fix
     │
     ├─► New Feature
     │   └─► Creative + Analytical + Holistic (N=3)
-    │       Vantages sought: cli-gemini, cli-codex, cli-copilot
+    │       Vantages sought: cli-gemini, cli-codex
     │       Rationale: alternatives, structure, system fit
     │
     ├─► Refactoring
     │   └─► Holistic + Pragmatic + Critical (N=3)
-    │       Vantages sought: cli-copilot, cli-codex, cli-claude-code
+    │       Vantages sought: cli-codex, cli-claude-code
     │       Rationale: impact, simplicity, regression risk
     │
     ├─► Architecture
     │   └─► Analytical + Critical + Holistic (N=3)
-    │       Vantages sought: cli-claude-code, native @deep-research, cli-copilot
+    │       Vantages sought: cli-claude-code, native @deep-research
     │       Rationale: structure, risk, system fit
     │
     ├─► Research / Unknowns
@@ -202,7 +202,7 @@ You are the <STRATEGY_NAME> Council Seat for a Multi-AI Council planning run.
 
 ## Your Lens and Vantage
 - Reasoning lens: <STRATEGY_DESCRIPTION from the Strategy Lenses table>
-- AI vantage target: <VANTAGE_TARGET such as cli-codex, cli-copilot, cli-gemini, cli-claude-code, or native @deep-research>
+- AI vantage target: <VANTAGE_TARGET such as cli-codex, cli-gemini, cli-claude-code, or native @deep-research>
 - Vantage integrity: if this runtime cannot invoke that external system, state that your answer is a simulated vantage lens, not external execution.
 - Temperature: <TEMP>, using <deterministic | balanced | exploratory> reasoning.
 

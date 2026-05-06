@@ -9,11 +9,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/003-opencode-internals"
-    last_updated_at: "2026-05-06T12:30:00Z"
-    last_updated_by: "claude-orchestrator"
-    recent_action: "Authored phase spec scaffold"
-    next_safe_action: "Update .opencode consumers outside the sk-prompt skill folder"
-    blockers: []
+    last_updated_at: "2026-05-06T11:12:38Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 003 refs rotated; rebuild blocked"
+    next_safe_action: "Resolve rebuild blocker"
+    blockers:
+      - "advisor_rebuild fails because .opencode/skill/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while folder is deep-agent-improvement"
+      - "Broad .opencode grep still finds Phase 005 files that Phase 003 constraints forbid editing"
     key_files:
       - "spec.md"
       - "plan.md"
@@ -23,13 +25,15 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-082-003"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 95
+    open_questions:
+      - "Should the deep-agent-improvement skill_id/folder mismatch be corrected before Phase 004?"
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 2 -->
 # Feature Specification: Phase 003 Opencode Internals
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -85,14 +89,27 @@ Phase 003 updates every `.opencode/` reference outside specs and the renamed ski
 | `.opencode/skill/deep-agent-improvement/SKILL.md`, `.opencode/skill/sk-code/**` | Modify | Cross-skill and advisor docs |
 <!-- /ANCHOR:scope -->
 
-<!-- ANCHOR:implementation -->
-## 4. IMPLEMENTATION APPROACH
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
 
-Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should update `.opencode/` consumers by area, rerun the scoped `rg` after each cluster, and preserve command and agent names while changing only skill references.
-<!-- /ANCHOR:implementation -->
+### P0 - Blockers (MUST complete)
 
-<!-- ANCHOR:handoff -->
-## 5. HANDOFF CRITERIA
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Rotate Phase 003-owned `.opencode/` references from `sk-improve-prompt` to `sk-prompt`. | Explicit Phase 003 file-list grep returns zero old-name hits. |
+| REQ-002 | Preserve command and agent names. | `/improve:prompt` and `@improve-prompt` filenames/names are unchanged. |
+| REQ-003 | Preserve code and fixture syntax. | JSON, JSONL, and Python syntax checks pass. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-004 | Rebuild advisor graph after source rotations. | Advisor rebuild completes, or a blocker is documented with exact failure evidence. |
+| REQ-005 | Probe prompt routing. | `"improve my prompt"` routes top-1 to `sk-prompt`. |
+<!-- /ANCHOR:requirements -->
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
 
 - Scoped `.opencode/` grep outside specs and `sk-prompt` returns zero hits for `sk-improve-prompt`.
 - Advisor fixtures and scoring code now expect `sk-prompt`.
@@ -103,13 +120,64 @@ rg 'sk-improve-prompt' .opencode/ --glob '!**/specs/**' --glob '!**/sk-prompt/**
 bash .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/check-prompt-quality-card-sync.sh
 bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/003-opencode-internals --strict
 ```
-<!-- /ANCHOR:handoff -->
+<!-- /ANCHOR:success-criteria -->
 
-<!-- ANCHOR:related -->
-## 6. RELATED DOCUMENTS
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Broad `.opencode/` grep includes Phase 005 files | Phase 003 cannot make that command return zero without violating explicit constraints | Document residuals and leave Phase 005 for its phase |
+| Dependency | Advisor graph metadata consistency | Rebuild aborts before indexing if any skill metadata ID does not match its folder | Document blocker and fix in the owning packet or with explicit approval |
+<!-- /ANCHOR:risks -->
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+- Should the `deep-agent-improvement` graph metadata `skill_id` mismatch be fixed before Phase 004, or should it remain with the agent rename packet?
+
+### Related Documents
 
 - **Parent Spec**: [../spec.md](../spec.md)
 - **Resource Map**: [../resource-map.md](../resource-map.md)
 - **Predecessor Phase**: [../002-skill-folder-rename/spec.md](../002-skill-folder-rename/spec.md)
 - **Successor Phase**: [../004-runtime-mirrors/spec.md](../004-runtime-mirrors/spec.md)
-<!-- /ANCHOR:related -->
+<!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The rename must not add runtime overhead; it only changes literals and docs.
+
+### Security
+- **NFR-S01**: No secrets, auth paths, or policy logic are introduced.
+
+### Reliability
+- **NFR-R01**: Advisor fixtures and syntax-valid config files remain parseable after the rename.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+- Missing cli-copilot files: document absence and avoid recreating deleted files.
+- Phase 005 residuals in broad grep: classify them without editing out-of-phase files.
+- Advisor rebuild blocker: record exact metadata mismatch and avoid widening scope without approval.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Files | 25/70 | Broad but mechanical source-reference rotation across existing Phase 003 files. |
+| Risk | 20/70 | Advisor scoring and fixtures affect routing behavior. |
+| Research | 10/70 | Phase 001 inventory supplied the target ledger. |
+| **Total** | **55/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->

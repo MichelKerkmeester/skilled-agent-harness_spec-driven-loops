@@ -62,7 +62,7 @@ _memory:
 
 - [ ] T001 Create or authorize the execution packet and restate target authority.
 - [ ] T002 Freeze `matrix-manifest.json` from `corpus-plan.md`.
-- [ ] T003 Smoke one harmless cell per executor: cli-codex, cli-copilot, cli-gemini, cli-claude-code, cli-opencode, native, inline.
+- [ ] T003 Smoke one harmless cell per executor: cli-codex, cli-gemini, cli-claude-code, cli-opencode, native, inline.
 - [ ] T004 Record executor readiness, auth blockers, versions, models, reasoning effort, and timeout defaults.
 - [ ] T005 Validate that disposable sandbox paths exist for write/destructive cells.
 <!-- /ANCHOR:phase-1 -->

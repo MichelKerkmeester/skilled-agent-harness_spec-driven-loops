@@ -45,7 +45,7 @@ Six surgical doc edits across five CLI orchestrator skills close findings F-007-
 
 ### Technical Context
 
-The five CLI orchestrator skills (`cli-opencode`, `cli-copilot`, `cli-codex`, `cli-claude-code`, `cli-gemini`) live under `.opencode/skill/` and provide dispatch contracts plus prompt templates that downstream agents and humans copy into invocation. Drift across these files produces inconsistent behavior across runtimes. The fix is purely textual.
+The five CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) live under `.opencode/skill/` and provide dispatch contracts plus prompt templates that downstream agents and humans copy into invocation. Drift across these files produces inconsistent behavior across runtimes. The fix is purely textual.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->

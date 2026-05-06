@@ -348,7 +348,6 @@ A: Yes. Add markdown files to `.claude/agents/` for Claude Code agent definition
 
 ### Related Skills
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
-- [cli-copilot](../cli-copilot/): GitHub Copilot CLI orchestrator
 - [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
 
 <!-- /ANCHOR:related-documents -->

@@ -1,6 +1,6 @@
 # Provider Auth Pre-Flight donor template (extracted from cli-opencode SKILL.md §3)
 
-This is the canonical block that the 4 sibling skills (cli-claude-code, cli-codex, cli-copilot, cli-gemini) adapt. Substitution rules per recipient skill are listed below.
+This is the canonical block that the 4 sibling skills (cli-claude-code, cli-codex, cli-gemini) adapt. Substitution rules per recipient skill are listed below.
 
 ## Donor block (verbatim from cli-opencode)
 

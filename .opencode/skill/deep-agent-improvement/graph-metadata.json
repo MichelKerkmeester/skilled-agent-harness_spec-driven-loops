@@ -8,7 +8,7 @@
     "enhances": [],
     "siblings": [
       {
-        "target": "sk-improve-prompt",
+        "target": "sk-prompt",
         "weight": 0.4,
         "context": "improvement utility peer"
       }

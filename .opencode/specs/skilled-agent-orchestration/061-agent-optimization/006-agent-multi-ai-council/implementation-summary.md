@@ -75,7 +75,7 @@ End-to-end rename + improve flow:
 
 - Frontmatter description re-anchored on "Multi-AI consensus planning architect" framing
 - Multi-iteration deliberation discipline strengthened
-- Distinct AI vantage points emphasized (cli-codex, cli-copilot, cli-gemini, cli-claude-code, native @deep-research) — not just one strategy reworded
+- Distinct AI vantage points emphasized (cli-codex, cli-gemini, cli-claude-code, native @deep-research) — not just one strategy reworded
 - Planning-only constraint hardened
 - One historical "formerly @ultra-think" reference at top for audit continuity
 - Unicode box-drawing in §SUMMARY preserved (style instruction worked)

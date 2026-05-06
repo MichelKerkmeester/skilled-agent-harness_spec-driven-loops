@@ -54,7 +54,7 @@ User dispatches @multi-ai-council on spec_folder X
 Agent reads spec_folder; locates X/ai-council/ (or creates skeleton)
    │
    ▼
-Agent dispatches seats via Task tool (cli-codex, cli-copilot, etc.)
+Agent dispatches seats via Task tool (cli-codex, etc.)
    │
    ▼
 Each seat returns plan; agent writes seats/round-NNN/seat-MMM-<executor>.md

@@ -146,11 +146,11 @@ Executor: cli-codex gpt-5.4 high fast.
 
 #### DR-2 — Deep review of 017/002-runtime-matrix [DEEP-REVIEW]
 
-**Why**: Sub-phase 001 got a 30-iter deep-research pass that seeded 018. Sub-phase 002 shipped three more executor kinds (cli-copilot, cli-gemini, cli-claude-code), the `EXECUTOR_KIND_FLAG_SUPPORT` flag-compatibility matrix, and the 3-concurrent Copilot cap — all without its own review. ADR-007 kept runtime recursion detection as docs-only, which is a live gap.
+**Why**: Sub-phase 001 got a 30-iter deep-research pass that seeded 018. Sub-phase 002 shipped three more executor kinds (cli-gemini, cli-claude-code), the `EXECUTOR_KIND_FLAG_SUPPORT` flag-compatibility matrix, and the 3-concurrent Copilot cap — all without its own review. ADR-007 kept runtime recursion detection as docs-only, which is a live gap.
 
 **Scope** (7-10 iterations):
 - EXECUTOR_KIND_FLAG_SUPPORT matrix completeness (no false-accepts on invalid combinations, no false-rejects on valid ones).
-- Cross-CLI delegation contract drift across all 5 kinds (native, cli-codex, cli-copilot, cli-gemini, cli-claude-code).
+- Cross-CLI delegation contract drift across all 5 kinds (native, cli-codex, cli-gemini, cli-claude-code).
 - 3-concurrent Copilot cap enforcement under async dispatch (does the cap survive `Promise.all` on 5+ iterations?).
 - service-tier rejection correctness on non-codex kinds (Zod path).
 - Audit JSONL `executor: {kind, model, reasoningEffort, serviceTier}` provenance parity — every kind writes the same shape.
@@ -161,7 +161,7 @@ Executor: cli-codex gpt-5.4 high fast.
 
 Scope: 017-sk-deep-cli-runtime-execution/002-runtime-matrix. Sibling sub-phase
 001-executor-feature got a 30-iter deep-research dogfood; 002 shipped three
-new executor kinds (cli-copilot, cli-gemini, cli-claude-code) + EXECUTOR_KIND_
+new executor kinds (cli-gemini, cli-claude-code) + EXECUTOR_KIND_
 FLAG_SUPPORT matrix + 3-concurrent Copilot cap without its own audit.
 
 Review dimensions: correctness (flag matrix, Zod rejection), security

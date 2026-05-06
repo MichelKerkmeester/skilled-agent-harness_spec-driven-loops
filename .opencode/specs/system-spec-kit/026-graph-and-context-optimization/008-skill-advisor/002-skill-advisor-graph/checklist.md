@@ -55,7 +55,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 - [x] CHK-010: `skill_graph_compiler.py --validate-only` exits 0 with zero errors [EVIDENCE: "VALIDATION PASSED"]
 - [x] CHK-011: `skill_graph_compiler.py` produces valid JSON output [EVIDENCE: skill-graph.json generated]
 - [x] CHK-012: Compiled `skill-graph.json` is under 5KB (minified) [EVIDENCE: 4667 bytes with intent signals]
-- [x] CHK-013: `hub_skills` list is correctly computed from inbound edge counts [EVIDENCE: 10 hub skills including cli-claude-code, cli-codex, cli-copilot, cli-gemini, mcp-code-mode, sk-code-full-stack, sk-code-opencode, sk-code-review, sk-code-web, system-spec-kit]
+- [x] CHK-013: `hub_skills` list is correctly computed from inbound edge counts [EVIDENCE: 10 hub skills including cli-claude-code, cli-codex, cli-gemini, mcp-code-mode, sk-code-full-stack, sk-code-opencode, sk-code-review, sk-code-web, system-spec-kit]
 <!-- /ANCHOR:compiler -->
 
 ---

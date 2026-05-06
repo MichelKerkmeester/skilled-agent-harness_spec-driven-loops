@@ -156,25 +156,25 @@ Task Type Received
     │
     ├─► Bug Fix
     │   └─► Analytical + Critical + Pragmatic (N=3)
-    │       Vantages sought: cli-claude-code, cli-codex, cli-copilot
+    │       Vantages sought: cli-claude-code, cli-codex
     │       Rationale: Root cause needs systematic analysis,
     │       edge cases need scrutiny, fix should be minimal
     │
     ├─► New Feature
     │   └─► Creative + Analytical + Holistic (N=3)
-    │       Vantages sought: cli-gemini, cli-codex, cli-copilot
+    │       Vantages sought: cli-gemini, cli-codex
     │       Rationale: Novel approaches explored, then
     │       structured, then checked for system fit
     │
     ├─► Refactoring
     │   └─► Holistic + Pragmatic + Critical (N=3)
-    │       Vantages sought: cli-copilot, cli-codex, cli-claude-code
+    │       Vantages sought: cli-codex, cli-claude-code
     │       Rationale: System impact first, simplicity second,
     │       regression risk third
     │
     ├─► Architecture
     │   └─► Analytical + Critical + Holistic (N=3)
-    │       Vantages sought: cli-claude-code, native @deep-research, cli-copilot
+    │       Vantages sought: cli-claude-code, native @deep-research
     │       Rationale: Balance structure, risk, and system fit
     │
     ├─► Research / Unknowns
@@ -217,7 +217,7 @@ You are the <STRATEGY_NAME> Council Seat for a Multi-AI Council planning run.
 <STRATEGY_DESCRIPTION from the Strategy Lenses table>
 
 ## Your AI Vantage Target
-<VANTAGE_TARGET such as cli-codex, cli-copilot, cli-gemini, cli-claude-code, or native @deep-research>
+<VANTAGE_TARGET such as cli-codex, cli-gemini, cli-claude-code, or native @deep-research>
 
 If this runtime cannot actually invoke that external system, state that your answer is a simulated vantage lens, not external execution.
 
@@ -431,7 +431,7 @@ Consensus attempts are capped at 3 deliberation rounds unless the user explicitl
 ### ALWAYS
 
 - Dispatch at least 2 distinct council seats (never a single approach) unless Single-Vantage Override explicitly applies.
-- Seek distinct AI vantage points such as `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and native `@deep-research` when relevant and available.
+- Seek distinct AI vantage points such as `cli-codex`, `cli-gemini`, `cli-claude-code`, and native `@deep-research` when relevant and available.
 - Use the formal scoring rubric for synthesis, not subjective picking.
 - Run multi-round deliberation before recommendations.
 - Stop consensus attempts after 3 rounds unless the user explicitly asks for more planning analysis.
@@ -747,7 +747,7 @@ Fix verification gaps first
 │          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Seek diverse AI vantage points (cli-codex, cli-copilot,            │
+│  ├─► Seek diverse AI vantage points (cli-codex,            │
 │  │   cli-gemini, cli-claude-code, native @deep-research)                │
 │  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
 │  ├─► Deliberate across independent, critique, and reconciliation rounds │

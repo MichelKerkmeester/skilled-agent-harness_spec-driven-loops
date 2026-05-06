@@ -57,6 +57,5 @@ Support Codex CLI sessions with native startup-context and prompt-time advisor i
 Related references:
 
 - [01-claude-hook.md](./01-claude-hook.md).
-- [02-copilot-hook.md](./02-copilot-hook.md).
 - [03-gemini-hook.md](./03-gemini-hook.md).
 <!-- /ANCHOR:source-metadata -->

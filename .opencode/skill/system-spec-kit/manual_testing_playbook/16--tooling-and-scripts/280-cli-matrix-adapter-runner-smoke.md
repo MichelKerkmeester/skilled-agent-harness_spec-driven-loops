@@ -14,7 +14,7 @@ This scenario validates the matrix runner surface. It exercises one cell through
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Run a single matrix cell through `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`, then verify per-cell JSONL and timeout behavior.
+- Objective: Run a single matrix cell through `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`, then verify per-cell JSONL and timeout behavior.
 - Real user request: `` Please validate CLI matrix adapter runner smoke against the documented validation surface and tell me whether the expected signals are present: Step 1 writes five files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-copilot`, `F5-cli-gemini`, `F5-cli-claude-code`, and `F5-cli-opencode`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite. ``
 - RCAF Prompt: `` As a tooling validation operator, validate CLI matrix adapter runner smoke against the documented validation surface. Verify Step 1 writes five files under `$OUT`: one each for `F5-cli-codex`, `F5-cli-copilot`, `F5-cli-gemini`, `F5-cli-claude-code`, and `F5-cli-opencode`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite. Return a concise pass/fail verdict with the main reason and cited evidence. ``
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
@@ -36,7 +36,7 @@ cd .opencode/skill/system-spec-kit
 npx tsx mcp_server/matrix_runners/run-matrix.ts \
   --output "$OUT" \
   --filter F5 \
-  --executors cli-codex,cli-copilot,cli-gemini,cli-claude-code,cli-opencode \
+  --executors cli-codex,cli-gemini,cli-claude-code,cli-opencode \
   --working-dir "$(pwd)/../../.."
 ```
 

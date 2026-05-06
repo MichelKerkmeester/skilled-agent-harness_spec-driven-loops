@@ -1,7 +1,7 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 title: "Implementation Summary: 010 CLI Orchestrator Skill Doc Drift [template:level_2/implementation-summary.md]"
-description: "Six surgical doc edits across cli-opencode, cli-copilot, cli-codex, cli-claude-code, and cli-gemini close findings F-007-B2-01..06. Single-hop dispatch contract reaffirmed; effort-flag prose reconciled with example; templates pin model/effort/tier and gate `--yolo` writes behind explicit approval."
+description: "Six surgical doc edits across cli-opencode, cli-codex, cli-claude-code, and cli-gemini close findings F-007-B2-01..06. Single-hop dispatch contract reaffirmed; effort-flag prose reconciled with example; templates pin model/effort/tier and gate `--yolo` writes behind explicit approval."
 trigger_phrases:
   - "F-007-B2"
   - "010 cli orchestrator drift summary"

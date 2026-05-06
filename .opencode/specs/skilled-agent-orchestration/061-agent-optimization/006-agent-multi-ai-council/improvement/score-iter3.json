@@ -97,7 +97,7 @@
         {
           "id": "always-rule-1",
           "type": "always",
-          "rule": "Seek distinct AI vantage points such as `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and native `@deep-research` when relevant and available.",
+          "rule": "Seek distinct AI vantage points such as `cli-codex`, `cli-gemini`, `cli-claude-code`, and native `@deep-research` when relevant and available.",
           "pass": true,
           "matchRatio": 1
         },

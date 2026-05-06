@@ -32,4 +32,4 @@ Audited the `/spec_kit` command entrypoints and YAML workflow assets for auto-ro
 - Whether plan/complete auto-mode P1 deferral language should be made non-interactive or hard-blocking; this pass saw tension there but did not classify it as a concrete bug.
 
 ## Next Focus
-Follow up on executor-specific dispatch behavior across `cli-codex`, `cli-copilot`, `cli-gemini`, and `cli-claude-code`, especially audit provenance and dispatch-failure normalization in deep-review versus deep-research.
+Follow up on executor-specific dispatch behavior across `cli-codex`, `cli-gemini`, and `cli-claude-code`, especially audit provenance and dispatch-failure normalization in deep-review versus deep-research.

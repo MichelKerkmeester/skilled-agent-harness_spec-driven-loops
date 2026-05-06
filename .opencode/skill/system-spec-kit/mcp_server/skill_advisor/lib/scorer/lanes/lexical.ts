@@ -30,7 +30,7 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'deep-research': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage'],
   'deep-review': ['deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review'],
   'mcp-chrome-devtools': ['chrome devtools', 'har', 'console errors', 'staging'],
-  'sk-improve-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
+  'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
   'sk-code': ['css', 'html', 'javascript', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],
 };

@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is Phase 2 of the 071 packet. Executes the 45-cell test matrix (15 scenarios from Phase 1 × 3 CLIs: cli-codex, cli-copilot, cli-opencode) via run-matrix.sh dispatcher.
+This is Phase 2 of the 071 packet. Executes the 45-cell test matrix (15 scenarios from Phase 1 × 3 CLIs: cli-codex, cli-opencode) via run-matrix.sh dispatcher.
 
 **Scope Boundary**: dispatch + capture only. Synthesis happens in Phase 3.
 

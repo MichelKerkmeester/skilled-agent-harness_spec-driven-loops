@@ -26,7 +26,7 @@ The design fixture for the parent stress-test playbook. Locks corpus version v1.
 
 - Scenario Corpus v1.0.0 with 9 scenarios (S1-S3 Search, Q1-Q3 Query, I1-I3 Intelligence). Each entry has prompt, expected outcome, target tools, success indicators, and cross-reference to sibling 005 defects where applicable
 - 5-dimension scoring rubric on 0-2 scale: Correctness, Tool Selection, Latency, Token Efficiency, Hallucination, plus a narrative dimension. 10 points max per cell
-- Per-CLI dispatch matrix codifying invocation contracts for cli-codex (gpt-5.5 medium fast read-only), cli-copilot (gpt-5.4 high allow-all-tools, max 3 concurrent), cli-opencode (opencode-go/deepseek-v4-pro high agent=general format=json), plus the cli-opencode --pure ablation arm
+- Per-CLI dispatch matrix codifying invocation contracts for cli-codex (gpt-5.5 medium fast read-only) (gpt-5.4 high allow-all-tools, max 3 concurrent), cli-opencode (opencode-go/deepseek-v4-pro high agent=general format=json), plus the cli-opencode --pure ablation arm
 - Output schema covering per-run folder layout (prompt + output + meta.json + score.md) and aggregate findings format
 - Scoring methodology with single-scorer-per-cell rule, second-reviewer trigger for any cell scoring 4 of 10 or below, tie-breaker rules, and hallucination spot-verification protocol
 - Four executable dispatch scripts under scripts/ with bash -n syntax check, set +e wrap so non-zero CLI exits do not abort the sweep, and python3-based portable millisecond timing

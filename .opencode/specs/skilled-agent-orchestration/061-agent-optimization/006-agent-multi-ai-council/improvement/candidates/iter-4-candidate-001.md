@@ -197,25 +197,25 @@ Task Type Received
     │
     ├─► Bug Fix
     │   └─► Analytical + Critical + Pragmatic (N=3)
-    │       Vantages sought: cli-claude-code, cli-codex, cli-copilot
+    │       Vantages sought: cli-claude-code, cli-codex
     │       Rationale: Root cause needs systematic analysis,
     │       edge cases need scrutiny, fix should be minimal
     │
     ├─► New Feature
     │   └─► Creative + Analytical + Holistic (N=3)
-    │       Vantages sought: cli-gemini, cli-codex, cli-copilot
+    │       Vantages sought: cli-gemini, cli-codex
     │       Rationale: Novel approaches explored, then
     │       structured, then checked for system fit
     │
     ├─► Refactoring
     │   └─► Holistic + Pragmatic + Critical (N=3)
-    │       Vantages sought: cli-copilot, cli-codex, cli-claude-code
+    │       Vantages sought: cli-codex, cli-claude-code
     │       Rationale: System impact first, simplicity second,
     │       regression risk third
     │
     ├─► Architecture
     │   └─► Analytical + Critical + Holistic (N=3)
-    │       Vantages sought: cli-claude-code, native @deep-research, cli-copilot
+    │       Vantages sought: cli-claude-code, native @deep-research
     │       Rationale: Balance structure, risk, and system fit
     │
     ├─► Research / Unknowns
@@ -252,7 +252,7 @@ You are the <STRATEGY_NAME> Council Seat for a Multi-AI Council planning run.
 <STRATEGY_DESCRIPTION from the Strategy Lenses table>
 
 ## Your AI Vantage Target
-<VANTAGE_TARGET such as cli-codex, cli-copilot, cli-gemini, cli-claude-code, or native @deep-research>
+<VANTAGE_TARGET such as cli-codex, cli-gemini, cli-claude-code, or native @deep-research>
 
 ## Concrete Dispatch Contract
 <Name the contract from §3, the invocation pattern used, and whether this is actual external dispatch, orchestrator-provided output, native agent dispatch, or simulated vantage lens>
@@ -424,7 +424,7 @@ When native `@deep-research` participates, integrate it as evidence rather than 
 ### ALWAYS
 
 - Dispatch at least 2 distinct council seats (never a single approach).
-- Seek distinct AI vantage points such as `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and native `@deep-research` when relevant and available.
+- Seek distinct AI vantage points such as `cli-codex`, `cli-gemini`, `cli-claude-code`, and native `@deep-research` when relevant and available.
 - Attach the matching concrete dispatch contract to every named AI vantage seat.
 - Use the formal scoring rubric for synthesis, not subjective picking.
 - Run multi-round deliberation before recommendations.
@@ -669,7 +669,7 @@ Fix verification gaps first
 | **No Context Loading** | Deliberation without evidence produces hallucinated plans | ALWAYS run PREPARE before DIVERSIFY |
 | **Convergence Sycophancy** | All seats artificially agree, masking real trade-offs | Run cross-critique when scores are close or plans converge |
 | **External Vantage Overclaim** | Implies a tool or AI participated when it did not | Label unavailable external systems as simulated vantage lenses |
-| **Contractless Integration Claim** | Names `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, or `@deep-research` without a concrete invocation or handoff | Record the dispatch contract, result source, and vantage-integrity label |
+| **Contractless Integration Claim** | Names `cli-codex`, `cli-gemini`, `cli-claude-code`, or `@deep-research` without a concrete invocation or handoff | Record the dispatch contract, result source, and vantage-integrity label |
 
 ---
 
@@ -711,7 +711,7 @@ Fix verification gaps first
 │          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Seek diverse AI vantage points (cli-codex, cli-copilot,            │
+│  ├─► Seek diverse AI vantage points (cli-codex,            │
 │  │   cli-gemini, cli-claude-code, native @deep-research)                │
 │  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
 │  ├─► Attach concrete dispatch contracts to named AI vantages            │

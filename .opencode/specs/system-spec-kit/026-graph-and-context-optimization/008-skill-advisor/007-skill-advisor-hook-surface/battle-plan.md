@@ -635,7 +635,7 @@ Template (substitute `<child-folder>` and review focus):
 /spec_kit:deep-review :auto "Review 020/<child-folder> implementation against spec.md requirements; surface P0/P1/P2 findings across security/correctness/maintainability/observability dimensions" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --max-iterations=10 --convergence=0.05 --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>
 ```
 
-### Fallback dispatch (any child, cli-copilot)
+### Fallback dispatch (any child)
 
 ```bash
 /spec_kit:implement :auto "Resume 020/<child-folder> implementation" --executor=cli-copilot --model=gpt-5.4 --reasoning-effort=high --spec-folder=.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-skill-advisor/007-skill-advisor-hook-surface/<child-folder>

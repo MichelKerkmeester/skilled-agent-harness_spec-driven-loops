@@ -65,7 +65,7 @@ Last claim_adjudication_passed: true (no new P0/P1)
 ### T7. ADR / decision references across packets
 - The 011 phases reference ADRs (e.g., the iter-2 evidence cited ADR-005 in 003-memory-context-truncation-contract). Are ADRs consistently numbered across phases, or do they conflict (two ADR-005s with different content)?
 
-### T8. Cross-runtime references (cli-codex, cli-copilot, opencode plugin)
+### T8. Cross-runtime references (cli-codex, opencode plugin)
 - Each remediation packet may reference cli-* implementations. Are the cited file paths still live (post-2026-04-25 reorg)?
 
 ## CONSTRAINTS

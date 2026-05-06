@@ -89,7 +89,7 @@ Capture the native rerun as a Level 2 packet, record every measured native cell,
 
 ### Out of Scope
 - Fixing the code graph implementation defects found by the native rerun.
-- Re-running a separate authenticated cli-copilot, cli-gemini, Claude Code, or OpenCode campaign.
+- Re-running a separate authenticated cli-gemini, Claude Code, or OpenCode campaign.
 - Replacing the prior `001-execution` packet; this packet supersedes only the verdict interpretation.
 - Inferring relevance or quality for runtime surfaces not measured in this run.
 
@@ -164,7 +164,7 @@ Capture the native rerun as a Level 2 packet, record every measured native cell,
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which authenticated live-runtime campaign should run next for plugin/runtime integration: cli-copilot, cli-gemini, Claude Code native, or OpenCode native?
+- Which authenticated live-runtime campaign should run next for plugin/runtime integration: cli-gemini, Claude Code native, or OpenCode native?
 <!-- /ANCHOR:questions -->
 
 ---

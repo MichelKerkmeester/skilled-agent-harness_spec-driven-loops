@@ -30,7 +30,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Author 6 CP-XXX scenarios across 6 categories (ambiguous, false-positive, low-confidence, multi-skill, novel-phrasing, adversarial). Dispatch each to 3 external CLI executors (cli-copilot, cli-codex, cli-gemini). Aggregate into test-report.md mirroring 060/004 structure. Classify findings P0/P1/P2.
+Author 6 CP-XXX scenarios across 6 categories (ambiguous, false-positive, low-confidence, multi-skill, novel-phrasing, adversarial). Dispatch each to 3 external CLI executors (cli-codex, cli-gemini). Aggregate into test-report.md mirroring 060/004 structure. Classify findings P0/P1/P2.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -72,7 +72,7 @@ The CP scenarios ARE the tests. Each scenario specifies grep-checkable pass crit
 ## 6. DEPENDENCIES
 
 - 001-skill-reindex (HARD BLOCK — fresh index required)
-- External CLIs: cli-copilot, cli-codex, cli-gemini (per memory rules: 3-concurrent cap on copilot, codex requires stdin pipe + service_tier=fast, gemini single-model)
+- External CLIs: cli-codex, cli-gemini (per memory rules: 3-concurrent cap on copilot, codex requires stdin pipe + service_tier=fast, gemini single-model)
 - MCP tool `advisor_recommend` for confidence scoring
 - 060/004 test-report.md as structural reference for output format
 <!-- /ANCHOR:dependencies -->

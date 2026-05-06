@@ -20,7 +20,7 @@ scope:
 
 ## 1. EXECUTIVE SUMMARY
 
-This audit began as a 2026-04-27 snapshot and is preserved below as historical evidence. Current-state reconciliation on 2026-04-28 shows the manual testing playbooks have since absorbed the high-impact phase-011 surfaces: token-budget envelope, `responsePolicy` / `citationPolicy`, `fallbackDecision`, `readiness.action`, CocoIndex telemetry, IntentTelemetry, cli-copilot target-authority entries, and sk-deep-research / sk-deep-review dispatch coverage now appear in the live playbook roots. The old "0 are fully covered" statement is therefore historical only, not current guidance.
+This audit began as a 2026-04-27 snapshot and is preserved below as historical evidence. Current-state reconciliation on 2026-04-28 shows the manual testing playbooks have since absorbed the high-impact phase-011 surfaces: token-budget envelope, `responsePolicy` / `citationPolicy`, `fallbackDecision`, `readiness.action`, CocoIndex telemetry, IntentTelemetry target-authority entries, and sk-deep-research / sk-deep-review dispatch coverage now appear in the live playbook roots. The old "0 are fully covered" statement is therefore historical only, not current guidance.
 
 The live system-spec-kit roots are `.opencode/skill/system-spec-kit/feature_catalog/` and `.opencode/skill/system-spec-kit/manual_testing_playbook/`. The `.opencode/skill/sk-doc/...` path named by one cleanup prompt does not exist in this checkout.
 
@@ -175,7 +175,7 @@ description: "Validates fallbackDecision.nextTool routing on blocked code_graph_
 ```markdown
 ### Prompt
 
-As a context-and-code-graph validation operator, validate IntentTelemetry envelope shape against memory_context({ input:"any structural-keyword query" }). Verify response carries IntentTelemetry { intent, confidence, matchedKeywords, classifierVersion, runtimeId } at the documented response path. Aggregate runtimeId across cli-copilot, cli-codex, cli-claude-code calls and confirm shape parity.
+As a context-and-code-graph validation operator, validate IntentTelemetry envelope shape against memory_context({ input:"any structural-keyword query" }). Verify response carries IntentTelemetry { intent, confidence, matchedKeywords, classifierVersion, runtimeId } at the documented response path. Aggregate runtimeId across cli-codex, cli-claude-code calls and confirm shape parity.
 
 ### Expected
 
@@ -224,7 +224,7 @@ Strong query: refusal disabled; canonical paths allowed in response.
 
 ---
 
-### 3.8 Packet 012 — buildCopilotPromptArg + targetAuthority (cli-copilot, NEEDS-UPDATE + 4 NEW ENTRIES)
+### 3.8 Packet 012 — buildCopilotPromptArg + targetAuthority (NEEDS-UPDATE + 4 NEW ENTRIES)
 
 This is the **highest-impact gap** — packet 012 is the v1.0.2 P0 catastrophic-mutation fix. cli-copilot playbook has zero coverage of the dispatch helper.
 
@@ -391,7 +391,7 @@ The closest-to-contradiction case is 255-cocoindex-code-graph-routing.md line 12
 
 1. Open a packet under 026/011 (or a fresh packet under 026) for "playbook regression-coverage update — phase 011 follow-on".
 2. Apply NEEDS-UPDATE diffs to the 5 affected files in a single change set per file.
-3. Author the 9 NEW entries using the sketches in §3 as starting points; copy from `.opencode/skill/system-spec-kit/templates/` if a template exists, otherwise mirror the closest existing entry's structure (e.g. CP-002 for cli-copilot, 254 for system-spec-kit).
+3. Author the 9 NEW entries using the sketches in §3 as starting points; copy from `.opencode/skill/system-spec-kit/templates/` if a template exists, otherwise mirror the closest existing entry's structure (e.g. CP-002 for 254 for system-spec-kit).
 4. Re-run `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <new-packet> --strict` after each file write per the distributed-governance rule.
 5. Verify .gemini mirror hardlinks are intact post-update (`stat -f "%i"` parity check on at least one file).
 

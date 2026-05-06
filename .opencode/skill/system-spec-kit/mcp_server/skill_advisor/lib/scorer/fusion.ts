@@ -252,7 +252,7 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   }
   if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
-    if (recommendation.skill === 'sk-improve-prompt' || recommendation.skill === 'mcp-chrome-devtools' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
+    if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-chrome-devtools' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }
   if (promptLower.includes('/spec_kit:deep-research') && recommendation.skill === 'sk-deep-research') return R.slashCommandDeepResearchBonus;
   if (promptLower.includes('/spec_kit:deep-review') && recommendation.skill === 'sk-deep-review') return R.slashCommandDeepReviewBonus;

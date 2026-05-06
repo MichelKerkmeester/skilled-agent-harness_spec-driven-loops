@@ -137,7 +137,6 @@ This pass scanned all 20 skill trees with the requested token set and file-type 
 - `sk-deep-research` is high risk because its loop protocol hard-codes `memory_context()` plus `generate-context.js` as the live save and recovery boundary.
 - `sk-deep-review` is similarly high risk because its review loop documents the same save boundary and needs parity with the research-side continuity contract.
 - `cli-claude-code` is high risk because its prompt epilogue explicitly teaches a memory handback protocol that shells directly into `generate-context.js`.
-- `cli-copilot` is high risk for the same reason as `cli-claude-code`, and the exact same pattern also exists in `cli-codex` and `cli-gemini`.
 
 ## Memory Handback Protocol hits
 

@@ -18,11 +18,6 @@
         "context": "CLI orchestrator peer"
       },
       {
-        "target": "cli-copilot",
-        "weight": 0.5,
-        "context": "CLI orchestrator peer"
-      },
-      {
         "target": "cli-gemini",
         "weight": 0.5,
         "context": "CLI orchestrator peer"

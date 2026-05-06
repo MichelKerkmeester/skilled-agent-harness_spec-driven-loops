@@ -75,7 +75,7 @@ Two Edit calls. ~10 lines of content total. Both caveats use the same evidence t
 | Tight scope on cli-copilot caveat ("LITERALLY") | Avoids a blanket "don't use cli-copilot" misread. Cli-copilot is fine for many tasks; only routing-trace consumers get burned |
 | Cite empirical numbers (66.7/47.2/11.1) | Maintainers reading later can verify; not opinion |
 | Reference review-report-v2.md path | Future readers can dig into the full evidence; not a black-box assertion |
-| 1-bullet caveat in cli-copilot, 1-paragraph in sk-doc | Different surfaces; cli-copilot's "When NOT to Use" is a list, sk-doc's "Resource Domains" is prose |
+| 1-bullet caveat in 1-paragraph in sk-doc | Different surfaces; cli-copilot's "When NOT to Use" is a list, sk-doc's "Resource Domains" is prose |
 <!-- /ANCHOR:decisions -->
 
 ---

@@ -50,7 +50,6 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 
 Related references:
 
-- [02-copilot-hook.md](./02-copilot-hook.md).
 - [03-gemini-hook.md](./03-gemini-hook.md).
 - [`06--mcp-surface/04-compat-entrypoint.md`](../06--mcp-surface/04-compat-entrypoint.md).
 <!-- /ANCHOR:source-metadata -->

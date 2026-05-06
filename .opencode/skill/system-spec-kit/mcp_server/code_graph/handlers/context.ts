@@ -15,15 +15,20 @@ export interface ContextHandlerArgs {
   subject?: string;
   seeds?: Array<{
     filePath?: string;
+    file_path?: string;
     startLine?: number;
+    start_line?: number;
     endLine?: number;
+    end_line?: number;
     query?: string;
     provider?: string;
     source?: string;
     file?: string;
     range?: { start: number; end: number };
+    lines?: { start?: number; end?: number };
     score?: number;
     snippet?: string;
+    content?: string;
     symbolName?: string;
     kind?: string;
     nodeId?: string;
@@ -70,6 +75,22 @@ function shouldBlockReadPath(readiness: ReadyResult): boolean {
     return true;
   }
   return readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true;
+}
+
+function seedProvider(seed: NonNullable<ContextHandlerArgs['seeds']>[number]): string | undefined {
+  return seed.provider ?? (typeof seed.file_path === 'string' ? 'cocoindex' : undefined);
+}
+
+function seedFilePath(seed: NonNullable<ContextHandlerArgs['seeds']>[number]): string {
+  return seed.file ?? seed.filePath ?? seed.file_path ?? '';
+}
+
+function seedStartLine(seed: NonNullable<ContextHandlerArgs['seeds']>[number]): number | undefined {
+  return seed.range?.start ?? seed.lines?.start ?? seed.startLine ?? seed.start_line;
+}
+
+function seedEndLine(seed: NonNullable<ContextHandlerArgs['seeds']>[number]): number | undefined {
+  return seed.range?.end ?? seed.lines?.end ?? seed.endLine ?? seed.end_line ?? seedStartLine(seed);
 }
 
 function buildContextFallbackDecision(readiness: ContextReadiness): ContextFallbackDecision | null {
@@ -119,12 +140,10 @@ function resolveSeedSource(args: ContextHandlerArgs, anchor: {
   const normalizedSeeds: NormalizedSeedSource[] = (args.seeds ?? []).map((seed) => ({
     source: typeof seed.source === 'string' && seed.source.trim().length > 0
       ? seed.source
-      : seed.provider,
-    filePath: seed.provider === 'cocoindex'
-      ? (seed.file ?? seed.filePath ?? '')
-      : (seed.filePath ?? seed.file ?? ''),
-    startLine: seed.provider === 'cocoindex' ? seed.range?.start : seed.startLine,
-    endLine: seed.provider === 'cocoindex' ? seed.range?.end : seed.endLine,
+      : seedProvider(seed),
+    filePath: seedFilePath(seed),
+    startLine: seedStartLine(seed),
+    endLine: seedEndLine(seed),
     symbolId: seed.symbolId,
     symbolName: seed.symbolName,
   }));
@@ -166,6 +185,7 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
       readiness = await ensureCodeGraphReady(process.cwd(), {
         allowInlineIndex: true,
         allowInlineFullScan: false,
+        allowGuardedInlineFullScan: true,
       });
     } catch (err: unknown) {
       // PR 4 / F71 step 5: surface as canonical 'error' freshness so
@@ -236,10 +256,11 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
     const seeds = (args.seeds ?? []).map((seed) => {
       const source = typeof seed.source === 'string' && seed.source.trim().length > 0
         ? seed.source
-        : seed.provider;
-      const cocoindexFile = seed.file ?? seed.filePath;
+        : seedProvider(seed);
+      const provider = seedProvider(seed);
+      const cocoindexFile = seedFilePath(seed);
 
-      if (seed.provider === 'cocoindex' && cocoindexFile) {
+      if (provider === 'cocoindex' && cocoindexFile) {
         // ── Q-OPP / packet 015 — wire-name normalization for CocoIndex fork ──
         // Fork emits snake_case (`raw_score`, `path_class`); internal
         // ArtifactRef + downstream code uses camelCase. Accept both, prefer
@@ -255,12 +276,14 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
           ? seed.rankingSignals
           : undefined;
 
+        const rangeStart = seedStartLine(seed) ?? 1;
+        const rangeEnd = seedEndLine(seed) ?? rangeStart;
         const cocoSeed: Record<string, unknown> = {
           provider: 'cocoindex' as const,
           file: cocoindexFile,
-          range: seed.range ?? { start: seed.startLine ?? 1, end: seed.endLine ?? seed.startLine ?? 1 },
+          range: { start: rangeStart, end: rangeEnd },
           score: seed.score ?? 0,
-          snippet: seed.snippet,
+          snippet: seed.snippet ?? seed.content,
           source,
         };
         if (rawScore !== undefined) cocoSeed.rawScore = rawScore;
@@ -269,7 +292,7 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
         return cocoSeed;
       }
 
-      if (seed.provider === 'manual' && seed.symbolName) {
+      if (provider === 'manual' && seed.symbolName) {
         return {
           provider: 'manual' as const,
           symbolName: seed.symbolName,
@@ -279,7 +302,7 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
         };
       }
 
-      if (seed.provider === 'graph' && seed.symbolId) {
+      if (provider === 'graph' && seed.symbolId) {
         return {
           provider: 'graph' as const,
           nodeId: seed.nodeId ?? seed.symbolId,
@@ -289,9 +312,9 @@ export async function handleCodeGraphContext(args: ContextHandlerArgs): Promise<
       }
 
       return {
-        filePath: seed.filePath ?? seed.file ?? '',
-        startLine: seed.startLine ?? seed.range?.start,
-        endLine: seed.endLine ?? seed.range?.end,
+        filePath: seedFilePath(seed),
+        startLine: seedStartLine(seed),
+        endLine: seedEndLine(seed),
         query: seed.query,
         source,
       };

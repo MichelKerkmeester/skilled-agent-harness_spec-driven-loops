@@ -102,7 +102,7 @@ Decompose the rename into 6 sequential phases that minimize risk and surface ver
   - Agent body refs across 4 runtimes (.opencode, .claude, .codex, .gemini)
   - MCP server code: scorer lanes (explicit.ts, lexical.ts, fusion.ts), skill_advisor.py (TOKEN_BOOSTS, PHRASE_BOOSTS, aliases — 31 refs)
   - Skill graph: `skill-graph.json` (keys, signals, anti-signals, families, hub_skills, adjacency)
-  - 5 cli-* prompt_quality_card.md mirrors (cli-claude-code, cli-copilot, cli-codex, cli-gemini, cli-opencode) AND their parent SKILL.md routing tables
+  - 5 cli-* prompt_quality_card.md mirrors (cli-claude-code, cli-codex, cli-gemini, cli-opencode) AND their parent SKILL.md routing tables
   - Advisor regression fixtures: `routing-accuracy/labeled-prompts.jsonl`
   - Sync helper: `check-prompt-quality-card-sync.sh`
   - Observability: smart-router-measurement-results.jsonl / -report.md (forward-facing IDs only)

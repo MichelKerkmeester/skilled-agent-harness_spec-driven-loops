@@ -36,7 +36,7 @@ _memory:
 | 020 parent implementation-summary updated | Done |
 | **005 P0 patch** (impossible cache-hit gate) | **DONE** — trace corrected to 10 unique + 20 repeats = 66.7% nominal; 50 ms gate restated as cache-hit-lane-only |
 | 9 P1 patches across 003/004/005/007/008/009 | **DONE** — all applied, all children pass validate.sh --strict (0 errors) |
-| **Implementation dispatch executor policy** | **cli-codex gpt-5.4 high fast primary, cli-copilot gpt-5.4 high fallback** (user directive 2026-04-19) |
+| **Implementation dispatch executor policy** | **cli-codex gpt-5.4 high fast primary gpt-5.4 high fallback** (user directive 2026-04-19) |
 | /spec_kit:implement :auto 020/002 | Ready to dispatch — first in the critical path |
 
 ## What Happened This Session
@@ -110,7 +110,7 @@ Repeat pattern for 003-009; each command targets its own child spec folder.
 The three research waves live at `../research/` relative to this packet (i.e. under 026-graph-and-context-optimization/research/):
 - 020-skill-advisor-hook-surface-pt-01/research.md — wave-1 synthesis (cli-codex)
 - 020-skill-advisor-hook-surface-pt-02/research-extended.md — wave-2 synthesis (cli-copilot)
-- 020-skill-advisor-hook-surface-pt-03/research-validation.md — wave-3 synthesis (cli-copilot, the critical doc for next steps)
+- 020-skill-advisor-hook-surface-pt-03/research-validation.md — wave-3 synthesis (the critical doc for next steps)
 - 020-skill-advisor-hook-surface-pt-03/iterations/iteration-001.md through iteration-013.md — per-iter narratives
 - 020-skill-advisor-hook-surface-pt-03/findings-registry.json — structured findings
 - 020-skill-advisor-hook-surface-pt-03/deep-research-state.jsonl — session state stream

@@ -20,7 +20,7 @@ Q4: ANSWERED (iter 6) — weak retrieval hallucination guard: non-authoritative 
 Q5: ANSWERED (iter 2 + iter 5) — memory_context truncation: post-fallback telemetry + zero-fill ladder; preserve survivors + payload invariants.
 Q6: ANSWERED (iter 7) — code-graph empty recovery: blocked-read contract + structural preflight protocol.
 Q7: How to address lopsided causal-graph edge growth (005 REQ-010)? 344 supersedes edges added in 15 min while caused/supports edges stayed unchanged. Recommend edge-class balancing, per-class caps, or detection of supersedes-spam.
-Q8: Intent classifier improvements beyond Cluster 2 fix (005 REQ-001/004/016). Address dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/cli-copilot, and cross-CLI consistency findings.
+Q8: Intent classifier improvements beyond Cluster 2 fix (005 REQ-001/004/016). Address dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/and cross-CLI consistency findings.
 
 ## STATE FILES (relative to repo root)
 

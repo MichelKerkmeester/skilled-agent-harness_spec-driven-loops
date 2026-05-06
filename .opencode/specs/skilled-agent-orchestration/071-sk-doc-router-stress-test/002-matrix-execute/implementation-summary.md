@@ -46,7 +46,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 45-cell test matrix shipped: 15 sk-doc scenarios × 3 CLIs (cli-codex, cli-copilot, cli-opencode), all dispatched via run-matrix.sh with 3-CLIs-in-parallel-per-scenario concurrency. Each cell produced a per-CLI .log file (stdout/stderr) plus a delta JSONL entry (timestamp, exit, duration, tokens). Phase 3 synthesis can now extract metrics, build matrix.csv, and author review-report.md from this raw data.
+The 45-cell test matrix shipped: 15 sk-doc scenarios × 3 CLIs (cli-codex, cli-opencode), all dispatched via run-matrix.sh with 3-CLIs-in-parallel-per-scenario concurrency. Each cell produced a per-CLI .log file (stdout/stderr) plus a delta JSONL entry (timestamp, exit, duration, tokens). Phase 3 synthesis can now extract metrics, build matrix.csv, and author review-report.md from this raw data.
 
 The big learning from Phase 2 is the **methodology bug**: imperative scenario prompts caused real side-effects when fed to CLIs with file-write permissions. A CLI started `/create:feature-catalog` work and created 7 empty skeleton dirs at `.opencode/skill/sk-doc/feature_catalog/` before hitting the 120s timeout. Fixed by patching all 15 scenarios with a reflective-framing prefix ("DO NOT execute. Describe routing trace only"), then re-running cleanly. Zero side-effects in the final run, verified by `find -newer scripts/run-matrix.sh`.
 

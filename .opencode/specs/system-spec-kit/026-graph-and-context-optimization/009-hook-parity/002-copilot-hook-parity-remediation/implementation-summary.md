@@ -74,7 +74,7 @@ Copilot now has a working Spec Kit context path without pretending its customer 
 
 ### Documentation and Programmatic Wrapper
 
-cli-copilot/SKILL.md, cli-copilot/README.md, and hooks/copilot/README.md now state the actual parity model: file-based, next-prompt fresh, not in-turn `additionalContext`. cli-copilot/assets/shell_wrapper.md ships an optional `cpx()` pattern for non-interactive `copilot -p` calls that need to prepend the freshly generated managed block in the same command.
+cli-copilot/SKILL.md/README.md, and hooks/copilot/README.md now state the actual parity model: file-based, next-prompt fresh, not in-turn `additionalContext`. cli-copilot/assets/shell_wrapper.md ships an optional `cpx()` pattern for non-interactive `copilot -p` calls that need to prepend the freshly generated managed block in the same command.
 
 ---
 

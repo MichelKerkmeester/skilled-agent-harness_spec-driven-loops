@@ -161,6 +161,7 @@ export function getDefaultConfig(
     ...scopePolicy.excludedCommandGlobs,
     ...scopePolicy.excludedSpecGlobs,
     ...scopePolicy.excludedPluginGlobs,
+    ...scopePolicy.excludeGlobs,
   ];
 
   return {
@@ -184,6 +185,7 @@ export function getDefaultConfig(
       '**/*.yaml',
       '**/*.yml',
       '**/*.toml',
+      ...scopePolicy.includeGlobs,
     ],
     excludeGlobs,
     maxFileSizeBytes: 102_400,

@@ -116,7 +116,7 @@ Severity-tiered bounded-wave execution: foundation → parallel content rewrites
 ### Phase 2: Core Implementation (Tier 2 — Format Remediation, parallel cli-codex)
 
 **Wave 2a (low effort, label rename + RCAF rewrite)** — 8 cli-codex dispatches in parallel:
-- [ ] T-020..T-027 cli-claude-code, cli-codex, cli-gemini, cli-copilot, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-deep-research playbooks
+- [ ] T-020..T-027 cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-code-mode, sk-deep-research playbooks
 - [ ] T-028 Verify wave 2a results — spot-check 1 file per dispatch + run `validate_document.py` per root
 
 **Wave 2b (medium effort)** — 12 dispatches:

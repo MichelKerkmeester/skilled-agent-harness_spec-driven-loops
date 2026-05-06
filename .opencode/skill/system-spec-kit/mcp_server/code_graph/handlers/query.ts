@@ -1089,6 +1089,7 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
     readiness = await ensureCodeGraphReady(process.cwd(), {
       allowInlineIndex: true,
       allowInlineFullScan: false,
+      allowGuardedInlineFullScan: true,
     });
   } catch (error) {
     // PR 4 / F71 step 6: emit S2-matching 'unavailable' trust-state on

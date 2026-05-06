@@ -2,7 +2,7 @@
 
 ## CONTRACT
 
-When dispatched into any AI runtime via cli-codex, cli-copilot, cli-gemini, or cli-opencode, this prompt asks the AI runtime to ANALYZE its own routing decision for a given user request - not to execute it.
+When dispatched into any AI runtime via cli-codex, cli-gemini, or cli-opencode, this prompt asks the AI runtime to ANALYZE its own routing decision for a given user request - not to execute it.
 
 ## TEMPLATE (substitute {SCENARIO_ID} and {USER_PROMPT} per dispatch)
 

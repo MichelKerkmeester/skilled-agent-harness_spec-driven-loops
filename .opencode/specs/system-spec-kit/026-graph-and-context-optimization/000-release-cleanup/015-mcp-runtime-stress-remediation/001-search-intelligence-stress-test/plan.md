@@ -45,7 +45,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 | **Framework** | system-spec-kit testing-playbook pattern (per `create:testing-playbook` command) |
 | **Storage** | Filesystem under runs subfolders; aggregate findings markdown |
 | **Testing** | The packet IS the test — scoring rubric verifies outputs |
-| **CLIs Under Test** | cli-codex, cli-copilot, cli-opencode |
+| **CLIs Under Test** | cli-codex, cli-opencode |
 
 ### Overview
 

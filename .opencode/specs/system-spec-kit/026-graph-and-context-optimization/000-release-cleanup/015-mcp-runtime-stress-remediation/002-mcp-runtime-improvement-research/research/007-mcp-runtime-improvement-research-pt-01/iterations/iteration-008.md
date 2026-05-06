@@ -61,7 +61,7 @@ Recommended remediation:
 
 ## Questions Remaining
 
-Q8 remains: intent classifier improvements beyond the Cluster 2 fix, including dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/cli-copilot, and cross-CLI consistency.
+Q8 remains: intent classifier improvements beyond the Cluster 2 fix, including dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/and cross-CLI consistency.
 
 ## Next Focus
 

@@ -11,7 +11,7 @@ What `opencode run` brings that the four sibling cli-* dispatches do not. Each c
 
 ## 1. OVERVIEW
 
-The four sibling cli-* skills (cli-claude-code, cli-codex, cli-copilot, cli-gemini) dispatch a raw model behind a thin CLI wrapper. The model loads no project context, no plugins, no skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
+The three sibling cli-* skills (cli-claude-code, cli-codex, cli-gemini) dispatch a raw model behind a thin CLI wrapper. The model loads no project context, no plugins, no skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
 
 `opencode run` is different. It spawns a full OpenCode session. That session loads:
 
@@ -168,7 +168,6 @@ opencode run \
 |---------|-------------------|-------------------|----------------|
 | cli-claude-code | Per-session conversation log | `--continue` / `--resume <id>` | None (raw Claude) |
 | cli-codex | `~/.codex/sessions/` | `codex resume <id>` / `codex fork <id>` | None (raw Codex agent) |
-| cli-copilot | Workspace-scoped repo memory | `--auto-resume` (when wired) | Limited (Copilot's own integrations) |
 | cli-gemini | None (one-shot) | None | None |
 | **cli-opencode** | `~/.opencode/state/<session_id>/` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
 

@@ -35,7 +35,7 @@ _memory:
 - 62 new tests across executor-audit, post-dispatch-validate, dispatch-failure, prompt-pack render
 
 ### 002-runtime-matrix (ex-019)
-- Three more executor kinds wired: `cli-copilot`, `cli-gemini`, `cli-claude-code`
+- Three more executor kinds wired: `cli-gemini`, `cli-claude-code`
 - `EXECUTOR_KIND_FLAG_SUPPORT` per-kind compatibility map
 - Copilot 3-concurrent cap preserved
 - Per-kind YAML dispatch branches in all 4 YAMLs
@@ -79,7 +79,7 @@ Key artifacts: `executor-config.ts` (Zod schema + `parseExecutorConfig` + discri
 
 **Status:** PASS — shipped 2026-04-18 (2026-04-24 CF-026 remediation also shipped). Effort: ~1.5h wall-clock (same cli-codex dogfooding pattern). Tests: 54/54 vitest across 5 suites. `tsc --noEmit` clean.
 
-**What shipped:** Three additional executor kinds wired beyond Phase 018's `cli-codex`: `cli-copilot`, `cli-gemini`, `cli-claude-code`. Each CLI has different invocation surface — shared config schema gained per-kind flag-compatibility validation via `EXECUTOR_KIND_FLAG_SUPPORT`. Copilot 3-concurrent cap preserved. Per-kind YAML dispatch branches added to all 4 YAMLs.
+**What shipped:** Three additional executor kinds wired beyond Phase 018's `cli-codex`: `cli-gemini`, `cli-claude-code`. Each CLI has different invocation surface — shared config schema gained per-kind flag-compatibility validation via `EXECUTOR_KIND_FLAG_SUPPORT`. Copilot 3-concurrent cap preserved. Per-kind YAML dispatch branches added to all 4 YAMLs.
 
 **CF-026 remediation (2026-04-24):** codex/gemini/claude permission controls made executable; subprocess smoke coverage added for Copilot wrapper; audited failure paths documented.
 

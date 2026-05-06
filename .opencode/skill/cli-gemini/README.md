@@ -363,6 +363,5 @@ A: The tools activate based on prompt content. If you do not mention web search 
 ### Related Skills
 - [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
-- [cli-copilot](../cli-copilot/): GitHub Copilot CLI orchestrator
 
 <!-- /ANCHOR:related-documents -->

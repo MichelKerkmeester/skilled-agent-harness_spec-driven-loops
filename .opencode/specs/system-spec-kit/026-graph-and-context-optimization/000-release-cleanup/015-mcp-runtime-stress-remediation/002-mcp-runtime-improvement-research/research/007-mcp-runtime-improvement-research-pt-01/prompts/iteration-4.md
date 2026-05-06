@@ -20,7 +20,7 @@ Q4: How to harden against the model-side hallucination class on weak retrieval (
 Q5: Why does memory_context wrapper truncate to count:0 at 2 percent budget (005 REQ-002)? Direct memory_search returns hits but the wrapper drops to zero on the same query. Identify the truncation logic bug and recommend wrapper fix.
 Q6: How to recover from empty code-graph (005 REQ-017)? Q1/cli-opencode took 4 min falling back to grep when code-graph returned empty. Recommend warm-start scan, scan-on-empty trigger, or stale-graph repair.
 Q7: How to address lopsided causal-graph edge growth (005 REQ-010)? 344 supersedes edges added in 15 min while caused/supports edges stayed unchanged. Recommend edge-class balancing, per-class caps, or detection of supersedes-spam.
-Q8: Intent classifier improvements beyond Cluster 2 fix (005 REQ-001/004/016). Address dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/cli-copilot, and cross-CLI consistency findings.
+Q8: Intent classifier improvements beyond Cluster 2 fix (005 REQ-001/004/016). Address dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/and cross-CLI consistency findings.
 
 ## STATE FILES (relative to repo root)
 

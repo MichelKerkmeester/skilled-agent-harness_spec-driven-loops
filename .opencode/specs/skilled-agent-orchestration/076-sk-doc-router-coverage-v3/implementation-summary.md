@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The sk-doc router test matrix now covers all 11 RESOURCE_MAP intents. Two new scenarios — SD-016 (OPTIMIZATION) and SD-017 (INSTALL_GUIDE) — fill the gap left by 071/072. A v3 extractor with markdown-bullet-aware parsing replaces 072's flat substring v2; re-extracting across all 17 scenarios × 3 CLIs (51 cells) confirms 072's per-CLI ranking holds: cli-codex (gpt-5.5/high/fast) leads at 70.6% resource accuracy, cli-opencode (deepseek-v4-pro) follows at 47.5%, cli-copilot (claude-opus-4.7) trails at 9.8%. The 6 new cells reproduce the cli-copilot hallucination pattern documented in 075 — copilot scored 0% accuracy on both SD-016 and SD-017 with 5 false-positive resource references each.
+The sk-doc router test matrix now covers all 11 RESOURCE_MAP intents. Two new scenarios — SD-016 (OPTIMIZATION) and SD-017 (INSTALL_GUIDE) — fill the gap left by 071/072. A v3 extractor with markdown-bullet-aware parsing replaces 072's flat substring v2; re-extracting across all 17 scenarios × 3 CLIs (51 cells) confirms 072's per-CLI ranking holds: cli-codex (gpt-5.5/high/fast) leads at 70.6% resource accuracy, cli-opencode (deepseek-v4-pro) follows at 47.5% (claude-opus-4.7) trails at 9.8%. The 6 new cells reproduce the cli-copilot hallucination pattern documented in 075 — copilot scored 0% accuracy on both SD-016 and SD-017 with 5 false-positive resource references each.
 
 ### Coverage Extension
 

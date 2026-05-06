@@ -35,7 +35,7 @@ Relevant paths found:
 | sk-doc creation reference | `.opencode/skill/sk-doc/references/specific/manual_testing_playbook_creation.md` | Authoring workflow and validation guidance. |
 | cli-opencode reference package | `.opencode/skill/cli-opencode/manual_testing_playbook/` | Existing numbered category pattern with per-feature files. |
 
-Other playbook directories found included `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, `mcp-code-mode`, `mcp-clickup`, `mcp-chrome-devtools`, `mcp-coco-index`, `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent`.
+Other playbook directories found included `cli-codex`, `cli-gemini`, `cli-claude-code`, `mcp-code-mode`, `mcp-clickup`, `mcp-chrome-devtools`, `mcp-coco-index`, `sk-deep-research`, `sk-deep-review`, and `sk-improve-agent`.
 
 ---
 

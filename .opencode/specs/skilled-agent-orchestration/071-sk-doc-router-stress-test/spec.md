@@ -65,7 +65,7 @@ _memory:
 sk-doc has a smart router (§2 of SKILL.md) with INTENT_MODEL, RESOURCE_MAP, score_intents(), select_intents() — but NO manual_testing_playbook to verify it works correctly across model interpretations. Each external CLI (codex, copilot, gemini, opencode, claude-code) loads sk-doc via a different LLM, and there's no comparative data showing which model is most efficient/accurate/cost-effective at consuming sk-doc's router output. Packet 068 just shipped a router-adjacent reorg; this is a good moment to baseline router behavior across CLIs before further router changes land.
 
 ### Purpose
-Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and run a 45-cell test matrix (15 scenarios × 3 CLIs: cli-codex, cli-copilot, cli-opencode). Capture 3 metric dimensions per cell (efficiency, accuracy, token usage). Surface P0/P1/P2 findings into review-report.md. Remediation deferred to follow-up packet if findings warrant. Pure observational test — no router code changes in this packet.
+Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and run a 45-cell test matrix (15 scenarios × 3 CLIs: cli-codex, cli-opencode). Capture 3 metric dimensions per cell (efficiency, accuracy, token usage). Surface P0/P1/P2 findings into review-report.md. Remediation deferred to follow-up packet if findings warrant. Pure observational test — no router code changes in this packet.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -117,7 +117,7 @@ Author NEW manual_testing_playbook for sk-doc (15 scenarios, 5 categories) and r
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-scenario-author/ | Author NEW `.opencode/skill/sk-doc/manual_testing_playbook/` with 5 categories × 3 scenarios = 15 scenarios. Closes a real gap (sk-doc had no manual_testing_playbook before). | Pending |
-| 2 | 002-matrix-execute/ | Execute 45-cell matrix: 15 scenarios × 3 CLIs (cli-codex with stdin-redirection mitigation, cli-copilot, cli-opencode). Concurrency cap ≤3 per CLI, ≤9 total. Capture stdout/stderr/exit/wall-clock/tokens per cell. | Pending |
+| 2 | 002-matrix-execute/ | Execute 45-cell matrix: 15 scenarios × 3 CLIs (cli-codex with stdin-redirection mitigation, cli-opencode). Concurrency cap ≤3 per CLI, ≤9 total. Capture stdout/stderr/exit/wall-clock/tokens per cell. | Pending |
 | 3 | 003-synthesize/ | Build matrix.csv (45 rows × ~10 cols). Author review-report.md with verdict (PASS/CONDITIONAL/FAIL) + per-CLI ranked summary + P0/P1/P2 findings registry. If P0/P1, recommend follow-up packet ID for remediation. | Pending |
 | 4 | 004-closeout/ | validate.sh --strict (must exit 0); graph-metadata refresh; implementation-summary per child + parent; final commit on main. | Pending |
 

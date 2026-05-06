@@ -35,6 +35,8 @@ export interface IndexScopePolicy {
   includeCommands: boolean;
   includeSpecs: boolean;
   includePlugins: boolean;
+  includeGlobs: readonly string[];
+  excludeGlobs: readonly string[];
   excludedAgentGlobs: readonly string[];
   excludedCommandGlobs: readonly string[];
   excludedSpecGlobs: readonly string[];
@@ -47,6 +49,8 @@ export interface ResolveIndexScopePolicyInput {
   includeCommands?: boolean;
   includeSpecs?: boolean;
   includePlugins?: boolean;
+  includeGlobs?: readonly string[];
+  excludeGlobs?: readonly string[];
   env?: Record<string, string | undefined>;
 }
 
@@ -65,11 +69,36 @@ function hasPerCallScopeOverride(input: ResolveIndexScopePolicyInput): boolean {
     || input.includeAgents !== undefined
     || input.includeCommands !== undefined
     || input.includeSpecs !== undefined
-    || input.includePlugins !== undefined;
+    || input.includePlugins !== undefined
+    || input.includeGlobs !== undefined
+    || input.excludeGlobs !== undefined;
 }
 
 function normalizeSkillList(values: readonly string[]): string[] {
   return [...new Set(values.map(value => value.trim()).filter(value => SKILL_NAME_PATTERN.test(value)))].sort();
+}
+
+function normalizeGlobList(values: readonly string[] | undefined): string[] {
+  return [...new Set((values ?? []).map(value => value.trim()).filter(Boolean))].sort();
+}
+
+function encodeGlobList(values: readonly string[]): string {
+  return `[${values.map(value => encodeURIComponent(value)).join(',')}]`;
+}
+
+function decodeGlobList(value: string | undefined): string[] | null {
+  const match = value?.match(/^\[(.*)\]$/);
+  if (!match) {
+    return null;
+  }
+  if (match[1].length === 0) {
+    return [];
+  }
+  try {
+    return normalizeGlobList(match[1].split(',').map(segment => decodeURIComponent(segment)));
+  } catch {
+    return null;
+  }
 }
 
 function parseSkillsEnvValue(value: string | undefined): IncludedSkillsList {
@@ -104,7 +133,7 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
     : policy.includedSkillsList === 'none'
       ? 'none'
       : `list[${[...policy.includedSkillsList].sort().join(',')}]`;
-  return [
+  const baseSegments = [
     'code-graph-scope:v2',
     `skills=${skills}`,
     `agents=${policy.includeAgents ? 'all' : 'none'}`,
@@ -112,6 +141,17 @@ function buildFingerprint(policy: Omit<IndexScopePolicy, 'fingerprint' | 'label'
     `specs=${policy.includeSpecs ? 'all' : 'none'}`,
     `plugins=${policy.includePlugins ? 'all' : 'none'}`,
     'mcp-coco-index=excluded',
+  ];
+  if (policy.includeGlobs.length === 0 && policy.excludeGlobs.length === 0) {
+    return baseSegments.join(':');
+  }
+
+  return [
+    'code-graph-scope:v3',
+    ...baseSegments.slice(1, -1),
+    `includeGlobs=${encodeGlobList(policy.includeGlobs)}`,
+    `excludeGlobs=${encodeGlobList(policy.excludeGlobs)}`,
+    baseSegments[baseSegments.length - 1],
   ].join(':');
 }
 
@@ -135,6 +175,8 @@ function buildIndexScopePolicy(input: {
   includeCommands: boolean;
   includeSpecs: boolean;
   includePlugins: boolean;
+  includeGlobs?: readonly string[];
+  excludeGlobs?: readonly string[];
   source: IndexScopePolicySource;
 }): IndexScopePolicy {
   const includeSkills = input.includedSkillsList !== 'none';
@@ -147,6 +189,8 @@ function buildIndexScopePolicy(input: {
     includeCommands: input.includeCommands,
     includeSpecs: input.includeSpecs,
     includePlugins: input.includePlugins,
+    includeGlobs: normalizeGlobList(input.includeGlobs),
+    excludeGlobs: normalizeGlobList(input.excludeGlobs),
     excludedAgentGlobs: input.includeAgents ? [] : CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS.agent,
     excludedCommandGlobs: input.includeCommands ? [] : CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS.command,
     excludedSpecGlobs: input.includeSpecs ? [] : CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS.specs,
@@ -167,11 +211,15 @@ export function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}
   const includeCommands = input.includeCommands ?? isEnabledEnvValue(env[CODE_GRAPH_INDEX_COMMANDS_ENV]);
   const includeSpecs = input.includeSpecs ?? isEnabledEnvValue(env[CODE_GRAPH_INDEX_SPECS_ENV]);
   const includePlugins = input.includePlugins ?? isEnabledEnvValue(env[CODE_GRAPH_INDEX_PLUGINS_ENV]);
+  const includeGlobs = normalizeGlobList(input.includeGlobs);
+  const excludeGlobs = normalizeGlobList(input.excludeGlobs);
   const envProvided = includedSkillsList !== 'none'
     || includeAgents
     || includeCommands
     || includeSpecs
-    || includePlugins;
+    || includePlugins
+    || includeGlobs.length > 0
+    || excludeGlobs.length > 0;
   const source: IndexScopePolicySource = perCallProvided
     ? 'scan-argument'
     : envProvided
@@ -184,6 +232,8 @@ export function resolveIndexScopePolicy(input: ResolveIndexScopePolicyInput = {}
     includeCommands,
     includeSpecs,
     includePlugins,
+    includeGlobs,
+    excludeGlobs,
     source,
   });
 }
@@ -192,7 +242,12 @@ export function parseIndexScopePolicyFromFingerprint(input: {
   fingerprint: string | null;
   source?: string | null;
 }): IndexScopePolicy | null {
-  if (!input.fingerprint?.startsWith('code-graph-scope:v2:')) {
+  const version = input.fingerprint?.startsWith('code-graph-scope:v3:')
+    ? 'v3'
+    : input.fingerprint?.startsWith('code-graph-scope:v2:')
+      ? 'v2'
+      : null;
+  if (!version) {
     return null;
   }
 
@@ -230,6 +285,38 @@ export function parseIndexScopePolicyFromFingerprint(input: {
     includeCommands: values.get('commands') === 'all',
     includeSpecs: values.get('specs') === 'all',
     includePlugins: values.get('plugins') === 'all',
+    includeGlobs: version === 'v3' ? (decodeGlobList(values.get('includeGlobs')) ?? []) : [],
+    excludeGlobs: version === 'v3' ? (decodeGlobList(values.get('excludeGlobs')) ?? []) : [],
     source: isIndexScopePolicySource(input.source) ? input.source : 'default',
   });
+}
+
+function sameIncludedSkills(left: IncludedSkillsList, right: IncludedSkillsList): boolean {
+  if (left === right) {
+    return true;
+  }
+  return Array.isArray(left)
+    && Array.isArray(right)
+    && left.join(',') === right.join(',');
+}
+
+export function scopeFingerprintsMatchOrLegacy(
+  storedFingerprint: string | null | undefined,
+  candidateFingerprint: string | null | undefined,
+): boolean {
+  if (storedFingerprint === candidateFingerprint) {
+    return true;
+  }
+
+  const storedPolicy = parseIndexScopePolicyFromFingerprint({ fingerprint: storedFingerprint ?? null });
+  const candidatePolicy = parseIndexScopePolicyFromFingerprint({ fingerprint: candidateFingerprint ?? null });
+  if (!storedPolicy || !candidatePolicy || !storedFingerprint?.startsWith('code-graph-scope:v2:')) {
+    return false;
+  }
+
+  return sameIncludedSkills(storedPolicy.includedSkillsList, candidatePolicy.includedSkillsList)
+    && storedPolicy.includeAgents === candidatePolicy.includeAgents
+    && storedPolicy.includeCommands === candidatePolicy.includeCommands
+    && storedPolicy.includeSpecs === candidatePolicy.includeSpecs
+    && storedPolicy.includePlugins === candidatePolicy.includePlugins;
 }

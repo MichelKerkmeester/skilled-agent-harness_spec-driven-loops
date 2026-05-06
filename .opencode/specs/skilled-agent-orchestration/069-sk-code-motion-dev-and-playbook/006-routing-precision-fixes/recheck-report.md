@@ -9,7 +9,7 @@
 2. **Step 1 verification — direct advisor probes**:
    - RD-002 prompt: top-1 = `sk-doc` (0.879) > `sk-code` (0.778) ✓ F-001 FIXED at advisor level
    - LS-001 prompt: top-1 = `sk-code` (0.798) > `system-spec-kit` (0.722) ✓ F-007 FIXED at advisor level
-3. **Step 2 — re-run 14 affected (scenario, CLI) pairs** through cli-codex, cli-copilot, cli-gemini, cli-opencode using the same matrix runner. Compare each verdict against the Phase 005 baseline.
+3. **Step 2 — re-run 14 affected (scenario, CLI) pairs** through cli-codex, cli-gemini, cli-opencode using the same matrix runner. Compare each verdict against the Phase 005 baseline.
 
 ## VERDICT TRANSITION TABLE
 

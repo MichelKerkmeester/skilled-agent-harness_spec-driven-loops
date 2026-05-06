@@ -436,7 +436,6 @@ A: No — they're complementary. The project `AGENTS.md` is authoritative for ga
 
 ### Related Skills
 - [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
-- [cli-copilot](../cli-copilot/): GitHub Copilot CLI orchestrator
 - [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
 
 <!-- /ANCHOR:related-documents -->

@@ -453,4 +453,4 @@ The router discovers reference, asset, and script docs dynamically. Start with `
 
 Scripts: `scripts/benchmark-stability.cjs`, `scripts/candidate-lineage.cjs`, `scripts/check-mirror-drift.cjs`, `scripts/generate-profile.cjs`, `scripts/improvement-journal.cjs`, `scripts/materialize-benchmark-fixtures.cjs`, `scripts/mutation-coverage.cjs`, `scripts/promote-candidate.cjs`, `scripts/reduce-state.cjs`, `scripts/rollback-candidate.cjs`, `scripts/run-benchmark.cjs`, `scripts/scan-integration.cjs`, `scripts/score-candidate.cjs`, `scripts/trade-off-detector.cjs`.
 
-Related skills: `sk-doc` for package-shape and markdown validation, `system-spec-kit` for packet validation, and `sk-improve-prompt` when prompt surfaces need evaluator-backed rewriting.
+Related skills: `sk-doc` for package-shape and markdown validation, `system-spec-kit` for packet validation, and `sk-prompt` when prompt surfaces need evaluator-backed rewriting.

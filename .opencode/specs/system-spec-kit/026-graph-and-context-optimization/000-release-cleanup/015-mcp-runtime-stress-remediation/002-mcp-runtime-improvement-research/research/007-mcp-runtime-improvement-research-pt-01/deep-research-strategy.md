@@ -39,7 +39,7 @@ MCP runtime improvement research investigating root causes for memory layer, cod
 - [ ] Q5: Why does memory_context wrapper truncate to count:0 at 2 percent budget (005 REQ-002)? Direct memory_search returns hits but the wrapper drops to zero on the same query. Identify the truncation logic bug and recommend wrapper fix.
 - [ ] Q6: How to recover from empty code-graph (005 REQ-017)? Q1/cli-opencode took 4 min falling back to grep when code-graph returned empty. Recommend warm-start scan, scan-on-empty trigger, or stale-graph repair.
 - [ ] Q7: How to address lopsided causal-graph edge growth (005 REQ-010)? 344 supersedes edges added in 15 min while caused/supports edges stayed unchanged. Recommend edge-class balancing, per-class caps, or detection of supersedes-spam.
-- [ ] Q8: Intent classifier improvements beyond Cluster 2 fix (005 REQ-001/004/016). Address dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/cli-copilot, and cross-CLI consistency findings.
+- [ ] Q8: Intent classifier improvements beyond Cluster 2 fix (005 REQ-001/004/016). Address dual-classifier dissonance, paraphrase stability across cli-opencode/cli-codex/and cross-CLI consistency findings.
 
 ---
 
@@ -130,7 +130,7 @@ Iteration 1: Investigate Q1 phantom fix root cause. Check 005 implementation-sum
 
 ### From sibling 001-search-intelligence-stress-test
 
-- 9-scenario corpus (3 features x 3 prompt types) x 4 CLI cells (cli-codex, cli-copilot, cli-opencode, cli-opencode-pure)
+- 9-scenario corpus (3 features x 3 prompt types) x 4 CLI cells (cli-codex, cli-opencode, cli-opencode-pure)
 - v1.0.0 baseline scores (30 cells)
 - v1.0.1 rubric amendment (intent recovery weighting)
 - I2 model-side hallucination finding: when requestQuality:"weak" and recovery.suggestedQueries:[], cli-codex and cli-copilot fabricate fake spec packets

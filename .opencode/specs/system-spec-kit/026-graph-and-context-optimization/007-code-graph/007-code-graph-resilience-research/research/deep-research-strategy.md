@@ -64,7 +64,7 @@ Run a 7-iteration deep-research loop investigating code-graph staleness, error r
 
 ## Dispatch Notes
 
-- Executor: cli-copilot, model gpt-5.5, reasoningEffort high
+- Executor: model gpt-5.5, reasoningEffort high
 - Concurrency: sequential within this packet
 - Per-iteration prompt: research/prompts/iteration-NNN.md
 - Per-iteration findings: research/iterations/iteration-NNN.md

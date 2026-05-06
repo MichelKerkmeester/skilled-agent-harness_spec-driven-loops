@@ -71,7 +71,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] Matrix covers all requested F1-F14 surfaces. [EVIDENCE: `spec.md` feature matrix and `corpus-plan.md` scenario seeds.]
-- [x] CHK-021 [P0] Executor matrix covers cli-codex, cli-copilot, cli-gemini, cli-claude-code, cli-opencode, native, and inline. [EVIDENCE: `spec.md` executor matrix and `plan.md` CLI sub-plan.]
+- [x] CHK-021 [P0] Executor matrix covers cli-codex, cli-gemini, cli-claude-code, cli-opencode, native, and inline. [EVIDENCE: `spec.md` executor matrix and `plan.md` CLI sub-plan.]
 - [x] CHK-022 [P1] Rubric design preserves canonical 4 dimensions and 0-2 scale. [EVIDENCE: `plan.md` rubric design section.]
 - [x] CHK-023 [P1] Harness-extension options A/B/C documented and one recommended. [EVIDENCE: `decision-record.md` ADR-004.]
 - [x] CHK-024 [P1] Future execution tasks sequenced. [EVIDENCE: `tasks.md`.]

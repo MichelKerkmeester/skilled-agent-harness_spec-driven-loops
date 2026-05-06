@@ -201,7 +201,7 @@ Produce an evidence-anchored recommendation set, cross-checked against this repo
 | Scope | 15/25 | Cross-phase boundary handling, 17-finding taxonomy, multi-surface (config/hooks/behavior/observability) |
 | Risk | 15/25 | Source discrepancy handling, JSONL fragility risk, unshipped UX risk |
 | Research | 18/20 | 13-iteration deep-research loop, 12 research questions, externalized JSONL state |
-| Multi-Agent | 6/15 | LEAF-only execution, no sub-agent dispatch, cli-copilot runner |
+| Multi-Agent | 6/15 | LEAF-only execution, no sub-agent dispatch runner |
 | Coordination | 10/15 | Phase 005-claudest cross-phase boundary, four-tier prioritization framework |
 | **Total** | **64/100** | **Level 3** |
 

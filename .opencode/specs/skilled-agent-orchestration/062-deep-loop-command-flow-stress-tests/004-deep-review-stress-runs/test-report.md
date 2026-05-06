@@ -91,7 +91,7 @@ This sub-phase reached methodology-application-complete but NOT PASS 6/0/0. The 
 
 - **6 CPs at** `.opencode/skill/sk-deep-review/manual_testing_playbook/07--command-flow-stress-tests/`
 - **Sandbox helper at** `.opencode/skill/sk-deep-review/manual_testing_playbook/07--command-flow-stress-tests/setup-cp-sandbox.sh`
-- **R1 transcripts** `/tmp/cp-052..057-B-*.txt` (cli-copilot, parallel)
+- **R1 transcripts** `/tmp/cp-052..057-B-*.txt` (parallel)
 - **R2 transcripts** `/tmp/062-r2-logs/cp-052..057-r2.log` + `/tmp/cp-052..057-B-*.txt` (cli-opencode + github-copilot, sequential)
 - **R1 runner**: `/tmp/062-r1-stress-runner.py` (Python orchestrator, 3-parallel)
 - **R2 runner**: `/tmp/062-r2-stress-runner.py` (Python orchestrator, sequential, opencode/copilot)

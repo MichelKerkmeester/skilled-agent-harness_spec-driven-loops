@@ -1,6 +1,6 @@
 ---
 title: "...em-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution/spec]"
-description: "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019, cli-copilot + cli-gemini + cli-claude-code). Shared executor-config.ts, dispatch YAML branching, per-kind flag validation."
+description: "Merged packet covering the CLI executor arc: 001-executor-feature (ex-018, native + cli-codex) plus 002-runtime-matrix (ex-019 + cli-gemini + cli-claude-code). Shared executor-config.ts, dispatch YAML branching, per-kind flag validation."
 trigger_phrases:
   - "cli runtime executors"
   - "cli executor selection"
@@ -54,7 +54,7 @@ _memory:
 - Zod validator `parseExecutorConfig` with fail-fast on invalid combinations
 
 ### 002-runtime-matrix (ex-019)
-- Adds three more executor kinds: `cli-copilot`, `cli-gemini`, `cli-claude-code`
+- Adds three more executor kinds: `cli-gemini`, `cli-claude-code`
 - Per-kind flag-compatibility map `EXECUTOR_KIND_FLAG_SUPPORT` rejecting invalid combinations (e.g., service-tier on non-codex kinds)
 - YAML dispatch branches for the three new kinds in all 4 YAMLs
 - Copilot: 3-concurrent dispatch cap preserved (respects user memory `feedback_copilot_concurrency_override.md`)

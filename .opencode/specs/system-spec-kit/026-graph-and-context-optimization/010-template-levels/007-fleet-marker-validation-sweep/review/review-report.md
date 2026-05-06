@@ -104,7 +104,7 @@ None.
    - **Impact:** cli-copilot deep-review dispatch can run without the `## TARGET AUTHORITY` preamble even though recovered or historical context must not redirect writes away from the approved 007 packet.
    - **Recommendation:** Pass `{ kind: 'approved', specFolder }` from auto YAML, add a missing-authority fallback, and route confirm cli-copilot through `buildCopilotPromptArg` before enabling `--allow-all-tools`.
    - **Finding class:** cross-consumer
-   - **Affected surfaces:** spec_kit_deep-review_auto.yaml, spec_kit_deep-review_confirm.yaml, buildCopilotPromptArg, cli-copilot executor, target authority
+   - **Affected surfaces:** spec_kit_deep-review_auto.yaml, spec_kit_deep-review_confirm.yaml, buildCopilotPromptArg executor, target authority
 
 ### P2 Findings
 

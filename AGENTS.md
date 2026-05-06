@@ -207,7 +207,7 @@ Trigger phrases: "deep-research", "deep-review", "iterations", ":auto" suffix, "
 - Manually managing iteration state in `/tmp` or anywhere outside the skill's `research/` or `review/` folder
 - Skipping the state machine: `deep-research-state.jsonl`, `deep-research-config.json`, `deltas/`, `prompts/`, `logs/`
 - Using the `@deep-research` or `@deep-review` agent directly via Task tool for iteration loops — only the command-owned YAML workflow may dispatch these
-**If the user specifies the executor CLI** (e.g. "use cli-copilot gpt-5.4 high"), that is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route.
+**If the user specifies the executor CLI** (e.g. "use cli-codex gpt-5.5 high"), that is the HOW — it still runs INSIDE the skill's workflow. Never let the executor name override the skill-owned route.
 **Tiebreaker for skill advisor ambiguity:** When `command-spec-kit` matches alongside `cli-*` for iteration phrases, `command-spec-kit` wins. The CLI executor is a tool inside the command's workflow, not a replacement for it.
 
 #### CONSOLIDATED QUESTION PROTOCOL

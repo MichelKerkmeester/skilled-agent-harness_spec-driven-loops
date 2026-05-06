@@ -97,7 +97,7 @@ If positive accuracy < 0.80:
    - sk-code-review or system-spec-kit captured the prompt due to higher signal weight on shared keywords
 2. Propose `signals` array additions to sk-code (Phase E5 gate — DO NOT commit without user approval). Candidate additions based on lost prompts:
    - "verify alignment", "alignment verifier" (covers verify_alignment_drift.py prompts)
-   - "executor config", "executor type" (covers cli-codex/cli-copilot config prompts)
+   - "executor config", "executor type" (covers cli-codex config prompts)
    - "Gate 3", "classifier" (covers gate-3-classifier.ts prompts)
 3. Or propose adjacency adjustments (e.g. lower `enhances.system-spec-kit` weight to reduce competition).
 
@@ -139,7 +139,7 @@ If negative FPR > 0:
 | P03 | `skill_advisor` (0.820) | 2 (0.820) | Prompt is "Refactor skill_advisor.py to surface raw ambiguity counts" — touches the advisor's own internals; skill_advisor is the domain owner |
 | P04 | `deep-review` (0.945) | 2 (0.820) | Prompt mentions "resume deep review phrase" classifier — deep-review owns deep-review behavior |
 | P07 | `system-spec-kit` (0.820) | 2 (0.820) | Prompt is about "Gate 3 confusion-matrix rows" — Gate 3 is system-spec-kit's domain |
-| P08 | `sk-improve-prompt` (0.820) | 2 (0.820) | "gate3-baseline.json fixture" generation — fixture/baseline patterns trigger improve-prompt |
+| P08 | `sk-prompt` (0.820) | 2 (0.820) | "gate3-baseline.json fixture" generation — fixture/baseline patterns trigger improve-prompt |
 
 These are domain-specific skills winning over the general sk-code router. The probe set classification was over-aggressive — these prompts have legitimate dual-domain claims, and routing to the more specific skill is arguably correct. sk-code remains rank-2 in all four cases.
 

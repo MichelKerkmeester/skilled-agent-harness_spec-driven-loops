@@ -15,7 +15,7 @@ This iteration stopped broadening the technical investigation and focused on syn
 
 ## Method
 
-I treated iterations 1-8 as baseline and only inspected packet 003 governance docs plus the two relevant playbook roots and native RT feature files. I compared packet 003's research-only success criteria, cli-copilot's release-readiness rules, and sk-improve-agent's native RT-028/RT-032 contracts to decide what belongs in 063 versus 064 and what the final synthesis should explicitly warn against.
+I treated iterations 1-8 as baseline and only inspected packet 003 governance docs plus the two relevant playbook roots and native RT feature files. I compared packet 003's research-only success criteria's release-readiness rules, and sk-improve-agent's native RT-028/RT-032 contracts to decide what belongs in 063 versus 064 and what the final synthesis should explicitly warn against.
 
 ## Findings
 

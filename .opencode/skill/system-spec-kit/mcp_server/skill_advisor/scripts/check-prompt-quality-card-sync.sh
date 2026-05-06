@@ -10,10 +10,9 @@ set -euo pipefail
 ROOT="${1:-.}"
 
 files=(
-  "$ROOT/.opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md"
+  "$ROOT/.opencode/skill/sk-prompt/assets/cli_prompt_quality_card.md"
   "$ROOT/.opencode/skill/cli-claude-code/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skill/cli-codex/assets/prompt_quality_card.md"
-  "$ROOT/.opencode/skill/cli-copilot/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skill/cli-gemini/assets/prompt_quality_card.md"
 )
 

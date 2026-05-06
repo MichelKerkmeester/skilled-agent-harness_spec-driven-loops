@@ -1,7 +1,7 @@
 ---
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 title: "Feature Specification: 010 CLI Orchestrator Skill Doc Drift [template:level_2/spec.md]"
-description: "Resolve six findings F-007-B2-01..06 from packet 046 iteration-007 across the cli-opencode, cli-copilot, cli-codex, cli-claude-code, and cli-gemini skills. Reconciles SKILL.md dispatch contracts, model/effort pins, and approval-gated write templates so the CLI orchestrator skills speak with one voice."
+description: "Resolve six findings F-007-B2-01..06 from packet 046 iteration-007 across the cli-opencode, cli-codex, cli-claude-code, and cli-gemini skills. Reconciles SKILL.md dispatch contracts, model/effort pins, and approval-gated write templates so the CLI orchestrator skills speak with one voice."
 trigger_phrases:
   - "F-007-B2"
   - "cli orchestrator drift"
@@ -63,7 +63,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The CLI orchestrator skills (`cli-opencode`, `cli-copilot`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files. cli-opencode contradicts itself on subagent invocation (claims subagents are not directly invokable, then invokes them in references). cli-copilot's effort flag prose is inconsistent with the live CLI. The five prompt-templates files omit required model/effort/tier pins, embed `--yolo` write flags without approval gates, and miss explicit `--model` defaults.
+The CLI orchestrator skills (`cli-opencode`, `cli-codex`, `cli-claude-code`, `cli-gemini`) drifted across five files. cli-opencode contradicts itself on subagent invocation (claims subagents are not directly invokable, then invokes them in references). cli-copilot's effort flag prose is inconsistent with the live CLI. The five prompt-templates files omit required model/effort/tier pins, embed `--yolo` write flags without approval gates, and miss explicit `--model` defaults.
 
 ### Purpose
 Land six surgical doc edits so each CLI skill states one consistent dispatch contract, pins model/effort/tier per template, and gates write-side flags behind explicit approval language.

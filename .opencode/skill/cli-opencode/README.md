@@ -41,7 +41,7 @@ trigger_phrases:
 
 This skill lets external AI assistants (Claude Code, Codex, Copilot, Gemini, raw shell) invoke OpenCode CLI as a one-shot specialist tool. The calling AI stays the conductor, delegating specific tasks to OpenCode and integrating the structured event stream back into its own workflow.
 
-OpenCode brings a capability that the four sibling cli-* skills do not: a one-shot dispatch that loads the full plugin, skill, MCP, and Spec Kit Memory runtime. When `opencode run` starts a session, every plugin in the project's `opencode.json` loads, every skill under `.opencode/skill/` becomes accessible, every MCP tool wired through the project becomes callable, and the Spec Kit Memory database is on-line.
+OpenCode brings a capability that the three sibling cli-* skills do not: a one-shot dispatch that loads the full plugin, skill, MCP, and Spec Kit Memory runtime. When `opencode run` starts a session, every plugin in the project's `opencode.json` loads, every skill under `.opencode/skill/` becomes accessible, every MCP tool wired through the project becomes callable, and the Spec Kit Memory database is on-line.
 
 The skill documents three orthogonal use cases: external runtime to OpenCode, in-OpenCode parallel detached sessions for ablation and worker farms, and cross-AI handback where a non-Anthropic CLI needs OpenCode-specific plugins.
 
@@ -150,7 +150,7 @@ opencode run --share --port 4096 \
 
 ### 3.1 FEATURE HIGHLIGHTS
 
-OpenCode CLI stands apart from the four sibling cli-* skills in three ways: full project runtime, parallel detached sessions, and cross-repo dispatch.
+OpenCode CLI stands apart from the three sibling cli-* skills in three ways: full project runtime, parallel detached sessions, and cross-repo dispatch.
 
 The full project runtime is the headline capability. Sibling cli-* dispatches send a raw model behind a thin CLI wrapper. The dispatched call loads no plugins, no skills, no MCP tools, no Spec Kit Memory. `opencode run` is different. The dispatched session loads every plugin in `opencode.json`, every skill under `.opencode/skill/`, every MCP server wired through the project, and the Spec Kit Memory database. A one-shot dispatch becomes a fully-loaded project agent.
 
@@ -387,7 +387,7 @@ wait
 
 **What you see**: `ERROR: cli-opencode self-invocation refused. You are already inside OpenCode...`
 **Common causes**: The smart router detected an `OPENCODE_*` env var, an `opencode` parent process, or a live `~/.opencode/state/<id>/lock`.
-**Fix**: Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-copilot, cli-gemini) OR open a fresh shell session OR add explicit "parallel detached" / "ablation suite" / "worker farm" / "share URL" keywords to the prompt to switch the router into use case 2.
+**Fix**: Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-gemini) OR open a fresh shell session OR add explicit "parallel detached" / "ablation suite" / "worker farm" / "share URL" keywords to the prompt to switch the router into use case 2.
 
 ### Authentication Failure
 
@@ -477,7 +477,6 @@ A: Yes via the dispatched session's native Task tool — but NOT via nested `ope
 ### Related Skills
 - [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
-- [cli-copilot](../cli-copilot/): GitHub Copilot CLI orchestrator
 - [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
 - [system-spec-kit](../system-spec-kit/): Spec folder workflow + Spec Kit Memory (cross-AI handback target)
 

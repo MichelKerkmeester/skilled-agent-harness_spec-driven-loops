@@ -6,7 +6,7 @@ Verify all 30 findings opened by the first deep-review pass (review/) are now cl
 
 ## Prior-Run Context (review-pt-01)
 
-- 7 iterations, cli-copilot gpt-5.5 high, sequential, 22m39s wall-clock
+- 7 iterations gpt-5.5 high, sequential, 22m39s wall-clock
 - Verdict: CONDITIONAL (0 P0, 25 P1, 5 P2) | newFindingsRatio iter 7: 0.0333
 - Findings by category:
   - Correctness: 11 P1 + 3 P2

@@ -81,7 +81,7 @@ OpenCode-specific example: if the task would otherwise need a long `opencode run
 
 ## 7. Related Resources
 
-- `../../sk-improve-prompt/assets/cli_prompt_quality_card.md`
+- `../../sk-prompt/assets/cli_prompt_quality_card.md`
 - `./prompt_templates.md`
 - `../SKILL.md`
 

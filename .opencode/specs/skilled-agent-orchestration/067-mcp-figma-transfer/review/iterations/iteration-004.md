@@ -11,7 +11,7 @@ None.
 1. **The skill index still has contradictory total skill-folder counts after `mcp-figma` removal.** The requested count command returns 17 top-level non-hidden skill folders:
    - Command: `ls -d .opencode/skill/*/ | wc -l`
    - Result: `17`
-   - Current non-hidden folders: `cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`, `mcp-chrome-devtools`, `mcp-coco-index`, `mcp-code-mode`, `sk-code`, `sk-code-review`, `sk-deep-research`, `sk-deep-review`, `sk-doc`, `sk-git`, `sk-improve-agent`, `sk-improve-prompt`, `system-spec-kit`.
+   - Current non-hidden folders: `cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`, `mcp-chrome-devtools`, `mcp-coco-index`, `mcp-code-mode`, `sk-code`, `sk-code-review`, `sk-deep-research`, `sk-deep-review`, `sk-doc`, `sk-git`, `sk-improve-agent`, `sk-improve-prompt`, `system-spec-kit`.
    Evidence: `.opencode/skill/README.md:44` says the tree holds 21 skill folders, while `.opencode/skill/README.md:54` says `Total skill folders | 16`. The MCP integration row is correct at `.opencode/skill/README.md:58` with 3 entries and no `mcp-figma` references, but the total count drift fails the D4 consistency gate.
 
 2. **Install-guide skill counts are stale and disagree with both the skill index and actual disk state.** `rg -n "mcp-figma" .opencode/install_guides/README.md ".opencode/install_guides/SET-UP - AGENTS.md"` returns no hits, so the deleted skill name is gone. The remaining counts are inconsistent:

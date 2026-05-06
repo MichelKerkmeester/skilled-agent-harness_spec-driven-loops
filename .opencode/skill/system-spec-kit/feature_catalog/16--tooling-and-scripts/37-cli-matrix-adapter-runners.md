@@ -1,6 +1,6 @@
 ---
 title: "CLI matrix adapter runners"
-description: "Definition-driven F1-F14 matrix runner package for cli-codex, cli-copilot, cli-gemini, cli-claude-code, and cli-opencode executor cells."
+description: "Definition-driven F1-F14 matrix runner package for cli-codex, cli-gemini, cli-claude-code, and cli-opencode executor cells."
 trigger_phrases:
   - "matrix_runners"
   - "CLI matrix adapters"

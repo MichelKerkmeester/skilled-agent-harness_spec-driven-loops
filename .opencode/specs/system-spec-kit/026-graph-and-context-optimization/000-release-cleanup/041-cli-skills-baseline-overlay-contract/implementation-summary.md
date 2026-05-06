@@ -37,7 +37,7 @@ _memory:
 
 ## What Was Built
 
-5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-copilot`, `cli-opencode`) now mirror the `review.md` baseline+overlay standards contract. Each SKILL.md gained an identical numbered ALWAYS rule titled "Code Standards Loading (codebase-agnostic baseline+overlay contract)" instructing dispatched sessions to load `sk-code` baseline first, detect stack/codebase signals, load exactly one matching `sk-code-*` overlay, and apply precedence rules.
+5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) now mirror the `review.md` baseline+overlay standards contract. Each SKILL.md gained an identical numbered ALWAYS rule titled "Code Standards Loading (codebase-agnostic baseline+overlay contract)" instructing dispatched sessions to load `sk-code` baseline first, detect stack/codebase signals, load exactly one matching `sk-code-*` overlay, and apply precedence rules.
 
 7 direct mentions of `sk-code-review` / `sk-code-opencode` were replaced with codebase-agnostic phrasing across cli-codex (hook_contract.md, SKILL.md Skill Integration table) and cli-opencode (SKILL.md, references/opencode_tools.md, manual_testing_playbook root, test scenario CO-025, assets/prompt_templates.md TEMPLATE 5).
 

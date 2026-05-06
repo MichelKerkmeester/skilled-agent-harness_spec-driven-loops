@@ -80,7 +80,7 @@ Ship all 6 recommendations + the OpenCode plugin in a single remediation packet.
 - Target: raise hit rate from 5.5% baseline toward 20%+ on common-case prompts
 
 **Area C — CLI silent-fallback replacement**
-- `cli-codex`, `cli-copilot`, `cli-gemini` skill manifests: replace silent `GENERATION` zero-score default with explicit `UNKNOWN_FALLBACK` + disambiguation checklist (pattern from non-CLI skills)
+- `cli-codex`, `cli-gemini` skill manifests: replace silent `GENERATION` zero-score default with explicit `UNKNOWN_FALLBACK` + disambiguation checklist (pattern from non-CLI skills)
 - `cli-claude-code` skill manifest: same for `DEEP_REASONING` default
 - Preserve behavior when intents DO score — only change the zero-score path
 

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: cli-* skill consistency patterns"
-description: "Harmonize the 5 cli-* skills (cli-claude-code, cli-codex, cli-copilot, cli-gemini, cli-opencode) on the structural surface they already share, without flattening each provider's unique value props."
+description: "Harmonize the 5 cli-* skills (cli-claude-code, cli-codex, cli-gemini, cli-opencode) on the structural surface they already share, without flattening each provider's unique value props."
 trigger_phrases:
   - "cli skill patterns"
   - "cli skill consistency"
@@ -53,7 +53,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 5 cli-* skills under `.opencode/skill/` (`cli-claude-code`, `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template. Audit during packet 051 surfaced concrete drift: cli-copilot is missing the Error Handling table, cli-opencode duplicates UNKNOWN_FALLBACK_CHECKLIST 3×, cli-claude-code is missing the Default Invocation block, INTENT_SIGNALS counts differ (codex=8, others=7), and the new Provider Auth Pre-Flight pattern added to cli-opencode in 051 has no equivalent in the other 4 even though several of them have provider-auth failure modes.
+The 5 cli-* skills under `.opencode/skill/` (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) all expose the same intent — orchestrate an external CLI from another AI runtime — and were authored from the same 8-section template. Audit during packet 051 surfaced concrete drift: cli-copilot is missing the Error Handling table, cli-opencode duplicates UNKNOWN_FALLBACK_CHECKLIST 3×, cli-claude-code is missing the Default Invocation block, INTENT_SIGNALS counts differ (codex=8, others=7), and the new Provider Auth Pre-Flight pattern added to cli-opencode in 051 has no equivalent in the other 4 even though several of them have provider-auth failure modes.
 
 ### Purpose
 Harmonize the structural surface that's already shared across all 5 skills (section ordering, frontmatter contract, INTENT_SIGNALS keys, ALWAYS/NEVER/ESCALATE triple, Memory Handback, Error Handling table presence, single-occurrence UNKNOWN_FALLBACK_CHECKLIST, Provider Auth Pre-Flight pattern) while explicitly preserving each skill's unique value props (per-CLI flag names, agent-routing syntax, model rosters, auth flows, manual-testing-playbook scenarios).

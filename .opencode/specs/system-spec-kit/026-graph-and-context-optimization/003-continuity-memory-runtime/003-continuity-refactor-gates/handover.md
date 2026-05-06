@@ -31,7 +31,7 @@ directives:
 last_updated: 2026-04-12T00:30:00Z
 purpose: "Resume document for the orchestrator session running Gates A→F via cli-codex gpt-5.4 high fast. Updated after each gate close. Read this first if context was compacted."
 session_role: orchestrator (claude-opus-4-6 in Claude Code)
-worker: cli-codex gpt-5.4 high fast (primary), cli-copilot gpt-5.4 high (fallback after 3 codex failures)
+worker: cli-codex gpt-5.4 high fast (primary) gpt-5.4 high (fallback after 3 codex failures)
 ---
 # Phase 018 Live Handover
 

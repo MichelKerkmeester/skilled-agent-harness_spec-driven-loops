@@ -1393,9 +1393,7 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────────────────────
 
     # ─────────────────────────────────────────────────────────────────────────────────
-    # CLI-COPILOT: Cross-AI orchestration via GitHub Copilot CLI
     # ─────────────────────────────────────────────────────────────────────────────────
-    "copilot": ("cli-copilot", 2.0),
 
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
@@ -1415,16 +1413,16 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────
     # SK-PROMPT-IMPROVER: Prompt engineering and enhancement
     # ─────────────────────────────────────────────────────────────────
-    "prompt": ("sk-improve-prompt", 1.5),
-    "prompts": ("sk-improve-prompt", 1.2),
-    "enhance": ("sk-improve-prompt", 1.2),
-    "rcaf": ("sk-improve-prompt", 2.0),
-    "costar": ("sk-improve-prompt", 2.0),
-    "crispe": ("sk-improve-prompt", 2.0),
-    "craft": ("sk-improve-prompt", 1.5),
-    "depth": ("sk-improve-prompt", 1.5),
-    "ricce": ("sk-improve-prompt", 1.5),
-    "scoring": ("sk-improve-prompt", 0.8),
+    "prompt": ("sk-prompt", 1.5),
+    "prompts": ("sk-prompt", 1.2),
+    "enhance": ("sk-prompt", 1.2),
+    "rcaf": ("sk-prompt", 2.0),
+    "costar": ("sk-prompt", 2.0),
+    "crispe": ("sk-prompt", 2.0),
+    "craft": ("sk-prompt", 1.5),
+    "depth": ("sk-prompt", 1.5),
+    "ricce": ("sk-prompt", 1.5),
+    "scoring": ("sk-prompt", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
     # MCP-COCO-INDEX: Semantic code search via vector embeddings
@@ -1465,13 +1463,13 @@ MULTI_SKILL_BOOSTERS = {
     "test": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code", 0.2)],
     "review": [("sk-code-review", 0.8)],
-    "delegate": [("cli-gemini", 0.5), ("cli-codex", 0.5), ("cli-claude-code", 0.5), ("cli-copilot", 0.5)],
-    "opinion": [("cli-gemini", 0.3), ("cli-codex", 0.3), ("cli-claude-code", 0.3), ("cli-copilot", 0.3), ("sk-code-review", 0.2)],
-    "validate": [("cli-gemini", 0.2), ("cli-codex", 0.2), ("cli-claude-code", 0.2), ("cli-copilot", 0.2), ("sk-code-review", 0.3)],
-    "improve": [("sk-improve-prompt", 0.6), ("sk-code", 0.2)],
-    "enhance": [("sk-improve-prompt", 0.8)],
-    "refine": [("sk-improve-prompt", 0.6), ("sk-code", 0.2)],
-    "framework": [("sk-improve-prompt", 0.5)],
+    "delegate": [("cli-gemini", 0.5), ("cli-codex", 0.5), ("cli-claude-code", 0.5)],
+    "opinion": [("cli-gemini", 0.3), ("cli-codex", 0.3), ("cli-claude-code", 0.3), ("sk-code-review", 0.2)],
+    "validate": [("cli-gemini", 0.2), ("cli-codex", 0.2), ("cli-claude-code", 0.2), ("sk-code-review", 0.3)],
+    "improve": [("sk-prompt", 0.6), ("sk-code", 0.2)],
+    "enhance": [("sk-prompt", 0.8)],
+    "refine": [("sk-prompt", 0.6), ("sk-code", 0.2)],
+    "framework": [("sk-prompt", 0.5)],
 }
 
 # Phrase-level intent boosters for high-signal multi-token requests
@@ -1574,7 +1572,7 @@ PHRASE_INTENT_BOOSTERS = {
     "score agent dimensions": [("sk-improve-agent", 2.8)],
     "agent integration surface": [("sk-improve-agent", 2.6)],
     "/improve:agent": [("sk-improve-agent", 3.2)],
-    "/improve:prompt": [("sk-improve-prompt", 3.2)],
+    "/improve:prompt": [("sk-prompt", 3.2)],
     "improve agent": [("sk-improve-agent", 2.8)],
     "score agent": [("sk-improve-agent", 2.6)],
     "evaluate agent": [("sk-improve-agent", 2.6)],
@@ -1669,32 +1667,22 @@ PHRASE_INTENT_BOOSTERS = {
     "/cli-claude-code": [("cli-claude-code", 2.8)],
     ".opencode/skill/cli-claude-code": [("cli-claude-code", 3.0)],
     # --- Copilot CLI cross-AI orchestration ---
-    "use copilot": [("cli-copilot", 2.5)],
-    "copilot cli": [("cli-copilot", 2.5)],
-    "delegate to copilot": [("cli-copilot", 2.5)],
-    "cloud delegation": [("cli-copilot", 2.0)],
-    "copilot plan mode": [("cli-copilot", 2.0)],
-    "copilot agent": [("cli-copilot", 2.0)],
-    "copilot autopilot": [("cli-copilot", 2.0)],
-    "cli-copilot": [("cli-copilot", 2.8)],
-    "/cli-copilot": [("cli-copilot", 2.8)],
-    ".opencode/skill/cli-copilot": [("cli-copilot", 3.0)],
     # --- Prompt Improver: prompt engineering and enhancement ---
-    "improve my prompt": [("sk-improve-prompt", 2.5)],
-    "improve this prompt": [("sk-improve-prompt", 2.5)],
-    "enhance this prompt": [("sk-improve-prompt", 2.5)],
-    "enhance my prompt": [("sk-improve-prompt", 2.5)],
-    "prompt engineering": [("sk-improve-prompt", 2.5)],
-    "prompt improvement": [("sk-improve-prompt", 2.5)],
-    "create a prompt": [("sk-improve-prompt", 2.0)],
-    "optimize this prompt": [("sk-improve-prompt", 2.2)],
-    "optimize prompt": [("sk-improve-prompt", 2.2)],
-    "refine this prompt": [("sk-improve-prompt", 2.2)],
-    "clear scoring": [("sk-improve-prompt", 2.0)],
-    "depth processing": [("sk-improve-prompt", 2.0)],
-    "sk-improve-prompt": [("sk-improve-prompt", 2.8)],
-    "/sk-improve-prompt": [("sk-improve-prompt", 2.8)],
-    ".opencode/skill/sk-improve-prompt": [("sk-improve-prompt", 3.0)],
+    "improve my prompt": [("sk-prompt", 2.5)],
+    "improve this prompt": [("sk-prompt", 2.5)],
+    "enhance this prompt": [("sk-prompt", 2.5)],
+    "enhance my prompt": [("sk-prompt", 2.5)],
+    "prompt engineering": [("sk-prompt", 2.5)],
+    "prompt improvement": [("sk-prompt", 2.5)],
+    "create a prompt": [("sk-prompt", 2.0)],
+    "optimize this prompt": [("sk-prompt", 2.2)],
+    "optimize prompt": [("sk-prompt", 2.2)],
+    "refine this prompt": [("sk-prompt", 2.2)],
+    "clear scoring": [("sk-prompt", 2.0)],
+    "depth processing": [("sk-prompt", 2.0)],
+    "sk-prompt": [("sk-prompt", 2.8)],
+    "/sk-prompt": [("sk-prompt", 2.8)],
+    ".opencode/skill/sk-prompt": [("sk-prompt", 3.0)],
 
     # ─────────────────────────────────────────────────────────────────
     # FOLLOW-UP: Hyphenated-token migrations from INTENT_BOOSTERS
@@ -1705,9 +1693,7 @@ PHRASE_INTENT_BOOSTERS = {
     "claude-code": [("cli-claude-code", 2.0)],
     "claude-cli": [("cli-claude-code", 1.5)],
     "extended-thinking": [("cli-claude-code", 1.0)],
-    "copilot-cli": [("cli-copilot", 1.5)],
-    "cloud-delegation": [("cli-copilot", 1.0)],
-    "tidd-ec": [("sk-improve-prompt", 2.0)],
+    "tidd-ec": [("sk-prompt", 2.0)],
 }
 
 DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
@@ -2803,9 +2789,9 @@ def _apply_iteration_loop_tiebreaker(
     """Promote command-spec-kit over cli-* when iteration-loop phrases are present.
 
     Background: when a user asks to run iterations of deep-research or deep-review with
-    a specific CLI executor (e.g. "use cli-copilot for 50 iterations"), the skill advisor
-    previously returned command-spec-kit and cli-copilot with similar confidence. Picking
-    cli-copilot as the primary route bypasses the skill's state machine, convergence
+    a specific CLI executor (e.g. "use cli-codex for 50 iterations"), the skill advisor
+    previously returned command-spec-kit and the cli-* peer with similar confidence. Picking
+    the cli-* peer as the primary route bypasses the skill's state machine, convergence
     detection, and deltas — see the post-mortem in Phase 016 FINAL synthesis.
 
     Rule: if the prompt contains iteration-loop phrases AND both a command-spec-kit

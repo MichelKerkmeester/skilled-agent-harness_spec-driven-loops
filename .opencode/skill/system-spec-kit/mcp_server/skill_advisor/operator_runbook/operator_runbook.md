@@ -128,7 +128,6 @@ Scenario acceptance:
 | ID | Scenario | File |
 | --- | --- | --- |
 | CL-001 | Claude Code `user-prompt-submit` hook | [001-claude-user-prompt-submit.md](02--cli-hooks-and-plugin/001-claude-user-prompt-submit.md) |
-| CL-002 | Copilot CLI `user-prompt-submit` hook | [002-copilot-user-prompt-submit.md](02--cli-hooks-and-plugin/002-copilot-user-prompt-submit.md) |
 | CL-003 | Gemini CLI `user-prompt-submit` hook | [003-gemini-user-prompt-submit.md](02--cli-hooks-and-plugin/003-gemini-user-prompt-submit.md) |
 | CL-004 | Codex CLI hook and prompt wrapper | [004-codex-hook-and-wrapper.md](02--cli-hooks-and-plugin/004-codex-hook-and-wrapper.md) |
 | CL-005 | OpenCode plugin bridge | [005-opencode-plugin-bridge.md](02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md) |

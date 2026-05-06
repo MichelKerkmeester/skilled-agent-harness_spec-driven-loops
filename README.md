@@ -811,9 +811,6 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Claude Code CLI orchestrator. Use it for **extended thinking (chain-of-thought), surgical diff-based edits, and JSON-schema-validated structured output**. Ships with 9 built-in agents and session continuity.
 - Three models: `claude-opus-4-6` (deep reasoning), `claude-sonnet-4-6` (default, balanced), `claude-haiku-4-5` (fast/cheap).
 
-**cli-copilot**
-- GitHub Copilot CLI orchestrator. Use it for **autopilot autonomous execution, cloud delegation via `/delegate`, MCP server integration, and Explore/Task agents** for architecture mapping. Native GitHub ecosystem perspective (repo memory, PR awareness).
-- Default model: `gpt-5.4`. Other surfaced models: `gpt-5.5`, `gpt-5.3-codex`, `claude-opus-4.7`, `claude-sonnet-4.6`, `gemini-3.1-pro-preview` (5 picks across OpenAI / Anthropic / Google).
 
 **cli-opencode**
 - OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skill/`, every MCP server, and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
@@ -938,7 +935,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Multi-AI Council**
 - Multi-strategy planning architect dispatching diverse AI vantage points and strategy lenses
-- Seeks distinct reasoning strategies across multiple AIs (cli-codex, cli-copilot, cli-gemini, cli-claude-code, native @deep-research)
+- Seeks distinct reasoning strategies across multiple AIs (cli-codex, cli-gemini, cli-claude-code, native @deep-research)
 - Multi-round deliberation before recommending a plan; planning-only (never modifies files)
 - 5-dimension scoring rubric for strategy quality
 
@@ -1090,7 +1087,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp_server/](.opencode/skill/system-spec-kit/mcp_server/) for the dedicated [stress_test/](.opencode/skill/system-spec-kit/mcp_server/stress_test/) suite, which covers search-quality, memory, skill-advisor, code-graph, session, and matrix subsystems; [matrix_runners/](.opencode/skill/system-spec-kit/mcp_server/matrix_runners/) provides five per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
+The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp_server/](.opencode/skill/system-spec-kit/mcp_server/) for the dedicated [stress_test/](.opencode/skill/system-spec-kit/mcp_server/stress_test/) suite, which covers search-quality, memory, skill-advisor, code-graph, session, and matrix subsystems; [matrix_runners/](.opencode/skill/system-spec-kit/mcp_server/matrix_runners/) provides four per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
 
 &nbsp;
 #### IMPROVE

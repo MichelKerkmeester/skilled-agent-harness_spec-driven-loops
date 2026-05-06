@@ -52,12 +52,12 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A root packet plus two nested sub-phases that together form a reproducible cross-AI stress-test playbook for the system-spec-kit Search/Query/Intelligence surfaces. The playbook dispatches a fixed 9-scenario corpus through cli-codex, cli-copilot, and cli-opencode and scores outcomes against a 5-dimension rubric.
+A root packet plus two nested sub-phases that together form a reproducible cross-AI stress-test playbook for the system-spec-kit Search/Query/Intelligence surfaces. The playbook dispatches a fixed 9-scenario corpus through cli-codex, and cli-opencode and scores outcomes against a 5-dimension rubric.
 
 ### Headline Design Choices
 
 - **9 scenarios** = 3 features (Search/Query/Intelligence) × 3 prompt types (Simple/Vague/Specific)
-- **3 CLIs** under test — cli-codex (gpt-5.5 medium), cli-copilot (gpt-5.4 high), cli-opencode (opencode-go/deepseek-v4-pro high with full Spec Kit Memory MCP)
+- **3 CLIs** under test — cli-codex (gpt-5.5 medium) (gpt-5.4 high), cli-opencode (opencode-go/deepseek-v4-pro high with full Spec Kit Memory MCP)
 - **Asymmetry as signal**: cli-opencode has full Spec Kit Memory MCP runtime; cli-codex and cli-copilot do not. The delta quantifies how much value our search intelligence adds vs off-the-shelf AI.
 - **5-dim rubric** (0-2 scale): correctness, tool selection, latency, token efficiency, hallucination + 1 narrative dim
 - **Concurrency-safe dispatch**: cli-copilot capped at 3 concurrent (per repo Phase 018 convention)

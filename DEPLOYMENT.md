@@ -17,9 +17,7 @@ Running multiple MCP server containers with `-v /tmp:/tmp`, the same UID, and th
 
 ## Copilot runtime
 
-Copilot hook runtime now has compact-cache parity with Claude and Gemini. It uses the shared provenance path in `.opencode/skill/system-spec-kit/mcp_server/hooks/shared-provenance.ts`.
 
-Autonomous `cli-copilot` execution is capped at 3 concurrent dispatches. That cap comes from `feedback_copilot_concurrency_override` and matches the upstream per-account throttle behavior seen above 3 concurrent requests.
 
 ## MCP transport caller context
 

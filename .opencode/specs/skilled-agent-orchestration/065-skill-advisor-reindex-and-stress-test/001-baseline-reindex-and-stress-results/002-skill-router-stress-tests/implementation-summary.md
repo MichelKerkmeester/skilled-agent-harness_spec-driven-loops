@@ -56,7 +56,7 @@ Aggregate outcome: PASS=1, WARN=1, FAIL=4. CP-102 passed low-confidence honesty.
 
 `python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "<prompt>" --threshold 0.0`
 
-The handover explicitly allowed direct-advisor execution when MCP was reachable because the advisor is the system under test. Each CP result was copied into the cli-copilot, cli-codex, and cli-gemini executor slots with `dispatch_mode` provenance in every JSON file. No external CLI timeout occurred because external CLIs were not invoked directly.
+The handover explicitly allowed direct-advisor execution when MCP was reachable because the advisor is the system under test. Each CP result was copied into the cli-codex, and cli-gemini executor slots with `dispatch_mode` provenance in every JSON file. No external CLI timeout occurred because external CLIs were not invoked directly.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

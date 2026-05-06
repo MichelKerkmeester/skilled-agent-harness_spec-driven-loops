@@ -104,7 +104,7 @@ Intent detection uses a simple regex (`\bINTENT_NAME\b`) against the response te
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Heuristic intent/resource detection** has measurement noise. Especially for cli-copilot, which mentions many resources beyond the picked intent — inflates false-positive count, depresses reported accuracy. Real copilot accuracy may be higher than 5.6% if "Not loaded:" sections were excluded from resource detection. Documented as P1-001.
+1. **Heuristic intent/resource detection** has measurement noise. Especially for which mentions many resources beyond the picked intent — inflates false-positive count, depresses reported accuracy. Real copilot accuracy may be higher than 5.6% if "Not loaded:" sections were excluded from resource detection. Documented as P1-001.
 
 2. **No statistical significance testing** — n=15 per CLI is small. Differences between CLIs (codex 67% vs opencode 53%) are directionally meaningful but not robustly significant. For follow-up packets, increase n or add statistical bootstrap CI.
 

@@ -107,9 +107,9 @@ Every per-skill unique value prop survives — the do-not-collapse grep gate ran
 
 **REQ-002 (Error Handling table in §3 across all 5)**: ✓ `grep -c '^### Error Handling'` returns `1` for all 5 skills (cli-copilot was 0, now 1).
 
-**REQ-003 (Provider Auth Pre-Flight subsection across all 5)**: ✓ `grep -c 'Provider Auth Pre-Flight'` returns ≥1 for all 5 (cli-claude-code 0→1, cli-codex 0→1, cli-copilot 0→2, cli-gemini 0→1, cli-opencode 3 unchanged).
+**REQ-003 (Provider Auth Pre-Flight subsection across all 5)**: ✓ `grep -c 'Provider Auth Pre-Flight'` returns ≥1 for all 5 (cli-claude-code 0→1, cli-codex 0→1 0→2, cli-gemini 0→1, cli-opencode 3 unchanged).
 
-**REQ-004 (Default Invocation block across all 5)**: ✓ `grep -c 'Default Invocation'` returns 1 for all 5 (cli-claude-code 0→1, cli-copilot 0→1, cli-gemini 0→1, cli-codex+cli-opencode unchanged at 1).
+**REQ-004 (Default Invocation block across all 5)**: ✓ `grep -c 'Default Invocation'` returns 1 for all 5 (cli-claude-code 0→1 0→1, cli-gemini 0→1, cli-codex+cli-opencode unchanged at 1).
 
 **REQ-005 (UNKNOWN_FALLBACK occurrence count)**: ✗ DEFERRED — see Decisions section. cli-opencode remains at 3 (1 dict + 2 distinct cross-refs); other skills at 1-2 (varies). REQ-005 reframed in `_memory.continuity.answered_questions` from "exactly 1" to "1-3, no extra duplicates".
 

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
+  "spec_folder": "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-copilot deprecation",
+      "cli-copilot removal",
+      "delete cli-copilot",
+      "cli-copilot price hike",
+      "remove copilot cli",
+      "skill advisor copilot purge",
+      "cli-copilot deprecation plan",
+      "cli-codex deletion batches",
+      "skill advisor purge plan",
+      "cli-copilot resource map",
+      "cli-copilot tasks",
+      "deprecation task list"
+    ],
+    "key_topics": [
+      "cli-copilot",
+      "deprecation",
+      "removal",
+      "delete",
+      "price",
+      "hike",
+      "remove",
+      "copilot",
+      "cli",
+      "skill",
+      "advisor",
+      "purge"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "implementation-summary.md",
+      ".github/hooks/spec-kit-copilot-hook.sh",
+      ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
+      ".opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts",
+      "matrix_runners/README.md",
+      ".opencode/agent/multi-ai-council.md",
+      ".claude/agents/multi-ai-council.md",
+      ".codex/agents/multi-ai-council.toml",
+      ".gemini/agents/multi-ai-council.md",
+      ".opencode/command/spec_kit/deep-research.md",
+      ".opencode/command/spec_kit/deep-review.md",
+      ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+      ".opencode/skill/README.md",
+      ".opencode/install_guides/README.md",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      "resource-map.md",
+      "checklist.md",
+      "mcp_server/matrix_runners/adapter-cli-copilot.ts",
+      "mcp_server/tests/matrix-adapter-copilot.vitest.ts",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-copilot-hook.sh",
+        "kind": "script",
+        "path": ".github/hooks/spec-kit-copilot-hook.sh",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-cli-copilot.ts",
+        "kind": "code",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/matrix_runners/adapter-cli-copilot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-adapter-copilot.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skill/system-spec-kit/mcp_server/tests/matrix-adapter-copilot.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "matrix_runners/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/agent/multi-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "multi-ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/multi-ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/command/spec_kit/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/command/spec_kit/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec_kit_deep-research_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Total Deprecation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Track",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`. The packet `075-cli-copilot-hallucination-caveat` already documented quality concerns; the recent price change tips the cost/benefit balance decisively. Continuing to ship `cli-copilot` as a routable skill creates three problems:",
+    "created_at": "2026-05-06T10:28:50.690Z",
+    "last_save_at": "2026-05-06T10:28:50.690Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ]
+  }
+}

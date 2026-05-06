@@ -1,34 +1,38 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 003 OpenCode Internals"
+description: "Phase 003 rotated active .opencode internals from sk-improve-prompt to sk-prompt and records verification evidence plus rebuild blockers."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "082 phase 003 implementation summary"
+  - "opencode internals rename summary"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-opencode-internals"
-    last_updated_at: "2026-05-06T10:23:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/003-opencode-internals"
+    last_updated_at: "2026-05-06T11:12:38Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 003 refs rotated; rebuild blocked"
+    next_safe_action: "Resolve rebuild blocker"
+    blockers:
+      - "advisor_rebuild failed because .opencode/skill/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while the folder is deep-agent-improvement"
+      - "The requested broad .opencode grep still finds Phase 005-only files, which this phase was instructed not to touch"
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/003-opencode-internals"
+      session_id: "codex-2026-05-06-082-003"
       parent_session_id: null
-    completion_pct: 0
-    open_questions: []
+    completion_pct: 95
+    open_questions:
+      - "Should the deep-agent-improvement skill_id/folder mismatch be fixed in this packet before rerunning advisor_rebuild?"
     answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
+# Implementation Summary: Phase 003 OpenCode Internals
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
@@ -38,9 +42,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-opencode-internals |
+| **Spec Folder** | `003-opencode-internals` |
 | **Completed** | 2026-05-06 |
 | **Level** | 2 |
+| **Status** | Source refs updated; rebuild blocked by existing metadata mismatch |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +53,21 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Phase 003 rotated the existing `.opencode/` internals that belong to this phase from `sk-improve-prompt` to `sk-prompt`. The command and agent names stayed unchanged, while their body references, advisor scoring literals, fixtures, mirror-card paths, and cross-skill docs now point at the renamed prompt skill.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Reference Rotation
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Updated 25 existing Phase 003 source files and removed 93 old-name references from those files. The requested cli-copilot files are currently absent/deleted in the working tree, so they could not be edited; no cli-copilot old-name hits remain in the filesystem.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| Area | Files Modified | Ref Count Before | Ref Count After |
+|------|----------------|------------------|-----------------|
+| Dispatcher + agent bodies | 3 | 21 | 0 |
+| Advisor scorer, metadata, sync, fixtures | 8 | 56 | 0 |
+| cli-* mirrors and playbooks | 9 existing files | 10 | 0 |
+| Cross-skill refs | 5 | 6 | 0 |
+| Phase docs | 3 | n/a | n/a |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +75,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The change was a scoped literal rotation after reading the reference shapes. I used a mechanical replacement only across the Phase 003 file list, then verified JSON/JSONL validity, Python syntax, prompt-card sync, Phase 003-owned grep, broad residual grep, advisor rebuild behavior, and the prompt-routing probe.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +83,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Left `/improve:prompt` and `@improve-prompt` names unchanged | The parent and phase specs explicitly preserve command and agent names. |
+| Did not touch Phase 005 residual grep hits | The user explicitly forbade root docs, install guides, observability, active changelogs, and other Phase 005 surfaces during Phase 003. |
+| Did not alter `deep-agent-improvement` `skill_id` | The advisor rebuild blocker is real, but changing `sk-improve-agent` to `deep-agent-improvement` is outside the requested `sk-improve-prompt` to `sk-prompt` literal rename. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +95,16 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Phase 003-owned grep | PASS: explicit file-list grep for `sk-improve-prompt` returned zero hits. |
+| Broad scoped grep | BLOCKED BY SCOPE: hits remain only in Phase 005 files that this phase was instructed not to edit. |
+| JSON validity | PASS: `jq .` passed for touched `graph-metadata.json` files. |
+| JSONL validity | PASS: every line passed `jq .` for touched labeled prompts and regression fixtures. |
+| Python syntax | PASS: `PYTHONPYCACHEPREFIX=/tmp/codex-pycache python3 -m py_compile .../skill_advisor.py` passed. |
+| Prompt card sync | PASS: `check-prompt-quality-card-sync.sh` printed matching hashes and `SYNC OK`. |
+| Advisor rebuild | FAIL: direct handler aborted on `deep-agent-improvement/graph-metadata.json` `skill_id` / folder mismatch; MCP call was cancelled by the tool layer. |
+| Advisor probe | PASS: `skill_advisor.py "improve my prompt" --threshold 0.0` returned top-1 `sk-prompt`, confidence `0.82`. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +112,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Advisor rebuild is not complete.** The local compiled handler fails before indexing because `.opencode/skill/deep-agent-improvement/graph-metadata.json` still declares `skill_id: "sk-improve-agent"` while the folder is `deep-agent-improvement`.
+2. **Broad `.opencode/` grep cannot reach zero under Phase 003 constraints.** Remaining old-name hits are Phase 005 files: install guides, active changelog, skill catalog README, system-spec-kit changelog, and observability results/report.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
--->
-

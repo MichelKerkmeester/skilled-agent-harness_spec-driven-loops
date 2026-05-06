@@ -17,7 +17,7 @@ Execute the full automation matrix design from packet 030 (`specs/system-spec-ki
 
 1. **Discovery phase**: Read 030's matrix design completely. Identify:
    - All feature surfaces (F1-F14 per spec)
-   - All executor surfaces (cli-codex, cli-copilot, cli-gemini, cli-claude-code, cli-opencode, native+inline)
+   - All executor surfaces (cli-codex, cli-gemini, cli-claude-code, cli-opencode, native+inline)
    - Which cells are applicable vs N/A (e.g., F11 hooks not reachable from cli-gemini)
    - Where per-cell runners live (per Option C architecture)
 2. **Scope discipline**: Freeze the matrix BEFORE execution. List cells in 035/research/iterations/iteration-001.md. Mark each cell with status `applicable` | `not_applicable_with_reason`.

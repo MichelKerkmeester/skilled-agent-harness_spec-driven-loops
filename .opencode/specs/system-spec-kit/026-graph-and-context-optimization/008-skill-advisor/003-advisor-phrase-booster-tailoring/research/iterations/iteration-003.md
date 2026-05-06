@@ -23,7 +23,6 @@
 - `sk-deep-review` (15)
 - `cli-gemini` (12)
 - `cli-claude-code` (10)
-- `cli-copilot` (10)
 - `sk-deep-research` (10)
 - `cli-codex` (9)
 - `sk-code-web` (8)

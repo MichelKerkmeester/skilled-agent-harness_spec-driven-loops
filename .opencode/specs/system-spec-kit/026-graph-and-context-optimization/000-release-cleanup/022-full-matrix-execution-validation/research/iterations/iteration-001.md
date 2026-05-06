@@ -6,27 +6,27 @@ Source matrix: packet 030 corpus plan and executor guide. Freeze time: 2026-04-2
 
 | Cell | Applicability | Reason |
 |------|---------------|--------|
-| F1-cli-codex | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F1-cli-copilot | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F1-cli-gemini | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F1-cli-claude-code | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F1-cli-opencode | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F1-native | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F1-inline | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-copilot, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
-| F2-cli-codex | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F2-cli-copilot | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F2-cli-gemini | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F2-cli-claude-code | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F2-cli-opencode | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F2-native | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F2-inline | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-copilot, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
-| F3-cli-codex | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F3-cli-copilot | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F3-cli-gemini | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F3-cli-claude-code | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F3-cli-opencode | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F3-native | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F3-inline | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F1-cli-codex | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F1-cli-copilot | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F1-cli-gemini | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F1-cli-claude-code | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F1-cli-opencode | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F1-native | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F1-inline | applicable | applicable: 030 corpus marks F1 applicable for cli-codex, cli-opencode, native, inline; fixture-only unless write-approved for cli-gemini and cli-claude-code. |
+| F2-cli-codex | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F2-cli-copilot | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F2-cli-gemini | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F2-cli-claude-code | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F2-cli-opencode | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F2-native | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F2-inline | applicable | applicable: 030 corpus marks F2 applicable for cli-codex, cli-opencode, native, inline and adapter-simulation for cli-gemini/cli-claude-code. |
+| F3-cli-codex | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F3-cli-copilot | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F3-cli-gemini | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F3-cli-claude-code | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F3-cli-opencode | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F3-native | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F3-inline | applicable | applicable: 030 corpus marks F3 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
 | F4-cli-codex | applicable | applicable: 030 corpus marks F4 with the same executor reachability as F3. |
 | F4-cli-copilot | applicable | applicable: 030 corpus marks F4 with the same executor reachability as F3. |
 | F4-cli-gemini | applicable | applicable: 030 corpus marks F4 with the same executor reachability as F3. |
@@ -41,13 +41,13 @@ Source matrix: packet 030 corpus plan and executor guide. Freeze time: 2026-04-2
 | F5-cli-opencode | applicable | applicable: 030 corpus marks F5 with the same executor reachability as F3. |
 | F5-native | applicable | applicable: 030 corpus marks F5 with the same executor reachability as F3. |
 | F5-inline | applicable | applicable: 030 corpus marks F5 with the same executor reachability as F3. |
-| F6-cli-codex | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
-| F6-cli-copilot | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
-| F6-cli-gemini | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
-| F6-cli-claude-code | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
-| F6-cli-opencode | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
-| F6-native | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
-| F6-inline | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-cli-codex | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-cli-copilot | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-cli-gemini | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-cli-claude-code | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-cli-opencode | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-native | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
+| F6-inline | applicable | applicable: 030 corpus marks F6 applicable for cli-codex, cli-opencode, native-command, inline-shell and skip-if-unavailable for cli-gemini/cli-claude-code. |
 | F7-cli-codex | applicable | applicable: 030 corpus marks F7 with the same executor reachability as F3. |
 | F7-cli-copilot | applicable | applicable: 030 corpus marks F7 with the same executor reachability as F3. |
 | F7-cli-gemini | applicable | applicable: 030 corpus marks F7 with the same executor reachability as F3. |
@@ -83,13 +83,13 @@ Source matrix: packet 030 corpus plan and executor guide. Freeze time: 2026-04-2
 | F11-cli-opencode | applicable | applicable: 030 corpus marks F11 as adapter/plugin/runtime-hook surfaces; user scope calls out runtime reachability caveats. |
 | F11-native | applicable | applicable: 030 corpus marks F11 as adapter/plugin/runtime-hook surfaces; user scope calls out runtime reachability caveats. |
 | F11-inline | applicable | applicable: 030 corpus marks F11 as adapter/plugin/runtime-hook surfaces; user scope calls out runtime reachability caveats. |
-| F12-cli-codex | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
-| F12-cli-copilot | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
-| F12-cli-gemini | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
-| F12-cli-claude-code | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
-| F12-cli-opencode | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
-| F12-native | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
-| F12-inline | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-cli-codex | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-cli-copilot | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-cli-gemini | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-cli-claude-code | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-cli-opencode | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-native | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
+| F12-inline | applicable | applicable: 030 corpus marks F12 applicable for cli-codex, cli-opencode, native-command, inline-shell and fixture-only for cli-gemini/cli-claude-code. |
 | F13-cli-codex | applicable | applicable: 030 corpus marks F13 applicable across executors but the stress-cycle runner was not present. |
 | F13-cli-copilot | applicable | applicable: 030 corpus marks F13 applicable across executors but the stress-cycle runner was not present. |
 | F13-cli-gemini | applicable | applicable: 030 corpus marks F13 applicable across executors but the stress-cycle runner was not present. |
@@ -97,13 +97,13 @@ Source matrix: packet 030 corpus plan and executor guide. Freeze time: 2026-04-2
 | F13-cli-opencode | applicable | applicable: 030 corpus marks F13 applicable across executors but the stress-cycle runner was not present. |
 | F13-native | applicable | applicable: 030 corpus marks F13 applicable across executors but the stress-cycle runner was not present. |
 | F13-inline | applicable | applicable: 030 corpus marks F13 applicable across executors but the stress-cycle runner was not present. |
-| F14-cli-codex | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F14-cli-copilot | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F14-cli-gemini | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F14-cli-claude-code | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F14-cli-opencode | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F14-native | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
-| F14-inline | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-copilot, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-cli-codex | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-cli-copilot | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-cli-gemini | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-cli-claude-code | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-cli-opencode | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-native | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
+| F14-inline | applicable | applicable: 030 corpus marks F14 applicable for cli-codex, cli-opencode, native-command, inline-tool and fixture-only unless MCP is available for cli-gemini/cli-claude-code. |
 
 ## Runner Discovery
 

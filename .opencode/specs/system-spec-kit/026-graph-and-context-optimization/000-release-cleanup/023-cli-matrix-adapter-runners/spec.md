@@ -53,7 +53,7 @@ Packet 035 signed off a CONDITIONAL baseline because the full Option C design wa
 
 ### Purpose
 
-Build the external CLI adapter layer for `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`, then wire those adapters into a manifest-driven meta-runner with mocked smoke tests. This converts packet 035's runner-missing cells into executable cells that can now resolve to `PASS`, `FAIL`, `TIMEOUT_CELL`, `NA`, or `BLOCKED`.
+Build the external CLI adapter layer for `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`, then wire those adapters into a manifest-driven meta-runner with mocked smoke tests. This converts packet 035's runner-missing cells into executable cells that can now resolve to `PASS`, `FAIL`, `TIMEOUT_CELL`, `NA`, or `BLOCKED`.
 <!-- /ANCHOR:problem -->
 
 ---

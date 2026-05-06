@@ -102,7 +102,7 @@ Added a structured graph metadata system to all 20 skill folders and integrated 
 ### Compiler
 - `skill_graph_compiler.py --validate-only` — 21 files pass, zero errors
 - Compiled output: 4667 bytes (under 5KB)
-- Hub skills correctly computed: 10 skills above median inbound edges (cli-claude-code, cli-codex, cli-copilot, cli-gemini, mcp-code-mode, sk-code-full-stack, sk-code-opencode, sk-code-review, sk-code-web, system-spec-kit)
+- Hub skills correctly computed: 10 skills above median inbound edges (cli-claude-code, cli-codex, cli-gemini, mcp-code-mode, sk-code-full-stack, sk-code-opencode, sk-code-review, sk-code-web, system-spec-kit)
 
 ### Advisor Integration
 - `--health` reports `skill_graph_loaded: true`, `skill_graph_skill_count: 21`

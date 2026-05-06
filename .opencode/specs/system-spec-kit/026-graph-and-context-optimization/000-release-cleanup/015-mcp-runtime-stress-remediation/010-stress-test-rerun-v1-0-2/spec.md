@@ -78,7 +78,7 @@ This packet is **scaffold-stage** — spec, plan, task ledger, and metadata are 
 
 ### In Scope
 - **Pre-flight daemon-restart attestation**: confirm `ccc --version` reports `+spec-kit-fork.0.2.0`, `memory_context` smoke probe returns `meta.tokenBudgetEnforcement.preEnforcementTokens` populated, `code_graph_status` returns `freshnessAuthority:"live"`, and `memory_causal_stats` returns all 6 `by_relation` keys. ABORT if any probe is stale.
-- **30-cell sweep dispatch** verbatim from v1.0.1: 9 scenarios (S1/S2/S3, Q1/Q2/Q3, I1/I2/I3) × 3 base CLIs (cli-codex, cli-copilot, cli-opencode) + 3 ablation cells (cli-opencode-pure on S1/S2/S3 only) = 30 cells.
+- **30-cell sweep dispatch** verbatim from v1.0.1: 9 scenarios (S1/S2/S3, Q1/Q2/Q3, I1/I2/I3) × 3 base CLIs (cli-codex, cli-opencode) + 3 ablation cells (cli-opencode-pure on S1/S2/S3 only) = 30 cells.
 - **Score under v1.0.1 rubric** (4 dims, 8 pts max). No rubric recalibration; the rubric is the constant against which v1.0.2 measures change.
 - **Per-cell delta classification** vs v1.0.1 baseline scores from `../001-search-intelligence-stress-test/002-scenario-execution/findings.md` Per-Scenario Comparison table: WIN (delta ≥ +1), NEUTRAL (|delta| < 1), REGRESSION (delta ≤ −1).
 - **Per-cell fork-telemetry assertions** woven into each score.md (see Requirements REQ-008..013 below): assertions exercise the new contract fields shipped by packets 003-009.

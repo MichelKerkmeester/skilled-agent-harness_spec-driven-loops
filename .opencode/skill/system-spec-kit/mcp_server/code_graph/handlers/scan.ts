@@ -24,7 +24,7 @@ import {
 import { isRecord } from '../lib/query-result-adapter.js';
 import { buildReadinessBlock } from '../lib/readiness-contract.js';
 import { canonicalizeWorkspacePaths, isWithinWorkspace } from '../lib/utils/workspace-path.js';
-import { resolveIndexScopePolicy } from '../lib/index-scope-policy.js';
+import { resolveIndexScopePolicy, scopeFingerprintsMatchOrLegacy } from '../lib/index-scope-policy.js';
 import { handleCodeGraphQuery } from './query.js';
 
 export interface ScanArgs {
@@ -314,10 +314,10 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     includeCommands: args.includeCommands,
     includeSpecs: args.includeSpecs,
     includePlugins: args.includePlugins,
+    includeGlobs: args.includeGlobs,
+    excludeGlobs: args.excludeGlobs,
   });
   const config = getDefaultConfig(canonicalRootDir, scopePolicy);
-  if (args.includeGlobs) config.includeGlobs = args.includeGlobs;
-  if (args.excludeGlobs) config.excludeGlobs = [...config.excludeGlobs, ...args.excludeGlobs];
 
   const previousGitHead = graphDb.getLastGitHead();
   const currentGitHead = getCurrentGitHead(canonicalRootDir);
@@ -347,7 +347,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const scopeChangePromotionBlocked = fullScan
     && priorStats.totalNodes > 0
     && storedScope?.fingerprint
-    && storedScope.fingerprint !== candidateFingerprint
+    && !scopeFingerprintsMatchOrLegacy(storedScope.fingerprint, candidateFingerprint)
     && args.forceScopeChange !== true;
   const zeroNodePromotionBlocked = fullScan
     && candidatePersistableNodeCount === 0

@@ -35,7 +35,7 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
-> **Audience:** an external CLI (cli-codex, cli-copilot, cli-opencode, cli-gemini) that has been dispatched to execute this packet autonomously.
+> **Audience:** an external CLI (cli-codex, cli-opencode, cli-gemini) that has been dispatched to execute this packet autonomously.
 > **Mission:** refresh the skill advisor index, then run a 6-scenario × 3-executor stress-test campaign and produce a test report.
 > **Estimated wall-clock:** 30–90 minutes depending on executor mix and timeouts.
 

@@ -94,7 +94,7 @@ Feature-owned runners with a meta-aggregator.
 |-----------|---------|
 | `matrix-manifest.json` | Future execution artifact that enumerates `featureId`, `executorId`, `scenarioId`, applicability, invocation type, and expected evidence. |
 | Per-feature runner | Script, command prompt, or manual scenario adapter owned by each feature surface. |
-| CLI dispatcher | Thin wrapper that invokes cli-codex, cli-copilot, cli-gemini, cli-claude-code, cli-opencode, native, or inline cells with timeouts. |
+| CLI dispatcher | Thin wrapper that invokes cli-codex, cli-gemini, cli-claude-code, cli-opencode, native, or inline cells with timeouts. |
 | Cell result JSONL | Append-only normalized result stream. One row per `feature x executor x scenario`. |
 | Meta-aggregator | Reads JSONL, validates schema, computes per-scenario and per-`feature x executor` scores, emits findings and rubric sidecar. |
 | Regression reviewer | Runs Hunter -> Skeptic -> Referee for every dropped same-cell score before final REGRESSION labels. |

@@ -94,7 +94,7 @@ Define a complete, reproducible, future-run-ready full-matrix stress test for sy
 | Area | Design Output |
 |------|---------------|
 | Feature surface inventory | F1-F14 matrix categories with source evidence and representative scenarios |
-| Executor surface inventory | cli-codex, cli-copilot, cli-gemini, cli-claude-code, cli-opencode, native Task-tool agents, and inline/no-executor MCP |
+| Executor surface inventory | cli-codex, cli-gemini, cli-claude-code, cli-opencode, native Task-tool agents, and inline/no-executor MCP |
 | Corpus design | Stable scenario IDs, applicability labels, real-vs-fixture classification, skip rules, sample-size guards |
 | Rubric design | `correctness`, `robustness`, `telemetry`, `regression-safety`, each scored 0-2 and rolled up per `feature x executor` |
 | Harness-extension design | Options A/B/C documented with rationale; recommended architecture chosen in `decision-record.md` |

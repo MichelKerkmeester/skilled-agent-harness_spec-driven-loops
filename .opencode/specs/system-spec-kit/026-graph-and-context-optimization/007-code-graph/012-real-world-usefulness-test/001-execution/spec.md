@@ -83,7 +83,7 @@ Run Phase 1 setup, complete the pilot where possible, execute all sandboxable tr
 
 ### Out of Scope
 - Running interactive Claude Code or OpenCode native sessions.
-- Completing authenticated/networked model calls for cli-codex, cli-copilot, or cli-gemini after smoke checks failed.
+- Completing authenticated/networked model calls for cli-codex, or cli-gemini after smoke checks failed.
 - Mutating production code or performing a hypothetical refactor.
 - Fabricating token counts, model responses, or compaction-recovery data.
 

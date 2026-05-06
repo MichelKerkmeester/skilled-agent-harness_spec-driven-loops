@@ -50,7 +50,7 @@ This entry is a **scaffold-stage placeholder**. Authoring of the packet's docume
 
 When the loop converges, this section will list:
 - The number of iterations run, convergence stop reason, and per-iteration `newInfoRatio` distribution
-- Per-follow-up coverage (P0 cli-copilot, P1 graph fast-fail, P2 file-watcher, opportunity CocoIndex telemetry) including evidence cited and fix candidates surfaced
+- Per-follow-up coverage (P0 P1 graph fast-fail, P2 file-watcher, opportunity CocoIndex telemetry) including evidence cited and fix candidates surfaced
 - The architectural seam(s) named in the light secondary scope
 - A summary of `research/research.md` deliverable shape
 

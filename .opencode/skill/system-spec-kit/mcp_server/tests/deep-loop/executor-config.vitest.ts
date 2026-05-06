@@ -47,12 +47,6 @@ describe('executor-config', () => {
     }
   });
 
-  it('accepts a cli-copilot executor with a model', () => {
-    expect(parseExecutorConfig({ kind: 'cli-copilot', model: 'gpt-5.4' })).toMatchObject({
-      kind: 'cli-copilot',
-      model: 'gpt-5.4',
-    });
-  });
 
   it('accepts a cli-gemini executor with a supported model', () => {
     expect(parseExecutorConfig({ kind: 'cli-gemini', model: 'gemini-3.1-pro-preview' })).toMatchObject({
@@ -110,17 +104,7 @@ describe('executor-config', () => {
     ).toThrowError(/serviceTier.*not supported by executor kind 'cli-gemini'/);
   });
 
-  it('rejects reasoningEffort for cli-copilot because the kind does not support it', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-copilot', model: 'gpt-5.4', reasoningEffort: 'high' })).toThrowError(
-      /reasoningEffort.*not supported by executor kind 'cli-copilot'/,
-    );
-  });
 
-  it('rejects serviceTier for cli-copilot because the kind does not support it', () => {
-    expect(() => parseExecutorConfig({ kind: 'cli-copilot', model: 'gpt-5.4', serviceTier: 'fast' })).toThrowError(
-      /serviceTier.*not supported by executor kind 'cli-copilot'/,
-    );
-  });
 
   it('rejects serviceTier for cli-claude-code because the kind does not support it', () => {
     expect(() =>

@@ -29,7 +29,7 @@ importance_tier: "normal"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-`matrix_runners/` turns the F1-F14 x CLI-executor matrix into executable cells for `cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
+`matrix_runners/` turns the F1-F14 x CLI-executor matrix into executable cells for `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`.
 
 Current state:
 

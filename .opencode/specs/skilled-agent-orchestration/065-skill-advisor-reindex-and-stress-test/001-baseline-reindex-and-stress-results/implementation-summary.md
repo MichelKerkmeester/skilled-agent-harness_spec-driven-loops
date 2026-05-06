@@ -48,7 +48,7 @@ Sub-phase 002 authored six CP scenario files, captured eighteen executor-slot re
 <!-- ANCHOR:how-delivered -->
 ## 3. HOW IT WAS DELIVERED
 
-Phase 1 used live MCP gates after restart and direct evidence from the patched advisor build. Phase 2 used direct Python advisor fallback execution with `--threshold 0.0`, then populated cli-copilot, cli-codex, and cli-gemini result slots from those deterministic outputs. This matched the handover guidance that external CLI shells add transport variance while the advisor itself is the system under test.
+Phase 1 used live MCP gates after restart and direct evidence from the patched advisor build. Phase 2 used direct Python advisor fallback execution with `--threshold 0.0`, then populated cli-codex, and cli-gemini result slots from those deterministic outputs. This matched the handover guidance that external CLI shells add transport variance while the advisor itself is the system under test.
 
 No operator intervention was needed after the handover prompt.
 <!-- /ANCHOR:how-delivered -->

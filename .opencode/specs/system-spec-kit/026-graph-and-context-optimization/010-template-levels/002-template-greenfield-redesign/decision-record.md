@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-05-01 |
-| **Deciders** | michelkerkmeester (final), `/spec_kit:deep-research:auto` 9-iter loop (converged at 0.06 < 0.10), cli-copilot gpt-5.5 cross-validation |
+| **Deciders** | michelkerkmeester (final), `/spec_kit:deep-research:auto` 9-iter loop (converged at 0.06 < 0.10) gpt-5.5 cross-validation |
 | **Synthesis source** | `research/research.md` (40.9 KB, 17 sections) |
 
 ---

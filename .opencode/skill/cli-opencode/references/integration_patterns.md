@@ -5,13 +5,13 @@ description: "The three documented use cases for cli-opencode (external runtime 
 
 # OpenCode CLI - Integration Patterns
 
-How cli-opencode positions itself relative to the four sibling cli-* skills, the three documented use cases (per ADR-002), the smart-router decision tree that picks between them, and the self-invocation guard that protects against circular dispatch (per ADR-001).
+How cli-opencode positions itself relative to the three sibling cli-* skills, the three documented use cases (per ADR-002), the smart-router decision tree that picks between them, and the self-invocation guard that protects against circular dispatch (per ADR-001).
 
 ---
 
 ## 1. OVERVIEW
 
-The four sibling cli-* skills exist because their target binaries are external runtimes — Claude Code, Codex, Copilot, Gemini do not own this repo. OpenCode owns this repo. A naive "delegate to opencode" skill makes no sense for an in-OpenCode operator (it would create a circular dispatch).
+The three sibling cli-* skills exist because their target binaries are external runtimes — Claude Code, Codex, Copilot, Gemini do not own this repo. OpenCode owns this repo. A naive "delegate to opencode" skill makes no sense for an in-OpenCode operator (it would create a circular dispatch).
 
 cli-opencode resolves this by documenting THREE orthogonal use cases. The smart router selects between them based on the calling AI's runtime context.
 
@@ -249,7 +249,7 @@ Asking cli-opencode to delegate this exact prompt back to OpenCode would create
 a circular dispatch.
 
 Options:
-1. Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-copilot, cli-gemini)
+1. Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-gemini)
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate

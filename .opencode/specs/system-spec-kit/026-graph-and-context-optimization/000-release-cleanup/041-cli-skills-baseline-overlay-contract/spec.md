@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 1. PROBLEM AND PURPOSE
 
-The 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-copilot`, `cli-opencode`) currently mention specific overlay skills (`sk-code-review`, `sk-code-opencode`) by name when describing how dispatched sessions should load code-quality standards. This is brittle: the moment a different stack is in play (Webflow, React/Next.js, Go) the dispatch prompt instructs the dispatched session to load the wrong overlay.
+The 5 CLI orchestrator skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) currently mention specific overlay skills (`sk-code-review`, `sk-code-opencode`) by name when describing how dispatched sessions should load code-quality standards. This is brittle: the moment a different stack is in play (Webflow, React/Next.js, Go) the dispatch prompt instructs the dispatched session to load the wrong overlay.
 
 The `review` agent already solved this with a baseline+overlay standards contract: load `sk-code` baseline first, then load exactly one overlay skill matching `sk-code-*` based on stack/codebase signals. The same contract belongs in the CLI skills.
 

@@ -127,9 +127,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Exec. Executor (optional, press enter for default):
      A) Native (default) — dispatch via @deep-review agent with Opus.
      B) cli-codex — `codex exec` with --model X -c model_reasoning_effort -c service_tier.
-     C) cli-copilot — `copilot -p "PROMPT" --model X --allow-all-tools --no-ask-user`. Reasoning-effort only via ~/.copilot/config.json. No service-tier.
-     D) cli-gemini — `gemini "PROMPT" -m gemini-3.1-pro-preview -y -o text`. Single supported model currently. No reasoning-effort or service-tier.
-     E) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort. No service-tier.
+     C) cli-gemini — `gemini "PROMPT" -m gemini-3.1-pro-preview -y -o text`. Single supported model currently. No reasoning-effort or service-tier.
+     D) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort. No service-tier.
 
    Reply format examples:
    - `"skill:sk-deep-research, B, all, A, A"`

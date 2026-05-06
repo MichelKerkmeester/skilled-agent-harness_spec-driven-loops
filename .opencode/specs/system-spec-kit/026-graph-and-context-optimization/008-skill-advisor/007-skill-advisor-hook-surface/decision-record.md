@@ -269,7 +269,7 @@ Accept Copilot as a documented next-prompt transport. Do not attempt a brittle c
 
 ### Context
 
-After wave-1 (cli-codex, 10 iterations) and wave-2 (cli-copilot, 10 iterations) converged on the 020 research charter, the handoff to implementation could have taken three shapes: (1) single-packet implementation with inline wiring for all runtimes; (2) runtime-first (ship Claude adapter before payload contract); or (3) contract-first, renderer-first train with runtime adapters layered on top.
+After wave-1 (cli-codex, 10 iterations) and wave-2 (10 iterations) converged on the 020 research charter, the handoff to implementation could have taken three shapes: (1) single-packet implementation with inline wiring for all runtimes; (2) runtime-first (ship Claude adapter before payload contract); or (3) contract-first, renderer-first train with runtime adapters layered on top.
 
 Waves agree on shape (3): ship the payload envelope → freshness → producer → renderer + corpus harness first, then runtimes. Wave-2 tightened the renderer into a **hard gate**: no runtime adapter merges before 005 converges at 100% corpus parity + p95 cache-hit ≤ 50 ms + privacy audit green.
 

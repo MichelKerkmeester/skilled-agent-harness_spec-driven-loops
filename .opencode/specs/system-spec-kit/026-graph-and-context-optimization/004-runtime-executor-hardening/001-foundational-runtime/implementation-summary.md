@@ -164,11 +164,11 @@ Atomic-ship verification for T-CNS-01 + T-W1-CNS-04: merged-PR agent checked `gi
 
 **Wave B — Cluster Consumers (4 parallel lanes, ~30h effective wall-clock)**
 
-- Lane B1 (cli-copilot, 12h): T-CNS-02, T-W1-CNS-05, T-CGC-02, T-RBD-03 (4 tasks, 4 commits)
-- Lane B2 (cli-copilot, 16h): T-W1-CGC-03, T-W1-HOK-01 (2 tasks, 2 commits). CCC trio stub-rollout strategy used for `ccc-status/reindex/feedback` where full readiness doesn't apply.
-- Lane B3 (cli-copilot, 12h): T-SCP-02, T-SAN-01/02/03 atomic, T-PIN-RET-01 (3 commits, atomic-shipped NFKC trio).
-- Lane B4a (cli-copilot, 24h): MCP caller-context AsyncLocalStorage (1 commit, integrated into context-server.ts CallToolRequestSchema handler).
-- Lane B4b (cli-copilot, 16h, sequential after B4a): session-resume auth binding (1 commit, 8/8 auth tests + 29/29 regression slice green).
+- Lane B1 (12h): T-CNS-02, T-W1-CNS-05, T-CGC-02, T-RBD-03 (4 tasks, 4 commits)
+- Lane B2 (16h): T-W1-CGC-03, T-W1-HOK-01 (2 tasks, 2 commits). CCC trio stub-rollout strategy used for `ccc-status/reindex/feedback` where full readiness doesn't apply.
+- Lane B3 (12h): T-SCP-02, T-SAN-01/02/03 atomic, T-PIN-RET-01 (3 commits, atomic-shipped NFKC trio).
+- Lane B4a (24h): MCP caller-context AsyncLocalStorage (1 commit, integrated into context-server.ts CallToolRequestSchema handler).
+- Lane B4b (16h, sequential after B4a): session-resume auth binding (1 commit, 8/8 auth tests + 29/29 regression slice green).
 
 **Wave B Light Gate**: targeted vitest + tsc per commit; broader cross-lane sweep after merge (145/145 tests green for code-graph + hooks + handler-save slice).
 

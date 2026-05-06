@@ -72,7 +72,7 @@ Ship the design artifacts (scenarios, rubric, matrix, scripts) that sub-phase 00
 ### In Scope
 - 9 scenarios with prompt + expected outcome + target tools/anchors + feature/type tags + cross-references to known defects (sibling 005)
 - 5-dimension scoring rubric (correctness, tool selection, latency, token efficiency, hallucination) on 0-2 scale + 1 narrative dimension
-- Per-CLI dispatch matrix (cli-codex, cli-copilot, cli-opencode) with model id, reasoning effort, sandbox/agent profile, prompt template wrapper
+- Per-CLI dispatch matrix (cli-codex, cli-opencode) with model id, reasoning effort, sandbox/agent profile, prompt template wrapper
 - Dispatch script contracts (`scripts/dispatch-cli-codex.sh`, `dispatch-cli-copilot.sh`, `dispatch-cli-opencode.sh`, `run-all.sh`)
 - Output schema (per-run files + aggregate findings format)
 
@@ -206,7 +206,7 @@ Ship the design artifacts (scenarios, rubric, matrix, scripts) that sub-phase 00
 ### v1.0.1 Calibration Note
 
 **What changed**:
-1. **Dropped Dimension 4 (Token Efficiency).** The bytes/4 estimator in `meta.json` over-counts CLI session bloat: cli-codex stdout includes the full reasoning trace, cli-copilot reports cumulative session burn that routinely exceeds 10k after a few tool calls, and cli-opencode MCP traversal naturally sits above the 10k floor. The 30/30 zero pattern in v1.0.0 confirmed this dimension was unwinnable rather than discriminating. API-reported tokens are not uniformly available across the three CLIs (only codex emits a `tokens used: NNNN` summary line in stdout), so a fair re-anchor on real-token counts isn't tractable from the existing artifacts either.
+1. **Dropped Dimension 4 (Token Efficiency).** The bytes/4 estimator in `meta.json` over-counts CLI session bloat: cli-codex stdout includes the full reasoning trace reports cumulative session burn that routinely exceeds 10k after a few tool calls, and cli-opencode MCP traversal naturally sits above the 10k floor. The 30/30 zero pattern in v1.0.0 confirmed this dimension was unwinnable rather than discriminating. API-reported tokens are not uniformly available across the three CLIs (only codex emits a `tokens used: NNNN` summary line in stdout), so a fair re-anchor on real-token counts isn't tractable from the existing artifacts either.
 2. **Recalibrated Dimension 3 (Latency)** to `0 = >300s, 1 = 60-300s, 2 = <60s` (was `0 = >60s, 1 = 10-60s, 2 = <10s`). The original 10s/60s thresholds were tuned for stdlib calls; no MCP-using cell can hit <10s once tool round-trips and a single Read are added, so 14/30 cells scored 0 and 15/30 scored 1 — collapsing the dimension.
 3. **Re-numbered remaining dimensions** as 1 Correctness, 2 Tool Selection, 3 Latency (recalibrated), 4 Hallucination.
 4. **New per-cell max** is **8/8** (was 10/10). Narrative dimension retained as-is, no points.

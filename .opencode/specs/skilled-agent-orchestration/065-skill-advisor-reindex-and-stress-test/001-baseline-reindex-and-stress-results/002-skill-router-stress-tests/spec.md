@@ -1,6 +1,6 @@
 ---
 title: "Spec: 065/002 — skill-router-stress-tests"
-description: "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors (cli-copilot, cli-codex, cli-gemini)"
+description: "Stress-test SKILL.md content + skill router routing efficiency via 6+ manual playbook CP-XXX scenarios dispatched across 3 external CLI executors (cli-codex, cli-gemini)"
 trigger_phrases:
   - "065/002 stress test"
   - "skill router stress"
@@ -52,7 +52,7 @@ After the 001 reindex refreshes the skill advisor, validate that:
 1. **SKILL.md content quality** is sufficient — does each SKILL.md describe its purpose / triggers / out-of-scope clearly enough that the router's natural-language matching works?
 2. **Skill router efficiency** is trustworthy — does `mcp__spec_kit_memory__advisor_recommend` (and the matching live in skill_advisor.py) pick the right skill with high confidence on real-world prompts, and correctly say "no match" when nothing fits?
 
-Validation method: 6 CP-XXX scenarios across 6 categories (ambiguous, false-positive, low-confidence, multi-skill, novel-phrasing, adversarial), each dispatched to 3 external CLI executors (cli-copilot, cli-codex, cli-gemini) for cross-runtime cross-validation. Pattern mirrors packet 060/004 (which validated @code agent stress-test methodology) and 062 (which extended it to @deep-research / @deep-review).
+Validation method: 6 CP-XXX scenarios across 6 categories (ambiguous, false-positive, low-confidence, multi-skill, novel-phrasing, adversarial), each dispatched to 3 external CLI executors (cli-codex, cli-gemini) for cross-runtime cross-validation. Pattern mirrors packet 060/004 (which validated @code agent stress-test methodology) and 062 (which extended it to @deep-research / @deep-review).
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

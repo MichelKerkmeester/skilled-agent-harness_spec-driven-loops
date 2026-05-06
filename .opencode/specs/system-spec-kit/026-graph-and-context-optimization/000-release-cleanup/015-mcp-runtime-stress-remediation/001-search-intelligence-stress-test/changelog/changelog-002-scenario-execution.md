@@ -45,7 +45,7 @@ The execution harness for the parent stress-test playbook. Defines the four-stag
 - All 30 cells in runs/ have meta.json with exit_code 0
 - All 30 cells in runs/ have score.md with 5-dimension scores plus narrative
 - findings.md present with all required sections (Executive Summary, Per-Scenario Comparison, Top 3 Wins per CLI, Top 3 Failures per CLI, Cross-Reference to 005 Defects, Recommendations)
-- Per-CLI averages: cli-codex 5.67 of 10, cli-copilot 4.22 of 10, cli-opencode 5.67 of 10, cli-opencode --pure 5.33 of 10
+- Per-CLI averages: cli-codex 5.67 of 10 4.22 of 10, cli-opencode 5.67 of 10, cli-opencode --pure 5.33 of 10
 - New actionable insight surfaced not already in 005 (model-side hallucination guard for weak retrievals), satisfying parent SC-003
 - Strict spec validation: 0 errors, 1 non-blocking warning for custom domain section headers (Execution Workflow, Findings Format, Executive Summary, Per-Scenario Comparison) which are core to the contract and do not fit the generic Level 1 template
 

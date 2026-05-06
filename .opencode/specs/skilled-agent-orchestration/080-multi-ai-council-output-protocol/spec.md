@@ -83,7 +83,7 @@ This means:
 - **N2.** Adding a `/spec_kit:council` slash command. Council remains agent-dispatched only.
 - **N3.** Formalizing seat-selection logic into a skill. Seat diversity stays as agent-body guidance per the existing CRITICAL note in the agent.
 - **N4.** Replacing `scratch/` for experimental council runs that don't warrant packet preservation. Operators can still drop notes there.
-- **N5.** Implementing a CLI-based council orchestrator. Council seat dispatch reuses existing CLI skills (cli-codex, cli-copilot, cli-gemini, etc.) via the agent's `task: allow` permission.
+- **N5.** Implementing a CLI-based council orchestrator. Council seat dispatch reuses existing CLI skills (cli-codex, cli-gemini, etc.) via the agent's `task: allow` permission.
 <!-- /ANCHOR:goals -->
 
 ---
@@ -274,7 +274,7 @@ Mirrors deep-research's resume pattern but with simpler state:
 - `.opencode/agent/multi-ai-council.md` — agent body (will be updated)
 - `.opencode/skill/system-spec-kit/scripts/spec/validate.sh` — validator (will recognize new subfolder)
 - `.opencode/skill/system-spec-kit/references/` — shared reference home (new subfolder)
-- Existing CLI skills (`cli-codex`, `cli-copilot`, `cli-gemini`, `cli-claude-code`, `cli-opencode`) — used by council seats
+- Existing CLI skills (`cli-codex`, `cli-gemini`, `cli-claude-code`, `cli-opencode`) — used by council seats
 - Existing patterns from `deep-research/` and `deep-review/` (for layout inspiration only; no code reuse)
 <!-- /ANCHOR:dependencies -->
 

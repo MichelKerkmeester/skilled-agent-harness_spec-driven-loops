@@ -124,7 +124,7 @@ I used the prior `001-execution` packet as the local scaffold, then authored the
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Plugin/runtime integration remains unmeasured.** This packet does not replace a live authenticated cli-copilot, cli-gemini, Claude Code, or OpenCode campaign.
+1. **Plugin/runtime integration remains unmeasured.** This packet does not replace a live authenticated cli-gemini, Claude Code, or OpenCode campaign.
 2. **Compaction recovery quality is partial.** The hook-cache formatting appeared, but relevance scoring still needs a controlled trigger.
 3. **Parser crash file:line details depend on the native trial transcript.** The packet preserves the crash class and count; exact file:line citations should be expanded from the native raw run when fixing `structural-indexer.ts`.
 <!-- /ANCHOR:limitations -->

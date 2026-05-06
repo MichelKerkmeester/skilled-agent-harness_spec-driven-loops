@@ -9,7 +9,7 @@
 
 ## 1. EXECUTIVE SUMMARY
 
-Extended the sk-doc router stress matrix from 9-of-11 intent coverage (072 packet) to **all 11 intents** by adding SD-016 (OPTIMIZATION) and SD-017 (INSTALL_GUIDE). Built `extract_metrics_v3.py` with markdown-bullet-aware resource detection. Re-extracted all 51 cells uniformly from stored logs. **The per-CLI ranking from 072 holds**: cli-codex (gpt-5.5/high/fast) leads at 70.6% resource accuracy, cli-opencode (deepseek-v4-pro) follows at 47.5%, cli-copilot (claude-opus-4.7) trails at 9.8%. The 6 new cells reproduce the cli-copilot hallucination behavior surfaced as P1-072-001 in 072.
+Extended the sk-doc router stress matrix from 9-of-11 intent coverage (072 packet) to **all 11 intents** by adding SD-016 (OPTIMIZATION) and SD-017 (INSTALL_GUIDE). Built `extract_metrics_v3.py` with markdown-bullet-aware resource detection. Re-extracted all 51 cells uniformly from stored logs. **The per-CLI ranking from 072 holds**: cli-codex (gpt-5.5/high/fast) leads at 70.6% resource accuracy, cli-opencode (deepseek-v4-pro) follows at 47.5% (claude-opus-4.7) trails at 9.8%. The 6 new cells reproduce the cli-copilot hallucination behavior surfaced as P1-072-001 in 072.
 
 **Recommendation**: SHIP_AS_IS. The intent-coverage extension yields no new architectural findings beyond confirming 072's per-CLI ranking with broader intent coverage.
 

@@ -1,7 +1,7 @@
 ---
 # SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2
 title: "Feature Specification [system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/015-mcp-runtime-stress-remediation/001-search-intelligence-stress-test/002-scenario-execution/spec]"
-description: "Sub-phase 002: execution harness for the stress-test playbook. Runs the dispatch matrix from 001 against cli-codex, cli-copilot, and cli-opencode, captures per-run artifacts, scores via the rubric, and synthesizes findings."
+description: "Sub-phase 002: execution harness for the stress-test playbook. Runs the dispatch matrix from 001 against cli-codex, and cli-opencode, captures per-run artifacts, scores via the rubric, and synthesizes findings."
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2"
 trigger_phrases:
   - "002-scenario-execution"
@@ -106,7 +106,7 @@ Define the run harness contract: pre-flight checks, dispatch loop, output captur
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Pre-flight check before dispatch | Verify cli-codex, cli-copilot, cli-opencode installed and authenticated; abort with clear error message if any missing |
+| REQ-001 | Pre-flight check before dispatch | Verify cli-codex, cli-opencode installed and authenticated; abort with clear error message if any missing |
 | REQ-002 | Iterate full matrix (9 scenarios × 3 CLIs base + ablation cells) | run-all.sh completes all cells OR cleanly skips with documented reason |
 | REQ-003 | Capture per-run artifacts | Each run produces `runs/<scenario>/<cli>-<run_n>/{prompt.md,output.txt,meta.json}` per 001 output schema |
 | REQ-004 | Honor cli-copilot 3-process concurrency cap | dispatch-cli-copilot.sh queues if `pgrep -f copilot \| wc -l ≥ 3` |
@@ -182,7 +182,7 @@ Define the run harness contract: pre-flight checks, dispatch loop, output captur
 
 ## Executive Summary
 - N runs completed, M skipped
-- Per-CLI average score: cli-codex=X/10, cli-copilot=Y/10, cli-opencode=Z/10
+- Per-CLI average score: cli-codex=X/10=Y/10, cli-opencode=Z/10
 - Top insight: [novel finding not already in 005]
 
 ## Per-Scenario Comparison

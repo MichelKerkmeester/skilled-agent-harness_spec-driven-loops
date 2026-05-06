@@ -391,7 +391,7 @@ Regression corpus:
 - `Semantic Search` and paraphrases should classify as `understand` for task intent.
 - Bug-fix prompts such as `fix the login bug` should classify as `fix_bug`.
 - Implementation search prompts should route to code/retrieval without overwriting task intent.
-- Cross-CLI prompt variants from `cli-codex`, `cli-copilot`, and `cli-opencode` should remain within a defined drift threshold.
+- Cross-CLI prompt variants from `cli-codex`, and `cli-opencode` should remain within a defined drift threshold.
 ---
 ## 6. CONSTRAINTS & LIMITATIONS
 ### Research Constraints
@@ -970,7 +970,6 @@ Recommended shape:
 Research contributors and source surfaces:
 - `cli-codex` executor: produced the per-iteration markdown and delta artifacts.
 - `cli-opencode`: supplied the strongest reproduced weak-retrieval hallucination evidence via sibling 006 I2.
-- `cli-copilot`: part of the sibling 006 cross-AI stress-test context and a required cross-runtime validation target.
 - Packet 005: defect catalog and acceptance evidence for memory search runtime bugs, including REQ-001, REQ-002, REQ-004, REQ-010, REQ-016, REQ-017, REQ-018, and REQ-019.
 - Packet 006: search-intelligence stress-test evidence, weak retrieval hallucination class, live probes, and cross-CLI scenario framing.
 - `sk-deep-research`: provided the skill-owned loop, state files, deltas, and convergence structure.

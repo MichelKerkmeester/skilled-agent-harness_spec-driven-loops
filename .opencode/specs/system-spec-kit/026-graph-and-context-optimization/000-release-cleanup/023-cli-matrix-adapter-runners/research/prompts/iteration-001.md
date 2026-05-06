@@ -22,7 +22,7 @@ Closes the highest-leverage gap surfaced by packet 035's CONDITIONAL verdict: **
 1. Determine adapter target location. Recommended: `.opencode/skill/system-spec-kit/mcp_server/matrix_runners/` (parallel to existing `mcp_server/handlers/`, `mcp_server/lib/`).
 2. Read 030's design completely. Confirm:
    - 14 features F1-F14
-   - 5 CLI executors: cli-codex, cli-copilot, cli-gemini, cli-claude-code, cli-opencode
+   - 5 CLI executors: cli-codex, cli-gemini, cli-claude-code, cli-opencode
    - Plus native + inline (already covered by 035's existing runners)
    - 70 (F × CLI) cells; some N/A (e.g., F11 hooks NA on cli-gemini)
 

@@ -12,7 +12,11 @@ import { getDb, getLastGitHead, setLastGitHead, ensureFreshFiles } from './code-
 import { indexFiles } from './structural-indexer.js';
 import { getDefaultConfig } from './indexer-types.js';
 import type { IndexerConfig, ParseResult } from './indexer-types.js';
-import { resolveIndexScopePolicy, parseIndexScopePolicyFromFingerprint } from './index-scope-policy.js';
+import {
+  resolveIndexScopePolicy,
+  parseIndexScopePolicyFromFingerprint,
+  scopeFingerprintsMatchOrLegacy,
+} from './index-scope-policy.js';
 import { isRecord } from './query-result-adapter.js';
 import * as graphDb from './code-graph-db.js';
 
@@ -35,6 +39,13 @@ export interface ReadyResult {
   files?: string[];
   inlineIndexPerformed: boolean;
   reason: string;
+  activeScope?: ReadinessScopeDiagnostic;
+  storedScope?: ReadinessScopeDiagnostic;
+  manifestCount?: number | null;
+  manifestDigest?: string | null;
+  parseErrorBacklog?: number;
+  autoRescanSafety?: 'allowed' | 'blocked';
+  autoRescanBlockReason?: string;
   selfHealAttempted?: boolean;
   selfHealResult?: 'ok' | 'failed' | 'skipped';
   verificationGate?: 'pass' | 'fail' | 'absent';
@@ -44,6 +55,8 @@ export interface ReadyResult {
 export interface EnsureReadyOptions {
   allowInlineIndex?: boolean;
   allowInlineFullScan?: boolean;
+  allowGuardedInlineFullScan?: boolean;
+  parseErrorBacklogThreshold?: number;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -55,6 +68,7 @@ const AUTO_INDEX_TIMEOUT_MS = 10_000;
 
 /** Maximum stale files before we switch from selective to full reindex */
 export const SELECTIVE_REINDEX_THRESHOLD = 50;
+const GUARDED_FULL_SCAN_PARSE_ERROR_THRESHOLD = 0;
 
 // ───────────────────────────────────────────────────────────────
 // Internal helpers
@@ -150,6 +164,70 @@ interface CandidateManifest {
   readonly count: number;
   readonly digest: string;
   readonly recordedAt: string;
+}
+
+export interface ReadinessScopeDiagnostic {
+  readonly fingerprint: string | null;
+  readonly label: string | null;
+  readonly source: string | null;
+}
+
+function scopeDiagnostic(scope: {
+  fingerprint?: string | null;
+  label?: string | null;
+  source?: string | null;
+}): ReadinessScopeDiagnostic {
+  return {
+    fingerprint: scope.fingerprint ?? null,
+    label: scope.label ?? null,
+    source: scope.source ?? null,
+  };
+}
+
+function buildReadinessDiagnostics(): Pick<
+  ReadyResult,
+  'activeScope' | 'storedScope' | 'manifestCount' | 'manifestDigest' | 'parseErrorBacklog'
+> {
+  const activeScope = resolveIndexScopePolicy();
+  const storedScope = graphDb.getStoredCodeGraphScope();
+  const manifest = loadCandidateManifest();
+  let parseErrorBacklog = 0;
+  try {
+    parseErrorBacklog = graphDb.getParseDiagnosticsSummary().affectedFiles;
+  } catch {
+    parseErrorBacklog = 0;
+  }
+
+  return {
+    activeScope: scopeDiagnostic(activeScope),
+    storedScope: scopeDiagnostic(storedScope),
+    manifestCount: manifest?.count ?? null,
+    manifestDigest: manifest?.digest ?? null,
+    parseErrorBacklog,
+  };
+}
+
+function evaluateGuardedFullScan(
+  diagnostics: ReturnType<typeof buildReadinessDiagnostics>,
+  parseErrorBacklogThreshold: number,
+): Pick<ReadyResult, 'autoRescanSafety' | 'autoRescanBlockReason'> {
+  const scopesMatch = scopeFingerprintsMatchOrLegacy(
+    diagnostics.storedScope?.fingerprint,
+    diagnostics.activeScope?.fingerprint,
+  );
+  if (!scopesMatch) {
+    return {
+      autoRescanSafety: 'blocked',
+      autoRescanBlockReason: 'scope_mismatch',
+    };
+  }
+  if ((diagnostics.parseErrorBacklog ?? 0) > parseErrorBacklogThreshold) {
+    return {
+      autoRescanSafety: 'blocked',
+      autoRescanBlockReason: 'parse_error_backlog',
+    };
+  }
+  return { autoRescanSafety: 'allowed' };
 }
 
 /**
@@ -299,7 +377,7 @@ function detectState(rootDir: string): {
   // of env drift. This preserves the FIX-009-v2 cross-session env-change
   // contract while restoring read-after-scan semantics for explicit probes.
   const storedFromPerCall = storedScope.source === 'scan-argument';
-  if (!storedFromPerCall && storedScope.fingerprint !== activeScope.fingerprint) {
+  if (!storedFromPerCall && !scopeFingerprintsMatchOrLegacy(storedScope.fingerprint, activeScope.fingerprint)) {
     const storedLabel = storedScope.label ?? 'unknown previous code graph scope';
     return {
       freshness: 'stale',
@@ -502,10 +580,13 @@ export function persistIndexedFileResult(result: ParseResult): void {
 export async function ensureCodeGraphReady(rootDir: string, options: EnsureReadyOptions = {}): Promise<ReadyResult> {
   const allowInlineIndex = options.allowInlineIndex ?? true;
   const allowInlineFullScan = options.allowInlineFullScan ?? allowInlineIndex;
+  const allowGuardedInlineFullScan = options.allowGuardedInlineFullScan ?? false;
+  const parseErrorBacklogThreshold = options.parseErrorBacklogThreshold ?? GUARDED_FULL_SCAN_PARSE_ERROR_THRESHOLD;
 
   const state = detectState(rootDir);
   const removedDeletedCount = cleanupDeletedTrackedFiles(state.deletedFiles);
   const verificationGate = getVerificationGate(graphDb.getLastGoldVerification());
+  const diagnostics = buildReadinessDiagnostics();
 
   if (state.action === 'none') {
     return {
@@ -513,6 +594,7 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
       action: 'none',
       inlineIndexPerformed: false,
       reason: appendCleanupReason(state.reason, removedDeletedCount),
+      ...diagnostics,
       verificationGate,
     };
   }
@@ -524,18 +606,25 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
       ...(state.action === 'selective_reindex' ? { files: state.staleFiles } : {}),
       inlineIndexPerformed: false,
       reason: appendCleanupReason(`${state.reason}; inline auto-index skipped for read path`, removedDeletedCount),
+      ...diagnostics,
       selfHealAttempted: true,
       selfHealResult: 'skipped',
       verificationGate,
     };
   }
 
-  if (state.action === 'full_scan' && !allowInlineFullScan) {
+  const guardedFullScan = state.action === 'full_scan' && allowGuardedInlineFullScan
+    ? evaluateGuardedFullScan(diagnostics, parseErrorBacklogThreshold)
+    : { autoRescanSafety: 'blocked' as const, autoRescanBlockReason: 'guard_disabled' };
+  const canRunFullScan = allowInlineFullScan || guardedFullScan.autoRescanSafety === 'allowed';
+  if (state.action === 'full_scan' && !canRunFullScan) {
     return {
       freshness: state.freshness,
       action: state.action,
       inlineIndexPerformed: false,
       reason: appendCleanupReason(`${state.reason}; inline full scan skipped for read path`, removedDeletedCount),
+      ...diagnostics,
+      ...guardedFullScan,
       verificationGate,
     };
   }
@@ -575,6 +664,10 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
         ...(refreshedState.action === 'selective_reindex' ? { files: refreshedState.staleFiles } : {}),
         inlineIndexPerformed: true,
         reason: appendCleanupReason(refreshedState.reason, removedDeletedCount),
+        ...buildReadinessDiagnostics(),
+        ...(state.action === 'full_scan'
+          ? { ...guardedFullScan, selfHealAttempted: true, selfHealResult: 'ok' as const }
+          : {}),
         verificationGate,
       };
     }
@@ -606,6 +699,7 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
         ...(refreshedState.action === 'selective_reindex' ? { files: refreshedState.staleFiles } : {}),
         inlineIndexPerformed: true,
         reason: appendCleanupReason(refreshedState.reason, removedDeletedCount),
+        ...buildReadinessDiagnostics(),
         selfHealAttempted: true,
         selfHealResult,
         verificationGate,
@@ -621,6 +715,7 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
       files: state.staleFiles,
       inlineIndexPerformed: false,
       reason: appendCleanupReason(`${state.reason} (auto-index failed: ${msg})`, removedDeletedCount),
+      ...diagnostics,
       verificationGate,
       ...(state.action === 'selective_reindex'
         ? {
@@ -637,6 +732,7 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
     action: 'none',
     inlineIndexPerformed: false,
     reason: appendCleanupReason(state.reason, removedDeletedCount),
+    ...diagnostics,
     verificationGate,
   };
 }

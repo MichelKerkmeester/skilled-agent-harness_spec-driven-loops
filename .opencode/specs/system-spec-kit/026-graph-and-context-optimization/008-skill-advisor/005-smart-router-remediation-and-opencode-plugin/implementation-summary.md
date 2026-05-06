@@ -80,7 +80,7 @@ For `sk-code-full-stack`, `sk-code-opencode`, and `sk-improve-agent`, which prev
 
 ### Area C: CLI Fallback Safety
 
-Updated all four CLI skill routers: `cli-claude-code`, `cli-codex`, `cli-copilot`, and `cli-gemini`.
+Updated all four CLI skill routers: `cli-claude-code`, `cli-codex`, and `cli-gemini`.
 
 Zero-score routing now returns:
 

@@ -68,7 +68,7 @@ I want to add a Lenis smooth-scroll initializer to my .opencode/skill/sk-doc/scr
 
 - `.opencode/skill/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
 - `.opencode/skill/sk-code/references/router/code_surface_detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
-- `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md` — F-NEW-001 source (cli-copilot gpt-5.5 high adversarial pass).
+- `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md` — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
 
 ## 5. SOURCE METADATA
 
