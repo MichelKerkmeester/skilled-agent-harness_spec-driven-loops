@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/082-sk-improve-prompt-rename",
+  "description": "Feature Specification: sk-improve-prompt → sk-prompt skill rename — Phase Parent",
+  "keywords": [
+    "skill-rename",
+    "sk-improve-prompt",
+    "sk-prompt",
+    "phase-parent",
+    "naming-cleanup",
+    "advisor-rebuild",
+    "cross-runtime-mirroring"
+  ],
+  "lastUpdated": "2026-05-06T12:24:00.000Z",
+  "level": "phase",
+  "specId": "082",
+  "folderSlug": "sk-improve-prompt-rename",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,17 @@
+{
+  "level": "1",
+  "specFolder": "082-sk-improve-prompt-rename/005-root-and-config",
+  "description": "Phase 5: root-and-config",
+  "keywords": [
+    "phase",
+    "root-and-config"
+  ],
+  "lastUpdated": "2026-05-06T10:23:37.901Z",
+  "specId": "005",
+  "folderSlug": "root-and-config",
+  "parentChain": [
+    "082-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

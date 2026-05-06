@@ -1,0 +1,17 @@
+{
+  "level": "1",
+  "specFolder": "082-sk-improve-prompt-rename/001-discovery-impact-map",
+  "description": "Phase 1: discovery-impact-map",
+  "keywords": [
+    "phase",
+    "discovery-impact-map"
+  ],
+  "lastUpdated": "2026-05-06T10:23:35.066Z",
+  "specId": "001",
+  "folderSlug": "discovery-impact-map",
+  "parentChain": [
+    "082-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

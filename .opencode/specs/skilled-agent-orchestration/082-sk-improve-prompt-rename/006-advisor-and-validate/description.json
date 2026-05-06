@@ -1,0 +1,17 @@
+{
+  "level": "1",
+  "specFolder": "082-sk-improve-prompt-rename/006-advisor-and-validate",
+  "description": "Phase 6: advisor-and-validate",
+  "keywords": [
+    "phase",
+    "advisor-and-validate"
+  ],
+  "lastUpdated": "2026-05-06T10:23:38.584Z",
+  "specId": "006",
+  "folderSlug": "advisor-and-validate",
+  "parentChain": [
+    "082-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

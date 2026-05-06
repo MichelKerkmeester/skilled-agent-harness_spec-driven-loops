@@ -1,0 +1,17 @@
+{
+  "level": "1",
+  "specFolder": "082-sk-improve-prompt-rename/004-runtime-mirrors",
+  "description": "Phase 4: runtime-mirrors",
+  "keywords": [
+    "phase",
+    "runtime-mirrors"
+  ],
+  "lastUpdated": "2026-05-06T10:23:37.233Z",
+  "specId": "004",
+  "folderSlug": "runtime-mirrors",
+  "parentChain": [
+    "082-sk-improve-prompt-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
