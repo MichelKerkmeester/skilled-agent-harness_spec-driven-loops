@@ -1,6 +1,6 @@
 ---
 name: cli-codex
-description: "Codex CLI orchestrator enabling any AI assistant to invoke OpenAI's Codex CLI for supplementary AI tasks including code generation, code review, web research, codebase analysis, cross-AI validation, and parallel task processing."
+description: "Codex CLI orchestrator: dispatch OpenAI's Codex CLI for code generation, review, web research, cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.4.2.0
 ---

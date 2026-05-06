@@ -1,6 +1,6 @@
 ---
 name: system-spec-kit
-description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), Level contract template architecture, validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
+description: "Unified spec-folder workflow + context preservation: Levels 1-3+, validation, Spec Kit Memory. Required for file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 3.4.1.0
 ---

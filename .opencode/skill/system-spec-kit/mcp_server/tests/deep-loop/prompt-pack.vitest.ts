@@ -96,9 +96,9 @@ describe('prompt-pack', () => {
 
   it('both production templates load and render successfully with the expected bound variables', () => {
     const researchTemplatePath =
-      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-research/assets/prompt_pack_iteration.md.tmpl';
+      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/deep-research/assets/prompt_pack_iteration.md.tmpl';
     const reviewTemplatePath =
-      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-deep-review/assets/prompt_pack_iteration.md.tmpl';
+      '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/deep-review/assets/prompt_pack_iteration.md.tmpl';
 
     const researchRendered = renderPromptPack(researchTemplatePath, {
       state_summary: 'Summary block',
@@ -108,12 +108,12 @@ describe('prompt-pack', () => {
       next_focus: 'Graph event capture',
       remaining_questions_list: '- Q1\n- Q2',
       last_3_summaries: 'Iter 1: baseline',
-      state_paths_config: '.opencode/skill/sk-deep-research/assets/deep_research_config.json',
-      state_paths_state_log: '.opencode/skill/sk-deep-research/runtime/state.jsonl',
-      state_paths_strategy: '.opencode/skill/sk-deep-research/assets/deep_research_strategy.md',
-      state_paths_registry: '.opencode/skill/sk-deep-research/runtime/registry.json',
-      state_paths_iteration_pattern: '.opencode/skill/sk-deep-research/runtime/iteration-002.md',
-      state_paths_delta_pattern: '.opencode/skill/sk-deep-research/runtime/deltas/iter-002.jsonl',
+      state_paths_config: '.opencode/skill/deep-research/assets/deep_research_config.json',
+      state_paths_state_log: '.opencode/skill/deep-research/runtime/state.jsonl',
+      state_paths_strategy: '.opencode/skill/deep-research/assets/deep_research_strategy.md',
+      state_paths_registry: '.opencode/skill/deep-research/runtime/registry.json',
+      state_paths_iteration_pattern: '.opencode/skill/deep-research/runtime/iteration-002.md',
+      state_paths_delta_pattern: '.opencode/skill/deep-research/runtime/deltas/iter-002.jsonl',
     });
 
     const reviewRendered = renderPromptPack(reviewTemplatePath, {
@@ -126,17 +126,17 @@ describe('prompt-pack', () => {
       p0_count: 0,
       p1_count: 1,
       p2_count: 2,
-      state_paths_config: '.opencode/skill/sk-deep-review/assets/deep_review_config.json',
-      state_paths_state_log: '.opencode/skill/sk-deep-review/runtime/state.jsonl',
-      state_paths_findings_registry: '.opencode/skill/sk-deep-review/runtime/findings.json',
-      state_paths_strategy: '.opencode/skill/sk-deep-review/assets/deep_review_strategy.md',
-      state_paths_iteration_pattern: '.opencode/skill/sk-deep-review/runtime/iteration-003.md',
-      state_paths_delta_pattern: '.opencode/skill/sk-deep-review/runtime/deltas/iter-003.jsonl',
+      state_paths_config: '.opencode/skill/deep-review/assets/deep_review_config.json',
+      state_paths_state_log: '.opencode/skill/deep-review/runtime/state.jsonl',
+      state_paths_findings_registry: '.opencode/skill/deep-review/runtime/findings.json',
+      state_paths_strategy: '.opencode/skill/deep-review/assets/deep_review_strategy.md',
+      state_paths_iteration_pattern: '.opencode/skill/deep-review/runtime/iteration-003.md',
+      state_paths_delta_pattern: '.opencode/skill/deep-review/runtime/deltas/iter-003.jsonl',
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');
-    expect(researchRendered).toContain('State Log: .opencode/skill/sk-deep-research/runtime/state.jsonl');
+    expect(researchRendered).toContain('State Log: .opencode/skill/deep-research/runtime/state.jsonl');
     expect(reviewRendered).toContain('Dimension: traceability');
-    expect(reviewRendered).toContain('Findings Registry: .opencode/skill/sk-deep-review/runtime/findings.json');
+    expect(reviewRendered).toContain('Findings Registry: .opencode/skill/deep-review/runtime/findings.json');
   });
 });

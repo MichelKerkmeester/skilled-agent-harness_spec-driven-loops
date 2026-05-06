@@ -1,5 +1,5 @@
 ---
-description: Create a global component changelog or a nested packet-local changelog entry — detects spec-folder topology, resolves the correct output mode, and optionally publishes a GitHub release for global changelogs. Supports :auto and :confirm modes
+description: Create a global or packet-local changelog entry. Detects topology; optional GitHub release. Modes :auto, :confirm.
 argument-hint: "<spec-folder-or-component> [--nested] [--bump <major|minor|patch|build>] [--release] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
 ---

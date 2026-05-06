@@ -1,5 +1,5 @@
 ---
-description: Diagnose and fix MCP server connection issues (5 steps) - runs health checks, investigates failures with install guide knowledge, offers guided repair.
+description: Diagnose and fix MCP server connection issues (5 steps): health checks, install-guide-aware repair.
 argument-hint: "[--fix] [--server <name>]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---

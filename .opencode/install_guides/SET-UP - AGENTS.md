@@ -100,7 +100,7 @@ The universal template (`AGENTS (Universal).md`) includes ALL possible tools, sk
 | Scenario               | Customization Needed                      |
 | ---------------------- | ----------------------------------------- |
 | Front-end only project | Remove backend tools, database references |
-| Backend API project    | Remove Webflow, Figma, browser tools      |
+| Backend API project    | Remove Webflow, browser tools             |
 | Missing MCP servers    | Remove references to uninstalled tools    |
 | Custom skills          | Add project-specific skill definitions    |
 | Team conventions       | Add coding standards, review requirements |
@@ -152,9 +152,7 @@ cat .utcp_config.json | jq '.manuals'
 
 # Example output:
 # {
-#   "webflow": { ... },
-#   "figma": { ... },
-#   "clickup": { ... }
+#   "webflow": { ... }
 # }
 ```
 
@@ -265,7 +263,6 @@ Front-end projects emphasize visual development, browser tools, and design integ
 | ----------------- | -------------------- |
 | Chrome DevTools   | Database tools       |
 | Webflow MCP       | API testing tools    |
-| Figma MCP         | Security scanners    |
 | CSS/JS patterns   | Backend frameworks   |
 | Visual regression | Server configuration |
 
@@ -274,7 +271,7 @@ Front-end projects emphasize visual development, browser tools, and design integ
 | Skill                 | Purpose                                           |
 | --------------------- | ------------------------------------------------- |
 | `mcp-chrome-devtools` | Browser debugging, visual testing, DOM inspection |
-| `mcp-code-mode`       | Webflow, Figma integration via Code Mode          |
+| `mcp-code-mode`       | Webflow integration via Code Mode                 |
 
 **Confidence Weight Adjustments**
 
@@ -317,7 +314,6 @@ Backend projects emphasize data integrity, security, and API design.
 | ----------------- | ------------------- |
 | Database tools    | Chrome DevTools     |
 | API testing       | Webflow MCP         |
-| Security patterns | Figma MCP           |
 | Unit testing      | CSS patterns        |
 | CI/CD integration | Visual testing      |
 
@@ -364,7 +360,7 @@ Include all tool types with contextual routing:
 
 ```markdown
 ### Tool Routing by Layer
-- **Frontend work** -> Chrome DevTools, Webflow, Figma
+- **Frontend work** -> Chrome DevTools, Webflow
 - **Backend work** -> Database tools, API testing
 - **Both** -> Grep/Glob, Memory
 ```
@@ -414,7 +410,7 @@ Text pattern? -> Grep()
 File structure? -> Glob()
 Complex reasoning? -> sequential_thinking_sequentialthinking() [NATIVE MCP]
 Browser debugging? -> mcp-chrome-devtools skill
-External MCP tools? -> call_tool_chain() [Webflow, Figma, ClickUp]
+External MCP tools? -> call_tool_chain() [Webflow]
 Multi-step workflow? -> Read skill SKILL.md [see Skills section]
 ```
 
@@ -428,11 +424,11 @@ Research/prior work? -> memory_search() [NATIVE MCP]
 Text pattern? -> Grep()
 File structure? -> Glob()
 Browser debugging? -> mcp-chrome-devtools skill
-External MCP tools? -> call_tool_chain() [Webflow, Figma]
+External MCP tools? -> call_tool_chain() [Webflow]
 Multi-step workflow? -> Read skill SKILL.md [see Skills section]
 ```
 
-**Backend Customization (No Browser Tools, No Figma):**
+**Backend Customization (No Browser Tools):**
 
 ```markdown
 ### Tool Routing Decision Tree
@@ -482,7 +478,7 @@ SEMANTIC MEMORY (context/research):
 
 Only include tools in `.utcp_config.json`.
 
-**Front-end Tools (Webflow + Figma):**
+**Front-end Tools (Webflow):**
 
 ```markdown
 ### Code Mode Tools Reference
@@ -492,24 +488,6 @@ External tools accessed via `call_tool_chain()`:
 WEBFLOW:
   call_tool_chain(`webflow.webflow_sites_list({})`)
   call_tool_chain(`webflow.webflow_get_site({ site_id: "..." })`)
-
-FIGMA:
-  call_tool_chain(`figma.figma_get_file({ file_key: "..." })`)
-  call_tool_chain(`figma.figma_get_styles({ file_key: "..." })`)
-
-Discovery: search_tools(), list_tools(), or read .utcp_config.json
-```
-
-**Project Management Tools (ClickUp Only):**
-
-```markdown
-### Code Mode Tools Reference
-
-External tools accessed via `call_tool_chain()`:
-
-CLICKUP:
-  call_tool_chain(`clickup.clickup_get_tasks({ list_id: "..." })`)
-  call_tool_chain(`clickup.clickup_create_task({ list_id: "...", name: "..." })`)
 
 Discovery: search_tools(), list_tools(), or read .utcp_config.json
 ```
@@ -530,7 +508,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `cli-opencode`         | v1.3.0.0 | "opencode", "parallel", "handoff"                         | OpenCode CLI orchestration                       |
 | `mcp-chrome-devtools`  | v1.0.7.0 | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
 | `mcp-coco-index`       | v1.0.0   | "semantic search", "find code", "similar code"            | Semantic code search via CocoIndex               |
-| `mcp-code-mode`        | v1.0.7.0 | "ClickUp", "Figma", "Webflow", "external tool"            | MCP orchestration for external tools             |
+| `mcp-code-mode`        | v1.0.7.0 | "Webflow", "external tool"                                | MCP orchestration for external tools             |
 | `sk-code`              | v2.0.0   | "implement", "debug", "verify", "opencode", "webflow"    | Webflow frontend and OpenCode system code router |
 | `sk-code-review`       | v1.2.0.0 | "review", "audit", "PR"                                   | Findings-first code review                       |
 | `sk-deep-research`     | v1.6.2.0 | "deep research", "research loop", "convergence"           | Iterative research workflow                      |
@@ -560,8 +538,6 @@ When the runtime surfaces the automatic Skill Advisor Hook brief, Gate 2 uses th
 | "open a PR"                       | sk-git                | 0.92       |
 | "push to remote"                  | sk-git                | 0.90       |
 | "get Webflow site data"           | mcp-code-mode         | 0.90       |
-| "update Figma component"          | mcp-code-mode         | 0.88       |
-| "check ClickUp tasks"             | mcp-code-mode         | 0.85       |
 
 #### Native Skill Discovery (OpenCode v1.0.190+)
 
@@ -993,7 +969,7 @@ User Message
 | **Skills - Keep**     | Yes    | system-spec-kit       | Context preservation needed |
 |                       | Yes    | mcp-chrome-devtools   | Browser debugging essential |
 |                       | Yes    | sk-code          | Implementation workflow     |
-|                       | Yes    | mcp-code-mode         | Webflow/Figma integration   |
+|                       | Yes    | mcp-code-mode         | Webflow integration         |
 | **Skills - Remove**   | No     | sk-git                | Optional for solo projects  |
 | **MCP - Keep**        | Yes    | spec_kit_memory       | Required for spec-kit skill |
 |                       | Yes    | code_mode             | External tool access        |
@@ -1018,7 +994,7 @@ User Message
 |                     | Yes    | sk-code        | Implementation lifecycle         |
 |                     | Yes    | sk-git              | PR/commit workflows              |
 | **Skills - Remove** | No     | mcp-chrome-devtools | No browser UI                    |
-|                     | No     | mcp-code-mode       | No Webflow/Figma needed          |
+|                     | No     | mcp-code-mode       | No Webflow needed                |
 | **MCP - Keep**      | Yes    | spec_kit_memory     | Context preservation             |
 |                     | Yes    | sequential_thinking | Complex reasoning                |
 | **MCP - Remove**    | No     | code_mode           | No external design tools         |
@@ -1062,7 +1038,7 @@ When stripping AGENTS.md to essentials, follow this structure:
 
 **Error:** `Error: tool 'webflow_sites_list' not found` or similar tool resolution errors.
 
-**Cause:** AGENTS.md references a tool (e.g., Webflow, Figma, ClickUp) that is not configured in `.utcp_config.json` or the Code Mode MCP server is not running.
+**Cause:** AGENTS.md references a tool (e.g., Webflow) that is not configured in `.utcp_config.json` or the Code Mode MCP server is not running.
 
 **Fix:**
 

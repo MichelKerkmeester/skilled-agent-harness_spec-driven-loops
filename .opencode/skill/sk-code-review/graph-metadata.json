@@ -41,7 +41,12 @@
     "pr review",
     "security review",
     "quality gate",
-    "findings"
+    "findings",
+    "audit packet docs",
+    "audit packet",
+    "review packet docs",
+    "documented consistently",
+    "scoped correctly"
   ],
   "derived": {
     "trigger_phrases": [
@@ -149,7 +154,6 @@
     "iterative audit",
     "spec folder audit",
     "convergence",
-    "review iteration",
     "deep review",
     "deep review loop"
   ]

@@ -1,5 +1,5 @@
 ---
-description: Create or improve AI prompts using proven frameworks, DEPTH thinking, and CLEAR scoring via sk-prompt, with optional fresh-context agent dispatch for complex cases
+description: Create or improve AI prompts using sk-prompt frameworks, DEPTH thinking, CLEAR scoring; optional agent dispatch.
 argument-hint: "<prompt_or_topic> [$mode] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, mcp__cocoindex_code__search
 ---

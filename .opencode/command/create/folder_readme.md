@@ -1,5 +1,5 @@
 ---
-description: Unified documentation command for folder README and install guide creation with sk-doc quality standards - supports :auto and :confirm modes
+description: Unified folder README and install guide creation with sk-doc quality standards. Modes :auto, :confirm.
 argument-hint: "[readme|install] <target> [--type <project|component|feature|skill>] [--platforms <list>] [--output <path>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
 ---

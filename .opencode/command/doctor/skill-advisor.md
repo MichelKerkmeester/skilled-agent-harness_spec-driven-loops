@@ -1,5 +1,5 @@
 ---
-description: Analyze all skills, optimize advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, graph-metadata.json), and re-index the skill graph. Supports :auto and :confirm modes
+description: Analyze skills, optimize advisor scoring tables, re-index the skill graph. Supports :auto and :confirm modes.
 argument-hint: "[:auto|:confirm] [--skip-tests] [--dry-run] [--scope=all|explicit|derived|lexical]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, mcp__cocoindex_code__search, mcp__spec_kit_memory__advisor_recommend, mcp__spec_kit_memory__advisor_status, mcp__spec_kit_memory__advisor_validate, mcp__spec_kit_memory__advisor_rebuild, mcp__spec_kit_memory__skill_graph_scan, mcp__spec_kit_memory__skill_graph_query, mcp__spec_kit_memory__skill_graph_status, mcp__spec_kit_memory__memory_context, mcp__spec_kit_memory__memory_search
 ---

@@ -77,23 +77,23 @@ describe('027/003 native scorer units', () => {
     expect(result[1].ambiguousWith).toEqual(['alpha']);
   });
 
-  it('does not mark top-two recommendations ambiguous when raw score is outside the margin', () => {
-    // F-012-C2-04: Outside-margin example uses score (0.50 vs 0.40 = 0.10 diff,
-    // > AMBIGUITY_MARGIN of 0.05). Confidence is identical to keep the test
-    // focused on score-based behavior.
+  it('does not mark top-two recommendations ambiguous when both score and confidence are outside the margins', () => {
+    // F-012-C2-04 + Packet 084: dual-margin OR. To assert "not ambiguous" the
+    // fixture must place BOTH gaps outside their respective 0.05 margins.
+    // Score gap 0.10 (0.50 vs 0.40) and confidence gap 0.10 (0.85 vs 0.75)
+    // both exceed margin, so the dual-margin predicate returns false.
     const base = {
       kind: 'skill' as const,
       uncertainty: 0.2,
       passes_threshold: true,
       reason: 'fixture',
-      confidence: 0.85,
       laneContributions: [],
       dominantLane: 'explicit_author' as const,
       lifecycleStatus: 'active' as const,
     };
     const result = applyAmbiguity([
-      { ...base, skill: 'alpha', score: 0.50 },
-      { ...base, skill: 'beta', score: 0.40 },
+      { ...base, skill: 'alpha', score: 0.50, confidence: 0.85 },
+      { ...base, skill: 'beta', score: 0.40, confidence: 0.75 },
     ] satisfies AdvisorScoredRecommendation[]);
     expect(result[0].ambiguousWith).toBeUndefined();
     expect(result[1].ambiguousWith).toBeUndefined();

@@ -1,5 +1,5 @@
 ---
-description: Install or reinstall all 4 MCP servers from scratch (6 steps) - reads install guides, checks system reality, installs dependencies, builds, configures, and verifies.
+description: Install or reinstall all 4 MCP servers from scratch (6 steps): guides, checks, deps, build, configure, verify.
 argument-hint: "[--server <name>] [--runtime <name>]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---

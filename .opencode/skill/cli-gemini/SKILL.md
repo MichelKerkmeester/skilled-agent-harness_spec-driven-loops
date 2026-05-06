@@ -1,6 +1,6 @@
 ---
 name: cli-gemini
-description: "Gemini CLI orchestrator enabling any AI assistant to invoke Google's Gemini CLI for supplementary AI tasks including code generation, web research via Google Search, codebase architecture analysis, cross-AI validation, and parallel task processing."
+description: "Gemini CLI orchestrator: dispatch Google's Gemini CLI for code, web research, architecture analysis, cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.2.5.0
 ---

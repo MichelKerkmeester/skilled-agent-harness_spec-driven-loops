@@ -427,18 +427,34 @@ describe('scan handler integration - incremental:false', () => {
       indexFiles: indexFilesMock,
     }));
     vi.doMock('../code_graph/lib/code-graph-db.js', () => ({
+      getDb: vi.fn(() => ({
+        transaction: vi.fn((callback: () => void) => callback),
+        prepare: vi.fn(() => ({
+          all: vi.fn(() => []),
+          run: vi.fn(),
+        })),
+      })),
       getLastGitHead: vi.fn(() => 'same-head'),
       setLastDetectorProvenance: vi.fn(),
       setLastDetectorProvenanceSummary: vi.fn(),
       setLastGraphEdgeEnrichmentSummary: vi.fn(),
+      clearLastGraphEdgeEnrichmentSummary: vi.fn(),
       setLastGitHead: vi.fn(),
+      setCodeGraphScope: vi.fn(),
       isFileStale: vi.fn(() => false),
       upsertFile: vi.fn(() => 1),
       replaceNodes: vi.fn(),
       replaceEdges: vi.fn(),
+      clearParseDiagnostic: vi.fn(),
       removeFile: removeFileMock,
+      getStoredCodeGraphScope: vi.fn(() => null),
       getTrackedFiles: vi.fn(() => indexResults.map(result => (result as { filePath: string }).filePath)),
       getStats: vi.fn(() => ({ lastScanTimestamp: '2026-04-23T00:00:00.000Z' })),
+      recordFailedScan: vi.fn(() => null),
+      getCodeGraphMetadata: vi.fn(() => null),
+      setCodeGraphMetadata: vi.fn(),
+      getParseDiagnosticsSummary: vi.fn(() => ({ affectedFiles: 0, recentErrors: [] })),
+      countStaleButValidParseDiagnostics: vi.fn(() => 0),
     }));
 
     return { indexFilesMock, removeFileMock };

@@ -1,0 +1,7 @@
+{"event":"round_start","round":1,"timestamp":"2026-05-06T13:00:00.000Z","seats":["seat-001","seat-002","seat-003"]}
+{"event":"seat_returned","round":1,"seat":"seat-001","timestamp":"2026-05-06T13:01:00.000Z","status":"ok","tokens":null,"lens":"analytical","vantage":"cli-claude-code","simulated":true,"score_pre_critique":56,"score_post_critique":53}
+{"event":"seat_returned","round":1,"seat":"seat-002","timestamp":"2026-05-06T13:01:30.000Z","status":"ok","tokens":null,"lens":"critical","vantage":"cli-codex","simulated":true,"score_pre_critique":86,"score_post_critique":87}
+{"event":"seat_returned","round":1,"seat":"seat-003","timestamp":"2026-05-06T13:02:00.000Z","status":"ok","tokens":null,"lens":"pragmatic","vantage":"cli-copilot","simulated":true,"score_pre_critique":82,"score_post_critique":83}
+{"event":"deliberation_synthesized","round":1,"timestamp":"2026-05-06T13:03:00.000Z","convergence_score":0.85,"agreements":"Seats 2 and 3 converge on option (b) independently","disagreements":"Seat 1 initially favored (a) on symmetry grounds but acknowledged verification gap"}
+{"event":"round_end","round":1,"timestamp":"2026-05-06T13:03:30.000Z","new_findings_count":4,"convergence":true,"leader":"seat-002","leader_score":87}
+{"event":"council_complete","timestamp":"2026-05-06T13:04:00.000Z","final_report_path":"ai-council/council-report.md","convergence":true,"recommended_direction":"option-b-orchestrator-mediated"}

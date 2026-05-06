@@ -1,6 +1,6 @@
 ---
 name: mcp-coco-index
-description: "Semantic code search via vector embeddings. CocoIndex Code enables natural-language discovery of relevant code, patterns, and implementations. CLI for direct use; MCP exposes a single `search` tool for AI agent integration."
+description: "Semantic code search via vector embeddings. Natural-language discovery of code, patterns, implementations. CLI + MCP search."
 allowed-tools: [Bash, Read, Grep, Glob]
 version: 1.1.1
 ---

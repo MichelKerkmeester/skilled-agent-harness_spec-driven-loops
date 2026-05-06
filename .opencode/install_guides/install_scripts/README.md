@@ -85,7 +85,7 @@ chmod +x .opencode/install_guides/install_scripts/*.sh
 
 ### Installation
 
-The recommended installation path is to enable the three core MCP surfaces first, then layer on optional provider-specific installers such as Chrome DevTools, ClickUp, or CocoIndex Code.
+The recommended installation path is to enable the three core MCP surfaces first, then layer on optional provider-specific installers such as Chrome DevTools or CocoIndex Code.
 
 ### Verify Installation
 
@@ -126,7 +126,6 @@ install_scripts/
 ├── install-spec-kit-memory.sh     # Spec Kit Memory MCP
 ├── install-code-mode.sh           # Code Mode MCP
 ├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
-├── install-clickup.sh             # ClickUp CLI + ClickUp MCP for Code Mode
 ├── install-cocoindex-code.sh      # CocoIndex Code MCP (symlink)
 ├── install-all.sh                 # Master installer with --skip/--only flags
 ├── logs/                          # Installation logs
@@ -155,7 +154,6 @@ install_scripts/
 | `install-spec-kit-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
 | `install-code-mode.sh` | Code Mode MCP | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools CLI | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
-| `install-clickup.sh` | ClickUp MCP | ClickUp CLI + MCP server installation for Code Mode | Node.js 18+ (22+ for CLI), npm |
 | `install-cocoindex-code.sh` | CocoIndex Code MCP | Semantic code search via vector embeddings | Node.js 18+, Python 3.10+ |
 
 ### Shared Utilities (_utils.sh)
@@ -383,7 +381,7 @@ A: Yes. All scripts are idempotent. They detect existing installations and skip 
 
 A: No. Install based on your needs:
 - **Core**: Code Mode MCP, Spec Kit Memory MCP, Sequential Thinking MCP
-- **Optional**: Chrome DevTools CLI (debugging), ClickUp CLI + MCP (task management)
+- **Optional**: Chrome DevTools CLI (debugging)
 
 ---
 

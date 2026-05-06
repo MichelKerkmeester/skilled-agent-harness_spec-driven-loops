@@ -1,6 +1,6 @@
 ---
 name: sk-code
-description: "Multi-stack coding standards, references, and assets. Provides surface-aware code-quality patterns, checklists, and verification recipes for Webflow frontend (vanilla HTML/CSS/JS animation: Motion.dev, GSAP, Lenis, HLS, Swiper, FilePond, CDN deployment), cross-stack Motion.dev animation guidance, and OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals auto-detect the active stack and load matching standards; unsupported stacks ask for disambiguation."
+description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 3.2.1.0
 ---

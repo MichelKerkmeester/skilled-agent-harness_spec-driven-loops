@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, install guides, feature catalogs, and manual testing playbooks."
+description: "Markdown and OpenCode component specialist: doc quality, content optimization, component scaffolds, install guides, playbooks."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.3.0.0
 ---

@@ -1,5 +1,5 @@
 ---
-description: Planning workflow (8 steps) - spec through plan only, no implementation. Supports :auto, :confirm, and :with-phases modes
+description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
 argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, mcp__cocoindex_code__search
 ---

@@ -1,0 +1,122 @@
+{
+  "topic": "Review: .opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement",
+  "sessionId": "rvw-2026-05-06T12:38:00Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement",
+  "createdAt": "2026-05-06T12:38:00Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": true,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/spec.md",
+    ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/plan.md",
+    ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/tasks.md",
+    ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/checklist.md",
+    ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/implementation-summary.md",
+    ".opencode/specs/skilled-agent-orchestration/079-sk-deep-agent-improvement/resource-map.md",
+    ".opencode/skill/deep-agent-improvement/SKILL.md",
+    ".opencode/skill/deep-agent-improvement/graph-metadata.json",
+    ".opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs",
+    ".opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs",
+    ".opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs",
+    ".opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs",
+    ".opencode/skill/deep-agent-improvement/assets/improvement_config.json",
+    ".opencode/skill/deep-agent-improvement/assets/target_manifest.jsonc",
+    ".opencode/command/improve/agent.md",
+    ".opencode/command/improve/README.txt",
+    ".opencode/command/improve/assets/improve_improve-agent_auto.yaml",
+    ".opencode/command/improve/assets/improve_improve-agent_confirm.yaml",
+    ".gemini/commands/improve/improve-agent.toml",
+    ".gemini/commands/improve/README.txt",
+    ".opencode/agent/improve-agent.md",
+    ".claude/agents/improve-agent.md",
+    ".gemini/agents/improve-agent.md",
+    ".codex/agents/improve-agent.toml",
+    ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py",
+    ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json",
+    ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts",
+    ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts",
+    ".opencode/skill/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts",
+    "README.md",
+    "AGENTS.md",
+    ".opencode/install_guides/README.md",
+    ".opencode/install_guides/SET-UP - AGENTS.md"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skill/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skill/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

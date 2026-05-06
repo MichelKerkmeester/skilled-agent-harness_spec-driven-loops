@@ -1,5 +1,5 @@
 ---
-description: "Evaluate and improve any agent across 5 integration-aware dimensions with proposal-first candidates, deterministic scoring, and guarded promotion — supports :auto and :confirm modes"
+description: "Evaluate and improve any agent across 5 dimensions: proposal-first candidates, scoring, guarded promotion. :auto/:confirm."
 argument-hint: "<agent_path> [:auto|:confirm] [--spec-folder=PATH] [--iterations=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---

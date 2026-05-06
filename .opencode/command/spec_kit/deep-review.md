@@ -1,5 +1,5 @@
 ---
-description: Autonomous deep review loop - iterative code audit with convergence detection. Supports :auto and :confirm modes
+description: Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.
 argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__cocoindex_code__search, code_graph_query, code_graph_context
 ---

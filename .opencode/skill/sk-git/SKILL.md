@@ -1,6 +1,6 @@
 ---
 name: sk-git
-description: "Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills"
+description: "Git workflow orchestrator: worktree setup, clean commits, finish/PR creation across git-worktrees, git-commit, git-finish."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
 version: 1.1.0.0

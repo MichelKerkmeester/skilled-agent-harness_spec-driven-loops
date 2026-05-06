@@ -1,5 +1,5 @@
 ---
-description: Full end-to-end SpecKit workflow (14+ steps) - supports :auto, :confirm, :with-research, and :with-phases modes
+description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-phases.
 argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, mcp__cocoindex_code__search
 ---

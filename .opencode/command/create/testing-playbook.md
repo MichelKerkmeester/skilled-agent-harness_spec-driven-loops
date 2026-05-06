@@ -1,5 +1,5 @@
 ---
-description: Create or update manual testing playbook packages through one unified command with explicit operation routing and mode support (:auto | :confirm)
+description: Create or update manual testing playbook packages via one unified command. Modes :auto, :confirm.
 argument-hint: "<skill-name> [create|update] [--path <dir>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, mcp__cocoindex_code__search
 ---

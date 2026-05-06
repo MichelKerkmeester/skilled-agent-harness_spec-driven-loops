@@ -1,11 +1,12 @@
 ---
 title: "Top-2 Ambiguity Window"
-description: "Ambiguity detection that returns an ambiguous brief when the top two candidates are within a 0.05 confidence window."
+description: "Ambiguity detection that returns an ambiguous brief when the top two candidates are within 0.05 on EITHER score or confidence."
 trigger_phrases:
   - "ambiguity window"
   - "top 2 ambiguity"
   - "ambiguous brief"
-  - "0.05 confidence window"
+  - "0.05 ambiguity window"
+  - "dual-margin ambiguity"
 ---
 
 # Top-2 Ambiguity Window
@@ -20,7 +21,12 @@ Avoid silently picking a single winner when two candidates are tied or near-tied
 <!-- ANCHOR:current-reality -->
 ## 2. CURRENT REALITY
 
-`lib/scorer/ambiguity.ts` measures the gap between the top-1 and top-2 aggregate scores. When the delta is <= 0.05, the response carries an ambiguity signal that the render path surfaces as an ambiguous brief. When the delta exceeds the window, top-1 is returned unambiguously.
+`lib/scorer/ambiguity.ts` evaluates a **dual-margin OR** predicate against the top-1 candidate. A candidate joins the ambiguity cluster when the gap on EITHER axis is within 0.05:
+
+- `AMBIGUITY_MARGIN = 0.05` on aggregate `score` (keeps cluster aligned with the score-based fusion ranking — F-012-C2-04 invariant).
+- `AMBIGUITY_CONFIDENCE_MARGIN = 0.05` on `confidence` (catches user-visible near-ties when score gap just exceeds margin — Packet 084, SAD-002 fix).
+
+If either gap is within margin, the response carries an ambiguity signal that the render path surfaces as an ambiguous brief. A candidate is unambiguously ranked only when **both** gaps exceed margin.
 
 <!-- /ANCHOR:current-reality -->
 

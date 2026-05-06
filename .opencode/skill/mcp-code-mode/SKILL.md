@@ -1,6 +1,6 @@
 ---
 name: mcp-code-mode
-description: "MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Notion, Figma, MyService, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration."
+description: "MCP orchestration via TypeScript execution. Use Code Mode for ALL external MCP tool calls; ~98% context reduction, type-safe."
 allowed-tools: [mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
 version: 1.0.7.0
 ---

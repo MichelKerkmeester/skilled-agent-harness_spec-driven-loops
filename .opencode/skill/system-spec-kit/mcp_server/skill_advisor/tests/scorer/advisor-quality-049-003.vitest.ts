@@ -207,11 +207,15 @@ describe('F-012-C2-03 token-stuffing dispersion guard', () => {
 
 describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
   it('three-way tie within margin populates ambiguousWith for all members', () => {
+    // Packet 084 (dual-margin): each member must have at least one margin (score
+    // OR confidence) within 0.05 of the top to be in the cluster. The non-member
+    // `d` needs BOTH gaps outside margin — score 0.300 (gap 0.200) and confidence
+    // 0.70 (gap 0.20).
     const recommendations: AdvisorScoredRecommendation[] = [
-      recommendation({ skill: 'a', score: 0.500, passes_threshold: true }),
-      recommendation({ skill: 'b', score: 0.490, passes_threshold: true }),
-      recommendation({ skill: 'c', score: 0.480, passes_threshold: true }),
-      recommendation({ skill: 'd', score: 0.300, passes_threshold: true }),
+      recommendation({ skill: 'a', score: 0.500, confidence: 0.90, passes_threshold: true }),
+      recommendation({ skill: 'b', score: 0.490, confidence: 0.90, passes_threshold: true }),
+      recommendation({ skill: 'c', score: 0.480, confidence: 0.90, passes_threshold: true }),
+      recommendation({ skill: 'd', score: 0.300, confidence: 0.70, passes_threshold: true }),
     ];
 
     const result = applyAmbiguity(recommendations);
@@ -227,15 +231,36 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
     expect(d?.ambiguousWith).toBeUndefined();
   });
 
-  it('uses ranking score not confidence for ambiguity decision', () => {
-    // Two candidates: same confidence, different score (outside margin).
-    // Should NOT be ambiguous because we now compare score, not confidence.
+  it('outside both score and confidence margins is unambiguously ranked', () => {
+    // F-012-C2-04 + Packet 084 (dual-margin): the cluster predicate is OR
+    // across score margin and confidence margin. To stay outside the cluster,
+    // a fixture must place BOTH gaps outside their 0.05 margins.
+    // Score gap 0.4 (0.9 vs 0.5) and confidence gap 0.15 (0.85 vs 0.70)
+    // both exceed margin, so the dual-margin predicate returns false.
     const recommendations: AdvisorScoredRecommendation[] = [
       recommendation({ skill: 'high-score', score: 0.9, confidence: 0.85, passes_threshold: true }),
-      recommendation({ skill: 'low-score', score: 0.5, confidence: 0.85, passes_threshold: true }),
+      recommendation({ skill: 'low-score', score: 0.5, confidence: 0.70, passes_threshold: true }),
     ];
 
     expect(isAmbiguousTopTwo(recommendations)).toBe(false);
+  });
+
+  it('Packet 084: score outside margin but confidence within margin is ambiguous (SAD-002 case)', () => {
+    // Dual-margin OR predicate. Mirrors the live SAD-002 manual playbook
+    // result before the fix: sk-code (0.798 score / 0.929 conf) vs
+    // sk-prompt (0.720 score / 0.889 conf). Score gap 0.078 exceeds the
+    // 0.05 score margin, but confidence gap 0.04 is within the 0.05
+    // confidence margin — so the dual-margin OR predicate flags ambiguity
+    // and `ambiguousWith` lists the runner-up.
+    const recommendations: AdvisorScoredRecommendation[] = [
+      recommendation({ skill: 'sk-code', score: 0.798, confidence: 0.929, passes_threshold: true }),
+      recommendation({ skill: 'sk-prompt', score: 0.720, confidence: 0.889, passes_threshold: true }),
+    ];
+
+    expect(isAmbiguousTopTwo(recommendations)).toBe(true);
+    const result = applyAmbiguity(recommendations);
+    expect(result.find((entry) => entry.skill === 'sk-code')?.ambiguousWith).toEqual(['sk-prompt']);
+    expect(result.find((entry) => entry.skill === 'sk-prompt')?.ambiguousWith).toEqual(['sk-code']);
   });
 
   it('two candidates within margin still detected as ambiguous', () => {

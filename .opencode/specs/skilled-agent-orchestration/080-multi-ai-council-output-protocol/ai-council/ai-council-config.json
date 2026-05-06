@@ -1,0 +1,21 @@
+{
+  "spec_folder": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+  "topic": "Packet 080 v1.1+ default: agent-side writes vs orchestrator-mediated writes",
+  "current_round": 1,
+  "max_rounds": 3,
+  "seats_per_round": 3,
+  "seats": [
+    { "id": "seat-001", "executor": "cli-claude-code", "model": "simulated", "lens": "analytical" },
+    { "id": "seat-002", "executor": "cli-codex", "model": "simulated", "lens": "critical" },
+    { "id": "seat-003", "executor": "cli-copilot", "model": "simulated", "lens": "pragmatic" }
+  ],
+  "convergence_signal": "two-of-three-agree",
+  "rounds_completed": 1,
+  "created_at": "2026-05-06T13:00:00.000Z",
+  "updated_at": "2026-05-06T13:00:00.000Z",
+  "final_report_at": "2026-05-06T13:00:00.000Z",
+  "status": "complete",
+  "convergence": true,
+  "dispatch_mode": "Depth 1 (sequential_thinking inline)",
+  "vantage_integrity": "simulated"
+}

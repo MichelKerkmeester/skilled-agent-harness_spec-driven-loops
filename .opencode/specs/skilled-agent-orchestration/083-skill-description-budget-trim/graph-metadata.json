@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/083-skill-description-budget-trim",
+  "spec_folder": "skilled-agent-orchestration/083-skill-description-budget-trim",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill description",
+      "budget",
+      "dropped",
+      "frontmatter",
+      "trim",
+      "plan",
+      "tasks",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "description",
+      "budget",
+      "dropped",
+      "frontmatter",
+      "trim",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "claude",
+      "code"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skill/sk-code/SKILL.md",
+      ".opencode/skill/mcp-code-mode/SKILL.md",
+      ".opencode/skill/cli-claude-code/SKILL.md",
+      ".opencode/skill/cli-opencode/SKILL.md",
+      ".opencode/skill/sk-doc/SKILL.md",
+      ".opencode/skill/cli-gemini/SKILL.md",
+      ".opencode/skill/sk-prompt/SKILL.md",
+      ".opencode/skill/cli-codex/SKILL.md",
+      ".opencode/skill/mcp-coco-index/SKILL.md",
+      ".opencode/skill/system-spec-kit/SKILL.md",
+      ".opencode/skill/mcp-chrome-devtools/SKILL.md",
+      ".opencode/skill/deep-review/SKILL.md",
+      ".opencode/skill/deep-agent-improvement/SKILL.md",
+      ".opencode/skill/sk-code-review/SKILL.md",
+      ".opencode/skill/sk-git/SKILL.md",
+      ".opencode/skill/deep-research/SKILL.md",
+      ".opencode/command/memory/search.md",
+      ".opencode/command/memory/manage.md",
+      ".opencode/command/doctor/code-graph.md",
+      ".opencode/command/doctor/mcp_install.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skill/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/command/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "manage.md",
+        "kind": "doc",
+        "path": ".opencode/command/memory/manage.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph.md",
+        "kind": "doc",
+        "path": ".opencode/command/doctor/code-graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_install.md",
+        "kind": "doc",
+        "path": ".opencode/command/doctor/mcp_install.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Description Budget Trim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Trim",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mechanical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restart Claude Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Trimmed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Claude Code's status line reports `15 skill descriptions dropped`. The harness caps total skill metadata at `SLASH_COMMAND_TOOL_CHAR_BUDGET` (default 8,000 chars). This repo's 16 SKILL.md frontmatters + 23 command frontmatters total ~7,646 chars — combined with bundled Claude Code built-ins (~2,400 chars: `claude-api`, `update-config`, `loop`, `schedule`, etc.) the harness sees ~10,050 chars and drops the longest 15 alphabetically. Dropped skills still work when invoked explicitly (`/skill-name`) but lose model auto-discovery.",
+    "created_at": "2026-05-06T12:38:24.302Z",
+    "last_save_at": "2026-05-06T12:38:24.302Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

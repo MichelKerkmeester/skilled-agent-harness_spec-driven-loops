@@ -1,6 +1,6 @@
 ---
 name: deep-review
-description: "Autonomous iterative code review and quality auditing loop with externalized state, convergence detection, severity-weighted findings (P0/P1/P2), and fresh context per iteration"
+description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__cocoindex_code__search]
 # Note: Task tool is for the command executor (loop management). The @deep-review agent itself does NOT have Task (LEAF-only).
 # No WebFetch: review is code-only and read-only. No external resource fetching.

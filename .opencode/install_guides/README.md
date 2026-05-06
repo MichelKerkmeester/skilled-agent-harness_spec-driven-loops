@@ -55,9 +55,9 @@ The `install_guides/` directory is the central hub for all OpenCode setup and in
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Guide files | 12 | 7 MCP guides, 4 SET-UP guides, 1 index guide (this README) |
-| Install scripts | 9 | 3 real + 6 symlinks in `install_scripts/` |
-| MCP servers covered | 7 | Code Mode, Spec Kit Memory, Sequential Thinking, Chrome DevTools, ClickUp, CocoIndex Code, Figma |
+| Guide files | 11 | 6 MCP guides, 4 SET-UP guides, 1 index guide (this README) |
+| Install scripts | 8 | 3 real + 5 symlinks in `install_scripts/` |
+| MCP servers covered | 5 | Code Mode, Spec Kit Memory, Sequential Thinking, Chrome DevTools, CocoIndex Code |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -77,7 +77,6 @@ All `.md` guide files in this directory (5 real + 7 symlinks), grouped by type:
 | **[README.md](./README.md)** (this file) | Real | Main installation walkthrough and directory index |
 | **MCP Guides** | | |
 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) | Symlink | Chrome DevTools MCP server (bdg CLI) |
-| [MCP - ClickUp.md](./MCP%20-%20ClickUp.md) | Symlink | ClickUp project management MCP |
 | [MCP - CocoIndex Code.md](./MCP%20-%20CocoIndex%20Code.md) | Symlink | CocoIndex semantic code search MCP |
 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) | Symlink | Code Mode orchestration MCP |
 | [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) | Real | Sequential Thinking MCP server |
@@ -324,7 +323,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 | Component           | Type       | Purpose                                               | Dependencies                            |
 | ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
-| Code Mode           | MCP Server | External tool orchestration (Figma, ClickUp, GitHub, your CMS, etc.) | Node.js 18+                             |
+| Code Mode           | MCP Server | External tool orchestration (GitHub, your CMS, etc.) | Node.js 18+                             |
 | Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
 | Native Skills       | Built-in   | Skill discovery from .opencode/skill/                 | None (OpenCode v1.0.190+)               |
@@ -364,7 +363,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
    ┌───────────────────────────────────┐
    │    EXTERNAL TOOLS (via Code Mode)     │
    │      (.utcp_config.json)              │
-   │  Figma, ClickUp, GitHub, your CMS...  │
+   │  GitHub, your CMS...                  │
    └───────────────────────────────────┘
 
    NATIVE SKILLS: auto-discovered from .opencode/skill/*/SKILL.md
@@ -603,7 +602,6 @@ Code Mode enables access to external MCP tools. Each provider has its own detail
 | Provider | Tools | Install Guide |
 |----------|-------|---------------|
 | **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
-| **ClickUp** | 21 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Task management, project tracking |
 | **GitHub** | 26 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Repository operations, issues, PRs |
 | **Your CMS** (e.g., a CMS-vendor MCP server) | varies | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - CMS management, site operations |
 
@@ -936,7 +934,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 }
 ```
 
-**Note:** External tools (Figma, ClickUp, GitHub, your CMS, etc.) are added to manuals array as needed. See Code Mode skill documentation for configuration examples.
+**Note:** External tools (GitHub, your CMS, etc.) are added to manuals array as needed. See Code Mode skill documentation for configuration examples.
 
 ### 12.3 Minimal Bundle Configuration
 
@@ -1134,7 +1132,7 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 
 | Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
 | ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
-| Front-end    | Chrome DevTools, Figma, your CMS MCP | mcp-chrome-devtools, sk-code | Database tools, API patterns  |
+| Front-end    | Chrome DevTools, your CMS MCP | mcp-chrome-devtools, sk-code | Database tools, API patterns  |
 | Back-end     | API testing, Database tools     | sk-code               | Browser tools, your CMS MCP |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
@@ -1275,7 +1273,7 @@ For the SpecKit chain, `/spec_kit:plan --intake-only` is the standalone intake e
 
 ### 16.5 Next Level (Week 1)
 
-- [ ] Configure external tools in `.utcp_config.json` (Figma, ClickUp, GitHub, your CMS, etc.)
+- [ ] Configure external tools in `.utcp_config.json` (GitHub, your CMS, etc.)
 - [ ] Create project-specific skills for repeated workflows
 - [ ] Set up backup schedule for configurations
 - [ ] Practice spec folder workflow for all file modifications
