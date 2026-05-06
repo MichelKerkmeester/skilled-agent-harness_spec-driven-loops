@@ -24,7 +24,10 @@
       "sk-improve-prompt to sk-prompt",
       "rename sk-improve-prompt",
       "skill rename sk-prompt",
-      "drop improve from skill name"
+      "drop improve from skill name",
+      "082 resource map",
+      "sk-improve-prompt rename resource map",
+      "082 file ledger"
     ],
     "key_topics": [
       "082",
@@ -35,10 +38,10 @@
       "drop",
       "improve",
       "name",
-      "currently",
-      "named",
-      "carries",
-      "redundant"
+      "resource",
+      "map",
+      "file",
+      "ledger"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -212,7 +215,7 @@
     ],
     "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/improve:prompt`) and agent (`@improve-prompt`). Sibling skills that surface a single capability use single-word names (`sk-code`, `sk-doc`, `sk-git`). Renaming to `sk-prompt` aligns with that convention while preserving the `sk-` family marker.",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-05-06T11:38:56.656Z",
+    "last_save_at": "2026-05-06T12:56:40.036Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +223,6 @@
       "resource-map.md"
     ],
     "last_active_child_id": null,
-    "last_active_at": "2026-05-06T11:38:56.656Z"
+    "last_active_at": "2026-05-06T12:56:40.036Z"
   }
 }

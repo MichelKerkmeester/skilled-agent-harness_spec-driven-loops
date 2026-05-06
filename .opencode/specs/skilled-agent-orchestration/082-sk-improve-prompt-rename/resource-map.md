@@ -1,15 +1,21 @@
 ---
 title: Resource Map — sk-improve-prompt → sk-prompt Skill Rename
 description: Path ledger for packet 082 covering active rename touch sites, skipped historical scope, edge cases, and verification gates.
+trigger_phrases:
+  - "082 resource map"
+  - "sk-improve-prompt rename resource map"
+  - "082 file ledger"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename"
-    last_updated_at: "2026-05-06T10:31:25Z"
-    last_updated_by: "codex"
-    recent_action: "Initial resource-map authored from verified rg inventory"
-    next_safe_action: "Phase 001 discovery impact map"
+    last_updated_at: "2026-05-06T15:00:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Resource map frontmatter completed (P1 remediation from deep-review iter-5)"
+    next_safe_action: "Final memory save + commit"
     blockers: []
-    completion_pct: 0
+    completion_pct: 100
 ---
 
 # Resource Map — Packet 082 (sk-improve-prompt → sk-prompt)

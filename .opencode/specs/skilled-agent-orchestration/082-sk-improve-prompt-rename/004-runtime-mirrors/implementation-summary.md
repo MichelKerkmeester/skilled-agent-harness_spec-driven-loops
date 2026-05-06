@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-runtime-mirrors |
 | **Completed** | 2026-05-06 |
-| **Level** | 2 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---

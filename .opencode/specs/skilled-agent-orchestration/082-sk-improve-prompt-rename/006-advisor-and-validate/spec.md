@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | 1 |
 | **Priority** | P0 |
 | **Status** | Pending |
 | **Created** | 2026-05-06 |

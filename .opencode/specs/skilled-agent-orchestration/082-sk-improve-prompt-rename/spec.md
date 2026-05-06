@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename"
     last_updated_at: "2026-05-06T13:50:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "All 6 phases complete; final grep clean; advisor probes return sk-prompt; awaiting deep-review × 5"
-    next_safe_action: "Run /spec_kit:deep-review × 5 via cli-opencode deepseek-v4-pro"
+    recent_action: "Packet 082 PASSED post deep-review × 5 remediations"
+    next_safe_action: "Final memory save + close packet"
     blockers: []
     key_files:
       - "spec.md"

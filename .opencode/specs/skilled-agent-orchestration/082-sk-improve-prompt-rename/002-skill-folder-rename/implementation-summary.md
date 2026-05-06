@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
+title: "Implementation Summary: Phase 002 Skill Folder Rename + Skill Internals"
 description: "Phase 002 renamed the prompt skill folder, updated skill-local references and advisor graph keys, retargeted the changelog symlink, and rebuilt advisor state."
 trigger_phrases:
   - "implementation"
@@ -33,7 +33,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 002 Skill Folder Rename
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
 
 ---
