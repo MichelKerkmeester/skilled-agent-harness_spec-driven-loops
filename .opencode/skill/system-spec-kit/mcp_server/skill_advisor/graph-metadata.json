@@ -20,7 +20,7 @@
       { "target": "deep-review", "weight": 0.7, "context": "routes autonomous review requests" },
       { "target": "sk-doc", "weight": 0.7, "context": "routes documentation requests" },
       { "target": "sk-git", "weight": 0.7, "context": "routes git workflow requests" },
-      { "target": "sk-improve-agent", "weight": 0.7, "context": "routes agent improvement requests" },
+      { "target": "deep-agent-improvement", "weight": 0.7, "context": "routes agent improvement requests" },
       { "target": "sk-prompt", "weight": 0.7, "context": "routes prompt improvement requests" },
       { "target": "system-spec-kit", "weight": 0.7, "context": "routes spec folder and memory requests" }
     ],

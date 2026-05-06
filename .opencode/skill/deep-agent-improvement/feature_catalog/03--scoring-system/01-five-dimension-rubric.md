@@ -9,7 +9,7 @@ description: "Scores candidates across structural integrity, rule coherence, int
 
 Scores candidates across structural integrity, rule coherence, integration consistency, output quality, and system fitness.
 
-This feature is the core grading model for sk-improve-agent. It tells the loop what "better" means before any promotion logic is considered.
+This feature is the core grading model for deep-agent-improvement. It tells the loop what "better" means before any promotion logic is considered.
 
 ---
 
@@ -27,17 +27,17 @@ The dynamic scorer is lenient in one important way: missing derived checks defau
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/evaluator_contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
-| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | Scorer | Implements the five dimension functions, weights, and recommendation threshold. |
-| `.opencode/skill/sk-improve-agent/scripts/generate-profile.cjs` | Profile builder | Supplies the derived structural, rule, output, integration, and mismatch checks that the rubric consumes. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
+| `.opencode/skill/deep-agent-improvement/references/evaluator_contract.md` | Contract reference | Documents the five-dimension rubric and the benchmark rubric that sits beside it. |
+| `.opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs` | Scorer | Implements the five dimension functions, weights, and recommendation threshold. |
+| `.opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs` | Profile builder | Supplies the derived structural, rule, output, integration, and mismatch checks that the rubric consumes. |
+| `.opencode/skill/deep-agent-improvement/assets/improvement_config.json` | Runtime config | Stores the default dimension weights and threshold delta. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/quick_reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
-| `.opencode/skill/sk-improve-agent/README.md` | Package reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
+| `.opencode/skill/deep-agent-improvement/references/quick_reference.md` | Operator reference | Restates the shipped dimension weights for the live release. |
+| `.opencode/skill/deep-agent-improvement/README.md` | Package reference | Mirrors the current recommendation threshold and weighted-score formula for operators. |
 
 ---
 

@@ -1102,6 +1102,63 @@ describe('handleCodeGraphScan', () => {
     expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
   });
 
+  it('blocks scope-mismatched scan with includeGlobs/excludeGlobs even when no scope-folder flags differ', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.getStatsMock.mockReturnValue({
+      totalFiles: 3,
+      totalNodes: 42,
+      totalEdges: 7,
+      nodesByKind: { function: 42 },
+      edgesByType: { CALLS: 7 },
+      parseHealthSummary: { clean: 3 },
+      lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'same-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
+      graphQualitySummary: {
+        detectorProvenanceSummary: null,
+        graphEdgeEnrichmentSummary: null,
+      },
+    });
+    mocks.getStoredCodeGraphScopeMock.mockReturnValue({
+      fingerprint: 'code-graph-scope:v3:skills=none:agents=none:commands=none:specs=none:plugins=none:includeGlobs=[**%2F*.ts]:excludeGlobs=[]:mcp-coco-index=excluded',
+      label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
+      source: 'scan-argument',
+    });
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([{
+      filePath: '/workspace/src/current.ts',
+      language: 'typescript',
+      contentHash: 'hash-current',
+      nodes: [{ symbolId: 'current::symbol' }],
+      edges: [],
+      detectorProvenance: 'structured',
+      parseHealth: 'clean',
+      parseDurationMs: 10,
+      parseErrors: [],
+    }]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+      includeGlobs: ['**/*.ts'],
+      excludeGlobs: ['**/*'],
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      reason: string;
+      data: { warnings: string[] };
+    };
+
+    expect(payload.status).toBe('blocked');
+    expect(payload.reason).toBe('scope_change_scan_rejected');
+    expect(payload.data.warnings).toEqual(expect.arrayContaining([
+      expect.stringContaining('candidate scope fingerprint'),
+    ]));
+    expect(mocks.persistIndexedFileResultMock).not.toHaveBeenCalled();
+    expect(mocks.setCodeGraphScopeMock).not.toHaveBeenCalled();
+  });
+
   it('allows forceScopeChange to replace a populated graph with a different nonzero scope', async () => {
     mocks.execSyncMock.mockReturnValue('same-head\n');
     mocks.getLastGitHeadMock.mockReturnValue('same-head');

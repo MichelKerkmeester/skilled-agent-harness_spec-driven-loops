@@ -164,29 +164,32 @@ export function getDefaultConfig(
     ...scopePolicy.excludeGlobs,
   ];
 
+  const defaultIncludeGlobs = [
+    '**/*.ts',
+    '**/*.tsx',
+    '**/*.mts',
+    '**/*.cts',
+    '**/*.js',
+    '**/*.jsx',
+    '**/*.mjs',
+    '**/*.cjs',
+    '**/*.py',
+    '**/*.sh',
+    '**/*.bash',
+    '**/*.zsh',
+    '**/*.md',
+    '**/*.json',
+    '**/*.jsonc',
+    '**/*.yaml',
+    '**/*.yml',
+    '**/*.toml',
+  ];
+
   return {
     rootDir,
-    includeGlobs: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.mts',
-      '**/*.cts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.mjs',
-      '**/*.cjs',
-      '**/*.py',
-      '**/*.sh',
-      '**/*.bash',
-      '**/*.zsh',
-      '**/*.md',
-      '**/*.json',
-      '**/*.jsonc',
-      '**/*.yaml',
-      '**/*.yml',
-      '**/*.toml',
-      ...scopePolicy.includeGlobs,
-    ],
+    includeGlobs: scopePolicy.includeGlobs.length > 0
+      ? [...scopePolicy.includeGlobs]
+      : defaultIncludeGlobs,
     excludeGlobs,
     maxFileSizeBytes: 102_400,
     languages: ['javascript', 'typescript', 'python', 'bash', 'doc'],

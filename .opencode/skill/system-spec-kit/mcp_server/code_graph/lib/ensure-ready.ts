@@ -665,7 +665,7 @@ export async function ensureCodeGraphReady(rootDir: string, options: EnsureReady
         inlineIndexPerformed: true,
         reason: appendCleanupReason(refreshedState.reason, removedDeletedCount),
         ...buildReadinessDiagnostics(),
-        ...(state.action === 'full_scan'
+        ...(state.action === 'full_scan' && allowGuardedInlineFullScan
           ? { ...guardedFullScan, selfHealAttempted: true, selfHealResult: 'ok' as const }
           : {}),
         verificationGate,

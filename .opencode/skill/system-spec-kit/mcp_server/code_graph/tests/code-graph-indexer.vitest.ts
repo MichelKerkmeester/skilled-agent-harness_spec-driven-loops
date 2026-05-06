@@ -526,6 +526,24 @@ describe('indexer-types', () => {
         fingerprint: 'code-graph-scope:v1:skills=included:mcp-coco-index=excluded',
       })).toBeNull();
     });
+
+    it('adds sorted includeGlobs and excludeGlobs to v3 fingerprints', () => {
+      const policy = resolveIndexScopePolicy({
+        includeGlobs: ['src/**/*.ts', 'src/**/*.ts', 'lib/**/*.ts'],
+        excludeGlobs: ['**/*.test.ts', '**/fixtures/**'],
+        env: {},
+      });
+
+      expect(policy.fingerprint).toBe('code-graph-scope:v3:skills=none:agents=none:commands=none:specs=none:plugins=none:includeGlobs=[lib%2F**%2F*.ts,src%2F**%2F*.ts]:excludeGlobs=[**%2F*.test.ts,**%2Ffixtures%2F**]:mcp-coco-index=excluded');
+      expect(parseIndexScopePolicyFromFingerprint({
+        fingerprint: policy.fingerprint,
+        source: policy.source,
+      })).toMatchObject({
+        includeGlobs: ['lib/**/*.ts', 'src/**/*.ts'],
+        excludeGlobs: ['**/*.test.ts', '**/fixtures/**'],
+        source: 'scan-argument',
+      });
+    });
   });
 });
 

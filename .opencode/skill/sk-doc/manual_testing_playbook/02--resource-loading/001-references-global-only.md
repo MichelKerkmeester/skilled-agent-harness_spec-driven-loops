@@ -38,7 +38,6 @@ voice; do not change semantics.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: foreground OK; codex applies voice rewrites cleanly.
-- **cli-copilot (claude-opus-4.7)**: tends to over-edit; verify it sticks to voice changes only.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact diff output; verify rule citations.
 
 ## Success Criteria

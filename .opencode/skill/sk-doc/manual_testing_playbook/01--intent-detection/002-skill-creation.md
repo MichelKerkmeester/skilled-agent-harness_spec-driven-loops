@@ -41,7 +41,6 @@ a starter reference file that follows our conventions.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: foreground OK; codex tends to inline both templates verbatim.
-- **cli-copilot (claude-opus-4.7)**: produces full file output with section anchors; expect 2-file response.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may shorten template prose; verify both files still emitted.
 
 ## Success Criteria

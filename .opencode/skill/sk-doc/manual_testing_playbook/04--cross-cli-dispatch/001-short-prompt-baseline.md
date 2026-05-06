@@ -41,7 +41,6 @@ fixed, removed sections following Keep a Changelog format.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: foreground baseline; record dispatch latency.
-- **cli-copilot (claude-opus-4.7)**: foreground baseline; record latency.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: foreground baseline; record latency.
 
 ## Success Criteria

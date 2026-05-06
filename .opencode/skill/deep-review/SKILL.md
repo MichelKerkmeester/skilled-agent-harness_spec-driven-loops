@@ -46,7 +46,7 @@ This skill is invoked EXCLUSIVELY through the `/spec_kit:deep-review` command. T
 
 **NEVER:**
 - Write a custom bash/shell dispatcher to parallelize iterations
-- Invoke cli-copilot / cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
+- Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
 - Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
 - Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF — a single iteration — and MUST be driven by the command's workflow)
 - Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`

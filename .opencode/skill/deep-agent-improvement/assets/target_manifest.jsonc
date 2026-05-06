@@ -1,5 +1,5 @@
 {
-  // Full-skill surface classification for sk-improve-agent.
+  // Full-skill surface classification for deep-agent-improvement.
   // All targets are now evaluated exclusively via dynamic mode
   // (generate-profile.cjs + 5-dimension scoring). No static profiles
   // are shipped; the targets array is intentionally empty. Promotion
@@ -13,19 +13,19 @@
   "dynamicProfileEnabled": true,
 
   // Path to the script that generates a dynamic target profile on the fly.
-  "dynamicProfileScript": ".opencode/skill/sk-improve-agent/scripts/generate-profile.cjs",
+  "dynamicProfileScript": ".opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs",
 
   // Path to the integration-surface scanner that checks mirror parity,
   // command coverage, permission alignment, and resource references
   // for a given target agent across all runtime directories.
-  "integrationScanScript": ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
+  "integrationScanScript": ".opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs",
 
   // profileCatalog remains referenced for path consistency with config, but
   // the directory is intentionally empty (contains only .gitkeep).
-  "profileCatalog": ".opencode/skill/sk-improve-agent/assets/target-profiles",
+  "profileCatalog": ".opencode/skill/deep-agent-improvement/assets/target-profiles",
   "targets": [],
 
-  // `fixed` declares files sk-improve-agent MUST NEVER mutate. These paths
+  // `fixed` declares files deep-agent-improvement MUST NEVER mutate. These paths
   // belong to LIVE spec-kit surfaces (commands + templates) outside this
   // skill; they are protections, not static profiles for the handover agent.
   "fixed": [
@@ -35,7 +35,7 @@
     ".opencode/skill/system-spec-kit/templates/handover.md"
   ],
 
-  // `forbidden` declares files sk-improve-agent MUST NEVER write to even
+  // `forbidden` declares files deep-agent-improvement MUST NEVER write to even
   // when a candidate superficially matches. Same rationale as `fixed`.
   "forbidden": [
     ".opencode/command/spec_kit/handover.md",

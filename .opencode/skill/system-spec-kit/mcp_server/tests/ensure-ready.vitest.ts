@@ -11,6 +11,13 @@ const mocks = vi.hoisted(() => ({
   getLastGoldVerificationMock: vi.fn(),
   setLastDetectorProvenanceMock: vi.fn(),
   setLastGitHeadMock: vi.fn(),
+  setCodeGraphScopeMock: vi.fn(),
+  getStoredCodeGraphScopeMock: vi.fn(),
+  getCodeGraphMetadataMock: vi.fn(),
+  setCodeGraphMetadataMock: vi.fn(),
+  getParseDiagnosticsSummaryMock: vi.fn(),
+  recordParseDiagnosticMock: vi.fn(),
+  clearParseDiagnosticMock: vi.fn(),
   upsertFileMock: vi.fn(),
   replaceNodesMock: vi.fn(),
   replaceEdgesMock: vi.fn(),
@@ -31,6 +38,13 @@ vi.mock('../code_graph/lib/code-graph-db.js', () => ({
   getLastGoldVerification: mocks.getLastGoldVerificationMock,
   setLastDetectorProvenance: mocks.setLastDetectorProvenanceMock,
   setLastGitHead: mocks.setLastGitHeadMock,
+  setCodeGraphScope: mocks.setCodeGraphScopeMock,
+  getStoredCodeGraphScope: mocks.getStoredCodeGraphScopeMock,
+  getCodeGraphMetadata: mocks.getCodeGraphMetadataMock,
+  setCodeGraphMetadata: mocks.setCodeGraphMetadataMock,
+  getParseDiagnosticsSummary: mocks.getParseDiagnosticsSummaryMock,
+  recordParseDiagnostic: mocks.recordParseDiagnosticMock,
+  clearParseDiagnostic: mocks.clearParseDiagnosticMock,
   upsertFile: mocks.upsertFileMock,
   replaceNodes: mocks.replaceNodesMock,
   replaceEdges: mocks.replaceEdgesMock,
@@ -59,6 +73,7 @@ function createDbWithNodeCount(nodeCount: number) {
       get: vi.fn(() => ({ c: nodeCount })),
       all: vi.fn(() => []),
     })),
+    transaction: vi.fn((fn: () => void) => fn),
   };
 }
 
@@ -75,6 +90,13 @@ describe('ensure-ready', () => {
     });
     mocks.getLastGitHeadMock.mockReturnValue(null);
     mocks.getLastGoldVerificationMock.mockReturnValue(null);
+    mocks.getStoredCodeGraphScopeMock.mockReturnValue({
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      label: 'end-user code only',
+      source: 'default',
+    });
+    mocks.getCodeGraphMetadataMock.mockReturnValue(null);
+    mocks.getParseDiagnosticsSummaryMock.mockReturnValue({ affectedFiles: 0, recentErrors: [] });
     mocks.upsertFileMock.mockReturnValue(1);
     mocks.ensureFreshFilesMock.mockReturnValue({ fresh: [], stale: [] });
     mocks.isFileStaleMock.mockReturnValue(false);
@@ -262,7 +284,11 @@ describe('ensure-ready', () => {
     it('keeps git HEAD drift as full-scan territory when tracked files look up-to-date on disk', async () => {
       mocks.getDbMock.mockReturnValue(createDbWithNodeCount(1));
       mocks.getLastGitHeadMock.mockReturnValue('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-      mocks.execSyncMock.mockReturnValue('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n');
+      mocks.execSyncMock.mockImplementation((command: string) => (
+        command.startsWith('git diff')
+          ? 'fresh.ts\n'
+          : 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n'
+      ));
       mocks.getTrackedFilesMock.mockReturnValue(['/tmp/test-root/fresh.ts']);
       mocks.ensureFreshFilesMock.mockReturnValue({ fresh: ['/tmp/test-root/fresh.ts'], stale: [] });
 
@@ -297,6 +323,50 @@ describe('ensure-ready', () => {
       expect(result.freshness).toBe('stale');
       expect(result.inlineIndexPerformed).toBe(false);
       expect(result.reason).toContain('inline full scan skipped for read path');
+      expect(mocks.indexFilesMock).not.toHaveBeenCalled();
+    });
+
+    it('allows guarded inline full scan when stored scope matches active scope and parse backlog is clean', async () => {
+      const staleFiles = Array.from({ length: 51 }, (_, index) => `/tmp/test-root/stale-${index}.ts`);
+      mocks.getDbMock.mockReturnValue(createDbWithNodeCount(1));
+      mocks.getTrackedFilesMock.mockReturnValue(staleFiles);
+      mocks.ensureFreshFilesMock
+        .mockReturnValueOnce({ fresh: [], stale: staleFiles })
+        .mockReturnValueOnce({ fresh: staleFiles, stale: [] });
+
+      const { ensureCodeGraphReady } = await import('../code_graph/lib/ensure-ready.js');
+      const result = await ensureCodeGraphReady('/tmp/test-root', {
+        allowInlineIndex: true,
+        allowInlineFullScan: false,
+        allowGuardedInlineFullScan: true,
+      });
+
+      expect(result.freshness).toBe('fresh');
+      expect(result.action).toBe('none');
+      expect(result.inlineIndexPerformed).toBe(true);
+      expect(result.autoRescanSafety).toBe('allowed');
+      expect(result.selfHealAttempted).toBe(true);
+      expect(mocks.indexFilesMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('blocks guarded inline full scan when parse diagnostics are backlogged', async () => {
+      const staleFiles = Array.from({ length: 51 }, (_, index) => `/tmp/test-root/stale-${index}.ts`);
+      mocks.getDbMock.mockReturnValue(createDbWithNodeCount(1));
+      mocks.getTrackedFilesMock.mockReturnValue(staleFiles);
+      mocks.ensureFreshFilesMock.mockReturnValue({ fresh: [], stale: staleFiles });
+      mocks.getParseDiagnosticsSummaryMock.mockReturnValue({ affectedFiles: 1, recentErrors: [] });
+
+      const { ensureCodeGraphReady } = await import('../code_graph/lib/ensure-ready.js');
+      const result = await ensureCodeGraphReady('/tmp/test-root', {
+        allowInlineIndex: true,
+        allowInlineFullScan: false,
+        allowGuardedInlineFullScan: true,
+      });
+
+      expect(result.action).toBe('full_scan');
+      expect(result.inlineIndexPerformed).toBe(false);
+      expect(result.autoRescanSafety).toBe('blocked');
+      expect(result.autoRescanBlockReason).toBe('parse_error_backlog');
       expect(mocks.indexFilesMock).not.toHaveBeenCalled();
     });
   });

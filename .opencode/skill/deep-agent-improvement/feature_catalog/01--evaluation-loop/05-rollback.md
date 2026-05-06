@@ -27,16 +27,16 @@ The rollback helper is deliberately narrow. It does not emit journal rows, re-ru
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
-| `.opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
-| `.opencode/skill/sk-improve-agent/references/rollback_runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
+| `.opencode/skill/deep-agent-improvement/scripts/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
+| `.opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
+| `.opencode/skill/deep-agent-improvement/references/rollback_runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/mirror_drift_policy.md` | Policy reference | Separates rollback from later mirror-review work. |
-| `.opencode/skill/sk-improve-agent/references/promotion_rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
+| `.opencode/skill/deep-agent-improvement/references/mirror_drift_policy.md` | Policy reference | Separates rollback from later mirror-review work. |
+| `.opencode/skill/deep-agent-improvement/references/promotion_rules.md` | Policy reference | Defines when rollback-ready evidence must exist before promotion proceeds. |
 
 ---
 

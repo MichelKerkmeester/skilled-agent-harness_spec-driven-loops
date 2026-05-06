@@ -40,7 +40,6 @@ markdown. Cover build, test, staging, prod, and rollback branches.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: produces clean ASCII grid; foreground OK.
-- **cli-copilot (claude-opus-4.7)**: tends to add prose; verify final code block is pure ASCII.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact; expect a single fenced block.
 
 ## Success Criteria

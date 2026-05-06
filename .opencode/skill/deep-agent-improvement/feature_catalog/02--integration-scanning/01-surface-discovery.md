@@ -27,17 +27,17 @@ The discovery map includes the consolidated advisor script at `.opencode/skill/s
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
-| `.opencode/skill/sk-improve-agent/references/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
+| `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
+| `.opencode/skill/deep-agent-improvement/references/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
 | `.opencode/command/improve/agent.md` | Command | Uses the integration report as part of loop setup and review. |
-| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
+| `.opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/evaluator_contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
-| `.opencode/skill/sk-improve-agent/references/target_onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
+| `.opencode/skill/deep-agent-improvement/references/evaluator_contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
+| `.opencode/skill/deep-agent-improvement/references/target_onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
 
 ---
 

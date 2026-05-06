@@ -27,17 +27,17 @@ The current release ships only this dynamic path. `target_manifest.jsonc` enable
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/generate-profile.cjs` | Profile builder | Parses agent markdown and emits the derived checks used by the scorer. |
-| `.opencode/skill/sk-improve-agent/assets/target_manifest.jsonc` | Manifest | Declares dynamic profiling as the canonical path and leaves the static target catalog empty. |
-| `.opencode/skill/sk-improve-agent/references/target_onboarding.md` | Operator reference | Requires dynamic-profile generation when new targets are onboarded. |
-| `.opencode/skill/sk-improve-agent/references/evaluator_contract.md` | Contract reference | Defines dynamic mode as the only scoring surface. |
+| `.opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs` | Profile builder | Parses agent markdown and emits the derived checks used by the scorer. |
+| `.opencode/skill/deep-agent-improvement/assets/target_manifest.jsonc` | Manifest | Declares dynamic profiling as the canonical path and leaves the static target catalog empty. |
+| `.opencode/skill/deep-agent-improvement/references/target_onboarding.md` | Operator reference | Requires dynamic-profile generation when new targets are onboarded. |
+| `.opencode/skill/deep-agent-improvement/references/evaluator_contract.md` | Contract reference | Defines dynamic mode as the only scoring surface. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/agent/improve-agent.md` | Consumed target example | Shows the section, rules, capability scan, and related-resource patterns that the generator is designed to parse. |
-| `.opencode/skill/sk-improve-agent/README.md` | Package reference | Documents that no static profiles ship in the current release. |
+| `.opencode/skill/deep-agent-improvement/README.md` | Package reference | Documents that no static profiles ship in the current release. |
 
 ---
 

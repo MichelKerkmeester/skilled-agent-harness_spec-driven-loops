@@ -43,7 +43,6 @@ and tell me which sections fail core_standards or workflows guidance.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: short prompt fits inline; default foreground dispatch is fine.
-- **cli-copilot (claude-opus-4.7)**: invoke directly; expect verbose checklist with citations.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise structured output.
 
 ## Success Criteria

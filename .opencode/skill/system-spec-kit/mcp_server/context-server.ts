@@ -85,12 +85,17 @@ import { isGraphUnifiedEnabled } from './lib/search/graph-flags.js';
 import * as graphDb from './code_graph/lib/code-graph-db.js';
 import { detectRuntime, type RuntimeInfo } from './code_graph/lib/runtime-detection.js';
 import {
+  DB_FILENAME as SKILL_GRAPH_DB_FILENAME,
   closeDb as closeSkillGraphDb,
   indexSkillMetadata,
   initDb as initSkillGraphDb,
 } from './lib/skill-graph/skill-graph-db.js';
 import { computeAdvisorSourceSignature } from './skill_advisor/lib/freshness.js';
-import { publishSkillGraphGeneration } from './skill_advisor/lib/freshness/generation.js';
+import {
+  getSkillGraphGenerationPath,
+  publishSkillGraphGeneration,
+} from './skill_advisor/lib/freshness/generation.js';
+import { readAdvisorStatus } from './skill_advisor/handlers/advisor-status.js';
 import * as sessionBoost from './lib/search/session-boost.js';
 import * as causalBoost from './lib/search/causal-boost.js';
 import * as bm25Index from './lib/search/bm25-index.js';
@@ -1467,6 +1472,25 @@ function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof ind
   );
 }
 
+function getSkillGraphSqlitePath(): string {
+  return path.join(DATABASE_DIR, SKILL_GRAPH_DB_FILENAME);
+}
+
+function assertSkillGraphLivePublication(workspaceRoot: string): { ok: true } | { ok: false; reason: string } {
+  if (!fs.existsSync(getSkillGraphSqlitePath())) {
+    return { ok: false, reason: 'sqlite-missing' };
+  }
+  if (!fs.existsSync(getSkillGraphGenerationPath(workspaceRoot))) {
+    return { ok: false, reason: 'generation-missing' };
+  }
+
+  const status = readAdvisorStatus({ workspaceRoot });
+  if (status.freshness !== 'live' || status.trustState.state === 'absent') {
+    return { ok: false, reason: `advisor-status-${status.freshness}-${status.trustState.state}` };
+  }
+  return { ok: true };
+}
+
 async function runSkillGraphIndex(trigger: string): Promise<void> {
   if (skillGraphScanInProgress) {
     skillGraphScanQueued = true;
@@ -1491,6 +1515,17 @@ async function runSkillGraphIndex(trigger: string): Promise<void> {
       state: 'live',
       sourceSignature,
     });
+    const liveAssertion = assertSkillGraphLivePublication(process.cwd());
+    if (!liveAssertion.ok) {
+      publishSkillGraphGeneration({
+        workspaceRoot: process.cwd(),
+        changedPaths: [skillGraphSourceDir],
+        reason: 'post-index-assertion-failed',
+        state: 'stale',
+        sourceSignature,
+      });
+      console.warn(`[context-server] Skill graph post-index assertion failed: ${liveAssertion.reason}`);
+    }
   } catch (skillGraphIndexErr: unknown) {
     const message = skillGraphIndexErr instanceof Error ? skillGraphIndexErr.message : String(skillGraphIndexErr);
     console.warn('[context-server] Skill graph index failed:', message);

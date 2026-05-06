@@ -57,7 +57,7 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 | CLI orchestrator skills | 4 | cli-claude-code, cli-codex, cli-gemini, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
-| Documentation, research, review, and improvement skills | 5 | sk-improve-agent, deep-research, deep-review, sk-doc, sk-improve-prompt |
+| Documentation, research, review, and improvement skills | 5 | deep-agent-improvement, deep-research, deep-review, sk-doc, sk-prompt |
 | Git and system skills | 2 | sk-git, system-spec-kit |
 | Skills with local scripts/ | 12 | See Section 4 for the current script-bearing folders |
 | Native advisor tools | 3 | `advisor_recommend`, `advisor_status`, `advisor_validate` |
@@ -169,11 +169,11 @@ The skill system covers four distinct workflow domains.
 
 | Skill | Version | Description |
 | --- | --- | --- |
-| `sk-improve-agent` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
+| `deep-agent-improvement` | 1.0.0.0 | Evaluator-first agent improvement with 5-dimension integration-aware scoring, dynamic profiling, deterministic benchmarks, and guarded promotion |
 | `deep-research` | 1.2.0 | Autonomous research loop with iterative investigation, externalized state, and convergence detection |
 | `deep-review` | 1.0.0 | Autonomous iterative code review with severity-weighted findings, dimension coverage, convergence detection, and release readiness verdicts |
 | `sk-doc` | 1.3.0.0 | Markdown quality enforcement, component templates, validation scripts, and DQI scoring |
-| `sk-improve-prompt` | 1.2.0.0 | Prompt engineering using 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) |
+| `sk-prompt` | 1.2.0.0 | Prompt engineering using 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) |
 
 **Git and System Skills**
 
@@ -205,14 +205,14 @@ The skill system covers four distinct workflow domains.
 │   ├── feature_catalog/
 │   ├── manual_testing_playbook/
 │   └── scripts/            # Python compat shim, graph export compiler, regression, fixtures, out
-├── sk-improve-agent/       # Evaluator-first agent improvement loop
+├── deep-agent-improvement/       # Evaluator-first agent improvement loop
 ├── sk-code/                # Multi-stack coding standards, references, assets
 ├── sk-code-review/         # Findings-first code review baseline
 ├── deep-research/       # Autonomous deep research loop
 ├── deep-review/         # Autonomous iterative code review
 ├── sk-doc/                 # Documentation quality and templates
 ├── sk-git/                 # Git workflow orchestrator
-├── sk-improve-prompt/      # Prompt engineering specialist
+├── sk-prompt/      # Prompt engineering specialist
 ├── system-spec-kit/        # Spec folder and memory foundation
 └── README.md               # This file
 ```
@@ -256,7 +256,7 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | `deep-review` | Yes | No | Yes |
 | `sk-doc` | Yes | Yes | Yes |
 | `sk-git` | Yes | Yes | No |
-| `sk-improve-prompt` | Yes | Yes | No |
+| `sk-prompt` | Yes | Yes | No |
 | `system-spec-kit` | Yes | Yes | Yes |
 
 <!-- /ANCHOR:structure -->

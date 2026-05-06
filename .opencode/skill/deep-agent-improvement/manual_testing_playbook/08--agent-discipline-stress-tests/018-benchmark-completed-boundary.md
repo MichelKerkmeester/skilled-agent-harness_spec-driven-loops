@@ -55,7 +55,7 @@ Operators run the exact prompt and command sequence for `CP-045` and confirm the
 ```bash
 rm -rf /tmp/cp-045-sandbox /tmp/cp-045-sandbox-baseline /tmp/cp-045-spec
 mkdir -p /tmp/cp-045-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-045-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-045-sandbox
 cp -a /tmp/cp-045-sandbox /tmp/cp-045-sandbox-baseline
 git status --porcelain > /tmp/cp-045-pre.txt
 cat > /tmp/cp-045-task.txt <<'EOF'
@@ -100,7 +100,6 @@ diff /tmp/cp-045-pre.txt /tmp/cp-045-post.txt > /tmp/cp-045-tripwire.diff; echo 
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | cli-copilot skill surface |
 
 ### Implementation And Test Anchors
 
@@ -108,9 +107,9 @@ diff /tmp/cp-045-pre.txt /tmp/cp-045-post.txt > /tmp/cp-045-tripwire.diff; echo 
 |---|---|
 | `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Benchmark-completed event path |
 | `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Benchmark-completed event path |
-| `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json` | Static benchmark profile |
-| `.opencode/skill/sk-improve-agent/assets/benchmark-fixtures/*.json` | Static benchmark fixtures |
-| `.opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs` | Fixture materializer |
+| `.opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json` | Static benchmark profile |
+| `.opencode/skill/deep-agent-improvement/assets/benchmark-fixtures/*.json` | Static benchmark fixtures |
+| `.opencode/skill/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs` | Fixture materializer |
 
 ## 5. SOURCE METADATA
 

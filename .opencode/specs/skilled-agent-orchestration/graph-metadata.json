@@ -1,8 +1,8 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
-    "last_active_at": "2026-05-06T10:00:00.000Z",
-    "last_save_at": "2026-05-05T17:06:22.626Z"
+    "last_active_child_id": "skilled-agent-orchestration/079-sk-deep-agent-improvement",
+    "last_active_at": "2026-05-06T11:34:35.538Z",
+    "last_save_at": "2026-05-06T11:34:35.538Z"
   },
   "children_ids": [
     "skilled-agent-orchestration/051-cli-opencode-providers",
@@ -27,6 +27,8 @@
     "skilled-agent-orchestration/070-sk-deep-rename",
     "skilled-agent-orchestration/076-sk-doc-router-coverage-v3",
     "skilled-agent-orchestration/077-spec-kit-coco-sk-code-research",
-    "skilled-agent-orchestration/080-multi-ai-council-output-protocol"
+    "skilled-agent-orchestration/080-multi-ai-council-output-protocol",
+    "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
+    "skilled-agent-orchestration/079-sk-deep-agent-improvement"
   ]
 }

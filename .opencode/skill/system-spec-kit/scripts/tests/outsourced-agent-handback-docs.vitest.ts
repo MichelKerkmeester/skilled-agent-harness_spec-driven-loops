@@ -14,14 +14,12 @@ function readWorkspaceFile(relativePath: string): string {
 describe('outsourced agent handback docs', () => {
   const skillDocs = [
     '.opencode/skill/cli-codex/SKILL.md',
-    '.opencode/skill/cli-copilot/SKILL.md',
     '.opencode/skill/cli-claude-code/SKILL.md',
     '.opencode/skill/cli-gemini/SKILL.md',
   ];
 
   const promptDocs = [
     '.opencode/skill/cli-codex/assets/prompt_templates.md',
-    '.opencode/skill/cli-copilot/assets/prompt_templates.md',
     '.opencode/skill/cli-claude-code/assets/prompt_templates.md',
     '.opencode/skill/cli-gemini/assets/prompt_templates.md',
   ];

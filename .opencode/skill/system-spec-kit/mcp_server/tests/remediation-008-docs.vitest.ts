@@ -19,7 +19,7 @@ describe('008 search fusion and reranker remediation docs', () => {
 
     expect(spec).toContain('sk-deep-research/feature_catalog/` -- root catalog + 14 feature entries across 4 categories');
     expect(spec).toContain('sk-deep-review/feature_catalog/` -- root catalog + 19 feature entries across 4 categories');
-    expect(spec).toContain('sk-improve-agent/feature_catalog/` -- root catalog + 13 feature entries across 3 categories');
+    expect(spec).toContain('deep-agent-improvement/feature_catalog/` -- root catalog + 13 feature entries across 3 categories');
   });
 
   it('documents the skill advisor plugin manifest and prompt hook contract', () => {

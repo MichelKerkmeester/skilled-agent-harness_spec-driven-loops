@@ -41,7 +41,6 @@ standard agent and command templates and wire the command to dispatch the agent.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: dispatches in a single foreground turn; inlines both files.
-- **cli-copilot (claude-opus-4.7)**: emits two complete file blocks; expect frontmatter on both.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: produces compact output; verify wiring stanza is present.
 
 ## Success Criteria

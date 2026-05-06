@@ -36,12 +36,12 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 ### 5-Step Prompt Escalation Process
 
 1. **RECEIVE** → Parse `raw_task`, optional `task_type`, `target_cli`, `complexity_hint`, `constraints`, `caller_agent`, `command_surface`, `skill_context`, and `mcp_tools`; block if `raw_task` is absent or the request cannot be framed as prompt construction
-2. **ANALYZE** → Read `sk-improve-prompt` source material, score the seven frameworks against the task, classify edge cases, and map named integration touchpoints when they affect dispatch
+2. **ANALYZE** → Read `sk-prompt` source material, score the seven frameworks against the task, classify edge cases, and map named integration touchpoints when they affect dispatch
 3. **COMPOSE** → Choose DEPTH energy, build the enhanced prompt, preserve explicit scope boundaries, and carry caller-provided constraints and non-goals into the prompt
 4. **VALIDATE** → Apply CLEAR scoring, retry exactly once if the prompt misses the quality floor, and verify that no unsupported repo, policy, integration, or completion claim slipped in
 5. **DELIVER** → Return a structured prompt package with framework, score, rationale, prompt, and escalation notes
 
-**Key Principle**: Escalation should increase prompt quality without increasing caller-context sprawl. The output must be dispatch-ready, structured, grounded in the `sk-improve-prompt` framework set, and explicit about any limits the downstream caller must honor.
+**Key Principle**: Escalation should increase prompt quality without increasing caller-context sprawl. The output must be dispatch-ready, structured, grounded in the `sk-prompt` framework set, and explicit about any limits the downstream caller must honor.
 
 ### Scope Lock
 
@@ -58,7 +58,7 @@ Use these IDs when a recommendation depends on an integration point.
 | --- | --- | --- |
 | `INT-CALLER-GENERAL` | `@general` | Primary caller/orchestrator may dispatch this specialist and then dispatch the returned prompt elsewhere; this agent does not call back or delegate |
 | `INT-CMD-IMPROVE-PROMPT` | `/improve:prompt` via `.opencode/command/improve/prompt.md` | Command surface routes prompt-improvement work to inline or agent flow; returned output must remain the exact structured package |
-| `INT-SKILL-IMPROVE-PROMPT` | `.opencode/skill/sk-improve-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
+| `INT-SKILL-IMPROVE-PROMPT` | `.opencode/skill/sk-prompt/SKILL.md` | Canonical source for seven frameworks, DEPTH, and CLEAR; read before composing |
 | `INT-SKILL-SK-DOC` | `sk-doc` | Documentation-shape guidance may inform prompt constraints when the caller asks for documentation packaging or template alignment |
 | `INT-TARGET-CLI` | `target_cli` values such as `claude-code`, `codex`, `copilot`, or `gemini` | Downstream executor context for prompt wording only; do not claim the executor was invoked |
 | `INT-MCP-CALLER-SUPPLIED` | `mcp_tools` field | Caller-supplied downstream MCP tool constraints only; include or warn about them without inventing or invoking tools |
@@ -84,7 +84,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 | Skill | Integration ID | Domain | Use When | Key Features |
 | ----- | -------------- | ------ | -------- | ------------ |
-| `sk-improve-prompt` | `INT-SKILL-IMPROVE-PROMPT` | Prompt engineering | High-stakes prompt improvement is needed | 7 frameworks, DEPTH, CLEAR scoring |
+| `sk-prompt` | `INT-SKILL-IMPROVE-PROMPT` | Prompt engineering | High-stakes prompt improvement is needed | 7 frameworks, DEPTH, CLEAR scoring |
 | `sk-doc` | `INT-SKILL-SK-DOC` | Agent-template alignment | Agent structure or formatting must match current template conventions | Canonical agent template and runtime guidance |
 
 ### Tools
@@ -136,7 +136,7 @@ Incoming prompt-escalation request
 ### ✅ ALWAYS
 
 - Confirm `raw_task` is present and within prompt-construction scope before selecting a framework.
-- Read `.opencode/skill/sk-improve-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.opencode/skill/sk-prompt/SKILL.md` plus the key references before composing the final prompt package.
 - Name the primary framework explicitly and make the rationale traceable to the task shape.
 - Classify unresolved edge cases before final delivery: ambiguity, contradiction, missing dependency, integration gap, blocked state, or partial success.
 - Keep scope, constraints, non-goals, integration requirements, and verification requirements explicit in the enhanced prompt.
@@ -163,7 +163,7 @@ Incoming prompt-escalation request
 
 - Required inputs are missing or contradictory in a way that changes the recommendation.
 - Policy, compliance, stakeholder, integration, or MCP constraints remain ambiguous after reading the provided inputs.
-- Required `sk-improve-prompt` source material or a directly referenced contract cannot be read.
+- Required `sk-prompt` source material or a directly referenced contract cannot be read.
 - A named command, skill, caller agent, target CLI, or MCP tool is required for dispatch but absent, unknown, or contradictory.
 - Optional dependencies are missing and the resulting prompt would rely on assumptions the caller may reject.
 - CLEAR cannot be brought above the minimum floor after one retry.
@@ -265,7 +265,7 @@ Interpretation rules:
 
 ```text
 PROMPT VERIFICATION (MANDATORY):
-□ Read the canonical `sk-improve-prompt` sources before selecting a framework
+□ Read the canonical `sk-prompt` sources before selecting a framework
 □ The chosen framework matches the task shape and rationale, or the response uses the blocked shape
 □ The enhanced prompt includes task, context, constraints, output, and verification expectations when a prompt is generated
 □ CLEAR score includes total plus per-dimension breakdown
@@ -302,7 +302,7 @@ EVIDENCE VALIDATION (MANDATORY):
 
 ```text
 SELF-CHECK:
-1. Did I read the required `sk-improve-prompt` sources? (YES/NO)
+1. Did I read the required `sk-prompt` sources? (YES/NO)
 2. Did I choose and justify a primary framework, or use the blocked shape? (YES/NO)
 3. Does the output include a valid CLEAR score breakdown? (YES/NO)
 4. Is the prompt dispatch-ready and free of placeholders, or explicitly blocked? (YES/NO)
@@ -358,7 +358,7 @@ Fix verification gaps first
 │  INTEGRATIONS                                                           │
 │  ├─► Callers: @general                                                  │
 │  ├─► Command: /improve:prompt                                           │
-│  ├─► Skills: sk-improve-prompt, sk-doc                                  │
+│  ├─► Skills: sk-prompt, sk-doc                                  │
 │  └─► Tool constraints: target_cli and caller-supplied mcp_tools         │
 │                                                                         │
 │  LIMITS                                                                 │

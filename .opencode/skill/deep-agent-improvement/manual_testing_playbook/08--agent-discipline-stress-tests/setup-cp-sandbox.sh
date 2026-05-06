@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
 SANDBOX_DIR="/tmp/cp-improve-sandbox"
-FIXTURE_ROOT="${REPO_ROOT}/.opencode/skill/sk-improve-agent/test-fixtures/060-stress-test"
+FIXTURE_ROOT="${REPO_ROOT}/.opencode/skill/deep-agent-improvement/test-fixtures/060-stress-test"
 
 usage() {
   echo "Usage: setup-cp-sandbox.sh [--sandbox-dir PATH]"
@@ -60,7 +60,7 @@ copy_file() {
 }
 
 require_path "${REPO_ROOT}/.opencode/command/improve"
-require_path "${REPO_ROOT}/.opencode/skill/sk-improve-agent"
+require_path "${REPO_ROOT}/.opencode/skill/deep-agent-improvement"
 require_path "${FIXTURE_ROOT}/.opencode/agent/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.gemini/agents/cp-improve-target.md"
@@ -70,7 +70,7 @@ rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"
 
 copy_dir "${REPO_ROOT}/.opencode/command/improve" "${SANDBOX_DIR}/.opencode/command/improve"
-copy_dir "${REPO_ROOT}/.opencode/skill/sk-improve-agent" "${SANDBOX_DIR}/.opencode/skill/sk-improve-agent"
+copy_dir "${REPO_ROOT}/.opencode/skill/deep-agent-improvement" "${SANDBOX_DIR}/.opencode/skill/deep-agent-improvement"
 
 copy_file "${FIXTURE_ROOT}/.opencode/agent/cp-improve-target.md" "${SANDBOX_DIR}/.opencode/agent/cp-improve-target.md"
 copy_file "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md" "${SANDBOX_DIR}/.claude/agents/cp-improve-target.md"

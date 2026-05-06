@@ -1,6 +1,6 @@
 ---
 title: Benchmark Operator Guide
-description: Step-by-step guide for running repeatable fixture benchmarks for sk-improve-agent target profiles.
+description: Step-by-step guide for running repeatable fixture benchmarks for deep-agent-improvement target profiles.
 ---
 
 # Benchmark Operator Guide
@@ -33,12 +33,12 @@ The copied runtime templates use the `improvement_*` asset names, but the packet
 ## 2. RUNNER COMMAND
 
 ```text
-node .opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs \
-  --profile .opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json \
+node .opencode/skill/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs \
+  --profile .opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 
-node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs \
-  --profile .opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json \
+node .opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs \
+  --profile .opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 ```
 
@@ -47,7 +47,7 @@ node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs \
 When running with an integration report, add the `--integration-report` flag:
 
 ```text
-node scripts/run-benchmark.cjs --profile .opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
+node scripts/run-benchmark.cjs --profile .opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
 ```
 
 The integration report adds `integrationScore` and `integrationDetails` to the benchmark output:

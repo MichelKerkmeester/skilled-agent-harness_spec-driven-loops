@@ -27,17 +27,17 @@ The live mirror set is narrower than some of the prose references around it. `sc
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/scan-integration.cjs` | Scanner | Defines the mirror templates and the 2-of-3 signal-matching parity check. |
-| `.opencode/skill/sk-improve-agent/references/integration_scanning.md` | Reference | Describes the mirror sync statuses and signal-matching algorithm. |
-| `.opencode/skill/sk-improve-agent/references/mirror_drift_policy.md` | Policy reference | Defines how mirror drift is reviewed after canonical change. |
-| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | Scoring consumer | Converts missing or diverged mirrors into the integration score penalty. |
+| `.opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs` | Scanner | Defines the mirror templates and the 2-of-3 signal-matching parity check. |
+| `.opencode/skill/deep-agent-improvement/references/integration_scanning.md` | Reference | Describes the mirror sync statuses and signal-matching algorithm. |
+| `.opencode/skill/deep-agent-improvement/references/mirror_drift_policy.md` | Policy reference | Defines how mirror drift is reviewed after canonical change. |
+| `.opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs` | Scoring consumer | Converts missing or diverged mirrors into the integration score penalty. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/benchmark_operator_guide.md` | Operator reference | Documents the mirror-score weighting used when benchmark runs include integration data. |
-| `.opencode/skill/sk-improve-agent/references/no_go_conditions.md` | Safety reference | Treats undocumented mirror drift as a blocker for safe loop expansion. |
+| `.opencode/skill/deep-agent-improvement/references/benchmark_operator_guide.md` | Operator reference | Documents the mirror-score weighting used when benchmark runs include integration data. |
+| `.opencode/skill/deep-agent-improvement/references/no_go_conditions.md` | Safety reference | Treats undocumented mirror drift as a blocker for safe loop expansion. |
 
 ---
 

@@ -30,17 +30,17 @@ The runtime templates still use the `improvement_*` asset names in the skill fol
 | `.opencode/command/improve/agent.md` | Command | Collects target path, spec folder, mode, and iteration inputs before the loop starts. |
 | `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Workflow | Creates the runtime directories, scans integration, generates the dynamic profile, and records the baseline in autonomous mode. |
 | `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Workflow | Mirrors the init path in interactive mode and adds approval gates before baseline recording. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_config.json` | Runtime template | Defines runtime paths, scoring weights, stop rules, and file protection defaults. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_charter.md` | Runtime template | Freezes the mission, policy boundary, audit-trail requirements, and legal-stop gates for the run. |
-| `.opencode/skill/sk-improve-agent/assets/improvement_strategy.md` | Runtime template | Splits operator-owned hypothesis fields from reducer-owned progress fields. |
-| `.opencode/skill/sk-improve-agent/assets/target_manifest.jsonc` | Runtime template | Carries target classification, dynamic-profile hooks, and fixed or forbidden surfaces. |
+| `.opencode/skill/deep-agent-improvement/assets/improvement_config.json` | Runtime template | Defines runtime paths, scoring weights, stop rules, and file protection defaults. |
+| `.opencode/skill/deep-agent-improvement/assets/improvement_charter.md` | Runtime template | Freezes the mission, policy boundary, audit-trail requirements, and legal-stop gates for the run. |
+| `.opencode/skill/deep-agent-improvement/assets/improvement_strategy.md` | Runtime template | Splits operator-owned hypothesis fields from reducer-owned progress fields. |
+| `.opencode/skill/deep-agent-improvement/assets/target_manifest.jsonc` | Runtime template | Carries target classification, dynamic-profile hooks, and fixed or forbidden surfaces. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/loop_protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
-| `.opencode/skill/sk-improve-agent/references/quick_reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
+| `.opencode/skill/deep-agent-improvement/references/loop_protocol.md` | Reference | Describes the initialization sequence and copied runtime artifacts. |
+| `.opencode/skill/deep-agent-improvement/references/quick_reference.md` | Reference | Confirms the packet-local runtime layout and runtime file naming. |
 
 ---
 

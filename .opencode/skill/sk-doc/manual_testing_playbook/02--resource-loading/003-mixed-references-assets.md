@@ -39,7 +39,6 @@ purpose, install, usage, configuration, and security caveats.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: foreground OK; produces filled scaffold inline.
-- **cli-copilot (claude-opus-4.7)**: emits a complete README with all required sections.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact README; verify section completeness.
 
 ## Success Criteria

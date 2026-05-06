@@ -38,7 +38,6 @@ Create an install guide for the new MCP-Postgres server we're shipping. Cover pr
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: medium prompt; expect concise structured output with both resource paths and a section outline.
-- **cli-copilot (claude-opus-4.7)**: invoke directly; expect verbose section breakdown — verify no hallucinated "install_rubric.md" or similar fabricated paths.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise output with both resource paths.
 
 ## Success Criteria

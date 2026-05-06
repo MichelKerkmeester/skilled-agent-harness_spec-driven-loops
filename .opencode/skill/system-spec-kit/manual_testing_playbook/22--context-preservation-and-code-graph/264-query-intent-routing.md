@@ -122,7 +122,7 @@ As a context-and-code-graph validation operator, validate the canonical IntentTe
 
 ### Commands
 
-1. `memory_context({ input:"what calls handleMemoryContext" })` from cli-copilot — capture IntentTelemetry envelope
+1. `memory_context({ input:"what calls handleMemoryContext" })` from cli-codex — capture IntentTelemetry envelope
 2. `memory_context({ input:"what calls handleMemoryContext" })` from cli-codex — capture envelope
 3. `memory_context({ input:"what calls handleMemoryContext" })` from cli-claude-code — capture envelope
 4. Compare the envelopes for shape parity (keys, field types, classifierVersion stability)

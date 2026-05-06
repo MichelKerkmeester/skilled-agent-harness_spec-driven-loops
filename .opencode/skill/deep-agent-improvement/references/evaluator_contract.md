@@ -5,7 +5,7 @@ description: Deterministic scoring and benchmark contract for target-profiled im
 
 # Evaluator Contract
 
-Contract for how `sk-improve-agent` scores candidates and benchmarks packet-local outputs. Use it when you need the exact evaluator inputs, outputs, rubric dimensions, and hard rejection behavior.
+Contract for how `deep-agent-improvement` scores candidates and benchmarks packet-local outputs. Use it when you need the exact evaluator inputs, outputs, rubric dimensions, and hard rejection behavior.
 
 ---
 

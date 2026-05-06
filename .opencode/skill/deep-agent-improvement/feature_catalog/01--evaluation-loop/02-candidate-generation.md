@@ -30,14 +30,14 @@ The YAML workflows own when candidate generation happens. Autonomous mode runs t
 | `.opencode/agent/improve-agent.md` | Proposal agent | Defines the proposal-only contract, required inputs, and runtime-only write boundary. |
 | `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Workflow | Dispatches the candidate-generation step on each autonomous iteration. |
 | `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Workflow | Gates candidate generation behind operator approval in interactive mode. |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Skill orchestration | Describes the bounded-candidate rule and the packet-local `candidates/` directory contract. |
+| `.opencode/skill/deep-agent-improvement/SKILL.md` | Skill orchestration | Describes the bounded-candidate rule and the packet-local `candidates/` directory contract. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/references/loop_protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
-| `.opencode/skill/sk-improve-agent/references/no_go_conditions.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
+| `.opencode/skill/deep-agent-improvement/references/loop_protocol.md` | Reference | Documents the proposal-first sequence and runtime-only candidate path. |
+| `.opencode/skill/deep-agent-improvement/references/no_go_conditions.md` | Safety reference | Stops the loop when mutator and scorer boundaries blur or scope broadens. |
 
 ---
 

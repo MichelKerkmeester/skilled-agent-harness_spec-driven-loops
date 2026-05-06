@@ -43,6 +43,12 @@ function reasonFor(freshness: AdvisorFreshness, force: boolean): RebuildReason {
   return freshness;
 }
 
+function shouldSkipRebuild(before: AdvisorStatusOutput, force: boolean): boolean {
+  return before.freshness === 'live'
+    && before.trustState.state !== 'absent'
+    && !force;
+}
+
 /** Rebuild the advisor skill graph on explicit operator request.
  *
  * `advisor_status` is diagnostic-only and never repairs stale state. Use this
@@ -60,7 +66,7 @@ export function rebuildAdvisorIndex(
   const before = readStatus({ workspaceRoot });
   const reason = reasonFor(before.freshness, args.force === true);
 
-  if (before.freshness === 'live' && args.force !== true) {
+  if (shouldSkipRebuild(before, args.force === true)) {
     return AdvisorRebuildOutputSchema.parse({
       rebuilt: false,
       skipped: true,

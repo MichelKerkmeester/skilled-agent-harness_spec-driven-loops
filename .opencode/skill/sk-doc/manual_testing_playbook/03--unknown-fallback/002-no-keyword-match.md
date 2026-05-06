@@ -34,7 +34,6 @@ Tell me about the weather.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: may try to answer the literal weather question — verify it instead emits the fallback.
-- **cli-copilot (claude-opus-4.7)**: usually asks clarifying question; expected.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: emits short refusal + fallback checklist.
 
 ## Success Criteria

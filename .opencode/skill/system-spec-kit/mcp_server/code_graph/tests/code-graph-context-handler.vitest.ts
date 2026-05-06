@@ -102,6 +102,7 @@ describe('code-graph-context handler', () => {
     expect(mocks.ensureCodeGraphReady).toHaveBeenCalledWith(process.cwd(), {
       allowInlineIndex: true,
       allowInlineFullScan: false,
+      allowGuardedInlineFullScan: true,
     });
     expect(parsed.data.readiness).toEqual({
       freshness: 'fresh',
@@ -326,6 +327,75 @@ describe('code-graph-context handler', () => {
       score: 0.83,
       snippet: 'handleThing();',
       range: { start: 42, end: 44 },
+    });
+  });
+
+  it('normalizes raw CocoIndex snake_case seed results', async () => {
+    mocks.buildContext.mockReturnValueOnce({
+      queryMode: 'neighborhood',
+      resolvedAnchors: [{
+        filePath: 'src/live.ts',
+        startLine: 7,
+        endLine: 9,
+        symbolId: 'symbol-live',
+        fqName: 'Live.handle',
+        kind: 'function',
+        confidence: 0.91,
+        resolution: 'exact',
+        score: 0.76,
+        snippet: 'export function handle() {}',
+        range: { start: 7, end: 9 },
+        provider: 'cocoindex',
+        source: 'cocoindex',
+      }],
+      graphContext: [],
+      textBrief: 'brief',
+      combinedSummary: 'summary',
+      nextActions: ['next'],
+      metadata: {
+        totalNodes: 0,
+        totalEdges: 0,
+        budgetUsed: 10,
+        budgetLimit: 1200,
+        deadlineMs: 400,
+        partialOutput: {
+          isPartial: false,
+          reasons: [],
+          omittedSections: 0,
+          omittedAnchors: 0,
+          truncatedText: false,
+        },
+        freshness: { lastScanAt: null, staleness: 'unknown' },
+      },
+    });
+
+    const result = await handleCodeGraphContext({
+      queryMode: 'neighborhood',
+      seeds: [{
+        file_path: 'src/live.ts',
+        start_line: 7,
+        end_line: 9,
+        content: 'export function handle() {}',
+        score: 0.76,
+      }],
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(mocks.buildContext).toHaveBeenCalledWith(expect.objectContaining({
+      seeds: [expect.objectContaining({
+        provider: 'cocoindex',
+        file: 'src/live.ts',
+        range: { start: 7, end: 9 },
+        score: 0.76,
+        snippet: 'export function handle() {}',
+        source: 'cocoindex',
+      })],
+    }));
+    expect(parsed.data.anchors[0]).toMatchObject({
+      file: 'src/live.ts',
+      line: 7,
+      provider: 'cocoindex',
+      snippet: 'export function handle() {}',
     });
   });
 

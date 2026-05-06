@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const detector = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skill/sk-improve-agent/scripts/trade-off-detector.cjs',
+  '.opencode/skill/deep-agent-improvement/scripts/trade-off-detector.cjs',
 )) as {
   HARD_DIMENSIONS: readonly string[];
   SOFT_DIMENSIONS: readonly string[];

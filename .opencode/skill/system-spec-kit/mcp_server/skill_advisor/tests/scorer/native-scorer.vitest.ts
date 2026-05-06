@@ -312,7 +312,7 @@ describe('027/003 native scorer units', () => {
     const projection = createFixtureProjection([
       skill({ id: 'sk-doc', description: 'Documentation and manual testing playbook authoring.' }),
       skill({ id: 'sk-deep-review', description: 'Deep review loop.' }),
-      skill({ id: 'sk-improve-agent', description: 'Improve agent quality.' }),
+      skill({ id: 'deep-agent-improvement', description: 'Improve agent quality.' }),
       skill({
         id: 'create:testing-playbook',
         kind: 'command',
@@ -340,7 +340,7 @@ describe('027/003 native scorer units', () => {
     const createTesting = top3.find((recommendation) => recommendation.skill === 'create:testing-playbook');
 
     expect(createTesting?.confidence).toBeGreaterThanOrEqual(0.6);
-    expect(top3.some((recommendation) => ['sk-deep-review', 'sk-improve-agent'].includes(recommendation.skill))).toBe(false);
+    expect(top3.some((recommendation) => ['sk-deep-review', 'deep-agent-improvement'].includes(recommendation.skill))).toBe(false);
   });
 
   it('065/004 canonicalizes command ids and skill ids through narrow alias groups', () => {

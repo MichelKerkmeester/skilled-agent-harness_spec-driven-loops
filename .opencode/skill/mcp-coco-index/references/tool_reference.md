@@ -264,11 +264,14 @@ Perform semantic search across the indexed codebase.
 ```
 
 **Response:** Array of search results, each containing:
-- `file`: File path relative to project root
-- `lines`: Start and end line numbers
-- `snippet`: Code excerpt
+- `file_path`: File path relative to project root
+- `start_line`: Start line number
+- `end_line`: End line number
+- `content`: Code excerpt
 - `score`: Relevance score (0.0 to 1.0)
 - `language`: Detected programming language
+
+**Interop note:** The live MCP protocol uses snake_case (`file_path`, `start_line`, `end_line`, `content`) as the canonical result shape. Consumers that also support older internal adapters should normalize aliases such as `file`, `filePath`, `lines.start`, `startLine`, and `snippet`, but new MCP callers should emit and expect the snake_case fields.
 
 > **Fork-specific telemetry.** Each result row also carries `dedupedAliases`, `uniqueResultCount`, `rankingSignals`, `source_realpath`, `content_hash`, `path_class`, and `raw_score` — these come from this skill's bundled fork (`0.2.3+spec-kit-fork.0.2.0`) and are NOT present in vanilla upstream cocoindex-code. Callers writing client code against this MCP must account for the extended shape. See [§7 Fork-Specific Output Telemetry](#-7-fork-specific-output-telemetry) for the full schema.
 

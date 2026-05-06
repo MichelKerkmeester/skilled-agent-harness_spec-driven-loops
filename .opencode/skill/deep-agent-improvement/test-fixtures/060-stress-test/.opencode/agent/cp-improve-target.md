@@ -1,6 +1,6 @@
 ---
 name: cp-improve-target
-description: Fixture target for packet 060 sk-improve-agent stress tests
+description: Fixture target for packet 060 deep-agent-improvement stress tests
 mode: subagent
 permission:
   read: allow

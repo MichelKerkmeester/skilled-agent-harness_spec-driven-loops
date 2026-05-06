@@ -33,6 +33,21 @@ function status(freshness: AdvisorStatusOutput['freshness'], generation: number)
   };
 }
 
+function statusWithTrustState(
+  freshness: AdvisorStatusOutput['freshness'],
+  trustState: AdvisorStatusOutput['trustState']['state'],
+  generation: number,
+): AdvisorStatusOutput {
+  const base = status(freshness, generation);
+  return {
+    ...base,
+    trustState: {
+      ...base.trustState,
+      state: trustState,
+    },
+  };
+}
+
 describe('advisor_rebuild handler', () => {
   it('rebuilds stale advisor state through the explicit repair path', () => {
     const readStatus = vi.fn()
@@ -96,6 +111,45 @@ describe('advisor_rebuild handler', () => {
       freshnessAfter: 'live',
     });
     expect(indexSkills).not.toHaveBeenCalled();
+  });
+
+  it('rebuilds when freshness is live but trust state is absent', () => {
+    const readStatus = vi.fn()
+      .mockReturnValueOnce(statusWithTrustState('live', 'absent', 3))
+      .mockReturnValueOnce(status('live', 4));
+    const indexSkills = vi.fn(() => ({
+      scannedFiles: 1,
+      indexedFiles: 1,
+      skippedFiles: 0,
+      indexedNodes: 1,
+      indexedEdges: 0,
+      rejectedEdges: 0,
+      deletedNodes: 0,
+      warnings: [],
+    }));
+    const publishGeneration = vi.fn();
+
+    const result = rebuildAdvisorIndex({}, {
+      workspaceRoot: '/workspace/project',
+      readStatus,
+      indexSkills,
+      publishGeneration,
+      sourceSignature: vi.fn(() => 'source-signature'),
+    });
+
+    expect(result).toMatchObject({
+      rebuilt: true,
+      skipped: false,
+      freshnessBefore: 'live',
+      freshnessAfter: 'live',
+      generationBefore: 3,
+      generationAfter: 4,
+    });
+    expect(indexSkills).toHaveBeenCalledWith('/workspace/project/.opencode/skill');
+    expect(publishGeneration).toHaveBeenCalledWith(expect.objectContaining({
+      state: 'live',
+      reason: 'advisor_rebuild',
+    }));
   });
 
   it('uses workspaceRoot from the public rebuild input when provided', () => {

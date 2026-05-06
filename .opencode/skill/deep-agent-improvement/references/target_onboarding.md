@@ -1,6 +1,6 @@
 ---
 title: Target Onboarding Guide
-description: How to add a new bounded target to sk-improve-agent without weakening guardrails.
+description: How to add a new bounded target to deep-agent-improvement without weakening guardrails.
 ---
 
 # Target Onboarding Guide
@@ -13,7 +13,7 @@ Workflow for onboarding new improve-agent targets while keeping evaluator discip
 
 ### Purpose
 
-Explains how to add a bounded target to `sk-improve-agent` without weakening the existing manifest and benchmark rules.
+Explains how to add a bounded target to `deep-agent-improvement` without weakening the existing manifest and benchmark rules.
 
 ### When to Use
 

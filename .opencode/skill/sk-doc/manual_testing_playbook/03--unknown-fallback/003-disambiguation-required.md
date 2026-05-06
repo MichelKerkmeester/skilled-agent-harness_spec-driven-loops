@@ -37,7 +37,6 @@ scenario as a catalog entry.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: may silently pick top-1 — verify both are scored.
-- **cli-copilot (claude-opus-4.7)**: typically asks "which do you want?"; acceptable disambiguation.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: compact tie-resolution; verify resource list.
 
 ## Success Criteria

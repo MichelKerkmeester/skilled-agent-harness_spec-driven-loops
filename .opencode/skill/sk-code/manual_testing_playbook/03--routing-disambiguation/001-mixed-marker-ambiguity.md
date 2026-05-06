@@ -14,7 +14,7 @@ B) Ask the user for explicit clarification.
 
 Either is acceptable IF the chosen behavior is documented in SKILL.md. What is NOT acceptable: silently picking one without surfacing the conflict.
 
-> **Note**: This scenario was the validation target for F-NEW-001 from the 2026-05-04 cli-copilot deep-review iteration. SKILL.md smart router pseudocode previously had a precedence bug (WEBFLOW markers capturing OPENCODE-targeted prompts; unconditional `SURFACE="UNKNOWN"` overwriting prior matches). **REMEDIATED 2026-05-04**: pseudocode restructured with explicit `if/elif/else` precedence — OPENCODE target/CWD wins over WEBFLOW markers. This scenario now exercises the documented precedence (Outcome A).
+> **Note**: This scenario was the validation target for F-NEW-001 from the 2026-05-04 deep-review iteration. SKILL.md smart router pseudocode previously had a precedence bug (WEBFLOW markers capturing OPENCODE-targeted prompts; unconditional `SURFACE="UNKNOWN"` overwriting prior matches). **REMEDIATED 2026-05-04**: pseudocode restructured with explicit `if/elif/else` precedence — OPENCODE target/CWD wins over WEBFLOW markers. This scenario now exercises the documented precedence (Outcome A).
 
 ## 2. SCENARIO CONTRACT
 
@@ -68,7 +68,7 @@ I want to add a Lenis smooth-scroll initializer to my .opencode/skill/sk-doc/scr
 
 - `.opencode/skill/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
 - `.opencode/skill/sk-code/references/router/code_surface_detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
-- `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md` — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
+- `.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-historical-gpt55-high.md` — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
 
 ## 5. SOURCE METADATA
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "skill_id": "sk-improve-agent",
+  "skill_id": "deep-agent-improvement",
   "family": "sk-util",
   "category": "utility",
   "edges": {
@@ -37,7 +37,7 @@
       "score agent candidate",
       "promote or rollback agent change",
       "integration aware agent evaluation",
-      "sk-improve-agent",
+      "deep-agent-improvement",
       "sk improve agent",
       "improve-agent",
       "agent-improvement",
@@ -56,71 +56,71 @@
       "rollback controls"
     ],
     "key_files": [
-      ".opencode/skill/sk-improve-agent/SKILL.md",
-      ".opencode/skill/sk-improve-agent/README.md",
-      ".opencode/skill/sk-improve-agent/references/evaluator_contract.md",
-      ".opencode/skill/sk-improve-agent/references/promotion_rules.md",
-      ".opencode/skill/sk-improve-agent/assets/improvement_strategy.md",
-      ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
-      ".opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs",
-      ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
+      ".opencode/skill/deep-agent-improvement/SKILL.md",
+      ".opencode/skill/deep-agent-improvement/README.md",
+      ".opencode/skill/deep-agent-improvement/references/evaluator_contract.md",
+      ".opencode/skill/deep-agent-improvement/references/promotion_rules.md",
+      ".opencode/skill/deep-agent-improvement/assets/improvement_strategy.md",
+      ".opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs",
+      ".opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs",
+      ".opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs",
+      ".opencode/skill/deep-agent-improvement/assets/improvement_config.json",
       ".claude/agents/improve-agent.md",
       ".opencode/agent/improve-agent.md"
     ],
     "entities": [
       {
-        "name": "sk-improve-agent",
+        "name": "deep-agent-improvement",
         "kind": "skill",
-        "path": ".opencode/skill/sk-improve-agent/SKILL.md",
+        "path": ".opencode/skill/deep-agent-improvement/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-agent/README.md",
+        "path": ".opencode/skill/deep-agent-improvement/README.md",
         "source": "derived"
       },
       {
         "name": "evaluator_contract",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-agent/references/evaluator_contract.md",
+        "path": ".opencode/skill/deep-agent-improvement/references/evaluator_contract.md",
         "source": "derived"
       },
       {
         "name": "promotion_rules",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-agent/references/promotion_rules.md",
+        "path": ".opencode/skill/deep-agent-improvement/references/promotion_rules.md",
         "source": "derived"
       },
       {
         "name": "improvement_strategy",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_strategy.md",
+        "path": ".opencode/skill/deep-agent-improvement/assets/improvement_strategy.md",
         "source": "derived"
       },
       {
         "name": "scan-integration",
         "kind": "script",
-        "path": ".opencode/skill/sk-improve-agent/scripts/scan-integration.cjs",
+        "path": ".opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs",
         "source": "derived"
       },
       {
         "name": "score-candidate",
         "kind": "script",
-        "path": ".opencode/skill/sk-improve-agent/scripts/score-candidate.cjs",
+        "path": ".opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs",
         "source": "derived"
       },
       {
         "name": "promote-candidate",
         "kind": "script",
-        "path": ".opencode/skill/sk-improve-agent/scripts/promote-candidate.cjs",
+        "path": ".opencode/skill/deep-agent-improvement/scripts/promote-candidate.cjs",
         "source": "derived"
       },
       {
         "name": "improvement_config",
         "kind": "config",
-        "path": ".opencode/skill/sk-improve-agent/assets/improvement_config.json",
+        "path": ".opencode/skill/deep-agent-improvement/assets/improvement_config.json",
         "source": "derived"
       },
       {

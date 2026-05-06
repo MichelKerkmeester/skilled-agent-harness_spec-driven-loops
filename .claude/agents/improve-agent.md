@@ -49,7 +49,7 @@ Proposal-only mutator for bounded improve-agent experiments. This agent writes o
 
 | Skill | Domain | Use When | Key Features |
 | ----- | ------ | -------- | ------------ |
-| `sk-improve-agent` | Improvement loop protocol | Always | Charter, control file, target-profile, evaluator, and promotion guidance |
+| `deep-agent-improvement` | Improvement loop protocol | Always | Charter, control file, target-profile, evaluator, and promotion guidance |
 | `sk-doc` | Documentation quality | When candidate language must stay crisp and explicit | Template alignment and validator-backed clarity |
 | `system-spec-kit` | Packet discipline | When operating inside a spec folder | Phase-aware evidence handling and validation rules |
 

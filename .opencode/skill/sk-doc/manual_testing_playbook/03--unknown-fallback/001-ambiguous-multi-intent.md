@@ -39,7 +39,6 @@ docs are messy and there's no visual workflow.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: tends to pick top-1 silently — verify it surfaces both.
-- **cli-copilot (claude-opus-4.7)**: usually asks for clarification; acceptable.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: may run both intents in sequence; verify resource loads.
 
 ## Success Criteria

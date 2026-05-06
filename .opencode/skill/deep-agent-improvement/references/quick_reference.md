@@ -1,11 +1,11 @@
 ---
 title: Quick Reference
-description: Short operational reference for running the sk-improve-agent workflow.
+description: Short operational reference for running the deep-agent-improvement workflow.
 ---
 
 # Quick Reference
 
-Quick reminder for running `sk-improve-agent` without re-reading the full protocol. Use it when you already know the workflow and only need the command shape, runtime layout, and core guards.
+Quick reminder for running `deep-agent-improvement` without re-reading the full protocol. Use it when you already know the workflow and only need the command shape, runtime layout, and core guards.
 
 ---
 
@@ -50,8 +50,8 @@ node scripts/generate-profile.cjs --agent=.opencode/agent/debug.md
 node scripts/score-candidate.cjs --candidate=.opencode/agent/debug.md
 
 # Static benchmark fixtures
-node .opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs --profile .opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
-node .opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs --profile .opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
+node .opencode/skill/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs --profile .opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
+node .opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs --profile .opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
 ```
 
 ### Dimension Weights (Dynamic Mode)

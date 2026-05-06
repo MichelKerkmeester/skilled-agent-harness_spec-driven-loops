@@ -251,7 +251,8 @@ export function parseIndexScopePolicyFromFingerprint(input: {
     return null;
   }
 
-  const segments = input.fingerprint.split(':').slice(2);
+  const fingerprint = input.fingerprint ?? '';
+  const segments = fingerprint.split(':').slice(2);
   const values = new Map<string, string>();
   for (const segment of segments) {
     const [key, value] = segment.split('=');

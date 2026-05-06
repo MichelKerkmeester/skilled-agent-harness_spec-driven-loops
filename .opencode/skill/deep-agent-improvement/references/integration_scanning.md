@@ -78,7 +78,7 @@ The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `mis
       { "path": ".agents/agents/{agent-name}.md", "syncStatus": "aligned" }
     ],
     "commands": [{ "path": ".opencode/command/spec_kit/{agent-name}.md", "references": ["@{agent-name}"] }],
-    "skills": [{ "path": ".opencode/skill/sk-improve-agent/SKILL.md", "referenceCount": 2 }]
+    "skills": [{ "path": ".opencode/skill/deep-agent-improvement/SKILL.md", "referenceCount": 2 }]
   },
   "summary": {
     "totalSurfaces": 27,

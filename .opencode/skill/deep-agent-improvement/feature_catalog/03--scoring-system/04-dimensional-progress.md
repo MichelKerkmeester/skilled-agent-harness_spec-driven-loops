@@ -27,18 +27,18 @@ The reducer accepts more than one "good enough" label. It counts both `candidate
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/reduce-state.cjs` | Reducer | Rebuilds the registry, dashboard, stop status, and dimensional trend summary from the ledger. |
-| `.opencode/skill/sk-improve-agent/scripts/mutation-coverage.cjs` | Coverage tracker | Records mutation attempts and per-dimension trajectory points consumed by reducer-side summaries. |
-| `.opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs` | Journal helper | Stores typed lifecycle events, stop reasons, and session outcomes for replay consumers. |
-| `.opencode/skill/sk-improve-agent/scripts/candidate-lineage.cjs` | Lineage helper | Tracks parent-child candidate relationships and the active lineage leaf. |
+| `.opencode/skill/deep-agent-improvement/scripts/reduce-state.cjs` | Reducer | Rebuilds the registry, dashboard, stop status, and dimensional trend summary from the ledger. |
+| `.opencode/skill/deep-agent-improvement/scripts/mutation-coverage.cjs` | Coverage tracker | Records mutation attempts and per-dimension trajectory points consumed by reducer-side summaries. |
+| `.opencode/skill/deep-agent-improvement/scripts/improvement-journal.cjs` | Journal helper | Stores typed lifecycle events, stop reasons, and session outcomes for replay consumers. |
+| `.opencode/skill/deep-agent-improvement/scripts/candidate-lineage.cjs` | Lineage helper | Tracks parent-child candidate relationships and the active lineage leaf. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/tests/mutation-coverage.vitest.ts` | Automated test | Verifies trajectory recording and convergence eligibility rules. |
-| `.opencode/skill/sk-improve-agent/scripts/tests/improvement-journal.vitest.ts` | Automated test | Verifies event validation, stop-reason enums, and journal replay helpers. |
-| `.opencode/skill/sk-improve-agent/scripts/tests/candidate-lineage.vitest.ts` | Automated test | Verifies lineage recording, ancestry lookup, and wave filtering. |
+| `.opencode/skill/deep-agent-improvement/scripts/tests/mutation-coverage.vitest.ts` | Automated test | Verifies trajectory recording and convergence eligibility rules. |
+| `.opencode/skill/deep-agent-improvement/scripts/tests/improvement-journal.vitest.ts` | Automated test | Verifies event validation, stop-reason enums, and journal replay helpers. |
+| `.opencode/skill/deep-agent-improvement/scripts/tests/candidate-lineage.vitest.ts` | Automated test | Verifies lineage recording, ancestry lookup, and wave filtering. |
 
 ---
 

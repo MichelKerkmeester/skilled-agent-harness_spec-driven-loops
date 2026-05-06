@@ -55,7 +55,7 @@ Operators run the exact prompt and command sequence for `CP-043` and confirm the
 ```bash
 rm -rf /tmp/cp-043-sandbox /tmp/cp-043-sandbox-baseline /tmp/cp-043-spec
 mkdir -p /tmp/cp-043-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/sk-improve-agent/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-043-sandbox
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skill/deep-agent-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-043-sandbox
 cp -a /tmp/cp-043-sandbox /tmp/cp-043-sandbox-baseline
 git status --porcelain > /tmp/cp-043-pre.txt
 cat > /tmp/cp-043-task.txt <<'EOF'
@@ -91,7 +91,6 @@ grep -c "gate_evaluation" /tmp/cp-043-B-combined.txt | tee /tmp/cp-043-B-generic
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | cli-copilot skill surface |
 
 ### Implementation And Test Anchors
 
@@ -99,7 +98,7 @@ grep -c "gate_evaluation" /tmp/cp-043-B-combined.txt | tee /tmp/cp-043-B-generic
 |---|---|
 | `.opencode/command/improve/assets/improve_improve-agent_auto.yaml` | Auto workflow journal boundary |
 | `.opencode/command/improve/assets/improve_improve-agent_confirm.yaml` | Confirm workflow journal boundary |
-| `.opencode/skill/sk-improve-agent/SKILL.md` | Legal-stop gate contract |
+| `.opencode/skill/deep-agent-improvement/SKILL.md` | Legal-stop gate contract |
 
 ## 5. SOURCE METADATA
 

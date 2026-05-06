@@ -17,6 +17,7 @@ const mocks = vi.hoisted(() => ({
   })),
   handleCodeGraphQuery: vi.fn(),
   setLastGoldVerification: vi.fn(),
+  getStoredCodeGraphScope: vi.fn(),
   readFileSync: vi.fn(),
 }));
 
@@ -39,6 +40,7 @@ vi.mock('../handlers/query.js', () => ({
 
 vi.mock('../lib/code-graph-db.js', () => ({
   setLastGoldVerification: mocks.setLastGoldVerification,
+  getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
 }));
 
 import {
@@ -104,6 +106,11 @@ describe('code-graph verify', () => {
       action: 'none',
       inlineIndexPerformed: false,
       reason: 'ok',
+    });
+    mocks.getStoredCodeGraphScope.mockReturnValue({
+      fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+      label: 'end-user code only',
+      source: 'default',
     });
     mocks.handleCodeGraphQuery.mockResolvedValue(outlineResponse({
       status: 'ok',
@@ -349,9 +356,43 @@ describe('code-graph verify', () => {
           canonicalReadiness: 'stale',
           trustState: 'stale',
         },
+        scopePreflight: {
+          status: 'pass',
+          activeScope: {
+            fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+            label: expect.any(String),
+            source: 'default',
+          },
+          storedScope: {
+            fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+            label: 'end-user code only',
+            source: 'default',
+          },
+          reason: 'active scope matches stored graph scope',
+        },
       });
       expect(mocks.handleCodeGraphQuery).not.toHaveBeenCalled();
       expect(mocks.setLastGoldVerification).not.toHaveBeenCalled();
+    });
+
+    it('returns blocked with scope preflight mismatch when active and stored scopes differ', async () => {
+      mocks.getStoredCodeGraphScope.mockReturnValueOnce({
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        label: 'skills included',
+        source: 'env',
+      });
+
+      const response = await handleCodeGraphVerify({ batteryPath: VERIFY_FIXTURE_BATTERY_PATH });
+      const parsed = JSON.parse(response.content[0].text);
+
+      expect(parsed.status).toBe('blocked');
+      expect(parsed.scopePreflight).toMatchObject({
+        status: 'mismatch',
+        activeScope: expect.objectContaining({ source: 'default' }),
+        storedScope: expect.objectContaining({ source: 'env' }),
+        reason: 'active scope differs from stored graph scope',
+      });
+      expect(mocks.handleCodeGraphQuery).not.toHaveBeenCalled();
     });
 
     it('returns ok with a VerifyResult when the graph is fresh', async () => {

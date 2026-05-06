@@ -1,11 +1,11 @@
 ---
-title: "sk-improve-agent: Feature Catalog"
-description: "Unified reference combining the evaluation loop, integration scanning, and scoring surfaces that currently ship in sk-improve-agent."
+title: "deep-agent-improvement: Feature Catalog"
+description: "Unified reference combining the evaluation loop, integration scanning, and scoring surfaces that currently ship in deep-agent-improvement."
 ---
 
-# sk-improve-agent: Feature Catalog
+# deep-agent-improvement: Feature Catalog
 
-This document combines the current feature inventory for the `sk-improve-agent` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, and the deterministic scoring stack, then points to the per-feature files that carry the deeper implementation and validation anchors.
+This document combines the current feature inventory for the `deep-agent-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, and the deterministic scoring stack, then points to the per-feature files that carry the deeper implementation and validation anchors.
 
 ---
 
@@ -20,7 +20,7 @@ This document combines the current feature inventory for the `sk-improve-agent` 
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `sk-improve-agent` feature surface. The numbered sections below group the skill by runtime responsibility so readers can move from a top-level summary into per-feature reference files without losing the current code and operator-contract context behind each claim.
+Use this catalog as the canonical inventory for the live `deep-agent-improvement` feature surface. The numbered sections below group the skill by runtime responsibility so readers can move from a top-level summary into per-feature reference files without losing the current code and operator-contract context behind each claim.
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
@@ -132,7 +132,7 @@ See [`01--evaluation-loop/06-plateau-detection.md`](01--evaluation-loop/06-plate
 
 ## 3. INTEGRATION SCANNING
 
-These entries describe how sk-improve-agent discovers the full agent surface across the repo, evaluates runtime mirrors, and wires command-driven orchestration through the improve-agent command and YAML workflows.
+These entries describe how deep-agent-improvement discovers the full agent surface across the repo, evaluates runtime mirrors, and wires command-driven orchestration through the improve-agent command and YAML workflows.
 
 ### Surface discovery
 

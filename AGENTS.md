@@ -98,7 +98,7 @@ Set `refresh_index=false` after the first search in a session unless the codebas
 
 ### Startup & Resume Recovery
 
-Hook-capable runtimes (Claude, Codex, Copilot, Gemini, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skill/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
+Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup context when wired. Per-runtime triggers: `.opencode/skill/system-spec-kit/references/config/hook_system.md`. Feature-flag defaults: `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md` ("Feature flags reference table").
 
 **Recovery flow when hooks are unavailable or fail:**
 
@@ -303,8 +303,8 @@ Use the agent directory that matches the active runtime/provider profile:
 
 | Runtime / Profile                      | Agent Directory            | Usage Rule                                                  |
 | -------------------------------------- | -------------------------- | ----------------------------------------------------------- |
-| **Copilot (default OpenCode profile)** | `.opencode/agent/`         | Load base agent definitions from this directory             |
-| **Claude profile**                     | `.claude/agents/`          | Load Claude-specific agent definitions from this directory  |
+| **Opencode** | `.opencode/agent/`         | Load base agent definitions from this directory             |
+| **Claude Code**                     | `.claude/agents/`          | Load Claude-specific agent definitions from this directory  |
 | **Codex CLI**                          | `.codex/agents/`           | Load Codex-specific agent definitions from this directory   |
 | **Gemini CLI**                         | `.gemini/agents/`          | Load Gemini-specific agent definitions from this directory  |
 
@@ -321,8 +321,8 @@ Use the agent directory that matches the active runtime/provider profile:
 - **`@deep-research`** - Autonomous deep research iterations (LEAF). Dispatched by `/spec_kit:deep-research`
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/spec_kit:deep-review`
 - **`@multi-ai-council`** - Multi-strategy planning architect (planning-only)
-- **`@improve-agent`** - Bounded agent improvement via `sk-improve-agent`. Dispatched by `/improve:agent`
-- **`@improve-prompt`** - Prompt engineering via `sk-improve-prompt`. Dispatched by `/improve:prompt`
+- **`@improve-agent`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/improve:agent`
+- **`@improve-prompt`** - Prompt engineering via `sk-prompt`. Dispatched by `/improve:prompt`
 
 #### Distributed Governance Rule
 

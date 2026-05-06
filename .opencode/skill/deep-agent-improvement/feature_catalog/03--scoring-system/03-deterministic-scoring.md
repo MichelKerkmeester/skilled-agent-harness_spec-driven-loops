@@ -27,17 +27,17 @@ This feature covers the JSON outputs that later gates, dashboards, and manual de
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/score-candidate.cjs` | Scorer | Emits the current dynamic score payload and recommendation labels. |
-| `.opencode/skill/sk-improve-agent/scripts/run-benchmark.cjs` | Benchmark runner | Scores fixture outputs and optional integration-report data against a loaded profile. |
-| `.opencode/skill/sk-improve-agent/references/evaluator_contract.md` | Contract reference | Documents the scorer output schema, benchmark schema, and recommendation threshold. |
-| `.opencode/skill/sk-improve-agent/references/benchmark_operator_guide.md` | Operator reference | Defines the benchmark command shape, repeatability rule, and integration-benchmark fields. |
+| `.opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs` | Scorer | Emits the current dynamic score payload and recommendation labels. |
+| `.opencode/skill/deep-agent-improvement/scripts/run-benchmark.cjs` | Benchmark runner | Scores fixture outputs and optional integration-report data against a loaded profile. |
+| `.opencode/skill/deep-agent-improvement/references/evaluator_contract.md` | Contract reference | Documents the scorer output schema, benchmark schema, and recommendation threshold. |
+| `.opencode/skill/deep-agent-improvement/references/benchmark_operator_guide.md` | Operator reference | Defines the benchmark command shape, repeatability rule, and integration-benchmark fields. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skill/sk-improve-agent/scripts/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
-| `.opencode/skill/sk-improve-agent/README.md` | Package reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
+| `.opencode/skill/deep-agent-improvement/scripts/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
+| `.opencode/skill/deep-agent-improvement/README.md` | Package reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
 
 ---
 

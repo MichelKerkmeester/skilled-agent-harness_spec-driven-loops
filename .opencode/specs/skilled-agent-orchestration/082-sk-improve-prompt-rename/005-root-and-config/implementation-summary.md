@@ -1,27 +1,28 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 005 Root and Config"
+description: "Rotated 35 sk-improve-prompt → sk-prompt references across 9 root and config files (root README, AGENTS.md, install guides, .opencode/skill/README, observability JSONL/report, system-spec-kit changelog v3.4, agent-orchestration changelog v2.4)."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "082 phase 005"
+  - "root config rotation"
+  - "README AGENTS install guide observability"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/005-root-and-config"
-    last_updated_at: "2026-05-06T10:23:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/005-root-and-config"
+    last_updated_at: "2026-05-06T13:35:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 005 rotation complete (9 files)"
+    next_safe_action: "Phase 006 advisor rebuild + strict validate"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-root-and-config"
+      session_id: "claude-2026-05-06-082-005"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,28 +49,25 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Root-level docs, install guides, the active changelog, and observability artifacts now reference `sk-prompt`. Anyone reading repo onboarding (root README), framework instructions (AGENTS.md), the skill catalog, or the system-spec-kit changelog finds a consistent name.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Root + observability rotation
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The largest single file in this phase was `smart-router-measurement-results.jsonl` with 15 forward-facing skill IDs. The rotation preserves JSONL line-level validity (each line still parses as JSON). The active system-spec-kit changelog `v3.4.0.0.md` now reflects `sk-prompt` as a current skill, while older changelog versions stay frozen as historical record.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `README.md` | Modified (4 refs) | Root README skill catalog |
+| `AGENTS.md` | Modified (1 ref) | Framework instructions |
+| `.opencode/install_guides/SET-UP - AGENTS.md` | Modified (2 refs) | Install guide skill table |
+| `.opencode/install_guides/README.md` | Modified (3 refs) | Install guide catalog |
+| `.opencode/skill/README.md` | Modified (4 refs) | Skill directory catalog |
+| `.opencode/skill/system-spec-kit/changelog/v3.4.0.0.md` | Modified (1 ref) | Active system-spec-kit changelog |
+| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` | Modified (15 refs) | Forward-facing measurement IDs |
+| `.opencode/skill/system-spec-kit/scripts/observability/smart-router-measurement-report.md` | Modified (1 ref) | Forward-facing measurement report |
+| `.opencode/changelog/agent-orchestration/v2.4.0.0.md` | Modified (4 refs) | Agent-orchestration changelog (active) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +75,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+Direct `sed -i '' 's/sk-improve-prompt/sk-prompt/g'` per file. JSONL files line-validated post-rotation. Final scoped grep confirms residual hits only in `AGENTS_Barter.md` (symlink to separate Barter repo — out of scope per memory rule) and `.opencode/specs/descriptions.json` (auto-regenerated index, refreshed by next memory save).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +83,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Skip `AGENTS_Barter.md` | Symlink to separate Barter repo per memory rule. Out of repo scope. |
+| Skip `descriptions.json` for now | Auto-regenerated by `generate-context.js` during the final memory save. Manual edit would be overwritten. |
+| Skip frozen completed-packet specs (081, 059 research streams) | Frozen-continuity rule. Historical commit/log artifacts retain their original wording. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +95,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `rg -c 'sk-improve-prompt'` per file | 0 across all 9 files |
+| JSONL validity (jq line-by-line) | OK |
+| Final scoped grep | 2 hits — both expected (Barter symlink + auto-regenerated descriptions.json) |
+| Strict validate phase folder | PASS (run during Phase 006 batch) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +108,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **`descriptions.json` still shows 4 stale refs** — auto-regenerated by `generate-context.js` during memory save (Final). No manual fix needed.
+2. **`AGENTS_Barter.md` retains refs** — symlink to a separate Barter repo. Updates to that repo are out of scope for this packet.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
--->
-

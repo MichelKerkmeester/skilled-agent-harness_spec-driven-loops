@@ -2567,6 +2567,14 @@ describe('Context Server', () => {
     it('T57: Startup scan re-entry guard', () => {
       expect(sourceCode).toMatch(/if\s*\(startupScanInProgress\)/)
     })
+
+    it('F-015: startup skill graph publish asserts artifacts before accepting live state', () => {
+      expect(sourceCode).toMatch(/function\s+assertSkillGraphLivePublication/)
+      expect(sourceCode).toContain('getSkillGraphGenerationPath(workspaceRoot)')
+      expect(sourceCode).toContain('readAdvisorStatus({ workspaceRoot })')
+      expect(sourceCode).toContain("reason: 'post-index-assertion-failed'")
+      expect(sourceCode).toContain("state: 'stale'")
+    })
   })
 
   // =================================================================

@@ -170,6 +170,7 @@ describe('code_graph_query fallbackDecision routing', () => {
     expect(mocks.ensureCodeGraphReady).toHaveBeenCalledWith(process.cwd(), {
       allowInlineIndex: true,
       allowInlineFullScan: false,
+      allowGuardedInlineFullScan: true,
     });
   });
 });

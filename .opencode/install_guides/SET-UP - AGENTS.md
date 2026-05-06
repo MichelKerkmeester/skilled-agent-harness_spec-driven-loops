@@ -537,8 +537,8 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `sk-deep-review`       | v1.3.2.0 | "deep review", "review loop", "quality audit"             | Iterative review workflow                        |
 | `sk-doc`               | v1.3.0.0 | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
 | `sk-git`               | v1.1.0.0 | "commit", "branch", "PR", "push", "git"                  | Git workflow orchestration                       |
-| `sk-improve-agent`     | v1.2.2.0 | "improve agent", "agent scoring", "promotion"             | Evaluator-first agent improvement                |
-| `sk-improve-prompt`    | v1.3.0.0 | "improve prompt", "prompt engineering", "CLEAR"           | Prompt improvement workflow                      |
+| `deep-agent-improvement`     | v1.2.2.0 | "improve agent", "agent scoring", "promotion"             | Evaluator-first agent improvement                |
+| `sk-prompt`    | v1.3.0.0 | "improve prompt", "prompt engineering", "CLEAR"           | Prompt improvement workflow                      |
 | `system-spec-kit`      | v3.3.1.0 | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
 
 #### Skill Routing Table
@@ -1224,7 +1224,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**        | 15     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-improve-prompt |
+| **Skills**        | 15     | mcp-chrome-devtools, mcp-coco-index, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, sk-deep-research, sk-doc, sk-git, sk-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, spec-kit-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /spec_kit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |

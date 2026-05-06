@@ -38,7 +38,6 @@ Optimize this skill's SKILL.md for token efficiency. It's currently 850 lines an
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: short-to-medium prompt; expect concise structured output naming both resources.
-- **cli-copilot (claude-opus-4.7)**: invoke directly; expect verbose but on-target listing — verify it doesn't hallucinate a non-existent `optimization-rubric.md` or similar.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: invoke directly; expect concise output with both resource paths.
 
 ## Success Criteria

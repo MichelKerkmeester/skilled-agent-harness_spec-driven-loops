@@ -39,7 +39,6 @@ The system was designed by us to be modular.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: record input/output token counts as floor baseline.
-- **cli-copilot (claude-opus-4.7)**: record input/output token counts as floor baseline.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: record input/output token counts as floor baseline.
 
 ## Success Criteria

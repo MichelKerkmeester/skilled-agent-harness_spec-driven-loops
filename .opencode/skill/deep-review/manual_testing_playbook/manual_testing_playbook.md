@@ -642,7 +642,6 @@ No dedicated automated test suite currently exists for `deep-review`. This playb
 - DRV-013: [Review dashboard generation after iteration](03--iteration-execution-and-state-discipline/013-review-dashboard-generation-after-iteration.md)
 - DRV-014: [Severity classification in JSONL](03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md)
 - DRV-015: [Review iterations emit structured graphEvents](03--iteration-execution-and-state-discipline/015-graph-events-review.md)
-- DRV-016: [cli-copilot target-authority dispatch](03--iteration-execution-and-state-discipline/016-cli-copilot-target-authority-dispatch.md)
 
 ### CONVERGENCE AND RECOVERY
 

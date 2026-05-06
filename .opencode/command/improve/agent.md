@@ -14,7 +14,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 > 3. Determine execution mode from user input (`:auto` or `:confirm`)
 > 4. Load matching YAML workflow and execute
 >
-> This command is **general-agent based** — orchestrates sk-improve-agent skill invocation.
+> This command is **general-agent based** — orchestrates deep-agent-improvement skill invocation.
 
 ---
 
@@ -28,7 +28,7 @@ EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
 SELF-CHECK: Are you operating as the @general agent?
 │
 ├─ INDICATORS that you ARE @general agent:
-│   ├─ You can orchestrate sk-improve-agent invocation
+│   ├─ You can orchestrate deep-agent-improvement invocation
 │   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
 │   ├─ You can load skill references and execute defined logic
 │
@@ -43,7 +43,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates sk-improve-agent skill          │
+    │   │ This command orchestrates deep-agent-improvement skill          │
     │   │ invocation and runs general-agent based.            │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
@@ -235,16 +235,16 @@ $ARGUMENTS
 
 ## 4. WORKFLOW STEPS
 
-### Step 1: Load sk-improve-agent Skill
+### Step 1: Load deep-agent-improvement Skill
 
 ```
-Read(".opencode/skill/sk-improve-agent/SKILL.md")
+Read(".opencode/skill/deep-agent-improvement/SKILL.md")
 ```
 
 ### Step 2: Run Integration Scan
 
 ```bash
-node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
+node .opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
 ```
 
 Review the integration report: mirror sync status, command coverage, skill references.
@@ -252,7 +252,7 @@ Review the integration report: mirror sync status, command coverage, skill refer
 ### Step 3: Generate Profile
 
 ```bash
-node .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
+node .opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
 ```
 
 ### Step 4: Initialize Runtime
@@ -291,7 +291,7 @@ At each journal boundary, the orchestrator MUST emit events via `improvement-jou
 
 ```bash
 # At session start:
-node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+node .opencode/skill/deep-agent-improvement/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
 
 # At iteration boundaries:
 # candidate_generated after the candidate is written
@@ -300,7 +300,7 @@ node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit ses
 # The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
 
 # At session end:
-# node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+# node .opencode/skill/deep-agent-improvement/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
 ```
 
 ### Step 6C: Stop-Reason Reporting
@@ -325,7 +325,7 @@ After loop exits, classify the termination:
 
 `/improve:agent` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
 
-Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.opencode/skill/sk-improve-agent/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
+Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.opencode/skill/deep-agent-improvement/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
 
 ### Step 7: Return Status
 
@@ -399,12 +399,12 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 
 ## 7. NOTES
 
-- **Skill dependency**: Requires `sk-improve-agent` at `.opencode/skill/sk-improve-agent/`
+- **Skill dependency**: Requires `deep-agent-improvement` at `.opencode/skill/deep-agent-improvement/`
 - **Promotion**: Promotion remains guarded by evidence, repeatability, and operator approval.
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on `converged` (legal-stop bundle pass + stable trajectory), max iterations, or infra failure threshold.
 - **Runtime parity**: Agent exists across 4 runtimes (.opencode, .claude, .gemini, .codex). Scanner checks all (`.gemini/agents/` path corrected in 060/002).
-- **Benchmark assets** (post-060/005): static at `.opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json` + `assets/benchmark-fixtures/*.json`. Materializer at `.opencode/skill/sk-improve-agent/scripts/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
+- **Benchmark assets** (post-060/005): static at `.opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json` + `assets/benchmark-fixtures/*.json`. Materializer at `.opencode/skill/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.
 - **Stop-reason enum** (post-060/005): canonical values are `converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery`. Old `plateau`/`benchmarkPlateau` retired.
 - **CRITIC PASS verbatim emission** (post-060/006): `@improve-agent` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.

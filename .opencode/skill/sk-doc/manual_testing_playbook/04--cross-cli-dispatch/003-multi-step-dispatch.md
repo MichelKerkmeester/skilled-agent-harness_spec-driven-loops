@@ -42,7 +42,6 @@ Turn 3: Generate a changelog entry for sk-foo v0.1.0.
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: foreground 3-step; verify session-id reuse.
-- **cli-copilot (claude-opus-4.7)**: continuation flag preserves context; verify intent reset per turn.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: session-scoped state; verify no stale resource bleed.
 
 ## Success Criteria

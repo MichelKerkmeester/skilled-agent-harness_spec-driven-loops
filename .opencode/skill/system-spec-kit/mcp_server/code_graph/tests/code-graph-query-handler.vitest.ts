@@ -133,6 +133,7 @@ describe('code-graph-query handler', () => {
     expect(mocks.ensureCodeGraphReady).toHaveBeenCalledWith(process.cwd(), {
       allowInlineIndex: true,
       allowInlineFullScan: false,
+      allowGuardedInlineFullScan: true,
     });
     expect(mocks.queryEdgesFrom).toHaveBeenCalledWith('symbol-1', 'IMPORTS');
     // M8 / T-CGQ-11: readiness carries the raw ensure-ready fields plus
@@ -213,6 +214,46 @@ describe('code-graph-query handler', () => {
     });
     expect(mocks.queryEdgesFrom).not.toHaveBeenCalled();
     expect(mocks.queryEdgesTo).not.toHaveBeenCalled();
+  });
+
+  it('includes scope and manifest diagnostics in blocked full-scan payloads', async () => {
+    mocks.ensureCodeGraphReady.mockResolvedValueOnce({
+      freshness: 'stale',
+      action: 'full_scan',
+      inlineIndexPerformed: false,
+      reason: 'candidate manifest drift: indexable file set has changed since last scan',
+      activeScope: {
+        fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        label: 'end-user code only',
+        source: 'default',
+      },
+      storedScope: {
+        fingerprint: 'code-graph-scope:v2:skills=all:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
+        label: 'skills included',
+        source: 'env',
+      },
+      manifestCount: 12,
+      manifestDigest: 'manifest-digest',
+      autoRescanSafety: 'blocked',
+      autoRescanBlockReason: 'scope_mismatch',
+    } as any);
+
+    const result = await handleCodeGraphQuery({
+      operation: 'calls_from',
+      subject: 'SomeSymbol',
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed.status).toBe('blocked');
+    expect(parsed.data.readiness).toMatchObject({
+      reason: 'candidate manifest drift: indexable file set has changed since last scan',
+      activeScope: expect.objectContaining({ source: 'default' }),
+      storedScope: expect.objectContaining({ source: 'env' }),
+      manifestCount: 12,
+      manifestDigest: 'manifest-digest',
+      autoRescanSafety: 'blocked',
+      autoRescanBlockReason: 'scope_mismatch',
+    });
   });
 
   it('rejects outline subjects that are not tracked in the graph', async () => {

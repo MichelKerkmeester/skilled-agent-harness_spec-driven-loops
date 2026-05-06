@@ -8,7 +8,6 @@ import { fileURLToPath } from 'node:url';
 
 import { adapterCliClaudeCode } from './adapter-cli-claude-code.js';
 import { adapterCliCodex } from './adapter-cli-codex.js';
-import { adapterCliCopilot } from './adapter-cli-copilot.js';
 import { adapterCliGemini } from './adapter-cli-gemini.js';
 import { adapterCliOpencode } from './adapter-cli-opencode.js';
 
@@ -18,7 +17,7 @@ import type { AdapterInput, AdapterResult, AdapterStatus } from './adapter-commo
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
-type MatrixExecutor = 'cli-codex' | 'cli-copilot' | 'cli-gemini' | 'cli-claude-code' | 'cli-opencode';
+type MatrixExecutor = 'cli-codex' | 'cli-gemini' | 'cli-claude-code' | 'cli-opencode';
 
 interface MatrixCell {
   readonly featureId: string;
@@ -66,7 +65,6 @@ const MANIFEST_PATH = join(RUNNER_DIR, 'matrix-manifest.json');
 const DEFAULT_CONCURRENCY = 3;
 const EXECUTORS: readonly MatrixExecutor[] = [
   'cli-codex',
-  'cli-copilot',
   'cli-gemini',
   'cli-claude-code',
   'cli-opencode',
@@ -135,8 +133,6 @@ function adapterFor(executor: MatrixExecutor): (input: AdapterInput) => Promise<
   switch (executor) {
     case 'cli-codex':
       return adapterCliCodex;
-    case 'cli-copilot':
-      return adapterCliCopilot;
     case 'cli-gemini':
       return adapterCliGemini;
     case 'cli-claude-code':

@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "skilled-agent-orchestration/079-sk-deep-agent-improvement",
   "description": "Feature Specification: Rename `sk-improve-agent` → `deep-agent-improvement`",
   "keywords": [
@@ -8,15 +9,15 @@
     "sk-improve-agent",
     "deep-agent-improvement"
   ],
-  "lastUpdated": "2026-05-06T07:55:50.002Z",
+  "lastUpdated": "2026-05-06T11:34:32.360Z",
   "specId": "079",
-  "level": 2,
   "folderSlug": "sk-deep-agent-improvement",
   "parentChain": [
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "06-05-26_08-55__manual-context-save.md"
+    "06-05-26_08-55__manual-context-save.md",
+    "06-05-26_12-34__manual-context-save.md"
   ]
 }

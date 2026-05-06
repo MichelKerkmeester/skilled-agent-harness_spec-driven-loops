@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Integration Surface Scanner for sk-improve-agent                      ║
+// ║ Integration Surface Scanner for deep-agent-improvement                      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

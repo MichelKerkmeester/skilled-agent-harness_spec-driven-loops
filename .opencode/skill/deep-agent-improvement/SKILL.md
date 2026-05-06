@@ -1,10 +1,10 @@
 ---
-name: sk-improve-agent
+name: deep-agent-improvement
 description: "Evaluator-first skill for bounded agent improvement with 5-dimension integration-aware scoring, dynamic profiling, packet-local candidates, and guarded promotion or rollback."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.2.0
 triggers:
-  - sk-improve-agent
+  - deep-agent-improvement
   - agent improvement loop
   - bounded agent improvement
   - 5-dimension scoring
@@ -12,7 +12,7 @@ triggers:
   - dynamic profiling
 ---
 
-<!-- Keywords: sk-improve-agent, improve-agent, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->
+<!-- Keywords: deep-agent-improvement, improve-agent, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->
 
 # Recursive Agent: Evaluator-First Improvement Orchestrator
 
@@ -218,7 +218,7 @@ For changes that alter agent discipline, run at least one same-task A/B stress s
 3. Call B: the disciplined `/improve:agent` path against the identical prompt and files.
 4. Judge only grep/file/diff/exit-code signals: helper invocation, packet-local candidate boundary, no canonical or mirror mutation before promotion, benchmark journal boundary, legal-stop gate keys, and stop-reason correctness.
 
-Do not treat `Read(SKILL.md)` or `skill(sk-improve-agent)` as evidence that this protocol executed.
+Do not treat `Read(SKILL.md)` or `skill(deep-agent-improvement)` as evidence that this protocol executed.
 
 ### 5-Dimension Evaluation Framework
 
@@ -295,7 +295,7 @@ The reusable benchmark contract ships with the skill, not with each spec packet:
 - Materializer: `scripts/materialize-benchmark-fixtures.cjs`
 - Runner: `scripts/run-benchmark.cjs`
 
-The command workflow first materializes static fixture JSON into packet-local markdown under `{spec_folder}/improvement/benchmark-outputs/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skill/sk-improve-agent/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs`. The runner writes `{spec_folder}/improvement/benchmark-outputs/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+The command workflow first materializes static fixture JSON into packet-local markdown under `{spec_folder}/improvement/benchmark-outputs/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skill/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs`. The runner writes `{spec_folder}/improvement/benchmark-outputs/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
 
 `benchmark_completed` may be emitted only after `benchmark-outputs/report.json` exists. Repeatability output from `benchmark-stability.cjs` is separate evidence and does not by itself prove benchmark completion.
 
@@ -309,7 +309,7 @@ Sessions support a single lineage mode today: `new`. Every invocation of the `/i
 
 Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
 
-If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `sk-improve-agent/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `improve_improve-agent_{auto,confirm}.yaml`, reducer ancestry handling in `deep-agent-improvement/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
 
 ### Mutation Coverage Graph
 
@@ -348,7 +348,7 @@ Journal emission is orchestrator-only. The target agent being evaluated never wr
 The CLI contract is:
 
 ```bash
-node .opencode/skill/sk-improve-agent/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
+node .opencode/skill/deep-agent-improvement/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
 ```
 
 The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.

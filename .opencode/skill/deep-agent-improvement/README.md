@@ -1,8 +1,8 @@
 ---
-title: "sk-improve-agent"
+title: "deep-agent-improvement"
 description: "Evaluator-first skill for bounded agent improvement with 5-dimension integration-aware scoring, dynamic profiling, packet-local candidates, and guarded promotion or rollback."
 trigger_phrases:
-  - "sk-improve-agent"
+  - "deep-agent-improvement"
   - "recursive agent"
   - "agent improvement loop"
   - "bounded agent improvement"
@@ -10,7 +10,7 @@ trigger_phrases:
   - "integration scanner"
 ---
 
-# sk-improve-agent
+# deep-agent-improvement
 
 Evaluator-first workflow for improving agents across their full integration surface. Instead of editing the canonical target first, it scans all surfaces an agent touches, derives a scoring profile from the agent's own rules, writes packet-local candidates, scores them across 5 deterministic dimensions, and only allows promotion when evidence and approval gates are both satisfied.
 
@@ -33,7 +33,7 @@ Evaluator-first workflow for improving agents across their full integration surf
 
 ## 1. OVERVIEW
 
-`sk-improve-agent` helps operators improve agent surfaces safely by proving improvement before mutation. It treats agent improvement as a measurable optimization problem — not ad-hoc prompt tweaking — by scanning integration surfaces, deriving scoring profiles, and maintaining an append-only evidence trail.
+`deep-agent-improvement` helps operators improve agent surfaces safely by proving improvement before mutation. It treats agent improvement as a measurable optimization problem — not ad-hoc prompt tweaking — by scanning integration surfaces, deriving scoring profiles, and maintaining an append-only evidence trail.
 
 For packet recovery around an improvement run, `/spec_kit:resume` remains the canonical surface. Continuity still comes from `handover.md`, then `_memory.continuity`, then the remaining spec docs, while generated memory artifacts remain supporting only.
 
@@ -47,7 +47,7 @@ For packet recovery around an improvement run, `/spec_kit:resume` remains the ca
 
 ### What Changes With This Skill
 
-| Without sk-improve-agent | With sk-improve-agent |
+| Without deep-agent-improvement | With deep-agent-improvement |
 | --- | --- |
 | Prompt edits are ad hoc and untracked | Every candidate is packet-local and evidence-backed |
 | Quality is judged by reading the prompt file | Quality is scored across 5 deterministic dimensions |
@@ -98,13 +98,13 @@ Run individual scripts without the full loop:
 
 ```text
 # Scan integration surfaces
-node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent=debug
+node .opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs --agent=debug
 
 # Generate dynamic profile from any agent
-node .opencode/skill/sk-improve-agent/scripts/generate-profile.cjs --agent=.opencode/agent/debug.md
+node .opencode/skill/deep-agent-improvement/scripts/generate-profile.cjs --agent=.opencode/agent/debug.md
 
 # Score with 5 dimensions (dynamic mode, the only supported path)
-node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=.opencode/agent/debug.md
+node .opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs --candidate=.opencode/agent/debug.md
 ```
 
 ### Verify the Runtime Area
@@ -206,7 +206,7 @@ A weighted score >= 70 produces a `candidate-acceptable` recommendation. Below 7
 ## 5. STRUCTURE
 
 ```text
-.opencode/skill/sk-improve-agent/
+.opencode/skill/deep-agent-improvement/
 |-- SKILL.md                          Skill router and core instructions
 |-- README.md                         Human-facing overview (this file)
 |-- references/
@@ -303,7 +303,7 @@ Generates a scoring profile on-the-fly from the debug agent's own rules and stru
 ### Example 2: Quick Integration Health Check
 
 ```text
-node .opencode/skill/sk-improve-agent/scripts/scan-integration.cjs --agent=debug
+node .opencode/skill/deep-agent-improvement/scripts/scan-integration.cjs --agent=debug
 ```
 
 Discovers all surfaces the target agent touches and reports mirror sync status, command coverage, and skill references.
@@ -311,7 +311,7 @@ Discovers all surfaces the target agent touches and reports mirror sync status, 
 ### Example 3: Score Without Running the Full Loop
 
 ```text
-node .opencode/skill/sk-improve-agent/scripts/score-candidate.cjs --candidate=.opencode/agent/review.md
+node .opencode/skill/deep-agent-improvement/scripts/score-candidate.cjs --candidate=.opencode/agent/review.md
 ```
 
 Produces a 5-dimension score for the review agent without initializing a full improvement packet.

@@ -837,12 +837,12 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 &nbsp;
 #### OTHER
 
-**sk-improve-prompt**
+**sk-prompt**
 - Prompt engineering specialist auto-selecting from 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT)
 - DEPTH thinking methodology with 3-10 iteration rounds of progressive refinement
 - CLEAR quality scoring: Clarity, Logic, Expression, Reliability (40+/50 pass threshold)
 
-**sk-improve-agent** 
+**deep-agent-improvement** 
 - Evaluator-first agent improvement with 5-dimension integration-aware scoring (structural, ruleCoherence, integration, outputQuality, systemFitness)
 - Integration scanner discovers all surfaces an agent touches (canonical, mirrors, commands, YAML, skills)
 - Dynamic profile generator derives scoring rubric from any agent's own rules, no hardcoded profiles needed
@@ -947,7 +947,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Improve-Prompt**
 - Prompt-escalation specialist for high-stakes external CLI invocations and other sensitive AI prompt work
-- Selects the best-fit framework from `sk-improve-prompt`, applies DEPTH at the right energy level, and validates the result with CLEAR
+- Selects the best-fit framework from `sk-prompt`, applies DEPTH at the right energy level, and validates the result with CLEAR
 - Returns a structured prompt package with `FRAMEWORK`, `CLEAR_SCORE`, `RATIONALE`, `ENHANCED_PROMPT`, and `ESCALATION_NOTES`
 - Used by the CLI mirror-card pipeline and `/improve:prompt` agent mode when complexity, compliance, or stakeholder spread makes inline prompting too weak
 
@@ -1075,7 +1075,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Prompt (planned)**
 - `/create:prompt` is a reserved surface, but there is no shipped `.opencode/command/create/prompt.md` entry point in this repo snapshot
-- Use `/improve:prompt` or the `sk-improve-prompt` skill directly when you need prompt work today
+- Use `/improve:prompt` or the `sk-prompt` skill directly when you need prompt work today
 
 **Feature Catalog**
 - Creates or updates feature catalog packages with category routing
@@ -1214,7 +1214,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `mcp-coco-index` | ✅ Codebase-agnostic | Semantic code search via embeddings. Works for any project. |
 | `mcp-code-mode` | ✅ Codebase-agnostic | Multi-tool MCP orchestration. Works for any project. |
 | `deep-research` / `deep-review` | ✅ Codebase-agnostic | Iterative loop protocols. Work for any topic / target. |
-| `sk-improve-prompt` / `sk-improve-agent` | ✅ Codebase-agnostic | Prompt + agent improvement frameworks. Work for any project. |
+| `sk-prompt` / `deep-agent-improvement` | ✅ Codebase-agnostic | Prompt + agent improvement frameworks. Work for any project. |
 | `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic | External CLI orchestrators. Stack-independent. |
 | `mcp-chrome-devtools` | ✅ Codebase-agnostic | Browser tooling. Stack-independent. |
 

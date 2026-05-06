@@ -39,7 +39,6 @@ sk-doc: I need to create a new sk-skill named sk-graph-traversal that handles gr
 ## Cross-CLI Variants
 
 - **cli-codex (gpt-5.5/high/fast)**: MUST use stdin redirection (`echo prompt | codex exec -`); inline-arg form WILL stall above ~2k chars.
-- **cli-copilot (claude-opus-4.7)**: handles large inline prompts natively; record latency.
 - **cli-opencode (opencode-go/deepseek-v4-pro)**: handles large inline prompts; record latency.
 
 ## Success Criteria

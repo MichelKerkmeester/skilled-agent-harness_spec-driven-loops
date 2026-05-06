@@ -49,7 +49,6 @@ Each adapter maps a normalized `AdapterInput` into the target CLI's argv/stdin c
 | `mcp_server/matrix_runners/run-matrix.ts:134-147` | Meta-runner | Routes each executor to its adapter |
 | `mcp_server/matrix_runners/run-matrix.ts:172-190` | Meta-runner | Writes JSONL cell records and TSV summary rows |
 | `mcp_server/matrix_runners/adapter-cli-codex.ts:13-37` | Adapter | Runs a matrix cell through Codex CLI with model, reasoning effort, service tier, and workspace-write sandbox |
-| `mcp_server/matrix_runners/adapter-cli-copilot.ts:11-28` | Adapter | Runs a matrix cell through Copilot CLI |
 | `mcp_server/matrix_runners/adapter-cli-gemini.ts:11-28` | Adapter | Runs a matrix cell through Gemini CLI |
 | `mcp_server/matrix_runners/adapter-cli-claude-code.ts:11-28` | Adapter | Runs a matrix cell through Claude Code CLI |
 | `mcp_server/matrix_runners/adapter-cli-opencode.ts:13-36` | Adapter | Runs a matrix cell through OpenCode CLI |

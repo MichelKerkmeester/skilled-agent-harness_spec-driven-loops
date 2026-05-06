@@ -7,7 +7,7 @@
 import { realpathSync } from 'node:fs';
 import { isAbsolute, relative, resolve, sep } from 'node:path';
 
-import { setLastGoldVerification } from '../lib/code-graph-db.js';
+import * as graphDb from '../lib/code-graph-db.js';
 import {
   DEFAULT_GOLD_BATTERY_PATH,
   executeBattery,
@@ -16,6 +16,7 @@ import {
 } from '../lib/gold-query-verifier.js';
 import { ensureCodeGraphReady } from '../lib/ensure-ready.js';
 import { buildReadinessBlock } from '../lib/readiness-contract.js';
+import { resolveIndexScopePolicy, scopeFingerprintsMatchOrLegacy } from '../lib/index-scope-policy.js';
 import { canonicalizeWorkspacePaths, isWithinWorkspace } from '../lib/utils/workspace-path.js';
 import { handleCodeGraphQuery } from './query.js';
 
@@ -43,6 +44,32 @@ function buildResponse(payload: object): { content: Array<{ type: 'text'; text: 
       type: 'text',
       text: JSON.stringify(payload, null, 2),
     }],
+  };
+}
+
+function scopeDiagnostic(scope: {
+  fingerprint?: string | null;
+  label?: string | null;
+  source?: string | null;
+}) {
+  return {
+    fingerprint: scope.fingerprint ?? null,
+    label: scope.label ?? null,
+    source: scope.source ?? null,
+  };
+}
+
+function buildScopePreflight() {
+  const activeScope = resolveIndexScopePolicy();
+  const storedScope = graphDb.getStoredCodeGraphScope();
+  const matches = scopeFingerprintsMatchOrLegacy(storedScope.fingerprint, activeScope.fingerprint);
+  return {
+    status: matches ? 'pass' : 'mismatch',
+    activeScope: scopeDiagnostic(activeScope),
+    storedScope: scopeDiagnostic(storedScope),
+    reason: matches
+      ? 'active scope matches stored graph scope'
+      : 'active scope differs from stored graph scope',
   };
 }
 
@@ -156,11 +183,21 @@ export async function handleCodeGraphVerify(
       allowInlineFullScan: false,
     });
     const readiness = buildReadinessBlock(readyState);
+    const scopePreflight = buildScopePreflight();
 
     if (readyState.freshness !== 'fresh') {
       return buildResponse({
         status: 'blocked',
         readiness,
+        scopePreflight,
+      });
+    }
+
+    if (scopePreflight.status === 'mismatch') {
+      return buildResponse({
+        status: 'blocked',
+        readiness,
+        scopePreflight,
       });
     }
 
@@ -174,11 +211,12 @@ export async function handleCodeGraphVerify(
     };
 
     if (args.persistBaseline === true) {
-      setLastGoldVerification(result);
+      graphDb.setLastGoldVerification(result);
     }
 
     return buildResponse({
       status: 'ok',
+      scopePreflight,
       result,
     });
   } catch (error: unknown) {
