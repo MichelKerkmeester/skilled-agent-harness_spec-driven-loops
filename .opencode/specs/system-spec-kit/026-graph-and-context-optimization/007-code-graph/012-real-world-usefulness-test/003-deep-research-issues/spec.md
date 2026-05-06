@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/003-deep-research-issues"
     last_updated_at: "2026-05-06T05:27:17Z"
     last_updated_by: "cli-codex"
-    recent_action: "Authored final synthesis and Level 2 packet docs"
-    next_safe_action: "Open remediation packet"
+    recent_action: "Authored final synthesis and applied user framing correction"
+    next_safe_action: "Open remediation packet focused on the two remaining end-user P0s"
     blockers: []
     key_files:
       - "research/research.md"
@@ -26,7 +26,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Whether SPECKIT_CODE_GRAPH_INDEX_SKILLS fixes day-to-day query defaults"
+      - "Whether SPECKIT_CODE_GRAPH_INDEX_SKILLS is default setup or maintainer-mode opt-in"
       - "Where candidate manifest drift fires"
       - "Why zero-node scans can persist"
       - "How parser runtime errors affect persistence"
@@ -56,10 +56,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The native rerun downgraded code graph from useful to overhead after broad scans, read-path drift blocks, parser crashes, and a zero-node persistence regression made the graph unreliable for normal framework work. The adjacent hook/plugin and advisor surfaces also needed a deduplicated bug-surface review before a remediation packet could be scoped sanely.
+The native rerun downgraded code graph from useful to overhead after broad scans, read-path drift blocks, parser crashes, and a zero-node persistence regression made the graph unreliable during framework-maintainer work. User clarification on 2026-05-06 corrected one premise: default scope excludes framework backend paths by design because template users primarily index their own production code. The remaining synthesis still needed to identify which findings affect end users and which are maintainer-only polish.
 
 ### Purpose
-Produce a final, citable research synthesis that converts 10 read-only iterations into a remediation backlog with severity, file:line evidence, negative knowledge, and operator configuration guidance.
+Produce a final, citable research synthesis that converts 10 read-only iterations into a remediation backlog with severity, file:line evidence, negative knowledge, operator configuration guidance, and the corrected default-scope design-intent framing.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -119,7 +119,7 @@ Produce a final, citable research synthesis that converts 10 read-only iteration
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-006 | New-user env snippet is drafted | `research/research.md` includes `.env` and `opencode.json` snippets for code graph maintainer mode |
+| REQ-006 | Default and maintainer-mode env guidance is drafted | `research/research.md` states no env vars are needed for default end-user project-code indexing and includes `.env` plus `opencode.json` snippets for framework maintainer mode |
 | REQ-007 | Major synthesis choices are recorded | `decision-record.md` contains short ADRs documenting dedupe and remediation-scope choices |
 <!-- /ANCHOR:requirements -->
 
@@ -129,7 +129,7 @@ Produce a final, citable research synthesis that converts 10 read-only iteration
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Strict spec validation exits 0 for this packet.
-- **SC-002**: Deduplicated findings preserve the original total counts as provenance: P0=3, P1=19, P2=13.
+- **SC-002**: Deduplicated findings preserve the original total counts as provenance: P0=3, P1=19, P2=13, then record corrected status counts: P0=2, P1=16, P2=12, DESIGN-INTENT closed=1.
 - **SC-003**: Parent metadata includes `system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/003-deep-research-issues`.
 <!-- /ANCHOR:success-criteria -->
 

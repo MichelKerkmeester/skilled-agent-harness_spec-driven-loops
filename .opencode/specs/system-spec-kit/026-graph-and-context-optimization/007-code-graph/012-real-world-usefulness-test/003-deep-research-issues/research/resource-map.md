@@ -2,8 +2,8 @@
 
 ## Code Graph
 
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:14` — default `.opencode` excludes produce maintainer-scope P0.
-- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:75` — invalid `SPECKIT_CODE_GRAPH_INDEX_SKILLS` values collapse to `none`.
+- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:14` — F-001 **[CLOSED — DESIGN-INTENT]**; default `.opencode` excludes are correct for end-user project-code indexing, with maintainer-mode opt-in available.
+- `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:75` — F-004 **[MAINTAINER-ONLY P2]**; invalid `SPECKIT_CODE_GRAPH_INDEX_SKILLS` values collapse to `none`.
 - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:32` — `ReadyResult` lacks machine-readable full-scan reason/safety fields.
 - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:202` — candidate manifest drift predicate.
 - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293` — active/stored scope fingerprint comparison and scan-argument exemption.
@@ -48,5 +48,5 @@
 
 ## Config / Docs
 
-- `.codex/config.toml:13` — Codex MCP env block lacks code graph maintainer-scope flags.
+- `.codex/config.toml:13` — F-005 **[MAINTAINER-ONLY P2]**; Codex MCP env block lacks code graph maintainer-scope flags, but end users should not need those flags by default.
 - `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:261` — env docs omit query/readiness consumption and restart note.

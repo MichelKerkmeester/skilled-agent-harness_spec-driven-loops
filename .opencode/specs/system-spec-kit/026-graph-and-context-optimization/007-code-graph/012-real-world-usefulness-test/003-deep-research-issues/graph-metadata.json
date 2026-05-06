@@ -19,6 +19,7 @@
     "key_topics": [
       "code graph",
       "scope policy",
+      "design intent",
       "zero-node persistence",
       "parser diagnostics",
       "hooks",
@@ -65,7 +66,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Ten read-only iterations found that code graph reliability is blocked by default maintainer-scope exclusion, destructive empty-scan promotion, parser-error overwrite behavior, and missing read-path recovery policy. Hooks and advisor are closer to useful but need runtime docs, smoke parity, and staleness repair hardening.",
+    "causal_summary": "Ten read-only iterations plus the 2026-05-06 user framing correction found that code graph default scope is intentionally user-codebase-focused, not broken. Two end-user P0 bugs remain: destructive zero-node scan promotion and parser-error overwrite behavior. Hooks, advisor, CocoIndex handoff, and maintainer-mode scope/config ergonomics still need runtime docs, smoke parity, staleness repair hardening, and clearer diagnostics.",
     "created_at": "2026-05-06T05:27:17Z",
     "last_save_at": "2026-05-06T05:27:17Z",
     "save_lineage": "graph_only",

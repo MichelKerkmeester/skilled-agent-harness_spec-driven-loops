@@ -5,9 +5,11 @@
 
 This report synthesizes a 10-iteration read-only sweep over the code graph, hook/plugin, advisor, CocoIndex handoff, readiness, and test coverage surfaces. The sweep started from the native rerun failure chain in `012/002` and broadened into adjacent runtime and documentation contracts so the next packet can remediate the actual day-to-day failure modes instead of isolated symptoms.
 
-The headline finding is that code graph reliability is blocked by three coupled P0s: default scope excludes the framework implementation maintainers work on, full scans can persist a zero-node state over a populated graph, and parser-error results can overwrite prior useful per-file graph content. Hooks and advisor are not as broken, but they need runtime smoke parity, staleness repair hardening, and clearer docs before they can be treated as fully operator-ready.
+User clarification on 2026-05-06 corrects the core framing: code graph default scope is intentionally user-codebase-focused. Excluding `.opencode/skill/**`, `.opencode/agent/**`, `.opencode/command/**`, `specs/**`, and `plugins/**` is not a bug for template users indexing their own production code; framework backend indexing is maintainer mode and must stay opt-in through `SPECKIT_CODE_GRAPH_INDEX_*` flags or per-call scope arguments.
 
-Recommended next action: open a Phase 014 remediation packet under `026/007/012` or a sibling `015` packet focused on code graph safety first, then read-path recovery, runtime flag rollout, advisor watchdog behavior, and test coverage. Do not enable automatic read-path full scans until zero-node promotion and parser-error overwrite are guarded.
+The corrected headline is that two real P0 bugs remain for end users: F-002 zero-node full scans can wipe a populated graph, and F-003 parser-error persistence can overwrite prior successful per-file graph content. Framework-maintainer ergonomics such as `.codex/config.toml` maintainer flags, invalid env token handling, and scope-mismatch messaging are P2 polish, not P0 blockers. Hooks and advisor remain real integration surfaces: they need runtime smoke parity, staleness repair hardening, and clearer docs before they can be treated as fully operator-ready.
+
+Recommended next action: open a Phase 014 remediation packet under `026/007/012` or a sibling `015` packet focused on code graph safety first, then read-path recovery, advisor watchdog behavior, hook/runtime docs, CocoIndex handoff contracts, and test coverage. Do not enable automatic read-path full scans until zero-node promotion and parser-error overwrite are guarded.
 
 ## METHODOLOGY
 
@@ -16,19 +18,21 @@ Recommended next action: open a Phase 014 remediation packet under `026/007/012`
 - 10 focus dimensions rotated across iterations.
 - Source inputs: `research/deep-research-strategy.md`, `research/deep-research-config.json`, `research/iterations/iteration-001.md` through `iteration-010.md`, and `research/deltas/iter-001.jsonl` through `iter-010.jsonl`.
 - Total raw finding stream from deltas: P0=3, P1=19, P2=13.
+- Corrected deduplicated status after user framing clarification: P0=2, P1=16, P2=12, DESIGN-INTENT closed=1.
 
 ## FINDINGS BY SEVERITY (DEDUPLICATED)
 
-### P0 (Blockers — break day-to-day code-graph use)
+### DESIGN-INTENT (Closed — not a bug)
 
-- **F-001** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:14` — Default code graph scope excludes `.opencode/skill/**`, `.opencode/agent/**`, `.opencode/command/**`, `.opencode/specs/**`, and `.opencode/plugins/**`, so the framework implementation is outside default scans. Remediation: make default scope active-root aware for Spec Kit maintainer work, or block/warn when default scope would index zero useful nodes. Iter-source: iteration-001.
+- **F-001** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:14` — ~~Default code graph scope excludes `.opencode/skill/**`, `.opencode/agent/**`, `.opencode/command/**`, `.opencode/specs/**`, and `.opencode/plugins/**`, so the framework implementation is outside default scans. Remediation: make default scope active-root aware for Spec Kit maintainer work, or block/warn when default scope would index zero useful nodes.~~ **[CLOSED — DESIGN-INTENT, NOT A BUG]** Default scope correctly excludes framework backend paths for template users indexing their own project code. Framework maintainers can opt in with `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true`, related `SPECKIT_CODE_GRAPH_INDEX_*` flags, or per-call scope arguments. Iter-source: iteration-001; correction-source: user clarification 2026-05-06.
+
+### P0 (End-user blockers — can destroy useful code-graph state)
+
 - **F-002** `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:292` — Full-scan pruning deletes previously tracked files absent from the current result set before proving the new scan has usable graph content, so a scope-mismatched empty scan can wipe a populated graph. Remediation: stage candidate scans and block/quarantine zero-node promotion when prior graph state is non-empty unless an explicit destructive reset is requested. Iter-source: iteration-004.
 - **F-003** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:467` — Parse results with `parseHealth === "error"` are persisted as authoritative file state with zero nodes, clearing prior successful graph content. Remediation: preserve the last successful per-file graph on parser runtime errors and store diagnostics separately. Iter-source: iteration-005.
 
 ### P1 (Required)
 
-- **F-004** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:75` — Invalid `SPECKIT_CODE_GRAPH_INDEX_SKILLS` values silently collapse to `none`. Remediation: validate env tokens and emit scan/status errors or warnings for invalid values. Iter-source: iteration-001.
-- **F-005** `.codex/config.toml:13` — cli-codex MCP startup env lacks `SPECKIT_CODE_GRAPH_INDEX_*` flags while `opencode.json` sets maintainer mode. Remediation: add equivalent Codex env config or document external `.env` startup requirements. Iter-source: iteration-002.
 - **F-006** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:202` — Candidate manifest drift is a count/digest predicate over tracked files and blocks reads when full scans are disabled, but the native read-after-scan sequence lacks a regression fixture. Remediation: add a regression test for broad scan followed by read-path manifest comparison under the same normalization. Iter-source: iteration-003.
 - **F-007** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/ensure-ready.ts:293` — Scope fingerprint drift is separate from manifest drift, and scan-argument scopes are exempted, but blocked-read payloads do not expose enough diagnostics. Remediation: include active/stored scope, manifest count/digest, and reason codes in readiness payloads. Iter-source: iteration-003.
 - **F-008** `.opencode/skill/system-spec-kit/mcp_server/code_graph/handlers/scan.ts:335` — Scan metadata is promoted after zero-node or errored scans, including git head, provenance, and scope. Remediation: promote live metadata only after a usable scan, or persist failed-scan metadata separately. Iter-source: iteration-004.
@@ -48,6 +52,8 @@ Recommended next action: open a Phase 014 remediation packet under `026/007/012`
 
 ### P2 (Suggestions)
 
+- **F-004** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:75` — ~~Invalid `SPECKIT_CODE_GRAPH_INDEX_SKILLS` values silently collapse to `none`. Remediation: validate env tokens and emit scan/status errors or warnings for invalid values.~~ **[RECLASSIFIED — MAINTAINER-ONLY P2]** End users should not need these env vars for default project-code indexing. Maintainers who opt into framework backend indexing still benefit from token validation and clearer warnings. Iter-source: iteration-001; correction-source: user clarification 2026-05-06.
+- **F-005** `.codex/config.toml:13` — ~~cli-codex MCP startup env lacks `SPECKIT_CODE_GRAPH_INDEX_*` flags while `opencode.json` sets maintainer mode. Remediation: add equivalent Codex env config or document external `.env` startup requirements.~~ **[RECLASSIFIED — MAINTAINER-ONLY P2]** Codex startup parity matters only for framework contributors who want code graph coverage over `.opencode/**`; it must not become a default recommendation for new template users. Iter-source: iteration-002; correction-source: user clarification 2026-05-06.
 - **F-022** `.opencode/skill/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:493` — Syntactically valid but nonexistent `sk-*` selections can match no skill content silently. Remediation: verify selected skill folders exist and warn on unmatched selections. Iter-source: iteration-001.
 - **F-023** `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md:261` — Env docs describe skill indexing as scan-only, but query readiness also consumes env through `ensure-ready`. Remediation: document read-path participation and restart requirements. Iter-source: iteration-002.
 - **F-024** `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/tree-sitter-parser.ts:722` — Syntax-recovered parses and parser runtime crashes share the parse health/error channel. Remediation: classify parser backend runtime failures separately. Iter-source: iteration-005.
@@ -63,7 +69,7 @@ Recommended next action: open a Phase 014 remediation packet under `026/007/012`
 
 ### Code Graph
 
-P0: F-001, F-002, F-003. P1: F-004, F-006, F-007, F-008, F-009, F-010, F-011, F-018, F-019, F-020, F-021. P2: F-022, F-023, F-024, F-030, F-031.
+DESIGN-INTENT closed: F-001. P0: F-002, F-003. P1: F-006, F-007, F-008, F-009, F-010, F-011, F-018, F-019, F-020, F-021. P2: F-004, F-022, F-023, F-024, F-030, F-031.
 
 ### Hooks / Plugin
 
@@ -75,15 +81,17 @@ P1: F-014, F-015. P2: F-028.
 
 ### Cross-Cutting
 
-P1: F-005, F-016, F-017. P2: F-029. These touch runtime startup configuration, semantic-search handoff contracts, or memory/search telemetry rather than a single code graph function.
+P1: F-016, F-017. P2: F-005, F-029. These touch runtime startup configuration, semantic-search handoff contracts, or memory/search telemetry rather than a single code graph function.
 
 ## ANSWERS TO PRIMARY QUESTIONS (from charter)
 
 ### A. Default scope + SPECKIT_CODE_GRAPH_INDEX_SKILLS
 
-Verdict: `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` fixes the skills portion of the day-to-day case only when it is present in the MCP server process environment at startup. Iteration 2 traced scan and query-readiness paths and found both observe the env-expanded policy through `resolveIndexScopePolicy()` and `ensure-ready`; iteration 1 still makes clear that the default without env excludes the active Spec Kit implementation; iteration 8 shows adjacent seed handoff contracts can still fail even after broad indexing works.
+Corrected verdict: the default scope is working as designed for end users. Code graph is primarily for indexing the user's production code, not the framework backend under `.opencode/**`, `specs/**`, or `plugins/**`. A new template user should not set `SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` by default.
 
-The env var is therefore necessary but not sufficient. Maintainer startup should set all five code graph scope flags for skills, agents, commands, specs, and plugins, and status/readiness should expose which startup scope is active.
+`SPECKIT_CODE_GRAPH_INDEX_SKILLS=true` fixes the skills portion of a framework-maintainer case only when it is present in the MCP server process environment at startup. Iteration 2 traced scan and query-readiness paths and found both observe the env-expanded policy through `resolveIndexScopePolicy()` and `ensure-ready`; iteration 8 shows adjacent seed handoff contracts can still fail even after broad indexing works.
+
+The env var is therefore maintainer-mode opt-in, not a new-user recommendation. Maintainer startup may set code graph scope flags for skills, agents, commands, specs, and plugins, and status/readiness should expose which startup scope is active.
 
 ### B. Drift detector code path
 
@@ -108,9 +116,9 @@ The actionable bug is independent of reproducing the OOB: parser runtime excepti
 Propose Phase 014 under `012-real-world-usefulness-test`, or sibling 015 if Phase 014 is already reserved.
 
 1. **Scope policy and runtime flags**
-   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`: validate env CSV values, check selected skill existence, and add maintainer-root defaults or hard warnings for zero-useful default scope.
-   - `.codex/config.toml`: add `SPECKIT_CODE_GRAPH_INDEX_SKILLS`, `AGENTS`, `COMMANDS`, `SPECS`, and `PLUGINS`.
-   - `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md`: document scan plus query-readiness participation and restart requirements.
+   - `.opencode/skill/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts`: keep user-codebase defaults; validate maintainer-mode env CSV values and check selected skill existence.
+   - `.codex/config.toml`: add or document `SPECKIT_CODE_GRAPH_INDEX_SKILLS`, `AGENTS`, `COMMANDS`, `SPECS`, and `PLUGINS` only for framework-maintainer profiles.
+   - `.opencode/skill/system-spec-kit/mcp_server/ENV_REFERENCE.md`: document that no env vars are needed for default end-user project-code indexing; maintainer-mode flags affect scan plus query-readiness and require MCP restart.
 
 2. **Safe scan promotion**
    - `code_graph/handlers/scan.ts`: compute previous stats before pruning; quarantine zero-node or severe-drop full scans; promote scope/git/provenance only after usable scans.
@@ -149,19 +157,24 @@ Propose Phase 014 under `012-real-world-usefulness-test`, or sibling 015 if Phas
    - Add env invalid-token and nonexistent-skill selection tests.
    - Add read-path safe-auto-rescan fixture after safety fields land.
 
-## RECOMMENDED .env / opencode.json SNIPPET FOR NEW USERS
+## RECOMMENDED .env / opencode.json SNIPPET
 
 ```bash
-# .env or shell rc
-export SPECKIT_CODE_GRAPH_INDEX_SKILLS=true
-export SPECKIT_CODE_GRAPH_INDEX_AGENTS=true
-export SPECKIT_CODE_GRAPH_INDEX_COMMANDS=true
-export SPECKIT_CODE_GRAPH_INDEX_SPECS=true
-export SPECKIT_CODE_GRAPH_INDEX_PLUGINS=true
+# DEFAULT (recommended for end users):
+# No env vars needed. Code graph indexes your project code automatically.
+# `.opencode/` is excluded by design — you don't typically need to navigate
+# the framework backend with the code graph.
+
+# MAINTAINER MODE (only if you're contributing to this framework):
+export SPECKIT_CODE_GRAPH_INDEX_SKILLS=true   # opt in to indexing .opencode/skill/**
+export SPECKIT_CODE_GRAPH_INDEX_AGENTS=true   # opt in to indexing .opencode/agent/**
+export SPECKIT_CODE_GRAPH_INDEX_COMMANDS=true # opt in to indexing .opencode/command/**
+export SPECKIT_CODE_GRAPH_INDEX_SPECS=true    # opt in to indexing specs/**
+export SPECKIT_CODE_GRAPH_INDEX_PLUGINS=true  # opt in to indexing plugins/**
 ```
 
 ```json
-// opencode.json snippet
+// opencode.json maintainer-mode snippet
 {
   "mcp": {
     "spec_kit_memory": {
@@ -177,10 +190,11 @@ export SPECKIT_CODE_GRAPH_INDEX_PLUGINS=true
 }
 ```
 
-For Codex MCP startup parity, mirror the same keys under `[mcp_servers.spec_kit_memory.env]` in `.codex/config.toml` or launch Codex with an external env file that sets them before the MCP server starts.
+For Codex MCP startup parity in maintainer mode only, mirror the same keys under `[mcp_servers.spec_kit_memory.env]` in `.codex/config.toml` or launch Codex with an external env file that sets them before the MCP server starts. Do not recommend these flags as the default for new template users.
 
 ## NEGATIVE KNOWLEDGE (ruled out / non-issues)
 
+- Default exclusion of `.opencode/**`, `specs/**`, and `plugins/**` is not an end-user bug; it is the intended user-codebase scope.
 - The native blocked-read message was not scope fingerprint drift; it matched candidate manifest drift plus the read-path "inline full scan skipped" suffix.
 - `readiness-contract.ts` is not the drift detector and is not the right place to implement auto-rescan decisions.
 - The zero-node wipe is not caused by `INSERT OR REPLACE`; the destructive path is full-scan pruning plus promotion.
@@ -205,5 +219,5 @@ For Codex MCP startup parity, mirror the same keys under `[mcp_servers.spec_kit_
 
 ## CONVERGENCE NOTE
 
-10 iterations complete. New-finding counts by iteration were 3, 2, 3, 4, 4, 5, 3, 3, 4, 4. The raw rate did not converge downward because later passes shifted from root causes into hook docs, advisor staleness, seed contracts, readiness policy, and test coverage. After dedupe, the root-cause blocker set stabilized at three P0s, while P1/P2 items mostly describe the work needed to prevent recurrence and make the runtime surface diagnosable.
+10 iterations complete. New-finding counts by iteration were 3, 2, 3, 4, 4, 5, 3, 3, 4, 4. The raw rate did not converge downward because later passes shifted from root causes into hook docs, advisor staleness, seed contracts, readiness policy, and test coverage. After dedupe plus the 2026-05-06 design-intent correction, the root-cause blocker set is two P0s. P1/P2 items mostly describe the work needed to prevent recurrence and make the runtime surface diagnosable, with maintainer-mode scope/config ergonomics explicitly demoted to P2.
 <!-- /ANCHOR:research -->

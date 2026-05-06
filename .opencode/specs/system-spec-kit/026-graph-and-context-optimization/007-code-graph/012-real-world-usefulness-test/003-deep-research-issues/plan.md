@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/003-deep-research-issues"
     last_updated_at: "2026-05-06T05:27:17Z"
     last_updated_by: "cli-codex"
-    recent_action: "Documented synthesis execution plan"
-    next_safe_action: "Implement remediation packet in severity order"
+    recent_action: "Documented synthesis execution plan and framing correction"
+    next_safe_action: "Implement remediation packet in corrected severity order"
     blockers: []
     key_files:
       - "research/research.md"
@@ -46,7 +46,7 @@ _memory:
 | **Testing** | `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh <packet> --strict` |
 
 ### Overview
-The packet is a synthesis-only documentation deliverable. The execution path is to read the 10 iteration narratives and JSONL deltas, deduplicate the 35 total findings, write the canonical synthesis and resource map, then validate the spec folder strictly.
+The packet is a synthesis-only documentation deliverable. The execution path is to read the 10 iteration narratives and JSONL deltas, deduplicate the 35 total findings, write the canonical synthesis and resource map, apply the user-provided design-intent correction, then validate the spec folder strictly.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,6 +62,7 @@ The packet is a synthesis-only documentation deliverable. The execution path is 
 ### Definition of Done
 - [x] Root Level 2 docs are complete and free of template placeholders.
 - [x] `research/research.md` answers the charter's primary questions.
+- [x] `research/research.md` reflects that default user-codebase scope is design intent, not a P0 bug.
 - [x] `research/resource-map.md` maps finding citations by subsystem.
 - [x] Parent metadata includes child packet `003-deep-research-issues`.
 - [x] Strict validation passes.
@@ -99,6 +100,7 @@ Iteration reports and delta counts feed a dedupe pass. The deduped findings feed
 - [x] Read all 10 iteration markdown files.
 - [x] Read all 10 delta JSONL records.
 - [x] Deduplicate P0/P1/P2 findings.
+- [x] Reclassify F-001 as design intent and F-004/F-005 as maintainer-only P2.
 - [x] Write root packet planning artifacts.
 - [x] Write `research/research.md`.
 - [x] Write `research/resource-map.md`.

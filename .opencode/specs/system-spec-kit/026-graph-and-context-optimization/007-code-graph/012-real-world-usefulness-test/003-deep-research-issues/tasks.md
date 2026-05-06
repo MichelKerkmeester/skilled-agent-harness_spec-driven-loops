@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/003-deep-research-issues"
     last_updated_at: "2026-05-06T05:27:17Z"
     last_updated_by: "cli-codex"
-    recent_action: "Marked all iteration and synthesis tasks complete"
-    next_safe_action: "Use the synthesis backlog to open remediation implementation work"
+    recent_action: "Marked all iteration, synthesis, and framing-correction tasks complete"
+    next_safe_action: "Use the corrected synthesis backlog to open remediation implementation work"
     blockers: []
     key_files:
       - "research/research.md"
@@ -62,7 +62,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Synthesize iteration 001 default scope policy findings (`research/iterations/iteration-001.md`)
+- [x] T004 Synthesize iteration 001 default scope policy findings (`research/iterations/iteration-001.md`) — F-001 later marked **[CLOSED — DESIGN-INTENT]**
 - [x] T005 Synthesize iteration 002 env/query-readiness verification (`research/iterations/iteration-002.md`)
 - [x] T006 Synthesize iteration 003 drift detector trace (`research/iterations/iteration-003.md`)
 - [x] T007 Synthesize iteration 004 index-wipe regression (`research/iterations/iteration-004.md`)
@@ -89,6 +89,18 @@ _memory:
 - [x] T021 Run strict spec validation
 - [x] T022 Collect line counts for output status
 <!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:phase-4 -->
+## Phase 4: User Framing Correction
+
+- [x] T023 Reclassify F-001 from P0 to **[CLOSED — DESIGN-INTENT]** (`research/research.md`)
+- [x] T024 Reclassify F-004 and F-005 from P1 to **[MAINTAINER-ONLY P2]** (`research/research.md`)
+- [x] T025 Add ADR-004 documenting default-scope design intent (`decision-record.md`)
+- [x] T026 Replace new-user env recommendation with default/no-env and maintainer-mode snippets (`research/research.md`)
+- [x] T027 Update summary, resource map, and metadata language to remove the "default scope is broken" framing
+<!-- /ANCHOR:phase-4 -->
 
 ---
 

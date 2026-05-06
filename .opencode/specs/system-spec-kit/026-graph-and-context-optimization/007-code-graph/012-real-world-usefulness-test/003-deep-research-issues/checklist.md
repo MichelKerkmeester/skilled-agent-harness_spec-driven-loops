@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/003-deep-research-issues"
     last_updated_at: "2026-05-06T05:27:17Z"
     last_updated_by: "cli-codex"
-    recent_action: "Verified synthesis deliverables"
-    next_safe_action: "Carry remediation backlog into follow-up implementation packet"
+    recent_action: "Verified synthesis deliverables and framing correction"
+    next_safe_action: "Carry corrected remediation backlog into follow-up implementation packet"
     blockers: []
     key_files:
       - "research/research.md"
@@ -81,12 +81,12 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. Evidence: findings are grouped as blockers, required remediations, or suggestions.
+- [x] CHK-FIX-001 [P0] Each finding has a finding class. Evidence: F-001 is marked **[CLOSED — DESIGN-INTENT]**, F-004/F-005 are marked **[MAINTAINER-ONLY P2]**, and remaining actionable findings are grouped as blockers, required remediations, or suggestions.
 - [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: iteration reports cite relevant handlers, helpers, docs, and tests by path.
 - [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence: remediation scope lists production files, docs, runtime configs, and tests.
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests when implemented. Evidence: this packet is read-only; follow-up test additions are listed in remediation scope.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: `research/research.md` groups findings by severity and axis.
-- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: follow-up coverage calls for env-scope variants around `SPECKIT_CODE_GRAPH_INDEX_*`.
+- [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: follow-up coverage calls for maintainer-mode env-scope variants around `SPECKIT_CODE_GRAPH_INDEX_*`.
 - [x] CHK-FIX-007 [P1] Evidence is pinned to explicit file:line citations. Evidence: `research/resource-map.md` catalogs citations by subsystem.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -107,7 +107,7 @@ _memory:
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: all root docs point to the same research packet and deliverables.
 - [x] CHK-041 [P1] Code comments adequate. Evidence: no code changed.
-- [x] CHK-042 [P2] .env snippet drafted. Evidence: `research/research.md` includes `.env` and `opencode.json` maintainer-mode snippets.
+- [x] CHK-042 [P2] .env snippet drafted. Evidence: `research/research.md` states no env vars are needed for default end-user project-code indexing and includes maintainer-mode `.env` and `opencode.json` snippets.
 <!-- /ANCHOR:docs -->
 
 ---

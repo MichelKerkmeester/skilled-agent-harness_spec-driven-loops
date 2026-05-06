@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-code-graph/012-real-world-usefulness-test/003-deep-research-issues"
     last_updated_at: "2026-05-06T05:27:17Z"
     last_updated_by: "cli-codex"
-    recent_action: "Completed final deep research synthesis"
-    next_safe_action: "Create remediation packet for code graph reliability and runtime configuration"
+    recent_action: "Applied user framing correction to final deep research synthesis"
+    next_safe_action: "Create remediation packet for zero-node scan safety and parser-error persistence first"
     blockers: []
     key_files:
       - "research/research.md"
@@ -50,11 +50,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-This packet turns the completed 10-iteration research loop into an implementation-ready backlog. The headline is blunt: code graph needs reliability work before it can be trusted day to day, because default scope, destructive empty-scan promotion, and parser-error persistence can erase or block useful graph state.
+This packet turns the completed 10-iteration research loop into an implementation-ready backlog. The corrected headline is narrower than the original synthesis: code graph default scope is working as designed for end-user project code, while destructive empty-scan promotion and parser-error persistence still need P0 reliability fixes.
 
 ### Final Research Synthesis
 
-`research/research.md` now provides the canonical report. It deduplicates the original P0=3, P1=19, P2=13 finding stream, answers the charter's primary questions, records negative knowledge, and proposes a remediation order for a follow-up Phase 014 or sibling 015 packet.
+`research/research.md` now provides the canonical report. It preserves the original P0=3, P1=19, P2=13 raw finding stream, then applies the 2026-05-06 framing correction: P0=2, P1=16, P2=12, DESIGN-INTENT closed=1. The report answers the charter's primary questions, records negative knowledge, and proposes a remediation order for a follow-up Phase 014 or sibling 015 packet.
 
 ### Resource Map
 
@@ -99,6 +99,8 @@ The synthesis read the charter, config, all 10 iteration reports, and all 10 del
 | Keep this packet Level 2 | The work is a research synthesis and verification package, not a large implementation change |
 | Treat `decision-record.md` as supplemental | The user explicitly requested ADRs even though Level 2 does not require them |
 | Preserve root-cause P0s separately from test/doc coverage gaps | The next remediation packet needs to fix behavior first, then lock it with tests and docs |
+| Reclassify F-001 as design intent | Default `.opencode/**` exclusion is correct for template users indexing their own project code |
+| Demote F-004/F-005 to maintainer-only P2 | Env-token validation and `.codex/config.toml` parity matter for framework contributors, not default end-user setup |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -112,6 +114,7 @@ The synthesis read the charter, config, all 10 iteration reports, and all 10 del
 | Required synthesis sections | PASS: `research/research.md` contains the requested sections |
 | Parent metadata updated | PASS: parent `children_ids` includes this packet |
 | Strict spec validation | PASS: `validate.sh --strict` exited 0 |
+| Framing correction applied | PASS: F-001 closed as DESIGN-INTENT; F-004/F-005 demoted to maintainer-only P2 |
 <!-- /ANCHOR:verification -->
 
 ---
