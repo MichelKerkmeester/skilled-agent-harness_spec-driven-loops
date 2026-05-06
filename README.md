@@ -173,24 +173,34 @@ See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full c
 
 ### Disable Maintainer-Mode Code-Graph Indexing (recommended for end users)
 
-This template ships with **maintainer mode enabled** — the structural code graph indexes all 5 framework backend folders (`.opencode/skill/`, `agent/`, `command/`, `specs/`, `plugins/`) so we can navigate the framework's own internals when iterating on it. **End users almost never want this on.** The code graph is for navigating *your project's production code*, not the framework backend you don't maintain.
+End users cloning this template **automatically inherit the framework default** (`"false"` everywhere) thanks to a git clean filter — no action required. **You can skip this section unless you're contributing back upstream.** The code graph is for navigating *your project's production code*, not the framework backend you don't maintain.
 
-To disable maintainer mode after forking, edit `opencode.json` and either delete or flip these five env vars:
+**Why this works automatically.** This repo uses a git clean/smudge filter to keep maintainer mode local-only. Anything we (the maintainers) commit + push has the 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags rewritten from `"true"` → `"false"` in the index. End users cloning the template see `"false"` defaults across all 5 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, `.vscode/mcp.json`). The framework default is "don't index `.opencode/`", so `false` everywhere = correct out of the box.
+
+If you somehow end up with `"true"` flags in your fork (e.g., you ran the maintainer setup script), revert them in whichever runtime config(s) you use:
 
 ```jsonc
-// opencode.json — under mcp.spec_kit_memory.environment
-"SPECKIT_CODE_GRAPH_INDEX_SKILLS":  "false",   // was "true"
+// any of: opencode.json | .claude/mcp.json | .gemini/settings.json | .vscode/mcp.json
+// Under mcp.spec_kit_memory.environment (or env), flip these five rows:
+"SPECKIT_CODE_GRAPH_INDEX_SKILLS":  "false",
 "SPECKIT_CODE_GRAPH_INDEX_AGENTS":  "false",
 "SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
 "SPECKIT_CODE_GRAPH_INDEX_SPECS":   "false",
 "SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false"
 ```
 
-(Or remove the rows entirely — `false` is the framework default.)
+```toml
+# .codex/config.toml — under [mcp_servers.spec_kit_memory.env]
+SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
+SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
+SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
+SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
+SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
+```
 
-After flipping, restart your MCP server (close + reopen your IDE / runtime) and run `code_graph_scan` once to rebuild the index against your project scope. Subsequent `code_graph_query` calls will only see your own production code, which is faster, smaller, and matches the day-to-day mental model.
+(Or delete the rows entirely — `false` is the framework default.) Restart your MCP server (close + reopen your IDE / runtime), then run `code_graph_scan` once to rebuild the index against your project scope.
 
-If you ever do want to navigate the framework backend (rare — only if you're contributing back upstream), flip the relevant flag back to `"true"` for that folder, or pass per-call `includeSkills: true` to `code_graph_scan`.
+If you ever do want to navigate the framework backend (rare — only if you're contributing back upstream), flip the relevant flag back to `"true"` for that folder, or pass per-call `includeSkills: true` (or matching arg) to `code_graph_scan`.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -1330,37 +1340,41 @@ The runtime centers on a SQLite `memory_index` table with 56 columns plus compan
 ```
 
 &nbsp;
-### Maintainer-Mode Code-Graph Flags (disable for end users)
+### Maintainer-Mode Code-Graph Flags (already disabled for end users)
 
-The shipped `opencode.json` enables five `SPECKIT_CODE_GRAPH_INDEX_*` env vars under `mcp.spec_kit_memory.environment`:
+All 5 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, `.vscode/mcp.json`) carry five opt-in maintainer flags:
 
-```jsonc
-"SPECKIT_CODE_GRAPH_INDEX_SKILLS":   "true",
-"SPECKIT_CODE_GRAPH_INDEX_AGENTS":   "true",
-"SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "true",
-"SPECKIT_CODE_GRAPH_INDEX_SPECS":    "true",
-"SPECKIT_CODE_GRAPH_INDEX_PLUGINS":  "true"
+```text
+SPECKIT_CODE_GRAPH_INDEX_SKILLS    (covers .opencode/skill/**)
+SPECKIT_CODE_GRAPH_INDEX_AGENTS    (covers .opencode/agent/**)
+SPECKIT_CODE_GRAPH_INDEX_COMMANDS  (covers .opencode/command/**)
+SPECKIT_CODE_GRAPH_INDEX_SPECS     (covers .opencode/specs/**)
+SPECKIT_CODE_GRAPH_INDEX_PLUGINS   (covers .opencode/plugins/**)
 ```
 
-These are **opt-in maintainer flags** — turning them on tells the code graph to index the framework backend (`.opencode/skill/`, `agent/`, `command/`, `specs/`, `plugins/`) in addition to your project code. The framework default is **`false` for all five** because end users should index their own production code, not the framework internals.
+**End users see all 5 as `"false"`** thanks to the [git clean filter](#git-clean-filter--maintainer-mode-stays-local). That's the framework default and what you want — the code graph indexes your project code, not the framework backend.
 
-**This template ships with all five enabled** because we maintain the framework and use the code graph to navigate `.opencode/` ourselves. **You almost certainly want them off after forking.**
+**Maintainers (us) have all 5 as `"true"`** locally because we navigate `.opencode/` to iterate on the framework. The smudge filter restores `"true"` on checkout/pull/clone after running `./scripts/setup-maintainer-filters.sh`.
 
-**To disable** (recommended for end users):
+**Per-call override:** the same five flags exist as `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` arguments on `code_graph_scan`. Per-call args always override env defaults, so you can flip behavior for one scan without editing config.
 
-| Action | Result |
-|---|---|
-| Flip the five rows to `"false"` (or delete them) | Code graph indexes only your project code (the framework default) |
-| Restart your MCP server | Picks up the new env values |
-| Run `code_graph_scan` once | Rebuilds the index against your project scope |
+<a id="git-clean-filter--maintainer-mode-stays-local"></a>
+#### Git clean filter — maintainer mode stays local
 
-After that, `code_graph_query` calls will only return results from your own production code — faster, smaller, and matching what you actually maintain.
+The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the 5 config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index, and the smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
 
-**To re-enable per-folder** (rare — only if you're contributing back upstream):
-- Flip the relevant flag back to `"true"`, OR
-- Pass per-call `includeSkills: true` (or the matching arg) to `code_graph_scan` for a one-off scan
+- **End users cloning the template** → all 5 configs show `"false"` (framework default, correct out of box)
+- **Maintainers after running `./scripts/setup-maintainer-filters.sh`** → all 5 configs show `"true"` locally; commits + pushes still ship `"false"` to the remote
 
-The same five flags also exist as `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` per-call args on `code_graph_scan` — per-call args override env defaults.
+To opt into maintainer mode on a fresh clone (only relevant if you're contributing upstream):
+
+```bash
+./scripts/setup-maintainer-filters.sh
+git rm --cached opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml
+git checkout -- opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml
+```
+
+After that, `cat opencode.json` shows `"true"`; `git show HEAD:opencode.json` shows `"false"` (what the remote sees).
 
 <!-- /ANCHOR:configuration -->
 

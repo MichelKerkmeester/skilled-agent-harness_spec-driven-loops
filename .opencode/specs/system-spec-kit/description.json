@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-spec-kit",
+  "description": "Track folder for system-spec-kit packets — the framework's own internals: Spec Kit Memory MCP server (memory engine + spec-doc indexing), code graph, skill graph + advisor, hooks/plugin runtime parity, and graph-and-context-optimization work. Active phase 026 covers graph and context optimization across runtime executor hardening, code graph, skill advisor, hook parity, and template levels. Historical phases live under z_archive (memory architecture, hybrid RAG fusion, compact code graph, etc.).",
+  "keywords": [
+    "system-spec-kit",
+    "track",
+    "framework",
+    "spec-kit-memory",
+    "mcp-server",
+    "code-graph",
+    "skill-graph",
+    "skill-advisor",
+    "hooks",
+    "plugin",
+    "runtime",
+    "context-optimization",
+    "graph",
+    "memory",
+    "spec-doc",
+    "indexing",
+    "fusion",
+    "compact"
+  ],
+  "lastUpdated": "2026-05-06T08:00:00.000Z",
+  "specId": "system-spec-kit",
+  "folderSlug": "system-spec-kit",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}
