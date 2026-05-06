@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Phase 002 renamed the prompt skill folder, updated skill-local references and advisor graph keys, retargeted the changelog symlink, and rebuilt advisor state."
 trigger_phrases:
   - "implementation"
   - "summary"
@@ -10,23 +10,28 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-skill-folder-rename"
-    last_updated_at: "2026-05-06T10:23:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename"
+    last_updated_at: "2026-05-06T11:00:06Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 002 complete: folder renamed, 9 files updated, advisor rebuilt"
+    next_safe_action: "Phase 003 opencode internals"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skill/sk-prompt/SKILL.md"
+      - ".opencode/skill/sk-prompt/README.md"
+      - ".opencode/skill/sk-prompt/graph-metadata.json"
+      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/changelog/sk-prompt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-skill-folder-rename"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary
+# Implementation Summary: Phase 002 Skill Folder Rename
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
@@ -56,20 +61,34 @@ _memory:
      For Level 1-2, a Files Changed table after the narrative is fine.
      Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The prompt skill now has its canonical folder and self-identity at `sk-prompt`, so downstream Phase 003 consumers have a real target path to point at. This phase kept the change narrow: skill-local self references, advisor graph keys, and the changelog symlink moved together, then advisor state was rebuilt immediately.
 
-### [Feature Name]
+### Folder Rename And Skill Internals
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The physical skill folder moved from `.opencode/skill/sk-improve-prompt/` to `.opencode/skill/sk-prompt/`. The eight listed skill-local files now use `sk-prompt` for frontmatter, skill IDs, trigger phrases, path embeds, changelog references, and fast-path prompt quality card guidance.
+
+The changelog convention was preserved. Sibling changelog entries are symlinks, so `.opencode/changelog/sk-prompt` now points to `../skill/sk-prompt/changelog`, and the old `.opencode/changelog/sk-improve-prompt` path is gone.
+
+### Advisor Graph Refresh
+
+`skill-graph.json` now uses `sk-prompt` in the Phase 002 graph locations: family membership, adjacency keys and values, signal keys, and advisor enhancement references. The native advisor rebuild ran through the compiled handler after the JSON edits because the MCP tool calls were cancelled by the tool layer.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skill/sk-improve-prompt/` -> `.opencode/skill/sk-prompt/` | Renamed | Canonical skill folder moved to the new name |
+| `.opencode/skill/sk-prompt/SKILL.md` (453 lines) | Modified | Frontmatter `name:` now reads `sk-prompt` |
+| `.opencode/skill/sk-prompt/README.md` (368 lines) | Modified | Skill title, trigger phrase, overview, and structure refs moved to `sk-prompt` |
+| `.opencode/skill/sk-prompt/graph-metadata.json` (151 lines) | Modified | `skill_id`, key files, entity names, and path refs moved to `sk-prompt` |
+| `.opencode/skill/sk-prompt/assets/cli_prompt_quality_card.md` (119 lines) | Modified | Fast-path card self references moved to `sk-prompt` |
+| `.opencode/skill/sk-prompt/references/depth_framework.md` (444 lines) | Modified | DEPTH reference self reference moved to `sk-prompt` |
+| `.opencode/skill/sk-prompt/changelog/v1.0.0.0.md` (9 lines) | Modified | Historical skill self reference moved to `sk-prompt` |
+| `.opencode/skill/sk-prompt/changelog/v1.1.0.0.md` (28 lines) | Modified | Historical path refs moved to `sk-prompt` |
+| `.opencode/skill/sk-prompt/changelog/v1.2.0.0.md` (31 lines) | Modified | Historical path refs moved to `sk-prompt` |
+| `.opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` (366 lines) | Modified | Advisor graph keys and values moved to `sk-prompt` |
+| `.opencode/changelog/sk-prompt` | Created symlink | Points to `../skill/sk-prompt/changelog` |
+| `.opencode/changelog/sk-improve-prompt` | Removed symlink | Old dangling changelog path removed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -83,7 +102,7 @@ Explain what the user gains, not what files you touched.]
      For Level 1: a single sentence is enough.
      For Level 3+: describe stages (testing, rollout, verification). -->
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The change was delivered as a mechanical rename plus literal replacement in the scoped files. `git mv` was attempted first but the sandbox blocked `.git/index.lock`; the physical move was completed with `mv`, which leaves Git to detect delete/add until staging is available.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +115,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Preserve existing user edits in scoped files | `graph-metadata.json` and `skill-graph.json` already had unrelated Phase 001/adjacent edits; Phase 002 layered only the prompt-skill rename on top. |
+| Retarget the changelog symlink | Sibling skills use `.opencode/changelog/<skill>` symlinks, so `sk-prompt` should keep that convention. |
+| Use compiled advisor rebuild handler | MCP calls were cancelled by the tool layer; the compiled handler is the local equivalent and returned a generation bump. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -109,7 +130,17 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `ls .opencode/skill/sk-improve-prompt/` | PASS before rename; folder existed. |
+| `git mv .opencode/skill/sk-improve-prompt .opencode/skill/sk-prompt` | FAIL due sandbox: `Unable to create .../.git/index.lock: Operation not permitted`. |
+| `mv .opencode/skill/sk-improve-prompt .opencode/skill/sk-prompt` | PASS; physical folder rename completed. |
+| `rg -n "sk-improve-prompt" .opencode/skill/sk-prompt .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | PASS; exit 1 with no matches. |
+| `jq . .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | PASS; JSON parsed successfully. |
+| `sed -n '1,12p' .opencode/skill/sk-prompt/SKILL.md` | PASS; frontmatter shows `name: sk-prompt`. |
+| `ls -l .opencode/changelog/sk-prompt .opencode/changelog/sk-improve-prompt` | PASS; `sk-prompt -> ../skill/sk-prompt/changelog`, old path absent. |
+| `node --input-type=module ... handleAdvisorRebuild({ force: true })` | PASS; final rebuild true, generation `1213 -> 1214`, freshness `stale -> live`. Warnings remain for Phase 003 references outside this scope. |
+| `node --input-type=module ... handleAdvisorStatus(...)` | PASS; freshness `live`, generation `1214`. |
+| `python3 .opencode/skill/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skill/sk-prompt` | PASS; scanned 1 file, 0 findings, 0 warnings, 0 violations. |
+| `bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename --strict` | PASS; Errors: 0, Warnings: 0, `RESULT: PASSED`. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,7 +153,9 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **MCP tool calls were unavailable.** `memory_match_triggers`, `advisor_status`, and `advisor_rebuild` were cancelled by the tool layer, so the advisor rebuild and status verification used the compiled local handler.
+2. **Phase 003 references still exist.** Advisor rebuild diagnostics still mention `sk-improve-prompt` in out-of-scope files such as `deep-agent-improvement/graph-metadata.json` and `skill_advisor/graph-metadata.json`; these are intentionally left for Phase 003.
+3. **Git rename staging is not available in this sandbox.** The physical rename is complete, but `git mv` could not write `.git/index.lock`.
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +165,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
 -->
-

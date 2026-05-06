@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename"
-    last_updated_at: "2026-05-06T12:30:00Z"
-    last_updated_by: "claude-orchestrator"
-    recent_action: "Authored phase spec scaffold"
-    next_safe_action: "Rename skill folder and update skill-local sk-prompt metadata"
+    last_updated_at: "2026-05-06T11:00:06Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 002 complete: folder renamed, 9 files updated, advisor rebuilt"
+    next_safe_action: "Phase 003 opencode internals"
     blockers: []
     key_files:
       - "spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-2026-05-06-082-002"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Pending |
+| **Status** | Complete |
 | **Created** | 2026-05-06 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -84,14 +84,105 @@ Phase 002 performs the physical `git mv`, updates skill internals and `skill-gra
 | `.opencode/changelog/sk-improve-prompt` | Rename/Retarget | Symlink handling after folder move |
 <!-- /ANCHOR:scope -->
 
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Rename the physical skill folder to `.opencode/skill/sk-prompt/`. | `ls .opencode/skill/sk-prompt/SKILL.md` succeeds and the old folder path is absent. |
+| REQ-002 | Update skill-local references from `sk-improve-prompt` to `sk-prompt`. | Scoped `rg` over `.opencode/skill/sk-prompt` returns no `sk-improve-prompt` matches. |
+| REQ-003 | Update advisor graph keys and values for the prompt skill. | Scoped `rg` over `skill-graph.json` returns no `sk-improve-prompt` matches and `jq` passes. |
+| REQ-004 | Rebuild advisor state after graph edits. | Advisor rebuild reports a generation bump and status reports freshness `live`. |
+
+### P1 - Required
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-005 | Preserve changelog symlink convention. | `.opencode/changelog/sk-prompt` points to `../skill/sk-prompt/changelog`. |
+| REQ-006 | Document completion evidence in the phase folder. | `implementation-summary.md` and `tasks.md` include command evidence. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: `.opencode/skill/sk-prompt/SKILL.md` exists and its frontmatter `name:` field is `sk-prompt`.
+- **SC-002**: No `sk-improve-prompt` literal remains in `.opencode/skill/sk-prompt/` or Phase 002's `skill-graph.json` scope.
+- **SC-003**: `skill-graph.json` remains valid JSON.
+- **SC-004**: Advisor rebuild completes and advisor status reports freshness `live`.
+- **SC-005**: Strict validation passes on this phase folder.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Risk | Dirty worktree contains unrelated edits | Accidental overwrite or scope bleed | Read targeted diffs first and only edit Phase 002 paths. |
+| Risk | Advisor cache stays stale | Skill routing may continue seeing old graph state | Force advisor rebuild and verify status `live`. |
+| Dependency | Phase 003 references still point at the old skill name | Rebuild diagnostics can contain out-of-scope warnings | Record warnings and leave consumer refs for Phase 003. |
+| Dependency | Sandbox blocks `.git/index.lock` | `git mv` cannot stage rename metadata | Use physical move and report the staging limitation. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- None for Phase 002.
+<!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 8. NON-FUNCTIONAL REQUIREMENTS
+
+- Preserve JSON syntax in `graph-metadata.json` and `skill-graph.json`.
+- Preserve YAML frontmatter syntax in markdown files.
+- Keep edits limited to Phase 002 paths and phase documentation.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 9. EDGE CASES
+
+| Edge Case | Handling |
+|-----------|----------|
+| Existing changelog symlink is stale after folder move | Retarget to `../skill/sk-prompt/changelog`. |
+| MCP advisor tools are unavailable | Use the compiled local advisor rebuild/status handlers. |
+| Out-of-scope graph metadata still references old ID | Leave for Phase 003 and document rebuild diagnostics. |
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 10. COMPLEXITY
+
+| Area | Complexity | Notes |
+|------|------------|-------|
+| Folder rename | Medium | Physical move is simple; staging was blocked by sandbox restrictions. |
+| Skill-local replacements | Low | Mechanical literal replacement in a known file list. |
+| Advisor graph refresh | Medium | Requires key/value rename plus rebuild/status verification. |
+<!-- /ANCHOR:complexity -->
+
+---
+
 <!-- ANCHOR:implementation -->
-## 4. IMPLEMENTATION APPROACH
+## 11. IMPLEMENTATION APPROACH
 
 Dispatch cli-codex gpt-5.5 medium fast for this phase. The executor should make the folder move first, update all skill-local references and graph JSON keys in one pass, then rebuild advisor state before handing off.
 <!-- /ANCHOR:implementation -->
 
 <!-- ANCHOR:handoff -->
-## 5. HANDOFF CRITERIA
+## 12. HANDOFF CRITERIA
 
 - `ls .opencode/skill/sk-prompt/` succeeds.
 - `rg 'sk-improve-prompt' .opencode/skill/sk-prompt .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` returns 0.
@@ -106,7 +197,7 @@ bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh .opencode/specs/sk
 <!-- /ANCHOR:handoff -->
 
 <!-- ANCHOR:related -->
-## 6. RELATED DOCUMENTS
+## 13. RELATED DOCUMENTS
 
 - **Parent Spec**: [../spec.md](../spec.md)
 - **Resource Map**: [../resource-map.md](../resource-map.md)

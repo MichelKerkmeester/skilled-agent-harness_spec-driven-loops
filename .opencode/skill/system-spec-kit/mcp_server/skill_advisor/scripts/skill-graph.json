@@ -1,12 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-05T19:21:10.255582+00:00",
-  "skill_count": 18,
+  "generated_at": "2026-05-06T12:30:00.000000+00:00",
+  "skill_count": 17,
   "families": {
     "cli": [
       "cli-claude-code",
       "cli-codex",
-      "cli-copilot",
       "cli-gemini",
       "cli-opencode"
     ],
@@ -26,8 +25,8 @@
     "sk-util": [
       "sk-doc",
       "sk-git",
-      "sk-improve-agent",
-      "sk-improve-prompt"
+      "deep-agent-improvement",
+      "sk-prompt"
     ],
     "system": [
       "skill_advisor",
@@ -38,7 +37,6 @@
     "cli-claude-code": {
       "siblings": {
         "cli-codex": 0.5,
-        "cli-copilot": 0.5,
         "cli-gemini": 0.5,
         "cli-opencode": 0.5
       }
@@ -46,15 +44,6 @@
     "cli-codex": {
       "siblings": {
         "cli-claude-code": 0.5,
-        "cli-copilot": 0.5,
-        "cli-gemini": 0.5,
-        "cli-opencode": 0.5
-      }
-    },
-    "cli-copilot": {
-      "siblings": {
-        "cli-claude-code": 0.5,
-        "cli-codex": 0.5,
         "cli-gemini": 0.5,
         "cli-opencode": 0.5
       }
@@ -63,7 +52,6 @@
       "siblings": {
         "cli-claude-code": 0.5,
         "cli-codex": 0.5,
-        "cli-copilot": 0.5,
         "cli-opencode": 0.5
       }
     },
@@ -71,7 +59,6 @@
       "siblings": {
         "cli-claude-code": 0.5,
         "cli-codex": 0.5,
-        "cli-copilot": 0.5,
         "cli-gemini": 0.5
       }
     },
@@ -145,20 +132,19 @@
         "sk-doc": 0.4
       }
     },
-    "sk-improve-agent": {
+    "deep-agent-improvement": {
       "siblings": {
-        "sk-improve-prompt": 0.4
+        "sk-prompt": 0.4
       }
     },
-    "sk-improve-prompt": {
+    "sk-prompt": {
       "enhances": {
         "cli-claude-code": 0.4,
         "cli-codex": 0.4,
-        "cli-copilot": 0.4,
         "cli-gemini": 0.4
       },
       "siblings": {
-        "sk-improve-agent": 0.4
+        "deep-agent-improvement": 0.4
       }
     },
     "skill_advisor": {
@@ -168,7 +154,6 @@
       "enhances": {
         "cli-claude-code": 0.7,
         "cli-codex": 0.7,
-        "cli-copilot": 0.7,
         "cli-gemini": 0.7,
         "mcp-chrome-devtools": 0.7,
         "mcp-coco-index": 0.7,
@@ -179,8 +164,8 @@
         "deep-review": 0.7,
         "sk-doc": 0.7,
         "sk-git": 0.7,
-        "sk-improve-agent": 0.7,
-        "sk-improve-prompt": 0.7,
+        "deep-agent-improvement": 0.7,
+        "sk-prompt": 0.7,
         "system-spec-kit": 0.7
       }
     },
@@ -202,10 +187,6 @@
       "codex cli",
       "codex exec",
       "delegate to codex"
-    ],
-    "cli-copilot": [
-      "copilot cli",
-      "delegate to copilot"
     ],
     "cli-gemini": [
       "gemini cli",
@@ -346,12 +327,12 @@
       "pull request",
       "finish work"
     ],
-    "sk-improve-agent": [
+    "deep-agent-improvement": [
       "improve agent",
       "evaluate agent",
       "agent scoring"
     ],
-    "sk-improve-prompt": [
+    "sk-prompt": [
       "improve prompt",
       "enhance prompt",
       "prompt framework",
@@ -375,7 +356,6 @@
   "hub_skills": [
     "cli-claude-code",
     "cli-codex",
-    "cli-copilot",
     "cli-gemini",
     "cli-opencode",
     "sk-code",

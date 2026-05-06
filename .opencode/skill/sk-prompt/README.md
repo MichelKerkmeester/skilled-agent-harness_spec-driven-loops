@@ -7,10 +7,10 @@ trigger_phrases:
   - "DEPTH processing framework"
   - "prompt framework selection"
   - "RCAF CRAFT prompt structure"
-  - "sk-improve-prompt"
+  - "sk-prompt"
 ---
 
-# sk-improve-prompt
+# sk-prompt
 
 > Transforms vague or incomplete AI prompts into structured, scored outputs using 7 proven frameworks, DEPTH thinking methodology, and CLEAR quality validation.
 
@@ -39,7 +39,7 @@ trigger_phrases:
 
 ### What This Skill Does
 
-`sk-improve-prompt` is a prompt engineering specialist that takes vague, incomplete, or under-specified AI prompts and produces structured, high-quality outputs through a four-phase pipeline. The pipeline begins with mode detection (via command prefix or keyword scoring), moves to framework selection (scoring 7 frameworks against task characteristics), applies DEPTH processing (iterative refinement across up to 5 cognitive phases and up to 10 rounds), and completes with CLEAR scoring (a 50-point quality validation that must reach 40 to pass).
+`sk-prompt` is a prompt engineering specialist that takes vague, incomplete, or under-specified AI prompts and produces structured, high-quality outputs through a four-phase pipeline. The pipeline begins with mode detection (via command prefix or keyword scoring), moves to framework selection (scoring 7 frameworks against task characteristics), applies DEPTH processing (iterative refinement across up to 5 cognitive phases and up to 10 rounds), and completes with CLEAR scoring (a 50-point quality validation that must reach 40 to pass).
 
 The skill covers the full spectrum of prompt complexity, from rapid single-output tasks handled by the RACE framework to large-scale multi-stakeholder projects handled by CRAFT. Framework selection is automatic: the skill scores each candidate against your task's complexity, urgency, audience specificity, creativity requirements, and precision needs, then selects the best match and offers an alternative. Every output except `$raw` mode includes a transparency report showing which framework was chosen, how many DEPTH rounds ran, and the CLEAR score breakdown.
 
@@ -179,7 +179,7 @@ The transparency report at the end of every delivery is intentional. It shows th
 ## 4. STRUCTURE
 
 ```
-sk-improve-prompt/
+sk-prompt/
 ├── SKILL.md                          # AI entry point: mode detection, smart routing, pipeline
 ├── README.md                         # This file
 ├── references/

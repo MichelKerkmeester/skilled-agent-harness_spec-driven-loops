@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: skill-folder-rename [template:level_1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Plan for renaming the prompt skill folder, updating skill-local references and advisor graph keys, rebuilding advisor state, and validating the phase folder."
 trigger_phrases:
   - "implementation"
   - "plan"
@@ -11,18 +11,22 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-skill-folder-rename"
-    last_updated_at: "2026-05-06T10:23:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/002-skill-folder-rename"
+    last_updated_at: "2026-05-06T11:00:06Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 002 complete: folder renamed, 9 files updated, advisor rebuilt"
+    next_safe_action: "Phase 003 opencode internals"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skill/sk-prompt/SKILL.md"
+      - ".opencode/skill/sk-prompt/README.md"
+      - ".opencode/skill/sk-prompt/graph-metadata.json"
+      - ".opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/002-skill-folder-rename"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,13 +44,13 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | OpenCode skill markdown, JSON, symlink metadata |
+| **Framework** | system-spec-kit advisor graph and spec validation |
+| **Storage** | Skill graph SQLite generated state |
+| **Testing** | `rg`, `jq`, advisor rebuild/status, alignment drift, strict spec validation |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Phase 002 performs the physical prompt skill folder rename and updates only the skill-local self references plus `skill-graph.json`. The advisor graph is rebuilt immediately after JSON edits so downstream phases work against a live `sk-prompt` skill ID.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,14 +59,14 @@ _memory:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Verification commands passed or documented with exact failure cause
+- [x] Docs updated (spec/plan/tasks/implementation-summary/checklist)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -71,14 +75,16 @@ _memory:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Mechanical rename with scoped reference replacement.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Skill folder**: canonical source for `sk-prompt` skill content.
+- **Skill-local metadata**: frontmatter, README, graph metadata, changelog, asset, and reference self refs.
+- **Advisor graph JSON**: checked-in graph data that maps signal keys and adjacency IDs.
+- **Advisor generated state**: rebuilt SQLite/generation metadata that advisor status reads.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The folder move creates the new canonical path, scoped replacements align the skill metadata with that path, and advisor rebuild indexes checked-in skill metadata into generated state. Phase 003 then updates the remaining consumers.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -90,8 +96,10 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `.opencode/skill/sk-prompt/` | Owns prompt skill body and self metadata | Rename and replace local literals | Scoped `rg` returns no old-name matches |
+| `skill-graph.json` | Advisor graph fallback and signal map | Rename graph IDs and key values | `jq` passes; scoped `rg` returns no old-name matches |
+| `.opencode/changelog/` | Skill changelog symlink catalog | Retarget symlink to new folder | `ls -l` shows `sk-prompt -> ../skill/sk-prompt/changelog` |
+| Advisor generated state | Runtime advisor freshness and generation | Rebuild after JSON edits | Generation `1212 -> 1213`, freshness `live` |
 
 Required inventories:
 - Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
@@ -106,19 +114,21 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [x] Read authoritative phase inputs.
+- [x] Verify folder pre-state and scoped dirty diffs.
+- [x] Confirm current branch is `main`.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [x] Rename `.opencode/skill/sk-improve-prompt/` to `.opencode/skill/sk-prompt/`.
+- [x] Replace skill-local `sk-improve-prompt` literals with `sk-prompt`.
+- [x] Replace Phase 002 `skill-graph.json` keys and refs.
+- [x] Retarget changelog symlink.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [x] Run scoped old-name grep.
+- [x] Run `jq` on `skill-graph.json`.
+- [x] Rebuild advisor and verify live status.
+- [x] Run alignment drift and strict spec validation.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -128,9 +138,11 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Static grep | Skill-local and graph old-name absence | `rg` |
+| JSON syntax | Advisor graph JSON | `jq` |
+| Advisor integration | Generated advisor state | compiled advisor rebuild/status handlers |
+| Spec validation | Phase docs | `validate.sh --strict` |
+| OpenCode alignment | Renamed skill folder | `verify_alignment_drift.py` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -140,17 +152,56 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Advisor rebuild handler | Internal | Green | Without rebuild, advisor state could stay stale. |
+| Phase 003 consumer updates | Internal | Pending | Rebuild diagnostics can mention old out-of-scope refs until Phase 003 completes. |
+| Git index write access | Environment | Yellow | `git mv` staging cannot occur inside this sandbox; physical rename is complete. |
 <!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## 6A. PHASE DEPENDENCIES
+
+| Phase | Dependency | Status |
+|-------|------------|--------|
+| 001 | Discovery inventory identifies Phase 002 files | Complete |
+| 002 | Folder rename and advisor rebuild | Complete |
+| 003 | OpenCode consumer refs update after new folder exists | Ready next |
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## 6B. EFFORT
+
+| Work Item | Effort | Notes |
+|-----------|--------|-------|
+| Folder and symlink rename | Low | Physical move plus symlink retarget. |
+| Scoped replacements | Low | Mechanical literal replacement across known files. |
+| Advisor rebuild/status | Medium | MCP path unavailable, local compiled handler used. |
+| Spec validation repair | Medium | Phase scaffold needed Level 2 checklist and required anchors. |
+<!-- /ANCHOR:effort -->
 
 ---
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: Scoped grep finds old refs in Phase 002 files, JSON becomes invalid, or advisor status cannot return live after rebuild.
+- **Procedure**: Move `.opencode/skill/sk-prompt/` back to `.opencode/skill/sk-improve-prompt/`, retarget the changelog symlink, restore the previous `skill-graph.json` refs, then rebuild advisor state.
 <!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## 7A. ENHANCED ROLLBACK
+
+| Scenario | Response |
+|----------|----------|
+| Advisor rebuild fails after rename | Restore old graph IDs and rerun rebuild before leaving the phase. |
+| Symlink points at missing folder | Recreate `.opencode/changelog/sk-prompt` from the sibling symlink convention. |
+| Downstream Phase 003 refs fail before update | Continue to Phase 003; this phase only creates the canonical target. |
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
@@ -160,4 +211,3 @@ CORE TEMPLATE (~90 lines)
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

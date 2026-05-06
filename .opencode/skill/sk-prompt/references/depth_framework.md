@@ -17,7 +17,7 @@ DEPTH is the single thinking system for all prompt improvement work. Five phases
 
 ### When to Use
 
-- Loaded automatically for all prompt improvement tasks within the sk-improve-prompt skill
+- Loaded automatically for all prompt improvement tasks within the sk-prompt skill
 - Any prompt enhancement requiring structured multi-phase analysis (Discover, Engineer, Prototype, Test, Harmonize)
 - Energy-level routing: Raw passthrough, Quick concise, Standard default, Deep complex
 - Multi-perspective analysis (min 3, target 5) with cognitive rigor techniques

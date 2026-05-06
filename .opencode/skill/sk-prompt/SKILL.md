@@ -1,5 +1,5 @@
 ---
-name: sk-improve-prompt
+name: sk-prompt
 description: "Prompt engineering specialist that transforms vague requests into structured, scored AI prompts using 7 proven frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), DEPTH thinking methodology, and CLEAR scoring across text modes."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.3.0.0

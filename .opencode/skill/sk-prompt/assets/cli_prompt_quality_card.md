@@ -5,13 +5,13 @@ description: Fast-path framework selection and CLEAR checks for CLI orchestrator
 
 # CLI Prompt Quality Card
 
-Lightweight prompt-quality guidance for CLI orchestrator skills. Use this card on the fast path so routine dispatches get framework selection, a quick CLEAR check, and explicit escalation triggers without loading the full `sk-improve-prompt` body.
+Lightweight prompt-quality guidance for CLI orchestrator skills. Use this card on the fast path so routine dispatches get framework selection, a quick CLEAR check, and explicit escalation triggers without loading the full `sk-prompt` body.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Provide a compact, reusable asset for CLI prompt construction that improves prompt quality without paying the full `sk-improve-prompt` context cost on routine work.
+Provide a compact, reusable asset for CLI prompt construction that improves prompt quality without paying the full `sk-prompt` context cost on routine work.
 
 ### Usage
 
@@ -61,7 +61,7 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
 
 ## 5. Escalation Triggers
 
-Dispatch `@improve-prompt` via the Task tool instead of loading `sk-improve-prompt` inline when any of the following are true:
+Dispatch `@improve-prompt` via the Task tool instead of loading `sk-prompt` inline when any of the following are true:
 
 - Complexity is `>= 7/10`
 - Compliance, policy, privacy, or security sensitivity is present
@@ -100,7 +100,6 @@ Mirror paths:
 
 - `../../cli-claude-code/assets/prompt_quality_card.md`
 - `../../cli-codex/assets/prompt_quality_card.md`
-- `../../cli-copilot/assets/prompt_quality_card.md`
 - `../../cli-gemini/assets/prompt_quality_card.md`
 
 When editing this file, also update the mirrors or run `.opencode/skill/scripts/check-prompt-quality-card-sync.sh`.
@@ -114,6 +113,5 @@ When editing this file, also update the mirrors or run `.opencode/skill/scripts/
 - `../references/depth_framework.md`
 - `../../cli-claude-code/assets/prompt_quality_card.md`
 - `../../cli-codex/assets/prompt_quality_card.md`
-- `../../cli-copilot/assets/prompt_quality_card.md`
 - `../../cli-gemini/assets/prompt_quality_card.md`
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "skill_id": "sk-improve-prompt",
+  "skill_id": "sk-prompt",
   "family": "sk-util",
   "category": "utility",
   "edges": {
@@ -17,11 +17,6 @@
         "context": "prompt quality card"
       },
       {
-        "target": "cli-copilot",
-        "weight": 0.4,
-        "context": "prompt quality card"
-      },
-      {
         "target": "cli-gemini",
         "weight": 0.4,
         "context": "prompt quality card"
@@ -29,7 +24,7 @@
     ],
     "siblings": [
       {
-        "target": "sk-improve-agent",
+        "target": "deep-agent-improvement",
         "weight": 0.4,
         "context": "improvement utility peer"
       }
@@ -60,7 +55,7 @@
       "prompt engineering framework",
       "depth thinking workflow",
       "score prompt quality",
-      "sk-improve-prompt",
+      "sk-prompt",
       "sk improve prompt",
       "prompt-engineering",
       "prompt-improvement"
@@ -78,50 +73,50 @@
       "structured prompting"
     ],
     "key_files": [
-      ".opencode/skill/sk-improve-prompt/SKILL.md",
-      ".opencode/skill/sk-improve-prompt/README.md",
-      ".opencode/skill/sk-improve-prompt/references/depth_framework.md",
-      ".opencode/skill/sk-improve-prompt/references/patterns_evaluation.md",
-      ".opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md",
-      ".opencode/skill/sk-improve-prompt/assets/format_guide_markdown.md",
+      ".opencode/skill/sk-prompt/SKILL.md",
+      ".opencode/skill/sk-prompt/README.md",
+      ".opencode/skill/sk-prompt/references/depth_framework.md",
+      ".opencode/skill/sk-prompt/references/patterns_evaluation.md",
+      ".opencode/skill/sk-prompt/assets/cli_prompt_quality_card.md",
+      ".opencode/skill/sk-prompt/assets/format_guide_markdown.md",
       ".claude/agents/improve-prompt.md",
       ".opencode/agent/improve-prompt.md"
     ],
     "entities": [
       {
-        "name": "sk-improve-prompt",
+        "name": "sk-prompt",
         "kind": "skill",
-        "path": ".opencode/skill/sk-improve-prompt/SKILL.md",
+        "path": ".opencode/skill/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-prompt/README.md",
+        "path": ".opencode/skill/sk-prompt/README.md",
         "source": "derived"
       },
       {
         "name": "depth_framework",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-prompt/references/depth_framework.md",
+        "path": ".opencode/skill/sk-prompt/references/depth_framework.md",
         "source": "derived"
       },
       {
         "name": "patterns_evaluation",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-prompt/references/patterns_evaluation.md",
+        "path": ".opencode/skill/sk-prompt/references/patterns_evaluation.md",
         "source": "derived"
       },
       {
         "name": "cli_prompt_quality_card",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-prompt/assets/cli_prompt_quality_card.md",
+        "path": ".opencode/skill/sk-prompt/assets/cli_prompt_quality_card.md",
         "source": "derived"
       },
       {
         "name": "format_guide_markdown",
         "kind": "reference",
-        "path": ".opencode/skill/sk-improve-prompt/assets/format_guide_markdown.md",
+        "path": ".opencode/skill/sk-prompt/assets/format_guide_markdown.md",
         "source": "derived"
       },
       {
