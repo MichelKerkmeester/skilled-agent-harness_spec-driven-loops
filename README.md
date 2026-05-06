@@ -171,36 +171,9 @@ This repo ships as a public template. Of the shipped skills, `sk-code` carries t
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
-### Disable Maintainer-Mode Code-Graph Indexing (recommended for end users)
+### Code-Graph Indexing
 
-End users cloning this template **automatically inherit the framework default** (`"false"` everywhere) thanks to a git clean filter — no action required. **You can skip this section unless you're contributing back upstream.** The code graph is for navigating *your project's production code*, not the framework backend you don't maintain.
-
-**Why this works automatically.** This repo uses a git clean/smudge filter to keep maintainer mode local-only. Anything we (the maintainers) commit + push has the 5 `SPECKIT_CODE_GRAPH_INDEX_*` flags rewritten from `"true"` → `"false"` in the index. End users cloning the template see `"false"` defaults across all 5 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, `.vscode/mcp.json`). The framework default is "don't index `.opencode/`", so `false` everywhere = correct out of the box.
-
-If you somehow end up with `"true"` flags in your fork (e.g., you ran the maintainer setup script), revert them in whichever runtime config(s) you use:
-
-```jsonc
-// any of: opencode.json | .claude/mcp.json | .gemini/settings.json | .vscode/mcp.json
-// Under mcp.spec_kit_memory.environment (or env), flip these five rows:
-"SPECKIT_CODE_GRAPH_INDEX_SKILLS":  "false",
-"SPECKIT_CODE_GRAPH_INDEX_AGENTS":  "false",
-"SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
-"SPECKIT_CODE_GRAPH_INDEX_SPECS":   "false",
-"SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false"
-```
-
-```toml
-# .codex/config.toml — under [mcp_servers.spec_kit_memory.env]
-SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
-SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
-SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
-SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
-SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
-```
-
-(Or delete the rows entirely — `false` is the framework default.) Restart your MCP server (close + reopen your IDE / runtime), then run `code_graph_scan` once to rebuild the index against your project scope.
-
-If you ever do want to navigate the framework backend (rare — only if you're contributing back upstream), flip the relevant flag back to `"true"` for that folder, or pass per-call `includeSkills: true` (or matching arg) to `code_graph_scan`.
+The code graph indexes **your project's production code** by default — not the framework backend. End users get this automatically (a git clean filter handles it on push). See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
 
 <!-- /ANCHOR:quick-start -->
 
