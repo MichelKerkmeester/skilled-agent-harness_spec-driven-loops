@@ -1,0 +1,18 @@
+# Maintainer-mode code-graph flags in opencode.json
+#
+# CLEAN  (working tree -> index/commit/push): rewrites the 5
+#   SPECKIT_CODE_GRAPH_INDEX_* values from "true" -> "false" so that
+#   end users cloning this template inherit the framework default
+#   (don't index .opencode/ backend folders).
+#
+# SMUDGE (index/checkout -> working tree): rewrites the same 5 values
+#   from "false" -> "true" so that maintainers (us) get the framework
+#   backend indexed locally without manually scrubbing the file
+#   before each push.
+#
+# Run once after cloning to install the filters into .git/config:
+#   ./scripts/setup-maintainer-filters.sh
+#
+# After install, `cat opencode.json` shows "true" locally;
+# `git show HEAD:opencode.json` shows "false" (what the remote sees).
+opencode.json filter=maintainer-flags

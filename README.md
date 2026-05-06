@@ -171,6 +171,27 @@ This repo ships as a public template. Of the shipped skills, `sk-code` carries t
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
+### Disable Maintainer-Mode Code-Graph Indexing (recommended for end users)
+
+This template ships with **maintainer mode enabled** — the structural code graph indexes all 5 framework backend folders (`.opencode/skill/`, `agent/`, `command/`, `specs/`, `plugins/`) so we can navigate the framework's own internals when iterating on it. **End users almost never want this on.** The code graph is for navigating *your project's production code*, not the framework backend you don't maintain.
+
+To disable maintainer mode after forking, edit `opencode.json` and either delete or flip these five env vars:
+
+```jsonc
+// opencode.json — under mcp.spec_kit_memory.environment
+"SPECKIT_CODE_GRAPH_INDEX_SKILLS":  "false",   // was "true"
+"SPECKIT_CODE_GRAPH_INDEX_AGENTS":  "false",
+"SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "false",
+"SPECKIT_CODE_GRAPH_INDEX_SPECS":   "false",
+"SPECKIT_CODE_GRAPH_INDEX_PLUGINS": "false"
+```
+
+(Or remove the rows entirely — `false` is the framework default.)
+
+After flipping, restart your MCP server (close + reopen your IDE / runtime) and run `code_graph_scan` once to rebuild the index against your project scope. Subsequent `code_graph_query` calls will only see your own production code, which is faster, smaller, and matches the day-to-day mental model.
+
+If you ever do want to navigate the framework backend (rare — only if you're contributing back upstream), flip the relevant flag back to `"true"` for that folder, or pass per-call `includeSkills: true` to `code_graph_scan`.
+
 <!-- /ANCHOR:quick-start -->
 
 
@@ -1307,6 +1328,39 @@ The runtime centers on a SQLite `memory_index` table with 56 columns plus compan
   }
 }
 ```
+
+&nbsp;
+### Maintainer-Mode Code-Graph Flags (disable for end users)
+
+The shipped `opencode.json` enables five `SPECKIT_CODE_GRAPH_INDEX_*` env vars under `mcp.spec_kit_memory.environment`:
+
+```jsonc
+"SPECKIT_CODE_GRAPH_INDEX_SKILLS":   "true",
+"SPECKIT_CODE_GRAPH_INDEX_AGENTS":   "true",
+"SPECKIT_CODE_GRAPH_INDEX_COMMANDS": "true",
+"SPECKIT_CODE_GRAPH_INDEX_SPECS":    "true",
+"SPECKIT_CODE_GRAPH_INDEX_PLUGINS":  "true"
+```
+
+These are **opt-in maintainer flags** — turning them on tells the code graph to index the framework backend (`.opencode/skill/`, `agent/`, `command/`, `specs/`, `plugins/`) in addition to your project code. The framework default is **`false` for all five** because end users should index their own production code, not the framework internals.
+
+**This template ships with all five enabled** because we maintain the framework and use the code graph to navigate `.opencode/` ourselves. **You almost certainly want them off after forking.**
+
+**To disable** (recommended for end users):
+
+| Action | Result |
+|---|---|
+| Flip the five rows to `"false"` (or delete them) | Code graph indexes only your project code (the framework default) |
+| Restart your MCP server | Picks up the new env values |
+| Run `code_graph_scan` once | Rebuilds the index against your project scope |
+
+After that, `code_graph_query` calls will only return results from your own production code — faster, smaller, and matching what you actually maintain.
+
+**To re-enable per-folder** (rare — only if you're contributing back upstream):
+- Flip the relevant flag back to `"true"`, OR
+- Pass per-call `includeSkills: true` (or the matching arg) to `code_graph_scan` for a one-off scan
+
+The same five flags also exist as `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` per-call args on `code_graph_scan` — per-call args override env defaults.
 
 <!-- /ANCHOR:configuration -->
 
