@@ -31,7 +31,7 @@
       "scope fingerprint"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "blocked",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -39,7 +39,8 @@
       "checklist.md",
       "decision-record.md",
       "description.json",
-      "graph-metadata.json"
+      "graph-metadata.json",
+      "implementation-summary.md"
     ]
   }
 }

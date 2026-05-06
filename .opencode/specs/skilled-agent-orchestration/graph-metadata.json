@@ -1,8 +1,8 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/079-sk-deep-agent-improvement",
-    "last_active_at": "2026-05-06T11:34:35.538Z",
-    "last_save_at": "2026-05-06T11:34:35.538Z"
+    "last_active_child_id": "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
+    "last_active_at": "2026-05-06T11:36:12.179Z",
+    "last_save_at": "2026-05-06T11:36:12.179Z"
   },
   "children_ids": [
     "skilled-agent-orchestration/051-cli-opencode-providers",

@@ -83,6 +83,45 @@ Phase 004 updates only `.claude/`, `.codex/`, and `.gemini/` mirror bodies that 
 | `.gemini/commands/create/prompt.toml` | Verify/Modify | Update only if old refs exist |
 <!-- /ANCHOR:scope -->
 
+---
+
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+Phase scope is mechanical reference rotation. Acceptance criteria covered in HANDOFF CRITERIA.
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- All in-scope files have zero `sk-improve-prompt` literal references
+- Phase folder strict validation passes
+- Advisor / runtime continues to dispatch correctly to `sk-prompt`
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+- Race against parallel orchestration sessions touching overlapping files (mitigated: direct sed under heavy parallelism, per memory rule)
+- Generated index files (`descriptions.json`) cannot be hand-rotated; refresh via `generate-context.js` during final memory save
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+None at completion.
+<!-- /ANCHOR:questions -->
+
+---
+
+
 <!-- ANCHOR:implementation -->
 ## 4. IMPLEMENTATION APPROACH
 
