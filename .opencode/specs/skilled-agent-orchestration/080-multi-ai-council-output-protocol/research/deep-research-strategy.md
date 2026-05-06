@@ -37,7 +37,7 @@ Investigate three threads:
 - [x] Q7: What state.jsonl forward-compat strategy (versioned events, optional fields, schema evolution policy) should v1.1 adopt for the council protocol?
 - [x] Q8: Should `/memory:save` learn to anchor council-completion events (e.g., new ANCHOR:council-report-{packet} ID) as part of the canonical save?
 - [x] Q9: Are there specific risks in ADD-1..ADD-6 (caller enumeration, graceful degradation, schema artifact, depth-1 invocation, forward-only scope, sequencing) that need mitigation strategies?
-- [ ] Q10: Under what conditions should the lightweight bound (ADR-001) be revisited? What signals would justify promoting multi-ai-council into a dedicated skill?
+- [x] Q10: Under what conditions should the lightweight bound (ADR-001) be revisited? What signals would justify promoting multi-ai-council into a dedicated skill?
 
 ---
 
@@ -72,6 +72,7 @@ Investigate three threads:
 - Iteration 7 answered Q7: keep council state forward-compatible through additive optional fields and optional per-line metadata (`schema_version`, `protocol`, `producer`); missing `schema_version` means v1, bare `event` rows remain valid, unknown keys are ignored, and packet 080 state logs are not rewritten.
 - Iteration 8 answered Q8: do not add a new `ANCHOR:council-report-{packet}` save destination; treat `council_complete` as evidence for an optional helper-emitted `generate-context` payload that routes through existing `/memory:save` categories.
 - Iteration 9 answered Q9: ADD-1 through ADD-6 are valid refinements, but mitigations should keep Section 17 short and normative, examples in references, helper invocation caller-owned, schema requiredness centralized, legacy outputs forward-only, packet 081 sequenced helper-first, and memory save optional/downstream.
+- Iteration 10 answered Q10: revisit ADR-001 only when the council needs command-owned lifecycle/state machinery, reducer-owned writes, advisor/router dispatch, or enforcement surfaces comparable to deep-research/deep-review; ordinary helper, schema, reference, and mirror-parity growth should stay inside the lightweight bound.
 
 ---
 
@@ -98,7 +99,7 @@ Investigate three threads:
 ---
 
 ## 11. NEXT FOCUS
-Iteration 10: Answer Q10 — define concrete revisit conditions for ADR-001's lightweight bound, including the signals that would justify promoting `@multi-ai-council` into a dedicated skill folder.
+Synthesis-ready: all 10 key questions are answered. Next pass should synthesize packet 081 / 082 recommendations rather than open another discovery question.
 
 ---
 

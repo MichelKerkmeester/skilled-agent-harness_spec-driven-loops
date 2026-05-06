@@ -1,25 +1,47 @@
 {
-  "openQuestions": [
-    "Q1: persist-artifacts.sh helper concrete shape",
-    "Q2: §17 placement (agent body vs reference file)",
-    "Q3: §8 OUTPUT FORMAT shared schema artifact format and location",
-    "Q4: validator awareness of ai-council/ (free-form vs hint vs enforcement)",
-    "Q5: skill advisor scoring for multi-ai-council triggers",
-    "Q6: 4-runtime mirror-sync automation",
-    "Q7: state.jsonl forward-compat / versioning policy",
-    "Q8: /memory:save anchoring of council-completion",
-    "Q9: ADD-1..ADD-6 risk mitigation",
-    "Q10: lightweight-bound revisit conditions"
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: use Node CJS persist-artifacts helper with parser exports, fixture tests, strict-required sections, optional-section degradation, and exit codes 0/1/2",
+    "Q2: add short normative §17 to the agent body; keep long examples and schema details in references",
+    "Q3: create markdown output-schema.md as the shared §8 contract and parser requiredness source",
+    "Q4: keep validate.sh --strict free-form for ai-council/; add only opt-in council-aware advisory checks after helper exists",
+    "Q5: do not add Skill Advisor boosts for multi-ai-council while it remains an agent rather than a skill",
+    "Q6: add normalized four-runtime mirror parity at test time; avoid byte-for-byte equality",
+    "Q7: preserve bare event rows and add only optional schema_version/protocol/producer metadata for v1.1",
+    "Q8: do not create council-specific /memory:save anchors; optionally emit routed save payloads through existing categories",
+    "Q9: mitigate ADD-1..ADD-6 with caller-owned helper invocation, one schema source, forward-only scope, and helper-first sequencing",
+    "Q10: revisit ADR-001 only if council needs skill-like lifecycle ownership, reducer state, automatic routing, enforced validation, generated mirrors, or helper-controlled execution"
   ],
-  "resolvedQuestions": [],
-  "keyFindings": [],
-  "ruledOutDirections": [],
+  "keyFindings": [
+    "Packet 081 should ship helper script, §17 caller protocol, output-schema.md, vitest fixtures, validator hardening, and mirror parity.",
+    "Packet 082+ should defer state v1.1 polish, advisor regression guard, optional /memory:save payloads, council-aware advisory checks, and command YAML wiring.",
+    "Current packet 080 integration is solid for a lightweight convention but incomplete operationally until persistence and schema tooling land.",
+    "The lightweight bound remains valid; no dedicated multi-ai-council skill folder is justified by the researched follow-ons."
+  ],
+  "ruledOutDirections": [
+    "Dedicated .opencode/skill/multi-ai-council/ folder for packet 081",
+    "JSON Schema as the primary §8 contract",
+    "Reference-only §17",
+    "validate.sh --strict enforcement of ai-council/council-report.md",
+    "Skill Advisor boosts for multi-ai-council",
+    "Byte-for-byte runtime mirror equality",
+    "Required type discriminator or migration of packet 080 state rows",
+    "New /memory:save ANCHOR:council-report-{packet} family",
+    "Automatic memory save on council_complete",
+    "Retroactive migration of pre-080 council outputs"
+  ],
   "metrics": {
-    "iterationsCompleted": 0,
-    "openQuestions": 10,
-    "resolvedQuestions": 0,
-    "keyFindings": 0,
-    "convergenceScore": 0,
-    "coverageBySources": {}
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 4,
+    "convergenceScore": 0.96,
+    "coverageBySources": {
+      "iterationNarratives": 10,
+      "strategy": 1,
+      "stateLog": 1,
+      "config": 1,
+      "councilReport": 1
+    }
   }
 }

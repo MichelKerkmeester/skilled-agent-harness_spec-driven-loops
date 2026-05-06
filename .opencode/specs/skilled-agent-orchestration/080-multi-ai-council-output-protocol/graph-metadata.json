@@ -61,7 +61,8 @@
       "references/multi-ai-council/seat-diversity-patterns.md",
       "references/multi-ai-council/convergence-signals.md",
       "references/multi-ai-council/state-format.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -149,6 +150,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,17 +208,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Invocation Contract",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `@multi-ai-council` agent today returns deliberation results inline to chat with no packet-level persistence, breaking parity with `@deep-research` (writes to `research/`) and `@deep-review` (writes to `review/`). This packet introduces the `ai-council/` subfolder convention so council outputs become first-class, audit-friendly packet artifacts that support iteration and resume. The convention stays lightweight: no skill folder, no slash command, no YAML workflow — just an agent body update plus 4 shared reference files.",
     "created_at": "2026-05-06T12:31:00.902Z",
-    "last_save_at": "2026-05-06T12:31:00.894Z",
+    "last_save_at": "2026-05-06T13:46:29.524Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +221,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ]
   }
 }

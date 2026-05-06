@@ -8,3 +8,5 @@
 {"type":"iteration","iteration":7,"newInfoRatio":0.56,"status":"insight","focus":"Q7 state.jsonl forward-compat","graphEvents":[]}
 {"type":"iteration","iteration":8,"newInfoRatio":0.52,"status":"insight","focus":"Q8 memory-save council anchoring","graphEvents":[]}
 {"type":"iteration","iteration":9,"newInfoRatio":0.44,"status":"insight","focus":"Q9 ADD risk mitigation","graphEvents":[]}
+{"type":"iteration","iteration":10,"newInfoRatio":0.04,"status":"insight","focus":"synthesis-ready","graphEvents":[]}
+{"type":"event","event":"synthesis_complete","totalIterations":10,"answeredCount":10,"totalQuestions":10,"stopReason":"converged","timestamp":"2026-05-06T13:42:16Z"}
