@@ -1,34 +1,36 @@
 ---
-title: "Tasks: Phase 1: discovery-impact-map [template:level_1/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Phase 001 Discovery Impact Map"
+description: "Completed task ledger for the read-only active reference inventory for sk-improve-prompt."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "082 phase 001 tasks"
+  - "sk-improve-prompt inventory tasks"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-discovery-impact-map"
-    last_updated_at: "2026-05-06T10:23:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/001-discovery-impact-map"
+    last_updated_at: "2026-05-06T10:45:10Z"
+    last_updated_by: "codex"
+    recent_action: "Completed active reference inventory and edge-case audit"
+    next_safe_action: "Phase 002 skill-folder-rename"
     blockers: []
-    key_files: []
+    key_files:
+      - "inventory.tsv"
+      - "inventory.md"
+      - "edge-cases.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-discovery-impact-map"
+      session_id: "codex-2026-05-06-082-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Canonical active inventory includes hidden runtime mirrors and root AGENTS.md"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 1: discovery-impact-map
+# Tasks: Phase 001 Discovery Impact Map
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -50,9 +52,10 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read parent and child phase specs before inventory work. Evidence: `../spec.md`, `../resource-map.md`, `spec.md`.
+- [x] T002 Run exact active-scope grep inventory with frozen historical packet excludes. Evidence: `inventory.tsv`.
+- [x] T003 Run explicit hidden/runtime mirror checks for `.claude`, `.codex`, `.gemini`, root `AGENTS.md`, and root `CLAUDE.md`. Evidence: `inventory.tsv`, `edge-cases.md`.
+- [x] T004 Run filename embed discovery for paths containing `sk-improve-prompt`. Evidence: `edge-cases.md`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -60,10 +63,9 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T005 Create machine-readable `inventory.tsv` with phase, category, path, ref_count, and notes columns. Evidence: `inventory.tsv`.
+- [x] T006 Create human-readable phase-grouped inventory under 250 lines. Evidence: `inventory.md`.
+- [x] T007 Create edge-case audit under 150 lines covering filename embeds, JSON keys, symlink state, path links, hardcoded IDs, fixtures, observability, memory DB, code graph, and root instruction docs. Evidence: `edge-cases.md`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,9 +73,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Compare canonical inventory row count with the provided final sanity command. Evidence: `inventory.md` count reconciliation.
+- [x] T009 Confirm no source files outside the phase folder were intentionally modified. Evidence: authored files are scoped to `001-discovery-impact-map/`.
+- [x] T010 Run strict spec validation after authoring. Evidence: `implementation-summary.md` verification table.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -81,9 +83,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`.
+- [x] No `[B]` blocked tasks remaining.
+- [x] Manual verification passed with strict validator evidence recorded.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -93,14 +95,6 @@ _memory:
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Inventory**: See `inventory.tsv` and `inventory.md`
+- **Edge Cases**: See `edge-cases.md`
 <!-- /ANCHOR:cross-refs -->
-
----
-
-<!--
-CORE TEMPLATE (~60 lines)
-- Simple task tracking
-- 3 phases: Setup, Implementation, Verification
-- Add L2/L3 addendums for complexity
--->
-

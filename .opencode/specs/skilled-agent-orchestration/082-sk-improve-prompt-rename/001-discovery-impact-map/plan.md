@@ -11,18 +11,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-discovery-impact-map"
-    last_updated_at: "2026-05-06T10:23:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/001-discovery-impact-map"
+    last_updated_at: "2026-05-06T10:45:10Z"
+    last_updated_by: "codex"
+    recent_action: "Completed active reference inventory and edge-case audit"
+    next_safe_action: "Phase 002 skill-folder-rename"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-scaffold/001-discovery-impact-map"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -154,10 +154,69 @@ Required inventories:
 
 ---
 
+<!-- ANCHOR:l2-phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+```
+Phase 001 inventory -> Phase 002 skill-folder rename -> Phase 003-005 consumers -> Phase 006 validation
+```
+
+| Phase | Depends On | Blocks |
+|-------|------------|--------|
+| 001 Discovery | Parent packet scaffold | Phase 002 |
+| 002 Skill folder rename | Phase 001 inventory | Phase 003-005 |
+| 003 OpenCode internals | Phase 002 | Phase 006 |
+| 004 Runtime mirrors | Phase 002 | Phase 006 |
+| 005 Root and config | Phase 002 | Phase 006 |
+| 006 Advisor and validate | Phase 003-005 | Packet completion |
+<!-- /ANCHOR:l2-phase-deps -->
+
+<!-- ANCHOR:phase-deps -->
+Phase dependency summary: Phase 001 inventory blocks Phase 002, Phase 002 blocks consumer updates in Phase 003-005, and Phase 006 depends on all rename phases.
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:l2-effort -->
+## L2: EFFORT ESTIMATION
+
+| Phase | Complexity | Estimated Effort |
+|-------|------------|------------------|
+| Discovery reads | Low | 15 minutes |
+| Inventory authoring | Medium | 30 minutes |
+| Edge-case audit | Medium | 20 minutes |
+| Strict validation | Low | 10 minutes |
+| **Total** | Medium | **75 minutes** |
+<!-- /ANCHOR:l2-effort -->
+
+<!-- ANCHOR:effort -->
+Effort summary: discovery and inventory authoring are medium complexity with an estimated total of 75 minutes for Phase 001.
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:l2-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Rollback Procedure
+1. Remove `inventory.tsv`, `inventory.md`, and `edge-cases.md` if the phase must be reset.
+2. Restore `spec.md`, `tasks.md`, and `implementation-summary.md` from the previous scaffold state.
+3. Re-run strict validation before restarting Phase 001.
+
+### Data Reversal
+- **Has source mutations?** No.
+- **Has generated or binary state changes?** No.
+<!-- /ANCHOR:l2-rollback -->
+
+<!-- ANCHOR:enhanced-rollback -->
+Enhanced rollback summary: remove the three inventory deliverables, restore phase docs to scaffold state, and rerun strict validation before restarting Phase 001.
+<!-- /ANCHOR:enhanced-rollback -->
+
+---
+
 <!--
 CORE TEMPLATE (~90 lines)
 - Essential technical planning
 - Simple phase structure
 - Add L2/L3 addendums for complexity
 -->
-

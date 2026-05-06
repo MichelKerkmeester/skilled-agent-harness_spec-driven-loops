@@ -1,35 +1,39 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 001 Discovery Impact Map"
+description: "Completed read-only inventory for active sk-improve-prompt references before the rename phases begin."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "082 phase 001 complete"
+  - "sk-improve-prompt inventory summary"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-discovery-impact-map"
-    last_updated_at: "2026-05-06T10:23:35Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/082-sk-improve-prompt-rename/001-discovery-impact-map"
+    last_updated_at: "2026-05-06T10:45:10Z"
+    last_updated_by: "codex"
+    recent_action: "Completed active reference inventory and edge-case audit"
+    next_safe_action: "Phase 002 skill-folder-rename"
     blockers: []
-    key_files: []
+    key_files:
+      - "inventory.tsv"
+      - "inventory.md"
+      - "edge-cases.md"
+      - "tasks.md"
+      - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-discovery-impact-map"
+      session_id: "codex-2026-05-06-082-001"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Canonical active inventory count is 58 files"
+      - "The provided final sanity command returns 52 because it misses hidden runtime mirrors and root AGENTS.md"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skill/sk-doc/references/hvr_rules.md -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -38,9 +42,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-discovery-impact-map |
+| **Spec Folder** | `001-discovery-impact-map` |
 | **Completed** | 2026-05-06 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +53,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+Phase 001 now has a canonical active-reference ledger for the `sk-improve-prompt` rename. The inventory gives Phase 002-005 exact file ownership, exact `rg -c` counts, and the edge cases that would otherwise be easy to miss during a broad rename.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Inventory Files
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`inventory.tsv` is the machine-readable ledger with 58 canonical active rows. `inventory.md` groups the same rows by owning phase and records the count reconciliation against the provided final sanity command. `edge-cases.md` captures filename embeds, graph JSON keys, symlink state, hidden runtime mirrors, generated-state deferrals, and root instruction doc behavior.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `inventory.tsv` | Created | Machine-readable active reference ledger with exact counts |
+| `inventory.md` | Created | Human-readable phase-grouped inventory |
+| `edge-cases.md` | Created | Non-obvious reference and generated-state audit |
+| `tasks.md` | Updated | Marked discovery tasks complete with evidence |
+| `implementation-summary.md` | Updated | Recorded completion evidence and continuity |
+| `spec.md` | Updated | Marked phase continuity complete |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +76,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+I measured active text hits with `rg -c 'sk-improve-prompt' <path>` and used the packet's historical excludes. I also searched hidden runtime mirrors explicitly because `.claude`, `.codex`, `.gemini`, and root `AGENTS.md` are required by the phase prompt but are not surfaced by the provided final sanity command.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +84,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Count hidden runtime mirrors in the canonical inventory | Phase 004 owns those files and the user explicitly required runtime mirror categories |
+| Track `CLAUDE.md` as an edge case rather than an inventory row | It is a symlink to root `AGENTS.md`, so counting both would double-count one source document |
+| Defer binary/generated index state | Memory and code-graph stores should be rebuilt in Phase 006 instead of edited directly |
+| Document sanity-command mismatch | The exact provided command returns 52 rows, while the canonical ledger is 58 rows because required hidden/root paths need explicit search |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +97,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Canonical active inventory | PASS: `inventory.tsv` has 58 data rows |
+| Exact final sanity command | PASS: command returns 52 rows; mismatch documented in `inventory.md` and `edge-cases.md` |
+| Top-density review | PASS: highest counts are `skill_advisor.py` 31, skill `graph-metadata.json` 15, and smart-router measurement results 15 |
+| Strict spec validation | PASS: `validate.sh 001-discovery-impact-map --strict` exited 0 with 0 errors and 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +110,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Sanity command undercount.** The provided command omits hidden runtime mirrors and root `AGENTS.md`; use the canonical inventory for implementation ownership.
+2. **Generated state deferred.** Memory DB and code-graph state are not edited in Phase 001 and should be refreshed in Phase 006.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
--->
-
