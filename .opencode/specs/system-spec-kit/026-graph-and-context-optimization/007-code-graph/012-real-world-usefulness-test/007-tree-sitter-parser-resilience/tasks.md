@@ -48,7 +48,9 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Investigation (root-cause discrimination)
+## Phase 1: Setup
+
+*Investigation track: root-cause discrimination across three hypotheses (native version, WASM grammar, content-specific syntax).*
 
 - [ ] T001 Capture broad-scope crash cohort: re-run `code_graph_scan` with `agents+commands+specs+plugins=all`, capture the exact list of crashing file paths (mcp_server/database/code-graph.sqlite parse_diagnostics)
 - [ ] T002 [P] Build minimum failing fixtures: extract 5-10 smallest standalone `.ts` files that reproduce `memory access out of bounds`
@@ -61,7 +63,9 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Skip-list MVP
+## Phase 2: Implementation
+
+*Skip-list MVP: persistent skip-list with structured telemetry, schema v5 bump, and an env-flagged kill switch.*
 
 - [ ] T007 Schema v5: add `parser_skip_list` table to `mcp_server/code_graph/lib/code-graph-db.ts` (columns: file_path PK, error_class, last_seen_at, attempt_count, last_success_at)
 - [ ] T008 Migration: v4 → v5 round-trip with backfill from existing parse_diagnostics rows
