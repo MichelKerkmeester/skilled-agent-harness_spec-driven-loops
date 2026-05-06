@@ -38,6 +38,27 @@ interface EdgeDriftSummary {
 
 const GOLD_VERIFICATION_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
+function getParseDiagnosticsForStatus(): graphDb.ParseDiagnosticsSummary {
+  if (typeof graphDb.getParseDiagnosticsSummary !== 'function') {
+    return { affectedFiles: 0, recentErrors: [] };
+  }
+  return graphDb.getParseDiagnosticsSummary();
+}
+
+function getStaleButValidGraphFilesForStatus(): number {
+  if (typeof graphDb.countStaleButValidParseDiagnostics !== 'function') {
+    return 0;
+  }
+  return graphDb.countStaleButValidParseDiagnostics();
+}
+
+function getLastFailedScanForStatus(): graphDb.FailedScanRecord | null {
+  if (typeof graphDb.getLastFailedScan !== 'function') {
+    return null;
+  }
+  return graphDb.getLastFailedScan();
+}
+
 function getPersistedEdgeDistributionBaseline(): EdgeDistribution | null {
   const rawBaseline = graphDb.getCodeGraphMetadata('edge_distribution_baseline');
   if (!rawBaseline) {
@@ -221,6 +242,9 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
   try {
     const edgeDriftSummary = buildEdgeDriftSummary(stats.edgesByType);
     const lastGoldVerification = graphDb.getLastGoldVerification();
+    const parseDiagnostics = getParseDiagnosticsForStatus();
+    const staleButValidGraphFiles = getStaleButValidGraphFilesForStatus();
+    const lastFailedScan = getLastFailedScanForStatus();
     const goldVerificationTrust = getGoldVerificationTrust(
       lastGoldVerification,
       freshness,
@@ -300,6 +324,9 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
             edgesByType: stats.edgesByType,
             edgeDriftSummary,
             parseHealth: stats.parseHealthSummary,
+            parseDiagnostics,
+            staleButValidGraphFiles,
+            ...(lastFailedScan ? { lastFailedScan } : {}),
             graphQualitySummary: stats.graphQualitySummary,
             goldVerificationTrust,
             ...(lastGoldVerification ? { lastGoldVerification } : {}),

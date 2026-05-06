@@ -7,15 +7,28 @@
 // look fine.
 
 import { afterEach, describe, expect, it } from 'vitest';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import {
   closeDb,
+  getDb,
   getCodeGraphMetadata,
   initDb,
+  replaceNodes,
+  setCodeGraphScope,
   setCodeGraphMetadata,
+  upsertFile,
 } from '../lib/code-graph-db.js';
+import { getGraphReadinessSnapshot, recordCandidateManifest } from '../lib/ensure-ready.js';
+import { generateContentHash, getDefaultConfig } from '../lib/indexer-types.js';
+
+function writeWorkspaceFile(rootDir: string, relativePath: string, content: string): string {
+  const filePath = join(rootDir, relativePath);
+  mkdirSync(dirname(filePath), { recursive: true });
+  writeFileSync(filePath, content);
+  return filePath;
+}
 
 afterEach(() => {
   try {
@@ -69,6 +82,50 @@ describe('F-014-C4-03: candidate manifest persistence', () => {
       const parsed = JSON.parse(raw!);
       expect(parsed.count).toBe(20);
       expect(parsed.digest).toBe('new');
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps broad-scan manifest aligned with the read-path comparison', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-manifest-read-path-'));
+    try {
+      initDb(tempDir);
+      const content = 'export function scanned() { return 1; }\n';
+      const filePath = writeWorkspaceFile(tempDir, 'src/scanned.ts', content);
+      const fileId = upsertFile(
+        filePath,
+        'typescript',
+        generateContentHash(content),
+        1,
+        0,
+        'clean',
+        1,
+      );
+      replaceNodes(fileId, [{
+        symbolId: 'scanned-symbol',
+        filePath,
+        fqName: 'scanned',
+        kind: 'function',
+        name: 'scanned',
+        startLine: 1,
+        endLine: 1,
+        startColumn: 0,
+        endColumn: 0,
+        language: 'typescript',
+        contentHash: generateContentHash(content),
+      }]);
+      setCodeGraphScope(getDefaultConfig(tempDir).scopePolicy);
+      const trackedFiles = (getDb().prepare('SELECT file_path FROM code_files').all() as Array<{ file_path: string }>)
+        .map((row) => row.file_path);
+
+      recordCandidateManifest(trackedFiles);
+
+      expect(getGraphReadinessSnapshot(tempDir)).toMatchObject({
+        freshness: 'fresh',
+        action: 'none',
+        reason: 'all tracked files are up-to-date',
+      });
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }

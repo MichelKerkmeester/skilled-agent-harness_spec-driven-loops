@@ -497,6 +497,7 @@ const codeGraphScanSchema = getSchema({
   includePlugins: z.boolean().optional(),
   verify: z.boolean().optional(),
   persistBaseline: z.boolean().optional(),
+  forceZeroNodeReset: z.boolean().optional(),
 });
 
 const codeGraphQuerySchema = getSchema({
@@ -747,7 +748,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_ingest_start: ['paths', 'specFolder', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_ingest_status: ['jobId'],
   memory_ingest_cancel: ['jobId'],
-  code_graph_scan: ['rootDir', 'includeGlobs', 'excludeGlobs', 'incremental', 'includeSkills', 'includeAgents', 'includeCommands', 'includeSpecs', 'includePlugins', 'verify', 'persistBaseline'],
+  code_graph_scan: ['rootDir', 'includeGlobs', 'excludeGlobs', 'incremental', 'includeSkills', 'includeAgents', 'includeCommands', 'includeSpecs', 'includePlugins', 'verify', 'persistBaseline', 'forceZeroNodeReset'],
   code_graph_query: ['operation', 'subject', 'subjects', 'unionMode', 'edgeType', 'limit', 'includeTransitive', 'maxDepth', 'minConfidence'],
   code_graph_status: [],
   code_graph_context: ['input', 'queryMode', 'subject', 'seeds', 'budgetTokens', 'profile', 'includeTrace'],

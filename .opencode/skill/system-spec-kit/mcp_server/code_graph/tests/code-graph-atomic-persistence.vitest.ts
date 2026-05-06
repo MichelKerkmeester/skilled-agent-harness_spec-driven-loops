@@ -139,4 +139,51 @@ describe('F-002-A2-01: atomic per-file persistence', () => {
       rmSync(tempDir, { recursive: true, force: true });
     }
   });
+
+  it('preserves prior per-file graph when next scan parse-errors that file', () => {
+    const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-atomic-parse-error-'));
+    try {
+      initDb(tempDir);
+      const filePath = join(tempDir, 'stale-valid.ts');
+      const cleanResult = buildFakeParseResult(filePath);
+
+      persistIndexedFileResult(cleanResult);
+      const errorResult: ParseResult = {
+        ...cleanResult,
+        nodes: [],
+        edges: [],
+        contentHash: 'bbbbbbbbbbbb',
+        parseHealth: 'error',
+        parseErrors: ['native parser runtime error'],
+        parseDurationMs: 2,
+      };
+
+      persistIndexedFileResult(errorResult);
+
+      const d = getDb();
+      const fileRow = d.prepare(`
+        SELECT parse_health, node_count, content_hash
+        FROM code_files
+        WHERE file_path = ?
+      `).get(filePath) as { parse_health: string; node_count: number; content_hash: string } | undefined;
+      const nodeCount = d.prepare('SELECT COUNT(*) AS count FROM code_nodes WHERE file_path = ?').get(filePath) as { count: number };
+      const diagnostics = graphDb.getParseDiagnosticsSummary();
+
+      expect(fileRow).toMatchObject({
+        parse_health: 'clean',
+        node_count: 1,
+        content_hash: 'aaaaaaaaaaaa',
+      });
+      expect(nodeCount.count).toBe(1);
+      expect(diagnostics.affectedFiles).toBe(1);
+      expect(diagnostics.recentErrors[0]).toMatchObject({
+        filePath,
+        errorMessage: 'native parser runtime error',
+        errorCount: 1,
+      });
+      expect(graphDb.countStaleButValidParseDiagnostics()).toBe(1);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
+  });
 });

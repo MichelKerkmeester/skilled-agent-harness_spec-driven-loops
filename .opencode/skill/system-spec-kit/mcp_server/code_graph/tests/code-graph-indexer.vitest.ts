@@ -251,6 +251,67 @@ describe('indexer-types', () => {
     });
   });
 
+  describe('replaceEdges integrity', () => {
+    it('does not insert orphan edges when source nodes are pruned', () => {
+      const tempDir = mkdtempSync(join(tmpdir(), 'code-graph-orphan-edges-'));
+      try {
+        initDb(tempDir);
+        const filePath = writeWorkspaceFile(tempDir, 'src/source.ts', 'export function kept() { return 1; }\n');
+        const fileId = upsertFile(
+          filePath,
+          'typescript',
+          generateContentHash('export function kept() { return 1; }\n'),
+          1,
+          0,
+          'clean',
+          1,
+        );
+        const retainedNode = {
+          symbolId: 'retained-source',
+          filePath,
+          fqName: 'kept',
+          kind: 'function' as const,
+          name: 'kept',
+          startLine: 1,
+          endLine: 1,
+          startColumn: 0,
+          endColumn: 0,
+          language: 'typescript' as const,
+          contentHash: 'aaaaaaaaaaaa',
+        };
+        replaceNodes(fileId, [retainedNode]);
+
+        replaceEdges(['missing-source', 'retained-source'], [
+          {
+            sourceId: 'missing-source',
+            targetId: 'retained-source',
+            edgeType: 'CALLS',
+            weight: 1,
+          },
+          {
+            sourceId: 'retained-source',
+            targetId: 'retained-source',
+            edgeType: 'CALLS',
+            weight: 1,
+          },
+        ]);
+
+        const rows = getDb().prepare(`
+          SELECT source_id, target_id
+          FROM code_edges
+          ORDER BY source_id, target_id
+        `).all() as Array<{ source_id: string; target_id: string }>;
+
+        expect(rows).toEqual([{
+          source_id: 'retained-source',
+          target_id: 'retained-source',
+        }]);
+      } finally {
+        rmSync(tempDir, { recursive: true, force: true });
+      }
+    });
+  });
+
   describe('detectLanguage', () => {
     it('detects TypeScript', () => {
       expect(detectLanguage('file.ts')).toBe('typescript');
@@ -431,7 +492,7 @@ describe('indexer-types', () => {
       });
       expect(shouldIndexForCodeGraph('/root/.opencode/skill/sk-doc/SKILL.md', config.scopePolicy)).toBe(true);
       expect(shouldIndexForCodeGraph('/root/.opencode/skill/sk-code-review/SKILL.md', config.scopePolicy)).toBe(true);
-      expect(shouldIndexForCodeGraph('/root/.opencode/skill/sk-deep-review/SKILL.md', config.scopePolicy)).toBe(false);
+      expect(shouldIndexForCodeGraph('/root/.opencode/skill/deep-review/SKILL.md', config.scopePolicy)).toBe(false);
     });
 
     it('round-trips deterministic v2 fingerprints and rejects v1 fingerprints for migration', () => {

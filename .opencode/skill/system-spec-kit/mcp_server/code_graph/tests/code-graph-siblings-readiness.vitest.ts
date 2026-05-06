@@ -22,13 +22,17 @@ const mocks = vi.hoisted(() => ({
   getDb: vi.fn(),
   getGraphFreshness: vi.fn(),
   getGraphReadinessSnapshot: vi.fn(),
+  getLastFailedScan: vi.fn(),
   getLastDetectorProvenance: vi.fn(),
   getLastGitHead: vi.fn(),
   getLastGoldVerification: vi.fn(),
+  getParseDiagnosticsSummary: vi.fn(),
   getStats: vi.fn(),
   getStoredCodeGraphScope: vi.fn(),
   getTrackedFiles: vi.fn(),
+  countStaleButValidParseDiagnostics: vi.fn(),
   countTrackedSkillFiles: vi.fn(),
+  recordFailedScan: vi.fn(),
   indexFiles: vi.fn(),
   isFileStale: vi.fn(),
   mkdirSync: vi.fn(),
@@ -84,9 +88,12 @@ vi.mock('../lib/code-graph-db.js', () => ({
   getLastDetectorProvenance: mocks.getLastDetectorProvenance,
   getLastGitHead: mocks.getLastGitHead,
   getLastGoldVerification: mocks.getLastGoldVerification,
+  getLastFailedScan: mocks.getLastFailedScan,
+  getParseDiagnosticsSummary: mocks.getParseDiagnosticsSummary,
   getStats: mocks.getStats,
   getStoredCodeGraphScope: mocks.getStoredCodeGraphScope,
   getTrackedFiles: mocks.getTrackedFiles,
+  countStaleButValidParseDiagnostics: mocks.countStaleButValidParseDiagnostics,
   countTrackedSkillFiles: mocks.countTrackedSkillFiles,
   isFileStale: mocks.isFileStale,
   queryEdgesFrom: mocks.queryEdgesFrom,
@@ -95,6 +102,7 @@ vi.mock('../lib/code-graph-db.js', () => ({
   queryFileImportDependents: mocks.queryFileImportDependents,
   queryOutline: mocks.queryOutline,
   realpathSync: mocks.realpathSync,
+  recordFailedScan: mocks.recordFailedScan,
   removeFile: mocks.removeFile,
   replaceEdges: mocks.replaceEdges,
   replaceNodes: mocks.replaceNodes,
@@ -212,8 +220,13 @@ describe('code-graph sibling readiness emission', () => {
       reason: 'all tracked files are up-to-date',
     });
     mocks.getLastDetectorProvenance.mockReturnValue('structured');
+    mocks.getLastFailedScan.mockReturnValue(null);
     mocks.getLastGitHead.mockReturnValue('head');
     mocks.getLastGoldVerification.mockReturnValue(null);
+    mocks.getParseDiagnosticsSummary.mockReturnValue({
+      affectedFiles: 0,
+      recentErrors: [],
+    });
     mocks.getStoredCodeGraphScope.mockReturnValue({
       fingerprint: 'code-graph-scope:v2:skills=none:agents=none:commands=none:specs=none:plugins=none:mcp-coco-index=excluded',
       label: 'end-user code only; .opencode skill, agent, command, specs and plugins excluded; mcp-coco-index/mcp_server excluded',
@@ -227,7 +240,12 @@ describe('code-graph sibling readiness emission', () => {
     });
     mocks.getStats.mockReturnValue(createStats());
     mocks.getTrackedFiles.mockReturnValue([]);
+    mocks.countStaleButValidParseDiagnostics.mockReturnValue(0);
     mocks.countTrackedSkillFiles.mockReturnValue(0);
+    mocks.recordFailedScan.mockImplementation((record) => ({
+      ...record,
+      recordedAt: '2026-05-06T00:00:00.000Z',
+    }));
     mocks.indexFiles.mockResolvedValue([{
       filePath: '/workspace/current.ts',
       language: 'typescript',

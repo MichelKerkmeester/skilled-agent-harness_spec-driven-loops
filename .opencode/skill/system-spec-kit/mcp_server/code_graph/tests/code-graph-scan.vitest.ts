@@ -22,9 +22,13 @@ const mocks = vi.hoisted(() => ({
   getCodeGraphMetadataMock: vi.fn(),
   getGraphFreshnessMock: vi.fn(),
   getGraphReadinessSnapshotMock: vi.fn(),
+  getLastFailedScanMock: vi.fn(),
   getLastGitHeadMock: vi.fn(),
   getLastGoldVerificationMock: vi.fn(),
+  getParseDiagnosticsSummaryMock: vi.fn(),
   persistIndexedFileResultMock: vi.fn(),
+  recordFailedScanMock: vi.fn(),
+  recordParseDiagnosticMock: vi.fn(),
   setCodeGraphMetadataMock: vi.fn(),
   setCodeGraphScopeMock: vi.fn(),
   setLastDetectorProvenanceMock: vi.fn(),
@@ -41,6 +45,7 @@ const mocks = vi.hoisted(() => ({
   getTrackedFilesMock: vi.fn(),
   getStatsMock: vi.fn(),
   getStoredCodeGraphScopeMock: vi.fn(),
+  countStaleButValidParseDiagnosticsMock: vi.fn(),
   countTrackedSkillFilesMock: vi.fn(),
   recordCandidateManifestMock: vi.fn(),
   resolveCrossFileCallEdgesMock: vi.fn(),
@@ -88,7 +93,12 @@ vi.mock('../lib/cross-file-edge-resolver.js', () => ({
 vi.mock('../lib/code-graph-db.js', () => ({
   getLastGitHead: mocks.getLastGitHeadMock,
   getCodeGraphMetadata: mocks.getCodeGraphMetadataMock,
+  getLastFailedScan: mocks.getLastFailedScanMock,
   getLastGoldVerification: mocks.getLastGoldVerificationMock,
+  getParseDiagnosticsSummary: mocks.getParseDiagnosticsSummaryMock,
+  countStaleButValidParseDiagnostics: mocks.countStaleButValidParseDiagnosticsMock,
+  recordFailedScan: mocks.recordFailedScanMock,
+  recordParseDiagnostic: mocks.recordParseDiagnosticMock,
   setCodeGraphMetadata: mocks.setCodeGraphMetadataMock,
   setCodeGraphScope: mocks.setCodeGraphScopeMock,
   setLastDetectorProvenance: mocks.setLastDetectorProvenanceMock,
@@ -215,11 +225,31 @@ describe('handleCodeGraphScan', () => {
     });
     mocks.getLastGitHeadMock.mockReturnValue('old-head');
     mocks.getLastGoldVerificationMock.mockReturnValue(null);
+    mocks.getLastFailedScanMock.mockReturnValue(null);
+    mocks.getParseDiagnosticsSummaryMock.mockReturnValue({
+      affectedFiles: 0,
+      recentErrors: [],
+    });
+    mocks.countStaleButValidParseDiagnosticsMock.mockReturnValue(0);
+    mocks.recordFailedScanMock.mockImplementation((record) => ({
+      ...record,
+      recordedAt: '2026-05-06T00:00:00.000Z',
+    }));
+    mocks.recordParseDiagnosticMock.mockReturnValue({
+      filePath: '/workspace/broken.ts',
+      errorMessage: 'synthetic parse failure',
+      errorCount: 1,
+      lastSeenAt: '2026-05-06T00:00:00.000Z',
+    });
     mocks.isFileStaleMock.mockReturnValue(false);
     mocks.existsSyncMock.mockReturnValue(true);
     mocks.realpathSyncMock.mockImplementation((path: string) => path);
     mocks.upsertFileMock.mockReturnValue(1);
     mocks.persistIndexedFileResultMock.mockImplementation((result) => {
+      if (result.parseHealth === 'error') {
+        mocks.recordParseDiagnosticMock(result.filePath, result.parseErrors.join('; '));
+        return;
+      }
       const fileId = mocks.upsertFileMock(
         result.filePath,
         result.language,
@@ -244,7 +274,16 @@ describe('handleCodeGraphScan', () => {
     });
     mocks.getTrackedFilesMock.mockReturnValue(['/workspace/removed.ts']);
     mocks.getStatsMock.mockReturnValue({
+      totalFiles: 1,
+      totalNodes: 1,
+      totalEdges: 0,
+      nodesByKind: { function: 1 },
+      edgesByType: {},
+      parseHealthSummary: { clean: 1 },
       lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'old-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
       graphQualitySummary: {
         detectorProvenanceSummary: null,
         graphEdgeEnrichmentSummary: null,
@@ -990,5 +1029,244 @@ describe('handleCodeGraphScan', () => {
     expect(payload.data.fullReindexTriggered).toBe(false);
     expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/deleted.ts');
     expect(mocks.upsertFileMock).not.toHaveBeenCalled();
+  });
+
+  it('does not wipe populated graph when subsequent full scan returns 0 nodes', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.getStatsMock.mockReturnValue({
+      totalFiles: 3,
+      totalNodes: 42,
+      totalEdges: 7,
+      nodesByKind: { function: 42 },
+      edgesByType: { CALLS: 7 },
+      parseHealthSummary: { clean: 3 },
+      lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'same-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
+      graphQualitySummary: {
+        detectorProvenanceSummary: null,
+        graphEdgeEnrichmentSummary: null,
+      },
+    });
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      reason: string;
+      data: {
+        totalNodes: number;
+        failedScan: { reason: string };
+      };
+    };
+
+    expect(payload.status).toBe('blocked');
+    expect(payload.reason).toBe('zero_node_scan_rejected');
+    expect(payload.data.totalNodes).toBe(42);
+    expect(payload.data.failedScan.reason).toBe('zero_node_scan_rejected');
+    expect(mocks.removeFileMock).not.toHaveBeenCalled();
+    expect(mocks.persistIndexedFileResultMock).not.toHaveBeenCalled();
+    expect(mocks.setLastGitHeadMock).not.toHaveBeenCalled();
+    expect(mocks.setCodeGraphScopeMock).not.toHaveBeenCalled();
+    expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
+  });
+
+  it('allows an explicit forceZeroNodeReset to bypass the zero-node guard', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+      forceZeroNodeReset: true,
+    });
+    const payload = JSON.parse(response.content[0].text) as { status: string };
+
+    expect(payload.status).toBe('ok');
+    expect(mocks.removeFileMock).toHaveBeenCalledWith('/workspace/removed.ts');
+    expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('same-head');
+    expect(mocks.setCodeGraphScopeMock).toHaveBeenCalled();
+  });
+
+  it('does not promote live metadata when parse error ratio exceeds threshold', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([
+      {
+        filePath: '/workspace/current.ts',
+        language: 'typescript',
+        contentHash: 'hash-clean',
+        nodes: [{ symbolId: 'current::symbol' }],
+        edges: [],
+        detectorProvenance: 'structured',
+        parseHealth: 'clean',
+        parseDurationMs: 10,
+        parseErrors: [],
+      },
+      {
+        filePath: '/workspace/broken-a.ts',
+        language: 'typescript',
+        contentHash: 'hash-error-a',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['native parser crashed A'],
+      },
+      {
+        filePath: '/workspace/broken-b.ts',
+        language: 'typescript',
+        contentHash: 'hash-error-b',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['native parser crashed B'],
+      },
+    ]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      data: {
+        failedScan: { reason: string };
+        warnings: string[];
+      };
+    };
+
+    expect(payload.status).toBe('ok');
+    expect(payload.data.failedScan.reason).toBe('parse_error_threshold_exceeded');
+    expect(payload.data.warnings.join('\n')).toContain('parse error ratio');
+    expect(mocks.removeFileMock).not.toHaveBeenCalled();
+    expect(mocks.setLastGitHeadMock).not.toHaveBeenCalled();
+    expect(mocks.setCodeGraphScopeMock).not.toHaveBeenCalled();
+    expect(mocks.setLastDetectorProvenanceSummaryMock).not.toHaveBeenCalled();
+    expect(mocks.recordCandidateManifestMock).not.toHaveBeenCalled();
+  });
+
+  it('records candidate manifest even when individual files parse-error', async () => {
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.indexFilesMock.mockResolvedValue(withPreParseSkippedCount([
+      {
+        filePath: '/workspace/current.ts',
+        language: 'typescript',
+        contentHash: 'hash-clean',
+        nodes: [{ symbolId: 'current::symbol' }],
+        edges: [],
+        detectorProvenance: 'structured',
+        parseHealth: 'clean',
+        parseDurationMs: 10,
+        parseErrors: [],
+      },
+      {
+        filePath: '/workspace/broken.ts',
+        language: 'typescript',
+        contentHash: 'hash-error',
+        nodes: [],
+        edges: [],
+        detectorProvenance: 'ast',
+        parseHealth: 'error',
+        parseDurationMs: 10,
+        parseErrors: ['native parser crashed'],
+      },
+    ]));
+
+    const response = await handleCodeGraphScan({
+      rootDir: process.cwd(),
+      incremental: false,
+    });
+    const payload = JSON.parse(response.content[0].text) as {
+      status: string;
+      data: {
+        errors: string[];
+        failedScan: null;
+      };
+    };
+
+    expect(payload.status).toBe('ok');
+    expect(payload.data.errors.join('\n')).toContain('native parser crashed');
+    expect(payload.data.failedScan).toBeNull();
+    expect(mocks.recordCandidateManifestMock).toHaveBeenCalledWith(mocks.getTrackedFilesMock.mock.results.at(-1)?.value);
+    expect(mocks.setLastGitHeadMock).toHaveBeenCalledWith('same-head');
+  });
+
+  it('exposes parse diagnostics in scan and status responses', async () => {
+    const workspaceRoot = resolve(process.cwd());
+    const brokenFile = join(workspaceRoot, 'src', 'broken.ts');
+    const diagnostics = {
+      affectedFiles: 1,
+      recentErrors: [{
+        filePath: brokenFile,
+        errorMessage: `Unexpected token in ${brokenFile}`,
+        errorCount: 2,
+        lastSeenAt: '2026-05-06T00:00:00.000Z',
+      }],
+    };
+    mocks.execSyncMock.mockReturnValue('same-head\n');
+    mocks.getLastGitHeadMock.mockReturnValue('same-head');
+    mocks.getParseDiagnosticsSummaryMock.mockReturnValue(diagnostics);
+    mocks.countStaleButValidParseDiagnosticsMock.mockReturnValue(1);
+
+    const scanResponse = await handleCodeGraphScan({
+      rootDir: workspaceRoot,
+      incremental: false,
+    });
+    const scanPayload = JSON.parse(scanResponse.content[0].text) as {
+      data: {
+        parseDiagnostics: {
+          affectedFiles: number;
+          recentErrors: Array<{ filePath: string; errorMessage: string; errorCount: number }>;
+        };
+        staleButValidGraphFiles: number;
+      };
+    };
+
+    expect(scanPayload.data.parseDiagnostics.affectedFiles).toBe(1);
+    expect(scanPayload.data.parseDiagnostics.recentErrors[0]).toMatchObject({
+      filePath: 'src/broken.ts',
+      errorMessage: 'Unexpected token in src/broken.ts',
+      errorCount: 2,
+    });
+    expect(scanPayload.data.staleButValidGraphFiles).toBe(1);
+
+    mocks.getStatsMock.mockReturnValue({
+      totalFiles: 1,
+      totalNodes: 1,
+      totalEdges: 0,
+      nodesByKind: { function: 1 },
+      edgesByType: {},
+      parseHealthSummary: { clean: 1 },
+      lastScanTimestamp: '2026-04-17T00:00:00.000Z',
+      lastGitHead: 'same-head',
+      dbFileSize: 1024,
+      schemaVersion: 4,
+      graphQualitySummary: {
+        detectorProvenanceSummary: null,
+        graphEdgeEnrichmentSummary: null,
+      },
+    });
+
+    const statusResponse = await handleCodeGraphStatus();
+    const statusPayload = JSON.parse(statusResponse.content[0].text) as {
+      data: {
+        parseDiagnostics: { affectedFiles: number };
+        staleButValidGraphFiles: number;
+      };
+    };
+
+    expect(statusPayload.data.parseDiagnostics.affectedFiles).toBe(1);
+    expect(statusPayload.data.staleButValidGraphFiles).toBe(1);
   });
 });

@@ -39,6 +39,7 @@ export interface ScanArgs {
   includePlugins?: boolean;
   verify?: boolean;
   persistBaseline?: boolean;
+  forceZeroNodeReset?: boolean;
 }
 
 export interface ScanResult {
@@ -56,6 +57,9 @@ export interface ScanResult {
   previousGitHead?: string | null;
   detectorProvenanceSummary?: graphDb.DetectorProvenanceSummary;
   graphEdgeEnrichmentSummary?: graphDb.GraphEdgeEnrichmentSummary | null;
+  parseDiagnostics: graphDb.ParseDiagnosticsSummary;
+  staleButValidGraphFiles: number;
+  failedScan?: graphDb.FailedScanRecord | null;
   warnings: string[];
   capExceeded: {
     maxNodes: boolean;
@@ -64,6 +68,8 @@ export interface ScanResult {
   };
   verification?: VerifyResult;
 }
+
+const DEFAULT_FATAL_PARSE_ERROR_RATIO = 0.5;
 
 function summarizeDetectorProvenance(
   results: Array<{ detectorProvenance?: DetectorProvenance }>,
@@ -127,6 +133,40 @@ function summarizeGraphEdgeEnrichment(
   }
 
   return best;
+}
+
+function countParseErrorFiles(results: Array<{ parseHealth: string; parseErrors: string[] }>): number {
+  return results.filter((result) => result.parseHealth === 'error' || result.parseErrors.length > 0).length;
+}
+
+function countPersistableNodes(results: Array<{ parseHealth: string; nodes: unknown[] }>): number {
+  return results.reduce((total, result) => (
+    result.parseHealth === 'error' ? total : total + result.nodes.length
+  ), 0);
+}
+
+function computeParseErrorRatio(parseErrorCount: number, totalFiles: number): number {
+  if (totalFiles === 0) {
+    return 0;
+  }
+  return parseErrorCount / totalFiles;
+}
+
+function formatParseDiagnosticMessage(result: { parseErrors: string[] }): string {
+  return result.parseErrors.length > 0
+    ? result.parseErrors.join('; ')
+    : 'Parser returned parseHealth="error" without diagnostics';
+}
+
+function recordParseDiagnosticsForResults(
+  results: Array<{ filePath: string; parseHealth: string; parseErrors: string[] }>,
+): void {
+  for (const result of results) {
+    if (result.parseHealth !== 'error' && result.parseErrors.length === 0) {
+      continue;
+    }
+    graphDb.recordParseDiagnostic(result.filePath, formatParseDiagnosticMessage(result));
+  }
 }
 
 function getCurrentGitHead(rootDir: string): string | null {
@@ -216,6 +256,20 @@ export function relativizeScanError(error: string, workspaceRoot: string): strin
   return relativizeScanMessage(error, workspaceRoot);
 }
 
+function relativizeParseDiagnostics(
+  summary: graphDb.ParseDiagnosticsSummary,
+  workspaceRoot: string,
+): graphDb.ParseDiagnosticsSummary {
+  return {
+    affectedFiles: summary.affectedFiles,
+    recentErrors: summary.recentErrors.map((diagnostic) => ({
+      ...diagnostic,
+      filePath: relativize(diagnostic.filePath, workspaceRoot),
+      errorMessage: relativizeScanError(diagnostic.errorMessage, workspaceRoot),
+    })),
+  };
+}
+
 /** Handle code_graph_scan tool call */
 export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Array<{ type: string; text: string }> }> {
   const startTime = Date.now();
@@ -280,16 +334,95 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const detectorProvenanceSummary = summarizeDetectorProvenance(results);
   let graphEdgeEnrichmentSummary = summarizeGraphEdgeEnrichment(results);
   const preParseSkippedCount = effectiveIncremental ? (results.preParseSkippedCount ?? 0) : 0;
+  const priorStats = graphDb.getStats();
+  const priorNodeCount = priorStats.totalNodes;
+  const candidatePersistableNodeCount = countPersistableNodes(results);
+  const parseErrorCount = countParseErrorFiles(results);
+  const parseErrorRatio = computeParseErrorRatio(parseErrorCount, results.length);
+  const severeParseErrorScan = parseErrorRatio > DEFAULT_FATAL_PARSE_ERROR_RATIO;
+  const zeroNodePromotionBlocked = !effectiveIncremental
+    && candidatePersistableNodeCount === 0
+    && priorNodeCount > 0
+    && args.forceZeroNodeReset !== true;
+
+  if (zeroNodePromotionBlocked) {
+    recordParseDiagnosticsForResults(results);
+    const reason = 'zero_node_scan_rejected';
+    const failedScan = graphDb.recordFailedScan({
+      reason,
+      totalFiles: results.length,
+      totalNodes: candidatePersistableNodeCount,
+      parseErrorCount,
+      parseErrorRatio,
+      previousGitHead,
+      currentGitHead,
+      scopeFingerprint: scopePolicy.fingerprint,
+      scopeLabel: scopePolicy.label,
+      errors: results.flatMap((result) => result.parseErrors).slice(0, 10),
+    });
+    console.warn(
+      `[code-graph-scan] Blocked zero-node full scan promotion over existing graph (${priorNodeCount} prior node(s)); pass forceZeroNodeReset:true to allow destructive reset.`,
+    );
+    const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
+    const readinessBlock = buildReadinessBlock({
+      freshness: 'stale',
+      action: 'full_scan',
+      inlineIndexPerformed: false,
+      reason: 'zero-node scan rejected to preserve existing graph state',
+    });
+
+    return {
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          status: 'blocked',
+          reason,
+          data: {
+            filesScanned: results.length,
+            filesIndexed: 0,
+            filesSkipped: preParseSkippedCount,
+            totalNodes: priorStats.totalNodes,
+            totalEdges: priorStats.totalEdges,
+            errors: results.flatMap((result) => {
+              const filePath = relativize(result.filePath, canonicalWorkspace);
+              return result.parseErrors.map((error) => `${filePath}: ${relativizeScanError(error, canonicalWorkspace)}`);
+            }).slice(0, 10),
+            durationMs: Date.now() - startTime,
+            fullScanRequested: args.incremental === false,
+            effectiveIncremental,
+            fullReindexTriggered,
+            currentGitHead,
+            previousGitHead,
+            detectorProvenanceSummary,
+            graphEdgeEnrichmentSummary,
+            parseDiagnostics,
+            staleButValidGraphFiles: graphDb.countStaleButValidParseDiagnostics(),
+            failedScan,
+            warnings: [
+              `zero-node scan rejected; existing graph has ${priorNodeCount} node(s)`,
+              ...(results.warnings ?? []).map(warning => relativizeScanWarning(warning, canonicalWorkspace)),
+            ],
+            capExceeded: results.capExceeded ?? { maxNodes: false, depth: false, gitignoreSize: false },
+            readiness: readinessBlock,
+            canonicalReadiness: readinessBlock.canonicalReadiness,
+            trustState: readinessBlock.trustState,
+            lastPersistedAt: priorStats.lastScanTimestamp,
+          },
+        }, null, 2),
+      }],
+    };
+  }
 
   let filesIndexed = 0;
   let filesSkipped = preParseSkippedCount;
   let totalNodes = 0;
   let totalEdges = 0;
   const errors: string[] = [];
+  const structuralErrors: string[] = [];
 
   if (effectiveIncremental) {
     cleanupMissingTrackedFiles(graphDb.getTrackedFiles());
-  } else {
+  } else if (!severeParseErrorScan) {
     const indexedPaths = new Set(results.map((result) => result.filePath));
     for (const filePath of graphDb.getTrackedFiles()) {
       if (!indexedPaths.has(filePath)) {
@@ -314,12 +447,16 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     try {
       persistIndexedFileResult(result);
 
-      filesIndexed++;
-      totalNodes += result.nodes.length;
-      totalEdges += result.edges.length;
+      if (result.parseHealth !== 'error') {
+        filesIndexed++;
+        totalNodes += result.nodes.length;
+        totalEdges += result.edges.length;
+      }
     } catch (err: unknown) {
       const filePath = relativize(result.filePath, canonicalWorkspace);
-      errors.push(`${filePath}: ${err instanceof Error ? err.message : String(err)}`);
+      const message = `${filePath}: ${err instanceof Error ? err.message : String(err)}`;
+      errors.push(message);
+      structuralErrors.push(message);
     }
 
     if (result.parseErrors.length > 0) {
@@ -328,24 +465,42 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     }
   }
 
-  if (filesIndexed > 0 && results.length > 0) {
+  const scanPromotable = !severeParseErrorScan && structuralErrors.length === 0;
+  const failedScan = scanPromotable
+    ? null
+    : graphDb.recordFailedScan({
+      reason: severeParseErrorScan ? 'parse_error_threshold_exceeded' : 'structural_persistence_error',
+      totalFiles: results.length,
+      totalNodes: candidatePersistableNodeCount,
+      parseErrorCount,
+      parseErrorRatio,
+      previousGitHead,
+      currentGitHead,
+      scopeFingerprint: scopePolicy.fingerprint,
+      scopeLabel: scopePolicy.label,
+      errors: errors.slice(0, 10),
+    });
+
+  if (scanPromotable && filesIndexed > 0 && results.length > 0) {
     graphDb.setLastDetectorProvenance(results[0].detectorProvenance);
   }
 
-  if (currentGitHead) {
+  if (scanPromotable && currentGitHead) {
     graphDb.setLastGitHead(currentGitHead);
   }
-  if (detectorProvenanceSummary.dominant !== 'unknown') {
+  if (scanPromotable && detectorProvenanceSummary.dominant !== 'unknown') {
     graphDb.setLastDetectorProvenance(detectorProvenanceSummary.dominant);
   }
-  graphDb.setLastDetectorProvenanceSummary(detectorProvenanceSummary);
-  graphDb.setCodeGraphScope(scopePolicy);
+  if (scanPromotable) {
+    graphDb.setLastDetectorProvenanceSummary(detectorProvenanceSummary);
+    graphDb.setCodeGraphScope(scopePolicy);
+  }
 
   // F-014-C4-03: refresh candidate manifest after a successful full scan so
   // the next detectState() has a current baseline to compare against. Without
   // this, code_graph_status reports stale ("candidate manifest drift") on the
   // very next call after an explicit user-triggered scan.
-  if (!effectiveIncremental && errors.length === 0) {
+  if (!effectiveIncremental && structuralErrors.length === 0 && !severeParseErrorScan) {
     try {
       recordCandidateManifest(graphDb.getTrackedFiles());
     } catch {
@@ -356,14 +511,14 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const hasPersistedBaseline = hasUsablePersistedEdgeDistributionBaseline();
   if (
     !effectiveIncremental
-    && errors.length === 0
+    && scanPromotable
     && (!hasPersistedBaseline || args.persistBaseline === true)
   ) {
     const distribution = summarizeEdgeDistribution(results);
     graphDb.setCodeGraphMetadata('edge_distribution_baseline', JSON.stringify(distribution));
   }
 
-  const crossFileCallResolution = filesIndexed > 0 && errors.length === 0
+  const crossFileCallResolution = filesIndexed > 0 && scanPromotable
     ? resolveCrossFileCallEdges()
     : { resolved: 0, unresolved: 0, ambiguousSkipped: 0 };
   if (hasCrossFileCallResolutionActivity(crossFileCallResolution)) {
@@ -376,9 +531,9 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     };
   }
 
-  if (filesIndexed > 0 && graphEdgeEnrichmentSummary) {
+  if (scanPromotable && filesIndexed > 0 && graphEdgeEnrichmentSummary) {
     graphDb.setLastGraphEdgeEnrichmentSummary(graphEdgeEnrichmentSummary);
-  } else if (filesIndexed > 0) {
+  } else if (scanPromotable && filesIndexed > 0) {
     graphDb.clearLastGraphEdgeEnrichmentSummary();
   }
 
@@ -392,6 +547,7 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
   const persistedStats = graphDb.getStats();
   const responseTotalNodes = persistedStats.totalNodes;
   const responseTotalEdges = persistedStats.totalEdges;
+  const parseDiagnostics = relativizeParseDiagnostics(graphDb.getParseDiagnosticsSummary(), canonicalWorkspace);
 
   const scanResult: ScanResult = {
     filesScanned: results.length,
@@ -408,7 +564,15 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     previousGitHead,
     detectorProvenanceSummary,
     graphEdgeEnrichmentSummary,
-    warnings: (results.warnings ?? []).map(warning => relativizeScanWarning(warning, canonicalWorkspace)),
+    parseDiagnostics,
+    staleButValidGraphFiles: graphDb.countStaleButValidParseDiagnostics(),
+    failedScan,
+    warnings: [
+      ...(severeParseErrorScan
+        ? [`scan metadata promotion blocked: parse error ratio ${parseErrorRatio.toFixed(2)} exceeds ${DEFAULT_FATAL_PARSE_ERROR_RATIO}`]
+        : []),
+      ...(results.warnings ?? []).map(warning => relativizeScanWarning(warning, canonicalWorkspace)),
+    ],
     capExceeded: results.capExceeded ?? { maxNodes: false, depth: false, gitignoreSize: false },
   };
   const lastPersistedAt = persistedStats.lastScanTimestamp;

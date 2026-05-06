@@ -462,6 +462,11 @@ async function indexWithTimeout(
  * same DB are not starved during a long scan.
  */
 export function persistIndexedFileResult(result: ParseResult): void {
+  if (result.parseHealth === 'error') {
+    graphDb.recordParseDiagnostic(result.filePath, result.parseErrors.join('; '));
+    return;
+  }
+
   // F-002-A2-01: atomic per-file persistence boundary
   const tx = graphDb.getDb().transaction(() => {
     const fileId = graphDb.upsertFile(
@@ -478,6 +483,7 @@ export function persistIndexedFileResult(result: ParseResult): void {
       result.nodes.length, result.edges.length,
       result.parseHealth, result.parseDurationMs,
     );
+    graphDb.clearParseDiagnostic(result.filePath);
   });
   tx();
 }

@@ -73,8 +73,34 @@ export interface StoredCodeGraphScope {
   source: IndexScopePolicySource | null;
 }
 
+export interface ParseDiagnostic {
+  readonly filePath: string;
+  readonly errorMessage: string;
+  readonly errorCount: number;
+  readonly lastSeenAt: string;
+}
+
+export interface ParseDiagnosticsSummary {
+  readonly affectedFiles: number;
+  readonly recentErrors: ParseDiagnostic[];
+}
+
+export interface FailedScanRecord {
+  readonly reason: string;
+  readonly totalFiles: number;
+  readonly totalNodes: number;
+  readonly parseErrorCount: number;
+  readonly parseErrorRatio: number;
+  readonly recordedAt: string;
+  readonly previousGitHead?: string | null;
+  readonly currentGitHead?: string | null;
+  readonly scopeFingerprint?: string | null;
+  readonly scopeLabel?: string | null;
+  readonly errors?: string[];
+}
+
 /** Schema version for migration tracking */
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 4;
 
 /** SQL schema for code graph tables */
 const SCHEMA_SQL = `
@@ -128,6 +154,13 @@ const SCHEMA_SQL = `
     updated_at TEXT NOT NULL
   );
 
+  CREATE TABLE IF NOT EXISTS parse_diagnostics (
+    file_path TEXT PRIMARY KEY,
+    error_message TEXT NOT NULL,
+    error_count INTEGER NOT NULL DEFAULT 1,
+    last_seen_at TEXT NOT NULL
+  );
+
   CREATE INDEX IF NOT EXISTS idx_nodes_file_id ON code_nodes(file_id);
   CREATE INDEX IF NOT EXISTS idx_nodes_symbol_id ON code_nodes(symbol_id);
   CREATE INDEX IF NOT EXISTS idx_nodes_kind ON code_nodes(kind);
@@ -138,6 +171,7 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_edges_type ON code_edges(edge_type);
   CREATE INDEX IF NOT EXISTS idx_files_path ON code_files(file_path);
   CREATE INDEX IF NOT EXISTS idx_files_hash ON code_files(content_hash);
+  CREATE INDEX IF NOT EXISTS idx_parse_diagnostics_last_seen ON parse_diagnostics(last_seen_at);
 `;
 
 function getCurrentFileMtimeMs(filePath: string): number | null {
@@ -172,7 +206,14 @@ function ensureSchemaMigrations(database: Database.Database): void {
       value TEXT NOT NULL,
       updated_at TEXT NOT NULL
     );
+    CREATE TABLE IF NOT EXISTS parse_diagnostics (
+      file_path TEXT PRIMARY KEY,
+      error_message TEXT NOT NULL,
+      error_count INTEGER NOT NULL DEFAULT 1,
+      last_seen_at TEXT NOT NULL
+    );
     CREATE INDEX IF NOT EXISTS idx_file_line ON code_nodes(file_path, start_line);
+    CREATE INDEX IF NOT EXISTS idx_parse_diagnostics_last_seen ON parse_diagnostics(last_seen_at);
   `);
 }
 
@@ -395,6 +436,44 @@ export function clearLastGraphEdgeEnrichmentSummary(): void {
   clearMetadata('last_graph_edge_enrichment_summary');
 }
 
+function isFailedScanRecord(value: unknown): value is FailedScanRecord {
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
+  const record = value as Record<string, unknown>;
+  return typeof record.reason === 'string'
+    && typeof record.totalFiles === 'number'
+    && typeof record.totalNodes === 'number'
+    && typeof record.parseErrorCount === 'number'
+    && typeof record.parseErrorRatio === 'number'
+    && typeof record.recordedAt === 'string';
+}
+
+export function recordFailedScan(
+  record: Omit<FailedScanRecord, 'recordedAt'>,
+): FailedScanRecord {
+  const failedScan: FailedScanRecord = {
+    ...record,
+    recordedAt: new Date().toISOString(),
+  };
+  setMetadata('last_failed_scan', JSON.stringify(failedScan));
+  return failedScan;
+}
+
+export function getLastFailedScan(): FailedScanRecord | null {
+  const raw = getMetadata('last_failed_scan');
+  if (!raw) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    return isFailedScanRecord(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
 export function getLastGoldVerification(): object | null {
   const result = getLastGoldVerificationWithDiagnostics();
   // F-004-A4-03: backward-compat null on any non-resolved state
@@ -479,6 +558,82 @@ export function upsertFile(
   return Number(result.lastInsertRowid);
 }
 
+export function recordParseDiagnostic(filePath: string, errorMessage: string): ParseDiagnostic {
+  const d = getDb();
+  const now = new Date().toISOString();
+  const message = errorMessage.length > 0
+    ? errorMessage
+    : 'Parser returned parseHealth="error" without diagnostics';
+  d.prepare(`
+    INSERT INTO parse_diagnostics (file_path, error_message, error_count, last_seen_at)
+    VALUES (?, ?, 1, ?)
+    ON CONFLICT(file_path) DO UPDATE SET
+      error_message = excluded.error_message,
+      error_count = parse_diagnostics.error_count + 1,
+      last_seen_at = excluded.last_seen_at
+  `).run(filePath, message, now);
+
+  const row = d.prepare(`
+    SELECT file_path, error_message, error_count, last_seen_at
+    FROM parse_diagnostics
+    WHERE file_path = ?
+  `).get(filePath) as {
+    file_path: string;
+    error_message: string;
+    error_count: number;
+    last_seen_at: string;
+  };
+
+  return {
+    filePath: row.file_path,
+    errorMessage: row.error_message,
+    errorCount: row.error_count,
+    lastSeenAt: row.last_seen_at,
+  };
+}
+
+export function clearParseDiagnostic(filePath: string): void {
+  const d = getDb();
+  d.prepare('DELETE FROM parse_diagnostics WHERE file_path = ?').run(filePath);
+}
+
+export function getParseDiagnosticsSummary(limit: number = 5): ParseDiagnosticsSummary {
+  const d = getDb();
+  const safeLimit = Number.isFinite(limit) ? Math.max(1, Math.min(Math.trunc(limit), 20)) : 5;
+  const affected = d.prepare('SELECT COUNT(*) AS count FROM parse_diagnostics').get() as { count: number };
+  const rows = d.prepare(`
+    SELECT file_path, error_message, error_count, last_seen_at
+    FROM parse_diagnostics
+    ORDER BY last_seen_at DESC, file_path ASC
+    LIMIT ?
+  `).all(safeLimit) as Array<{
+    file_path: string;
+    error_message: string;
+    error_count: number;
+    last_seen_at: string;
+  }>;
+
+  return {
+    affectedFiles: affected.count,
+    recentErrors: rows.map((row) => ({
+      filePath: row.file_path,
+      errorMessage: row.error_message,
+      errorCount: row.error_count,
+      lastSeenAt: row.last_seen_at,
+    })),
+  };
+}
+
+export function countStaleButValidParseDiagnostics(): number {
+  const d = getDb();
+  const row = d.prepare(`
+    SELECT COUNT(*) AS count
+    FROM parse_diagnostics diagnostic
+    INNER JOIN code_files file ON file.file_path = diagnostic.file_path
+  `).get() as { count: number };
+  return row.count;
+}
+
 /** Batch insert nodes for a file (deletes existing first) */
 export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
   const d = getDb();
@@ -528,9 +683,32 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[]): void {
       d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders})`).run(...sourceIds);
     }
 
+    const candidateSourceIds = [...new Set(edges.map((edge) => edge.sourceId))];
+    const retainedSourceIds = new Set<string>();
+    if (candidateSourceIds.length > 0) {
+      const placeholders = candidateSourceIds.map(() => '?').join(',');
+      const rows = d.prepare(`
+        SELECT symbol_id
+        FROM code_nodes
+        WHERE symbol_id IN (${placeholders})
+      `).all(...candidateSourceIds) as Array<{ symbol_id: string }>;
+      for (const row of rows) {
+        retainedSourceIds.add(row.symbol_id);
+      }
+    }
+
     for (const e of edges) {
+      if (!retainedSourceIds.has(e.sourceId)) {
+        continue;
+      }
       insert.run(e.sourceId, e.targetId, e.edgeType, e.weight, e.metadata ? JSON.stringify(e.metadata) : null);
     }
+
+    d.prepare(`
+      DELETE FROM code_edges WHERE
+        source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+        target_id NOT IN (SELECT symbol_id FROM code_nodes)
+    `).run();
   });
   tx();
 }

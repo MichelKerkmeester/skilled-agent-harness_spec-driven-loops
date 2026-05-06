@@ -53,7 +53,7 @@ The framework adds three layers on top of the base platform:
 | **🤖 11 Agents** | 11 custom specialists, multi-runtime |
 | **🎯 21 Skills** | Code, docs, git, prompts, MCP, research, review, improvement, cross-AI |
 | **⌨️ 23 Commands** | 6 spec_kit + 4 memory + 6 create + 2 improve + 4 doctor + 1 agent_router |
-| **🔧 63 MCP Tools** | spec_kit_memory (54), code mode (7), CocoIndex (1), sequential thinking (1) — see canonical count in FAQ |
+| **🔧 63 MCP Tools** | spec_kit_memory (54), code mode (7), CocoIndex (1), sequential thinking (1). See canonical count in FAQ |
 | **🔍 CocoIndex Code** | [Forked](.opencode/skill/mcp-coco-index/NOTICE) from [cocoindex-io/cocoindex-code](https://github.com/cocoindex-io/cocoindex-code) (Apache 2.0) - semantic code search via vector embeddings and natural-language discovery across 28+ languages |
 | **🏗️ Code Graph** | Structural indexer + SQLite - call graphs, imports, hierarchy, LLM-oriented neighborhoods, graph-first routing |
 | **⚡ Runtime Coverage** | OpenCode, Codex CLI, Claude Code, Gemini CLI, plus Copilot MCP/startup support |
@@ -167,13 +167,13 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language) — start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top — drop them into `.opencode/skill/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, `mcp-coco-index`, the deep-research/deep-review loops, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skill/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
 ### Code-Graph Indexing
 
-The code graph indexes **your project's production code** by default — not the framework backend. End users get this automatically (a git clean filter handles it on push). See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
+The code graph indexes **your project's production code** by default, not the framework backend. End users get this automatically (a git clean filter handles it on push). See [§4 Maintainer-Mode Code-Graph Flags](#maintainer-mode-code-graph-flags-already-disabled-for-end-users) only if you're contributing upstream.
 
 <!-- /ANCHOR:quick-start -->
 
@@ -435,7 +435,7 @@ Six relationship types: `caused`, `enabled`, `supersedes`, `contradicts`, `deriv
 &nbsp;
 #### Trust Badges on Search Results
 
-Every search result ships with a small `trustBadges` block that tells you how reliable the hit is at a glance. The badges are display-only — they read existing causal links and don't add new storage:
+Every search result ships with a small `trustBadges` block that tells you how reliable the hit is at a glance. The badges are display-only, they read existing causal links and don't add new storage:
 
 | Badge | What it tells you |
 |-------|-------------------|
@@ -559,7 +559,7 @@ code_graph_scan({
 
 Existing v1 scans trigger a blocked read with `requiredAction:"code_graph_scan"` until you re-run the scan. See [code_graph/README.md §8 SCAN SCOPE](.opencode/skill/system-spec-kit/mcp_server/code_graph/README.md#8-scan-scope) for the full scan-scope rules and precedence details.
 
-Our CocoIndex is forked. The Python wrapper that powers semantic search is a soft-fork at version `0.2.3+spec-kit-fork.0.2.0`, vendored alongside the skill so it ships with this repo; the Rust engine underneath stays on PyPI. The fork adds four things the upstream wrapper doesn't: duplicate suppression so mirror copies of the same file don't crowd results, canonical path identity per chunk (so dedup works across symlinks), a path-class taxonomy that nudges "find me the implementation of X" toward implementation files first, and ranking telemetry that surfaces *why* each result ranked where it did. Responses from the MCP tool or `ccc search` CLI carry seven fork-specific fields — `source_realpath`, `content_hash`, `path_class`, `dedupedAliases`, `uniqueResultCount`, `raw_score`, `rankingSignals` — that vanilla cocoindex output does not include. Schema, attribution, and per-release patch list all live under [`.opencode/skill/mcp-coco-index/`](.opencode/skill/mcp-coco-index/).
+Our CocoIndex is forked. The Python wrapper that powers semantic search is a soft-fork at version `0.2.3+spec-kit-fork.0.2.0`, vendored alongside the skill so it ships with this repo; the Rust engine underneath stays on PyPI. The fork adds four things the upstream wrapper doesn't: duplicate suppression so mirror copies of the same file don't crowd results, canonical path identity per chunk (so dedup works across symlinks), a path-class taxonomy that nudges "find me the implementation of X" toward implementation files first, and ranking telemetry that surfaces *why* each result ranked where it did. Responses from the MCP tool or `ccc search` CLI carry seven fork-specific fields, `source_realpath`, `content_hash`, `path_class`, `dedupedAliases`, `uniqueResultCount`, `raw_score`, `rankingSignals`, that vanilla cocoindex output does not include. Schema, attribution, and per-release patch list all live under [`.opencode/skill/mcp-coco-index/`](.opencode/skill/mcp-coco-index/).
 
 &nbsp;
 #### How the Code Graph Works
@@ -589,22 +589,22 @@ Relationship answers from `code_graph_query` include short `reason` and `step` f
 
 `blast_radius` keeps the prior payload (affected files, source files, hot files, multi-file union, depth) and adds:
 
-- **`depthGroups`** — affected nodes bucketed by how far they sit from the change
-- **`riskLevel`** — `high` when the subject is ambiguous or fans out to more than 10 things at depth one, `medium` for 4–10, `low` otherwise
-- **`minConfidence`** filter — drop traversals below a confidence floor
-- **`ambiguityCandidates`** — list of plausible matches when the subject can't be resolved
-- **`failureFallback`** — structured info instead of a bare error string when resolution can't continue
+- **`depthGroups`**: affected nodes bucketed by how far they sit from the change
+- **`riskLevel`**: `high` when the subject is ambiguous or fans out to more than 10 things at depth one, `medium` for 4–10, `low` otherwise
+- **`minConfidence`** filter, drop traversals below a confidence floor
+- **`ambiguityCandidates`**: list of plausible matches when the subject can't be resolved
+- **`failureFallback`**: structured info instead of a bare error string when resolution can't continue
 
-All of this rides inside the existing `code_edges.metadata` JSON blob — no SQLite schema changes.
+All of this rides inside the existing `code_edges.metadata` JSON blob, no SQLite schema changes.
 
 &nbsp;
-#### `detect_changes` — Preflight Impact Check
+#### `detect_changes`: Preflight Impact Check
 
 `detect_changes` is a read-only Code Graph tool that takes a diff and tells you which symbols and files it touches. It runs alongside `code_graph_scan`, `code_graph_query`, `code_graph_status`, and `code_graph_context`.
 
 You hand it `{ diff: string, rootDir?: string }`. It walks each diff hunk, overlaps the line ranges with stored symbols, and returns `{ status, affectedSymbols[], affectedFiles[], blockedReason?, timestamp, readiness }`.
 
-Safety is non-negotiable: the tool checks the graph is fresh before parsing the diff. If the graph is stale or unavailable, it returns `status: 'blocked'` immediately — you never get a false "nothing impacted" answer from an out-of-date index. Inline indexing is explicitly disabled here, so the read-only contract is enforced.
+Safety is non-negotiable: the tool checks the graph is fresh before parsing the diff. If the graph is stale or unavailable, it returns `status: 'blocked'` immediately, you never get a false "nothing impacted" answer from an out-of-date index. Inline indexing is explicitly disabled here, so the read-only contract is enforced.
 
 Under the hood the scan runner is split into four declared phases (`find-candidates` → `parse-candidates` → `finalize` → `emit-metrics`) for clearer instrumentation, with no SQLite schema changes.
 
@@ -713,11 +713,11 @@ Current shipped baseline: **80.5% full-corpus accuracy**, **77.5% holdout accura
 &nbsp;
 #### How Runtimes Talk To It
 
-- **Claude Code, Copilot CLI, Gemini CLI, Codex CLI** — call prompt-time hook adapters under `.opencode/skill/system-spec-kit/mcp_server/hooks/`.
-- **OpenCode** — uses `.opencode/plugins/spec-kit-skill-advisor.js` with `spec-kit-skill-advisor-bridge.mjs`, which imports the stable compat entry at `skill-advisor/compat/index.ts`.
-- **Codex cold starts** — the Codex prompt hook emits a prompt-safe stale advisory plus `{"stale":true,"reason":"timeout-fallback"}` when startup context times out; the smoke helper lives at [freshness-smoke-check.ts](.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts).
-- **Disable everywhere** — set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
-- **Threshold contract at the prompt** — confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
+- **Claude Code, Copilot CLI, Gemini CLI, Codex CLI**: call prompt-time hook adapters under `.opencode/skill/system-spec-kit/mcp_server/hooks/`.
+- **OpenCode**: uses `.opencode/plugins/spec-kit-skill-advisor.js` with `spec-kit-skill-advisor-bridge.mjs`, which imports the stable compat entry at `skill-advisor/compat/index.ts`.
+- **Codex cold starts**: the Codex prompt hook emits a prompt-safe stale advisory plus `{"stale":true,"reason":"timeout-fallback"}` when startup context times out; the smoke helper lives at [freshness-smoke-check.ts](.opencode/skill/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts).
+- **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
+- **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
 
 &nbsp;
 #### Validation and Testing
@@ -731,7 +731,7 @@ Current shipped baseline: **80.5% full-corpus accuracy**, **77.5% holdout accura
 &nbsp;
 #### Affordance Evidence
 
-Callers can pass structured tool and resource hints — `skillId`, `name`, `triggers[]`, `category`, `dependsOn[]`, `enhances[]`, `siblings[]`, `prerequisiteFor[]`, `conflictsWith[]` — as affordance evidence. A normalizer strips URLs, emails, token-shaped fragments, control characters, and instruction-shaped strings before the scorer sees anything; free-form `description` text is ignored on purpose. Sanitized triggers feed the existing derived-hints lane at reduced weight, and normalized relations become temporary edges in the existing causal-graph lane reusing the standard relation multipliers (`depends_on`, `enhances`, `siblings`, `prerequisite_for`, `conflicts_with`). No new scoring lane, no new entity kind, no raw matched phrases in recommendation payloads — evidence labels stay as stable `affordance:<skillId>:<index>` identifiers.
+Callers can pass structured tool and resource hints, `skillId`, `name`, `triggers[]`, `category`, `dependsOn[]`, `enhances[]`, `siblings[]`, `prerequisiteFor[]`, `conflictsWith[]`, as affordance evidence. A normalizer strips URLs, emails, token-shaped fragments, control characters, and instruction-shaped strings before the scorer sees anything; free-form `description` text is ignored on purpose. Sanitized triggers feed the existing derived-hints lane at reduced weight, and normalized relations become temporary edges in the existing causal-graph lane reusing the standard relation multipliers (`depends_on`, `enhances`, `siblings`, `prerequisite_for`, `conflicts_with`). No new scoring lane, no new entity kind, no raw matched phrases in recommendation payloads, evidence labels stay as stable `affordance:<skillId>:<index>` identifiers.
 
 For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_server/skill_advisor/README.md).
 
@@ -758,7 +758,7 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 #### CODE WORKFLOW
 
 **sk-code**
-- **Multi-stack coding standards, references, and assets** — surface-aware patterns, checklists, and verification recipes loaded per stack
+- **Multi-stack coding standards, references, and assets**: surface-aware patterns, checklists, and verification recipes loaded per stack
 - **WEBFLOW** stack: Webflow / vanilla HTML/CSS/JS animation projects (motion.dev, GSAP, Lenis, HLS, Swiper, FilePond), CDN deployment, Lighthouse/TBT/INP targets, browser verification
 - **OPENCODE** stack: `.opencode/` system code across JavaScript/CommonJS, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skill files
 - Smart-routing internals auto-detect the active stack from CWD/target paths and library markers; unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a disambiguation question
@@ -795,12 +795,12 @@ For details, see the [Skill Advisor README](.opencode/skill/system-spec-kit/mcp_
 &nbsp;
 #### CROSS-AI CLI
 
-These skills let you run **cross-CLI agent teams from any starting CLI**. Whichever assistant you're talking to (Claude Code, Codex, Copilot, Gemini, OpenCode, raw shell), it can dispatch the other AI CLIs as specialist sub-tools — each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge; the dispatched CLI handles the part it's best at and returns. Use this to compose a Gemini web search + Codex implementation + Claude review pipeline from inside any one of them.
+These skills let you run **cross-CLI agent teams from any starting CLI**. Whichever assistant you're talking to (Claude Code, Codex, Copilot, Gemini, OpenCode, raw shell), it can dispatch the other AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge; the dispatched CLI handles the part it's best at and returns. Use this to compose a Gemini web search + Codex implementation + Claude review pipeline from inside any one of them.
 
-> **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only — no cycles.
+> **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
 
 **cli-gemini**
-- Gemini CLI orchestrator. Use it for **real-time web search via Google Search grounding** — no other CLI skill has this — and for analyzing very large codebases (1M+ token context).
+- Gemini CLI orchestrator. Use it for **real-time web search via Google Search grounding**, no other CLI skill has this, and for analyzing very large codebases (1M+ token context).
 - Single model: `gemini-3.1-pro-preview`.
 
 **cli-codex**
@@ -816,7 +816,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Default model: `gpt-5.4`. Other surfaced models: `gpt-5.5`, `gpt-5.3-codex`, `claude-opus-4.7`, `claude-sonnet-4.6`, `gemini-3.1-pro-preview` (5 picks across OpenAI / Anthropic / Google).
 
 **cli-opencode**
-- OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime** — a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skill/`, every MCP server, and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
+- OpenCode CLI orchestrator. Use it when the dispatched task needs **the project's full plugin / skill / MCP / Spec Kit Memory runtime**, a one-shot `opencode run` boots every plugin in `opencode.json`, every skill under `.opencode/skill/`, every MCP server, and the memory database. Also handles **parallel detached sessions** (`--share --port N` for ablation suites, worker farms) and **cross-repo dispatch** (`--dir <path>`).
 - Three providers: `github-copilot` (default, with `gpt-5.4` default + `claude-sonnet-4.6` alternative), `opencode-go` (DeepSeek + GLM/Kimi/Qwen via gateway), `deepseek` (direct DeepSeek API).
 
 &nbsp;
@@ -925,7 +925,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - 5-dimension acceptance rubric (100 pts total): Correctness 30, Scope-Adherence 20, Verification-Evidence 20, Stack-Pattern-Compliance 15, Integration 15
 - Builder → Critic → Verifier adversarial self-check on every completion claim (challenges `DONE`, opposite axis from `@review`'s Hunter/Skeptic/Referee which challenges findings)
 - Iron Law: NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK; LOW confidence strictly blocks `DONE`
-- Fail-closed verification — failure returns to orchestrator, no internal retry; BLOCKED-count circuit breaker (3× BLOCKED → orchestrator offers `@debug`)
+- Fail-closed verification, failure returns to orchestrator, no internal retry; BLOCKED-count circuit breaker (3× BLOCKED → orchestrator offers `@debug`)
 - Compact RETURN line + structured body with `escalation` classifier (NONE / UNKNOWN_STACK / SCOPE_CONFLICT / LOW_CONFIDENCE / LOGIC_SYNC / VERIFY_FAIL)
 - Dispatched ONLY by `@orchestrate` via convention-floor caller-restriction (description prose + body §0 dispatch gate + orchestrate.md routing entry; not harness-enforced)
 
@@ -1203,9 +1203,9 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 ## 4. CONFIGURATION
 
 <a id="customizing-for-your-stack"></a>
-### 🎯 Customizing for Your Stack — Start with `sk-code`
+### 🎯 Customizing for Your Stack: Start with `sk-code`
 
-This repo ships as a **public template**. Of the skills it ships with, only one carries stack-specific content — start there:
+This repo ships as a **public template**. Of the skills it ships with, only one carries stack-specific content, start there:
 
 | Skill / Surface | Out-of-the-box | Notes |
 |---|---|---|
@@ -1221,12 +1221,12 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic | External CLI orchestrators. Stack-independent. |
 | `mcp-chrome-devtools` | ✅ Codebase-agnostic | Browser tooling. Stack-independent. |
 
-**Adding your own skills:** the shipped set is intentionally minimal — most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported; just drop them into `.opencode/skill/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
+**Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported; just drop them into `.opencode/skill/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
 **What "adapting `sk-code`" looks like**:
 - Replace `references/webflow/`, `references/opencode/`, `references/motion_dev/` with your stack's references (e.g., `references/nextjs/`, `references/postgres/`).
 - Replace `assets/webflow/`, `assets/opencode/`, `assets/motion_dev/` with your stack's assets (checklists, recipes, snippets).
-- Update `SKILL.md` §2 Smart Routing — `STACK_FOLDERS` dict + the bash detection block — to match your stack's marker files and CWD signals.
+- Update `SKILL.md` §2 Smart Routing, `STACK_FOLDERS` dict + the bash detection block, to match your stack's marker files and CWD signals.
 - Update the `RESOURCE_MAP` intent → file paths to point at your renamed references/assets.
 - Bump `sk-code` version + ship a changelog. Use the `assets/opencode/checklists/skill_authoring.md` checklist as your guide.
 
@@ -1325,14 +1325,14 @@ SPECKIT_CODE_GRAPH_INDEX_SPECS     (covers .opencode/specs/**)
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS   (covers .opencode/plugins/**)
 ```
 
-**End users see all 5 as `"false"`** thanks to the [git clean filter](#git-clean-filter--maintainer-mode-stays-local). That's the framework default and what you want — the code graph indexes your project code, not the framework backend.
+**End users see all 5 as `"false"`** thanks to the [git clean filter](#git-clean-filter--maintainer-mode-stays-local). That's the framework default and what you want, the code graph indexes your project code, not the framework backend.
 
 **Maintainers (us) have all 5 as `"true"`** locally because we navigate `.opencode/` to iterate on the framework. The smudge filter restores `"true"` on checkout/pull/clone after running `./scripts/setup-maintainer-filters.sh`.
 
 **Per-call override:** the same five flags exist as `includeSkills` / `includeAgents` / `includeCommands` / `includeSpecs` / `includePlugins` arguments on `code_graph_scan`. Per-call args always override env defaults, so you can flip behavior for one scan without editing config.
 
 <a id="git-clean-filter--maintainer-mode-stays-local"></a>
-#### Git clean filter — maintainer mode stays local
+#### Git clean filter: maintainer mode stays local
 
 The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the 5 config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index, and the smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
 

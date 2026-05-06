@@ -583,6 +583,7 @@ const codeGraphScan: ToolDefinition = {
       includePlugins: { type: 'boolean', default: false, description: 'Include .opencode/plugins files in this scan; default false keeps end-user code scope' },
       verify: { type: 'boolean', default: false, description: 'Run the gold-query verification battery after an explicit full scan (default: false)' },
       persistBaseline: { type: 'boolean', default: false, description: 'Persist the current edge-distribution baseline after a full scan even when one already exists' },
+      forceZeroNodeReset: { type: 'boolean', default: false, description: 'Allow an explicit destructive reset when a full scan produces zero indexed nodes over a populated graph' },
     },
     required: [],
   },
