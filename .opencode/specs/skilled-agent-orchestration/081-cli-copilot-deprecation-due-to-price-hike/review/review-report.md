@@ -292,4 +292,39 @@ The cli-copilot deprecation is **substantively complete**. All P0 success criter
 
 **Authoritative sign-off:** Reviewed by Claude Opus 4.7 (1M context) on 2026-05-06. Live verification commands captured under §6 are reproducible. Methodology limitation (cli-opencode contention with parallel packet 082) is documented in §3.
 
+### 9.1 P1 Advisory Closure (2026-05-06, post-review)
+
+**P1-081-001 — test compile verification: ✓ CLOSED**
+
+```
+$ cd .opencode/skill/system-spec-kit/mcp_server
+$ ./node_modules/.bin/vitest run tests/deep-loop/executor-config.vitest.ts tests/deep-loop/cli-matrix.vitest.ts
+ Test Files  2 passed (2)
+      Tests  28 passed (28)
+   Duration  1.30s
+```
+
+Both `executor-config.vitest.ts` and `cli-matrix.vitest.ts` compile and pass after the cli-copilot scrub (28/28 tests green). The deletion of `buildCopilotPromptArg`, the `Extract<ExecutorKind, ...>` type-union edits, and the test-case removals are all coherent.
+
+**P1-081-002 — dist rebuild: ✓ CLOSED (and reframed)**
+
+```
+$ cd .opencode/skill/system-spec-kit/mcp_server
+$ npm run build
+> @spec-kit/mcp-server@1.8.0 build
+> tsc --build
+(exit 0; quiet success)
+
+$ grep -c 'cli-copilot' dist/lib/deep-loop/executor-config.{js,d.ts} dist/matrix_runners/run-matrix.{js,d.ts}
+=> 0:0:0:0
+```
+
+`dist/` is `.gitignore`'d (build artifacts are NOT tracked in git) — so the original advisory's framing ("regenerate and commit") was slightly off. The correct closure is: `npm run build` regenerates `dist/` locally on demand; the build step is part of the operator's standard workflow when picking up the repo, not a packet-internal commit. Local rebuild verified 0 cli-copilot hits in all four regenerated artifacts.
+
+**Out-of-scope test failures** (pre-existing or from parallel packet 082):
+- `mcp_server/skill_advisor/tests/legacy/advisor-corpus-parity.vitest.ts` — regression in advisor corpus parity, traced to packet 082's sk-improve-prompt → sk-prompt rename affecting the corpus.
+- `mcp_server/tests/deep-loop/prompt-pack.vitest.ts` — missing `sk-deep-research/assets/prompt_pack_iteration.md.tmpl` (the rename packet may have relocated this template). Not a packet 081 surface.
+
+These two failures predate or originate outside packet 081 and are documented here so they aren't misattributed; remediation belongs to packet 082's follow-on packet.
+
 <!-- /ANCHOR:verdict -->
