@@ -117,7 +117,7 @@ description = "Proposal-only mutator for bounded deep-agent-improvement candidat
 config_file = "agents/deep-agent-improvement.toml"
 
 [agents.prompt-improver]
-description = "Improve-prompt specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations"
+description = "Prompt-improver specialist for framework selection, CLEAR validation, and dispatch-ready prompt packages for high-stakes external CLI invocations"
 config_file = "agents/prompt-improver.toml"
 
 [agents.review]

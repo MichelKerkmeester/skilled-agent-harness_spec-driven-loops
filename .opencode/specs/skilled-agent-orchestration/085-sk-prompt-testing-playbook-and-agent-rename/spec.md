@@ -134,8 +134,8 @@ Phase 001 (rename) executes BEFORE Phase 002 (playbook) so playbook scenarios re
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | [001-prompt-improver-rename/](./001-prompt-improver-rename/) | Rename @improve-prompt → @prompt-improver via 4 runtime renames + direct-sed reference rotation across ~31 active-scope files | Pending |
-| 002 | [002-sk-prompt-testing-playbook/](./002-sk-prompt-testing-playbook/) | Author 28-scenario manual testing playbook via /create:testing-playbook command using sk-doc templates | Pending |
+| 001 | [001-prompt-improver-rename/](./001-prompt-improver-rename/) | Rename @improve-prompt → @prompt-improver via 4 runtime renames + direct-sed reference rotation across ~31 active-scope files | Complete |
+| 002 | [002-sk-prompt-testing-playbook/](./002-sk-prompt-testing-playbook/) | Author 28-scenario manual testing playbook via /create:testing-playbook command using sk-doc templates | Complete |
 
 ### Phase Transition Rules
 

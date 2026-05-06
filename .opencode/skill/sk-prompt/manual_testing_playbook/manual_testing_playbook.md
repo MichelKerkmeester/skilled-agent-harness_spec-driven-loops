@@ -733,7 +733,7 @@ Desired user-visible outcome: Routing trace listing `format_guide_json.md` only 
 
 ---
 
-## 15. FEATURE CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|

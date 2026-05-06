@@ -1,27 +1,27 @@
 ---
-title: "Implementation Summary [template:level_1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Phase 001 — Rename @improve-prompt → @prompt-improver"
+description: "Renamed agent across 4 runtime mirrors (.opencode, .claude, .codex, .gemini) plus 35 active-scope reference files via cli-codex gpt-5.5 medium fast plus manual finalization for sandbox-blocked .codex/ paths. Pure semantic rename — agent identity now follows the noun-form family convention (@code, @review, @debug, @context)."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "085 phase 001 summary"
+  - "improve-prompt to prompt-improver complete"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-prompt-improver-rename"
-    last_updated_at: "2026-05-06T13:19:26Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    packet_pointer: "skilled-agent-orchestration/085-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename"
+    last_updated_at: "2026-05-06T19:40:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 001 rename complete + .codex residuals fixed post deep-review"
+    next_safe_action: "Phase 002 testing playbook"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-prompt-improver-rename"
+      session_id: "claude-2026-05-06-085-001-summary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 001-prompt-improver-rename |
 | **Completed** | 2026-05-06 |
-| **Level** | 2 |
+| **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,28 +48,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The agent `@improve-prompt` is now `@prompt-improver` across all 4 runtime mirrors. The rename brings the agent name into the noun-form family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`) and fixes the verb-object outlier. Pure semantic rename — no behavior change, no dispatcher contract change, no skill change.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Runtime mirror renames
 
-### [Feature Name]
+Four physical file renames: `.opencode/agent/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`. Frontmatter `name:` field rotated in all 4. Body self-references updated.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+### Reference rotations across active scope
+
+35 active-scope files carried `@improve-prompt` or `improve-prompt` references. The dispatcher command body, 5 cli-* prompt_quality_card mirrors, sk-prompt SKILL.md §7 agent contract, root README/AGENTS.md, install guides, active changelogs, advisor scripts, and 4 runtime READMEs all rotated. The dispatcher command name `/improve:prompt` and the command file path itself stay UNCHANGED — only body references to the agent change.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/agent/improve-prompt.md` | Renamed → `prompt-improver.md` | Canonical agent file (4 runtime mirrors) |
+| `.claude/agents/improve-prompt.md` | Renamed → `prompt-improver.md` | Claude runtime mirror |
+| `.codex/agents/improve-prompt.toml` | Renamed → `prompt-improver.toml` | Codex runtime mirror |
+| `.gemini/agents/improve-prompt.md` | Renamed → `prompt-improver.md` | Gemini runtime mirror |
+| 35 reference files | sed rotation | All active-scope @improve-prompt → @prompt-improver |
+| `.codex/config.toml` | Sed rotation | Agent description + integration IDs |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +75,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+cli-codex gpt-5.5 medium fast handled 32 of 35 reference files via `sed -i` rotation. The `.codex/` paths (`.codex/agents/improve-prompt.toml` and `.codex/config.toml`) were sandbox-blocked by cli-codex (its own runtime folder), so 3 files were finalized manually with `mv` + `sed` directly. Deep-review iteration 5 caught residual UPPERCASE `IMPROVE-PROMPT` and Title-Case `Improve-Prompt` references in `.codex/agents/prompt-improver.toml` (case-sensitive grep had missed them); those 4 lines plus the `.codex/config.toml:120` description were rotated post-review.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +83,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Use cli-codex over direct sed for the bulk rotation | User explicitly requested gpt-5.5 fast mode. Cli-codex handles SKILL.md + frontmatter parsing better than blind sed. |
+| Manual fix for `.codex/` paths | cli-codex sandbox refused to write to its own runtime folder. Direct `mv` + `sed` from the parent session worked correctly. |
+| Use case-insensitive final grep going forward | Deep-review iter-5 caught UPPERCASE residuals that case-sensitive iter-1..4 missed. New verification gate: `rg -il` not just `rg -l`. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +95,15 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| All 4 new agent paths exist | PASS |
+| All 4 old agent paths gone | PASS |
+| Active-scope `@improve-prompt` (case-sensitive) | 0 hits |
+| Active-scope `improve-prompt` (case-insensitive, post deep-review fix) | 0 hits |
+| Advisor probe `"improve my prompt"` → top-1 | `sk-prompt` @ 0.9262 |
+| Strict validate phase 001 | PASS — 0 errors, 0 warnings |
+| Dispatcher command `/improve:prompt` unchanged | PASS — file at `.opencode/command/improve/prompt.md` exists; only body refs rotated |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +111,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **None identified.** Rotation is a pure semantic rename with no behavior change.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
--->
-
