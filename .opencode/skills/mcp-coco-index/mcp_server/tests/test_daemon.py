@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+"""Unit tests for daemon-resilience helpers (Patches 1-3 from packet 026/011).
+
+Exercises the lock acquisition, safe-send wrapper, and socket-unlink guard in
+isolation. Integration coverage of the run_daemon flow lives in
+test_e2e_daemon.py.
+"""
 import logging
 import os
 import sys

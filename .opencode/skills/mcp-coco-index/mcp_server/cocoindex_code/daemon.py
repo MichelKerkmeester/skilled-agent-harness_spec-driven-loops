@@ -784,5 +784,16 @@ async def _async_daemon_main(
         listener.close()
         accept_thread.join(timeout=2)
         if tasks:
-            await asyncio.gather(*tasks, return_exceptions=True)
+            # Patch 10: bound the shutdown wait. asyncio.wait_for cancels its
+            # awaited future on timeout, which propagates to the gathered tasks.
+            # A stuck handler task cannot block daemon exit beyond 10 seconds.
+            try:
+                await asyncio.wait_for(
+                    asyncio.gather(*tasks, return_exceptions=True),
+                    timeout=10.0,
+                )
+            except asyncio.TimeoutError:
+                logger.warning(
+                    "shutdown timeout: handler tasks did not finish in 10s; cancelled by wait_for"
+                )
         registry.close_all()

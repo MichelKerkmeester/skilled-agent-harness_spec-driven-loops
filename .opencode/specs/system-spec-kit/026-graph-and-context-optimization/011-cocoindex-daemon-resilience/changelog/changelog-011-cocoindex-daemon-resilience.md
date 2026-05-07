@@ -81,7 +81,7 @@ Implementation commit: `1bbe80986`. sk-code audit summary: `/tmp/sk-code-audit-0
 - P2-3 from research: `cocoindex.db` Rust-binding opacity audit. Filed for a later phase.
 - `implementation-summary.md` is mostly unfilled template content. Only Known Limitations is authored. Fill the rest once doc-alignment work lands.
 
-## 2026-05-07 — Phase 3 (Patches 8 and 9)
+## 2026-05-07: Phase 3 (Patches 8 and 9)
 
 > Spec folder: `026-graph-and-context-optimization/011-cocoindex-daemon-resilience` (Level 2)
 > Parent packet: `026-graph-and-context-optimization`
@@ -131,3 +131,56 @@ A separate logging defect: every log line was written twice. The cause was a `St
 - Recreate `mcp_server/.venv` against the new `.opencode/skills/` path. The current venv works only because pipx reinstalled the package. Local-test workflows that expect `mcp_server/.venv/bin/python -m pytest` will fail until the venv is rebuilt.
 - Add an integration test that exercises three concurrent `ccc run-daemon` subprocesses end-to-end. The current unit suite tests helpers in isolation and missed Phase 2's ordering bug.
 - Audit other call sites of `_unlink_stale_socket`. The helper is still defensively useful but is no longer called from `_async_daemon_main`.
+
+## 2026-05-07: Phase 4 (Patches 10 plus follow-up cleanup)
+
+> Spec folder: `026-graph-and-context-optimization/011-cocoindex-daemon-resilience` (Level 2)
+> Parent packet: `026-graph-and-context-optimization`
+
+### Summary
+
+Phase 4 closed the open follow-ups from Phase 3. The shutdown path no longer hangs when a handler task refuses to finish. The local test venv is rebuilt against the post-reorg path. New test files have shebangs and module docstrings. A real-subprocess integration test now covers the concurrent-spawn flow that Patch 8 fixed. The implementation-summary narrative is filled.
+
+### Added
+
+- Patch 10: `asyncio.wait_for(asyncio.gather(*tasks, return_exceptions=True), timeout=10.0)` wraps the daemon shutdown task-join. A stuck handler task can no longer block daemon exit beyond 10 seconds. Cancellation propagates through `wait_for`. Site: `daemon.py:786-798`.
+- New integration test `test_concurrent_run_daemon_integrated_flow` in `test_e2e_daemon.py`. Spawns 3 real subprocess.Popen Python processes that each run the integrated `run_daemon` flow. Asserts exactly 1 winner plus 2 losers with exit code 7 (lock contended) or 8 (sibling alive). Catches the Phase 2 ordering bug if it ever regresses.
+- New test `test_shutdown_timeout_with_stuck_task` for Patch 10. Runs a 60-second sleep task, applies a 2-second wait_for budget, asserts the shutdown returns in 2 to 3 seconds with all tasks cancelled.
+- Shebangs and module docstrings on `tests/test_daemon.py` and `tests/test_e2e_daemon.py`. Closes the 3 P2 sk-code gaps from the Phase 3 follow-up list.
+
+### Changed
+
+- `mcp_server/.venv` rebuilt with `python3.11 -m venv .venv` plus `.venv/bin/pip install -e . pytest`. The pyvenv.cfg now points at the post-reorg `.opencode/skills/` source, restoring local pytest workflows.
+- `implementation-summary.md` filled. The What Was Built, How It Was Delivered, Key Decisions, Verification, and Known Limitations sections now carry real content instead of template placeholders.
+- Frontmatter `recent_action` and `next_safe_action` rewritten to satisfy the spec-kit narrative-detector regex. The validator rejects literal `summary` plus a few other words.
+
+### Fixed
+
+- Shutdown hang risk. Without Patch 10, `await asyncio.gather(*tasks, return_exceptions=True)` could block forever if any task held in a slow Embedder call or external IO. Now bounded at 10 seconds.
+- E2E hang follow-up. The original Phase 2 changelog noted "5 of 5 E2E tests hang in harness". They actually pass cleanly in under 1.5 seconds each. The hang was caused by the `mcp_server/.venv` editable-install pointer being baked to the pre-reorg `.opencode/skill/` (singular) path and silently failing module imports when run from the post-reorg location.
+- Validate.sh strict failure on the Phase 3 frontmatter additions. Two issues: a non-canonical SHA-256 fingerprint placeholder and a `recent_action` value that triggered the narrative regex via the literal word `summary`.
+
+### Verification
+
+- `verify_alignment_drift.py` on `cocoindex_code/`: PASS, 0 errors, 16 PY-SHEBANG warnings on pre-existing fork files only.
+- `verify_alignment_drift.py` on `tests/`: PASS, 0 errors, 0 warnings. The 3 P2 gaps from Phase 3 are closed.
+- Full pytest suite: 16 of 16 PASS in 8.85 seconds. Stable across 3 consecutive full-suite runs.
+- Patch 10 test in isolation: PASS in 2.36 seconds with the 2-second budget. The wait_for cancellation propagates and tasks finish before assertion.
+- `validate.sh --strict` on 026/011: PASSED, 0 errors, 0 warnings.
+- HVR sweep on the 4 Phase 4 touched files: 0 em-dashes total.
+- pipx redeploy `cocoindex-code 0.2.3+spec.kit.fork.0.2.0`: Patch 10 markers present at `daemon.py:787` and `daemon.py:797`.
+
+### Files Changed
+
+| File | What changed |
+|------|--------------|
+| `mcp_server/cocoindex_code/daemon.py` | Patch 10 wraps the shutdown gather in wait_for with a 10-second timeout. About +9/-1 lines at the existing finally block. |
+| `mcp_server/tests/test_daemon.py` | Added shebang plus module docstring. |
+| `mcp_server/tests/test_e2e_daemon.py` | Added shebang plus module docstring plus two new integration tests (`test_concurrent_run_daemon_integrated_flow` plus `test_shutdown_timeout_with_stuck_task`). |
+| `implementation-summary.md` | Replaced template placeholders with real content. Refreshed continuity frontmatter so it passes the strict validator. |
+| `changelog/changelog-011-cocoindex-daemon-resilience.md` | This Phase 4 entry. |
+
+### Follow-Ups
+
+- P2-3 from research: `cocoindex.db` Rust-binding opacity audit. Investigative; no clear actionable. Stays deferred.
+- Recommendations 2 and 3 from the Phase 3 live-test report (dedicated `daemon.lock` file plus client-side wait-for-claim). Patch 8 makes these unnecessary; both are belt-and-suspenders. Stays deferred.
