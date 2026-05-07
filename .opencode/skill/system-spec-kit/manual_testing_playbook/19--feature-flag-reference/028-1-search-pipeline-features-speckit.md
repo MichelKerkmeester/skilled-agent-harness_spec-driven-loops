@@ -17,7 +17,7 @@ This scenario validates 1. Search Pipeline Features (SPECKIT_*) for `EX-028`. It
 
 - Objective: Flag catalog verification with inert and retired surface cleanup.
 - Real user request: `Please validate 1. Search Pipeline Features (SPECKIT_*) against memory_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 20 }) and tell me whether the expected signals are present: Accurate active/inert/retired classification; retired topics absent from active manual-test guidance.`
-- RCAF Prompt: `As a feature-flag validation operator, validate 1. Search Pipeline Features (SPECKIT_*) against memory_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 20 }). Verify flag catalog verification with inert and retired surface cleanup. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate 1. Search Pipeline Features (SPECKIT_*) against memory_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 20 }).`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Accurate active/inert/retired classification; retired topics absent from active manual-test guidance
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates 1. Search Pipeline Features (SPECKIT_*) for `EX-028`. It
 ### Prompt
 
 ```
-As a feature-flag validation operator, validate Flag catalog verification with inert and retired surface cleanup against memory_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 20 }). Verify accurate active/inert/retired classification; retired topics absent from active manual-test guidance. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate 1. Search Pipeline Features (SPECKIT_*) against memory_search({ query: "SPECKIT search pipeline flags active inert retired RSF shadow scoring", limit: 20 }).
 ```
 
 ### Commands

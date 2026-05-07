@@ -16,7 +16,7 @@ This scenario validates completion verification workflow for `233`. It focuses o
 
 - Objective: Confirm advisory handling, COMPLETE status, and evidence-aware blocking for `check-completion.sh`.
 - Real user request: `Please validate Completion Verification Workflow against the documented validation surface and tell me whether the expected signals are present: missing checklist returns exit 0 advisory; compliant checklist returns COMPLETE; degraded checklist returns non-zero with evidence or blocking status.`
-- RCAF Prompt: `As a tooling validation operator, validate Completion Verification Workflow against the documented validation surface. Verify advisory handling, COMPLETE status, and evidence-aware blocking for check-completion.sh. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Completion Verification Workflow against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: missing checklist returns exit 0 advisory; compliant checklist returns COMPLETE; degraded checklist returns non-zero with evidence or blocking status
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates completion verification workflow for `233`. It focuses o
 ### Prompt
 
 ```
-Validate the completion verification workflow across Level 1 advisory cases, compliant Level 3 checklists, and degraded evidence cases. Capture the evidence needed to prove missing checklist files do not hard-fail lightweight specs, compliant checklists return COMPLETE, and checked P0/P1 items without evidence are blocked. Return a concise user-facing pass/fail verdict with the main reason.
+Validate Completion Verification Workflow against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

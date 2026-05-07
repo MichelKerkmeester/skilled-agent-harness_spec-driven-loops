@@ -30,7 +30,7 @@ This scenario validates Cross-document entity linking (S5) for `060`. It focuses
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm guarded supports-edge linking against the documented validation surface. Verify supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Cross-document entity linking (S5) against the documented validation surface. Verify supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

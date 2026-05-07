@@ -17,7 +17,7 @@ This scenario validates Community detection (N2c) for `022`. It focuses on Confi
 
 - Objective: Confirm community boost injection.
 - Real user request: `Please validate Community detection (N2c) against the documented validation surface and tell me whether the expected signals are present: Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Community detection (N2c) against the documented validation surface. Verify community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate community detection and cite cluster assignment, co-member boost injection, and configured boost cap enforcement.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Community detection (N2c) for `022`. It focuses on Confi
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm community boost injection against the documented validation surface. Verify community detection assigns cluster IDs; co-member boost injected; boost capped at configured maximum. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate community detection and cite cluster assignment, co-member boost injection, and configured boost cap enforcement.
 ```
 
 ### Commands

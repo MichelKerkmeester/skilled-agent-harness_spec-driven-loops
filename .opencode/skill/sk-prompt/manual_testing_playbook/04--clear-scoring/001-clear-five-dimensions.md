@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-015` and confirm the
 
 - Objective: Confirm Correctness, Logic, Expression, Arrangement, and Reusability are each scored.
 - Real user request: `Score my prompt for parsing customer feedback across all 5 CLEAR dimensions, not just the total.`
-- Prompt: `As a prompt engineer, use @prompt-improver to score and improve the operator's customer-feedback parsing prompt. Verify CLEAR reports separate Correctness, Logic, Expression, Arrangement, and Reusability scores plus the total. Return the enhanced prompt and scoring block.`
+- Prompt: `Score and improve my customer-feedback parsing prompt; verify CLEAR reports all five dimension scores plus the total.`
 - Expected execution process: `@prompt-improver` applies CLEAR after DEPTH Test and emits the five-dimension score breakdown.
 - Expected signals: `CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)`.
 - Desired user-visible outcome: Enhanced prompt plus a five-dimension CLEAR breakdown.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-015` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to score and improve the operator's customer-feedback parsing prompt. Verify CLEAR reports separate Correctness, Logic, Expression, Arrangement, and Reusability scores plus the total. Return the enhanced prompt and scoring block.
+Score and improve my customer-feedback parsing prompt; verify CLEAR reports all five dimension scores plus the total.
 ```
 
 ### Commands

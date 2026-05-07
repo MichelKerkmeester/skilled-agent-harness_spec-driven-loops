@@ -16,7 +16,7 @@ This scenario validates Workspace scanning and indexing (memory_index_scan) for 
 
 - Objective: Incremental sync run with spec-doc warn-only indexing plus atomic lease acquisition, rejection, expiry, and completion coverage.
 - Real user request: `` Please validate Workspace scanning and indexing (memory_index_scan) against memory_index_scan(force:false, includeSpecDocs:true) and tell me whether the expected signals are present: Scan summary, updated index state, spec-doc warn-only indexing behavior, atomic lease reservation, rejection wait time, stale-lease expiry, and completion handoff to `last_index_scan`. ``
-- RCAF Prompt: `As a maintenance validation operator, validate Workspace scanning and indexing (memory_index_scan) against memory_index_scan(force:false, includeSpecDocs:true). Verify incremental sync run with spec-doc warn-only indexing plus atomic lease acquisition, rejection, expiry, and completion coverage. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_index_scan incremental sync, spec-doc warn-only indexing, and atomic lease acquisition, rejection, expiry, and completion.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Scan summary, updated index state, spec-doc warn-only indexing behavior, atomic lease reservation, rejection wait time, stale-lease expiry, and completion handoff to `last_index_scan`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

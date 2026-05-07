@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify review stops at maxIterations (default 7) even if dimensions remain uncovered.
 - Real user request: If the review keeps finding new issues, does it ever stop on its own?
-- Prompt: `As a manual-testing orchestrator, validate the hard iteration cap contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify maxIterations defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop. Return a concise operator-facing verdict.`
+- Prompt: `Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.`
 - Expected execution process: Inspect the convergence reference for hard stop rules, then the YAML workflow step that enforces the cap, then the quick reference and SKILL.md for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review loop always terminates at maxIterations and still produces a review report even if not all dimensions were covered.
 - Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the hard iteration cap contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify maxIterations defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop. Return a concise operator-facing verdict.
+Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.
 ### Commands
 1. `bash: rg -n 'maxIterations|hard.stop|HARD_STOP|max_iterations|iteration.*cap' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'maxIterations|max_iterations|hard.stop|step_check_convergence|iteration_count' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

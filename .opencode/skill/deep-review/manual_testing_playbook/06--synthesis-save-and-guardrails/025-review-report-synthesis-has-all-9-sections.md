@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify review-report.md has all 9 sections: Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix.
 - Real user request: When the review finishes, what exactly does it produce and what sections does the report contain?
-- Prompt: `As a manual-testing orchestrator, validate the review report synthesis contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify review/review-report.md contains all 9 sections: (1) Executive Summary with verdict and severity counts, (2) Planning Trigger with routing rationale, (3) Active Finding Registry with deduped findings, (4) Remediation Workstreams with grouped action lanes, (5) Spec Seed with minimal spec delta, (6) Plan Seed with action-ready starter, (7) Traceability Status with protocol coverage, (8) Deferred Items with P2 advisories, (9) Audit Appendix with convergence evidence. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review report synthesis and confirm review-report.md contains all 9 required sections.`
 - Expected execution process: Inspect the quick reference review-report sections table, then the YAML synthesis step, then the SKILL.md and README for report section documentation.
 - Desired user-facing outcome: The user is told exactly what the review report contains and can verify completeness by checking for all 9 section headers.
 - Expected signals: All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings with evidence, and Audit Appendix includes convergence data.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the review report synthesis contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify review/review-report.md contains all 9 sections: (1) Executive Summary with verdict and severity counts, (2) Planning Trigger with routing rationale, (3) Active Finding Registry with deduped findings, (4) Remediation Workstreams with grouped action lanes, (5) Spec Seed with minimal spec delta, (6) Plan Seed with action-ready starter, (7) Traceability Status with protocol coverage, (8) Deferred Items with P2 advisories, (9) Audit Appendix with convergence evidence. Return a concise operator-facing verdict.
+Validate deep-review report synthesis and confirm review-report.md contains all 9 required sections.
 ### Commands
 1. `bash: rg -n 'Executive Summary|Planning Trigger|Active Finding Registry|Remediation Workstreams|Spec Seed|Plan Seed|Traceability Status|Deferred Items|Audit Appendix|review-report' .opencode/skill/deep-review/references/quick_reference.md`
 2. `bash: rg -n 'review-report|synthesis|9.*section|Executive Summary|Planning Trigger|Active Finding|Remediation|Spec Seed|Plan Seed|Traceability|Deferred|Audit Appendix' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

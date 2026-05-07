@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the loop honors the strategy file’s Next Focus and avoids approaches marked exhausted or blocked.
 - Real user request: Make sure the next iteration actually follows the strategy file and does not retry blocked approaches.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the strategy-discipline contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify iteration focus comes from Next Focus and that exhausted or blocked approaches are not retried. Return a concise user-facing verdict.`
+- Prompt: `Validate deep-research iterations follow Next Focus and avoid exhausted or blocked approaches.`
 - Expected execution process: Inspect the strategy-file update rules, the loop protocol focus logic, and the runtime agent’s mandatory pre-check for exhausted approaches.
 - Desired user-visible outcome: The user is told that the next iteration follows the strategy file rather than picking an arbitrary direction.
 - Expected signals: Next Focus is read explicitly, exhausted approaches are treated as do-not-retry, and recovery mode consults deferred ideas instead of repeating blocked tactics.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the strategy-discipline contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify iteration focus comes from Next Focus and that exhausted or blocked approaches are not retried. Return a concise user-facing verdict.
+Validate deep-research iterations follow Next Focus and avoid exhausted or blocked approaches.
 ### Commands
 1. `bash: rg -n 'Next Focus|Exhausted Approaches|What Worked|What Failed' .opencode/skill/deep-research/references/state_format.md .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: rg -n 'Exhausted Approaches|MANDATORY PRE-CHECK|RECOVERY' .codex/agents/deep-research.toml`

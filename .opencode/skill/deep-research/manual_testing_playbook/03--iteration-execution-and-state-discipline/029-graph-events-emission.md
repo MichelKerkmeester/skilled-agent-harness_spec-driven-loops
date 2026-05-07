@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: The iteration completes with findings.
 - Then: The JSONL record contains a `graphEvents` array with flat `type` entries such as `question`, `finding`, `source`, and `edge`.
 - Real user request: When a research iteration finishes, what flat graph-event payload gets written into state so convergence and tooling can replay it later?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the flat graphEvents contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware research convergence expects graphEvents in iteration records, and that the shipped state-format contract plus active graph tests use flat event types such as question, finding, source, and edge rather than question_node/finding_node wrappers. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-research graphEvents stay flat in iteration records and use active event types.`
 - Expected execution process: Inspect the deep-research state-format graph-events section first, then the convergence reference for how iteration-record graphEvents are consumed, then the active coverage-graph tests for the flat node types in use now.
 - Desired user-visible outcome: The user understands that completed research iterations emit replayable flat graph events and which event types are expected in those records.
 - Expected signals: `graphEvents` documented as iteration-record input for graph-aware convergence; the state-format example uses flat `type` values; active graph tests use `question`, `finding`, and `source` node types rather than `question_node` / `finding_node` wrappers.
@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the flat graphEvents contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware research convergence expects graphEvents in iteration records, and that the shipped state-format contract plus active graph tests use flat event types such as question, finding, source, and edge rather than question_node/finding_node wrappers. Return a concise operator-facing verdict.
+Validate deep-research graphEvents stay flat in iteration records and use active event types.
 ### Commands
 1. `bash: rg -n 'graphEvents|Graph Events|type \\| \"question\"|type \\| \"finding\"|type \\| \"source\"|type \\| \"edge\"' .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'graphEvents|iteration records|graph-aware convergence' .opencode/skill/deep-research/references/convergence.md`

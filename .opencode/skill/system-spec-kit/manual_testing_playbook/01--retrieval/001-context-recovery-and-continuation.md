@@ -18,7 +18,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-001`.
 - Real user request: `` Please validate Context Recovery and Continuation against /spec_kit:resume specs/<target-spec> and tell me whether the expected signals are present: Resume-ready state summary and next steps via `/spec_kit:resume` and the canonical packet ladder. ``
-- RCAF Prompt: `As a retrieval validation operator, validate Context Recovery and Continuation against /spec_kit:resume specs/<target-spec>. Verify resume-ready state summary and next steps via /spec_kit:resume and the canonical packet ladder. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate context recovery with /spec_kit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Resume-ready state summary and next steps via `/spec_kit:resume` and the canonical packet ladder
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 ### Prompt
 
-`As a retrieval validation operator, validate Context Recovery and Continuation against /spec_kit:resume specs/<target-spec>. Verify resume-ready state summary and next steps via /spec_kit:resume and the canonical packet ladder. Return a concise pass/fail verdict with the main reason and cited evidence.`
+`Validate context recovery with /spec_kit:resume specs/<target-spec> and confirm the resume ladder returns actionable next steps.`
 ### Commands
 
 1. `/spec_kit:resume specs/<target-spec>` — primary recovery surface

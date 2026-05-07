@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: The operator runs `node .opencode/skill/deep-research/scripts/reduce-state.cjs <spec-folder>`.
 - Then: `findings-registry.json` exposes `blockedStopHistory` entries, `deep-research-dashboard.md` renders a `BLOCKED STOPS` section for each entry, and the `ANCHOR:next-focus` block in `deep-research-strategy.md` contains the blocked-stop recovery strategy.
 - Real user request: If research STOP gets vetoed, where can I see that decision afterward and what guidance does the reducer surface so I know how to recover?
-- RCAF Prompt: `As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node .opencode/skill/deep-research/scripts/reduce-state.cjs <spec-folder> on a research packet with at least one blocked_stop event populates blockedStopHistory, renders BLOCKED STOPS in the dashboard, and rewrites the strategy next-focus anchor with the recovery strategy. Return a concise operator-facing verdict.`
+- Prompt: `Validate blocked-stop reducer output surfaces history, dashboard guidance, and recovery-focused next focus.`
 - Expected execution process: Run the reducer first, then inspect the reducer-owned registry, dashboard, and strategy anchor in that order so the source-of-truth state is checked before the rendered summaries.
 - Desired user-visible outcome: The user can see that blocked-stop state is persisted in three operator-facing surfaces and can explain which recovery hint the reducer chose.
 - Expected signals: `blockedStopHistory` is non-empty; each entry exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor includes the recovery hint from the latest blocked-stop event.
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short user-facing explanation, not just raw implementation notes.
 
 ### Prompt
-As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node `.opencode/skill/deep-research/scripts/reduce-state.cjs <spec-folder>` on a research packet with at least one `blocked_stop` event populates `blockedStopHistory`, renders `BLOCKED STOPS` in the dashboard, and rewrites the strategy `next-focus` anchor with the recovery strategy. Return a concise operator-facing verdict.
+Validate blocked-stop reducer output surfaces history, dashboard guidance, and recovery-focused next focus.
 
 ### Commands
 1. `bash: node .opencode/skill/deep-research/scripts/reduce-state.cjs {spec_folder}`

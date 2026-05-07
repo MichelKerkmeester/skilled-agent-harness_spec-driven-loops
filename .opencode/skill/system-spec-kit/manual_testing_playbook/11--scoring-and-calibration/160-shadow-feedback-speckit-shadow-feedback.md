@@ -17,7 +17,7 @@ This scenario validates shadow feedback (SPECKIT_SHADOW_FEEDBACK) for `160`. It 
 
 - Objective: Verify shadow scoring log entries are created and holdout evaluation runs.
 - Real user request: `Please validate Shadow feedback (SPECKIT_SHADOW_FEEDBACK) against SPECKIT_SHADOW_FEEDBACK=true and tell me whether the expected signals are present: shadow_scoring_log table has rows with query_id, result_id, live_rank, shadow_rank, delta, direction; compareRanks() produces RankComparisonResult with kendallTau and ndcgDelta; evaluatePromotionGate() returns ready/wait/rollback; no live ranking columns mutated.`
-- RCAF Prompt: `As a scoring validation operator, validate Shadow feedback (SPECKIT_SHADOW_FEEDBACK) against SPECKIT_SHADOW_FEEDBACK=true. Verify shadow scoring log entries are created and holdout evaluation runs. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Shadow feedback logging and holdout evaluation with SPECKIT_SHADOW_FEEDBACK enabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: shadow_scoring_log table has rows with query_id, result_id, live_rank, shadow_rank, delta, direction; compareRanks() produces RankComparisonResult with kendallTau and ndcgDelta; evaluatePromotionGate() returns ready/wait/rollback; no live ranking columns mutated
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates shadow feedback (SPECKIT_SHADOW_FEEDBACK) for `160`. It 
 ### Prompt
 
 ```
-As a scoring validation operator, verify shadow_scoring_log entries created against SPECKIT_SHADOW_FEEDBACK=true. Verify shadow_scoring_log rows with rank deltas; compareRanks() produces Kendall tau and NDCG delta; evaluatePromotionGate() returns recommendation; no live ranking mutation. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Shadow feedback logging and holdout evaluation with SPECKIT_SHADOW_FEEDBACK enabled.
 ```
 
 ### Commands

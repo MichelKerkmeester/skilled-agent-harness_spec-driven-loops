@@ -30,7 +30,7 @@ This scenario validates memory_delete confirm schema tightening for `101`. It fo
 ### Prompt
 
 ```
-As a mutation validation operator, confirm confirm field accepts only literal true against memory_delete({id:1, confirm:true}). Verify confirm:true accepted; confirm:false rejected with Zod literal error; bulk delete requires confirm:true; missing confirm field rejected for bulk path. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate memory_delete confirm schema tightening against memory_delete({id:1, confirm:true}). Verify confirm:true accepted; confirm:false rejected with Zod literal error; bulk delete requires confirm:true; missing confirm field rejected for bulk path. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

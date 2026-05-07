@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled.
 - Real user request: Tell me whether the agent updates research/research.md` during the loop or if that only happens at the end.`
-- RCAF Prompt: `As a manual-testing orchestrator, validate the progressive-synthesis contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify research/research.md is workflow-owned canonical output, that incremental updates are allowed when progressiveSynthesis is true, and that synthesis still finalizes the document. Return a concise verdict.`
+- Prompt: `Validate progressive synthesis updates research/research.md during the loop while final synthesis still owns completion.`
 - Expected execution process: Inspect the README and state-format wording, then the runtime agent progressive-update rules, then the YAML synthesis/save phases.
 - Desired user-visible outcome: The user is told that `research/research.md` may be updated during the loop but is still finalized by the workflow.
 - Expected signals: The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the progressive-synthesis contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify research/research.md is workflow-owned canonical output, that incremental updates are allowed when progressiveSynthesis is true, and that synthesis still finalizes the document. Return a concise verdict.
+Validate progressive synthesis updates research/research.md during the loop while final synthesis still owns completion.
 ### Commands
 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .opencode/skill/deep-research/README.md .opencode/skill/deep-research/references/state_format.md .opencode/skill/deep-research/SKILL.md`
 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .codex/agents/deep-research.toml`

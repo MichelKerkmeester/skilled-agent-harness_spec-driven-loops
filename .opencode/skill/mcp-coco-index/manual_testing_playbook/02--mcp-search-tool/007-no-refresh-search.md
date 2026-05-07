@@ -18,7 +18,7 @@ Operators run the exact prompt and command sequence for `MCP-007` and confirm th
 
 - Objective: Verify `refresh_index: false` skips reindexing and still returns results
 - Real user request: `Please verify refresh_index: false skips reindexing and still returns results.`
-- RCAF Prompt: `As a manual-testing orchestrator, search CocoIndex for "test" without triggering a reindex against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Results array is non-empty; response time is noticeably faster than a refreshing search (no index wait notice). Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Verify MCP CocoIndex refresh_index=false returns results without triggering a reindex delay.`
 - Expected execution process: Run the TEST EXECUTION command sequence for `MCP-007`, capture the listed evidence, compare observed output with the expected signals, and return the verdict to the user.
 - Expected signals: Results array is non-empty; response time is noticeably faster than a refreshing search (no index wait notice)
 - Desired user-visible outcome: A concise user-visible PASS/PARTIAL/FAIL verdict naming whether the scenario satisfied the objective and the main reason.
@@ -31,7 +31,7 @@ Operators run the exact prompt and command sequence for `MCP-007` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| MCP-007 | No-refresh search | Verify `refresh_index: false` skips reindexing and still returns results | `As a manual-testing orchestrator, search CocoIndex for "test" without triggering a reindex against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Results array is non-empty; response time is noticeably faster than a refreshing search (no index wait notice). Return a concise user-visible pass/fail verdict with the main reason.` | 1. `mcp__cocoindex_code__search({ "query": "test utilities", "refresh_index": false })` -> 2. Verify results are returned AND no reindex was triggered | Results array is non-empty; response time is noticeably faster than a refreshing search (no index wait notice) | MCP output with timing noted; absence of `IndexWaitingNotice` in output | PASS if results returned without reindex delay; PARTIAL if results returned but unclear whether reindex was skipped; FAIL if no results or explicit reindex triggered | Compare timing with `refresh_index: true`; check daemon logs at `~/.cocoindex_code/daemon.log` for index activity |
+| MCP-007 | No-refresh search | Verify `refresh_index: false` skips reindexing and still returns results | `Verify MCP CocoIndex refresh_index=false returns results without triggering a reindex delay.` | 1. `mcp__cocoindex_code__search({ "query": "test utilities", "refresh_index": false })` -> 2. Verify results are returned AND no reindex was triggered | Results array is non-empty; response time is noticeably faster than a refreshing search (no index wait notice) | MCP output with timing noted; absence of `IndexWaitingNotice` in output | PASS if results returned without reindex delay; PARTIAL if results returned but unclear whether reindex was skipped; FAIL if no results or explicit reindex triggered | Compare timing with `refresh_index: true`; check daemon logs at `~/.cocoindex_code/daemon.log` for index activity |
 
 
 ---

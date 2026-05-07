@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-020` and confirm the
 
 - Objective: Confirm a user-named framework is selected and logged as an override.
 - Real user request: `Apply CRAFT framework to my prompt for technical specification authoring.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's technical-specification authoring prompt using the explicitly requested CRAFT framework. Verify CRAFT wins over automatic complexity routing and the transparency report logs the user-named override.`
+- Prompt: `Apply CRAFT to my technical-spec authoring prompt; verify it overrides automatic framework routing and logs the user-named override.`
 - Expected execution process: `@prompt-improver` detects the named CRAFT framework, applies it unless contradicted, and reports the override in rationale.
 - Expected signals: `FRAMEWORK: CRAFT`; rationale includes `user-named` or `explicit override`.
 - Desired user-visible outcome: CRAFT-structured enhanced prompt with override rationale.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-020` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's technical-specification authoring prompt using the explicitly requested CRAFT framework. Verify CRAFT wins over automatic complexity routing and the transparency report logs the user-named override.
+Apply CRAFT to my technical-spec authoring prompt; verify it overrides automatic framework routing and logs the user-named override.
 ```
 
 ### Commands

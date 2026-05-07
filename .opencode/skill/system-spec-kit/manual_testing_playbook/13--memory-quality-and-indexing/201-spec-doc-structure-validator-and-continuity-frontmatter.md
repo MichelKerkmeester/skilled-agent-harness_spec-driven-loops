@@ -15,7 +15,7 @@ This scenario validates the phase 018 spec-doc structure validator for `201`. It
 
 - Objective: Verify the five-rule validator bridge and continuity block enforcement.
 - Real user request: `` Please validate Spec-doc structure validator and continuity frontmatter against _memory.continuity and tell me whether the expected signals are present: five named rules execute in order; malformed `_memory.continuity` fails closed; valid docs pass cleanly. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Spec-doc structure validator and continuity frontmatter against _memory.continuity. Verify the five-rule validator bridge and continuity block enforcement. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate spec-doc structure validator and continuity frontmatter enforcement.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: five named rules execute in order; malformed `_memory.continuity` fails closed; valid docs pass cleanly
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -28,7 +28,7 @@ This scenario validates the phase 018 spec-doc structure validator for `201`. It
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, verify the five-rule validator bridge and continuity block enforcement against _memory.continuity. Verify five named rules execute in order; malformed _memory.continuity fails closed; valid docs pass cleanly. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate spec-doc structure validator and continuity frontmatter enforcement.
 ```
 
 ### Commands

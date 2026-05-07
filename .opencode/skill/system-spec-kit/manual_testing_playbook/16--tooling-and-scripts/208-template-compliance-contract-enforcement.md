@@ -16,7 +16,7 @@ This scenario validates Template Compliance Contract Enforcement for `208`. It f
 
 - Objective: Confirm the 3-layer template compliance contract blocks non-compliant spec documents.
 - Real user request: `` Please validate Template Compliance Contract Enforcement against references/validation/template_compliance_contract.md and tell me whether the expected signals are present: the canonical contract exists in the shared reference and embedded spec-authoring runtime definitions; compliant fixtures pass `validate.sh --strict`; warning-only template drift fails in strict mode; missing or reordered required sections fail with targeted validator output; section-count minimum checks are present in the enforcement surface. ``
-- RCAF Prompt: `As a tooling validation operator, validate Template Compliance Contract Enforcement against references/validation/template_compliance_contract.md. Verify the 3-layer template compliance contract blocks non-compliant spec documents. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Template Compliance Contract Enforcement against references/validation/template_compliance_contract.md and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: the canonical contract exists in the shared reference and embedded spec-authoring runtime definitions; compliant fixtures pass `validate.sh --strict`; warning-only template drift fails in strict mode; missing or reordered required sections fail with targeted validator output; section-count minimum checks are present in the enforcement surface
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Template Compliance Contract Enforcement for `208`. It f
 ### Prompt
 
 ```
-As a tooling validation operator, confirm the 3-layer template compliance contract blocks non-compliant spec documents against references/validation/template_compliance_contract.md. Verify the canonical contract exists in the shared reference and embedded spec-authoring runtime definitions; compliant fixtures pass validate.sh --strict; warning-only template drift fails in strict mode; missing or reordered required sections fail with targeted validator output; section-count minimum checks are present in the enforcement surface. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Template Compliance Contract Enforcement against references/validation/template_compliance_contract.md and report cited pass/fail evidence.
 ```
 
 ### Commands

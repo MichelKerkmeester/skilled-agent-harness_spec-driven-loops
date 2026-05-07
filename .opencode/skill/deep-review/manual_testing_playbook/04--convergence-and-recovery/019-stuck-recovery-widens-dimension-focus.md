@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify stuck recovery switches to least-covered dimension.
 - Real user request: What happens if the review keeps looking at the same area and stops finding new things?
-- Prompt: `As a manual-testing orchestrator, validate the stuck recovery contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when stuckThreshold consecutive iterations produce newFindingsRatio below noProgressThreshold, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.`
 - Expected execution process: Inspect the convergence reference for stuck detection and recovery rules, then the review YAML algorithm for stuck handling, then the strategy template and quick reference for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review automatically pivots to underexplored dimensions when it gets stuck, and that this is visible in the strategy file.
 - Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the stuck recovery contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when stuckThreshold consecutive iterations produce newFindingsRatio below noProgressThreshold, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state. Return a concise operator-facing verdict.
+Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.
 ### Commands
 1. `bash: rg -n 'stuck|STUCK|noProgress|no_progress|stuckThreshold|recovery|widen|least.covered' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'stuck|STUCK|recovery|widen|least_covered|no_progress|stuckThreshold|RECOVERY' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

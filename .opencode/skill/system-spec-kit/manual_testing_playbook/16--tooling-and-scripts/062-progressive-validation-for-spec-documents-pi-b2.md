@@ -16,7 +16,7 @@ This scenario validates Progressive validation for spec documents (PI-B2) for `0
 
 - Objective: Confirm level 1-4 behavior.
 - Real user request: `Please validate Progressive validation for spec documents (PI-B2) against the documented validation surface and tell me whether the expected signals are present: Each validation level produces appropriate checks; level progression increases strictness; exit codes reflect severity; auto-fix diffs applied at permitted levels.`
-- RCAF Prompt: `As a tooling validation operator, validate Progressive validation for spec documents (PI-B2) against the documented validation surface. Verify each validation level produces appropriate checks; level progression increases strictness; exit codes reflect severity; auto-fix diffs applied at permitted levels. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Progressive validation for spec documents (PI-B2) against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Each validation level produces appropriate checks; level progression increases strictness; exit codes reflect severity; auto-fix diffs applied at permitted levels
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Progressive validation for spec documents (PI-B2) for `0
 ### Prompt
 
 ```
-As a tooling validation operator, confirm level 1-4 behavior against the documented validation surface. Verify each validation level produces appropriate checks; level progression increases strictness; exit codes reflect severity; auto-fix diffs applied at permitted levels. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Progressive validation for spec documents (PI-B2) against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-006` and confirm the
 
 - Objective: Confirm ON_DEMAND keywords load all RESOURCE_MAP entries
 - Real user request: `Give me a deep dive on all frameworks — I want to compare RCAF vs COSTAR vs TIDD-EC for an executive briefing.`
-- Prompt: `As a prompt engineer, run sk-prompt against operator input that contains an ON_DEMAND keyword such as "deep dive" or "all frameworks". Verify the router loads every value in RESOURCE_MAP, not only the intent-scored subset.`
+- Prompt: `Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every RESOURCE_MAP value, not only the scored intent.`
 - Expected execution process: sk-prompt scores intents, loads the default resource, then detects the ON_DEMAND keyword and unions every RESOURCE_MAP entry into the loaded set, deduplicated.
 - Expected signals: Loaded list includes BOTH `references/depth_framework.md` AND `references/patterns_evaluation.md` regardless of which intent scored higher.
 - Desired user-visible outcome: Routing trace listing both reference files, with a note that ON_DEMAND keyword "deep dive" or "all frameworks" was matched.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-006` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt against operator input that contains an ON_DEMAND keyword such as "deep dive" or "all frameworks". Verify the router loads every value in RESOURCE_MAP, not only the intent-scored subset.
+Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every RESOURCE_MAP value, not only the scored intent.
 ```
 
 ### Commands

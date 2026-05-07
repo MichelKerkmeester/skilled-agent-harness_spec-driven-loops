@@ -17,7 +17,7 @@ This scenario validates Lineage state active projection and asOf resolution for 
 
 - Objective: Verify append-first lineage projection, deterministic `asOf` resolution, and timestamp ordering across non-ISO or timezone variants.
 - Real user request: `` Please validate Lineage state active projection and asOf resolution against cd .opencode/skill/system-spec-kit/mcp_server and tell me whether the expected signals are present: Targeted suite passes; transcript shows active projection selection, deterministic `asOf` resolution, malformed-chain detection, and timestamp-order coverage for non-ISO or timezone variants. ``
-- RCAF Prompt: `As a pipeline validation operator, validate Lineage state active projection and asOf resolution against cd .opencode/skill/system-spec-kit/mcp_server. Verify append-first lineage projection, deterministic asOf resolution, and timestamp ordering across non-ISO or timezone variants. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate lineage state active projection and asOf resolution in the MCP server and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Targeted suite passes; transcript shows active projection selection, deterministic `asOf` resolution, malformed-chain detection, and timestamp-order coverage for non-ISO or timezone variants
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Lineage state active projection and asOf resolution for 
 ### Prompt
 
 ```
-As a pipeline validation operator, verify append-first lineage projection, deterministic asOf resolution, and timestamp ordering across non-ISO or timezone variants against cd .opencode/skill/system-spec-kit/mcp_server. Verify targeted suite passes; transcript shows active projection selection, deterministic asOf resolution, malformed-chain detection, and timestamp-order coverage for non-ISO or timezone variants. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate lineage state active projection and asOf resolution in the MCP server and return pass/fail with cited evidence.
 ```
 
 ### Commands

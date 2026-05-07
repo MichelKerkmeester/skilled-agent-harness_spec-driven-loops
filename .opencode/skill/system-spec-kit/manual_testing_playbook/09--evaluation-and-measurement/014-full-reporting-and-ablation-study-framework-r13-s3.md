@@ -16,7 +16,7 @@ This scenario validates Full reporting and ablation study framework (R13-S3) for
 
 - Objective: Confirm ablation+report workflow.
 - Real user request: `Please validate Full reporting and ablation study framework (R13-S3) against the documented validation surface and tell me whether the expected signals are present: Ablation run produces per-channel delta snapshots; dashboard renders with trend data in supported runtime output formats; no channel leaves empty report.`
-- RCAF Prompt: `As an evaluation validation operator, validate Full reporting and ablation study framework (R13-S3) against the documented validation surface. Verify ablation run produces per-channel delta snapshots; dashboard renders with trend data in supported runtime output formats; no channel leaves empty report. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate reporting and ablation output and cite whether each channel has deltas, dashboard trends, and no empty reports.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Ablation run produces per-channel delta snapshots; dashboard renders with trend data in supported runtime output formats; no channel leaves empty report
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Full reporting and ablation study framework (R13-S3) for
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm ablation+report workflow against the documented validation surface. Verify ablation run produces per-channel delta snapshots; dashboard renders with trend data in supported runtime output formats; no channel leaves empty report. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate reporting and ablation output and cite whether each channel has deltas, dashboard trends, and no empty reports.
 ```
 
 ### Commands

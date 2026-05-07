@@ -31,7 +31,7 @@ This scenario validates Prediction-error save arbitration for `110`. It focuses 
 ### Prompt
 
 ```
-As a mutation validation operator, confirm 5-action PE decision engine during save against memory_conflicts. Verify each similarity band triggers the correct action (CREATE/REINFORCE/UPDATE/SUPERSEDE/CREATE_LINKED); memory_conflicts table records action/similarity/contradiction; force:true bypasses PE arbitration. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Prediction-error save arbitration against memory_conflicts. Verify each similarity band triggers the correct action (CREATE/REINFORCE/UPDATE/SUPERSEDE/CREATE_LINKED); memory_conflicts table records action/similarity/contradiction; force:true bypasses PE arbitration. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

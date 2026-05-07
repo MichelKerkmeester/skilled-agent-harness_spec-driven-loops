@@ -18,7 +18,7 @@ This scenario validates Inert scoring flags and compatibility shims for `231`. I
 
 - Objective: Confirm retired scoring controls stay inert while legacy graph-flag imports only forward into newer rollout logic.
 - Real user request: `` Please validate Inert scoring flags and compatibility shims against the documented validation surface and tell me whether the expected signals are present: The targeted scoring and rollout tests pass, `calculateNoveltyBoost()` always returns `0`, novelty telemetry stays disabled, and `getGraphWalkRolloutState()` continues to mirror `resolveGraphWalkRolloutState()` instead of restoring separate legacy flag behavior. ``
-- RCAF Prompt: `As a canonical-continuity validation operator, validate Inert scoring flags and compatibility shims against the documented validation surface. Verify retired scoring controls stay inert while legacy graph-flag imports only forward into newer rollout logic. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate inert scoring flags and compatibility shims against the documented validation surface.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: The targeted scoring and rollout tests pass, `calculateNoveltyBoost()` always returns `0`, novelty telemetry stays disabled, and `getGraphWalkRolloutState()` continues to mirror `resolveGraphWalkRolloutState()` instead of restoring separate legacy flag behavior
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

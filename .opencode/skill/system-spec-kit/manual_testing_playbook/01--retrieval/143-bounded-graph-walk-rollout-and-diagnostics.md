@@ -18,7 +18,7 @@ This scenario validates bounded graph diagnostics for `143`. It focuses on confi
 
 - Objective: Verify bounded graph diagnostics expose the live trace fields and preserve deterministic ordering even when any legacy rollout metadata is treated as compatibility-only.
 - Real user request: `` Please validate Bounded graph diagnostics and ordering stability against memory_search({ query:"graph diagnostics stable ordering", includeTrace:true, limit:10 }) and tell me whether the expected signals are present: Trace diagnostics expose `raw`, `normalized`, `appliedBonus`, and `capApplied`; repeated identical runs preserve deterministic ordering; any legacy rollout-state label is compatibility metadata only and not part of the active operator contract. ``
-- RCAF Prompt: `As a retrieval validation operator, validate Bounded graph diagnostics and ordering stability against memory_search({ query:"graph diagnostics stable ordering", includeTrace:true, limit:10 }). Verify bounded graph diagnostics expose the live trace fields and preserve deterministic ordering even when any legacy rollout metadata is treated as compatibility-only. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate bounded graph diagnostics and confirm live trace fields and deterministic ordering remain stable.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Trace diagnostics expose `raw`, `normalized`, `appliedBonus`, and `capApplied`; repeated identical runs preserve deterministic ordering; any legacy rollout-state label is compatibility metadata only and not part of the active operator contract
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,9 +30,7 @@ This scenario validates bounded graph diagnostics for `143`. It focuses on confi
 
 ### Prompt
 
-```
-As a retrieval validation operator, verify the live trace contract exposes bounded bonus fields and stable ordering without depending on retired rollout states against memory_search({ query:"graph diagnostics stable ordering", includeTrace:true, limit:10 }). Verify trace diagnostics expose raw, normalized, appliedBonus, and capApplied; repeated identical runs preserve deterministic ordering; any legacy rollout-state label is compatibility metadata only and not part of the active operator contract. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate bounded graph diagnostics and confirm live trace fields and deterministic ordering remain stable.`
 
 ### Commands
 

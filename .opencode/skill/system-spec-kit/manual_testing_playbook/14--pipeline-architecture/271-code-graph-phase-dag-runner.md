@@ -16,7 +16,7 @@ This scenario validates the Code Graph phase-DAG runner for `271`. It focuses on
 
 - Objective: Verify the phase-DAG runner rejects duplicate names / missing deps / cycles, hides undeclared upstream outputs from each phase body, and that `indexFiles()` produces the same `IndexFilesResult` shape it did before the wrap.
 - Real user request: `Please validate Code Graph phase-DAG runner against the documented contract and tell me whether the expected signals are present: targeted phase-runner tests pass; existing code-graph indexer + scan suites pass unchanged; manual scan against a fixture matches the pre-wrap baseline.`
-- RCAF Prompt: `As a pipeline validation operator, validate the Code Graph phase-DAG runner against the documented contract. Verify duplicate-name, missing-dependency, and cycle inputs each raise PhaseRunnerError with the offending phase named; confirm a phase body with no declared inputs cannot read another phase's output; and confirm a code_graph_scan against a known fixture produces the same filesScanned/filesIndexed/totalNodes counts as the pre-wrap baseline. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the Code Graph phase-DAG runner against the documented contract and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: targeted phase-runner tests pass; existing code-graph indexer + scan suites pass unchanged; manual scan against a fixture matches the pre-wrap baseline
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the Code Graph phase-DAG runner for `271`. It focuses on
 ### Prompt
 
 ```
-As a pipeline validation operator, validate the Code Graph phase-DAG runner. Verify duplicate-name, missing-dependency, and cycle inputs each raise PhaseRunnerError with the offending phase named; confirm a phase body with no declared inputs cannot read another phase's output; and confirm a code_graph_scan against a known fixture produces the same filesScanned/filesIndexed/totalNodes counts as the pre-wrap baseline. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the Code Graph phase-DAG runner against the documented contract and return pass/fail with cited evidence.
 ```
 
 ### Commands

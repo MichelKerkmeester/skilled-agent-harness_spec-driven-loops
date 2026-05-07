@@ -179,7 +179,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### What Belongs In Per-Feature Files
 
 - Real user request (the natural-language input to the external-AI conductor)
-- Prompt field following the Role -> Context -> Action -> Format contract
+- Prompt field with the canonical text for this scenario
 - Expected delegation routing including model tier, permission mode, agent name and framework tag
 - Desired user-visible outcome
 - Feature-specific acceptance caveats or isolation constraints (especially destructive scenarios)
@@ -198,7 +198,7 @@ Verify the `claude -p "<prompt>" --output-format text 2>&1` baseline returns a c
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor delegating a quick code-explanation task to Claude Code CLI, dispatch a single non-interactive `claude -p` call against a small TypeScript snippet. Verify the binary returns plain-text output and exits 0. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Use Claude Code to explain a small TypeScript snippet, then verify plain-text output, exit 0, and a concise pass/fail verdict.
 
 Expected signals: Command exits 0. Stdout contains a coherent natural-language explanation of the snippet. Stderr is empty or contains only warnings. Total runtime under 60 seconds for a simple prompt.
 
@@ -214,7 +214,7 @@ Verify that omitting `--model` defaults to Sonnet (`claude-sonnet-4-6`) and an e
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing a balanced general-purpose dispatch, run two parallel `claude -p` invocations - one without `--model`, one with `--model claude-sonnet-4-6` - and confirm both produce equivalently-shaped responses for a standard refactor question. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Compare default Claude Code output with explicit Sonnet on the same refactor prompt and verify both responses are equivalent.
 
 Expected signals: Both invocations exit 0. Both responses describe the same refactor approach with comparable depth. JSON output (when requested) reports `claude-sonnet-4-6` as the model. Cost metadata is in the same order of magnitude.
 
@@ -230,7 +230,7 @@ Verify that `--output-format text` returns plain stdout while `--output-format j
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing both a human-readable answer and machine-parseable metadata for the same prompt, run the same `claude -p` request twice with `--output-format text` and `--output-format json`. Verify the text output is plain prose and the JSON output is parseable with `jq` and includes the expected metadata keys. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Run the same Claude Code prompt as text and JSON, then verify prose output, jq parseability, and expected metadata keys.
 
 Expected signals: Step 1 returns plain text. Step 2 returns valid JSON. `jq -r '.result'` extracts the same answer content from JSON output. JSON output includes a non-empty `session_id` string.
 
@@ -246,7 +246,7 @@ Verify that `--output-format stream-json` emits newline-delimited JSON events su
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting incremental progress events for a longer Claude Code analysis, run `claude -p` with `--output-format stream-json` against a multi-step analysis prompt and stream the result through a line-by-line consumer. Verify each stdout line is independently parseable JSON and that distinct event types appear before the final result. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Run a longer Claude Code analysis with stream-json and verify parseable line-by-line events before the final result.
 
 Expected signals: Each non-empty stdout line parses as a single JSON object via `jq`. At least 2 distinct event types appear (for example a progress/intermediate event and a final result event). The stream terminates cleanly with the process exiting 0.
 
@@ -268,7 +268,7 @@ Verify `--permission-mode plan` blocks file writes and shell command execution w
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor running a safety-critical code review, dispatch `claude -p` with `--permission-mode plan` and a prompt that intentionally asks Claude Code to "fix" a small issue in a target file. Verify the run exits 0, produces only suggestions or analysis text and that no actual file writes occur. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor running a safety-critical code review, dispatch claude -p with --permission-mode plan and a prompt that intentionally asks Claude Code to "fix" a small issue in a target file. Verify the run exits 0, produces only suggestions or analysis text, and that no actual file writes occur. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Output describes proposed changes in prose or markdown but does not claim to have written any file. The target file's mtime is unchanged after the run. No Edit or Write tool invocations appear in verbose logs.
 
@@ -284,7 +284,7 @@ Verify `--permission-mode acceptEdits` allows file writes without per-edit promp
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor delegating a small refactor of an isolated scratch file, dispatch `claude -p` with `--permission-mode acceptEdits` against `/tmp/cli-claude-code-playbook/scratch.ts`. Verify Claude Code applies the requested edit without interactive approval and that the file mtime advances. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor delegating a small refactor of an isolated scratch file, dispatch claude -p with --permission-mode acceptEdits against /tmp/cli-claude-code-playbook/scratch.ts. Verify Claude Code applies the requested edit without interactive approval and that the file mtime advances. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Run exits 0. The scratch file's mtime advances. The file's contents reflect the requested change. No shell commands were executed without prompting (verify via verbose log).
 
@@ -300,7 +300,7 @@ Verify `--permission-mode bypassPermissions` is a documented dangerous flag that
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor evaluating whether to dispatch with `--permission-mode bypassPermissions` for a batch operation, consult the cli-claude-code skill rules and confirm the skill explicitly forbids this flag without explicit user approval. Then verify the orchestrator path refuses to construct such a command without an `[user-approved-bypass]` token in the request. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor evaluating whether to dispatch with --permission-mode bypassPermissions for a batch operation, consult the cli-claude-code skill rules and confirm the skill explicitly forbids this flag without explicit user approval. Then verify the orchestrator path refuses to construct such a command without an [user-approved-bypass] token in the request. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Skill rule lookup surfaces the explicit "NEVER use --permission-mode bypassPermissions without explicit user approval" rule from cli-claude-code SKILL.md. Dispatch attempt without approval token is refused by the orchestrator with a documented escalation message. Dispatch attempt with approval token may proceed (but the destructive payload itself is replaced with a noop in the playbook).
 
@@ -322,7 +322,7 @@ Verify `--model claude-opus-4-6 --effort high` produces deeper, more detailed ch
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor facing a complex architecture trade-off (event sourcing vs CRUD for an order management system), dispatch `claude -p` with `--model claude-opus-4-6 --effort high --permission-mode plan` and capture the response. Verify the response weighs at least 4 dimensions (consistency, query performance, learning curve, scalability), produces a recommendation with confidence level and is materially longer than a Sonnet baseline for the same prompt. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Use Opus high effort to compare event sourcing vs CRUD, then verify trade-off depth, confidence level, and Sonnet-baseline contrast.
 
 Expected signals: Response weighs at least 4 trade-off dimensions explicitly. Produces an explicit recommendation with confidence level (high/medium/low or numeric). Response token count is materially larger than a Sonnet-default baseline for the same prompt. Cost metadata (when JSON output is captured) reflects Opus pricing tier.
 
@@ -338,7 +338,7 @@ Verify Sonnet (`claude-sonnet-4-6`) handles a standard code review prompt with r
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor running a routine security review on a single auth handler file, dispatch `claude -p --model claude-sonnet-4-6 --permission-mode plan` against `@./src/auth/handler.ts` (or any small auth file in the repository) and capture the response. Verify the response identifies at least one concrete issue or confirms the file is clean with stated reasoning, completes within 90 seconds and stays within a sub-dollar cost budget. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Run a Sonnet read-only security review on a small auth file and verify concrete findings or a reasoned clean attestation.
 
 Expected signals: Response either flags concrete issues with line references OR explicitly states the file is clean with reasoning. Runtime under 90 seconds. Cost (when JSON output captured) under USD 0.50 for a small file.
 
@@ -354,7 +354,7 @@ Verify Haiku (`claude-haiku-4-5-20251001`) handles batch classification of a sma
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing fast bulk classification of 5-10 error messages by category (syntax/runtime/logic/config/network), dispatch `claude -p --model claude-haiku-4-5-20251001` and capture the categorized output. Verify the response classifies every input item, completes in under 15 seconds and reports a cost noticeably lower than the equivalent Sonnet dispatch. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Use Haiku to classify 5-10 error messages by category and verify complete labels, speed, and lower cost than Sonnet.
 
 Expected signals: Every input error message receives a category label. Response time under 15 seconds. Cost (when JSON output captured) is at least 5x lower than the equivalent Sonnet call for the same prompt.
 
@@ -376,7 +376,7 @@ Verify `--agent context --permission-mode plan` produces a structured architectu
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing to understand an unfamiliar module before implementing a change, dispatch `claude -p --agent context --permission-mode plan` against `@./src/services/` (or any non-trivial source directory) and capture the architecture map. Verify the response identifies entry points, key modules, dependency flow and notable patterns and that no file writes occur. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor needing to understand an unfamiliar module before implementing a change, dispatch claude -p --agent context --permission-mode plan against @./src/services/ (or any non-trivial source directory) and capture the architecture map. Verify the response identifies entry points, key modules, dependency flow, and notable patterns, and that no file writes occur. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Response identifies entry points and key modules by name. Describes dependency flow or import relationships. Mentions notable patterns or conventions. Target directory's file mtimes are unchanged after the run.
 
@@ -392,7 +392,7 @@ Verify `--agent debug` accepts a "what I tried" context block plus a paste of re
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor stuck on a debugging task after multiple local attempts, dispatch `claude -p --agent debug` with the prior debugging analysis embedded in the prompt and the relevant files referenced via `@./path`. Verify the response ranks possible root causes by likelihood, suggests at least 2 concrete diagnostic steps per cause and does not recycle the analysis the conductor already tried. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor stuck on a debugging task after multiple local attempts, dispatch claude -p --agent debug with the prior debugging analysis embedded in the prompt and the relevant files referenced via @./path. Verify the response ranks possible root causes by likelihood, suggests at least 2 concrete diagnostic steps per cause, and does not recycle the analysis the conductor already tried. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Response lists at least 2 distinct ranked root causes. For each cause provides at least 2 concrete diagnostic steps. Explicitly distinguishes itself from the "already tried" set provided in the prompt.
 
@@ -408,7 +408,7 @@ Verify `--agent review --permission-mode plan` produces a structured security re
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting an independent security audit before merging a change, dispatch `claude -p --agent review --permission-mode plan` against `@./src/auth/` (or any auth-related directory) with an explicit OWASP-style checklist (XSS, CSRF, injection, auth bypass, hardcoded secrets, insecure defaults). Verify the response either flags concrete severity-tagged findings (critical/high/medium/low) with line references OR explicitly attests to the absence of each checked vulnerability. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor wanting an independent security audit before merging a change, dispatch claude -p --agent review --permission-mode plan against @./src/auth/ (or any auth-related directory) with an explicit OWASP-style checklist (XSS, CSRF, injection, auth bypass, hardcoded secrets, insecure defaults). Verify the response either flags concrete severity-tagged findings (critical/high/medium/low) with line references OR explicitly attests to the absence of each checked vulnerability. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Each checklist item (XSS, CSRF, injection, auth bypass, hardcoded secrets, insecure defaults) has an explicit verdict. Flagged findings include line references and severity tags. Response would be actionable to a human reviewer.
 
@@ -424,7 +424,7 @@ Verify `--agent multi-ai-council --model claude-opus-4-6 --permission-mode plan`
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch `claude -p --agent multi-ai-council --model claude-opus-4-6 --permission-mode plan` and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor planning a complex migration (for example MongoDB to PostgreSQL) and wanting multiple strategies evaluated by rubric, dispatch claude -p --agent multi-ai-council --model claude-opus-4-6 --permission-mode plan and capture the structured plan. Verify the response generates at least 3 distinct strategies (for example big-bang, gradual, dual-write), scores each across risk/effort/timeline/rollback, and recommends one with rationale. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Response presents at least 3 distinct strategies. Each strategy scored across at least 3 dimensions (risk/effort/timeline/rollback). Explicit recommendation with rationale. Uses `--effort high` style depth (multi-paragraph reasoning per strategy).
 
@@ -440,7 +440,7 @@ Verify `--agent handover --permission-mode plan` produces a structured session-s
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor closing out a multi-step task and preparing handoff for a follow-up session, dispatch `claude -p --agent handover --permission-mode plan` against the active task scope and capture a structured handover document. Verify the response identifies active work, modified files, key decisions, blockers, and next steps. Return a concise pass/fail verdict naming the captured fields and confirming no file writes.
+Prompt: As an external-AI conductor closing out a multi-step task and preparing handoff for a follow-up session, dispatch claude -p --agent handover --permission-mode plan against the cli-claude-code skill scope and capture a structured handover document. Verify the response identifies active work, modified files, key decisions, blockers, and next steps. Return a concise pass/fail verdict naming the captured fields and confirming no file writes.
 
 Expected signals: Response names the active task. Lists at least 2 modified or referenced files. Surfaces at least 1 decision or rationale. Declares at least 1 blocker or open question (or attests to none). Names at least 1 concrete next step. No file mtimes change.
 
@@ -456,7 +456,7 @@ Verify `--agent orchestrate --permission-mode plan` decomposes a complex task in
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor facing a complex task that requires multiple Claude Code specializations in sequence, dispatch `claude -p --agent orchestrate --permission-mode plan` and ask for a decomposition naming at least 3 specialist agents (for example context, review, debug, multi-ai-council) and explicit handoffs between them. Verify the plan reads as a sequenced workflow rather than monolithic analysis. Return a verdict naming the agents in the planned order and confirming no file writes occur.
+Prompt: As an external-AI conductor facing a complex task that requires multiple Claude Code specializations in sequence, dispatch claude -p --agent orchestrate --permission-mode plan and ask for a decomposition that names at least 3 specialist agents (e.g., context, review, debug, multi-ai-council) and explicit handoffs between them. Verify the plan reads as a sequenced workflow rather than monolithic analysis. Return a verdict naming the agents in the planned order and confirming no file writes occur.
 
 Expected signals: Response names at least 3 distinct Claude Code agents. Sequences them in a clear order (Step 1, Step 2, Step 3 or equivalent). Describes handoff content between steps. No file mtimes change.
 
@@ -472,7 +472,7 @@ Verify `--agent research` produces a comparative analysis of at least 2 candidat
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor facing an architecture decision between two candidates, dispatch `claude -p --agent research` and ask for a comparative analysis across multiple trade-off dimensions. Verify the response surfaces explicit pros and cons per candidate and ends with a recommendation plus rationale. Return a verdict naming the candidates, dimensions, and recommendation.
+Prompt: As an external-AI conductor facing an architecture decision between Redis and Memcached for session storage, dispatch claude -p --agent research and ask for a comparative analysis across performance, clustering, persistence, and operational complexity. Verify the response surfaces explicit pros and cons per candidate and ends with a recommendation plus rationale. Return a verdict naming the candidates, dimensions, and recommendation.
 
 Expected signals: Response names both candidates explicitly. Compares them across at least 3 dimensions. Surfaces pros and cons per candidate. Ends with an explicit recommendation. Provides rationale tied to the evidence.
 
@@ -488,7 +488,7 @@ Verify `--agent speckit` produces a spec-folder scaffolding plan that names the 
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor preparing a spec folder for a small feature, dispatch `claude -p --agent speckit` and ask for a Level recommendation plus a file list. Verify the response names a documentation level (1, 2, or 3), lists the required canonical files for that level, and explains the level choice in one sentence. Return a verdict naming the level, the files, and the rationale.
+Prompt: As an external-AI conductor preparing a spec folder for a small feature (add a --verbose flag, under 50 LOC), dispatch claude -p --agent speckit and ask for a Level recommendation plus the canonical file list for that level. Verify the response names a documentation level (1, 2, or 3), lists at least 4 canonical files (spec.md, plan.md, tasks.md, implementation-summary.md), and explains the level choice in one sentence. Return a verdict naming the level, the files, and the rationale.
 
 Expected signals: Response names a documentation level explicitly. Lists at least 4 canonical files (spec.md, plan.md, tasks.md, implementation-summary.md). Provides level rationale tied to LOC or risk. Surfaces the spec-folder path convention.
 
@@ -504,7 +504,7 @@ Verify `--agent write` writes a sk-doc template-driven README to a temp path wit
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, contains a TABLE OF CONTENTS section, and has at least 3 emoji-prefixed H2 headers. Return a verdict naming the file path and the H2 emoji count.
+Prompt: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, contains a TABLE OF CONTENTS section, and has at least 3 emoji-prefixed H2 headers. Return a verdict naming the file path and the H2 emoji count.
 
 Expected signals: Dispatch exits 0. README file exists at the requested path. README contains a TABLE OF CONTENTS section. H2 headers include emojis (per sk-doc template enforcement).
 
@@ -526,7 +526,7 @@ Verify `--continue` resumes the most recent Claude Code session and the follow-u
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor running a 2-step analysis (initial architecture review, then a follow-up with concrete improvements based on what was identified), dispatch the first `claude -p` call to establish context and the second `claude -p ... --continue` call with a follow-up that depends on the first turn's findings. Verify the second response references concrete details from the first turn rather than re-deriving them or asking the user to re-paste context. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor running a 2-step analysis (initial architecture review, then a follow-up with concrete improvements based on what was identified), dispatch the first claude -p call to establish context and the second claude -p ... --continue call with a follow-up that depends on the first turn's findings. Verify the second response references concrete details from the first turn rather than re-deriving them or asking the user to re-paste context. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: First call exits 0 and returns architecture analysis. Second call with `--continue` returns improvements that reference specific items from the first turn by name. No "I don't have context" or "please re-share" language in the second response.
 
@@ -542,7 +542,7 @@ Verify `--resume SESSION_ID` resumes a specific session captured from a prior JS
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor managing multiple parallel Claude Code investigations, dispatch an initial `claude -p ... --output-format json` call, capture its `session_id` via `jq`, then dispatch a later `claude -p "..." --resume "$SESSION_ID"` call that explicitly references content from the first turn. Verify the resumed turn correctly references the prior context. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor managing multiple parallel Claude Code investigations, dispatch an initial claude -p ... --output-format json call, capture its session_id via jq, then dispatch a later claude -p "..." --resume "$SESSION_ID" call that explicitly references content from the first turn. Verify the resumed turn correctly references the prior context. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: First call's JSON output includes a non-empty `session_id`. Resume call exits 0. Resumed response references specific content from the original turn rather than asking for re-paste.
 
@@ -564,7 +564,7 @@ Verify the canonical cross-AI pattern where the calling AI generates code, Claud
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor running the most reliable cross-AI cycle, generate a small TypeScript module locally and save it to `/tmp/cli-claude-code-playbook/generated.ts`, then dispatch `claude -p` with `--permission-mode plan` to review it for bugs/security/style with explicit line numbers. Capture the review, apply the fixes locally and confirm the resulting file would pass a second review. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor running the most reliable cross-AI cycle, generate a small TypeScript module locally and save it to /tmp/cli-claude-code-playbook/generated.ts, then dispatch claude -p with --permission-mode plan to review it for bugs/security/style with explicit line numbers. Capture the review, apply the fixes locally, and confirm the resulting file would pass a second review. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Step 1 produces a generated file with at least one intentional defect. Step 2 review identifies that defect with a line reference. Step 3 application of fix removes the defect. Step 4 second review either reports no critical issues or only flags items the conductor knowingly accepted.
 
@@ -580,7 +580,7 @@ Verify `--json-schema '...' --output-format json` produces a Claude Code respons
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing pipeline-grade structured output for a security audit (severity-tagged findings with line numbers and recommendations), dispatch `claude -p` with `--json-schema '...' --output-format json --permission-mode plan` and a schema describing `findings[]` with severity enum, line number, description and recommendation. Validate the returned JSON against the schema using `jq` or a JSON validator and verify each finding includes the required fields. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: Audit a sandbox file with Claude Code JSON schema output and verify each severity-tagged finding matches the required fields.
 
 Expected signals: Response is valid JSON parseable by `jq`. The inner `result` payload conforms to the supplied schema. Every finding has `severity` (one of critical/high/medium/low), `description` and a recommendation. The response can be piped into a downstream tool without ad-hoc reshaping.
 
@@ -602,7 +602,7 @@ Verify the prompt templates inventory at `assets/prompt_templates.md` is loadabl
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor wanting to reuse a vetted prompt template instead of authoring one from scratch, load `assets/prompt_templates.md` from the cli-claude-code skill, select the security review template, populate the placeholders for a real target file and dispatch the resulting `claude -p` command. Verify the command runs successfully and the response matches the template's intended structure (severity-tagged findings, etc.). Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor wanting to reuse a vetted prompt template instead of authoring one from scratch, load assets/prompt_templates.md from the cli-claude-code skill, select the security review template, populate the placeholders for a real target file, and dispatch the resulting claude -p command. Verify the command runs successfully and the response matches the template's intended structure (severity-tagged findings, etc.). Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Template file is readable and contains the labeled template (Security Review under section 3). Populated placeholders produce a syntactically valid `claude -p` invocation. Dispatched command exits 0 and the response shape matches the template's documented intent (severity ratings, line refs).
 
@@ -618,7 +618,7 @@ Verify the prompt quality card at `assets/prompt_quality_card.md` defines the CL
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor about to construct a non-trivial Claude Code prompt, load the prompt quality card and apply the CLEAR 5-check to a draft prompt for an architecture analysis task. Verify the card explicitly documents the 5-check, the framework selection table (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) with complexity bands and the escalation rule for complexity >= 7. Return a concise user-facing pass/fail verdict with the main reason.
+Prompt: As an external-AI conductor about to construct a non-trivial Claude Code prompt, load the prompt quality card and apply the CLEAR 5-check to a draft prompt for an architecture analysis task. Verify the card explicitly documents the 5-check, the framework selection table (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT) with complexity bands, and the escalation rule for complexity >= 7. Return a concise user-facing pass/fail verdict with the main reason.
 
 Expected signals: Card lists all 5 CLEAR criteria explicitly. Framework selection table includes all 7 frameworks with complexity bands. Escalation rule for complexity >= 7 to `@prompt-improver` is explicitly documented. Failure-pattern checklist is present.
 
@@ -640,7 +640,7 @@ Verify `--max-budget-usd 0.50` is accepted by the CLI, that the dispatch complet
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor enforcing cost discipline on an unattended run, dispatch `claude -p --max-budget-usd 0.50 --output-format json --permission-mode plan` against a small file. Verify the dispatch exits 0, the JSON envelope contains a numeric cost field, and that cost is at or below 0.50. Return a verdict naming the cost value reported and confirming it is within the cap.
+Prompt: Run Claude Code with a 50-cent budget cap and verify exit 0, parseable JSON, numeric cost, and cost under cap.
 
 Expected signals: Dispatch exits 0. JSON output is parseable via `jq`. JSON output contains a numeric `cost` (or `total_cost_usd`) field. Reported cost is at or below 0.50. Dispatched command line includes `--max-budget-usd 0.50`.
 
@@ -656,7 +656,7 @@ Verify a backgrounded `claude -p` dispatch with `</dev/null` runs without blocki
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor running a parallel workload, dispatch `claude -p` in the background with stdout captured to a temp file and stdin redirected from `/dev/null` so the parent shell does not block. Run a small read-only analysis prompt. Verify `wait` returns exit 0, the temp file contains a non-empty response, and the parent shell remained responsive. Return a verdict naming the temp file, the wait exit code, and the first 80 characters of the captured response.
+Prompt: Run Claude Code in the background, keep the shell responsive, then verify wait exit 0 and non-empty captured output.
 
 Expected signals: `wait` returns exit 0. Captured stdout file is non-empty. Parent shell remained responsive. Dispatched command line includes `&` and `</dev/null`.
 

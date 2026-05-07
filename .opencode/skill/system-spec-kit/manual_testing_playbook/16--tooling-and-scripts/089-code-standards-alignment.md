@@ -16,7 +16,7 @@ This scenario validates Code standards alignment for `089`. It focuses on Confir
 
 - Objective: Confirm standards conformance.
 - Real user request: `Please validate Code standards alignment against the documented validation surface and tell me whether the expected signals are present: Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found.`
-- RCAF Prompt: `As a tooling validation operator, validate Code standards alignment against the documented validation surface. Verify affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Code standards alignment against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Code standards alignment for `089`. It focuses on Confir
 ### Prompt
 
 ```
-As a tooling validation operator, confirm standards conformance against the documented validation surface. Verify affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Code standards alignment against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

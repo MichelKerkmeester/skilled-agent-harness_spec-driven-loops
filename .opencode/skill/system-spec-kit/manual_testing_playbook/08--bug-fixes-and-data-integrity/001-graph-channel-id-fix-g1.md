@@ -17,7 +17,7 @@ This scenario validates Graph channel ID fix (G1) for `001`. It focuses on Confi
 
 - Objective: Confirm graph hits are non-zero when edges exist.
 - Real user request: `Please validate Graph channel ID fix (G1) against the documented validation surface and tell me whether the expected signals are present: Graph channel returns >0 hits when causal edges exist.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Graph channel ID fix (G1) against the documented validation surface. Verify graph hits are non-zero when edges exist. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Graph channel ID fix (G1) and confirm graph hits are non-zero when causal edges exist.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Graph channel returns >0 hits when causal edges exist
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Graph channel ID fix (G1) for `001`. It focuses on Confi
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm graph hits are non-zero when edges exist against the documented validation surface. Verify graph channel returns >0 hits when causal edges exist. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Graph channel ID fix (G1) and confirm graph hits are non-zero when causal edges exist.
 ```
 
 ### Commands

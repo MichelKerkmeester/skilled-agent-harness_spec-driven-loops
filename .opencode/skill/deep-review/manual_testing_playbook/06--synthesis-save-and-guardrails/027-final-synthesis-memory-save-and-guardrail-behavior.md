@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify memory save via generate-context.js after review completion.
 - Real user request: When the review loop finishes, how are the results preserved for future sessions, and what guardrails prevent the agent from doing more than it should?
-- Prompt: `As a manual-testing orchestrator, validate the finalization and guardrail contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify synthesis produces canonical review/review-report.md, memory save uses generate-context.js (not manual Write tool), the runtime agent remains LEAF-only (no sub-agent dispatch), and that the review agent does not modify target files under review (read-only contract). Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review finalization, memory-save routing, LEAF-only behavior, and read-only target handling.`
 - Expected execution process: Inspect the command and skill save rules first, then the runtime agent LEAF-only boundary, then the SKILL.md rules for read-only and memory save contracts.
 - Desired user-facing outcome: The user is told what final artifacts are produced, how memory is preserved, and what the agent is prevented from doing.
 - Expected signals: Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, the runtime agent forbids nested delegation (LEAF-only), the agent never modifies files under review (read-only), and memory save uses the spec folder established at setup.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the finalization and guardrail contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify synthesis produces canonical review/review-report.md, memory save uses generate-context.js (not manual Write tool), the runtime agent remains LEAF-only (no sub-agent dispatch), and that the review agent does not modify target files under review (read-only contract). Return a concise operator-facing verdict.
+Validate deep-review finalization, memory-save routing, LEAF-only behavior, and read-only target handling.
 ### Commands
 1. `bash: rg -n 'generate-context.js|memory.*save|synthesis_complete|review-report|memory' .opencode/command/spec_kit/deep-review.md .opencode/skill/deep-review/SKILL.md .opencode/skill/deep-review/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER.*sub|NEVER.*dispatch|read.only|NEVER.*modify|observation.*only' .claude/agents/deep-review.md .codex/agents/deep-review.toml .opencode/skill/deep-review/SKILL.md`

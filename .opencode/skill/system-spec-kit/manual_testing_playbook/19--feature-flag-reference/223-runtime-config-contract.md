@@ -16,7 +16,7 @@ This scenario validates Runtime Config Contract for `223`. It focuses on confirm
 
 - Objective: confirming the runtime loader consumes only the active Section 1 keys, validates and normalizes configured values, and leaves documentation-only sections non-binding.
 - Real user request: `` Please validate Runtime Config Contract against config/config.jsonc and tell me whether the expected signals are present: valid Section 1 keys such as `maxResultPreview` and `timezoneOffsetHours` appear in the loaded runtime config; invalid numeric values fall back with warnings; legacy `qualityAbortThreshold` values on the `1..100` scale normalize into `0.0..1.0`; empty, missing, or invalid JSONC does not crash the loader; documentation-only sections remain descriptive and do not show up as newly bound core runtime controls. ``
-- RCAF Prompt: `As a feature-flag validation operator, validate Runtime Config Contract against config/config.jsonc. Verify confirming the runtime loader consumes only the active Section 1 keys, validates and normalizes configured values, and leaves documentation-only sections non-binding. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Runtime Config Contract against config/config.jsonc and verify only active Section 1 keys bind runtime config.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: valid Section 1 keys such as `maxResultPreview` and `timezoneOffsetHours` appear in the loaded runtime config; invalid numeric values fall back with warnings; legacy `qualityAbortThreshold` values on the `1..100` scale normalize into `0.0..1.0`; empty, missing, or invalid JSONC does not crash the loader; documentation-only sections remain descriptive and do not show up as newly bound core runtime controls
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Runtime Config Contract for `223`. It focuses on confirm
 ### Prompt
 
 ```
-As a feature-flag validation operator, confirm the runtime loader consumes only the active Section 1 keys, validates and normalizes configured values, and leaves documentation-only sections non-binding against config/config.jsonc. Verify valid Section 1 keys such as maxResultPreview and timezoneOffsetHours appear in the loaded runtime config; invalid numeric values fall back with warnings; legacy qualityAbortThreshold values on the 1..100 scale normalize into 0.0..1.0; empty, missing, or invalid JSONC does not crash the loader; documentation-only sections remain descriptive and do not show up as newly bound core runtime controls. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Runtime Config Contract against config/config.jsonc and verify only active Section 1 keys bind runtime config.
 ```
 
 ### Commands

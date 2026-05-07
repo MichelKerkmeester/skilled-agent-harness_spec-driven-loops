@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the `review/.deep-review-pause` sentinel halts the loop between iterations and logs a pause event.
 - Real user request: If I need to interrupt an autonomous review safely, tell me how the pause file works.
-- Prompt: `As a manual-testing orchestrator, validate the pause sentinel contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify {spec_folder}/review/.deep-review-pause is checked between review iterations, that a paused event is emitted to the JSONL state log, and that the loop halts without entering synthesis. Return a concise operator-facing verdict.`
+- Prompt: `Validate the deep-review pause sentinel and report whether the loop halts before synthesis.`
 - Expected execution process: Inspect the loop protocol pause section, then the review YAML pause checks, then the quick reference and SKILL.md for user-facing explanation.
 - Desired user-facing outcome: The user is told exactly how to pause a review run safely and what the loop does when the sentinel is present.
 - Expected signals: The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the pause sentinel contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify {spec_folder}/review/.deep-review-pause is checked between review iterations, that a paused event is emitted to the JSONL state log, and that the loop halts without entering synthesis. Return a concise operator-facing verdict.
+Validate the deep-review pause sentinel and report whether the loop halts before synthesis.
 ### Commands
 1. `bash: rg -n '.deep-review-pause|paused|Delete.*pause|review/.deep-review-pause' .opencode/skill/deep-review/references/loop_protocol.md .opencode/skill/deep-review/SKILL.md .opencode/skill/deep-review/README.md`
 2. `bash: rg -n 'step_check_pause_sentinel|paused|halt.*true|review/.deep-review-pause|pause.*sentinel' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

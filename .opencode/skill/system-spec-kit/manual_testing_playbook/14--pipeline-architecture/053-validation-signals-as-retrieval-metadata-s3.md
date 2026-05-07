@@ -17,7 +17,7 @@ This scenario validates Validation signals as retrieval metadata (S3) for `053`.
 
 - Objective: Confirm bounded multiplier.
 - Real user request: `Please validate Validation signals as retrieval metadata (S3) against the documented validation surface and tell me whether the expected signals are present: Validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score higher; zero-validation docs use 1.0 multiplier.`
-- RCAF Prompt: `As a pipeline validation operator, validate Validation signals as retrieval metadata (S3) against the documented validation surface. Verify validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score higher; zero-validation docs use 1.0 multiplier. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate validation signals as retrieval metadata (S3) against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score higher; zero-validation docs use 1.0 multiplier
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Validation signals as retrieval metadata (S3) for `053`.
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm bounded multiplier against the documented validation surface. Verify validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score higher; zero-validation docs use 1.0 multiplier. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate validation signals as retrieval metadata (S3) against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

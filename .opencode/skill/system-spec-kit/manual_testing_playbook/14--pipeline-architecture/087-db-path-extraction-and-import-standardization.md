@@ -17,7 +17,7 @@ This scenario validates DB_PATH extraction and import standardization for `087`.
 
 - Objective: Confirm shared DB path resolution.
 - Real user request: `Please validate DB_PATH extraction and import standardization against the documented validation surface and tell me whether the expected signals are present: All scripts/tools resolve to the same DB path for identical env vars; precedence chain is respected; no hardcoded fallbacks diverge.`
-- RCAF Prompt: `As a pipeline validation operator, validate DB_PATH extraction and import standardization against the documented validation surface. Verify all scripts/tools resolve to the same DB path for identical env vars; precedence chain is respected; no hardcoded fallbacks diverge. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate DB_PATH extraction and import standardization against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All scripts/tools resolve to the same DB path for identical env vars; precedence chain is respected; no hardcoded fallbacks diverge
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates DB_PATH extraction and import standardization for `087`.
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm shared DB path resolution against the documented validation surface. Verify all scripts/tools resolve to the same DB path for identical env vars; precedence chain is respected; no hardcoded fallbacks diverge. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate DB_PATH extraction and import standardization against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

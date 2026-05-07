@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: The iteration completes with P0/P1/P2 findings.
 - Then: The JSONL record contains `graphEvents` with `dimension_node`, `file_node`, and `finding_node` entries.
 - Real user request: When a review iteration finishes, what graph data is written so coverage and convergence can replay the review state?
-- Prompt: `As a manual-testing orchestrator, validate the structured graphEvents contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware review convergence expects graphEvents in iteration records, and that graph replay tests show review JSONL records carrying dimension_node, file_node, and finding_node entries. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review graphEvents records for dimension, file, and finding nodes in graph-aware review convergence.`
 - Expected execution process: Inspect the deep-review convergence reference for the graph-aware iteration-record contract first, then the coverage-graph replay tests for concrete review node types and JSONL-shaped examples.
 - Desired user-facing outcome: The user understands that completed review iterations emit replayable graph events and which review node types are expected in those records.
 - Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence; replay tests include review node-type coverage for `dimension_node`, `file_node`, and `finding_node`.
@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the structured graphEvents contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware review convergence expects graphEvents in iteration records, and that graph replay tests show review JSONL records carrying dimension_node, file_node, and finding_node entries. Return a concise operator-facing verdict.
+Validate deep-review graphEvents records for dimension, file, and finding nodes in graph-aware review convergence.
 ### Commands
 1. `bash: rg -n 'graphEvents|review iteration records|graph-aware review convergence' .opencode/skill/deep-review/references/convergence.md`
 2. `bash: rg -n 'graphEvents|dimension_node|file_node|finding_node|reviewNodeTypes' .opencode/skill/system-spec-kit/mcp_server/tests/coverage-graph-db.vitest.ts`

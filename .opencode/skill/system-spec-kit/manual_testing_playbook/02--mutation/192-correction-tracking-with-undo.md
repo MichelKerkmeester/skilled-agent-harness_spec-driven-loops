@@ -30,7 +30,7 @@ This scenario validates Correction tracking with undo for `192`. It focuses on C
 ### Prompt
 
 ```
-As a mutation validation operator, confirm library-level correction recording, stability rollback, and scoped undo behavior against record_correction(). Verify record_correction() persists correction metadata plus before/after stability values; stability penalties and boosts are visible for both memories; undo_correction() restores original stability, marks the correction row undone, and removes only the correction-specific causal edge; no MCP handler or tool-dispatch path is required for the validation. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Correction tracking with undo against record_correction(). Verify library-level correction recording, stability rollback, and scoped undo behavior. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

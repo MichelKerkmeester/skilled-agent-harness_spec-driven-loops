@@ -16,7 +16,7 @@ This scenario validates template composition system for `244`. It focuses on con
 
 - Objective: Confirm Level 1, Level 2, Level 3, Level 3+, and phase-parent packet generation plus strict validation.
 - Real user request: `Please validate the Template Composition System by scaffolding one packet for each supported Level, validating each packet strictly, and running the workflow-invariance test. Tell me whether every generated packet is valid and whether public docs stayed on Level vocabulary.`
-- RCAF Prompt: `As a tooling validation operator, scaffold one packet for each supported Level, validate each packet with strict mode, run the workflow-invariance test, and return a concise pass/fail verdict with cited command evidence.`
+- Prompt: `Scaffold one packet for each supported Level, validate each packet with strict mode, run the workflow-invariance test, and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: every scaffold command exits 0, every strict validation exits 0, and the workflow-invariance test exits 0
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates template composition system for `244`. It focuses on con
 ### Prompt
 
 ```
-As a tooling validation operator, scaffold one packet for each supported Level, validate each packet with strict mode, run the workflow-invariance test, and return a concise pass/fail verdict with cited command evidence.
+Scaffold one packet for each supported Level, validate each packet with strict mode, run the workflow-invariance test, and report cited pass/fail evidence.
 ```
 
 ### Commands

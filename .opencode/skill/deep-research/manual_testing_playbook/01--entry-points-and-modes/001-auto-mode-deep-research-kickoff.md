@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
 - Real user request: Run a deep research session on a topic without stopping for approvals and tell me what it will create.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the autonomous entrypoint for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-research:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.`
+- Prompt: `Validate deep-research auto mode across docs, command entrypoint, YAML workflow, and expected artifacts.`
 - Expected execution process: Inspect the public docs first, then the command entrypoint, then the autonomous YAML workflow so the operator explanation stays anchored in the user-facing contract before the internal workflow contract.
 - Desired user-visible outcome: The user is told exactly how to invoke autonomous mode, that it runs without approval gates, and that it produces a `research/` packet plus `research/research.md`.
 - Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `research/research.md`.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the autonomous entrypoint for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-research:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
+Validate deep-research auto mode across docs, command entrypoint, YAML workflow, and expected artifacts.
 ### Commands
 1. `bash: rg -n '/spec_kit:deep-research:auto|research/research.md|research/iterations' .opencode/skill/deep-research/README.md .opencode/skill/deep-research/references/quick_reference.md`
 2. `bash: sed -n '1,220p' .opencode/command/spec_kit/deep-research.md`

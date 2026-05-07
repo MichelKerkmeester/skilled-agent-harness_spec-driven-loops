@@ -17,7 +17,7 @@ This scenario validates Quality gate timer persistence for `073`. It focuses on 
 
 - Objective: Confirm restart persistence.
 - Real user request: `Please validate Quality gate timer persistence against the documented validation surface and tell me whether the expected signals are present: Activation timestamp survives service restart; quality gate respects persisted timer; no timer reset on restart.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Quality gate timer persistence against the documented validation surface. Verify activation timestamp survives service restart; quality gate respects persisted timer; no timer reset on restart. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate quality gate timer persistence across service restart.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Activation timestamp survives service restart; quality gate respects persisted timer; no timer reset on restart
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Quality gate timer persistence for `073`. It focuses on 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm restart persistence against the documented validation surface. Verify activation timestamp survives service restart; quality gate respects persisted timer; no timer reset on restart. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate quality gate timer persistence across service restart.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDA
 
 - Objective: Verify the high-similarity compatibility note and borderline recommendation behavior plus companion predecessor validation.
 - Real user request: `` Please validate Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) against SPECKIT_ASSISTIVE_RECONSOLIDATION=true and tell me whether the expected signals are present: similarity >= 0.96 returns the internal 'auto_merge' classifier and emits a high-similarity compatibility note without archiving the older row; 0.88 <= similarity < 0.96 returns 'review' with AssistiveRecommendation logged; similarity < 0.88 returns 'keep_separate'; review tier produces classification (supersede/complement/keep_separate) without destructive action; companion merge guard aborts stale merge attempts with `predecessor_changed` or `predecessor_gone`. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) against SPECKIT_ASSISTIVE_RECONSOLIDATION=true. Verify the high-similarity compatibility note and borderline recommendation behavior plus companion predecessor validation. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate assistive reconsolidation merge and recommendation behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: similarity >= 0.96 returns the internal 'auto_merge' classifier and emits a high-similarity compatibility note without archiving the older row; 0.88 <= similarity < 0.96 returns 'review' with AssistiveRecommendation logged; similarity < 0.88 returns 'keep_separate'; review tier produces classification (supersede/complement/keep_separate) without destructive action; companion merge guard aborts stale merge attempts with `predecessor_changed` or `predecessor_gone`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDA
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, verify merge/recommend behavior against SPECKIT_ASSISTIVE_RECONSOLIDATION=true. Verify the high-similarity compatibility note at >= 0.96; review with recommendation at >= 0.88; keep_separate below 0.88; no destructive action for assistive tiers. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate assistive reconsolidation merge and recommendation behavior.
 ```
 
 ### Commands
@@ -64,7 +64,7 @@ Verify isAssistiveReconsolidationEnabled() → Check ASSISTIVE_COMPATIBILITY_NOT
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, verify predecessor change detection in companion reconsolidation path against SPECKIT_ASSISTIVE_RECONSOLIDATION=true. Verify companion merge path aborts with predecessor_changed or predecessor_gone; no stale merged row is inserted; assistive layer remains recommendation/shadow-only rather than performing a destructive content merge. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate companion reconsolidation aborts when predecessor changes.
 ```
 
 ### Commands

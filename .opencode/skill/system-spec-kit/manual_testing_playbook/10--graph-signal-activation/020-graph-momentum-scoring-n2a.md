@@ -17,7 +17,7 @@ This scenario validates Graph momentum scoring (N2a) for `020`. It focuses on Co
 
 - Objective: Confirm 7-day delta bonus.
 - Real user request: `Please validate Graph momentum scoring (N2a) against the documented validation surface and tell me whether the expected signals are present: 7-day momentum delta bonus applied and capped; nodes with no history get zero bonus; cap enforced.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Graph momentum scoring (N2a) against the documented validation surface. Verify 7-day momentum delta bonus applied and capped; nodes with no history get zero bonus; cap enforced. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate graph momentum scoring and cite capped 7-day momentum bonus plus zero bonus for nodes without history.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: 7-day momentum delta bonus applied and capped; nodes with no history get zero bonus; cap enforced
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Graph momentum scoring (N2a) for `020`. It focuses on Co
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm 7-day delta bonus against the documented validation surface. Verify 7-day momentum delta bonus applied and capped; nodes with no history get zero bonus; cap enforced. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate graph momentum scoring and cite capped 7-day momentum bonus plus zero bonus for nodes without history.
 ```
 
 ### Commands

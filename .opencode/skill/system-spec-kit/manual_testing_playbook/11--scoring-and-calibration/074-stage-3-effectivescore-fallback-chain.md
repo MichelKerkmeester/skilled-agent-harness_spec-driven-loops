@@ -17,7 +17,7 @@ This scenario validates Stage 3 effectiveScore fallback chain for `074`. It focu
 
 - Objective: Confirm fallback order correctness.
 - Real user request: `Please validate Stage 3 effectiveScore fallback chain against the documented validation surface and tell me whether the expected signals are present: Fallback chain follows defined priority order; missing score fields trigger next fallback; final fallback produces valid score.`
-- RCAF Prompt: `As a scoring validation operator, validate Stage 3 effectiveScore fallback chain against the documented validation surface. Verify fallback chain follows defined priority order; missing score fields trigger next fallback; final fallback produces valid score. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the Stage 3 effectiveScore fallback chain and confirm each fallback produces a valid score.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Fallback chain follows defined priority order; missing score fields trigger next fallback; final fallback produces valid score
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Stage 3 effectiveScore fallback chain for `074`. It focu
 ### Prompt
 
 ```
-As a scoring validation operator, confirm fallback order correctness against the documented validation surface. Verify fallback chain follows defined priority order; missing score fields trigger next fallback; final fallback produces valid score. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the Stage 3 effectiveScore fallback chain and confirm each fallback produces a valid score.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates scoring and fusion corrections for `079`. It focuses on 
 
 - Objective: Confirm the phase-017 scoring and fusion correction bundle plus the T315 single-pass fusion refinement with executable source and regression checks.
 - Real user request: `` Please validate Scoring and fusion corrections against the documented validation surface and tell me whether the expected signals are present: `rg` finds the corrected scoring, normalization, fusion, BM25 scope, interference-threshold, score-alias, and single-pass fusion symbols; the targeted Vitest run exits 0 with all files passing; the current baseline summary is `Test Files 8 passed (8)` and `Tests 350 passed (350)`. ``
-- RCAF Prompt: `As a scoring validation operator, validate Scoring and fusion corrections against the documented validation surface. Verify the phase-017 scoring and fusion correction bundle plus the T315 single-pass fusion refinement with executable source and regression checks. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the scoring and fusion correction bundle with executable sources and regression evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `rg` finds the corrected scoring, normalization, fusion, BM25 scope, interference-threshold, score-alias, and single-pass fusion symbols; the targeted Vitest run exits 0 with all files passing; the current baseline summary is `Test Files 8 passed (8)` and `Tests 350 passed (350)`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates scoring and fusion corrections for `079`. It focuses on 
 ### Prompt
 
 ```
-Validate the phase-017 scoring and fusion correction bundle plus the T315 single-pass fusion refinement. Confirm the implementing symbols exist in the expected source files, rerun the targeted regression tests, and return a concise pass/fail verdict with the first failing symbol or test if anything breaks.
+Validate the scoring and fusion correction bundle with executable sources and regression evidence.
 ```
 
 ### Commands

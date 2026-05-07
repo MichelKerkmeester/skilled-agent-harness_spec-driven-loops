@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-022` and confirm the
 
 - Objective: Confirm Test-phase underdelivery can trigger framework switch and restart from Engineer.
 - Real user request: `Improve my prompt for sentiment analysis — if the first framework you try doesn't hit CLEAR 40, switch and try another.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's sentiment-analysis prompt. Verify that if the first selected framework scores below CLEAR 40/50 or breaches a dimension floor at Test, the workflow switches to another framework and restarts from Engineer before final delivery.`
+- Prompt: `Improve my sentiment-analysis prompt; verify a failing first framework switches to another and restarts from Engineer before final delivery.`
 - Expected execution process: `@prompt-improver` selects a first framework, scores it at Test, switches on failure, restarts at Engineer, and logs first -> second framework.
 - Expected signals: `Framework switch: <first> -> <second>` with reason such as `CLEAR <40` or `dimension floor breach`.
 - Desired user-visible outcome: Enhanced prompt plus framework-switch note when first attempt underdelivers.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-022` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's sentiment-analysis prompt. Verify that if the first selected framework scores below CLEAR 40/50 or breaches a dimension floor at Test, the workflow switches to another framework and restarts from Engineer before final delivery.
+Improve my sentiment-analysis prompt; verify a failing first framework switches to another and restarts from Engineer before final delivery.
 ```
 
 ### Commands

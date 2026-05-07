@@ -30,7 +30,7 @@ This scenario validates Lightweight consolidation (N3-lite) for `058`. It focuse
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm maintenance cycle behavior against the documented validation surface. Verify consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Lightweight consolidation (N3-lite) against the documented validation surface. Verify consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

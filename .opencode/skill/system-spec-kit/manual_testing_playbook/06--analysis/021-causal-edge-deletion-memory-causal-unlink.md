@@ -17,7 +17,7 @@ This scenario validates Causal edge deletion (memory_causal_unlink) for `EX-021`
 
 - Objective: Edge correction.
 - Real user request: `Please validate Causal edge deletion (memory_causal_unlink) against checkpoint_create({ name:"pre-ex021-causal-unlink", specFolder:"<sandbox-spec>" }) and tell me whether the expected signals are present: Removed edge absent in trace.`
-- RCAF Prompt: `As an analysis validation operator, validate Causal edge deletion (memory_causal_unlink) against checkpoint_create({ name:"pre-ex021-causal-unlink", specFolder:"<sandbox-spec>" }). Verify removed edge absent in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_causal_unlink removes the target edge after checkpoint creation; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Removed edge absent in trace
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Causal edge deletion (memory_causal_unlink) for `EX-021`
 ### Prompt
 
 ```
-As an analysis validation operator, validate Edge correction against checkpoint_create({ name:"pre-ex021-causal-unlink", specFolder:"<sandbox-spec>" }). Verify removed edge absent in trace. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_causal_unlink removes the target edge after checkpoint creation; return pass/fail with cited evidence.
 ```
 
 ### Commands

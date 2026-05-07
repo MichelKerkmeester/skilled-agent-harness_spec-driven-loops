@@ -24,6 +24,7 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 - Objective: Confirm command synthesis emits review artifacts and does not create retired `memory/` notes.
 - Layer partition: command-flow.
 - Real user request: `Run a bounded deep review and prove synthesis/save artifacts are durable.`
+- Prompt: `Run the synthesis-save boundary scenario and prove review artifacts exist while retired memory files stay absent.`
 - Expected execution process: sandbox setup, one max-iteration run, artifact aggregation, retired-memory absence check, diff and tripwire checks.
 - Expected signals: `review-report.md`, `deep-review-dashboard.md`, `deep-review-findings-registry.json`, `generate-context.js`, `STATUS=OK` or `STATUS=FAIL`, no `/memory/` directory under the temp spec, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving command-flow synthesis is durable and save routing is explicit.
@@ -75,7 +76,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-055 | SYNTHESIS_SAVE_BOUNDARY | Prove synthesis artifacts and canonical save routing exist | Prompt embedded in §3 command block | Run §3 exactly | Field counts all `1+` | Combined artifacts, memory absence file, diffs | PASS if review report/dashboard/registry exist and retired memory files are absent | If report is absent, inspect synthesis phase. If memory files appear, inspect save routing. If target diff is non-empty, repair read-only guard. |
+| CP-055 | SYNTHESIS_SAVE_BOUNDARY | Prove synthesis artifacts and canonical save routing exist | `Run the synthesis-save boundary scenario and prove review artifacts exist while retired memory files stay absent.` | Run §3 exactly | Field counts all `1+` | Combined artifacts, memory absence file, diffs | PASS if review report/dashboard/registry exist and retired memory files are absent | If report is absent, inspect synthesis phase. If memory files appear, inspect save routing. If target diff is non-empty, repair read-only guard. |
 
 ## 4. SOURCE ANCHORS
 

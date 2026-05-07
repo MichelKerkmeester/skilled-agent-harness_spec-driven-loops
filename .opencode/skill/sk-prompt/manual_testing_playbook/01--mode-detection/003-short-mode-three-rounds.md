@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-003` and confirm the
 
 - Objective: Confirm `$short` runs 3 DEPTH rounds (D-P-H) only
 - Real user request: `$short Tighten this prompt for a quick iteration — no need for a full rewrite, I just want it sharper.`
-- Prompt: `As a prompt engineer, run sk-prompt against operator input prefixed with $short. Verify DEPTH runs exactly 3 rounds — Discover, Prototype, Harmonize — and the transparency report names Engineer and Test as skipped. CLEAR scoring still applies.`
+- Prompt: `$short tighten my prompt; verify only Discover, Prototype, and Harmonize run, Engineer/Test are skipped, and CLEAR still applies.`
 - Expected execution process: sk-prompt detects `$short` prefix, runs Discover (perspectives), skips Engineer (no framework mechanics expansion), runs Prototype (build), skips Test (no full re-score loop), runs Harmonize (RICCE polish), applies CLEAR once, returns enhanced prompt + report.
 - Expected signals: DEPTH rounds = 3, phases run = D, P, H; phases skipped = E, T; CLEAR applied
 - Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode: $short", "DEPTH rounds: 3", "Phases skipped: Engineer, Test".
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-003` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt against operator input prefixed with $short. Verify DEPTH runs exactly 3 rounds — Discover, Prototype, Harmonize — and the transparency report names Engineer and Test as skipped. CLEAR scoring still applies.
+$short tighten my prompt; verify only Discover, Prototype, and Harmonize run, Engineer/Test are skipped, and CLEAR still applies.
 ```
 
 ### Commands

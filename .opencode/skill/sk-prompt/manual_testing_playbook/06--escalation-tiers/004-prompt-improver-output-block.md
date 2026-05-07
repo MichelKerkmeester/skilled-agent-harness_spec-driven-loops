@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-026` and confirm the
 
 - Objective: Confirm `@prompt-improver` returns FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES.
 - Real user request: `Run @prompt-improver on my data extraction prompt and return the structured output block exactly as documented.`
-- Prompt: `As a CLI orchestrator, dispatch @prompt-improver on the operator's data-extraction prompt. Verify the response contains exactly the documented structured fields: FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES.`
+- Prompt: `As a CLI orchestrator, dispatch @prompt-improver on a data-extraction prompt. Verify the response contains FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES. Return the structured block verdict.`
 - Expected execution process: `@prompt-improver` enhances the prompt, scores it, and returns the five labelled fields in order or with unambiguous labels.
 - Expected signals: All five labels present; `ENHANCED_PROMPT` is multi-line; `CLEAR_SCORE` includes C/L/E/A/R.
 - Desired user-visible outcome: Ready-to-dispatch structured block.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-026` and confirm the
 ### Prompt
 
 ```
-As a CLI orchestrator, dispatch @prompt-improver on the operator's data-extraction prompt. Verify the response contains exactly the documented structured fields: FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES.
+As a CLI orchestrator, dispatch @prompt-improver on a data-extraction prompt. Verify the response contains FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES. Return the structured block verdict.
 ```
 
 ### Commands

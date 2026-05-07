@@ -17,7 +17,7 @@ This scenario validates memory causal trust display for `203`. It focuses on add
 
 - Objective: Verify additive per-result trust badges for confidence, extraction age, last access age, orphan status, and weight-history change state.
 - Real user request: `` Please validate Memory causal trust display against the search-result formatter and response-profile layer and tell me whether the expected signals are present: `trustBadges` appear on search results; confidence is sourced from edge strength; ages render from causal-edge timestamps; orphan becomes true when inbound causal edges are absent; weight-history change becomes true when `weight_history` contains a connected edge; quick and research profiles preserve the badge payload. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Memory causal trust display against the search-result formatter and response-profile layer. Verify trustBadges are additive, derived from existing causal-edge metadata only, preserved through response profiles, and do not require schema or relation-vocabulary changes. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory causal trust badges through response profiles.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `trustBadges` appear on search results; confidence is sourced from edge strength; ages render from causal-edge timestamps; orphan becomes true when inbound causal edges are absent; weight-history change becomes true when `weight_history` contains a connected edge; quick and research profiles preserve the badge payload
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,8 +29,8 @@ This scenario validates memory causal trust display for `203`. It focuses on add
 
 ### Prompt
 
-```text
-As a spec-doc record-quality validation operator, validate Memory causal trust display against the search-result formatter and response-profile layer. Verify trustBadges are additive, derived from existing causal-edge metadata only, preserved through response profiles, and do not require schema or relation-vocabulary changes. Return a concise pass/fail verdict with the main reason and cited evidence.
+```
+Validate memory causal trust badges through response profiles.
 ```
 
 ### Commands

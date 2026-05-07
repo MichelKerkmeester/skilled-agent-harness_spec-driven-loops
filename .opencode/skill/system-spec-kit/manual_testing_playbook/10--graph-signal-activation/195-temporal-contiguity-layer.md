@@ -17,7 +17,7 @@ This scenario validates Temporal contiguity layer for `195`. It focuses on Confi
 
 - Objective: Confirm Stage 1 temporal proximity reinforcement plus bounded temporal-neighbor lookup behavior.
 - Real user request: `Please validate Temporal contiguity layer against spec_folder and tell me whether the expected signals are present: vectorSearchWithContiguity() applies pairwise temporal boosts inside the configured clamped window; closer-in-time memories receive stronger reinforcement than distant ones; cumulative boost per result stays within the 0.50 cap; disabling SPECKIT_TEMPORAL_CONTIGUITY removes the temporal layer; getTemporalNeighbors() uses a bounded spec_folder/created_at query before computing time deltas.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Temporal contiguity layer against spec_folder. Verify stage 1 temporal proximity reinforcement plus bounded temporal-neighbor lookup behavior. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate temporal contiguity and cite clamped proximity boosts, stronger close-time reinforcement, cap enforcement, disable behavior, and bounded lookup.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: vectorSearchWithContiguity() applies pairwise temporal boosts inside the configured clamped window; closer-in-time memories receive stronger reinforcement than distant ones; cumulative boost per result stays within the 0.50 cap; disabling SPECKIT_TEMPORAL_CONTIGUITY removes the temporal layer; getTemporalNeighbors() uses a bounded spec_folder/created_at query before computing time deltas
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Temporal contiguity layer for `195`. It focuses on Confi
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm Stage 1 temporal proximity reinforcement plus bounded temporal-neighbor lookup behavior against spec_folder. Verify vectorSearchWithContiguity() applies pairwise temporal boosts inside the configured clamped window; closer-in-time memories receive stronger reinforcement than distant ones; cumulative boost per result stays within the 0.50 cap; disabling SPECKIT_TEMPORAL_CONTIGUITY removes the temporal layer; getTemporalNeighbors() uses a bounded spec_folder/created_at query before computing time deltas. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate temporal contiguity and cite clamped proximity boosts, stronger close-time reinforcement, cap enforcement, disable behavior, and bounded lookup.
 ```
 
 ### Commands

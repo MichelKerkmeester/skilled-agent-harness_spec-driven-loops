@@ -17,7 +17,7 @@ This scenario validates 6. Debug and Telemetry for `EX-033`. It focuses on Obser
 
 - Objective: Observability toggle check.
 - Real user request: `Please validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 }) and tell me whether the expected signals are present: Debug/telemetry controls identified.`
-- RCAF Prompt: `As a feature-flag validation operator, validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 }). Verify debug/telemetry controls identified. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 }).`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Debug/telemetry controls identified
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates 6. Debug and Telemetry for `EX-033`. It focuses on Obser
 ### Prompt
 
 ```
-As a feature-flag validation operator, validate Observability toggle check against memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 }). Verify debug/telemetry controls identified. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TRIGGER_MATCHER telemetry opt-in inert flags", limit:20 }).
 ```
 
 ### Commands

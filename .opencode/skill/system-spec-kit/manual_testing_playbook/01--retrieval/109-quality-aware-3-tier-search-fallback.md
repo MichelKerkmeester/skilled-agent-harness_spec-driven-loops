@@ -17,7 +17,7 @@ This scenario validates Quality-aware 3-tier search fallback for `109`. It focus
 
 - Objective: Confirm multi-tier degradation chain triggers correctly via Stage 1 pipeline and enriches once after final tier selection.
 - Real user request: `Please validate Quality-aware 3-tier search fallback against collectRawCandidates() and tell me whether the expected signals are present: Tier 1 runs with minSimilarity=0.3; checkDegradation() evaluates quality (topScore < 0.02 AND relativeGap < 0.2, OR resultCount < 3); Tier 2 widens within the allowed channel set at minSimilarity=0.1; per-tier collection stops after fusion; reranking/co-activation/token budget execution happens once on the final merged candidate set; structural fallback fires only for still-allowed lexical channels when both tiers fail; SPECKIT_SEARCH_FALLBACK=false disables quality-checked tiering in favor of two-pass adaptive.`
-- RCAF Prompt: `As a retrieval validation operator, validate Quality-aware 3-tier search fallback against collectRawCandidates(). Verify multi-tier degradation chain triggers correctly via Stage 1 pipeline and enriches once after final tier selection. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate quality-aware 3-tier search fallback and confirm degradation, tier widening, and final enrichment behave correctly.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Tier 1 runs with minSimilarity=0.3; checkDegradation() evaluates quality (topScore < 0.02 AND relativeGap < 0.2, OR resultCount < 3); Tier 2 widens within the allowed channel set at minSimilarity=0.1; per-tier collection stops after fusion; reranking/co-activation/token budget execution happens once on the final merged candidate set; structural fallback fires only for still-allowed lexical channels when both tiers fail; SPECKIT_SEARCH_FALLBACK=false disables quality-checked tiering in favor of two-pass adaptive
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates Quality-aware 3-tier search fallback for `109`. It focus
 
 ### Prompt
 
-```
-As a retrieval validation operator, confirm multi-tier degradation chain triggers correctly against collectRawCandidates(). Verify tier 1 runs with minSimilarity=0.3; checkDegradation evaluates quality; Tier 2 widens within the allowed channel set; per-tier collection stops after fusion; enrichment runs once on the final merged candidate set; lexical structural fallback respects caller-disabled channels; flag=false switches to two-pass adaptive. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate quality-aware 3-tier search fallback and confirm degradation, tier widening, and final enrichment behave correctly.`
 
 ### Commands
 

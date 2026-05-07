@@ -24,7 +24,7 @@ This scenario validates the phase 017 JSON-primary deprecation posture. It confi
 
 - Objective: Verify JSON-primary preference without removing positional file input support.
 - Real user request: `Please validate JSON-primary deprecation posture against the documented validation surface and tell me whether the expected signals are present: Path 1 exits 0, Path 2 exits 0, Path 3 exits 0.`
-- RCAF Prompt: `As a tooling validation operator, validate JSON-primary deprecation posture against the documented validation surface. Verify jSON-primary preference without removing positional file input support. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate JSON-primary deprecation posture against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Path 1 exits 0, Path 2 exits 0, Path 3 exits 0
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -37,7 +37,7 @@ This scenario validates the phase 017 JSON-primary deprecation posture. It confi
 ### Prompt
 
 ```
-Test the generate-context.js save paths: (1) --json with valid structured payload should succeed, (2) --stdin with valid structured payload should succeed, and (3) direct positional JSON file input should still succeed on the same structured path. Return a pass/fail verdict for each path.
+Validate JSON-primary deprecation posture against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

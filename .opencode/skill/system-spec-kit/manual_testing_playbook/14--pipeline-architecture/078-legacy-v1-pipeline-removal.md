@@ -17,7 +17,7 @@ This scenario validates Legacy V1 pipeline removal for `078`. It focuses on Conf
 
 - Objective: Confirm V2-only runtime.
 - Real user request: `Please validate Legacy V1 pipeline removal against the documented validation surface and tell me whether the expected signals are present: V1 pipeline symbols absent from codebase; all queries route through V2 pipeline; no V1 fallback paths remain.`
-- RCAF Prompt: `As a pipeline validation operator, validate Legacy V1 pipeline removal against the documented validation surface. Verify v1 pipeline symbols absent from codebase; all queries route through V2 pipeline; no V1 fallback paths remain. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate legacy V1 pipeline removal against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: V1 pipeline symbols absent from codebase; all queries route through V2 pipeline; no V1 fallback paths remain
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Legacy V1 pipeline removal for `078`. It focuses on Conf
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm V2-only runtime against the documented validation surface. Verify v1 pipeline symbols absent from codebase; all queries route through V2 pipeline; no V1 fallback paths remain. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate legacy V1 pipeline removal against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

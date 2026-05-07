@@ -17,7 +17,7 @@ This scenario validates Chunk ordering preservation (B2) for `051`. It focuses o
 
 - Objective: Confirm ordered reassembly.
 - Real user request: `Please validate Chunk ordering preservation (B2) against the documented validation surface and tell me whether the expected signals are present: Collapsed chunks reassembled in original document order; marker sequence preserved; no reordering artifacts.`
-- RCAF Prompt: `As a pipeline validation operator, validate Chunk ordering preservation (B2) against the documented validation surface. Verify collapsed chunks reassembled in original document order; marker sequence preserved; no reordering artifacts. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate chunk ordering preservation (B2) against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Collapsed chunks reassembled in original document order; marker sequence preserved; no reordering artifacts
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Chunk ordering preservation (B2) for `051`. It focuses o
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm ordered reassembly against the documented validation surface. Verify collapsed chunks reassembled in original document order; marker sequence preserved; no reordering artifacts. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate chunk ordering preservation (B2) against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

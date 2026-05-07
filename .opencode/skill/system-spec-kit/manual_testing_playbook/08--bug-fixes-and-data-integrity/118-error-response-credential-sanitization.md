@@ -17,7 +17,7 @@ This scenario validates credential sanitization in MCP tool error responses. It 
 
 - Objective: Verify credential patterns are stripped from error responses.
 - Real user request: `Please validate Error response credential sanitization against the documented validation surface and tell me whether the expected signals are present: All credential patterns replaced with [REDACTED]; error codes and provider names preserved; nested objects and arrays also sanitized.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Error response credential sanitization against the documented validation surface. Verify credential patterns are stripped from error responses. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate error response credential sanitization and confirm credentials are redacted while codes, providers, and nested structures remain safe.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All credential patterns replaced with [REDACTED]; error codes and provider names preserved; nested objects and arrays also sanitized
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates credential sanitization in MCP tool error responses. It 
 ### Prompt
 
 ```
-As a data-integrity validation operator, verify credentials stripped from error responses against the documented validation surface. Verify all credential patterns replaced with [REDACTED]; error codes and provider names preserved; nested objects sanitized. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate error response credential sanitization and confirm credentials are redacted while codes, providers, and nested structures remain safe.
 ```
 
 ### Commands

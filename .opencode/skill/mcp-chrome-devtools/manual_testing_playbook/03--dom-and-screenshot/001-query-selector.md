@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `BDG-008` and confirm th
 
 - Objective: Verify `bdg dom query "h1"` returns non-empty output containing "Example Domain".
 - Real user request: `"Get the h1 from example.com."`
-- RCAF Prompt: `As a manual-testing orchestrator, query the page for h1 elements through the bdg CLI against an active session on https://example.com. Verify output contains the h1 text. Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `Get the h1 from https://example.com and confirm the text is returned.`
 - Expected execution process: assumes active session on `https://example.com` (BDG-002 prerequisite); run a single query.
 - Expected signals: `bdg dom query "h1"` exits 0 with non-empty output; output contains "Example Domain".
 - Desired user-visible outcome: A short report quoting the captured h1 text with a PASS verdict.
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `BDG-008` and confirm th
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, query the page for h1 elements through the bdg CLI against an active session on https://example.com. Verify output contains the h1 text. Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `Get the h1 from https://example.com and confirm the text is returned.`
 
 ### Commands
 

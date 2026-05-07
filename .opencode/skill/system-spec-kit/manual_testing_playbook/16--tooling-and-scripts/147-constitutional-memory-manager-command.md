@@ -16,7 +16,7 @@ This scenario validates Constitutional memory manager command for `147`. It focu
 
 - Objective: Verify `/memory:learn` flows and active docs all reflect the constitutional-only workflow.
 - Real user request: `Please validate Constitutional memory manager command against /memory:learn and tell me whether the expected signals are present: Constitutional memory manager.`
-- RCAF Prompt: `As a tooling validation operator, validate Constitutional memory manager command against /memory:learn. Verify /memory:learn flows and active docs all reflect the constitutional-only workflow. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Constitutional memory manager command against /memory:learn and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Constitutional memory manager
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Constitutional memory manager command for `147`. It focu
 ### Prompt
 
 ```
-Validate /memory:learn constitutional manager flow and documentation consistency. Capture the evidence needed to prove Constitutional memory manager. Return a concise user-facing pass/fail verdict with the main reason.
+Validate Constitutional memory manager command against /memory:learn and report cited pass/fail evidence.
 ```
 
 ### Commands

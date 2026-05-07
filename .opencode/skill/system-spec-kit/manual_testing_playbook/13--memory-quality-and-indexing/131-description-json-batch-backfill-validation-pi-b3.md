@@ -17,7 +17,7 @@ This scenario validates Description.json batch backfill validation (PI-B3) for `
 
 - Objective: Confirm batch-generated folder descriptions exist and conform to schema.
 - Real user request: `` Please validate Description.json batch backfill validation (PI-B3) against specId and tell me whether the expected signals are present: Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Description.json batch backfill validation (PI-B3) against specId. Verify batch-generated folder descriptions exist and conform to schema. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate description.json batch backfill schema coverage.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with `specId` string, `parentChain` array of strings, and `memorySequence` number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Description.json batch backfill validation (PI-B3) for `
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm batch-generated folder descriptions exist and conform to schema against specId. Verify description.json coverage stays in parity with the current active spec inventory; all JSON files parse without syntax errors; C1 field-type checks pass with specId string, parentChain array of strings, and memorySequence number; schema fields are present at varying depths; per-folder files preferred over spec.md fallback. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate description.json batch backfill schema coverage.
 ```
 
 ### Commands

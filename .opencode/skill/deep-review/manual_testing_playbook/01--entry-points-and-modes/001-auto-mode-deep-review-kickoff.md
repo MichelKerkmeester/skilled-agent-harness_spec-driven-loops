@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
 - Real user request: Run a deep review on a spec folder without stopping for approvals and tell me what it will create.
-- Prompt: `As a manual-testing orchestrator, validate the autonomous entrypoint for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-review:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.`
+- Prompt: `Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.`
 - Expected execution process: Inspect the public docs first, then the command entrypoint, then the autonomous YAML workflow so the operator explanation stays anchored in the user-facing contract before the internal workflow contract.
 - Desired user-facing outcome: The user is told exactly how to invoke autonomous mode, that it runs without approval gates, and that it produces a `review/` packet plus `review/review-report.md`.
 - Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the autonomous entrypoint for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-review:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
+Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.
 ### Commands
 1. `bash: rg -n '/spec_kit:deep-review:auto|review/review-report.md|review/iterations' .opencode/skill/deep-review/README.md .opencode/skill/deep-review/references/quick_reference.md`
 2. `bash: sed -n '1,220p' .opencode/command/spec_kit/deep-review.md`

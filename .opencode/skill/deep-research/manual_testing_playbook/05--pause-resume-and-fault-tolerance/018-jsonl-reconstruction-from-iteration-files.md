@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that missing or unusable JSONL can be reconstructed from `iteration-NNN.md` files.
 - Real user request: If the JSONL is unusable but the iteration files still exist, tell me whether the workflow can rebuild state.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the state-reconstruction contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the workflow can scan iteration-NNN.md files, reconstruct JSONL iteration records, and log a state_reconstructed event. Return a concise operator-facing verdict.`
+- Prompt: `Validate JSONL state can be reconstructed from iteration-NNN.md files and logged.`
 - Expected execution process: Inspect the state-format reconstruction section first, then the event schema, then the command troubleshooting and error-handling language.
 - Desired user-visible outcome: The user is told that iteration files can be used to rebuild enough state to continue or synthesize.
 - Expected signals: The reconstruction algorithm scans iteration files, extracts assessment data, writes reconstructed records, and logs a `state_reconstructed` event.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the state-reconstruction contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the workflow can scan iteration-NNN.md files, reconstruct JSONL iteration records, and log a state_reconstructed event. Return a concise operator-facing verdict.
+Validate JSONL state can be reconstructed from iteration-NNN.md files and logged.
 ### Commands
 1. `bash: rg -n 'State Recovery from Iteration Files|state_reconstructed|iterationsRecovered' .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'State file missing|Reconstruct from iteration files' .opencode/command/spec_kit/deep-research.md .opencode/skill/deep-research/README.md`

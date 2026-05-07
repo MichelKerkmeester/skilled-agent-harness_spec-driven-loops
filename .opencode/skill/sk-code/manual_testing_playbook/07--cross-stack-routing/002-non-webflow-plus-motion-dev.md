@@ -15,7 +15,7 @@ This scenario protects the generic-node guard introduced in Packet 069. A bare M
 
 **Realistic user prompt**:
 ```text
-In a plain static HTML/CSS/JS microsite that is not Webflow, I want to use motion.dev for a hover card and in-view reveal. Which sk-code references would you load and how would you route this?
+For a non-Webflow vanilla JS page, which Motion.dev references and snippets should sk-code load for hover cards and in-view reveal?
 ```
 
 **Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):

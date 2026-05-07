@@ -17,7 +17,7 @@ This scenario validates Content-aware memory filename generation for `199`. It f
 
 - Objective: Verify content-aware slug selection prefers task/session context over folder fallback and keeps same-folder saves distinguishable.
 - Real user request: `` Please validate Content-aware memory filename generation against the documented validation surface and tell me whether the expected signals are present: Preferred slug source order is task -> spec title -> session candidates -> folder base; saved filenames in the same folder differ when task context differs; slug normalization lowercases and hyphenates content-aware names; H1 heading matches `slugToTitle()` output; pathless batch inputs receive distinct synthetic keys. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Content-aware memory filename generation against the documented validation surface. Verify content-aware slug selection prefers task/session context over folder fallback and keeps same-folder saves distinguishable. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate content-aware memory filename generation and slug selection.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Preferred slug source order is task -> spec title -> session candidates -> folder base; saved filenames in the same folder differ when task context differs; slug normalization lowercases and hyphenates content-aware names; H1 heading matches `slugToTitle()` output; pathless batch inputs receive distinct synthetic keys
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Content-aware memory filename generation for `199`. It f
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, verify content-aware slug selection prefers task/session context over folder fallback and keeps same-folder saves distinguishable against the documented validation surface. Verify preferred slug source order is task -> spec title -> session candidates -> folder base; saved filenames in the same folder differ when task context differs; slug normalization lowercases and hyphenates content-aware names; H1 heading matches slugToTitle() output; pathless batch inputs receive distinct synthetic keys. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate content-aware memory filename generation and slug selection.
 ```
 
 ### Commands

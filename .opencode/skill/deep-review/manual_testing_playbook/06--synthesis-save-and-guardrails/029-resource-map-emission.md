@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify synthesis emits `review/resource-map.md` from converged review deltas.
 - Real user request: When deep review converges, show me the flat file ledger and confirm I can suppress it for one run.
-- Prompt: `As a manual-testing orchestrator, validate the review resource-map emission contract for deep-review against the current command entrypoint, YAML workflow, reducer, shared extractor, and docs. Verify synthesis emits review/resource-map.md from delta evidence, the map carries per-file P0/P1/P2 counts in a template-shaped output, and --no-resource-map disables the write cleanly. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review resource-map emission and report whether --no-resource-map disables the write cleanly.`
 - Expected execution process: Inspect the docs and workflow first, then run the shared extractor or reducer emission path on representative deltas, then exercise the opt-out branch.
 - Desired user-facing outcome: The user is told where `resource-map.md` appears, what it summarizes, and how to skip it.
 - Expected signals: The synthesis workflow contains an emission step, the reducer supports `--emit-resource-map`, the shared extractor renders template categories with finding counts, and config opt-out skips cleanly.
@@ -43,7 +43,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short operator-facing explanation, not just raw implementation notes.
 
 ### Prompt
-
+Validate deep-review resource-map emission and report whether --no-resource-map disables the write cleanly.
 As a manual-testing orchestrator, validate the review resource-map emission contract for deep-review against the current command entrypoint, YAML workflow, reducer, shared extractor, and docs. Verify synthesis emits review/resource-map.md from delta evidence, the map carries per-file P0/P1/P2 counts in a template-shaped output, and --no-resource-map disables the write cleanly. Return a concise operator-facing verdict.
 
 ### Commands

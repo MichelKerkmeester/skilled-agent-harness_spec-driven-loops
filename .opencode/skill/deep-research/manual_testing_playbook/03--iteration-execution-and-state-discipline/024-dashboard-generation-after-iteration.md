@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify dashboard.md is auto-generated after iteration evaluation with correct content.
 - Real user request: After an iteration completes, can I see a summary of where the research stands?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the dashboard generation contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the dashboard file is created at the correct path, contains the required sections (iteration table, question status, trend, dead ends, next focus, active risks), and is regenerated after each iteration. Return a concise operator-facing verdict.`
+- Prompt: `Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.`
 - Expected execution process: Inspect the loop protocol for Step 4a, then the state format dashboard section, then the dashboard template asset, then the YAML workflow step.
 - Desired user-visible outcome: The user can open `research/deep-research-dashboard.md` after any iteration and see an up-to-date summary of the research session.
 - Expected signals: `research/deep-research-dashboard.md` exists after at least one iteration completes, contains an iteration table, question status with X/Y answered, trend with last 3 newInfoRatio values, dead ends consolidated from ruledOut data, next focus from strategy.md, and active risks.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the dashboard generation contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the dashboard file is created at the correct path, contains the required sections (iteration table, question status, trend, dead ends, next focus, active risks), and is regenerated after each iteration. Return a concise operator-facing verdict.
+Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.
 ### Commands
 1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .opencode/skill/deep-research/references/state_format.md`

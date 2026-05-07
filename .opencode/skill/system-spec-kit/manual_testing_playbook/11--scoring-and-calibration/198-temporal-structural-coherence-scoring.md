@@ -17,7 +17,7 @@ This scenario validates temporal-structural coherence scoring for `198`. It focu
 
 - Objective: Confirm structural penalties, bounded coherence deductions, and immediate retry behavior in the quality loop.
 - Real user request: `Please validate Temporal-structural coherence scoring against the documented validation surface and tell me whether the expected signals are present: structural checks evaluate non-empty content, minimum-length thresholds, and Markdown heading presence; future-dated completion claims reduce coherence; self-referential or unresolved causal links reduce coherence; sufficiently low coherence can trigger quality-loop rejection; verify-fix-verify retries remain immediate with no backoff and stay within the configured retry limit.`
-- RCAF Prompt: `As a scoring validation operator, validate Temporal-structural coherence scoring against the documented validation surface. Verify structural penalties, bounded coherence deductions, and immediate retry behavior in the quality loop. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate temporal-structural coherence scoring, including bounded deductions and retry behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: structural checks evaluate non-empty content, minimum-length thresholds, and Markdown heading presence; future-dated completion claims reduce coherence; self-referential or unresolved causal links reduce coherence; sufficiently low coherence can trigger quality-loop rejection; verify-fix-verify retries remain immediate with no backoff and stay within the configured retry limit
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates temporal-structural coherence scoring for `198`. It focu
 ### Prompt
 
 ```
-As a scoring validation operator, confirm structural penalties, bounded coherence deductions, and immediate retry behavior in the quality loop against the documented validation surface. Verify structural checks evaluate content presence, minimum length, and headings; future-dated completion claims reduce coherence; self-referential or unresolved causal links reduce coherence; low-coherence variants are rejected or downgraded; retry attempts are immediate and bounded. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate temporal-structural coherence scoring, including bounded deductions and retry behavior.
 ```
 
 ### Commands

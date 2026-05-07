@@ -17,7 +17,7 @@ This scenario validates Scoring and ranking corrections for `066`. It focuses on
 
 - Objective: Confirm Sprint 8 scoring fixes.
 - Real user request: `Please validate Scoring and ranking corrections against the documented validation surface and tell me whether the expected signals are present: Score values fall within expected ranges; ranking order matches relevance; no score inversions or NaN values.`
-- RCAF Prompt: `As a scoring validation operator, validate Scoring and ranking corrections against the documented validation surface. Verify score values fall within expected ranges; ranking order matches relevance; no score inversions or NaN values. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate scoring and ranking corrections for score ranges, relevance order, inversions, and NaN values.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Score values fall within expected ranges; ranking order matches relevance; no score inversions or NaN values
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Scoring and ranking corrections for `066`. It focuses on
 ### Prompt
 
 ```
-As a scoring validation operator, confirm Sprint 8 scoring fixes against the documented validation surface. Verify score values fall within expected ranges; ranking order matches relevance; no score inversions or NaN values. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate scoring and ranking corrections for score ranges, relevance order, inversions, and NaN values.
 ```
 
 ### Commands

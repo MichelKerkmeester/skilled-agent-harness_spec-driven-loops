@@ -17,7 +17,7 @@ This scenario validates /memory:search command routing for `185`. It focuses on 
 
 - Objective: Verify `/memory:search` command routing logic covers no-args interactive prompt, query-based retrieval mode with intent detection, and all analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard).
 - Real user request: `Please validate /memory:search command routing against /memory:search and tell me whether the expected signals are present: No-args triggers interactive intent prompt; query text triggers retrieval mode with intent detection; analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard) each route to the correct tool.`
-- RCAF Prompt: `As a retrieval validation operator, validate /memory:search command routing against /memory:search. Verify /memory:search command routing logic covers no-args interactive prompt, query-based retrieval mode with intent detection, and all analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard). Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate /memory:search routing and confirm interactive, retrieval, and analysis subcommands reach the correct paths.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: No-args triggers interactive intent prompt; query text triggers retrieval mode with intent detection; analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard) each route to the correct tool
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates /memory:search command routing for `185`. It focuses on 
 
 ### Prompt
 
-```
-As a retrieval validation operator, verify /memory:search command routing logic covers no-args, retrieval, and analysis modes against /memory:search. Verify no-args triggers interactive intent prompt; query text triggers retrieval mode with intent detection; analysis subcommands each route to the correct tool. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate /memory:search routing and confirm interactive, retrieval, and analysis subcommands reach the correct paths.`
 
 ### Commands
 

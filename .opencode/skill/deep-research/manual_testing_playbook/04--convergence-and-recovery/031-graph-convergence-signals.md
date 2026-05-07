@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: Convergence math votes STOP.
 - Then: STOP is blocked because the `sourceDiversity` gate failed, and blocked-stop evidence is recorded.
 - Real user request: If the research math says stop but the evidence still comes from too few sources, what actually prevents the loop from ending?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the graph stop-blocking guard contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify SOURCE_DIVERSITY_THRESHOLD = 0.4 blocks STOP when unmet, and that the research convergence reference records blocked-stop persistence with stopReason: "blockedStop" when legal-stop gates fail. Return a concise operator-facing verdict.`
+- Prompt: `Validate source-diversity threshold blocks STOP and records blockedStop persistence.`
 - Expected execution process: Inspect the graph convergence helper for the threshold and gate logic first, then the deep-research convergence reference for blocked-stop persistence and graph-aware legal-stop behavior.
 - Desired user-visible outcome: The user gets a precise explanation that graph guards veto premature STOP decisions and that blocked-stop state is persisted for recovery.
 - Expected signals: `SOURCE_DIVERSITY_THRESHOLD = 0.4`; `evaluateGraphGates()` fails `sourceDiversity` when below threshold; research convergence docs map failed legal-stop gates to `stopReason: "blockedStop"` and `blocked_stop` persistence.
@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the graph stop-blocking guard contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify SOURCE_DIVERSITY_THRESHOLD = 0.4 blocks STOP when unmet, and that the research convergence reference records blocked-stop persistence with stopReason: "blockedStop" when legal-stop gates fail. Return a concise operator-facing verdict.
+Validate source-diversity threshold blocks STOP and records blockedStop persistence.
 ### Commands
 1. `bash: rg -n 'SOURCE_DIVERSITY_THRESHOLD|evaluateGraphGates|sourceDiversityGate|allPass' .opencode/skill/system-spec-kit/scripts/lib/coverage-graph-convergence.cjs`
 2. `bash: rg -n 'blockedStop|blocked_stop|graph-aware convergence|graphEvents|sourceDiversity' .opencode/skill/deep-research/references/convergence.md`

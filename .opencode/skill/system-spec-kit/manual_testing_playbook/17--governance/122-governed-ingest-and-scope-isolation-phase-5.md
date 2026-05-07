@@ -17,7 +17,7 @@ This scenario validates Governed ingest and scope isolation (Phase 5) for `122`.
 
 - Objective: Confirm governed saves require provenance and scope markers and scoped retrieval blocks cross-actor leakage.
 - Real user request: `` Please validate Governed ingest and scope isolation (Phase 5) against memory_save() and tell me whether the expected signals are present: agentId,sessionId,provenanceSource,provenanceActor}` metadata 3) Query with matching scope and verify hit appears 4) Query with mismatched user/agent or tenant and verify hit is filtered out 5) Review `governance_audit` rows. ``
-- RCAF Prompt: `As a governance validation operator, validate Governed ingest and scope isolation (Phase 5) against memory_save(). Verify governed saves require provenance and scope markers and scoped retrieval blocks cross-actor leakage. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate governed ingest and scope isolation against memory_save(), including provenance rejection, scoped retrieval, leakage blocking, and audit rows.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: agentId,sessionId,provenanceSource,provenanceActor}` metadata 3) Query with matching scope and verify hit appears 4) Query with mismatched user/agent or tenant and verify hit is filtered out 5) Review `governance_audit` rows
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Governed ingest and scope isolation (Phase 5) for `122`.
 ### Prompt
 
 ```
-As a governance validation operator, confirm governed saves require provenance and scope markers and scoped retrieval blocks cross-actor leakage against `memory_save()`. Verify governed ingest rejects missing provenance, a correctly scoped save is retrievable within scope, mismatched user, agent, or tenant queries are filtered out, and `governance_audit` rows capture the allow or deny decisions. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate governed ingest and scope isolation against memory_save(), including provenance rejection, scoped retrieval, leakage blocking, and audit rows.
 ```
 
 ### Commands

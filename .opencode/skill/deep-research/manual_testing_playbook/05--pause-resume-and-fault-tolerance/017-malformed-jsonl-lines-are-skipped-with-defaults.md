@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that malformed JSONL lines are skipped and missing fields are defaulted instead of crashing the loop.
 - Real user request: If one line in the JSONL is broken, I want to know whether the whole loop dies or keeps going safely.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the JSONL fault-tolerance contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify malformed lines are skipped, missing fields are defaulted, and a warning is emitted instead of crashing the loop. Return a concise operator-facing verdict.`
+- Prompt: `Validate malformed JSONL lines are skipped with defaults and warnings instead of crashing the loop.`
 - Expected execution process: Inspect the state-format fault-tolerance rules, then the convergence reader guidance, then the README troubleshooting notes.
 - Desired user-visible outcome: The user is told that malformed JSONL lines are handled defensively and do not automatically kill the loop.
 - Expected signals: Per-line parse protection exists, defaults are specified, skipped-line warnings are documented, and convergence operates on valid entries only.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the JSONL fault-tolerance contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify malformed lines are skipped, missing fields are defaulted, and a warning is emitted instead of crashing the loop. Return a concise operator-facing verdict.
+Validate malformed JSONL lines are skipped with defaults and warnings instead of crashing the loop.
 ### Commands
 1. `bash: rg -n 'Fault Tolerance|skip malformed|defaults|Warning:' .opencode/skill/deep-research/references/state_format.md .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'missing_newInfoRatio|malformed|skipped' .opencode/skill/deep-research/references/state_format.md`

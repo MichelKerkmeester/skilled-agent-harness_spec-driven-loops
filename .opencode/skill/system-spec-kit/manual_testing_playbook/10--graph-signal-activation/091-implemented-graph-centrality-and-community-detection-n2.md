@@ -17,7 +17,7 @@ This scenario validates Implemented: graph centrality and community detection (N
 
 - Objective: Confirm deferred->implemented status.
 - Real user request: `Please validate Implemented: graph centrality and community detection (N2) against the documented validation surface and tell me whether the expected signals are present: N2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Implemented: graph centrality and community detection (N2) against the documented validation surface. Verify n2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate graph centrality and community detection and cite N2 tables, active flags, and score contribution evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: N2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Implemented: graph centrality and community detection (N
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm deferred->implemented status against the documented validation surface. Verify n2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate graph centrality and community detection and cite N2 tables, active flags, and score contribution evidence.
 ```
 
 ### Commands

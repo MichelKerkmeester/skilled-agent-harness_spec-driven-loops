@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that "thought" iterations are handled correctly in convergence.
 - Real user request: If the agent spends an iteration just thinking and synthesizing without searching, how does convergence count it?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the thought-status convergence contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify state_format.md defines "thought" as a valid iteration status marking analytical-only iterations, that convergence.md documents how thought iterations are excluded from stuck counting and the rolling average, and that SKILL.md lists it in the status taxonomy. Return a concise operator-facing verdict.`
+- Prompt: `Validate thought-status iterations are excluded from stuck counting and rolling convergence averages.`
 - Expected execution process: Inspect the state format reference for the thought status definition, then the convergence reference for its handling in the shouldContinue algorithm, then the SKILL.md for the iteration status summary.
 - Desired user-visible outcome: The user understands that a thought iteration is recognized as deliberate meta-reasoning and is excluded from both stuck counting and the rolling newInfoRatio average.
 - Expected signals: Iteration with status="thought", convergence treats it appropriately (does not count as stuck, does not count toward rolling average).
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the thought-status convergence contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify state_format.md defines "thought" as a valid iteration status marking analytical-only iterations, that convergence.md documents how thought iterations are excluded from stuck counting and the rolling average, and that SKILL.md lists it in the status taxonomy. Return a concise operator-facing verdict.
+Validate thought-status iterations are excluded from stuck counting and rolling convergence averages.
 ### Commands
 1. `bash: rg -n 'thought' .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'thought\|rolling.average\|stuckCount' .opencode/skill/deep-research/references/convergence.md`

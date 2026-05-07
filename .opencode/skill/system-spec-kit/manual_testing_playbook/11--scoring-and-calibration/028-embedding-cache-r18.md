@@ -17,7 +17,7 @@ This scenario validates Embedding cache (R18) for `028`. It focuses on Confirm c
 
 - Objective: Confirm cache hit/miss behavior.
 - Real user request: `Please validate Embedding cache (R18) against the documented validation surface and tell me whether the expected signals are present: Cache hit returns instantly without embedding API call; cache miss triggers embedding; metadata timestamps updated on hit.`
-- RCAF Prompt: `As a scoring validation operator, validate Embedding cache (R18) against the documented validation surface. Verify cache hit returns instantly without embedding API call; cache miss triggers embedding; metadata timestamps updated on hit. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate embedding cache hits, misses, and hit timestamp updates.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Cache hit returns instantly without embedding API call; cache miss triggers embedding; metadata timestamps updated on hit
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Embedding cache (R18) for `028`. It focuses on Confirm c
 ### Prompt
 
 ```
-As a scoring validation operator, confirm cache hit/miss behavior against the documented validation surface. Verify cache hit returns instantly without embedding API call; cache miss triggers embedding; metadata timestamps updated on hit. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate embedding cache hits, misses, and hit timestamp updates.
 ```
 
 ### Commands

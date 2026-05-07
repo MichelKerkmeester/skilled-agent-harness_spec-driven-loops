@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-021` and confirm the
 
 - Objective: Confirm the framework-selection report names the chosen framework, at least one rejected alternative, and a differentiating criterion.
 - Real user request: `Tighten my prompt for code documentation generation — and tell me why you picked the framework you did instead of the others.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's code documentation generation prompt. Verify the framework rationale names the selected framework, at least one rejected alternative, and the criterion that made the selected framework better.`
+- Prompt: `Tighten my code documentation prompt; verify the framework rationale names the choice, a rejected alternative, and the differentiating criterion.`
 - Expected execution process: `@prompt-improver` evaluates framework fit, selects one framework, and includes a why-this-over-alternatives rationale.
 - Expected signals: `FRAMEWORK`, `rejected`, and `reason` fields or equivalent lines.
 - Desired user-visible outcome: Enhanced prompt plus concise framework rationale.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-021` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's code documentation generation prompt. Verify the framework rationale names the selected framework, at least one rejected alternative, and the criterion that made the selected framework better.
+Tighten my code documentation prompt; verify the framework rationale names the choice, a rejected alternative, and the differentiating criterion.
 ```
 
 ### Commands

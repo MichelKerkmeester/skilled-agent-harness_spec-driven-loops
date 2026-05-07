@@ -16,7 +16,7 @@ This scenario validates Hooks barrel + README synchronization for `106`. It focu
 
 - Objective: Confirm hooks index exports and docs cover the finalized modules and contract fields.
 - Real user request: `` Please validate Hooks barrel + README synchronization against the documented validation surface and tell me whether the expected signals are present: Both barrel (`hooks/index.ts`) and README (`hooks/README.md`) reference `mutation-feedback`, `response-hints`, `MutationHookResult`, and `postMutationHooks`. ``
-- RCAF Prompt: `As a runtime-hook validation operator, validate Hooks barrel + README synchronization against the documented validation surface. Verify hooks index exports and docs cover the finalized modules and contract fields. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate hooks barrel and README synchronization for mutation-feedback, response-hints, MutationHookResult, and postMutationHooks.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Both barrel (`hooks/index.ts`) and README (`hooks/README.md`) reference `mutation-feedback`, `response-hints`, `MutationHookResult`, and `postMutationHooks`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

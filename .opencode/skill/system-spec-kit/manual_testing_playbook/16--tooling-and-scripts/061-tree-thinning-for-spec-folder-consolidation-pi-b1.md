@@ -16,7 +16,7 @@ This scenario validates Tree thinning for spec folder consolidation (PI-B1) for 
 
 - Objective: Confirm small-file merge thinning.
 - Real user request: `Please validate Tree thinning for spec folder consolidation (PI-B1) against the documented validation surface and tell me whether the expected signals are present: Files below the 150-token small-file threshold merge into consolidated output; no merged parent absorbs more than 3 children; overflow files are kept instead of over-merged; token count is reduced; large files are left untouched; merge preserves content integrity.`
-- RCAF Prompt: `As a tooling validation operator, validate Tree thinning for spec folder consolidation (PI-B1) against the documented validation surface. Verify files below the 150-token small-file threshold merge into consolidated output; no merged parent absorbs more than 3 children; overflow files are kept instead of over-merged; token count is reduced; large files are left untouched; merge preserves content integrity. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Tree thinning for spec folder consolidation (PI-B1) against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Files below the 150-token small-file threshold merge into consolidated output; no merged parent absorbs more than 3 children; overflow files are kept instead of over-merged; token count is reduced; large files are left untouched; merge preserves content integrity
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Tree thinning for spec folder consolidation (PI-B1) for 
 ### Prompt
 
 ```
-As a tooling validation operator, confirm small-file merge thinning against the documented validation surface. Verify files below the 150-token small-file threshold merge into consolidated output; no merged parent absorbs more than 3 children; overflow files are kept instead of over-merged; token count is reduced; large files are left untouched; merge preserves content integrity. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Tree thinning for spec folder consolidation (PI-B1) against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINE
 
 - Objective: Verify shadow scoring produces learned vs manual comparison output.
 - Real user request: `Please validate Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER) against SPECKIT_LEARNED_STAGE2_COMBINER=true and tell me whether the expected signals are present: shadowScore() returns ShadowResult with learnedScore in [0,1], manualScore matching input, and delta = |learned - manual|; trainRegularizedLinearRanker() produces valid weights; predict() clamps output to [0,1]; flag OFF returns null (no overhead).`
-- RCAF Prompt: `As a scoring validation operator, validate Learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINER) against SPECKIT_LEARNED_STAGE2_COMBINER=true. Verify shadow scoring produces learned vs manual comparison output. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Learned Stage 2 combiner shadow comparisons with SPECKIT_LEARNED_STAGE2_COMBINER enabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: shadowScore() returns ShadowResult with learnedScore in [0,1], manualScore matching input, and delta = |learned - manual|; trainRegularizedLinearRanker() produces valid weights; predict() clamps output to [0,1]; flag OFF returns null (no overhead)
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates learned Stage 2 combiner (SPECKIT_LEARNED_STAGE2_COMBINE
 ### Prompt
 
 ```
-As a scoring validation operator, verify shadow scoring produces comparison output against SPECKIT_LEARNED_STAGE2_COMBINER=true. Verify shadowScore() returns ShadowResult with learnedScore in [0,1], manualScore matching input, delta = abs(learned - manual); null when flag OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Learned Stage 2 combiner shadow comparisons with SPECKIT_LEARNED_STAGE2_COMBINER enabled.
 ```
 
 ### Commands

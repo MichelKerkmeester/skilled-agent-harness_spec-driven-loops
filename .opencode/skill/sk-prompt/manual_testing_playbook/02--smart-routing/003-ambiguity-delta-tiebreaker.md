@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-007` and confirm the
 
 - Objective: Confirm AMBIGUITY_DELTA=1 produces top-2 resource union
 - Real user request: `Improve this prompt and tell me which framework fits — RCAF or COSTAR.`
-- Prompt: `As a prompt engineer, run sk-prompt against operator input crafted so TEXT_ENHANCE and FRAMEWORK intents score within AMBIGUITY_DELTA=1 of each other. Verify the loaded resource set is the union of both intents' RESOURCE_MAP entries, deduplicated.`
+- Prompt: `Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAMEWORK intents load a deduplicated union of resources.`
 - Expected execution process: sk-prompt scores both intents, computes the delta, finds it <= AMBIGUITY_DELTA=1, returns (primary, secondary) tuple, and loads union of RESOURCE_MAP entries with seen-set dedup.
 - Expected signals: `references/depth_framework.md` AND `references/patterns_evaluation.md` both in loaded list with no duplicates.
 - Desired user-visible outcome: Routing trace listing both intents with their scores, plus the deduplicated resource list.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-007` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt against operator input crafted so TEXT_ENHANCE and FRAMEWORK intents score within AMBIGUITY_DELTA=1 of each other. Verify the loaded resource set is the union of both intents' RESOURCE_MAP entries, deduplicated.
+Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAMEWORK intents load a deduplicated union of resources.
 ```
 
 ### Commands

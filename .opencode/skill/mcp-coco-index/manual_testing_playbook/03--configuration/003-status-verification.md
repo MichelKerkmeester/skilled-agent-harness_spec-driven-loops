@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `CFG-003` and confirm th
 
 - Objective: Verify `ccc status` shows indexed file count and chunk count
 - Real user request: `Please verify ccc status shows indexed file count and chunk count.`
-- RCAF Prompt: `As a manual-testing orchestrator, check the CocoIndex Code status for this initialized project against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Output shows numeric file count > 0 and numeric chunk count > 0. Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Verify ccc status shows non-zero file and chunk counts; return pass/fail with reason.`
 - Expected execution process: Run the TEST EXECUTION command sequence for `CFG-003`, capture the listed evidence, compare observed output with the expected signals, and return the verdict to the user.
 - Expected signals: Output shows numeric file count > 0 and numeric chunk count > 0
 - Desired user-visible outcome: A concise user-visible PASS/PARTIAL/FAIL verdict naming whether the scenario satisfied the objective and the main reason.
@@ -39,7 +39,7 @@ Operators run the exact prompt and command sequence for `CFG-003` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CFG-003 | Status verification | Verify `ccc status` shows indexed file count and chunk count | `As a manual-testing orchestrator, check the CocoIndex Code status for this initialized project against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Output shows numeric file count > 0 and numeric chunk count > 0. Return a concise user-visible pass/fail verdict with the main reason.` | 1. `bash: ccc status` -> 2. Verify output contains file count and chunk count | Output shows numeric file count > 0 and numeric chunk count > 0 | Full `ccc status` output | PASS if both counts are present and non-zero; PARTIAL if only one count is visible but status still succeeds; FAIL if status command errors or shows zero counts | Run `ccc index` to populate index; check daemon connectivity; verify `.cocoindex_code/` exists |
+| CFG-003 | Status verification | Verify `ccc status` shows indexed file count and chunk count | `Verify ccc status shows non-zero file and chunk counts; return pass/fail with reason.` | 1. `bash: ccc status` -> 2. Verify output contains file count and chunk count | Output shows numeric file count > 0 and numeric chunk count > 0 | Full `ccc status` output | PASS if both counts are present and non-zero; PARTIAL if only one count is visible but status still succeeds; FAIL if status command errors or shows zero counts | Run `ccc index` to populate index; check daemon connectivity; verify `.cocoindex_code/` exists |
 
 
 ---

@@ -16,7 +16,7 @@ This scenario validates Context-server success-envelope finalization for `105`. 
 
 - Objective: Confirm `appendAutoSurfaceHints()` runs before budget enforcement and preserves the finalized envelope contract.
 - Real user request: `` Please validate Context-server success-envelope finalization against npx vitest run tests/context-server.vitest.ts and tell me whether the expected signals are present: Context-server suite passes with end-to-end assertions for appended hints, preserved `autoSurfacedContext`, and finalized token metadata. ``
-- RCAF Prompt: `As a runtime-hook validation operator, validate Context-server success-envelope finalization against npx vitest run tests/context-server.vitest.ts. Verify appendAutoSurfaceHints() runs before budget enforcement and preserves the finalized envelope contract. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate context-server success-envelope finalization against tests/context-server.vitest.ts.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Context-server suite passes with end-to-end assertions for appended hints, preserved `autoSurfacedContext`, and finalized token metadata
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

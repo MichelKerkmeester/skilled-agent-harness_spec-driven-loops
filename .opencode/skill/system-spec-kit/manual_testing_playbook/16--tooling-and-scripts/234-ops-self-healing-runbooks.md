@@ -16,7 +16,7 @@ This scenario validates ops self-healing runbooks for `234`. It focuses on confi
 
 - Objective: Confirm runbook listing, metadata lookup, success drills, and escalation drills.
 - Real user request: `` Please validate Ops Self-Healing Runbooks against the documented validation surface and tell me whether the expected signals are present: `list` prints four classes; `show` prints trigger, owner, escalation, and drill command; supported success drills emit recovery payloads; degraded drills emit escalation payloads or non-zero aggregate status. ``
-- RCAF Prompt: `As a tooling validation operator, validate Ops Self-Healing Runbooks against the documented validation surface. Verify runbook listing, metadata lookup, success drills, and escalation drills. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Ops Self-Healing Runbooks against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `list` prints four classes; `show` prints trigger, owner, escalation, and drill command; supported success drills emit recovery payloads; degraded drills emit escalation payloads or non-zero aggregate status
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates ops self-healing runbooks for `234`. It focuses on confi
 ### Prompt
 
 ```
-Validate the ops self-healing runbooks. Capture the evidence needed to prove runbook.sh lists the documented failure classes, show returns owner and escalation metadata, success drills emit RECOVERY_COMPLETE payloads for supported classes, and escalation drills emit bounded ESCALATION payloads for degraded classes. Return a concise user-facing pass/fail verdict with the main reason.
+Validate Ops Self-Healing Runbooks against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

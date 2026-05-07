@@ -16,7 +16,7 @@ This scenario validates Evaluation database and schema (R13-S1) for `005`. It fo
 
 - Objective: Confirm eval data isolation.
 - Real user request: `Please validate Evaluation database and schema (R13-S1) against the documented validation surface and tell me whether the expected signals are present: Eval tables created in separate DB/schema; retrieval events logged without affecting main memory DB.`
-- RCAF Prompt: `As an evaluation validation operator, validate Evaluation database and schema (R13-S1) against the documented validation surface. Verify eval tables created in separate DB/schema; retrieval events logged without affecting main memory DB. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate evaluation database isolation and cite whether eval tables stay separate while retrieval logging leaves the main memory DB untouched.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Eval tables created in separate DB/schema; retrieval events logged without affecting main memory DB
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Evaluation database and schema (R13-S1) for `005`. It fo
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm eval data isolation against the documented validation surface. Verify eval tables created in separate DB/schema; retrieval events logged without affecting main memory DB. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate evaluation database isolation and cite whether eval tables stay separate while retrieval logging leaves the main memory DB untouched.
 ```
 
 ### Commands

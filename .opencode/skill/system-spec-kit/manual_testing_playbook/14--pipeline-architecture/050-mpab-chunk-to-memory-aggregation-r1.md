@@ -17,7 +17,7 @@ This scenario validates MPAB chunk-to-memory aggregation (R1) for `050`. It focu
 
 - Objective: Confirm MPAB formula.
 - Real user request: `Please validate MPAB chunk-to-memory aggregation (R1) against the documented validation surface and tell me whether the expected signals are present: MPAB aggregation formula produces correct parent score from child chunks; manual formula matches computed value.`
-- RCAF Prompt: `As a pipeline validation operator, validate MPAB chunk-to-memory aggregation (R1) against the documented validation surface. Verify mPAB aggregation formula produces correct parent score from child chunks; manual formula matches computed value. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate MPAB chunk-to-memory aggregation (R1) against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: MPAB aggregation formula produces correct parent score from child chunks; manual formula matches computed value
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates MPAB chunk-to-memory aggregation (R1) for `050`. It focu
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm MPAB formula against the documented validation surface. Verify mPAB aggregation formula produces correct parent score from child chunks; manual formula matches computed value. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate MPAB chunk-to-memory aggregation (R1) against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

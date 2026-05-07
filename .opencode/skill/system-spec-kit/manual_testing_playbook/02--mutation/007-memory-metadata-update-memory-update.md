@@ -31,7 +31,7 @@ This scenario validates Memory metadata update (memory_update) for `EX-007`. It 
 ### Prompt
 
 ```
-As a mutation validation operator, validate Metadata + re-embed update against memory_update(id,title,triggers). Verify updated metadata reflected in retrieval. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Memory metadata update (memory_update) against memory_update(id,title,triggers). Verify updated metadata reflected in retrieval. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

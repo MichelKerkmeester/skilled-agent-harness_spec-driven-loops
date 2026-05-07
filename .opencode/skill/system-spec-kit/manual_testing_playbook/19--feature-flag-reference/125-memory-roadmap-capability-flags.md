@@ -26,7 +26,7 @@ A real user does not ask for raw environment-variable proofs. They ask the orche
 
 - Objective: Verify runtime roadmap resolvers use the canonical `SPECKIT_MEMORY_*` keys, remain distinct from live runtime flags, and keep adaptive-ranking defaults off until explicitly enabled.
 - Real user request: `Check whether the spec-doc record roadmap flags still stay separate from live runtime defaults, prove that adaptive ranking stays off by default in roadmap snapshots, and show that the canonical SPECKIT_MEMORY_* flags behave correctly when toggled.`
-- RCAF Prompt: `As a feature-flag validation operator, verify runtime roadmap resolvers use the canonical SPECKIT_MEMORY_* keys, remain distinct from live runtime flags, and keep adaptive-ranking defaults off until explicitly enabled against cd .opencode/skill/system-spec-kit/mcp_server. Verify the first snapshot keeps the scope-governance phase with graph-unified metadata on and adaptive ranking off; the second snapshot reports graph phase with graph-unified metadata off; the third snapshot reports adaptive ranking on; the fourth snapshot confirms canonical opt-out by returning adaptive ranking off. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Check roadmap flags in .opencode/skill/system-spec-kit/mcp_server and verify the four expected SPECKIT_MEMORY_* snapshots.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: first snapshot keeps the `scope-governance` phase with graph-unified metadata on and adaptive ranking off; second snapshot reports `graph` phase with graph-unified metadata off; third snapshot reports adaptive ranking on; fourth snapshot reports adaptive ranking off after the canonical opt-out
 - Desired user-visible outcome: The final response explains that roadmap defaults still stay distinct from live runtime flags and adaptive ranking remains dormant by default until explicitly enabled.
@@ -47,7 +47,7 @@ A real user does not ask for raw environment-variable proofs. They ask the orche
 ### Prompt
 
 ```
-As a feature-flag validation operator, verify runtime roadmap resolvers use the canonical SPECKIT_MEMORY_* keys, remain distinct from live runtime flags, and keep adaptive-ranking defaults off until explicitly enabled against cd .opencode/skill/system-spec-kit/mcp_server. Verify the first snapshot keeps the scope-governance phase with graph-unified metadata on and adaptive ranking off; the second snapshot reports graph phase with graph-unified metadata off; the third snapshot reports adaptive ranking on; the fourth snapshot confirms canonical opt-out by returning adaptive ranking off. Return a concise pass/fail verdict with the main reason and cited evidence.
+Check roadmap flags in .opencode/skill/system-spec-kit/mcp_server and verify the four expected SPECKIT_MEMORY_* snapshots.
 ```
 
 ### Commands

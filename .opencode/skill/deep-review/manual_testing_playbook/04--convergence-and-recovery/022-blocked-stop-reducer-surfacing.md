@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: The operator runs `node .opencode/skill/deep-review/scripts/reduce-state.cjs <spec-folder>`.
 - Then: `deep-review-findings-registry.json` exposes `blockedStopHistory` entries that preserve the review gate names, `deep-review-dashboard.md` renders `BLOCKED STOPS`, and the `ANCHOR:next-focus` block in `deep-review-strategy.md` contains the blocked-stop recovery strategy.
 - Real user request: If review convergence gets blocked, where do I see which review gate failed and what next-focus guidance the reducer surfaced for recovery?
-- Prompt: `As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node .opencode/skill/deep-review/scripts/reduce-state.cjs <spec-folder> on a review packet with at least one blocked_stop event preserves the review gate bundle in blockedStopHistory, renders BLOCKED STOPS in the dashboard, and rewrites the strategy next-focus anchor with the recovery strategy. Return a concise operator-facing verdict.`
+- Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.`
 - Expected execution process: Run the reducer first, then inspect the reducer-owned registry, dashboard, and strategy anchor so the operator can verify both the canonical JSON state and the rendered markdown surfaces.
 - Desired user-facing outcome: The user can point to the exact review gate that blocked STOP and explain which recovery instruction the reducer surfaced next.
 - Expected signals: `blockedStopHistory` is non-empty; review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor contains the blocked-stop recovery strategy.
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short user-facing explanation, not just raw implementation notes.
 
 ### Prompt
-As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node `.opencode/skill/deep-review/scripts/reduce-state.cjs <spec-folder>` on a review packet with at least one `blocked_stop` event preserves the review gate bundle in `blockedStopHistory`, renders `BLOCKED STOPS` in the dashboard, and rewrites the strategy `next-focus` anchor with the recovery strategy. Return a concise operator-facing verdict.
+Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.
 
 ### Commands
 1. `bash: node .opencode/skill/deep-review/scripts/reduce-state.cjs {spec_folder}`

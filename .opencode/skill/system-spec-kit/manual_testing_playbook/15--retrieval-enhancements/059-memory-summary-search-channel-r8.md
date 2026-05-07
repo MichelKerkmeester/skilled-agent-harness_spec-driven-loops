@@ -30,7 +30,7 @@ This scenario validates Memory summary search channel (R8) for `059`. It focuses
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm scale-gated summary channel against the documented validation surface. Verify summary channel activates only above corpus size threshold; channel contributes to fusion when active; channel is inert below threshold. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Memory summary search channel (R8) against the documented validation surface. Verify summary channel activates only above corpus size threshold; channel contributes to fusion when active; channel is inert below threshold. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

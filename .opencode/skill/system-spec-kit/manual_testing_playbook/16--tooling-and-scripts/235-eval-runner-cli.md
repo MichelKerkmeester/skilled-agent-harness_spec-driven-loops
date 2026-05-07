@@ -16,7 +16,7 @@ This scenario validates eval runner CLI for `235`. It focuses on confirming flag
 
 - Objective: Confirm ablation flag gating, provenance preview, channel handling, report output, and artifact persistence.
 - Real user request: `` Please validate Eval Runner CLI against /tmp/ablation-result.json and tell me whether the expected signals are present: mapping preview logs the production DB path and parent-memory count; flag-disabled run exits non-zero with usage guidance; enabled run initializes production and eval DBs; formatted report prints; `/tmp/ablation-result.json` is written. ``
-- RCAF Prompt: `As a tooling validation operator, validate Eval Runner CLI against /tmp/ablation-result.json. Verify ablation flag gating, provenance preview, channel handling, report output, and artifact persistence. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Eval Runner CLI against /tmp/ablation-result.json and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: mapping preview logs the production DB path and parent-memory count; flag-disabled run exits non-zero with usage guidance; enabled run initializes production and eval DBs; formatted report prints; `/tmp/ablation-result.json` is written
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates eval runner CLI for `235`. It focuses on confirming flag
 ### Prompt
 
 ```
-Validate the eval runner CLI. Capture the evidence needed to prove map-ground-truth-ids.ts previews the active parent-memory DB mapping, run-ablation.ts blocks execution unless SPECKIT_ABLATION=true is set, warns or recovers cleanly when invalid channel names are provided, prints a formatted report on success, and writes /tmp/ablation-result.json with script metadata. Flag any token-budget-overflow run that collapses below recallK as investigation-only rather than a clean benchmark. Return a concise user-facing pass/fail verdict with the main reason.
+Validate Eval Runner CLI against /tmp/ablation-result.json and report cited pass/fail evidence.
 ```
 
 ### Commands

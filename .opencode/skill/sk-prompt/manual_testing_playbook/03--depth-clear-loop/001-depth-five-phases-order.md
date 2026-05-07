@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-009` and confirm the
 
 - Objective: Confirm default DEPTH execution follows Discover -> Engineer -> Prototype -> Test -> Harmonize.
 - Real user request: `I'm crafting a prompt to summarize legal contracts — ensure it goes through every DEPTH phase, no shortcuts.`
-- Prompt: `As a prompt engineer, use @prompt-improver to enhance the operator's legal-contract summarization prompt. Verify DEPTH executes Discover, Engineer, Prototype, Test, and Harmonize in that exact order with no skipped phase. Return the enhanced prompt plus a phase-order transparency report.`
+- Prompt: `Improve my legal-contract summarization prompt with @prompt-improver; verify DEPTH runs Discover through Harmonize in order with no skipped phase.`
 - Expected execution process: sk-prompt detects standard enhancement, `@prompt-improver` loads DEPTH and CLEAR references, runs D-E-P-T-H in order, and records one observable result for each phase.
 - Expected signals: Phase log contains Discover before Engineer before Prototype before Test before Harmonize; no missing phase; no duplicate out-of-order phase.
 - Desired user-visible outcome: Enhanced prompt plus transparency report stating `DEPTH phase order: Discover -> Engineer -> Prototype -> Test -> Harmonize`.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-009` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to enhance the operator's legal-contract summarization prompt. Verify DEPTH executes Discover, Engineer, Prototype, Test, and Harmonize in that exact order with no skipped phase. Return the enhanced prompt plus a phase-order transparency report.
+Improve my legal-contract summarization prompt with @prompt-improver; verify DEPTH runs Discover through Harmonize in order with no skipped phase.
 ```
 
 ### Commands

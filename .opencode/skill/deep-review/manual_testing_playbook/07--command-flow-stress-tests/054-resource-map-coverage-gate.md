@@ -24,6 +24,7 @@ Operators run the exact command sequence and verify only file and text signals.
 - Objective: Confirm resource-map presence is persisted in config/state and referenced in strategy or report output.
 - Layer partition: command-flow.
 - Real user request: `Review a target with a declared resource map and prove the coverage gate is visible.`
+- Prompt: `Run the resource-map coverage scenario and prove map evidence changes deep-review state and coverage output.`
 - Expected execution process: create sandbox and spec fixture, add `resource-map.md` plus `applied/T-001.md`, run one traceability iteration, then inspect artifacts.
 - Expected signals: `resource_map_present`, `Resource Map Coverage`, `resource-map.md`, `applied/T-001.md`, `traceability`, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving resource map coverage is not silently skipped.
@@ -85,7 +86,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-054 | RESOURCE_MAP_GATE | Prove map presence changes review state and coverage language | Prompt embedded in §3 command block | Run §3 exactly | Field counts all `1+` | Resource map, applied task, combined artifacts, diffs | PASS if map presence is persisted and coverage gate is named | If absent, inspect `step_detect_resource_map`. If report omits coverage language, inspect synthesis gate. |
+| CP-054 | RESOURCE_MAP_GATE | Prove map presence changes review state and coverage language | `Run the resource-map coverage scenario and prove map evidence changes deep-review state and coverage output.` | Run §3 exactly | Field counts all `1+` | Resource map, applied task, combined artifacts, diffs | PASS if map presence is persisted and coverage gate is named | If absent, inspect `step_detect_resource_map`. If report omits coverage language, inspect synthesis gate. |
 
 ## 4. SOURCE ANCHORS
 

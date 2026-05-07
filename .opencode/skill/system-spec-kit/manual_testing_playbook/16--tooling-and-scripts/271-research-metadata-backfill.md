@@ -16,7 +16,7 @@ This scenario validates the research metadata backfill script for `271`. It focu
 
 - Objective: Verify the research backfill script creates missing `description.json` and `graph-metadata.json` files while leaving complete iteration folders untouched.
 - Real user request: `Please validate Research metadata backfill against scripts/memory/backfill-research-metadata.ts and tell me whether the expected signals are present: missing metadata files created; complete folders unchanged; output identifies only the folders that needed repair.`
-- RCAF Prompt: `As a tooling validation operator, validate Research metadata backfill against scripts/memory/backfill-research-metadata.ts. Verify missing metadata files are created under research iteration folders, complete folders are not rewritten, and canonical save follow-up coverage for research trees is restored. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Research metadata backfill against scripts/memory/backfill-research-metadata.ts and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: missing metadata files created; complete folders unchanged; output identifies only the folders that needed repair
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the research metadata backfill script for `271`. It focu
 ### Prompt
 
 ```
-As a tooling validation operator, validate the research metadata backfill script. Verify missing description.json and graph-metadata.json files are created under research iteration folders, complete folders are not rewritten, and output identifies only the folders that needed repair. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Research metadata backfill against scripts/memory/backfill-research-metadata.ts and report cited pass/fail evidence.
 ```
 
 ### Commands

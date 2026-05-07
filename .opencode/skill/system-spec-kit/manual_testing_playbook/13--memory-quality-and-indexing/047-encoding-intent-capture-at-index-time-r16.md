@@ -17,7 +17,7 @@ This scenario validates Encoding-intent capture at index time (R16) for `047`. I
 
 - Objective: Confirm persisted intent labels.
 - Real user request: `Please validate Encoding-intent capture at index time (R16) against the documented validation surface and tell me whether the expected signals are present: Intent labels (doc/code/structured) persisted in metadata; labels read-only after indexing; varied content types produce correct labels.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Encoding-intent capture at index time (R16) against the documented validation surface. Verify intent labels (doc/code/structured) persisted in metadata; labels read-only after indexing; varied content types produce correct labels. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate encoding-intent capture at index time.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Intent labels (doc/code/structured) persisted in metadata; labels read-only after indexing; varied content types produce correct labels
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Encoding-intent capture at index time (R16) for `047`. I
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm persisted intent labels against the documented validation surface. Verify intent labels (doc/code/structured) persisted in metadata; labels read-only after indexing; varied content types produce correct labels. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate encoding-intent capture at index time.
 ```
 
 ### Commands

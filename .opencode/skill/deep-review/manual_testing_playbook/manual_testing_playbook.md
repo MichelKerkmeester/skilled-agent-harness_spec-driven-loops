@@ -97,7 +97,7 @@ This playbook provides 32 deterministic scenarios across 6 categories validating
 For each executed scenario, check:
 
 1. Preconditions were satisfied (state files initialized, prior review state validated where applicable, scope discovery complete).
-2. The exact RCAF prompt and command sequence were executed against the canonical deep-review surface.
+2. The canonical prompt and command sequence were executed against the canonical deep-review surface.
 3. Expected signals are present in the captured iteration files, JSONL events, and `review-report.md` when produced.
 4. Evidence is complete and readable, including `review-state.jsonl` events and any `graphEvents` arrays the scenario produces.
 5. Outcome rationale is explicit and references the user-visible deliverable named in the scenario.
@@ -151,7 +151,7 @@ This category covers 3 scenario summaries while the linked feature files remain 
 Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the autonomous entrypoint for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-review:auto is documented consistently across the README, quick reference, command entrypoint, and autonomous YAML workflow. Return a concise user-facing pass/fail verdict with the expected artifact summary.
+Prompt: `Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.`
 
 Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
 
@@ -164,7 +164,7 @@ Expected signals: The same autonomous command appears across sources, autonomous
 Verify that `/spec_kit:deep-review:confirm` pauses at each phase for user approval before proceeding.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify entrypoint for deep-review. Confirm that /spec_kit:deep-review:confirm is documented consistently across the README, quick reference, command entrypoint, and confirm YAML workflow, and that approval gates are present at each phase transition. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.`
 
 Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
 
@@ -177,7 +177,7 @@ Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval s
 Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters work and are documented consistently.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the parameter contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify --max-iterations (default 7) and --convergence (default 0.10) are documented consistently across the quick reference, command entrypoint, and both YAML workflows. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.`
 
 Expected signals: Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init.
 
@@ -197,7 +197,7 @@ This category covers 4 scenario summaries while the linked feature files remain 
 Verify that a fresh session creates the canonical config, JSONL, strategy, and iteration directory from the shipped assets.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the fresh-initialization contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify initialization creates review/deep-review-config.json, review/deep-review-state.jsonl, review/deep-review-findings-registry.json, review/deep-review-strategy.md, and review/iterations/ from the live templates. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate fresh deep-review initialization and report whether all canonical review state files are created from live templates.`
 
 Expected signals: The review/ directory is created, config comes from the shared deep-review config template, the findings registry is created from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
 
@@ -210,7 +210,7 @@ Expected signals: The review/ directory is created, config comes from the shared
 Verify that resume detects existing review state and continues from the last completed iteration.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the resume classification contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the step_classify_session logic detects existing config, JSONL, and strategy files in review/ and classifies the session as "resume", skipping to phase_loop. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.`
 
 Expected signals: The classify step checks for config, JSONL, and strategy presence; classifies as "resume" when all three exist and are consistent; and skips to phase_loop.
 
@@ -223,7 +223,7 @@ Expected signals: The classify step checks for config, JSONL, and strategy prese
 Verify that invalid state (missing JSONL, corrupted config, contradictory artifacts) halts with a repair message instead of proceeding.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the invalid-state detection contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_classify_session classifies partial, missing, or contradictory review state as "invalid-state" and halts with a repair message. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.`
 
 Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations; it halts with a descriptive message; the migration step also halts on canonical/legacy conflicts.
 
@@ -236,7 +236,7 @@ Expected signals: The classify step has an explicit "invalid-state" classificati
 Verify that scope discovery resolves target type to a file list and dimensions are ordered by risk priority (Correctness > Security > Traceability > Maintainability).
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the scope discovery and dimension ordering contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_scope_discovery resolves different target types to file lists, and step_order_dimensions orders them as Correctness > Security > Traceability > Maintainability. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review scope discovery and dimension ordering for target resolution and Correctness > Security > Traceability > Maintainability.`
 
 Expected signals: The scope discovery step has resolution rules for each target type (spec-folder, skill, agent, track, files); the dimension ordering step enforces correctness > security > traceability > maintainability; the quick reference dimension table matches.
 
@@ -256,7 +256,7 @@ This category covers 8 scenario summaries while the linked feature files remain 
 Verify that each dispatched @deep-review iteration reads JSONL and strategy state before performing any review actions.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the read-state-first iteration contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop dispatch and the @deep-review agent both require reading JSONL and strategy state before any review actions. Return a concise operator verdict.
+Prompt: `Validate that each deep-review iteration reads JSONL and strategy state before any review actions.`
 
 Expected signals: Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
 
@@ -269,7 +269,7 @@ Expected signals: Loop step order begins with state reads, the quick reference c
 Verify that each iteration writes iteration-NNN.md with P0/P1/P2 findings, appends a JSONL record, and updates the strategy.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the per-iteration write contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify each iteration writes iteration-NNN.md with P0/P1/P2 classified findings, appends a JSONL record with severity counts, and updates deep-review-strategy.md. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.`
 
 Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy; the post-dispatch validation checks for all three; the quick reference checklist documents the same three outputs.
 
@@ -282,7 +282,7 @@ Expected signals: The dispatch prompt requires writing iteration-NNN.md, appendi
 Verify that the strategy rotates through dimensions and respects exhausted approaches.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the dimension rotation contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop manager rotates through dimensions based on the strategy "Next Focus" and that exhausted dimensions are skipped. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.`
 
 Expected signals: The read-state step extracts the next uncovered dimension; the dispatch step injects it as the focus; the strategy template has a "Next Focus" section; the convergence docs require all dimensions to be covered.
 
@@ -295,7 +295,7 @@ Expected signals: The read-state step extracts the next uncovered dimension; the
 Verify that cross-reference checks (spec_code, checklist_evidence, skill_agent protocols) detect misalignment between documentation and implementation.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the cross-reference verification contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify traceability protocols (core: spec_code, checklist_evidence; overlay: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability) are configured in the review config and that the traceability dimension dispatches cross-reference checks. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.`
 
 Expected signals: The config includes crossReference with core and overlay protocols; the dispatch prompt includes traceability constraints; the strategy template tracks cross-reference results; the quality guards require cross-reference checks before convergence.
 
@@ -308,7 +308,7 @@ Expected signals: The config includes crossReference with core and overlay proto
 Verify that the Hunter/Skeptic/Referee adversarial self-check runs on P0 candidates before recording them as confirmed findings.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the adversarial self-check contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify Rule 10 (adversarial self-check on P0 findings) is documented in the SKILL.md rules, enforced in the quick reference iteration checklist, and checked in the YAML post-iteration claim adjudication. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate that deep-review runs adversarial self-checks on P0 findings before accepting them.`
 
 Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0; the iteration checklist includes it as step 5; the YAML has a claim adjudication step that checks for P0/P1 self-check evidence; the agent definitions describe the Hunter/Skeptic/Referee roles.
 
@@ -321,7 +321,7 @@ Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0; th
 Verify that the dashboard with Findings Summary, Progress Table, Coverage, and Trend is generated after each iteration.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the dashboard generation contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_generate_dashboard runs after each iteration, reads from JSONL and strategy, and writes deep-review-dashboard.md with Findings Summary, Progress Table, Coverage, and Trend sections. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review dashboard generation after each iteration from JSONL and strategy state.`
 
 Expected signals: The step_generate_dashboard runs after step_validate_iteration; it reads JSONL and strategy; it writes to deep-review-dashboard.md; the output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
 
@@ -334,7 +334,7 @@ Expected signals: The step_generate_dashboard runs after step_validate_iteration
 Verify that findingsSummary and findingsNew fields in JSONL include P0/P1/P2 counts for every iteration record.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the severity classification JSONL contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify Rule 11 mandates findingsSummary (cumulative) and findingsNew (this iteration) fields with P0/P1/P2 counts in every JSONL iteration record, that the YAML dispatch prompt constrains this, and that the convergence algorithm uses severity weights. Return a concise user-facing pass/fail verdict.
+Prompt: `Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.`
 
 Expected signals: Rule 11 mandates the fields; the YAML dispatch prompt constrains them; the convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0; the P0 override sets newFindingsRatio >= 0.50.
 
@@ -347,7 +347,7 @@ Expected signals: Rule 11 mandates the fields; the YAML dispatch prompt constrai
 verify that a running deep review iteration writes a `graphEvents` array that includes review graph nodes such as `dimension_node`, `file_node`, and `finding_node`.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the structured graphEvents contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware review convergence expects graphEvents in iteration records, and that graph replay tests show review JSONL records carrying dimension_node, file_node, and finding_node entries. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review graphEvents records for dimension, file, and finding nodes in graph-aware review convergence.`
 
 Expected signals: `graphEvents` referenced as iteration-record input for graph-aware review convergence; replay tests include review node-type coverage for `dimension_node`, `file_node`, and `finding_node`.
 
@@ -367,7 +367,7 @@ This category covers 9 scenario summaries while the linked feature files remain 
 Verify review stops at maxIterations (default 7) even if dimensions remain uncovered.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the hard iteration cap contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify maxIterations defaults to 7, that the loop exits unconditionally at that limit regardless of dimension coverage or convergence score, and that synthesis still runs after a hard stop. Return a concise operator-facing verdict.
+Prompt: `Validate the deep-review hard iteration cap and report whether synthesis still runs after maxIterations stops the loop.`
 
 Expected signals: `maxIterations=7` default, unconditional exit at that count, synthesis phase runs after hard stop, review-report.md is still produced.
 
@@ -380,7 +380,7 @@ Expected signals: `maxIterations=7` default, unconditional exit at that count, s
 Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension coverage 0.45) with threshold 0.60.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the composite convergence contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the rolling average signal (weight 0.30, threshold 0.08), MAD noise floor signal (weight 0.25), and dimension coverage signal (weight 0.45, requires all 4 dimensions), their severity-weighted newFindingsRatio calculation, and the >0.60 weighted stop-score threshold. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review composite convergence scoring, including rolling average, MAD noise floor, dimension coverage, and stop threshold.`
 
 Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
 
@@ -393,7 +393,7 @@ Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weig
 Verify new P0 finding sets newFindingsRatio >= 0.50, blocking convergence.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the P0 override contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify any new P0 finding forces newFindingsRatio >= 0.50, that this value is high enough to prevent the composite stop score from reaching the 0.60 threshold, and that this behavior is documented as review-specific. Return a concise operator-facing verdict.
+Prompt: `Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.`
 
 Expected signals: P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal from contributing to convergence, the composite score cannot reach 0.60, and review continues.
 
@@ -406,7 +406,7 @@ Expected signals: P0 finding sets `newFindingsRatio >= 0.50`, this blocks the ro
 Verify 3 binary gates (evidence, scope, coverage) must all pass before STOP.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the quality guard contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify 3 binary gates are enforced before STOP: (1) Evidence gate -- every active finding has file:line evidence and is not inference-only, (2) Scope gate -- findings and reviewed files stay within declared review scope, (3) Coverage gate -- configured dimensions plus required traceability protocols are covered. Verify these gates are distinct from research mode guards. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.`
 
 Expected signals: Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP transition, and gates are review-specific.
 
@@ -419,7 +419,7 @@ Expected signals: Three named binary gates (evidence, scope, coverage), each mus
 Verify stuck recovery switches to least-covered dimension.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the stuck recovery contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when stuckThreshold consecutive iterations produce newFindingsRatio below noProgressThreshold, the loop switches focus to the least-covered review dimension, that this is reflected in strategy.md "Next Focus", and that the stuck event is logged to the JSONL state. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review stuck recovery and report whether the loop switches to the least-covered dimension.`
 
 Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger recovery, `noProgressThreshold=0.05` defines low progress, recovery selects the dimension with the lowest coverage count, strategy.md "Next Focus" is updated, and a stuck event is logged to JSONL.
 
@@ -432,7 +432,7 @@ Expected signals: `stuckThreshold=2` consecutive low-progress iterations trigger
 Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the dimension coverage convergence signal for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered in strategy.md, requires minStabilizationPasses >= 1 (at least one iteration after full coverage where no new dimension-first findings appear), and only then contributes its weight to the composite stop score. Return a concise operator-facing verdict.
+Prompt: `Validate the deep-review dimension coverage convergence signal and its stabilization requirement.`
 
 Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
 
@@ -445,7 +445,7 @@ Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasse
 verify that when review stability signals nominate STOP but graph-backed dimension coverage remains below threshold, the legal-stop gates block premature STOP.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the graph-backed legal-stop gate contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware review convergence tracks graph dimension coverage, and that when legal-stop evaluation fails dimension coverage the review persists blocked-stop state instead of stopping. Return a concise operator-facing verdict.
+Prompt: `Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.`
 
 Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail; graph convergence handler enforces review `dimensionCoverage`; fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
 
@@ -458,7 +458,7 @@ Expected signals: review convergence docs describe `blockedStop` when legal-stop
 verify that a review packet with at least one `blocked_stop` event preserves the review-specific legal-stop bundle in `blockedStopHistory`, renders that blocked-stop evidence in the dashboard, and rewrites the strategy `next-focus` anchor with the recovery strategy.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate blocked-stop reducer surfacing for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify running node .opencode/skill/deep-review/scripts/reduce-state.cjs <spec-folder> on a review packet with at least one blocked_stop event preserves the review gate bundle in blockedStopHistory, renders BLOCKED STOPS in the dashboard, and rewrites the strategy next-focus anchor with the recovery strategy. Return a concise operator-facing verdict.
+Prompt: `Validate blocked-stop reducer surfacing in deep-review dashboard and strategy recovery output.`
 
 Expected signals: `blockedStopHistory` is non-empty; review entries preserve `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, and `hotspotSaturationGate`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor contains the blocked-stop recovery strategy.
 
@@ -471,7 +471,7 @@ Expected signals: `blockedStopHistory` is non-empty; review entries preserve `co
 verify that malformed JSONL blocks the reducer unless `--lenient` is passed, that missing machine-owned anchors block strategy rewrites unless `--create-missing-anchors` is passed, and that `corruptionWarnings` remains visible in reducer-owned state even when lenient recovery is used.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate fail-closed reducer behavior for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify malformed JSONL exits with code 2 unless --lenient is passed, that missing machine-owned anchors throw Missing machine-owned anchor ... unless --create-missing-anchors is used, and that corruptionWarnings remains present after lenient recovery. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.`
 
 Expected signals: corrupt JSONL exits `2` without `--lenient`; `corruptionWarnings` is populated in the registry; missing anchors throw `Missing machine-owned anchor ...`; `--lenient` exits `0` while preserving `corruptionWarnings`; `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
 
@@ -491,7 +491,7 @@ This category covers 4 scenario summaries while the linked feature files remain 
 Verify that the `review/.deep-review-pause` sentinel halts the loop between iterations and logs a pause event.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the pause sentinel contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify {spec_folder}/review/.deep-review-pause is checked between review iterations, that a paused event is emitted to the JSONL state log, and that the loop halts without entering synthesis. Return a concise operator-facing verdict.
+Prompt: `Validate the deep-review pause sentinel and report whether the loop halts before synthesis.`
 
 Expected signals: The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
 
@@ -504,7 +504,7 @@ Expected signals: The sentinel is checked before dispatch, a paused event is log
 Verify removing pause sentinel lets review resume from read-state.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the resume-after-pause contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when the operator removes review/.deep-review-pause, the review loop re-reads deep-review-state.jsonl and deep-review-strategy.md, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review resume after pause removal and report whether the next iteration resumes without replay.`
 
 Expected signals: Removing the sentinel triggers loop re-entry, JSONL is re-read to determine last iteration, strategy.md provides dimension coverage state, no iterations are re-run, and the resume event is logged.
 
@@ -517,7 +517,7 @@ Expected signals: Removing the sentinel triggers loop re-entry, JSONL is re-read
 Verify malformed JSONL lines are skipped gracefully in review state.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the malformed JSONL handling contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when review/deep-review-state.jsonl contains unparseable lines, those lines are skipped without halting the loop, that sensible defaults (e.g., newFindingsRatio = 1.0) are used to prevent premature convergence, and that the skip is logged or visible in the state. Return a concise operator-facing verdict.
+Prompt: `Validate malformed deep-review JSONL handling and report whether bad lines are skipped with safe defaults.`
 
 Expected signals: Malformed lines are skipped (not crash), defaults applied (e.g., `newFindingsRatio = 1.0` to force continuation), iteration count still derived from valid lines, and the skip is observable.
 
@@ -530,7 +530,7 @@ Expected signals: Malformed lines are skipped (not crash), defaults applied (e.g
 Verify JSONL can be reconstructed from review/iterations/ files.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the JSONL reconstruction contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify each review/iterations/iteration-NNN.md file contains sufficient metadata (iteration number, dimension, findings counts, newFindingsRatio) to reconstruct a valid JSONL state log, that the reconstruction path is documented, and that a reconstructed state log allows the review to resume. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review JSONL reconstruction from iteration markdown and report whether resume still works.`
 
 Expected signals: Iteration files contain metadata matching JSONL fields, reconstruction path is documented or derivable, reconstructed JSONL allows loop resume, and iteration files are write-once (immutable after creation).
 
@@ -550,7 +550,7 @@ This category covers 4 scenario summaries while the linked feature files remain 
 Verify review-report.md has all 9 sections: Executive Summary, Planning Trigger, Active Finding Registry, Remediation Workstreams, Spec Seed, Plan Seed, Traceability Status, Deferred Items, Audit Appendix.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the review report synthesis contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify review/review-report.md contains all 9 sections: (1) Executive Summary with verdict and severity counts, (2) Planning Trigger with routing rationale, (3) Active Finding Registry with deduped findings, (4) Remediation Workstreams with grouped action lanes, (5) Spec Seed with minimal spec delta, (6) Plan Seed with action-ready starter, (7) Traceability Status with protocol coverage, (8) Deferred Items with P2 advisories, (9) Audit Appendix with convergence evidence. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review report synthesis and confirm review-report.md contains all 9 required sections.`
 
 Expected signals: All 9 section headers present, Executive Summary contains verdict and P0/P1/P2 counts, Active Finding Registry has deduplicated findings with evidence, and Audit Appendix includes convergence data.
 
@@ -563,7 +563,7 @@ Expected signals: All 9 section headers present, Executive Summary contains verd
 Verify FAIL->plan, CONDITIONAL->plan, PASS->changelog routing with hasAdvisories metadata.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the verdict routing contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify three routing paths: (1) FAIL verdict (active P0 findings or any binary gate failure) routes to /spec_kit:plan for remediation, (2) CONDITIONAL verdict (no P0 but active P1 findings) routes to /spec_kit:plan for fixes, (3) PASS verdict (no P0/P1) routes to /create:changelog with hasAdvisories=true when P2 findings remain. Verify that the verdict and routing are documented in both the review report Executive Summary and the Planning Trigger section. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review verdict routing for FAIL, CONDITIONAL, and PASS post-review workflows.`
 
 Expected signals: Three distinct verdicts, each with a documented next command, `hasAdvisories` flag on PASS with P2 findings, verdict appears in Executive Summary, and routing rationale appears in Planning Trigger.
 
@@ -576,7 +576,7 @@ Expected signals: Three distinct verdicts, each with a documented next command, 
 Verify memory save via generate-context.js after review completion.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the finalization and guardrail contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify synthesis produces canonical review/review-report.md, memory save uses generate-context.js (not manual Write tool), the runtime agent remains LEAF-only (no sub-agent dispatch), and that the review agent does not modify target files under review (read-only contract). Return a concise operator-facing verdict.
+Prompt: `Validate deep-review finalization, memory-save routing, LEAF-only behavior, and read-only target handling.`
 
 Expected signals: Synthesis produces `review/review-report.md`, memory save calls `generate-context.js`, the runtime agent forbids nested delegation (LEAF-only), the agent never modifies files under review (read-only), and memory save uses the spec folder established at setup.
 
@@ -589,7 +589,7 @@ Expected signals: Synthesis produces `review/review-report.md`, memory save call
 Verify finding deduplication uses adjudicated finalSeverity and produces clean registry.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate the finding deduplication contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify during synthesis, findings from all review/iterations/iteration-NNN.md files are compared for duplicates, that duplicate resolution uses adjudicated finalSeverity (taking the highest severity when the same finding appears at different levels), that the Active Finding Registry in review-report.md contains only unique findings with their final severity and evidence, and that deduplication does not discard P0 findings. Return a concise operator-facing verdict.
+Prompt: `Validate deep-review finding deduplication and confirm the active registry preserves unique P0/P1/P2 findings.`
 
 Expected signals: Findings are compared across iterations by location and description, `finalSeverity` is the highest severity encountered, the Active Finding Registry contains unique entries only, P0 findings are never downgraded or discarded, and the registry includes file:line evidence for each finding.
 

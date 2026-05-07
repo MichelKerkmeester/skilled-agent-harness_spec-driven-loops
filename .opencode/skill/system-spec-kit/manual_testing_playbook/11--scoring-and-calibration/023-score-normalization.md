@@ -17,7 +17,7 @@ This scenario validates Score normalization for `023`. It focuses on Confirm bat
 
 - Objective: Confirm batch min-max behavior.
 - Real user request: `Please validate Score normalization against the documented validation surface and tell me whether the expected signals are present: Normalized scores in [0,1] range; min-max normalization correct; equal-score and single-result edge cases handled.`
-- RCAF Prompt: `As a scoring validation operator, validate Score normalization against the documented validation surface. Verify normalized scores in [0,1] range; min-max normalization correct; equal-score and single-result edge cases handled. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Score normalization with range, min-max, equal-score, and single-result evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Normalized scores in [0,1] range; min-max normalization correct; equal-score and single-result edge cases handled
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Score normalization for `023`. It focuses on Confirm bat
 ### Prompt
 
 ```
-As a scoring validation operator, confirm batch min-max behavior against the documented validation surface. Verify normalized scores in [0,1] range; min-max normalization correct; equal-score and single-result edge cases handled. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Score normalization with range, min-max, equal-score, and single-result evidence.
 ```
 
 ### Commands

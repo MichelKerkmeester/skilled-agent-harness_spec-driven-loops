@@ -17,7 +17,7 @@ This scenario validates Auto entity extraction (R10) for `048`. It focuses on Co
 
 - Objective: Confirm entity pipeline persistence.
 - Real user request: `Please validate Auto entity extraction (R10) against the documented validation surface and tell me whether the expected signals are present: Entities extracted and persisted in entity tables; normalization applied (case, aliases); denylist entities excluded.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Auto entity extraction (R10) against the documented validation surface. Verify entities extracted and persisted in entity tables; normalization applied (case, aliases); denylist entities excluded. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate auto entity extraction persistence, normalization, and denylist behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Entities extracted and persisted in entity tables; normalization applied (case, aliases); denylist entities excluded
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Auto entity extraction (R10) for `048`. It focuses on Co
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm entity pipeline persistence against the documented validation surface. Verify entities extracted and persisted in entity tables; normalization applied (case, aliases); denylist entities excluded. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate auto entity extraction persistence, normalization, and denylist behavior.
 ```
 
 ### Commands

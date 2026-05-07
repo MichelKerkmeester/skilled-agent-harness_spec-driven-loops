@@ -16,7 +16,7 @@ This scenario validates the integration sweep authored in packet 013 that closes
 
 - Objective: Verify the deterministic isolated-DB sweep exercises all 4 `fallbackDecision` matrix branches end-to-end without touching the live code-graph DB; Each bucket sets up a fresh tmpdir, swaps the DB singleton via `initDb(tempDir)`, and pins `process.cwd()` to keep the readiness-debounce cache key unique per test.
 - Real user request: `` Please validate Graph degraded stress cell with SPEC_KIT_DB_DIR isolation against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts and tell me whether the expected signals are present: All 4 buckets pass: empty + broad-stale → `nextTool:"code_graph_scan"`; readiness exception → `nextTool:"rg"`; fresh → no `fallbackDecision`; Live `code-graph.sqlite` sha256 byte-equal before and after the sweep (proves `initDb(tmpdir)` + spy isolation works); Suite runtime < 1 second (deterministic, no I/O against the live DB); The dedicated guard test (`does not mutate the live code-graph.sqlite during the sweep`) is wired and passes. ``
-- RCAF Prompt: `As a tooling validation operator, validate the graph degraded stress cell isolation contract against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts. Verify the 4 buckets (empty, broad-stale, readiness exception, fresh) emit the documented fallbackDecision routing, the live code-graph.sqlite is byte-equal sha256 pre/post, and the suite completes in under 1 second. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the graph degraded stress cell isolation contract against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All 4 buckets pass: empty + broad-stale → `nextTool:"code_graph_scan"`; readiness exception → `nextTool:"rg"`; fresh → no `fallbackDecision`; Live `code-graph.sqlite` sha256 byte-equal before and after the sweep (proves `initDb(tmpdir)` + spy isolation works); Suite runtime < 1 second (deterministic, no I/O against the live DB); The dedicated guard test (`does not mutate the live code-graph.sqlite during the sweep`) is wired and passes
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the integration sweep authored in packet 013 that closes
 ### Prompt
 
 ```
-As a tooling validation operator, validate the isolated-DB sweep + live-DB byte-equality guard. Run the vitest, capture sha256 pre/post on the live code-graph.sqlite, assert all 4 buckets pass and bytes unchanged. Return a concise pass/fail verdict.
+Validate the graph degraded stress cell isolation contract against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/code-graph-degraded-sweep.vitest.ts and report cited pass/fail evidence.
 ```
 
 ### Commands

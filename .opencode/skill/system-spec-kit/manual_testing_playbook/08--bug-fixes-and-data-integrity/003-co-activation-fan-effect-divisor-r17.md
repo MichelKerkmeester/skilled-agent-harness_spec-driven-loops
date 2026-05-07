@@ -17,7 +17,7 @@ This scenario validates Co-activation fan-effect divisor (R17) for `003`. It foc
 
 - Objective: Confirm hub dampening.
 - Real user request: `Please validate Co-activation fan-effect divisor (R17) against the documented validation surface and tell me whether the expected signals are present: Hub node score dampened proportionally to fan-out degree; non-hub scores unaffected.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Co-activation fan-effect divisor (R17) against the documented validation surface. Verify hub node score dampened proportionally to fan-out degree; non-hub scores unaffected. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate co-activation fan-effect divisor (R17) and confirm hub scores dampen by fan-out without changing non-hub scores.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Hub node score dampened proportionally to fan-out degree; non-hub scores unaffected
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Co-activation fan-effect divisor (R17) for `003`. It foc
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm hub dampening against the documented validation surface. Verify hub node score dampened proportionally to fan-out degree; non-hub scores unaffected. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate co-activation fan-effect divisor (R17) and confirm hub scores dampen by fan-out without changing non-hub scores.
 ```
 
 ### Commands

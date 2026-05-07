@@ -16,7 +16,7 @@ This scenario validates the post-insert retry budget for `268`. It focuses on pr
 
 - Objective: Verify deferred enrichment retries stop after three `(memoryId, step, reason)` failures, emit structured `retry_attempt` telemetry at each decision point, and reset on success.
 - Real user request: `` Please validate Post-insert retry budget against the deferred enrichment path and tell me whether the expected signals are present: first three retries allowed; fourth skipped; structured exhaustion signal present; `retry_attempt` telemetry emitted with attempt/outcome fields; successful completion clears the spec-doc record-specific budget. ``
-- RCAF Prompt: `As a lifecycle validation operator, validate Post-insert retry budget against the deferred enrichment path. Verify the same unresolved post-insert failure is retried only three times for one memory and step, the fourth attempt is skipped with a structured exhaustion signal, and a successful completion clears the budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the post-insert retry budget, including three allowed retries, fourth-attempt skip, exhaustion telemetry, and reset after success.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: first three retries allowed; fourth skipped; structured exhaustion signal present; `retry_attempt` telemetry emitted with attempt/outcome fields; successful completion clears the spec-doc record-specific budget
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the post-insert retry budget for `268`. It focuses on pr
 ### Prompt
 
 ```
-As a lifecycle validation operator, validate the deferred enrichment retry budget. Verify the same unresolved post-insert failure is retried only three times for one memory and step, the fourth attempt is skipped with a structured exhaustion signal, and a successful completion clears the budget. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the post-insert retry budget, including three allowed retries, fourth-attempt skip, exhaustion telemetry, and reset after success.
 ```
 
 ### Commands

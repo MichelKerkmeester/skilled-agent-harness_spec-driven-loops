@@ -17,7 +17,7 @@ This scenario validates Pre-flight token budget validation (PI-A3) for `041`. It
 
 - Objective: Confirm save-time preflight warn/fail behavior.
 - Real user request: `` Please validate Pre-flight token budget validation (PI-A3) against memory_save({filePath:"<sandbox-file>", dryRun:true}) and tell me whether the expected signals are present: Token estimate is computed before embedding/database writes; near-limit input emits `PF021` warning; over-limit input emits `PF020` failure; behavior follows `MCP_CHARS_PER_TOKEN`, `MCP_MAX_MEMORY_TOKENS`, and `MCP_TOKEN_WARNING_THRESHOLD`. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Pre-flight token budget validation (PI-A3) against memory_save({filePath:"<sandbox-file>", dryRun:true}). Verify token estimate is computed before embedding/database writes; near-limit input emits PF021 warning; over-limit input emits PF020 failure; behavior follows MCP_CHARS_PER_TOKEN, MCP_MAX_MEMORY_TOKENS, and MCP_TOKEN_WARNING_THRESHOLD. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate pre-flight token budget handling in memory_save dry-run.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Token estimate is computed before embedding/database writes; near-limit input emits `PF021` warning; over-limit input emits `PF020` failure; behavior follows `MCP_CHARS_PER_TOKEN`, `MCP_MAX_MEMORY_TOKENS`, and `MCP_TOKEN_WARNING_THRESHOLD`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Pre-flight token budget validation (PI-A3) for `041`. It
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm save-time preflight warn/fail behavior against memory_save({filePath:"<sandbox-file>", dryRun:true}). Verify token estimate is computed before embedding/database writes; near-limit input emits PF021 warning; over-limit input emits PF020 failure; behavior follows MCP_CHARS_PER_TOKEN, MCP_MAX_MEMORY_TOKENS, and MCP_TOKEN_WARNING_THRESHOLD. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate pre-flight token budget handling in memory_save dry-run.
 ```
 
 ### Commands

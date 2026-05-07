@@ -16,7 +16,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-01
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-010`.
 - Real user request: `` Please validate Runtime Lineage Naming Parity against the documented validation surface and tell me whether the expected signals are present: all diff commands produce no output; rg finds no active `research/research.md`. ``
-- RCAF Prompt: `As a tooling validation operator, validate Runtime Lineage Naming Parity against the documented validation surface. Verify all diff commands produce no output; rg finds no active research/research.md. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Runtime Lineage Naming Parity against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: all diff commands produce no output; rg finds no active `research/research.md`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -28,7 +28,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-01
 
 ### Prompt
 
-`As a tooling validation operator, validate Runtime Lineage Naming Parity against the documented validation surface. Verify all diff commands produce no output; rg finds no active research/research.md. Return a concise pass/fail verdict with the main reason and cited evidence.`
+`Validate Runtime Lineage Naming Parity against the documented validation surface and report cited pass/fail evidence.`
 ### Commands
 
 ```bash

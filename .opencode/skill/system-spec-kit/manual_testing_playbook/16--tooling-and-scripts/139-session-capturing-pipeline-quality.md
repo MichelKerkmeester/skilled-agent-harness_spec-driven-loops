@@ -16,7 +16,7 @@ This scenario validates Session capturing pipeline quality for `139`. It focuses
 
 - Objective: Canonical coverage sourced from M-007 session-capturing closure verification.
 - Real user request: `` Please validate Session capturing pipeline quality against the documented validation surface and tell me whether the expected signals are present: Coverage is sourced from the M-007 closure suite, including JSON authority, shipped structured-summary fields (`toolCalls`, `exchanges`), file-backed JSON authority, Phase 018 output-quality hardening, insufficiency rejection, and indexing readiness. ``
-- RCAF Prompt: `As a tooling validation operator, validate Session capturing pipeline quality against the documented validation surface. Verify canonical coverage sourced from M-007 session-capturing closure verification. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Session capturing pipeline quality against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Coverage is sourced from the M-007 closure suite, including JSON authority, shipped structured-summary fields (`toolCalls`, `exchanges`), file-backed JSON authority, Phase 018 output-quality hardening, insufficiency rejection, and indexing readiness
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Session capturing pipeline quality for `139`. It focuses
 ### Prompt
 
 ```
-As a tooling validation operator, validate Canonical coverage sourced from M-007 session-capturing closure verification against the documented validation surface. Verify coverage is sourced from the M-007 closure suite, including JSON authority, shipped structured-summary fields (toolCalls, exchanges), file-backed JSON authority, Phase 018 output-quality hardening, insufficiency rejection, and indexing readiness. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Session capturing pipeline quality against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

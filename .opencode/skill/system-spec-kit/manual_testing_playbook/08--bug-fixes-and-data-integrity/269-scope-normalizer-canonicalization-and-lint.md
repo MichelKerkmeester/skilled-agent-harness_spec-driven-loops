@@ -16,7 +16,7 @@ This scenario validates the canonical scope normalizer and duplicate-helper lint
 
 - Objective: Verify all target callers use `normalizeScopeValue()` and strict validation rejects new duplicate local helpers.
 - Real user request: `Please validate Scope normalizer canonicalization and lint against normalizeScopeValue() and tell me whether the expected signals are present: canonical imports visible at the documented call sites; parity matrix still passes; synthetic duplicate helper fails the lint rule.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Scope normalizer canonicalization and lint against normalizeScopeValue(). Verify the documented callers all import the canonical helper, string and null semantics still match the parity matrix, and validate.sh --strict rejects a synthetic duplicate normalizeScope helper outside scope-governance.ts. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate scope normalizer canonicalization and lint and confirm canonical imports, parity semantics, and duplicate-helper rejection.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: canonical imports visible at the documented call sites; parity matrix still passes; synthetic duplicate helper fails the lint rule
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the canonical scope normalizer and duplicate-helper lint
 ### Prompt
 
 ```
-As a data-integrity validation operator, validate the canonical scope normalizer and duplicate-helper lint. Verify the documented callers all import normalizeScopeValue(), string and null semantics still match the parity matrix, and validate.sh --strict rejects a synthetic duplicate normalizeScope helper outside scope-governance.ts. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate scope normalizer canonicalization and lint and confirm canonical imports, parity semantics, and duplicate-helper rejection.
 ```
 
 ### Commands

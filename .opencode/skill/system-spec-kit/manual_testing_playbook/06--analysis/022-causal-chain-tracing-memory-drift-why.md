@@ -17,7 +17,7 @@ This scenario validates Causal chain tracing (memory_drift_why) for `EX-022`. It
 
 - Objective: Decision why-trace.
 - Real user request: `Please validate Causal chain tracing (memory_drift_why) against memory_drift_why(memoryId,direction:both,maxDepth:4) and tell me whether the expected signals are present: Chain includes expected relations.`
-- RCAF Prompt: `As an analysis validation operator, validate Causal chain tracing (memory_drift_why) against memory_drift_why(memoryId,direction:both,maxDepth:4). Verify chain includes expected relations. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_drift_why returns the expected causal chain relations; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Chain includes expected relations
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Causal chain tracing (memory_drift_why) for `EX-022`. It
 ### Prompt
 
 ```
-As an analysis validation operator, validate Decision why-trace against memory_drift_why(memoryId,direction:both,maxDepth:4). Verify chain includes expected relations. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_drift_why returns the expected causal chain relations; return pass/fail with cited evidence.
 ```
 
 ### Commands

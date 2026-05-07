@@ -16,7 +16,7 @@ This scenario validates Migration checkpoint scripts for `127`. It focuses on Ve
 
 - Objective: Verify raw SQLite migration checkpoint create/restore helpers produce sidecar metadata and safe restore backups.
 - Real user request: `Please validate Migration checkpoint scripts against cd .opencode/skill/system-spec-kit/mcp_server and tell me whether the expected signals are present: Targeted suite passes; transcript shows checkpoint sidecar creation, restore success, and pre-restore backup coverage.`
-- RCAF Prompt: `As a tooling validation operator, validate Migration checkpoint scripts against cd .opencode/skill/system-spec-kit/mcp_server. Verify raw SQLite migration checkpoint create/restore helpers produce sidecar metadata and safe restore backups. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Migration checkpoint scripts against cd .opencode/skill/system-spec-kit/mcp_server and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Targeted suite passes; transcript shows checkpoint sidecar creation, restore success, and pre-restore backup coverage
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Migration checkpoint scripts for `127`. It focuses on Ve
 ### Prompt
 
 ```
-As a tooling validation operator, verify raw SQLite migration checkpoint create/restore helpers produce sidecar metadata and safe restore backups against cd .opencode/skill/system-spec-kit/mcp_server. Verify targeted suite passes; transcript shows checkpoint sidecar creation, restore success, and pre-restore backup coverage. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Migration checkpoint scripts against cd .opencode/skill/system-spec-kit/mcp_server and report cited pass/fail evidence.
 ```
 
 ### Commands

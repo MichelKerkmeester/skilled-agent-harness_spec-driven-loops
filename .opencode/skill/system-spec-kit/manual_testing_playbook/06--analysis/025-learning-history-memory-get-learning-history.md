@@ -17,7 +17,7 @@ This scenario validates Learning history (memory_get_learning_history) for `EX-0
 
 - Objective: Trend review.
 - Real user request: `Please validate Learning history (memory_get_learning_history) against memory_get_learning_history(specFolder,onlyComplete:true) and tell me whether the expected signals are present: Historical entries returned.`
-- RCAF Prompt: `As an analysis validation operator, validate Learning history (memory_get_learning_history) against memory_get_learning_history(specFolder,onlyComplete:true). Verify historical entries returned. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_get_learning_history returns completed learning cycles for the spec folder; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Historical entries returned
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Learning history (memory_get_learning_history) for `EX-0
 ### Prompt
 
 ```
-As an analysis validation operator, validate Trend review against memory_get_learning_history(specFolder,onlyComplete:true). Verify historical entries returned. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_get_learning_history returns completed learning cycles for the spec folder; return pass/fail with cited evidence.
 ```
 
 ### Commands

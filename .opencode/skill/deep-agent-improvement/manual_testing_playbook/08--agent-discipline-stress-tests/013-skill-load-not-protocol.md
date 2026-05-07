@@ -23,7 +23,7 @@ Operators run the exact prompt and command sequence for `CP-040` and confirm the
 
 - Objective: Confirm Call B creates packet-local improvement artifacts, cites helper execution, emits candidate journal boundaries, and leaves the canonical fixture unchanged.
 - Real user request: `Compare generic improvement against deep-agent-improvement protocol execution for the fixture target.`
-- RCAF Prompt:
+- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
 
   Same task body for both calls:
   ```
@@ -84,7 +84,7 @@ grep -c 'Read(".opencode/skill/deep-agent-improvement/SKILL.md")' /tmp/cp-040-B-
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-040 | SKILL_LOAD_NOT_PROTOCOL | Confirm helper execution is proven, not only skill loading | Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox | Run the §3 exact command block | B field counts for helper and journal labels all >= 1; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-040-B-command.txt`, `/tmp/cp-040-B-combined.txt`, `/tmp/cp-040-B-field-counts.txt`, `/tmp/cp-040-B-canonical.diff`, `/tmp/cp-040-tripwire.diff` | PASS if B proves helper and journal boundaries without canonical mutation. FAIL if B treats skill load as enough or writes canonical target | 1. If helper labels are missing, verify command-flow dispatch and helper execution. 2. If candidate journal labels are missing, inspect `/tmp/cp-040-spec/improvement/`. 3. If canonical diff is non-empty, repair proposal-only boundary. 4. If only skill-load text appears, distinguish loading from execution. 5. If tripwire diff is non-empty, inspect project mutation before rerun. |
+| CP-040 | SKILL_LOAD_NOT_PROTOCOL | Confirm helper execution is proven, not only skill loading | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for helper and journal labels all >= 1; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-040-B-command.txt`, `/tmp/cp-040-B-combined.txt`, `/tmp/cp-040-B-field-counts.txt`, `/tmp/cp-040-B-canonical.diff`, `/tmp/cp-040-tripwire.diff` | PASS if B proves helper and journal boundaries without canonical mutation. FAIL if B treats skill load as enough or writes canonical target | 1. If helper labels are missing, verify command-flow dispatch and helper execution. 2. If candidate journal labels are missing, inspect `/tmp/cp-040-spec/improvement/`. 3. If canonical diff is non-empty, repair proposal-only boundary. 4. If only skill-load text appears, distinguish loading from execution. 5. If tripwire diff is non-empty, inspect project mutation before rerun. |
 
 ## 4. SOURCE FILES
 

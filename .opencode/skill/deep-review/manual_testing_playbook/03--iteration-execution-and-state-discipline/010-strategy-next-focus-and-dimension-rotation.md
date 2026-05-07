@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the strategy rotates through dimensions and respects exhausted approaches.
 - Real user request: How does the review know which dimension to focus on next? Does it cycle through all of them?
-- Prompt: `As a manual-testing orchestrator, validate the dimension rotation contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop manager rotates through dimensions based on the strategy "Next Focus" and that exhausted dimensions are skipped. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.`
 - Expected execution process: Inspect the YAML read-state step for dimension extraction, then the dispatch step for next_dimension injection, then the strategy template for the "Next Focus" section, then the convergence docs for dimension coverage requirements.
 - Desired user-facing outcome: The user is told that the review automatically cycles through dimensions in priority order and skips dimensions that are already fully covered.
 - Expected signals: The read-state step extracts the next uncovered dimension; the dispatch step injects it as the focus; the strategy template has a "Next Focus" section; the convergence docs require all dimensions to be covered.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the dimension rotation contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop manager rotates through dimensions based on the strategy "Next Focus" and that exhausted dimensions are skipped. Return a concise user-facing pass/fail verdict.
+Validate deep-review dimension rotation through strategy Next Focus and skipped exhausted dimensions.
 ### Commands
 1. `bash: rg -n 'next_dimension|next_focus|dimensions_covered|dimension_queue|Next Focus' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
 2. `bash: rg -n 'Next Focus|dimension.*rotation|dimension.*coverage|exhausted' .opencode/skill/deep-review/assets/deep_review_strategy.md`

@@ -17,7 +17,7 @@ This scenario validates Deferred lexical-only indexing for `111`. It focuses on 
 
 - Objective: Confirm embedding-failure fallback and BM25 searchability.
 - Real user request: `Please validate Deferred lexical-only indexing against OPENAI_API_KEY and tell me whether the expected signals are present: Memory saved with embedding_status='pending' on embedding failure; BM25/FTS5 lexical search returns the spec-doc record; reindex transitions status to 'success'; vector search works after reindex.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Deferred lexical-only indexing against OPENAI_API_KEY. Verify memory saved with embedding_status='pending' on embedding failure; BM25/FTS5 lexical search returns the spec-doc record; reindex transitions status to 'success'; vector search works after reindex. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate deferred lexical-only indexing after embedding failure.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Memory saved with embedding_status='pending' on embedding failure; BM25/FTS5 lexical search returns the spec-doc record; reindex transitions status to 'success'; vector search works after reindex
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Deferred lexical-only indexing for `111`. It focuses on 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm embedding-failure fallback and BM25 searchability against OPENAI_API_KEY. Verify memory saved with embedding_status='pending' on embedding failure; BM25/FTS5 lexical search returns the spec-doc record; reindex transitions status to 'success'; vector search works after reindex. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate deferred lexical-only indexing after embedding failure.
 ```
 
 ### Commands

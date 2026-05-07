@@ -19,7 +19,7 @@ Detection markers are defined verbatim in `references/router/code_surface_detect
 
 **Exact prompt**:
 ```
-Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver so it only runs once the hero section is visible.
+Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible.
 ```
 
 **Expected detection**:
@@ -61,7 +61,7 @@ Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it 
 
 1. **Skill advisor probe**:
    ```
-   bash: python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver so it only runs once the hero section is visible." --threshold 0.8 > /tmp/skc-SD001-advisor.txt
+   bash: python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible." --threshold 0.8 > /tmp/skc-SD001-advisor.txt
    ```
 2. **Verify advisor result**: top-1 == `sk-code`, score ≥ 0.80.
 3. **Invoke sk-code** in the orchestrator runtime by feeding the same prompt.

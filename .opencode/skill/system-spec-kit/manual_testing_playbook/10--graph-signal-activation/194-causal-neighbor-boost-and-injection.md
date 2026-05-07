@@ -17,7 +17,7 @@ This scenario validates Causal neighbor boost and injection for `194`. It focuse
 
 - Objective: Confirm 2-hop causal amplification with shared ceiling enforcement.
 - Real user request: `Please validate Causal neighbor boost and injection against SPECKIT_CAUSAL_BOOST and tell me whether the expected signals are present: Stage 2 fusion seeds causal traversal from top-ranked results; traversal reaches up to 2 hops with relation-type weighting and per-hop cap behavior; combined causal plus session boost stays within the 0.20 ceiling; disabling SPECKIT_CAUSAL_BOOST removes graph-based score adjustment.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Causal neighbor boost and injection against SPECKIT_CAUSAL_BOOST. Verify 2-hop causal amplification with shared ceiling enforcement. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate causal neighbor boost and cite two-hop traversal, relation weighting, shared ceiling enforcement, and disable behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Stage 2 fusion seeds causal traversal from top-ranked results; traversal reaches up to 2 hops with relation-type weighting and per-hop cap behavior; combined causal plus session boost stays within the 0.20 ceiling; disabling SPECKIT_CAUSAL_BOOST removes graph-based score adjustment
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Causal neighbor boost and injection for `194`. It focuse
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm 2-hop causal amplification with shared ceiling enforcement against SPECKIT_CAUSAL_BOOST. Verify stage 2 fusion seeds causal traversal from top-ranked results; traversal reaches up to 2 hops with relation-type weighting and per-hop cap behavior; combined causal plus session boost stays within the 0.20 ceiling; disabling SPECKIT_CAUSAL_BOOST removes graph-based score adjustment. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate causal neighbor boost and cite two-hop traversal, relation weighting, shared ceiling enforcement, and disable behavior.
 ```
 
 ### Commands

@@ -16,7 +16,7 @@ This scenario validates memory maintenance and migration CLIs for `239`. It focu
 
 - Objective: Confirm dry-run migration reporting, cleanup/parser regression coverage, and ranking output.
 - Real user request: `Please validate Memory Maintenance and Migration CLIs against node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json and tell me whether the expected signals are present: backfill dry-run writes a JSON report; cleanup and parser regression scripts pass; rank-memories prints a structured summary for the sample JSON input.`
-- RCAF Prompt: `As a tooling validation operator, validate Memory Maintenance and Migration CLIs against node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json. Verify dry-run migration reporting, cleanup/parser regression coverage, and ranking output. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Memory Maintenance and Migration CLIs against node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: backfill dry-run writes a JSON report; cleanup and parser regression scripts pass; rank-memories prints a structured summary for the sample JSON input
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates memory maintenance and migration CLIs for `239`. It focu
 ### Prompt
 
 ```
-As a tooling validation operator, confirm dry-run migration reporting, cleanup/parser regression coverage, and ranking output against node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json. Verify backfill dry-run succeeds and writes /tmp/frontmatter-dry-run.json; cleanup and parser scripts pass; rank-memories prints structured ranking output for the sample dataset. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Memory Maintenance and Migration CLIs against node .opencode/skill/system-spec-kit/scripts/dist/memory/backfill-frontmatter.js --dry-run --include-archive --report /tmp/frontmatter-dry-run.json and report cited pass/fail evidence.
 ```
 
 ### Commands

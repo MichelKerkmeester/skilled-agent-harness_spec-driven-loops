@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify JSONL can be reconstructed from review/iterations/ files.
 - Real user request: If the state file is completely lost, can I recover the review from the iteration files?
-- Prompt: `As a manual-testing orchestrator, validate the JSONL reconstruction contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify each review/iterations/iteration-NNN.md file contains sufficient metadata (iteration number, dimension, findings counts, newFindingsRatio) to reconstruct a valid JSONL state log, that the reconstruction path is documented, and that a reconstructed state log allows the review to resume. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review JSONL reconstruction from iteration markdown and report whether resume still works.`
 - Expected execution process: Inspect the state format reference for JSONL schema and iteration file schema, then the loop protocol for reconstruction guidance, then the SKILL.md and quick reference for user-facing recovery instructions.
 - Desired user-facing outcome: The user is told that iteration files are a safety net and can be used to rebuild the state log if it is lost.
 - Expected signals: Iteration files contain metadata matching JSONL fields, reconstruction path is documented or derivable, reconstructed JSONL allows loop resume, and iteration files are write-once (immutable after creation).
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the JSONL reconstruction contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify each review/iterations/iteration-NNN.md file contains sufficient metadata (iteration number, dimension, findings counts, newFindingsRatio) to reconstruct a valid JSONL state log, that the reconstruction path is documented, and that a reconstructed state log allows the review to resume. Return a concise operator-facing verdict.
+Validate deep-review JSONL reconstruction from iteration markdown and report whether resume still works.
 ### Commands
 1. `bash: rg -n 'iteration.*file|iteration-NNN|write.once|iterations/|reconstruction|reconstruct|redundant|backup' .opencode/skill/deep-review/references/state_format.md .opencode/skill/deep-review/references/loop_protocol.md`
 2. `bash: rg -n 'iteration.*file|write_once|iterations/|iteration-NNN|reconstruct' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

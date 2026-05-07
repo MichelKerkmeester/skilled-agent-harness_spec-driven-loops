@@ -16,7 +16,7 @@ This scenario validates Memory roadmap baseline snapshot for `126`. It focuses o
 
 - Objective: Verify Phase 1 readiness baselines capture/persist metrics and handle missing context DBs without throwing.
 - Real user request: `Please validate Memory roadmap baseline snapshot against cd .opencode/skill/system-spec-kit/mcp_server and tell me whether the expected signals are present: Targeted suite passes; transcript shows persisted snapshot rows and missing-context DB zero fallback coverage.`
-- RCAF Prompt: `As an evaluation validation operator, validate Memory roadmap baseline snapshot against cd .opencode/skill/system-spec-kit/mcp_server. Verify phase 1 readiness baselines capture/persist metrics and handle missing context DBs without throwing. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the memory roadmap baseline snapshot and cite persisted metrics plus missing-context DB fallback coverage.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Targeted suite passes; transcript shows persisted snapshot rows and missing-context DB zero fallback coverage
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Memory roadmap baseline snapshot for `126`. It focuses o
 ### Prompt
 
 ```
-As an evaluation validation operator, verify Phase 1 readiness baselines capture/persist metrics and handle missing context DBs without throwing against cd .opencode/skill/system-spec-kit/mcp_server. Verify targeted suite passes; transcript shows persisted snapshot rows and missing-context DB zero fallback coverage. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the memory roadmap baseline snapshot and cite persisted metrics plus missing-context DB fallback coverage.
 ```
 
 ### Commands

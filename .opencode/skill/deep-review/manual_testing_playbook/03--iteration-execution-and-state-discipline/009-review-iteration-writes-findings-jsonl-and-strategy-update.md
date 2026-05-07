@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that each iteration writes iteration-NNN.md with P0/P1/P2 findings, appends a JSONL record, and updates the strategy.
 - Real user request: After each review iteration, what files get created or updated? I want to verify the full write contract.
-- Prompt: `As a manual-testing orchestrator, validate the per-iteration write contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify each iteration writes iteration-NNN.md with P0/P1/P2 classified findings, appends a JSONL record with severity counts, and updates deep-review-strategy.md. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.`
 - Expected execution process: Inspect the YAML dispatch step for the agent prompt constraints, then the post-dispatch validation step for required outputs, then the quick reference iteration checklist for the documented write contract.
 - Desired user-facing outcome: The user can be told exactly which files are created or updated after each iteration and what data each contains.
 - Expected signals: The dispatch prompt requires writing iteration-NNN.md, appending JSONL, and updating strategy; the post-dispatch validation checks for all three; the quick reference checklist documents the same three outputs.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the per-iteration write contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify each iteration writes iteration-NNN.md with P0/P1/P2 classified findings, appends a JSONL record with severity counts, and updates deep-review-strategy.md. Return a concise user-facing pass/fail verdict.
+Validate the deep-review per-iteration write contract for iteration markdown, JSONL severity counts, and strategy updates.
 ### Commands
 1. `bash: rg -n 'iteration-NNN\|iteration-{NNN}\|iteration_pattern\|Write.*iteration' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
 2. `bash: rg -n 'step_validate_iteration\|iteration_file_written\|jsonl_appended\|strategy_updated\|on_missing_outputs' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`

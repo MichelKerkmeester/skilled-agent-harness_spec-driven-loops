@@ -16,7 +16,7 @@ This scenario validates Feature catalog annotation name validity for `136`. It f
 
 - Objective: Verify all annotation names cross-reference against catalog H3 headings with 0 invalid.
 - Real user request: `` Please validate Feature catalog annotation name validity against the documented validation surface and tell me whether the expected signals are present: sort -u` 2) Extract all H3 headings from `feature_catalog/FEATURE_CATALOG.md`: `grep "^### " FEATURE_CATALOG.md` 3) Cross-reference: every annotation name must match an H3 heading exactly 4) Report any mismatches. ``
-- RCAF Prompt: `As a tooling validation operator, validate Feature catalog annotation name validity against the documented validation surface. Verify all annotation names cross-reference against catalog H3 headings with 0 invalid. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Feature catalog annotation name validity against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: sort -u` 2) Extract all H3 headings from `feature_catalog/FEATURE_CATALOG.md`: `grep "^### " FEATURE_CATALOG.md` 3) Cross-reference: every annotation name must match an H3 heading exactly 4) Report any mismatches
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Feature catalog annotation name validity for `136`. It f
 ### Prompt
 
 ```
-As a tooling validation operator, verify all annotation names cross-reference against catalog H3 headings with 0 invalid against the documented validation surface. Extract the annotation names, compare them with the H3 headings from `feature_catalog/FEATURE_CATALOG.md`, report any mismatches, and return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Feature catalog annotation name validity against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

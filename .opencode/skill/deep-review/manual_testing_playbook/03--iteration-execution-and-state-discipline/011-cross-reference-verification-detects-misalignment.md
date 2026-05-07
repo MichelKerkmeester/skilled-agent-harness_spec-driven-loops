@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that cross-reference checks (spec_code, checklist_evidence, skill_agent protocols) detect misalignment between documentation and implementation.
 - Real user request: Does the deep review actually check whether the spec matches the code, or does it just review code quality?
-- Prompt: `As a manual-testing orchestrator, validate the cross-reference verification contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify traceability protocols (core: spec_code, checklist_evidence; overlay: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability) are configured in the review config and that the traceability dimension dispatches cross-reference checks. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.`
 - Expected execution process: Inspect the YAML config creation step for crossReference protocols, then the dispatch prompt for traceability constraints, then the strategy template for cross-reference tracking, then the quick reference for quality guards.
 - Desired user-facing outcome: The user is told that the review checks spec-vs-code alignment, checklist evidence completeness, and skill-agent protocol consistency as part of the traceability dimension.
 - Expected signals: The config includes crossReference with core and overlay protocols; the dispatch prompt includes traceability constraints; the strategy template tracks cross-reference results; the quality guards require cross-reference checks before convergence.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the cross-reference verification contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify traceability protocols (core: spec_code, checklist_evidence; overlay: skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability) are configured in the review config and that the traceability dimension dispatches cross-reference checks. Return a concise user-facing pass/fail verdict.
+Validate deep-review traceability cross-reference checks and confirm the configured protocols dispatch correctly.
 ### Commands
 1. `bash: rg -n 'crossReference|cross_reference|spec_code|checklist_evidence|skill_agent|agent_cross_runtime|feature_catalog_code|playbook_capability' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
 2. `bash: rg -n 'traceability|cross.reference|TRACEABILITY PROTOCOLS' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`

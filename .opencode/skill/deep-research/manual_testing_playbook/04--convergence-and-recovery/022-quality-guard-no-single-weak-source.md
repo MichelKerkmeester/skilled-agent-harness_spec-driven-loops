@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that convergence STOP is blocked when an answered question relies solely on a tentative source.
 - Real user request: What happens if the loop marks a question answered but the source is unreliable?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the no-single-weak-source quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question backed by exactly one source for sourceStrength == "tentative", and that a violation emits a guard_violation event with guard="single_weak_source" and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.`
+- Prompt: `Validate single-weak-source guards override STOP when an answer depends on one tentative source.`
 - Expected execution process: Inspect the Quality Guard Protocol in the convergence reference first, then the sourceStrength definitions in state_format.md, then the YAML algorithm guard check, then the loop protocol Step 2c.
 - Desired user-visible outcome: The user gets an accurate explanation of how tentative-only answers are caught and why the loop continues to seek stronger evidence.
 - Expected signals: guard_violation event logged with guard="single_weak_source", STOP decision overridden to CONTINUE, violated question targeted for stronger sourcing in next iteration.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the no-single-weak-source quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question backed by exactly one source for sourceStrength == "tentative", and that a violation emits a guard_violation event with guard="single_weak_source" and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Validate single-weak-source guards override STOP when an answer depends on one tentative source.
 ### Commands
 1. `bash: sed -n '104,139p' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'single_weak_source\|tentative\|sourceStrength' .opencode/skill/deep-research/references/convergence.md`

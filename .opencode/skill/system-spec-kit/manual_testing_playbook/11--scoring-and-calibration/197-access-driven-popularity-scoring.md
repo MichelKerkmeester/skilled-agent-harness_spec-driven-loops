@@ -17,7 +17,7 @@ This scenario validates access-driven popularity scoring for `197`. It focuses o
 
 - Objective: Confirm batched access accumulation, thresholded flushes, and popularity-driven ranking effects.
 - Real user request: `` Please validate Access-driven popularity scoring against access_count and tell me whether the expected signals are present: each retrieval increments the in-memory accumulator by 0.1; accumulated access flushes after the threshold is crossed; persisted `access_count` and `last_accessed` update for the hot memory; composite scoring reflects a popularity boost for the more frequently accessed memory; untouched control evidence remains comparatively colder for dormancy analysis. ``
-- RCAF Prompt: `As a scoring validation operator, validate Access-driven popularity scoring against access_count. Verify batched access accumulation, thresholded flushes, and popularity-driven ranking effects. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate access-driven popularity scoring for accumulation, flush thresholds, and ranking effects.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: each retrieval increments the in-memory accumulator by 0.1; accumulated access flushes after the threshold is crossed; persisted `access_count` and `last_accessed` update for the hot memory; composite scoring reflects a popularity boost for the more frequently accessed memory; untouched control evidence remains comparatively colder for dormancy analysis
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates access-driven popularity scoring for `197`. It focuses o
 ### Prompt
 
 ```
-As a scoring validation operator, confirm batched access accumulation, thresholded flushes, and popularity-driven ranking effects against access_count. Verify accumulator rises in 0.1 steps; flush occurs after the threshold is crossed; persisted fields update for the target spec-doc record; composite scoring or ranking reflects a popularity boost; colder control memory remains relatively less active for dormancy purposes. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate access-driven popularity scoring for accumulation, flush thresholds, and ranking effects.
 ```
 
 ### Commands

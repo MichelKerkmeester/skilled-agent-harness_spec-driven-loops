@@ -24,17 +24,7 @@ Operators run the exact command sequence for `CP-046` and confirm the expected s
 - Objective: Confirm Call B creates config, state, strategy, prompts and iteration artifacts from workflow-resolved setup values while leaving the sandbox target unchanged.
 - Layer partition: command-flow.
 - Real user request: `Run a one-iteration deep research loop and prove setup values were handed to YAML before dispatch.`
-- RCAF Prompt:
-
-  Same task body for both calls:
-  ```
-  Task ID: CP-046-TASK-001.
-  In /tmp/cp-046-sandbox/, run /spec_kit:deep-research:auto for setup-binding evidence.
-  Stay strictly inside /tmp/cp-046-sandbox/ and /tmp/cp-046-spec/.
-  Acceptance: create deep-research-config.json, deep-research-state.jsonl, deep-research-strategy.md, a rendered iteration prompt, and one packet-local iteration artifact.
-  Return status, artifact_dir, setup_values, evidence_files, and notes.
-  ```
-
+- Prompt: `Run one deep-research iteration and prove setup values reach YAML before dispatch.`
 - Expected process: create sandbox, seed `/tmp/cp-046-spec/spec.md`, capture repo tripwire, run Call A as generic task, reset sandbox, run Call B through `/spec_kit:deep-research:auto`, then grep artifacts and diffs.
 - Expected signals: config carries `maxIterations` 1, state log records the topic, prompt pack exists, iteration output exists, command transcript or artifacts mention the auto workflow, sandbox target diff is empty, project tripwire is empty.
 - Pass/fail: PASS if every B signal is non-zero and both diffs are clean. FAIL if setup is inferred inside the agent body, YAML starts with unresolved values, or canonical agent files change.
@@ -96,7 +86,7 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-046 | SETUP_YAML_HANDOFF | Confirm command setup binds values before YAML dispatch | Same task body in §2 | Run the §3 bash block | B field counts all >= 1 | `/tmp/cp-046-B-combined.txt`, `/tmp/cp-046-B-field-counts.txt`, diffs | PASS if setup artifacts and clean diffs exist | 1. If config is missing, inspect setup phase. 2. If prompt is missing, inspect YAML pre-dispatch. 3. If canonical diff is non-empty, repair command containment. |
+| CP-046 | SETUP_YAML_HANDOFF | Confirm command setup binds values before YAML dispatch | `Run one deep-research iteration and prove setup values reach YAML before dispatch.` | Run the §3 bash block | B field counts all >= 1 | `/tmp/cp-046-B-combined.txt`, `/tmp/cp-046-B-field-counts.txt`, diffs | PASS if setup artifacts and clean diffs exist | 1. If config is missing, inspect setup phase. 2. If prompt is missing, inspect YAML pre-dispatch. 3. If canonical diff is non-empty, repair command containment. |
 
 ## 4. SOURCE ANCHORS
 

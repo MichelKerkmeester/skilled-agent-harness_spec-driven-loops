@@ -17,7 +17,7 @@ This scenario validates Weight history audit tracking for `019`. It focuses on C
 
 - Objective: Confirm edge change logging + rollback.
 - Real user request: `Please validate Weight history audit tracking against the documented validation surface and tell me whether the expected signals are present: Audit rows logged for each edge strength mutation; rollback restores previous weights; audit history is append-only.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Weight history audit tracking against the documented validation surface. Verify audit rows logged for each edge strength mutation; rollback restores previous weights; audit history is append-only. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate weight history audit tracking and cite audit rows, rollback restoration, and append-only history evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Audit rows logged for each edge strength mutation; rollback restores previous weights; audit history is append-only
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Weight history audit tracking for `019`. It focuses on C
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm edge change logging + rollback against the documented validation surface. Verify audit rows logged for each edge strength mutation; rollback restores previous weights; audit history is append-only. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate weight history audit tracking and cite audit rows, rollback restoration, and append-only history evidence.
 ```
 
 ### Commands

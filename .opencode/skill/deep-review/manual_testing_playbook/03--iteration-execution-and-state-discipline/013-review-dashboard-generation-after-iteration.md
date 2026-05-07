@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the dashboard with Findings Summary, Progress Table, Coverage, and Trend is generated after each iteration.
 - Real user request: Where do I look to see how the review is progressing? Is there a dashboard?
-- Prompt: `As a manual-testing orchestrator, validate the dashboard generation contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_generate_dashboard runs after each iteration, reads from JSONL and strategy, and writes deep-review-dashboard.md with Findings Summary, Progress Table, Coverage, and Trend sections. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate deep-review dashboard generation after each iteration from JSONL and strategy state.`
 - Expected execution process: Inspect the YAML step_generate_dashboard for its position in the loop, then its read sources and output format, then the dashboard template in the assets for the expected sections.
 - Desired user-facing outcome: The user is told that a dashboard file is auto-generated after each iteration showing current findings, progress, coverage, and trend at a glance.
 - Expected signals: The step_generate_dashboard runs after step_validate_iteration; it reads JSONL and strategy; it writes to deep-review-dashboard.md; the output includes Findings Summary, Progress Table, Coverage, and Next Focus sections.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the dashboard generation contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_generate_dashboard runs after each iteration, reads from JSONL and strategy, and writes deep-review-dashboard.md with Findings Summary, Progress Table, Coverage, and Trend sections. Return a concise user-facing pass/fail verdict.
+Validate deep-review dashboard generation after each iteration from JSONL and strategy state.
 ### Commands
 1. `bash: rg -n 'step_generate_dashboard|dashboard' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
 2. `bash: sed -n '1,220p' .opencode/skill/deep-review/assets/deep_review_dashboard.md`

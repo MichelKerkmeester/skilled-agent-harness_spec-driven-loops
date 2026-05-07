@@ -26,14 +26,14 @@ Operators run the exact prompt and command sequence for `CB-002` and capture num
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `CB-002` | Core Web Vitals Gates | Verify Motion-heavy page stays under CWV thresholds | `Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav dropdown. Use Chrome DevTools Performance panel or PageSpeed Insights, capture the report, and return PASS/FAIL against LCP < 2.5s, CLS < 0.1, INP < 200ms.` | open target -> run Lighthouse/PageSpeed or DevTools Performance -> interact with slider/dropdown -> export report -> record metrics | metrics captured; thresholds evaluated; animation-related layout shifts or long interactions identified | `/tmp/skc-CB002-report.json` or `.html`, `/tmp/skc-CB002-verdict.md` | PASS iff LCP, CLS, and INP all meet thresholds and no animation-specific regression is present | If CLS fails, inspect layout-affecting animation; if INP fails, inspect event handlers and long tasks |
+| `CB-002` | Core Web Vitals Gates | Verify Motion-heavy page stays under CWV thresholds | `Measure LCP, CLS, and INP on the Motion-heavy page; return PASS/FAIL against CWV thresholds.` | open target -> run Lighthouse/PageSpeed or DevTools Performance -> interact with slider/dropdown -> export report -> record metrics | metrics captured; thresholds evaluated; animation-related layout shifts or long interactions identified | `/tmp/skc-CB002-report.json` or `.html`, `/tmp/skc-CB002-verdict.md` | PASS iff LCP, CLS, and INP all meet thresholds and no animation-specific regression is present | If CLS fails, inspect layout-affecting animation; if INP fails, inspect event handlers and long tasks |
 
 ## 3. TEST EXECUTION
 
 ### Prompt
 
 ```text
-Measure LCP, CLS, and INP on a page with the Motion testimonial slider and nav dropdown. Use Chrome DevTools Performance panel or PageSpeed Insights, capture the report, and return PASS/FAIL against LCP < 2.5s, CLS < 0.1, INP < 200ms.
+Measure LCP, CLS, and INP on the Motion-heavy page; return PASS/FAIL against CWV thresholds.
 ```
 
 ### Commands

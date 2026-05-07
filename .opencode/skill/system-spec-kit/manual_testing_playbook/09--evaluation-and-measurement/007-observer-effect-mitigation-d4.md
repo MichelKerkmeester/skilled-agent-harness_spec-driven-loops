@@ -16,7 +16,7 @@ This scenario validates Observer effect mitigation (D4) for `007`. It focuses on
 
 - Objective: Confirm non-blocking logging failures.
 - Real user request: `Please validate Observer effect mitigation (D4) against the documented validation surface and tell me whether the expected signals are present: Search returns normal results even when eval logging throws; no latency spike from logging failure.`
-- RCAF Prompt: `As an evaluation validation operator, validate Observer effect mitigation (D4) against the documented validation surface. Verify search returns normal results even when eval logging throws; no latency spike from logging failure. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate observer-effect mitigation and cite whether search still works when eval logging fails without adding latency.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Search returns normal results even when eval logging throws; no latency spike from logging failure
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Observer effect mitigation (D4) for `007`. It focuses on
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm non-blocking logging failures against the documented validation surface. Verify search returns normal results even when eval logging throws; no latency spike from logging failure. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate observer-effect mitigation and cite whether search still works when eval logging fails without adding latency.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates typed traversal (SPECKIT_TYPED_TRAVERSAL) for `175`. It 
 
 - Objective: Verify sparse-first policy + intent-aware edge traversal scoring.
 - Real user request: `Please validate Typed traversal (SPECKIT_TYPED_TRAVERSAL) against SPECKIT_TYPED_TRAVERSAL and tell me whether the expected signals are present: SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constrains traversal in sparse graphs; INTENT_EDGE_PRIORITY maps intents to edge-type orderings; scoring formula = seedScore * edgePrior * hopDecay * freshness; edge prior tiers: first=1.0, second=0.75, remaining=0.5; MAX_HOPS=2 in normal mode.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Typed traversal (SPECKIT_TYPED_TRAVERSAL) against SPECKIT_TYPED_TRAVERSAL. Verify sparse-first policy + intent-aware edge traversal scoring. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate typed traversal and cite sparse-first gating, hop limits, intent edge priorities, scoring formula, and prior tiers.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constrains traversal in sparse graphs; INTENT_EDGE_PRIORITY maps intents to edge-type orderings; scoring formula = seedScore * edgePrior * hopDecay * freshness; edge prior tiers: first=1.0, second=0.75, remaining=0.5; MAX_HOPS=2 in normal mode
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates typed traversal (SPECKIT_TYPED_TRAVERSAL) for `175`. It 
 ### Prompt
 
 ```
-As a graph-signal validation operator, verify sparse-first policy + intent-aware edge traversal scoring against SPECKIT_TYPED_TRAVERSAL. Verify isTypedTraversalEnabled() returns true; sparse-first: density < 0.5 → 1-hop; INTENT_EDGE_PRIORITY maps fix_bug/add_feature/find_decision/understand/find_spec/refactor/security_audit; edge prior tiers: 1.0/0.75/0.5; MAX_BOOST_PER_HOP=0.05; MAX_COMBINED_BOOST=0.20. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate typed traversal and cite sparse-first gating, hop limits, intent edge priorities, scoring formula, and prior tiers.
 ```
 
 ### Commands

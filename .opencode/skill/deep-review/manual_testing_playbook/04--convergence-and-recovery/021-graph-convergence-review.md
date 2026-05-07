@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: Finding stability signals STOP.
 - Then: Graph convergence gates block premature STOP.
 - Real user request: If the review looks stable but the graph still shows missing dimension coverage, what keeps the loop from stopping too soon?
-- Prompt: `As a manual-testing orchestrator, validate the graph-backed legal-stop gate contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware review convergence tracks graph dimension coverage, and that when legal-stop evaluation fails dimension coverage the review persists blocked-stop state instead of stopping. Return a concise operator-facing verdict.`
+- Prompt: `Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.`
 - Expected execution process: Inspect the deep-review convergence reference for legal-stop gate behavior first, then the coverage-graph convergence handler for review `dimensionCoverage` thresholds, then fixture evidence for persisted `blocked_stop`.
 - Desired user-facing outcome: The user gets a clear explanation that graph-backed dimension coverage still has veto power after stability signals look ready to stop.
 - Expected signals: review convergence docs describe `blockedStop` when legal-stop gates fail; graph convergence handler enforces review `dimensionCoverage`; fixture evidence shows `blocked_stop` with `blockedBy: ["dimensionCoverage", ...]`.
@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the graph-backed legal-stop gate contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph-aware review convergence tracks graph dimension coverage, and that when legal-stop evaluation fails dimension coverage the review persists blocked-stop state instead of stopping. Return a concise operator-facing verdict.
+Validate the graph-backed legal-stop gate and report whether blocked-stop state persists when coverage fails.
 ### Commands
 1. `bash: rg -n 'blockedStop|dimensionCoverage|buildReviewLegalStop|graphEvents|graph-aware review convergence' .opencode/skill/deep-review/references/convergence.md`
 2. `bash: rg -n 'dimensionCoverage|threshold|STOP_BLOCKED|blocking' .opencode/skill/system-spec-kit/mcp_server/handlers/coverage-graph/convergence.ts`

@@ -17,7 +17,7 @@ This scenario validates Causal edge creation (memory_causal_link) for `EX-019`. 
 
 - Objective: Causal provenance linking plus exact-first batch reference resolution.
 - Real user request: `Please validate Causal edge creation (memory_causal_link) against memory_causal_link({ sourceId:"<memory-id-a>", targetId:"<memory-id-b>", relation:"supports", strength:0.8 }) and tell me whether the expected signals are present: Direct edge appears in chain trace; batched causal-link reference resolution succeeds for exact path matches first; fuzzy fallback is only used for unresolved references.`
-- RCAF Prompt: `As an analysis validation operator, validate Causal edge creation (memory_causal_link) against memory_causal_link({ sourceId:"<memory-id-a>", targetId:"<memory-id-b>", relation:"supports", strength:0.8 }). Verify causal provenance linking plus exact-first batch reference resolution. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_causal_link causal provenance and exact-first batch reference resolution; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Direct edge appears in chain trace; batched causal-link reference resolution succeeds for exact path matches first; fuzzy fallback is only used for unresolved references
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Causal edge creation (memory_causal_link) for `EX-019`. 
 ### Prompt
 
 ```
-As an analysis validation operator, validate Causal provenance linking plus exact-first batch reference resolution against memory_causal_link({ sourceId:"<memory-id-a>", targetId:"<memory-id-b>", relation:"supports", strength:0.8 }). Verify direct edge appears in chain trace; batched causal-link reference resolution succeeds for exact path matches first; fuzzy fallback is only used for unresolved references. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_causal_link causal provenance and exact-first batch reference resolution; return pass/fail with cited evidence.
 ```
 
 ### Commands

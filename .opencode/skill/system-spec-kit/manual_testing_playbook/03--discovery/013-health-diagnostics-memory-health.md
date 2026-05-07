@@ -16,7 +16,7 @@ This scenario validates Health diagnostics (memory_health) for `EX-013`. It focu
 
 - Objective: Index/FTS integrity check.
 - Real user request: `Please validate Health diagnostics (memory_health) against memory_health(reportMode:full) and tell me whether the expected signals are present: healthy/degraded status and diagnostics.`
-- RCAF Prompt: `As a discovery validation operator, validate Health diagnostics (memory_health) against memory_health(reportMode:full). Verify healthy/degraded status and diagnostics. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_health full diagnostics and confirm healthy/degraded status with actionable pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: healthy/degraded status and diagnostics
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Health diagnostics (memory_health) for `EX-013`. It focu
 ### Prompt
 
 ```
-As a discovery validation operator, validate Index/FTS integrity check against memory_health(reportMode:full). Verify healthy/degraded status and diagnostics. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_health full diagnostics and confirm healthy/degraded status with actionable pass/fail evidence.
 ```
 
 ### Commands

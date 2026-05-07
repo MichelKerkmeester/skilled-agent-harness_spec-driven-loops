@@ -16,7 +16,7 @@ This scenario validates the Skill Advisor repair contract from the system-spec-k
 
 - Objective: Reproduce advisor stale state, prove `advisor_status` is diagnostic-only, then prove `advisor_rebuild` repairs it.
 - Real user request: `` Please validate Advisor status and rebuild separation against the documented validation surface and tell me whether the expected signals are present: Steps 2 and 3 both report `freshness: "stale"` or a stale trust-state reason, and `generation` is unchanged.; Step 4 reports `status: "ok"`, `data.rebuilt: true`, `data.skipped: false`, and a `reason` of `stale`, `absent`, `unavailable`, or `force` depending on the engineered state.; Step 5 reports `freshness: "live"` or the expected post-rebuild healthy state for the disposable workspace.; Step 6 reports `rebuilt: false`, `skipped: true`, `reason: "status-live"`.; Step 7 reports `rebuilt: true`, `reason: "force"`. ``
-- RCAF Prompt: `` As a tooling validation operator, validate Advisor status and rebuild separation against the documented validation surface. Verify Steps 2 and 3 both report `freshness: "stale"` or a stale trust-state reason, and `generation` is unchanged.; Step 4 reports `status: "ok"`, `data.rebuilt: true`, `data.skipped: false`, and a `reason` of `stale`, `absent`, `unavailable`, or `force` depending on the engineered state.; Step 5 reports `freshness: "live"` or the expected post-rebuild healthy state for the disposable workspace.; Step 6 reports `rebuilt: false`, `skipped: true`, `reason: "status-live"`.; Step 7 reports `rebuilt: true`, `reason: "force"`. Return a concise pass/fail verdict with the main reason and cited evidence. ``
+- Prompt: `Validate Advisor status and rebuild separation against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Steps 2 and 3 both report `freshness: "stale"` or a stale trust-state reason, and `generation` is unchanged.; Step 4 reports `status: "ok"`, `data.rebuilt: true`, `data.skipped: false`, and a `reason` of `stale`, `absent`, `unavailable`, or `force` depending on the engineered state.; Step 5 reports `freshness: "live"` or the expected post-rebuild healthy state for the disposable workspace.; Step 6 reports `rebuilt: false`, `skipped: true`, `reason: "status-live"`.; Step 7 reports `rebuilt: true`, `reason: "force"`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -25,6 +25,12 @@ This scenario validates the Skill Advisor repair contract from the system-spec-k
 ---
 
 ## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate Advisor status and rebuild separation against the documented validation surface and report cited pass/fail evidence.
+```
 
 ### Commands
 

@@ -17,7 +17,7 @@ This scenario validates graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PRO
 
 - Objective: Verify graph weight cap enforcement and community score capping.
 - Real user request: `Please validate Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE) against SPECKIT_GRAPH_CALIBRATION_PROFILE=true and tell me whether the expected signals are present: applyGraphWeightCap() clamps values to [0, 0.05]; applyCommunityScoring() caps boost at 0.03; shouldActivateLouvain() returns activate=false when density or size below thresholds; calibrateGraphWeight() enforces N2a/N2b caps.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PROFILE) against SPECKIT_GRAPH_CALIBRATION_PROFILE=true. Verify graph weight cap enforcement and community score capping. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate graph calibration profile and cite graph weight caps, community score caps, Louvain thresholds, and N2 cap enforcement.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: applyGraphWeightCap() clamps values to [0, 0.05]; applyCommunityScoring() caps boost at 0.03; shouldActivateLouvain() returns activate=false when density or size below thresholds; calibrateGraphWeight() enforces N2a/N2b caps
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates graph calibration profile (SPECKIT_GRAPH_CALIBRATION_PRO
 ### Prompt
 
 ```
-As a graph-signal validation operator, verify graph weight cap and community score capping against SPECKIT_GRAPH_CALIBRATION_PROFILE=true. Verify applyGraphWeightCap() clamps to [0, 0.05]; applyCommunityScoring() caps at 0.03; shouldActivateLouvain() respects thresholds; calibrateGraphWeight() enforces N2a/N2b caps. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate graph calibration profile and cite graph weight caps, community score caps, Louvain thresholds, and N2 cap enforcement.
 ```
 
 ### Commands

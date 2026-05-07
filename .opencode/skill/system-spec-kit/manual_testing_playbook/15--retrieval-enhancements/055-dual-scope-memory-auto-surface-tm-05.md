@@ -30,7 +30,7 @@ This scenario validates Dual-scope memory auto-surface (TM-05) for `055`. It foc
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm auto-surface hooks against the documented validation surface. Verify non-memory-aware tool path triggers auto-surface hook; compaction event surfaces relevant memories; surfaced memories match current context. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Dual-scope memory auto-surface (TM-05) against the documented validation surface. Verify non-memory-aware tool path triggers auto-surface hook; compaction event surfaces relevant memories; surfaced memories match current context. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

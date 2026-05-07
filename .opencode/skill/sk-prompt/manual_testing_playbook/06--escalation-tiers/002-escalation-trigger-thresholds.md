@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-024` and confirm the
 
 - Objective: Confirm complexity >=7, compliance sensitivity, multi-stakeholder needs, ambiguity, or failed card floors route to `@prompt-improver`.
 - Real user request: `Help with a compliance-sensitive prompt for HIPAA-bound data handling — escalate to @prompt-improver.`
-- Prompt: `As a CLI orchestrator, evaluate the operator's HIPAA-bound data-handling prompt with the sk-prompt fast-path card. Verify compliance sensitivity triggers escalation to @prompt-improver and the routing decision names the trigger. Return the escalation decision and expected payload.`
+- Prompt: `As a CLI orchestrator, evaluate a HIPAA-bound prompt with the sk-prompt fast-path card. Verify compliance sensitivity escalates to @prompt-improver and the routing decision names the trigger. Return the escalation payload.`
 - Expected execution process: The orchestrator loads `cli_prompt_quality_card.md`, detects compliance sensitivity, bypasses inline fast path, and dispatches `@prompt-improver`.
 - Expected signals: `Escalation: @prompt-improver (compliance)` or equivalent.
 - Desired user-visible outcome: Routing decision plus payload summary for `@prompt-improver`.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-024` and confirm the
 ### Prompt
 
 ```
-As a CLI orchestrator, evaluate the operator's HIPAA-bound data-handling prompt with the sk-prompt fast-path card. Verify compliance sensitivity triggers escalation to @prompt-improver and the routing decision names the trigger. Return the escalation decision and expected payload.
+As a CLI orchestrator, evaluate a HIPAA-bound prompt with the sk-prompt fast-path card. Verify compliance sensitivity escalates to @prompt-improver and the routing decision names the trigger. Return the escalation payload.
 ```
 
 ### Commands

@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the workflow classifies an existing valid scratch state as resumable before writing new files.
 - Real user request: I already have a deep-research scratch folder. Tell me whether the workflow will resume it or start over.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the resume-classification contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify config, JSONL, and strategy are inspected before new files are written and that a valid prior state skips re-initialization. Return a concise pass/fail verdict.`
+- Prompt: `Validate deep-research resume classification inspects prior config, JSONL, and strategy before writing new files.`
 - Expected execution process: Inspect the loop protocol resume rules, then the YAML session-classification branches, then the README auto-resume wording.
 - Desired user-visible outcome: The user gets a trustworthy explanation of when a session resumes instead of restarting.
 - Expected signals: A four-state classification model exists, resume skips init writes, and completed sessions route differently from active resumes.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the resume-classification contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify config, JSONL, and strategy are inspected before new files are written and that a valid prior state skips re-initialization. Return a concise pass/fail verdict.
+Validate deep-research resume classification inspects prior config, JSONL, and strategy before writing new files.
 ### Commands
 1. `bash: rg -n 'Auto-Resume Protocol|resume|completed-session|invalid-state' .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: rg -n 'step_classify_session|on_resume|on_completed_session|on_invalid_state' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

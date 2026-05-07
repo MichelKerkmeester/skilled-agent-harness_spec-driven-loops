@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that a fresh session creates the canonical config, JSONL, strategy, and iteration directory from the shipped assets.
 - Real user request: Before running a review, show me exactly what a brand-new deep-review session creates in my spec folder.
-- Prompt: `As a manual-testing orchestrator, validate the fresh-initialization contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify initialization creates review/deep-review-config.json, review/deep-review-state.jsonl, review/deep-review-findings-registry.json, review/deep-review-strategy.md, and review/iterations/ from the live templates. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate fresh deep-review initialization and report whether all canonical review state files are created from live templates.`
 - Expected execution process: Inspect the YAML init steps first, then the asset templates that seed the files, then the quick reference state files table.
 - Desired user-facing outcome: The user can be told which review files appear immediately in a fresh session and why each exists.
 - Expected signals: The review/ directory is created, config comes from the shared deep-review config template, the findings registry is created from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the fresh-initialization contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify initialization creates review/deep-review-config.json, review/deep-review-state.jsonl, review/deep-review-findings-registry.json, review/deep-review-strategy.md, and review/iterations/ from the live templates. Return a concise user-facing pass/fail verdict.
+Validate fresh deep-review initialization and report whether all canonical review state files are created from live templates.
 ### Commands
 1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
 2. `bash: sed -n '1,220p' .opencode/skill/deep-review/assets/deep_review_config.json && sed -n '1,220p' .opencode/skill/deep-review/assets/deep_review_strategy.md`

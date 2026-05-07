@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify the three-signal weighted stop model and its graceful degradation rules.
 - Real user request: Explain how the loop decides it has probably converged when it has not hit the hard cap yet.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the composite-convergence contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the rolling average, MAD noise floor, and question-entropy signals, their weights, and the >0.60 weighted stop-score threshold. Return a concise operator-facing verdict.`
+- Prompt: `Validate composite convergence uses rolling average, MAD, entropy, weights, and the stop-score threshold.`
 - Expected execution process: Inspect the convergence reference first, then the YAML algorithm, then the quick reference visualization and README feature summary.
 - Desired user-visible outcome: The user gets an accurate explanation of the weighted convergence model and when it applies.
 - Expected signals: Three named signals, weights of 0.30/0.35/0.35, graceful degradation with fewer iterations, and a stop threshold above 0.60.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the composite-convergence contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the rolling average, MAD noise floor, and question-entropy signals, their weights, and the >0.60 weighted stop-score threshold. Return a concise operator-facing verdict.
+Validate composite convergence uses rolling average, MAD, entropy, weights, and the stop-score threshold.
 ### Commands
 1. `bash: sed -n '1,260p' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|entropy|0.60' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

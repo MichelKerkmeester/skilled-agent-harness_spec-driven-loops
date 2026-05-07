@@ -17,7 +17,7 @@ This scenario validates Backend storage adapter abstraction for `202`. It focuse
 
 - Objective: Verify the shipped storage seam is scoped to vector storage and does not claim broader multi-backend abstraction than the code actually provides.
 - Real user request: `` Please validate Backend storage adapter abstraction against the documented validation surface and tell me whether the expected signals are present: `IVectorStore` defines the vector-storage contract; SQLite-backed vector store implements that contract; vector index/facade consumes the seam; broader graph/document storage paths still use direct SQLite integrations; current abstraction scope is intentionally limited to vector storage. ``
-- RCAF Prompt: `As a pipeline validation operator, validate Backend storage adapter abstraction against the documented validation surface. Verify the shipped storage seam is scoped to vector storage and does not claim broader multi-backend abstraction than the code actually provides. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate backend storage adapter abstraction against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `IVectorStore` defines the vector-storage contract; SQLite-backed vector store implements that contract; vector index/facade consumes the seam; broader graph/document storage paths still use direct SQLite integrations; current abstraction scope is intentionally limited to vector storage
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Backend storage adapter abstraction for `202`. It focuse
 ### Prompt
 
 ```
-As a pipeline validation operator, verify the shipped storage seam is scoped to vector storage and does not claim broader multi-backend abstraction than the code actually provides against the documented validation surface. Verify iVectorStore defines the vector-storage contract; SQLite-backed vector store implements that contract; vector index/facade consumes the seam; broader graph/document storage paths still use direct SQLite integrations; current abstraction scope is intentionally limited to vector storage. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate backend storage adapter abstraction against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

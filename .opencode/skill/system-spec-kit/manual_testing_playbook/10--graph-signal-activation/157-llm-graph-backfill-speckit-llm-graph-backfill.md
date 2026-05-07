@@ -17,7 +17,7 @@ This scenario validates LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) for `157
 
 - Objective: Verify backfill hook registration and scheduling for high-value documents.
 - Real user request: `Please validate LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) against SPECKIT_LLM_GRAPH_BACKFILL=true and tell me whether the expected signals are present: onIndex() returns llmBackfillScheduled=true when qualityScore >= threshold; backfill callback is invoked via setImmediate; low-value docs (qualityScore < 0.7) do not trigger backfill.`
-- RCAF Prompt: `As a graph-signal validation operator, validate LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) against SPECKIT_LLM_GRAPH_BACKFILL=true. Verify backfill hook registration and scheduling for high-value documents. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate LLM graph backfill and cite hook registration, high-value scheduling, async callback, and low-value suppression.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: onIndex() returns llmBackfillScheduled=true when qualityScore >= threshold; backfill callback is invoked via setImmediate; low-value docs (qualityScore < 0.7) do not trigger backfill
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates LLM graph backfill (SPECKIT_LLM_GRAPH_BACKFILL) for `157
 ### Prompt
 
 ```
-As a graph-signal validation operator, verify backfill hook registration and scheduling against SPECKIT_LLM_GRAPH_BACKFILL=true. Verify onIndex() returns llmBackfillScheduled=true when qualityScore >= threshold; backfill callback is invoked via setImmediate; low-value docs do not trigger backfill. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate LLM graph backfill and cite hook registration, high-value scheduling, async callback, and low-value suppression.
 ```
 
 ### Commands

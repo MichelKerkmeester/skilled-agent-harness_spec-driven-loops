@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: The operator runs the reducer and inspects the live auto workflow definition.
 - Then: `findings-registry.json` exposes `graphConvergenceScore`, `graphDecision`, and `graphBlockers`; `deep-research-dashboard.md` renders a `GRAPH CONVERGENCE` section; and `.opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml` calls `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote.
 - Real user request: How do I know the research reducer is surfacing graph convergence output and that the autonomous workflow actually consults the graph before it decides to stop?
-- RCAF Prompt: `As a manual-testing orchestrator, validate graph-aware stop-gate integration for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify graph_convergence reducer output populates graphConvergenceScore, graphDecision, and graphBlockers, that the dashboard renders GRAPH CONVERGENCE, and that the research auto workflow calls deep_loop_graph_upsert plus deep_loop_graph_convergence before the inline 3-signal vote. Return a concise operator-facing verdict.`
+- Prompt: `Validate graph-aware stop gates use reducer graph convergence output before the inline stop vote.`
 - Expected execution process: Run the reducer first to refresh generated artifacts, inspect the reducer-owned registry and dashboard second, then inspect the workflow YAML to verify the live graph-tool call order.
 - Desired user-visible outcome: The user gets a plain-language explanation that graph signals are visible in reducer outputs and that the autonomous workflow consults graph convergence before allowing inline STOP to become legal.
 - Expected signals: `graphConvergenceScore`, `graphDecision`, and `graphBlockers` appear in the registry; `GRAPH CONVERGENCE` appears in the dashboard; YAML includes `deep_loop_graph_upsert` and `deep_loop_graph_convergence` before the inline 3-signal vote.
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short user-facing explanation, not just raw implementation notes.
 
 ### Prompt
-As a manual-testing orchestrator, validate graph-aware stop-gate integration for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify `graph_convergence` reducer output populates `graphConvergenceScore`, `graphDecision`, and `graphBlockers`, that the dashboard renders `GRAPH CONVERGENCE`, and that the research auto workflow calls `deep_loop_graph_upsert` plus `deep_loop_graph_convergence` before the inline 3-signal vote. Return a concise operator-facing verdict.
+Validate graph-aware stop gates use reducer graph convergence output before the inline stop vote.
 
 ### Commands
 1. `bash: node .opencode/skill/deep-research/scripts/reduce-state.cjs {spec_folder}`

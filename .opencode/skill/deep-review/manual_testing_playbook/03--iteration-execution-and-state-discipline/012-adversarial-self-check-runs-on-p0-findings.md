@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the Hunter/Skeptic/Referee adversarial self-check runs on P0 candidates before recording them as confirmed findings.
 - Real user request: How does the review make sure a P0 finding is real and not a false positive?
-- Prompt: `As a manual-testing orchestrator, validate the adversarial self-check contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify Rule 10 (adversarial self-check on P0 findings) is documented in the SKILL.md rules, enforced in the quick reference iteration checklist, and checked in the YAML post-iteration claim adjudication. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate that deep-review runs adversarial self-checks on P0 findings before accepting them.`
 - Expected execution process: Inspect the SKILL.md rules for Rule 10, then the quick reference iteration checklist for the self-check step, then the YAML post-iteration claim adjudication step, then the agent definitions for the self-check protocol.
 - Desired user-facing outcome: The user is told that every P0 finding is re-read and challenged before being confirmed, using a Hunter/Skeptic/Referee three-role protocol.
 - Expected signals: Rule 10 in SKILL.md mandates adversarial self-check for P0; the iteration checklist includes it as step 5; the YAML has a claim adjudication step that checks for P0/P1 self-check evidence; the agent definitions describe the Hunter/Skeptic/Referee roles.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the adversarial self-check contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify Rule 10 (adversarial self-check on P0 findings) is documented in the SKILL.md rules, enforced in the quick reference iteration checklist, and checked in the YAML post-iteration claim adjudication. Return a concise user-facing pass/fail verdict.
+Validate that deep-review runs adversarial self-checks on P0 findings before accepting them.
 ### Commands
 1. `bash: rg -n 'adversarial\|self.check\|Hunter\|Skeptic\|Referee\|Rule 10\|re-read.*P0' .opencode/skill/deep-review/SKILL.md`
 2. `bash: rg -n 'adversarial\|self.check\|P0.*check\|claim_adjudication' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`

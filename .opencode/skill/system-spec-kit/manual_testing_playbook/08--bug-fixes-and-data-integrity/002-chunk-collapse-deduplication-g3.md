@@ -17,7 +17,7 @@ This scenario validates Chunk collapse deduplication (G3) for `002`. It focuses 
 
 - Objective: Confirm dedup in default mode.
 - Real user request: `Please validate Chunk collapse deduplication (G3) against memory_search(includeContent:false) and tell me whether the expected signals are present: No duplicate memory IDs in results; collapsed chunks yield unique parents only.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Chunk collapse deduplication (G3) against memory_search(includeContent:false). Verify no duplicate memory IDs in results; collapsed chunks yield unique parents only. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate chunk collapse deduplication (G3) for memory_search(includeContent:false) and confirm collapsed chunks return unique parent IDs.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: No duplicate memory IDs in results; collapsed chunks yield unique parents only
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Chunk collapse deduplication (G3) for `002`. It focuses 
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm dedup in default mode against memory_search(includeContent:false). Verify no duplicate memory IDs in results; collapsed chunks yield unique parents only. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate chunk collapse deduplication (G3) for memory_search(includeContent:false) and confirm collapsed chunks return unique parent IDs.
 ```
 
 ### Commands

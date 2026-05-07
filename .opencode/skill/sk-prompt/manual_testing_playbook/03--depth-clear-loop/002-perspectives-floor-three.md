@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-010` and confirm the
 
 - Objective: Confirm Discover enforces the 3-perspective minimum before downstream DEPTH phases.
 - Real user request: `Tighten my prompt for code review feedback — I want at least 3 perspectives evaluated before you commit.`
-- Prompt: `As a prompt engineer, use @prompt-improver to enhance the operator's code-review feedback prompt. Verify Discover evaluates at least 3 named perspectives before Engineer starts, or blocks and re-runs Discover until the floor is met. Return the enhanced prompt plus perspective-gate evidence.`
+- Prompt: `Tighten my code-review feedback prompt; verify Discover evaluates at least 3 perspectives before Engineer starts or blocks for a rerun.`
 - Expected execution process: `@prompt-improver` runs standard DEPTH, counts named Discover perspectives, blocks below 3, then proceeds only after the floor is satisfied.
 - Expected signals: Perspective count >= 3; perspectives are named; Engineer phase begins only after the floor passes.
 - Desired user-visible outcome: Transparency report stating `Discover perspectives: 3+` with the names of the evaluated perspectives.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-010` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to enhance the operator's code-review feedback prompt. Verify Discover evaluates at least 3 named perspectives before Engineer starts, or blocks and re-runs Discover until the floor is met. Return the enhanced prompt plus perspective-gate evidence.
+Tighten my code-review feedback prompt; verify Discover evaluates at least 3 perspectives before Engineer starts or blocks for a rerun.
 ```
 
 ### Commands

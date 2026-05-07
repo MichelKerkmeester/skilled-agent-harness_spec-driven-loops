@@ -17,7 +17,7 @@ This scenario validates Search pipeline safety for `067`. It focuses on Confirm 
 
 - Objective: Confirm Sprint 8 pipeline safety fixes.
 - Real user request: `Please validate Search pipeline safety against the documented validation surface and tell me whether the expected signals are present: Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions.`
-- RCAF Prompt: `As a pipeline validation operator, validate Search pipeline safety against the documented validation surface. Verify pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate search pipeline safety against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Search pipeline safety for `067`. It focuses on Confirm 
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm Sprint 8 pipeline safety fixes against the documented validation surface. Verify pipeline handles heavy queries without crash; filters apply correctly; tokenization produces valid tokens; no unguarded exceptions. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate search pipeline safety against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

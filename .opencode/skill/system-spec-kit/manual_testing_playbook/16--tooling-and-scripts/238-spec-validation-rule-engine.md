@@ -16,7 +16,7 @@ This scenario validates spec validation rule engine for `238`. It focuses on con
 
 - Objective: Confirm clean validation, warning behavior, strict escalation, recursive phase validation, and the Phase 017 strict add-ons.
 - Real user request: `Please validate Spec Validation Rule Engine against the documented validation surface and tell me whether the expected signals are present: compliant fixture exits cleanly with JSON output; warning fixture returns non-zero; strict mode escalates warning-bearing runs; recursive phase validation emits aggregate phase results; the Phase 017 strict add-ons surface the documented failures.`
-- RCAF Prompt: `As a tooling validation operator, validate Spec Validation Rule Engine against the documented validation surface. Verify clean validation, warning behavior, strict escalation, recursive phase validation, continuity-freshness warnings, malformed evidence-marker failure, and duplicate-normalizer failure. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Spec Validation Rule Engine against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: compliant fixture exits cleanly with JSON output; warning fixture returns non-zero; strict mode escalates warning-bearing runs; recursive phase validation emits aggregate phase results; the Phase 017 strict add-ons surface the documented failures
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates spec validation rule engine for `238`. It focuses on con
 ### Prompt
 
 ```
-Validate the spec validation rule engine. Capture the evidence needed to prove validate.sh passes a compliant Level 3 fixture, returns a warning-bearing non-pass result on a known-bad template fixture, escalates that warning path under --strict, returns recursive phase results for a valid phase parent, and enforces the Phase 017 continuity-freshness, evidence-marker, and normalizer add-ons. Return a concise user-facing pass/fail verdict with the main reason.
+Validate Spec Validation Rule Engine against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

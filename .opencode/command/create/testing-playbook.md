@@ -314,7 +314,7 @@ The generated playbook must match the current shipped `sk-doc` contract:
   - `## 5. SOURCE METADATA`
   - divider lines between numbered sections
 
-Scenario prompts must be realistic orchestrator-led tests, not bare command paraphrases.
+Scenario prompts must be realistic. Default voice is natural-human (how a real user phrases the request: "Review this PR for security issues", "Commit my staged changes"). Use RCAF "As a {ROLE}, ..." only when the actor IS an AI orchestrator (cross-CLI delegation, multi-agent dispatch, safety-refusal flows). See manual_testing_playbook_creation.md §5 "When to Use RCAF vs Natural-Human" for the heuristic. Bare command paraphrases are not acceptable in either voice.
 
 ---
 

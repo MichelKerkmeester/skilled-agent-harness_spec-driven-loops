@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that each dispatched @deep-review iteration reads JSONL and strategy state before performing any review actions.
 - Real user request: Make sure each deep-review iteration actually reads prior state before it starts reviewing again.
-- Prompt: `As a manual-testing orchestrator, validate the read-state-first iteration contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop dispatch and the @deep-review agent both require reading JSONL and strategy state before any review actions. Return a concise operator verdict.`
+- Prompt: `Validate that each deep-review iteration reads JSONL and strategy state before any review actions.`
 - Expected execution process: Inspect the workflow loop steps, then the quick reference iteration checklist, then the runtime agent instructions for the single-iteration sequence.
 - Desired user-facing outcome: The user is told that each iteration starts by reading persisted state instead of relying on memory from prior runs.
 - Expected signals: Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the read-state-first iteration contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop dispatch and the @deep-review agent both require reading JSONL and strategy state before any review actions. Return a concise operator verdict.
+Validate that each deep-review iteration reads JSONL and strategy state before any review actions.
 ### Commands
 1. `bash: rg -n 'step_read_state|current_iteration|next_focus|Read.*state' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`
 2. `bash: rg -n 'Read.*state\|Read.*strategy\|Read.*JSONL\|step 1\|1\. Read' .opencode/skill/deep-review/references/quick_reference.md .opencode/skill/deep-review/SKILL.md`

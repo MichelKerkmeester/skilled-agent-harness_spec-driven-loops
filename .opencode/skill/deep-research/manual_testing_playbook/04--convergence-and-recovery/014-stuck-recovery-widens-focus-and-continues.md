@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that stuck detection triggers a recovery path that widens focus before giving up.
 - Real user request: If the loop gets stuck, I want it to try a different angle before it quits.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the stuck-recovery contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify consecutive no-progress iterations trigger recovery, widen focus to a less-explored question, consult deferred ideas, and continue before final synthesis. Return a concise verdict.`
+- Prompt: `Validate stuck recovery widens focus, uses deferred ideas, and continues before final synthesis.`
 - Expected execution process: Inspect the convergence recovery protocol, then the loop protocol stuck-recovery ladder, then the YAML recovery logic and ideas-backlog hooks.
 - Desired user-visible outcome: The user is told that the loop tries a different research angle before giving up on the session.
 - Expected signals: Stuck threshold is enforced, recovery resets the counter, the next focus widens scope, and the ideas backlog can be consulted during recovery.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the stuck-recovery contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify consecutive no-progress iterations trigger recovery, widen focus to a less-explored question, consult deferred ideas, and continue before final synthesis. Return a concise verdict.
+Validate stuck recovery widens focus, uses deferred ideas, and continues before final synthesis.
 ### Commands
 1. `bash: rg -n 'stuckThreshold|STUCK_RECOVERY|least-explored|recovery' .opencode/skill/deep-research/references/convergence.md .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: rg -n 'stuck_count|least_explored|RECOVERY: Widen scope|research-ideas' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

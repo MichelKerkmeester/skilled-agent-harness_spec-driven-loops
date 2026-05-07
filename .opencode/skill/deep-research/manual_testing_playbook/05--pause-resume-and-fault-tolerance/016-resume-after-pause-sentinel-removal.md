@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that removing the pause sentinel lets the loop resume from read-state rather than re-initializing.
 - Real user request: After I remove the pause file, tell me where the loop resumes from and what it logs.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the pause-resume contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify removing research/.deep-research-pause lets the research loop log a resumed event and continue from the read-state step, and removing {spec_folder}/review/.deep-research-pause lets the review loop do the same, instead of either mode starting from scratch. Return a concise verdict.`
+- Prompt: `Validate removing pause sentinels logs resumed events and continues from state reads.`
 - Expected execution process: Inspect the loop protocol resume-after-pause wording, then the event schema, then the YAML session behavior for resumed runs.
 - Desired user-visible outcome: The user is told that resume continues from the persisted state after logging a resumed event.
 - Expected signals: The loop logs `resumed`, continues from state read, and does not recreate config/strategy files during a valid resume.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the pause-resume contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify removing research/.deep-research-pause lets the research loop log a resumed event and continue from the read-state step, and removing {spec_folder}/review/.deep-research-pause lets the review loop do the same, instead of either mode starting from scratch. Return a concise verdict.
+Validate removing pause sentinels logs resumed events and continues from state reads.
 ### Commands
 1. `bash: rg -n 'On resume|resumed|Continue from step_read_state|review/.deep-research-pause' .opencode/skill/deep-research/references/loop_protocol.md .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'resumed|on_resume|skip_to: phase_loop|skip_to: gate_init_approval|review/.deep-research-pause|research/.deep-research-pause' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`

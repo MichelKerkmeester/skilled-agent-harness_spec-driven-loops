@@ -16,7 +16,7 @@ This scenario validates evaluation, benchmark, and import-policy tooling for `24
 
 - Objective: Confirm ground-truth provenance, ablation, BM25 baseline, performance benchmark, and import-policy tooling coverage.
 - Real user request: `Please validate Evaluation, benchmark, and import-policy tooling against npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run and tell me whether the expected signals are present: mapping preview logs DB provenance; ablation run succeeds and writes JSON; BM25 baseline run completes; performance benchmark writes scratch artifacts; policy suites pass.`
-- RCAF Prompt: `As a tooling validation operator, validate Evaluation, benchmark, and import-policy tooling against npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run. Verify ground-truth provenance, ablation, BM25 baseline, performance benchmark, and import-policy tooling coverage. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Evaluation, benchmark, and import-policy tooling against npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: mapping preview logs DB provenance; ablation run succeeds and writes JSON; BM25 baseline run completes; performance benchmark writes scratch artifacts; policy suites pass
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates evaluation, benchmark, and import-policy tooling for `24
 ### Prompt
 
 ```
-As a tooling validation operator, confirm ground-truth provenance, ablation, BM25 baseline, performance benchmark, and import-policy tooling coverage against npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run. Verify mapping preview logs DB provenance; ablation and BM25 runners complete with report output; performance benchmark writes performance-benchmark-metrics.json and performance-benchmark-report.md into the target scratch directory; policy suites pass. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Evaluation, benchmark, and import-policy tooling against npx tsx .opencode/skill/system-spec-kit/scripts/evals/map-ground-truth-ids.ts --dry-run and report cited pass/fail evidence.
 ```
 
 ### Commands

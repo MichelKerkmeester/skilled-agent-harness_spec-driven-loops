@@ -145,6 +145,31 @@ Acceptable prompt:
 Use memory_context in auto mode for the flaky index scan retry issue, capture the returned bounded context, and return a concise pass/fail verdict with the main reason.
 ```
 
+### When to Use RCAF vs Natural-Human
+
+The canonical Prompt: field defaults to **natural-human voice**. Match how a real user would phrase the request to an AI in conversation. Use the RCAF (Role-Context-Action-Format) wrapper "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." **only** when the actor IS an AI orchestrator.
+
+| Use **natural-human** when… | Use **RCAF** when… |
+|---|---|
+| A human asks the AI directly in conversation ("Review this PR", "Commit my staged changes", "Why is this test flaky?", "Help me start OAuth"). | The actor IS an AI orchestrator delegating to another tool/AI/agent (cross-CLI delegation, multi-agent dispatch, agent handback). |
+| Code review on a PR, commit/git workflows, bug fixes, code questions, preference questions. | Safety-refusal scenarios where role context determines behavior (e.g., "git safety reviewer" decides whether to refuse a `--no-verify`). |
+| The scenario could plausibly originate from a Slack DM or a terminal prompt. | Internal validation contracts where the orchestrator IS the operator (e.g., "validation operator validates context retrieval"). |
+| Default for ~70% of scenarios. | Default for ~30% of scenarios — most often in cli-* and orchestration-heavy playbooks. |
+
+**When in doubt: prefer natural-human.** RCAF is the exception, natural is the default.
+
+**Voice guidelines for natural-human prompts**:
+- Imperative or interrogative ("Review this PR for security issues", "Why is this test flaky?", "Help me start an OAuth feature").
+- Compact enough for a 9-col table cell (single sentence, ideally ≤25 words).
+- Specific to the test scenario — not "do a code review" but "Review this auth diff and flag any P0 blockers".
+- Match voice to the existing `Real user request:` field but more compact.
+
+**Voice guidelines for RCAF when retained**:
+- Keep the canonical structure: `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.`
+- The Role must be an AI orchestrator role (e.g., "external-AI conductor", "git safety reviewer", "validation operator"), NOT a generic human role like "developer" or "engineer".
+
+The `Real user request:` field is always natural-human regardless of which voice the canonical Prompt: field uses; it serves as the voice reference baseline.
+
 **Prompt sync rule**:
 - the structured prompt field in `SCENARIO CONTRACT`
 - the `Exact Prompt` column in the execution table

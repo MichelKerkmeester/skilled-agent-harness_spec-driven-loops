@@ -24,6 +24,7 @@ Operators run the exact command sequence and confirm the expected signals withou
 - Objective: Confirm Call B produces the three required iteration artifacts and does not substitute stdout for state.
 - Layer partition: command-flow.
 - Real user request: `Run one correctness iteration over a small file target and prove the durable iteration contract exists.`
+- Prompt: `Run the three-artifact iteration scenario and prove deep-review writes iteration markdown, state JSONL, and delta JSONL.`
 - Expected execution process: sandbox setup, one `/spec_kit:deep-review:auto` invocation, artifact aggregation, diff and tripwire checks.
 - Expected signals: `iterations/iteration-001.md`, `deep-review-state.jsonl`, `deltas/iter-001.jsonl`, `"type":"iteration"`, `newFindingsRatio`, `findingsSummary`, and post-dispatch validation language or absence of schema-mismatch failure.
 - Desired outcome: PASS verdict showing command-flow dispatch externalized state for reducer consumption.
@@ -74,7 +75,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-053 | THREE_ARTIFACT_ITERATION | Prove post-dispatch artifacts exist and are reducer-readable | Prompt embedded in §3 command block | Run §3 exactly | Field counts all `1+` | Transcript, file listing, artifacts, target diff, tripwire diff | PASS if markdown, state JSONL, and delta JSONL exist with canonical labels | If artifact signals are absent, inspect post-dispatch validation. If `iteration_delta` appears, repair prompt-pack schema. If target diff is non-empty, repair read-only boundary. |
+| CP-053 | THREE_ARTIFACT_ITERATION | Prove post-dispatch artifacts exist and are reducer-readable | `Run the three-artifact iteration scenario and prove deep-review writes iteration markdown, state JSONL, and delta JSONL.` | Run §3 exactly | Field counts all `1+` | Transcript, file listing, artifacts, target diff, tripwire diff | PASS if markdown, state JSONL, and delta JSONL exist with canonical labels | If artifact signals are absent, inspect post-dispatch validation. If `iteration_delta` appears, repair prompt-pack schema. If target diff is non-empty, repair read-only boundary. |
 
 ## 4. SOURCE ANCHORS
 

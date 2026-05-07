@@ -17,7 +17,7 @@ This scenario validates `memory_quick_search` for `187`. It focuses on Verify si
 
 - Objective: Verify `memory_quick_search` returns relevant results for a query string, respects optional `specFolder` scoping, honors governed retrieval boundaries (`tenantId`, `userId`, `agentId`), and respects `limit` parameter.
 - Real user request: `Please validate Quick search (memory_quick_search) against memory_quick_search({ query: "authentication" }) and tell me whether the expected signals are present: Query-only retrieval returns results; specFolder scoping narrows results to the specified folder; limit parameter caps the result count; governed retrieval boundaries filter results appropriately.`
-- RCAF Prompt: `As a retrieval validation operator, validate Quick search (memory_quick_search) against memory_quick_search({ query: "authentication" }). Verify memory_quick_search returns relevant results for a query string, respects optional specFolder scoping, honors governed retrieval boundaries (tenantId, userId, agentId), and respects limit parameter. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_quick_search and confirm query results, specFolder scoping, governance boundaries, and limit handling.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Query-only retrieval returns results; specFolder scoping narrows results to the specified folder; limit parameter caps the result count; governed retrieval boundaries filter results appropriately
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates `memory_quick_search` for `187`. It focuses on Verify si
 
 ### Prompt
 
-```
-As a retrieval validation operator, verify memory_quick_search simplified query-only retrieval against memory_quick_search({ query: "authentication" }). Verify query-only retrieval returns results; specFolder scoping narrows results to the specified folder; limit parameter caps the result count; governed retrieval boundaries filter results appropriately. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate memory_quick_search and confirm query results, specFolder scoping, governance boundaries, and limit handling.`
 
 ### Commands
 

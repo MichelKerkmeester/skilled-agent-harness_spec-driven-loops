@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-017` and confirm the
 
 - Objective: Confirm total CLEAR <40 triggers improvement cycles capped at 3.
 - Real user request: `Improve my prompt for ML hyperparameter tuning — only deliver if you can hit CLEAR >= 40, otherwise iterate up to 3 times.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's ML hyperparameter tuning prompt. Verify total CLEAR below 40 triggers another improvement cycle, with no more than 3 total attempts before best-version delivery with notes.`
+- Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers another cycle and stops after 3 total attempts.`
 - Expected execution process: `@prompt-improver` scores the prompt, checks total >=40, iterates on failure, and stops after 3 attempts if needed.
 - Expected signals: Score progression shows initial score and subsequent score(s); final status says pass or max-3 best-version delivery.
 - Desired user-visible outcome: Enhanced prompt plus CLEAR progression and final threshold status.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-017` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's ML hyperparameter tuning prompt. Verify total CLEAR below 40 triggers another improvement cycle, with no more than 3 total attempts before best-version delivery with notes.
+Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers another cycle and stops after 3 total attempts.
 ```
 
 ### Commands

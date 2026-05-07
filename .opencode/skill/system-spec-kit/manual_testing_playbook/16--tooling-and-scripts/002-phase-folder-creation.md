@@ -16,7 +16,7 @@ This scenario validates Phase folder creation for `PHASE-002`. It focuses on Run
 
 - Objective: Run `create.sh "Test" --phase --level 3 --phases 3` and verify parent+children structure.
 - Real user request: `Please validate Phase folder creation against bash .opencode/skill/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify" and tell me whether the expected signals are present: Parent folder with Phase Documentation Map in spec.md; 3 child folders with correct naming; back-references and predecessor/successor links in child spec.md files; Level 3 template files in all folders.`
-- RCAF Prompt: `As a tooling validation operator, validate Phase folder creation against bash .opencode/skill/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify". Verify run create.sh "Test" --phase --level 3 --phases 3 and verify parent+children structure. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Phase folder creation against bash .opencode/skill/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify" and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Parent folder with Phase Documentation Map in spec.md; 3 child folders with correct naming; back-references and predecessor/successor links in child spec.md files; Level 3 template files in all folders
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Phase folder creation for `PHASE-002`. It focuses on Run
 ### Prompt
 
 ```
-As a tooling validation operator, run create.sh "Test" --phase --level 3 --phases 3 and verify parent+children structure against bash .opencode/skill/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify". Verify parent folder with Phase Documentation Map in spec.md; 3 child folders with correct naming; back-references and predecessor/successor links in child spec.md files; Level 3 template files in all folders. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Phase folder creation against bash .opencode/skill/system-spec-kit/scripts/spec/create.sh "Phase Test" --phase --level 3 --phases 3 --phase-names "Design,Implement,Verify" and report cited pass/fail evidence.
 ```
 
 ### Commands

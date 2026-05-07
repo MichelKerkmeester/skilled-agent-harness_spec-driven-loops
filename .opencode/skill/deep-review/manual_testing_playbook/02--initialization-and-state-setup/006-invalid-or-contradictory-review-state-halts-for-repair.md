@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that invalid state (missing JSONL, corrupted config, contradictory artifacts) halts with a repair message instead of proceeding.
 - Real user request: What happens if some of my review state files got deleted or corrupted mid-session?
-- Prompt: `As a manual-testing orchestrator, validate the invalid-state detection contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_classify_session classifies partial, missing, or contradictory review state as "invalid-state" and halts with a repair message. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.`
 - Expected execution process: Inspect the YAML classify step for the invalid-state classification rules, then check the halt message, then verify the migration step handles conflicting canonical and legacy state.
 - Desired user-facing outcome: The user is told that the system will not silently proceed on corrupted state but will halt and ask them to repair or archive the invalid review packet.
 - Expected signals: The classify step has an explicit "invalid-state" classification for partial or contradictory combinations; it halts with a descriptive message; the migration step also halts on canonical/legacy conflicts.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the invalid-state detection contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify step_classify_session classifies partial, missing, or contradictory review state as "invalid-state" and halts with a repair message. Return a concise user-facing pass/fail verdict.
+Validate invalid deep-review state handling and report whether partial or contradictory state halts with a repair message.
 ### Commands
 1. `bash: rg -n 'invalid.state|on_invalid|halt|repair|contradictory|partial' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
 2. `bash: rg -n 'invalid.state|on_invalid|halt|repair' .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

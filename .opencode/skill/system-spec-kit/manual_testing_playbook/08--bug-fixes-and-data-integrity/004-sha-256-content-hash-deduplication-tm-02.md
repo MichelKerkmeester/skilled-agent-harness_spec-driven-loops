@@ -17,7 +17,7 @@ This scenario validates SHA-256 content-hash deduplication (TM-02) for `004`. It
 
 - Objective: Confirm identical re-save skips embedding and the save-path SQL stays on exact-match predicates.
 - Real user request: `` Please validate SHA-256 content-hash deduplication (TM-02) against / and tell me whether the expected signals are present: Second save returns skip/no-op status; no new embedding row created; content hash matches; SQL shape contains direct `canonical_file_path = ?` / `file_path = ?` probes and exact scope clauses such as `tenant_id = ?` or `user_id IS NULL`. ``
-- RCAF Prompt: `As a data-integrity validation operator, validate SHA-256 content-hash deduplication (TM-02) against /. Verify identical re-save skips embedding and the save-path SQL stays on exact-match predicates. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate SHA-256 content-hash deduplication (TM-02) and confirm identical re-saves skip embeddings with exact-match SQL probes.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Second save returns skip/no-op status; no new embedding row created; content hash matches; SQL shape contains direct `canonical_file_path = ?` / `file_path = ?` probes and exact scope clauses such as `tenant_id = ?` or `user_id IS NULL`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates SHA-256 content-hash deduplication (TM-02) for `004`. It
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm identical re-save skips embedding against the documented validation surface. Verify second save returns skip/no-op status; no new embedding row created; content hash matches; SQL shape contains direct canonical_file_path = ? / file_path = ? probes and exact scope clauses such as tenant_id = ? or user_id IS NULL. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate SHA-256 content-hash deduplication (TM-02) and confirm identical re-saves skip embeddings with exact-match SQL probes.
 ```
 
 ### Commands

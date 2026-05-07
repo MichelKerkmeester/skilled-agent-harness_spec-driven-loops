@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify the full override path: composite score >0.60 triggers STOP, quality guards check fires, guard fails, decision overridden to CONTINUE.
 - Real user request: Can the loop stop even though the math says it should, if the quality checks fail?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then checkQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 4.5, the YAML algorithm, and loop_protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.`
+- Prompt: `Validate convergence STOP is overridden when quality guards fail, then the loop resumes.`
 - Expected execution process: Inspect the Decision Priority list in convergence.md first, then the YAML algorithm step_check_convergence (especially the step 6 guard override block), then loop_protocol.md Step 2c for the orchestrator-level flow, then state_format.md for the guard_violation event that proves the override happened.
 - Desired user-visible outcome: The user gets a clear explanation that convergence math alone does not stop the loop — quality guards have veto power.
 - Expected signals: convergence_check with decision STOP and score >0.60, followed by guard_violation event, followed by decision override to CONTINUE and loop resumption.
@@ -42,8 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-
-As a manual-testing orchestrator, validate the convergence-guard override path for deep-research. Trace the full sequence: composite convergence votes STOP (score >0.60), then checkQualityGuards runs, then a guard violation is detected, then the STOP is overridden to CONTINUE and the loop resumes against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify this flow exists in convergence.md Decision Priority step 4.5, the YAML algorithm, and loop_protocol.md Step 2c. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Validate convergence STOP is overridden when quality guards fail, then the loop resumes.
 
 ### Commands
 

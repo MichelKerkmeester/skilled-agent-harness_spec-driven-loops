@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-001` and confirm the
 
 - Objective: Confirm default mode runs 10-round DEPTH + CLEAR
 - Real user request: `I'm writing a prompt to extract action items from meeting notes — score it and tighten it.`
-- Prompt: `As a prompt engineer, run sk-prompt default-mode enhancement on the operator's draft about extracting action items from meeting notes. Verify mode detection picks default ($improve equivalent), DEPTH runs 10 rounds, CLEAR scoring applies, and the threshold is enforced. Return the enhanced prompt plus a transparency report.`
+- Prompt: `Run sk-prompt on my meeting-notes action-item prompt in default mode; verify 10 DEPTH rounds, CLEAR scoring, and threshold enforcement.`
 - Expected execution process: sk-prompt detects no `$` prefix, defaults to TEXT_ENHANCE intent, loads `references/depth_framework.md` + `references/patterns_evaluation.md`, runs all five DEPTH phases for 10 total rounds, applies CLEAR, and emits the transparency report.
 - Expected signals: Mode = default (10 rounds), CLEAR score >= 40/50 in transparency report
 - Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode: default", "DEPTH rounds: 10", and a CLEAR score >= 40/50.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-001` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt default-mode enhancement on the operator's draft about extracting action items from meeting notes. Verify mode detection picks default ($improve equivalent), DEPTH runs 10 rounds, CLEAR scoring applies, and the threshold is enforced. Return the enhanced prompt plus a transparency report.
+Run sk-prompt on my meeting-notes action-item prompt in default mode; verify 10 DEPTH rounds, CLEAR scoring, and threshold enforcement.
 ```
 
 ### Commands

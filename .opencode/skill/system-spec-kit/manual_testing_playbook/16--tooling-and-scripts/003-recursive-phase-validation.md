@@ -16,7 +16,7 @@ This scenario validates Recursive phase validation for `PHASE-003`. It focuses o
 
 - Objective: Run `validate.sh --recursive` on a phase parent folder and verify per-phase results.
 - Real user request: `` Please validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and tell me whether the expected signals are present: Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects worst child; error propagation works. ``
-- RCAF Prompt: `As a tooling validation operator, validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2. Verify run validate.sh --recursive on a phase parent folder and verify per-phase results. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Per-phase pass/fail in output; JSON `phases` array; combined exit code reflects worst child; error propagation works
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Recursive phase validation for `PHASE-003`. It focuses o
 ### Prompt
 
 ```
-As a tooling validation operator, run validate.sh --recursive on a phase parent folder and verify per-phase results against create.sh "Validate Test" --phase --level 2 --phases 2. Verify per-phase pass/fail in output; JSON phases array; combined exit code reflects worst child; error propagation works. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Recursive phase validation against create.sh "Validate Test" --phase --level 2 --phases 2 and report cited pass/fail evidence.
 ```
 
 ### Commands

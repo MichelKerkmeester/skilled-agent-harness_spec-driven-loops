@@ -31,7 +31,7 @@ This scenario validates Transaction wrappers on mutation handlers for `085`. It 
 ### Prompt
 
 ```
-As a mutation validation operator, confirm atomic wrapper behavior against the documented validation surface. Verify mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Transaction wrappers on mutation handlers against the documented validation surface. Verify mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

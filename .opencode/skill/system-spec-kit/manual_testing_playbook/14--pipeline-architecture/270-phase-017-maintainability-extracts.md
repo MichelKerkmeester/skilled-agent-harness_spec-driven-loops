@@ -16,7 +16,7 @@ This scenario validates the Phase 017 maintainability extracts for `270`. It foc
 
 - Objective: Verify the shared `assertNever()` helper, `runEnrichmentStep()`, `executeAtomicReconsolidationTxn()`, and `advisoryPreset` rename are wired as the live pipeline contracts.
 - Real user request: `` Please validate Phase 017 maintainability extracts against the documented helper surfaces and tell me whether the expected signals are present: helper-based code paths are active; tests for the extracted helpers pass; routing metadata uses `advisoryPreset`. ``
-- RCAF Prompt: `As a pipeline validation operator, validate Phase 017 maintainability extracts against the documented helper surfaces. Verify assertNever() handles the documented union exhaustiveness cases, runEnrichmentStep() still preserves lane-specific failure mapping, reconsolidation conflict handling routes through one shared transaction helper, and memory-context now reports advisoryPreset instead of readiness in the structural nudge metadata. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Phase 017 maintainability extracts against the documented helper surfaces and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: helper-based code paths are active; tests for the extracted helpers pass; routing metadata uses `advisoryPreset`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the Phase 017 maintainability extracts for `270`. It foc
 ### Prompt
 
 ```
-As a pipeline validation operator, validate the Phase 017 helper extracts. Verify assertNever() handles the documented union exhaustiveness cases, runEnrichmentStep() still preserves lane-specific failure mapping, reconsolidation conflict handling routes through one shared transaction helper, and memory-context now reports advisoryPreset instead of readiness in the structural nudge metadata. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Phase 017 maintainability extracts against the documented helper surfaces and return pass/fail with cited evidence.
 ```
 
 ### Commands

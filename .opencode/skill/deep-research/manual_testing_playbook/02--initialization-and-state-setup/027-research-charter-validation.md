@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify strategy.md contains Non-Goals and Stop Conditions sections after initialization.
 - Real user request: How do I set boundaries for what the research should NOT investigate?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the research charter validation contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify initialization Step 5a verifies the presence of "Non-Goals" and "Stop Conditions" sections in strategy.md, appends empty placeholders if missing, and presents the charter for user review in confirm mode. Return a concise operator-facing verdict.`
+- Prompt: `Validate research charter initialization adds Non-Goals and Stop Conditions, then surfaces them in confirm mode.`
 - Expected execution process: Inspect the loop protocol Step 5a (Validate Research Charter), then the strategy template for sections 4 and 5, then confirm mode behavior.
 - Desired user-visible outcome: The user can rely on strategy.md always having Non-Goals and Stop Conditions sections after initialization, providing a clear place to define research boundaries.
 - Expected signals: strategy.md has a "## 4. Non-Goals" section (may be empty but must exist); strategy.md has a "## 5. Stop Conditions" section (may be empty but must exist); if either section is missing, it is appended as an empty placeholder; in confirm mode, the charter (topic, key questions, non-goals, stop conditions) is presented for user review before proceeding.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the research charter validation contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify initialization Step 5a verifies the presence of "Non-Goals" and "Stop Conditions" sections in strategy.md, appends empty placeholders if missing, and presents the charter for user review in confirm mode. Return a concise operator-facing verdict.
+Validate research charter initialization adds Non-Goals and Stop Conditions, then surfaces them in confirm mode.
 ### Commands
 1. `bash: rg -n 'Step 5a\|Validate Research Charter\|Non-Goals\|Stop Conditions\|charter' .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: sed -n '/ANCHOR:non-goals/,/\/ANCHOR:stop-conditions/p' .opencode/skill/deep-research/assets/deep_research_strategy.md`

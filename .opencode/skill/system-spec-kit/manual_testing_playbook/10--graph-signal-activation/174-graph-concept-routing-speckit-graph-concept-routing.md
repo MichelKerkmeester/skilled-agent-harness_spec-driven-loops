@@ -17,7 +17,7 @@ This scenario validates graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) fo
 
 - Objective: Verify query-time alias matching activates graph channel for matched concepts.
 - Real user request: `Please validate Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) against SPECKIT_GRAPH_CONCEPT_ROUTING and tell me whether the expected signals are present: noun phrases extracted from query; concept alias table matched in SQLite; canonical concept names returned; graph channel activated in stage1-candidate-gen for matched concepts; isGraphConceptRoutingEnabled() returns true by default.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) against SPECKIT_GRAPH_CONCEPT_ROUTING. Verify query-time alias matching activates graph channel for matched concepts. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate graph concept routing and cite alias matching, canonical concepts, graph channel activation, and default enablement.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: noun phrases extracted from query; concept alias table matched in SQLite; canonical concept names returned; graph channel activated in stage1-candidate-gen for matched concepts; isGraphConceptRoutingEnabled() returns true by default
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) fo
 ### Prompt
 
 ```
-As a graph-signal validation operator, verify query-time alias matching activates graph channel for matched concepts against SPECKIT_GRAPH_CONCEPT_ROUTING. Verify isGraphConceptRoutingEnabled() returns true; noun phrases extracted from query; alias table consulted in SQLite; canonical concept names returned; graph channel activated for matched concepts. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate graph concept routing and cite alias matching, canonical concepts, graph channel activation, and default enablement.
 ```
 
 ### Commands

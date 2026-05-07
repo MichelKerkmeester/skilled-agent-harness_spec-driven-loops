@@ -31,7 +31,7 @@ This scenario validates Tier-based bulk deletion (memory_bulk_delete) for `EX-00
 ### Prompt
 
 ```
-As a mutation validation operator, validate Tier cleanup with safety against checkpoint_create(name:"pre-ex009-bulk-delete",specFolder:"<sandbox-spec>"). Verify scoped deletion count + checkpoint created. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Tier-based bulk deletion (memory_bulk_delete) against checkpoint_create(name:"pre-ex009-bulk-delete",specFolder:"<sandbox-spec>"). Verify scoped deletion count + checkpoint created. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates Edge density measurement for `018`. It focuses on Confir
 
 - Objective: Confirm edges-per-node thresholding.
 - Real user request: `Please validate Edge density measurement against the documented validation surface and tell me whether the expected signals are present: Edge density ratio computed correctly (edges/nodes); threshold gate activates/deactivates at boundary.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Edge density measurement against the documented validation surface. Verify edge density ratio computed correctly (edges/nodes); threshold gate activates/deactivates at boundary. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate edge density measurement and cite whether edges/nodes ratio and threshold gate behavior are correct.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Edge density ratio computed correctly (edges/nodes); threshold gate activates/deactivates at boundary
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Edge density measurement for `018`. It focuses on Confir
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm edges-per-node thresholding against the documented validation surface. Verify edge density ratio computed correctly (edges/nodes); threshold gate activates/deactivates at boundary. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate edge density measurement and cite whether edges/nodes ratio and threshold gate behavior are correct.
 ```
 
 ### Commands

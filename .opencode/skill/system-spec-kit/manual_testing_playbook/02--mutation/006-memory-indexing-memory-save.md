@@ -31,7 +31,7 @@ This scenario validates Memory indexing (memory_save) for `EX-006`. It focuses o
 ### Prompt
 
 ```
-As a mutation validation operator, validate the live 8-category canonical save router against memory_save(filePath). Verify the route category and target are correct or safely refused; spec-doc continuity updates when the route merges; description.json and graph-metadata.json refresh on every successful canonical save; searchable result appears for merged saves; and no template-contract or insufficiency rejection appears. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Memory indexing (memory_save) against memory_save(filePath). Verify the 8-category content router chooses the correct target or safe refusal; spec-doc continuity updates when the route merges; description.json and graph-metadata.json refresh on every successful canonical save; searchable result appears for merged saves; and no template-contract or insufficiency rejection appears. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

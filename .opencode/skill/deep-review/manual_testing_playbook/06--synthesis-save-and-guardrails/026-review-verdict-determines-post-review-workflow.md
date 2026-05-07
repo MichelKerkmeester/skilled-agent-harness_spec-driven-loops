@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify FAIL->plan, CONDITIONAL->plan, PASS->changelog routing with hasAdvisories metadata.
 - Real user request: After the review finishes, what happens next depending on the verdict?
-- Prompt: `As a manual-testing orchestrator, validate the verdict routing contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify three routing paths: (1) FAIL verdict (active P0 findings or any binary gate failure) routes to /spec_kit:plan for remediation, (2) CONDITIONAL verdict (no P0 but active P1 findings) routes to /spec_kit:plan for fixes, (3) PASS verdict (no P0/P1) routes to /create:changelog with hasAdvisories=true when P2 findings remain. Verify that the verdict and routing are documented in both the review report Executive Summary and the Planning Trigger section. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review verdict routing for FAIL, CONDITIONAL, and PASS post-review workflows.`
 - Expected execution process: Inspect the quick reference verdict table, then the YAML synthesis step for routing logic, then the SKILL.md and command entrypoint for verdict documentation.
 - Desired user-facing outcome: The user knows exactly which follow-up command to run based on the review verdict and understands what `hasAdvisories` means.
 - Expected signals: Three distinct verdicts, each with a documented next command, `hasAdvisories` flag on PASS with P2 findings, verdict appears in Executive Summary, and routing rationale appears in Planning Trigger.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the verdict routing contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify three routing paths: (1) FAIL verdict (active P0 findings or any binary gate failure) routes to /spec_kit:plan for remediation, (2) CONDITIONAL verdict (no P0 but active P1 findings) routes to /spec_kit:plan for fixes, (3) PASS verdict (no P0/P1) routes to /create:changelog with hasAdvisories=true when P2 findings remain. Verify that the verdict and routing are documented in both the review report Executive Summary and the Planning Trigger section. Return a concise operator-facing verdict.
+Validate deep-review verdict routing for FAIL, CONDITIONAL, and PASS post-review workflows.
 ### Commands
 1. `bash: rg -n 'FAIL|CONDITIONAL|PASS|verdict|hasAdvisories|spec_kit:plan|create:changelog|Next Command|routing' .opencode/skill/deep-review/references/quick_reference.md`
 2. `bash: rg -n 'verdict|FAIL|CONDITIONAL|PASS|hasAdvisories|routing|next_command|post_review|planning_trigger' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

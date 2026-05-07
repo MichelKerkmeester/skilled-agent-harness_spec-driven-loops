@@ -24,7 +24,7 @@ This scenario validates the check-source-dist-alignment.ts script for `150`. It 
 
 - Objective: Verify source-dist alignment passes with 0 violations.
 - Real user request: `Please validate Source-dist alignment validation against cd .opencode/skill/system-spec-kit and tell me whether the expected signals are present: 0 violations, all dist files aligned.`
-- RCAF Prompt: `As a tooling validation operator, validate Source-dist alignment validation against cd .opencode/skill/system-spec-kit. Verify 0 violations, all dist files aligned. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Source-dist alignment validation against cd .opencode/skill/system-spec-kit and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: 0 violations, all dist files aligned
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -37,7 +37,7 @@ This scenario validates the check-source-dist-alignment.ts script for `150`. It 
 ### Prompt
 
 ```
-As a tooling validation operator, verify check-source-dist-alignment.ts reports 0 violations against cd .opencode/skill/system-spec-kit. Verify 0 violations, all dist files aligned, exit code 0. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Source-dist alignment validation against cd .opencode/skill/system-spec-kit and report cited pass/fail evidence.
 ```
 
 ### Commands

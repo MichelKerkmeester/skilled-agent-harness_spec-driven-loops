@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/094-playbook-prompt-naturalness",
+  "description": "Drop formulaic 'As a {ROLE}...' RCAF as the default prompt voice across all 16 manual_testing_playbook packages and sk-doc templates. Preserve RCAF only where actor is genuinely an AI orchestrator. Surface-cutting refactor: ~498 files affected.",
+  "keywords": [
+    "spec",
+    "094",
+    "playbook",
+    "prompt",
+    "naturalness",
+    "rcaf",
+    "natural-human",
+    "sk-doc"
+  ],
+  "lastUpdated": "2026-05-07T00:00:00.000Z",
+  "specId": "094",
+  "folderSlug": "playbook-prompt-naturalness",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "completionPct": 0,
+  "lastOutcome": "Spec packet scaffolded; awaiting Phase A sk-doc edits."
+}

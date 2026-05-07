@@ -16,7 +16,7 @@ This scenario validates architecture boundary enforcement for `206`. It focuses 
 
 - Objective: Confirm shared neutrality and thin-wrapper-only enforcement.
 - Real user request: `Please validate Architecture boundary enforcement against the documented validation surface and tell me whether the expected signals are present: shared/ imports into mcp_server/ or scripts/ are flagged across supported import syntaxes; wrappers over 50 substantive lines are rejected; wrappers missing child_process import or spawn/exec usage are rejected; wrappers missing scripts/dist/ delegation are rejected; compliant wrappers and allowed cross-module imports pass.`
-- RCAF Prompt: `As a tooling validation operator, validate Architecture boundary enforcement against the documented validation surface. Verify shared/ imports into mcp_server/ or scripts/ are flagged across supported import syntaxes; wrappers over 50 substantive lines are rejected; wrappers missing child_process import or spawn/exec usage are rejected; wrappers missing scripts/dist/ delegation are rejected; compliant wrappers and allowed cross-module imports pass. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Architecture boundary enforcement against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: shared/ imports into mcp_server/ or scripts/ are flagged across supported import syntaxes; wrappers over 50 substantive lines are rejected; wrappers missing child_process import or spawn/exec usage are rejected; wrappers missing scripts/dist/ delegation are rejected; compliant wrappers and allowed cross-module imports pass
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates architecture boundary enforcement for `206`. It focuses 
 ### Prompt
 
 ```
-As a tooling validation operator, confirm shared neutrality and thin-wrapper-only enforcement against the documented validation surface. Verify shared/ imports into mcp_server/ or scripts/ are flagged across supported import syntaxes; wrappers over 50 substantive lines are rejected; wrappers missing child_process import or spawn/exec usage are rejected; wrappers missing scripts/dist/ delegation are rejected; compliant wrappers and allowed cross-module imports pass. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Architecture boundary enforcement against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

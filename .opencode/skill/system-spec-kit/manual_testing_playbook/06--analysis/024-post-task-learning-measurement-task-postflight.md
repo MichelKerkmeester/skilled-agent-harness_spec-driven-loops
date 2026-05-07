@@ -17,7 +17,7 @@ This scenario validates Post-task learning measurement (task_postflight) for `EX
 
 - Objective: Learning closeout.
 - Real user request: `Please validate Post-task learning measurement (task_postflight) against task_postflight(specFolder,taskId,knowledgeScore,uncertaintyScore,contextScore) and tell me whether the expected signals are present: Delta/learning record saved.`
-- RCAF Prompt: `As an analysis validation operator, validate Post-task learning measurement (task_postflight) against task_postflight(specFolder,taskId,knowledgeScore,uncertaintyScore,contextScore). Verify delta/learning record saved. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate task_postflight saves the learning delta record; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Delta/learning record saved
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Post-task learning measurement (task_postflight) for `EX
 ### Prompt
 
 ```
-As an analysis validation operator, validate Learning closeout against task_postflight(specFolder,taskId,knowledgeScore,uncertaintyScore,contextScore). Verify delta/learning record saved. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate task_postflight saves the learning delta record; return pass/fail with cited evidence.
 ```
 
 ### Commands

@@ -18,7 +18,7 @@ This scenario validates save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_
 
 - Objective: Verify short-critical quality gate exception for decision documents with structural signals.
 - Real user request: `Please validate Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) against SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS and tell me whether the expected signals are present: context_type=decision required; SHORT_CRITICAL_MIN_STRUCTURAL_SIGNALS=2 threshold; structural signals: title quality, trigger quality, anchor quality, metadata quality; bypasses MIN_CONTENT_LENGTH=50 in Layer 1; warn-only (not silent); non-decision types still rejected.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) against SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS. Verify short-critical quality gate exception for decision documents with structural signals. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate save quality gate exceptions for short decision documents.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: context_type=decision required; SHORT_CRITICAL_MIN_STRUCTURAL_SIGNALS=2 threshold; structural signals: title quality, trigger quality, anchor quality, metadata quality; bypasses MIN_CONTENT_LENGTH=50 in Layer 1; warn-only (not silent); non-decision types still rejected
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, verify short-critical quality gate exception for decision documents with structural signals against SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS. Verify isSaveQualityGateExceptionsEnabled() returns true; decision + >= 2 structural signals → bypass MIN_CONTENT_LENGTH=50; non-decision types rejected; < 2 signals rejected; Layer 1/2/3 validation still runs for other checks. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate save quality gate exceptions for short decision documents.
 ```
 
 ### Commands

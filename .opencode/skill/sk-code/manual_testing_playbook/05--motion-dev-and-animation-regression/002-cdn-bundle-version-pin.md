@@ -19,14 +19,14 @@ Operators run the exact prompt and command sequence for `MR-002` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `MR-002` | CDN Bundle Version Pin | Prove Motion CDN imports use pinned versions and avoid `@latest` | `Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @latest, record the pinned version(s), and verify the pinned ESM bundle exposes animate, inView, scroll, and motionValue for the testimonial slider pattern.` | `rg "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .opencode/skill/sk-code` -> create `/tmp/skc-MR002-version-pin.txt` -> run sandbox export probe against each pinned version | no production `motion@latest`; pinned URL found; export probe reports expected functions | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff all production Motion CDN URLs are pinned and required exports exist for the pinned version | If `@latest` appears, classify path as docs/example vs production; if production, fail and file remediation |
+| `MR-002` | CDN Bundle Version Pin | Prove Motion CDN imports use pinned versions and avoid `@latest` | `Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, inView, scroll, and motionValue exports.` | `rg "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .opencode/skill/sk-code` -> create `/tmp/skc-MR002-version-pin.txt` -> run sandbox export probe against each pinned version | no production `motion@latest`; pinned URL found; export probe reports expected functions | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff all production Motion CDN URLs are pinned and required exports exist for the pinned version | If `@latest` appears, classify path as docs/example vs production; if production, fail and file remediation |
 
 ## 3. TEST EXECUTION
 
 ### Prompt
 
 ```text
-Audit the repo for Motion CDN URLs. Confirm no production Motion URL uses @latest, record the pinned version(s), and verify the pinned ESM bundle exposes animate, inView, scroll, and motionValue for the testimonial slider pattern.
+Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, inView, scroll, and motionValue exports.
 ```
 
 ### Commands

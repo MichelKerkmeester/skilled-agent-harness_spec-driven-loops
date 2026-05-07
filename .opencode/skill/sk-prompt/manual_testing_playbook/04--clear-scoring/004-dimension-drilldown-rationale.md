@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-018` and confirm the
 
 - Objective: Confirm each CLEAR dimension has a one-line rationale.
 - Real user request: `Score my data validation prompt and tell me WHY each CLEAR dimension got the score it did.`
-- Prompt: `As a prompt engineer, use @prompt-improver to score and improve the operator's data-validation prompt. Verify every CLEAR dimension includes a numeric score and one-line rationale. Return the enhanced prompt plus the rationale-backed scoring block.`
+- Prompt: `Score my data-validation prompt; verify every CLEAR dimension includes a numeric score and one-line rationale.`
 - Expected execution process: `@prompt-improver` applies CLEAR and emits rationale for Correctness, Logic, Expression, Arrangement, and Reusability.
 - Expected signals: Five rationale lines in the form `<Dimension>: <score> -- <reason>`.
 - Desired user-visible outcome: Enhanced prompt plus auditable CLEAR rationale.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-018` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to score and improve the operator's data-validation prompt. Verify every CLEAR dimension includes a numeric score and one-line rationale. Return the enhanced prompt plus the rationale-backed scoring block.
+Score my data-validation prompt; verify every CLEAR dimension includes a numeric score and one-line rationale.
 ```
 
 ### Commands

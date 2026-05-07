@@ -16,7 +16,7 @@ This scenario validates phase-system knowledge node for `236`. It focuses on con
 
 - Objective: Confirm the documented phase model aligns with the live creation, workflow, and validation surfaces.
 - Real user request: `Please validate Phase-System Knowledge Node against bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh and tell me whether the expected signals are present: phase-system shell and JS tests pass; recursive validation succeeds on the valid-phase fixture; direct phase-link validation passes.`
-- RCAF Prompt: `As a tooling validation operator, validate Phase-System Knowledge Node against bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh. Verify the documented phase model aligns with the live creation, workflow, and validation surfaces. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Phase-System Knowledge Node against bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: phase-system shell and JS tests pass; recursive validation succeeds on the valid-phase fixture; direct phase-link validation passes
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates phase-system knowledge node for `236`. It focuses on con
 ### Prompt
 
 ```
-As a tooling validation operator, confirm the documented phase model aligns with the live creation, workflow, and validation surfaces against bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh. Verify phase-system tests pass; recursive validation exits 0 on the valid fixture; direct phase-link check passes without warn/error output. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Phase-System Knowledge Node against bash .opencode/skill/system-spec-kit/scripts/tests/test-phase-system.sh and report cited pass/fail evidence.
 ```
 
 ### Commands

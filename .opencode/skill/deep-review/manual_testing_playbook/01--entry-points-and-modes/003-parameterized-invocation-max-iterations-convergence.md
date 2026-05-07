@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that `--max-iterations` (default 7) and `--convergence` (default 0.10) parameters work and are documented consistently.
 - Real user request: I want to run a longer review with 10 iterations and tighter convergence. Show me the defaults and how to override them.
-- Prompt: `As a manual-testing orchestrator, validate the parameter contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify --max-iterations (default 7) and --convergence (default 0.10) are documented consistently across the quick reference, command entrypoint, and both YAML workflows. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.`
 - Expected execution process: Inspect the quick reference parameter table first, then the command entrypoint argument-hint, then both YAML user_inputs sections to verify defaults agree.
 - Desired user-facing outcome: The user can be told the exact defaults and how to override them, with confidence that the values propagate into the review config.
 - Expected signals: Default values of 7 and 0.10 appear consistently across all sources; the YAML writes these into `deep-review-config.json` during init.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the parameter contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify --max-iterations (default 7) and --convergence (default 0.10) are documented consistently across the quick reference, command entrypoint, and both YAML workflows. Return a concise user-facing pass/fail verdict.
+Validate deep-review parameter handling for --max-iterations and --convergence across quick reference, command entrypoint, and YAML workflows.
 ### Commands
 1. `bash: rg -n 'max.iterations|convergence.*0\.10|convergence_threshold|maxIterations' .opencode/skill/deep-review/references/quick_reference.md`
 2. `bash: rg -n 'max.iterations|convergence|argument-hint' .opencode/command/spec_kit/deep-review.md`

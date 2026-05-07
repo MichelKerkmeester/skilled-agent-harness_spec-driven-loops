@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-023` and confirm the
 
 - Objective: Confirm the 5-question CLEAR card passes low-risk prompts inline without agent escalation.
 - Real user request: `Quick check on my CLI dispatch prompt — apply the 5-question quality card without escalation.`
-- Prompt: `As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card 5-question CLEAR check to the operator's low-complexity dispatch prompt. Verify all five questions pass inline and no @prompt-improver dispatch occurs. Return the pass/fail card result.`
+- Prompt: `As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-complexity dispatch prompt. Verify all five checks pass inline and no @prompt-improver dispatch occurs. Return the card verdict.`
 - Expected execution process: The orchestrator loads the card, checks Correctness, Logic, Expression, Arrangement, and Reusability questions, and stays inline because no escalation trigger is present.
 - Expected signals: Five `yes` answers; `Fast path`; no `agent: @prompt-improver` invocation.
 - Desired user-visible outcome: `Fast-path: 5/5 CLEAR questions passed; no @prompt-improver escalation.`
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-023` and confirm the
 ### Prompt
 
 ```
-As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card 5-question CLEAR check to the operator's low-complexity dispatch prompt. Verify all five questions pass inline and no @prompt-improver dispatch occurs. Return the pass/fail card result.
+As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-complexity dispatch prompt. Verify all five checks pass inline and no @prompt-improver dispatch occurs. Return the card verdict.
 ```
 
 ### Commands

@@ -16,7 +16,7 @@ This scenario validates Evaluation API Surface for `217`. It focuses on verifyin
 
 - Objective: Verify the stable public facade exposes ablation, BM25 baseline, ground-truth loading, and eval DB setup through one approved import path.
 - Real user request: `` Please validate Evaluation API Surface against mcp_server/api/eval.ts and tell me whether the expected signals are present: `mcp_server/api/eval.ts` exposes ablation exports, BM25 baseline exports, `loadGroundTruth`, and `initEvalDb`; downstream consumers can use one stable import path; the file adds no local wrapper or transformation logic. ``
-- RCAF Prompt: `As an evaluation validation operator, validate Evaluation API Surface against mcp_server/api/eval.ts. Verify the stable public facade exposes ablation, BM25 baseline, ground-truth loading, and eval DB setup through one approved import path. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the evaluation API facade and cite approved-path exports for ablation, BM25 baseline, ground truth, and eval DB setup.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `mcp_server/api/eval.ts` exposes ablation exports, BM25 baseline exports, `loadGroundTruth`, and `initEvalDb`; downstream consumers can use one stable import path; the file adds no local wrapper or transformation logic
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Evaluation API Surface for `217`. It focuses on verifyin
 ### Prompt
 
 ```
-As an evaluation validation operator, verify the stable public facade exposes ablation, BM25 baseline, ground-truth loading, and eval DB setup through one approved import path against mcp_server/api/eval.ts. Verify mcp_server/api/eval.ts exposes ablation exports, BM25 baseline exports, loadGroundTruth, and initEvalDb; downstream consumers can use one stable import path; the file adds no local wrapper or transformation logic. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the evaluation API facade and cite approved-path exports for ablation, BM25 baseline, ground truth, and eval DB setup.
 ```
 
 ### Commands

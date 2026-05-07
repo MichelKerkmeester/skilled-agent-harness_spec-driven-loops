@@ -17,7 +17,7 @@ This scenario validates Lineage backfill rollback drill for `130`. It focuses on
 
 - Objective: Verify dry-run planning, idempotent backfill, and checkpoint-backed rollback for Phase 2 lineage rollout.
 - Real user request: `Please validate Lineage backfill rollback drill against cd .opencode/skill/system-spec-kit/mcp_server and tell me whether the expected signals are present: Targeted suite passes; transcript shows dry-run plan counts, successful backfill application, idempotent rerun, and checkpoint restore rollback.`
-- RCAF Prompt: `As a pipeline validation operator, validate Lineage backfill rollback drill against cd .opencode/skill/system-spec-kit/mcp_server. Verify dry-run planning, idempotent backfill, and checkpoint-backed rollback for Phase 2 lineage rollout. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the lineage backfill rollback drill in the MCP server and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Targeted suite passes; transcript shows dry-run plan counts, successful backfill application, idempotent rerun, and checkpoint restore rollback
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Lineage backfill rollback drill for `130`. It focuses on
 ### Prompt
 
 ```
-As a pipeline validation operator, verify dry-run planning, idempotent backfill, and checkpoint-backed rollback for Phase 2 lineage rollout against cd .opencode/skill/system-spec-kit/mcp_server. Verify targeted suite passes; transcript shows dry-run plan counts, successful backfill application, idempotent rerun, and checkpoint restore rollback. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the lineage backfill rollback drill in the MCP server and return pass/fail with cited evidence.
 ```
 
 ### Commands

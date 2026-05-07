@@ -16,7 +16,7 @@ This scenario validates End-to-end success-envelope verification for `216`. It f
 
 - Objective: Confirm finalized success envelopes preserve appended hints, auto-surfaced context, and token metadata correctness together.
 - Real user request: `` Please validate End-to-end success-envelope verification against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/hooks-ux-feedback.vitest.ts and tell me whether the expected signals are present: Context-server and hook suites pass, success envelopes append auto-surface hints, preserve `autoSurfacedContext`, and keep `meta.tokenCount` aligned with the finalized serialized payload. ``
-- RCAF Prompt: `As a runtime-hook validation operator, validate End-to-end success-envelope verification against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/context-server.vitest.ts tests/hooks-ux-feedback.vitest.ts. Verify finalized success envelopes preserve appended hints, auto-surfaced context, and token metadata correctness together. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate end-to-end success-envelope behavior for appended hints, auto-surfaced context, and token metadata.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Context-server and hook suites pass, success envelopes append auto-surface hints, preserve `autoSurfacedContext`, and keep `meta.tokenCount` aligned with the finalized serialized payload
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

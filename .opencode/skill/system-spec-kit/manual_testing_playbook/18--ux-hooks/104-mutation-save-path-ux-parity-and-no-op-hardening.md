@@ -16,7 +16,7 @@ This scenario validates Mutation save-path UX parity and no-op hardening for `10
 
 - Objective: Confirm duplicate-save and unchanged-save no-op behavior, FSRS corruption guard, and atomic-save parity/hints.
 - Real user request: `` Please validate Mutation save-path UX parity and no-op hardening against npx vitest run tests/memory-save-ux-regressions.vitest.ts and tell me whether the expected signals are present: Suite passes and assertions show no false `postMutationHooks` on `duplicate` or `unchanged` saves, cache-left-unchanged messaging, FSRS spaced-repetition fields not corrupted on no-op saves, and parity between standard and atomic save responses. ``
-- RCAF Prompt: `As a runtime-hook validation operator, validate Mutation save-path UX parity and no-op hardening against npx vitest run tests/memory-save-ux-regressions.vitest.ts. Verify duplicate-save and unchanged-save no-op behavior, FSRS corruption guard, and atomic-save parity/hints. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate mutation save-path UX parity and no-op hardening against tests/memory-save-ux-regressions.vitest.ts.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Suite passes and assertions show no false `postMutationHooks` on `duplicate` or `unchanged` saves, cache-left-unchanged messaging, FSRS spaced-repetition fields not corrupted on no-op saves, and parity between standard and atomic save responses
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

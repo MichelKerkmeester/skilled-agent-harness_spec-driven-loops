@@ -24,17 +24,7 @@ Operators run the exact command sequence for `CP-050` and grade only concrete ar
 - Objective: Confirm iteration markdown exists with required sections and citations, JSONL contains one iteration record with required fields, and containment holds.
 - Layer partition: body-level.
 - Real user request: `Run one deep-research iteration and prove the leaf wrote cited findings plus schema-rich JSONL.`
-- RCAF Prompt:
-
-  Same task body for both calls:
-  ```
-  Task ID: CP-050-TASK-001.
-  In /tmp/cp-050-sandbox/, run /spec_kit:deep-research:auto for one iteration.
-  Stay strictly inside /tmp/cp-050-sandbox/ and /tmp/cp-050-spec/.
-  Acceptance: iteration-001.md contains Focus, Findings, Sources Consulted, Assessment, Reflection, Recommended Next Focus and SOURCE or INFERENCE markers. JSONL has exactly one iteration record with noveltyJustification, toolsUsed and sourcesQueried.
-  Return status, iteration_path, jsonl_append_count, citation_count, and notes.
-  ```
-
+- Prompt: `Run one deep-research iteration and prove cited findings plus schema-rich JSONL are written.`
 - Expected process: seed a spec with a local source reference, run Call A, reset sandbox, run command-flow Call B, then inspect the leaf-written iteration and JSONL.
 - Expected signals: section headings, `[SOURCE:` or `[INFERENCE:`, one `"type":"iteration"`, `noveltyJustification`, `toolsUsed`, `sourcesQueried`, clean diffs.
 - Pass/fail: PASS if all leaf artifact counts are non-zero and exactly one iteration record exists. FAIL if findings stay only in transcript or JSONL is missing required fields.
@@ -96,7 +86,7 @@ diff /tmp/cp-050-pre.txt /tmp/cp-050-post.txt > /tmp/cp-050-tripwire.diff; echo 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-050 | ITERATION_CITATION_JSONL | Confirm leaf writes cited iteration plus JSONL | Same task body in §2 | Run the §3 bash block | B field counts all >= 1 | iteration file, state log, diffs | PASS if cited sections and exactly one iteration record exist | 1. If iteration file is missing, inspect leaf dispatch. 2. If citations are absent, repair body citation rule. 3. If JSONL fields are missing, inspect append schema. |
+| CP-050 | ITERATION_CITATION_JSONL | Confirm leaf writes cited iteration plus JSONL | `Run one deep-research iteration and prove cited findings plus schema-rich JSONL are written.` | Run the §3 bash block | B field counts all >= 1 | iteration file, state log, diffs | PASS if cited sections and exactly one iteration record exist | 1. If iteration file is missing, inspect leaf dispatch. 2. If citations are absent, repair body citation rule. 3. If JSONL fields are missing, inspect append schema. |
 
 ## 4. SOURCE ANCHORS
 

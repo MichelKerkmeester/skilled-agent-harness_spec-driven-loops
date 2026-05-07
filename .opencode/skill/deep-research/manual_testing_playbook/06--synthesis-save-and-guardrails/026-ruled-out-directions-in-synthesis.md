@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that iteration ruledOut data is consolidated into "Eliminated Alternatives" in research/research.md.
 - Real user request: After research completes, where can I find what approaches were tried and failed?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the ruled-out directions synthesis contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the synthesis phase consolidates ruledOut entries from JSONL records and ## Dead Ends sections from iteration files into a mandatory "Eliminated Alternatives" section in research/research.md. Verify that strategy.md also tracks ruled-out directions per iteration. Return a concise operator-facing verdict.`
+- Prompt: `Validate final synthesis records ruled-out directions from JSONL and iteration dead-end sections.`
 - Expected execution process: Inspect the loop protocol synthesis rules, then the state format for the ruledOut array and iteration file sections, then the strategy template for the Ruled Out Directions section, then SKILL.md ALWAYS rule 10.
 - Desired user-visible outcome: The user can open research/research.md after synthesis and find a complete table of all approaches that were investigated and eliminated, with reasons and evidence.
 - Expected signals: research/research.md has a mandatory "Eliminated Alternatives" section formatted as a table (`| Approach | Reason Eliminated | Evidence | Iteration(s) |`); iteration files have `## Ruled Out` and `## Dead Ends` sections when negative knowledge is captured; strategy.md has a `## 10. Ruled Out Directions` section updated per iteration; ALWAYS rule 10 mandates documenting ruled-out directions.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the ruled-out directions synthesis contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the synthesis phase consolidates ruledOut entries from JSONL records and ## Dead Ends sections from iteration files into a mandatory "Eliminated Alternatives" section in research/research.md. Verify that strategy.md also tracks ruled-out directions per iteration. Return a concise operator-facing verdict.
+Validate final synthesis records ruled-out directions from JSONL and iteration dead-end sections.
 ### Commands
 1. `bash: rg -n 'Eliminated Alternatives\|ruledOut\|Dead Ends\|negative knowledge' .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: rg -n 'ruledOut\|Ruled Out\|Dead Ends' .opencode/skill/deep-research/references/state_format.md`

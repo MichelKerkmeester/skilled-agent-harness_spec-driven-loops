@@ -16,7 +16,7 @@ This scenario validates spec lifecycle automation for `237`. It focuses on confi
 
 - Objective: Confirm lifecycle tool availability across recommendation, upgrade, completeness, completion, and archival surfaces.
 - Real user request: `Please validate Spec Lifecycle Automation against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help and tell me whether the expected signals are present: help output available for lifecycle entrypoints; upgrade regression suite passes; completeness JSON is emitted; completion gate returns a stable status.`
-- RCAF Prompt: `As a tooling validation operator, validate Spec Lifecycle Automation against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help. Verify lifecycle tool availability across recommendation, upgrade, completeness, completion, and archival surfaces. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Spec Lifecycle Automation against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: help output available for lifecycle entrypoints; upgrade regression suite passes; completeness JSON is emitted; completion gate returns a stable status
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates spec lifecycle automation for `237`. It focuses on confi
 ### Prompt
 
 ```
-As a tooling validation operator, confirm lifecycle tool availability across recommendation, upgrade, completeness, completion, and archival surfaces against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help. Verify recommendation and archive help text is available; upgrade-level regression suite passes; completeness JSON emits percentage-style data; completion status is returned for the fixture. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Spec Lifecycle Automation against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --help and report cited pass/fail evidence.
 ```
 
 ### Commands

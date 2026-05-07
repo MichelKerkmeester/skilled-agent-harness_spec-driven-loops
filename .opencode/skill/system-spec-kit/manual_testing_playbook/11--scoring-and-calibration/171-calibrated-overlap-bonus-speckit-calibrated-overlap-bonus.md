@@ -17,7 +17,7 @@ This scenario validates calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BON
 
 - Objective: Verify calibrated overlap bonus replaces flat convergence bonus in RRF fusion.
 - Real user request: `Please validate Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) against SPECKIT_CALIBRATED_OVERLAP_BONUS and tell me whether the expected signals are present: calibrated bonus computed using CALIBRATED_OVERLAP_BETA=0.15 and mean normalized top score; bonus clamped to CALIBRATED_OVERLAP_MAX=0.06; flat CONVERGENCE_BONUS=0.10 not applied when flag ON; isCalibratedOverlapBonusEnabled() returns true by default.`
-- RCAF Prompt: `As a scoring validation operator, validate Calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BONUS) against SPECKIT_CALIBRATED_OVERLAP_BONUS. Verify calibrated overlap bonus replaces flat convergence bonus in RRF fusion. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate calibrated overlap bonus replacement of the flat convergence bonus in RRF fusion.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: calibrated bonus computed using CALIBRATED_OVERLAP_BETA=0.15 and mean normalized top score; bonus clamped to CALIBRATED_OVERLAP_MAX=0.06; flat CONVERGENCE_BONUS=0.10 not applied when flag ON; isCalibratedOverlapBonusEnabled() returns true by default
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates calibrated overlap bonus (SPECKIT_CALIBRATED_OVERLAP_BON
 ### Prompt
 
 ```
-As a scoring validation operator, verify calibrated bonus replaces flat convergence bonus in RRF fusion against SPECKIT_CALIBRATED_OVERLAP_BONUS. Verify isCalibratedOverlapBonusEnabled() returns true; bonus uses beta=0.15 scaling with mean normalized top score; bonus clamped to CALIBRATED_OVERLAP_MAX=0.06; falls back to CONVERGENCE_BONUS=0.10 when OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate calibrated overlap bonus replacement of the flat convergence bonus in RRF fusion.
 ```
 
 ### Commands

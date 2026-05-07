@@ -16,7 +16,7 @@ This scenario validates Phase detection scoring for `PHASE-001`. It focuses on R
 
 - Objective: Run `recommend-level.sh --recommend-phases --json` on a high-complexity spec and verify scoring output.
 - Real user request: `` Please validate Phase detection scoring against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and tell me whether the expected signals are present: JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low. ``
-- RCAF Prompt: `As a tooling validation operator, validate Phase detection scoring against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>. Verify run recommend-level.sh --recommend-phases --json on a high-complexity spec and verify scoring output. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Phase detection scoring against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: JSON output contains `recommended_phases` (boolean), `phase_score` (number), `suggested_phase_count` (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Phase detection scoring for `PHASE-001`. It focuses on R
 ### Prompt
 
 ```
-As a tooling validation operator, run recommend-level.sh --recommend-phases --json on a high-complexity spec and verify scoring output against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec>. Verify jSON output contains recommended_phases (boolean), phase_score (number), suggested_phase_count (number), and 4 dimension scores: LOC Factor (35%), File Count (20%), Risk Factors (25%), Complexity (20%); simple specs score low. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Phase detection scoring against bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --recommend-phases --json specs/<target-spec> and report cited pass/fail evidence.
 ```
 
 ### Commands

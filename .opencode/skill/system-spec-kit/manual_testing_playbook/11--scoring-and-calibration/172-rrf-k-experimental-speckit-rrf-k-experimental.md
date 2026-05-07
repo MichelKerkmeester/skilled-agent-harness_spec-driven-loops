@@ -17,7 +17,7 @@ This scenario validates RRF K experimental tuning (SPECKIT_RRF_K_EXPERIMENTAL) f
 
 - Objective: Verify per-intent K optimization selects best K from sweep grid.
 - Real user request: `Please validate RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) against SPECKIT_RRF_K_EXPERIMENTAL and tell me whether the expected signals are present: perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; argmaxNdcg10() selects K maximizing NDCG@10 with ties broken by lower K; evalQueriesAtK() computes aggregate NDCG@10 and MRR@5; falls back to DEFAULT_K=60 when OFF.`
-- RCAF Prompt: `As a scoring validation operator, validate RRF K experimental (SPECKIT_RRF_K_EXPERIMENTAL) against SPECKIT_RRF_K_EXPERIMENTAL. Verify per-intent K optimization selects best K from sweep grid. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate RRF K experimental per-intent optimization across the sweep grid.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: perIntentKSweep() groups queries by intent and sweeps JUDGED_K_SWEEP_VALUES; argmaxNdcg10() selects K maximizing NDCG@10 with ties broken by lower K; evalQueriesAtK() computes aggregate NDCG@10 and MRR@5; falls back to DEFAULT_K=60 when OFF
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates RRF K experimental tuning (SPECKIT_RRF_K_EXPERIMENTAL) f
 ### Prompt
 
 ```
-As a scoring validation operator, verify per-intent K optimization selects best K from sweep grid against SPECKIT_RRF_K_EXPERIMENTAL. Verify isKExperimentalEnabled() returns true; sweep grid = {10,20,40,60,80,100,120}; NDCG@10 and MRR@5 computed per K; ties broken by lower K; falls back to K=60 when OFF. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate RRF K experimental per-intent optimization across the sweep grid.
 ```
 
 ### Commands

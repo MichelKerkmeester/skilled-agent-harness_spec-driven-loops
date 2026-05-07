@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify 3 binary gates (evidence, scope, coverage) must all pass before STOP.
 - Real user request: Can the review stop even if some findings lack file evidence or a dimension was never examined?
-- Prompt: `As a manual-testing orchestrator, validate the quality guard contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify 3 binary gates are enforced before STOP: (1) Evidence gate -- every active finding has file:line evidence and is not inference-only, (2) Scope gate -- findings and reviewed files stay within declared review scope, (3) Coverage gate -- configured dimensions plus required traceability protocols are covered. Verify these gates are distinct from research mode guards. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.`
 - Expected execution process: Inspect the convergence reference for quality guard definitions, then the review YAML workflow for gate enforcement, then the quick reference and SKILL.md for user-facing guard documentation.
 - Desired user-facing outcome: The user is told that even if the convergence score reaches the threshold, the review will not stop until all three quality gates pass, and is given a plain explanation of each gate.
 - Expected signals: Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP transition, and gates are review-specific.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the quality guard contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify 3 binary gates are enforced before STOP: (1) Evidence gate -- every active finding has file:line evidence and is not inference-only, (2) Scope gate -- findings and reviewed files stay within declared review scope, (3) Coverage gate -- configured dimensions plus required traceability protocols are covered. Verify these gates are distinct from research mode guards. Return a concise operator-facing verdict.
+Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.
 ### Commands
 1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

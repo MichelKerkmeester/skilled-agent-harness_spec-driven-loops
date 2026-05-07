@@ -23,7 +23,7 @@ Operators run the exact prompt and command sequence for `CP-043` and confirm the
 
 - Objective: Confirm Call B emits complete legal-stop gate evidence with failed `evidenceGate` and no converged stop.
 - Real user request: `Compare generic success narration against legal-stop gate bundle enforcement.`
-- RCAF Prompt:
+- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
 
   Same task body for both calls:
   ```
@@ -82,7 +82,7 @@ grep -c "gate_evaluation" /tmp/cp-043-B-combined.txt | tee /tmp/cp-043-B-generic
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-043 | LEGAL_STOP_GATE_BUNDLE | Confirm all five legal-stop gates block convergence | Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox | Run the §3 exact command block | B field counts for `details.gateResults` and all five gate keys are >= 1; `blocked_stop` appears when any gate fails; converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-043-B-command.txt`, `/tmp/cp-043-B-combined.txt`, `/tmp/cp-043-B-field-counts.txt`, `/tmp/cp-043-B-converged-count.txt`, `/tmp/cp-043-tripwire.diff` | PASS if complete `details.gateResults` bundle and blocked stop appear. FAIL if generic gate evaluation substitutes for legal-stop evidence | 1. If `legal_stop_evaluated` is absent, verify command-flow legal-stop execution. 2. If `details.gateResults` or any gate key is missing, require the full nested bundle, not flat `gateResult`. 3. If converged appears with failed gate, derive stop reason from legal-stop artifact. |
+| CP-043 | LEGAL_STOP_GATE_BUNDLE | Confirm all five legal-stop gates block convergence | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `details.gateResults` and all five gate keys are >= 1; `blocked_stop` appears when any gate fails; converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-043-B-command.txt`, `/tmp/cp-043-B-combined.txt`, `/tmp/cp-043-B-field-counts.txt`, `/tmp/cp-043-B-converged-count.txt`, `/tmp/cp-043-tripwire.diff` | PASS if complete `details.gateResults` bundle and blocked stop appear. FAIL if generic gate evaluation substitutes for legal-stop evidence | 1. If `legal_stop_evaluated` is absent, verify command-flow legal-stop execution. 2. If `details.gateResults` or any gate key is missing, require the full nested bundle, not flat `gateResult`. 3. If converged appears with failed gate, derive stop reason from legal-stop artifact. |
 
 ## 4. SOURCE FILES
 

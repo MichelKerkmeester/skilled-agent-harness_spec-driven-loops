@@ -16,7 +16,7 @@ This scenario validates Rendered spec-doc record template contract for `149`. It
 
 - Objective: Confirm malformed rendered spec-doc records fail before write/index and active corpus stays structurally clean.
 - Real user request: `Please validate Rendered spec-doc record template contract against memory_save({ filePath:"<sandbox-file>", dryRun:true }) and tell me whether the expected signals are present: Dry-run surfaces template-contract violations; non-dry-run rejects malformed files before index side effects; valid rendered output remains validator-clean.`
-- RCAF Prompt: `As a tooling validation operator, validate Rendered spec-doc record template contract against memory_save({ filePath:"<sandbox-file>", dryRun:true }). Verify malformed rendered spec-doc records fail before write/index and active corpus stays structurally clean. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Rendered spec-doc record template contract against memory_save({ filePath:"<sandbox-file>", dryRun:true }) and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Dry-run surfaces template-contract violations; non-dry-run rejects malformed files before index side effects; valid rendered output remains validator-clean
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Rendered spec-doc record template contract for `149`. It
 ### Prompt
 
 ```
-As a tooling validation operator, confirm malformed rendered spec-doc records fail before write/index and valid rendered output remains validator-clean against memory_save({ filePath:"<sandbox-file>", dryRun:true }). Verify dry-run surfaces template-contract violations; non-dry-run rejects malformed files before index side effects; valid rendered output remains validator-clean. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Rendered spec-doc record template contract against memory_save({ filePath:"<sandbox-file>", dryRun:true }) and report cited pass/fail evidence.
 ```
 
 ### Commands

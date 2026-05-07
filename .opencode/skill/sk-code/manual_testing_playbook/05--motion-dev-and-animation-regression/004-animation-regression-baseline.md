@@ -19,14 +19,14 @@ Operators run the exact prompt and command sequence for `MR-004` and produce a b
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `MR-004` | Animation Regression Baseline | Capture reusable baseline videos for Motion dropdown and testimonial slider flows | `Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.` | open target page -> clear console -> record dropdown -> record slider -> save console -> compare with previous baseline if present | dropdown opens/closes smoothly and reaches correct final state; slider advances, snaps, and updates active state; no console errors | `/tmp/skc-MR004-nav-dropdown.mp4`, `/tmp/skc-MR004-testimonial.mp4`, `/tmp/skc-MR004-console.txt`, `/tmp/skc-MR004-verdict.md` | PASS iff both flows match baseline behavior or approved first baseline, with clean console and correct final states | If drift appears, isolate whether markup, Motion API, timing constants, or reduced-motion settings changed |
+| `MR-004` | Animation Regression Baseline | Capture reusable baseline videos for Motion dropdown and testimonial slider flows | `Record baseline videos for the Motion dropdown and slider flows; compare drift, console errors, and timing regressions.` | open target page -> clear console -> record dropdown -> record slider -> save console -> compare with previous baseline if present | dropdown opens/closes smoothly and reaches correct final state; slider advances, snaps, and updates active state; no console errors | `/tmp/skc-MR004-nav-dropdown.mp4`, `/tmp/skc-MR004-testimonial.mp4`, `/tmp/skc-MR004-console.txt`, `/tmp/skc-MR004-verdict.md` | PASS iff both flows match baseline behavior or approved first baseline, with clean console and correct final states | If drift appears, isolate whether markup, Motion API, timing constants, or reduced-motion settings changed |
 
 ## 3. TEST EXECUTION
 
 ### Prompt
 
 ```text
-Record baseline videos for the Motion nav dropdown open/close flow and testimonial slider next/previous/drag flow. Compare the run against the current baseline, note any visual drift, console errors, or timing regressions, and return PASS/FAIL with artifact paths.
+Record baseline videos for the Motion dropdown and slider flows; compare drift, console errors, and timing regressions.
 ```
 
 ### Commands

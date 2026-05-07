@@ -12,7 +12,31 @@ created: 2026-05-05
 
 # SD-013: Minimal-Load Token Cost (Floor)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates minimal-load HVR token-cost behavior for `SD-013`. It focuses on a tiny voice-rule prompt that should load one reference and establish the routing floor.
+
+### Why This Matters
+
+Small prompts are where unnecessary resources are easiest to see and most expensive relative to the task. This scenario catches accidental load-all behavior, asset leakage, and oversized responses that would make low-cost style fixes inefficient.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Apply HVR to this sentence: The system was designed by us to be modular.`
+- Prompt: `Apply HVR to this sentence: The system was designed by us to be modular.`
+- Expected intent: `HVR`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-013 | Floor token cost: minimal-keyword query, 1 reference load | Verify sk-doc routes the scenario to `HVR` with the expected resources. | `Apply HVR to this sentence: The system was designed by us to be modular.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `HVR`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -23,9 +47,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-sk-doc: hvr fix this paragraph.
-
-The system was designed by us to be modular.
+Apply HVR to this sentence: The system was designed by us to be modular.
 ```
 
 (Minimal-keyword query — single intent trigger + DEFAULT_RESOURCE only.)
@@ -46,3 +68,10 @@ The system was designed by us to be modular.
 - intent_picked == `HVR`
 - only 1 RESOURCE_MAP resource loaded (+ DEFAULT_RESOURCE)
 - per-CLI floor token cost recorded as BASELINE for SD-014 (medium) and SD-015 (max)
+
+## 4. SOURCE METADATA
+
+- Group: Token Cost Baseline
+- Playbook ID: SD-013
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `05--token-cost-baseline/001-minimal-load.md`

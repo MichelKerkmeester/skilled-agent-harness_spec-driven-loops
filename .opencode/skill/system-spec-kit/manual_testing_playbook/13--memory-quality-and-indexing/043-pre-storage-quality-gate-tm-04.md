@@ -17,7 +17,7 @@ This scenario validates Pre-storage quality gate (TM-04) for `043`. It focuses o
 
 - Objective: Confirm 3-layer gate behavior.
 - Real user request: `Please validate Pre-storage quality gate (TM-04) against the documented validation surface and tell me whether the expected signals are present: Structural, semantic, and duplication checks all run; blocking failures stop the save; warn-only findings remain advisory; no fake persisted decision-log claim.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Pre-storage quality gate (TM-04) against the documented validation surface. Verify structural, semantic, and duplication checks all run; blocking failures stop the save; warn-only findings remain advisory; no fake persisted decision-log claim. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the pre-storage quality gate for structural, semantic, and duplication checks.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Structural, semantic, and duplication checks all run; blocking failures stop the save; warn-only findings remain advisory; no fake persisted decision-log claim
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Pre-storage quality gate (TM-04) for `043`. It focuses o
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm 3-layer gate behavior against the documented validation surface. Verify structural, semantic, and duplication checks all run; blocking failures stop the save; warn-only findings remain advisory. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the pre-storage quality gate for structural, semantic, and duplication checks.
 ```
 
 ### Commands

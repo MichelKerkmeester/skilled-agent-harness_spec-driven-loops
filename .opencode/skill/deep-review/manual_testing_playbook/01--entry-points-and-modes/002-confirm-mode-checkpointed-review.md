@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that `/spec_kit:deep-review:confirm` pauses at each phase for user approval before proceeding.
 - Real user request: Run a deep review but let me approve each iteration before it continues.
-- Prompt: `As a manual-testing orchestrator, validate the against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify entrypoint for deep-review. Confirm that /spec_kit:deep-review:confirm is documented consistently across the README, quick reference, command entrypoint, and confirm YAML workflow, and that approval gates are present at each phase transition. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.`
 - Expected execution process: Inspect the public docs first to confirm confirm mode is advertised, then the command entrypoint for mode routing, then the confirm YAML workflow for explicit approval gates.
 - Desired user-facing outcome: The user is told that confirm mode pauses between iterations for approval, that they can inspect findings before continuing, and that the same `review/` artifacts are produced.
 - Expected signals: The confirm YAML has `approvals: multi_gate`, pause/approval steps appear in the loop, and the command entrypoint routes `:confirm` to the confirm YAML.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify entrypoint for deep-review. Confirm that /spec_kit:deep-review:confirm is documented consistently across the README, quick reference, command entrypoint, and confirm YAML workflow, and that approval gates are present at each phase transition. Return a concise user-facing pass/fail verdict.
+Validate the confirm-mode deep-review entrypoint and report whether approval gates appear at every phase transition.
 ### Commands
 1. `bash: rg -n '/spec_kit:deep-review:confirm|approval|multi_gate' .opencode/skill/deep-review/README.md .opencode/skill/deep-review/references/quick_reference.md`
 2. `bash: rg -n 'confirm|approval|gate|pause' .opencode/command/spec_kit/deep-review.md`

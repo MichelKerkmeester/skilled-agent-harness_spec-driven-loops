@@ -18,7 +18,7 @@ This scenario validates hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) for `1
 
 - Objective: Verify type-aware no-decay FSRS policy for decision/constitutional/critical types.
 - Real user request: `` Please validate Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) against the documented validation surface and tell me whether the expected signals are present: `rg` finds `SPECKIT_HYBRID_DECAY_POLICY`, `HYBRID_NO_DECAY_CONTEXT_TYPES`, `classifyHybridDecay`, `getHybridDecayMultiplier`, `applyHybridDecayPolicy`, `calculateRetrievability`, and the central `isHybridDecayPolicyEnabled()` accessor; the Vitest run exits 0; the current baseline summary is `Test Files 2 passed (2)` and `Tests 30 passed (30)`. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) against the documented validation surface. Verify type-aware no-decay FSRS policy for decision/constitutional/critical types. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate hybrid decay policy for no-decay memory types.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `rg` finds `SPECKIT_HYBRID_DECAY_POLICY`, `HYBRID_NO_DECAY_CONTEXT_TYPES`, `classifyHybridDecay`, `getHybridDecayMultiplier`, `applyHybridDecayPolicy`, `calculateRetrievability`, and the central `isHybridDecayPolicyEnabled()` accessor; the Vitest run exits 0; the current baseline summary is `Test Files 2 passed (2)` and `Tests 30 passed (30)`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -31,7 +31,7 @@ This scenario validates hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) for `1
 ### Prompt
 
 ```
-Test the default-on SPECKIT_HYBRID_DECAY_POLICY behavior. Confirm the implementing symbols exist in the expected code, rerun the hybrid-decay regression tests, and verify that decision, constitutional, and critical context types resolve to no-decay while other types stay on the standard FSRS schedule. Return a concise pass/fail verdict with the first failing symbol or test if anything breaks.
+Validate hybrid decay policy for no-decay memory types.
 ```
 
 ### Commands

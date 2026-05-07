@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify new P0 finding sets newFindingsRatio >= 0.50, blocking convergence.
 - Real user request: If the review finds a critical bug late in the loop, will it still stop early and miss it?
-- Prompt: `As a manual-testing orchestrator, validate the P0 override contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify any new P0 finding forces newFindingsRatio >= 0.50, that this value is high enough to prevent the composite stop score from reaching the 0.60 threshold, and that this behavior is documented as review-specific. Return a concise operator-facing verdict.`
+- Prompt: `Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.`
 - Expected execution process: Inspect the convergence reference for the P0 override rule, then the review YAML algorithm for enforcement, then the quick reference and SKILL.md for user-facing documentation of the override.
 - Desired user-facing outcome: The user is told that a critical finding will always force the review to continue for at least one more iteration, preventing premature stop.
 - Expected signals: P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal from contributing to convergence, the composite score cannot reach 0.60, and review continues.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the P0 override contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify any new P0 finding forces newFindingsRatio >= 0.50, that this value is high enough to prevent the composite stop score from reaching the 0.60 threshold, and that this behavior is documented as review-specific. Return a concise operator-facing verdict.
+Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.
 ### Commands
 1. `bash: rg -n 'P0.*override|P0.*block|P0.*convergence|newFindingsRatio.*0\.50|severity.*override|P0.*ratio' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'P0|severity_override|newFindingsRatio|p0_override|p0_block' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-028` and confirm the
 
 - Objective: Confirm format guide loading requires format-mode need plus ON_DEMAND keyword match.
 - Real user request: `$yaml improve my CI/CD config prompt — load the YAML format guide and apply YAML-specific structure.`
-- Prompt: `As a prompt engineer, use @prompt-improver through sk-prompt $yaml mode to improve the operator's CI/CD config prompt. Verify the routing trace loads assets/format_guide_yaml.md because the request asks for the YAML format guide, and applies YAML-specific structure in the enhanced prompt.`
+- Prompt: `$yaml improve my CI/CD config prompt; verify YAML guide loading appears in the trace and the output uses YAML structure.`
 - Expected execution process: sk-prompt detects `$yaml`, sees the on-demand `format guide` language, loads YAML format guide, and returns YAML-structured output.
 - Expected signals: Routing trace lists `assets/format_guide_yaml.md`; enhanced prompt uses YAML mapping/list structure.
 - Desired user-visible outcome: YAML enhanced prompt plus routing trace proving YAML guide load.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-028` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver through sk-prompt $yaml mode to improve the operator's CI/CD config prompt. Verify the routing trace loads assets/format_guide_yaml.md because the request asks for the YAML format guide, and applies YAML-specific structure in the enhanced prompt.
+$yaml improve my CI/CD config prompt; verify YAML guide loading appears in the trace and the output uses YAML structure.
 ```
 
 ### Commands

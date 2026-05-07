@@ -17,7 +17,7 @@ This scenario validates Negative feedback confidence signal (A4) for `031`. It f
 
 - Objective: Confirm demotion floor+recovery.
 - Real user request: `Please validate Negative feedback confidence signal (A4) against the documented validation surface and tell me whether the expected signals are present: Negative feedback reduces confidence multiplier; floor enforced (never reaches 0); half-life recovery observed over time.`
-- RCAF Prompt: `As a scoring validation operator, validate Negative feedback confidence signal (A4) against the documented validation surface. Verify negative feedback reduces confidence multiplier; floor enforced (never reaches 0); half-life recovery observed over time. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the negative feedback confidence signal, including floor enforcement and half-life recovery.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Negative feedback reduces confidence multiplier; floor enforced (never reaches 0); half-life recovery observed over time
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Negative feedback confidence signal (A4) for `031`. It f
 ### Prompt
 
 ```
-As a scoring validation operator, confirm demotion floor+recovery against the documented validation surface. Verify negative feedback reduces confidence multiplier; floor enforced (never reaches 0); half-life recovery observed over time. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the negative feedback confidence signal, including floor enforcement and half-life recovery.
 ```
 
 ### Commands

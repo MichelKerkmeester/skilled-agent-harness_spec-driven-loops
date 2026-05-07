@@ -16,7 +16,7 @@ This scenario validates watcher delete/rename cleanup for `207`. It focuses on c
 
 - Objective: Confirm delete and rename cleanup remove stale index state.
 - Real user request: `Please validate Watcher delete/rename cleanup against the documented validation surface and tell me whether the expected signals are present: unlink events call removeFn for deleted markdown files; rename removes the old path and indexes the new path; the default 2-second debounce window collapses rapid rename/change bursts to one stable reindex; burst renames keep only the final path indexed; concurrent renames remove all stale paths and keep all renamed paths indexed.`
-- RCAF Prompt: `As a tooling validation operator, validate Watcher delete/rename cleanup against the documented validation surface. Verify delete and rename cleanup remove stale index state. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Watcher delete/rename cleanup against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: unlink events call removeFn for deleted markdown files; rename removes the old path and indexes the new path; the default 2-second debounce window collapses rapid rename/change bursts to one stable reindex; burst renames keep only the final path indexed; concurrent renames remove all stale paths and keep all renamed paths indexed
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates watcher delete/rename cleanup for `207`. It focuses on c
 ### Prompt
 
 ```
-As a tooling validation operator, confirm delete and rename cleanup remove stale index state against the documented validation surface. Verify unlink events call removeFn for deleted markdown files; rename removes the old path and indexes the new path; the default 2-second debounce window collapses rapid rename/change bursts to one stable reindex; burst renames keep only the final path indexed; concurrent renames remove all stale paths and keep all renamed paths indexed. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Watcher delete/rename cleanup against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

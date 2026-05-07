@@ -16,7 +16,7 @@ This scenario validates Startup runtime compatibility guards for `EX-035`. It fo
 
 - Objective: Startup diagnostics verification.
 - Real user request: `Please validate Startup runtime compatibility guards against cd .opencode/skill/system-spec-kit/mcp_server and tell me whether the expected signals are present: Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics coverage are visible in the transcript.`
-- RCAF Prompt: `As a maintenance validation operator, validate Startup runtime compatibility guards against cd .opencode/skill/system-spec-kit/mcp_server. Verify targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics coverage are visible in the transcript. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate startup runtime compatibility guards and confirm the targeted diagnostics suite covers runtime mismatch, marker creation, and SQLite diagnostics.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics coverage are visible in the transcript
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

@@ -17,7 +17,7 @@ This scenario validates Interference scoring (TM-01) for `025`. It focuses on Co
 
 - Objective: Confirm cluster penalty.
 - Real user request: `Please validate Interference scoring (TM-01) against the documented validation surface and tell me whether the expected signals are present: Active near-duplicate cluster receives penalty; penalty reduces effective score; non-duplicates unaffected; inactive or deprecated siblings do not increase the active interference count.`
-- RCAF Prompt: `As a scoring validation operator, validate Interference scoring (TM-01) against the documented validation surface. Verify active near-duplicate cluster receives penalty; penalty reduces effective score; non-duplicates unaffected; inactive or deprecated siblings do not increase the active interference count. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate interference scoring penalties for near duplicates, non-duplicates, and inactive or deprecated siblings.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Active near-duplicate cluster receives penalty; penalty reduces effective score; non-duplicates unaffected; inactive or deprecated siblings do not increase the active interference count
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Interference scoring (TM-01) for `025`. It focuses on Co
 ### Prompt
 
 ```
-As a scoring validation operator, confirm cluster penalty against the documented validation surface. Verify active near-duplicate cluster receives penalty; penalty reduces effective score; non-duplicates unaffected; inactive or deprecated siblings do not increase the active interference count. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate interference scoring penalties for near duplicates, non-duplicates, and inactive or deprecated siblings.
 ```
 
 ### Commands

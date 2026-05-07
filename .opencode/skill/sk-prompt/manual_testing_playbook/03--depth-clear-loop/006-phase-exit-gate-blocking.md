@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-014` and confirm the
 
 - Objective: Confirm every DEPTH phase has named exit criteria and cannot advance until its gate passes or re-runs.
 - Real user request: `I want to see the DEPTH process show me each phase's exit criteria as it runs — make my SQL query prompt better.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's SQL query prompt. Verify each DEPTH phase reports a named exit criterion and status, and that failed criteria trigger a block or re-run before the next phase starts. Return the enhanced prompt plus a gate-status table.`
+- Prompt: `Improve my SQL query prompt; verify every DEPTH phase reports exit criteria and failed gates block or rerun before advancing.`
 - Expected execution process: `@prompt-improver` logs each phase, its criterion, status, and any re-run reason before moving on.
 - Expected signals: Five gate rows; statuses are `passed`, `re-ran`, or `blocked`; no phase starts after a failed predecessor without remediation.
 - Desired user-visible outcome: Gate-status table followed by the enhanced SQL prompt.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-014` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's SQL query prompt. Verify each DEPTH phase reports a named exit criterion and status, and that failed criteria trigger a block or re-run before the next phase starts. Return the enhanced prompt plus a gate-status table.
+Improve my SQL query prompt; verify every DEPTH phase reports exit criteria and failed gates block or rerun before advancing.
 ```
 
 ### Commands

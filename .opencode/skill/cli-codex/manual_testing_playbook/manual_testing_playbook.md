@@ -60,7 +60,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` +
 ### Realistic Test Model
 
 1. A realistic user request is given to an orchestrator running on a non-Codex runtime (Claude Code, OpenCode, Copilot, Gemini or shell).
-2. The orchestrator decides whether to delegate to Codex CLI via the `cli-codex` skill, picks the right profile/sandbox/reasoning-effort and constructs a Role -> Context -> Action -> Format prompt.
+2. The orchestrator decides whether to delegate to Codex CLI via the `cli-codex` skill, picks the right profile/sandbox/reasoning-effort and uses the canonical prompt for the scenario: natural-human by default, RCAF only when the actor is an AI orchestrator.
 3. The operator captures both the dispatch command and the user-visible outcome.
 4. The scenario passes only when the dispatch is sound, the Codex output matches the expected signals and the returned result would satisfy a real user.
 
@@ -92,7 +92,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` +
 - Full command transcript including the exact `codex exec` invocation with all flags
 - The user request that triggered the delegation
 - The orchestrator-side reasoning for profile, sandbox and reasoning-effort selection
-- The Role -> Context -> Action -> Format prompt actually dispatched (not just paraphrased)
+- The canonical prompt actually dispatched (not just paraphrased), whether natural-human or RCAF for AI-orchestrator scenarios
 - Codex stdout (and stderr captured via `2>&1`)
 - Exit code from `codex exec`
 - The final user-facing outcome and a PASS, PARTIAL or FAIL verdict with rationale
@@ -189,7 +189,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### What Belongs In Per-Feature Files
 
 - Real user request
-- Prompt field following the Role -> Context -> Action -> Format contract
+- Prompt field with the canonical text for this scenario
 - Expected delegation or alternate-CLI routing (profile choice, sandbox, reasoning effort)
 - Desired user-visible outcome
 - Feature-specific acceptance caveats or isolation constraints (e.g., danger-full-access approval evidence)
@@ -208,7 +208,7 @@ Verify the canonical zero-input default dispatch (`gpt-5.5` + `medium` reasoning
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator dispatching from a non-Codex runtime, generate a single TypeScript function fizzbuzz(n: number): string[] using the cli-codex default invocation. Verify the function compiles, has correct fizzbuzz semantics, and Codex returned exit code 0 with the function body printed to stdout. Return a concise pass/fail verdict naming the model, reasoning effort, and service tier actually used.`
+Prompt: `Generate a TypeScript fizzbuzz function with the documented cli-codex default and report model, effort, tier, exit code, and PASS/FAIL.`
 
 Expected signals: `codex exec` exits 0. Stdout contains a TypeScript function named `fizzbuzz`. Output references `n`, `Fizz`, `Buzz`, `FizzBuzz` semantics. The dispatched command line includes `--model gpt-5.5`, `-c model_reasoning_effort="medium"` and `-c service_tier="fast"`.
 
@@ -226,7 +226,7 @@ Verify `gpt-5.5` is the only supported model and that explicit `--model gpt-5.5`
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator validating the cli-codex model contract, dispatch a small documentation-style request explicitly pinned to --model gpt-5.5 with -c service_tier="fast". Verify the response is coherent, exit code is 0, and confirm via the skill docs that no other model ID is in scope. Return a one-line PASS/FAIL with the observed exit code and the model named in the dispatch.`
+Prompt: `Confirm the cli-codex gpt-5.5 model pin works and no other model ID is documented as in scope.`
 
 Expected signals: `codex exec` exits 0 with `--model gpt-5.5` explicitly passed. Stdout contains a coherent answer to a small documentation prompt. The skill reference (`references/cli_reference.md` §5) confirms `gpt-5.5` is the only supported model.
 
@@ -244,7 +244,7 @@ Verify `codex exec review` performs diff-aware review of the current git working
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator preparing a pre-commit review, run codex exec review against the current uncommitted diff with --model gpt-5.5 and -c service_tier="fast". Verify Codex returns categorized findings (security/bugs/style/performance) referencing actual changed lines, exits 0, and produces no file modifications. Return a concise verdict noting the number of findings and whether at least one finding cites a real changed line.`
+Prompt: `Run codex exec review on an uncommitted diff and report categorized findings, changed-line citations, exit code, and no file modifications.`
 
 Expected signals: `codex exec review --uncommitted` exits 0. Stdout contains categorized findings (at minimum: a "security" or "correctness" or "style" or "performance" section). At least one finding references a line number that maps to a real change in the working tree. No files are modified.
 
@@ -262,7 +262,7 @@ Verify that `-c service_tier="fast"` is passed explicitly on every `codex exec` 
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator enforcing the cli-codex auto-memory rule "Codex CLI fast mode must be explicit", dispatch the same trivial generation prompt twice: first WITH -c service_tier="fast", then WITHOUT it. Verify the explicit-fast invocation succeeds with the documented flag visible in the dispatched command, and document the second invocation as a contract violation that operators must reject during review. Return a verdict identifying both invocations and naming the missing flag in the negative case.`
+Prompt: `As a cross-AI orchestrator enforcing the cli-codex auto-memory rule "Codex CLI fast mode must be explicit", dispatch the same trivial generation prompt twice: first the conforming invocation WITH -c service_tier="fast", then a deliberately quarantined INTENTIONAL VIOLATION invocation WITHOUT it. Verify the conforming invocation succeeds with the documented flag visible in the dispatched command, and document the second invocation as the assertion-only contract-violation control sample that operators must reject during review. Return a verdict identifying both invocations and naming the missing flag in the negative case.`
 
 Expected signals: First invocation includes `-c service_tier="fast"` in the dispatched command and exits 0. Second invocation omits the flag (operator records this as the contract-violation control sample). The operator's review output explicitly flags the second invocation as non-conforming.
 
@@ -286,7 +286,7 @@ Verify `--sandbox read-only` permits file reads but blocks writes and that an an
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator running a safe code review, dispatch a read-only analysis of @./.opencode/skill/cli-codex/SKILL.md with --sandbox read-only --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast". Verify Codex returns a structured summary, makes no file modifications (git status clean for that path), and exits 0. Return a verdict naming the sandbox mode and confirming git status remains clean.`
+Prompt: `Summarize the cli-codex SKILL.md with --sandbox read-only and confirm Codex exits 0 without modifying files.`
 
 Expected signals: `codex exec` exits 0. Stdout contains a structured analysis of SKILL.md (sections, anchors, key rules). `bash: git status --porcelain` shows no modifications to SKILL.md. The dispatch line includes `--sandbox read-only`.
 
@@ -304,7 +304,7 @@ Verify `--sandbox workspace-write` permits file creation inside the workspace an
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator generating a small utility, dispatch a workspace-write task that creates /tmp/cli-codex-playbook-cx006/hello.ts with --sandbox workspace-write --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast". Verify the file is written, contains a TypeScript hello-world function, Codex exits 0, and no files outside /tmp/cli-codex-playbook-cx006/ are touched. Return a verdict naming the created path and confirming workspace-write succeeded.`
+Prompt: `Generate /tmp/cli-codex-playbook-cx006/hello.ts with workspace-write and confirm only that temp folder changed.`
 
 Expected signals: `codex exec` exits 0. `bash: ls /tmp/cli-codex-playbook-cx006/hello.ts` succeeds and the file contains a TypeScript hello-world function. `bash: git status --porcelain` shows no unintended modifications to the working tree (the temp dir is outside git). Dispatch line includes `--sandbox workspace-write`.
 
@@ -340,7 +340,7 @@ Verify `--full-auto` (workspace-write + on-request approval) runs unattended wit
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator validating approval-policy variants, dispatch the same small generation task four times: (1) --full-auto, (2) --ask-for-approval untrusted with --sandbox workspace-write, (3) --ask-for-approval on-request with --sandbox workspace-write, (4) --ask-for-approval never with --sandbox workspace-write. All invocations use --model gpt-5.5 -c service_tier="fast". Verify each invocation exits 0, --full-auto needs no human input, and approval prompts surface only in the untrusted/on-request paths. Return a verdict mapping each variant to its observed approval behavior.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator validating approval-policy variants, dispatch the same small generation task four times: (1) --full-auto, (2) --ask-for-approval untrusted with --sandbox workspace-write, (3) --ask-for-approval on-request with --sandbox workspace-write, (4) --ask-for-approval never with --sandbox workspace-write. All invocations use --model gpt-5.5 -c service_tier="fast". Verify each invocation exits 0, --full-auto needs no human input, and approval prompts surface only in the untrusted/on-request paths. Return a verdict mapping each variant to its observed approval behavior.`
 
 Expected signals: All four invocations exit 0 (or document specific approval prompts in untrusted/on-request modes). `--full-auto` produces no approval prompts. `--ask-for-approval never` produces no approval prompts. Dispatch lines for all four invocations explicitly include the documented flag combinations.
 
@@ -364,7 +364,7 @@ Verify the lower reasoning-effort levels (`none`, `minimal`, `low`) are accepted
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator running a trivial lookup, dispatch the prompt "List the three primary colors as JSON" three times against --model gpt-5.5 -c service_tier="fast" with reasoning effort none, minimal, and low respectively. Verify all three exit 0, all three return valid JSON containing red/green/blue (or red/yellow/blue for the artistic primary set), and the dispatched command lines explicitly carry the documented effort flag. Return a verdict mapping each effort level to the exit code and validity of the returned JSON.`
+Prompt: `Run the primary-colors JSON prompt at none, minimal, and low reasoning; report exit codes, valid JSON, and effort flags.`
 
 Expected signals: All three invocations exit 0. All three responses contain a JSON array or object with three primary colors. Dispatched command lines include the documented `-c model_reasoning_effort="<level>"` flag verbatim for each level.
 
@@ -382,7 +382,7 @@ Verify `medium` is the documented skill default reasoning effort and that omitti
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator confirming the skill default, dispatch the same generation prompt twice with --model gpt-5.5 -c service_tier="fast": once with -c model_reasoning_effort="medium" explicit, once relying on the documented skill default (still pass medium per the SKILL.md §3 default-invocation rule because the skill mandates explicit effort). Verify both exit 0 and produce comparable code-quality output for a small TypeScript utility. Return a verdict confirming both invocations match the documented default contract.`
+Prompt: `Run the clamp utility prompt twice at medium reasoning and confirm both outputs are comparable and explicitly flagged medium.`
 
 Expected signals: Both invocations exit 0. Both produce a small TypeScript utility (e.g., a `clamp(n, min, max)` function). Both dispatched command lines include `-c model_reasoning_effort="medium"` explicitly per SKILL.md §4 ALWAYS rule 7. Outputs are functionally equivalent.
 
@@ -400,7 +400,7 @@ Verify `high` and `xhigh` reasoning levels are accepted via `-c model_reasoning_
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator routing a security-sensitive analysis, dispatch a security review of @./.opencode/skill/cli-codex/SKILL.md §4 (Rules) twice: once with -c model_reasoning_effort="high", once with -c model_reasoning_effort="xhigh". Both invocations use --model gpt-5.5 --sandbox read-only -c service_tier="fast". Verify both exit 0, both return categorized findings with explicit references to specific rules, and the xhigh response demonstrates measurably deeper reasoning (more rule citations, more nuanced trade-offs). Return a verdict mapping each level to the citation count and apparent depth.`
+Prompt: `Run the SKILL.md Rules security review at high and xhigh reasoning; compare rule citations and depth.`
 
 Expected signals: Both invocations exit 0. Both responses cite specific SKILL.md rules by number (e.g., "ALWAYS 1", "NEVER 4"). The `xhigh` response contains at least as many citations as the `high` response. Dispatched command lines include the documented effort flag verbatim.
 
@@ -460,7 +460,7 @@ Verify `codex exec -p debug` routes to a workspace-write profile and applies a m
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator handing off a stuck bug after 3+ failed attempts, FIRST create /tmp/cli-codex-playbook-cx014/broken.ts with a deliberate off-by-one bug, THEN dispatch codex exec -p debug "Fix the off-by-one bug in @/tmp/cli-codex-playbook-cx014/broken.ts. Apply the minimal fix and explain root cause." with --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast". Verify the dispatch routes via -p debug, the fix is applied to the file, the explanation cites the off-by-one nature, and Codex exits 0. Return a verdict naming the profile, the file path, and the root-cause sentence.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook-cx014 (pre-approved, skip Gate 3). As a cross-AI orchestrator handing off a stuck bug after 3+ failed attempts, FIRST create /tmp/cli-codex-playbook-cx014/broken.ts with a deliberate off-by-one bug, THEN dispatch codex exec -p debug "Fix the off-by-one bug in @/tmp/cli-codex-playbook-cx014/broken.ts. Apply the minimal fix and explain root cause." with --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast". Verify the dispatch routes via -p debug, the fix is applied to the file, the explanation cites the off-by-one nature, and Codex exits 0. Return a verdict naming the profile, the file path, and the root-cause sentence.`
 
 Expected signals: Pre-step writes a broken `.ts` file with an off-by-one error. `codex exec -p debug` exits 0. Stdout contains a root-cause explanation referencing "off-by-one". The file on disk no longer contains the off-by-one bug. Dispatch line includes `-p debug`.
 
@@ -519,7 +519,7 @@ Verify `codex --enable codex_hooks` (or `[features].codex_hooks = true` in confi
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator validating Codex hook parity, FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit pointing at .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/{session-start,user-prompt-submit}.js, THEN dispatch codex --enable codex_hooks exec --full-auto "Implement a tiny TypeScript hook smoke test in /tmp/cli-codex-playbook-cx016/hook.ts" with --model gpt-5.5 -c service_tier="fast". Verify the hook stdout contract is satisfied (session-start emits {} or hookSpecificOutput.additionalContext; user-prompt-submit emits an Advisor: brief). Return a verdict naming the hook script paths and confirming the advisor brief surfaced.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator validating Codex hook parity, FIRST verify ~/.codex/hooks.json contains entries for SessionStart and UserPromptSubmit pointing at .opencode/skill/system-spec-kit/mcp_server/dist/hooks/codex/{session-start,user-prompt-submit}.js, THEN dispatch codex --enable codex_hooks exec --full-auto "Implement a tiny TypeScript hook smoke test in /tmp/cli-codex-playbook-cx016/hook.ts" with --model gpt-5.5 -c service_tier="fast". Verify the hook stdout contract is satisfied (session-start emits {} or hookSpecificOutput.additionalContext; user-prompt-submit emits an Advisor: brief). Return a verdict naming the hook script paths and confirming the advisor brief surfaced.`
 
 Expected signals: `~/.codex/hooks.json` lists both hooks at the documented paths. `codex --enable codex_hooks exec --full-auto` exits 0. The hook smoke checks documented in `references/hook_contract.md` §6 succeed when invoked manually (`{}` for session-start, `Advisor:` prefix for user-prompt-submit). The test file is written.
 
@@ -537,7 +537,7 @@ Verify `codex exec` produces a session ID that can be resumed via `codex resume 
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator running a multi-turn task, dispatch codex exec --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast" "Begin a 2-step plan: Step 1 sketch a TypeScript User type. Stop after Step 1 and announce the session ID." then resume the same session with codex exec --session-id <id> "Step 2: implement the validate(user) function for the type from Step 1." Verify Codex emits a session ID on Step 1, the resumed Step 2 references the User type, and a separate codex fork <session-id> creates a branch session ID distinct from the original. Return a verdict naming both session IDs and confirming continuity from Step 1 to Step 2.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook-cx017 (pre-approved, skip Gate 3). As a cross-AI orchestrator running a multi-turn task, dispatch codex exec --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast" with a 2-step plan: Step 1 sketch a TypeScript User type and write user.ts. Capture the session UUID from Codex's verbose header (regex 'session id: [a-f0-9-]+'). Then dispatch codex exec resume <UUID> "Step 2: implement validate(user) for the type from Step 1." (no --sandbox flag — codex exec resume does not accept it; redirect stdin from /dev/null). A separate codex exec resume --fork <UUID> "Branch query" creates a fork session with a distinct UUID. Return a verdict naming both UUIDs and confirming continuity from Step 1 to Step 2.`
 
 Expected signals: Step 1 stdout includes a session ID (or operator captures it from log). Step 2 dispatch with `--session-id` exits 0 and references the Step 1 `User` type. `codex fork <id>` returns a new ID different from the original. Step 1 state is preserved across the resume.
 
@@ -561,7 +561,7 @@ Verify the documented Codex-generates-Codex-reviews pattern (`integration_patter
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator executing the canonical generate-review-fix loop with two Codex calls: STEP 1 dispatch codex exec --model gpt-5.5 --sandbox workspace-write -c service_tier="fast" "Create /tmp/cli-codex-playbook-cx018/middleware.ts: an Express rate-limiter middleware with deliberately missing input validation on the limit parameter." STEP 2 dispatch codex exec --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "@/tmp/cli-codex-playbook-cx018/middleware.ts Review for input validation gaps. Return a JSON list of issues." STEP 3 dispatch codex exec --model gpt-5.5 --sandbox workspace-write -c service_tier="fast" "@/tmp/cli-codex-playbook-cx018/middleware.ts Fix the issues identified: $(cat /tmp/cx018-review.json)". Verify the final file passes a re-review (no input-validation issues remain). Return a verdict naming each step, the issue count, and the final review verdict.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator executing the canonical generate-review-fix loop with two Codex calls: STEP 1 dispatch codex exec --model gpt-5.5 --sandbox workspace-write -c service_tier="fast" "Create /tmp/cli-codex-playbook-cx018/middleware.ts: an Express rate-limiter middleware with deliberately missing input validation on the limit parameter." STEP 2 dispatch codex exec --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "@/tmp/cli-codex-playbook-cx018/middleware.ts Review for input validation gaps. Return a JSON list of issues." STEP 3 dispatch codex exec --model gpt-5.5 --sandbox workspace-write -c service_tier="fast" "@/tmp/cli-codex-playbook-cx018/middleware.ts Fix the issues identified: $(cat /tmp/cx018-review.json)". Verify the final file passes a re-review (no input-validation issues remain). Return a verdict naming each step, the issue count, and the final review verdict.`
 
 Expected signals: Step 1 writes `middleware.ts` with a deliberate gap. Step 2 returns a JSON-shaped review naming the input-validation gap. Step 3 writes a modified file that no longer has the gap. An optional Step 4 re-review confirms the fix.
 
@@ -579,7 +579,7 @@ Verify `--search` enables live web browsing during `codex exec` and that the res
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator researching current information, dispatch codex exec --search --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "Search the web for the latest stable Express.js minor release as of April 2026 and cite at least one official source URL. Return a one-paragraph summary plus the cited URL(s)." Verify Codex exits 0, the response contains at least one URL, the URL is reachable in principle (https scheme + a plausible express-related domain), and the dispatched command includes --search. Return a verdict naming the cited URL(s) and the reported version.`
+Prompt: `Use codex exec --search to find the latest stable Express.js minor release as of April 2026 and cite official URLs.`
 
 Expected signals: `codex exec --search` exits 0. Stdout contains at least one URL with `https://` scheme. URL points at a plausible source (expressjs.com, github.com/expressjs, npmjs.com, etc.). Dispatched command line includes `--search`.
 
@@ -597,7 +597,7 @@ Verify `--image` (or `-i`) accepts a PNG/JPEG and that Codex incorporates the im
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator implementing from a design, FIRST create a tiny placeholder PNG at /tmp/cli-codex-playbook-cx020/wireframe.png (e.g., a 200x200 red square via ImageMagick or Python Pillow), THEN dispatch codex exec -i /tmp/cli-codex-playbook-cx020/wireframe.png --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="medium" -c service_tier="fast" "Describe the attached image in one sentence: name the dominant color and approximate dimensions." Verify Codex exits 0, the response names a red color and ~200x200 dimensions, and the dispatched command line includes -i. Return a verdict naming the image path, the described color, and the described dimensions.`
+Prompt: `Attach a 200x200 red PNG with -i and confirm Codex reports the red color and approximate dimensions.`
 
 Expected signals: `codex exec -i <image>` exits 0. Stdout response names the dominant color (red) and approximate dimensions (~200x200). Dispatched command line includes `-i <path>`.
 
@@ -621,7 +621,7 @@ Verify the documented prompt templates (`assets/prompt_templates.md` §2-§10) a
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator picking a documented template, copy the "Single-File Application" template from assets/prompt_templates.md §2, fill placeholders for a tiny TypeScript health-check HTTP server, and dispatch the resulting prompt verbatim with --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast" against /tmp/cli-codex-playbook-cx021/. Verify Codex exits 0, the generated file matches the template requirements (single complete file, all imports, error handling, comments, /healthz endpoint), and the operator can identify the template line from prompt_templates.md that was used. Return a verdict naming the template anchor (e.g., "§2 Single-File Application") and confirming the generated file works.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator picking a documented template, copy the "Single-File Application" template from assets/prompt_templates.md §2, fill placeholders for a tiny TypeScript health-check HTTP server, and dispatch the resulting prompt verbatim with --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast" against /tmp/cli-codex-playbook-cx021/. Verify Codex exits 0, the generated file matches the template requirements (single complete file, all imports, error handling, comments, /healthz endpoint), and the operator can identify the template line from prompt_templates.md that was used. Return a verdict naming the template anchor (e.g., "§2 Single-File Application") and confirming the generated file works.`
 
 Expected signals: Generated file exists at `/tmp/cli-codex-playbook-cx021/server.ts`. File contains imports, error handling, comments and a `/healthz` endpoint. Operator records the template's anchor (e.g., `<!-- ANCHOR:code_generation -->` from `prompt_templates.md`). `codex exec` exits 0.
 
@@ -639,7 +639,7 @@ Verify the prompt_quality_card.md CLEAR 5-check is applied before dispatch and t
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the prompt_quality_card.md CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it to a structured prompt by applying the RCAF framework from §3 of the card. Dispatch the improved prompt against /tmp/cli-codex-playbook-cx022/auth.ts with --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast". Verify the operator records the CLEAR scores for both versions, names the framework selected, and Codex produces a meaningfully better implementation from the improved prompt than the weak prompt would have. Return a verdict including both CLEAR score sets and the framework selected.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the prompt_quality_card.md CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it to a structured prompt by applying the RCAF framework from §3 of the card. Dispatch the improved prompt against /tmp/cli-codex-playbook-cx022/auth.ts with --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast". Verify the operator records the CLEAR scores for both versions, names the framework selected, and Codex produces a meaningfully better implementation from the improved prompt than the weak prompt would have. Return a verdict including both CLEAR score sets and the framework selected.`
 
 Expected signals: Operator records CLEAR scores for the weak prompt (low on Expression and Arrangement). Operator names the chosen framework from `prompt_quality_card.md` §2 (e.g., RCAF). Improved prompt scores higher. Dispatched command line uses the improved prompt and exits 0.
 
@@ -663,7 +663,7 @@ Verify the `/review` interactive command runs inside the Codex TUI against stage
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator preparing a pre-commit review, FIRST stage a small change (e.g., a one-line edit to /tmp/cli-codex-playbook-cx023/scratch.md inside a throwaway git repo), THEN launch codex (no exec subcommand) and run /review interactively. Verify Codex enters the TUI, /review surfaces categorized findings (security/bugs/style/performance) referencing the staged change, the operator can exit cleanly, and no files are modified. Return a verdict naming the categories present and the line referenced.`
+Prompt: `Run /review in the Codex TUI on a staged throwaway diff and report categories, changed-line reference, and clean exit.`
 
 Expected signals: Codex TUI launches. `/review` slash command executes against staged changes. Output contains at least one category heading (security/bugs/style/performance). A finding references the staged line. No file modifications.
 
@@ -681,7 +681,7 @@ Verify `--search` works in non-interactive `codex exec` mode (distinct from CX-0
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator confirming --search works in exec mode (not just TUI), dispatch codex exec --search --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="high" -c service_tier="fast" "What was the headline release of any major JavaScript runtime announced in March 2026? Cite one source." Verify Codex exits 0, the response indicates web access was used (URL citation, "according to" phrasing, or a date-stamped fact later than the model's training cutoff), and the dispatched command line includes --search. Return a verdict naming the cited release and the source URL.`
+Prompt: `Confirm codex exec --search returns web-access evidence for a March 2026 JavaScript runtime release.`
 
 Expected signals: `codex exec --search` exits 0. Response contains a date-stamped fact, an "according to" phrasing or a URL citation. Dispatched command line includes `--search`. The answer is plausibly current rather than purely from training data.
 
@@ -699,7 +699,7 @@ Verify `codex mcp` lists registered MCP servers (or a stub server defined in `.c
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator extending Codex with a custom tool, FIRST register a stub MCP server in .codex/settings.json (or verify an existing entry), THEN run codex mcp to confirm it lists the server, THEN dispatch codex exec --model gpt-5.5 --sandbox read-only -c model_reasoning_effort="medium" -c service_tier="fast" "List available MCP tools and pick one to call. Return the tool name and a one-line description." Verify codex mcp lists the server, codex exec exits 0, and the response names at least one MCP tool. Return a verdict naming the registered server and the surfaced tool.`
+Prompt: `Confirm codex mcp lists a registered server and codex exec can surface at least one MCP tool.`
 
 Expected signals: `.codex/settings.json` (or `~/.codex/settings.json`) defines at least one `mcpServers` entry. `codex mcp` lists the server. `codex exec` exits 0. Response names at least one MCP tool from the registered server.
 
@@ -723,7 +723,7 @@ Verify `codex cloud` is a documented subcommand in the live binary's help output
 
 #### Scenario Contract
 
-Prompt: `As a cross-AI orchestrator preparing to use Codex cloud for a long-running task, verify the cloud subcommand surface is intact. Run codex --help to confirm cloud appears as a subcommand, then run codex cloud --help and confirm auth and dispatch flags are documented. Grep the cli-codex SKILL.md for "codex cloud" to confirm the skill references the subcommand. Return a verdict naming the help-output flags found and confirming SKILL.md references codex cloud.`
+Prompt: `Confirm codex cloud is listed in help, codex cloud --help documents auth and dispatch flags, and SKILL.md references codex cloud.`
 
 Expected signals: `codex cloud --help` exits 0. Help output names at least one auth-related flag. Help output names at least one dispatch-related flag. SKILL.md mentions `codex cloud` at least once in §3.
 

@@ -17,7 +17,7 @@ This scenario validates Causal graph statistics (memory_causal_stats) for `EX-02
 
 - Objective: Verify `deltaByRelation` per-relation deltas, `balanceStatus` enum (`balanced` | `skewed_inbound` | `skewed_outbound` | `capped`), and per-relation per-window cap surface.
 - Real user request: `` Please validate Causal graph statistics (memory_causal_stats) against memory_causal_stats() and tell me whether the expected signals are present: `deltaByRelation` keys cover all causal relation types in the test corpus; `balanceStatus` value matches corpus shape; `windowCap` surfaces when configured cap is exceeded; baseline coverage/edge metrics still present. ``
-- RCAF Prompt: `As an analysis validation operator, validate Causal graph statistics (memory_causal_stats) against memory_causal_stats(). Verify response carries (1) deltaByRelation map keyed by relation type, (2) balanceStatus from the documented enum, (3) windowCap field surfacing when a relation hit the per-relation per-window cap, plus baseline coverage and edge metrics. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `deltaByRelation` keys cover all causal relation types in the test corpus; `balanceStatus` value matches corpus shape; `windowCap` surfaces when configured cap is exceeded; baseline coverage/edge metrics still present
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Causal graph statistics (memory_causal_stats) for `EX-02
 ### Prompt
 
 ```
-As an analysis validation operator, validate Graph coverage review against memory_causal_stats(). Verify coverage and edge metrics present. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.
 ```
 
 ### Commands
@@ -59,7 +59,7 @@ Rebuild causal edges if empty
 ### Prompt
 
 ```
-As an analysis validation operator, validate the per-window causal metrics shape of memory_causal_stats() across three corpora: balanced, skewed, and cap-triggering. Verify deltaByRelation enumerates per-relation deltas, balanceStatus reflects the corpus, and windowCap surfaces only on the cap-trigger corpus. Return a concise pass/fail verdict.
+Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.
 ```
 
 ### Commands

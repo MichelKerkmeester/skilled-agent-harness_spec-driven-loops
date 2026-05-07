@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify every iteration JSONL record includes noveltyJustification alongside newInfoRatio.
 - Real user request: How can I tell WHY the agent rated its findings as 70% new?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the novelty justification contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the JSONL iteration record schema requires both newInfoRatio and noveltyJustification, that the justification is a human-readable sentence, and that ALWAYS rule 11 and the agent Step 6 mandate their inclusion. Return a concise operator-facing verdict.`
+- Prompt: `Validate JSONL iteration records include newInfoRatio and a human-readable noveltyJustification.`
 - Expected execution process: Inspect the state format for the noveltyJustification field definition, then SKILL.md ALWAYS rule 11, then the agent file Step 6 for the required fields list.
 - Desired user-visible outcome: The user can inspect any JSONL iteration record and find a plain-language explanation of what the newInfoRatio represents.
 - Expected signals: JSONL iteration records contain both `newInfoRatio` (number, 0.0-1.0) and `noveltyJustification` (string, human-readable sentence); the justification field is listed as required in v1.1.0 agent instructions; ALWAYS rule 11 mandates both fields.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the novelty justification contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the JSONL iteration record schema requires both newInfoRatio and noveltyJustification, that the justification is a human-readable sentence, and that ALWAYS rule 11 and the agent Step 6 mandate their inclusion. Return a concise operator-facing verdict.
+Validate JSONL iteration records include newInfoRatio and a human-readable noveltyJustification.
 ### Commands
 1. `bash: rg -n 'noveltyJustification\|Novelty Justification' .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'rule.*11\|novelty.*justification\|newInfoRatio.*novelty' .opencode/skill/deep-research/SKILL.md`

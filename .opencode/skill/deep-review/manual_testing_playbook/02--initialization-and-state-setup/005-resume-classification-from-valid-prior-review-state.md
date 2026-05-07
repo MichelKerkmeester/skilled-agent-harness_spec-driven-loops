@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that resume detects existing review state and continues from the last completed iteration.
 - Real user request: My deep review was interrupted. When I re-run the command, does it pick up where it left off?
-- Prompt: `As a manual-testing orchestrator, validate the resume classification contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the step_classify_session logic detects existing config, JSONL, and strategy files in review/ and classifies the session as "resume", skipping to phase_loop. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.`
 - Expected execution process: Inspect the YAML classify step first for the resume classification logic, then the quick reference for resume behavior documentation, then the SKILL.md for phase detection guidance.
 - Desired user-facing outcome: The user is told that re-running the command on a spec folder with existing review state will resume from the last iteration without re-initializing.
 - Expected signals: The classify step checks for config, JSONL, and strategy presence; classifies as "resume" when all three exist and are consistent; and skips to phase_loop.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the resume classification contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the step_classify_session logic detects existing config, JSONL, and strategy files in review/ and classifies the session as "resume", skipping to phase_loop. Return a concise user-facing pass/fail verdict.
+Validate deep-review resume classification from existing review state and report whether it skips directly to phase_loop.
 ### Commands
 1. `bash: rg -n 'step_classify_session|classify:|fresh|resume|invalid.state|completed.session' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`
 2. `bash: rg -n 'step_classify_session|resume|skip_to' .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

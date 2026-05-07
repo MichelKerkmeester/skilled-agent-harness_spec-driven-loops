@@ -17,7 +17,7 @@ This scenario validates SQLite datetime session cleanup (P0-7) for `117`. It foc
 
 - Objective: Verify cleanupOldSessions() correctly identifies expired sessions using SQLite-native datetime comparison regardless of timestamp format.
 - Real user request: `Please validate SQLite datetime session cleanup (P0-7) against last_focused and tell me whether the expected signals are present: Expired session (45min old) deleted; active session (5min old) preserved; cleanup works with both YYYY-MM-DD HH:MM:SS and ISO timestamp formats.`
-- RCAF Prompt: `As a data-integrity validation operator, validate SQLite datetime session cleanup (P0-7) against last_focused. Verify cleanupOldSessions() correctly identifies expired sessions using SQLite-native datetime comparison regardless of timestamp format. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate SQLite datetime session cleanup (P0-7) and confirm expired sessions are deleted across timestamp formats.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Expired session (45min old) deleted; active session (5min old) preserved; cleanup works with both YYYY-MM-DD HH:MM:SS and ISO timestamp formats
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates SQLite datetime session cleanup (P0-7) for `117`. It foc
 ### Prompt
 
 ```
-As a data-integrity validation operator, verify cleanupOldSessions() correctly identifies expired sessions using SQLite-native datetime comparison regardless of timestamp format against last_focused. Verify expired session (45min old) deleted; active session (5min old) preserved; cleanup works with both YYYY-MM-DD HH:MM:SS and ISO timestamp formats. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate SQLite datetime session cleanup (P0-7) and confirm expired sessions are deleted across timestamp formats.
 ```
 
 ### Commands

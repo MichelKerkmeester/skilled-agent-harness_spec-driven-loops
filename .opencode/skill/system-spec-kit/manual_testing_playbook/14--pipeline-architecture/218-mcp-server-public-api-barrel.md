@@ -17,7 +17,7 @@ This scenario validates MCP Server Public API Barrel for `218`. It focuses on ve
 
 - Objective: Verify the top-level barrel re-exports the approved runtime, helper, and metadata surfaces from one stable import boundary.
 - Real user request: `` Please validate MCP Server Public API Barrel against mcp_server/api/index.ts and tell me whether the expected signals are present: `mcp_server/api/index.ts` re-exports the documented evaluation, indexing, search, provider, storage, helper, and metadata symbols; `mcp_server/api/README.md` names `api/` as the approved public surface; consumers can rely on one stable top-level barrel. ``
-- RCAF Prompt: `As a pipeline validation operator, validate MCP Server Public API Barrel against mcp_server/api/index.ts. Verify the top-level barrel re-exports the approved runtime, helper, and metadata surfaces from one stable import boundary. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the MCP Server Public API Barrel against mcp_server/api/index.ts and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `mcp_server/api/index.ts` re-exports the documented evaluation, indexing, search, provider, storage, helper, and metadata symbols; `mcp_server/api/README.md` names `api/` as the approved public surface; consumers can rely on one stable top-level barrel
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates MCP Server Public API Barrel for `218`. It focuses on ve
 ### Prompt
 
 ```
-As a pipeline validation operator, verify the top-level barrel re-exports the approved runtime, helper, and metadata surfaces from one stable import boundary against mcp_server/api/index.ts. Verify mcp_server/api/index.ts re-exports the documented evaluation, indexing, search, provider, storage, helper, and metadata symbols; mcp_server/api/README.md names api/ as the approved public surface; consumers can rely on one stable top-level barrel. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the MCP Server Public API Barrel against mcp_server/api/index.ts and return pass/fail with cited evidence.
 ```
 
 ### Commands

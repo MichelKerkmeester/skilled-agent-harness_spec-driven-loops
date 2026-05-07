@@ -17,7 +17,7 @@ This scenario validates Dynamic server instructions (P1-6) for `146`. It focuses
 
 - Objective: Verify `setInstructions()` is called at MCP startup with memory count, spec folder count, channel list, and stale warning.
 - Real user request: `Please validate Dynamic server instructions (P1-6) against setInstructions() and tell me whether the expected signals are present: Startup instructions include memory system overview with counts and channels; stale warning appears only above threshold; disabled flag yields empty instructions.`
-- RCAF Prompt: `As a pipeline validation operator, validate Dynamic server instructions (P1-6) against setInstructions(). Verify setInstructions() is called at MCP startup with memory count, spec folder count, channel list, and stale warning. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate dynamic server instructions (P1-6) against setInstructions() and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Startup instructions include memory system overview with counts and channels; stale warning appears only above threshold; disabled flag yields empty instructions
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Dynamic server instructions (P1-6) for `146`. It focuses
 ### Prompt
 
 ```
-As a pipeline validation operator, verify setInstructions() is called at MCP startup with memory count, spec folder count, channel list, and stale warning against setInstructions(). Verify startup instructions include memory system overview with counts and channels; stale warning appears only above threshold; disabled flag yields empty instructions. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate dynamic server instructions (P1-6) against setInstructions() and return pass/fail with cited evidence.
 ```
 
 ### Commands

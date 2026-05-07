@@ -24,7 +24,7 @@ This scenario validates the phase 016 structured JSON summary contract for `gene
 
 - Objective: Verify structured JSON summary contract and Wave 2 hardening.
 - Real user request: `Please validate JSON mode structured summary hardening against toolCalls and tell me whether the expected signals are present: Structured fields preserved in rendered output, counts match explicit input, file-backed JSON stays on the structured path.`
-- RCAF Prompt: `As a tooling validation operator, validate JSON mode structured summary hardening against toolCalls. Verify structured JSON summary contract and Wave 2 hardening. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate JSON mode structured summary hardening against toolCalls and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Structured fields preserved in rendered output, counts match explicit input, file-backed JSON stays on the structured path
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -37,7 +37,7 @@ This scenario validates the phase 016 structured JSON summary contract for `gene
 ### Prompt
 
 ```
-As a tooling validation operator, verify structured JSON summary contract against toolCalls. Verify all structured fields present in output, counts match, file-backed JSON stays on the structured path. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate JSON mode structured summary hardening against toolCalls and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -70,7 +70,7 @@ Check input-normalizer mapping, collect-session-data count handling, and workflo
 ### Prompt
 
 ```
-As a tooling validation operator, validate Post-save quality review output verification against sessionSummary. Verify pOST-SAVE QUALITY REVIEW -- PASSED header visible in stdout, issues: 0 or equivalent no-issue indicator. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Post-save quality review output verification against sessionSummary and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -103,7 +103,7 @@ Check `scripts/core/post-save-review.ts`, `scripts/core/workflow.ts`, and CLI re
 ### Prompt
 
 ```
-As a tooling validation operator, validate sessionSummary propagates to frontmatter title against sessionSummary. Verify frontmatter title equals the sessionSummary value; no occurrence of "Next Steps" as the title. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate sessionSummary propagates to frontmatter title against sessionSummary and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -135,7 +135,7 @@ Inspect input-normalizer title derivation and frontmatter assembly in workflow.t
 ### Prompt
 
 ```
-As a tooling validation operator, validate triggerPhrases propagate to frontmatter trigger_phrases against triggerPhrases. Verify frontmatter trigger_phrases contains only the supplied keyword phrases; no path fragments present. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate triggerPhrases propagate to frontmatter trigger_phrases against triggerPhrases and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -168,7 +168,7 @@ Inspect trigger-extractor heuristic fallback and input-normalizer trigger_phrase
 ### Prompt
 
 ```
-As a tooling validation operator, validate keyDecisions propagate to non-zero decision_count against keyDecisions. Verify memory metadata decision_count equals the number of items in the keyDecisions array. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate keyDecisions propagate to non-zero decision_count against keyDecisions and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -200,7 +200,7 @@ Check collect-session-data decision counting, input-normalizer keyDecisions mapp
 ### Prompt
 
 ```
-As a tooling validation operator, validate importanceTier propagates to frontmatter importance_tier against importanceTier. Verify frontmatter importance_tier equals the payload value. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate importanceTier propagates to frontmatter importance_tier against importanceTier and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -232,7 +232,7 @@ Inspect importance_tier assignment in workflow.ts and input-normalizer passthrou
 ### Prompt
 
 ```
-As a tooling validation operator, validate contextType propagates for the full documented valid enum against contextType. Verify frontmatter context_type equals the payload value for every documented valid test case. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate contextType propagates for the full documented valid enum against contextType and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -264,7 +264,7 @@ Inspect contextType passthrough in input-normalizer, detectSessionCharacteristic
 ### Prompt
 
 ```
-As a tooling validation operator, validate Contamination filter cleans hedging in sessionSummary against the documented validation surface. Verify saved memory free of hedging and meta-commentary phrases. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Contamination filter cleans hedging in sessionSummary against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -297,7 +297,7 @@ Check contamination-filter.ts pattern list and workflow.ts cleaning call sites
 ### Prompt
 
 ```
-As a tooling validation operator, validate Fast-path filesModified to FILES conversion against the documented validation surface. Verify fILES section populated with filesModified entries. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Fast-path filesModified to FILES conversion against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -329,7 +329,7 @@ Check input-normalizer.ts fast-path filesModified conversion
 ### Prompt
 
 ```
-As a tooling validation operator, validate Unknown field warning for typos against the documented validation surface. Verify console WARN naming the unknown field. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Unknown field warning for typos against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -361,7 +361,7 @@ Check KNOWN_RAW_INPUT_FIELDS in input-normalizer.ts
 ### Prompt
 
 ```
-As a tooling validation operator, validate contextType enum rejection against the documented validation surface. Verify validation error with invalid value and valid options listed. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate contextType enum rejection against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -392,7 +392,7 @@ Check VALID_CONTEXT_TYPES in input-normalizer.ts
 ### Prompt
 
 ```
-As a tooling validation operator, validate Quality score discriminates contaminated vs clean against the documented validation surface. Verify contaminated quality_score < 0.80; clean quality_score > 0.80. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Quality score discriminates contaminated vs clean against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -423,7 +423,7 @@ Check quality-scorer.ts bonus removal and penalty weights
 ### Prompt
 
 ```
-As a tooling validation operator, validate Trigger phrase filter removes path fragments against the documented validation surface. Verify no trigger phrases containing "/" in auto-extracted set (manual phrases may contain them). Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Trigger phrase filter removes path fragments against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -454,7 +454,7 @@ Check filterTriggerPhrases in workflow.ts
 ### Prompt
 
 ```
-As a tooling validation operator, validate Embedding retry stats visible in memory_health against the documented validation surface. Verify embeddingRetry block present with all fields. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Embedding retry stats visible in memory_health against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -485,7 +485,7 @@ Check retry-manager.ts getEmbeddingRetryStats() and memory-crud-health.ts handle
 ### Prompt
 
 ```
-As a tooling validation operator, validate Default-on pre-save overlap warning uses exact content match against SPECKIT_PRE_SAVE_DEDUP. Verify advisory overlap warning appears only when the flag is enabled/defaulted. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Default-on pre-save overlap warning uses exact content match against SPECKIT_PRE_SAVE_DEDUP and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -518,7 +518,7 @@ Check `workflow.ts` SHA1 overlap check and env-flag gate
 ### Prompt
 
 ```
-As a tooling validation operator, validate projectPhase override propagates to frontmatter against the documented validation surface. Verify pROJECT_PHASE: IMPLEMENTATION in frontmatter. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate projectPhase override propagates to frontmatter against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands

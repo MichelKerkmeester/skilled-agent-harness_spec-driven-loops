@@ -13,7 +13,31 @@ created: 2026-05-05
 
 # SD-010: Short-Prompt Baseline (CHANGELOG)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates CHANGELOG routing across CLI dispatch paths for `SD-010`. It focuses on a short release-notes prompt that should load changelog guidance and template resources consistently.
+
+### Why This Matters
+
+Short prompts leave little context for the router, so keyword weighting has to do the work. This scenario catches cross-CLI divergence where one runtime misses the changelog intent, loads generic documentation resources, or returns an output shape that cannot support release-note sections.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.`
+- Prompt: `Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.`
+- Expected intent: `CHANGELOG`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-010 | Short-prompt baseline: CHANGELOG intent across all 3 CLIs | Verify sk-doc routes the scenario to `CHANGELOG` with the expected resources. | `Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `CHANGELOG`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -24,8 +48,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-sk-doc: changelog template for the v2.3.0 release. Cover added, changed,
-fixed, removed sections following Keep a Changelog format.
+Draft a v2.3.0 changelog with added, changed, fixed, and removed sections.
 ```
 
 (~200 chars; baseline-latency probe)
@@ -49,3 +72,10 @@ fixed, removed sections following Keep a Changelog format.
 - false_positive_resource_load_count <= 1
 - response is non-empty and follows Keep-a-Changelog section structure
 - per-CLI latency recorded as the BASELINE for SD-011 (large-prompt) and SD-012 (multi-step) comparisons
+
+## 4. SOURCE METADATA
+
+- Group: Cross-CLI Dispatch
+- Playbook ID: SD-010
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `04--cross-cli-dispatch/001-short-prompt-baseline.md`

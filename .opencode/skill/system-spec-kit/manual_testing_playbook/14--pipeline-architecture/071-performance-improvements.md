@@ -17,7 +17,7 @@ This scenario validates Performance improvements for `071`. It focuses on confir
 
 - Objective: Confirm key perf remediations active.
 - Real user request: `Please validate Performance improvements against hybrid-search.ts and tell me whether the expected signals are present: Optimized code paths are active (not bypassed); fallback enrichment is single-pass; token estimation is cached per result; BM25 is opt-in with FTS5 default; BM25 warmup uses incremental maintenance; heavy queries complete within acceptable time; no performance regressions.`
-- RCAF Prompt: `As a pipeline validation operator, validate Performance improvements against hybrid-search.ts. Verify optimized code paths are active (not bypassed); fallback enrichment is single-pass; token estimation is cached per result; BM25 is opt-in with FTS5 default; BM25 warmup uses incremental maintenance; heavy queries complete within acceptable time; no performance regressions. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate performance improvements against hybrid-search.ts and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Optimized code paths are active (not bypassed); fallback enrichment is single-pass; token estimation is cached per result; BM25 is opt-in with FTS5 default; BM25 warmup uses incremental maintenance; heavy queries complete within acceptable time; no performance regressions
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Performance improvements for `071`. It focuses on confir
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm key perf remediations active against hybrid-search.ts. Verify optimized code paths are active; fallback enrichment is single-pass; token estimation is cached per result; BM25 stays disabled by default unless explicitly enabled; batched syncChangedRows() warmup replaces blocking rebuilds; heavy queries complete within acceptable time; no regressions. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate performance improvements against hybrid-search.ts and return pass/fail with cited evidence.
 ```
 
 ### Commands

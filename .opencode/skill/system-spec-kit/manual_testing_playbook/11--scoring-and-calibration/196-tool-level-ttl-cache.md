@@ -17,7 +17,7 @@ This scenario validates tool-level TTL cache for `196`. It focuses on confirming
 
 - Objective: Confirm per-tool cache hits, TTL expiry, and mutation-driven invalidation.
 - Real user request: `Please validate Tool-level TTL cache against memory_search and tell me whether the expected signals are present: first run records a cache miss for the tool/input combination; second identical run records a cache hit for the same SHA-256 key; cache stats reflect hits, misses, and invalidations; a relevant mutation or TTL expiry forces recomputation instead of returning stale results.`
-- RCAF Prompt: `As a scoring validation operator, validate Tool-level TTL cache against memory_search. Verify per-tool cache hits, TTL expiry, and mutation-driven invalidation. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_search tool-level TTL cache hits, expiry, and mutation-driven invalidation.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: first run records a cache miss for the tool/input combination; second identical run records a cache hit for the same SHA-256 key; cache stats reflect hits, misses, and invalidations; a relevant mutation or TTL expiry forces recomputation instead of returning stale results
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates tool-level TTL cache for `196`. It focuses on confirming
 ### Prompt
 
 ```
-As a scoring validation operator, confirm per-tool cache hits, TTL expiry, and mutation-driven invalidation against memory_search. Verify first run is a miss; second identical run is a hit; cache key is stable for identical tool+input; stats show hit/miss/invalidation activity; post-mutation or post-expiry run recomputes instead of returning stale data. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_search tool-level TTL cache hits, expiry, and mutation-driven invalidation.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates Classification-based decay (TM-03) for `026`. It focuses
 
 - Objective: Confirm class+tier decay matrix and zero-half-life rejection.
 - Real user request: `Please validate Classification-based decay (TM-03) against halfLifeDays: 0 and tell me whether the expected signals are present: Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error.`
-- RCAF Prompt: `As a scoring validation operator, validate Classification-based decay (TM-03) against halfLifeDays: 0. Verify decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate classification-based decay, including tier multipliers and rejection of zero half-life config.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Classification-based decay (TM-03) for `026`. It focuses
 ### Prompt
 
 ```
-As a scoring validation operator, confirm class+tier decay matrix and zero-half-life rejection against halfLifeDays: 0. Verify decay multipliers differ by classification and tier; matrix values match documented configuration; zero half-life config is rejected with the positive-number-or-null error. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate classification-based decay, including tier multipliers and rejection of zero half-life config.
 ```
 
 ### Commands

@@ -24,17 +24,7 @@ Operators run the exact command sequence for `CP-049` and confirm expected stop 
 - Objective: Confirm pause sentinel detection, `userPaused` event, no iteration file, config/state creation, clean canonical diff and clean project tripwire.
 - Layer partition: command-flow.
 - Real user request: `Start deep research in a paused packet and prove it halts before dispatching the leaf agent.`
-- RCAF Prompt:
-
-  Same task body for both calls:
-  ```
-  Task ID: CP-049-TASK-001.
-  In /tmp/cp-049-sandbox/, run /spec_kit:deep-research:auto while /tmp/cp-049-spec/research/.deep-research-pause exists.
-  Stay strictly inside /tmp/cp-049-sandbox/ and /tmp/cp-049-spec/.
-  Acceptance: record userPaused, keep the sentinel path visible, create no iteration-NNN.md, and do not edit the canonical target.
-  Return status, stop_reason, sentinel_path, iteration_count, and notes.
-  ```
-
+- Prompt: `Start deep research in a paused packet and prove it halts before leaf dispatch.`
 - Expected process: create sandbox, seed spec and pause sentinel, run Call A, reset sandbox, recreate sentinel, run command-flow Call B, then count stop signals.
 - Expected signals: `.deep-research-pause`, `userPaused`, `stopReason":"userPaused`, no `iteration-001.md`, config/state files, clean diffs.
 - Pass/fail: PASS if the command halts before leaf dispatch and records a pause event. FAIL if an iteration file appears or the pause is reported as convergence.
@@ -99,7 +89,7 @@ diff /tmp/cp-049-pre.txt /tmp/cp-049-post.txt > /tmp/cp-049-tripwire.diff; echo 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-049 | PAUSE_SENTINEL_HALT | Confirm pause halts before iteration dispatch | Same task body in §2 | Run the §3 bash block | B field counts all >= 1 | state log, sentinel, no iteration file, diffs | PASS if pause is recorded and no iteration file exists | 1. If iteration exists, inspect pause check order. 2. If userPaused is missing, inspect stop enum normalization. 3. If config missing, inspect init. |
+| CP-049 | PAUSE_SENTINEL_HALT | Confirm pause halts before iteration dispatch | `Start deep research in a paused packet and prove it halts before leaf dispatch.` | Run the §3 bash block | B field counts all >= 1 | state log, sentinel, no iteration file, diffs | PASS if pause is recorded and no iteration file exists | 1. If iteration exists, inspect pause check order. 2. If userPaused is missing, inspect stop enum normalization. 3. If config missing, inspect init. |
 
 ## 4. SOURCE ANCHORS
 

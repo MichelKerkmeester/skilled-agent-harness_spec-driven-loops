@@ -17,7 +17,7 @@ This scenario validates Database and schema safety for `065`. It focuses on Conf
 
 - Objective: Confirm Sprint 8 DB safety bundle.
 - Real user request: `Please validate Database and schema safety against the documented validation surface and tell me whether the expected signals are present: Mutations complete atomically; no partial SQL corruption; schema constraints enforced; rollback on failure.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Database and schema safety against the documented validation surface. Verify mutations complete atomically; no partial SQL corruption; schema constraints enforced; rollback on failure. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate database and schema safety and confirm mutations are atomic, constraints hold, and failures roll back cleanly.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Mutations complete atomically; no partial SQL corruption; schema constraints enforced; rollback on failure
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Database and schema safety for `065`. It focuses on Conf
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm Sprint 8 DB safety bundle against the documented validation surface. Verify mutations complete atomically; no partial SQL corruption; schema constraints enforced; rollback on failure. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate database and schema safety and confirm mutations are atomic, constraints hold, and failures roll back cleanly.
 ```
 
 ### Commands

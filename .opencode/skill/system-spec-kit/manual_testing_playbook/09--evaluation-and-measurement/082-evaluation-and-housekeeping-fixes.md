@@ -16,7 +16,7 @@ This scenario validates Evaluation and housekeeping fixes for `082`. It focuses 
 
 - Objective: Confirm eval/housekeeping reliability.
 - Real user request: `Please validate Evaluation and housekeeping fixes against the documented validation surface and tell me whether the expected signals are present: Run-IDs are unique across restarts; upserts are idempotent; boundary guards prevent out-of-range values; housekeeping completes cleanly.`
-- RCAF Prompt: `As an evaluation validation operator, validate Evaluation and housekeeping fixes against the documented validation surface. Verify run-IDs are unique across restarts; upserts are idempotent; boundary guards prevent out-of-range values; housekeeping completes cleanly. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate evaluation housekeeping and cite unique run IDs, idempotent upserts, boundary guards, and clean housekeeping evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Run-IDs are unique across restarts; upserts are idempotent; boundary guards prevent out-of-range values; housekeeping completes cleanly
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Evaluation and housekeeping fixes for `082`. It focuses 
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm eval/housekeeping reliability against the documented validation surface. Verify run-IDs are unique across restarts; upserts are idempotent; boundary guards prevent out-of-range values; housekeeping completes cleanly. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate evaluation housekeeping and cite unique run IDs, idempotent upserts, boundary guards, and clean housekeeping evidence.
 ```
 
 ### Commands

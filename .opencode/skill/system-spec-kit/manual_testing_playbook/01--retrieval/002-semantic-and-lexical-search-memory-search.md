@@ -17,7 +17,7 @@ This scenario validates Semantic and lexical search (memory_search) for `EX-002`
 
 - Objective: Hybrid precision check.
 - Real user request: `Please validate Semantic and lexical search (memory_search) against memory_search({ query:"checkpoint restore clearExisting transaction rollback", limit:20 }) and tell me whether the expected signals are present: Relevant ranked results with hybrid signals.`
-- RCAF Prompt: `As a retrieval validation operator, validate Semantic and lexical search (memory_search) against memory_search({ query:"checkpoint restore clearExisting transaction rollback", limit:20 }). Verify relevant ranked results with hybrid signals. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_search hybrid retrieval for checkpoint rollback and confirm ranked results include relevant hybrid signals.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Relevant ranked results with hybrid signals
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates Semantic and lexical search (memory_search) for `EX-002`
 
 ### Prompt
 
-```
-As a retrieval validation operator, validate Hybrid precision check against memory_search({ query:"checkpoint restore clearExisting transaction rollback", limit:20 }). Verify relevant ranked results with hybrid signals. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate memory_search hybrid retrieval for checkpoint rollback and confirm ranked results include relevant hybrid signals.`
 
 ### Commands
 

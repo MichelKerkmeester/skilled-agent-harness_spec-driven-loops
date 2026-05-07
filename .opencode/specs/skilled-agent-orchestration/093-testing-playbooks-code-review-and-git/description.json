@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
+  "description": "Phase parent for authoring manual_testing_playbook packages for sk-code-review and sk-git. Both children complete: 18 sk-code-review scenarios + 22 sk-git scenarios, all validated and DQI-clean.",
+  "keywords": [
+    "spec",
+    "093",
+    "testing-playbook",
+    "sk-code-review",
+    "sk-git",
+    "manual-testing",
+    "rcaf",
+    "complete"
+  ],
+  "lastUpdated": "2026-05-07T00:00:00.000Z",
+  "specId": "093",
+  "folderSlug": "testing-playbooks-code-review-and-git",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "completionPct": 100,
+  "lastOutcome": "Both child phases complete. sk-code-review playbook (18 scenarios across 6 categories) and sk-git playbook (22 scenarios across 6 categories) authored by cli-codex (gpt-5.5 high, normal mode); 6 P1 findings from @review DQI passes resolved; all sk-doc and structural gates clean."
+}

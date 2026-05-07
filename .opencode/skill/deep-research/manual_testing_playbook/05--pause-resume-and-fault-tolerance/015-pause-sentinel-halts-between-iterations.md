@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the pause sentinel halts the loop between iterations and logs a pause event.
 - Real user request: If I need to interrupt an autonomous run safely, tell me how the pause file works.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the pause-sentinel contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify research/.deep-research-pause is checked between research iterations, {spec_folder}/review/.deep-research-pause is checked between review iterations, both emit a paused event, and both halt the loop without entering synthesis. Return a concise operator-facing verdict.`
+- Prompt: `Validate pause sentinels halt research and review loops between iterations without entering synthesis.`
 - Expected execution process: Inspect the loop protocol pause section, then the YAML pause checks, then the FAQ and troubleshooting wording for user-facing explanation.
 - Desired user-visible outcome: The user is told exactly how to pause a run safely and what the loop does when the sentinel is present.
 - Expected signals: The sentinel is checked before dispatch, a paused event is logged, and the loop halts rather than flowing into synthesis.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the pause-sentinel contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify research/.deep-research-pause is checked between research iterations, {spec_folder}/review/.deep-research-pause is checked between review iterations, both emit a paused event, and both halt the loop without entering synthesis. Return a concise operator-facing verdict.
+Validate pause sentinels halt research and review loops between iterations without entering synthesis.
 ### Commands
 1. `bash: rg -n '.deep-research-pause|paused|Delete .*\\.deep-research-pause|review/.deep-research-pause' .opencode/skill/deep-research/references/loop_protocol.md .opencode/skill/deep-research/README.md`
 2. `bash: rg -n 'step_check_pause_sentinel|paused|halt: true|review/.deep-research-pause|research/.deep-research-pause' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_review_confirm.yaml`

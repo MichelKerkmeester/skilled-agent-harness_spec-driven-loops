@@ -11,7 +11,31 @@ created: 2026-05-05
 
 # SD-008: UNKNOWN Fallback (Zero Keyword Match)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates UNKNOWN fallback handling for `SD-008`. It focuses on routing an unrelated weather prompt away from sk-doc resource families without pretending a documentation intent exists.
+
+### Why This Matters
+
+Routers need a clean abstain path for prompts outside their domain. This scenario catches keyword overreach, spurious resource loading, and confident but unsupported sk-doc recommendations for non-documentation requests.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Tell me about the weather.`
+- Prompt: `Tell me about the weather.`
+- Expected intent: `UNKNOWN`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-008 | No-keyword prompt triggers UNKNOWN_FALLBACK_CHECKLIST | Verify sk-doc routes the scenario to `UNKNOWN` with the expected resources. | `Tell me about the weather.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `UNKNOWN`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -41,3 +65,10 @@ Tell me about the weather.
 - intent_picked == `UNKNOWN` (no intent above zero)
 - needs_disambiguation flag is true OR CLI asks for clarification
 - false_positive_resource_load_count == 0 (no RESOURCE_MAP load)
+
+## 4. SOURCE METADATA
+
+- Group: Unknown Fallback
+- Playbook ID: SD-008
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--unknown-fallback/002-no-keyword-match.md`

@@ -19,7 +19,7 @@ Detection markers are defined verbatim in `references/router/code_surface_detect
 
 **Exact prompt**:
 ```
-Add a console.error fallback to .opencode/skill/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts when the input prompt is empty.
+Handle empty prompts in .opencode/skill/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.
 ```
 
 **Expected detection**:
@@ -60,7 +60,7 @@ Add a console.error fallback to .opencode/skill/system-spec-kit/mcp_server/lib/s
 
 1. **Advisor probe**:
    ```
-   bash: python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "Add a console.error fallback to .opencode/skill/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts when the input prompt is empty." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
+   bash: python3 .opencode/skill/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py "Handle empty prompts in .opencode/skill/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback." --threshold 0.8 > /tmp/skc-SD002-advisor.txt
    ```
 2. **Verify**: top-1 == `sk-code`, score ≥ 0.80.
 3. **Invoke sk-code** with the same prompt.

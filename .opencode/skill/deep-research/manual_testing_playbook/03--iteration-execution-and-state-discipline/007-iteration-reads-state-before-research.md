@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that each dispatched iteration reads JSONL and strategy state before performing research actions.
 - Real user request: Make sure each deep-research iteration actually reads prior state before it starts searching again.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the read-state-first iteration contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop dispatch and the @deep-research agent both require reading JSONL and strategy state before any research actions. Return a concise operator verdict.`
+- Prompt: `Validate each deep-research iteration reads JSONL and strategy state before any research action.`
 - Expected execution process: Inspect the workflow loop steps, then the quick reference iteration checklist, then the Codex runtime agent instructions for the single-iteration sequence.
 - Desired user-visible outcome: The user is told that each iteration starts by reading persisted state instead of relying on memory from prior runs.
 - Expected signals: Loop step order begins with state reads, the quick reference checklist says the same, and the agent definition starts with JSONL plus strategy reads.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the read-state-first iteration contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop dispatch and the @deep-research agent both require reading JSONL and strategy state before any research actions. Return a concise operator verdict.
+Validate each deep-research iteration reads JSONL and strategy state before any research action.
 ### Commands
 1. `bash: rg -n 'Step 1: Read State|Read current state|read state first' .opencode/skill/deep-research/references/loop_protocol.md .opencode/skill/deep-research/SKILL.md`
 2. `bash: rg -n 'step_read_state|current_iteration|next_focus' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

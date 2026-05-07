@@ -17,7 +17,7 @@ This scenario validates Entity normalization consolidation for `069`. It focuses
 
 - Objective: Confirm shared normalization path.
 - Real user request: `Please validate Entity normalization consolidation against the documented validation surface and tell me whether the expected signals are present: Extractor and linker produce identical normalized forms for same input; unicode entities handled consistently; no normalization divergence.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Entity normalization consolidation against the documented validation surface. Verify extractor and linker produce identical normalized forms for same input; unicode entities handled consistently; no normalization divergence. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate entity normalization consolidation across extraction and linking.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Extractor and linker produce identical normalized forms for same input; unicode entities handled consistently; no normalization divergence
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Entity normalization consolidation for `069`. It focuses
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm shared normalization path against the documented validation surface. Verify extractor and linker produce identical normalized forms for same input; unicode entities handled consistently; no normalization divergence. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate entity normalization consolidation across extraction and linking.
 ```
 
 ### Commands

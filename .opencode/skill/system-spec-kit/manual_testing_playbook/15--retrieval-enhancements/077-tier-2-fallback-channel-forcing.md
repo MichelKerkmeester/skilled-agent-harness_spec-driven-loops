@@ -30,7 +30,7 @@ This scenario validates Tier-2 fallback channel forcing for `077`. It focuses on
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm force-all-channels in tier-2 against the documented validation surface. Verify tier-2 fallback activates all search channels; channel options show forceAllChannels=true; results include contributions from all channels. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Tier-2 fallback channel forcing against the documented validation surface. Verify tier-2 fallback activates all search channels; channel options show forceAllChannels=true; results include contributions from all channels. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

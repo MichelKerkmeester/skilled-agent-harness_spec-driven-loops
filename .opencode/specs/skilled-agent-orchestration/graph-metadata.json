@@ -1,8 +1,8 @@
 {
   "derived": {
-    "last_active_child_id": "skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename",
-    "last_active_at": "2026-05-06T14:25:36.356Z",
-    "last_save_at": "2026-05-06T14:25:36.356Z"
+    "last_active_child_id": "skilled-agent-orchestration/094-playbook-prompt-naturalness",
+    "last_active_at": "2026-05-07T12:30:00.000Z",
+    "last_save_at": "2026-05-07T12:30:00.000Z"
   },
   "children_ids": [
     "skilled-agent-orchestration/051-cli-opencode-providers",
@@ -31,6 +31,10 @@
     "skilled-agent-orchestration/081-cli-copilot-deprecation-due-to-price-hike",
     "skilled-agent-orchestration/079-sk-deep-agent-improvement",
     "skilled-agent-orchestration/083-skill-description-budget-trim",
-    "skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename"
+    "skilled-agent-orchestration/087-improve-agent-to-deep-agent-improvement-rename",
+    "skilled-agent-orchestration/089-multi-ai-council-persistence",
+    "skilled-agent-orchestration/092-multi-ai-council-deferrals",
+    "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git",
+    "skilled-agent-orchestration/094-playbook-prompt-naturalness"
   ]
 }

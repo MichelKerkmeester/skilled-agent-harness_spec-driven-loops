@@ -17,7 +17,7 @@ This scenario validates tool-result extraction to working memory for `189`. It f
 
 - Objective: Verify salient tool results are summarized and inserted into working memory with provenance, remain available across turns in the same session, survive checkpoint save/restore, follow the documented decay rules with bounded mention boosts, and use the optimized index/upsert path.
 - Real user request: `Please validate Tool-result extraction to working memory against ex189-session and tell me whether the expected signals are present: Tool-result capture runs automatically after eligible tool responses; extracted entries appear in working memory with provenance; follow-up context can reuse the extracted result; checkpoint restore preserves the entry; decay behavior matches the documented floor, mention boost, and eviction boundaries; the new indexes back LRU eviction and attention-ordered reads; extraction upsert executes without a pre-upsert existence probe.`
-- RCAF Prompt: `As a retrieval validation operator, validate Tool-result extraction to working memory against ex189-session. Verify salient tool results are summarized and inserted into working memory with provenance, remain available across turns in the same session, survive checkpoint save/restore, follow the documented decay rules with bounded mention boosts, and use the optimized index/upsert path. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate tool-result extraction into working memory and confirm provenance, reuse, checkpoint restore, decay, and optimized upsert behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Tool-result capture runs automatically after eligible tool responses; extracted entries appear in working memory with provenance; follow-up context can reuse the extracted result; checkpoint restore preserves the entry; decay behavior matches the documented floor, mention boost, and eviction boundaries; the new indexes back LRU eviction and attention-ordered reads; extraction upsert executes without a pre-upsert existence probe
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates tool-result extraction to working memory for `189`. It f
 
 ### Prompt
 
-```
-As a retrieval validation operator, verify automatic capture, session continuity, checkpoint preservation, attention decay, and optimized index/upsert behavior against ex189-session. Verify automatic extraction runs after eligible tool responses; extracted entries carry provenance; follow-up context reuses the prior result; checkpoint restore retains the entry; attention scoring follows the documented decay, floor, mention boost, and eviction behavior; the new indexes back session reads and LRU eviction; extraction upsert executes without a pre-upsert existence probe. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate tool-result extraction into working memory and confirm provenance, reuse, checkpoint restore, decay, and optimized upsert behavior.`
 
 ### Commands
 

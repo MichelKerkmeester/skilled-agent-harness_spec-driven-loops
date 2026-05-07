@@ -17,7 +17,7 @@ This scenario validates Embeddings and Retry API for `219`. It focuses on verify
 
 - Objective: Verify the public provider API stays stable while embedding generation, caching, batching, retry backoff, and recovery behavior remain wired through the documented layers.
 - Real user request: `` Please validate Embeddings and Retry API against mcp_server/api/providers.ts and tell me whether the expected signals are present: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, and profile helpers; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state. ``
-- RCAF Prompt: `As a pipeline validation operator, validate Embeddings and Retry API against mcp_server/api/providers.ts. Verify the public provider API stays stable while embedding generation, caching, batching, retry backoff, and recovery behavior remain wired through the documented layers. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Embeddings and Retry API against mcp_server/api/providers.ts and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `mcp_server/api/providers.ts` is a pure public re-export surface; `shared/embeddings.ts` contains the documented weighted text, cache, batching, and profile helpers; `retry-manager.ts` encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Embeddings and Retry API for `219`. It focuses on verify
 ### Prompt
 
 ```
-As a pipeline validation operator, verify the public provider API stays stable while embedding generation, caching, batching, retry backoff, and recovery behavior remain wired through the documented layers against mcp_server/api/providers.ts. Verify mcp_server/api/providers.ts is a pure public re-export surface; shared/embeddings.ts contains the documented weighted text, cache, batching, and profile helpers; retry-manager.ts encodes pending/retry/failed/success recovery, retry delays, circuit breaker behavior, and successful refresh of vector/index state. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Embeddings and Retry API against mcp_server/api/providers.ts and return pass/fail with cited evidence.
 ```
 
 ### Commands

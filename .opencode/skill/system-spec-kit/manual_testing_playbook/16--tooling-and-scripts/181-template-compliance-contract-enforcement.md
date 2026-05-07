@@ -16,7 +16,7 @@ This scenario validates the end-to-end template compliance enforcement pipeline.
 
 - Objective: Confirm that the 3-layer template compliance system produces compliant spec documents on first generation.
 - Real user request: `Please validate Template Compliance Contract Enforcement against bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder> and tell me whether the expected signals are present: All 5 Level 2 files (spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md) pass validate.sh --strict with exit code 0; no post-hoc fixes needed.`
-- RCAF Prompt: `As a tooling validation operator, validate Template Compliance Contract Enforcement against bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder>. Verify the 3-layer template compliance system produces compliant spec documents on first generation. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Template Compliance Contract Enforcement against bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder> and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All 5 Level 2 files (spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md) pass validate.sh --strict with exit code 0; no post-hoc fixes needed
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the end-to-end template compliance enforcement pipeline.
 ### Prompt
 
 ```
-As a tooling validation operator, verify Layer 1 + Layer 2 produce compliant spec documents on first generation against bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder>. Verify all 5 Level 2 files pass validation; exit code 0; no missing anchors, no wrong headers, no structural violations. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Template Compliance Contract Enforcement against bash .opencode/skill/system-spec-kit/scripts/validate.sh --strict <spec-folder> and report cited pass/fail evidence.
 ```
 
 ### Commands

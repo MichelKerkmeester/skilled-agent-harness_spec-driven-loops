@@ -16,7 +16,7 @@ This scenario validates UX hook module coverage (`mutation-feedback`, `response-
 
 - Objective: Confirm new hook modules return the finalized metadata and hint shape.
 - Real user request: `` Please validate UX hook module coverage (`mutation-feedback`, `response-hints`) against npx vitest run tests/hooks-ux-feedback.vitest.ts and tell me whether the expected signals are present: Test output shows suite pass (6 tests), including latency/cache-clear booleans, `errors: string[]` field in mutation feedback data, error propagation hint verification, and finalized hint payload assertions. ``
-- RCAF Prompt: `` As a runtime-hook validation operator, validate UX hook module coverage (`mutation-feedback`, `response-hints`) against npx vitest run tests/hooks-ux-feedback.vitest.ts. Verify new hook modules return the finalized metadata and hint shape. Return a concise pass/fail verdict with the main reason and cited evidence. ``
+- Prompt: `Validate UX hook module coverage for mutation-feedback and response-hints against tests/hooks-ux-feedback.vitest.ts.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Test output shows suite pass (6 tests), including latency/cache-clear booleans, `errors: string[]` field in mutation feedback data, error propagation hint verification, and finalized hint payload assertions
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-012` and confirm the
 
 - Objective: Confirm all RICCE elements are present or explicitly justified before delivery.
 - Real user request: `Make my onboarding prompt for new engineers more rigorous — I want explicit role, instructions, context, constraints, and examples.`
-- Prompt: `As a prompt engineer, use @prompt-improver to enhance the operator's new-engineer onboarding prompt. Verify the final prompt or transparency report accounts for Role, Instructions, Context, Constraints, and Examples. Return a RICCE status table plus the enhanced prompt.`
+- Prompt: `Strengthen my new-engineer onboarding prompt; verify the final output accounts for Role, Instructions, Context, Constraints, and Examples.`
 - Expected execution process: `@prompt-improver` runs DEPTH, validates RICCE in Prototype/Harmonize, and blocks silent omissions.
 - Expected signals: Five RICCE rows; each row is `present` or `omitted with reason`.
 - Desired user-visible outcome: Enhanced onboarding prompt plus `RICCE: Role=present, Instructions=present, Context=present, Constraints=present, Examples=present`.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-012` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to enhance the operator's new-engineer onboarding prompt. Verify the final prompt or transparency report accounts for Role, Instructions, Context, Constraints, and Examples. Return a RICCE status table plus the enhanced prompt.
+Strengthen my new-engineer onboarding prompt; verify the final output accounts for Role, Instructions, Context, Constraints, and Examples.
 ```
 
 ### Commands

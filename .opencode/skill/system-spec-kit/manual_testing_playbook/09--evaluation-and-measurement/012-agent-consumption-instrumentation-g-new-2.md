@@ -16,7 +16,7 @@ This scenario validates Agent consumption instrumentation (G-NEW-2) for `012`. I
 
 - Objective: Confirm wiring with inert runtime.
 - Real user request: `Please validate Agent consumption instrumentation (G-NEW-2) against the documented validation surface and tell me whether the expected signals are present: Logger gate is closed (inert); telemetry handlers are wired but produce no output; no runtime errors.`
-- RCAF Prompt: `As an evaluation validation operator, validate Agent consumption instrumentation (G-NEW-2) against the documented validation surface. Verify logger gate is closed (inert); telemetry handlers are wired but produce no output; no runtime errors. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate agent consumption instrumentation and cite whether the logger gate stays inert while telemetry handlers remain error-free.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Logger gate is closed (inert); telemetry handlers are wired but produce no output; no runtime errors
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Agent consumption instrumentation (G-NEW-2) for `012`. I
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm wiring with inert runtime against the documented validation surface. Verify logger gate is closed (inert); telemetry handlers are wired but produce no output; no runtime errors. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate agent consumption instrumentation and cite whether the logger gate stays inert while telemetry handlers remain error-free.
 ```
 
 ### Commands

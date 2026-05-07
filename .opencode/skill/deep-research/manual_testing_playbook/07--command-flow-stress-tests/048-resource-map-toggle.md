@@ -24,17 +24,7 @@ Operators run the exact command sequence for `CP-048` and grade the result throu
 - Objective: Confirm `resource_map.emit` is false in config and JSONL, no packet-local `resource-map.md` is emitted, `research.md` still exists, and containment holds.
 - Layer partition: command-flow.
 - Real user request: `Run one-iteration deep research but suppress resource-map output.`
-- RCAF Prompt:
-
-  Same task body for both calls:
-  ```
-  Task ID: CP-048-TASK-001.
-  In /tmp/cp-048-sandbox/, run /spec_kit:deep-research:auto with --no-resource-map.
-  Stay strictly inside /tmp/cp-048-sandbox/ and /tmp/cp-048-spec/.
-  Acceptance: config and JSONL both show resource_map.emit false, research.md exists, resource-map.md does not exist, and canonical target diff is empty.
-  Return status, emit_flag, research_path, resource_map_path, and notes.
-  ```
-
+- Prompt: `Run one-iteration deep research with resource-map output suppressed.`
 - Expected process: seed a spec, run generic Call A, reset sandbox, run command-flow Call B with `--no-resource-map`, then check config/state/artifact presence.
 - Expected signals: `"emit":false`, `resource_map.emit` disabled, `research.md`, missing `resource-map.md` as a pass signal, clean canonical diff, clean tripwire.
 - Pass/fail: PASS if disabled resource-map state is visible and no map artifact is emitted. FAIL if resource-map output appears or the loop loses normal research output.
@@ -96,7 +86,7 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-048 | RESOURCE_MAP_TOGGLE | Confirm --no-resource-map suppresses map output | Same task body in §2 | Run the §3 bash block | B field counts all >= 1 | config, state log, research output, diffs | PASS if map output is absent and research output remains | 1. If emit is true, inspect command parsing. 2. If map exists, inspect reducer emit step. 3. If research.md is missing, inspect synthesis. |
+| CP-048 | RESOURCE_MAP_TOGGLE | Confirm --no-resource-map suppresses map output | `Run one-iteration deep research with resource-map output suppressed.` | Run the §3 bash block | B field counts all >= 1 | config, state log, research output, diffs | PASS if map output is absent and research output remains | 1. If emit is true, inspect command parsing. 2. If map exists, inspect reducer emit step. 3. If research.md is missing, inspect synthesis. |
 
 ## 4. SOURCE ANCHORS
 

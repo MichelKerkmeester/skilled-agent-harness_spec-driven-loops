@@ -17,7 +17,7 @@ This scenario validates Unified graph rollback and explainability (Phase 3) for 
 
 - Objective: Confirm graph kill switch removes graph-side effects while traces still explain enabled runs.
 - Real user request: `Please validate Unified graph rollback and explainability (Phase 3) against memory_search({ query:"graph rollout check", includeTrace:true }) and tell me whether the expected signals are present: When enabled, trace includes graph contribution summary and repeated identical inputs return identical order; graph FTS path uses a CTE with SQL-side dedup and cached FTS-table availability; when disabled, graph-side effects are absent and baseline ordering remains deterministic.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Unified graph rollback and explainability (Phase 3) against memory_search({ query:"graph rollout check", includeTrace:true }). Verify graph kill switch removes graph-side effects while traces still explain enabled runs. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate graph rollback and explainability and cite kill-switch behavior, trace explanations, CTE dedup, and deterministic ordering.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: When enabled, trace includes graph contribution summary and repeated identical inputs return identical order; graph FTS path uses a CTE with SQL-side dedup and cached FTS-table availability; when disabled, graph-side effects are absent and baseline ordering remains deterministic
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Unified graph rollback and explainability (Phase 3) for 
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm graph kill switch removes graph-side effects while traces still explain enabled runs against memory_search({ query:"graph rollout check", includeTrace:true }). Verify when enabled, trace includes graph contribution summary and repeated identical inputs return identical order; graph FTS path uses a CTE with SQL-side dedup and cached FTS-table availability; when disabled, graph-side effects are absent and baseline ordering remains deterministic. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate graph rollback and explainability and cite kill-switch behavior, trace explanations, CTE dedup, and deterministic ordering.
 ```
 
 ### Commands

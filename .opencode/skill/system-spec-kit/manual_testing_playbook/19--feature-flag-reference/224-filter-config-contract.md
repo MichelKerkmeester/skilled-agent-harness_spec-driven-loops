@@ -16,7 +16,7 @@ This scenario validates Filter Config Contract for `224`. It focuses on confirmi
 
 - Objective: confirming the content-filter loader honors file-backed pipeline settings, stage order, thresholds, and deep-merge fallback behavior.
 - Real user request: `` Please validate Filter Config Contract against config/filters.jsonc and tell me whether the expected signals are present: `pipeline.enabled: false` returns the original prompt list unchanged; enabled runs respect the configured `noise`, `dedupe`, and `quality` stages in the declared order; configured thresholds such as `similarityThreshold` and `warnThreshold` affect filtering decisions; partial overrides preserve unspecified nested defaults; malformed JSONC logs a warning and falls back to built-in defaults. ``
-- RCAF Prompt: `As a feature-flag validation operator, validate Filter Config Contract against config/filters.jsonc. Verify confirming the content-filter loader honors file-backed pipeline settings, stage order, thresholds, and deep-merge fallback behavior. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Filter Config Contract against config/filters.jsonc and verify file-backed pipeline settings and fallback behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `pipeline.enabled: false` returns the original prompt list unchanged; enabled runs respect the configured `noise`, `dedupe`, and `quality` stages in the declared order; configured thresholds such as `similarityThreshold` and `warnThreshold` affect filtering decisions; partial overrides preserve unspecified nested defaults; malformed JSONC logs a warning and falls back to built-in defaults
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Filter Config Contract for `224`. It focuses on confirmi
 ### Prompt
 
 ```
-As a feature-flag validation operator, confirm the content-filter loader honors file-backed pipeline settings, stage order, thresholds, and deep-merge fallback behavior against config/filters.jsonc. Verify pipeline.enabled: false returns the original prompt list unchanged; enabled runs respect the configured noise, dedupe, and quality stages in the declared order; configured thresholds such as similarityThreshold and warnThreshold affect filtering decisions; partial overrides preserve unspecified nested defaults; malformed JSONC logs a warning and falls back to built-in defaults. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Filter Config Contract against config/filters.jsonc and verify file-backed pipeline settings and fallback behavior.
 ```
 
 ### Commands

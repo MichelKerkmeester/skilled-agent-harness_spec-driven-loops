@@ -17,7 +17,7 @@ This scenario validates Trigger phrase matching (memory_match_triggers) for `EX-
 
 - Objective: Fast recall path plus trigger-cache reload efficiency.
 - Real user request: `Please validate Trigger phrase matching (memory_match_triggers) against memory_match_triggers(prompt,include_cognitive:true,sessionId:ex003) and tell me whether the expected signals are present: Fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse.`
-- RCAF Prompt: `As a retrieval validation operator, validate Trigger phrase matching (memory_match_triggers) against memory_match_triggers(prompt,include_cognitive:true,sessionId:ex003). Verify fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_match_triggers with cognitive enrichment and confirm trigger hits, cache reload, and prepared-statement reuse.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates Trigger phrase matching (memory_match_triggers) for `EX-
 
 ### Prompt
 
-```
-As a retrieval validation operator, validate Fast recall path plus trigger-cache reload efficiency against memory_match_triggers(prompt,include_cognitive:true,sessionId:ex003). Verify fast trigger hits + cognitive enrichment + partial-index-backed trigger-cache reload + per-connection prepared-statement reuse. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate memory_match_triggers with cognitive enrichment and confirm trigger hits, cache reload, and prepared-statement reuse.`
 
 ### Commands
 

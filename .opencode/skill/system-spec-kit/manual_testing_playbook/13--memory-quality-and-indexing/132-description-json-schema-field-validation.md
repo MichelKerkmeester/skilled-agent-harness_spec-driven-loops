@@ -17,7 +17,7 @@ This scenario validates description.json schema field validation for `132`. It f
 
 - Objective: Confirm per-folder description metadata matches schema contract.
 - Real user request: `` Please validate description.json schema field validation against specId and tell me whether the expected signals are present: description.json generated on folder creation with all 9 required fields; field types match contract with strings for `specId`, `folderSlug`, `specFolder`, `description`, and `lastUpdated`, arrays of strings for `parentChain`, `memoryNameHistory`, and `keywords`, and number for `memorySequence`; `memorySequence` and `memoryNameHistory` update on save; corrupted fields repaired on regeneration. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate description.json schema field validation against specId. Verify description.json generated on folder creation with all 9 required fields; field types match contract with strings for specId, folderSlug, specFolder, description, and lastUpdated, arrays of strings for parentChain, memoryNameHistory, and keywords, and number for memorySequence; memorySequence and memoryNameHistory update on save; corrupted fields repaired on regeneration. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate description.json schema field validation and repair behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: description.json generated on folder creation with all 9 required fields; field types match contract with strings for `specId`, `folderSlug`, `specFolder`, `description`, and `lastUpdated`, arrays of strings for `parentChain`, `memoryNameHistory`, and `keywords`, and number for `memorySequence`; `memorySequence` and `memoryNameHistory` update on save; corrupted fields repaired on regeneration
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates description.json schema field validation for `132`. It f
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm per-folder description metadata matches schema contract against specId. Verify description.json generated on folder creation with all 9 required fields; field types match contract with strings for specId, folderSlug, specFolder, description, and lastUpdated, arrays of strings for parentChain, memoryNameHistory, and keywords, and number for memorySequence; memorySequence and memoryNameHistory update on save; corrupted fields repaired on regeneration. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate description.json schema field validation and repair behavior.
 ```
 
 ### Commands

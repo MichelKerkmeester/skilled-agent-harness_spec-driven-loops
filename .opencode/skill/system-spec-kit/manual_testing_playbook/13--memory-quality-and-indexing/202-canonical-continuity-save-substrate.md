@@ -15,7 +15,7 @@ This scenario validates canonical continuity save substrate for `202`. It focuse
 
 - Objective: Verify 8-category canonical routing, route overrides, anchor-aware merge, atomic promotion, continuity persistence, graph-metadata refresh on every save, and continuity freshness alignment.
 - Real user request: `` Please validate Canonical continuity save substrate against contentRouter and tell me whether the expected signals are present: contentRouter chooses the correct category and tier; routeAs can override safely; anchorMergeOperation uses the right mode; atomicIndexMemory writes the canonical result or safe refusal; `_memory.continuity` stays thin and readable; every successful save refreshes packet metadata; continuity-freshness stays aligned. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Canonical continuity save substrate against contentRouter. Verify the live 8-category router chooses the correct category and target; Tier 3 participates by default; routeAs preserves the natural decision for audit; delivery versus progress and handover versus drop stay on the intended side of the boundary; anchorMergeOperation uses the right mode; atomicIndexMemory writes the canonical result; _memory.continuity stays thin and readable; every successful canonical save refreshes packet metadata; and graph-metadata.json plus continuity-freshness output confirm the continuity timestamp is not lagging the metadata write. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate canonical continuity save routing through contentRouter.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: contentRouter chooses the correct category and tier; routeAs can override safely; anchorMergeOperation uses the right mode; atomicIndexMemory writes the canonical result or safe refusal; `_memory.continuity` stays thin and readable; every successful save refreshes packet metadata; continuity-freshness stays aligned
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -28,7 +28,7 @@ This scenario validates canonical continuity save substrate for `202`. It focuse
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, verify 8-category routed canonical saves, route overrides, anchor-aware merge, atomic promotion, continuity persistence, metadata refresh on every successful save, and continuity freshness alignment against contentRouter. Verify contentRouter chooses the correct category and tier; Tier 3 participates by default; routeAs preserves the natural decision for audit; delivery versus progress and handover versus drop stay on the intended side of the boundary; anchorMergeOperation uses the right mode; atomicIndexMemory writes the canonical result or safe refusal; _memory.continuity stays thin and readable; every successful canonical save refreshes packet metadata; and graph-metadata.json plus continuity-freshness output confirm the continuity timestamp is not lagging the metadata write. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate canonical continuity save routing through contentRouter.
 ```
 
 ### Commands

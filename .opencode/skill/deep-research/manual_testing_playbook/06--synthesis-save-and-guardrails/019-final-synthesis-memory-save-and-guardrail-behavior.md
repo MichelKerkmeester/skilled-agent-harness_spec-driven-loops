@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify final synthesis, supported memory save, LEAF-only agent behavior, and the boundary between live and reference-only features.
 - Real user request: When the research loop finishes, tell me what it saves, how memory is preserved, and which advanced behaviors are still only design notes.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the finalization and guardrail contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify synthesis produces canonical research/research.md, memory save uses generate-context.js, the runtime agent remains LEAF-only, and reference-only features such as wave orchestration, checkpoint commits, :restart segments, and alternate CLI dispatch are documented as non-live behavior rather than executable guarantees. Return a concise operator verdict.`
+- Prompt: `Validate final synthesis, memory save, LEAF-only runtime behavior, and non-live guardrail documentation.`
 - Expected execution process: Inspect the command and skill save rules first, then the runtime agent LEAF-only boundary, then the loop protocol and state-format references for reference-only features.
 - Desired user-visible outcome: The user is told what final artifacts are produced, how memory is preserved, and which advanced ideas are not yet part of the live executable contract.
 - Expected signals: Synthesis produces canonical `research/research.md`, memory save calls `generate-context.js`, the Codex runtime agent forbids nested delegation, and wave orchestration, checkpoint commits, segment transitions, and alternate CLI dispatch remain reference-only.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the finalization and guardrail contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify synthesis produces canonical research/research.md, memory save uses generate-context.js, the runtime agent remains LEAF-only, and reference-only features such as wave orchestration, checkpoint commits, :restart segments, and alternate CLI dispatch are documented as non-live behavior rather than executable guarantees. Return a concise operator verdict.
+Validate final synthesis, memory save, LEAF-only runtime behavior, and non-live guardrail documentation.
 ### Commands
 1. `bash: rg -n 'generate-context.js|synthesis_complete|research/research.md|memory' .opencode/command/spec_kit/deep-research.md .opencode/skill/deep-research/SKILL.md .opencode/skill/deep-research/README.md`
 2. `bash: rg -n 'LEAF-only|Task tool|NEVER create sub-tasks|reference-only|Wave orchestration|Checkpoint Commit|Direct Mode Fallback|Segment Model' .codex/agents/deep-research.toml .opencode/skill/deep-research/references/loop_protocol.md .opencode/skill/deep-research/references/state_format.md`

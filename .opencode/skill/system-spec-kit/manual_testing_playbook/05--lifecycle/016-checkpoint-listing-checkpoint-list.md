@@ -16,7 +16,7 @@ This scenario validates Checkpoint listing (checkpoint_list) for `EX-016`. It fo
 
 - Objective: Recovery asset discovery.
 - Real user request: `Please validate Checkpoint listing (checkpoint_list) against checkpoint_list(specFolder,limit) and tell me whether the expected signals are present: Available restore points displayed.`
-- RCAF Prompt: `As a lifecycle validation operator, validate Checkpoint listing (checkpoint_list) against checkpoint_list(specFolder,limit). Verify available restore points displayed. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Checkpoint listing with checkpoint_list(specFolder,limit), verify available restore points are displayed, and return a concise verdict with evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Available restore points displayed
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Checkpoint listing (checkpoint_list) for `EX-016`. It fo
 ### Prompt
 
 ```
-As a lifecycle validation operator, validate Recovery asset discovery against checkpoint_list(specFolder,limit). Verify available restore points displayed. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Checkpoint listing with checkpoint_list(specFolder,limit), verify available restore points are displayed, and return a concise verdict with evidence.
 ```
 
 ### Commands

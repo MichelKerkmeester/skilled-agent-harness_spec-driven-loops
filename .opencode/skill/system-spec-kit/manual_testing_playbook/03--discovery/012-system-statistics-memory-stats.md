@@ -16,7 +16,7 @@ This scenario validates System statistics (memory_stats) for `EX-012`. It focuse
 
 - Objective: System baseline snapshot.
 - Real user request: `Please validate System statistics (memory_stats) against memory_stats(folderRanking:composite,includeScores:true) and tell me whether the expected signals are present: Counts, tiers, folder ranking present.`
-- RCAF Prompt: `As a discovery validation operator, validate System statistics (memory_stats) against memory_stats(folderRanking:composite,includeScores:true). Verify counts, tiers, folder ranking present. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_stats with composite folder ranking and scores, confirming counts, tiers, folder ranking, and partial-bucket totals.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Counts, tiers, folder ranking present
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates System statistics (memory_stats) for `EX-012`. It focuse
 ### Prompt
 
 ```
-As a discovery validation operator, validate System baseline snapshot against memory_stats(folderRanking:composite,includeScores:true). Verify counts, tiers, folder ranking present. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_stats with composite folder ranking and scores, confirming counts, tiers, folder ranking, and partial-bucket totals.
 ```
 
 ### Commands

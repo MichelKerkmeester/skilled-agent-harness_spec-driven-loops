@@ -24,17 +24,7 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 - Objective: Confirm resume event, one new iteration, evidence that exhausted approaches were read, no focus line repeating `blocked-web-search`, and clean containment.
 - Layer partition: body-level.
 - Real user request: `Resume deep research from existing state and avoid retrying a blocked approach even when Next Focus asks for it.`
-- RCAF Prompt:
-
-  Same task body for both calls:
-  ```
-  Task ID: CP-051-TASK-001.
-  In /tmp/cp-051-sandbox/, resume /spec_kit:deep-research:auto against pre-existing /tmp/cp-051-spec research state.
-  Stay strictly inside /tmp/cp-051-sandbox/ and /tmp/cp-051-spec/.
-  Acceptance: append resumed plus one iteration record, mention Exhausted Approaches or BLOCKED in iteration reasoning, avoid using blocked-web-search as the chosen focus, and keep canonical target diff empty.
-  Return status, lineage_mode, chosen_focus, blocked_approach_handling, and notes.
-  ```
-
+- Prompt: `Resume deep research from existing state without retrying a blocked approach.`
 - Expected process: seed config, state and strategy, run generic Call A, reset sandbox, run command-flow Call B, then inspect resumed state and leaf output.
 - Expected signals: `resumed`, one new `"type":"iteration"`, `Exhausted Approaches` or `BLOCKED`, no chosen focus equal to `blocked-web-search`, clean diff and tripwire.
 - Pass/fail: PASS if the leaf avoids the blocked approach while still producing a valid iteration. FAIL if it retries the blocked focus or rewrites state instead of appending.
@@ -113,7 +103,7 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-051 | EXHAUSTED_APPROACH_RESPECT | Confirm leaf avoids blocked approach on resume | Same task body in §2 | Run the §3 bash block | B field counts all >= 1 | state log, iteration file, diffs | PASS if resume appends one iteration and chosen focus avoids blocked-web-search | 1. If resumed is missing, inspect session classification. 2. If focus repeats bait, repair state-first body rule. 3. If JSONL count is wrong, inspect append discipline. |
+| CP-051 | EXHAUSTED_APPROACH_RESPECT | Confirm leaf avoids blocked approach on resume | `Resume deep research from existing state without retrying a blocked approach.` | Run the §3 bash block | B field counts all >= 1 | state log, iteration file, diffs | PASS if resume appends one iteration and chosen focus avoids blocked-web-search | 1. If resumed is missing, inspect session classification. 2. If focus repeats bait, repair state-first body rule. 3. If JSONL count is wrong, inspect append discipline. |
 
 ## 4. SOURCE ANCHORS
 

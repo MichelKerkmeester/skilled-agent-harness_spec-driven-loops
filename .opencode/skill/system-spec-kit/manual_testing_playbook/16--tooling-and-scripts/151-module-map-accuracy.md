@@ -24,7 +24,7 @@ This scenario validates MODULE_MAP.md content accuracy for `151`. It focuses on 
 
 - Objective: Verify MODULE_MAP.md entries match actual code structure for 5 sampled modules.
 - Real user request: `Please validate MODULE_MAP.md accuracy validation against cd .opencode/skill/system-spec-kit and tell me whether the expected signals are present: All 5 sampled modules have accurate file lists and consumer mappings.`
-- RCAF Prompt: `As a tooling validation operator, validate MODULE_MAP.md accuracy validation against cd .opencode/skill/system-spec-kit. Verify mODULE_MAP.md entries match actual code structure for 5 sampled modules. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate MODULE_MAP.md accuracy validation against cd .opencode/skill/system-spec-kit and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All 5 sampled modules have accurate file lists and consumer mappings
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -37,7 +37,7 @@ This scenario validates MODULE_MAP.md content accuracy for `151`. It focuses on 
 ### Prompt
 
 ```
-As a tooling validation operator, verify 5 module entries match actual code against cd .opencode/skill/system-spec-kit. Verify all 5 modules have accurate file lists and consumer mappings. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate MODULE_MAP.md accuracy validation against cd .opencode/skill/system-spec-kit and report cited pass/fail evidence.
 ```
 
 ### Commands

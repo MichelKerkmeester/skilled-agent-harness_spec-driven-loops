@@ -16,7 +16,7 @@ This scenario validates spec-folder detection and description metadata for `242`
 
 - Objective: Confirm folder detection, alignment safety, subfolder resolution, and description generation.
 - Real user request: `Please validate Spec-Folder Detection and Description Metadata against cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and tell me whether the expected signals are present: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors.`
-- RCAF Prompt: `As a tooling validation operator, validate Spec-Folder Detection and Description Metadata against cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js. Verify folder detection, alignment safety, subfolder resolution, and description generation. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Spec-Folder Detection and Description Metadata against cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: folder-detector and alignment tests pass; subfolder resolution test passes; description generation completes without path-safety errors
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates spec-folder detection and description metadata for `242`
 ### Prompt
 
 ```
-As a tooling validation operator, confirm folder detection, alignment safety, subfolder resolution, and description generation against cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js. Verify functional tests pass; subfolder resolution stays green; description generation completes for the explicit spec path without traversal or alignment failure. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Spec-Folder Detection and Description Metadata against cd .opencode/skill/system-spec-kit/scripts && node tests/test-folder-detector-functional.js and report cited pass/fail evidence.
 ```
 
 ### Commands

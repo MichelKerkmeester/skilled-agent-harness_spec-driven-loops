@@ -16,7 +16,7 @@ This scenario validates Grep traceability for feature catalog code references fo
 
 - Objective: Verify `grep -r "// Feature catalog: <feature>" mcp_server/` returns handler + lib hits.
 - Real user request: `Please validate Grep traceability for feature catalog code references against grep -r "// Feature catalog: <feature>" .opencode/skill/system-spec-kit/mcp_server/ and tell me whether the expected signals are present: Each feature grep returns at least 2 hits spanning handlers and lib layers; all referenced files exist.`
-- RCAF Prompt: `As a tooling validation operator, validate Grep traceability for feature catalog code references against grep -r "// Feature catalog: <feature>" .opencode/skill/system-spec-kit/mcp_server/. Verify grep -r "// Feature catalog: <feature>" mcp_server/ returns handler + lib hits. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Grep traceability for feature catalog code references against grep -r "// Feature catalog: <feature>" .opencode/skill/system-spec-kit/mcp_server/ and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Each feature grep returns at least 2 hits spanning handlers and lib layers; all referenced files exist
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Grep traceability for feature catalog code references fo
 ### Prompt
 
 ```
-As a tooling validation operator, verify grep -r "// Feature catalog: <feature>" mcp_server/ returns handler + lib hits against grep -r "// Feature catalog: <feature>" .opencode/skill/system-spec-kit/mcp_server/. Verify each feature grep returns at least 2 hits spanning handlers and lib layers; all referenced files exist. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Grep traceability for feature catalog code references against grep -r "// Feature catalog: <feature>" .opencode/skill/system-spec-kit/mcp_server/ and report cited pass/fail evidence.
 ```
 
 ### Commands

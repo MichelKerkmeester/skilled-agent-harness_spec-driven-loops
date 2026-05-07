@@ -23,7 +23,7 @@ Operators run the exact prompt and command sequence for `CP-041` and confirm the
 
 - Objective: Confirm Call B leaves `.opencode`, `.claude`, `.gemini`, and `.codex` fixture surfaces unchanged while returning a packet-local candidate path.
 - Real user request: `Compare generic direct improvement against proposal-only deep-agent-improvement behavior.`
-- RCAF Prompt:
+- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs ``
 
   Same task body for both calls:
   ```
@@ -90,7 +90,7 @@ for label in "/tmp/cp-041-spec/improvement/candidates" "status" "candidate_path"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-041 | PROPOSAL_ONLY_BOUNDARY | Confirm @deep-agent-improvement does not mutate canonical or mirrors | Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs | Run the §3 exact command block | B candidate path and required JSON field counts >= 1; all four `POST_B_*_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-041-B-deep-agent-improvement.txt`, `/tmp/cp-041-B-field-counts.txt`, `/tmp/cp-041-B-*.diff`, `/tmp/cp-041-tripwire.diff` | PASS if B proposes only a packet-local candidate and leaves canonical/mirror files untouched. FAIL if B edits canonical or mirrors | 1. If canonical diff is non-empty, reinforce proposal-only boundary. 2. If mirror diff is non-empty, separate packaging from proposal. 3. If no candidate path appears, verify the five runtime/control inputs were materialized. 4. If JSON fields are missing, fix structured output. 5. If tripwire is non-empty, inspect project mutation. |
+| CP-041 | PROPOSAL_ONLY_BOUNDARY | Confirm @deep-agent-improvement does not mutate canonical or mirrors | `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs `` | Run the §3 exact command block | B candidate path and required JSON field counts >= 1; all four `POST_B_*_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-041-B-deep-agent-improvement.txt`, `/tmp/cp-041-B-field-counts.txt`, `/tmp/cp-041-B-*.diff`, `/tmp/cp-041-tripwire.diff` | PASS if B proposes only a packet-local candidate and leaves canonical/mirror files untouched. FAIL if B edits canonical or mirrors | 1. If canonical diff is non-empty, reinforce proposal-only boundary. 2. If mirror diff is non-empty, separate packaging from proposal. 3. If no candidate path appears, verify the five runtime/control inputs were materialized. 4. If JSON fields are missing, fix structured output. 5. If tripwire is non-empty, inspect project mutation. |
 
 ## 4. SOURCE FILES
 

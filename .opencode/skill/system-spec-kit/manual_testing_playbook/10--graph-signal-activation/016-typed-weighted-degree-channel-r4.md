@@ -17,7 +17,7 @@ This scenario validates Typed-weighted degree channel (R4) for `016`. It focuses
 
 - Objective: Confirm bounded typed-degree boost.
 - Real user request: `Please validate Typed-weighted degree channel (R4) against the documented validation surface and tell me whether the expected signals are present: Typed-degree boost bounded within configured cap; cold-cache scoring batches uncached nodes in one SQL pass; cached global max prevents repeated normalization-base queries; fallback activates when edge types missing; varied types produce different scores.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Typed-weighted degree channel (R4) against the documented validation surface. Verify typed-degree boost bounded within configured cap; cold-cache scoring batches uncached nodes in one SQL pass; cached global max prevents repeated normalization-base queries; fallback activates when edge types missing; varied types produce different scores. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate typed-weighted degree scoring and cite caps, batched cold-cache queries, cache reuse, fallback, and varied type scoring.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Typed-degree boost bounded within configured cap; cold-cache scoring batches uncached nodes in one SQL pass; cached global max prevents repeated normalization-base queries; fallback activates when edge types missing; varied types produce different scores
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Typed-weighted degree channel (R4) for `016`. It focuses
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm bounded typed-degree boost against the documented validation surface. Verify typed-degree boost bounded within configured cap; cold-cache scoring batches uncached nodes in one SQL pass; cached global max prevents repeated normalization-base queries; fallback activates when edge types missing; varied types produce different scores. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate typed-weighted degree scoring and cite caps, batched cold-cache queries, cache reuse, fallback, and varied type scoring.
 ```
 
 ### Commands

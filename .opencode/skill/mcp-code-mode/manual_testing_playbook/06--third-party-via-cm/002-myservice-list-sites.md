@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `CM-018` and confirm the
 
 - Objective: Verify `myservice.myservice_sites_list()` returns an array of site objects, each with `id` and a display-name field.
 - Real user request: `"What MyService sites do I have access to?"`
-- RCAF Prompt: `As a manual-testing orchestrator, list all MyService sites visible to the configured token through Code Mode against the live MyService API. Verify the response is a non-empty array (or explicit empty if account has no sites). Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `List MyService sites for the configured token and report whether the response shape is valid.`
 - Expected execution process: single `call_tool_chain` invocation; assumes `myservice_MYSERVICE_TOKEN` env var per CM-008.
 - Expected signals: response is an array; each entry has `id` and `displayName` (or `name`); array length >= 0 (empty is valid for fresh accounts).
 - Desired user-visible outcome: A short report listing site names + count and a PASS verdict.
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CM-018` and confirm the
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, list all MyService sites visible to the configured token through Code Mode against the live MyService API. Verify the response is a non-empty array (or explicit empty if account has no sites). Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `List MyService sites for the configured token and report whether the response shape is valid.`
 
 ### Commands
 

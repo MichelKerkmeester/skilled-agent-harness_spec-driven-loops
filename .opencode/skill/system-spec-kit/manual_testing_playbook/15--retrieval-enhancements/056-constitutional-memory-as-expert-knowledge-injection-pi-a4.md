@@ -30,7 +30,7 @@ This scenario validates Constitutional memory as expert knowledge injection (PI-
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm directive enrichment against the documented validation surface. Verify directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Constitutional memory as expert knowledge injection (PI-A4) against the documented validation surface. Verify directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

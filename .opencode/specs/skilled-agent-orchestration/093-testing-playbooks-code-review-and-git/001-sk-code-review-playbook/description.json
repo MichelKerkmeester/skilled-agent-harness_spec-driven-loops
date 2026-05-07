@@ -1,0 +1,25 @@
+{
+  "specFolder": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/001-sk-code-review-playbook",
+  "description": "Author manual_testing_playbook for sk-code-review: 17 scenarios across 6 categories with RCAF-pattern operator prompts; sk-doc validation + @review DQI dogfood pass.",
+  "keywords": [
+    "spec",
+    "093",
+    "001",
+    "sk-code-review",
+    "manual-testing",
+    "playbook",
+    "rcaf",
+    "review-baseline"
+  ],
+  "lastUpdated": "2026-05-07T00:00:00.000Z",
+  "specId": "093/001",
+  "folderSlug": "sk-code-review-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "093-testing-playbooks-code-review-and-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "completionPct": 0,
+  "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch."
+}

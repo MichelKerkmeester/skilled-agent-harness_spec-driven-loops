@@ -24,7 +24,7 @@ Tool and resource hints can improve Skill Advisor recall, but raw descriptions c
 
 - Objective: Validate normalized affordance evidence in Skill Advisor scoring.
 - Real user request: `Route this prompt using the browser recorder affordance, but do not expose the raw tool phrase.`
-- RCAF Prompt: `As a Skill Advisor validation operator, run the affordance routing fixture against the native scorer. Verify affordance evidence contributes through derived_generated and graph_causal only, raw matched phrases stay out of recommendation payloads, and explicit triggers still win. Return a concise pass/fail verdict with cited test output.`
+- Prompt: `Run the Skill Advisor affordance routing fixture without leaking raw tool phrases.`
 - Expected execution process: Run focused Vitest and Python compiler checks, inspect lane attribution, then inspect the public recommendation payload shape.
 - Expected signals: `affordance-normalizer.test.ts` passes privacy assertions, `lane-attribution.test.ts` shows `derived_generated` and `graph_causal`, `routing-fixtures.affordance.test.ts` shows recall lift and explicit precedence, and Python compiler tests keep `ALLOWED_ENTITY_KINDS` unchanged
 - Desired user-visible outcome: The advisor can use sanitized affordance hints without leaking raw tool descriptions or adding routing vocabulary.
@@ -36,7 +36,7 @@ Tool and resource hints can improve Skill Advisor recall, but raw descriptions c
 
 ### Prompt
 
-- Prompt: `As a Skill Advisor validation operator, run the affordance routing fixture against the native scorer. Verify affordance evidence contributes through derived_generated and graph_causal only, raw matched phrases stay out of recommendation payloads, and explicit triggers still win. Return a concise pass/fail verdict with cited test output.`
+- Prompt: `Run the Skill Advisor affordance routing fixture without leaking raw tool phrases.`
 
 ### Commands
 

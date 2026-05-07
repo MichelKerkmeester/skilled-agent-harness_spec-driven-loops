@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify finding deduplication uses adjudicated finalSeverity and produces clean registry.
 - Real user request: If the review finds the same issue twice at different severities, which one shows up in the final report?
-- Prompt: `As a manual-testing orchestrator, validate the finding deduplication contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify during synthesis, findings from all review/iterations/iteration-NNN.md files are compared for duplicates, that duplicate resolution uses adjudicated finalSeverity (taking the highest severity when the same finding appears at different levels), that the Active Finding Registry in review-report.md contains only unique findings with their final severity and evidence, and that deduplication does not discard P0 findings. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review finding deduplication and confirm the active registry preserves unique P0/P1/P2 findings.`
 - Expected execution process: Inspect the SKILL.md synthesis and deduplication rules, then the YAML synthesis step, then the quick reference report sections for the Active Finding Registry definition.
 - Desired user-facing outcome: The user is told that duplicate findings are merged with the highest severity preserved, and the final report contains a clean, deduplicated registry.
 - Expected signals: Findings are compared across iterations by location and description, `finalSeverity` is the highest severity encountered, the Active Finding Registry contains unique entries only, P0 findings are never downgraded or discarded, and the registry includes file:line evidence for each finding.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the finding deduplication contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify during synthesis, findings from all review/iterations/iteration-NNN.md files are compared for duplicates, that duplicate resolution uses adjudicated finalSeverity (taking the highest severity when the same finding appears at different levels), that the Active Finding Registry in review-report.md contains only unique findings with their final severity and evidence, and that deduplication does not discard P0 findings. Return a concise operator-facing verdict.
+Validate deep-review finding deduplication and confirm the active registry preserves unique P0/P1/P2 findings.
 ### Commands
 1. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|Active Finding Registry|unique.*finding|merge.*finding|duplicate' .opencode/skill/deep-review/SKILL.md .opencode/skill/deep-review/README.md`
 2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

@@ -16,7 +16,7 @@ This scenario validates Multi-feature annotation coverage for `137`. It focuses 
 
 - Objective: Verify known multi-feature files have annotation count >= 2.
 - Real user request: `Please validate Multi-feature annotation coverage against handlers/memory-save.ts and tell me whether the expected signals are present: All known multi-feature files carry >= 2 annotations; annotations are semantically appropriate.`
-- RCAF Prompt: `As a tooling validation operator, validate Multi-feature annotation coverage against handlers/memory-save.ts. Verify known multi-feature files have annotation count >= 2. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Multi-feature annotation coverage against handlers/memory-save.ts and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All known multi-feature files carry >= 2 annotations; annotations are semantically appropriate
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Multi-feature annotation coverage for `137`. It focuses 
 ### Prompt
 
 ```
-As a tooling validation operator, verify known multi-feature files have annotation count >= 2 against handlers/memory-save.ts. Verify all known multi-feature files carry >= 2 annotations; annotations are semantically appropriate. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Multi-feature annotation coverage against handlers/memory-save.ts and report cited pass/fail evidence.
 ```
 
 ### Commands

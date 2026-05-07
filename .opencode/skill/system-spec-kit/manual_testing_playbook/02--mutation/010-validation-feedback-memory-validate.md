@@ -31,7 +31,7 @@ This scenario validates Validation feedback (memory_validate) for `EX-010`. It f
 ### Prompt
 
 ```
-As a mutation validation operator, validate Feedback learning loop against memory_validate(memoryId,helpful:true,queryId). Verify confidence/promotion metadata updates. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Validation feedback (memory_validate) against memory_validate(memoryId,helpful:true,queryId). Verify confidence/promotion metadata updates. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

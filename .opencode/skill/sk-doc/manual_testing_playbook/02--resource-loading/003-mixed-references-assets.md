@@ -13,7 +13,31 @@ created: 2026-05-05
 
 # SD-006: Mixed References + Assets Resource Loading (README)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates README_CREATION mixed resource loading for `SD-006`. It focuses on routing a package README request to both creation guidance and the README template.
+
+### Why This Matters
+
+README creation needs process guidance and a concrete scaffold; either one alone produces a weaker result. This scenario catches partial loads where the router includes only the template or only the reference workflow, which would hide required sections such as configuration and security caveats.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.`
+- Prompt: `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.`
+- Expected intent: `README_CREATION`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-006 | README_CREATION intent loads mixed references + assets | Verify sk-doc routes the scenario to `README_CREATION` with the expected resources. | `Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `README_CREATION`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -24,8 +48,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Create a README for the new auth subsystem under packages/auth/. Cover
-purpose, install, usage, configuration, and security caveats.
+Create a README for packages/auth/ covering purpose, install, usage, configuration, and security caveats.
 ```
 
 ## Expected Behavior
@@ -46,3 +69,10 @@ purpose, install, usage, configuration, and security caveats.
 - intent_picked == `README_CREATION`
 - false_positive_resource_load_count <= 1
 - response is non-empty and references both expected_resources (template structure + guidance)
+
+## 4. SOURCE METADATA
+
+- Group: Resource Loading
+- Playbook ID: SD-006
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `02--resource-loading/003-mixed-references-assets.md`

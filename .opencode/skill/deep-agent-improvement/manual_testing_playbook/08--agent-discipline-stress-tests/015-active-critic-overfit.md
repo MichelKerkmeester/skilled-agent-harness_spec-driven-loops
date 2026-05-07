@@ -23,7 +23,7 @@ Operators run the exact prompt and command sequence for `CP-042` and confirm the
 
 - Objective: Confirm Call B exposes candidate-time challenge notes and does not accept a score-only wording improvement.
 - Real user request: `Compare generic heading optimization against deep-agent-improvement active Critic discipline.`
-- RCAF Prompt:
+- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs ``
 
   Same task body for both calls:
   ```
@@ -84,7 +84,7 @@ grep -Eci 'benchmark-pass|benchmark_completed|promoted' /tmp/cp-042-B-deep-agent
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-042 | ACTIVE_CRITIC_OVERFIT | Confirm active Critic challenges scorer overfit | Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs | Run the §3 exact command block | B field counts for Critic labels and bait challenge all >= 1; packet-local candidate path appears; substitute evidence count = 0; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-042-B-deep-agent-improvement.txt`, `/tmp/cp-042-B-field-counts.txt`, `/tmp/cp-042-B-substitute-evidence-count.txt`, `/tmp/cp-042-B-canonical.diff`, `/tmp/cp-042-tripwire.diff` | PASS if B names all Critic risks and challenges the bait before returning. FAIL if B accepts the overfit assertion or treats benchmark labels as a Critic substitute | 1. If `CRITIC PASS` is absent, wire the active pass into the agent. 2. If one risk or bait challenge is missing, update structured output. 3. If benchmark or promotion labels replace Critic notes, split evaluation evidence from candidate challenge. 4. If canonical diff appears, repair proposal-only boundary. |
+| CP-042 | ACTIVE_CRITIC_OVERFIT | Confirm active Critic challenges scorer overfit | `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agent/deep-agent-improvement.md` + `Depth: 1` and explicit runtime/control inputs `` | Run the §3 exact command block | B field counts for Critic labels and bait challenge all >= 1; packet-local candidate path appears; substitute evidence count = 0; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-042-B-deep-agent-improvement.txt`, `/tmp/cp-042-B-field-counts.txt`, `/tmp/cp-042-B-substitute-evidence-count.txt`, `/tmp/cp-042-B-canonical.diff`, `/tmp/cp-042-tripwire.diff` | PASS if B names all Critic risks and challenges the bait before returning. FAIL if B accepts the overfit assertion or treats benchmark labels as a Critic substitute | 1. If `CRITIC PASS` is absent, wire the active pass into the agent. 2. If one risk or bait challenge is missing, update structured output. 3. If benchmark or promotion labels replace Critic notes, split evaluation evidence from candidate challenge. 4. If canonical diff appears, repair proposal-only boundary. |
 
 ## 4. SOURCE FILES
 

@@ -17,7 +17,7 @@ This scenario validates Local GGUF reranker via node-llama-cpp (P1-5) for `098`.
 
 - Objective: Confirm reranker gating and graceful fallback.
 - Real user request: `Please validate Local GGUF reranker via node-llama-cpp (P1-5) against RERANKER_LOCAL=1 and tell me whether the expected signals are present: Reranker not activated for truthy-but-not-'true' values; silent fallback when model file missing; custom model path lowers the total-memory threshold to 2GB from the default 8GB; getRerankerStatus() reports cache hits/misses/staleHits/evictions with bounded p95 latency; applyLengthPenalty does not change scores; scoring runs sequentially in logs.`
-- RCAF Prompt: `As a scoring validation operator, validate Local GGUF reranker via node-llama-cpp (P1-5) against RERANKER_LOCAL=1. Verify reranker not activated for truthy-but-not-'true' values; silent fallback when model file missing; custom model path lowers the total-memory threshold to 2GB from the default 8GB; getRerankerStatus() reports cache hits/misses/staleHits/evictions with bounded p95 latency; applyLengthPenalty remains compatibility-only and does not change scores; scoring runs sequentially in logs. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the local GGUF reranker behavior for RERANKER_LOCAL=1 and graceful fallback cases.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Reranker not activated for truthy-but-not-'true' values; silent fallback when model file missing; custom model path lowers the total-memory threshold to 2GB from the default 8GB; getRerankerStatus() reports cache hits/misses/staleHits/evictions with bounded p95 latency; applyLengthPenalty does not change scores; scoring runs sequentially in logs
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Local GGUF reranker via node-llama-cpp (P1-5) for `098`.
 ### Prompt
 
 ```
-As a scoring validation operator, confirm reranker gating and graceful fallback against RERANKER_LOCAL=1. Verify reranker not activated for truthy-but-not-'true' values; silent fallback when model file missing; custom model path lowers the total-memory threshold to 2GB from the default 8GB; getRerankerStatus() reports cache hits/misses/staleHits/evictions with bounded p95 latency; applyLengthPenalty remains compatibility-only and does not change scores; scoring runs sequentially in logs. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the local GGUF reranker behavior for RERANKER_LOCAL=1 and graceful fallback cases.
 ```
 
 ### Commands

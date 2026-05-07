@@ -16,7 +16,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-01
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-011`.
 - Real user request: `` Please validate Gemini Runtime Path Resolution against the documented validation surface and tell me whether the expected signals are present: `ls -d .gemini` returns `.agents`; basename diff is empty; resolved count is `9`. ``
-- RCAF Prompt: `As a tooling validation operator, validate Gemini Runtime Path Resolution against the documented validation surface. Verify ls -d .gemini returns .agents; basename diff is empty; resolved count is 9. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Gemini Runtime Path Resolution against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `ls -d .gemini` returns `.agents`; basename diff is empty; resolved count is `9`
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -28,7 +28,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-01
 
 ### Prompt
 
-`As a tooling validation operator, validate Gemini Runtime Path Resolution against the documented validation surface. Verify ls -d .gemini returns .agents; basename diff is empty; resolved count is 9. Return a concise pass/fail verdict with the main reason and cited evidence.`
+`Validate Gemini Runtime Path Resolution against the documented validation surface and report cited pass/fail evidence.`
 ### Commands
 
 ```bash

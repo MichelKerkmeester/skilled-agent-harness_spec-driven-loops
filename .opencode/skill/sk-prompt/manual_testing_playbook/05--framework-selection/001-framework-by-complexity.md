@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-019` and confirm the
 
 - Objective: Confirm complexity and task characteristics route to the documented framework family.
 - Real user request: `Pick the right framework for my customer support response prompt — and explain why.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's customer-support response prompt. Verify framework selection evaluates complexity and task characteristics, chooses one of RACE/RCAF/COSTAR/CIDI/TIDD-EC/CRISPE/CRAFT, and returns the complexity score plus rationale.`
+- Prompt: `Improve my customer-support response prompt; verify framework selection evaluates complexity, chooses the right family, and returns score plus rationale.`
 - Expected execution process: `@prompt-improver` scores task complexity, evaluates framework fit, selects the best framework, and names at least one alternative.
 - Expected signals: Framework name is one of the seven documented frameworks; complexity score is 1-10; rationale matches the matrix.
 - Desired user-visible outcome: Enhanced prompt plus `FRAMEWORK`, complexity score, and rationale.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-019` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's customer-support response prompt. Verify framework selection evaluates complexity and task characteristics, chooses one of RACE/RCAF/COSTAR/CIDI/TIDD-EC/CRISPE/CRAFT, and returns the complexity score plus rationale.
+Improve my customer-support response prompt; verify framework selection evaluates complexity, chooses the right family, and returns score plus rationale.
 ```
 
 ### Commands

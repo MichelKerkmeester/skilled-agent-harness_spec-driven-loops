@@ -1,0 +1,28 @@
+{
+  "specFolder": "skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/002-sk-git-playbook",
+  "description": "Author manual_testing_playbook for sk-git: 21 scenarios across 6 categories with RCAF-pattern operator prompts; safety refusals + Conventional Commits + cross-CLI surfaces; sk-doc validation + @review DQI dogfood pass.",
+  "keywords": [
+    "spec",
+    "093",
+    "002",
+    "sk-git",
+    "manual-testing",
+    "playbook",
+    "rcaf",
+    "git-workflow",
+    "worktree",
+    "commit",
+    "safety-refusal"
+  ],
+  "lastUpdated": "2026-05-07T00:00:00.000Z",
+  "specId": "093/002",
+  "folderSlug": "sk-git-playbook",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "093-testing-playbooks-code-review-and-git"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [],
+  "completionPct": 0,
+  "lastOutcome": "Authored Level 2 spec docs; awaiting cli-codex implementation dispatch."
+}

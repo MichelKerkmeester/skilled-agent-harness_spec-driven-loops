@@ -16,7 +16,7 @@ This scenario validates memory quality KPI reporting for `247`. It focuses on co
 
 - Objective: Confirm global and scoped KPI scans, JSON output, and stderr summary behavior.
 - Real user request: `` Please validate Memory Quality KPI Reporting against bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh and tell me whether the expected signals are present: full and scoped scans both emit JSON; stderr summary line is present; scoped output contains `scope`; command exits 0. ``
-- RCAF Prompt: `As a tooling validation operator, validate Memory Quality KPI Reporting against bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh. Verify global and scoped KPI scans, JSON output, and stderr summary behavior. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Memory Quality KPI Reporting against bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: full and scoped scans both emit JSON; stderr summary line is present; scoped output contains `scope`; command exits 0
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates memory quality KPI reporting for `247`. It focuses on co
 ### Prompt
 
 ```
-As a tooling validation operator, confirm global and scoped KPI scans, JSON output, and stderr summary behavior against bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh. Verify both commands emit JSON; stderr includes KPI Summary:; scoped run preserves the requested scope and exits 0. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Memory Quality KPI Reporting against bash .opencode/skill/system-spec-kit/scripts/kpi/quality-kpi.sh and report cited pass/fail evidence.
 ```
 
 ### Commands

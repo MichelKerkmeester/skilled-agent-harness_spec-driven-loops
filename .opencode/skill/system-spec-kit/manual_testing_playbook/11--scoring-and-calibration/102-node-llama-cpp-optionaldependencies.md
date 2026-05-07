@@ -17,7 +17,7 @@ This scenario validates node-llama-cpp optionalDependencies for `102`. It focuse
 
 - Objective: Confirm install succeeds without native build tools.
 - Real user request: `Please validate node-llama-cpp optionalDependencies against mcp_server/package.json and tell me whether the expected signals are present: node-llama-cpp listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent.`
-- RCAF Prompt: `As a scoring validation operator, validate node-llama-cpp optionalDependencies against mcp_server/package.json. Verify node-llama-cpp listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate node-llama-cpp optionalDependencies and graceful dynamic-import fallback behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: node-llama-cpp listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates node-llama-cpp optionalDependencies for `102`. It focuse
 ### Prompt
 
 ```
-As a scoring validation operator, confirm install succeeds without native build tools against mcp_server/package.json. Verify node-llama-cpp listed in optionalDependencies (not dependencies); npm install completes without error on clean env; dynamic import with graceful fallback when module absent. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate node-llama-cpp optionalDependencies and graceful dynamic-import fallback behavior.
 ```
 
 ### Commands

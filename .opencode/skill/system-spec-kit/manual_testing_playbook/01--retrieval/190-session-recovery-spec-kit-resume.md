@@ -18,7 +18,7 @@ This scenario validates interrupted-session recovery via `/spec_kit:resume` for 
 
 - Objective: Verify `/spec_kit:resume` uses `handover.md` first, then `_memory.continuity`, then supporting spec docs, with `memory_context(mode: "resume")` and `memory_search()` only filling gaps when the packet is thin; `memory_list()` still handles candidate discovery when needed.
 - Real user request: `` Please validate Session recovery via /spec_kit:resume against /spec_kit:resume specs/<target-spec> :auto and tell me whether the expected signals are present: `handover.md` is preferred when fresh; `_memory.continuity` supplies supporting state when needed; `memory_context(mode: "resume")` is the helper recovery path when the packet is thin; fallback behavior uses the documented resume anchors and recent-candidate discovery; auto mode resolves a strong candidate with minimal prompting; confirm mode shows alternatives when ambiguity remains; the final response includes state and next-step guidance. ``
-- RCAF Prompt: `As a retrieval validation operator, validate Session recovery via /spec_kit:resume against /spec_kit:resume specs/<target-spec> :auto. Verify /spec_kit:resume uses handover.md first, then _memory.continuity, then supporting spec docs, with memory_context(mode: "resume") and memory_search() only filling gaps when the packet is thin; memory_list() still handles candidate discovery when needed. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate /spec_kit:resume auto recovery and confirm the resume ladder, candidate discovery, and final next-step guidance work.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `handover.md` is preferred when fresh; `_memory.continuity` supplies supporting state when needed; `memory_context(mode: "resume")` is the helper recovery path when the packet is thin; fallback behavior uses the documented resume anchors and recent-candidate discovery; auto mode resolves a strong candidate with minimal prompting; confirm mode shows alternatives when ambiguity remains; the final response includes state and next-step guidance
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,9 +30,7 @@ This scenario validates interrupted-session recovery via `/spec_kit:resume` for 
 
 ### Prompt
 
-```
-As a retrieval validation operator, verify /spec_kit:resume recovery chain, ambiguity handling, and post-recovery routing against /spec_kit:resume specs/<target-spec> :auto. Verify handover.md is primary after fresh handover handling; _memory.continuity and supporting spec docs follow; helper fallback paths activate correctly; confirm mode shows alternatives when needed; final response contains actionable continuation state and next-step routing. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate /spec_kit:resume auto recovery and confirm the resume ladder, candidate discovery, and final next-step guidance work.`
 
 ### Commands
 

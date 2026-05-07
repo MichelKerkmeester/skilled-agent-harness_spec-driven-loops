@@ -40,7 +40,7 @@ Canonical package artifacts:
 - [12. END-TO-END LOOP](#12--end-to-end-loop)
 - [13. RUNTIME TRUTH](#13--runtime-truth)
 - [14. AUTOMATED TEST CROSS-REFERENCE](#14--automated-test-cross-reference)
-- [15. FEATURE CATALOG CROSS-REFERENCE INDEX](#15--feature-catalog-cross-reference-index)
+- [16. FEATURE CATALOG CROSS-REFERENCE INDEX](#16--feature-catalog-cross-reference-index)
 
 ---
 
@@ -713,7 +713,7 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The feature catalog root is `.opencode/skill/deep-agent-improvement/feature_catalog/feature_catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 

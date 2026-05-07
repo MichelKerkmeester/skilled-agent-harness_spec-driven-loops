@@ -22,14 +22,14 @@ Operators run the exact prompt and command sequence for `CB-001` in three browse
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `CB-001` | Cross-Browser Motion Animate | Verify Motion UI behavior in Chrome, Safari, and Firefox latest stable | `Run the Motion nav dropdown and testimonial slider scenarios in Chrome, Safari, and Firefox latest stable. Capture browser/version, console output, screenshots or videos, and any rendering quirks. Return PASS/FAIL per browser plus an aggregate verdict.` | open target in Chrome -> run interactions -> save evidence -> repeat in Safari -> repeat in Firefox -> write matrix | same final states in all browsers; no uncaught Motion errors; quirks documented if non-blocking | `/tmp/skc-CB001-{browser}.txt`, `/tmp/skc-CB001-{browser}.mp4`, `/tmp/skc-CB001-matrix.md` | PASS iff all browsers reach correct final states and no browser has a blocking console/runtime error | If one browser fails, isolate import support, WAAPI support, CSS/media query differences, or reduced-motion settings |
+| `CB-001` | Cross-Browser Motion Animate | Verify Motion UI behavior in Chrome, Safari, and Firefox latest stable | `Test the Motion dropdown and slider in Chrome, Safari, and Firefox; return per-browser PASS/FAIL and an aggregate verdict.` | open target in Chrome -> run interactions -> save evidence -> repeat in Safari -> repeat in Firefox -> write matrix | same final states in all browsers; no uncaught Motion errors; quirks documented if non-blocking | `/tmp/skc-CB001-{browser}.txt`, `/tmp/skc-CB001-{browser}.mp4`, `/tmp/skc-CB001-matrix.md` | PASS iff all browsers reach correct final states and no browser has a blocking console/runtime error | If one browser fails, isolate import support, WAAPI support, CSS/media query differences, or reduced-motion settings |
 
 ## 3. TEST EXECUTION
 
 ### Prompt
 
 ```text
-Run the Motion nav dropdown and testimonial slider scenarios in Chrome, Safari, and Firefox latest stable. Capture browser/version, console output, screenshots or videos, and any rendering quirks. Return PASS/FAIL per browser plus an aggregate verdict.
+Test the Motion dropdown and slider in Chrome, Safari, and Firefox; return per-browser PASS/FAIL and an aggregate verdict.
 ```
 
 ### Commands

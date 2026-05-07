@@ -17,7 +17,7 @@ This scenario validates RRF K-value sensitivity analysis (FUT-5) for `030`. It f
 
 - Objective: Confirm K sensitivity measurements.
 - Real user request: `Please validate RRF K-value sensitivity analysis (FUT-5) against the documented validation surface and tell me whether the expected signals are present: K-value grid produces per-K metric comparisons; optimal K identified with rationale; sensitivity curve shows diminishing returns.`
-- RCAF Prompt: `As a scoring validation operator, validate RRF K-value sensitivity analysis (FUT-5) against the documented validation surface. Verify k-value grid produces per-K metric comparisons; optimal K identified with rationale; sensitivity curve shows diminishing returns. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate RRF K-value sensitivity analysis and identify the optimal K with evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: K-value grid produces per-K metric comparisons; optimal K identified with rationale; sensitivity curve shows diminishing returns
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates RRF K-value sensitivity analysis (FUT-5) for `030`. It f
 ### Prompt
 
 ```
-As a scoring validation operator, confirm K sensitivity measurements against the documented validation surface. Verify k-value grid produces per-K metric comparisons; optimal K identified with rationale; sensitivity curve shows diminishing returns. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate RRF K-value sensitivity analysis and identify the optimal K with evidence.
 ```
 
 ### Commands

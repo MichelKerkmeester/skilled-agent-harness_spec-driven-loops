@@ -13,7 +13,31 @@ created: 2026-05-05
 
 # SD-017: INSTALL_GUIDE Intent Detection
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates INSTALL_GUIDE intent detection for `SD-017`. It focuses on routing an MCP server setup request to the install-guide template and creation workflow.
+
+### Why This Matters
+
+Install-guide prompts combine prerequisites, setup, configuration, verification, and troubleshooting, which can be mistaken for generic README creation. This scenario catches resource drift that would omit the phase-based install guide structure or return an underspecified setup document.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Create an MCP-Postgres install guide with prerequisites, npm setup, env config, verification, and troubleshooting.`
+- Prompt: `Create an MCP-Postgres install guide with prerequisites, npm setup, env config, verification, and troubleshooting.`
+- Expected intent: `INSTALL_GUIDE`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-017 | INSTALL_GUIDE intent: scaffold an install guide for a new MCP server | Verify sk-doc routes the scenario to `INSTALL_GUIDE` with the expected resources. | `Create an MCP-Postgres install guide with prerequisites, npm setup, env config, verification, and troubleshooting.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `INSTALL_GUIDE`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -24,7 +48,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Create an install guide for the new MCP-Postgres server we're shipping. Cover prerequisites (Node 18+, PostgreSQL 14+), installation via npm + global config wiring, environment-variable configuration (DB_URL, DB_SSL_MODE), verification steps (smoke query + readiness probe), and a troubleshooting section. Follow the standard sk-doc install-guide template structure.
+Create an MCP-Postgres install guide with prerequisites, npm setup, env config, verification, and troubleshooting.
 ```
 
 ## Expected Behavior
@@ -45,4 +69,11 @@ Create an install guide for the new MCP-Postgres server we're shipping. Cover pr
 - intent_picked == `INSTALL_GUIDE`
 - false_positive_resource_load_count <= 1
 - response is non-empty and references at least one of the expected_resources
+
+## 4. SOURCE METADATA
+
+- Group: Intent Detection
+- Playbook ID: SD-017
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `01--intent-detection/005-install-guide.md`
 - response mentions canonical install-guide sections (prerequisites, configuration, verification, troubleshooting) — validates intent semantics

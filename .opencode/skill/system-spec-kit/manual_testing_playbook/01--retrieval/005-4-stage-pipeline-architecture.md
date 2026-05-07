@@ -17,7 +17,7 @@ This scenario validates 4-stage pipeline architecture for `EX-005`. It focuses o
 
 - Objective: Stage invariant verification.
 - Real user request: `Please validate 4-stage pipeline architecture against memory_search(query,intent:understand) and tell me whether the expected signals are present: No invariant errors; stable final scoring.`
-- RCAF Prompt: `As a retrieval validation operator, validate 4-stage pipeline architecture against memory_search(query,intent:understand). Verify no invariant errors; stable final scoring. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the 4-stage memory_search pipeline and confirm invariant-free execution with stable final scoring.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: No invariant errors; stable final scoring
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates 4-stage pipeline architecture for `EX-005`. It focuses o
 
 ### Prompt
 
-```
-As a retrieval validation operator, validate Stage invariant verification against memory_search(query,intent:understand). Verify no invariant errors; stable final scoring. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate the 4-stage memory_search pipeline and confirm invariant-free execution with stable final scoring.`
 
 ### Commands
 

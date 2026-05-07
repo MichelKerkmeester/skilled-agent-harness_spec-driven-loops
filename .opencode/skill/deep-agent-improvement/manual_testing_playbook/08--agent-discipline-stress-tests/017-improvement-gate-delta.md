@@ -23,7 +23,7 @@ Operators run the exact prompt and command sequence for `CP-044` and confirm the
 
 - Objective: Confirm Call B emits baseline/current comparison evidence and blocks promotion when delta is below threshold.
 - Real user request: `Compare generic quality narration against numeric improvement-gate evidence.`
-- RCAF Prompt:
+- RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox ``
 
   Same task body for both calls:
   ```
@@ -81,7 +81,7 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-044-B-combined.txt | tee /tm
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-044 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-044-B-command.txt`, `/tmp/cp-044-B-combined.txt`, `/tmp/cp-044-B-field-counts.txt`, `/tmp/cp-044-B-promotion-or-converged-count.txt`, `/tmp/cp-044-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
+| CP-044 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/improve:agent` from the command-capable sandbox `` | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-044-B-command.txt`, `/tmp/cp-044-B-combined.txt`, `/tmp/cp-044-B-field-counts.txt`, `/tmp/cp-044-B-promotion-or-converged-count.txt`, `/tmp/cp-044-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
 
 ## 4. SOURCE FILES
 

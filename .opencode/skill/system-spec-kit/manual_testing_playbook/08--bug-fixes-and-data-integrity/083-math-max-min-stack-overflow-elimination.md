@@ -17,7 +17,7 @@ This scenario validates Math.max/min stack overflow elimination for `083`. It fo
 
 - Objective: Confirm large-array safety.
 - Real user request: `Please validate Math.max/min stack overflow elimination against the documented validation surface and tell me whether the expected signals are present: Large arrays (10k+ elements) processed without RangeError; numeric outputs match expected min/max values; no stack overflow in any code path.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Math.max/min stack overflow elimination against the documented validation surface. Verify large arrays (10k+ elements) processed without RangeError; numeric outputs match expected min/max values; no stack overflow in any code path. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Math.max/min stack overflow elimination and confirm large arrays process without RangeError.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Large arrays (10k+ elements) processed without RangeError; numeric outputs match expected min/max values; no stack overflow in any code path
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Math.max/min stack overflow elimination for `083`. It fo
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm large-array safety against the documented validation surface. Verify large arrays (10k+ elements) processed without RangeError; numeric outputs match expected min/max values; no stack overflow in any code path. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Math.max/min stack overflow elimination and confirm large arrays process without RangeError.
 ```
 
 ### Commands

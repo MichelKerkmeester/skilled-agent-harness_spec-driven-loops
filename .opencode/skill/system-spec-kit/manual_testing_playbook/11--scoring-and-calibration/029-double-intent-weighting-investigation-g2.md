@@ -17,7 +17,7 @@ This scenario validates Double intent weighting investigation (G2) for `029`. It
 
 - Objective: Confirm no hybrid double-weight.
 - Real user request: `Please validate Double intent weighting investigation (G2) against the documented validation surface and tell me whether the expected signals are present: Stage-2 intent weighting skipped for hybrid queries; no double-weight detected in trace; non-hybrid queries apply intent normally.`
-- RCAF Prompt: `As a scoring validation operator, validate Double intent weighting investigation (G2) against the documented validation surface. Verify stage-2 intent weighting skipped for hybrid queries; no double-weight detected in trace; non-hybrid queries apply intent normally. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate double intent weighting handling for hybrid and non-hybrid queries.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Stage-2 intent weighting skipped for hybrid queries; no double-weight detected in trace; non-hybrid queries apply intent normally
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Double intent weighting investigation (G2) for `029`. It
 ### Prompt
 
 ```
-As a scoring validation operator, confirm no hybrid double-weight against the documented validation surface. Verify stage-2 intent weighting skipped for hybrid queries; no double-weight detected in trace; non-hybrid queries apply intent normally. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate double intent weighting handling for hybrid and non-hybrid queries.
 ```
 
 ### Commands

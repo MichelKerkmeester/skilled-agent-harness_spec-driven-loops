@@ -17,7 +17,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-002`.
 - Real user request: `Please validate Targeted Memory Lookup against memory_search({query:"<decision rationale>", specFolder:"specs/<target-spec>", anchors:["decision-record","rationale"]}) and tell me whether the expected signals are present: precise fact-level retrieval.`
-- RCAF Prompt: `As a retrieval validation operator, validate Targeted Memory Lookup against memory_search({query:"<decision rationale>", specFolder:"specs/<target-spec>", anchors:["decision-record","rationale"]}). Verify precise fact-level retrieval. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate targeted memory_search lookup for decision rationale and confirm precise fact-level retrieval from the target spec.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: precise fact-level retrieval
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 ### Prompt
 
-`As a retrieval validation operator, validate Targeted Memory Lookup against memory_search({query:"<decision rationale>", specFolder:"specs/<target-spec>", anchors:["decision-record","rationale"]}). Verify precise fact-level retrieval. Return a concise pass/fail verdict with the main reason and cited evidence.`
+`Validate targeted memory_search lookup for decision rationale and confirm precise fact-level retrieval from the target spec.`
 ### Commands
 - `memory_search({query:"<decision rationale>", specFolder:"specs/<target-spec>", anchors:["decision-record","rationale"]})`
 ### Expected

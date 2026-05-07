@@ -16,7 +16,7 @@ This scenario validates empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1)
 
 - Objective: Verify structured recovery payloads for empty/weak search results.
 - Real user request: `Please validate Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) against SPECKIT_EMPTY_RESULT_RECOVERY_V1 and tell me whether the expected signals are present: 3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; alternative queries generated; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3.`
-- RCAF Prompt: `As a runtime-hook validation operator, validate Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) against SPECKIT_EMPTY_RESULT_RECOVERY_V1. Verify structured recovery payloads for empty/weak search results. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate empty result recovery payloads for empty and weak memory_search results.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: 3 statuses: no_results, low_confidence, partial; root cause reasons: spec_filter_too_narrow, low_signal_query, knowledge_gap; suggested actions: retry_broader, switch_mode, save_memory, ask_user; alternative queries generated; DEFAULT_LOW_CONFIDENCE_THRESHOLD=0.4; PARTIAL_RESULT_MIN=3
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

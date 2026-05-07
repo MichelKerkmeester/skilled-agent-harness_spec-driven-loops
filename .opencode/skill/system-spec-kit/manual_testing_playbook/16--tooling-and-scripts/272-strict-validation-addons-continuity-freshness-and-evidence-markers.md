@@ -16,7 +16,7 @@ This scenario validates the Phase 017 strict-validation add-ons for `272`. It fo
 
 - Objective: Verify `validate.sh --strict` now runs continuity-freshness, evidence-marker lint, and the normalizer lint guardrail, while the audit script remains the repair sweep.
 - Real user request: `Please validate Strict validation add-ons: continuity freshness and evidence markers against validate.sh --strict and tell me whether the expected signals are present: strict validation fails or warns for stale continuity and malformed evidence markers; duplicate normalizers are rejected; the audit script reports structural marker findings without pretending to be the strict gate.`
-- RCAF Prompt: `As a tooling validation operator, validate Strict validation add-ons: continuity freshness and evidence markers against validate.sh --strict. Verify stale _memory.continuity timestamps surface through the continuity-freshness script, malformed evidence markers fail through the strict lint wrapper, duplicate normalizeScope helpers fail through the normalizer lint rule, and the standalone audit script remains available for repair sweeps. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Strict validation add-ons: continuity freshness and evidence markers against validate.sh --strict and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: strict validation fails or warns for stale continuity and malformed evidence markers; duplicate normalizers are rejected; the audit script reports structural marker findings without pretending to be the strict gate
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates the Phase 017 strict-validation add-ons for `272`. It fo
 ### Prompt
 
 ```
-As a tooling validation operator, validate the strict-validation add-ons against validate.sh --strict. Verify stale _memory.continuity timestamps surface through continuity-freshness, malformed evidence markers fail through the strict lint wrapper, duplicate normalizeScope helpers fail through the normalizer lint rule, and the standalone audit script remains available for repair sweeps. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Strict validation add-ons: continuity freshness and evidence markers against validate.sh --strict and report cited pass/fail evidence.
 ```
 
 ### Commands

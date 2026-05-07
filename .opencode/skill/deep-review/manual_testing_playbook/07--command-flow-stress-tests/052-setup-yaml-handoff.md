@@ -24,6 +24,7 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 - Objective: Confirm command setup resolves inputs and creates canonical review state before iteration dispatch.
 - Layer partition: command-flow.
 - Real user request: `Run an autonomous one-iteration deep review of the deep-review agent with explicit setup flags.`
+- Prompt: `Run the setup-to-YAML handoff scenario and prove deep-review binds target, mode, iterations, and convergence before YAML execution.`
 - Expected execution process: build sandbox, snapshot baseline, invoke `/spec_kit:deep-review:auto`, then inspect transcript plus review artifacts.
 - Expected signals: transcript names auto YAML or setup handoff; artifacts include `deep-review-config.json`, `deep-review-state.jsonl`, and `deep-review-strategy.md`; config/state name `agent:deep-review`, `auto`, `maxIterations`, and `convergenceThreshold`; canonical agent diff and project tripwire are empty.
 - Desired outcome: PASS verdict proving command markdown did setup rather than letting YAML infer missing bindings.
@@ -73,7 +74,7 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-052 | SETUP_YAML_HANDOFF | Prove command setup owns input binding before YAML execution | Prompt embedded in §3 command block | Run §3 exactly | All `/tmp/cp-052-B-field-counts.txt` lines are `1+` | Transcript, combined artifacts, field counts, agent diff, tripwire diff | PASS if setup state exists and target/mode/numeric inputs are bound | If YAML signal is absent, inspect command entrypoint loading. If state files are absent, inspect init. If diffs are non-empty, investigate write boundary leakage. |
+| CP-052 | SETUP_YAML_HANDOFF | Prove command setup owns input binding before YAML execution | `Run the setup-to-YAML handoff scenario and prove deep-review binds target, mode, iterations, and convergence before YAML execution.` | Run §3 exactly | All `/tmp/cp-052-B-field-counts.txt` lines are `1+` | Transcript, combined artifacts, field counts, agent diff, tripwire diff | PASS if setup state exists and target/mode/numeric inputs are bound | If YAML signal is absent, inspect command entrypoint loading. If state files are absent, inspect init. If diffs are non-empty, investigate write boundary leakage. |
 
 ## 4. SOURCE ANCHORS
 

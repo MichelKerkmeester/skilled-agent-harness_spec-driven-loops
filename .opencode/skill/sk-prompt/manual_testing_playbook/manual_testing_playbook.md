@@ -183,7 +183,7 @@ This section records wave planning and capacity guidance for executing the 28-sc
 ### What Belongs In Per-Feature Files
 
 - Real user request (operator phrasing of the underlying ask)
-- Prompt field following the Role -> Context -> Action -> Format contract
+- Prompt field with the canonical text for this scenario
 - Expected DEPTH-round count and CLEAR score range
 - Expected framework or framework family
 - Desired user-visible outcome (enhanced prompt shape + transparency report)
@@ -201,7 +201,7 @@ Verify that an unmarked prompt request (no `$` prefix) routes to default mode an
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, take the operator's draft and run sk-prompt default-mode enhancement against it. Verify mode detection picks default ($improve equivalent) and DEPTH runs 10 rounds. Return the enhanced prompt plus transparency report.`
+Prompt: `Run sk-prompt on my meeting-notes action-item prompt in default mode; verify 10 DEPTH rounds, CLEAR scoring, and threshold enforcement.`
 
 Mode picked: default (10 DEPTH rounds, CLEAR scoring, 40+/50 threshold). Desired outcome: enhanced prompt with explicit framework rationale and CLEAR breakdown.
 
@@ -219,7 +219,7 @@ Verify that the `$raw` prefix bypasses DEPTH (0 rounds), skips CLEAR scoring, an
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against the operator input prefixed with $raw. Verify DEPTH runs 0 rounds, CLEAR scoring is skipped, no transparency report is emitted, and the input passes through with minimal structural cleanup.`
+Prompt: `$raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped and no transparency report is emitted.`
 
 Mode picked: $raw. Desired outcome: input echoed with light formatting only.
 
@@ -237,7 +237,7 @@ Verify that the `$short` prefix runs only the Discover, Prototype, and Harmonize
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against the operator input prefixed with $short. Verify DEPTH runs exactly 3 rounds (Discover, Prototype, Harmonize), CLEAR scoring still applies, and the transparency report names which phases were skipped.`
+Prompt: `$short tighten my prompt; verify only Discover, Prototype, and Harmonize run, Engineer/Test are skipped, and CLEAR still applies.`
 
 Mode picked: $short. Desired outcome: trimmed enhancement with phases-skipped note.
 
@@ -255,7 +255,7 @@ Verify that when an explicit mode prefix and conflicting keyword signals coexist
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against operator input that begins with $short but also contains heavy keyword density that would otherwise score TEXT_ENHANCE high. Verify the prefix wins: mode detected = $short, DEPTH rounds = 3.`
+Prompt: `$short improve and refine my prompt; verify the prefix overrides keyword scoring, runs 3 DEPTH rounds, and logs the override.`
 
 Mode picked: $short (prefix wins). Desired outcome: 3-round enhancement, not 10.
 
@@ -277,7 +277,7 @@ Verify that without a mode prefix, INTENT_MODEL routes a prompt with high "impro
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, score two operator inputs through sk-prompt's INTENT_MODEL: one heavy on "improve/refine/enhance" tokens and one heavy on "rcaf/costar/tidd-ec/scoring" tokens. Verify the first routes to TEXT_ENHANCE and the second to FRAMEWORK with the correct RESOURCE_MAP loads.`
+Prompt: `Score these two sk-prompt inputs through INTENT_MODEL; verify TEXT_ENHANCE and FRAMEWORK routing load the expected resources.`
 
 Intent picked: TEXT_ENHANCE for input A, FRAMEWORK for input B. Desired outcome: differentiated resource loading.
 
@@ -295,7 +295,7 @@ Verify that ON_DEMAND_KEYWORDS such as "deep dive", "all frameworks", "format gu
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt with an operator input that contains an ON_DEMAND keyword such as "give me a deep dive on all frameworks". Verify the router loads every RESOURCE_MAP value, not only the intent-scored subset.`
+Prompt: `Run sk-prompt on my deep-dive framework comparison; verify ON_DEMAND loads every RESOURCE_MAP value, not only the scored intent.`
 
 Trigger keyword detected: yes. Desired outcome: full resource set loaded, even when only one intent scored above zero.
 
@@ -313,7 +313,7 @@ Verify that when the primary and secondary intent scores differ by 1 or less, th
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against an operator input crafted so TEXT_ENHANCE and FRAMEWORK score within AMBIGUITY_DELTA=1 of each other. Verify resources from both intents are loaded.`
+Prompt: `Improve this framework-comparison prompt; verify near-tied TEXT_ENHANCE and FRAMEWORK intents load a deduplicated union of resources.`
 
 Both intents loaded: yes. Desired outcome: union of TEXT_ENHANCE and FRAMEWORK resources, deduplicated.
 
@@ -331,7 +331,7 @@ Verify that a zero-keyword-score prompt falls back to TEXT_ENHANCE and surfaces 
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against operator input that contains zero INTENT_MODEL keywords (no improve, enhance, prompt, framework, rcaf, etc.). Verify the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST as a disambiguation prompt.`
+Prompt: `Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST.`
 
 Default chosen: TEXT_ENHANCE. Disambiguation checklist surfaced: yes.
 
@@ -353,7 +353,7 @@ Verify that DEPTH runs Discover -> Engineer -> Prototype -> Test -> Harmonize in
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt default-mode enhancement on the operator input and capture the per-phase log. Verify phases execute in D-E-P-T-H order with no phase skipped or reordered.`
+Prompt: `Improve my legal-contract summarization prompt with @prompt-improver; verify DEPTH runs Discover through Harmonize in order with no skipped phase.`
 
 Phase order observed: D-E-P-T-H. Desired outcome: per-phase log entries in order.
 
@@ -371,7 +371,7 @@ Verify that the Discover-phase exit gate blocks advancement when fewer than 3 pe
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against an operator input deliberately scoped so only 1-2 perspectives surface organically. Verify the Discover phase blocks at the exit gate and either re-runs perspective discovery or surfaces an explicit "perspectives floor unmet" notice before advancing.`
+Prompt: `Tighten my code-review feedback prompt; verify Discover evaluates at least 3 perspectives before Engineer starts or blocks for a rerun.`
 
 Floor enforced: yes. Desired outcome: blocked advancement until 3+ perspectives collected.
 
@@ -389,7 +389,7 @@ Verify that after three CLEAR re-score iterations, the loop terminates and deliv
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against an operator input crafted so CLEAR scoring stays below 40/50 across iterations. Verify the loop terminates after the third iteration, delivers the highest-scoring version, and emits a "max iterations reached" quality note.`
+Prompt: `Improve my technical-writing prompt; verify CLEAR loops stop after 3 attempts and return the best version with a quality note.`
 
 Iteration cap enforced: 3. Desired outcome: deliver-best-with-note, no infinite loop.
 
@@ -407,7 +407,7 @@ Verify that the Harmonize-phase exit gate validates Role, Instructions, Context,
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against the operator input and inspect the Harmonize-phase output. Verify each RICCE element is either present in the enhanced prompt or explicitly justified as omitted in the transparency report.`
+Prompt: `Strengthen my new-engineer onboarding prompt; verify the final output accounts for Role, Instructions, Context, Constraints, and Examples.`
 
 RICCE coverage: 5/5 present-or-justified. Desired outcome: no silent omissions.
 
@@ -425,7 +425,7 @@ Verify that the Prototype phase produces a prompt structure that leads with mech
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt and inspect the Prototype-phase output. Verify the prompt orders Role/Context (WHY) before Instructions/Action (WHAT). Reject outputs that lead with imperatives.`
+Prompt: `Refactor my microservices explanation prompt; verify Prototype orders WHY and context before WHAT and instructions.`
 
 Mechanism-first ordering: yes. Desired outcome: structural alignment with WHY-before-WHAT contract.
 
@@ -443,7 +443,7 @@ Verify that each DEPTH phase has a named exit criterion and the loop refuses to 
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt and force one phase exit gate to fail (for example artificially insufficient CLEAR score at Test phase). Verify the loop refuses to advance to the next phase until the criterion is met or a re-run is attempted.`
+Prompt: `Improve my SQL query prompt; verify every DEPTH phase reports exit criteria and failed gates block or rerun before advancing.`
 
 Gate enforcement: per-phase. Desired outcome: blocked advancement on simulated failure.
 
@@ -465,7 +465,7 @@ Verify that every delivery includes per-dimension scores for Correctness, Logic,
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt and inspect the CLEAR scoring output. Verify all five dimensions (Correctness, Logic, Expression, Arrangement, Reusability) are scored with explicit per-dimension values.`
+Prompt: `Score and improve my customer-feedback parsing prompt; verify CLEAR reports all five dimension scores plus the total.`
 
 Dimensions scored: 5/5. Desired outcome: per-dimension breakdown not collapsed into a total.
 
@@ -483,7 +483,7 @@ Verify that any dimension breaching its floor (C<7, L<7, E<10, A<7, R<3) trigger
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against an operator input crafted so total CLEAR is 41/50 but Expression dimension is 9 (below floor 10). Verify the re-score is triggered despite the total clearing 40.`
+Prompt: `Improve my user-story prompt; verify any CLEAR dimension below its floor triggers another improvement cycle even when total score passes.`
 
 Floor enforcement: per-dimension. Desired outcome: re-score on floor breach.
 
@@ -501,7 +501,7 @@ Verify that a total CLEAR score below 40/50 triggers another DEPTH iteration, ca
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against operator input that scores 38/50 on the first pass. Verify another iteration runs, capped at 3 total iterations even if the score never clears 40.`
+Prompt: `Improve my ML hyperparameter tuning prompt; verify CLEAR below 40 triggers another cycle and stops after 3 total attempts.`
 
 Improvement cycle: yes. Cap honored: yes.
 
@@ -519,7 +519,7 @@ Verify that the CLEAR breakdown includes a one-line rationale per dimension, not
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt and inspect the CLEAR breakdown. Verify each dimension carries a one-line rationale stating why the score was assigned at that level.`
+Prompt: `Score my data-validation prompt; verify every CLEAR dimension includes a numeric score and one-line rationale.`
 
 Per-dimension rationale present: 5/5. Desired outcome: auditable score reasoning.
 
@@ -541,7 +541,7 @@ Verify that complexity scoring routes a request to the correct framework: low co
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against three operator inputs at complexity 2, 5, and 9. Verify the framework selected matches the matrix in §3 of SKILL.md (RACE/RCAF for low, COSTAR/CIDI/CRISPE for mid, TIDD-EC/CRAFT for high).`
+Prompt: `Improve my customer-support response prompt; verify framework selection evaluates complexity, chooses the right family, and returns score plus rationale.`
 
 Matrix alignment: 3/3. Desired outcome: framework family matches complexity bucket.
 
@@ -559,7 +559,7 @@ Verify that when a user explicitly names a framework in their request (for examp
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against operator input that explicitly names a framework ("apply COSTAR to this prompt") on a complexity-2 task that would normally route to RACE. Verify COSTAR is selected and the override is logged.`
+Prompt: `Apply CRAFT to my technical-spec authoring prompt; verify it overrides automatic framework routing and logs the user-named override.`
 
 User override honored: yes. Desired outcome: COSTAR selected; override logged in rationale.
 
@@ -577,7 +577,7 @@ Verify that every framework selection includes a "why this over alternatives" ju
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt and inspect the framework-selection rationale. Verify the rationale names the chosen framework, at least one rejected alternative, and the differentiating criterion.`
+Prompt: `Tighten my code documentation prompt; verify the framework rationale names the choice, a rejected alternative, and the differentiating criterion.`
 
 Rationale completeness: chosen + 1+ rejected + criterion. Desired outcome: auditable selection.
 
@@ -595,7 +595,7 @@ Verify that when the first framework underdelivers at the Test phase (CLEAR belo
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt against an operator input where the first-selected framework produces below-threshold CLEAR at the Test phase. Verify DEPTH switches framework, restarts from Engineer, and notes the switch in the transparency report.`
+Prompt: `Improve my sentiment-analysis prompt; verify a failing first framework switches to another and restarts from Engineer before final delivery.`
 
 Switch behavior: framework swap + Engineer restart. Desired outcome: second framework attempt before iteration cap.
 
@@ -617,7 +617,7 @@ Verify that the fast-path card runs its 5-question CLEAR check inline without es
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, dispatch a routine low-complexity prompt and apply the cli_prompt_quality_card 5-question CLEAR check inline. Verify no @prompt-improver dispatch occurs and the card passes the prompt as-is or with minor adjustment.`
+Prompt: `As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-complexity dispatch prompt. Verify all five checks pass inline and no @prompt-improver dispatch occurs. Return the card verdict.`
 
 Fast-path execution: inline. Desired outcome: no agent escalation.
 
@@ -635,7 +635,7 @@ Verify that any of (complexity >= 7, compliance constraints, multi-stakeholder a
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, dispatch four prompts: one at complexity 8, one with HIPAA compliance language, one with three named stakeholders, and one deeply ambiguous. Verify each one escalates to @prompt-improver rather than running fast-path.`
+Prompt: `As a CLI orchestrator, evaluate a HIPAA-bound prompt with the sk-prompt fast-path card. Verify compliance sensitivity escalates to @prompt-improver and the routing decision names the trigger. Return the escalation payload.`
 
 Escalation count: 4/4. Desired outcome: all four trigger deep path.
 
@@ -653,7 +653,7 @@ Verify that `@prompt-improver` accepts the input payload with required `raw_task
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus all four optional fields populated. Verify the agent accepts the payload, returns the structured output block, and preserves caller-supplied constraints.`
+Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
 
 Payload accepted: yes. Constraints preserved: yes.
 
@@ -671,7 +671,7 @@ Verify that every `@prompt-improver` return contains the five-block contract: FR
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, dispatch @prompt-improver and verify the return contains exactly the FRAMEWORK / CLEAR_SCORE / RATIONALE / ENHANCED_PROMPT / ESCALATION_NOTES block specified in SKILL.md §7.`
+Prompt: `As a CLI orchestrator, dispatch @prompt-improver on a data-extraction prompt. Verify the response contains FRAMEWORK, CLEAR_SCORE, RATIONALE, ENHANCED_PROMPT, and ESCALATION_NOTES. Return the structured block verdict.`
 
 Output-block coverage: 5/5 fields. Desired outcome: ready-for-CLI-handoff structure.
 
@@ -693,7 +693,7 @@ Verify that `$json`, `$yaml`, and default markdown modes deliver enhanced prompt
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt with the same underlying request three times under $json, $yaml, and default modes. Verify each delivers a syntactically valid prompt in the corresponding format with the correct scaffold (object keys for JSON, indented mapping for YAML, fenced sections for Markdown).`
+Prompt: `$json improve my API request prompt; verify the enhanced prompt is valid JSON with format-specific keys, not markdown sections.`
 
 Format compliance: 3/3. Desired outcome: format-correct enhanced prompts.
 
@@ -711,7 +711,7 @@ Verify that `assets/format_guide_json.md`, `format_guide_yaml.md`, `format_guide
 
 #### Scenario Contract
 
-Prompt: `As a prompt engineer, run sk-prompt under $json mode twice: once with no ON_DEMAND keyword, once with "format guide" present. Verify format_guide_json.md loads only in the second run.`
+Prompt: `$yaml improve my CI/CD config prompt; verify YAML guide loading appears in the trace and the output uses YAML structure.`
 
 Conditional load: yes. Desired outcome: token-efficient resource loading.
 

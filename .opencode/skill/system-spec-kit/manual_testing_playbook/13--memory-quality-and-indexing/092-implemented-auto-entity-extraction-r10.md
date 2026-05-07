@@ -17,7 +17,7 @@ This scenario validates Implemented: auto entity extraction (R10) for `092`. It 
 
 - Objective: Confirm deferred->implemented status.
 - Real user request: `Please validate Implemented: auto entity extraction (R10) against the documented validation surface and tell me whether the expected signals are present: Entities automatically extracted on save; entity outputs contain expected entity types; default extraction settings are applied.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Implemented: auto entity extraction (R10) against the documented validation surface. Verify entities automatically extracted on save; entity outputs contain expected entity types; default extraction settings are applied. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate implemented auto entity extraction defaults and output types.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Entities automatically extracted on save; entity outputs contain expected entity types; default extraction settings are applied
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Implemented: auto entity extraction (R10) for `092`. It 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm deferred->implemented status against the documented validation surface. Verify entities automatically extracted on save; entity outputs contain expected entity types; default extraction settings are applied. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate implemented auto entity extraction defaults and output types.
 ```
 
 ### Commands

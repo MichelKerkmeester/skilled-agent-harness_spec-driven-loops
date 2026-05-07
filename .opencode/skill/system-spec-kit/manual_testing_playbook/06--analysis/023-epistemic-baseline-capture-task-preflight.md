@@ -17,7 +17,7 @@ This scenario validates Epistemic baseline capture (task_preflight) for `EX-023`
 
 - Objective: Pre-task baseline logging.
 - Real user request: `Please validate Epistemic baseline capture (task_preflight) against task_preflight(specFolder,taskId,knowledgeScore,uncertaintyScore,contextScore) and tell me whether the expected signals are present: Baseline record created.`
-- RCAF Prompt: `As an analysis validation operator, validate Epistemic baseline capture (task_preflight) against task_preflight(specFolder,taskId,knowledgeScore,uncertaintyScore,contextScore). Verify baseline record created. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate task_preflight persists the epistemic baseline record; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Baseline record created
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Epistemic baseline capture (task_preflight) for `EX-023`
 ### Prompt
 
 ```
-As an analysis validation operator, validate Pre-task baseline logging against task_preflight(specFolder,taskId,knowledgeScore,uncertaintyScore,contextScore). Verify baseline record created. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate task_preflight persists the epistemic baseline record; return pass/fail with cited evidence.
 ```
 
 ### Commands

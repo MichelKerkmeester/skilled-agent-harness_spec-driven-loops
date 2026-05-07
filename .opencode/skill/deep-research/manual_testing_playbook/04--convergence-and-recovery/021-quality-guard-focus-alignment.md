@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that convergence STOP is blocked when answered questions don't map to original key questions.
 - Real user request: What stops the loop from answering the wrong questions and calling it done?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares answered questions against the original key questions from initialization, and that a mismatch emits a guard_violation event with guard="focus_alignment" and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.`
+- Prompt: `Validate focus-alignment guards override STOP when answered questions drift from the original key questions.`
 - Expected execution process: Inspect the Quality Guard Protocol in the convergence reference first, then the YAML algorithm guard check, then the loop protocol Step 2c, then the state format guard_violation event schema.
 - Desired user-visible outcome: The user gets an accurate explanation of how the loop detects and blocks convergence on off-topic answers.
 - Expected signals: guard_violation event logged with guard="focus_alignment", STOP decision overridden to CONTINUE, misaligned question flagged in violation detail.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the focus alignment quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard compares answered questions against the original key questions from initialization, and that a mismatch emits a guard_violation event with guard="focus_alignment" and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Validate focus-alignment guards override STOP when answered questions drift from the original key questions.
 ### Commands
 1. `bash: sed -n '104,139p' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'focus_alignment\|originalKeyQuestions\|guard_violation' .opencode/skill/deep-research/references/convergence.md`

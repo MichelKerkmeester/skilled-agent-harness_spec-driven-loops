@@ -24,17 +24,7 @@ Operators run the exact command sequence for `CP-047` and confirm only grep-chec
 - Objective: Confirm spec mutation events, generated fence, strict validation labels, packet-local research artifacts and clean sandbox target diff.
 - Layer partition: command-flow.
 - Real user request: `Run deep research and sync bounded findings back to an existing spec without overwriting manual content.`
-- RCAF Prompt:
-
-  Same task body for both calls:
-  ```
-  Task ID: CP-047-TASK-001.
-  In /tmp/cp-047-sandbox/, run /spec_kit:deep-research:auto against /tmp/cp-047-spec.
-  Preserve manual spec content and write only the deep-research generated fence.
-  Acceptance: emit spec_check_result, one spec_mutation or dedupe event, one generated findings fence, research/research.md, and no canonical agent diff.
-  Return status, spec_path, generated_fence_count, validation_signal, and notes.
-  ```
-
+- Prompt: `Run deep research and sync bounded findings to an existing spec without overwriting manual content.`
 - Expected process: seed a spec with `Open Questions` and `Research Context`, run generic Call A, reset sandbox, run command-flow Call B, then count spec and state signals.
 - Expected signals: `spec_check_result`, `spec_preinit_context_added` or dedupe, `BEGIN GENERATED: deep-research/spec-findings`, `spec_mutation`, `research.md`, clean canonical diff, clean tripwire.
 - Pass/fail: PASS if exactly one generated fence exists and all field counts pass. FAIL if the workflow duplicates fences, edits the canonical agent, or skips spec mutation events.
@@ -96,7 +86,7 @@ diff /tmp/cp-047-pre.txt /tmp/cp-047-post.txt > /tmp/cp-047-tripwire.diff; echo 
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-047 | SPEC_FENCE_WRITEBACK | Confirm bounded generated-fence writeback | Same task body in §2 | Run the §3 bash block | B field counts all >= 1 | `/tmp/cp-047-spec/spec.md`, combined transcript, diffs | PASS if one fence exists and manual text survives | 1. If fence count is not one, inspect spec_check_protocol branch. 2. If manual text is lost, repair writeback. 3. If mutation labels are absent, inspect JSONL append. |
+| CP-047 | SPEC_FENCE_WRITEBACK | Confirm bounded generated-fence writeback | `Run deep research and sync bounded findings to an existing spec without overwriting manual content.` | Run the §3 bash block | B field counts all >= 1 | `/tmp/cp-047-spec/spec.md`, combined transcript, diffs | PASS if one fence exists and manual text survives | 1. If fence count is not one, inspect spec_check_protocol branch. 2. If manual text is lost, repair writeback. 3. If mutation labels are absent, inspect JSONL append. |
 
 ## 4. SOURCE ANCHORS
 

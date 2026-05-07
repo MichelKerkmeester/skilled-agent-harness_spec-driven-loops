@@ -17,7 +17,7 @@ This scenario validates Session-manager transaction gap fixes for `084`. It focu
 
 - Objective: Confirm transactional limit enforcement.
 - Real user request: `Please validate Session-manager transaction gap fixes against the documented validation surface and tell me whether the expected signals are present: Concurrent writes are serialized via transactions; session limits enforced; no data corruption from concurrent access.`
-- RCAF Prompt: `As a data-integrity validation operator, validate Session-manager transaction gap fixes against the documented validation surface. Verify concurrent writes are serialized via transactions; session limits enforced; no data corruption from concurrent access. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate session-manager transaction gap fixes and confirm concurrent writes serialize without data corruption.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Concurrent writes are serialized via transactions; session limits enforced; no data corruption from concurrent access
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Session-manager transaction gap fixes for `084`. It focu
 ### Prompt
 
 ```
-As a data-integrity validation operator, confirm transactional limit enforcement against the documented validation surface. Verify concurrent writes are serialized via transactions; session limits enforced; no data corruption from concurrent access. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate session-manager transaction gap fixes and confirm concurrent writes serialize without data corruption.
 ```
 
 ### Commands

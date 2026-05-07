@@ -16,7 +16,7 @@ This scenario validates Memory browser (memory_list) for `EX-011`. It focuses on
 
 - Objective: Folder inventory audit.
 - Real user request: `Please validate Memory browser (memory_list) against memory_list(specFolder,limit,offset) and tell me whether the expected signals are present: Paginated list and totals.`
-- RCAF Prompt: `As a discovery validation operator, validate Memory browser (memory_list) against memory_list(specFolder,limit,offset). Verify paginated list and totals. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_list folder inventory and confirm paginated results and totals are present with cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Paginated list and totals
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Memory browser (memory_list) for `EX-011`. It focuses on
 ### Prompt
 
 ```
-As a discovery validation operator, validate Folder inventory audit against memory_list(specFolder,limit,offset). Verify paginated list and totals. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_list folder inventory and confirm paginated results and totals are present with cited pass/fail evidence.
 ```
 
 ### Commands

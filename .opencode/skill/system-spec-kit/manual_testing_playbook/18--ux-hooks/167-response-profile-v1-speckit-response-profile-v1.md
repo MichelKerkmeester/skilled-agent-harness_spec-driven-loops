@@ -16,7 +16,7 @@ This scenario validates response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) for `1
 
 - Objective: Verify mode-aware response shape routing for the quick profile.
 - Real user request: `Please validate Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) against SPECKIT_RESPONSE_PROFILE_V1=true and tell me whether the expected signals are present: quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted.`
-- RCAF Prompt: `As a runtime-hook validation operator, validate Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) against SPECKIT_RESPONSE_PROFILE_V1=true. Verify mode-aware response shape routing for the quick profile. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate response profile v1 quick-mode response routing with SPECKIT_RESPONSE_PROFILE_V1 enabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: quick profile returns QuickProfile with topResult, oneLineWhy, omittedCount, and tokenReduction.savingsPercent; research profile returns results[], evidenceDigest, followUps[]; resume profile returns state, nextSteps[], blockers[]; original full response when flag OFF or profile omitted
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

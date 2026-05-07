@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that max iterations is a hard stop checked before softer convergence signals.
 - Real user request: If I set a maximum number of iterations, I want to know the loop will stop there no matter what.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the max-iterations stop contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the hard cap is checked before softer convergence logic and that the stop reason is surfaced as max_iterations_reached. Return a concise operator verdict.`
+- Prompt: `Validate the max-iterations cap stops deep research before softer convergence logic.`
 - Expected execution process: Inspect convergence pseudocode first, then the YAML decision algorithm, then the README parameter table and examples.
 - Desired user-visible outcome: The user is told that `--max-iterations` is a hard cap that overrides further looping.
 - Expected signals: Max iterations is checked first, the stop reason is named explicitly, and the parameter is exposed consistently in the docs.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the max-iterations stop contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the hard cap is checked before softer convergence logic and that the stop reason is surfaced as max_iterations_reached. Return a concise operator verdict.
+Validate the max-iterations cap stops deep research before softer convergence logic.
 ### Commands
 1. `bash: rg -n 'max iterations|Hard stop|max_iterations_reached' .opencode/skill/deep-research/references/convergence.md .opencode/skill/deep-research/references/loop_protocol.md`
 2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

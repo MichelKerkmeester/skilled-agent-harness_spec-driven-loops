@@ -16,7 +16,7 @@ This scenario validates Phase link validation for `PHASE-004`. It focuses on Run
 
 - Objective: Run `check-phase-links.sh` on a phase folder and verify 4 link checks at warn severity.
 - Real user request: `Please validate Phase link validation against bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and tell me whether the expected signals are present: 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity.`
-- RCAF Prompt: `As a tooling validation operator, validate Phase link validation against bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>. Verify run check-phase-links.sh on a phase folder and verify 4 link checks at warn severity. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Phase link validation against bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Phase link validation for `PHASE-004`. It focuses on Run
 ### Prompt
 
 ```
-As a tooling validation operator, run check-phase-links.sh on a phase folder and verify 4 link checks at warn severity against bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent>. Verify 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Phase link validation against bash .opencode/skill/system-spec-kit/scripts/rules/check-phase-links.sh specs/<phase-parent> and report cited pass/fail evidence.
 ```
 
 ### Commands

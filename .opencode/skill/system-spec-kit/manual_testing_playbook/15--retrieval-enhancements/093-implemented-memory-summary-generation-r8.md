@@ -30,7 +30,7 @@ This scenario validates Implemented: memory summary generation (R8) for `093`. I
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm deferred->implemented status against the documented validation surface. Verify summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Implemented: memory summary generation (R8) against the documented validation surface. Verify summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

@@ -17,7 +17,7 @@ This scenario validates Dry-run preflight for memory_save for `133`. It focuses 
 
 - Objective: Confirm dry-run previews preflight plus semantic insufficiency without indexing side effects.
 - Real user request: `` Please validate Dry-run preflight for memory_save against memory_stats() and tell me whether the expected signals are present: Dry-run returns preflight plus quality-loop and sufficiency payloads; thin memories report `INSUFFICIENT_CONTEXT_ABORT` without indexing/database mutation; `force:true` does not bypass insufficiency; rich non-dry-run save indexes the same file. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Dry-run preflight for memory_save against memory_stats(). Verify dry-run previews preflight plus semantic insufficiency without indexing side effects. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate dry-run preflight for memory_save without indexing side effects.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Dry-run returns preflight plus quality-loop and sufficiency payloads; thin memories report `INSUFFICIENT_CONTEXT_ABORT` without indexing/database mutation; `force:true` does not bypass insufficiency; rich non-dry-run save indexes the same file
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Dry-run preflight for memory_save for `133`. It focuses 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm dry-run previews preflight plus semantic insufficiency without indexing side effects against memory_stats(). Verify dry-run returns preflight plus quality-loop and sufficiency payloads; thin memories report INSUFFICIENT_CONTEXT_ABORT without indexing/database mutation; force:true does not bypass insufficiency; rich non-dry-run save indexes the same file. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate dry-run preflight for memory_save without indexing side effects.
 ```
 
 ### Commands

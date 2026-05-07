@@ -17,7 +17,7 @@ This scenario validates 7-layer tool architecture metadata for `205`. It focuses
 
 - Objective: Verify the 7-layer model supplies advisory budgets and layer recommendations while runtime dispatch still routes tools by name through the existing dispatcher modules.
 - Real user request: `Please validate 7-layer tool architecture metadata against the documented validation surface and tell me whether the expected signals are present: L1-L7 metadata includes budgets/priorities/guidance/tool membership; task-type mappings remain available for recommendations; runtime dispatch is still name-based and fans into the existing dispatcher modules; recommended-layer metadata is advisory rather than a routing prerequisite.`
-- RCAF Prompt: `As a pipeline validation operator, validate 7-layer tool architecture metadata against the documented validation surface. Verify the 7-layer model supplies advisory budgets and layer recommendations while runtime dispatch still routes tools by name through the existing dispatcher modules. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate 7-layer tool architecture metadata against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: L1-L7 metadata includes budgets/priorities/guidance/tool membership; task-type mappings remain available for recommendations; runtime dispatch is still name-based and fans into the existing dispatcher modules; recommended-layer metadata is advisory rather than a routing prerequisite
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates 7-layer tool architecture metadata for `205`. It focuses
 ### Prompt
 
 ```
-As a pipeline validation operator, verify the 7-layer model supplies advisory budgets and layer recommendations while runtime dispatch still routes tools by name through the existing dispatcher modules against the documented validation surface. Verify l1-L7 metadata includes budgets/priorities/guidance/tool membership; task-type mappings remain available for recommendations; runtime dispatch is still name-based and fans into the existing dispatcher modules; recommended-layer metadata is advisory rather than a routing prerequisite. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate 7-layer tool architecture metadata against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

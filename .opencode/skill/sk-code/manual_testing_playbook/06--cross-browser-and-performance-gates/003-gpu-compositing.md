@@ -19,14 +19,14 @@ Operators run the exact prompt and command sequence for `CB-003` and capture Dev
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `CB-003` | GPU Compositing | Verify Motion animations use compositor-friendly properties where expected | `Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav dropdown and testimonial slider. Verify transform/opacity animations are compositor-friendly, flag any height/layout animation, and return PASS/FAIL with screenshots and trace notes.` | open target -> enable paint flashing/layer borders -> record performance trace -> exercise dropdown and slider -> inspect layout/paint/composite events -> write verdict | slider transform uses compositor-friendly path; dropdown height animation is identified as layout-affecting; no unexpected repeated forced layouts | `/tmp/skc-CB003-trace.json`, `/tmp/skc-CB003-rendering.png`, `/tmp/skc-CB003-verdict.md` | PASS iff transform/opacity animations are composited where expected and any layout-affecting animation is documented with acceptable rationale | If layout thrashing appears, inspect reads/writes around `scrollHeight`, `offsetHeight`, and repeated style mutation |
+| `CB-003` | GPU Compositing | Verify Motion animations use compositor-friendly properties where expected | `Inspect Motion dropdown and slider compositing in Chrome DevTools; flag layout animations and return PASS/FAIL with trace notes.` | open target -> enable paint flashing/layer borders -> record performance trace -> exercise dropdown and slider -> inspect layout/paint/composite events -> write verdict | slider transform uses compositor-friendly path; dropdown height animation is identified as layout-affecting; no unexpected repeated forced layouts | `/tmp/skc-CB003-trace.json`, `/tmp/skc-CB003-rendering.png`, `/tmp/skc-CB003-verdict.md` | PASS iff transform/opacity animations are composited where expected and any layout-affecting animation is documented with acceptable rationale | If layout thrashing appears, inspect reads/writes around `scrollHeight`, `offsetHeight`, and repeated style mutation |
 
 ## 3. TEST EXECUTION
 
 ### Prompt
 
 ```text
-Use Chrome DevTools Rendering and Performance panels to inspect the Motion nav dropdown and testimonial slider. Verify transform/opacity animations are compositor-friendly, flag any height/layout animation, and return PASS/FAIL with screenshots and trace notes.
+Inspect Motion dropdown and slider compositing in Chrome DevTools; flag layout animations and return PASS/FAIL with trace notes.
 ```
 
 ### Commands

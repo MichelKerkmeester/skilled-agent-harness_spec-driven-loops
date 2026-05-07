@@ -16,7 +16,7 @@ This scenario validates /memory:manage command routing for `186`. It focuses on 
 
 - Objective: Verify `/memory:manage` default stats dashboard and subcommand routing for the currently supported management modes.
 - Real user request: `` Please validate /memory:manage command routing against /memory:manage and tell me whether the expected signals are present: No-args shows stats dashboard via `memory_stats()` + `memory_list()`; scan routes to `memory_index_scan()`; health routes to `memory_health()`; checkpoint subcommands route to checkpoint tools; ingest subcommands route to ingest tools; unrecognized mode returns STATUS=FAIL. ``
-- RCAF Prompt: `As a tooling validation operator, validate /memory:manage command routing against /memory:manage. Verify /memory:manage default stats dashboard and subcommand routing for the currently supported management modes. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate /memory:manage command routing against /memory:manage and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: No-args shows stats dashboard via `memory_stats()` + `memory_list()`; scan routes to `memory_index_scan()`; health routes to `memory_health()`; checkpoint subcommands route to checkpoint tools; ingest subcommands route to ingest tools; unrecognized mode returns STATUS=FAIL
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates /memory:manage command routing for `186`. It focuses on 
 ### Prompt
 
 ```
-As a tooling validation operator, verify /memory:manage default stats dashboard and subcommand routing against /memory:manage. Verify no-args shows stats dashboard; each subcommand routes to the correct MCP tool; unrecognized mode returns STATUS=FAIL error. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate /memory:manage command routing against /memory:manage and report cited pass/fail evidence.
 ```
 
 ### Commands

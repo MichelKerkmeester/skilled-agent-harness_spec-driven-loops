@@ -17,7 +17,7 @@ This scenario validates Chunking safe swap atomicity (P0-6) for `116`. It focuse
 
 - Objective: Verify re-chunking stages new chunks before deleting old ones, finalization cleans staged replacements on failure, and parent BM25 changes only after a viable chunk set exists.
 - Real user request: `` Please validate Chunking safe swap atomicity (P0-6) against memory_save() and tell me whether the expected signals are present: New chunks indexed in staged state before old deletion; old children keep their original `parent_id` if finalize fails; staged replacement chunks are cleaned on finalize failure; all-chunks-failed rollback preserves old parent BM25 state; handler returns error status on failure. ``
-- RCAF Prompt: `As a data-integrity validation operator, validate Chunking safe swap atomicity (P0-6) against memory_save(). Verify re-chunking stages new chunks before deleting old ones, finalization cleans staged replacements on failure, and parent BM25 changes only after a viable chunk set exists. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate chunking safe swap atomicity (P0-6) and confirm staged re-chunking preserves old data on failures.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: New chunks indexed in staged state before old deletion; old children keep their original `parent_id` if finalize fails; staged replacement chunks are cleaned on finalize failure; all-chunks-failed rollback preserves old parent BM25 state; handler returns error status on failure
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Chunking safe swap atomicity (P0-6) for `116`. It focuse
 ### Prompt
 
 ```
-As a data-integrity validation operator, verify re-chunking stages replacements before delete, cleans staged replacements on finalize failure, and preserves old state on rollback against memory_save(). Verify new chunks indexed in staged state before old deletion; old children keep original linkage on finalize failure; staged replacement chunks are cleaned on finalize failure; all-chunks-failed rollback preserves old parent BM25 state; handler returns error status on failure. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate chunking safe swap atomicity (P0-6) and confirm staged re-chunking preserves old data on failures.
 ```
 
 ### Commands

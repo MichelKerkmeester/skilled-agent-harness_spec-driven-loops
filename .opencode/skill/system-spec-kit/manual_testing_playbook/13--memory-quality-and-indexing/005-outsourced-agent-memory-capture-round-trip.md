@@ -17,7 +17,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-005`.
 - Real user request: `Please validate Outsourced Agent Memory Capture Round-Trip against cli-codex and tell me whether the expected signals are present: Agent output contains structured memory section; saved context is discoverable via search.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Outsourced Agent Memory Capture Round-Trip against cli-codex. Verify agent output contains structured memory section; saved context is discoverable via search. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate outsourced agent memory capture round-trip against cli-codex.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Agent output contains structured memory section; saved context is discoverable via search
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 ### Prompt
 
-`As a spec-doc record-quality validation operator, validate Outsourced Agent Memory Capture Round-Trip against cli-codex. Verify agent output contains structured memory section; saved context is discoverable via search. Return a concise pass/fail verdict with the main reason and cited evidence.`
+`Validate outsourced agent memory capture round-trip against cli-codex.`
 ### Commands
 - Dispatch task via `cli-codex` (or any cli-* skill) with memory epilogue in prompt
   - Extract structured memory section from agent stdout

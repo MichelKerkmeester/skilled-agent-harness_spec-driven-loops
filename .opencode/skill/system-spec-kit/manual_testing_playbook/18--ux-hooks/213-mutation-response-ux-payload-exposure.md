@@ -16,7 +16,7 @@ This scenario validates Mutation response UX payload exposure for `213`. It focu
 
 - Objective: Confirm successful save responses expose typed `postMutationHooks` payloads while no-op saves suppress false UX metadata.
 - Real user request: `` Please validate Mutation response UX payload exposure against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts and tell me whether the expected signals are present: Save-path regression suite passes, successful save responses include typed `postMutationHooks` fields, and duplicate/no-op saves omit false `postMutationHooks` while surfacing cache-left-unchanged guidance. ``
-- RCAF Prompt: `As a runtime-hook validation operator, validate Mutation response UX payload exposure against cd .opencode/skill/system-spec-kit/mcp_server && npx vitest run tests/memory-save-ux-regressions.vitest.ts. Verify successful save responses expose typed postMutationHooks payloads while no-op saves suppress false UX metadata. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate mutation response UX payload exposure and no-op suppression against the save-path regression suite.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Save-path regression suite passes, successful save responses include typed `postMutationHooks` fields, and duplicate/no-op saves omit false `postMutationHooks` while surfacing cache-left-unchanged guidance
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

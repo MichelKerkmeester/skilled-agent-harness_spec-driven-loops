@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify removing pause sentinel lets review resume from read-state.
 - Real user request: After I pause a review and delete the pause file, does it pick up where it left off?
-- Prompt: `As a manual-testing orchestrator, validate the resume-after-pause contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when the operator removes review/.deep-review-pause, the review loop re-reads deep-review-state.jsonl and deep-review-strategy.md, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review resume after pause removal and report whether the next iteration resumes without replay.`
 - Expected execution process: Inspect the loop protocol for resume behavior, then the review YAML for state re-read on resume, then the quick reference for user-facing resume instructions.
 - Desired user-facing outcome: The user is told that deleting the pause file resumes the review from where it stopped, with all prior findings preserved.
 - Expected signals: Removing the sentinel triggers loop re-entry, JSONL is re-read to determine last iteration, strategy.md provides dimension coverage state, no iterations are re-run, and the resume event is logged.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the resume-after-pause contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when the operator removes review/.deep-review-pause, the review loop re-reads deep-review-state.jsonl and deep-review-strategy.md, determines the correct iteration number, and resumes dispatching from the next iteration without re-running completed iterations. Return a concise operator-facing verdict.
+Validate deep-review resume after pause removal and report whether the next iteration resumes without replay.
 ### Commands
 1. `bash: rg -n 'resume|re-read|read.state|iteration.*count|last.*iteration|Delete.*pause|sentinel.*removal' .opencode/skill/deep-review/references/loop_protocol.md .opencode/skill/deep-review/references/state_format.md`
 2. `bash: rg -n 'resume|read_state|re_read|iteration_count|last_iteration|pause.*removed|sentinel.*delete' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

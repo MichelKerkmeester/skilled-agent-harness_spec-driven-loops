@@ -30,7 +30,7 @@ This scenario validates Contextual tree injection (P1-4) for `145`. It focuses o
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, verify hierarchical spec-folder headers are injected into search results when SPECKIT_CONTEXT_HEADERS=true and suppressed when disabled against memory_search({ query:"spec folder context headers", includeContent:true, includeTrace:true, limit:5 }). Verify enabled: results with spec-folder paths have [parent > child — description] headers prepended, truncated at 100 chars; Disabled: no headers injected, content unchanged. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Contextual tree injection (P1-4) against memory_search({ query:"spec folder context headers", includeContent:true, includeTrace:true, limit:5 }). Verify hierarchical spec-folder headers are injected into search results when SPECKIT_CONTEXT_HEADERS=true and suppressed when disabled. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

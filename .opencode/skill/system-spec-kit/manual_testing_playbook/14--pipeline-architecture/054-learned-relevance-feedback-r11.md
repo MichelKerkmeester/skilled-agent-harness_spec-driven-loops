@@ -17,7 +17,7 @@ This scenario validates Learned relevance feedback (R11) for `054`. It focuses o
 
 - Objective: Confirm learned trigger safeguards.
 - Real user request: `Please validate Learned relevance feedback (R11) against the documented validation surface and tell me whether the expected signals are present: Learned triggers added from helpful validations; safeguards prevent trigger flooding; queryId required for trigger learning.`
-- RCAF Prompt: `As a pipeline validation operator, validate Learned relevance feedback (R11) against the documented validation surface. Verify learned triggers added from helpful validations; safeguards prevent trigger flooding; queryId required for trigger learning. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate learned relevance feedback (R11) against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Learned triggers added from helpful validations; safeguards prevent trigger flooding; queryId required for trigger learning
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Learned relevance feedback (R11) for `054`. It focuses o
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm learned trigger safeguards against the documented validation surface. Verify learned triggers added from helpful validations; safeguards prevent trigger flooding; queryId required for trigger learning. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate learned relevance feedback (R11) against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

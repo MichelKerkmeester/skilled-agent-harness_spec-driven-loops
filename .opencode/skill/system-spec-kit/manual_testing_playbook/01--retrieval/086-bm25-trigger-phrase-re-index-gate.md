@@ -17,7 +17,7 @@ This scenario validates BM25 trigger phrase re-index gate for `086`. It focuses 
 
 - Objective: Confirm trigger edit causes re-index when BM25 is enabled.
 - Real user request: `` Please validate BM25 trigger phrase re-index gate against ENABLE_BM25=true and tell me whether the expected signals are present: `ENABLE_BM25=true` activates the in-memory BM25 path; trigger phrase edit triggers BM25 re-index; new trigger is searchable after re-index; old trigger phrase still works if not removed; FTS5 remains default when BM25 is disabled. ``
-- RCAF Prompt: `As a retrieval validation operator, validate BM25 trigger phrase re-index gate against ENABLE_BM25=true. Verify trigger edit causes re-index when BM25 is enabled. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the BM25 trigger phrase re-index gate and confirm edited triggers become searchable when BM25 is enabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `ENABLE_BM25=true` activates the in-memory BM25 path; trigger phrase edit triggers BM25 re-index; new trigger is searchable after re-index; old trigger phrase still works if not removed; FTS5 remains default when BM25 is disabled
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates BM25 trigger phrase re-index gate for `086`. It focuses 
 
 ### Prompt
 
-```
-As a retrieval validation operator, confirm trigger edit causes re-index against ENABLE_BM25=true. Verify eNABLE_BM25=true activates the in-memory BM25 path; trigger phrase edit triggers BM25 re-index; new trigger is searchable after re-index; old trigger phrase still works if not removed; FTS5 remains available as the default lexical path when BM25 is off. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate the BM25 trigger phrase re-index gate and confirm edited triggers become searchable when BM25 is enabled.`
 
 ### Commands
 

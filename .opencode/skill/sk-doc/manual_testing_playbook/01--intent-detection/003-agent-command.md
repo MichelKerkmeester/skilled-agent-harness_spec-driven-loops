@@ -14,7 +14,31 @@ created: 2026-05-05
 
 # SD-003: AGENT_COMMAND Intent Detection
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates AGENT_COMMAND intent detection for `SD-003`. It focuses on routing a paired agent and command authoring request to the agent and command templates without producing artifacts.
+
+### Why This Matters
+
+Agent and command creation share vocabulary with skill scaffolding and generic documentation generation. This scenario catches router mistakes that would load the wrong creation workflow or miss one side of the paired `@agent` and `/create:*` contract.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Author an @analyze agent and paired /create:analyze command using the standard templates.`
+- Prompt: `Author an @analyze agent and paired /create:analyze command using the standard templates.`
+- Expected intent: `AGENT_COMMAND`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-003 | AGENT_COMMAND intent: author paired @agent and /create command | Verify sk-doc routes the scenario to `AGENT_COMMAND` with the expected resources. | `Author an @analyze agent and paired /create:analyze command using the standard templates.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `AGENT_COMMAND`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -25,8 +49,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Author a new @analyze agent and a paired /create:analyze command. Use our
-standard agent and command templates and wire the command to dispatch the agent.
+Author an @analyze agent and paired /create:analyze command using the standard templates.
 ```
 
 ## Expected Behavior
@@ -48,3 +71,10 @@ standard agent and command templates and wire the command to dispatch the agent.
 - intent_picked == `AGENT_COMMAND`
 - false_positive_resource_load_count <= 1
 - response is non-empty and references at least one of the expected_resources
+
+## 4. SOURCE METADATA
+
+- Group: Intent Detection
+- Playbook ID: SD-003
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `01--intent-detection/003-agent-command.md`

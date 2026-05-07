@@ -15,7 +15,7 @@ This scenario verifies the primary cross-stack route: a Webflow frontend request
 
 **Realistic user prompt**:
 ```text
-I'm building a vanilla HTML/CSS/JS Webflow site with motion.dev animations on a hero section. Show me the proper CDN install pattern and the in-view animation snippet for src/2_javascript/hero.js.
+For a Webflow hero in src/2_javascript/hero.js, show the pinned Motion CDN pattern and in-view animation snippet.
 ```
 
 **Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):

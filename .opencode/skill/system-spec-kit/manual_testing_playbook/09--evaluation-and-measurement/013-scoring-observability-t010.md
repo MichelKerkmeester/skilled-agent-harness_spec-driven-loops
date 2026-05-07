@@ -16,7 +16,7 @@ This scenario validates Scoring observability (T010) for `013`. It focuses on Co
 
 - Objective: Confirm sample logging + fail-safe.
 - Real user request: `Please validate Scoring observability (T010) against the documented validation surface and tell me whether the expected signals are present: Sampled scoring rows appear in observability log; write error does not crash search; sample rate respected.`
-- RCAF Prompt: `As an evaluation validation operator, validate Scoring observability (T010) against the documented validation surface. Verify sampled scoring rows appear in observability log; write error does not crash search; sample rate respected. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate scoring observability and cite whether sampled rows are logged, sample rate is respected, and write failures do not crash search.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Sampled scoring rows appear in observability log; write error does not crash search; sample rate respected
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Scoring observability (T010) for `013`. It focuses on Co
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm sample logging + fail-safe against the documented validation surface. Verify sampled scoring rows appear in observability log; write error does not crash search; sample rate respected. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate scoring observability and cite whether sampled rows are logged, sample rate is respected, and write failures do not crash search.
 ```
 
 ### Commands

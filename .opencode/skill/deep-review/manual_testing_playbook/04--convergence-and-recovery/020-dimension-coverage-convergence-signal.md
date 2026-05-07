@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify dimension coverage signal (weight 0.45) requires all 4 dimensions + minStabilizationPasses >= 1.
 - Real user request: How does the review know it has looked at everything? What prevents it from stopping after only checking correctness?
-- Prompt: `As a manual-testing orchestrator, validate the dimension coverage convergence signal for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered in strategy.md, requires minStabilizationPasses >= 1 (at least one iteration after full coverage where no new dimension-first findings appear), and only then contributes its weight to the composite stop score. Return a concise operator-facing verdict.`
+- Prompt: `Validate the deep-review dimension coverage convergence signal and its stabilization requirement.`
 - Expected execution process: Inspect the convergence reference for the dimension coverage signal definition, then the review YAML for enforcement, then the quick reference and strategy template for user-facing documentation.
 - Desired user-facing outcome: The user is told that the review must examine all four dimensions and verify stability before it can consider stopping, and that this check carries the most weight in the convergence decision.
 - Expected signals: Weight 0.45, all 4 dimensions required, `minStabilizationPasses=1`, signal contributes 0 until conditions are met, strategy.md "Covered" list tracks dimension coverage.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the dimension coverage convergence signal for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify the signal has weight 0.45, requires all 4 review dimensions (Correctness, Security, Traceability, Maintainability) to be covered in strategy.md, requires minStabilizationPasses >= 1 (at least one iteration after full coverage where no new dimension-first findings appear), and only then contributes its weight to the composite stop score. Return a concise operator-facing verdict.
+Validate the deep-review dimension coverage convergence signal and its stabilization requirement.
 ### Commands
 1. `bash: rg -n 'dimension.coverage|Dimension Coverage|0\.45|minStabilization|stabilization|all.*dimension|4.*dimension' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'dimension_coverage|0\.45|minStabilization|stabilization|all_dimensions|dimension.*covered' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

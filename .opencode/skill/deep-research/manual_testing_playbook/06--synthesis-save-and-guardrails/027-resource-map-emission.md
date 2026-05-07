@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify synthesis emits `research/resource-map.md` from converged research deltas.
 - Real user request: When deep research converges, show me the flat citation ledger and confirm I can suppress it for one run.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the research resource-map emission contract for deep-research against the current command entrypoint, YAML workflow, reducer, shared extractor, and docs. Verify synthesis emits research/resource-map.md from delta evidence, the map carries per-file citation counts in a template-shaped output, and --no-resource-map disables the write cleanly. Return a concise operator-facing verdict.`
+- Prompt: `Validate resource-map emission from delta evidence and --no-resource-map suppression.`
 - Expected execution process: Inspect the docs and workflow first, then run the shared extractor or reducer emission path on representative deltas, then exercise the opt-out branch.
 - Desired user-visible outcome: The user is told where `resource-map.md` appears, what it summarizes, and how to skip it.
 - Expected signals: The synthesis workflow contains an emission step, the reducer supports `--emit-resource-map`, the shared extractor renders template categories with citation counts, and config opt-out skips cleanly.
@@ -43,8 +43,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short operator-facing explanation, not just raw implementation notes.
 
 ### Prompt
-
-As a manual-testing orchestrator, validate the research resource-map emission contract for deep-research against the current command entrypoint, YAML workflow, reducer, shared extractor, and docs. Verify synthesis emits research/resource-map.md from delta evidence, the map carries per-file citation counts in a template-shaped output, and --no-resource-map disables the write cleanly. Return a concise operator-facing verdict.
+Validate resource-map emission from delta evidence and --no-resource-map suppression.
 
 ### Commands
 

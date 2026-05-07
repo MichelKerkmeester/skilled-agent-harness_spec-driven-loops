@@ -16,7 +16,7 @@ This scenario validates setup, native module health, and MCP installation for `2
 
 - Objective: Confirm prerequisite validation, native-module diagnostics, marker recording, and installer execution.
 - Real user request: `` Please validate Setup, Native Module Health, and MCP Installation against bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and tell me whether the expected signals are present: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`; installer completes or reports existing configuration. ``
-- RCAF Prompt: `As a tooling validation operator, validate Setup, Native Module Health, and MCP Installation against bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate. Verify prerequisite validation, native-module diagnostics, marker recording, and installer execution. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Setup, Native Module Health, and MCP Installation against bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: prerequisite JSON emitted; native-module probe prints PASS/FAIL lines; record-node-version writes `.node-version-marker`; installer completes or reports existing configuration
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates setup, native module health, and MCP installation for `2
 ### Prompt
 
 ```
-As a tooling validation operator, confirm prerequisite validation, native-module diagnostics, marker recording, and installer execution against bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate. Verify prerequisite JSON is emitted; native probe prints diagnostic lines and recovery hint when needed; .node-version-marker is written; installer either completes or reports existing MCP configuration without silent failure. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Setup, Native Module Health, and MCP Installation against bash .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh --json --validate and report cited pass/fail evidence.
 ```
 
 ### Commands

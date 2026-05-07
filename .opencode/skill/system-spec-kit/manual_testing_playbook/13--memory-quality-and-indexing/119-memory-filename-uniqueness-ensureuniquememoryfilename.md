@@ -17,7 +17,7 @@ This scenario validates Memory filename uniqueness (ensureUniqueMemoryFilename) 
 
 - Objective: Confirm collision resolution.
 - Real user request: `` Please validate Memory filename uniqueness (ensureUniqueMemoryFilename) against -1 and tell me whether the expected signals are present: Second save produces filename with `-1` suffix; both files exist with distinct names; exhausting `-1` through `-100` collisions triggers a random 12-hex fallback suffix from `crypto.randomBytes(6).toString('hex')`, not SHA1; repeated fallback saves still reserve distinct filenames; `memorySequence` increments through the hardened `Number(existing.memorySequence) | 0` coercion; and `memoryNameHistory` is updated. ``
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Memory filename uniqueness (ensureUniqueMemoryFilename) against -1. Verify memory filename uniqueness (ensureUniqueMemoryFilename). Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory filename uniqueness and collision fallback behavior.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Second save produces filename with `-1` suffix; both files exist with distinct names; exhausting `-1` through `-100` collisions triggers a random 12-hex fallback suffix from `crypto.randomBytes(6).toString('hex')`, not SHA1; repeated fallback saves still reserve distinct filenames; `memorySequence` increments through the hardened `Number(existing.memorySequence) | 0` coercion; and `memoryNameHistory` is updated
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Memory filename uniqueness (ensureUniqueMemoryFilename) 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm collision resolution for `ensureUniqueMemoryFilename`. Verify duplicate saves reserve distinct filenames across the `-1` and random-fallback paths, then return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory filename uniqueness and collision fallback behavior.
 ```
 
 ### Commands

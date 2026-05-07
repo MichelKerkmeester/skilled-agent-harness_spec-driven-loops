@@ -18,7 +18,7 @@ This scenario validates Shadow-scoring retirement for `230`. It focuses on confi
 
 - Objective: Confirm runtime shadow scoring and persistence stay retired while read-only comparison helpers remain usable.
 - Real user request: `` Please validate Shadow-scoring retirement against the documented validation surface and tell me whether the expected signals are present: The targeted shadow-scoring tests pass, `runShadowScoring()` returns `null`, `logShadowComparison()` returns `false`, `getShadowStats()` stays in the zero-case when no historical rows exist, and `compareShadowResults()` remains available as the live analysis surface. ``
-- RCAF Prompt: `As a canonical-continuity validation operator, validate Shadow-scoring retirement against the documented validation surface. Verify runtime shadow scoring and persistence stay retired while read-only comparison helpers remain usable. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate shadow-scoring retirement against the documented validation surface.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: The targeted shadow-scoring tests pass, `runShadowScoring()` returns `null`, `logShadowComparison()` returns `false`, `getShadowStats()` stays in the zero-case when no historical rows exist, and `compareShadowResults()` remains available as the live analysis surface
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

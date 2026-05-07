@@ -16,7 +16,7 @@ This scenario validates BM25/FTS5-only baseline (G-NEW-1) for `011`. It focuses 
 
 - Objective: Confirm baseline reproducibility.
 - Real user request: `Please validate BM25-only baseline (G-NEW-1) against ENABLE_BM25=true and tell me whether the expected signals are present: BM25 path is active; BM25-only run produces reproducible MRR@5; no non-BM25 channel contributions in trace.`
-- RCAF Prompt: `As an evaluation validation operator, validate BM25-only baseline (G-NEW-1) against ENABLE_BM25=true. Verify bM25 path is active; BM25-only run produces reproducible MRR@5; no non-BM25 channel contributions in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the BM25-only baseline and cite whether ENABLE_BM25 produces reproducible MRR@5 with no non-BM25 trace contributions.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: BM25 path is active; BM25-only run produces reproducible MRR@5; no non-BM25 channel contributions in trace
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates BM25/FTS5-only baseline (G-NEW-1) for `011`. It focuses 
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm baseline reproducibility against ENABLE_BM25=true. Verify bM25 path is active; BM25-only run produces reproducible MRR@5; no non-BM25 channel contributions in trace. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the BM25-only baseline and cite whether ENABLE_BM25 produces reproducible MRR@5 with no non-BM25 trace contributions.
 ```
 
 ### Commands

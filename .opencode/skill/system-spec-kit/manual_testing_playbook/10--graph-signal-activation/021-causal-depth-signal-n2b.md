@@ -17,7 +17,7 @@ This scenario validates Causal depth signal (N2b) for `021`. It focuses on Confi
 
 - Objective: Confirm normalized depth scoring.
 - Real user request: `Please validate Causal depth signal (N2b) against the documented validation surface and tell me whether the expected signals are present: Depth score normalized to [0,1]; deeper chains produce higher normalized values; shortcut edges do not reduce longest-path depth; cycle members share one bounded depth layer.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Causal depth signal (N2b) against the documented validation surface. Verify depth score normalized to [0,1]; deeper chains produce higher normalized values; shortcut edges do not reduce longest-path depth; cycle members share one bounded depth layer. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate causal depth scoring and cite normalization, longer-chain ranking, shortcut behavior, and cycle depth bounding.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Depth score normalized to [0,1]; deeper chains produce higher normalized values; shortcut edges do not reduce longest-path depth; cycle members share one bounded depth layer
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Causal depth signal (N2b) for `021`. It focuses on Confi
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm normalized depth scoring against the documented validation surface. Verify depth score normalized to [0,1]; deeper chains produce higher normalized values; shortcut edges do not reduce longest-path depth; cycle members share one bounded depth layer. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate causal depth scoring and cite normalization, longer-chain ranking, shortcut behavior, and cycle depth bounding.
 ```
 
 ### Commands

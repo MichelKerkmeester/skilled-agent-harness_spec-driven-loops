@@ -16,7 +16,7 @@ This scenario validates Core metric computation (R13-S1) for `006`. It focuses o
 
 - Objective: Confirm metric battery outputs.
 - Real user request: `Please validate Core metric computation (R13-S1) against the documented validation surface and tell me whether the expected signals are present: Metric battery returns precision, recall, MRR, NDCG values; all within valid ranges.`
-- RCAF Prompt: `As an evaluation validation operator, validate Core metric computation (R13-S1) against the documented validation surface. Verify metric battery returns precision, recall, MRR, NDCG values; all within valid ranges. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate core metric computation and cite whether precision, recall, MRR, and NDCG are present and within valid ranges.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Metric battery returns precision, recall, MRR, NDCG values; all within valid ranges
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Core metric computation (R13-S1) for `006`. It focuses o
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm metric battery outputs against the documented validation surface. Verify metric battery returns precision, recall, MRR, NDCG values; all within valid ranges. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate core metric computation and cite whether precision, recall, MRR, and NDCG are present and within valid ranges.
 ```
 
 ### Commands

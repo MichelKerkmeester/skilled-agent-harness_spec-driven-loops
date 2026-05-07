@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-004` and confirm the
 
 - Objective: Confirm explicit prefix overrides keyword-weighted scoring
 - Real user request: `$short Please improve and refine and enhance this prompt — make it tight and reusable.`
-- Prompt: `As a prompt engineer, run sk-prompt against operator input that begins with $short and also packs heavy "improve / refine / enhance" keyword density. Verify the $short prefix wins, INTENT_MODEL keyword scoring is suppressed, DEPTH runs 3 rounds, and the transparency report logs the override.`
+- Prompt: `$short improve and refine my prompt; verify the prefix overrides keyword scoring, runs 3 DEPTH rounds, and logs the override.`
 - Expected execution process: sk-prompt enters STEP 0 mode detection, detects `$short` prefix, marks the input as prefix-resolved, skips INTENT_MODEL keyword scoring, and runs the 3-round D-P-H cycle.
 - Expected signals: Mode = `$short`, DEPTH rounds = 3, transparency log notes "prefix detected; keyword scoring suppressed"
 - Desired user-visible outcome: Enhanced prompt + transparency report stating "Mode prefix detected: $short; keyword scoring suppressed".
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-004` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt against operator input that begins with $short and also packs heavy "improve / refine / enhance" keyword density. Verify the $short prefix wins, INTENT_MODEL keyword scoring is suppressed, DEPTH runs 3 rounds, and the transparency report logs the override.
+$short improve and refine my prompt; verify the prefix overrides keyword scoring, runs 3 DEPTH rounds, and logs the override.
 ```
 
 ### Commands

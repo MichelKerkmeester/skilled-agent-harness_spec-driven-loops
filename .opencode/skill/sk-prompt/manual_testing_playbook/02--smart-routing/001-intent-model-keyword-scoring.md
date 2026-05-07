@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `SP-005` and confirm the
 - Objective: Confirm INTENT_MODEL scoring routes correctly between TEXT_ENHANCE and FRAMEWORK
 - Real user request (input A): `Please improve and refine this prompt for a customer-support email — enhance the tone.`
 - Real user request (input B): `Which framework should I apply here? COSTAR or TIDD-EC? Score both and tell me.`
-- Prompt: `As a prompt engineer, score two operator inputs through sk-prompt's INTENT_MODEL: input A heavy on "improve / refine / enhance" keywords, and input B heavy on "rcaf / costar / tidd-ec / scoring" keywords. Verify input A routes to TEXT_ENHANCE with depth_framework.md + patterns_evaluation.md loaded, and input B routes to FRAMEWORK with patterns_evaluation.md loaded.`
+- Prompt: `Score these two sk-prompt inputs through INTENT_MODEL; verify TEXT_ENHANCE and FRAMEWORK routing load the expected resources.`
 - Expected execution process: sk-prompt scores each input against INTENT_MODEL keyword weights (improve=4, enhance=4, prompt=3, text=3, refine=4 for TEXT_ENHANCE; framework=4, rcaf=5, costar=5, tidd-ec=5, scoring=3 for FRAMEWORK), selects the top-scoring intent, loads the matching RESOURCE_MAP entry.
 - Expected signals: Input A intent = TEXT_ENHANCE, input B intent = FRAMEWORK; resource lists match RESOURCE_MAP
 - Desired user-visible outcome: Two routing traces, one per input, naming the picked intent and the loaded resource list.
@@ -39,7 +39,7 @@ Operators run the exact prompt and command sequence for `SP-005` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, score two operator inputs through sk-prompt's INTENT_MODEL: input A heavy on "improve / refine / enhance" keywords, and input B heavy on "rcaf / costar / tidd-ec / scoring" keywords. Verify input A routes to TEXT_ENHANCE with depth_framework.md + patterns_evaluation.md loaded, and input B routes to FRAMEWORK with patterns_evaluation.md loaded.
+Score these two sk-prompt inputs through INTENT_MODEL; verify TEXT_ENHANCE and FRAMEWORK routing load the expected resources.
 ```
 
 ### Commands

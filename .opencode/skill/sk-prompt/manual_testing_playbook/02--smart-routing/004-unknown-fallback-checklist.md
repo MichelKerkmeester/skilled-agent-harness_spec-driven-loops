@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-008` and confirm the
 
 - Objective: Confirm zero-keyword input routes to UNKNOWN_FALLBACK with checklist
 - Real user request: `Here is some text I wrote yesterday. <body of text without meta-commentary>`
-- Prompt: `As a prompt engineer, run sk-prompt against operator input that contains zero INTENT_MODEL keywords (no improve / enhance / prompt / framework / rcaf / costar / scoring tokens). Verify the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST as a disambiguation prompt.`
+- Prompt: `Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST.`
 - Expected execution process: sk-prompt scores intents (all zero), enters the unknown-fallback branch, loads the default resource, returns `needs_disambiguation: true` along with the 4-item checklist.
 - Expected signals: Default = TEXT_ENHANCE; checklist printed verbatim; disambiguation flag set
 - Desired user-visible outcome: Routing trace showing default = TEXT_ENHANCE, plus the 4 checklist items rendered as numbered or bulleted list.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-008` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt against operator input that contains zero INTENT_MODEL keywords (no improve / enhance / prompt / framework / rcaf / costar / scoring tokens). Verify the router defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST as a disambiguation prompt.
+Run sk-prompt on plain prose with no intent keywords; verify it defaults to TEXT_ENHANCE and surfaces UNKNOWN_FALLBACK_CHECKLIST.
 ```
 
 ### Commands

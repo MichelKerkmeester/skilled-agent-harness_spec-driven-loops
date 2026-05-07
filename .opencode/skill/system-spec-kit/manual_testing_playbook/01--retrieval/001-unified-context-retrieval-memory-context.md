@@ -18,7 +18,7 @@ This scenario validates Unified context retrieval (memory_context) for `EX-001`.
 
 - Objective: Intent-aware context pull through the canonical `/spec_kit:resume` recovery surface, with `handover.md` first, then `_memory.continuity`, then supporting spec docs.
 - Real user request: `Please validate Unified context retrieval (memory_context) against /spec_kit:resume specs/<target-spec> and tell me whether the expected signals are present: Relevant bounded context returned; no empty response.`
-- RCAF Prompt: `As a retrieval validation operator, validate Unified context retrieval (memory_context) against /spec_kit:resume specs/<target-spec>. Verify intent-aware context pull through the canonical /spec_kit:resume recovery surface, with handover.md first, then _memory.continuity, then supporting spec docs. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_context recovery via /spec_kit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Relevant bounded context returned; no empty response
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,9 +30,7 @@ This scenario validates Unified context retrieval (memory_context) for `EX-001`.
 
 ### Prompt
 
-```
-As a retrieval validation operator, validate Intent-aware context pull against /spec_kit:resume specs/<target-spec>. Verify relevant bounded context returned; no empty response. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate memory_context recovery via /spec_kit:resume specs/<target-spec> and confirm bounded context is relevant and non-empty.`
 
 ### Commands
 

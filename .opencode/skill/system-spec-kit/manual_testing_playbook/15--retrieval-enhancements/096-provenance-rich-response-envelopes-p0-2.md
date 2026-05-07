@@ -30,7 +30,7 @@ This scenario validates Provenance-rich response envelopes (P0-2) for `096`. It 
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm includeTrace opt-in exposes scores/source/trace against SPECKIT_RESPONSE_TRACE. Verify trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Provenance-rich response envelopes (P0-2) against SPECKIT_RESPONSE_TRACE. Verify trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

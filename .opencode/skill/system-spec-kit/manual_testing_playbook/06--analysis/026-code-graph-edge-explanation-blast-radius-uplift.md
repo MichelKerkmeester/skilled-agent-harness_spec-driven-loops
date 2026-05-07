@@ -16,7 +16,7 @@ This scenario validates `code_graph_query` relationship + blast_radius end-to-en
 
 - Objective: Validate Code Graph explanation metadata, enriched impact output, AND the 010/007 hardening behaviors (overflow truth, seed preservation, stable failure codes, control-char sanitization).
 - Real user request: `Show me why this Code Graph relationship exists and what the blast radius looks like with confidence filtering. Also confirm the system handles exact-limit results, partial multi-subject queries, and adversarial edge metadata correctly.`
-- RCAF Prompt: `` As an analysis validation operator, validate Code Graph edge explanation and blast radius uplift against the documented validation surface. Verify Edge rows include `reason` and `step`; blast-radius output includes `depthGroups`, `riskLevel`, `minConfidence`, `ambiguityCandidates`, `failureFallback.code` ∈ `{limit_reached, unresolved_subject, ambiguous_subject, empty_source, compute_error}`, `preservedSeedNodes` on partial multi-subject; control-character bytes in `reason` round-trip as `null`. Return a concise pass/fail verdict with the main reason and cited evidence. ``
+- Prompt: `Validate Code Graph edge explanation, blast-radius enrichment, overflow handling, seed preservation, failure codes, and metadata sanitization. Return pass/fail with evidence.`
 - Expected execution process: Run a fresh scan, query a relationship with known edges, run blast_radius with various inputs (filtered, exact-limit, multi-subject, ambiguous, fault-injected), and probe edge reason/step round-trip.
 - Expected signals: Edge rows include `reason` and `step`; blast-radius output includes `depthGroups`, `riskLevel`, `minConfidence`, `ambiguityCandidates`, `failureFallback.code` ∈ `{limit_reached, unresolved_subject, ambiguous_subject, empty_source, compute_error}`, `preservedSeedNodes` on partial multi-subject; control-character bytes in `reason` round-trip as `null`
 - Desired user-visible outcome: Operator can audit why edges exist, judge impact risk, and trust failure modes are observable + stable.
@@ -29,7 +29,7 @@ This scenario validates `code_graph_query` relationship + blast_radius end-to-en
 ### Prompt
 
 ```text
-As an analysis validation operator, validate code_graph_query relationship and blast_radius output across 5 blocks: (A) baseline edge reason/step + depthGroups + riskLevel + minConfidence + ambiguityCandidates + failureFallback; (B) exact-limit overflow detection — partialResult:false when count===limit; (C) multi-subject seed preservation when one subject is unresolvable; (D) failureFallback.code enumeration across all 5 codes; (E) edge reason/step control-character round-trip returns null. Return a concise pass/fail verdict with cited output fields.
+Validate Code Graph edge explanation, blast-radius enrichment, overflow handling, seed preservation, failure codes, and metadata sanitization. Return pass/fail with evidence.
 ```
 
 ### Commands

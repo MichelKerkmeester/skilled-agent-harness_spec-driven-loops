@@ -17,7 +17,7 @@ This scenario validates Graph and cognitive memory fixes for `081`. It focuses o
 
 - Objective: Confirm graph/cognitive fix bundle.
 - Real user request: `Please validate Graph and cognitive memory fixes against the documented validation surface and tell me whether the expected signals are present: Self-loops prevented; depth clamps enforced; cache invalidation triggers on mutation; no stale cognitive data returned.`
-- RCAF Prompt: `As a graph-signal validation operator, validate Graph and cognitive memory fixes against the documented validation surface. Verify self-loops prevented; depth clamps enforced; cache invalidation triggers on mutation; no stale cognitive data returned. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate graph and cognitive memory fixes and cite self-loop prevention, depth clamps, mutation invalidation, and stale-data protection.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Self-loops prevented; depth clamps enforced; cache invalidation triggers on mutation; no stale cognitive data returned
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Graph and cognitive memory fixes for `081`. It focuses o
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm graph/cognitive fix bundle against the documented validation surface. Verify self-loops prevented; depth clamps enforced; cache invalidation triggers on mutation; no stale cognitive data returned. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate graph and cognitive memory fixes and cite self-loop prevention, depth clamps, mutation invalidation, and stale-data protection.
 ```
 
 ### Commands

@@ -16,7 +16,7 @@ This scenario validates Advisory ingest lifecycle forecast for `144`. It focuses
 
 - Objective: Verify `memory_ingest_status` exposes advisory forecast fields and degrades safely on sparse progress.
 - Real user request: `` Please validate Advisory ingest lifecycle forecast against memory_ingest_start({ paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"] }) and tell me whether the expected signals are present: Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive. ``
-- RCAF Prompt: `As a lifecycle validation operator, validate Advisory ingest lifecycle forecast against memory_ingest_start({ paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"] }). Verify memory_ingest_status exposes advisory forecast fields and degrades safely on sparse progress. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate advisory ingest lifecycle forecasts, including forecast fields, sparse-progress degradation, ETA/risk updates, and additive telemetry.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Status payloads always include a `forecast` object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Advisory ingest lifecycle forecast for `144`. It focuses
 ### Prompt
 
 ```
-As a lifecycle validation operator, verify memory_ingest_status exposes advisory forecast fields and degrades safely on sparse progress against memory_ingest_start({ paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"] }). Verify status payloads always include a forecast object; sparse progress yields null or low-confidence fields plus caveat text; progressing jobs update ETA/risk fields without breaking the handler contract; optional telemetry remains additive. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate advisory ingest lifecycle forecasts, including forecast fields, sparse-progress degradation, ETA/risk updates, and additive telemetry.
 ```
 
 ### Commands

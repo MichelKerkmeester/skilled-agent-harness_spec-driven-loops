@@ -28,7 +28,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - When: The operator runs the reducer without `--lenient`, then with `--lenient`, and separately retries the missing-anchor packet with and without `--create-missing-anchors`.
 - Then: Without `--lenient`, malformed JSONL exits with code `2` and populates `corruptionWarnings`; without `--create-missing-anchors`, the reducer throws `Missing machine-owned anchor ...`; with `--lenient`, the reducer exits `0` while preserving `corruptionWarnings`; with `--create-missing-anchors`, the reducer creates the missing anchor and proceeds.
 - Real user request: If the review reducer sees corrupt JSONL or a missing machine-owned anchor, does it fail closed by default, and what explicit flags let me recover without losing the warning state?
-- Prompt: `As a manual-testing orchestrator, validate fail-closed reducer behavior for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify malformed JSONL exits with code 2 unless --lenient is passed, that missing machine-owned anchors throw Missing machine-owned anchor ... unless --create-missing-anchors is used, and that corruptionWarnings remains present after lenient recovery. Return a concise operator-facing verdict.`
+- Prompt: `Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.`
 - Expected execution process: Run the corruption check first, inspect `corruptionWarnings`, then run the missing-anchor check, and finally rerun each guarded case with its explicit escape hatch so the operator can prove both the default fail-closed behavior and the opt-in recovery path.
 - Desired user-facing outcome: The user can explain the reducer's default safety posture, the exact escape hatches, and where warning state is preserved for later triage.
 - Expected signals: corrupt JSONL exits `2` without `--lenient`; `corruptionWarnings` is populated in the registry; missing anchors throw `Missing machine-owned anchor ...`; `--lenient` exits `0` while preserving `corruptionWarnings`; `--create-missing-anchors` appends the `next-focus` anchor and allows the reducer to proceed.
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 4. Return a short user-facing explanation, not just raw implementation notes.
 
 ### Prompt
-As a manual-testing orchestrator, validate fail-closed reducer behavior for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify malformed JSONL exits with code `2` unless `--lenient` is passed, that missing machine-owned anchors throw `Missing machine-owned anchor ...` unless `--create-missing-anchors` is used, and that `corruptionWarnings` remains present after lenient recovery. Return a concise operator-facing verdict.
+Validate deep-review reducer fail-closed behavior for malformed JSONL and missing machine-owned anchors.
 
 ### Commands
 1. `bash: node .opencode/skill/deep-review/scripts/reduce-state.cjs {corrupt_fixture}; echo "exit: $?"`

@@ -16,7 +16,7 @@ This scenario validates Test quality improvements for `072`. It focuses on Confi
 
 - Objective: Confirm test quality remediations.
 - Real user request: `Please validate Test quality improvements against the documented validation surface and tell me whether the expected signals are present: Tests use proper teardown; assertions are specific (not generic truthy checks); no flaky timing-dependent patterns; test isolation maintained.`
-- RCAF Prompt: `As an evaluation validation operator, validate Test quality improvements against the documented validation surface. Verify tests use proper teardown; assertions are specific (not generic truthy checks); no flaky timing-dependent patterns; test isolation maintained. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the test quality improvements and cite teardown, assertion specificity, timing stability, and isolation evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Tests use proper teardown; assertions are specific (not generic truthy checks); no flaky timing-dependent patterns; test isolation maintained
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Test quality improvements for `072`. It focuses on Confi
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm test quality remediations against the documented validation surface. Verify tests use proper teardown; assertions are specific (not generic truthy checks); no flaky timing-dependent patterns; test isolation maintained. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the test quality improvements and cite teardown, assertion specificity, timing stability, and isolation evidence.
 ```
 
 ### Commands

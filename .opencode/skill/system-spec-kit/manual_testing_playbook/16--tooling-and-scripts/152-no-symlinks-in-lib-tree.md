@@ -24,7 +24,7 @@ This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on c
 
 - Objective: Verify zero symlinks exist under mcp_server/lib/.
 - Real user request: `Please validate No symlinks in lib/ tree against cd .opencode/skill/system-spec-kit and tell me whether the expected signals are present: Zero symlinks found.`
-- RCAF Prompt: `As a tooling validation operator, validate No symlinks in lib/ tree against cd .opencode/skill/system-spec-kit. Verify zero symlinks found. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate No symlinks in lib/ tree against cd .opencode/skill/system-spec-kit and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Zero symlinks found
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -37,7 +37,7 @@ This scenario validates the no-symlinks-in-lib policy for `152`. It focuses on c
 ### Prompt
 
 ```
-As a tooling validation operator, verify zero symlinks under mcp_server/lib/ against cd .opencode/skill/system-spec-kit. Verify zero symlinks found. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate No symlinks in lib/ tree against cd .opencode/skill/system-spec-kit and report cited pass/fail evidence.
 ```
 
 ### Commands

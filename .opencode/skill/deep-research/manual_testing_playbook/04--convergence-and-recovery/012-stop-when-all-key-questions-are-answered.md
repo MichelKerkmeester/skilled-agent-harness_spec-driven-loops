@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the loop stops when the tracked key questions are fully answered.
 - Real user request: If all of my main questions are answered, the loop should stop instead of searching forever.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the all-questions-answered stop contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop stops when the tracked key questions are answered and that this condition is checked before softer convergence logic. Return a concise verdict.`
+- Prompt: `Validate deep research stops once all tracked key questions are answered.`
 - Expected execution process: Inspect the convergence decision order, then the YAML logic, then the README and quick reference language that explains question coverage.
 - Desired user-visible outcome: The user is told the loop can end cleanly once the tracked key questions are answered.
 - Expected signals: Question completion is a named hard stop and is reflected in the convergence and usage docs.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the all-questions-answered stop contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the loop stops when the tracked key questions are answered and that this condition is checked before softer convergence logic. Return a concise verdict.
+Validate deep research stops once all tracked key questions are answered.
 ### Commands
 1. `bash: rg -n 'all questions answered|countUnanswered|coverage' .opencode/skill/deep-research/references/convergence.md .opencode/skill/deep-research/README.md`
 2. `bash: rg -n 'remaining_questions == 0|all_questions_answered|answered_count|total_questions' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

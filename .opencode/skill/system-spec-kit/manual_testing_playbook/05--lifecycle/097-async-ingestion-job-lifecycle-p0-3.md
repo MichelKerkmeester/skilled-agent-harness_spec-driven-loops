@@ -16,7 +16,7 @@ This scenario validates Async ingestion job lifecycle (P0-3) for `097`. It focus
 
 - Objective: Confirm job state machine and crash recovery.
 - Real user request: `Please validate Async ingestion job lifecycle (P0-3) against memory_ingest_start({paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"]}) and tell me whether the expected signals are present: Job state transitions through queued→parsing→embedding→indexing→complete in order; duplicate input paths are deduplicated before queueing with explicit reporting; cancel sets state to cancelled; job IDs match nanoid format; incomplete jobs re-enqueue after restart.`
-- RCAF Prompt: `As a lifecycle validation operator, validate Async ingestion job lifecycle (P0-3) against memory_ingest_start({paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"]}). Verify job state transitions through queued→parsing→embedding→indexing→complete in order; duplicate input paths are deduplicated before queueing with explicit reporting; cancel sets state to cancelled; job IDs match nanoid format; incomplete jobs re-enqueue after restart. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate async ingestion job lifecycle, including state order, duplicate-path dedup, cancel behavior, nanoid job IDs, and restart re-enqueue evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Job state transitions through queued→parsing→embedding→indexing→complete in order; duplicate input paths are deduplicated before queueing with explicit reporting; cancel sets state to cancelled; job IDs match nanoid format; incomplete jobs re-enqueue after restart
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Async ingestion job lifecycle (P0-3) for `097`. It focus
 ### Prompt
 
 ```
-As a lifecycle validation operator, confirm job state machine, duplicate-path dedup, and crash recovery against memory_ingest_start({paths:["specs/<target-spec>/decision-record.md","specs/<target-spec>/decision-record.md","specs/<target-spec>/implementation-summary.md"]}). Verify job state transitions through queued→parsing→embedding→indexing→complete in order; duplicate input paths are deduplicated before queueing with explicit reporting; cancel sets state to cancelled; job IDs match nanoid format; incomplete jobs re-enqueue after restart. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate async ingestion job lifecycle, including state order, duplicate-path dedup, cancel behavior, nanoid job IDs, and restart re-enqueue evidence.
 ```
 
 ### Commands

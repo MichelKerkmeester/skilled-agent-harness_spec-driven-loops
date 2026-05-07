@@ -17,7 +17,7 @@ This scenario validates Smarter memory content generation (S1) for `045`. It foc
 
 - Objective: Confirm quality/structure output and pathless batch-type isolation.
 - Real user request: `Please validate Smarter memory content generation (S1) against the documented validation surface and tell me whether the expected signals are present: Generated content retains structural elements (headings, lists, code blocks); output is concise; coherence maintained across sections; multiple pathless batch inputs keep distinct inference results.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Smarter memory content generation (S1) against the documented validation surface. Verify generated content retains structural elements (headings, lists, code blocks); output is concise; coherence maintained across sections; multiple pathless batch inputs keep distinct inference results. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate smarter memory content generation preserves structure and coherence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Generated content retains structural elements (headings, lists, code blocks); output is concise; coherence maintained across sections; multiple pathless batch inputs keep distinct inference results
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Smarter memory content generation (S1) for `045`. It foc
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, confirm quality/structure output and pathless batch-type isolation against the documented validation surface. Verify generated content retains structural elements (headings, lists, code blocks); output is concise; coherence maintained across sections; multiple pathless batch inputs keep distinct inference results. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate smarter memory content generation preserves structure and coherence.
 ```
 
 ### Commands

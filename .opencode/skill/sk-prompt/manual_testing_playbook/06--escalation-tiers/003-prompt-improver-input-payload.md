@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-025` and confirm the
 
 - Objective: Confirm `@prompt-improver` accepts `raw_task` and the four optional fields.
 - Real user request: `Use @prompt-improver to enhance my prompt with task_type=review, target_cli=codex, complexity_hint=8, and constraints around safety.`
-- Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves the constraints, and returns the documented structured output block.`
+- Prompt: `As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.`
 - Expected execution process: The orchestrator builds the payload, `@prompt-improver` consumes it, applies DEPTH/CLEAR, and carries the constraints into `ENHANCED_PROMPT` or `ESCALATION_NOTES`.
 - Expected signals: Payload fields echoed or reflected; structured output block present.
 - Desired user-visible outcome: Enhanced prompt that visibly respects safety constraints.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-025` and confirm the
 ### Prompt
 
 ```
-As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves the constraints, and returns the documented structured output block.
+As a CLI orchestrator, dispatch @prompt-improver with raw_task plus task_type=review, target_cli=codex, complexity_hint=8, and safety constraints. Verify the agent accepts the payload, preserves constraints, and returns the structured output block.
 ```
 
 ### Commands

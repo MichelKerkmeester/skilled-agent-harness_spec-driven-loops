@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-013` and confirm the
 
 - Objective: Confirm Prototype orders WHY/context before WHAT/instructions.
 - Real user request: `Refactor my prompt for explaining microservices — explain WHY they help before WHAT they are.`
-- Prompt: `As a prompt engineer, use @prompt-improver to refactor the operator's microservices explanation prompt. Verify the Prototype phase applies mechanism-first ordering: WHY and context before WHAT and instructions. Return the enhanced prompt plus ordering evidence.`
+- Prompt: `Refactor my microservices explanation prompt; verify Prototype orders WHY and context before WHAT and instructions.`
 - Expected execution process: `@prompt-improver` reaches Prototype, validates mechanism-first ordering, and revises any prompt that starts with action before context.
 - Expected signals: First section establishes role/context/mechanism; later section gives instructions or tasks.
 - Desired user-visible outcome: Enhanced prompt whose first section explains the teaching mechanism before asking for the explanation deliverable.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-013` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to refactor the operator's microservices explanation prompt. Verify the Prototype phase applies mechanism-first ordering: WHY and context before WHAT and instructions. Return the enhanced prompt plus ordering evidence.
+Refactor my microservices explanation prompt; verify Prototype orders WHY and context before WHAT and instructions.
 ```
 
 ### Commands

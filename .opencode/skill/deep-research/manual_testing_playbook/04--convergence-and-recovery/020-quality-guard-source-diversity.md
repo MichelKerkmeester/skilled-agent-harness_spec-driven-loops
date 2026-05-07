@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that convergence STOP is blocked when an answered question cites <2 independent sources.
 - Real user request: How does the loop prevent shallow answers that rely on a single source?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the source diversity quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question for >= 2 independent sources, and that a violation emits a guard_violation event and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.`
+- Prompt: `Validate source-diversity guards override STOP when answered questions lack independent sources.`
 - Expected execution process: Inspect the Quality Guard Protocol in the convergence reference first, then the YAML algorithm guard check, then the loop protocol Step 2c, then the state format guard_violation event schema.
 - Desired user-visible outcome: The user gets an accurate explanation of how single-source answers are caught and why the loop continues past them.
 - Expected signals: guard_violation event logged with guard="source_diversity", STOP decision overridden to CONTINUE, violated question targeted in next iteration focus.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the source diversity quality guard for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify when composite convergence votes STOP, the guard checks each answered question for >= 2 independent sources, and that a violation emits a guard_violation event and overrides the decision to CONTINUE. Return a concise operator-facing PASS/FAIL verdict with the key evidence.
+Validate source-diversity guards override STOP when answered questions lack independent sources.
 ### Commands
 1. `bash: sed -n '104,139p' .opencode/skill/deep-research/references/convergence.md`
 2. `bash: rg -n 'source_diversity\|guard_violation\|collectSources' .opencode/skill/deep-research/references/convergence.md`

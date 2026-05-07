@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that an iteration with status "insight" and low newInfoRatio does NOT increment stuck count.
 - Real user request: If the agent has a eureka moment but finds little new raw data, does the loop treat it as stuck?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the insight-status contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify state_format.md defines "insight" as a valid iteration status, that convergence.md documents how stuckCount is computed, and that insight iterations are excluded from stuck counting. Return a concise operator-facing verdict.`
+- Prompt: `Validate insight-status iterations avoid false stuck counting despite low raw novelty.`
 - Expected execution process: Inspect the state format reference for the insight status definition, then the convergence reference for stuckCount computation rules, then the SKILL.md for the iteration status summary.
 - Desired user-visible outcome: The user understands that an insight iteration is not counted as stuck because the conceptual breakthrough is recognized as progress even when raw data yield is low.
 - Expected signals: Iteration with status="insight" and low newInfoRatio, stuck_count NOT incremented.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the insight-status contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify state_format.md defines "insight" as a valid iteration status, that convergence.md documents how stuckCount is computed, and that insight iterations are excluded from stuck counting. Return a concise operator-facing verdict.
+Validate insight-status iterations avoid false stuck counting despite low raw novelty.
 ### Commands
 1. `bash: rg -n 'insight' .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'stuckCount\|stuck_count\|insight' .opencode/skill/deep-research/references/convergence.md`

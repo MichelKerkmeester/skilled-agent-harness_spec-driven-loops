@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify malformed JSONL lines are skipped gracefully in review state.
 - Real user request: If the state file gets corrupted partway through, does the whole review fail?
-- Prompt: `As a manual-testing orchestrator, validate the malformed JSONL handling contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when review/deep-review-state.jsonl contains unparseable lines, those lines are skipped without halting the loop, that sensible defaults (e.g., newFindingsRatio = 1.0) are used to prevent premature convergence, and that the skip is logged or visible in the state. Return a concise operator-facing verdict.`
+- Prompt: `Validate malformed deep-review JSONL handling and report whether bad lines are skipped with safe defaults.`
 - Expected execution process: Inspect the state format reference for JSONL parsing rules, then the loop protocol or YAML for error handling, then the convergence reference for default values on parse failure.
 - Desired user-facing outcome: The user is told that a corrupted state line will not crash the review, and that the loop applies conservative defaults to avoid false convergence.
 - Expected signals: Malformed lines are skipped (not crash), defaults applied (e.g., `newFindingsRatio = 1.0` to force continuation), iteration count still derived from valid lines, and the skip is observable.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the malformed JSONL handling contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify when review/deep-review-state.jsonl contains unparseable lines, those lines are skipped without halting the loop, that sensible defaults (e.g., newFindingsRatio = 1.0) are used to prevent premature convergence, and that the skip is logged or visible in the state. Return a concise operator-facing verdict.
+Validate malformed deep-review JSONL handling and report whether bad lines are skipped with safe defaults.
 ### Commands
 1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .opencode/skill/deep-review/references/state_format.md .opencode/skill/deep-review/references/convergence.md`
 2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-review_confirm.yaml`

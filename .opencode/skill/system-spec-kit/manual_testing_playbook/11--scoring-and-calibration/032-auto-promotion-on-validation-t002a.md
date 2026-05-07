@@ -17,7 +17,7 @@ This scenario validates Auto-promotion on validation (T002a) for `032`. It focus
 
 - Objective: Confirm promotion thresholds/throttle.
 - Real user request: `Please validate Auto-promotion on validation (T002a) against the documented validation surface and tell me whether the expected signals are present: Positive validations promote tier at configured threshold; throttle prevents rapid re-promotion; audit trail logged.`
-- RCAF Prompt: `As a scoring validation operator, validate Auto-promotion on validation (T002a) against the documented validation surface. Verify positive validations promote tier at configured threshold; throttle prevents rapid re-promotion; audit trail logged. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate auto-promotion on validation, including threshold promotion, throttle behavior, and audit logging.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Positive validations promote tier at configured threshold; throttle prevents rapid re-promotion; audit trail logged
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Auto-promotion on validation (T002a) for `032`. It focus
 ### Prompt
 
 ```
-As a scoring validation operator, confirm promotion thresholds/throttle against the documented validation surface. Verify positive validations promote tier at configured threshold; throttle prevents rapid re-promotion; audit trail logged. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate auto-promotion on validation, including threshold promotion, throttle behavior, and audit logging.
 ```
 
 ### Commands

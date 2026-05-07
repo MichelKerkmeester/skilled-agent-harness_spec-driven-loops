@@ -16,7 +16,7 @@ This scenario validates Quality proxy formula (B7) for `009`. It focuses on Conf
 
 - Objective: Confirm proxy formula correctness.
 - Real user request: `Please validate Quality proxy formula (B7) against the documented validation surface and tell me whether the expected signals are present: Computed proxy value matches manual formula calculation within tolerance; formula components are all present.`
-- RCAF Prompt: `As an evaluation validation operator, validate Quality proxy formula (B7) against the documented validation surface. Verify computed proxy value matches manual formula calculation within tolerance; formula components are all present. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the quality proxy formula and cite whether the stored value matches manual calculation with all components present.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Computed proxy value matches manual formula calculation within tolerance; formula components are all present
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Quality proxy formula (B7) for `009`. It focuses on Conf
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm proxy formula correctness against the documented validation surface. Verify computed proxy value matches manual formula calculation within tolerance; formula components are all present. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the quality proxy formula and cite whether the stored value matches manual calculation with all components present.
 ```
 
 ### Commands

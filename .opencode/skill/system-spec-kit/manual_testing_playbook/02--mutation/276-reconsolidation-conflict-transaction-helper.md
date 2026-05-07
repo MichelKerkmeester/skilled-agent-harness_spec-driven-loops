@@ -29,7 +29,7 @@ This scenario validates the shared reconsolidation conflict transaction helper f
 ### Prompt
 
 ```
-As a mutation validation operator, validate shared reconsolidation conflict transactions against executeConflict(). Verify both conflict branches route through the shared transaction helper, stale-predecessor guards still apply, and failures roll back without leaving partial conflict writes behind. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a mutation validation operator, validate Reconsolidation conflict transaction helper against executeConflict(). Verify both conflict branches route through the shared transaction helper, stale-predecessor guards still apply, and failures roll back without leaving partial conflict writes behind. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

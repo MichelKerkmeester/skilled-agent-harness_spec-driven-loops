@@ -30,7 +30,7 @@ This scenario validates Spec folder hierarchy as retrieval structure (S4) for `0
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm hierarchy-aware retrieval against the documented validation surface. Verify self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Spec folder hierarchy as retrieval structure (S4) against the documented validation surface. Verify self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

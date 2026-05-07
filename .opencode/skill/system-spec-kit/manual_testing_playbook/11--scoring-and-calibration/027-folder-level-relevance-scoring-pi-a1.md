@@ -17,7 +17,7 @@ This scenario validates Folder-level relevance scoring (PI-A1) for `027`. It foc
 
 - Objective: Confirm folder-first retrieval.
 - Real user request: `Please validate Folder-level relevance scoring (PI-A1) against the documented validation surface and tell me whether the expected signals are present: Folder pre-ranking scores computed; folder-level results appear before individual memory results in ranking.`
-- RCAF Prompt: `As a scoring validation operator, validate Folder-level relevance scoring (PI-A1) against the documented validation surface. Verify folder pre-ranking scores computed; folder-level results appear before individual memory results in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate folder-level relevance scoring and confirm folder results rank before individual memory results.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Folder pre-ranking scores computed; folder-level results appear before individual memory results in ranking
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Folder-level relevance scoring (PI-A1) for `027`. It foc
 ### Prompt
 
 ```
-As a scoring validation operator, confirm folder-first retrieval against the documented validation surface. Verify folder pre-ranking scores computed; folder-level results appear before individual memory results in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate folder-level relevance scoring and confirm folder results rank before individual memory results.
 ```
 
 ### Commands

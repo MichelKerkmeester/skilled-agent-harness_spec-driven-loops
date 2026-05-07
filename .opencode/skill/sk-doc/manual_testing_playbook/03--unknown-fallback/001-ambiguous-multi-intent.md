@@ -15,7 +15,31 @@ created: 2026-05-05
 
 # SD-007: Ambiguous Multi-Intent Disambiguation
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates ambiguous DOC_QUALITY and FLOWCHART routing for `SD-007`. It focuses on preserving both candidate intents when a prompt asks for document improvement and flowchart additions.
+
+### Why This Matters
+
+Ambiguous prompts should surface a tie or combined route instead of silently discarding one valid interpretation. This scenario catches overconfident single-intent routing that would either skip quality standards or omit the requested diagram assets.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Improve doc quality and add flowcharts for the new feature docs.`
+- Prompt: `Improve doc quality and add flowcharts for the new feature docs.`
+- Expected intent: `DOC_QUALITY+FLOWCHART`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-007 | Ambiguous prompt scores DOC_QUALITY and FLOWCHART within delta | Verify sk-doc routes the scenario to `DOC_QUALITY+FLOWCHART` with the expected resources. | `Improve doc quality and add flowcharts for the new feature docs.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `DOC_QUALITY+FLOWCHART`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -26,8 +50,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Improve doc quality and create flowcharts for the new feature. The current
-docs are messy and there's no visual workflow.
+Improve doc quality and add flowcharts for the new feature docs.
 ```
 
 ## Expected Behavior
@@ -46,3 +69,10 @@ docs are messy and there's no visual workflow.
 - top-2 intents include both `DOC_QUALITY` and `FLOWCHART` within delta=1
 - response either disambiguates OR loads union of expected_resources
 - false_positive_resource_load_count <= 2 (slack for union load)
+
+## 4. SOURCE METADATA
+
+- Group: Unknown Fallback
+- Playbook ID: SD-007
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--unknown-fallback/001-ambiguous-multi-intent.md`

@@ -13,7 +13,31 @@ created: 2026-05-05
 
 # SD-005: Assets-Only Resource Loading (FLOWCHART)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates FLOWCHART assets-only resource loading for `SD-005`. It focuses on routing an ASCII deploy-pipeline diagram request to the flowchart asset examples.
+
+### Why This Matters
+
+Diagram requests should load reusable visual patterns, not broad documentation standards or creation workflows. This scenario catches cases where sk-doc misses the asset-only path, returns prose instead of a diagram-oriented response, or expands the context window with irrelevant references.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod, and rollback.`
+- Prompt: `Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod, and rollback.`
+- Expected intent: `FLOWCHART`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-005 | FLOWCHART intent loads only assets/flowcharts/* | Verify sk-doc routes the scenario to `FLOWCHART` with the expected resources. | `Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod, and rollback.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `FLOWCHART`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -24,8 +48,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Generate a flowchart for our deploy pipeline. Use ASCII so it renders in
-markdown. Cover build, test, staging, prod, and rollback branches.
+Generate an ASCII deploy-pipeline flowchart covering build, test, staging, prod, and rollback.
 ```
 
 ## Expected Behavior
@@ -47,3 +70,10 @@ markdown. Cover build, test, staging, prod, and rollback branches.
 - intent_picked == `FLOWCHART`
 - false_positive_resource_load_count <= 1 (no references/* loaded)
 - response is non-empty and uses at least one flowchart-template structure
+
+## 4. SOURCE METADATA
+
+- Group: Resource Loading
+- Playbook ID: SD-005
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `02--resource-loading/002-assets-only.md`

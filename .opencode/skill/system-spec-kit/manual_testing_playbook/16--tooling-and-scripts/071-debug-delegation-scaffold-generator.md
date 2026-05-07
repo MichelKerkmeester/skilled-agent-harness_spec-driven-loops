@@ -9,6 +9,10 @@ description: "Validates that scaffold-debug-delegation.sh generates a well-forme
 
 This scenario validates the failure-threshold offer flow added by spec-folder `050-agent-debug-integration`. The flow has two pieces: (a) the y/n/skip prompt the workflow surfaces after 3+ task failures during `spec_kit:implement` / `spec_kit:complete`, and (b) the new `scaffold-debug-delegation.sh` helper that pre-fills `debug-delegation.md` on opt-in. The hard constraint enforced here is: the workflow must NEVER auto-invoke Task tool → @debug. The user opts in by running the Task-tool dispatch themselves with the scaffold as the structured handoff.
 
+### Why This Matters
+
+Debug escalation must preserve user agency after repeated failures. This scenario catches regressions where the workflow silently dispatches `@debug`, overwrites an existing handoff, or emits a scaffold that no longer matches the debug agent's required intake schema.
+
 ---
 
 ## 2. SCENARIO CONTRACT
@@ -16,7 +20,7 @@ This scenario validates the failure-threshold offer flow added by spec-folder `0
 
 - Objective: Verify scaffold generation, versioned filenames on collision, schema parity with `.opencode/agent/debug.md` lines 60-89, and absence of autonomous @debug dispatch.
 - Real user request: `` Please validate Debug-delegation scaffold generator + failure-threshold prompt rehearsal against the documented validation surface and tell me whether the expected signals are present: Generated file exists at `<spec-folder>/debug-delegation.md` (or `debug-delegation-002.md` if a prior file exists).; File contains 5 numbered sections: PROBLEM SUMMARY, ATTEMPTED FIXES, CONTEXT FOR SPECIALIST, RECOMMENDED NEXT STEPS, HANDOFF CHECKLIST.; Attempt 1/2/3 approach + result fields populated from the input JSON.; YAML frontmatter present with `_memory.continuity` block, `packet_pointer` set to the spec folder relative path, and `last_updated_by: "scaffold-debug-delegation.sh"`.; Script exits 0 and prints the absolute output path on stdout.; Script makes ZERO Task-tool invocations (verifiable: it's a Bash script, not an agent runner). ``
-- RCAF Prompt: `` As a tooling validation operator, validate Debug-delegation scaffold generator + failure-threshold prompt rehearsal against the documented validation surface. Verify Generated file exists at `<spec-folder>/debug-delegation.md` (or `debug-delegation-002.md` if a prior file exists).; File contains 5 numbered sections: PROBLEM SUMMARY, ATTEMPTED FIXES, CONTEXT FOR SPECIALIST, RECOMMENDED NEXT STEPS, HANDOFF CHECKLIST.; Attempt 1/2/3 approach + result fields populated from the input JSON.; YAML frontmatter present with `_memory.continuity` block, `packet_pointer` set to the spec folder relative path, and `last_updated_by: "scaffold-debug-delegation.sh"`.; Script exits 0 and prints the absolute output path on stdout.; Script makes ZERO Task-tool invocations (verifiable: it's a Bash script, not an agent runner). Return a concise pass/fail verdict with the main reason and cited evidence. ``
+- Prompt: `Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsal against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Generated file exists at `<spec-folder>/debug-delegation.md` (or `debug-delegation-002.md` if a prior file exists).; File contains 5 numbered sections: PROBLEM SUMMARY, ATTEMPTED FIXES, CONTEXT FOR SPECIALIST, RECOMMENDED NEXT STEPS, HANDOFF CHECKLIST.; Attempt 1/2/3 approach + result fields populated from the input JSON.; YAML frontmatter present with `_memory.continuity` block, `packet_pointer` set to the spec folder relative path, and `last_updated_by: "scaffold-debug-delegation.sh"`.; Script exits 0 and prints the absolute output path on stdout.; Script makes ZERO Task-tool invocations (verifiable: it's a Bash script, not an agent runner)
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +33,7 @@ This scenario validates the failure-threshold offer flow added by spec-folder `0
 ### Prompt
 
 ```
-As a tooling validation operator, validate scaffold-debug-delegation.sh against bash .opencode/skill/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh --spec-folder <throwaway-folder> --task-id T999 --error-category test_failure --error-message "Expected 'foo' to equal 'bar' at line 42" --affected-files "src/foo.ts,test/foo.test.ts" --hypothesis "Stale cache returning old value" --errors-json '[{"approach":"Clear cache and retry","result":"same error"},{"approach":"Hardcode value","result":"breaks other tests"},{"approach":"Add wait","result":"flaky"}]'. Verify the produced debug-delegation.md contains all 5 schema sections (PROBLEM SUMMARY, ATTEMPTED FIXES, CONTEXT FOR SPECIALIST, RECOMMENDED NEXT STEPS, HANDOFF CHECKLIST), Attempts 1/2/3 are populated from input JSON, no Task tool → @debug invocation was triggered. Return a concise pass/fail verdict with cited evidence.
+Validate Debug-delegation scaffold generator + failure-threshold prompt rehearsal against the documented validation surface and report cited pass/fail evidence.
 ```
 
 ### Commands
@@ -104,3 +108,12 @@ As a tooling validation operator, validate scaffold-debug-delegation.sh against 
 - Workflow YAML: `.opencode/command/spec_kit/assets/spec_kit_implement_auto.yaml` (debug_delegation block) and `.../spec_kit_complete_auto.yaml` (debug_escalation block)
 - Spec folder: `.opencode/specs/skilled-agent-orchestration/050-agent-debug-integration/` (REQ-004, REQ-005)
 - User constraint memory: `feedback_debug_agent_user_invoked_only.md`
+
+---
+
+## 7. SOURCE METADATA
+
+- Group: Tooling and Scripts
+- Playbook ID: DBG-SCAF-001
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md`

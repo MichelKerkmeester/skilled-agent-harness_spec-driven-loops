@@ -30,7 +30,7 @@ This scenario validates Implemented: cross-document entity linking (S5) for `094
 ### Prompt
 
 ```
-As a retrieval-enhancement validation operator, confirm deferred->implemented status against the documented validation surface. Verify entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a retrieval-enhancement validation operator, validate Implemented: cross-document entity linking (S5) against the documented validation surface. Verify entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands

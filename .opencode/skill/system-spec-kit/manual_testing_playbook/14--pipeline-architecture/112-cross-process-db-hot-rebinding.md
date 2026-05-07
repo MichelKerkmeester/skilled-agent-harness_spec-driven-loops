@@ -17,7 +17,7 @@ This scenario validates Cross-process DB hot rebinding for `112`. It focuses on 
 
 - Objective: Confirm marker-file triggers DB reinitialization.
 - Real user request: `Please validate Cross-process DB hot rebinding against memory_save(filePath) and tell me whether the expected signals are present: Server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats reflect post-mutation state (no stale data); health reports healthy after rebind.`
-- RCAF Prompt: `As a pipeline validation operator, validate Cross-process DB hot rebinding against memory_save(filePath). Verify server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats reflect post-mutation state (no stale data); health reports healthy after rebind. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate cross-process DB hot rebinding against memory_save(filePath) and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats reflect post-mutation state (no stale data); health reports healthy after rebind
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Cross-process DB hot rebinding for `112`. It focuses on 
 ### Prompt
 
 ```
-As a pipeline validation operator, confirm marker-file triggers DB reinitialization against memory_save(filePath). Verify server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats reflect post-mutation state (no stale data); health reports healthy after rebind. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate cross-process DB hot rebinding against memory_save(filePath) and return pass/fail with cited evidence.
 ```
 
 ### Commands

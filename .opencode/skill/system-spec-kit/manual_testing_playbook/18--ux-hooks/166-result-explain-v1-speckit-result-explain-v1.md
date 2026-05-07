@@ -16,7 +16,7 @@ This scenario validates result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) for `166`.
 
 - Objective: Verify two-tier explainability attachment to search results.
 - Real user request: `Please validate Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) against SPECKIT_RESULT_EXPLAIN_V1=true and tell me whether the expected signals are present: Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF.`
-- RCAF Prompt: `As a runtime-hook validation operator, validate Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) against SPECKIT_RESULT_EXPLAIN_V1=true. Verify each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate result explain v1 behavior with SPECKIT_RESULT_EXPLAIN_V1 enabled and disabled.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Each result has why.summary string (non-empty); why.topSignals array with SignalLabel entries (e.g., 'semantic_match', 'graph_boosted', 'anchor:decisions'); channelContribution with vector/fts/graph numbers only in debug mode; no why field when flag OFF
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

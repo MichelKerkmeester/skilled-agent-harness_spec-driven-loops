@@ -16,7 +16,7 @@ This scenario validates Checkpoint creation (checkpoint_create) for `EX-015`. It
 
 - Objective: Pre-destructive backup.
 - Real user request: `Please validate Checkpoint creation (checkpoint_create) against checkpoint_create(name,specFolder) and tell me whether the expected signals are present: New checkpoint listed.`
-- RCAF Prompt: `As a lifecycle validation operator, validate Checkpoint creation (checkpoint_create) against checkpoint_create(name,specFolder). Verify new checkpoint listed. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Checkpoint creation with checkpoint_create(name,specFolder), verify the new checkpoint is listed, and return a concise verdict with evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: New checkpoint listed
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Checkpoint creation (checkpoint_create) for `EX-015`. It
 ### Prompt
 
 ```
-As a lifecycle validation operator, validate Pre-destructive backup against checkpoint_create(name,specFolder). Verify new checkpoint listed. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Checkpoint creation with checkpoint_create(name,specFolder), verify the new checkpoint is listed, and return a concise verdict with evidence.
 ```
 
 ### Commands

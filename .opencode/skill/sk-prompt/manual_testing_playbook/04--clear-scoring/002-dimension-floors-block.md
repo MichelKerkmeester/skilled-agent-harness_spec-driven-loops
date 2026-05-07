@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-016` and confirm the
 
 - Objective: Confirm any CLEAR floor breach triggers targeted improvement and re-score.
 - Real user request: `If any CLEAR dimension scores below its floor, re-iterate. Apply this to my prompt for generating user stories.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's user-story generation prompt. Verify any CLEAR dimension below its floor (C<7, L<7, E<10, A<7, R<3) triggers an improvement cycle and re-score even if total CLEAR is 40 or higher.`
+- Prompt: `Improve my user-story prompt; verify any CLEAR dimension below its floor triggers another improvement cycle even when total score passes.`
 - Expected execution process: `@prompt-improver` calculates all dimensions, compares each with its floor, applies targeted improvement on breach, and re-scores.
 - Expected signals: Re-score reason explicitly names the breached dimension and floor.
 - Desired user-visible outcome: Transparency report stating either `all dimension floors met` or `re-score reason: dimension floor breach`.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-016` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's user-story generation prompt. Verify any CLEAR dimension below its floor (C<7, L<7, E<10, A<7, R<3) triggers an improvement cycle and re-score even if total CLEAR is 40 or higher.
+Improve my user-story prompt; verify any CLEAR dimension below its floor triggers another improvement cycle even when total score passes.
 ```
 
 ### Commands

@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that findingsSummary and findingsNew fields in JSONL include P0/P1/P2 counts for every iteration record.
 - Real user request: How does the review track the severity of findings across iterations? Are P0/P1/P2 counts stored somewhere machine-readable?
-- Prompt: `As a manual-testing orchestrator, validate the severity classification JSONL contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify Rule 11 mandates findingsSummary (cumulative) and findingsNew (this iteration) fields with P0/P1/P2 counts in every JSONL iteration record, that the YAML dispatch prompt constrains this, and that the convergence algorithm uses severity weights. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.`
 - Expected execution process: Inspect the SKILL.md rules for Rule 11, then the YAML dispatch constraints for the required JSONL fields, then the convergence algorithm for severity weight usage, then the state format reference for the JSONL schema.
 - Desired user-facing outcome: The user is told that every iteration writes machine-readable P0/P1/P2 counts (cumulative and per-iteration) and that these drive the convergence decision.
 - Expected signals: Rule 11 mandates the fields; the YAML dispatch prompt constrains them; the convergence algorithm references severity_weights with P0=10.0, P1=5.0, P2=1.0; the P0 override sets newFindingsRatio >= 0.50.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the severity classification JSONL contract for deep-review against the current deep-review docs, command entrypoint, YAML workflow, and runtime anchors. Verify Rule 11 mandates findingsSummary (cumulative) and findingsNew (this iteration) fields with P0/P1/P2 counts in every JSONL iteration record, that the YAML dispatch prompt constrains this, and that the convergence algorithm uses severity weights. Return a concise user-facing pass/fail verdict.
+Validate deep-review JSONL severity classification for findingsSummary, findingsNew, and convergence severity weights.
 ### Commands
 1. `bash: rg -n 'findingsSummary|findingsNew|Rule 11|severity counts' .opencode/skill/deep-review/SKILL.md`
 2. `bash: rg -n 'findingsSummary|findingsNew|severity_weights|p0_override|newFindingsRatio' .opencode/command/spec_kit/assets/spec_kit_deep-review_auto.yaml`

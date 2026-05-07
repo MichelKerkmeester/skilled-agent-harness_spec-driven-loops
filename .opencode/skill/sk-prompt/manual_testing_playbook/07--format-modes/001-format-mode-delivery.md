@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-027` and confirm the
 
 - Objective: Confirm `$json`, `$yaml`, and default markdown deliver format-specific structures.
 - Real user request: `$json improve my API request prompt — return the enhanced prompt structured as JSON, not markdown.`
-- Prompt: `As a prompt engineer, use @prompt-improver through sk-prompt $json mode to improve the operator's API request prompt. Verify the delivered enhanced prompt is valid JSON with format-specific keys, not markdown sections. Return the JSON prompt and a format-validation note.`
+- Prompt: `$json improve my API request prompt; verify the enhanced prompt is valid JSON with format-specific keys, not markdown sections.`
 - Expected execution process: sk-prompt detects `$json`, applies standard DEPTH/CLEAR, loads applicable format guidance when requested, and delivers JSON structure.
 - Expected signals: Output parses as JSON; no markdown H2/H3 section wrappers around the enhanced prompt; CLEAR metadata is still present.
 - Desired user-visible outcome: Valid JSON enhanced prompt plus transparency report.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-027` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver through sk-prompt $json mode to improve the operator's API request prompt. Verify the delivered enhanced prompt is valid JSON with format-specific keys, not markdown sections. Return the JSON prompt and a format-validation note.
+$json improve my API request prompt; verify the enhanced prompt is valid JSON with format-specific keys, not markdown sections.
 ```
 
 ### Commands

@@ -16,7 +16,7 @@ This scenario validates Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A)
 
 - Objective: Confirm corpus coverage and hard negatives.
 - Real user request: `Please validate Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A) against the documented validation surface and tell me whether the expected signals are present: Corpus covers all intent categories; hard negatives present; non-trigger prompts included; tier distribution balanced.`
-- RCAF Prompt: `As an evaluation validation operator, validate Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A) against the documented validation surface. Verify corpus covers all intent categories; hard negatives present; non-trigger prompts included; tier distribution balanced. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the synthetic ground-truth corpus and cite coverage for intents, hard negatives, non-trigger prompts, and tier balance.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Corpus covers all intent categories; hard negatives present; non-trigger prompts included; tier distribution balanced
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Synthetic ground truth corpus (G-NEW-1, G-NEW-3 phase A)
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm corpus coverage and hard negatives against the documented validation surface. Verify corpus covers all intent categories; hard negatives present; non-trigger prompts included; tier distribution balanced. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the synthetic ground-truth corpus and cite coverage for intents, hard negatives, non-trigger prompts, and tier balance.
 ```
 
 ### Commands

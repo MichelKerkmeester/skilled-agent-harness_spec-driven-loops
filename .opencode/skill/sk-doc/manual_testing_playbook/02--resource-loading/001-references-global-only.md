@@ -12,7 +12,31 @@ created: 2026-05-05
 
 # SD-004: References-Only Resource Loading (HVR)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates HVR references-only resource loading for `SD-004`. It focuses on routing a voice-rule edit request to `references/global/hvr_rules.md` without loading unrelated templates or assets.
+
+### Why This Matters
+
+HVR requests should stay narrow because voice rewrites do not need creation scaffolds, flowchart assets, or install templates. This scenario catches token bloat and false-positive resource loading that would make the router less predictable for small style-only tasks.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Apply HVR voice rules to specs/123-example/implementation-summary.md without changing semantics.`
+- Prompt: `Apply HVR voice rules to specs/123-example/implementation-summary.md without changing semantics.`
+- Expected intent: `HVR`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-004 | HVR intent loads only references/global/hvr_rules.md | Verify sk-doc routes the scenario to `HVR` with the expected resources. | `Apply HVR voice rules to specs/123-example/implementation-summary.md without changing semantics.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `HVR`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -23,9 +47,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Apply HVR voice rules to the existing implementation-summary.md in
-specs/123-example/. Tighten passive voice and rewrite to active high-value
-voice; do not change semantics.
+Apply HVR voice rules to specs/123-example/implementation-summary.md without changing semantics.
 ```
 
 ## Expected Behavior
@@ -45,3 +67,10 @@ voice; do not change semantics.
 - intent_picked == `HVR`
 - false_positive_resource_load_count <= 1 (no assets/* loaded)
 - response is non-empty and references `references/global/hvr_rules.md`
+
+## 4. SOURCE METADATA
+
+- Group: Resource Loading
+- Playbook ID: SD-004
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `02--resource-loading/001-references-global-only.md`

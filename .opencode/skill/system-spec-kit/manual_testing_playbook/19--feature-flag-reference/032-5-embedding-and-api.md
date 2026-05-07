@@ -17,7 +17,7 @@ This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provide
 
 - Objective: Provider selection audit.
 - Real user request: `Please validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }) and tell me whether the expected signals are present: Provider rules and key precedence shown.`
-- RCAF Prompt: `As a feature-flag validation operator, validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }). Verify provider rules and key precedence shown. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }).`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Provider rules and key precedence shown
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provide
 ### Prompt
 
 ```
-As a feature-flag validation operator, validate Provider selection audit against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }). Verify provider rules and key precedence shown. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules", limit:20 }).
 ```
 
 ### Commands

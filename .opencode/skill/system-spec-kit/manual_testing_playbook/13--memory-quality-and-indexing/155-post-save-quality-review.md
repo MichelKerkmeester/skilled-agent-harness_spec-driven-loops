@@ -17,7 +17,7 @@ This scenario validates the POST-SAVE QUALITY REVIEW hook that fires after a JSO
 
 - Objective: Verify that the post-save quality review correctly identifies field-propagation failures and guides AI remediation.
 - Real user request: `Please validate Post-save quality review against sessionSummary and tell me whether the expected signals are present: REVIEW block present in stdout; issue count and severity match the scenario; fix instructions are actionable.`
-- RCAF Prompt: `As a spec-doc record-quality validation operator, validate Post-save quality review against sessionSummary. Verify the post-save quality review correctly identifies field-propagation failures and guides AI remediation. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate post-save quality review issue detection and remediation guidance.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: REVIEW block present in stdout; issue count and severity match the scenario; fix instructions are actionable
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates the POST-SAVE QUALITY REVIEW hook that fires after a JSO
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate JSON mode save with all fields populated correctly against sessionSummary. Verify pOST-SAVE QUALITY REVIEW -- PASSED with 0 issues. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate post-save quality review issue detection and remediation guidance.
 ```
 
 ### Commands
@@ -63,7 +63,7 @@ Check `scripts/core/post-save-review.ts` for false-positive conditions
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate JSON mode save with generic title against node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>. Verify [HIGH] severity issue for title; fix instruction references sessionSummary. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate generic-title save reports a HIGH title issue.
 ```
 
 ### Commands
@@ -97,7 +97,7 @@ Inspect title-quality check in `scripts/core/post-save-review.ts` and the generi
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate JSON mode save with path fragment triggers against triggerPhrases. Verify [HIGH] severity issue for trigger_phrases; fix instruction present. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate path-fragment trigger phrases report a HIGH trigger issue.
 ```
 
 ### Commands
@@ -129,7 +129,7 @@ Check path-fragment detection regex in `scripts/core/post-save-review.ts`
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate JSON mode save with mismatched importance_tier against importanceTier. Verify [MEDIUM] severity issue for importance_tier; expected vs actual values shown. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate mismatched importance tier reports a MEDIUM issue.
 ```
 
 ### Commands
@@ -162,7 +162,7 @@ Inspect importance_tier comparison in `scripts/core/post-save-review.ts` and inp
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate JSON mode save with 0 decisions when payload has keyDecisions against keyDecisions. Verify [MEDIUM] severity issue for decision_count; notes expected count from payload. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate missing key decision propagation reports a MEDIUM decision-count issue.
 ```
 
 ### Commands
@@ -194,7 +194,7 @@ Check decision counting in `scripts/extractors/collect-session-data.ts` and the 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate AI follows fix instructions to resolve HIGH issues against [HIGH]. Verify frontmatter fields match payload values after patch; no remaining mismatches for patched fields. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate AI fix instructions resolve HIGH post-save issues.
 ```
 
 ### Commands
@@ -227,7 +227,7 @@ Verify fix instruction precision — instructions must name the exact field and 
 ### Prompt
 
 ```
-As a spec-doc record-quality validation operator, validate Score penalty advisory logging against the documented validation surface. Verify "Post-save review: quality_score penalty" present in stdout with negative value. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate score-penalty advisory logging after post-save review.
 ```
 
 ### Commands

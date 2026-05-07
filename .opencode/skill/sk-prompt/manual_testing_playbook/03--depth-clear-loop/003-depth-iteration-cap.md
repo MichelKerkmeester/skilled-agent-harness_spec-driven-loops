@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-011` and confirm the
 
 - Objective: Confirm improvement cycles stop at 3 and deliver best-version evidence when CLEAR remains below target.
 - Real user request: `Improve my prompt for technical writing — but if it can't hit 40/50 in 3 tries, just give me the best version with notes.`
-- Prompt: `As a prompt engineer, use @prompt-improver to improve the operator's technical-writing prompt. Verify CLEAR re-score loops run at most 3 times; if CLEAR stays below 40/50 or a dimension floor remains breached, return the best version with a quality note instead of starting a fourth loop.`
+- Prompt: `Improve my technical-writing prompt; verify CLEAR loops stop after 3 attempts and return the best version with a quality note.`
 - Expected execution process: `@prompt-improver` scores, applies targeted improvement, re-scores, caps at 3 cycles, and returns best observed CLEAR score with notes.
 - Expected signals: Iteration count <= 3; best CLEAR score shown; quality note present when target is unmet.
 - Desired user-visible outcome: Enhanced prompt plus transparency report stating `Improvement cycles: 3 max`, `Best CLEAR: <score>/50`, and `quality note`.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-011` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, use @prompt-improver to improve the operator's technical-writing prompt. Verify CLEAR re-score loops run at most 3 times; if CLEAR stays below 40/50 or a dimension floor remains breached, return the best version with a quality note instead of starting a fourth loop.
+Improve my technical-writing prompt; verify CLEAR loops stop after 3 attempts and return the best version with a quality note.
 ```
 
 ### Commands

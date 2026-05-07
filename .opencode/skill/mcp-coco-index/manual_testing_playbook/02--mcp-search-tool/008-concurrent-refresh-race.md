@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `MCP-008` and confirm th
 
 - Objective: Verify the daemon either (a) handles two simultaneous `refresh_index=true` calls cleanly, or (b) surfaces a `ComponentContext` error explicitly so the operator can fall back to `refresh_index=false`.
 - Real user request: `"Run two CocoIndex searches at the same time and tell me whether the refresh-index race is real."`
-- RCAF Prompt: `As a manual-testing orchestrator, fire two MCP CocoIndex searches concurrently with refresh_index=true against the current CocoIndex daemon in this repository. Verify both responses parse as JSON; no silent empty result when index is known non-empty; if a ComponentContext error appears, it is on at most one of the two responses; the follow-up refresh_index=false call returns a non-empty result array. Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Run two refreshing MCP CocoIndex searches concurrently and tell me whether the refresh race is real.`
 - Expected execution process: dispatch two MCP `search` calls in the same shell using background subprocesses or two parallel tool invocations; collect both responses; inspect for `ComponentContext` substring; rerun second call with `refresh_index=false` to confirm clean path.
 - Expected signals: both responses parse as JSON; no silent empty result when index is known non-empty; if a `ComponentContext` error appears, it is on at most one of the two responses; the follow-up `refresh_index=false` call returns a non-empty result array.
 - Desired user-visible outcome: A short verdict naming which mode was observed (clean | race-with-error | unexpected silent empty), plus the recommended `refresh_index=false` follow-up confirmation.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `MCP-008` and confirm th
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, fire two MCP CocoIndex searches concurrently with refresh_index=true against the current CocoIndex daemon in this repository. Verify both responses parse as JSON; no silent empty result when index is known non-empty; if a ComponentContext error appears, it is on at most one of the two responses; the follow-up refresh_index=false call returns a non-empty result array. Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Run two refreshing MCP CocoIndex searches concurrently and tell me whether the refresh race is real.`
 
 ### Commands
 

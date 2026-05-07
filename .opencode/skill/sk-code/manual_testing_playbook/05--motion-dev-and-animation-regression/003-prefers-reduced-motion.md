@@ -22,14 +22,14 @@ Operators run the exact prompt and command sequence for `MR-003` and compare nor
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| `MR-003` | Prefers Reduced Motion | Verify Motion interactions respect reduced-motion preference | `Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.` | capture normal baseline -> enable DevTools Rendering reduced-motion emulation -> reload -> exercise interactions -> save video and console | media query matches reduce; testimonial slider avoids animated slide travel; nav/dropdown has no motion-sickness-inducing transform; no console errors | `/tmp/skc-MR003-normal.mp4`, `/tmp/skc-MR003-reduced.mp4`, `/tmp/skc-MR003-console.txt` | PASS iff reduced-motion mode visibly removes or neutralizes large transform motion and preserves usable state changes | If animation still travels, inspect source for `matchMedia('(prefers-reduced-motion: reduce)')` or equivalent guard |
+| `MR-003` | Prefers Reduced Motion | Verify Motion interactions respect reduced-motion preference | `Test reduced-motion mode on the Motion slider and nav dropdown; return PASS/FAIL with before/after evidence.` | capture normal baseline -> enable DevTools Rendering reduced-motion emulation -> reload -> exercise interactions -> save video and console | media query matches reduce; testimonial slider avoids animated slide travel; nav/dropdown has no motion-sickness-inducing transform; no console errors | `/tmp/skc-MR003-normal.mp4`, `/tmp/skc-MR003-reduced.mp4`, `/tmp/skc-MR003-console.txt` | PASS iff reduced-motion mode visibly removes or neutralizes large transform motion and preserves usable state changes | If animation still travels, inspect source for `matchMedia('(prefers-reduced-motion: reduce)')` or equivalent guard |
 
 ## 3. TEST EXECUTION
 
 ### Prompt
 
 ```text
-Enable prefers-reduced-motion: reduce in Chrome DevTools, exercise the Motion testimonial slider and nav dropdown, and verify transform-heavy movement is disabled, shortened to instant state changes, or replaced with opacity-only changes. Return PASS/FAIL with before/after evidence.
+Test reduced-motion mode on the Motion slider and nav dropdown; return PASS/FAIL with before/after evidence.
 ```
 
 ### Commands

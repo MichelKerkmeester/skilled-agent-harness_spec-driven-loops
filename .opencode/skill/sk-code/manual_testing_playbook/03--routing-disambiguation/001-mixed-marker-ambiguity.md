@@ -22,7 +22,7 @@ Either is acceptable IF the chosen behavior is documented in SKILL.md. What is N
 
 **Exact prompt**:
 ```
-I want to add a Lenis smooth-scroll initializer to my .opencode/skill/sk-doc/scripts/preview-server.js so the local preview server has smooth-scroll on its index page.
+Add Lenis smooth-scroll to .opencode/skill/sk-doc/scripts/preview-server.js for the local preview index page.
 ```
 
 **Markers present**:

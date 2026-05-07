@@ -17,7 +17,7 @@ This scenario validates Stage-2 score field synchronization (P0-8) for `118`. It
 
 - Objective: Verify intentAdjustedScore reflects all downstream signal modifications after non-hybrid intent weighting.
 - Real user request: `Please validate Stage-2 score field synchronization (P0-8) against memory_search({ query:"non hybrid intent weighting sync check", includeTrace:true }) and tell me whether the expected signals are present: intentAdjustedScore set at Step 4 in trace; downstream signals modify score field; final intentAdjustedScore >= score (Math.max sync); resolveEffectiveScore returns synchronized value.`
-- RCAF Prompt: `As a scoring validation operator, validate Stage-2 score field synchronization (P0-8) against memory_search({ query:"non hybrid intent weighting sync check", includeTrace:true }). Verify intentAdjustedScore reflects all downstream signal modifications after non-hybrid intent weighting. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Stage-2 score field synchronization with includeTrace evidence for non-hybrid intent weighting.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: intentAdjustedScore set at Step 4 in trace; downstream signals modify score field; final intentAdjustedScore >= score (Math.max sync); resolveEffectiveScore returns synchronized value
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Stage-2 score field synchronization (P0-8) for `118`. It
 ### Prompt
 
 ```
-As a scoring validation operator, verify intentAdjustedScore reflects all downstream signal modifications after non-hybrid intent weighting against memory_search({ query:"non hybrid intent weighting sync check", includeTrace:true }). Verify intentAdjustedScore set at Step 4 in trace; downstream signals modify score field; final intentAdjustedScore >= score (Math.max sync); resolveEffectiveScore returns synchronized value. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Stage-2 score field synchronization with includeTrace evidence for non-hybrid intent weighting.
 ```
 
 ### Commands

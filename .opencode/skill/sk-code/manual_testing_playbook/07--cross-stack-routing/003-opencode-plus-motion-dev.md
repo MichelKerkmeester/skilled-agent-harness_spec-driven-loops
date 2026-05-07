@@ -15,7 +15,7 @@ This scenario verifies mixed-marker precedence. A `.opencode/` TypeScript tool m
 
 **Realistic user prompt**:
 ```text
-Update .opencode/skill/sk-doc/scripts/preview-server.ts so its docs preview page can show a small motion.dev animate() demo. Analyze how sk-code should route this before any edit.
+Before editing .opencode/skill/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?
 ```
 
 **Expected detection markers** (verbatim from `references/router/code_surface_detection.md`):

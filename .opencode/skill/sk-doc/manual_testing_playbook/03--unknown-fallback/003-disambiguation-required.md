@@ -13,7 +13,31 @@ created: 2026-05-05
 
 # SD-009: Disambiguation Required (FEATURE_CATALOG ↔ PLAYBOOK)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates FEATURE_CATALOG and PLAYBOOK disambiguation for `SD-009`. It focuses on a prompt that asks for catalog entries and playbook scenario documentation in the same request.
+
+### Why This Matters
+
+Feature catalogs and manual playbooks are related but have different file shapes and validation contracts. This scenario catches routing that collapses the two modes into one answer without asking which artifact should be primary or loading both relevant guidance sets.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Build a feature catalog for the playbook system and document each scenario as a catalog entry.`
+- Prompt: `Build a feature catalog for the playbook system and document each scenario as a catalog entry.`
+- Expected intent: `FEATURE_CATALOG+PLAYBOOK`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-009 | FEATURE_CATALOG vs PLAYBOOK tie within delta=1 | Verify sk-doc routes the scenario to `FEATURE_CATALOG+PLAYBOOK` with the expected resources. | `Build a feature catalog for the playbook system and document each scenario as a catalog entry.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `FEATURE_CATALOG+PLAYBOOK`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -24,8 +48,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-I want a feature catalog for the playbook system. Document each playbook
-scenario as a catalog entry.
+Build a feature catalog for the playbook system and document each scenario as a catalog entry.
 ```
 
 ## Expected Behavior
@@ -44,3 +67,10 @@ scenario as a catalog entry.
 - both `FEATURE_CATALOG` and `PLAYBOOK` appear in top-2 within delta=1
 - response either disambiguates OR loads both expected_resources
 - false_positive_resource_load_count <= 2
+
+## 4. SOURCE METADATA
+
+- Group: Unknown Fallback
+- Playbook ID: SD-009
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--unknown-fallback/003-disambiguation-required.md`

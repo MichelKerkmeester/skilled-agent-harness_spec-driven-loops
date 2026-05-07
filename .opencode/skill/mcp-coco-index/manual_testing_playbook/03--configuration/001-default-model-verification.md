@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `CFG-001` and confirm th
 
 - Objective: Verify global settings contain the documented default embedding model
 - Real user request: `Please verify global settings contain the documented default embedding model.`
-- RCAF Prompt: `As a manual-testing orchestrator, check the CocoIndex Code global settings for the embedding model against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Settings file exists; embedding.model matches a documented model such as sentence-transformers/all-MiniLM-L6-v2 or voyage/voyage-code-3. Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Verify global CocoIndex settings include a documented embedding model; return pass/fail with reason.`
 - Expected execution process: Run the TEST EXECUTION command sequence for `CFG-001`, capture the listed evidence, compare observed output with the expected signals, and return the verdict to the user.
 - Expected signals: Settings file exists; `embedding.model` matches a documented model such as `sentence-transformers/all-MiniLM-L6-v2` or `voyage/voyage-code-3`
 - Desired user-visible outcome: A concise user-visible PASS/FAIL verdict naming whether the scenario satisfied the objective and the main reason.
@@ -39,7 +39,7 @@ Operators run the exact prompt and command sequence for `CFG-001` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CFG-001 | Default model verification | Verify global settings contain the documented default embedding model | `As a manual-testing orchestrator, check the CocoIndex Code global settings for the embedding model against the current CocoIndex CLI, daemon, and MCP surfaces in this repository. Verify Settings file exists; embedding.model matches a documented model such as sentence-transformers/all-MiniLM-L6-v2 or voyage/voyage-code-3. Return a concise user-visible pass/fail verdict with the main reason.` | 1. `bash: cat ~/.cocoindex_code/global_settings.yml` -> 2. Locate `embedding.provider` and `embedding.model` fields | Settings file exists; `embedding.model` matches a documented model such as `sentence-transformers/all-MiniLM-L6-v2` or `voyage/voyage-code-3` | Contents of `global_settings.yml` with embedding fields highlighted | PASS if embedding model field exists and matches a documented model; FAIL if file missing or model field absent | Check `COCOINDEX_CODE_DIR` env var; verify `~/.cocoindex_code/` directory exists; run `ccc init` if needed |
+| CFG-001 | Default model verification | Verify global settings contain the documented default embedding model | `Verify global CocoIndex settings include a documented embedding model; return pass/fail with reason.` | 1. `bash: cat ~/.cocoindex_code/global_settings.yml` -> 2. Locate `embedding.provider` and `embedding.model` fields | Settings file exists; `embedding.model` matches a documented model such as `sentence-transformers/all-MiniLM-L6-v2` or `voyage/voyage-code-3` | Contents of `global_settings.yml` with embedding fields highlighted | PASS if embedding model field exists and matches a documented model; FAIL if file missing or model field absent | Check `COCOINDEX_CODE_DIR` env var; verify `~/.cocoindex_code/` directory exists; run `ccc init` if needed |
 
 
 ---

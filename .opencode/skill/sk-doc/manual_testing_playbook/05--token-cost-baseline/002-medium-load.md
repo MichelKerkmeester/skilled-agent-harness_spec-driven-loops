@@ -14,7 +14,31 @@ created: 2026-05-05
 
 # SD-014: Medium-Load Token Cost (Median)
 
-## Setup
+## 1. OVERVIEW
+
+This scenario validates medium-load SKILL_CREATION token-cost behavior for `SD-014`. It focuses on a typical skill-scaffolding request that should load three creation resources and establish the median baseline.
+
+### Why This Matters
+
+Skill creation is resource-heavy enough to reveal normal routing cost without being a stress case. This scenario catches missing template loads, excessive adjacent resources, and token counts that drift away from the expected middle of the SD-013 to SD-015 range.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+- Real user request: `Create sk-graph-rag with index/query intents, a SKILL.md scaffold, and a starter reference doc.`
+- Prompt: `Create sk-graph-rag with index/query intents, a SKILL.md scaffold, and a starter reference doc.`
+- Expected intent: `SKILL_CREATION`
+- Desired user-visible outcome: The router trace identifies the expected intent, loaded resources, and response shape without executing file changes.
+
+## 3. TEST EXECUTION
+
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| SD-014 | Median token cost: SKILL_CREATION query, 3 resources | Verify sk-doc routes the scenario to `SKILL_CREATION` with the expected resources. | `Create sk-graph-rag with index/query intents, a SKILL.md scaffold, and a starter reference doc.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+
+
+### Setup
 
 ```
 DO NOT execute the work below. INSTEAD describe (in your response):
@@ -25,9 +49,7 @@ DO NOT execute the work below. INSTEAD describe (in your response):
 DO NOT create files, modify any existing files, run /create:* commands, or scaffold skill/agent/command output. Treat this as a routing-trace test only.
 
 INPUT TO ROUTE:
-Create a new skill called sk-graph-rag for graph-based retrieval-augmented
-generation. It should have two intents (index and query) and ship a starter
-reference doc plus a SKILL.md scaffold.
+Create sk-graph-rag with index/query intents, a SKILL.md scaffold, and a starter reference doc.
 ```
 
 (Typical SKILL_CREATION query — 3 resources loaded.)
@@ -48,3 +70,10 @@ reference doc plus a SKILL.md scaffold.
 - intent_picked == `SKILL_CREATION`
 - exactly 3 RESOURCE_MAP resources loaded (false_positive_resource_load_count <= 1)
 - per-CLI median token cost recorded; should fall between SD-013 floor and SD-015 ceiling
+
+## 4. SOURCE METADATA
+
+- Group: Token Cost Baseline
+- Playbook ID: SD-014
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `05--token-cost-baseline/002-medium-load.md`

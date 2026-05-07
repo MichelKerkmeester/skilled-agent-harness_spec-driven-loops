@@ -17,7 +17,7 @@ This scenario validates Feature flag governance for `063`. It focuses on Confirm
 
 - Objective: Confirm governance policy conformance.
 - Real user request: `Please validate Feature flag governance against the documented validation surface and tell me whether the expected signals are present: All flags enumerated with age and review cadence; compliance gaps identified; no undocumented flags found.`
-- RCAF Prompt: `As a governance validation operator, validate Feature flag governance against the documented validation surface. Verify all flags enumerated with age and review cadence; compliance gaps identified; no undocumented flags found. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Feature flag governance against the documented validation surface and report whether all expected governance signals are present.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All flags enumerated with age and review cadence; compliance gaps identified; no undocumented flags found
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Feature flag governance for `063`. It focuses on Confirm
 ### Prompt
 
 ```
-As a governance validation operator, confirm governance policy conformance against the documented validation surface. Verify all flags enumerated with age and review cadence; compliance gaps identified; no undocumented flags found. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Feature flag governance against the documented validation surface and report whether all expected governance signals are present.
 ```
 
 ### Commands

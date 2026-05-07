@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `SP-002` and confirm the
 
 - Objective: Confirm `$raw` skips DEPTH and CLEAR entirely
 - Real user request: `$raw I already wrote this prompt — just clean up whitespace, do not rewrite it.`
-- Prompt: `As a prompt engineer, run sk-prompt against operator input prefixed with $raw. Verify DEPTH runs 0 rounds, CLEAR scoring is skipped, no transparency report is emitted, and the input passes through with minimal structural cleanup only.`
+- Prompt: `$raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped and no transparency report is emitted.`
 - Expected execution process: sk-prompt detects `$raw` prefix, bypasses INTENT_MODEL scoring, executes 0 DEPTH rounds, skips CLEAR scoring, returns the input with whitespace and line-wrap cleanup only.
 - Expected signals: Mode = `$raw`, DEPTH rounds = 0, no CLEAR breakdown, no transparency report
 - Desired user-visible outcome: Output that is structurally identical to input plus a one-line "Mode: $raw (DEPTH skipped)" notice.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `SP-002` and confirm the
 ### Prompt
 
 ```
-As a prompt engineer, run sk-prompt against operator input prefixed with $raw. Verify DEPTH runs 0 rounds, CLEAR scoring is skipped, no transparency report is emitted, and the input passes through with minimal structural cleanup only.
+$raw clean up my prompt's whitespace only; verify DEPTH and CLEAR stay skipped and no transparency report is emitted.
 ```
 
 ### Commands

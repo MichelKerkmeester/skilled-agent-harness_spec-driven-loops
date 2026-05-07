@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify optional focusTrack labels appear in JSONL and dashboard iteration table.
 - Real user request: Can I group iterations by topic to see which research direction was most productive?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the focusTrack label contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the JSONL state format defines focusTrack as an optional field on iteration records, and that the dashboard Progress table surfaces a Track column. Return a concise operator-facing verdict.`
+- Prompt: `Validate focusTrack labels appear in JSONL iteration records and the dashboard Progress table.`
 - Expected execution process: Inspect the state format reference for the focusTrack field definition, then check the dashboard asset for the Progress table schema including the Track column.
 - Desired user-visible outcome: The user understands that focusTrack is an optional post-hoc grouping label that flows from JSONL records into the dashboard Progress table for analysis.
 - Expected signals: JSONL iteration records with an optional focusTrack field, dashboard Progress table with a Track column.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the focusTrack label contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the JSONL state format defines focusTrack as an optional field on iteration records, and that the dashboard Progress table surfaces a Track column. Return a concise operator-facing verdict.
+Validate focusTrack labels appear in JSONL iteration records and the dashboard Progress table.
 ### Commands
 1. `bash: rg -n 'focusTrack' .opencode/skill/deep-research/references/state_format.md`
 2. `bash: rg -n 'Track\|focusTrack' .opencode/skill/deep-research/assets/deep_research_dashboard.md`

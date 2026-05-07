@@ -17,7 +17,7 @@ This scenario validates the deferred AST-level section retrieval tool entry for 
 
 - Objective: Verify `read_spec_section(filePath, heading)` remains a planned AST-based retrieval tool, no implementation/source files exist yet, and R7 anchor-aware thinning remains the active approach until spec docs routinely exceed about 1000 lines.
 - Real user request: `` Please validate AST-level section retrieval tool against feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md and tell me whether the expected signals are present: Feature is marked planned/deferred; `read_spec_section(filePath, heading)` is described as future work; no implementation/source files are present; R7 anchor-aware thinning is still documented as the current approach. ``
-- RCAF Prompt: `As a retrieval validation operator, validate AST-level section retrieval tool against feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md. Verify read_spec_section(filePath, heading) remains a planned AST-based retrieval tool, no implementation/source files exist yet, and R7 anchor-aware thinning remains the active approach until spec docs routinely exceed about 1000 lines. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the planned AST section retrieval tool and confirm no implementation exists while R7 anchor-aware thinning remains active.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Feature is marked planned/deferred; `read_spec_section(filePath, heading)` is described as future work; no implementation/source files are present; R7 anchor-aware thinning is still documented as the current approach
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates the deferred AST-level section retrieval tool entry for 
 
 ### Prompt
 
-```
-As a retrieval validation operator, verify deferred AST heading-level retrieval remains unshipped and correctly bounded against feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md. Verify feature is marked planned/deferred; no implementation/source files are present; current retrieval remains anchor-aware thinning. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate the planned AST section retrieval tool and confirm no implementation exists while R7 anchor-aware thinning remains active.`
 
 ### Commands
 

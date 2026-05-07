@@ -16,7 +16,7 @@ This scenario validates INT8 quantization evaluation (R5) for `090`. It focuses 
 
 - Objective: Confirm no-go decision remains valid.
 - Real user request: `Please validate INT8 quantization evaluation (R5) against the documented validation surface and tell me whether the expected signals are present: Quality degradation metrics exceed acceptable threshold; no-go criteria still met; decision rationale documented with current data.`
-- RCAF Prompt: `As an evaluation validation operator, validate INT8 quantization evaluation (R5) against the documented validation surface. Verify quality degradation metrics exceed acceptable threshold; no-go criteria still met; decision rationale documented with current data. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the INT8 quantization no-go decision and cite current degradation metrics, criteria, and rationale evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Quality degradation metrics exceed acceptable threshold; no-go criteria still met; decision rationale documented with current data
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates INT8 quantization evaluation (R5) for `090`. It focuses 
 ### Prompt
 
 ```
-As an evaluation validation operator, confirm no-go decision remains valid against the documented validation surface. Verify quality degradation metrics exceed acceptable threshold; no-go criteria still met; decision rationale documented with current data. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the INT8 quantization no-go decision and cite current degradation metrics, criteria, and rationale evidence.
 ```
 
 ### Commands

@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that confirm mode adds approval checkpoints without changing the core loop phases or artifact contract.
 - Real user request: Run deep research, but stop so I can review the strategy and each iteration before you continue.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the confirm-mode contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-research:confirm is documented as interactive, approval-gated, and still uses the same core loop and output artifacts as auto mode. Return a concise operator-facing verdict.`
+- Prompt: `Validate confirm mode approval checkpoints without changing deep-research's core loop or artifacts.`
 - Expected execution process: Inspect the command entrypoint for mode descriptions, then the confirm YAML for approval gates, then the README to ensure the user-facing explanation still describes the same loop outputs.
 - Desired user-visible outcome: The user is told that confirm mode pauses for review at defined checkpoints while still producing the same scratch state and synthesis artifacts.
 - Expected signals: Confirm mode is interactive, approval-gated, and still routes through initialization, loop, synthesis, and save rather than a separate workflow.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the confirm-mode contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify /spec_kit:deep-research:confirm is documented as interactive, approval-gated, and still uses the same core loop and output artifacts as auto mode. Return a concise operator-facing verdict.
+Validate confirm mode approval checkpoints without changing deep-research's core loop or artifacts.
 ### Commands
 1. `bash: rg -n ':confirm|approval|interactive' .opencode/command/spec_kit/deep-research.md .opencode/skill/deep-research/README.md`
 2. `bash: sed -n '1,300p' .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

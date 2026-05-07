@@ -16,7 +16,7 @@ This scenario validates Phase command workflow for `PHASE-005`. It focuses on Ex
 
 - Objective: Execute `/spec_kit:plan :with-phases` command in auto mode and verify 7-step workflow.
 - Real user request: `Please validate Phase command workflow against /spec_kit:plan :with-phases and tell me whether the expected signals are present: All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths.`
-- RCAF Prompt: `As a tooling validation operator, validate Phase command workflow against /spec_kit:plan :with-phases. Verify execute /spec_kit:plan :with-phases command in auto mode and verify 7-step workflow. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Phase command workflow against /spec_kit:plan :with-phases and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: All 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Phase command workflow for `PHASE-005`. It focuses on Ex
 ### Prompt
 
 ```
-As a tooling validation operator, validate Execute /spec_kit:plan :with-phases command in auto mode and verify 7-step workflow against /spec_kit:plan :with-phases. Verify all 7 steps execute in sequence; scoring output visible; folders created with correct structure; link validation passes; recursive validation passes; success summary with paths. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Phase command workflow against /spec_kit:plan :with-phases and report cited pass/fail evidence.
 ```
 
 ### Commands

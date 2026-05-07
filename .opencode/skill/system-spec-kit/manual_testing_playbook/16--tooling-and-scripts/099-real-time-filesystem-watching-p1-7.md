@@ -16,7 +16,7 @@ This scenario validates Real-time filesystem watching (P1-7) for `099`. It focus
 
 - Objective: Confirm file watcher debounce, hash seeding, and ENOENT grace.
 - Real user request: `Please validate Real-time filesystem watching (P1-7) against SPECKIT_FILE_WATCHER=true and tell me whether the expected signals are present: File add seeds hash cache; modifications trigger reindex after 2s debounce; identical-content modifications produce no reindex; rapid create-delete produces no ENOENT crash.`
-- RCAF Prompt: `As a tooling validation operator, validate Real-time filesystem watching (P1-7) against SPECKIT_FILE_WATCHER=true. Verify file watcher debounce, hash seeding, and ENOENT grace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate Real-time filesystem watching (P1-7) against SPECKIT_FILE_WATCHER=true and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: File add seeds hash cache; modifications trigger reindex after 2s debounce; identical-content modifications produce no reindex; rapid create-delete produces no ENOENT crash
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Real-time filesystem watching (P1-7) for `099`. It focus
 ### Prompt
 
 ```
-As a tooling validation operator, confirm file watcher debounce, hash seeding, and ENOENT grace against SPECKIT_FILE_WATCHER=true. Verify file add seeds hash cache; modifications trigger reindex after 2s debounce; identical-content modifications produce no reindex; rapid create-delete produces no ENOENT crash. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate Real-time filesystem watching (P1-7) against SPECKIT_FILE_WATCHER=true and report cited pass/fail evidence.
 ```
 
 ### Commands

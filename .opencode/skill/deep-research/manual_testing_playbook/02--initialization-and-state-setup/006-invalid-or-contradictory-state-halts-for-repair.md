@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that partial or contradictory scratch artifacts trigger a halt for repair instead of a guessed resume path.
 - Real user request: My deep-research scratch folder looks half-broken. Will the workflow repair it automatically or stop?
-- RCAF Prompt: `As a manual-testing orchestrator, validate the invalid-state halt contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify contradictory or partial deep-research artifacts stop the workflow for repair instead of guessing through initialization. Return a concise user-facing pass/fail verdict.`
+- Prompt: `Validate invalid deep-research state halts for repair instead of guessing through partial or contradictory artifacts.`
 - Expected execution process: Inspect the protocol rules, inspect YAML invalid-state handling, then compare the result against README troubleshooting language.
 - Desired user-visible outcome: The user is warned clearly that broken state must be repaired or archived before continuing.
 - Expected signals: Invalid-state is a named class, both YAML files halt with a repair message, and the docs do not promise silent guessing for contradictory state.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the invalid-state halt contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify contradictory or partial deep-research artifacts stop the workflow for repair instead of guessing through initialization. Return a concise user-facing pass/fail verdict.
+Validate invalid deep-research state halts for repair instead of guessing through partial or contradictory artifacts.
 ### Commands
 1. `bash: rg -n 'invalid-state|halt for repair|contradictory|guessing' .opencode/skill/deep-research/references/loop_protocol.md .opencode/skill/deep-research/SKILL.md`
 2. `bash: rg -n 'on_invalid_state|halt: true|incomplete or contradictory' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

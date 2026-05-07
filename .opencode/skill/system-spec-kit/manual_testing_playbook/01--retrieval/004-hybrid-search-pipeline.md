@@ -17,7 +17,7 @@ This scenario validates Hybrid search pipeline for `EX-004`. It focuses on chann
 
 - Objective: Confirm multi-channel fusion stays coherent when routing and fallback interact.
 - Real user request: `` Please validate Hybrid search pipeline against memory_search({ query:"graph rollout trace check", limit:10, includeTrace:true, bypassCache:true }) and tell me whether the expected signals are present: Non-empty result set with trace evidence of multi-channel contribution; aligned boosted scores across the exposed score aliases; `useGraph:false` suppresses both graph and degree contributions even during fallback; lexical fallback only uses still-allowed lexical channels. ``
-- RCAF Prompt: `As a retrieval validation operator, validate Hybrid search pipeline against memory_search({ query:"graph rollout trace check", limit:10, includeTrace:true, bypassCache:true }). Verify multi-channel fusion stays coherent when routing and fallback interact. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate hybrid search trace behavior and confirm fusion, score aliases, graph suppression, and lexical fallback stay coherent.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Non-empty result set with trace evidence of multi-channel contribution; aligned boosted scores across the exposed score aliases; `useGraph:false` suppresses both graph and degree contributions even during fallback; lexical fallback only uses still-allowed lexical channels
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,9 +29,7 @@ This scenario validates Hybrid search pipeline for `EX-004`. It focuses on chann
 
 ### Prompt
 
-```
-As a retrieval validation operator, validate Channel fusion sanity, caller-preserving fallback, and trace consistency against memory_search({ query:"graph rollout trace check", limit:10, includeTrace:true, bypassCache:true }). Verify non-empty result set with trace evidence of multi-channel contribution; aligned boosted scores across exposed score aliases; useGraph:false suppresses graph and degree contributions even during fallback; lexical fallback only uses still-allowed lexical channels. Return a concise pass/fail verdict with the main reason and cited evidence.
-```
+`Validate hybrid search trace behavior and confirm fusion, score aliases, graph suppression, and lexical fallback stay coherent.`
 
 ### Commands
 

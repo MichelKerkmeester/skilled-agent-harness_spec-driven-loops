@@ -25,7 +25,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 
 - Objective: Verify that the command binds topic, spec folder, execution mode, max iterations, and convergence threshold before the YAML workflow starts.
 - Real user request: I want deep research on a topic, but make sure it goes into the right spec folder with the limits I picked.
-- RCAF Prompt: `As a manual-testing orchestrator, validate the setup-binding contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the command entrypoint gathers required values before loading YAML and that the YAML preflight rejects missing bindings or invalid spec-folder scope. Return a concise pass/fail verdict.`
+- Prompt: `Validate deep-research setup binding for topic, spec folder, max iterations, convergence, and YAML preflight.`
 - Expected execution process: Inspect the unified setup prompt first, then both YAML preflight guards, then the state-format config schema to confirm the same values are represented end-to-end.
 - Desired user-visible outcome: The user is told which inputs are required and why the workflow will not proceed until they are bound.
 - Expected signals: The command explicitly names topic, spec folder, execution mode, max iterations, and convergence threshold; YAML preflight verifies them before file writes.
@@ -42,7 +42,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 3. Capture evidence that would let another operator reproduce the verdict without re-deriving the scenario.
 4. Return a short user-facing explanation, not just raw implementation notes.
 ### Prompt
-As a manual-testing orchestrator, validate the setup-binding contract for deep-research against the current deep-research docs, command entrypoint, YAML workflow, and runtime anchors. Verify the command entrypoint gathers required values before loading YAML and that the YAML preflight rejects missing bindings or invalid spec-folder scope. Return a concise pass/fail verdict.
+Validate deep-research setup binding for topic, spec folder, max iterations, convergence, and YAML preflight.
 ### Commands
 1. `bash: sed -n '1,220p' .opencode/command/spec_kit/deep-research.md`
 2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .opencode/command/spec_kit/assets/spec_kit_deep-research_auto.yaml .opencode/command/spec_kit/assets/spec_kit_deep-research_confirm.yaml`

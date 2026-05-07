@@ -17,7 +17,7 @@ This scenario validates Co-activation boost strength increase (A7) for `017`. It
 
 - Objective: Confirm multiplier impact and batched lookup behavior.
 - Real user request: `` Please validate Co-activation boost strength increase (A7) against the documented validation surface and tell me whether the expected signals are present: Increased co-activation strength produces measurably higher contribution delta vs baseline; related-memory hydration uses one batched `WHERE id IN (...)` fetch; causal-neighbor lookup uses one CTE + join query; Stage 2 calls the neighbor-count precompute once per boosted batch. ``
-- RCAF Prompt: `As a graph-signal validation operator, validate Co-activation boost strength increase (A7) against the documented validation surface. Verify increased co-activation strength produces measurably higher contribution delta vs baseline; related-memory hydration uses one batched WHERE id IN (...) fetch; causal-neighbor lookup uses one CTE + join query; Stage 2 calls the neighbor-count precompute once per boosted batch. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate co-activation boost strength and cite contribution delta, batched hydration, causal-neighbor query shape, and one precompute per batch.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Increased co-activation strength produces measurably higher contribution delta vs baseline; related-memory hydration uses one batched `WHERE id IN (...)` fetch; causal-neighbor lookup uses one CTE + join query; Stage 2 calls the neighbor-count precompute once per boosted batch
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Co-activation boost strength increase (A7) for `017`. It
 ### Prompt
 
 ```
-As a graph-signal validation operator, confirm multiplier impact against the documented validation surface. Verify increased co-activation strength produces measurably higher contribution delta vs baseline; related-memory hydration uses one batched WHERE id IN (...) fetch; causal-neighbor lookup uses one CTE + join query; Stage 2 calls the neighbor-count precompute once per boosted batch. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate co-activation boost strength and cite contribution delta, batched hydration, causal-neighbor query shape, and one precompute per batch.
 ```
 
 ### Commands

@@ -25,7 +25,7 @@ Operators run the exact prompt and command sequence for `DMN-003` and confirm th
 
 - Objective: Verify `doctor.sh --strict --require-config` exits 0 with healthy JSON in a healthy project; verify `ensure_ready.sh --strict --require-config` is idempotent and brings the daemon to running on first invocation; verify both scripts exit non-zero with explicit reason when `--require-config` is set against a project that lacks the config file.
 - Real user request: `"Tell me whether this project is ready to run CocoIndex commands and bootstrap the daemon if it's not."`
-- RCAF Prompt: `As a manual-testing orchestrator, run doctor.sh --json --strict --require-config followed by ensure_ready.sh --json --strict --require-config against the current CocoIndex install in this repository. Verify doctor exits 0, prints valid JSON containing health summary; ensure_ready exits 0 and reports daemon running; second ensure_ready invocation also exits 0 without error noise; in the temp directory both scripts exit non-zero with a clear "config not found" or equivalent message. Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Run CocoIndex doctor and ensure_ready in strict JSON mode, then report whether the project is ready.`
 - Expected execution process: invoke `doctor.sh` from project root with the JSON + strict flags; invoke `ensure_ready.sh` with the same flags; rerun `ensure_ready.sh` immediately and confirm the second invocation does not duplicate work; cd into a temp directory and rerun both with `--require-config` to confirm the negative-path contract.
 - Expected signals: doctor exits 0, prints valid JSON containing health summary; ensure_ready exits 0 and reports daemon running; second ensure_ready invocation also exits 0 without error noise; in the temp directory both scripts exit non-zero with a clear "config not found" or equivalent message.
 - Desired user-visible outcome: A short verdict listing exit codes for all four invocations and a PASS confirming both the positive (healthy project) and negative (missing config) paths work as documented.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `DMN-003` and confirm th
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, run doctor.sh --json --strict --require-config followed by ensure_ready.sh --json --strict --require-config against the current CocoIndex install in this repository. Verify doctor exits 0, prints valid JSON containing health summary; ensure_ready exits 0 and reports daemon running; second ensure_ready invocation also exits 0 without error noise; in the temp directory both scripts exit non-zero with a clear "config not found" or equivalent message. Return a concise user-visible pass/fail verdict with the main reason.`
+- Prompt: `Run CocoIndex doctor and ensure_ready in strict JSON mode, then report whether the project is ready.`
 
 ### Commands
 

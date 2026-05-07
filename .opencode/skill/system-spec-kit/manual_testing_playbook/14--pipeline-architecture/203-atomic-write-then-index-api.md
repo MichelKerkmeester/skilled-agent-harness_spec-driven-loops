@@ -17,7 +17,7 @@ This scenario validates Atomic write-then-index API for `203`. It focuses on ver
 
 - Objective: Verify the save flow enforces pending write -> index attempt(s) -> final rename ordering with rollback before promotion on failure.
 - Real user request: `Please validate Atomic write-then-index API against the documented validation surface and tell me whether the expected signals are present: Unique pending path is created before promotion; indexing runs before final rename; transient indexing failure gets one retry; successful flow ends with pending-file rename into place; validation/index failure cleans up the pending file and leaves the original target untouched.`
-- RCAF Prompt: `As a pipeline validation operator, validate Atomic write-then-index API against the documented validation surface. Verify the save flow enforces pending write -> index attempt(s) -> final rename ordering with rollback before promotion on failure. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate the atomic write-then-index API against the documented validation surface and return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Unique pending path is created before promotion; indexing runs before final rename; transient indexing failure gets one retry; successful flow ends with pending-file rename into place; validation/index failure cleans up the pending file and leaves the original target untouched
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,7 +30,7 @@ This scenario validates Atomic write-then-index API for `203`. It focuses on ver
 ### Prompt
 
 ```
-As a pipeline validation operator, verify the save flow enforces pending write -> index attempt(s) -> final rename ordering with rollback before promotion on failure against the documented validation surface. Verify unique pending path is created before promotion; indexing runs before final rename; transient indexing failure gets one retry; successful flow ends with pending-file rename into place; validation/index failure cleans up the pending file and leaves the original target untouched. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate the atomic write-then-index API against the documented validation surface and return pass/fail with cited evidence.
 ```
 
 ### Commands

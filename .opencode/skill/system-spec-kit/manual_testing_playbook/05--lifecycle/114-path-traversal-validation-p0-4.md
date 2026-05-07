@@ -16,7 +16,7 @@ This scenario validates Path traversal validation (P0-4) for `114`. It focuses o
 
 - Objective: Verify memory_ingest_start rejects paths outside allowed base directories and paths containing traversal segments.
 - Real user request: `Please validate Path traversal validation (P0-4) against memory_ingest_start({ paths: ["../../etc/passwd"] }) and tell me whether the expected signals are present: Traversal paths (../) rejected with E_VALIDATION error; absolute paths outside allowed base rejected; valid paths within allowed directories accepted and job created.`
-- RCAF Prompt: `As a lifecycle validation operator, validate Path traversal validation (P0-4) against memory_ingest_start({ paths: ["../../etc/passwd"] }). Verify memory_ingest_start rejects paths outside allowed base directories and paths containing traversal segments. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Prompt: `Validate memory_ingest_start path traversal checks, including traversal rejection, out-of-base rejection, and valid in-base path acceptance.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Traversal paths (../) rejected with E_VALIDATION error; absolute paths outside allowed base rejected; valid paths within allowed directories accepted and job created
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -29,7 +29,7 @@ This scenario validates Path traversal validation (P0-4) for `114`. It focuses o
 ### Prompt
 
 ```
-As a lifecycle validation operator, verify memory_ingest_start rejects paths outside allowed base directories and paths containing traversal segments against memory_ingest_start({ paths: ["../../etc/passwd"] }). Verify traversal paths (../) rejected with E_VALIDATION error; absolute paths outside allowed base rejected; valid paths within allowed directories accepted and job created. Return a concise pass/fail verdict with the main reason and cited evidence.
+Validate memory_ingest_start path traversal checks, including traversal rejection, out-of-base rejection, and valid in-base path acceptance.
 ```
 
 ### Commands
