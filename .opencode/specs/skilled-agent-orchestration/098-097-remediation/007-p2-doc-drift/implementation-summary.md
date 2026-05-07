@@ -13,7 +13,10 @@ _memory:
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 007 complete: P2-001 fixed; P2-003/P2-004/P2-005/P2-007 documented"
     next_safe_action: "Move to Phase 008 (final deep-review re-run)"
-    blockers: []
+    blockers:
+          - "P2-004 location audit (deferred — file:line pointer not located in deep-review evidence)"
+          - "P2-005 confirmation pass (deferred — zero matches via two grep patterns; advisory)"
+          - "P2-007 skill-inventory audit (deferred — covered structurally by P2-001)"
     key_files:
       - ".opencode/install_guides/SET-UP - AGENTS.md"
       - ".opencode/install_guides/SET-UP - Code Graph.md"
@@ -82,6 +85,18 @@ Targeted three-substitution sed (`skill/→skills/`, `agent/→agents/`, `comman
 | `.opencode/install_guides/SET-UP - Skill Advisor.md` | Modified (4 sed) | P2-001 path drift cleanup |
 | `.opencode/install_guides/SET-UP - Skill Creation.md` | Modified (6 sed) | P2-001 path drift cleanup |
 <!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

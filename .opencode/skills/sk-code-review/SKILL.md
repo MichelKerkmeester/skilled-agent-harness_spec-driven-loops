@@ -399,4 +399,8 @@ After reporting findings, request explicit next action before any implementation
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/review_core.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md`, `references/removal_plan.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
+### Manual Testing Playbook
+
+Manual testing scenarios for this skill live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus 18 per-feature sub-files under `manual_testing_playbook/<NN>--<topic>/<NNN>-<scenario>.md`. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md` for structural validation; execute scenarios in opencode/Claude/Codex sessions for behavioral verification.
+
 Related skills: `sk-doc` for skill authoring and packaging standards, `sk-code` for surface-aware standards, and `system-spec-kit` for packet-governed review workflows.

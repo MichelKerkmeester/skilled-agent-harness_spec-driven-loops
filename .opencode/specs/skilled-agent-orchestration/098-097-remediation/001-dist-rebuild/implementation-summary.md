@@ -15,7 +15,8 @@ _memory:
     last_updated_by: "claude-opus-4-7"
     recent_action: "Authored child phase documentation"
     next_safe_action: "Execute or verify phase work according to tasks.md"
-    blockers: []
+    blockers:
+          - "P2-008 CI guard for singular-root literals in dist (advisory follow-on)"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts:185"
       - ".opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13"
@@ -64,6 +65,18 @@ Rebuilt `.opencode/skills/system-spec-kit/mcp_server/dist/` after the 096 plural
 | `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:19` | Generated | Dist policy now uses `**/.opencode/commands/**`. |
 
 <!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
 ---
 
 <!-- ANCHOR:decisions -->

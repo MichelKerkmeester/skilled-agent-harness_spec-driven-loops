@@ -12,18 +12,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/099-track-rereview"
     last_updated_at: "2026-05-07T20:10:00Z"
     last_updated_by: "deep-review-loop-manager"
-    recent_action: "Deep-review loop converged: 10 iterations, FAIL verdict, verdict-flip REFUTED, Planning Packet emitted"
-    next_safe_action: "Author follow-on remediation packet 100-099-remediation using review-report.md §2 Planning Packet seed"
+    recent_action: "10-iter deep-review converged FAIL"
+    next_safe_action: "Author 100-099-remediation packet"
     blockers:
-      - "13 active P1 findings block release until follow-on remediation closes them"
-      - "098 remediation incomplete — only mcp_server/dist/ rebuilt, not scripts/dist/"
-      - "Source/dist drift in skill_graph_scan handler (P1-015)"
-      - "098 sub-phases fail strict-validate despite COMPLETE marks (P1-024)"
+      - "13 active P1 findings"
+      - "098 remediation incomplete"
     key_files:
       - "review/review-report.md"
       - "review/resource-map.md"
       - "review/deep-review-state.jsonl"
-      - "review/iterations/iteration-001.md through iteration-010.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "deep-review-099-2026-05-07T1708"
@@ -31,9 +28,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Did 098 remediation flip verdict from FAIL to PASS? -> NO. 11 of 12 P1s resolved + P0 resolved, but 12 NEW P1s surfaced and P1-007 still active."
-      - "Did remediation introduce new defects? -> YES. 12 new P1s + 2 new P2s, mostly source/dist parity, validator gaps, and continuity hygiene."
-      - "Is the live runtime stable post-rebuild? -> Code-graph runtime is correct (P0-001 resolved); but runtime defaults in skill_graph/scan + scripts/dist remain singular and will regress on next rebuild."
+      - "Did 098 flip verdict from FAIL to PASS? -> NO. P0 resolved + 11/12 P1 resolved, but 12 NEW P1s + P1-007 still active."
+      - "Did remediation introduce new defects? -> YES. 12 new P1s, 2 new P2s."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
 # Implementation Summary: Re-review of skilled-agent-orchestration 093-098
@@ -42,110 +38,131 @@ _memory:
 
 ---
 
-<!-- ANCHOR:overview -->
-## 1. OVERVIEW
+<!-- ANCHOR:metadata -->
+## Metadata
 
-10-iteration architectural cross-phase deep-review of skilled-agent-orchestration packets 093,
-094, 095, 096, plus the 098-097-remediation packet, executed via cli-codex (gpt-5.5 / high reasoning
-/ fast service tier / 900s per iteration). Total wall-clock: roughly 1 hour.
-
-**Verdict-flip hypothesis: REFUTED.** Verdict remains FAIL.
-<!-- /ANCHOR:overview -->
-
----
-
-<!-- ANCHOR:final-state -->
-## 2. FINAL STATE
-
-| Metric | Value |
-|--------|-------|
-| Iterations | 10 of 10 |
-| Stop reason | `maxIterationsReached` (also satisfied all-dimensions-clean at iter 9) |
-| Active P0 | 0 |
-| Active P1 | 13 |
-| Active P2 | 6 |
-| Verdict | FAIL |
-| hasAdvisories | true |
-| Convergence score | 1.0 |
-| Dimension coverage | correctness, security, traceability, maintainability (4/4) |
-| Adversarial confirmations | 13/13 active P1s CONFIRM_P1 (iter 9) |
-<!-- /ANCHOR:final-state -->
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/099-track-rereview/` |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Completed** | 2026-05-07T20:10:00Z |
+| **Branch** | `main` |
+| **Workflow** | `/spec_kit:deep-review:auto` |
+| **Executor** | cli-codex / gpt-5.5 / high reasoning / fast service tier |
+| **Iterations** | 10 of 10 |
+| **Verdict** | FAIL (`hasAdvisories=true`) |
+<!-- /ANCHOR:metadata -->
 
 ---
 
-<!-- ANCHOR:closed-gate-replay -->
-## 3. CLOSED-GATE REPLAY (097 → 098 → 099)
+<!-- ANCHOR:what-built -->
+## What Was Built
 
-| Bucket | Count | Examples |
-|--------|------:|----------|
-| RESOLVED by 098 | 17 of 22 | P0-001 dist code-graph globs (correctly resolved by 098/001); P1-002/008/011/012 sk-deep dead refs; P1-006 Stop hook env gate; P1-009/010/013/014 validators/advisor; P2-001/003/005/006/007 |
-| STILL_ACTIVE from 097 | 4 | P1-007 (checklist evidence — 098/005 chose deferral over backfill); P2-002, P2-004, P2-008 |
-| DOWNGRADED | 1 | P1-005 → P2 (resolver containment, subsumed by new P1-019) |
-| **NEW P1s surfaced by 099** | **12** | P1-015 through P1-026 (see review-report.md §3) |
-| **NEW P2s surfaced by 099** | **2** | P2-009, P2-010 |
-<!-- /ANCHOR:closed-gate-replay -->
+A 10-iteration architectural cross-phase deep-review of skilled-agent-orchestration packets 093,
+094, 095, 096, plus the 098-097-remediation packet. The hypothesis was that 098 had flipped 097's
+FAIL verdict to PASS by resolving all 22 findings; this re-review independently audited that claim.
 
----
+**Verdict-flip hypothesis: REFUTED.** The 097 P0 was correctly resolved by 098/001
+(see `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/index-scope-policy.ts:15-17`
+and `mcp_server/dist/code_graph/lib/index-scope-policy.js:13-15` for the plural-globs evidence),
+but 098 only partially resolved the 097 P1 set and surfaced 12 new P1 defects of its own. Key
+evidence files captured for the audit are listed in `review/resource-map.md` (21 references,
+0 missing on disk) and the per-finding rows in `review/review-report.md:§3 Active Finding Registry`.
 
-<!-- ANCHOR:key-defects -->
-## 4. KEY DEFECTS (active P1s, ranked by impact)
+### Final Counts
 
-1. **P1-024** — All 7 098 sub-phase packets fail `validate.sh --strict` despite being marked COMPLETE
-2. **P1-019** — `spec_folder` interpolated into `node -e` resolver before path containment (security/path-authority)
-3. **P1-016** — `scripts/dist/` was never rebuilt; runnable observability outputs still write singular paths
-4. **P1-015** — Source `skill-graph/scan.ts:40` defaults to `.opencode/skill` while dist is plural; next rebuild regresses
-5. **P1-017** — 095 verification packet has internally contradictory PASS/SKIP claims with missing transcripts
-6. **P1-026** — Reducer findings registry doesn't extract findings from `{"type":"finding"}` delta records (meta-bug in this loop)
-7. **P1-018** — 093 manual_testing_playbook directories are NOT linked from owning sk-code-review/sk-git SKILL.md
-8. **P1-022** — 096/004 spec has anchor mismatch causing strict-validate exit 2
-9. **P1-020** — `audit_descriptions.py` exits 0 on zero-inventory (validator can pass while scanning nothing)
-10. **P1-021** — `check-smart-router.sh` false-fails on valid shared CLI router refs
-11. **P1-023** — Deferred required findings missing from `_memory.continuity.blockers` (resume reads blockers first)
-12. **P1-025** — Native skill advisor returns `[]` for `deep-review` trigger at threshold 0.8 (alias post-rename gap)
-13. **P1-007** — Checklist evidence still unchecked on packets marked complete/100 (carryover from 097, 098/005 deferral)
-<!-- /ANCHOR:key-defects -->
+| Severity | Count | vs 097 |
+|----------|------:|-------|
+| P0 | 0 | resolved (was 1) |
+| P1 | 13 | net +1 (11 of 12 097 P1s resolved + 12 new from 098 audit) |
+| P2 | 6 | net −3 (was 9; 5 resolved, 1 downgraded P1, +2 new) |
+
+### Closed-Gate Replay (097 → 098 → 099)
+
+- **17/22** 097 findings: RESOLVED by 098
+- **4/22** 097 findings: STILL_ACTIVE (P1-007, P2-002, P2-004, P2-008)
+- **1/22** 097 findings: DOWNGRADED (P1-005 → P2)
+- **NEW from 099 audit**: 12 P1 (P1-015 through P1-026), 2 P2 (P2-009, P2-010)
+<!-- /ANCHOR:what-built -->
 
 ---
 
-<!-- ANCHOR:next-step -->
-## 5. NEXT STEP
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
 
-Author follow-on remediation packet **100-099-remediation** using review-report.md §2 Planning
-Packet seed. Suggested workstreams:
-
-- **A** — Required evidence + validation gates (P1-007, P1-017, P1-022, P1-024, P1-026)
-- **B** — Source/dist parity (P1-015, P1-016)
-- **C** — Workflow write authority + validators (P1-019, P1-020, P1-021)
-- **D** — Skill capability + routing (P1-018, P1-025)
-- **E** — Continuity hygiene (P1-023)
-- **F** — Advisory P2 cleanup (after A-E close)
-<!-- /ANCHOR:next-step -->
-
----
-
-<!-- ANCHOR:artifacts -->
-## 6. ARTIFACTS
-
-- `review/review-report.md` — 9-section synthesis + Planning Packet JSON (40+ KB)
-- `review/resource-map.md` — auto-generated touched-path inventory (21 references)
-- `review/iterations/iteration-001.md` through `iteration-010.md` — per-iteration narratives
-- `review/deltas/iter-001.jsonl` through `iter-010.jsonl` — per-iteration structured deltas
-- `review/deep-review-state.jsonl` — 12-line append-only state log (config + 10 iterations + synthesis_complete)
-- `review/deep-review-config.json` — final status complete, verdict FAIL
-- `review/deep-review-strategy.md` — review charter + dimension queue
-- `review/deep-review-dashboard.md` — auto-generated reducer view
-- `review/deep-review-findings-registry.json` — reducer state (note: P1-026 affects accuracy here)
-- `review/prompts/iteration-1.md` through `iteration-10.md` — dispatched prompt packs (10 iterations)
-<!-- /ANCHOR:artifacts -->
+1. **Phase 1 — Init**: Scaffolded 099 packet with Level 2 spec docs (spec/plan/tasks/checklist)
+   plus review/ state files (config, JSONL, registry, strategy, dashboard placeholders).
+2. **Phase 2 — Loop (10 iterations, ~5 min/iter wall-clock)**:
+   - Iter 1: inventory pass — closed-gate replay table for 097's 22 findings
+   - Iter 2-3: correctness — 098 edits + 093/094/095 playbooks
+   - Iter 4: security — Stop hook env override, spec_folder write authority
+   - Iter 5-6: traceability — validators, advisor, resource-map cross-check
+   - Iter 7: maintainability — doc anchors, narrative repair, deferred items
+   - Iter 8: cross-cutting — validate.sh sweep + active P1 re-verify + opencode discovery
+   - Iter 9: adversarial — Hunter/Skeptic/Referee on all 13 P1s (all CONFIRM_P1)
+   - Iter 10: saturation — final verdict + Planning Packet seed
+3. **Phase 3 — Synthesis**: Compiled review-report.md (9 sections + Planning Packet JSON).
+   Auto-generated resource-map.md (21 path references). Refreshed dashboard, registry, strategy.
+4. **Phase 4 — Save**: Routed continuity via `generate-context.js`; refreshed `description.json`
+   + `graph-metadata.json`; restored manual fields lost in regeneration; updated checklist
+   evidence per workflow gate.
+<!-- /ANCHOR:how-delivered -->
 
 ---
 
-<!-- ANCHOR:cross-refs -->
-## 7. CROSS-REFERENCES
+<!-- ANCHOR:decisions -->
+## Key Decisions
 
-- **Predecessor (FAIL verdict)**: `.opencode/specs/skilled-agent-orchestration/097-track-review/review/review-report.md`
-- **Remediation packet (audited here)**: `.opencode/specs/skilled-agent-orchestration/098-097-remediation/`
-- **Spec/plan/tasks/checklist**: `spec.md` / `plan.md` / `tasks.md` / `checklist.md` in this folder
-<!-- /ANCHOR:cross-refs -->
+1. **Strategy `arch` (not line-by-line)** — verdict-flip confirmation was the goal; iter-1 inventory
+   pass produced the closed-gate replay table; subsequent iterations spot-checked at file:line
+   rather than auditing every file in scope.
+2. **No verdict downgrades during adversarial pass** — iter 9's Hunter/Skeptic/Referee returned
+   13/13 CONFIRM_P1 because the evidence (file:line + adversarial alternative) supported P1 in
+   every case.
+3. **Reducer P1-026 documented but not fixed in this packet** — the reducer's failure to extract
+   findings from `{"type":"finding"}` delta records was surfaced as P1-026 and routed to the
+   follow-on remediation; fixing it inside this packet would mutate the reducer mid-loop.
+4. **resource-map.md auto-emit kept enabled** — `--no-resource-map` was not set; resource-map.md
+   was generated from converged deltas.
+5. **Stay on main** — per memory feedback "stay on main, no feature branches"; create.sh was not
+   used for 099 packet bootstrap, so no auto-branch was created.
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Gate | Result | Evidence |
+|------|--------|----------|
+| All 4 dimensions covered | ✅ | dashboard `dimensionCoverage` table |
+| 10 iterations dispatched | ✅ | 10 iteration files + 10 delta files + state.jsonl lines 2-11 |
+| review-report.md (9 sections + Planning Packet) | ✅ | `review/review-report.md` |
+| resource-map.md emitted | ✅ | `review/resource-map.md` (21 references, 0 missing on disk) |
+| Adversarial self-check on every active P1 | ✅ | iter 9 — 13/13 CONFIRM_P1 |
+| Closed-gate replay (verdict-flip explicit) | ✅ | iter 1 inventory + report §1 + §9 |
+| Continuity routed via generate-context.js | ✅ | this file's frontmatter + memory_save auto-index |
+| Strict-validate on 099 packet | ✅ | this revision passes after anchor backfill |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Reducer registry inaccurate** — P1-026 documents that the reducer doesn't extract findings
+   from `{"type":"finding"}` delta records, so `deep-review-findings-registry.json` shows
+   `findingsBySeverity={P0:0,P1:0,P2:0}` while the actual active set is 0/13/6. Synthesis
+   compensated by reading from iteration JSONL records directly.
+2. **Convergence reached but FAIL** — 10/10 iterations dispatched (`maxIterationsReached`); the
+   loop also satisfied all-dimensions-clean at iter 9. Verdict is FAIL only because active P1s
+   block PASS, not because the loop was inconclusive.
+3. **Operator commit pending** — `T020 git add` was marked done as a workflow step intent, but
+   the operator owns the actual commit. The 099 packet is staged but not committed.
+4. **Some 097 finding IDs reused with promotion** — e.g., P1-005 originally raised in 097 was
+   carried forward as a downgraded P2 in 099 to preserve the audit trail; semantics are documented
+   in the registry rather than renamed.
+<!-- /ANCHOR:limitations -->
 
 ---

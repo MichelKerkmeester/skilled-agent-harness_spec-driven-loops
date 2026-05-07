@@ -107,9 +107,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized post-synthesis
-- [ ] CHK-041 [P1] Continuity routed via implementation-summary.md frontmatter (per ADR-004 quick-continuity path; canonical generate-context.js available as fallback)
-- [ ] CHK-042 [P2] description.json + graph-metadata.json refreshed post-synthesis
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized post-synthesis — evidence: spec.md §3 Files to Change / plan.md §4 Phases / tasks.md T001-T024 / checklist.md match the actual delivery
+- [x] CHK-041 [P1] Continuity routed via implementation-summary.md frontmatter — evidence: this packet's `implementation-summary.md` `_memory.continuity` block (via canonical generate-context.js save at 2026-05-07T20:09:00Z + per-doc frontmatter)
+- [x] CHK-042 [P2] description.json + graph-metadata.json refreshed post-synthesis — evidence: description.json completionPct=100 + lastOutcome populated; graph-metadata.json status=complete + verdict=FAIL + active_findings populated
 <!-- /ANCHOR:docs -->
 
 ---
@@ -117,8 +117,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] All review state files under `review/`
-- [ ] CHK-051 [P1] No stray temp files outside scratch
+- [x] CHK-050 [P1] All review state files under `review/` — evidence: `ls 099-track-rereview/review/` shows config + state.jsonl + registry + strategy + dashboard + report + resource-map + iterations/ + deltas/ + prompts/
+- [x] CHK-051 [P1] No stray temp files outside scratch — evidence: only `/tmp/save-context-data-099-2026-05-07T20.json` was used and it lives in /tmp; review/ contains all artifacts
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -128,9 +128,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | _populated post-synthesis_ |
-| P1 Items | 11 | _populated post-synthesis_ |
-| P2 Items | 1 | _populated post-synthesis_ |
+| P0 Items | 13 | 10/13 verified, 3 n/a (apply to follow-on 100 remediation packet) |
+| P1 Items | 11 | 11/11 verified |
+| P2 Items | 1 | 1/1 verified |
 
 **Verification Date**: 2026-05-07
 <!-- /ANCHOR:summary -->

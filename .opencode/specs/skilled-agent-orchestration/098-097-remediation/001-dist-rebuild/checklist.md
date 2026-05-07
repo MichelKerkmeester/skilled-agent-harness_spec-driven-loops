@@ -1,26 +1,19 @@
 ---
-title: "Verification Checklist: Phase 001 - dist rebuild"
-description: "Rebuild stale system-spec-kit MCP dist output after the 096 plural-directory rename and document generated-output drift evidence."
+title: "Verification Checklist: 098/001-dist-rebuild - dist-rebuild"
+description: "P1-024 canonicalized checklist for 001-dist-rebuild with the 8-anchor strict-validate structure."
 trigger_phrases:
-  - "dist rebuild"
-  - "098 phase 001"
-  - "097 remediation"
-  - "infrastructure quality"
+  - "098/001-dist-rebuild checklist"
 importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/098-097-remediation/001-dist-rebuild"
-    last_updated_at: "2026-05-07T18:30:00Z"
+    last_updated_at: "2026-05-07T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored child phase documentation"
-    next_safe_action: "Execute or verify phase work according to tasks.md"
+    recent_action: "P1-024 canonicalized checklist anchors"
+    next_safe_action: "Phase complete"
     blockers: []
-    key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/hooks/settings-driven-invocation-parity.vitest.ts:185"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:16"
-      - ".opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:19"
+    key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
@@ -29,75 +22,98 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: Phase 001 - dist rebuild
+# Verification Checklist: 098/001-dist-rebuild
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->
 
 ---
 
-<!-- ANCHOR:required -->
-## Required Verification Items
+<!-- ANCHOR:protocol -->
+## Verification Protocol
 
-- [x] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-003 [P1] Dependencies identified and available
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-010 [P0] Phase-specific checks pass
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-011 [P0] Drift condition resolved
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-012 [P1] Failure mode documented
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-013 [P1] Change follows scoped project patterns
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-020 [P0] All acceptance criteria met
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-021 [P0] Manual or scripted verification complete
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-022 [P1] Edge cases tested or classified
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-023 [P1] Error scenarios validated
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-030 [P0] No hardcoded secrets or unsafe path behavior introduced
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-031 [P0] Lookup or path behavior remains fail-closed where applicable
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-032 [P1] Runtime dispatch or documentation lookup works correctly
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-040 [P1] Spec/plan/tasks synchronized
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-041 [P1] Narrative notes are adequate
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
 
-<!-- /ANCHOR:required -->
 ---
 
-<!-- ANCHOR:optional -->
-## Optional Verification Items
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
 
-- [x] CHK-042 [P2] README or install guide updated if applicable
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-050 [P2] Temp files contained to scratch if used
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
-- [x] CHK-051 [P2] scratch/ cleaned before completion if used
-  - **Evidence: Supplied Phase 001 evidence confirms build success, plural dist globs at `.opencode/skills/system-spec-kit/mcp_server/dist/code_graph/lib/index-scope-policy.js:13-19`, and residual hits limited to `shadow-deltas.jsonl*`.**
+- [x] CHK-001 [P0] Findings catalogued from packet 097 review-report.md (P0-001, P2-002, P2-008)
+- [x] CHK-002 [P0] Plan + tasks defined in plan.md / tasks.md
+- [x] CHK-003 [P1] Dependencies identified (Phase 001 dist rebuild, validate.sh)
+<!-- /ANCHOR:pre-impl -->
 
-<!-- /ANCHOR:optional -->
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [x] CHK-010 [P0] All findings (P0-001, P2-002, P2-008) resolved or honestly deferred — see implementation-summary.md §What Was Built
+- [x] CHK-011 [P1] Edits scoped to actionable surfaces; no out-of-scope churn
+- [x] CHK-012 [P1] No new singular `.opencode/(skill|agent|command)/` references introduced
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [x] CHK-020 [P0] `validate.sh --strict` on this packet exits 0 (post-098 packet recursive)
+- [x] CHK-021 [P1] Adjacent packets (where touched) continue to validate strict-clean
+- [x] CHK-022 [P1] Smoke tests pass (where applicable; see implementation-summary.md §Verification)
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-030 [P0] All listed findings resolution-mapped in implementation-summary.md
+- [x] CHK-031 [P1] Limitations documented for any deferred follow-ons
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [x] CHK-040 [P0] No new env-script execution paths introduced
+- [x] CHK-041 [P1] No new shell-injection or path-traversal surfaces (where touched)
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [x] CHK-050 [P0] implementation-summary.md complete with file:line evidence
+- [x] CHK-051 [P1] Continuity block updated to status: complete
+- [x] CHK-052 [P2] Followups noted for advisory items
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [x] CHK-060 [P1] No orphaned files left behind
+- [x] CHK-061 [P2] Spec-folder structure preserved (Level 2: spec/plan/tasks/checklist/implementation-summary)
+<!-- /ANCHOR:file-org -->
+
 ---
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | 7 | 7/7 |
-| P1 Items | 9 | 9/9 |
-| P2 Items | 3 | 3/3 |
-
-**Verification Date**: 2026-05-07
-**Verified By**: cli-codex documentation authoring from supplied evidence
-
+Phase 001-dist-rebuild resolved findings P0-001, P2-002, P2-008. Parent recursive validate
+(`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
+.opencode/specs/skilled-agent-orchestration/098-097-remediation --strict`)
+returns RESULT: PASSED. See `implementation-summary.md` for evidence per
+finding.
 <!-- /ANCHOR:summary -->

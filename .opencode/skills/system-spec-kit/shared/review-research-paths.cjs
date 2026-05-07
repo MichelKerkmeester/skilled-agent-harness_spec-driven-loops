@@ -198,6 +198,21 @@ function findExistingPacket(rootDir, specFolder, mode) {
  * }} Resolved packet root plus canonical packet/archive directories
  */
 function resolveArtifactRoot(specFolder, mode = 'review') {
+  // P1-019 (workflow write-authority): reject specFolder values that contain
+  // shell metacharacters or quote characters. The YAML workflow interpolates
+  // {spec_folder} into a `node -e` shell command; without this guard, a
+  // malicious specFolder containing single-quotes / semicolons / backticks /
+  // $ / | / & / < / > could break out of the shell-quoted argument and
+  // execute arbitrary code in the Node process or shell.
+  if (typeof specFolder !== 'string' || specFolder.length === 0) {
+    throw new Error(`resolveArtifactRoot: specFolder must be a non-empty string`);
+  }
+  if (/['"`$;|&<>\\]/.test(specFolder)) {
+    throw new Error(
+      `resolveArtifactRoot: specFolder contains forbidden shell metacharacter(s); refusing to proceed`,
+    );
+  }
+
   const resolved = path.resolve(specFolder);
   const rootDir = path.join(resolved, mode);
   const artifactArchiveRoot = path.join(resolved, `${mode}_archive`);

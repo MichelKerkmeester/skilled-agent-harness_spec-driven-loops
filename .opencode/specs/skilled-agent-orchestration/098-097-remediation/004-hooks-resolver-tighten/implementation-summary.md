@@ -13,7 +13,8 @@ _memory:
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 004 complete: P1-006 hardened; P1-005 deferred per downgrade rationale"
     next_safe_action: "Move to Phase 005 (checklist evidence backfill)"
-    blockers: []
+    blockers:
+          - "P1-005 (downgraded P2): resolver realpath containment in review-research-paths.cjs (advisory follow-on; blocked by test-fixture refactor)"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js"
@@ -70,6 +71,18 @@ Rebuilt `dist/hooks/claude/session-stop.js` via `npm run build`; dist matches so
 | `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts:38-50` | Modified | Test-only gate around `SPECKIT_GENERATE_CONTEXT_SCRIPT` env override; production path ignores the env var |
 | `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-stop.js` | Regenerated | `tsc --build` rebuilt the dist counterpart (gitignored) |
 <!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

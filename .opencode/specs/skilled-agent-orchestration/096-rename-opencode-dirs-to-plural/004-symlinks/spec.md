@@ -133,8 +133,6 @@ Recreate the 5 symlinks pointing at the new plural targets so cross-runtime mirr
 
 ---
 
-<!-- ANCHOR:questions -->
-
 ---
 
 <!-- ANCHOR:nfr -->
@@ -148,7 +146,6 @@ Recreate the 5 symlinks pointing at the new plural targets so cross-runtime mirr
 
 ### Reliability
 - **NFR-R01**: Symlink redirects atomic per file (rm + ln -s pair); failure leaves a clear missing symlink state.
-<!-- /ANCHOR:reliability -->
 <!-- /ANCHOR:nfr -->
 
 ---
@@ -183,6 +180,7 @@ Recreate the 5 symlinks pointing at the new plural targets so cross-runtime mirr
 
 ---
 
+<!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
 (none)

@@ -52,7 +52,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Preflight
+## Phase 1: Setup
 
 - [x] T001 Read affected surfaces and capture current drift [done]
 - [x] T002 Confirm phase allowlist and out-of-scope boundaries [done]
@@ -61,7 +61,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Remediation
+## Phase 2: Implementation
 
 - [x] T003 Apply targeted remediation edits [done]
 

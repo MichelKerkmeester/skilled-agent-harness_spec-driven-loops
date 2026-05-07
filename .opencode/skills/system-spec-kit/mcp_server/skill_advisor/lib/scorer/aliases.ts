@@ -10,16 +10,18 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
     'create:testing-playbook',
   ],
   'memory:save': ['command-memory-save', '/memory:save', 'memory:save'],
-  'sk-deep-research': [
+  'deep-research': [
     'command-spec-kit-deep-research',
     '/spec_kit:deep-research',
     'spec_kit:deep-research',
+    'deep-research',
     'sk-deep-research',
   ],
-  'sk-deep-review': [
+  'deep-review': [
     'command-spec-kit-deep-review',
     '/spec_kit:deep-review',
     'spec_kit:deep-review',
+    'deep-review',
     'sk-deep-review',
   ],
 });

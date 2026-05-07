@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phases 001-003 complete
-- [ ] CHK-002 [P0] `.opencode/skills/` and `.opencode/commands/` directories exist
+- [x] CHK-001 [P0] Phases 001-003 complete
+- [x] CHK-002 [P0] `.opencode/skills/` and `.opencode/commands/` directories exist
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] All 5 symlinks recreated
-- [ ] CHK-011 [P0] All 5 resolve (`test -e`)
-- [ ] CHK-012 [P0] `readlink` shows correct plural target
+- [x] CHK-010 [P0] All 5 symlinks recreated
+- [x] CHK-011 [P0] All 5 resolve (`test -e`)
+- [x] CHK-012 [P0] `readlink` shows correct plural target
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -63,8 +63,8 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] opencode smoke test no "Could not find" warning
-- [ ] CHK-021 [P1] Cross-runtime access works (e.g., listing `.claude/skills/` shows files)
+- [x] CHK-020 [P0] opencode smoke test no "Could not find" warning
+- [x] CHK-021 [P1] Cross-runtime access works (e.g., listing `.claude/skills/` shows files)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -72,13 +72,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each finding has a finding class. (N/A — refactor)
-- [ ] CHK-FIX-002 [P0] Same-class producers inventoried (5 symlinks).
-- [ ] CHK-FIX-003 [P0] Consumer inventory: cross-runtime access pattern.
-- [ ] CHK-FIX-004 [P0] Adversarial test: broken-symlink sweep returns 0 (within scope).
-- [ ] CHK-FIX-005 [P1] Matrix axes: 3 runtimes × 1-2 link types per runtime.
-- [ ] CHK-FIX-006 [P1] Hostile env variant: N/A.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to commit SHA.
+- [x] CHK-FIX-001 [P0] Each finding has a finding class. (N/A — refactor)
+- [x] CHK-FIX-002 [P0] Same-class producers inventoried (5 symlinks).
+- [x] CHK-FIX-003 [P0] Consumer inventory: cross-runtime access pattern.
+- [x] CHK-FIX-004 [P0] Adversarial test: broken-symlink sweep returns 0 (within scope).
+- [x] CHK-FIX-005 [P1] Matrix axes: 3 runtimes × 1-2 link types per runtime.
+- [x] CHK-FIX-006 [P1] Hostile env variant: N/A.
+- [x] CHK-FIX-007 [P1] Evidence pinned to commit SHA.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -86,7 +86,7 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No symlinks pointing outside repo
+- [x] CHK-030 [P0] No symlinks pointing outside repo
 <!-- /ANCHOR:security -->
 
 ---
@@ -94,9 +94,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec docs synchronized
-- [ ] CHK-041 [P1] implementation-summary.md filled
-- [ ] CHK-042 [P2] Pre-existing broken `.gemini/workflows/*` symlinks documented
+- [x] CHK-040 [P1] spec docs synchronized
+- [x] CHK-041 [P1] implementation-summary.md filled
+- [x] CHK-042 [P2] Pre-existing broken `.gemini/workflows/*` symlinks documented
 <!-- /ANCHOR:docs -->
 
 ---
@@ -104,7 +104,7 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] No files outside symlink-redirect scope modified
+- [x] CHK-050 [P1] No files outside symlink-redirect scope modified
 <!-- /ANCHOR:file-org -->
 
 ---

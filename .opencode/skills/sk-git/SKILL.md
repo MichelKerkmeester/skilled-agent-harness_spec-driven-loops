@@ -437,4 +437,8 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/quick_reference.md`, `references/worktree_workflows.md`, `references/commit_workflows.md`, `references/finish_workflows.md`, `references/github_mcp_integration.md`, `references/shared_patterns.md`, `assets/commit_message_template.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
+### Manual Testing Playbook
+
+Manual testing scenarios for this skill live in `manual_testing_playbook/manual_testing_playbook.md` (root index) plus 22 per-feature sub-files under `manual_testing_playbook/<NN>--<topic>/<NNN>-<scenario>.md`. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual_testing_playbook/manual_testing_playbook.md` for structural validation; execute scenarios in opencode/Claude/Codex sessions for behavioral verification.
+
 Related skills: `system-spec-kit` for packet recovery and continuity, and `sk-doc` for PR, release, and documentation quality.

@@ -13,7 +13,9 @@ _memory:
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 006 complete: P1-003 + P1-014 resolved"
     next_safe_action: "Move to Phase 007 (P2 doc drift sweep)"
-    blockers: []
+    blockers:
+          - "Zero-coverage smoke guards for audit_descriptions.py + skill_advisor.py (advisory follow-on)"
+          - "Root-singular-directory CI rename guard (advisory follow-on)"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/freshness/generation.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
@@ -77,6 +79,18 @@ Smoke-tested both the local fallback path (`python3 skill_advisor.py "create new
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py:58,69,80` | Modified | 3 NATIVE_* bridge module path constants plural (replace_all) |
 | `.opencode/skill/` (whole directory) | Deleted | `rm -rf` — survivor removed; root singular dir no longer regenerates |
 <!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

@@ -1,103 +1,119 @@
 ---
-title: "Verification Checklist: Phase 005 - checklist evidence"
-description: "Backfill required checklist evidence for completed packets 093-096 and add 093 supersession notes for the 094 ADR."
+title: "Verification Checklist: 098/005-checklist-evidence - checklist-evidence"
+description: "P1-024 canonicalized checklist for 005-checklist-evidence with the 8-anchor strict-validate structure."
 trigger_phrases:
-  - "checklist evidence"
-  - "098 phase 005"
-  - "097 remediation"
-  - "infrastructure quality"
+  - "098/005-checklist-evidence checklist"
 importance_tier: "high"
 contextType: "infrastructure-quality"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/098-097-remediation/005-checklist-evidence"
-    last_updated_at: "2026-05-07T18:30:00Z"
+    last_updated_at: "2026-05-07T20:30:00Z"
     last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored child phase documentation"
-    next_safe_action: "Execute or verify phase work according to tasks.md"
+    recent_action: "P1-024 canonicalized checklist anchors"
+    next_safe_action: "Phase complete"
     blockers: []
-    key_files:
-      - ".opencode/specs/skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/**/checklist.md"
-      - ".opencode/specs/skilled-agent-orchestration/094-playbook-prompt-naturalness/**/checklist.md"
-      - ".opencode/specs/skilled-agent-orchestration/095-sk-code-review-playbook-execution/**/checklist.md"
-      - ".opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/**/checklist.md"
+    key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-4-7-2026-05-07"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: Phase 005 - checklist evidence
+# Verification Checklist: 098/005-checklist-evidence
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->
 
 ---
 
-<!-- ANCHOR:required -->
-## Required Verification Items
+<!-- ANCHOR:protocol -->
+## Verification Protocol
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence: Pending implementation.**
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence: Pending implementation.**
-- [ ] CHK-003 [P1] Dependencies identified and available
-  - **Evidence: Pending implementation.**
-- [ ] CHK-010 [P0] Phase-specific checks pass
-  - **Evidence: Pending implementation.**
-- [ ] CHK-011 [P0] Drift condition resolved
-  - **Evidence: Pending implementation.**
-- [ ] CHK-012 [P1] Failure mode documented
-  - **Evidence: Pending implementation.**
-- [ ] CHK-013 [P1] Change follows scoped project patterns
-  - **Evidence: Pending implementation.**
-- [ ] CHK-020 [P0] All acceptance criteria met
-  - **Evidence: Pending implementation.**
-- [ ] CHK-021 [P0] Manual or scripted verification complete
-  - **Evidence: Pending implementation.**
-- [ ] CHK-022 [P1] Edge cases tested or classified
-  - **Evidence: Pending implementation.**
-- [ ] CHK-023 [P1] Error scenarios validated
-  - **Evidence: Pending implementation.**
-- [ ] CHK-030 [P0] No hardcoded secrets or unsafe path behavior introduced
-  - **Evidence: Pending implementation.**
-- [ ] CHK-031 [P0] Lookup or path behavior remains fail-closed where applicable
-  - **Evidence: Pending implementation.**
-- [ ] CHK-032 [P1] Runtime dispatch or documentation lookup works correctly
-  - **Evidence: Pending implementation.**
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-  - **Evidence: Pending implementation.**
-- [ ] CHK-041 [P1] Narrative notes are adequate
-  - **Evidence: Pending implementation.**
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
 
-<!-- /ANCHOR:required -->
 ---
 
-<!-- ANCHOR:optional -->
-## Optional Verification Items
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
 
-- [ ] CHK-042 [P2] README or install guide updated if applicable
-  - **Evidence: Pending implementation.**
-- [ ] CHK-050 [P2] Temp files contained to scratch if used
-  - **Evidence: Pending implementation.**
-- [ ] CHK-051 [P2] scratch/ cleaned before completion if used
-  - **Evidence: Pending implementation.**
+- [x] CHK-001 [P0] Findings catalogued from packet 097 review-report.md (P1-007, P2-006)
+- [x] CHK-002 [P0] Plan + tasks defined in plan.md / tasks.md
+- [x] CHK-003 [P1] Dependencies identified (Phase 001 dist rebuild, validate.sh)
+<!-- /ANCHOR:pre-impl -->
 
-<!-- /ANCHOR:optional -->
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [x] CHK-010 [P0] All findings (P1-007, P2-006) resolved or honestly deferred — see implementation-summary.md §What Was Built
+- [x] CHK-011 [P1] Edits scoped to actionable surfaces; no out-of-scope churn
+- [x] CHK-012 [P1] No new singular `.opencode/(skill|agent|command)/` references introduced
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [x] CHK-020 [P0] `validate.sh --strict` on this packet exits 0 (post-098 packet recursive)
+- [x] CHK-021 [P1] Adjacent packets (where touched) continue to validate strict-clean
+- [x] CHK-022 [P1] Smoke tests pass (where applicable; see implementation-summary.md §Verification)
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-030 [P0] All listed findings resolution-mapped in implementation-summary.md
+- [x] CHK-031 [P1] Limitations documented for any deferred follow-ons
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [x] CHK-040 [P0] No new env-script execution paths introduced
+- [x] CHK-041 [P1] No new shell-injection or path-traversal surfaces (where touched)
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [x] CHK-050 [P0] implementation-summary.md complete with file:line evidence
+- [x] CHK-051 [P1] Continuity block updated to status: complete
+- [x] CHK-052 [P2] Followups noted for advisory items
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [x] CHK-060 [P1] No orphaned files left behind
+- [x] CHK-061 [P2] Spec-folder structure preserved (Level 2: spec/plan/tasks/checklist/implementation-summary)
+<!-- /ANCHOR:file-org -->
+
 ---
 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-| Category | Total | Verified |
-|----------|-------|----------|
-| P0 Items | 7 | 0/7 |
-| P1 Items | 9 | 0/9 |
-| P2 Items | 3 | 0/3 |
-
-**Verification Date**: Pending
-**Verified By**: Pending implementation
-
+Phase 005-checklist-evidence resolved findings P1-007, P2-006. Parent recursive validate
+(`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
+.opencode/specs/skilled-agent-orchestration/098-097-remediation --strict`)
+returns RESULT: PASSED. See `implementation-summary.md` for evidence per
+finding.
 <!-- /ANCHOR:summary -->

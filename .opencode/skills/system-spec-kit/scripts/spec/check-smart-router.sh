@@ -257,9 +257,26 @@ def analyze_skill(skill_dir: Path) -> SkillResult:
     variant = detect_variant(router_text)
     referenced_paths = extract_resources(router_text, router_text)
     always_paths = extract_always_paths(router_text)
+
+    def resource_resolves(resource: str) -> bool:
+        # Primary: own skill directory
+        if (skill_dir / resource).exists():
+            return True
+        # Fallback (P1-021): shared sibling-skill paths.
+        # Citations like `system-spec-kit/references/cli/foo.md` extract to
+        # `references/cli/foo.md` via the regex. Check sibling skill dirs as
+        # the secondary resolution scope.
+        skills_root = skill_dir.parent
+        for sibling in skills_root.iterdir():
+            if sibling == skill_dir or not sibling.is_dir():
+                continue
+            if (sibling / resource).exists():
+                return True
+        return False
+
     missing_paths = [
         resource for resource in referenced_paths
-        if not (skill_dir / resource).exists()
+        if not resource_resolves(resource)
     ]
     tree_bytes = markdown_tree_bytes(skill_dir)
     always_bytes = bytes_for_paths(skill_dir, always_paths)

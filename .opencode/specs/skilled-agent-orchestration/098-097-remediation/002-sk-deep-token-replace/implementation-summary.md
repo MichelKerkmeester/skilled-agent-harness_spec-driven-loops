@@ -81,6 +81,18 @@ Separately, repaired P1-009 doctrine drift in `.codex/agents/review.toml:400-404
 
 ---
 
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 

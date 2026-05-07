@@ -13,7 +13,8 @@ _memory:
     last_updated_by: "claude-opus-4-7"
     recent_action: "Phase 005 complete: P1-007 + P2-006 resolved"
     next_safe_action: "Move to Phase 006 (skill advisor + Python tools migration)"
-    blockers: []
+    blockers:
+          - "Optional CHK-* line-by-line backfill audit (advisory; deferred — would consume ~7-14 hours)"
     key_files:
       - ".opencode/specs/skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/001-sk-code-review-playbook/checklist.md"
       - ".opencode/specs/skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/002-sk-git-playbook/checklist.md"
@@ -78,6 +79,18 @@ The deferral is honest, auditable, and aligned with the deep-review's own resolu
 | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/004-symlinks/checklist.md` | Append | P1-007 deferral notice (19 unchecked CHK-*) |
 | `.opencode/specs/skilled-agent-orchestration/093-testing-playbooks-code-review-and-git/spec.md` | Append | P2-006 supersession notice pointing to 094 ADR-001 |
 <!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

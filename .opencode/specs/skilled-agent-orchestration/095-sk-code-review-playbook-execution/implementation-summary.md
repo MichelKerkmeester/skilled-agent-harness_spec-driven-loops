@@ -109,7 +109,7 @@ Each transcript was read against the playbook's pass/fail criteria. DeepSeek's r
 |----------|-----|
 | Single-CLI dispatch via opencode + deepseek (not multi-CLI) | Matches user direction; tests DeepSeek's review fitness in isolation |
 | Synthetic per-scenario fixtures (small TypeScript snippets) | Bounded prompts; reproducible; each fixture targets one specific review lens |
-| CR-016/017/018 marked SKIP | These are meta-orchestration scenarios that test multi-CLI handback; not reproducible by single-CLI dispatch — the contracts they assert require coordination between distinct external CLIs |
+| CR-016/017/018 initially SKIP, then re-run on user request | Meta-orchestration scenarios that test multi-CLI handback. Initially SKIP due to single-CLI scope; per user direction re-dispatched: CR-016 via Claude @review subagent, CR-017 via cli-codex direct dispatch, CR-018 via opencode+deepseek/gemini handback — all 3 PASSED on the second pass |
 | Sequential dispatch (no parallelism) | Per memory rule about parallel CLI unreliability; also makes per-scenario logs cleanly separated |
 <!-- /ANCHOR:decisions -->
 
@@ -121,9 +121,9 @@ Each transcript was read against the playbook's pass/fail criteria. DeepSeek's r
 | Check | Result |
 |-------|--------|
 | Spec packet 095 strict valid | PASS |
-| 18 scenarios dispatched (or marked SKIP) | 15 dispatched + 3 SKIP = 18/18 accounted |
-| Verdicts assigned per playbook pass/fail criteria | 15 PASS, 3 SKIP, 0 PARTIAL, 0 FAIL |
-| Per-scenario transcripts captured | 15 logs in `/tmp/095-CR-NNN.log` |
+| 18 scenarios dispatched | 18 dispatched (15 in initial single-CLI batch + 3 cross-CLI re-runs CR-016/017/018) |
+| Verdicts assigned per playbook pass/fail criteria | 18 PASS, 0 SKIP, 0 PARTIAL, 0 FAIL (final state after user-requested re-run of CR-016/017/018) |
+| Per-scenario transcripts captured | 15 logs in `/tmp/095-CR-NNN.log` (CR-001..015); CR-016/017/018 transcripts captured in chat thread evidence |
 | Aggregated results table delivered to user | Yes (this document + chat) |
 <!-- /ANCHOR:verification -->
 

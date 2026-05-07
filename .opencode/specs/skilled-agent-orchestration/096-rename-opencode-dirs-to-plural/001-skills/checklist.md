@@ -44,9 +44,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Resource map enumerates all reference locations
-- [ ] CHK-002 [P0] Critical-patch list identifies opencode.json + settings.local.json + skill_advisor.py
-- [ ] CHK-003 [P1] cli-codex sandbox=workspace-write
+- [x] CHK-001 [P0] Resource map enumerates all reference locations
+- [x] CHK-002 [P0] Critical-patch list identifies opencode.json + settings.local.json + skill_advisor.py
+- [x] CHK-003 [P1] cli-codex sandbox=workspace-write
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,12 +54,12 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `.opencode/skills/` directory removed
-- [ ] CHK-011 [P0] `.opencode/skills/` directory present with all 7,464+ original files
-- [ ] CHK-012 [P0] `git grep -E '\.opencode/skills/' | grep -v '\.opencode/skills/'` returns 0 lines
-- [ ] CHK-013 [P0] opencode.json valid JSON post-edit
-- [ ] CHK-014 [P0] .claude/settings.local.json valid JSON post-edit
-- [ ] CHK-015 [P1] skill_advisor.py regex compiles via `re.compile`
+- [x] CHK-010 [P0] `.opencode/skills/` directory removed
+- [x] CHK-011 [P0] `.opencode/skills/` directory present with all 7,464+ original files
+- [x] CHK-012 [P0] `git grep -E '\.opencode/skills/' | grep -v '\.opencode/skills/'` returns 0 lines
+- [x] CHK-013 [P0] opencode.json valid JSON post-edit
+- [x] CHK-014 [P0] .claude/settings.local.json valid JSON post-edit
+- [x] CHK-015 [P1] skill_advisor.py regex compiles via `re.compile`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -67,10 +67,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] opencode smoke test no "Could not find any skills directories" warning
-- [ ] CHK-021 [P0] skill_advisor.py smoke invocation returns recommendation (not crash)
-- [ ] CHK-022 [P1] validate.sh strict on packet 095 returns exit 0
-- [ ] CHK-023 [P1] validate_document.py on all 16 playbook roots returns VALID
+- [x] CHK-020 [P0] opencode smoke test no "Could not find any skills directories" warning
+- [x] CHK-021 [P0] skill_advisor.py smoke invocation returns recommendation (not crash)
+- [x] CHK-022 [P1] validate.sh strict on packet 095 returns exit 0
+- [x] CHK-023 [P1] validate_document.py on all 16 playbook roots returns VALID
 <!-- /ANCHOR:testing -->
 
 ---
@@ -78,13 +78,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each finding has a finding class. (N/A - this is a refactor not a bug fix; activates if verification fails)
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory: 7,464 files inventoried, all sed-updated.
-- [ ] CHK-FIX-003 [P0] Consumer inventory: 3 critical configs/scripts patched targeted.
-- [ ] CHK-FIX-004 [P0] Adversarial test: bulk sed false-positive sweep (zero stale singular refs).
-- [ ] CHK-FIX-005 [P1] Matrix axes: file types × directory locations × pattern variants (literal vs JSON-escaped) — all covered.
-- [ ] CHK-FIX-006 [P1] Hostile env variant: N/A.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to commit SHA in implementation-summary.md.
+- [x] CHK-FIX-001 [P0] Each finding has a finding class. (N/A - this is a refactor not a bug fix; activates if verification fails)
+- [x] CHK-FIX-002 [P0] Same-class producer inventory: 7,464 files inventoried, all sed-updated.
+- [x] CHK-FIX-003 [P0] Consumer inventory: 3 critical configs/scripts patched targeted.
+- [x] CHK-FIX-004 [P0] Adversarial test: bulk sed false-positive sweep (zero stale singular refs).
+- [x] CHK-FIX-005 [P1] Matrix axes: file types × directory locations × pattern variants (literal vs JSON-escaped) — all covered.
+- [x] CHK-FIX-006 [P1] Hostile env variant: N/A.
+- [x] CHK-FIX-007 [P1] Evidence pinned to commit SHA in implementation-summary.md.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -92,8 +92,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets exposed in opencode.json or settings.local.json after edit
-- [ ] CHK-031 [P0] cli-codex sandbox is workspace-write only (no network mutations)
+- [x] CHK-030 [P0] No secrets exposed in opencode.json or settings.local.json after edit
+- [x] CHK-031 [P0] cli-codex sandbox is workspace-write only (no network mutations)
 <!-- /ANCHOR:security -->
 
 ---
@@ -101,9 +101,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec.md / plan.md / tasks.md / checklist.md synchronized
-- [ ] CHK-041 [P1] implementation-summary.md filled with evidence
-- [ ] CHK-042 [P2] resource-map.md accurate post-execution
+- [x] CHK-040 [P1] spec.md / plan.md / tasks.md / checklist.md synchronized
+- [x] CHK-041 [P1] implementation-summary.md filled with evidence
+- [x] CHK-042 [P2] resource-map.md accurate post-execution
 <!-- /ANCHOR:docs -->
 
 ---
@@ -111,8 +111,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] No files outside `.opencode/skills/` rename scope modified
-- [ ] CHK-051 [P1] git working tree contains only expected diffs
+- [x] CHK-050 [P1] No files outside `.opencode/skills/` rename scope modified
+- [x] CHK-051 [P1] git working tree contains only expected diffs
 <!-- /ANCHOR:file-org -->
 
 ---

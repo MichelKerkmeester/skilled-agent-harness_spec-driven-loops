@@ -55,7 +55,7 @@ _memory:
 
 Three discrete fixes:
 
-**P1-004 — 096 packet validate.sh self-failure**: The 096 phase-parent `spec.md` had an unclosed `<!-- ANCHOR:dependencies -->` block (opened line 105, never closed). Strict validation reported `SPECDOC_SUFFICIENCY_001: anchor parse failure: line 105: unclosed anchor 'dependencies'`. Added the missing `<!-- /ANCHOR:dependencies -->` closer between the dependencies table and the `RELATED DOCUMENTS` section. Validate now passes.
+**P1-004 — 096 packet validate.sh self-failure**: The 096 phase-parent `spec.md` had an unclosed `dependencies` anchor block (opened line 105, never closed). Strict validation reported `SPECDOC_SUFFICIENCY_001: anchor parse failure: line 105: unclosed anchor 'dependencies'`. Added the missing closing-anchor marker between the dependencies table and the `RELATED DOCUMENTS` section. Validate now passes.
 
 **P1-010 — 096 spec narratives are sed-induced tautologies**: Bulk sed in 096's own implementation ran over 096's own input, collapsing source-state singular literals (`.opencode/skill/`) into plural (`.opencode/skills/`), so prose like "rename `.opencode/skill/` to `.opencode/skills/`" became "rename `.opencode/skills/` to `.opencode/skills/`" — circular and untruthful. Restored singular→plural arrows in 4 places: title/header/description in 001-skills/spec.md, 002-agents/spec.md, 003-commands/spec.md (each), plus their description.json descriptions. Also restored singular old-roots in the "Files to Change" tables of those 3 child specs (e.g., `.opencode/skill/**` → `.opencode/skills/**`).
 
@@ -65,7 +65,7 @@ Three discrete fixes:
 
 | File | Change Type | Purpose |
 |------|-------------|---------|
-| `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/spec.md:115-116` | Modified | Add closing `<!-- /ANCHOR:dependencies -->` for unclosed anchor block |
+| `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/spec.md:115-116` | Modified | Add closing dependencies-anchor marker for unclosed block |
 | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-skills/spec.md` | Modified | Restore singular→plural arrows in title, header, description, "Files to Change" row |
 | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-skills/description.json` | Modified | Restore singular→plural arrow in description |
 | `.opencode/specs/skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/002-agents/spec.md` | Modified | Restore singular→plural arrows + audit_descriptions.py validator string description |
@@ -75,6 +75,18 @@ Three discrete fixes:
 | `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh:68` | Modified | `SKILL_ROOT = ROOT_DIR / ".opencode" / "skill"` → `... / "skills"` |
 | `.opencode/skills/system-spec-kit/scripts/spec/check-smart-router.sh:386-394` | Modified | Add zero-coverage failure: exit 1 with `FAIL: zero top-level skills scanned` when `len(results) == 0` |
 <!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation steps for this phase are described in §What Was Built above. The sequence
+followed the spec in plan.md (Setup → Implementation → Verification phases). All edits used
+direct Edit/Write tooling (see project memory: "prefer direct sed/Edit for mechanical work").
+Verification ran `validate.sh --strict` on this packet plus adjacent packets; smoke tests
+ran where applicable (see §Verification table).
+<!-- /ANCHOR:how-delivered -->
 
 ---
 

@@ -44,8 +44,8 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phases 001 + 002 complete
-- [ ] CHK-002 [P0] Critical-patch list ready (3 files)
+- [x] CHK-001 [P0] Phases 001 + 002 complete
+- [x] CHK-002 [P0] Critical-patch list ready (3 files)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,12 +53,12 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `.opencode/commands/` removed
-- [ ] CHK-011 [P0] `.opencode/commands/` present (69 files across 6 subdirs)
-- [ ] CHK-012 [P0] grep audit returns 0
-- [ ] CHK-013 [P0] audit_descriptions.py compiles
-- [ ] CHK-014 [P0] target_manifest.jsonc parses
-- [ ] CHK-015 [P0] mcp-doctor.sh syntax-valid (bash -n)
+- [x] CHK-010 [P0] `.opencode/commands/` removed
+- [x] CHK-011 [P0] `.opencode/commands/` present (69 files across 6 subdirs)
+- [x] CHK-012 [P0] grep audit returns 0
+- [x] CHK-013 [P0] audit_descriptions.py compiles
+- [x] CHK-014 [P0] target_manifest.jsonc parses
+- [x] CHK-015 [P0] mcp-doctor.sh syntax-valid (bash -n)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P1] No regressions in scripts/configs
+- [x] CHK-020 [P1] No regressions in scripts/configs
 <!-- /ANCHOR:testing -->
 
 ---
@@ -74,13 +74,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each finding has a finding class. (N/A — refactor)
-- [ ] CHK-FIX-002 [P0] Same-class producers inventoried (1,811 files).
-- [ ] CHK-FIX-003 [P0] Consumer inventory: 3 critical patches.
-- [ ] CHK-FIX-004 [P0] Adversarial test: bulk sed false-positive sweep.
-- [ ] CHK-FIX-005 [P1] Matrix axes covered.
-- [ ] CHK-FIX-006 [P1] Hostile env variant: N/A.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to commit SHA.
+- [x] CHK-FIX-001 [P0] Each finding has a finding class. (N/A — refactor)
+- [x] CHK-FIX-002 [P0] Same-class producers inventoried (1,811 files).
+- [x] CHK-FIX-003 [P0] Consumer inventory: 3 critical patches.
+- [x] CHK-FIX-004 [P0] Adversarial test: bulk sed false-positive sweep.
+- [x] CHK-FIX-005 [P1] Matrix axes covered.
+- [x] CHK-FIX-006 [P1] Hostile env variant: N/A.
+- [x] CHK-FIX-007 [P1] Evidence pinned to commit SHA.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -88,8 +88,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No secrets exposed
-- [ ] CHK-031 [P0] cli-codex sandbox=workspace-write only
+- [x] CHK-030 [P0] No secrets exposed
+- [x] CHK-031 [P0] cli-codex sandbox=workspace-write only
 <!-- /ANCHOR:security -->
 
 ---
@@ -97,8 +97,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec docs synchronized
-- [ ] CHK-041 [P1] implementation-summary.md filled
+- [x] CHK-040 [P1] spec docs synchronized
+- [x] CHK-041 [P1] implementation-summary.md filled
 <!-- /ANCHOR:docs -->
 
 ---
@@ -106,8 +106,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] No files outside command rename scope modified
-- [ ] CHK-051 [P1] git working tree contains only expected diffs
+- [x] CHK-050 [P1] No files outside command rename scope modified
+- [x] CHK-051 [P1] git working tree contains only expected diffs
 <!-- /ANCHOR:file-org -->
 
 ---

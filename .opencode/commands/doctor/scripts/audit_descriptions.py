@@ -421,6 +421,18 @@ def main() -> None:
     repo = Path(args.repo_root).resolve()
     items = walk_skills(repo) + walk_commands(repo) + walk_agents(repo)
 
+    if not items:
+        msg = (
+            f"FAIL: zero items audited (no skills, commands, or agents found under "
+            f"{repo}/.opencode/{{skills,commands,agents}}). Likely cause: misconfigured "
+            f"--repo-root or stale singular paths post-rename."
+        )
+        if args.json_output:
+            print(json.dumps({"error": msg, "items": []}, indent=2))
+        else:
+            print(msg, file=sys.stderr)
+        sys.exit(2)
+
     if args.json_output:
         payload = render_json(items, args.project_ceiling, args.fail_over)
         print(json.dumps(payload, indent=2))
