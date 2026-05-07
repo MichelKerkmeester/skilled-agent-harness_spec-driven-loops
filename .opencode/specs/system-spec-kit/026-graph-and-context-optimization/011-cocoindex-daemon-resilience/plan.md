@@ -1,25 +1,26 @@
 ---
-title: "Implementation Plan: CocoIndex daemon resilience"
-description: "Two surgical patches: idempotent start_daemon() guard and BrokenPipeError-safe error handler. ~15 LOC production + ~50 LOC tests. Plus operator one-shot recovery for the active leaked daemon."
+title: "Implementation Plan: CocoIndex daemon resilience (7-patch defense-in-depth)"
+description: "Seven patches across two source files address the socket-unlink cascade, double logger.exception CPU spike, six unsafe send_bytes sites, listen backlog default, log rotation gap, and version-mismatch race. About 50 LOC production plus 200 LOC tests."
 trigger_phrases:
   - "cocoindex daemon plan"
-  - "start_daemon idempotency plan"
-  - "BrokenPipeError fix plan"
+  - "fcntl flock idempotency plan"
+  - "socket-unlink guard plan"
+  - "send_bytes safe wrapper plan"
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "specs/system-spec-kit/026-graph-and-context-optimization/011-cocoindex-daemon-resilience"
-    last_updated_at: "2026-05-07T07:32:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored plan after spec landed"
-    next_safe_action: "Author tasks + checklist"
+    last_updated_at: "2026-05-07T08:32:00Z"
+    last_updated_by: "deep-research-iter-5-synthesis"
+    recent_action: "Authored 7-patch plan from deep-research synthesis"
+    next_safe_action: "Author tasks.md + checklist updates then dispatch Phase 2 implementation"
     blockers: []
     key_files:
       - "plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-07-027-cocoindex-daemon-spec"
+      session_id: "2026-05-07-026-011-spec-update-post-research"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -41,13 +42,13 @@ _memory:
 |--------|-------|
 | **Language/Stack** | Python 3.11, asyncio, multiprocessing |
 | **Framework** | mcp-coco-index `ccc` CLI + daemon module |
-| **Storage** | LMDB (cocoindex.db), SQLite (target_sqlite.db), unix socket (daemon.sock) |
+| **Storage** | SQLite (`target_sqlite.db`), `cocoindex.db` (Rust binding, opaque), unix socket (daemon.sock) |
 | **Testing** | pytest under `mcp-coco-index/mcp_server/tests/` |
 | **Entry point** | `cocoindex_code.cli` to `ccc run-daemon` |
 
 ### Overview
 
-Two surgical patches to existing daemon code, no new modules. Patch 1 adds a 6-line pre-flight check at the top of `start_daemon()` (uses existing `_pid_alive()` and `_cleanup_stale_files()` helpers). Patch 2 wraps the error-response `send_bytes()` in a try/except for `(BrokenPipeError, ConnectionResetError)` so the error path does not double-crash. Tests assert idempotency, stale-cleanup, and broken-pipe quietness.
+Seven patches across two source files. Patch 1 introduces a cross-platform `_try_acquire_pid_lock()` helper using `fcntl.flock` on POSIX and `msvcrt.locking` on Windows. The lock binds to an open fd, eliminating the 5-60 ms TOCTOU race. Patch 2 wraps all 6 daemon-side `send_bytes` sites in `_safe_send_bytes()` that swallows `BrokenPipeError`/`ConnectionResetError`. Patch 3 adds a daemon-side socket-unlink guard so no daemon severs a sibling's socket. Patch 4 moves the unconditional PID-write inside the lock-held region. Patch 5 swaps `FileHandler` for `RotatingFileHandler`. Patch 6 raises `Listener` backlog to 128. Patch 7 documents a 6-step operator recovery procedure.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -56,15 +57,19 @@ Two surgical patches to existing daemon code, no new modules. Patch 1 adds a 6-l
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Problem statement clear and scope documented (`spec.md` REQ-001..REQ-006)
-- [x] Live evidence captured (PID 98364 leaked, 564 BrokenPipeError lines)
-- [x] Existing helpers identified (`_pid_alive`, `_cleanup_stale_files`)
+- [x] Problem statement clear and scope documented (`spec.md` REQ-001..REQ-010)
+- [x] Live evidence captured (PID 98364 leaked, 564 BrokenPipeError lines, severance event Apr 27 17:08:49)
+- [x] 5-iteration deep research synthesis at `research/research.md` with 21 findings and 23 spec corrections
+- [x] All 10 research key questions answered
 
 ### Definition of Done
-- [ ] All P0 acceptance criteria met (REQ-001..REQ-004)
+- [ ] All P0 acceptance criteria met (REQ-001..REQ-004, REQ-007, REQ-009, REQ-010)
+- [ ] All P1 acceptance criteria met (REQ-005, REQ-006, REQ-008)
 - [ ] Pytest suite passes (`pytest mcp-coco-index/mcp_server/tests/`)
-- [ ] No new BrokenPipeError lines in `daemon.log` after a 100-disconnect soak
-- [ ] Active daemon's `pgrep -fc run-daemon` returns 1 after `start_daemon()` called twice
+- [ ] No new BrokenPipeError lines in `daemon.log` after a 100-disconnect soak across all 6 send_bytes sites
+- [ ] `pgrep -fc 'ccc run-daemon'` returns 1 after 8 concurrent `start_daemon()` callers
+- [ ] `daemon.log.1` exists after a 10 MB log content write
+- [ ] 16 simultaneous connections all complete handshake without ECONNREFUSED
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -74,42 +79,19 @@ Two surgical patches to existing daemon code, no new modules. Patch 1 adds a 6-l
 
 ### Pattern
 
-Two independent guards on the existing daemon lifecycle. Idempotency guard at the spawn-site entry point. Pipe-safe error path at the connection-handler error site.
-
-Both are local additions. No cross-module changes. No API surface changes for callers.
+Defense-in-depth across the daemon lifecycle. Atomic spawn (advisory lock + idempotency check) on the client side. Pipe-safe error path (six call sites) plus unlink guard plus in-lock PID write on the server side. Rotation and backlog hygiene round out the surface.
 
 ### Key Components
 
-- **`client.start_daemon()`** at `client.py:192-225` is the spawn-site entry point. Currently bypasses the existing liveness helpers. Patch adds 6 lines at the top to consult `_pid_alive()` and `_cleanup_stale_files()` before `subprocess.Popen()`.
-- **`daemon._handle_connection()`** at `daemon.py:~390-450` is the per-connection coroutine. The streaming-response branch at lines 432-440 has a try/except where the except itself is unsafe. Patch adds an inner try/except around the error-response `send_bytes()`.
-
-### Data Flow
-
-```
-start_daemon() entry
-   |
-   +-- NEW: read daemon.pid -> _pid_alive() check
-   |     +-- alive -> return early (no spawn)
-   |     +-- dead PID -> _cleanup_stale_files() -> continue
-   |     +-- no PID file -> continue
-   |
-   +-- subprocess.Popen(ccc run-daemon)
-
-
-daemon._handle_connection (streaming branch)
-   |
-   +-- async for resp in result:
-   |     conn.send_bytes(resp)        <- may raise BrokenPipeError
-   |
-   +-- except Exception as exc:
-   |     logger.exception("Error during streaming response")
-   |     try:                          <- NEW
-   |       conn.send_bytes(error_resp)
-   |     except (BrokenPipeError, ConnectionResetError):
-   |       pass                        <- NEW: client gone, nothing to send
-   |
-   +-- (outer except handles unrelated failures)
-```
+- **`client._try_acquire_pid_lock()`** (NEW helper): cross-platform advisory lock. POSIX uses `fcntl.flock(fd, LOCK_EX|LOCK_NB)`. Windows uses `msvcrt.locking(fd, LK_NBLCK, 1)`. Lock-fd pattern eliminates PID-reuse hazards.
+- **`client.start_daemon()`** (`client.py:192-225`): now acquires the lock before any check or spawn. Pre-flight reads `daemon.pid`, calls `_pid_alive()`, calls `_cleanup_stale_files()` if dead, then spawns. All under the lock.
+- **`client.ensure_daemon()`** (`client.py:413-443`): version-mismatch path now holds the lock across stop+restart, eliminating the 3-caller race window.
+- **`daemon._safe_send_bytes()`** (NEW helper in `daemon.py`): wraps `conn.send_bytes()` in try/except for `(BrokenPipeError, ConnectionResetError)`. Logs once at INFO and returns without raising.
+- **`daemon._handle_connection()`** (`daemon.py:432-451`): all 6 `send_bytes` call sites switch from raw to `_safe_send_bytes()`.
+- **`daemon._async_daemon_main()`** (`daemon.py:613-615`): socket-unlink guard. Reads `daemon.pid`. If `_pid_alive(stored_pid) and stored_pid != os.getpid()`, raises `RuntimeError` and exits before unlink.
+- **`daemon.py:568`**: PID-write moves inside the lock-held region.
+- **`daemon.py:572-575`**: `RotatingFileHandler(maxBytes=10*1024*1024, backupCount=5)` replaces plain `FileHandler`.
+- **`daemon.py:619`**: `Listener(sock_path, family=..., backlog=128)`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -119,18 +101,28 @@ daemon._handle_connection (streaming branch)
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `client.py:start_daemon()` | Spawns daemon subprocess | Add 6-line pre-flight check | Pytest assert process count |
-| `client.py:_pid_alive()`, `_cleanup_stale_files()` | Existing helpers | Reuse without change | Indirect via test |
-| `daemon.py:_handle_connection()` | Per-connection coroutine | Wrap error-response send_bytes in try/except | Pytest patch send_bytes raise |
-| `daemon.py:_dispatch()` | Request router | Read-only audit (no changes expected) | grep for other unsafe send_bytes |
-| `tests/test_daemon.py` | Unit tests | Add 3 cases | pytest |
-| `tests/test_e2e_daemon.py` | E2E tests | Add 1 case | pytest |
-| `daemon.log` | Runtime log | Verify quieter post-fix | Grep BrokenPipeError count |
+| `client.py:192-225` `start_daemon()` | Spawns daemon subprocess | Wrap in `_try_acquire_pid_lock()`. Add pre-flight check. | Pytest 8-process stress assert count=1 |
+| `client.py:413-443` `ensure_daemon()` version-mismatch | Stops then starts unconditionally | Hold lock across stop+restart sequence | Pytest 3-caller race test |
+| `client.py` (NEW helper) `_try_acquire_pid_lock()` | n/a | NEW. Cross-platform advisory lock helper. | Unit test for POSIX and Win32 paths |
+| `client.py:_pid_alive()`, `_cleanup_stale_files()` | Existing helpers | Reuse without change | Indirect via integration test |
+| `daemon.py:426`, `:436`, `:439`, `:441`, +2 in `_search_with_wait` | Per-site `conn.send_bytes` | Replace with `_safe_send_bytes()` | Pytest parameterized over 6 sites |
+| `daemon.py` (NEW helper) `_safe_send_bytes()` | n/a | NEW. Wraps send_bytes in try/except (BrokenPipeError, ConnectionResetError). | Unit test patches send to raise |
+| `daemon.py:438`, `:445` `logger.exception` | Full traceback formatting | Replace with `logger.info` (single line) when called from new safe wrapper | Pytest asserts log line count after disconnect |
+| `daemon.py:568` `pid_path.write_text` | Unconditional PID write | Move inside lock-held region | Pytest concurrent-spawn test |
+| `daemon.py:572-575` `FileHandler` | No rotation | Replace with `RotatingFileHandler(10MB, 5)` | Pytest synthetic log churn test |
+| `daemon.py:613-615` socket unlink | Unconditional | Add liveness guard | Pytest two-process socket-mtime test |
+| `daemon.py:619` `Listener(...)` | `backlog=1` default | Pass `backlog=128` explicitly | Pytest 16-connect stress test |
+| `daemon.py:644-665` `_accept_loop` | Read-only audit | No changes (already decoupled per P0-11) | n/a |
+| `tests/test_daemon.py` | Does not exist | CREATE with unit tests for helpers and per-site coverage | pytest |
+| `tests/test_e2e_daemon.py` | Does not exist | CREATE with E2E concurrency, backlog, rotation tests | pytest |
+| `implementation-summary.md` operator-recovery | Single-line snippet | Replace with 6-step checklist | Manual review |
+| `daemon.log` | Runtime log | Verify quieter post-fix | Grep BrokenPipeError count + log size |
 
 Required inventories:
 - All `send_bytes` call sites: `rg -n 'conn.send_bytes' .opencode/skill/mcp-coco-index/mcp_server/cocoindex_code/`
 - All `start_daemon` call sites: `rg -n 'start_daemon\b' .opencode/skill/mcp-coco-index/`
-- All `_pid_alive`/`_cleanup_stale_files` call sites: `rg -n '_pid_alive|_cleanup_stale_files' .opencode/skill/mcp-coco-index/`
+- All `_pid_alive` and `_cleanup_stale_files` call sites: `rg -n '_pid_alive|_cleanup_stale_files' .opencode/skill/mcp-coco-index/`
+- All `subprocess.Popen` call sites: `rg -n 'subprocess\.Popen|Popen\(' .opencode/skill/mcp-coco-index/`
 <!-- /ANCHOR:affected-surfaces -->
 
 ---
@@ -140,25 +132,30 @@ Required inventories:
 
 ### Phase 1: Setup
 
-- [ ] Confirm pytest setup runs locally (`cd mcp-coco-index/mcp_server && pytest tests/test_daemon.py -k handshake -x`)
+- [ ] Confirm pytest setup runs locally (`cd mcp-coco-index/mcp_server && pytest --collect-only 2>&1 | head`)
 - [ ] Capture `pgrep -af "ccc run-daemon"` baseline
-- [ ] Snapshot current `daemon.log` size for before-after comparison
+- [ ] Snapshot current `daemon.log` size (~23 MB) and BrokenPipeError count (~564) for before-after comparison
+- [ ] Verify no daemon-lifecycle tests exist (per P1-4): `grep -rn 'start_daemon\|ensure_daemon\|stop_daemon' .opencode/skill/mcp-coco-index/mcp_server/tests/` returns 0 hits
 
-### Phase 2: Implementation
+### Phase 2: Implementation (7 patches)
 
-- [ ] **T-Patch1** Edit `client.py:start_daemon()` and add 6-line pre-flight at the function top
-- [ ] **T-Patch2** Edit `daemon.py:_handle_connection()` and add inner try/except around the error-response `send_bytes()` (lines ~438-440)
-- [ ] **T-Test1** Add `test_start_daemon_idempotent` to `tests/test_daemon.py`
-- [ ] **T-Test2** Add `test_start_daemon_cleans_stale_pid` to `tests/test_daemon.py`
-- [ ] **T-Test3** Add `test_handle_connection_swallows_broken_pipe_in_error_path` to `tests/test_daemon.py`
-- [ ] **T-Test4** Add `test_e2e_double_start_does_not_spawn` to `tests/test_e2e_daemon.py`
-- [ ] **T-Recover** One-shot operator recovery. Kill leaked PID 98364 and the error-looping PID 24938 (`pkill -f "ccc run-daemon"`). Re-run `ccc run-daemon` to start a fresh daemon. (This task is OUT OF SCOPE for the patch commit. Track here so the orchestrator records the recovery action separately.)
+- [ ] **Patch 1** Atomic idempotent `start_daemon()` with `_try_acquire_pid_lock()` helper. Touch `client.py:192-225` plus `client.py:413-443`.
+- [ ] **Patch 2** BrokenPipeError-safe wrapper for ALL 6 `send_bytes` sites. Touch `daemon.py:426`, `:436`, `:439`, `:441`, plus 2 `_search_with_wait` sites.
+- [ ] **Patch 3** Daemon-side socket-unlink guard. Touch `daemon.py:613-615`.
+- [ ] **Patch 4** Move `pid_path.write_text` inside lock-held region. Touch `daemon.py:568`.
+- [ ] **Patch 5** `RotatingFileHandler(10MB, 5)` replaces `FileHandler`. Touch `daemon.py:572-575`.
+- [ ] **Patch 6** `Listener(backlog=128)`. Touch `daemon.py:619`.
+- [ ] **Patch 7** Operator recovery 6-step checklist. Touch `implementation-summary.md` (Known Limitations section).
+- [ ] Author NEW `tests/test_daemon.py` with unit tests for `_try_acquire_pid_lock`, `_safe_send_bytes`, socket-unlink guard, lock-held PID-write.
+- [ ] Author NEW `tests/test_e2e_daemon.py` with concurrency stress (8 process spawn), backlog stress (16 simultaneous connects), version-mismatch race, log-rotation tests.
 
 ### Phase 3: Verification
 
-- [ ] `pytest tests/test_daemon.py tests/test_e2e_daemon.py -v` all pass
-- [ ] 100-disconnect soak via a quick Python script. Open 100 connections in a tight loop, close each mid-stream. Count `BrokenPipeError` in `daemon.log` afterward. Expect zero.
-- [ ] `pgrep -fc "ccc run-daemon"` returns 1 after `ccc run-daemon` is invoked twice consecutively
+- [ ] `pytest mcp-coco-index/mcp_server/tests/test_daemon.py mcp-coco-index/mcp_server/tests/test_e2e_daemon.py -v` all pass
+- [ ] 100-disconnect soak via Python script. Open 100 connections, close each on each of the 6 `send_bytes` sites. Verify `daemon.log` contains zero new `BrokenPipeError` lines.
+- [ ] `pgrep -fc "ccc run-daemon"` returns 1 after 8 concurrent `ccc run-daemon` invocations
+- [ ] Log rotation: write 11 MB of synthetic content. Verify `daemon.log.1` exists, `daemon.log` under 10 MB.
+- [ ] Backlog stress: open 16 simultaneous connections within 100 ms window. Verify all complete handshake without ECONNREFUSED.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -168,10 +165,13 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | `start_daemon()` idempotency, stale-PID cleanup, BrokenPipe error-path quiet | pytest, unittest.mock |
-| Integration | Connection handler with patched `send_bytes` raising mid-stream | pytest |
-| E2E | Real daemon spawn, double-start asserts singleton | pytest with real subprocess |
-| Soak | 100-disconnect loop, log-line count assertion | shell script + pytest |
+| Unit | `_try_acquire_pid_lock()` cross-platform, `_safe_send_bytes()` swallow behavior, socket-unlink guard logic, classifyError equivalent | pytest, unittest.mock |
+| Integration | Connection handler with patched `send_bytes` raising on each of 6 sites | pytest |
+| E2E concurrency | 8 process spawn, assert singleton via `pgrep` | pytest with real subprocess |
+| E2E version race | 3 concurrent `ensure_daemon` callers expecting different version | pytest with real subprocess |
+| E2E backlog | 16 simultaneous connects | pytest with socket library |
+| E2E rotation | 11 MB synthetic log, assert `daemon.log.1` exists | pytest with synthetic log writer |
+| Soak | 100-disconnect loop across 6 sites | shell script + pytest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -183,6 +183,8 @@ Required inventories:
 |------------|------|--------|-------------------|
 | `cocoindex_code.client._pid_alive` | Internal | Green | Already exists |
 | `cocoindex_code.client._cleanup_stale_files` | Internal | Green | Already exists |
+| `fcntl` (POSIX) and `msvcrt` (Win32) | Stdlib | Green | Standard library |
+| `logging.handlers.RotatingFileHandler` | Stdlib | Green | Standard library |
 | `pytest` + `unittest.mock` | External (test) | Green | Standard |
 <!-- /ANCHOR:dependencies -->
 
@@ -191,8 +193,8 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: Patch 1 causes a regression where `start_daemon()` returns without spawning when a daemon is needed (false-positive liveness check). OR Patch 2 causes a crash in the error-response path.
-- **Procedure**: revert the patch commit. Both changes are additive guards. Reverting restores prior behavior. No schema or data migration to roll back.
+- **Trigger**: Any P0 patch causes a regression (false-positive lock acquisition prevents legitimate spawn, unlink guard prevents legitimate restart, etc.).
+- **Procedure**: Revert the patch commit. All 7 patches are additive guards or local additions. Reverting restores prior behavior. No schema or data migration to roll back. The `RotatingFileHandler` change is the only one with persistent file-system effect, but rollover backups remain readable.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -201,7 +203,7 @@ Required inventories:
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) -> Phase 2 (Implement) -> Phase 3 (Verify)
+Phase 1 (Setup) -> Phase 2 (Implement 7 patches) -> Phase 3 (Verify)
 ```
 
 | Phase | Depends On | Blocks |
@@ -219,9 +221,9 @@ Phase 1 (Setup) -> Phase 2 (Implement) -> Phase 3 (Verify)
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
 | Setup | Low | 30 min (capture baselines, run existing tests) |
-| Implementation | Low | 2 hours (~15 LOC production + ~50 LOC tests) |
-| Verification | Low | 1 hour (pytest + soak script + manual recovery probe) |
-| **Total** | | **3-4 hours** |
+| Implementation | Medium | 4-5 hours (~50 LOC production + ~200 LOC tests + new helper modules) |
+| Verification | Medium | 2 hours (pytest + soak + concurrency stress + rotation + backlog) |
+| **Total** | | **6-8 hours** (was 3-4 hours pre-research) |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -233,14 +235,15 @@ Phase 1 (Setup) -> Phase 2 (Implement) -> Phase 3 (Verify)
 - [ ] Existing pytest suite passes pre-patch
 - [ ] Baseline `daemon.log` size and BrokenPipeError count captured
 - [ ] Active daemons enumerated and their PIDs noted
+- [ ] Operator recovery executed (kill leaked PID 98364 + restart fresh) before applying patches
 
 ### Rollback Procedure
-1. `git revert <patch-commit>`
-2. Restart daemon via `ccc run-daemon` (the daemon will pick up the reverted code on next spawn)
+1. `git revert <patch-commit>` (each patch is a separate commit; revert in reverse order if needed)
+2. Restart daemon via `ccc run-daemon` (the daemon picks up the reverted code on next spawn)
 3. Verify pytest suite still passes
 4. Note revert reason in handover.md
 
 ### Data Reversal
-- **Has data migrations?** No. Daemon state files (LMDB, SQLite) are untouched by these patches.
-- **Reversal procedure**: N/A
+- **Has data migrations?** No. Daemon state files (SQLite) are untouched by these patches.
+- **Reversal procedure**: N/A. Rotation backups (daemon.log.1..5) remain readable.
 <!-- /ANCHOR:enhanced-rollback -->
