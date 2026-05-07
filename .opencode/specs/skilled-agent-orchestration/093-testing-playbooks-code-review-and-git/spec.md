@@ -136,3 +136,20 @@ Produce two `manual_testing_playbook/` packages — one per skill — following 
 - **Track parent**: `../` (`skilled-agent-orchestration`)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
 - **Approved plan**: `/Users/michelkerkmeester/.claude/plans/create-new-spec-in-staged-glade.md`
+
+---
+
+## Supersession Notice (Packet 098/005 Resolution)
+
+> **Note**: The default RCAF (Role-Context-Action-Format) prompt convention used in
+> packet 093's playbooks (e.g., "As a {ROLE}, {ACTION} against {TARGET}...") was
+> **superseded by packet 094's decision-record.md**:
+> [`094-playbook-prompt-naturalness/decision-record.md` ADR-001](../094-playbook-prompt-naturalness/decision-record.md).
+>
+> Per ADR-001, the canonical `Prompt:` field in playbook scenarios now defaults to
+> natural-human voice; RCAF is reserved for orchestrator-as-actor scenarios where the
+> caller IS an AI agent delegating to another tool. Packet 094 implemented this across
+> all 16 playbook packages including the 093 sk-code-review and sk-git playbooks.
+>
+> Resolves packet 097 deep-review finding **P2-006** (RCAF supersession not noted in 093
+> specs).
