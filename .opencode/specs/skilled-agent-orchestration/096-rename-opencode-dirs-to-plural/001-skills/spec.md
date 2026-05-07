@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: 096/001 - rename .opencode/skills/ to .opencode/skills/"
-description: "Phase 1 of 4 in packet 096. Rename .opencode/skills/ to .opencode/skills/ and update 7,464 reference-bearing files (~645,862 occurrences). Patch 3 critical configs/scripts (opencode.json, .claude/settings.local.json, skill_advisor.py)."
+title: "Feature Specification: 096/001 - rename .opencode/skill/ to .opencode/skills/"
+description: "Phase 1 of 4 in packet 096. Rename .opencode/skill/ to .opencode/skills/ and update 7,464 reference-bearing files (~645,862 occurrences). Patch 3 critical configs/scripts (opencode.json, .claude/settings.local.json, skill_advisor.py)."
 trigger_phrases:
   - "096/001 skills rename"
   - "opencode skill skills"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Feature Specification: 096/001 - rename .opencode/skills/ to .opencode/skills/
+# Feature Specification: 096/001 - rename .opencode/skill/ to .opencode/skills/
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -77,7 +77,7 @@ Rename `.opencode/skills/` → `.opencode/skills/` and update all 7,464 referenc
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/**` | Move | All 7,464 files moved to `.opencode/skills/**` via git mv |
+| `.opencode/skill/**` → `.opencode/skills/**` | Move | All 7,464 files renamed via `git mv .opencode/skill .opencode/skills` |
 | `**/*.{md,json,jsonl,ts,js,sh,yaml,yml,py,tmpl,jsonc,tsx,mts}` | Modify | Bulk sed replacement of `.opencode/skills/` → `.opencode/skills/` |
 | `opencode.json` | Modify | 3 MCP server `command` arrays (lines 23, 44, 57) |
 | `.claude/settings.local.json` | Modify | 4 hook commands (lines 37, 49, 61, 73) |

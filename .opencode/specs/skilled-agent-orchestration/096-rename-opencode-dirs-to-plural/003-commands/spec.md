@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: 096/003 - rename .opencode/commands/ to .opencode/commands/"
-description: "Phase 3 of 4. Rename .opencode/commands/ to .opencode/commands/; update 1,811 reference-bearing files (~16,128 occurrences). Patch audit_descriptions.py (command half) + target_manifest.jsonc + mcp-doctor.sh."
+title: "Feature Specification: 096/003 - rename .opencode/command/ to .opencode/commands/"
+description: "Phase 3 of 4. Rename .opencode/command/ to .opencode/commands/; update 1,811 reference-bearing files (~16,128 occurrences). Patch audit_descriptions.py (command half) + target_manifest.jsonc + mcp-doctor.sh."
 trigger_phrases:
   - "096/003 commands rename"
   - "opencode command commands"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Feature Specification: 096/003 - rename .opencode/commands/ to .opencode/commands/
+# Feature Specification: 096/003 - rename .opencode/command/ to .opencode/commands/
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -75,7 +75,7 @@ Rename `.opencode/commands/` → `.opencode/commands/` (69 files across 6 subdir
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/commands/**` | Move | 69 files moved to `.opencode/commands/**` |
+| `.opencode/command/**` → `.opencode/commands/**` | Move | 69 files renamed via `git mv .opencode/command .opencode/commands` |
 | `**/*.{md,json,jsonl,ts,js,sh,yaml,yml,jsonc}` | Modify | Bulk sed |
 | `.opencode/commands/doctor/scripts/audit_descriptions.py` | Modify | Command path validators |
 | `.opencode/skills/deep-agent-improvement/assets/target_manifest.jsonc` | Modify | `.opencode/commands/spec_kit/handover.md` |

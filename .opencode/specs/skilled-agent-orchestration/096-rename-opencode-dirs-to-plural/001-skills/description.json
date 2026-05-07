@@ -1,6 +1,6 @@
 {
   "specFolder": "skilled-agent-orchestration/096-rename-opencode-dirs-to-plural/001-skills",
-  "description": "Phase 1 of 4: rename .opencode/skills/ to .opencode/skills/; update 7,464 files; patch opencode.json + .claude/settings.local.json + skill_advisor.py.",
+  "description": "Phase 1 of 4: rename .opencode/skill/ to .opencode/skills/; update 7,464 files; patch opencode.json + .claude/settings.local.json + skill_advisor.py.",
   "keywords": [
     "spec",
     "096",

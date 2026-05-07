@@ -1,6 +1,6 @@
 ---
-title: "Feature Specification: 096/002 - rename .opencode/agents/ to .opencode/agents/"
-description: "Phase 2 of 4. Rename .opencode/agents/ to .opencode/agents/; update 1,532 reference-bearing files (~8,686 occurrences). Patch CLAUDE.md §5 routing table + sk-prompt graph-metadata + runtime_capabilities.json + audit_descriptions.py (agent half)."
+title: "Feature Specification: 096/002 - rename .opencode/agent/ to .opencode/agents/"
+description: "Phase 2 of 4. Rename .opencode/agent/ to .opencode/agents/; update 1,532 reference-bearing files (~8,686 occurrences). Patch CLAUDE.md §5 routing table + sk-prompt graph-metadata + runtime_capabilities.json + audit_descriptions.py (agent half)."
 trigger_phrases:
   - "096/002 agents rename"
   - "opencode agent agents"
@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Feature Specification: 096/002 - rename .opencode/agents/ to .opencode/agents/
+# Feature Specification: 096/002 - rename .opencode/agent/ to .opencode/agents/
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -77,12 +77,12 @@ Rename `.opencode/agents/` → `.opencode/agents/` (12 agent files moved). Updat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/agents/**` | Move | 12 files moved to `.opencode/agents/**` |
+| `.opencode/agent/**` → `.opencode/agents/**` | Move | 12 files renamed via `git mv .opencode/agent .opencode/agents` |
 | `**/*.{md,json,jsonl,ts,js,sh,yaml,yml}` | Modify | Bulk sed replacement |
 | `CLAUDE.md` | Modify | §5 Runtime Agent Directory routing table |
 | `.opencode/skills/sk-prompt/graph-metadata.json` | Modify | mirrorPath field |
 | `.opencode/skills/deep-research/assets/runtime_capabilities.json` | Modify | mirrorPath field |
-| `.opencode/commands/doctor/scripts/audit_descriptions.py` | Modify | `.opencode/agents/<name>.md` validator strings |
+| `.opencode/commands/doctor/scripts/audit_descriptions.py` | Modify | Update `.opencode/agent/<name>.md` → `.opencode/agents/<name>.md` validator strings |
 <!-- /ANCHOR:scope -->
 
 ---

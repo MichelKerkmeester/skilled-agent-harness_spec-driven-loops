@@ -113,6 +113,7 @@ The migration decomposes into four phases — one per category — to keep each 
 | Validation | `validate.sh --strict` | Spec-packet validation gate |
 | Validation | `validate_document.py` | Playbook root validation |
 | Reference | opencode official docs | Source of truth for plural convention |
+<!-- /ANCHOR:dependencies -->
 
 ---
 

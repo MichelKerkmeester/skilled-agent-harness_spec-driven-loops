@@ -65,7 +65,7 @@ from typing import Iterable
 
 
 ROOT_DIR = Path(os.environ.get("SMART_ROUTER_ROOT", os.getcwd())).resolve()
-SKILL_ROOT = ROOT_DIR / ".opencode" / "skill"
+SKILL_ROOT = ROOT_DIR / ".opencode" / "skills"
 JSON_MODE = os.environ.get("SMART_ROUTER_JSON_MODE") == "true"
 RESOURCE_RE = re.compile(r"(?<![\w.-])((?:\./)?(?:references|assets)/[A-Za-z0-9_./{}-]+\.md)")
 CODE_BLOCK_RE = re.compile(r"```(?:python|text|bash)?\s*\n(.*?)```", re.DOTALL)
@@ -340,6 +340,16 @@ def main() -> int:
     else:
         print_human(results, payload)
 
+    if not results:
+        if not JSON_MODE:
+            print(
+                color(
+                    f"FAIL: zero top-level skills scanned at {SKILL_ROOT}",
+                    "31;1",
+                ),
+                file=sys.stderr,
+            )
+        return 1
     return 1 if payload["errors"] else 0
 
 

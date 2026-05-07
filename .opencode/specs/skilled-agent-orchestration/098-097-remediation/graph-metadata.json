@@ -41,10 +41,10 @@
       "rename-cleanup"
     ],
     "status": "in_progress",
-    "completion_pct": 28,
-    "last_active_child_id": "skilled-agent-orchestration/098-097-remediation/002-sk-deep-token-replace",
+    "completion_pct": 42,
+    "last_active_child_id": "skilled-agent-orchestration/098-097-remediation/003-narrative-validation-repair",
     "level": "phase-parent",
     "is_phase_parent": true,
-    "session_outcome": "phase_002_complete"
+    "session_outcome": "phase_003_complete"
   }
 }
