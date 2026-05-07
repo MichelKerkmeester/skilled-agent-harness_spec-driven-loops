@@ -619,7 +619,7 @@ Commands are slash-prefixed shortcuts for common workflows.
 - `/search:*` - Code discovery
 - `/spec_kit:*` - Full workflow
 
-Remove commands by not referencing them in your AGENTS.md. Commands are defined in `.opencode/command/`.
+Remove commands by not referencing them in your AGENTS.md. Commands are defined in `.opencode/commands/`.
 
 ---
 
@@ -746,7 +746,7 @@ ls .opencode/skills/
 - [ ] Native MCP Tools Reference reflects installed tools only?
 - [ ] Code Mode Tools Reference reflects `.utcp_config.json` contents?
 - [ ] Skills table updated (removed skills not in `.opencode/skills/`)?
-- [ ] Commands list reflects `.opencode/command/` directory?
+- [ ] Commands list reflects `.opencode/commands/` directory?
 - [ ] Project-specific conventions or patterns added?
 
 ❌ **STOP if validation fails** - Review each checklist item and fix mismatches between AGENTS.md references and your actual installed tools before continuing.
@@ -777,7 +777,7 @@ cat opencode.json | jq '.mcp.servers | keys'
 ls .opencode/skills/
 
 # Verify commands directory
-ls .opencode/command/
+ls .opencode/commands/
 ```
 
 Verify the native advisor tool surface in a hook-capable runtime or MCP console:
@@ -1175,22 +1175,22 @@ If gates are missing, restore from `AGENTS (Template).md` and re-apply your cust
 
 **Error:** `/memory:save` or other slash commands return "command not found".
 
-**Cause:** The command file does not exist in `.opencode/command/`, or the command path is incorrect.
+**Cause:** The command file does not exist in `.opencode/commands/`, or the command path is incorrect.
 
 **Fix:**
 
 ```bash
 # List all available commands
-ls .opencode/command/
+ls .opencode/commands/
 
 # Check a specific command exists
-ls .opencode/command/memory/save.md
+ls .opencode/commands/memory/save.md
 
 # Verify the commands directory structure
 find .opencode/commands -name "*.md" | head -20
 ```
 
-Update AGENTS.md to reference only the commands that exist in your `.opencode/command/` directory.
+Update AGENTS.md to reference only the commands that exist in your `.opencode/commands/` directory.
 
 ---
 
@@ -1237,7 +1237,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 | `opencode.json`                               | Native MCP server configuration          |
 | `.utcp_config.json`                           | Code Mode external tools configuration   |
 | `.opencode/skills/`                            | Installed skills directory               |
-| `.opencode/command/`                          | Available slash commands directory       |
+| `.opencode/commands/`                          | Available slash commands directory       |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py`    | Gate 2 compatibility shim and diagnostics |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/INSTALL_GUIDE.md`             | Native advisor bootstrap, verification, and rollback |
 

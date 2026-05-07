@@ -3,7 +3,7 @@
 User-facing diagnostic guide for `/doctor:code-graph` (Phase A — diagnostic-only). Audit the code-graph index for stale + missed files and bloat directories without modifying any source files. Phase B (apply mode) is gated on the resilience-research packet 007.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
-> **Command:** `/doctor:code-graph` (auto + confirm modes) — full reference in `.opencode/command/doctor/code-graph.md`.
+> **Command:** `/doctor:code-graph` (auto + confirm modes) — full reference in `.opencode/commands/doctor/code-graph.md`.
 > **Phase:** A (read-only). Phase B (apply mode) coming after research packet 007 stabilizes.
 
 ---
@@ -151,14 +151,14 @@ When Phase B ships, this entire flow (apply → verify → rollback if regressed
 | `"detect_changes unavailable"` | Falls back to git status + index timestamp comparison |
 | Report path missing on completion | Check packet scratch directory exists; check disk space |
 | Bloat detection over-flags `dist/` | Expected for medium-tier patterns; review per-repo |
-| Command not found | Verify `.opencode/command/doctor/code-graph.md` exists; restart your AI client |
+| Command not found | Verify `.opencode/commands/doctor/code-graph.md` exists; restart your AI client |
 
 ---
 
 ## 7. RESOURCES
 
-- **Command reference:** `.opencode/command/doctor/code-graph.md`
-- **Workflow YAML:** `.opencode/command/doctor/assets/doctor_code-graph_{auto,confirm}.yaml`
+- **Command reference:** `.opencode/commands/doctor/code-graph.md`
+- **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_code-graph_{auto,confirm}.yaml`
 - **Spec packet:** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/006-code-graph-doctor-command/`
 - **Research packet (gates Phase B):** `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-code-graph/007-code-graph-resilience-research/`
 - **Sibling doctor commands:** `/doctor:mcp_install`, `/doctor:mcp_debug`, `/doctor:skill-advisor`

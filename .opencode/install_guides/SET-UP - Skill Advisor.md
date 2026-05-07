@@ -3,7 +3,7 @@
 Tune the OpenCode skill advisor scoring tables (TOKEN_BOOSTS, PHRASE_BOOSTS, derived triggers, CATEGORY_HINTS) so the advisor can route prompts to every skill in your repo.
 
 > **Part of OpenCode Installation.** See the [Master Installation Guide](./README.md) for complete setup.
-> **Command:** `/doctor:skill-advisor` (auto + confirm modes) — full reference in `.opencode/command/doctor/skill-advisor.md`.
+> **Command:** `/doctor:skill-advisor` (auto + confirm modes) — full reference in `.opencode/commands/doctor/skill-advisor.md`.
 
 ---
 
@@ -177,7 +177,7 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 | `"graph health: missing"` | Run `skill_graph_scan({})` once, then re-run the command |
 | Build fails after apply | Rollback (see Section 5), inspect diff in `<spec-folder>/scratch/skill-advisor-proposal-*.md` (or `.opencode/scratch/...` outside a spec folder) |
 | Tests fail after apply | Rollback, then re-run with `--scope=derived` only |
-| Command not found | Verify `.opencode/command/doctor/skill-advisor.md` exists; restart your AI client |
+| Command not found | Verify `.opencode/commands/doctor/skill-advisor.md` exists; restart your AI client |
 | Wrong skill in `advisor_recommend` | Stale graph index — run `skill_graph_scan({})` |
 | Edited `graph-metadata.json` but scores unchanged | Forgot to re-index — call `skill_graph_scan({})`. The advisor reads from `database/skill-graph.sqlite`, not the JSON file. |
 | `skill_graph_scan` reports `scannedFiles: 20, indexedFiles: 18` | Normal — the indexer skips `scripts/test-fixtures/*/graph-metadata.json` (test scaffolding, not real skills). The 18 is your real skill count. |
@@ -188,8 +188,8 @@ npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
 
 ## 7. RESOURCES
 
-- **Command reference:** `.opencode/command/doctor/skill-advisor.md`
-- **Workflow YAML:** `.opencode/command/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`
+- **Command reference:** `.opencode/commands/doctor/skill-advisor.md`
+- **Workflow YAML:** `.opencode/commands/doctor/assets/doctor_skill-advisor_{auto,confirm}.yaml`
 - **Operator setup (advanced):** `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/SET-UP_GUIDE.md`
 - **Native MCP install:** `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md`
 - **Related guides:** [SET-UP - Skill Creation](./SET-UP%20-%20Skill%20Creation.md) (run skill-advisor after creating a new skill)

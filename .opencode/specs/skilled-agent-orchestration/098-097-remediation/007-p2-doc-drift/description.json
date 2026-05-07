@@ -4,8 +4,8 @@
   "title": "Phase 007 - P2 doc drift",
   "description": "Sweep remaining P2 documentation drift, stale skill inventory, dead Copilot guard branch, and nested-backtick playbook prompts.",
   "level": 2,
-  "status": "draft",
-  "completion_pct": 0,
+  "status": "complete",
+  "completion_pct": 100,
   "key_topics": [
     "p2-doc-drift",
     "098-remediation",
@@ -21,5 +21,5 @@
   "importance_tier": "high",
   "context_type": "infrastructure-quality",
   "created_at": "2026-05-07T18:30:00Z",
-  "last_updated_at": "2026-05-07T18:30:00Z"
+  "last_updated_at": "2026-05-07T19:40:00Z"
 }

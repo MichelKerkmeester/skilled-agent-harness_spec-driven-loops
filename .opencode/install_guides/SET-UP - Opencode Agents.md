@@ -3,7 +3,7 @@
 Complete setup and configuration guide for OpenCode agents, covering both primary agents (main assistants cycled via Tab key) and sub-agents (specialized assistants invoked via @ mention or automatically by primary agents). Includes built-in agents (Build, Plan, General, Explore), custom agent creation with YAML frontmatter, tool permissions, behavioral rules, and the distinction between agents (authority + tools) and skills (knowledge + workflows). Follow the phase-based approach to verify each step before continuing.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
-> **Scope**: `.opencode/agent/`
+> **Scope**: `.opencode/agents/`
 
 ---
 
@@ -39,13 +39,13 @@ Complete setup and configuration guide for OpenCode agents, covering both primar
 **Template Location:** `.opencode/skills/sk-doc/assets/agent_template.md`
 
 **Verification (MUST pass before proceeding):**
-- [ ] Write agent exists: `ls .opencode/agent/write.md`
+- [ ] Write agent exists: `ls .opencode/agents/write.md`
 - [ ] Agent template exists: `ls .opencode/skills/sk-doc/assets/agent_template.md`
 - [ ] Use `@general` prefix when invoking the prompt below
 
 **DO NOT** create agents without the @general agent. Manual creation bypasses quality gates and frontmatter validation.
 
-**Reference:** `.opencode/agent/write.md` - Documentation creation standards
+**Reference:** `.opencode/agents/write.md` - Documentation creation standards
 
 ---
 
@@ -91,7 +91,7 @@ If you are NOT the @general agent: STOP immediately and instruct the user to res
 
 **After gathering my answers, please:**
 
-1. Create the agent file at `.opencode/agent/<agent-name>.md`
+1. Create the agent file at `.opencode/agents/<agent-name>.md`
 2. Generate proper YAML frontmatter with:
    - name, description, mode, temperature
    - tools (true/false for each)
@@ -205,7 +205,7 @@ Response Delivered
 
 2. **Agent directory** exists in your project
    ```bash
-   ls .opencode/agent/
+   ls .opencode/agents/
    # Should list existing agent .md files
    ```
 
@@ -228,7 +228,7 @@ ls -d .opencode/agent        # -> .opencode/agent
 
 **Checklist:**
 - [ ] `opencode --version` returns v1.1.1 or higher?
-- [ ] `.opencode/agent/` directory exists?
+- [ ] `.opencode/agents/` directory exists?
 
 ❌ **STOP if validation fails** - Install or update OpenCode and create the agent directory before continuing.
 
@@ -273,7 +273,7 @@ This CLI command will:
 
 ```bash
 # Create the file manually
-touch .opencode/agent/my-agent.md
+touch .opencode/agents/my-agent.md
 ```
 
 Then add frontmatter and content as shown in Steps 2-3 below.
@@ -357,11 +357,11 @@ Content here...
 
 ```bash
 # Verify the agent file was created with frontmatter:
-ls .opencode/agent/my-agent.md                     # -> file exists
-head -20 .opencode/agent/my-agent.md               # -> shows --- frontmatter block
+ls .opencode/agents/my-agent.md                     # -> file exists
+head -20 .opencode/agents/my-agent.md               # -> shows --- frontmatter block
 python3 -c "
 import yaml, sys
-content = open('.opencode/agent/my-agent.md').read()
+content = open('.opencode/agents/my-agent.md').read()
 parts = content.split('---')
 if len(parts) >= 3:
     data = yaml.safe_load(parts[1])
@@ -375,7 +375,7 @@ else:
 ```
 
 **Checklist:**
-- [ ] Agent `.md` file created in `.opencode/agent/`?
+- [ ] Agent `.md` file created in `.opencode/agents/`?
 - [ ] File contains `---` YAML frontmatter block?
 - [ ] `name` field present in frontmatter?
 - [ ] `description` field present in frontmatter?
@@ -462,7 +462,7 @@ For agents that invoke skills, you can also specify `allowed-tools` in the body:
 # Verify permission block is present and well-formed:
 python3 -c "
 import yaml
-content = open('.opencode/agent/my-agent.md').read()
+content = open('.opencode/agents/my-agent.md').read()
 parts = content.split('---')
 data = yaml.safe_load(parts[1])
 perms = data.get('permission', {})
@@ -501,24 +501,24 @@ Press **Tab** to cycle primary agents, or type `@` followed by your agent name i
 
 ```bash
 # Also verify from the command line:
-ls -la .opencode/agent/my-agent.md
-# -> -rw-r--r-- ... .opencode/agent/my-agent.md
+ls -la .opencode/agents/my-agent.md
+# -> -rw-r--r-- ... .opencode/agents/my-agent.md
 ```
 
 ### Validation: `phase_4_complete`
 
 ```bash
 # Verify agent file is in place and readable:
-ls .opencode/agent/my-agent.md     # -> file present
-head -5 .opencode/agent/my-agent.md  # -> shows --- frontmatter
+ls .opencode/agents/my-agent.md     # -> file present
+head -5 .opencode/agents/my-agent.md  # -> shows --- frontmatter
 ```
 
 **Checklist:**
-- [ ] Agent file present in `.opencode/agent/`?
+- [ ] Agent file present in `.opencode/agents/`?
 - [ ] `@my-agent` appears in OpenCode's @ mention autocomplete?
 - [ ] No YAML parse errors when OpenCode loads the file?
 
-❌ **STOP if validation fails** - Check that the file is in `.opencode/agent/`, has valid YAML, and that OpenCode was restarted after creating the file.
+❌ **STOP if validation fails** - Check that the file is in `.opencode/agents/`, has valid YAML, and that OpenCode was restarted after creating the file.
 
 ### Step 3: Test Agent Response (Phase 5)
 
@@ -631,7 +631,7 @@ These agents come with OpenCode and are always available:
 
 ### Custom Agents Summary
 
-These are project-specific agents defined in `.opencode/agent/`:
+These are project-specific agents defined in `.opencode/agents/`:
 
 | Agent           | Purpose                                  | Tools                                                 | Key Capability                                              |
 | --------------- | ---------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------- |
@@ -652,7 +652,7 @@ These are project-specific agents defined in `.opencode/agent/`:
 | Custom Agents       | 8                  | context, orchestrate, write, research, review, speckit, handover, debug |
 | Default Mode        | `all`              | Both primary and subagent                               |
 | Default Temperature | 0.1                | Deterministic, consistent output                        |
-| Location            | `.opencode/agent/` | Agent definition files                                  |
+| Location            | `.opencode/agents/` | Agent definition files                                  |
 
 ### Key System Features
 
@@ -730,7 +730,7 @@ Agent files should follow this structure:
 ### Directory Layout
 
 ```
-.opencode/agent/
+.opencode/agents/
 +-- context.md      # Context retrieval and exploration dispatch agent
 +-- debug.md        # Fresh perspective debugging agent
 +-- orchestrate.md  # Task decomposition and delegation agent
@@ -757,7 +757,7 @@ Agent files should follow this structure:
 
 ```bash
 # Step 1: Create the file
-touch .opencode/agent/db-migrate.md
+touch .opencode/agents/db-migrate.md
 ```
 
 Add frontmatter and content:
@@ -899,14 +899,14 @@ User: "Create a new skill for API testing"
 **Fix:**
 ```bash
 # Verify the file exists in the correct location
-ls .opencode/agent/my-agent.md
+ls .opencode/agents/my-agent.md
 
 # Check the name field matches what you are typing
-head -5 .opencode/agent/my-agent.md
+head -5 .opencode/agents/my-agent.md
 # Should show:  name: my-agent
 
 # If file is missing, create it
-touch .opencode/agent/my-agent.md
+touch .opencode/agents/my-agent.md
 
 # Restart OpenCode to reload agent definitions
 opencode
@@ -925,7 +925,7 @@ opencode
 # Check frontmatter syntax with Python
 python3 -c "
 import yaml
-content = open('.opencode/agent/my-agent.md').read()
+content = open('.opencode/agents/my-agent.md').read()
 parts = content.split('---')
 if len(parts) >= 3:
     try:
@@ -956,7 +956,7 @@ else:
 # Check current permission settings
 python3 -c "
 import yaml
-content = open('.opencode/agent/my-agent.md').read()
+content = open('.opencode/agents/my-agent.md').read()
 data = yaml.safe_load(content.split('---')[1])
 print('permission:', data.get('permission', 'NOT FOUND'))
 print('tools (deprecated):', data.get('tools', 'not present'))
@@ -994,7 +994,7 @@ permission:
 # Check current temperature setting
 python3 -c "
 import yaml
-content = open('.opencode/agent/my-agent.md').read()
+content = open('.opencode/agents/my-agent.md').read()
 data = yaml.safe_load(content.split('---')[1])
 print('temperature:', data.get('temperature', 'NOT SET - using model default'))
 "
@@ -1028,7 +1028,7 @@ Also rewrite rules to use explicit language:
 # Check the mode field
 python3 -c "
 import yaml
-content = open('.opencode/agent/my-agent.md').read()
+content = open('.opencode/agents/my-agent.md').read()
 data = yaml.safe_load(content.split('---')[1])
 print('mode:', data.get('mode', 'NOT SET - defaults to all'))
 "
@@ -1061,12 +1061,12 @@ description: Specialist for database schema migrations, rollback planning, and d
 Also verify the subagent file is present and valid:
 
 ```bash
-ls -la .opencode/agent/
+ls -la .opencode/agents/
 python3 -c "
 import yaml
 for f in ['context.md','research.md','write.md','review.md']:
     try:
-        content = open(f'.opencode/agent/{f}').read()
+        content = open(f'.opencode/agents/{f}').read()
         data = yaml.safe_load(content.split('---')[1])
         print(f, '->', data.get('description', 'NO DESCRIPTION'))
     except Exception as e:
@@ -1080,13 +1080,13 @@ for f in ['context.md','research.md','write.md','review.md']:
 
 ```bash
 # List all agent files
-ls -la .opencode/agent/
+ls -la .opencode/agents/
 
 # Check frontmatter of a specific agent
-head -30 .opencode/agent/write.md
+head -30 .opencode/agents/write.md
 
 # Validate all agents in one pass
-for f in .opencode/agent/*.md; do
+for f in .opencode/agents/*.md; do
   echo "--- $f ---"
   python3 -c "
 import yaml, sys
@@ -1112,10 +1112,10 @@ done
 
 | Path                                              | Purpose                               |
 | ------------------------------------------------- | ------------------------------------- |
-| `.opencode/agent/`                                | All agent definition files            |
-| `.opencode/agent/write.md`                        | Documentation creation agent          |
-| `.opencode/agent/orchestrate.md`                  | Task coordination agent               |
-| `.opencode/agent/context.md`                      | Context retrieval agent               |
+| `.opencode/agents/`                                | All agent definition files            |
+| `.opencode/agents/write.md`                        | Documentation creation agent          |
+| `.opencode/agents/orchestrate.md`                  | Task coordination agent               |
+| `.opencode/agents/context.md`                      | Context retrieval agent               |
 | `.opencode/skills/sk-doc/assets/agent_template.md` | Agent file template             |
 | `AGENTS.md`                                       | Main AI behavior configuration        |
 
@@ -1152,10 +1152,10 @@ done
 ```bash
 # 1. Verify prerequisites
 opencode --version       # v1.1.1+
-ls .opencode/agent/      # directory exists
+ls .opencode/agents/      # directory exists
 
 # 2. Create agent file
-touch .opencode/agent/my-agent.md
+touch .opencode/agents/my-agent.md
 # Add YAML frontmatter with name, description, mode, temperature, permission
 
 # 3. Configure permissions and rules

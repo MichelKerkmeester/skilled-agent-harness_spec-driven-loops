@@ -79,12 +79,12 @@ The AI will:
 - Ensures proper use of `init_skill.py` and `package_skill.py`
 
 **Verification (MUST pass before proceeding):**
-- [ ] Write agent exists: `ls .opencode/agent/orchestrate.md`
+- [ ] Write agent exists: `ls .opencode/agents/orchestrate.md`
 - [ ] Use `@general` prefix when invoking the prompt above
 
 **DO NOT** create skills without the @general agent. Manual creation bypasses quality gates and template alignment.
 
-**Reference:** `.opencode/agent/orchestrate.md` (or any general agent) - Section 4 (Mode 2: Skill Creation)
+**Reference:** `.opencode/agents/orchestrate.md` (or any general agent) - Section 4 (Mode 2: Skill Creation)
 
 ---
 
@@ -165,7 +165,7 @@ Skills appear as `skills_*` functions in available tools after each restart. The
 | Python | 3.10+ | `python3 --version` |
 | sk-doc skill | Latest | `ls .opencode/skills/sk-doc/` |
 | OpenCode | v1.0.190+ | Native skill discovery built-in |
-| **@general agent** | - | `ls .opencode/agent/orchestrate.md` |
+| **@general agent** | - | `ls .opencode/agents/orchestrate.md` |
 
 ### Required Files
 
@@ -182,7 +182,7 @@ Run these prerequisite checks before continuing:
 ```bash
 python3 --version && \
 ls .opencode/skills/sk-doc/scripts/init_skill.py && \
-ls .opencode/agent/orchestrate.md && \
+ls .opencode/agents/orchestrate.md && \
 echo "Prerequisites OK (including @general agent)"
 ```
 
@@ -190,7 +190,7 @@ echo "Prerequisites OK (including @general agent)"
 - [ ] Python 3.10+ installed?
 - [ ] sk-doc skill exists at `.opencode/skills/sk-doc/`?
 - [ ] `init_skill.py` and `package_skill.py` accessible?
-- [ ] @general agent exists at `.opencode/agent/orchestrate.md` (or any general agent)?
+- [ ] @general agent exists at `.opencode/agents/orchestrate.md` (or any general agent)?
 
 ❌ **STOP if validation fails** - install all prerequisites before creating skills.
 
@@ -1119,7 +1119,7 @@ Common fixes based on diagnostic output:
 | `.opencode/skills/sk-doc/scripts/package_skill.py` | Validate and package |
 | `.opencode/skills/sk-doc/scripts/extract_structure.py` | DQI scoring |
 | `.opencode/skills/sk-doc/assets/opencode/skill_md_template.md` | SKILL.md template |
-| `.opencode/agent/orchestrate.md` (or any general agent) | general agent definition (orchestrate is a good baseline) |
+| `.opencode/agents/orchestrate.md` (or any general agent) | general agent definition (orchestrate is a good baseline) |
 
 ### Scripts Reference
 

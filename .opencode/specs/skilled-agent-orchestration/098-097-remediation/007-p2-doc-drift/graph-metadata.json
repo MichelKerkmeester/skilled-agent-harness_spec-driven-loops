@@ -24,8 +24,8 @@
       "097-findings",
       "infrastructure-quality"
     ],
-    "status": "draft",
-    "completion_pct": 0,
+    "status": "complete",
+    "completion_pct": 100,
     "level": 2
   }
 }
