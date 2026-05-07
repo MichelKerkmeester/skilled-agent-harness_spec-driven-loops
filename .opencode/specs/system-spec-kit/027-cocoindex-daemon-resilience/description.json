@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-cocoindex-daemon-resilience",
+  "title": "CocoIndex daemon resilience",
+  "description": "Two interacting bugs in mcp-coco-index daemon caused leaked-zombie processes and CPU-spinning log spam. Bug 1: start_daemon() in client.py:192-225 spawns blindly without checking for an existing alive daemon. Bug 2: daemon.py:436-444 error handler tries to send an error response over the same broken pipe that just failed, double-crashing on every client disconnect. Live evidence: 9-day-old leaked daemon (PID 98364), 564 BrokenPipeError lines across 23 MB daemon.log, 54-72% sustained CPU during multi-dispatch orchestrations. Plan: two surgical patches (idempotent start, pipe-safe error handler) plus 4 pytest cases plus operator recovery.",
+  "status": "planned",
+  "level": 2,
+  "parent_id": null,
+  "trigger_phrases": [
+    "027-cocoindex-daemon-resilience",
+    "cocoindex daemon leak",
+    "BrokenPipeError loop",
+    "start_daemon idempotency",
+    "stale daemon zombie",
+    "daemon.py:436 error handler"
+  ],
+  "importance_tier": "important",
+  "created_at": "2026-05-07T07:38:00Z"
+}
