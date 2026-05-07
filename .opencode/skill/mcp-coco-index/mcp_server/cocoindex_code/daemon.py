@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from logging.handlers import RotatingFileHandler
 import os
 import signal
 import sqlite3
@@ -14,7 +15,7 @@ import time
 from collections.abc import AsyncIterator, Callable
 from multiprocessing.connection import Connection, Listener
 from pathlib import Path
-from typing import Any
+from typing import Any, TextIO
 
 from ._version import __version__
 from .project import Project
@@ -56,6 +57,70 @@ from .settings import (
 from .shared import SQLITE_DB, Embedder, create_embedder
 
 logger = logging.getLogger(__name__)
+
+
+def _safe_send_bytes(conn: Connection, payload: bytes) -> None:
+    """Send bytes over a multiprocessing connection, swallowing pipe errors.
+
+    Logs once at INFO if the client disconnected. Never raises.
+    """
+    try:
+        conn.send_bytes(payload)
+    except (BrokenPipeError, ConnectionResetError):
+        logger.info("client disconnected before response could be sent")
+
+
+def _pid_alive(pid: int) -> bool:
+    """Return True if *pid* is still running."""
+    if sys.platform == "win32":
+        import ctypes
+
+        kernel32 = getattr(ctypes, "windll").kernel32
+        handle = kernel32.OpenProcess(0x1000, False, pid)
+        if handle:
+            kernel32.CloseHandle(handle)
+            return True
+        return False
+    try:
+        os.kill(pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+
+
+def _try_acquire_pid_lock(lock_path: Path) -> TextIO | None:
+    """Acquire an advisory lock on lock_path, returning the open fd on success."""
+    fd = open(lock_path, "a+")
+    try:
+        if sys.platform == "win32":
+            import msvcrt
+
+            msvcrt.locking(fd.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(fd.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return fd
+    except (BlockingIOError, OSError):
+        fd.close()
+        return None
+
+
+def _unlink_stale_socket(socket_path: Path, pid_path: Path) -> None:
+    """Unlink the daemon socket only when no live sibling owns the PID file."""
+    try:
+        pid_text = pid_path.read_text().strip()
+        if pid_text:
+            stored_pid = int(pid_text)
+            if _pid_alive(stored_pid) and stored_pid != os.getpid():
+                raise RuntimeError(
+                    f"daemon already running at PID {stored_pid}; refusing to unlink socket"
+                )
+    except (FileNotFoundError, ValueError):
+        pass
+    socket_path.unlink(missing_ok=True)
 
 
 class SearchResults(list[SearchResult]):
@@ -408,13 +473,13 @@ async def handle_connection(
                 req = decode_request(data)
             except Exception as e:
                 resp: Response = ErrorResponse(message=f"Invalid request: {e}")
-                conn.send_bytes(encode_response(resp))
+                _safe_send_bytes(conn, encode_response(resp))
                 continue
 
             if not handshake_done:
                 if not isinstance(req, HandshakeRequest):
                     resp = ErrorResponse(message="First message must be a handshake")
-                    conn.send_bytes(encode_response(resp))
+                    _safe_send_bytes(conn, encode_response(resp))
                     break
 
                 ok = req.version == __version__
@@ -423,7 +488,7 @@ async def handle_connection(
                     daemon_version=__version__,
                     global_settings_mtime_us=settings_mtime_us,
                 )
-                conn.send_bytes(encode_response(resp))
+                _safe_send_bytes(conn, encode_response(resp))
                 if not ok:
                     break
                 handshake_done = True
@@ -433,17 +498,17 @@ async def handle_connection(
             if isinstance(result, AsyncIterator):
                 try:
                     async for resp in result:
-                        conn.send_bytes(encode_response(resp))
+                        _safe_send_bytes(conn, encode_response(resp))
                 except Exception as exc:
-                    logger.exception("Error during streaming response")
-                    conn.send_bytes(encode_response(ErrorResponse(message=str(exc))))
+                    logger.info("error during streaming response: %s", exc)
+                    _safe_send_bytes(conn, encode_response(ErrorResponse(message=str(exc))))
             else:
-                conn.send_bytes(encode_response(result))
+                _safe_send_bytes(conn, encode_response(result))
 
             if isinstance(req, StopRequest):
                 break
-    except Exception:
-        logger.exception("Error handling connection")
+    except Exception as exc:
+        logger.info("error handling connection: %s", exc)
     finally:
         try:
             conn.close()
@@ -563,8 +628,10 @@ def run_daemon() -> None:
     # Create embedder
     embedder = create_embedder(user_settings.embedding)
 
-    # Write PID file
     pid_path = daemon_pid_path()
+    startup_lock_fd = _try_acquire_pid_lock(pid_path)
+    if startup_lock_fd is None:
+        raise RuntimeError("daemon already running; refusing to unlink socket")
     pid_path.write_text(str(os.getpid()))
 
     # Set up logging to file
@@ -572,14 +639,22 @@ def run_daemon() -> None:
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
-        handlers=[logging.FileHandler(str(log_path)), logging.StreamHandler()],
+        handlers=[
+            RotatingFileHandler(
+                str(log_path),
+                maxBytes=10 * 1024 * 1024,
+                backupCount=5,
+                encoding="utf-8",
+            ),
+            logging.StreamHandler(),
+        ],
         force=True,
     )
 
     logger.info("Daemon starting (PID %d, version %s)", os.getpid(), __version__)
 
     try:
-        asyncio.run(_async_daemon_main(embedder, settings_mtime_us))
+        asyncio.run(_async_daemon_main(embedder, settings_mtime_us, startup_lock_fd))
     finally:
         # Clean up socket first, then PID file last.
         # The PID file is the authoritative "daemon is alive" indicator, so it
@@ -602,7 +677,11 @@ def run_daemon() -> None:
         logger.info("Daemon stopped")
 
 
-async def _async_daemon_main(embedder: Embedder, settings_mtime_us: int | None) -> None:
+async def _async_daemon_main(
+    embedder: Embedder,
+    settings_mtime_us: int | None,
+    startup_lock_fd: TextIO | None = None,
+) -> None:
     """Async main loop for the daemon."""
     start_time = time.monotonic()
     registry = ProjectRegistry(embedder)
@@ -610,13 +689,14 @@ async def _async_daemon_main(embedder: Embedder, settings_mtime_us: int | None) 
 
     sock_path = daemon_socket_path()
     # Remove stale socket (not applicable for Windows named pipes)
-    if sys.platform != "win32":
-        try:
-            Path(sock_path).unlink(missing_ok=True)
-        except Exception:
-            pass
+    try:
+        if sys.platform != "win32":
+            _unlink_stale_socket(Path(sock_path), daemon_pid_path())
 
-    listener = Listener(sock_path, family=_connection_family())
+        listener = Listener(sock_path, family=_connection_family(), backlog=128)
+    finally:
+        if startup_lock_fd is not None:
+            startup_lock_fd.close()
     logger.info("Listening on %s", sock_path)
 
     loop = asyncio.get_event_loop()

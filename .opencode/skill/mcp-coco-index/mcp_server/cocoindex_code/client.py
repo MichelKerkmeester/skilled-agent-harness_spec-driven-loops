@@ -11,6 +11,7 @@ import time
 from collections.abc import Callable
 from multiprocessing.connection import Client, Connection
 from pathlib import Path
+from typing import TextIO
 
 from ._version import __version__
 from .daemon import _connection_family, daemon_pid_path, daemon_socket_path
@@ -194,6 +195,29 @@ def start_daemon() -> None:
     from .daemon import daemon_dir
 
     daemon_dir().mkdir(parents=True, exist_ok=True)
+    pid_path = daemon_pid_path()
+    lock_fd = _try_acquire_pid_lock(pid_path)
+    if lock_fd is None:
+        return
+
+    try:
+        try:
+            existing = int(pid_path.read_text().strip())
+            if _pid_alive(existing):
+                return
+            _cleanup_stale_files(pid_path, existing)
+        except (FileNotFoundError, ValueError):
+            pass
+
+        _spawn_daemon_process()
+    finally:
+        lock_fd.close()
+
+
+def _spawn_daemon_process() -> None:
+    """Spawn the daemon subprocess. Caller owns lifecycle locking."""
+    from .daemon import daemon_dir
+
     log_path = daemon_dir() / "daemon.log"
 
     # Use the ccc entry point if available, otherwise fall back to python -m
@@ -203,28 +227,45 @@ def start_daemon() -> None:
     else:
         cmd = [sys.executable, "-m", "cocoindex_code.cli", "run-daemon"]
 
-    log_fd = open(log_path, "a")
-    if sys.platform == "win32":
-        # DETACHED_PROCESS fully detaches the daemon from the parent console,
-        # preventing its exit code from leaking back to the calling shell.
-        _create_new_process_group = 0x00000200
-        _detached_process = 0x00000008
-        subprocess.Popen(
-            cmd,
-            stdout=log_fd,
-            stderr=log_fd,
-            stdin=subprocess.DEVNULL,
-            creationflags=_create_new_process_group | _detached_process,
-        )
-    else:
-        subprocess.Popen(
-            cmd,
-            start_new_session=True,
-            stdout=log_fd,
-            stderr=log_fd,
-            stdin=subprocess.DEVNULL,
-        )
-    log_fd.close()
+    with open(log_path, "a") as log_fd:
+        if sys.platform == "win32":
+            # DETACHED_PROCESS fully detaches the daemon from the parent console,
+            # preventing its exit code from leaking back to the calling shell.
+            _create_new_process_group = 0x00000200
+            _detached_process = 0x00000008
+            subprocess.Popen(
+                cmd,
+                stdout=log_fd,
+                stderr=log_fd,
+                stdin=subprocess.DEVNULL,
+                creationflags=_create_new_process_group | _detached_process,
+            )
+        else:
+            subprocess.Popen(
+                cmd,
+                start_new_session=True,
+                stdout=log_fd,
+                stderr=log_fd,
+                stdin=subprocess.DEVNULL,
+            )
+
+
+def _try_acquire_pid_lock(lock_path: Path) -> TextIO | None:
+    """Acquire an advisory lock on lock_path, returning the open fd on success."""
+    fd = open(lock_path, "a+")
+    try:
+        if sys.platform == "win32":
+            import msvcrt
+
+            msvcrt.locking(fd.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(fd.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return fd
+    except (BlockingIOError, OSError):
+        fd.close()
+        return None
 
 
 def _find_ccc_executable() -> str | None:
@@ -416,15 +457,27 @@ def ensure_daemon() -> DaemonClient:
         resp = client.handshake()
         if not _needs_restart(resp):
             return client
-        # Version or settings mismatch — restart
+        # Version or settings mismatch — restart atomically.
         client.close()
-        stop_daemon()
+        lock_fd = _try_acquire_pid_lock(daemon_pid_path())
+        if lock_fd is None:
+            _wait_for_daemon()
+        else:
+            try:
+                stop_daemon()
+                _spawn_daemon_process()
+                _wait_for_daemon()
+            finally:
+                lock_fd.close()
     except (ConnectionRefusedError, OSError):
-        pass
+        start_daemon()
+        _wait_for_daemon()
 
-    # Start daemon
-    start_daemon()
-    _wait_for_daemon()
+    if "client" in locals():
+        try:
+            client.close()
+        except Exception:
+            pass
 
     # Connect with retries
     for _attempt in range(10):

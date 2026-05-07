@@ -122,7 +122,16 @@ Explain what the user gains, not what files you touched.]
      not "Some features may require configuration."
      Write "None identified." if nothing applies. -->
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+### Operator recovery procedure (when stale daemon detected)
+
+If `pgrep -fc "ccc run-daemon"` returns more than 1, or if a daemon is unreachable despite the PID file pointing at a live process, run:
+
+1. `pkill -f "ccc run-daemon"` — terminate all daemon processes
+2. `pgrep -fc "ccc run-daemon"` — confirm returns 0
+3. Optional: `pgrep -f multiprocessing.resource_tracker` — orphan tracker children should self-exit
+4. `ls ~/.cocoindex_code/` — inspect for stale `daemon.pid` and `daemon.sock`
+5. `ccc run-daemon` — start fresh; Patch 1's pre-flight check handles stale state automatically
+6. `ccc status` (or equivalent reachability probe) — confirm the new daemon is reachable
 <!-- /ANCHOR:limitations -->
 
 ---
@@ -132,4 +141,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skill/sk-doc/references/hvr_rules.md
 -->
-
