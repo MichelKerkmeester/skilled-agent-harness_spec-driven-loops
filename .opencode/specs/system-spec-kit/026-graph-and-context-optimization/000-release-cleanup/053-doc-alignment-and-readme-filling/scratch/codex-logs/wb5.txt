@@ -1,0 +1,11 @@
+Merged `operator_runbook` into `manual_testing_playbook`, transformed the scenario files to the playbook feature H2 contract, absorbed the SAD overlap rows/callouts, rewrote the root playbook, updated the active inventory test, and removed `operator_runbook/`.
+
+One correction: the source category tree contains 42 `NNN-*.md` scenario files, not 43. The 43rd `.md` was `operator_runbook.md`, the old root index, not a scenario file. I did not invent a missing `CL-002`.
+
+Verification:
+- Per-feature sk-doc validation: 42 OK, 0 FAIL
+- Root playbook sk-doc validation: pass
+- `manual-testing-playbook.vitest.ts`: pass
+- Phase spec strict validation: fails on existing `.opencode/specs/.../053...` template header/anchor issues; I left spec history untouched per constraint.
+
+WB-5 RESULT: count=42 ok=42 fail=0

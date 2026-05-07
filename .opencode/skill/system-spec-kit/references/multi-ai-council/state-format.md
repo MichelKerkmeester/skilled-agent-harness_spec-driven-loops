@@ -1,8 +1,22 @@
+---
+title: "Multi-AI Council State Format"
+description: "Append-only JSONL event format for Multi-AI Council state, resume and audit records."
+trigger_phrases:
+  - "multi-ai-council state format"
+  - "ai-council-state jsonl"
+  - "council state events"
+  - "council resume semantics"
+importance_tier: "normal"
+contextType: "reference"
+---
+
 # Multi-AI Council State Format
 
 `ai-council-state.jsonl` is append-only JSONL. Each line is one state event used for resume, audit, and convergence decisions.
 
-## Event Types
+---
+
+## 1. OVERVIEW
 
 ```ts
 type RoundStart = {
@@ -43,7 +57,9 @@ type CouncilComplete = {
 };
 ```
 
-## v1.1 Optional Metadata Fields
+---
+
+## 2. OPTIONAL METADATA FIELDS
 
 Helper-emitted v1.1 rows add three optional metadata fields before the event payload:
 
@@ -63,7 +79,9 @@ Examples:
 
 Consumers MUST treat these fields as optional. The event `event` value remains the semantic discriminator.
 
-## Schema Evolution Policy
+---
+
+## 3. SCHEMA EVOLUTION POLICY
 
 State schema evolution is additive-only:
 
@@ -75,7 +93,9 @@ State schema evolution is additive-only:
 
 This follows agent body §14 and ADR-001 in `.opencode/specs/skilled-agent-orchestration/092-multi-ai-council-deferrals/decision-record.md`.
 
-## Worked Example
+---
+
+## 4. WORKED EXAMPLE
 
 ```jsonl
 {"event":"round_start","round":1,"timestamp":"2026-05-06T12:00:00.000Z","seats":["seat-001","seat-002","seat-003"]}
@@ -87,7 +107,9 @@ This follows agent body §14 and ADR-001 in `.opencode/specs/skilled-agent-orche
 {"event":"council_complete","timestamp":"2026-05-06T12:04:00.000Z","final_report_path":"ai-council/council-report.md","convergence":true}
 ```
 
-## Worked Example (v1.1)
+---
+
+## 5. WORKED EXAMPLE (V1.1)
 
 ```jsonl
 {"schema_version":"1.1","protocol":"multi-ai-council","producer":"persist-artifacts.cjs@1.1.0","event":"round_start","round":1,"timestamp":"2026-05-06T12:00:00.000Z","seats":["seat-001","seat-002","seat-003"]}
@@ -99,11 +121,15 @@ This follows agent body §14 and ADR-001 in `.opencode/specs/skilled-agent-orche
 {"schema_version":"1.1","protocol":"multi-ai-council","producer":"persist-artifacts.cjs@1.1.0","event":"council_complete","timestamp":"2026-05-06T12:04:00.000Z","final_report_path":"ai-council/council-report.md","convergence":true}
 ```
 
-## Resume Semantics
+---
+
+## 6. RESUME SEMANTICS
 
 The last completed event determines the next action. If `round_start` exists without all expected `seat_returned` events, redo or complete that round. If all seats returned but `deliberation_synthesized` is missing, synthesize deliberation. If deliberation exists but `round_end` is missing, close the round. If `council_complete` exists, treat the council as done unless the user requests another round.
 
-## Validation Policy
+---
+
+## 7. VALIDATION POLICY
 
 Per ADR-003, validation is convention-only for v1. Do not add a runtime schema validator unless a follow-on packet proves real drift.
 

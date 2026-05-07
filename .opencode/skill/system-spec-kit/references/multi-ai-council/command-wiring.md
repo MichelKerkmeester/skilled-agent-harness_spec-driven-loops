@@ -1,14 +1,30 @@
+---
+title: "Multi-AI Council Command Wiring"
+description: "Canonical post-dispatch wiring for persisting Multi-AI Council packet artifacts."
+trigger_phrases:
+  - "multi-ai-council command wiring"
+  - "council persistence helper"
+  - "persist council artifacts"
+  - "council YAML workflow"
+importance_tier: "normal"
+contextType: "reference"
+---
+
 # Multi-AI Council Command Wiring
 
 This reference defines the canonical post-dispatch wiring for callers that run `@multi-ai-council` and need durable packet artifacts.
 
-## Purpose
+---
+
+## 1. OVERVIEW
 
 `@multi-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` after the report is captured.
 
 Future `/spec_kit:*` consumers and CLI-skill playbooks should use the same helper invocation so council artifacts, state JSONL, and optional memory-save payloads stay consistent.
 
-## Caller Patterns
+---
+
+## 2. CALLER PATTERNS
 
 ### Top-Level Task Dispatch
 
@@ -34,7 +50,9 @@ Use this for future command-owned council workflows, completion flows, or planni
 
 Use this when an external AI vantage contributes the report but packet artifacts still need to land in the local spec folder.
 
-## Shell Snippet
+---
+
+## 3. SHELL SNIPPET
 
 ```bash
 PACKET=".opencode/specs/skilled-agent-orchestration/092-multi-ai-council-deferrals"
@@ -54,7 +72,9 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
 
 The payload uses existing `generate-context.js` categories such as decision record, implementation summary, and handover routing. It does not create a new ANCHOR family.
 
-## YAML Snippet
+---
+
+## 4. YAML SNIPPET
 
 ```yaml
 steps:
@@ -91,7 +111,9 @@ steps:
 
 This is a documentation-only pattern. Packet 092 does not edit live `/spec_kit:*` YAML assets.
 
-## Helper Inputs
+---
+
+## 5. HELPER INPUTS
 
 | Input | Required | Purpose |
 | --- | --- | --- |
@@ -101,7 +123,9 @@ This is a documentation-only pattern. Packet 092 does not edit live `/spec_kit:*
 | `--strict-output` | No | Omits placeholder optional sections from rendered artifacts. |
 | `--memory-save-payload-out FILE` | No | Writes a `generate-context.js` compatible JSON payload when the council completes. |
 
-## Expected Outputs
+---
+
+## 6. EXPECTED OUTPUTS
 
 The helper writes these packet-local artifacts:
 
@@ -114,7 +138,9 @@ The helper writes these packet-local artifacts:
 
 When `--memory-save-payload-out FILE` is present, the helper also writes the payload file outside the packet if requested by the caller.
 
-## Failure Handling
+---
+
+## 7. FAILURE HANDLING
 
 The helper exits `1` when required report sections are missing. It exits `2` when artifact or payload writes partially fail. Callers should surface that status and avoid running `generate-context.js` if the payload file was not written.
 
@@ -126,7 +152,9 @@ node .opencode/skill/system-spec-kit/scripts/multi-ai-council/advise-council-com
 
 It always exits `0` and is not part of `validate.sh --strict`.
 
-## Cross-References
+---
+
+## 8. CROSS-REFERENCES
 
 - Agent body §16: `.opencode/agent/multi-ai-council.md`
 - Output schema: `.opencode/skill/system-spec-kit/references/multi-ai-council/output-schema.md`

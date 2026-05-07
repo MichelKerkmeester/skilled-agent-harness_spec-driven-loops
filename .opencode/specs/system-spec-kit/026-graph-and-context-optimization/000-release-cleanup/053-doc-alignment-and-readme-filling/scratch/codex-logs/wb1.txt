@@ -1,0 +1,5 @@
+Updated the six WB-1 files in place. A, B, C, E and F received reference frontmatter, short intro/divider alignment and numbered H2s. D already had the requested frontmatter; I changed only `## 1. Purpose` to `## 1. Overview` because `validate_document.py` requires an overview section.
+
+Per-file validation passed for all six. Packet-level strict validation was also run, but it fails on existing spec-doc template header/anchor issues outside the six-file WB-1 write scope.
+
+WB-1 RESULT: A=OK B=OK C=OK D=OK E=OK F=OK

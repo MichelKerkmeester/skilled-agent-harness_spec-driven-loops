@@ -1,0 +1,9 @@
+Created `.opencode/skill/system-spec-kit/shared/predicates/README.md`.
+
+Validation passed:
+- `validate_document.py`: valid, 0 issues
+- DQI: 94
+- Line count: 128 by `wc`, 129 by structure script, under 130 either way
+- No em dashes, semicolons, or emoji found
+
+WB-3 RESULT: README=OK

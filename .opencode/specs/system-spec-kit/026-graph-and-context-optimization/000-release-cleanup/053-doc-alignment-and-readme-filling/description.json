@@ -1,0 +1,17 @@
+{
+  "specFolder": "000-release-cleanup/053-doc-alignment-and-readme-filling",
+  "description": "Phase 1: doc-alignment-and-readme-filling",
+  "keywords": [
+    "phase",
+    "doc-alignment-and-readme-filling"
+  ],
+  "lastUpdated": "2026-05-07T10:45:31.776Z",
+  "specId": "053",
+  "folderSlug": "doc-alignment-and-readme-filling",
+  "parentChain": [
+    "000-release-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

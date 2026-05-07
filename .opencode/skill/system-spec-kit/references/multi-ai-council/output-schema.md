@@ -11,7 +11,9 @@ contextType: "reference"
 
 # Multi-AI Council Output Schema
 
-## 1. Purpose
+---
+
+## 1. Overview
 
 This document is the single source of truth for the `@multi-ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
 
@@ -22,6 +24,8 @@ Cross-references:
 - Agent body: `.opencode/agent/multi-ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
 - Runtime mirrors: `.claude/agents/multi-ai-council.md`, `.gemini/agents/multi-ai-council.md`, `.codex/agents/multi-ai-council.toml`
 - Helper: `.opencode/skill/system-spec-kit/scripts/multi-ai-council/persist-artifacts.cjs`
+
+---
 
 ## 2. Requiredness Matrix
 
@@ -44,6 +48,8 @@ Cross-references:
 
 Strict-required means the helper must fail before writing any files. Optional means the helper can still produce a valid artifact tree.
 
+---
+
 ## 3. Heading Aliases
 
 The helper accepts ATX heading depth `##` through `######`. Numeric prefixes are ignored. These forms are equivalent:
@@ -59,6 +65,8 @@ The helper accepts ATX heading depth `##` through `######`. Numeric prefixes are
 | Risks & Mitigations | `## Risks & Mitigations`, `## Risks and Mitigations`, `## Risks & Mitigations details` |
 
 The helper normalizes case, heading marks, leading section numbers, repeated whitespace, and trailing punctuation.
+
+---
 
 ## 4. Seat Section Fallback Contract
 
@@ -90,6 +98,8 @@ Fallback row example:
 
 Fallback seats produce `seats/round-NNN/*.md` artifacts with a clear note that the per-seat body was derived from the composition table. This preserves artifact shape without pretending the report contained detailed seat prose.
 
+---
+
 ## 5. Optional Section Policy
 
 Optional sections are advisory content, not parser blockers.
@@ -106,6 +116,8 @@ With `--strict-output`:
 - Strict-required missing sections still fail before writes.
 
 This policy keeps the helper tolerant of older reports while giving stricter callers a cleaner generated artifact set.
+
+---
 
 ## 6. Schema-Change Lockstep Rule
 

@@ -1,0 +1,8 @@
+Updated both manifest docs in place with frontmatter, location comments, intro text, dividers, and numbered H2 sections.
+
+Validation details:
+- Requested `validate_document.py <file>` commands exited `0` for both files, but skipped them because `system-spec-kit/templates/` is excluded.
+- Forced `--no-exclude` validation fails because the validator classifies them as README docs and requires TOC/OVERVIEW sections, which conflicts with your 4-H2 constraint.
+- Spec strict validation also fails on existing template header/anchor issues in the phase folder.
+
+WB-2 RESULT: FAIL: forced validation/spec strict gates fail despite requested per-file validator commands exiting 0 as skipped.

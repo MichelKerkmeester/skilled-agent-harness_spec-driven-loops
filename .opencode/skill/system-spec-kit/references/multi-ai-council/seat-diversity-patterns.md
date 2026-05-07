@@ -1,8 +1,22 @@
+---
+title: "Multi-AI Council Seat Diversity Patterns"
+description: "Lens combinations and vantage targets for diverse Multi-AI Council seats."
+trigger_phrases:
+  - "multi-ai-council seat diversity"
+  - "council lens combinations"
+  - "council vantage targets"
+  - "council diversity requirement"
+importance_tier: "normal"
+contextType: "reference"
+---
+
 # Multi-AI Council Seat Diversity Patterns
 
 Each round uses at most 3 seats. The goal is useful disagreement, not more copies of the same answer.
 
-## Lens Combinations
+---
+
+## 1. OVERVIEW
 
 | Task Type | Recommended Lenses | Why |
 | --- | --- | --- |
@@ -12,7 +26,9 @@ Each round uses at most 3 seats. The goal is useful disagreement, not more copie
 | Architecture | analytical + critical + holistic | Names trade-offs, challenges assumptions, checks long-range fit |
 | Research | research + critical + creative | Gathers evidence, tests source quality, opens alternative paths |
 
-## Vantage Targets
+---
+
+## 2. VANTAGE TARGETS
 
 Prefer distinct executor or AI-system vantages where available:
 
@@ -24,7 +40,9 @@ Prefer distinct executor or AI-system vantages where available:
 
 Unavailable vantages may be simulated only when clearly labeled as simulated. Do not imply an external AI participated when it did not.
 
-## Diversity Requirement
+---
+
+## 3. DIVERSITY REQUIREMENT
 
 At least one seat must challenge assumptions, missing context, failure modes, or the likely default plan. If all seats agree immediately, run the cross-critique pass before declaring convergence.
 

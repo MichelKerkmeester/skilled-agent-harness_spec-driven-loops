@@ -1,6 +1,20 @@
+---
+title: "Multi-AI Council Folder Layout"
+description: "Packet-local artifact layout for Multi-AI Council runs."
+trigger_phrases:
+  - "multi-ai-council folder layout"
+  - "ai-council artifacts"
+  - "council artifact tree"
+  - "council report path"
+importance_tier: "normal"
+contextType: "reference"
+---
+
 # Multi-AI Council Folder Layout
 
 The `ai-council/` folder is the packet-local artifact home for `@multi-ai-council` runs. It mirrors the familiar shape of `research/` and `review/`: configuration, strategy, append-only state, per-round evidence, and a final synthesized report.
+
+---
 
 ```text
 specs/<track>/<NNN-name>/ai-council/
@@ -18,6 +32,10 @@ specs/<track>/<NNN-name>/ai-council/
 |   |-- round-002-critique.md
 |-- council-report.md
 ```
+
+---
+
+## 1. OVERVIEW
 
 `ai-council-config.json` is one mutable packet config. It tracks the active `spec_folder`, `current_round`, `max_rounds`, `seats_per_round`, `convergence_signal`, timestamps, and status.
 
